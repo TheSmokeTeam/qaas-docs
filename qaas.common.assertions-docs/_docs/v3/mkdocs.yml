@@ -1,0 +1,116 @@
+site_name: QaaS Common Assertions Docs
+repo_name: QaaS Common Assertions
+repo_url: "REDA/qaas.common.assertions.git"
+docs_dir: docs/ 
+
+nav:
+  - Introduction: index.md
+  - Available Assertions:
+      - HermeticByExpectedOutputCount:
+        - Overview: availableAssertions/HermeticByExpectedOutputCount/overview.md
+        - Configurations: 
+          - Table View: availableAssertions/HermeticByExpectedOutputCount/configuration/tableView.md 
+          - Yaml View: availableAssertions/HermeticByExpectedOutputCount/configuration/yamlView.md 
+      - HermeticByExpectedOutputCountInRange:
+        - Overview: availableAssertions/HermeticByExpectedOutputCountInRange/overview.md
+        - Configurations: 
+          - Table View: availableAssertions/HermeticByExpectedOutputCountInRange/configuration/tableView.md 
+          - Yaml View: availableAssertions/HermeticByExpectedOutputCountInRange/configuration/yamlView.md 
+      - HermeticByInputOutputPercentage:
+        - Overview: availableAssertions/HermeticByInputOutputPercentage/overview.md
+        - Configurations: 
+          - Table View: availableAssertions/HermeticByInputOutputPercentage/configuration/tableView.md 
+          - Yaml View: availableAssertions/HermeticByInputOutputPercentage/configuration/yamlView.md 
+      - HermeticByInputOutputPercentageInRange:
+        - Overview: availableAssertions/HermeticByInputOutputPercentageInRange/overview.md
+        - Configurations: 
+          - Table View: availableAssertions/HermeticByInputOutputPercentageInRange/configuration/tableView.md 
+          - Yaml View: availableAssertions/HermeticByInputOutputPercentageInRange/configuration/yamlView.md 
+      - DelayByAverage:
+        - Overview: availableAssertions/DelayByAverage/overview.md
+        - Configurations: 
+          - Table View: availableAssertions/DelayByAverage/configuration/tableView.md 
+          - Yaml View: availableAssertions/DelayByAverage/configuration/yamlView.md 
+      - DelayByChunks:
+        - Overview: availableAssertions/DelayByChunks/overview.md
+        - Configurations: 
+          - Table View: availableAssertions/DelayByChunks/configuration/tableView.md 
+          - Yaml View: availableAssertions/DelayByChunks/configuration/yamlView.md 
+      - HttpStatus:
+        - Overview: availableAssertions/HttpStatus/overview.md
+        - Configurations: 
+          - Table View: availableAssertions/HttpStatus/configuration/tableView.md 
+          - Yaml View: availableAssertions/HttpStatus/configuration/yamlView.md 
+      - OutputDeserializableTo:
+        - Overview: availableAssertions/OutputDeserializableTo/overview.md
+        - Configurations: 
+          - Table View: availableAssertions/OutputDeserializableTo/configuration/tableView.md 
+          - Yaml View: availableAssertions/OutputDeserializableTo/configuration/yamlView.md 
+      - ObjectOutputJsonSchema:
+        - Overview: availableAssertions/ObjectOutputJsonSchema/overview.md
+        - Configurations: 
+          - Table View: availableAssertions/ObjectOutputJsonSchema/configuration/tableView.md 
+          - Yaml View: availableAssertions/ObjectOutputJsonSchema/configuration/yamlView.md 
+      - OutputContentByExpectedCsvResults:
+        - Overview: availableAssertions/OutputContentByExpectedCsvResults/overview.md
+        - Configurations: 
+          - Table View: availableAssertions/OutputContentByExpectedCsvResults/configuration/tableView.md 
+          - Yaml View: availableAssertions/OutputContentByExpectedCsvResults/configuration/yamlView.md 
+      - ValidateHermeticMetricsByInputOutputPercentage:
+        - Overview: availableAssertions/ValidateHermeticMetricsByInputOutputPercentage/overview.md
+        - Configurations: 
+          - Table View: availableAssertions/ValidateHermeticMetricsByInputOutputPercentage/configuration/tableView.md 
+          - Yaml View: availableAssertions/ValidateHermeticMetricsByInputOutputPercentage/configuration/yamlView.md 
+  - QaaS Docs: REDA/v4/userInterfaces/runner/configurationSections/assertions/overview/
+theme:
+  name: material
+  highlights: false
+  font: false
+  features:
+    - content.code.annotate
+    - navigation.tabs
+
+  palette:
+    - scheme: slate
+      primary: white
+      accent: red
+      toggle:
+        icon: material/weather-sunny
+        name: Switch to light mode
+    - scheme: default
+      primary: white
+      accent: red
+      toggle:
+        icon: material/weather-night
+        name: Switch to dark mode
+
+  include_search_page: false
+  search_index_only: true
+
+  icon:
+    repo: fontawesome/brands/gitlab
+  logo: assets/qaas-logo.png
+  favicon: assets/qaas-logo.png
+
+extra_css:
+  - assets/chat-widget.js
+
+extra_javascript:
+  - assets/chat-widget.js
+
+plugins:
+ - mike
+ - search
+
+extra:
+  version:
+    provider: mike
+
+markdown_extensions:
+  - pymdownx.superfences
+  - admonition
+  - toc:
+      permalink: true
+  - pymdownx.emoji:
+      emoji_index: !!python/name:materialx.emoji.twemoji
+      emoji_generator: !!python/name:materialx.emoji.to_svg
