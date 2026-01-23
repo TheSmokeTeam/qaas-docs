@@ -206,11 +206,27 @@ nav:
       - Serialization: framework/projects/serialization.md
 
 theme:
-  name: dracula
-  # favicon: assets/favicon.ico
+  name: catppuccin
+  flavor: mocha  # Options: latte, frappe, macchiato, mocha
+  features:
+    - content.code.annotate
+    - content.code.copy
+    - content.tabs.link
+    - navigation.tabs
+    - navigation.tabs.sticky
+    - navigation.sections
+    - navigation.expand
+    - navigation.path
+    - navigation.top
+    - search.suggest
+    - search.highlight
+    - toc.follow
+  icon:
+    repo: fontawesome/brands/github
 
 plugins:
   - search
+  - catppuccin
 
 markdown_extensions:
   - attr_list
