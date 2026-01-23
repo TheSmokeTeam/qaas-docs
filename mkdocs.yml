@@ -208,14 +208,9 @@ nav:
 theme:
   name: material
   features:
-    - announce.dismiss
     - content.code.annotate
     - content.code.copy
-    - content.code.select
     - content.tabs.link
-    - content.tooltips
-    - navigation.footer
-    - navigation.indexes
     - navigation.instant
     - navigation.instant.progress
     - navigation.tabs
@@ -225,66 +220,47 @@ theme:
     - navigation.top
     - search.suggest
     - search.highlight
-    - search.share
     - toc.follow
 
   palette:
-    - media: "(prefers-color-scheme: dark)"
-      scheme: slate
-      primary: deep purple
-      accent: amber
+    - scheme: slate
+      primary: indigo
+      accent: indigo
       toggle:
-        icon: material/brightness-4
+        icon: material/weather-sunny
         name: Switch to light mode
-    - media: "(prefers-color-scheme: light)"
-      scheme: default
-      primary: deep purple
-      accent: amber
+    - scheme: default
+      primary: indigo
+      accent: indigo
       toggle:
-        icon: material/brightness-7
+        icon: material/weather-night
         name: Switch to dark mode
-
-  font:
-    text: Inter
-    code: JetBrains Mono
 
   icon:
     repo: fontawesome/brands/github
-    logo: material/flask-outline
-    annotation: material/chevron-right-circle
+    logo: material/test-tube
+  # Uncomment and add your logo/favicon files to docs/assets/
+  # logo: assets/logo.png
+  # favicon: assets/favicon.png
 
 plugins:
-  - search:
-      separator: '[\s\-,:!=\[\]()"/]+|(?!\b)(?=[A-Z][a-z])|\.(?!\d)|&[lg]t;'
+  - search
   - tags
 
 markdown_extensions:
-  - abbr
   - attr_list
   - md_in_html
-  - footnotes
-  - tables
-  - pymdownx.superfences:
-      custom_fences:
-        - name: mermaid
-          class: mermaid
-          format: !!python/name:pymdownx.superfences.fence_code_format
+  - pymdownx.superfences
   - admonition
   - def_list
   - pymdownx.tabbed:
       alternate_style: true
-      slugify: !!python/object/apply:pymdownx.slugs.slugify
-        kwds:
-          case: lower
   - pymdownx.highlight:
       anchor_linenums: true
       line_spans: __span
       pygments_lang_class: true
-      auto_title: true
   - toc:
       permalink: true
-      permalink_title: Link to this section
-      toc_depth: 3
   - pymdownx.emoji:
       emoji_index: !!python/name:material.extensions.emoji.twemoji
       emoji_generator: !!python/name:material.extensions.emoji.to_svg
@@ -293,19 +269,9 @@ markdown_extensions:
   - pymdownx.inlinehilite
   - pymdownx.snippets
   - pymdownx.details
-  - pymdownx.mark
-  - pymdownx.smartsymbols
-  - pymdownx.keys
-  - pymdownx.caret
-  - pymdownx.tilde
-  - pymdownx.betterem
 
 extra:
   social:
     - icon: fontawesome/brands/github
       link: https://github.com/TheSmokeTeam/qaas-docs
-      name: QaaS on GitHub
   generator: false
-  status:
-    new: Recently added
-    deprecated: Deprecated
