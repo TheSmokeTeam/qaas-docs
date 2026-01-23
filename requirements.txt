@@ -1,0 +1,10 @@
+# MkDocs dependencies
+mkdocs==1.5.3
+mkdocs-material==9.5.9
+mkdocs-material-extensions==1.3.1
+
+# Markdown extensions
+pymdown-extensions>=10.0
+
+# Additional utilities
+regex>=2023.12.25

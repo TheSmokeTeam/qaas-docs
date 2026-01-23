@@ -1,0 +1,276 @@
+site_name: QaaS Documentation
+site_description: Quality as a Service - Unified Documentation
+site_url: https://your-org.github.io/qaas-docs/
+repo_name: QaaS
+repo_url: https://github.com/your-org/qaas-docs
+docs_dir: docs/
+
+nav:
+  - Home: index.md
+  
+  - QaaS Core:
+    - Introduction: qaas/index.md
+    - Architecture: qaas/architecture.md
+    - Quick Start:
+      - Installation: qaas/quickStart/installation.md
+      - IDE Setup: qaas/quickStart/ide.md
+      - Write Test With YAML: qaas/quickStart/writeTestYaml.md
+      - Write Test With Code: qaas/quickStart/writeTestCode.md
+      - Write Hooks: qaas/quickStart/writeHooks.md
+      - Run Test: qaas/quickStart/runTest.md
+      - Make Test Maintainable: qaas/quickStart/makeTestMoreMaintainable.md
+      - Debug Test Failure: qaas/quickStart/debugTestFailure.md
+    - Advanced Concepts:
+      - Live Session Data: qaas/advancedConcepts/liveSessionData.md
+      - Configuration As Code: qaas/advancedConcepts/configurationAsCode.md
+      - Stages: qaas/advancedConcepts/stages.md
+    - Best Practices: qaas/bestPractices.md
+    - User Interfaces:
+      - Runner:
+        - Commands:
+          - Overview: qaas/userInterfaces/runner/commands/commands.md
+          - Run: qaas/userInterfaces/runner/commands/run.md
+          - Act: qaas/userInterfaces/runner/commands/act.md
+          - Assert: qaas/userInterfaces/runner/commands/assert.md
+          - Execute: qaas/userInterfaces/runner/commands/execute.md
+          - Template: qaas/userInterfaces/runner/commands/template.md
+        - Configuration Sections:
+          - Overview: qaas/userInterfaces/runner/configurationSections/configurationSections.md
+          - MetaData:
+            - Overview: qaas/userInterfaces/runner/configurationSections/metaData/overview.md
+            - Table View: qaas/userInterfaces/runner/configurationSections/metaData/configurations/tableView.md
+            - YAML View: qaas/userInterfaces/runner/configurationSections/metaData/configurations/yamlView.md
+          - Links:
+            - Overview: qaas/userInterfaces/runner/configurationSections/links/overview.md
+            - Table View: qaas/userInterfaces/runner/configurationSections/links/configurations/tableView.md
+            - YAML View: qaas/userInterfaces/runner/configurationSections/links/configurations/yamlView.md
+          - Storages:
+            - Overview: qaas/userInterfaces/runner/configurationSections/storages/overview.md
+            - Table View: qaas/userInterfaces/runner/configurationSections/storages/configurations/tableView.md
+            - YAML View: qaas/userInterfaces/runner/configurationSections/storages/configurations/yamlView.md
+          - DataSources:
+            - Overview: qaas/userInterfaces/runner/configurationSections/dataSources/overview.md
+            - Table View: qaas/userInterfaces/runner/configurationSections/dataSources/configurations/tableView.md
+            - YAML View: qaas/userInterfaces/runner/configurationSections/dataSources/configurations/yamlView.md
+          - Sessions:
+            - Overview: qaas/userInterfaces/runner/configurationSections/sessions/overview.md
+            - Types:
+              - Probes: qaas/userInterfaces/runner/configurationSections/sessions/types/probes.md
+              - Policies: qaas/userInterfaces/runner/configurationSections/sessions/types/policies.md
+              - Publishers: qaas/userInterfaces/runner/configurationSections/sessions/types/publishers.md
+              - Consumers: qaas/userInterfaces/runner/configurationSections/sessions/types/consumers.md
+              - Collectors: qaas/userInterfaces/runner/configurationSections/sessions/types/collectors.md
+              - Transactions: qaas/userInterfaces/runner/configurationSections/sessions/types/transactions.md
+              - Mocker Commands: qaas/userInterfaces/runner/configurationSections/sessions/types/mockerCommands.md
+            - Table View: qaas/userInterfaces/runner/configurationSections/sessions/configurations/tableView.md
+            - YAML View: qaas/userInterfaces/runner/configurationSections/sessions/configurations/yamlView.md
+          - Assertions:
+            - Overview: qaas/userInterfaces/runner/configurationSections/assertions/overview.md
+            - Table View: qaas/userInterfaces/runner/configurationSections/assertions/configurations/tableView.md
+            - YAML View: qaas/userInterfaces/runner/configurationSections/assertions/configurations/yamlView.md
+        - Configuration Resolution: qaas/userInterfaces/runner/configurationResolutionPriority.md
+        - Allure Report: qaas/userInterfaces/runner/allureReport.md
+      - Logger: qaas/userInterfaces/logger.md
+    - AddOns:
+      - Plugins: qaas/addOns/plugins.md
+      - Modules: qaas/addOns/modules.md
+
+  - Mocker:
+    - Introduction: mocker/index.md
+    - Quick Start:
+      - Installation: mocker/quickStart/installation.md
+      - Create Mock: mocker/quickStart/createMock.md
+      - Deploy Mock: mocker/quickStart/deployMock.md
+      - Integrate with Tests: mocker/quickStart/integrateWithTests.md
+    - Configuration:
+      - Overview: mocker/userInterfaces/mocker/configurationSections/configurationSections.md
+      - DataSources:
+        - Overview: mocker/userInterfaces/mocker/configurationSections/dataSources/overview.md
+        - Table View: mocker/userInterfaces/mocker/configurationSections/dataSources/configurations/tableView.md
+        - YAML View: mocker/userInterfaces/mocker/configurationSections/dataSources/configurations/yamlView.md
+      - Stubs:
+        - Overview: mocker/userInterfaces/mocker/configurationSections/stubs/overview.md
+        - Table View: mocker/userInterfaces/mocker/configurationSections/stubs/configurations/tableView.md
+        - YAML View: mocker/userInterfaces/mocker/configurationSections/stubs/configurations/yamlView.md
+      - Controller:
+        - Overview: mocker/userInterfaces/mocker/configurationSections/controller/overview.md
+        - Table View: mocker/userInterfaces/mocker/configurationSections/controller/configurations/tableView.md
+        - YAML View: mocker/userInterfaces/mocker/configurationSections/controller/configurations/yamlView.md
+      - Server:
+        - Overview: mocker/userInterfaces/mocker/configurationSections/server/overview.md
+        - Table View: mocker/userInterfaces/mocker/configurationSections/server/configurations/tableView.md
+        - YAML View: mocker/userInterfaces/mocker/configurationSections/server/configurations/yamlView.md
+
+  - Assertions:
+    - Introduction: assertions/index.md
+    - Available Assertions:
+      - HermeticByExpectedOutputCount:
+        - Overview: assertions/availableAssertions/HermeticByExpectedOutputCount/overview.md
+        - Table View: assertions/availableAssertions/HermeticByExpectedOutputCount/configuration/tableView.md
+        - YAML View: assertions/availableAssertions/HermeticByExpectedOutputCount/configuration/yamlView.md
+      - HermeticByExpectedOutputCountInRange:
+        - Overview: assertions/availableAssertions/HermeticByExpectedOutputCountInRange/overview.md
+        - Table View: assertions/availableAssertions/HermeticByExpectedOutputCountInRange/configuration/tableView.md
+        - YAML View: assertions/availableAssertions/HermeticByExpectedOutputCountInRange/configuration/yamlView.md
+      - HermeticByInputOutputPercentage:
+        - Overview: assertions/availableAssertions/HermeticByInputOutputPercentage/overview.md
+        - Table View: assertions/availableAssertions/HermeticByInputOutputPercentage/configuration/tableView.md
+        - YAML View: assertions/availableAssertions/HermeticByInputOutputPercentage/configuration/yamlView.md
+      - HermeticByInputOutputPercentageInRange:
+        - Overview: assertions/availableAssertions/HermeticByInputOutputPercentageInRange/overview.md
+        - Table View: assertions/availableAssertions/HermeticByInputOutputPercentageInRange/configuration/tableView.md
+        - YAML View: assertions/availableAssertions/HermeticByInputOutputPercentageInRange/configuration/yamlView.md
+      - DelayByAverage:
+        - Overview: assertions/availableAssertions/DelayByAverage/overview.md
+        - Table View: assertions/availableAssertions/DelayByAverage/configuration/tableView.md
+        - YAML View: assertions/availableAssertions/DelayByAverage/configuration/yamlView.md
+      - DelayByChunks:
+        - Overview: assertions/availableAssertions/DelayByChunks/overview.md
+        - Table View: assertions/availableAssertions/DelayByChunks/configuration/tableView.md
+        - YAML View: assertions/availableAssertions/DelayByChunks/configuration/yamlView.md
+      - HttpStatus:
+        - Overview: assertions/availableAssertions/HttpStatus/overview.md
+        - Table View: assertions/availableAssertions/HttpStatus/configuration/tableView.md
+        - YAML View: assertions/availableAssertions/HttpStatus/configuration/yamlView.md
+      - OutputDeserializableTo:
+        - Overview: assertions/availableAssertions/OutputDeserializableTo/overview.md
+        - Table View: assertions/availableAssertions/OutputDeserializableTo/configuration/tableView.md
+        - YAML View: assertions/availableAssertions/OutputDeserializableTo/configuration/yamlView.md
+      - ObjectOutputJsonSchema:
+        - Overview: assertions/availableAssertions/ObjectOutputJsonSchema/overview.md
+        - Table View: assertions/availableAssertions/ObjectOutputJsonSchema/configuration/tableView.md
+        - YAML View: assertions/availableAssertions/ObjectOutputJsonSchema/configuration/yamlView.md
+      - OutputContentByExpectedCsvResults:
+        - Overview: assertions/availableAssertions/OutputContentByExpectedCsvResults/overview.md
+        - Table View: assertions/availableAssertions/OutputContentByExpectedCsvResults/configuration/tableView.md
+        - YAML View: assertions/availableAssertions/OutputContentByExpectedCsvResults/configuration/yamlView.md
+      - ValidateHermeticMetricsByInputOutputPercentage:
+        - Overview: assertions/availableAssertions/ValidateHermeticMetricsByInputOutputPercentage/overview.md
+        - Table View: assertions/availableAssertions/ValidateHermeticMetricsByInputOutputPercentage/configuration/tableView.md
+        - YAML View: assertions/availableAssertions/ValidateHermeticMetricsByInputOutputPercentage/configuration/yamlView.md
+
+  - Generators:
+    - Introduction: generators/index.md
+    - Available Generators:
+      - FromFileSystem:
+        - Overview: generators/availableGenerators/FromFileSystem/overview.md
+        - Table View: generators/availableGenerators/FromFileSystem/configuration/tableView.md
+        - YAML View: generators/availableGenerators/FromFileSystem/configuration/yamlView.md
+      - FromS3:
+        - Overview: generators/availableGenerators/FromS3/overview.md
+        - Table View: generators/availableGenerators/FromS3/configuration/tableView.md
+        - YAML View: generators/availableGenerators/FromS3/configuration/yamlView.md
+      - FromDataLake:
+        - Overview: generators/availableGenerators/FromDataLake/overview.md
+        - Table View: generators/availableGenerators/FromDataLake/configuration/tableView.md
+        - YAML View: generators/availableGenerators/FromDataLake/configuration/yamlView.md
+      - FromDataSources:
+        - Overview: generators/availableGenerators/FromDataSources/overview.md
+        - Table View: generators/availableGenerators/FromDataSources/configuration/tableView.md
+        - YAML View: generators/availableGenerators/FromDataSources/configuration/yamlView.md
+      - FromLettuceDataSources:
+        - Overview: generators/availableGenerators/FromLettuceDataSources/overview.md
+        - Table View: generators/availableGenerators/FromLettuceDataSources/configuration/tableView.md
+        - YAML View: generators/availableGenerators/FromLettuceDataSources/configuration/yamlView.md
+      - FromSessionDataDataSources:
+        - Overview: generators/availableGenerators/FromSessionDataDataSources/overview.md
+        - Table View: generators/availableGenerators/FromSessionDataDataSources/configuration/tableView.md
+        - YAML View: generators/availableGenerators/FromSessionDataDataSources/configuration/yamlView.md
+      - Json:
+        - Overview: generators/availableGenerators/Json/overview.md
+        - Table View: generators/availableGenerators/Json/configuration/tableView.md
+        - YAML View: generators/availableGenerators/Json/configuration/yamlView.md
+      - JsonSchemaDraft4:
+        - Overview: generators/availableGenerators/JsonSchemaDraft4/overview.md
+        - Table View: generators/availableGenerators/JsonSchemaDraft4/configuration/tableView.md
+        - YAML View: generators/availableGenerators/JsonSchemaDraft4/configuration/yamlView.md
+      - LettuceFromFileSystem:
+        - Overview: generators/availableGenerators/LettuceFromFileSystem/overview.md
+        - Table View: generators/availableGenerators/LettuceFromFileSystem/configuration/tableView.md
+        - YAML View: generators/availableGenerators/LettuceFromFileSystem/configuration/yamlView.md
+      - Stacking:
+        - Overview: generators/availableGenerators/Stacking/overview.md
+        - Table View: generators/availableGenerators/Stacking/configuration/tableView.md
+        - YAML View: generators/availableGenerators/Stacking/configuration/yamlView.md
+
+  - Framework:
+    - Introduction: framework/index.md
+    - Projects:
+      - SDK: framework/projects/sdk.md
+      - Configuration: framework/projects/configuration.md
+      - Executions: framework/projects/executions.md
+      - Infrastructure: framework/projects/infrastructure.md
+      - Policies: framework/projects/policies.md
+      - Protocols: framework/projects/protocols.md
+      - Providers: framework/projects/providers.md
+      - Serialization: framework/projects/serialization.md
+
+theme:
+  name: material
+  features:
+    - content.code.annotate
+    - content.code.copy
+    - content.tabs.link
+    - navigation.tabs
+    - navigation.tabs.sticky
+    - navigation.sections
+    - navigation.expand
+    - navigation.path
+    - navigation.top
+    - search.suggest
+    - search.highlight
+    - toc.follow
+
+  palette:
+    - scheme: slate
+      primary: indigo
+      accent: indigo
+      toggle:
+        icon: material/weather-sunny
+        name: Switch to light mode
+    - scheme: default
+      primary: indigo
+      accent: indigo
+      toggle:
+        icon: material/weather-night
+        name: Switch to dark mode
+
+  icon:
+    repo: fontawesome/brands/github
+    logo: material/test-tube
+  # Uncomment and add your logo/favicon files to docs/assets/
+  # logo: assets/logo.png
+  # favicon: assets/favicon.png
+
+plugins:
+  - search
+  - tags
+
+markdown_extensions:
+  - attr_list
+  - md_in_html
+  - pymdownx.superfences
+  - admonition
+  - def_list
+  - pymdownx.tabbed:
+      alternate_style: true
+  - pymdownx.highlight:
+      anchor_linenums: true
+      line_spans: __span
+      pygments_lang_class: true
+  - toc:
+      permalink: true
+  - pymdownx.emoji:
+      emoji_index: !!python/name:material.extensions.emoji.twemoji
+      emoji_generator: !!python/name:material.extensions.emoji.to_svg
+  - pymdownx.tasklist:
+      custom_checkbox: true
+  - pymdownx.inlinehilite
+  - pymdownx.snippets
+  - pymdownx.details
+
+extra:
+  social:
+    - icon: fontawesome/brands/github
+      link: https://github.com/your-org/qaas-docs
+  generator: false

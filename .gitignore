@@ -1,0 +1,31 @@
+# Build output
+site/
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+env/
+venv/
+.venv/
+ENV/
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Old documentation folders (can be removed after migration)
+# qaas-docs/
+# qaas-mocker-docs/
+# qaas.common.assertions-docs/
+# qaas.common.generators-docs/
+# qaas.framework-docs/
