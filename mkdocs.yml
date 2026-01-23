@@ -1,8 +1,8 @@
 site_name: QaaS Documentation
 site_description: Quality as a Service - Unified Documentation
-site_url: https://your-org.github.io/qaas-docs/
+site_url: https://TheSmokeTeam.github.io/qaas-docs/
 repo_name: QaaS
-repo_url: https://github.com/your-org/qaas-docs
+repo_url: https://github.com/TheSmokeTeam/qaas-docs
 docs_dir: docs/
 
 nav:
@@ -272,5 +272,5 @@ markdown_extensions:
 extra:
   social:
     - icon: fontawesome/brands/github
-      link: https://github.com/your-org/qaas-docs
+      link: https://github.com/TheSmokeTeam/qaas-docs
   generator: false
