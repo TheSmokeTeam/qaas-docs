@@ -1,17 +1,22 @@
-FROM python:3.11-slim
+# Build stage
+FROM squidfunk/mkdocs-material:9.5 AS builder
 
 WORKDIR /docs
 
-# Install dependencies
-COPY requirements.txt .
-RUN pip install --no-cache-dir -r requirements.txt
-
-# Copy documentation
+# Copy documentation source
 COPY mkdocs.yml .
 COPY docs/ docs/
 
-# Expose port
-EXPOSE 8000
+# Build static site
+RUN mkdocs build
 
-# Serve documentation
-CMD ["mkdocs", "serve", "--dev-addr=0.0.0.0:8000"]
+# Production stage - lightweight nginx server
+FROM nginx:alpine
+
+# Copy built site to nginx
+COPY --from=builder /docs/site /usr/share/nginx/html
+
+# Expose port
+EXPOSE 80
+
+# nginx runs by default

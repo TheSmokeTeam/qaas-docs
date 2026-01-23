@@ -1,6 +1,6 @@
 # QaaS Documentation
 
-[![Deploy Documentation](https://github.com/your-org/qaas-docs/actions/workflows/deploy-docs.yml/badge.svg)](https://github.com/your-org/qaas-docs/actions/workflows/deploy-docs.yml)
+[![Deploy Documentation](https://github.com/TheSmokeTeam/qaas-docs/actions/workflows/deploy-docs.yml/badge.svg)](https://github.com/TheSmokeTeam/qaas-docs/actions/workflows/deploy-docs.yml)
 
 Unified documentation for the Quality as a Service (QaaS) platform and its components.
 
@@ -8,7 +8,7 @@ Unified documentation for the Quality as a Service (QaaS) platform and its compo
 
 | Section | Description |
 |---------|-------------|
-| **QaaS Core** | Main testing framework - architecture, quick start, and advanced concepts |
+| **Runner** | Main testing framework - architecture, quick start, and advanced concepts |
 | **Mocker** | Mock service creation and deployment |
 | **Assertions** | Test assertion types and configurations |
 | **Generators** | Data generation from various sources |
@@ -18,7 +18,7 @@ Unified documentation for the Quality as a Service (QaaS) platform and its compo
 
 ### View Documentation Online
 
-Visit the deployed documentation at: **https://your-org.github.io/qaas-docs/**
+Visit the deployed documentation at: **https://TheSmokeTeam.github.io/qaas-docs/**
 
 ### Run Locally
 
@@ -48,7 +48,7 @@ The static site will be generated in the `site/` directory.
 qaas-docs/
 ├── docs/                    # Unified documentation
 │   ├── index.md            # Main landing page
-│   ├── qaas/               # QaaS Core docs
+│   ├── qaas/               # Runner docs
 │   ├── mocker/             # Mocker docs
 │   ├── assertions/         # Assertions library docs
 │   ├── generators/         # Generators library docs

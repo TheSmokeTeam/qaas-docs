@@ -6,7 +6,7 @@ Welcome to the **Quality as a Service (QaaS)** documentation hub. This unified d
 
 <div class="grid cards" markdown>
 
--   :material-test-tube:{ .lg .middle } **QaaS Core**
+-   :material-test-tube:{ .lg .middle } **Runner**
 
     ---
 
@@ -14,7 +14,7 @@ Welcome to the **Quality as a Service (QaaS)** documentation hub. This unified d
 
     [:octicons-arrow-right-24: Get Started](qaas/index.md)
 
--   :material-server:{ .lg .middle } **QaaS Mocker**
+-   :material-server:{ .lg .middle } **Mocker**
 
     ---
 
@@ -47,16 +47,6 @@ Welcome to the **Quality as a Service (QaaS)** documentation hub. This unified d
     [:octicons-arrow-right-24: Framework Docs](framework/index.md)
 
 </div>
-
-## Quick Links
-
-| Component | Description | Version |
-|-----------|-------------|---------|
-| [QaaS Core](qaas/index.md) | Main testing framework | v4 |
-| [QaaS Mocker](mocker/index.md) | Mock service creation | Latest |
-| [Assertions](assertions/index.md) | Test assertions library | v3 |
-| [Generators](generators/index.md) | Data generation library | v3 |
-| [Framework](framework/index.md) | Core framework library | Latest |
 
 ## Getting Started
 
