@@ -1,9 +1,8 @@
 # QaaS Mocker Docs
 
-This package documents the `QaaS.Mocker` repository.
+The qaas mocker docs are written in this repository as `md` files under [/docs](./docs/).
 
-## Local Build
+They are versioned with `git tags` that follow this convention: `<qaas-mocker-version>-docs.<docs-version-for-this-qaas-mocker-version>`.
 
-```bash
-docker build -t qaas-mocker-docs .
-```
+For **example**:
+`QaaS.Mocker` version `1.0.0` with the 3rd version of its docs will have the git tag `1.0.0-docs.3`.

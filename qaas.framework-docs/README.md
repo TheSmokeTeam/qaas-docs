@@ -1,20 +1,8 @@
 # QaaS Framework Docs
 
-This package documents the `QaaS.Framework` repository.
+The QaaS Framework docs are written in this repository as `md` files under [/docs](./docs/).
 
-## Scope
+They are versioned with `git tags` that follow this convention: `<qaas-framework-version>-docs.<docs-version-for-this-qaas-framework-version>`.
 
-- `QaaS.Framework.Configurations`
-- `QaaS.Framework.Executions`
-- `QaaS.Framework.Infrastructure`
-- `QaaS.Framework.Policies`
-- `QaaS.Framework.Protocols`
-- `QaaS.Framework.Providers`
-- `QaaS.Framework.SDK`
-- `QaaS.Framework.Serialization`
-
-## Local Build
-
-```bash
-docker build -t qaas-framework-docs .
-```
+For **example**:
+`QaaS.Framework` version `1.0.0` with the 3rd version of its docs will have the git tag `1.0.0-docs.3`.

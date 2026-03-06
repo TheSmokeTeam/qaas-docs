@@ -1,38 +1,148 @@
 site_name: QaaS Docs
-repo_name: qaas-docs
-repo_url: https://github.com/TheSmokeTeam/qaas-docs
-docs_dir: docs
-exclude_docs: |
-  bestPractices.md
-  addOns/*
-  advancedConcepts/*
-  quickStart/*
-  userInterfaces/*
+repo_name: QaaS
+repo_url: "REDA/qaas.git"
+docs_dir: docs/ 
 
 nav:
-  - Zero-to-Hero: index.md
-  - Ecosystem Architecture: architecture.md
-  - Runner Reference: reference.md
-  - Troubleshooting: troubleshooting.md
+  - Introduction: index.md
+  - Architecture: architecture.md
+  - Quick Start:
+    - Installation: quickStart/installation.md
+    - IDE: quickStart/ide.md
+    - Write Test With Yaml: quickStart/writeTestYaml.md
+    - Write Test With Code: quickStart/writeTestCode.md
+    - Write Hooks: quickStart/writeHooks.md
+    - Run Test: quickStart/runTest.md
+    - Make Test More Maintainable: quickStart/makeTestMoreMaintainable.md
+    - Debug Test Failure: quickStart/debugTestFailure.md
+  - Advanced Concepts:
+    - Live Session Data: advancedConcepts/liveSessionData.md
+    - Configuration As Code: advancedConcepts/configurationAsCode.md
+    - Stages: advancedConcepts/stages.md
+  - Best Practices: bestPractices.md
+  - User Interfaces:
+    - Runner:
+      - Commands: 
+        - userInterfaces/runner/commands/commands.md
+        - Run: userInterfaces/runner/commands/run.md
+        - Act: userInterfaces/runner/commands/act.md
+        - Assert: userInterfaces/runner/commands/assert.md
+        - Execute: userInterfaces/runner/commands/execute.md
+        - Template: userInterfaces/runner/commands/template.md
+      - Configuration Sections:
+        - userInterfaces/runner/configurationSections/configurationSections.md
+        - MetaData:
+          - Overview: userInterfaces/runner/configurationSections/metaData/overview.md
+          - Configurations: 
+              - Table View: userInterfaces/runner/configurationSections/metaData/configurations/tableView.md 
+              - Yaml View: userInterfaces/runner/configurationSections/metaData/configurations/yamlView.md
+        - Links:
+            - Overview: userInterfaces/runner/configurationSections/links/overview.md
+            - Configurations: 
+                - Table View: userInterfaces/runner/configurationSections/links/configurations/tableView.md 
+                - Yaml View: userInterfaces/runner/configurationSections/links/configurations/yamlView.md
+        - Storages: 
+            - Overview: userInterfaces/runner/configurationSections/storages/overview.md
+            - Configurations: 
+                - Table View: userInterfaces/runner/configurationSections/storages/configurations/tableView.md 
+                - Yaml View: userInterfaces/runner/configurationSections/storages/configurations/yamlView.md
+        - DataSources: 
+            - Overview: userInterfaces/runner/configurationSections/dataSources/overview.md
+            - QaaS.Common.Generators: REDA/v3/
+            - Configurations: 
+                - Table View: userInterfaces/runner/configurationSections/dataSources/configurations/tableView.md 
+                - Yaml View: userInterfaces/runner/configurationSections/dataSources/configurations/yamlView.md
+        - Sessions: 
+            - Overview: userInterfaces/runner/configurationSections/sessions/overview.md
+            - Types:
+              - Probes: userInterfaces/runner/configurationSections/sessions/types/probes.md
+              - Policies: userInterfaces/runner/configurationSections/sessions/types/policies.md
+              - Publishers: userInterfaces/runner/configurationSections/sessions/types/publishers.md
+              - Consumers: userInterfaces/runner/configurationSections/sessions/types/consumers.md
+              - Collectors: userInterfaces/runner/configurationSections/sessions/types/collectors.md
+              - Transactions: userInterfaces/runner/configurationSections/sessions/types/transactions.md
+              - Mocker Commands: userInterfaces/runner/configurationSections/sessions/types/mockerCommands.md
+            - Configurations: 
+                - Table View: userInterfaces/runner/configurationSections/sessions/configurations/tableView.md 
+                - Yaml View: userInterfaces/runner/configurationSections/sessions/configurations/yamlView.md  
+        - Assertions: 
+            - Overview: userInterfaces/runner/configurationSections/assertions/overview.md
+            - QaaS.Common.Assertions: REDA/v3/
+            - Configurations: 
+                - Table View: userInterfaces/runner/configurationSections/assertions/configurations/tableView.md 
+                - Yaml View: userInterfaces/runner/configurationSections/assertions/configurations/yamlView.md
+      - Configuration Resolution Priority: userInterfaces/runner/configurationResolutionPriority.md
+      - Allure Report: userInterfaces/runner/allureReport.md
+    - Logger: userInterfaces/logger.md
+  - AddOns:
+      - Plugins: addOns/plugins.md
+      - Modules: addOns/modules.md
+  - QaaS.Framework: REDA
 
 theme:
   name: material
+  highlightjson: false
+  font: false
   features:
+    - content.code.annotate
+    - content.tabs.link
     - navigation.tabs
-    - content.code.copy
+
+  palette:
+    - scheme: slate
+      primary: white
+      accent: red
+      toggle:
+        icon: material/weather-sunny
+        name: Switch to light mode
+    - scheme: default
+      primary: white
+      accent: red
+      toggle:
+        icon: material/weather-night
+        name: Switch to dark mode
+
+  include_search_page: false
+  search_index_only: true
+
+  icon:
+    repo: fontawesome/brands/gitlab
+  logo: assets/qaas-logo.png
+  favicon: assets/qaas-logo.png
 
 plugins:
-  - search
-  - mike
+ - mike
+ - search
 
 extra:
   version:
     provider: mike
 
+extra_css:
+  - assets/chat-widget.js
+
+extra_javascript:
+  - assets/chat-widget.js
+
 markdown_extensions:
-  - admonition
   - attr_list
   - md_in_html
   - pymdownx.superfences
+  - admonition
+  - def_list
+  - pymdownx.tabbed:
+      alternate_style: true
+  - pymdownx.highlight:
+      anchor_linenums: true
+      line_spans: __span
+      pygments_lang_class: true
   - toc:
       permalink: true
+  - pymdownx.emoji:
+      emoji_index: !!python/name:material.extensions.emoji.twemoji
+      emoji_generator: !!python/name:material.extensions.emoji.to_svg
+  - pymdownx.tasklist:
+      custom_checkbox: true
+  - pymdownx.inlinehilite
+  - pymdownx.snippets
+  - pymdownx.details
