@@ -1,0 +1,138 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>QaaS Documentation Suite</title>
+  <style>
+    :root {
+      color-scheme: dark;
+      --bg: #0f172a;
+      --panel: #162032;
+      --border: #26354f;
+      --text: #e2e8f0;
+      --muted: #9fb0c7;
+      --accent: #4dd0e1;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      font-family: "Segoe UI", Arial, sans-serif;
+      background:
+        radial-gradient(circle at top, rgba(77, 208, 225, 0.14), transparent 28rem),
+        linear-gradient(180deg, #111827 0%, var(--bg) 100%);
+      color: var(--text);
+    }
+
+    main {
+      max-width: 72rem;
+      margin: 0 auto;
+      padding: 4rem 1.5rem 5rem;
+    }
+
+    .eyebrow {
+      margin: 0 0 0.75rem;
+      color: var(--accent);
+      font-size: 0.82rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    h1 {
+      margin: 0;
+      font-size: clamp(2.4rem, 5vw, 4rem);
+      line-height: 1.1;
+    }
+
+    .lead {
+      max-width: 48rem;
+      margin: 1rem 0 0;
+      color: var(--muted);
+      font-size: 1.05rem;
+      line-height: 1.7;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr));
+      gap: 1rem;
+      margin-top: 2rem;
+    }
+
+    .card {
+      display: block;
+      padding: 1.25rem;
+      border: 1px solid var(--border);
+      border-radius: 1rem;
+      background: rgba(22, 32, 50, 0.82);
+      color: inherit;
+      text-decoration: none;
+      transition: transform 160ms ease, border-color 160ms ease, background 160ms ease;
+    }
+
+    .card:hover {
+      transform: translateY(-2px);
+      border-color: var(--accent);
+      background: rgba(22, 32, 50, 0.96);
+    }
+
+    .card h2 {
+      margin: 0;
+      font-size: 1.15rem;
+    }
+
+    .card p {
+      margin: 0.65rem 0 0;
+      color: var(--muted);
+      line-height: 1.55;
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <p class="eyebrow">QaaS documentation suite</p>
+    <h1>Choose a product and start from the right docs.</h1>
+    <p class="lead">
+      Each product keeps its own documentation site, and the full suite image publishes them together.
+      Use the product switcher inside each site to move across the ecosystem.
+    </p>
+
+    <div class="grid">
+      <a class="card" href="runner/">
+        <h2>Runner</h2>
+        <p>Install the runner, write tests in YAML or code, run them, and debug failures.</p>
+      </a>
+      <a class="card" href="framework/">
+        <h2>Framework</h2>
+        <p>Understand the shared SDK, configuration, protocols, providers, and serialization layers.</p>
+      </a>
+      <a class="card" href="assertions/">
+        <h2>Common Assertions</h2>
+        <p>See the assertion catalog, supported configuration fields, and YAML/table representations.</p>
+      </a>
+      <a class="card" href="generators/">
+        <h2>Common Generators</h2>
+        <p>Learn how the built-in generators source and shape test data.</p>
+      </a>
+      <a class="card" href="probes/">
+        <h2>Common Probes</h2>
+        <p>Review the ready-made probes for platform and infrastructure integrations.</p>
+      </a>
+      <a class="card" href="processors/">
+        <h2>Common Processors</h2>
+        <p>Review the built-in processors that transform transactions and outputs.</p>
+      </a>
+      <a class="card" href="mocker/">
+        <h2>Mocker</h2>
+        <p>Create and deploy mocks, then connect them back into runner-based tests.</p>
+      </a>
+    </div>
+  </main>
+</body>
+</html>

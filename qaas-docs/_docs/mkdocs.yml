@@ -1,0 +1,153 @@
+site_name: QaaS Runner Docs
+repo_name: TheSmokeTeam/qaas-docs
+repo_url: https://github.com/TheSmokeTeam/qaas-docs
+docs_dir: docs/
+
+nav:
+  - Introduction: index.md
+  - Architecture: architecture.md
+  - Quick Start:
+      - Installation: quickStart/installation.md
+      - IDE: quickStart/ide.md
+      - Write Test With YAML: quickStart/writeTestYaml.md
+      - Write Test With Code: quickStart/writeTestCode.md
+      - Write Hooks: quickStart/writeHooks.md
+      - Run Test: quickStart/runTest.md
+      - Make Test More Maintainable: quickStart/makeTestMoreMaintainable.md
+      - Debug Test Failure: quickStart/debugTestFailure.md
+  - Advanced Concepts:
+      - Live Session Data: advancedConcepts/liveSessionData.md
+      - Configuration As Code: advancedConcepts/configurationAsCode.md
+      - Stages: advancedConcepts/stages.md
+  - Best Practices: bestPractices.md
+  - User Interfaces:
+      - Runner:
+          - Commands:
+              - Overview: userInterfaces/runner/commands/commands.md
+              - Run: userInterfaces/runner/commands/run.md
+              - Act: userInterfaces/runner/commands/act.md
+              - Assert: userInterfaces/runner/commands/assert.md
+              - Execute: userInterfaces/runner/commands/execute.md
+              - Template: userInterfaces/runner/commands/template.md
+          - Configuration Sections:
+              - Overview: userInterfaces/runner/configurationSections/configurationSections.md
+              - MetaData:
+                  - Overview: userInterfaces/runner/configurationSections/metaData/overview.md
+                  - Configurations:
+                      - Table View: userInterfaces/runner/configurationSections/metaData/configurations/tableView.md
+                      - YAML View: userInterfaces/runner/configurationSections/metaData/configurations/yamlView.md
+              - Links:
+                  - Overview: userInterfaces/runner/configurationSections/links/overview.md
+                  - Configurations:
+                      - Table View: userInterfaces/runner/configurationSections/links/configurations/tableView.md
+                      - YAML View: userInterfaces/runner/configurationSections/links/configurations/yamlView.md
+              - Storages:
+                  - Overview: userInterfaces/runner/configurationSections/storages/overview.md
+                  - Configurations:
+                      - Table View: userInterfaces/runner/configurationSections/storages/configurations/tableView.md
+                      - YAML View: userInterfaces/runner/configurationSections/storages/configurations/yamlView.md
+              - DataSources:
+                  - Overview: userInterfaces/runner/configurationSections/dataSources/overview.md
+                  - Configurations:
+                      - Table View: userInterfaces/runner/configurationSections/dataSources/configurations/tableView.md
+                      - YAML View: userInterfaces/runner/configurationSections/dataSources/configurations/yamlView.md
+              - Sessions:
+                  - Overview: userInterfaces/runner/configurationSections/sessions/overview.md
+                  - Types:
+                      - Probes: userInterfaces/runner/configurationSections/sessions/types/probes.md
+                      - Policies: userInterfaces/runner/configurationSections/sessions/types/policies.md
+                      - Publishers: userInterfaces/runner/configurationSections/sessions/types/publishers.md
+                      - Consumers: userInterfaces/runner/configurationSections/sessions/types/consumers.md
+                      - Collectors: userInterfaces/runner/configurationSections/sessions/types/collectors.md
+                      - Transactions: userInterfaces/runner/configurationSections/sessions/types/transactions.md
+                      - Mocker Commands: userInterfaces/runner/configurationSections/sessions/types/mockerCommands.md
+                  - Configurations:
+                      - Table View: userInterfaces/runner/configurationSections/sessions/configurations/tableView.md
+                      - YAML View: userInterfaces/runner/configurationSections/sessions/configurations/yamlView.md
+              - Assertions:
+                  - Overview: userInterfaces/runner/configurationSections/assertions/overview.md
+                  - Configurations:
+                      - Table View: userInterfaces/runner/configurationSections/assertions/configurations/tableView.md
+                      - YAML View: userInterfaces/runner/configurationSections/assertions/configurations/yamlView.md
+          - Configuration Resolution Priority: userInterfaces/runner/configurationResolutionPriority.md
+          - Allure Report: userInterfaces/runner/allureReport.md
+      - Logger: userInterfaces/logger.md
+  - AddOns:
+      - Plugins: addOns/plugins.md
+      - Modules: addOns/modules.md
+
+theme:
+  name: material
+  custom_dir: ../../_shared/mkdocs/overrides
+  font: false
+  icon:
+    logo: material/test-tube
+    repo: fontawesome/brands/github
+  features:
+    - content.code.copy
+    - content.tabs.link
+    - header.autohide
+    - navigation.instant
+    - navigation.instant.progress
+    - navigation.sections
+    - navigation.top
+    - search.highlight
+    - search.suggest
+    - toc.follow
+  palette:
+    - scheme: slate
+      primary: blue grey
+      accent: teal
+      toggle:
+        icon: material/weather-sunny
+        name: Switch to light mode
+    - scheme: default
+      primary: blue grey
+      accent: teal
+      toggle:
+        icon: material/weather-night
+        name: Switch to dark mode
+
+plugins:
+  - search
+
+markdown_extensions:
+  - attr_list
+  - def_list
+  - fenced_code
+  - md_in_html
+  - tables
+  - admonition
+  - pymdownx.details
+  - pymdownx.inlinehilite
+  - pymdownx.snippets
+  - pymdownx.superfences
+  - pymdownx.highlight:
+      anchor_linenums: true
+      line_spans: __span
+      pygments_lang_class: true
+  - pymdownx.tabbed:
+      alternate_style: true
+  - toc:
+      permalink: true
+
+extra:
+  current_product: Runner
+  product_links:
+    - name: Suite
+      path: ""
+    - name: Runner
+      path: runner/
+    - name: Framework
+      path: framework/
+    - name: Common Assertions
+      path: assertions/
+    - name: Common Generators
+      path: generators/
+    - name: Common Probes
+      path: probes/
+    - name: Common Processors
+      path: processors/
+    - name: Mocker
+      path: mocker/
+  generator: false

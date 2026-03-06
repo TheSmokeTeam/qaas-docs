@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+
+{% block announce %}
+  {% set suite_root = base_url ~ '/../' %}
+  Documentation suite:
+  {% for item in config.extra.product_links %}
+    {% if not loop.first %} | {% endif %}
+    {% if item.name == config.extra.current_product %}
+      <strong>{{ item.name }}</strong>
+    {% else %}
+      <a href="{{ suite_root ~ item.path }}">{{ item.name }}</a>
+    {% endif %}
+  {% endfor %}
+{% endblock %}

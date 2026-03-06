@@ -1,7 +1,6 @@
-# Contribution
+# Contributing
 
-1. Clone this repository.
-2. Open `qaas.common.generators-docs`.
-3. Start the local site from `_docs/v3` with `mkdocs serve`.
-4. Edit the markdown files under `/_docs/v3/docs/`.
-5. Build with `mkdocs build` before opening a PR.
+1. Install dependencies with `pip install -r requirements.txt`.
+2. Start the local site from `_docs` with `mkdocs serve`.
+3. Edit the markdown files under `/_docs/docs`.
+4. Validate changes with `mkdocs build -f _docs/mkdocs.yml`.

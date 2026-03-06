@@ -1,25 +1,24 @@
 # QaaS Mocker Docs
 
-The QaaS mocker docs are written in this repository as `md` files under [/docs](./docs/).
-
-They are versioned with `git tags` that follow this convention: `<qaas-mocker-version>-docs.<docs-version-for-this-qaas-mocker-version>`.
-
-For **example**:
-`QaaS.Mocker` version `1.0.0` with the 3rd version of its docs will have the git tag `1.0.0-docs.3`.
+The mocker documentation source lives under [/_docs/docs](./_docs/docs/) and is served with [/_docs/mkdocs.yml](./_docs/mkdocs.yml).
 
 ## Local Serve
 
 ```bash
+pip install -r requirements.txt
+cd _docs
 mkdocs serve
 ```
 
-## Private Feeds And Images
+## Deployment Notes
 
-The docs pages intentionally avoid hardcoding NuGet feed URLs. Keep those in your environment-specific `NuGet.Config`.
+This package keeps its own `Dockerfile`, but the full multi-product deployment flow is documented in the repository [README](../README.md).
 
-The Dockerfile accepts build arguments that make air-gapped builds easier:
+For private or air-gapped builds, the package Dockerfile accepts:
 
 - `MKDOCS_BUILDER_IMAGE`
 - `HTTP_SERVER_IMAGE`
 - `PIP_INDEX_URL`
 - `PIP_EXTRA_INDEX_URL`
+
+The docs intentionally avoid hardcoding NuGet feeds. Keep those endpoints in your environment-specific `NuGet.Config`.

@@ -16,7 +16,7 @@ RUN python -m pip install --no-cache-dir -r requirements.txt
 
 COPY . .
 
-RUN mkdocs build -f mkdocs.yml -d /app/build
+RUN mkdocs build -f _docs/mkdocs.yml -d /app/build
 
 FROM ${HTTP_SERVER_IMAGE}
 

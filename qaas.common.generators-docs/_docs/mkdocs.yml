@@ -1,0 +1,134 @@
+site_name: QaaS Common Generators Docs
+repo_name: TheSmokeTeam/qaas-docs
+repo_url: https://github.com/TheSmokeTeam/qaas-docs
+docs_dir: docs/
+
+nav:
+  - Introduction: index.md
+  - Available Generators:
+      - FromFileSystem:
+          - Overview: availableGenerators/FromFileSystem/overview.md
+          - Configurations:
+              - Table View: availableGenerators/FromFileSystem/configuration/tableView.md
+              - YAML View: availableGenerators/FromFileSystem/configuration/yamlView.md
+      - FromS3:
+          - Overview: availableGenerators/FromS3/overview.md
+          - Configurations:
+              - Table View: availableGenerators/FromS3/configuration/tableView.md
+              - YAML View: availableGenerators/FromS3/configuration/yamlView.md
+      - FromDataLake:
+          - Overview: availableGenerators/FromDataLake/overview.md
+          - Configurations:
+              - Table View: availableGenerators/FromDataLake/configuration/tableView.md
+              - YAML View: availableGenerators/FromDataLake/configuration/yamlView.md
+      - FromDataSources:
+          - Overview: availableGenerators/FromDataSources/overview.md
+          - Configurations:
+              - Table View: availableGenerators/FromDataSources/configuration/tableView.md
+              - YAML View: availableGenerators/FromDataSources/configuration/yamlView.md
+      - FromLettuceDataSources:
+          - Overview: availableGenerators/FromLettuceDataSources/overview.md
+          - Configurations:
+              - Table View: availableGenerators/FromLettuceDataSources/configuration/tableView.md
+              - YAML View: availableGenerators/FromLettuceDataSources/configuration/yamlView.md
+      - FromSessionDataDataSources:
+          - Overview: availableGenerators/FromSessionDataDataSources/overview.md
+          - Configurations:
+              - Table View: availableGenerators/FromSessionDataDataSources/configuration/tableView.md
+              - YAML View: availableGenerators/FromSessionDataDataSources/configuration/yamlView.md
+      - Json:
+          - Overview: availableGenerators/Json/overview.md
+          - Configurations:
+              - Table View: availableGenerators/Json/configuration/tableView.md
+              - YAML View: availableGenerators/Json/configuration/yamlView.md
+      - JsonSchemaDraft4:
+          - Overview: availableGenerators/JsonSchemaDraft4/overview.md
+          - Configurations:
+              - Table View: availableGenerators/JsonSchemaDraft4/configuration/tableView.md
+              - YAML View: availableGenerators/JsonSchemaDraft4/configuration/yamlView.md
+      - LettuceFromFileSystem:
+          - Overview: availableGenerators/LettuceFromFileSystem/overview.md
+          - Configurations:
+              - Table View: availableGenerators/LettuceFromFileSystem/configuration/tableView.md
+              - YAML View: availableGenerators/LettuceFromFileSystem/configuration/yamlView.md
+      - Stacking:
+          - Overview: availableGenerators/Stacking/overview.md
+          - Configurations:
+              - Table View: availableGenerators/Stacking/configuration/tableView.md
+              - YAML View: availableGenerators/Stacking/configuration/yamlView.md
+
+theme:
+  name: material
+  custom_dir: ../../_shared/mkdocs/overrides
+  font: false
+  icon:
+    logo: material/test-tube
+    repo: fontawesome/brands/github
+  features:
+    - content.code.copy
+    - content.tabs.link
+    - header.autohide
+    - navigation.instant
+    - navigation.instant.progress
+    - navigation.sections
+    - navigation.top
+    - search.highlight
+    - search.suggest
+    - toc.follow
+  palette:
+    - scheme: slate
+      primary: blue grey
+      accent: teal
+      toggle:
+        icon: material/weather-sunny
+        name: Switch to light mode
+    - scheme: default
+      primary: blue grey
+      accent: teal
+      toggle:
+        icon: material/weather-night
+        name: Switch to dark mode
+
+plugins:
+  - search
+
+markdown_extensions:
+  - attr_list
+  - def_list
+  - fenced_code
+  - md_in_html
+  - tables
+  - admonition
+  - pymdownx.details
+  - pymdownx.inlinehilite
+  - pymdownx.snippets
+  - pymdownx.superfences
+  - pymdownx.highlight:
+      anchor_linenums: true
+      line_spans: __span
+      pygments_lang_class: true
+  - pymdownx.tabbed:
+      alternate_style: true
+  - toc:
+      permalink: true
+
+extra:
+  current_product: Common Generators
+  product_links:
+    - name: Suite
+      path: ""
+    - name: Runner
+      path: runner/
+    - name: Framework
+      path: framework/
+    - name: Common Assertions
+      path: assertions/
+    - name: Common Generators
+      path: generators/
+    - name: Common Probes
+      path: probes/
+    - name: Common Processors
+      path: processors/
+    - name: Mocker
+      path: mocker/
+  generator: false

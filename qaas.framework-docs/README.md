@@ -1,23 +1,24 @@
 # QaaS Framework Docs
 
-The QaaS Framework docs are written in this repository as `md` files under [/docs](./docs/).
-
-They are versioned with `git tags` that follow this convention: `<qaas-framework-version>-docs.<docs-version-for-this-qaas-framework-version>`.
-
-For **example**:
-`QaaS.Framework` version `1.0.0` with the 3rd version of its docs will have the git tag `1.0.0-docs.3`.
+The framework documentation source lives under [/_docs/docs](./_docs/docs/) and is served with [/_docs/mkdocs.yml](./_docs/mkdocs.yml).
 
 ## Local Serve
 
 ```bash
+pip install -r requirements.txt
+cd _docs
 mkdocs serve
 ```
 
-## Private Feeds And Images
+## Deployment Notes
 
-The Dockerfile accepts build arguments that make air-gapped builds easier:
+This package keeps its own `Dockerfile`, but the full multi-product deployment flow is documented in the repository [README](../README.md).
+
+For private or air-gapped builds, the package Dockerfile accepts:
 
 - `MKDOCS_BUILDER_IMAGE`
 - `HTTP_SERVER_IMAGE`
 - `PIP_INDEX_URL`
 - `PIP_EXTRA_INDEX_URL`
+
+The docs intentionally avoid hardcoding NuGet feeds. Keep those endpoints in your environment-specific `NuGet.Config`.
