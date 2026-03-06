@@ -1,38 +1,38 @@
 site_name: QaaS Docs
-site_description: Unified zero-to-hero documentation for the QaaS workspace.
 repo_name: qaas-docs
-repo_url: !ENV [QAAS_REPO_DOCS_URL, "https://github.com/TheSmokeTeam/qaas-docs"]
-docs_dir: ../../../docs
+repo_url: https://github.com/TheSmokeTeam/qaas-docs
+docs_dir: docs
+exclude_docs: |
+  bestPractices.md
+  addOns/*
+  advancedConcepts/*
+  quickStart/*
+  userInterfaces/*
+
+nav:
+  - Zero-to-Hero: index.md
+  - Ecosystem Architecture: architecture.md
+  - Runner Reference: reference.md
+  - Troubleshooting: troubleshooting.md
+
 theme:
-  name: mkdocs
+  name: material
+  features:
+    - navigation.tabs
+    - content.code.copy
+
 plugins:
   - search
-hooks:
-  - ../../../hooks.py
+  - mike
+
+extra:
+  version:
+    provider: mike
+
 markdown_extensions:
   - admonition
   - attr_list
-  - tables
+  - md_in_html
+  - pymdownx.superfences
   - toc:
       permalink: true
-nav:
-  - Home: index.md
-  - Architecture: architecture.md
-  - Quick Start:
-      - Environment Setup: quick-start/installation.md
-      - IDE and Validation: quick-start/ide.md
-      - Write a Test in YAML: quick-start/write-test-yaml.md
-      - Write a Test in Code: quick-start/write-test-code.md
-      - Write Custom Hooks: quick-start/write-hooks.md
-      - Run a Test: quick-start/run-test.md
-      - Keep Tests Maintainable: quick-start/make-test-maintainable.md
-      - Debug Failures: quick-start/debug-test-failure.md
-  - User Guide:
-      - Runner Commands and Flags: user-guide/runner-commands.md
-      - YAML Configuration Reference: user-guide/yaml-reference.md
-      - Code Configuration Reference: user-guide/code-reference.md
-      - Mocker Usage: user-guide/mocker.md
-      - Workspace Components: user-guide/components.md
-  - Operations:
-      - Air-Gapped Deployment: operations/air-gapped.md
-      - Troubleshooting: troubleshooting.md
