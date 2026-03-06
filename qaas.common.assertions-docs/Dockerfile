@@ -7,12 +7,9 @@ RUN git config --global user.name "CI Bot" \
 
 COPY _docs .
 
-# Build both docs versions
-# Mike uses a git repo and commits to the gh-pages branch to controll versioning
-# So temporarily initialize a git repo
+# Build the active docs version.
 RUN git init \
     && git add . && git commit -m "Initial commit" \
-    && mike deploy --config-file v2/mkdocs.yml v2 \
     && mike deploy --config-file v3/mkdocs.yml v3 \
     && mike set-default --config-file v3/mkdocs.yml v3 \
     && git checkout gh-pages \

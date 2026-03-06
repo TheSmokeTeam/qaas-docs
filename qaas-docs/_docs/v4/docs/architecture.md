@@ -1,45 +1,69 @@
-# Architecture
+# Ecosystem Architecture
 
-The QaaS framework is built on a plugin system architecture, enabling users to extend and customize the framework by integrating user-provided plugins. This modular design allows for flexible, extensible, and maintainable test automation solutions, where components can be dynamically loaded and orchestrated based on configuration.
+## Workspace Hierarchy
 
-## QaaS Project Structure
+The workspace is a federation of sibling repositories. `qaas-docs` is the documentation host, not the runtime root.
 
-The foundation of any QaaS project is its configuration file, typically a YAML file, which defines the structure, components, and execution flow of the test. This file serves as the entry point for the framework, orchestrating the initialization and execution of core components in a defined sequence.
+| Directory | Purpose |
+| --- | --- |
+| `QaaS.Framework` | shared packages used everywhere else |
+| `QaaS.Runner` | execution engine and CLI |
+| `QaaS.Mocker` | configurable mock runtime |
+| `QaaS.Common.Assertions` | assertion hook library |
+| `QaaS.Common.Generators` | generator hook library |
+| `QaaS.Common.Probes` | operational probe hook library |
+| `QaaS.Common.Processors` | transaction processors for the mocker |
+| `QaaS.Mocker.CommunicationObjects` | runner-mocker messaging contracts |
+| `_ci_check_runner` | support copy used for CI-oriented workflows |
+| `_external/QaaS.Framework` | vendored or reference copy of the framework |
 
-The YAML configuration may include:
+## Data Flow
 
-- Built-in framework features.
-- Custom plugin hooks.
-- References to external services or data sources.
+```mermaid
+sequenceDiagram
+    participant User
+    participant Runner as QaaS.Runner
+    participant Framework as QaaS.Framework
+    participant Hooks as Common Hooks
+    participant Mocker as QaaS.Mocker
+    participant Storage as Storage Backends
+    participant Report as Allure
 
-This declarative approach enables rapid setup and configuration, while still supporting programmatic control through Configuration as Code.
+    User->>Runner: run / act / assert / execute / template
+    Runner->>Framework: load, merge, bind, validate configuration
+    Runner->>Hooks: resolve generators / probes / assertions
+    Runner->>Mocker: optional runtime commands through communication objects
+    Runner->>Storage: persist or retrieve session data
+    Runner->>Report: publish assertion results and attachments
+```
 
-## Types of QaaS Projects
+## Configuration Resolution Order
 
-### QaaS.Runner Project
+The runner and mocker both follow layered configuration patterns, but the runner is the richer case:
 
-A QaaS.Runner project is a C#-based project that depends on the `QaaS.Runner` NuGet package. Its primary purpose is to serve as a test execution environment for backend or end-to-end (e2e) applications. These projects are driven by either:
+1. load the base YAML file,
+2. apply overwrite files in argument order,
+3. resolve case files unless `--resolve-cases-last` is set,
+4. push referenced YAML fragments,
+5. apply inline overwrite arguments,
+6. optionally resolve environment variables.
 
-- A YAML configuration file.
-- Programmatic configuration via C# (Configuration as Code).
+That ordering matters because the runtime builders are validated after the merge is complete.
 
-The framework components that can be configured are:
+## Interdependency Summary
 
-- **Storage**: Manages the persistence and retrieval of test data objects from various storage backends (e.g., file systems, S3, databases).
-- **DataSources**: Provides test data through configurable generators (e.g., random values, JSON templates, database seeds).
-- **Sessions**: Executes synchronous or asynchronous actions against the system under test (SUT), such as sending HTTP requests, publishing messages, restarting services, or manipulating state.
-- **Assertions**: Validates the outcomes of sessions using predefined or custom validation logic, and records test results.
-- **Links**: Integrates with observability systems (e.g., Prometheus, Elasticsearch, Grafana) to retrieve metrics, logs, or traces for analysis and reporting.
+- `QaaS.Framework.SDK` defines the core abstractions used by generators, assertions, probes, processors, and communication contracts.
+- `QaaS.Framework.Protocols` centralizes transport and storage adapters so the runner and mocker do not duplicate protocol clients.
+- `QaaS.Runner` consumes common generators, assertions, and probes as dynamically loaded hooks.
+- `QaaS.Mocker` consumes processors as dynamically selected transaction logic.
+- `QaaS.Mocker.CommunicationObjects` keeps runner-driven mocker commands versioned independently from the runtime implementations.
 
-## Configuration as Code
+## Contribution Path
 
-QaaS supports full programmatic configuration through C# code, enabling dynamic, conditional, and reusable test workflows. Instead of relying solely on static YAML files, teams can define and modify test configurations at runtime using the full power of C#.
+Choose the repository by the change you need:
 
-This approach allows for:
-
-- Dynamic environment-specific setups.
-- Conditional execution logic.
-- Reusable configuration patterns via classes and methods.
-- Integration with external systems using full .NET capabilities.
-
-For detailed guidance on implementing Configuration as Code, including custom runners, fluent builder patterns, and advanced orchestration, refer to the [Configuration as Code](advancedConcepts/configurationAsCode.md) documentation.
+- change YAML loading, serialization, policy, or protocol behavior: `QaaS.Framework`
+- change test execution flow or CLI behavior: `QaaS.Runner`
+- add a new assertion, generator, or probe: the matching `QaaS.Common.*` package
+- add or change mock response logic: `QaaS.Common.Processors`
+- add or change mock hosting/runtime control: `QaaS.Mocker`

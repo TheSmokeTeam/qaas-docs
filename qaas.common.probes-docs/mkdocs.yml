@@ -1,10 +1,7 @@
-site_name: QaaS Mocker Docs
-repo_name: QaaS.Mocker
-repo_url: https://github.com/TheSmokeTeam/QaaS.Mocker
+site_name: QaaS Common Probes Docs
+repo_name: QaaS.Common.Probes
+repo_url: https://github.com/TheSmokeTeam/QaaS.Common.Probes
 docs_dir: docs
-exclude_docs: |
-  quickStart/*
-  userInterfaces/*
 
 nav:
   - Guide: index.md

@@ -1,43 +1,122 @@
-# QaaS.Framework
+## QaaS.Framework Zero-to-Hero
 
-The `QaaS.Framework` is a comprehensive, modular C# ecosystem designed to standardize and streamline the development,
-execution, and management of data-driven workflows, particularly in testing, integration, and automation scenarios. It
-provides a consistent architecture for defining, configuring, and running complex execution pipelines with strong
-support for configuration, dependency injection, logging, data handling, and extensibility.
+### Overview
 
-The framework is composed of several interconnected projects, each serving a distinct purpose:
+[`QaaS.Framework`](https://github.com/TheSmokeTeam/QaaS.Framework) is the foundation layer for the whole workspace. It is split into focused NuGet packages so the runner, mocker, and hook libraries can reuse the same configuration, protocol, serialization, and hook contracts without duplicating infrastructure code.
 
-- [**`QaaS.Framework.SDK`**](./projects/sdk.md): The core package containing shared data structures (`Context`, `Data`,
-  `SessionData`, etc.) and the base classes for all hooks (`Assertion`, `Generator`, `Probe`, `Processor`). It's
-  required by all plugins and serves as the foundation for interoperability.
+Package map:
 
-- [**`QaaS.Framework.Configuration`**](./projects/configuration.md): Handles loading and validating configuration from
-  YAML files using `DataAnnotations`. It supports advanced features like YAML `<<` merge keys and provides utilities for
-  robust configuration management.
+| Package | Responsibility |
+| --- | --- |
+| `Configurations` | layered YAML/config binding, placeholders, references, validation |
+| `Executions` | reusable execution base types, CLI plumbing, logger options |
+| `Infrastructure` | small shared utilities |
+| `Policies` | rate, timeout, count, and load-balancing controls |
+| `Protocols` | HTTP, gRPC, queue, database, object-store, socket, and monitoring adapters |
+| `Providers` | runtime hook discovery and Autofac module wiring |
+| `SDK` | shared contracts, context models, data-source builders, session data models |
+| `Serialization` | serializer/deserializer factories and type hints |
 
-- [**`QaaS.Framework.Execution`**](./projects/execution.md): The core execution engine, responsible for orchestrating
-  workflows. It defines the lifecycle via `IRunner`, `BaseExecution`, and `ILogic`, enabling composable, testable, and
-  configurable execution logic with support for test and mock modes.
+### Architecture & Connections
 
-- [**`QaaS.Framework.Infrastructure`**](./projects/infrastructure.md): Provides essential utility extensions for
-  `DateTime` (with timezone and daylight saving handling) and file system operations (e.g., creating valid directory
-  names), used throughout the ecosystem.
+`QaaS.Framework` sits below every other publishable repository in the workspace.
 
-- [**`QaaS.Framework.Policies`**](./projects/policies.md): Defines a flexible policy system for controlling
-  communication actions, such as `Timeout`, `LoadBalance`, `AdvancedLoadBalance`, and `IncreasingLoadBalance`, enabling
-  sophisticated load and timing control.
+```mermaid
+flowchart TD
+    Config["Configurations"]
+    Exec["Executions"]
+    Infra["Infrastructure"]
+    Policies["Policies"]
+    Protocols["Protocols"]
+    Providers["Providers"]
+    SDK["SDK"]
+    Ser["Serialization"]
 
-- [**`QaaS.Framework.Protocols`**](./projects/protocols.md): Offers a unified, type-safe abstraction for interacting
-  with diverse data sources and services (e.g., Kafka, S3, PostgreSQL, HTTP, gRPC). It uses interfaces like `IReader`,
-  `ISender`, and `ITransactor` to enable consistent data flow across protocols.
+    Config --> SDK
+    Config --> Policies
+    Config --> Ser
+    SDK --> Protocols
+    SDK --> Providers
+    Policies --> Exec
+    Protocols --> Exec
+    Providers --> Exec
+    Ser --> SDK
+```
 
-- [**`QaaS.Framework.Providers`**](./projects/providers.md): Enables dynamic loading and registration of hooks (e.g.,
-  `IAssertion`, `IGenerator`) from the main application and loaded plugins (DLLs), using Autofac for dependency
-  injection and providing validation during load.
+Upstream consumers:
 
-- [**`QaaS.Framework.Serialization`**](./projects/serialization.md): Provides a suite of serialization/deserialization
-  capabilities (Binary, JSON, XML, MessagePack, YAML, Protobuf) used across the framework for data persistence and
-  communication.
+- `QaaS.Runner` uses `Executions`, `SDK`, `Protocols`, `Providers`, and `Configurations`.
+- `QaaS.Mocker` uses `Executions` and `SDK`, while its processors rely on the same abstractions.
+- `QaaS.Common.*` packages implement hooks against `SDK` plus the needed protocol and serialization pieces.
 
-Together, these projects form a cohesive, extensible, and robust foundation for building scalable and maintainable data
-integration and testing solutions.
+### Quick Start
+
+Build the framework solution locally:
+
+```bash
+dotnet restore D:/QaaS/QaaS.Framework/QaaS.Framework.sln
+dotnet build D:/QaaS/QaaS.Framework/QaaS.Framework.sln -c Release --no-restore
+dotnet test D:/QaaS/QaaS.Framework/QaaS.Framework.sln -c Release --no-build
+```
+
+Consume the minimum useful packages in another project:
+
+```bash
+dotnet add package QaaS.Framework.SDK
+dotnet add package QaaS.Framework.Protocols
+dotnet add package QaaS.Framework.Executions
+```
+
+Choose packages by behavior, not by habit. If you only need hook contracts, start with `QaaS.Framework.SDK` and add more packages only when a runtime concern actually appears.
+
+### Technical Reference
+
+#### Configuration Loading
+
+`QaaS.Framework.Configurations` owns:
+
+- YAML loading from filesystem and HTTP GET sources,
+- placeholder resolution,
+- reference expansion from external YAML fragments,
+- recursive validation through DataAnnotations plus custom validators.
+
+Shared config types exposed from this package:
+
+| Type | Purpose |
+| --- | --- |
+| `FilesInFileSystemConfig` | directory-backed storage configuration |
+| `S3BucketConfig` | bucket and prefix storage configuration |
+| `MongoCollectionConfig` | MongoDB collection identification |
+| `ReferenceConfig` | pushed-root reference list configuration |
+
+#### Runtime Contracts
+
+The `SDK` package defines the stable object model used everywhere else:
+
+- `Context`, `InternalContext`, and metadata helpers,
+- `DataSourceBuilder` plus runtime `DataSource`,
+- execution metadata such as `ExecutionType`,
+- hook contracts such as `IGenerator`, `IAssertion`, `IProbe`, and processor abstractions.
+
+#### Dependency Notes
+
+Important dependencies and their official docs:
+
+- [.NET configuration](https://learn.microsoft.com/en-us/dotnet/core/extensions/configuration)
+- [Autofac](https://docs.autofac.org/en/latest/)
+- [YamlDotNet](https://github.com/aaubry/YamlDotNet)
+- [RabbitMQ .NET client](https://www.rabbitmq.com/client-libraries/dotnet-api-guide)
+- [AWS SDK for .NET](https://docs.aws.amazon.com/sdk-for-net/v4/developer-guide/welcome.html)
+- [StackExchange.Redis](https://stackexchange.github.io/StackExchange.Redis/)
+- [Confluent Kafka .NET client](https://docs.confluent.io/kafka-clients/dotnet/current/overview.html)
+
+### Troubleshooting & Links
+
+- Prefer the smallest framework package that solves the problem. Pulling in `Executions` or `Protocols` when you only need `SDK` makes extension packages harder to reason about.
+- When validation errors look unrelated, check custom attributes in `QaaS.Framework.Configurations.CustomValidationAttributes`; many constraints are cross-field, not local.
+- When a protocol config appears valid but fails at runtime, compare the chosen config type with the factory used in `FetcherFactory`, `ReaderFactory`, `SenderFactory`, or `TransactorFactory`.
+
+Primary links:
+
+- Source: [TheSmokeTeam/QaaS.Framework](https://github.com/TheSmokeTeam/QaaS.Framework)
+- NuGet search: [QaaS.Framework packages](https://www.nuget.org/packages?q=QaaS.Framework)

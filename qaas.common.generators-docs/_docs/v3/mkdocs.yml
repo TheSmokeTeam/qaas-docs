@@ -1,125 +1,33 @@
 site_name: QaaS Common Generators Docs
-repo_name: QaaS Common Generators
-repo_url: "REDA/qaas.common.generators.git"
-docs_dir: docs/ 
+repo_name: QaaS.Common.Generators
+repo_url: https://github.com/TheSmokeTeam/QaaS.Common.Generators
+docs_dir: docs
+exclude_docs: |
+  availableGenerators/*
 
 nav:
-  - Introduction: index.md
-  - Available Generators:
-      - FromFileSystem:
-        - Overview: availableGenerators/FromFileSystem/overview.md
-        - Configurations: 
-          - Table View: availableGenerators/FromFileSystem/configuration/tableView.md 
-          - Yaml View: availableGenerators/FromFileSystem/configuration/yamlView.md 
-      - FromS3:
-        - Overview: availableGenerators/FromS3/overview.md
-        - Configurations: 
-          - Table View: availableGenerators/FromS3/configuration/tableView.md 
-          - Yaml View: availableGenerators/FromS3/configuration/yamlView.md 
-      - FromDataLake:
-        - Overview: availableGenerators/FromDataLake/overview.md
-        - Configurations: 
-          - Table View: availableGenerators/FromDataLake/configuration/tableView.md 
-          - Yaml View: availableGenerators/FromDataLake/configuration/yamlView.md 
-      - FromDataSources:
-        - Overview: availableGenerators/FromDataSources/overview.md
-        - Configurations: 
-          - Table View: availableGenerators/FromDataSources/configuration/tableView.md 
-          - Yaml View: availableGenerators/FromDataSources/configuration/yamlView.md 
-      - FromLettuceDataSources:
-        - Overview: availableGenerators/FromLettuceDataSources/overview.md
-        - Configurations: 
-          - Table View: availableGenerators/FromLettuceDataSources/configuration/tableView.md 
-          - Yaml View: availableGenerators/FromLettuceDataSources/configuration/yamlView.md 
-      - FromSessionDataDataSources:
-        - Overview: availableGenerators/FromSessionDataDataSources/overview.md
-        - Configurations: 
-          - Table View: availableGenerators/FromSessionDataDataSources/configuration/tableView.md 
-          - Yaml View: availableGenerators/FromSessionDataDataSources/configuration/yamlView.md 
-      - Json:
-        - Overview: availableGenerators/Json/overview.md
-        - Configurations: 
-          - Table View: availableGenerators/Json/configuration/tableView.md 
-          - Yaml View: availableGenerators/Json/configuration/yamlView.md 
-      - JsonSchemaDraft4:
-        - Overview: availableGenerators/JsonSchemaDraft4/overview.md
-        - Configurations: 
-          - Table View: availableGenerators/JsonSchemaDraft4/configuration/tableView.md 
-          - Yaml View: availableGenerators/JsonSchemaDraft4/configuration/yamlView.md 
-      - LettuceFromFileSystem:
-        - Overview: availableGenerators/LettuceFromFileSystem/overview.md
-        - Configurations: 
-          - Table View: availableGenerators/LettuceFromFileSystem/configuration/tableView.md 
-          - Yaml View: availableGenerators/LettuceFromFileSystem/configuration/yamlView.md 
-      - Stacking:
-        - Overview: availableGenerators/Stacking/overview.md
-        - Configurations: 
-          - Table View: availableGenerators/Stacking/configuration/tableView.md 
-          - Yaml View: availableGenerators/Stacking/configuration/yamlView.md 
-  - QaaS Docs: REDA/v4/userInterfaces/runner/configurationSections/dataSources/overview/
+  - Guide: index.md
+  - Reference: reference.md
+
 theme:
   name: material
-  highlightjs: false
-  font: false
   features:
-    - content.code.annotate
     - navigation.tabs
-  palette:
-    - scheme: slate
-      primary: white
-      accent: red
-      toggle:
-        icon: material/weather-sunny
-        name: Switch to light mode
-    - scheme: default
-      primary: white
-      accent: red
-      toggle:
-        icon: material/weather-night
-        name: Switch to dark mode
-
-  include_search_page: false
-  search_index_only: true
-
-  icon:
-    repo: fontawesome/brands/gitlab
-  logo: assets/qaas-logo.png
-  favicon: assets/qaas-logo.png
-
-extra_css:
-  - assets/chat-widget.js
-
-extra_javascript:
-  - assets/chat-widget.js
+    - content.code.copy
 
 plugins:
- - mike
- - search
+  - search
+  - mike
 
 extra:
   version:
     provider: mike
 
 markdown_extensions:
+  - admonition
   - attr_list
   - md_in_html
   - pymdownx.superfences
-  - admonition
-  - def_list
-  - pymdownx.tabbed:
-      alternate_style: true
-  - pymdownx.highlight:
-      anchor_linenums: true
-      line_spans: __span
-      pygments_lang_class: true
   - toc:
       permalink: true
-  - pymdownx.emoji:
-      emoji_index: !!python/name:material.extensions.emoji.twemoji
-      emoji_generator: !!python/name:material.extensions.emoji.to_svg
-  - pymdownx.tasklist:
-      custom_checkbox: true
-  - pymdownx.inlinehilite
-  - pymdownx.snippets
-  - pymdownx.details
 
