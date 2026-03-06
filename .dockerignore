@@ -1,0 +1,6 @@
+.git
+.venv
+site
+**/site
+**/bin
+**/obj

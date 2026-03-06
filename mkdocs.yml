@@ -2,13 +2,13 @@ site_name: QaaS Docs
 site_description: Unified zero-to-hero documentation for the QaaS workspace.
 repo_name: qaas-docs
 repo_url: !ENV [QAAS_REPO_DOCS_URL, "https://github.com/TheSmokeTeam/qaas-docs"]
-docs_dir: ../../../docs
+docs_dir: docs
 theme:
   name: mkdocs
 plugins:
   - search
 hooks:
-  - ../../../hooks.py
+  - hooks.py
 markdown_extensions:
   - admonition
   - attr_list
