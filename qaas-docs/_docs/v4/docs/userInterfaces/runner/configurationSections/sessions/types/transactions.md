@@ -16,7 +16,7 @@ Sends an http post request.
 HttpPost: {}
 ```
 
-???- info "Data Structure"
+!!! info "Data Structure"
     === ":octicons-file-code-16: `Input`"
         ```yaml
         Body: <byte[]>
@@ -43,7 +43,7 @@ Sends an http put request.
 HttpPut: {}
 ```
 
-???- info "Data Structure"
+!!! info "Data Structure"
     === ":octicons-file-code-16: `Input`"
         ```yaml
         Body: <byte[]>
@@ -70,7 +70,7 @@ Sends an http get request.
 HttpGet: {}
 ```
 
-???- info "Data Structure"
+!!! info "Data Structure"
     === ":octicons-file-code-16: `Input`"
         ```yaml
         Body: <byte[]>
@@ -97,7 +97,7 @@ Invokes a Grpc Method.
 Grpc: {}
 ```
 
-???- info "Data Structure"
+!!! info "Data Structure"
     === ":octicons-file-code-16: `Input`"
         ```yaml
         Body: <Google.Protobuf.IMessage>

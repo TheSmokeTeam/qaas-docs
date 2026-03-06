@@ -1,16 +1,11 @@
 # Introduction
 
-`QaaS` is a framework for integration and end-to-end testing of backend applications with minimal code usage.
-It is C# based and written in `.net10` and its functionalities are available through several different nuget packages.
+`QaaS` is the test-authoring and execution layer of the ecosystem. This site focuses on how to install the runner, write tests in YAML or C#, run them locally, and understand the main runner configuration sections.
 
-`QaaS` is built as a `plugin system` meaning it can be easily extended with user code and packages.
+The wider repository is documented as separate package sites in the same docs workspace:
 
-## Contact Us
+- `QaaS.Framework` for the shared execution model, hook contracts, policies, protocols, and providers.
+- `QaaS.Mocker` for configurable mock services and controller-driven test integration.
+- `QaaS.Common.Assertions`, `QaaS.Common.Generators`, `QaaS.Common.Probes`, and `QaaS.Common.Processors` for reusable plugins.
 
-### Mattermost
-
-Join our community where you can ask questions, report bugs, request features and interact with the community!
-
-REDA
-
-Then click [Here](REDA) to join the `QaaS Community` channel.
+If you are new to the codebase, start with the Quick Start pages in order. Once you can create and run a test, use the runner reference pages to understand sessions, data sources, assertions, links, storages, and command-line flags in more detail.

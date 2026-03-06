@@ -3,7 +3,7 @@
 Lets write tests for an application that uses `rabbitmq`.
 That application's name is `DummyApp`.
 
-The finished test project that will be written in this quick start tutorial can be found [here](REDA/examples/dummyapptests/). In addition a helm chart that deploys a `rabbitmq` that will work with this test project can be found [here](REDA/qaas-quickstart-dummyapp-helm-chart).
+The goal of this quick start is to explain the moving parts of a realistic runner test. The exact project layout comes from the `qaas.test` template, but the source of truth is the YAML you write and the hooks/packages you reference from it.
 
 ## Application spec
 
@@ -93,7 +93,7 @@ These **Hooks** can be written in the QaaS test project and invoked by the `.yam
 
 On the other hand **Hooks** can also be provided in a nuget package called a `Plugin`.
 
-QaaS has 3 default `Plugins`, [QaaS.Common.Generators](REDA/v3/), [QaaS.Common.Assertions](REDA/v3/) and [QaaS.Common.Probes](REDA) that include within them a lot of commonly used generators, assertions and probe hooks, in this tutorial we will use some of the assertions offered by the `QaaS.Common.Assertions` package, some of the generators offered by the `QaaS.Common.Generators` and some of the probes offered by the `QaaS.Common.Probes` package in our test project.
+QaaS ships with three common plugin packages that cover most starter scenarios: `QaaS.Common.Generators`, `QaaS.Common.Assertions`, and `QaaS.Common.Probes`. In this tutorial we will use those packages instead of writing custom hooks first.
 
 To use them we need to add the `QaaS.Common.Assertions`, `QaaS.Common.Generators`, `QaaS.Common.Probes` nuget packages to our C# project in a version compatible with our `QaaS.Runner` version (a version of the packages that has the same `QaaS.Framework.SDK` version or newer (but not breaking) than the `QaaS.Runner` package)
 

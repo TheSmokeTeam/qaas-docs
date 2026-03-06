@@ -1,63 +1,44 @@
 # QaaS Module Packages
 
-`QaaS Module Packages` are bundles of folders containing YAML files, uploaded as **artifacts** to the [Artifactory](REDA). In the context of `QaaS`, each such artifact is referred to as a **module**. These modules can be used interchangeably with any YAML file within the QaaS framework.
+QaaS module packages are versioned bundles of YAML files that can be reused across projects. In practice, a module is just a curated set of QaaS configuration fragments stored in a shared artifact repository.
 
----
+## Why Modules Exist
 
-## QaaS.Common.Modules
+Use modules when the same YAML is reused in many places, for example:
 
-QaaS provides a shared module library:  
-[QaaS.Common.Modules](REDA)  
-This repository contains reusable YAML configurations that can be leveraged across QaaS projects.
+- shared session templates
+- common links or metadata blocks
+- standard probes or assertion groups
+- organization-wide defaults for storage or observability
 
----
+## How They Are Consumed
 
-## Using Modules from Artifactory
+Any place that accepts a YAML path can also consume a module file from a reachable artifact URL. A common pattern is using `-w` / `--with-files` to layer shared YAML on top of a project-local test file.
 
-To use a YAML file from Artifactory in a `qaas` command, replace the local file path with the full URL to the file in Artifactory.
-
-### Example: Using `commons.yaml` from `CommonModule` v0.1.0
-
-1. Navigate to the file in Artifactory:
-   ![Artifactory](../assets/artifactory_yaml_file.png)
-
-2. Copy the **URL to file** (e.g., `REDA/commons.yaml`).
-
-3. Use it in a `run` command via the `-w` (overwrite) flag:
+Example:
 
 ```bash
-dotnet run -- run test.qaas.yaml -w REDA/commons.yaml
+dotnet run -- run test.qaas.yaml -w https://your-artifact-host/modules/common/commons.yaml
 ```
 
----
+## Publishing Guidance
 
-## Publishing Your Own Modules
+Keep module publishing conventions simple and predictable:
 
-To publish your own modules to Artifactory, use **[vap](REDA/versioned-artifact-publisher)** — the *Versioned Artifactory Publisher*.
+- group files by module name
+- version the module directory, not only the file names
+- keep YAML file names stable so project references stay readable
 
-### Publishing Conventions
+One reasonable layout is:
 
-- Place modules under:  
-  `REDA`
-- Module directory name must be in **PascalCase**.
-- Inside the module directory, create a version-named subdirectory (e.g., `0.1.0`).
-- Place your YAML files inside the version directory.
-
-**Structure Example:**
-
-```plaintext
-REDA
-└── CommonModule/
-    └── 0.1.0/
-        └── commons.yaml
+```txt
+CommonModule/
+|-- 0.1.0/
+|   |-- commons.yaml
 ```
 
----
+## Practical Advice
 
-## Publishing via CI
-
-Automate module publishing using the [vap CI step](REDA) in GitLab CI templates.
-
-### Example
-
-See the implementation in the [QaaS.Common.Modules](REDA) repository for a real-world example.
+- treat modules like source code: version them, review them, and document breaking changes
+- keep environment-specific values out of shared modules when possible
+- prefer smaller focused modules over one very large catch-all module

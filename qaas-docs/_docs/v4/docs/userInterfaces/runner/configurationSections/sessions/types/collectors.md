@@ -29,7 +29,7 @@ A vector's result array item which is a single item in a prometheus output is st
 Prometheus: {}
 ```
 
-???- info "Data Structure"
+!!! info "Data Structure"
     === ":octicons-file-code-16: `Output`"
         ```yaml
         Body: <System.Text.Json.Nodes.JsonObject>

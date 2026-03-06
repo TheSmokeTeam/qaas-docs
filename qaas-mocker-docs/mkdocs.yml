@@ -1,6 +1,4 @@
 site_name: QaaS Mocker Docs
-repo_name: QaaS.Mocker
-repo_url: "REDA/qaas-mocker-docs.git"
 docs_dir: docs/ 
 
 nav:
@@ -16,7 +14,6 @@ nav:
         - userInterfaces/mocker/configurationSections/configurationSections.md
         - DataSources: 
             - Overview: userInterfaces/mocker/configurationSections/dataSources/overview.md
-            - QaaS.Common.Generators: REDA
             - Configurations: 
                 - Table View: userInterfaces/mocker/configurationSections/dataSources/configurations/tableView.md 
                 - Yaml View: userInterfaces/mocker/configurationSections/dataSources/configurations/yamlView.md
@@ -36,39 +33,13 @@ nav:
             - Configurations: 
                 - Table View: userInterfaces/mocker/configurationSections/server/configurations/tableView.md 
                 - Yaml View: userInterfaces/mocker/configurationSections/server/configurations/yamlView.md 
-  - QaaS: REDA
 
 theme:
-  name: material
-  highlightjs: false
-  font: false
-  features:
-    - content.code.annotate
-    - navigation.tabs
-
-  palette:
-    - scheme: slate
-      primary: white
-      accent: red
-      toggle:
-        icon: material/weather-sunny
-        name: Switch to light mode
-    - scheme: default
-      primary: white
-      accent: red
-      toggle:
-        icon: material/weather-night
-        name: Switch to dark mode
-
-  include_search_page: false
-  search_index_only: true
-
-  icon:
-    repo: fontawesome/brands/gitlab
-  logo: assets/qaas-mocker-logo.png
-  favicon: assets/qaas-mocker-logo.png
+  name: readthedocs
 
 markdown_extensions:
+  - fenced_code
+  - tables
   - attr_list
   - md_in_html
   - pymdownx.superfences
@@ -76,17 +47,7 @@ markdown_extensions:
   - def_list
   - pymdownx.tabbed:
       alternate_style: true
-  - pymdownx.highlight:
-      anchor_linenums: true
-      line_spans: __span
-      pygments_lang_class: true
   - toc:
       permalink: true
-  - pymdownx.emoji:
-      emoji_index: !!python/name:material.extensions.emoji.twemoji
-      emoji_generator: !!python/name:material.extensions.emoji.to_svg
-  - pymdownx.tasklist:
-      custom_checkbox: true
-  - pymdownx.inlinehilite
-  - pymdownx.snippets
-  - pymdownx.details
+plugins:
+  - search

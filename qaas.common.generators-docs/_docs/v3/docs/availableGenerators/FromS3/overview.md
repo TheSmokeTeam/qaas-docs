@@ -2,7 +2,7 @@
 
 Retrieves data from a configured S3 bucket.
 
-???- info "Data Structure"
+!!! info "Data Structure"
     === ":octicons-file-code-16: `Data`"
         ```yaml
         Body: <byte[]>

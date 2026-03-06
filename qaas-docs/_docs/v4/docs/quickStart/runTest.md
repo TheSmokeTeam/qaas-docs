@@ -2,7 +2,7 @@
 
 ## Run Test Locally
 
-To execute the QaaS project, open a terminal in the `DummyAppTests/DummyAppTests` directory and run:
+To execute the full runner flow, open a terminal in the project directory that contains `test.qaas.yaml` and run:
 
 ```bat
 dotnet run -- run test.qaas.yaml -s
@@ -10,14 +10,28 @@ dotnet run -- run test.qaas.yaml -s
 
 ### Notes
 
-- **The `-s` flag**: Automatically opens the Allure report in your default browser after the test completes. This only works if the Allure CLI is installed and added to your system's PATH.
-  
-- **The `--` separator**: This is a standard convention in command-line interfaces to indicate the end of command-line options. Everything after `--` is treated as arguments, even if they begin with a hyphen (`-`).
+- `run` performs the full test flow: resolve configuration, execute sessions, and execute assertions.
+- `-s` / `--serve-results` serves the generated Allure report after assertions complete.
+- `--` separates `dotnet run` arguments from QaaS command arguments.
+
+Useful variants:
+
+```bat
+dotnet run -- template test.qaas.yaml
+dotnet run -- run test.qaas.yaml -l Debug
+dotnet run -- act test.qaas.yaml
+dotnet run -- assert test.qaas.yaml -s
+```
+
+Use:
+
+- `template` when you want to inspect the resolved configuration without executing it
+- `act` when you want to collect session data without asserting yet
+- `assert` when you already have stored session data and only want to run assertions
 
 ### Test Execution Output
 
-After running the command, you will see logs in the console showing the progress of the test run. These logs provide information about session execution, data generation, publishing, consuming, and assertion results.
-Upon completion, the test generates results in the `allure-results` folder located in the current directory.
+After running the command, you will see logs in the console showing the progress of the test run. These logs provide information about session execution, data generation, publishing, consuming, and assertion results. Upon completion, the test generates results in the `allure-results` folder in the current directory.
 
 ```plaintext
 DummyAppTests/
@@ -55,7 +69,7 @@ This increases the verbosity of the logs, providing deeper insight into:
 - Publisher and consumer behavior
 - Assertion evaluation
 
-Use this for troubleshooting configuration issues, data flow problems, or unexpected test failures.
+Use this for troubleshooting configuration issues, data flow problems, or unexpected test failures. For configuration-only debugging, `template` is usually faster than a full run.
 
 ---
 
@@ -78,8 +92,6 @@ from the `DummyAppTests/DummyAppTests/` directory (the directory containing the 
   - Execution timelines
   - Logs and attachments
   - Metrics and charts (e.g., throughput, delay, hermeticity)
-
-![allure-results-ui](../assets/allure-results.png)
 
 ### Sharing Results
 

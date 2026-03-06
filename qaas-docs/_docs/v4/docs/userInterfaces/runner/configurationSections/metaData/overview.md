@@ -1,32 +1,30 @@
 # MetaData
 
-The `Metadata` section is used to define additional information about tests, enhancing traceability and observability. It includes the following key fields:
+The `MetaData` section is used to attach business context to a test run so the results are easier to filter, search, and explain later.
 
-- **Team**: The team responsible for maintaining and executing the tests.
-- **System**: The system or component under test.
+Common fields include:
 
-In addition to these standard fields, you can include custom `ExtraLabels` to further categorize tests. Examples of useful labels include:
+- `Team`
+- `System`
+- custom `ExtraLabels`
+
+Typical extra labels include:
 
 - `Component`
 - `Cluster`
 - `Environment`
 - `Feature`
 
-Labels are not limited to those examples and can be anything you want.
+## Why It Matters
 
-## Purpose and Usage
+Metadata becomes part of the execution context that travels with logs and result output. That makes it easier to answer questions such as:
 
-Metadata is embedded into test logs and sent to REDA’s Elasticsearch instance for centralized observability. This enables effective monitoring and analysis through the QaaS (Quality as a Service) platform.
+- which team owns the failing test
+- which environment the run targeted
+- which system or feature area is affected
 
-Each log entry also includes the hostname of the machine where the test was executed—whether locally or via CI—providing additional context for debugging and auditing.
+## Guidance
 
-## Observability and Dashboards
-
-You can monitor QaaS usage and test metadata adoption using the following resources:
-
-- **QaaS Adoption Dashboard**: [View Dashboard](REDA)
-  - User: `REDA`
-  - Password: `REDA`
-- **Custom Explore View**: [Explore Data](REDA)
-
-Use the provided Elasticsearch data source to build custom dashboards and gain deeper insights into test execution patterns, team contributions, and system performance.
+- keep label names stable across teams
+- use metadata for ownership and environment context, not for large free-form notes
+- prefer a small set of consistently used labels over many one-off labels

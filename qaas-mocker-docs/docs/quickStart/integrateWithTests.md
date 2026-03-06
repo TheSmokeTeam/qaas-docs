@@ -1,19 +1,27 @@
 # Integrate with Tests
 
-In some cases we may want complete integration between our tests and our mock server.
+In some scenarios you want the test and the mock to coordinate while both are running. That is what the optional `Controller` section is for.
 
-In order to do so we can configure the optional section `Controller` section in the `mocker.qaas.yaml`
+The controller is the interface between `QaaS.Runner` tests and `QaaS.Mocker` servers. Both sides connect to Redis or KeyDB. The runner can then send named mocker commands that switch stubs, trigger behaviors, or consume captured data.
 
-The controller is the interface between the `QaaS.Runner`'s tests and `QaaS.Mocker`'s servers. The servers and the tests are both connecting to redis and communicating with each other that way. The tests can send specific commands to the mocker, making it do some specific action. More on that in [QaaS Docs](REDA/configurationSections/sessions/types/mockerCommands/)
+## Configure the Controller
 
-## Configuring Controller
-
-In order to let the tests and the mocker recognize each other, we configure a controller by setting a name for our mocker server and a redis connection.
-
-```mocker.qaas.yaml```
+Add a server name and a Redis connection:
 
 ```yaml
 Controller:
   ServerName: MockerExample
-  Redis: # relevant redis connection
+  Redis:
+    Host: localhost
+    Port: 6379
 ```
+
+## When To Use It
+
+Use the controller when:
+
+- one test needs the mock to change behavior mid-run
+- you want to expose multiple stub variants and switch between them on demand
+- the test should trigger mock-side behavior instead of relying only on static endpoint mapping
+
+If the mock never changes during the test, keep the controller section out and use a simpler static mock configuration.

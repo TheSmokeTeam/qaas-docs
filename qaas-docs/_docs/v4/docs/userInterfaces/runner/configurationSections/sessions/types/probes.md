@@ -1,8 +1,15 @@
 # Probes
 
-Probes are based on the `hook` `IProbe` and are actions that effect the system/its underlying infrastructure but don't save any information related to the interaction with the system, meaning they don't effect the `SessionData` object at all.
+Probes are hooks built on `IProbe`. They are used for setup, cleanup, or environmental changes that support a test run but do not produce normal session input/output data.
 
-Probes can use `SessionData` and `DataSource` lists in order to get relevent information to perform their action.
-Behaviour.
+Typical probe use cases include:
 
-In order to see all of the avaialble probes visit [QaaS.Common.Probes](REDA
+- emptying Redis before a run
+- purging RabbitMQ queues
+- truncating SQL tables
+- restarting pods or updating deployment state in OpenShift
+- cleaning S3 buckets or Elastic indices
+
+Probes can still inspect available `SessionData` and configured `DataSource` objects if they need them, but they do not append new communication data to the session output.
+
+The reusable implementations live in the separate `QaaS.Common.Probes` docs package in this repository.

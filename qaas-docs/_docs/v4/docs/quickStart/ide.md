@@ -1,83 +1,67 @@
 # IDE
 
-All QaaS projects can be configured using either **YAML** files or **C# code** (Configuration as Code). While YAML
-provides a declarative, human-readable format ideal for version control and collaboration, **C# offers full programmatic
-control** for dynamic, conditional, and reusable test logic.
+QaaS projects can be configured with YAML files, C# code, or a mix of both. For onboarding, YAML is usually the fastest path because the full test shape is visible in one place.
 
-For teams choosing to use YAML, it is strongly recommended to use a capable IDE with real-time schema validation and
-intelligent code completion to ensure correctness, reduce errors, and improve productivity.
+An IDE helps with three things:
 
-## QaaS Real-Time Schema Validation
+- keeping indentation and anchors valid
+- navigating between YAML, `Program.cs`, and your custom hooks
+- running `dotnet run -- template ...` or `dotnet run -- run ...` quickly while you author a test
 
-To enable real-time validation, auto-completion, and contextual suggestions for QaaS YAML configurations, you must
-install the appropriate **JSON schema** in your IDE. These schemas are published in the **Release Notes** section of the
-relevant NuGet packages.
+## Current Validation Workflow
 
-### Available Schemas
+The source code is the validation authority. The safest way to validate a configuration while you edit it is:
 
-| Schema                            | Purpose                                            | File                                                                                                              |
-|-----------------------------------|----------------------------------------------------|-------------------------------------------------------------------------------------------------------------------|
-| `qaasSchema.json`                 | Core QaaS.Runner configuration schema              | [Download](REDA)                   |
-| `qaasCommonAssertionsSchema.json` | Schema for `QaaS.Common.Assertions` configurations | [Download](REDAs) |
-| `qaasCommonGeneratorsSchema.json` | Schema for `QaaS.Common.Generators` configurations | [Download](REDAs) |
-| `qaasCommonProbesSchema.json`     | Schema for `QaaS.Common.Probes` configurations     | [Download](REDA)     |
+```bash
+dotnet run -- template test.qaas.yaml
+```
 
-> **Note**: Each schema corresponds to a specific component of the QaaS ecosystem. Use the correct schema based on your
-> configuration file’s content.
+Use that command whenever you want to see the fully resolved configuration after overwrite files, cases, references, command-line overrides, and optional environment-variable enrichment have been applied.
 
-### Using the Schema
+If you want to execute the test immediately and inspect failures with full logs:
 
-After installing the schema in your IDE:
+```bash
+dotnet run -- run test.qaas.yaml -l Debug
+```
 
-Open any `.yaml` file and you will receive real-time:
+## VS Code
 
-- Syntax highlighting
-- Auto-completion
-- Validation errors (e.g., missing required fields, invalid values)
-- Contextual suggestions based on the current configuration structure
+Recommended extensions:
 
-> To trigger suggestions, use `Ctrl + Space`.
+- `C# Dev Kit` or `C#`
+- `YAML` by Red Hat
 
----
-
-## IDE Recommendations & Setup
-
-### VS Code
-
-#### Setting Up Schema in VS Code
-
-1. Download the desired schema file (e.g., `qaasSchema.json`).
-2. Open VS Code → `File` → `Preferences` → `Settings`.
-3. Search for `yaml: schemas`.
-4. Click **"Edit in settings.json"**.
-5. Add the schema mapping under the `yaml.schemas` object:
+Useful settings:
 
 ```json
-"yaml.schemas": {
-"/path/to/qaasSchema.json": "*.yaml"
+{
+  "files.associations": {
+    "*.qaas.yaml": "yaml"
+  },
+  "yaml.format.enable": true
 }
 ```
 
-> Replace `/path/to/qaasSchema.json` with the actual local path to your downloaded schema file.
+Practical workflow in VS Code:
 
-1. Save the file and **restart VS Code**.
-2. Open any `.yaml` file — schema validation and auto-completion will now be active.
+1. Open the solution root created by the project template.
+2. Keep `test.qaas.yaml` and `Program.cs` side by side.
+3. Run `dotnet run -- template test.qaas.yaml` from the integrated terminal after each meaningful YAML change.
+4. Use `dotnet run -- run test.qaas.yaml -s` once the configuration resolves as expected.
 
-![HowToSetSchemaInVsCode](../assets/setSchemaInVsCode.gif)
+## Rider
 
----
+Rider works well for mixed YAML and C# QaaS projects because you can jump directly from hook names in your codebase to their implementations.
 
-### Rider
+Recommended setup:
 
-#### Setting Up Schema in Rider
+1. Open the solution root, not just the project folder.
+2. Make sure YAML support is enabled.
+3. Mark `*.qaas.yaml` as YAML files if Rider does not detect them automatically.
+4. Create run configurations for:
+   - `dotnet run -- template test.qaas.yaml`
+   - `dotnet run -- run test.qaas.yaml -s`
 
-1. Download the schema file (e.g., `qaasSchema.json`).
-2. Go to: `File` → `Settings` → `Languages & Frameworks` → `Schemas and DTDs` → `JSON Schema Mappings`.
-3. Click the **+** button to add a new mapping:
-    - **Schema file**: Select your downloaded `qaasSchema.json`.
-    - **Pattern**: Enter `*.yaml` (or a more specific pattern if needed).
-4. Click **Save**.
+## When You Need Stronger Validation
 
-> **Important**: This configuration is project-specific. You must repeat this setup for each new QaaS project.
-
-![HowToSetSchemaInRider](../assets/riderQaasJsonSchema.png)
+If your team publishes local JSON schemas or custom linting around QaaS YAML, wire them into the IDE as an extra layer. Treat the runner itself as the final source of truth because command-line options and code-based configuration can still change the final resolved object graph.

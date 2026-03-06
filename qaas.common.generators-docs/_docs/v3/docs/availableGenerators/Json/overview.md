@@ -8,7 +8,7 @@ Generates data in the following order:
 2. If configured: Injects **Manual** or **DataSource** given values to fields.  > ⚠ Replaces value of already existing fields.
 3. If configured: Parses the Json to a different output object.
 
-???- info "Data Structure"
+!!! info "Data Structure"
     === ":octicons-file-code-16: `Data`"
         ```yaml
         Body: <object>

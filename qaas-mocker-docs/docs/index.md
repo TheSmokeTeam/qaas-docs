@@ -1,9 +1,14 @@
 # Introduction
 
-`QaaS.Mocker` is a mocking framework designed to simplify the process of creating mock services with minimal code usage.
-It is C# based and written in `.net8` and its functionalities are available through several different nuget packages.
+`QaaS.Mocker` is the configurable mock-service runtime in the QaaS ecosystem. It lets you stand up HTTP, HTTPS, gRPC, gRPCs, or socket-based mock endpoints with YAML configuration and optional custom processor code.
 
-`QaaS.Mocker` is built as a `plugin system` meaning it can be easily extended with user code and packages.
-`QaaS.Mocker` is optimized for use with `QaaS.Runner` integration tests, providing a streamlined testing experience.
+It is C# based, targets `.NET 10`, and is designed to work well with `QaaS.Runner` integration tests when you need controllable dependencies around the system under test.
 
-<img src="assets/qaas-mocker-logo.png" width=300 height=300>
+At a high level:
+
+- `DataSources` provide reusable input data when a processor needs it
+- `Stubs` bind a named processor to optional configuration and data sources
+- `Server` exposes protocol endpoints and routes requests to stub-backed actions
+- `Controller` enables runtime coordination from tests through Redis / KeyDB
+
+Start with the quick-start pages if you want to create a new mock quickly. Use the configuration reference pages once you need to tune endpoints, controller behavior, or protocol-specific settings.

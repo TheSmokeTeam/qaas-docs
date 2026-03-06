@@ -2,7 +2,7 @@
 
 Supports generating data from multiple DataSources that contain lettuce files.
 
-???- info "Data Structure"
+!!! info "Data Structure"
     === ":octicons-file-code-16: `Data`"
         ```yaml
         Body: <byte[]>

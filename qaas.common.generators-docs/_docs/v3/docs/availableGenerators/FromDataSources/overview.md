@@ -2,7 +2,7 @@
 
 Combines multiple data sources together.
 
-???- info "Data Structure"
+!!! info "Data Structure"
     === ":octicons-file-code-16: `Data`"
         ```yaml
         Body: <object>

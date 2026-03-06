@@ -1,29 +1,37 @@
 # Links
 
-Links are the links generated on test results, used to view the tested application's metrics/logs/traces or any other observability data outputted by the system. These links are generated per test result to be relevant specifically to that test and the time it ran at.
+Links are generated on test results so you can jump directly from a failed or interesting test run to the relevant observability view for that exact time window.
 
-Links can be found by clicking on the relevant test and looking at the Links section at the right of the screen where all the test metadata is.
+In practice, links are used for:
+
+- logs in Kibana or another Elastic UI
+- metrics in Prometheus
+- dashboards in Grafana
+
+## Where They Appear
+
+Links are attached to the relevant test result entry, so they are visible together with the rest of the execution context instead of being tracked manually.
 
 ## Available Link Types
 
 ### Kibana
 
-Links to a kibana UI.
+Links to a Kibana UI.
 
-!!! Tip "Kibana Version"
-    The suggested Kibana to use is the one supported by `REDA` in version `8.4.1`.
+#### Getting the DataViewId
 
-#### Getting The DataViewId
+To get the `DataViewId` of a data view in Kibana:
 
-To get the `DataViewId` of a `DataView` in kibana you can go to `Stack Managment` -> `Data Views` select your DataView and go to `Edit data view`.
-There you will see your `DataViewId` under `Custom data view ID`.
-
-![DataViewIdInKibana](../../../../assets/dataViewId.png)
+1. open `Stack Management`
+2. open `Data Views`
+3. select the data view
+4. open `Edit data view`
+5. copy the value under `Custom data view ID`
 
 ### Prometheus
 
-Links to prometheus UI.
+Links to a Prometheus UI.
 
 ### Grafana
 
-Links to a grafana dashboard.
+Links to a Grafana dashboard.

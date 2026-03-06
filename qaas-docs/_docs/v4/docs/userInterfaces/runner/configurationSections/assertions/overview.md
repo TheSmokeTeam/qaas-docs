@@ -11,7 +11,7 @@ In addition to general [`Links`](../links/overview.md) that can be configured to
 Assertion results are saved as `allure results` under an `allure-results` directory.
 Each assertion produces an allure test result and unless configured not to it also saves the `SessionData` of the sessions relevant to the assertion under `allure-results/SessionsData/`.
 
-??? Note "SessionsData Folder"
+!!! note "SessionsData Folder"
         Under the `SessionsData` directory the sessions can be found by their `SessionNames` with a `.json` suffix.
         If the sessions are part of an `execution` they will be under a folder composed of the ExecutionId's name.
         If the sessions are part of a `case` they will be under a folder composed of the case's name with all invalid directory name characters switched with `_`.

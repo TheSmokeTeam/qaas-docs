@@ -1,27 +1,33 @@
 # Execute
 
-The execute command is used to execute multiple other [QaaS Runner Commands](commands.md) in sequential order in a
-single execution as a single test.
+The `execute` command runs a list of QaaS commands from a separate execution YAML file. It is useful when a workflow needs more than one runner command in a fixed order.
 
-!!! Note
-When running QaaS Runner Commands using the execute command, each QaaS Runner Command
-will receive an ID that will be used to identify it in the logs and allure-results.
+!!! note
+    Every command in the execution file must have a unique `Id`. That ID is used in logs and result output to make it clear which command produced which data.
 
 ## Usage
 
-To view all command options, execute the following command:
-
 ```bash
-dotnet run <dotnet-parameters> -- execute --help
+dotnet run -- execute <execution-file> [shared-logging-options] [execute-options]
 ```
 
-This command will display all available options for the execute command, including flags and values.
+To see the generated help text from the runner itself:
 
-## Configurations
+```bash
+dotnet run -- execute --help
+```
 
-The `execute` command uses a YAML configuration file to know which commands to run.
+## Execute-Specific Options
 
-:warning: The commands in the YAML file are `QaaS Commands` there is **no** need to use **dotnet run** in them.
+| Flag | Purpose |
+|---|---|
+| `-s`, `--serve-results` | Serve Allure results after the full execution file completes. |
+| `-e`, `--empty-allure-directory` | Empty the Allure results directory before execution starts. |
+| `-c`, `--command-ids-to-run` | Run only selected command IDs from the execution file. |
+
+## Configuration
+
+The YAML stores QaaS commands only. Do not include `dotnet run --`.
 
 ### YAML View
 
@@ -29,15 +35,15 @@ The `execute` command uses a YAML configuration file to know which commands to r
 Commands:
   - Command:
     Id:
-    Parallel:
 ```
 
 ### Table View
 
-| Property Path         | Type                                | Required | Default | Description                                                                                                                        |
-|:----------------------|:------------------------------------|:---------|:--------|:-----------------------------------------------------------------------------------------------------------------------------------|
-| `Commands`            | `array`  (`length` >= `1`)          | &#10004  |         | The list of QaaS commands to execute in the order they will be executed                                                            |
-| `Commands[]`          | `object`                            | &#10004  |         |                                                                                                                                    |
-| `Commands[].Command`  | `string`                            | &#10004  |         | The QaaS command to execute                                                                                                        |
-| `Commands[].Id`       | `string` (`100` >= `length` >= `1`) | &#10004  |         | A unique identifier to identify the command by                                                                                     |
-| `Commands[].Parallel` | `boolean`                           | &#10006  | false   | Whether to run this command in parallel with other commands coming before and after it that are also set to run in parallel or not |
+| Property Path | Type | Required | Description |
+|---|---|---|---|
+| `Commands` | `array` (`length >= 1`) | yes | Commands to run, in the order they should run. |
+| `Commands[]` | `object` | yes | A single command entry. |
+| `Commands[].Command` | `string` | yes | The QaaS command to execute, for example `run test.qaas.yaml -s`. |
+| `Commands[].Id` | `string` (`1..100` chars) | yes | Stable identifier used in logs and result output. |
+
+The current source code does not support a `Parallel` field on execute commands. If you see that field in older examples, treat it as outdated.

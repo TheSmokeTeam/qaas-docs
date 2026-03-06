@@ -1,0 +1,28 @@
+site_name: QaaS Common Probes Docs
+docs_dir: docs/
+
+nav:
+  - Introduction: index.md
+  - Available Probes:
+      - Elastic: availableProbes/elastic.md
+      - OpenShift: availableProbes/openshift.md
+      - RabbitMQ: availableProbes/rabbitmq.md
+      - Redis: availableProbes/redis.md
+      - S3: availableProbes/s3.md
+      - SQL: availableProbes/sql.md
+
+theme:
+  name: readthedocs
+
+plugins:
+  - search
+
+markdown_extensions:
+  - fenced_code
+  - tables
+  - pymdownx.superfences
+  - admonition
+  - pymdownx.tabbed:
+      alternate_style: true
+  - toc:
+      permalink: true

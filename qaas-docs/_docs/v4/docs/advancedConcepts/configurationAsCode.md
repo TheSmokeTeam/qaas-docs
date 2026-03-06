@@ -31,7 +31,7 @@ var runner = Bootstrap.New(args);
 
 The `Runner` class represents the core execution context in QaaS. It manages one or more `ExecutionBuilder` instances, each execution defining a distinct logical test run. `Execution` can be dfined by the combination of every actions that are performed in a single `Case` or a single `Command` (when using `Execute` command). When using `Run`, `Act` or `Assert` command, there will be a single execution responsible for performing all of the actions.
 
-For more documentation about `Executions`, please refer to [QaaS.Framework.Executions](REDA/executions/).
+For more documentation about executions, see the `QaaS.Framework.Executions` page in the separate framework docs site in this repository.
 
 ### Core Properties
 

@@ -1,6 +1,4 @@
 site_name: QaaS Common Assertions Docs
-repo_name: QaaS Common Assertions
-repo_url: "REDA/qaas.common.assertions.git"
 docs_dir: docs/ 
 
 nav:
@@ -61,56 +59,18 @@ nav:
         - Configurations: 
           - Table View: availableAssertions/ValidateHermeticMetricsByInputOutputPercentage/configuration/tableView.md 
           - Yaml View: availableAssertions/ValidateHermeticMetricsByInputOutputPercentage/configuration/yamlView.md 
-  - QaaS Docs: REDA/v4/userInterfaces/runner/configurationSections/assertions/overview/
 theme:
-  name: material
-  highlights: false
-  font: false
-  features:
-    - content.code.annotate
-    - navigation.tabs
-
-  palette:
-    - scheme: slate
-      primary: white
-      accent: red
-      toggle:
-        icon: material/weather-sunny
-        name: Switch to light mode
-    - scheme: default
-      primary: white
-      accent: red
-      toggle:
-        icon: material/weather-night
-        name: Switch to dark mode
-
-  include_search_page: false
-  search_index_only: true
-
-  icon:
-    repo: fontawesome/brands/gitlab
-  logo: assets/qaas-logo.png
-  favicon: assets/qaas-logo.png
-
-extra_css:
-  - assets/chat-widget.js
-
-extra_javascript:
-  - assets/chat-widget.js
+  name: readthedocs
 
 plugins:
- - mike
- - search
-
-extra:
-  version:
-    provider: mike
+  - search
 
 markdown_extensions:
+  - fenced_code
+  - tables
   - pymdownx.superfences
   - admonition
+  - pymdownx.tabbed:
+      alternate_style: true
   - toc:
       permalink: true
-  - pymdownx.emoji:
-      emoji_index: !!python/name:materialx.emoji.twemoji
-      emoji_generator: !!python/name:materialx.emoji.to_svg

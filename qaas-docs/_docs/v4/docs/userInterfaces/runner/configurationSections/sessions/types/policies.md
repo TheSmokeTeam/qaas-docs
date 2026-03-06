@@ -2,4 +2,4 @@
 
 Policies are a set of rules set on `communication actions` that alter their execution.
 
-In order to see all the avaialble policies visit [QaaS.Framework.Policies](REDA/policies/)
+The available policies are documented in the separate `QaaS.Framework.Policies` page in this repository.

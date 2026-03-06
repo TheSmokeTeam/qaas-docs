@@ -14,7 +14,7 @@ Publishes messages to a rabbitmq exchange or queue.
 RabbitMq: {}
 ```
 
-???- info "Data Structure"
+!!! info "Data Structure"
     === ":octicons-file-code-16: `Input`"
         ```yaml
         Body: <byte[]>
@@ -35,7 +35,7 @@ Publishes messages to a kafka topic.
 KafkaTopic: {}
 ```
 
-???- info "Data Structure"
+!!! info "Data Structure"
     === ":octicons-file-code-16: `Input`"
         ```yaml
         Body: <byte[]>
@@ -56,7 +56,7 @@ Publishes messages to a redis cache.
 Redis: {}
 ```
 
-???- info "Data Structure"
+!!! info "Data Structure"
     === ":octicons-file-code-16: `Input`"
         ```yaml
         Body: <byte[]>
@@ -86,13 +86,13 @@ Publishes messages to an oracle SQL database table.
 OracleSqlTable: {}
 ```
 
-???- info "Data Structure"
+!!! info "Data Structure"
     === ":octicons-file-code-16: `Input`"
         ```yaml
         Body: <System.Text.Json.Nodes.JsonObject>
         ```
 
-???- Tip "Oracle SQL Connection String"
+!!! tip "Oracle SQL Connection String"
         Data Source=DataBaseHost:DataBasePort/Service;User ID=UserName;Password=Password;
 
 !!! Tip "If you need to insert a User-Defined Type (UDT), set IsUDTInsertion to true for UDT support.
@@ -116,13 +116,13 @@ Publishes messages to a mssql database table.
 MsSqlTable: {}
 ```
 
-???- info "Data Structure"
+!!! info "Data Structure"
     === ":octicons-file-code-16: `Input`"
         ```yaml
         Body: <System.Text.Json.Nodes.JsonObject>
         ```
 
-???- Tip "MsSql Connection String"
+!!! tip "MsSql Connection String"
         Data Source=DataBaseHost;Initial Catalog=DataBaseName;User ID=UserName;Password=Password;
 
 !!! Notice "The data published to SQL tables"
@@ -143,13 +143,13 @@ Publishes messages to a postgresql database table.
 PostgreSqlTable: {}
 ```
 
-???- info "Data Structure"
+!!! info "Data Structure"
     === ":octicons-file-code-16: `Input`"
         ```yaml
         Body: <System.Text.Json.Nodes.JsonObject>
         ```
 
-???- Tip "MsSql Connection String"
+!!! tip "MsSql Connection String"
         Data Source=DataBaseHost;Initial Catalog=DataBaseName;User ID=UserName;Password=Password;
 
 !!! Notice "The data published to SQL tables"
@@ -170,7 +170,7 @@ Publishes messages to a s3 bucket.
 S3Bucket: {}
 ```
 
-???- info "Data Structure"
+!!! info "Data Structure"
     === ":octicons-file-code-16: `Input`"
         ```yaml
         Body: <byte[]>
@@ -189,7 +189,7 @@ Publishes documents to an elasticsearch index.
 ElasticIndex: {}
 ```
 
-???- info "Data Structure"
+!!! info "Data Structure"
     === ":octicons-file-code-16: `Input`"
         ```yaml
         Body: <System.Text.Json.Nodes.JsonNode>
@@ -214,7 +214,7 @@ Publishes messages using a socket from a remote host.
 Socket: {}
 ```
 
-???- info "Data Structure"
+!!! info "Data Structure"
     === ":octicons-file-code-16: `Input`"
         ```yaml
         Body: <byte[]>
@@ -230,7 +230,7 @@ Publishes messages to a remote sftp server
 Sftp: {}
 ```
 
-???- info "Data Structure"
+!!! info "Data Structure"
     === ":octicons-file-code-16: `Input`"
         ```yaml
         Body: <byte[]>

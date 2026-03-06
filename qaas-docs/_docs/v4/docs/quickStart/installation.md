@@ -3,70 +3,62 @@
 ## Prerequisites
 
 - .NET 10 SDK
-- A global `NuGet.Config` file configured with the following feed URLs:
+- Access to the NuGet feeds that host the QaaS packages
 
-```xml
-<add key="Feed_A" value="REDA" />
-<add key="Feed_B" value="REDA" />
-<add key="Feed_C" value="REDA" />
-```
+The docs intentionally do not hardcode feed URLs here. Keep those values in your local or global `NuGet.Config` so the same docs can be used in connected and air-gapped environments.
 
 ## Packages
 
-Install the required packages using NuGet.
+Install the packages your test project needs. In most cases that means the runner plus the common plugins you want to use.
 
 ### QaaS.Runner
 
-The core package used to run QaaS Runner projects.
+The main runtime package for YAML-driven or code-driven QaaS test projects.
 
 ```bash
-nuget install QaaS.Runner
+dotnet add package QaaS.Runner
 ```
 
 ### QaaS.Common.Assertions
 
-Contains all standard assertions available in the QaaS ecosystem.
+Reusable assertion hooks such as hermeticity, delay, status-code, schema, and output-shape checks.
 
 ```bash
-nuget install QaaS.Common.Assertions
+dotnet add package QaaS.Common.Assertions
 ```
 
 ### QaaS.Common.Generators
 
-Contains all standard generators available in the QaaS ecosystem.
+Reusable generator hooks for filesystem, JSON, schema, S3, and composed data-source scenarios.
 
 ```bash
-nuget install QaaS.Common.Generators
+dotnet add package QaaS.Common.Generators
 ```
 
 ### QaaS.Common.Probes
 
-Contains all standard probes available in the QaaS ecosystem.
+Reusable probes for environment setup and cleanup, including OpenShift, RabbitMQ, Redis, S3, SQL, and Elastic operations.
 
 ```bash
-nuget install QaaS.Common.Probes
+dotnet add package QaaS.Common.Probes
 ```
 
 ## QaaS Project Templates
 
-QaaS provides .NET project templates to simplify the creation of new QaaS projects. These templates are available at:
-
-[QaaS Project Templates Repository](REDA)
+The project templates are the fastest way to create a new runner project with the expected solution layout, starter YAML file, and sample variable files.
 
 ### Install Templates
 
 ```bash
-dotnet new -i "QaaS.ProjectTemplates"
+dotnet new install QaaS.ProjectTemplates
 ```
 
 ### Uninstall Templates
 
 ```bash
-dotnet new -u "QaaS.ProjectTemplates"
+dotnet new uninstall QaaS.ProjectTemplates
 ```
 
 ## Allure CLI
 
-The Allure CLI tool, along with installation instructions, can be found at:
-
-[Allure CLI Repository](REDA/allure-cli.git)
+Install Allure CLI if you want `-s` / `--serve-results` to open the report automatically after a run. QaaS writes raw result files into `allure-results`; the CLI is only needed to render and serve them locally.

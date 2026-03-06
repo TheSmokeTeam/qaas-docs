@@ -1,8 +1,8 @@
 # Mocker Commands
 
-Mocker commands are the integration between `QaaS.Runner`'s tests to `QaaS.Mocker`'s mock servers.
+Mocker commands are the integration between `QaaS.Runner` tests and `QaaS.Mocker` servers.
 They provide a way for tests to command and communicate with the mockers.
-Further explanation on `QaaS.Mocker` servers can be found [here](REDA)
+Further explanation on mocker server setup can be found in the separate `QaaS.Mocker` docs site in this repository.
 
 Some mocker commands don't require any data and thus will not create `Input` or `Output` by their name to the `SessionData`, and other mocker commands interact with the mocker's data and will create `Input` and `Output` by their name in the `SessionData` depending on the specific command.
 
@@ -31,7 +31,7 @@ Command the mocker server to send the input data received by the mocker and the 
 Consume: {}
 ```
 
-???- info "Data Structure"
+!!! info "Data Structure"
     === ":octicons-file-code-16: `Input`"
         ```yaml
         Body: <byte[]>

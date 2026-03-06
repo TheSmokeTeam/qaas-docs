@@ -2,39 +2,40 @@
 
 ## Prerequisites
 
-* `.net 8 sdk`
-* Global `NuGet.Config` file configured to the following artifactories
+- .NET 10 SDK
+- Access to the NuGet feeds that host the QaaS packages
 
-```xml
-<add key="Feed_A" value="REDA" />
-<add key="Feed_B" value="REDA" />
-<add key="Feed_C" value="REDA" />
-```
+The docs intentionally do not hardcode feed URLs here. Keep those values in your local or global `NuGet.Config` so the same docs can be used in connected and air-gapped environments.
 
 ## Packages
 
-Install using `nuget`
-
-### QaaS.Mocker
-
-The main package used to run a QaaS Mocker project.
+Install the main mocker package:
 
 ```bash
-nuget install QaaS.Mocker
+dotnet add package QaaS.Mocker
 ```
+
+Optional shared plugins:
+
+```bash
+dotnet add package QaaS.Common.Processors
+dotnet add package QaaS.Common.Generators
+```
+
+Use `QaaS.Common.Processors` when you want ready-made processors. Use `QaaS.Common.Generators` only if your mocker data sources need generator hooks from that package.
 
 ## QaaS Project Templates
 
-QaaS has dotnet project templates that can be used to create new QaaS projects easily, those project templates can be found [Here](REDA/qaas.projecttemplates.git).
+The project templates are the fastest way to create a new mocker project with the expected solution layout and starter YAML file.
 
 ### Install
 
 ```bash
-dotnet new -i "QaaS.ProjectTemplates"
+dotnet new install QaaS.ProjectTemplates
 ```
 
 ### Uninstall
 
 ```bash
-dotnet new -u "QaaS.ProjectTemplates"
+dotnet new uninstall QaaS.ProjectTemplates
 ```

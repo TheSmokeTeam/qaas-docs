@@ -2,7 +2,7 @@
 
 Checks that all items in a configured output can be deserialized with a configured deserializer.
 
-All supported deserializer's documentation and names that can be used in this assertion can be found at [QaaS.Framework.Serialization](REDA/serialization/).
+The supported deserializer names come from the `QaaS.Framework.Serialization` package documented in the separate framework docs site in this repository.
 
 ## Assertion Parameters
 

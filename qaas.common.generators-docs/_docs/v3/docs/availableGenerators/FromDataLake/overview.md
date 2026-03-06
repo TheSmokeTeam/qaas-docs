@@ -2,7 +2,7 @@
 
 Retrieves data from a the dataLake.
 
-???- info "Data Structure"
+!!! info "Data Structure"
     === ":octicons-file-code-16: `Data`"
         ```yaml
         Body: <object>

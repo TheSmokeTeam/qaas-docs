@@ -44,8 +44,6 @@ Under the `Test body` section, the test steps are presented in a tree format.
 For each session, the inputs and outputs, and failure reasons if there are any, are shown.
 In addition each session's SessionData `json` can be viewed by clicking the `SessionData` file icon within it.
 
-![Test steps example](../../assets/allure-test-body.png)
-
 ## Times
 
 Each `QaaS Test Suite` (An execution and a case) has its `Utc Start Time` recorded and saved as all of its tests' start time. A suite's test's stop time is the suite's start time plus the test duration which is composed of the duration of all sessions used by the assertion plus the assertion's run time.

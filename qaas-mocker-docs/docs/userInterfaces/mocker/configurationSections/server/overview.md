@@ -17,7 +17,7 @@ Type: Socket
 Socket: {}
 ```
 
-???- info "Recommended Tcp Server Configuration"
+!!! info "Recommended Tcp Server Configuration"
     === ":octicons-file-code-16: `Tcp`"
         ```yaml
           Socket:

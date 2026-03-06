@@ -1,6 +1,4 @@
 site_name: QaaS Docs
-repo_name: QaaS
-repo_url: "REDA/qaas.git"
 docs_dir: docs/ 
 
 nav:
@@ -48,7 +46,6 @@ nav:
                 - Yaml View: userInterfaces/runner/configurationSections/storages/configurations/yamlView.md
         - DataSources: 
             - Overview: userInterfaces/runner/configurationSections/dataSources/overview.md
-            - QaaS.Common.Generators: REDA/v3/
             - Configurations: 
                 - Table View: userInterfaces/runner/configurationSections/dataSources/configurations/tableView.md 
                 - Yaml View: userInterfaces/runner/configurationSections/dataSources/configurations/yamlView.md
@@ -67,7 +64,6 @@ nav:
                 - Yaml View: userInterfaces/runner/configurationSections/sessions/configurations/yamlView.md  
         - Assertions: 
             - Overview: userInterfaces/runner/configurationSections/assertions/overview.md
-            - QaaS.Common.Assertions: REDA/v3/
             - Configurations: 
                 - Table View: userInterfaces/runner/configurationSections/assertions/configurations/tableView.md 
                 - Yaml View: userInterfaces/runner/configurationSections/assertions/configurations/yamlView.md
@@ -77,54 +73,16 @@ nav:
   - AddOns:
       - Plugins: addOns/plugins.md
       - Modules: addOns/modules.md
-  - QaaS.Framework: REDA
 
 theme:
-  name: material
-  highlightjson: false
-  font: false
-  features:
-    - content.code.annotate
-    - content.tabs.link
-    - navigation.tabs
-
-  palette:
-    - scheme: slate
-      primary: white
-      accent: red
-      toggle:
-        icon: material/weather-sunny
-        name: Switch to light mode
-    - scheme: default
-      primary: white
-      accent: red
-      toggle:
-        icon: material/weather-night
-        name: Switch to dark mode
-
-  include_search_page: false
-  search_index_only: true
-
-  icon:
-    repo: fontawesome/brands/gitlab
-  logo: assets/qaas-logo.png
-  favicon: assets/qaas-logo.png
+  name: readthedocs
 
 plugins:
- - mike
- - search
-
-extra:
-  version:
-    provider: mike
-
-extra_css:
-  - assets/chat-widget.js
-
-extra_javascript:
-  - assets/chat-widget.js
+  - search
 
 markdown_extensions:
+  - fenced_code
+  - tables
   - attr_list
   - md_in_html
   - pymdownx.superfences
@@ -132,17 +90,5 @@ markdown_extensions:
   - def_list
   - pymdownx.tabbed:
       alternate_style: true
-  - pymdownx.highlight:
-      anchor_linenums: true
-      line_spans: __span
-      pygments_lang_class: true
   - toc:
       permalink: true
-  - pymdownx.emoji:
-      emoji_index: !!python/name:material.extensions.emoji.twemoji
-      emoji_generator: !!python/name:material.extensions.emoji.to_svg
-  - pymdownx.tasklist:
-      custom_checkbox: true
-  - pymdownx.inlinehilite
-  - pymdownx.snippets
-  - pymdownx.details

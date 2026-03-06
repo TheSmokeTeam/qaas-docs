@@ -1,6 +1,4 @@
 site_name: QaaS Common Generators Docs
-repo_name: QaaS Common Generators
-repo_url: "REDA/qaas.common.generators.git"
 docs_dir: docs/ 
 
 nav:
@@ -56,51 +54,15 @@ nav:
         - Configurations: 
           - Table View: availableGenerators/Stacking/configuration/tableView.md 
           - Yaml View: availableGenerators/Stacking/configuration/yamlView.md 
-  - QaaS Docs: REDA/v4/userInterfaces/runner/configurationSections/dataSources/overview/
 theme:
-  name: material
-  highlightjs: false
-  font: false
-  features:
-    - content.code.annotate
-    - navigation.tabs
-  palette:
-    - scheme: slate
-      primary: white
-      accent: red
-      toggle:
-        icon: material/weather-sunny
-        name: Switch to light mode
-    - scheme: default
-      primary: white
-      accent: red
-      toggle:
-        icon: material/weather-night
-        name: Switch to dark mode
-
-  include_search_page: false
-  search_index_only: true
-
-  icon:
-    repo: fontawesome/brands/gitlab
-  logo: assets/qaas-logo.png
-  favicon: assets/qaas-logo.png
-
-extra_css:
-  - assets/chat-widget.js
-
-extra_javascript:
-  - assets/chat-widget.js
+  name: readthedocs
 
 plugins:
- - mike
- - search
-
-extra:
-  version:
-    provider: mike
+  - search
 
 markdown_extensions:
+  - fenced_code
+  - tables
   - attr_list
   - md_in_html
   - pymdownx.superfences
@@ -108,18 +70,6 @@ markdown_extensions:
   - def_list
   - pymdownx.tabbed:
       alternate_style: true
-  - pymdownx.highlight:
-      anchor_linenums: true
-      line_spans: __span
-      pygments_lang_class: true
   - toc:
       permalink: true
-  - pymdownx.emoji:
-      emoji_index: !!python/name:material.extensions.emoji.twemoji
-      emoji_generator: !!python/name:material.extensions.emoji.to_svg
-  - pymdownx.tasklist:
-      custom_checkbox: true
-  - pymdownx.inlinehilite
-  - pymdownx.snippets
-  - pymdownx.details
 

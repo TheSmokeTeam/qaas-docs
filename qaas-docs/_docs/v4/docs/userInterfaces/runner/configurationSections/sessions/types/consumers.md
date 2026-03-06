@@ -14,7 +14,7 @@ Consumes messages from a rabbitmq exchange or queue.
 RabbitMq: {}
 ```
 
-???- info "Data Structure"
+!!! info "Data Structure"
     === ":octicons-file-code-16: `Output`"
         ```yaml
         Body: <byte[]>
@@ -35,7 +35,7 @@ Consumes messages from a kafka topic.
 KafkaTopic: {}
 ```
 
-???- info "Data Structure"
+!!! info "Data Structure"
     === ":octicons-file-code-16: `Output`"
         ```yaml
         Body: <byte[]>
@@ -61,13 +61,13 @@ Consume messages from an oracle sql database table.
 OracleSqlTable: {}
 ```
 
-???- info "Data Structure"
+!!! info "Data Structure"
     === ":octicons-file-code-16: `Output`"
         ```yaml
         Body: <System.Text.Json.Nodes.JsonObject>
         ```
 
-???- Tip "Oracle SQL Connection String"
+!!! tip "Oracle SQL Connection String"
         Data Source=DataBaseHost:DataBasePort/Service;User ID=UserName;Password=Password;
 
 ## MsSqlTable
@@ -80,13 +80,13 @@ Consume messages from an Mssql database table.
 MsSqlTable: {}
 ```
 
-???- info "Data Structure"
+!!! info "Data Structure"
     === ":octicons-file-code-16: `Output`"
         ```yaml
         Body: <System.Text.Json.Nodes.JsonObject>
         ```
 
-???- Tip "MsSql Connection String"
+!!! tip "MsSql Connection String"
         Data Source=DataBaseHost;Initial Catalog=DataBaseName;User ID=UserName;Password=Password;
 
 ## PostgreSqlTable
@@ -99,13 +99,13 @@ Consume messages from a PostgreSql database table.
 PostgreSqlTable: {}
 ```
 
-???- info "Data Structure"
+!!! info "Data Structure"
     === ":octicons-file-code-16: `Output`"
         ```yaml
         Body: <System.Text.Json.Nodes.JsonObject>
         ```
 
-???- Tip "PostgreSql Connection String"
+!!! tip "PostgreSql Connection String"
         Server=DataBaseHost;Port=DataBasePort;Database=DataBaseName;User Id=UserName;Password=Password
 
 ## TrinoSqlTable
@@ -118,7 +118,7 @@ Consumes messages from a Trino database table.
 TrinoSqlTable: {}
 ```
 
-???- info "Data Structure"
+!!! info "Data Structure"
     === ":octicons-file-code-16: `Output`"
         ```yaml
         Body: <System.Text.Json.Nodes.JsonObject>
@@ -134,7 +134,7 @@ Consumes messages from a s3 bucket.
 S3Bucket: {}
 ```
 
-???- info "Data Structure"
+!!! info "Data Structure"
     === ":octicons-file-code-16: `Output`"
         ```yaml
         Body: <byte[]>
@@ -153,7 +153,7 @@ Consumes documents from elasticsearch indices by an index pattern.
 ElasticIndices: {}
 ```
 
-???- info "Data Structure"
+!!! info "Data Structure"
     === ":octicons-file-code-16: `Output`"
         ```yaml
         Body: <System.Text.Json.Nodes.JsonNode>
@@ -178,7 +178,7 @@ Consumes messages using a socket from a remote host.
 Socket: {}
 ```
 
-???- info "Data Structure"
+!!! info "Data Structure"
     === ":octicons-file-code-16: `Output`"
         ```yaml
         Body: <byte[]>
@@ -194,7 +194,7 @@ Consumes messages from a IbmMqQueue
 IbmMqQueueConsumer: {}
 ```
 
-???- info "Data Structure"
+!!! info "Data Structure"
     === ":octicons-file-code-16: `Output`"
         ```yaml
         Body: <byte[]>

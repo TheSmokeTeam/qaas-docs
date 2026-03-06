@@ -32,7 +32,7 @@ public record Configuration
 }
 ```
 
-!!! Warning Public Getters and Setters
+!!! warning "Public getters and setters"
     Ensure all properties have **public** `get` and `set` accessors.  
     If not, the configuration will fail to load.
 

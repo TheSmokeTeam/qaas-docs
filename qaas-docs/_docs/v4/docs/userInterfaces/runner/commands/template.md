@@ -1,13 +1,23 @@
 # Template
 
-The template command is used to load a QaaS test's given configuration files into their relevant configuration objects and then print out the configuration objects as they were configured by the given configuration files.
+The `template` command resolves the configuration exactly as the runner would load it, then prints the resolved object graph without executing sessions or assertions.
 
 ## Usage
 
-To view all command options, execute the following command:
-
 ```bash
-dotnet run <dotnet-parameters> -- template --help
+dotnet run -- template <configuration-file> [shared-runnable-options] [shared-logging-options]
 ```
 
-This command will display all available options for the template command, including flags and values.
+To see the generated help text from the runner itself:
+
+```bash
+dotnet run -- template --help
+```
+
+## When To Use `template`
+
+Use `template` when:
+
+- you want to confirm overwrite files, cases, references, or command-line overrides are resolving correctly
+- you need to debug why a session or assertion is missing from the final configuration
+- you are authoring YAML and want feedback without running the full test
