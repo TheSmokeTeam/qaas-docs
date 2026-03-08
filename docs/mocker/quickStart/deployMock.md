@@ -1,9 +1,6 @@
-# Deploy Mock
+# Deploy a Mock
 
-Now that we have created our mock server, we want to deploy it and make use of it in our tests.
-There are multiple ways to do so.
-
-In most of the cases we would need to create an image for our mock server
+Now that the mock server is created, deploy it for use in tests. Most deployments start by building a container image.
 
 ## Mock Server Image
 

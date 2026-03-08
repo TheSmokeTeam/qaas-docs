@@ -1,6 +1,6 @@
-# Act
+# act
 
-The act command is used to execute the `act` part of a QaaS test according to the given configuration files. This command executes the sections relevant to the `act` parts of the test defined in the QaaS configuration files and stores their results in the configured [Storages](../configurationSections/storages/overview.md).
+The `act` command runs only the session phase of a QaaS test and writes the resulting `SessionData` to the configured [Storages](../configurationSections/storages/overview.md). Use this in combination with [`assert`](assert.md) to debug failures.
 
 ## Usage
 

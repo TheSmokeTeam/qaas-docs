@@ -1,8 +1,6 @@
-# Configuration Resolution priority
+# Configuration Resolution Priority
 
-When loading qaas configurations we have many different options to parse and load them.
-
-Those options and the order in which they are resolved by default (can be changed using certain CLI flags) is:
+When loading QaaS configurations, multiple sources are merged in priority order (later overrides earlier):
 
 * base `.yaml` file
 * `-w` flag's overwrite files by the order they were given

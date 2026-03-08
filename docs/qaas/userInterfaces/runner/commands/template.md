@@ -1,6 +1,6 @@
-# Template
+# template
 
-The template command is used to load a QaaS test's given configuration files into their relevant configuration objects and then print out the configuration objects as they were configured by the given configuration files.
+The `template` command loads and resolves the configuration files (anchors, placeholders, overwrite files) and prints the final merged configuration. Useful for verifying what the runner will actually see at execution time.
 
 ## Usage
 

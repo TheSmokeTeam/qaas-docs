@@ -1,10 +1,8 @@
 # Integrate with Tests
 
-In some cases we may want complete integration between our tests and our mock server.
+For end-to-end integration between tests and a mock server, configure the `Controller` section in `mocker.qaas.yaml`.
 
-In order to do so we can configure the optional section `Controller` section in the `mocker.qaas.yaml`
-
-The controller is the interface between the `QaaS.Runner`'s tests and `QaaS.Mocker`'s servers. The servers and the tests are both connecting to redis and communicating with each other that way. The tests can send specific commands to the mocker, making it do some specific action. More on that in [QaaS Docs](REDA/configurationSections/sessions/types/mockerCommands/)
+The Controller bridges `QaaS.Runner` tests and `QaaS.Mocker` servers via Redis pub/sub. Tests send commands to the mocker, making it perform specific actions. See [Mocker Commands](REDA/configurationSections/sessions/types/mockerCommands/) for details.
 
 ## Configuring Controller
 

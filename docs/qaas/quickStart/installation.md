@@ -2,8 +2,15 @@
 
 ## Prerequisites
 
-- .NET 10 SDK
-- A global `NuGet.Config` file configured with the following feed URLs:
+| Requirement | Version |
+|---|---|
+| [.NET SDK](https://dotnet.microsoft.com/download) | **10.0** or later |
+| NuGet feeds | See feed configuration below |
+| Allure CLI *(optional — for viewing reports)* | [Install guide](https://docs.qameta.io/allure/#_installing_a_commandline) |
+
+### NuGet Feed Configuration
+
+Add the QaaS private feeds to your global `NuGet.Config` (usually `~/.nuget/NuGet/NuGet.Config`):
 
 ```xml
 <add key="Feed_A" value="REDA" />
@@ -13,60 +20,64 @@
 
 ## Packages
 
-Install the required packages using NuGet.
+Add the packages your project needs. At minimum you need `QaaS.Runner`; the Common libraries are optional plugins.
 
-### QaaS.Runner
+```xml
+<ItemGroup>
+  <!-- Required -->
+  <PackageReference Include="QaaS.Runner" Version="*" />
 
-The core package used to run QaaS Runner projects.
-
-```bash
-nuget install QaaS.Runner
+  <!-- Optional plugins — add only what you use -->
+  <PackageReference Include="QaaS.Common.Assertions" Version="*" />
+  <PackageReference Include="QaaS.Common.Generators" Version="*" />
+  <PackageReference Include="QaaS.Common.Probes" Version="*" />
+</ItemGroup>
 ```
 
-### QaaS.Common.Assertions
+!!! tip "Version compatibility"
+    All Common packages must share the same `QaaS.Framework.SDK` version (or a compatible newer minor) as the `QaaS.Runner` you reference.
 
-Contains all standard assertions available in the QaaS ecosystem.
+## Project Templates
 
-```bash
-nuget install QaaS.Common.Assertions
-```
-
-### QaaS.Common.Generators
-
-Contains all standard generators available in the QaaS ecosystem.
-
-```bash
-nuget install QaaS.Common.Generators
-```
-
-### QaaS.Common.Probes
-
-Contains all standard probes available in the QaaS ecosystem.
-
-```bash
-nuget install QaaS.Common.Probes
-```
-
-## QaaS Project Templates
-
-QaaS provides .NET project templates to simplify the creation of new QaaS projects. These templates are available at:
+QaaS provides `dotnet new` templates for scaffolding new test projects.
 
 [QaaS Project Templates Repository](REDA)
 
-### Install Templates
-
 ```bash
-dotnet new -i "QaaS.ProjectTemplates"
+# Install
+dotnet new install QaaS.ProjectTemplates
+
+# Create a new test project
+dotnet new qaas.test -n MyServiceTests
+
+# Uninstall
+dotnet new uninstall QaaS.ProjectTemplates
 ```
 
-### Uninstall Templates
+The template creates:
 
-```bash
-dotnet new -u "QaaS.ProjectTemplates"
+```
+MyServiceTests/
+├── NuGet.Config
+├── MyServiceTests.sln
+├── MyServiceTests/
+│   ├── MyServiceTests.csproj
+│   ├── Program.cs
+│   ├── test.qaas.yaml
+│   └── Variables/
+│       ├── local.yaml
+│       └── k8s.yaml
 ```
 
 ## Allure CLI
 
-The Allure CLI tool, along with installation instructions, can be found at:
+Install the [Allure CLI](REDA/allure-cli.git) to view test reports locally:
 
-[Allure CLI Repository](REDA/allure-cli.git)
+```bash
+allure serve          # opens the report in a browser
+allure generate       # generates a static HTML report
+```
+
+## Next Step
+
+[Configure your IDE →](ide.md)

@@ -1,8 +1,6 @@
-# Write Test With Code
+# Write a Test (Code)
 
-Now that we've covered how to configure the test using `test.qaas.yaml`, let's explore how to achieve the **exact same behavior** using **C# code** instead. This approach gives you full programmatic control, better type safety, and easier refactoring, ideal for complex or evolving test scenarios.
-
-We’ll walk through each code block, explaining its purpose and how it maps to the YAML configuration from the previous section.
+This page recreates the exact same DummyApp test from [Write a Test (YAML)](writeTestYaml.md) using C# code. Code-based configuration gives you full type safety, IDE refactoring, and conditional logic.
 
 ---
 
@@ -214,16 +212,18 @@ runner.ExecutionBuilders.Add(new ExecutionBuilder()
   3. Consume from `output` exchange with JSON deserialization.
   4. Validate hermeticity and delay.
 
-## Running The Configured Test
-
-In order to actually run the test we just configured we need to add the following line:
+## 9. Run
 
 ```csharp
 runner.Run();
 ```
 
-If we don't, the test will simply never run.
+Without this call the runner exits immediately.
 
-## Combining Code Configuration With YAML
+## Mixing Code and YAML
 
-We are not limited to configuring tests with just code or `YAML`, anything that is configured with `YAML` files is still there and you can acsess it, edit it and run at. More information here: [Configuration As Code](../advancedConcepts/configurationAsCode.md).
+Code and YAML configuration are additive — anything defined in the YAML file is still loaded. Code-level builders can modify, extend, or override it. See [Configuration As Code](../advancedConcepts/configurationAsCode.md).
+
+## Next Step
+
+[Write custom hooks →](writeHooks.md)

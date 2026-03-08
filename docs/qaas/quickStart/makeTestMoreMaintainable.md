@@ -347,3 +347,7 @@ Cases/jsonArrayGenerator.yaml
 ```
 
 This provides clear traceability and reporting for each test variant.
+
+## Next Step
+
+[Debug test failures →](debugTestFailure.md)

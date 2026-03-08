@@ -1,6 +1,6 @@
-# QaaS Module Packages
+# Modules
 
-`QaaS Module Packages` are bundles of folders containing YAML files, uploaded as **artifacts** to the [Artifactory](REDA). In the context of `QaaS`, each such artifact is referred to as a **module**. These modules can be used interchangeably with any YAML file within the QaaS framework.
+Modules are bundles of YAML files uploaded as artifacts to the [Artifactory](REDA). They can be used anywhere a YAML file is accepted in QaaS.
 
 ---
 

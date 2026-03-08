@@ -1,9 +1,58 @@
-# Introduction
+# QaaS Runner
 
-`QaaS` is a framework for integration and end-to-end testing of backend applications with minimal code usage.
-It is C# based and written in `.net10` and its functionalities are available through several different nuget packages.
+**QaaS.Runner** is the test orchestrator of the QaaS ecosystem. It reads YAML (or code-based) configuration, executes multi-stage communication sessions against your backend services, stores results, runs assertions, and produces [Allure](https://docs.qameta.io/allure/) test reports.
 
-`QaaS` is built as a `plugin system` meaning it can be easily extended with user code and packages.
+| | |
+|---|---|
+| **Runtime** | .NET 10 |
+| **Package** | `QaaS.Runner` (NuGet) |
+| **Source** | [GitHub — QaaS.Runner](https://github.com/TheSmokeTeam/QaaS.Runner) |
+| **License** | Internal |
+
+## Key Capabilities
+
+- **YAML-first test definition** — describe sessions, data sources, and assertions declaratively.
+- **Plugin system** — extend with custom [Assertions](../assertions/index.md), [Generators](../generators/index.md), [Probes](../probes/index.md), and [Processors](../processors/index.md) via NuGet packages or local DLLs.
+- **17 protocol adapters** — HTTP, gRPC, Kafka, RabbitMQ, IBM MQ, Redis, MongoDB, PostgreSQL, MSSQL, Oracle, Trino, S3, SFTP, Socket, Elasticsearch, Prometheus (via [QaaS.Framework.Protocols](../framework/projects/protocols.md)).
+- **Policy-driven execution** — control throughput, timeouts, and load balancing per session ([Policies](../framework/projects/policies.md)).
+- **Allure reporting** — every assertion result, including flakiness tracking, is written to an Allure-compatible report.
+- **Storage backends** — persist session data to the local file system or AWS S3.
+- **Mocker integration** — coordinate with [QaaS.Mocker](../mocker/index.md) at runtime through Redis pub/sub commands (`Change`, `Trigger`, `Consume`).
+
+## How It Works
+
+```mermaid
+flowchart LR
+    YAML["YAML Config"] --> EB["ExecutionBuilder"]
+    EB --> Sessions
+    Sessions --> |"Publish / Consume / Transact / Probe / Collect / MockerCommand"| Protocols["Protocol Layer"]
+    Protocols --> SUT["System Under Test"]
+    Sessions --> Storage["Storage (S3 / FileSystem)"]
+    Storage --> Assertions
+    Assertions --> Allure["Allure Report"]
+```
+
+1. **Load** — YAML files are parsed, placeholders resolved, and references merged.
+2. **Build** — `ExecutionBuilder` constructs sessions, data sources, and assertion pipelines.
+3. **Act** — Sessions execute in stages, communicating with external services via protocol adapters.
+4. **Store** — Session data (inputs, outputs, metadata) is persisted.
+5. **Assert** — Assertion hooks run in parallel against stored data; results are written to Allure.
+
+## CLI Commands
+
+| Command | Purpose |
+|---|---|
+| [`run`](userInterfaces/runner/commands/run.md) | Full cycle: act → store → assert |
+| [`act`](userInterfaces/runner/commands/act.md) | Execute sessions and store data only |
+| [`assert`](userInterfaces/runner/commands/assert.md) | Run assertions on previously stored data |
+| [`execute`](userInterfaces/runner/commands/execute.md) | Run sequential commands from `executable.yaml` |
+| [`template`](userInterfaces/runner/commands/template.md) | Output a YAML configuration template |
+
+## Next Steps
+
+- [Architecture deep-dive](architecture.md)
+- [Quick Start — Installation](quickStart/installation.md)
+- [Configuration Reference](userInterfaces/runner/configurationSections/configurationSections.md)
 
 ## Contact Us
 

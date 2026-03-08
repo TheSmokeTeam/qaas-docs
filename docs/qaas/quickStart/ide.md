@@ -1,83 +1,54 @@
-# IDE
+# IDE Setup
 
-All QaaS projects can be configured using either **YAML** files or **C# code** (Configuration as Code). While YAML
-provides a declarative, human-readable format ideal for version control and collaboration, **C# offers full programmatic
-control** for dynamic, conditional, and reusable test logic.
+QaaS tests are configured via YAML files. Setting up JSON Schema validation in your IDE gives you real-time error highlighting, auto-completion, and field documentation.
 
-For teams choosing to use YAML, it is strongly recommended to use a capable IDE with real-time schema validation and
-intelligent code completion to ensure correctness, reduce errors, and improve productivity.
+## Available Schemas
 
-## QaaS Real-Time Schema Validation
+JSON schemas are published with each NuGet package release. Download them from the package release notes.
 
-To enable real-time validation, auto-completion, and contextual suggestions for QaaS YAML configurations, you must
-install the appropriate **JSON schema** in your IDE. These schemas are published in the **Release Notes** section of the
-relevant NuGet packages.
+| Schema file | Covers |
+|---|---|
+| `qaasSchema.json` | Core `QaaS.Runner` configuration (DataSources, Sessions, Assertions, Storage, Links, MetaData) |
+| `qaasCommonAssertionsSchema.json` | All `QaaS.Common.Assertions` hook configurations |
+| `qaasCommonGeneratorsSchema.json` | All `QaaS.Common.Generators` hook configurations |
+| `qaasCommonProbesSchema.json` | All `QaaS.Common.Probes` hook configurations |
 
-### Available Schemas
+## VS Code
 
-| Schema                            | Purpose                                            | File                                                                                                              |
-|-----------------------------------|----------------------------------------------------|-------------------------------------------------------------------------------------------------------------------|
-| `qaasSchema.json`                 | Core QaaS.Runner configuration schema              | [Download](REDA)                   |
-| `qaasCommonAssertionsSchema.json` | Schema for `QaaS.Common.Assertions` configurations | [Download](REDAs) |
-| `qaasCommonGeneratorsSchema.json` | Schema for `QaaS.Common.Generators` configurations | [Download](REDAs) |
-| `qaasCommonProbesSchema.json`     | Schema for `QaaS.Common.Probes` configurations     | [Download](REDA)     |
+**Requirement**: Install the [YAML extension by Red Hat](https://marketplace.visualstudio.com/items?itemName=redhat.vscode-yaml).
 
-> **Note**: Each schema corresponds to a specific component of the QaaS ecosystem. Use the correct schema based on your
-> configuration file’s content.
-
-### Using the Schema
-
-After installing the schema in your IDE:
-
-Open any `.yaml` file and you will receive real-time:
-
-- Syntax highlighting
-- Auto-completion
-- Validation errors (e.g., missing required fields, invalid values)
-- Contextual suggestions based on the current configuration structure
-
-> To trigger suggestions, use `Ctrl + Space`.
-
----
-
-## IDE Recommendations & Setup
-
-### VS Code
-
-#### Setting Up Schema in VS Code
-
-1. Download the desired schema file (e.g., `qaasSchema.json`).
-2. Open VS Code → `File` → `Preferences` → `Settings`.
-3. Search for `yaml: schemas`.
-4. Click **"Edit in settings.json"**.
-5. Add the schema mapping under the `yaml.schemas` object:
+1. Download the desired schema JSON file into your project (e.g. `schemas/qaasSchema.json`).
+2. Open **File → Preferences → Settings** and search for `yaml.schemas`.
+3. Click **Edit in settings.json** and add:
 
 ```json
 "yaml.schemas": {
-"/path/to/qaasSchema.json": "*.yaml"
+  "./schemas/qaasSchema.json": "*.qaas.yaml"
 }
 ```
 
-> Replace `/path/to/qaasSchema.json` with the actual local path to your downloaded schema file.
+4. Open any `.qaas.yaml` file and press ++ctrl+space++ to trigger suggestions.
 
-1. Save the file and **restart VS Code**.
-2. Open any `.yaml` file — schema validation and auto-completion will now be active.
+## JetBrains Rider
 
-![HowToSetSchemaInVsCode](../assets/setSchemaInVsCode.gif)
+1. Go to **File → Settings → Languages & Frameworks → Schemas and DTDs → JSON Schema Mappings**.
+2. Click **+** to add a new mapping.
+3. Set **Schema file or URL** to the path of `qaasSchema.json`.
+4. Set **File path pattern** to `*.qaas.yaml`.
+5. Apply and close.
 
----
+## Tips
 
-### Rider
+- Use the `.qaas.yaml` suffix for your test YAML files so schema mappings can target them precisely.
+- You can add an inline schema hint at the top of a file:
 
-#### Setting Up Schema in Rider
+```yaml
+# $schema: ./schemas/qaasSchema.json
+DataSources: []
+Sessions: []
+Assertions: []
+```
 
-1. Download the schema file (e.g., `qaasSchema.json`).
-2. Go to: `File` → `Settings` → `Languages & Frameworks` → `Schemas and DTDs` → `JSON Schema Mappings`.
-3. Click the **+** button to add a new mapping:
-    - **Schema file**: Select your downloaded `qaasSchema.json`.
-    - **Pattern**: Enter `*.yaml` (or a more specific pattern if needed).
-4. Click **Save**.
+## Next Step
 
-> **Important**: This configuration is project-specific. You must repeat this setup for each new QaaS project.
-
-![HowToSetSchemaInRider](../assets/riderQaasJsonSchema.png)
+[Write a test with YAML →](writeTestYaml.md)

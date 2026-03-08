@@ -1,8 +1,8 @@
 # Commands
 
-A `QaaS Runner project` is a `C# dotnet` project that receives additional commands as part of its execution. These commands can tell the project how to run and what to do.
+A QaaS Runner project is a C# .NET project that accepts additional CLI commands controlling how it runs.
 
-If a `QaaS Runner project` is run with a raw `dotnet run` command, it will display a help console screen showing all of its available commands.
+Running without a command shows the help screen:
 
 ```txt
 QaaS.Runner.Project 1.0.0                                                  
@@ -32,5 +32,7 @@ Usage:
 To run the QaaS project with any of its commands, the following syntax is required:
 
 ```bash
-dotnet run <dotnet-paramters> -- <qaas-command>
+dotnet run <dotnet-parameters> -- <qaas-command>
 ```
+
+See individual command pages for details: [run](run.md) | [act](act.md) | [assert](assert.md) | [execute](execute.md) | [template](template.md)

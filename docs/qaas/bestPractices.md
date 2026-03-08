@@ -1,6 +1,6 @@
 # Best Practices
 
-This page outlines the best practices for naming conventions and file structures within qaas projects.
+Naming conventions and file-structure guidelines for QaaS projects.
 
 ## 1. Project Directory
 

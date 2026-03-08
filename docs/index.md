@@ -1,53 +1,76 @@
 # QaaS Documentation
 
-Welcome to the **Quality as a Service (QaaS)** documentation hub. This unified documentation covers all QaaS components and tools.
+**Quality as a Service (QaaS)** is a .NET 10 ecosystem for integration and end-to-end testing of backend applications. Define tests in YAML, extend behaviour with C# hooks, and validate results — all with minimal boilerplate.
 
-## Documentation Sections
+```mermaid
+graph LR
+    subgraph Ecosystem
+        Runner["Runner"]
+        Mocker["Mocker"]
+        Framework["Framework"]
+        Hooks["Hooks<br/>(Assertions · Generators · Probes · Processors)"]
+    end
+    Runner -- "orchestrates" --> Framework
+    Runner -- "controls via Redis" --> Mocker
+    Runner -- "loads" --> Hooks
+    Mocker -- "uses" --> Framework
+    Framework -- "protocols" --> ExtSvc["External Services<br/>(Kafka · HTTP · gRPC · S3 · DBs · …)"]
+```
+
+## Quick Navigation
 
 <div class="grid cards" markdown>
+
+-   :material-rocket-launch:{ .lg .middle } **Getting Started**
+
+    ---
+
+    Install the SDK, write your first test in YAML, run it, and read the Allure report — in under 10 minutes.
+
+    [:octicons-arrow-right-24: Start Here](qaas/quickStart/installation.md)
 
 -   :material-test-tube:{ .lg .middle } **Runner**
 
     ---
 
-    The main QaaS testing framework documentation including architecture, quick start guides, and advanced concepts.
+    The test orchestrator. Manages sessions, data sources, policies, storage, and assertions via YAML or code.
 
-    [:octicons-arrow-right-24: Get Started](qaas/index.md)
+    [:octicons-arrow-right-24: Runner Docs](qaas/index.md)
 
 -   :material-server:{ .lg .middle } **Mocker**
 
     ---
 
-    Create and deploy mock services for testing. Learn how to build stubs and integrate mocks with your tests.
+    Spin up HTTP, gRPC, or Socket mock servers with configurable stubs and runtime control via Redis.
 
     [:octicons-arrow-right-24: Mocker Docs](mocker/index.md)
 
--   :material-check-all:{ .lg .middle } **Assertions**
+-   :material-check-all:{ .lg .middle } **Hooks**
 
     ---
 
-    Available assertion types for validating test results, including hermetic validations, HTTP status checks, and more.
+    Reusable assertions, data generators, environment probes, and transaction processors — plug them into any test.
 
-    [:octicons-arrow-right-24: Assertions Reference](assertions/index.md)
-
--   :material-cog-sync:{ .lg .middle } **Generators**
-
-    ---
-
-    Data generators for creating test data from various sources including file systems, S3, data lakes, and more.
-
-    [:octicons-arrow-right-24: Generators Reference](generators/index.md)
+    [:octicons-arrow-right-24: Hooks Reference](assertions/index.md)
 
 -   :material-puzzle:{ .lg .middle } **Framework**
 
     ---
 
-    Low-level framework documentation covering SDK, configuration, executions, infrastructure, and providers.
+    The shared foundation: SDK types, 17-protocol abstraction layer, configuration engine, serialization, policies, and DI providers.
 
     [:octicons-arrow-right-24: Framework Docs](framework/index.md)
 
 </div>
 
-## Getting Started
+## Zero-to-Hero Path
 
-New to QaaS? Start with the [Installation Guide](qaas/quickStart/installation.md) to set up your environment, then follow the [Quick Start](qaas/quickStart/writeTestYaml.md) to write your first test.
+| Step | What you'll do | Link |
+|------|---------------|------|
+| 1 | Install .NET 10 SDK and add the QaaS NuGet packages | [Installation](qaas/quickStart/installation.md) |
+| 2 | Configure your IDE for YAML IntelliSense | [IDE Setup](qaas/quickStart/ide.md) |
+| 3 | Write a minimal YAML test (sessions + assertions) | [Write a Test](qaas/quickStart/writeTestYaml.md) |
+| 4 | Run the test and inspect the Allure report | [Run a Test](qaas/quickStart/runTest.md) |
+| 5 | Create custom hooks (assertions, generators) | [Write Hooks](qaas/quickStart/writeHooks.md) |
+| 6 | Extract config into reusable references | [Maintainable Tests](qaas/quickStart/makeTestMoreMaintainable.md) |
+| 7 | Understand the architecture and advanced patterns | [Architecture](qaas/architecture.md) |

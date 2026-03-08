@@ -2,8 +2,8 @@
 
 ## Prerequisites
 
-* `.net 8 sdk`
-* Global `NuGet.Config` file configured to the following artifactories
+* `.NET 10 SDK`
+* Global `NuGet.Config` file configured to the following feeds
 
 ```xml
 <add key="Feed_A" value="REDA" />

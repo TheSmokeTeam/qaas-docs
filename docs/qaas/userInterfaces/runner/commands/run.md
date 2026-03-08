@@ -1,6 +1,6 @@
-# Run
+# run
 
-The run command is used to execute a QaaS test according to the given configuration files. This command executes the test relevant sections defined in the QaaS configuration files.
+The `run` command executes a full QaaS test — sessions (act) followed by assertions — according to the given configuration files.
 
 ## Usage
 

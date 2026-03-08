@@ -1,6 +1,6 @@
-# Live Action Based Generators
+# Live Action-Based Generators
 
-In certain advanced scenarios, you may need to access real-time data from a currently running action within your generators. This allows your generator logic to react dynamically to live processing results.
+In advanced scenarios you may need a generator that reads real-time data from a running action (e.g. a consumer). This allows generator logic to react dynamically to live processing results.
 
 ---
 

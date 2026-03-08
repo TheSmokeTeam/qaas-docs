@@ -1,8 +1,6 @@
 # QaaS.Framework.Configuration
 
-A package for shared configuration loading logic and objects within the QaaS framework.
-
-This package is installed as part of the [QaaS.Framework.SDK](sdk.md) package.
+Shared configuration loading logic and objects. Installed automatically as part of the [SDK](sdk.md) package.
 
 ---
 

@@ -1,389 +1,154 @@
-# Writing Custom Hooks in QaaS for Advanced Testing
+# Write Custom Hooks
 
-When the built-in `QaaS` plugins do not provide sufficient functionality for testing requirements, custom hooks can be implemented in a C# project to extend the framework’s capabilities. This guide demonstrates how to create and integrate custom `Generator`, `Assertion`, and `Probe` hooks to test a specific condition:
+Hooks are C# classes discovered automatically by name from your project assembly (and any NuGet plugin DLL).
+There are four hook types: **Generator**, **Assertion**, **Probe**, and **Processor**.
 
-> *The application receives a JSON array as input and sends a JSON array with the same number of items as output.*
+**Dependency**:
+
+```xml
+<PackageReference Include="QaaS.Framework.SDK" Version="x.x.x" />
+```
 
 ---
 
-## 1. Creating a Custom Generator: `JsonArrayGenerator`
+## Generator
 
-A generator produces test data and implements the `IGenerator` interface from the `QaaS.Framework.SDK` package. We extend `BaseGenerator<T>` with a configuration record that includes validation and default values.
-
-### Generator Configuration Record
+Produces `Data<object>` items fed to session publishers.
 
 ```csharp
-using System.Collections.Immutable;
-using System.ComponentModel.DataAnnotations;
-using System.Text.Json.Nodes;
-using QaaS.Framework.SDK.DataSourceObjects;
 using QaaS.Framework.SDK.Hooks.Generator;
 using QaaS.Framework.SDK.Session.DataObjects;
-using QaaS.Framework.SDK.Session.SessionDataObjects;
+using QaaS.Framework.SDK.DataSourceObjects;
+using System.Collections.Immutable;
+using System.ComponentModel.DataAnnotations;
 
-namespace DummyAppTests;
-
-/// <summary>
-/// Configuration for JsonArrayGenerator with required and optional settings.
-/// </summary>
-public record JsonArrayGeneratorConfiguration
+public record JsonArrayConfig
 {
-    [Required]
-    public uint? Count { get; set; }
-
-    public uint NumberOfItemsPerArray { get; set; } = 5;
+    [Required] public uint? Count { get; set; }
+    public uint ItemsPerArray { get; set; } = 5;
 }
-```
 
-### Generator Implementation
-
-```csharp
-/// <summary>
-/// Generates a specified number of JSON arrays, each containing a configurable number of items.
-/// </summary>
-public class JsonArrayGenerator : BaseGenerator<JsonArrayGeneratorConfiguration>
+public class JsonArrayGenerator : BaseGenerator<JsonArrayConfig>
 {
     public override IEnumerable<Data<object>> Generate(
         IImmutableList<SessionData> sessionDataList,
         IImmutableList<DataSource> dataSourceList)
     {
-        for (var generatedDataIndex = 0; generatedDataIndex < Configuration.Count; generatedDataIndex++)
-        {
-            var jsonArray = new JsonArray();
-            for (var jsonArrayItemIndex = 0; jsonArrayItemIndex < Configuration.NumberOfItemsPerArray; jsonArrayItemIndex++)
-                jsonArray.Add("SomeItem");
-
-            yield return new Data<object>
-            {
-                Body = jsonArray
-            };
-        }
+        for (var i = 0; i < Configuration.Count; i++)
+            yield return new Data<object> { Body = Enumerable.Range(0, (int)Configuration.ItemsPerArray).ToArray() };
     }
 }
 ```
 
-### File System Structure After Addition
-
-```plaintext
-DummyAppTests/
-├── DummyAppTests.csproj
-├── Program.cs
-├── JsonArrayGenerator.cs
-├── LengthAssertion.cs
-├── PrintCurrentTimeProbe.cs
-├── test.qaas.yaml
-├── Variables/
-│   ├── local.yaml
-│   └── k8s.yaml
-└── TestData/
-```
-
----
-
-## 2. Configuring the Generator in `DataSources`
-
-Define a `DataSource` in `test.qaas.yaml` that uses the custom generator with specific configuration.
+YAML reference:
 
 ```yaml
 DataSources:
-  - Name: 10Samples
+  - Name: MySource
     Generator: JsonArrayGenerator
-    GeneratorConfiguration:
-      Count: 10
-      NumberOfItemsPerArray: 5
-```
-
-This creates 10 JSON arrays, each with 5 items.
-
----
-
-## 3. Using the DataSource in a New Session
-
-Create a new session that uses the `10Samples` data source. Since the data is JSON, a `Serializer` must be configured.
-
-```yaml
-Sessions:
-  - Name: RabbitMqExchangeWith10Samples
-    Publishers:
-      - Name: Publisher
-        DataSourceNames: [10Samples]
-        Policies:
-          - LoadBalance:
-              Rate: 50
-        RabbitMq:
-          Host: rabbitmq
-          Username: admin
-          Password: admin
-          RoutingKey: /
-          Port: 5672
-          ExchangeName: input
-        Serialize:
-          Serializer: Json
-    Consumers:
-      - Name: Consumer
-        TimeoutMs: 5000
-        RabbitMq:
-          Host: rabbitmq
-          Username: admin
-          Password: admin
-          RoutingKey: /
-          Port: 5672
-          ExchangeName: output
-        Deserialize:
-          Deserializer: Json
+    Configuration:
+      Count: 100
+      ItemsPerArray: 5
 ```
 
 ---
 
-## 4. Adding Common Assertions
+## Assertion
 
-Apply standard assertions to the new session for hermeticity and delay.
-
-```yaml
-Assertions:
-  - Assertion: HermeticByInputOutputPercentage
-    SessionNames: [RabbitMqExchangeWith10Samples]
-    AssertionConfiguration:
-      OutputNames: [Consumer]
-      InputNames: [Publisher]
-      ExpectedPercentage: 100
-
-  - Assertion: DelayByChunks
-    SessionNames: [RabbitMqExchangeWith10Samples]
-    AssertionConfiguration:
-      Output:
-        Name: Consumer
-        ChunkSize: 1
-      Input:
-        Name: Publisher
-        ChunkSize: 1
-      MaximumDelayMs: 5000
-```
-
----
-
-## 5. Creating a Custom Assertion: `LengthAssertion`
-
-To verify that output JSON arrays have the expected length, implement a custom `IAssertion`.
-
-### Assertion Configuration Record
+Validates `SessionData` after the act phase.
 
 ```csharp
-using System.Collections.Immutable;
-using System.ComponentModel.DataAnnotations;
-using System.Text.Json.Nodes;
-using QaaS.Framework.SDK.DataSourceObjects;
-using QaaS.Framework.SDK.Extensions;
 using QaaS.Framework.SDK.Hooks.Assertion;
 using QaaS.Framework.SDK.Session.SessionDataObjects;
+using System.ComponentModel.DataAnnotations;
 
-namespace DummyAppTests;
-
-/// <summary>
-/// Configuration for LengthAssertion to validate output array length.
-/// </summary>
-public record LengthAssertionConfiguration
+public record LengthConfig
 {
-    [Required]
-    public uint? ExpectedLength { get; set; }
-
-    [Required]
-    public string? OutputName { get; set; }
+    [Required] public string InputName  { get; set; } = default!;
+    [Required] public string OutputName { get; set; } = default!;
 }
-```
 
-### Assertion Implementation
-
-```csharp
-/// <summary>
-/// Asserts that all output JSON arrays have the expected number of items.
-/// </summary>
-public class LengthAssertion : BaseAssertion<LengthAssertionConfiguration>
+public class LengthAssertion : BaseAssertion<LengthConfig>
 {
-    public override bool Assert(
-        IImmutableList<SessionData> sessionDataList,
-        IImmutableList<DataSource> dataSourceList)
+    public override AssertionStatus Assert(SessionData sessionData)
     {
-        var output = sessionDataList.AsSingle()
-            .GetOutputByName(Configuration.OutputName!)
-            .CastCommunicationData<JsonArray>();
-
-        var countOfOutputsNotTheCorrectLength = output.Data.Count(item => item.Body?.Count != Configuration.ExpectedLength);
-
-        AssertionMessage = $"Number of outputs that were not the expected length is {countOfOutputsNotTheCorrectLength}";
-        return countOfOutputsNotTheCorrectLength == 0;
+        var inputs  = sessionData.Inputs[Configuration.InputName];
+        var outputs = sessionData.Outputs[Configuration.OutputName];
+        return inputs.Count == outputs.Count ? AssertionStatus.Pass : AssertionStatus.Fail;
     }
 }
 ```
 
-### Assertion YAML Usage
+YAML reference:
 
 ```yaml
 Assertions:
-  - Assertion: LengthAssertion
-    SessionNames: [RabbitMqExchangeWith10Samples]
+  - Name: LengthCheck
+    Assertion: LengthAssertion
     AssertionConfiguration:
+      InputName: Publisher
       OutputName: Consumer
-      ExpectedLength: 5
 ```
 
 ---
 
-## 6. Creating a Custom Probe: `PrintCurrentTimeProbe`
+## Probe
 
-A probe executes custom logic during test execution. Here’s a simple probe that logs the current UTC time.
-
-### Probe Implementation
+Performs side-effects (setup/teardown) without returning data.
 
 ```csharp
-using System.Collections.Immutable;
-using QaaS.Framework.SDK.DataSourceObjects;
 using QaaS.Framework.SDK.Hooks.Probe;
 using QaaS.Framework.SDK.Session.SessionDataObjects;
+using System.Collections.Immutable;
 
-namespace DummyAppTests;
+public record PrintTimeConfig { }
 
-/// <summary>
-/// Prints the current UTC time to the console.
-/// Probes can perform more complex operations using session data and configurations.
-/// </summary>
-public class PrintCurrentTimeProbe : BaseProbe<object>
+public class PrintCurrentTimeProbe : BaseProbe<PrintTimeConfig>
 {
-    public override void Run(
-        IImmutableList<SessionData> sessionDataList,
-        IImmutableList<DataSource> dataSourceList)
+    public override Task ExecuteAsync(IImmutableList<SessionData> sessionDataList)
     {
-        var currentTime = DateTime.UtcNow;
-        Console.WriteLine($"Current time is: {currentTime}");
+        Console.WriteLine($"Probe executed at {DateTime.UtcNow:O}");
+        return Task.CompletedTask;
     }
 }
 ```
 
-### Probe YAML Usage
+YAML reference:
 
 ```yaml
 Sessions:
-  - Name: RabbitMqExchangeWithFromFileSystemTestData
+  - Name: Setup
     Probes:
-      - Probe: PrintCurrentTimeProbe
-        Name: GetCurrentTime
+      - Name: PrintTime
+        Probe: PrintCurrentTimeProbe
+```
 
 ---
+
+## Processor (Mocker)
+
+Inspects or mutates Mocker stub request/response pairs.
+
+```csharp
+using QaaS.Framework.SDK.Hooks.Processor;
+using QaaS.Framework.SDK.Session.CommunicationDataObjects;
+
+public record NoConfig { }
+
+public class EchoProcessor : BaseTransactionProcessor<NoConfig>
+{
+    public override Task<CommunicationData> ProcessAsync(CommunicationData request)
+        => Task.FromResult(new CommunicationData { Body = request.Body });
+}
 ```
 
-## Final `test.qaas.yaml` Overview
+---
 
-```yaml
-anchors: {}
+## Hook Discovery
 
-DataSources:
-  - Name: FromFileSystemTestData
-    Generator: FromFileSystem
-    GeneratorConfiguration:
-      DataArrangeOrder: AsciiAsc
-      FileSystem:
-        Path: TestData
-  - Name: 10Samples
-    Generator: JsonArrayGenerator
-    GeneratorConfiguration:
-      Count: 10
-      NumberOfItemsPerArray: 5
+QaaS scans all loaded assemblies at startup. The **class name** is the identifier used in YAML — no registration needed.
+See [Plugins](../addOns/plugins.md) to package hooks as a reusable NuGet plugin.
 
-Sessions:
-  - Name: RabbitMqExchangeWithFromFileSystemTestData
-    Probes:
-      - Probe: PrintCurrentTimeProbe
-        Name: GetCurrentTime
-    Publishers:
-      - Name: Publisher
-        DataSourceNames: [FromFileSystemTestData]
-        Policies:
-          - LoadBalance:
-              Rate: 50
-        RabbitMq:
-          Host: rabbitmq
-          Username: admin
-          Password: admin
-          RoutingKey: /
-          Port: 5672
-          ExchangeName: input
-    Consumers:
-      - Name: Consumer
-        TimeoutMs: 5000
-        RabbitMq:
-          Host: rabbitmq
-          Username: admin
-          Password: admin
-          RoutingKey: /
-          Port: 5672
-          ExchangeName: output
-        Deserialize:
-          Deserializer: Json
-  - Name: RabbitMqExchangeWith10Samples
-    Publishers:
-      - Name: Publisher
-        DataSourceNames: [10Samples]
-        Policies:
-          - LoadBalance:
-              Rate: 50
-        RabbitMq:
-          Host: rabbitmq
-          Username: admin
-          Password: admin
-          RoutingKey: /
-          Port: 5672
-          ExchangeName: input
-        Serialize:
-          Serializer: Json
-    Consumers:
-      - Name: Consumer
-        TimeoutMs: 5000
-        RabbitMq:
-          Host: rabbitmq
-          Username: admin
-          Password: admin
-          RoutingKey: /
-          Port: 5672
-          ExchangeName: output
-        Deserialize:
-          Deserializer: Json
+## Next Step
 
-Assertions:
-  - Assertion: HermeticByInputOutputPercentage
-    SessionNames: [RabbitMqExchangeWithFromFileSystemTestData]
-    AssertionConfiguration:
-      OutputNames: [Consumer]
-      InputNames: [Publisher]
-      ExpectedPercentage: 100
-  - Assertion: DelayByChunks
-    SessionNames: [RabbitMqExchangeWithFromFileSystemTestData]
-    AssertionConfiguration:
-      Output:
-        Name: Consumer
-        ChunkSize: 1
-      Input:
-        Name: Publisher
-        ChunkSize: 1
-      MaximumDelayMs: 5000
-  - Assertion: HermeticByInputOutputPercentage
-    SessionNames: [RabbitMqExchangeWith10Samples]
-    AssertionConfiguration:
-      OutputNames: [Consumer]
-      InputNames: [Publisher]
-      ExpectedPercentage: 100
-  - Assertion: DelayByChunks
-    SessionNames: [RabbitMqExchangeWith10Samples]
-    AssertionConfiguration:
-      Output:
-        Name: Consumer
-        ChunkSize: 1
-      Input:
-        Name: Publisher
-        ChunkSize: 1
-      MaximumDelayMs: 5000
-  - Assertion: LengthAssertion
-    SessionNames: [RabbitMqExchangeWith10Samples]
-    AssertionConfiguration:
-      OutputName: Consumer
-      ExpectedLength: 5
-```
+[Run your first test →](runTest.md)

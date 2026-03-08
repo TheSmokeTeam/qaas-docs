@@ -1,8 +1,8 @@
-# Configuration as Code  
+# Configuration as Code
 
-**QaaS** is a modern, extensible testing and execution framework designed to support both **declarative configuration via YAML** and **programmatic configuration via C#**. While YAML offers a human-readable, concise way to define test scenarios, **QaaS elevates test automation through Configuration as Code (CaC)**—enabling teams to harness the full expressive power of C# for dynamic, conditional, and complex test orchestration and in order not to be limited by `YAML`.
+While YAML offers a concise, human-readable way to define test scenarios, **Configuration as Code (CaC)** lets you harness the full power of C# for dynamic, conditional, and complex test orchestration.
 
-This guide provides a comprehensive, professional overview of **Configuration as Code in QaaS**, covering initialization, configuration, execution control, and advanced patterns for building robust, maintainable, and scalable test systems.
+This guide covers initialization, builder APIs, execution control, and advanced patterns.
 
 ---
 
@@ -29,9 +29,9 @@ var runner = Bootstrap.New(args);
 
 ## The `Runner`: Central Orchestrator of Test Executions
 
-The `Runner` class represents the core execution context in QaaS. It manages one or more `ExecutionBuilder` instances, each execution defining a distinct logical test run. `Execution` can be dfined by the combination of every actions that are performed in a single `Case` or a single `Command` (when using `Execute` command). When using `Run`, `Act` or `Assert` command, there will be a single execution responsible for performing all of the actions.
+The `Runner` class represents the core execution context. It manages one or more `ExecutionBuilder` instances, each defining a distinct logical test run. An `Execution` is the combination of actions performed in a single `Case` or `Command` (when using `execute`). When using `run`, `act`, or `assert`, there is a single execution.
 
-For more documentation about `Executions`, please refer to [QaaS.Framework.Executions](REDA/executions/).
+See [QaaS.Framework.Executions](REDA/executions/) for more detail.
 
 ### Core Properties
 
@@ -253,19 +253,4 @@ protected override int StartExecutions(List<Execution> executions)
 
 ---
 
-> **Conclusion**: **QaaS empowers teams to move beyond static configuration** by embracing **Configuration as Code**—a paradigm that combines the clarity of YAML with the power of C#.
-
----
-
-## Conclusion
-
-**QaaS** empowers teams to move beyond static YAML configurations by enabling **Configuration as Code**—a flexible, maintainable, and powerful approach to test automation. By combining declarative setup with programmatic control, teams can implement complex, conditional, and dynamic test workflows with confidence.
-
-Use this guide to:
-
-- Initialize **QaaS** runners.
-- Customize sessions, storages, assertions, and links.
-- Add custom actions (e.g., Kafka publishers).
-- Orchestrate executions with full control.
-
-With **QaaS**, configuration is not just defined — it is engineered.
+With Configuration as Code, configuration is not just defined — it is engineered.

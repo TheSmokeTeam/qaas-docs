@@ -8,7 +8,7 @@ Allure Report is a test reporting tool, that provides clear graphical reports ab
 
 The tests under the `suites` section in the allure report are put under the following hierarchy:
 
-* **ParentSuite** - The `ExcutionId` of the execution this assertion ran under
+* **ParentSuite** - The `ExecutionId` of the execution this assertion ran under
 * **Suite** - The `CaseName` of the case this assertion ran under
 
 ### Behaviours

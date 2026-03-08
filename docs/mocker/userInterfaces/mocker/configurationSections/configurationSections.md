@@ -1,7 +1,6 @@
 # Configuration Sections
 
-Each configuration section the `mocker.qaas.yaml` file is used to perform a different action and has its own configurations and descriptions.
-In this part of the documentation you can read about all of the possible configurations available to you within each configuration section.
+The `mocker.qaas.yaml` file is divided into the sections below. Each section configures a different aspect of the mock server.
 
 The `mocker.qaas.yaml` configuration file is divided into the following sections
 

@@ -1,18 +1,17 @@
 # QaaS.Framework.Serialization
 
-Contains serialization/deserialization functionality
+Provides serialization and deserialization for 7 formats. Installed automatically as part of the [SDK](sdk.md) package.
 
-This package is installed as part of the [QaaS.Framework.SDK](sdk.md) Package.
+See the [README](REDA/QaaS.Framework.Serialization/README.md) for additional details.
 
-More about it can be
-read [Here](REDA/QaaS.Framework.Serialization/README.md).
+## Supported Formats
 
-## Supported Deserializers/Serializers
-
-* Binary
-* Json
-* Xml
-* XmlElement
-* MessagePack
-* Yaml
-* Protobuf
+| Format | Serializer | Deserializer |
+|---|---|---|
+| Binary | ✔ | ✔ |
+| Json | ✔ | ✔ |
+| Xml | ✔ | ✔ |
+| XmlElement | ✔ | ✔ |
+| MessagePack | ✔ | ✔ |
+| Yaml | ✔ | ✔ |
+| Protobuf | ✔ | ✔ |

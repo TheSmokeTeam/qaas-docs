@@ -1,7 +1,6 @@
-# Execute
+# execute
 
-The execute command is used to execute multiple other [QaaS Runner Commands](commands.md) in sequential order in a
-single execution as a single test.
+The `execute` command runs multiple [Runner commands](commands.md) sequentially within a single test execution.
 
 !!! Note
 When running QaaS Runner Commands using the execute command, each QaaS Runner Command

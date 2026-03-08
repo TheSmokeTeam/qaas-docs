@@ -1,8 +1,6 @@
-# Create Mock
+# Create a Mock
 
-Lets create a simple mock server that mocks a specified behaviour for `http` server.
-
-The finished mock that will be written in this quick start tutorial can be found [here](REDA/dummy-app-mock).
+Let's create a simple HTTP mock server. The finished mock is available [here](REDA/dummy-app-mock).
 
 ## Mock Spec
 
@@ -44,13 +42,13 @@ For the purpose of this example we will assume we have X json samples already, i
 
 `QaaS.Mocker` introduces additional type of `hook` called `processors`. Further explanation on hooks can be found [here](REDA/quickStart/writeTest/).
 
-`processors` hooks are used to give the mock server pieces of logic to excecute on a specific endpoint request.
+`processors` hooks give the mock server logic to execute on a specific endpoint request.
 
 These **Hooks** can be written in the QaaS mocker project and invoked by the `.qaas.yaml` file, such hooks are automatically recognized by the **YAML** file by their class names.
 
 On the other hand **Hooks** can also be provided in a nuget package called a `Plugin`.
 
-QaaS provide a default processors `Plugin`, [QaaS.Common.Processors](REDA) that include within it a lot of commonly used processors and assertion hooks
+QaaS provides a default processors `Plugin`, [QaaS.Common.Processors](REDA) that includes commonly used processors and assertion hooks.
 
 To use them we need to add the `QaaS.Common.Processors` and `QaaS.Common.Generators` nuget packages to our C# project in a version compatible with our `QaaS.Mocker` version
 
@@ -67,7 +65,7 @@ To use them we need to add the `QaaS.Common.Processors` and `QaaS.Common.Generat
 
 Our mock sever needs to have some behaviours which will be triggered on a specific endpoint. These behaviours are called `stubs`.
 
-Every `stub` is based on a `Processor` hook that it runs in order to process a given request.
+Every `stub` is based on a `Processor` hook that processes a given request.
 
 A processor is a `C# class` that implements the interface `IProcessor` from the `QaaS.SDK` package.
 Different servers requires different processor types. In our case, `http` server requires processors of type `TransactionProcessor` which are classes that implemets `ITransactionProcessor` interface.
@@ -88,7 +86,7 @@ We will now see how to configure the `mocker.qaas.yaml` file for our mocks.
 
 ### Initial configurations
 
-The yaml file automatically generated in our QaaS Mocker project will contains every mocker configuraiton section:
+The YAML file automatically generated in our QaaS Mocker project contains every mocker configuration section:
 `mocker.qaas.yaml`
 
 ```yaml
@@ -143,9 +141,9 @@ Stubs:
 
 ### Configuring Server
 
-Now that we have defined our needed behaviours, we need to define our server funcionalities by linking those behviours to relevant endpoints.
+Now that we have defined our behaviours, we configure the server by linking stubs to endpoints.
 
-In our case, we need our server to run on port 80 and our `ServerDataStub` needs to exectue on a `Get` request with the `/data/` path:
+We need the server to run on port 80 and our `ServerDataStub` to execute on a `Get` request at `/data/`:
 
 ```yaml
 Server:
