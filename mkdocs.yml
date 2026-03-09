@@ -244,6 +244,7 @@ theme:
 plugins:
   - search
   - tags
+  - macros
 
 markdown_extensions:
   - attr_list
@@ -273,6 +274,19 @@ markdown_extensions:
   - pymdownx.details
 
 extra:
+  links:
+    github_org: https://github.com/TheSmokeTeam
+    github_docs: https://github.com/TheSmokeTeam/qaas-docs
+    github_runner: https://github.com/TheSmokeTeam/QaaS.Runner
+    github_mocker: https://github.com/TheSmokeTeam/QaaS.Mocker
+    github_framework: https://github.com/TheSmokeTeam/QaaS.Framework
+    github_assertions: https://github.com/TheSmokeTeam/QaaS.Common.Assertions
+    github_generators: https://github.com/TheSmokeTeam/QaaS.Common.Generators
+    allure_docs: https://docs.qameta.io/allure/
+    allure_install: https://docs.qameta.io/allure/#_installing_a_commandline
+    dotnet_sdk: https://dotnet.microsoft.com/download
+    vscode_yaml_extension: https://marketplace.visualstudio.com/items?itemName=redhat.vscode-yaml
+    autofac: https://autofac.org/
   social:
     - icon: fontawesome/brands/github
       link: https://github.com/TheSmokeTeam/qaas-docs

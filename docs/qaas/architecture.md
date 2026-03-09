@@ -138,7 +138,7 @@ QaaS is a **plugin system**. All business-specific logic is injected through hoo
 | **Probe** | `BaseProbe<TConfig>` | During sessions; performs environment setup/teardown |
 | **Processor** | `IProcessor` / `ITransactionProcessor` | During Mocker request handling; transforms responses |
 
-Hooks are discovered automatically via [Autofac](https://autofac.org/) from the project assembly and any referenced NuGet packages (see [Providers](../framework/projects/providers.md)).
+Hooks are discovered automatically via [Autofac]({{ links.autofac }}) from the project assembly and any referenced NuGet packages (see [Providers](../framework/projects/providers.md)).
 
 ### Policies
 

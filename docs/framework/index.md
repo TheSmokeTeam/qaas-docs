@@ -5,7 +5,7 @@ The **QaaS.Framework** is the shared foundation that both [Runner](../qaas/index
 | | |
 |---|---|
 | **Runtime** | .NET 10 |
-| **Source** | [GitHub — QaaS.Framework](https://github.com/TheSmokeTeam/QaaS.Framework) |
+| **Source** | [GitHub — QaaS.Framework]({{ links.github_framework }}) |
 | **Author** | SmokeTeam |
 
 ## Package Map

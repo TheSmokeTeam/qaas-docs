@@ -68,6 +68,57 @@ Update `mkdocs.yml` to customize:
 - Theme settings
 - Plugins and extensions
 
+### Dynamic Links (Environment Variables)
+
+All external links used across the documentation are defined in `mkdocs.yml` under `extra.links` and can be overridden at build time via environment variables.
+
+**Default values** are set in `mkdocs.yml`:
+
+```yaml
+extra:
+  links:
+    github_org: https://github.com/TheSmokeTeam
+    github_runner: https://github.com/TheSmokeTeam/QaaS.Runner
+    github_mocker: https://github.com/TheSmokeTeam/QaaS.Mocker
+    # ... etc.
+```
+
+**Override via environment variables** using the `QAAS_DOCS_LINK_` prefix:
+
+```bash
+# Local development
+export QAAS_DOCS_LINK_GITHUB_RUNNER=https://github.com/MyOrg/QaaS.Runner
+export QAAS_DOCS_LINK_ALLURE_DOCS=https://allure.example.com/docs/
+mkdocs serve
+```
+
+```bash
+# Docker build
+docker build \
+  --build-arg QAAS_DOCS_LINK_GITHUB_RUNNER=https://github.com/MyOrg/QaaS.Runner \
+  --build-arg QAAS_DOCS_LINK_GITHUB_MOCKER=https://github.com/MyOrg/QaaS.Mocker \
+  -t qaas-docs .
+```
+
+**Available variables:**
+
+| Environment Variable | `extra.links` Key | Description |
+|---|---|---|
+| `QAAS_DOCS_LINK_GITHUB_ORG` | `github_org` | GitHub organization URL |
+| `QAAS_DOCS_LINK_GITHUB_DOCS` | `github_docs` | Documentation repo URL |
+| `QAAS_DOCS_LINK_GITHUB_RUNNER` | `github_runner` | QaaS.Runner repo URL |
+| `QAAS_DOCS_LINK_GITHUB_MOCKER` | `github_mocker` | QaaS.Mocker repo URL |
+| `QAAS_DOCS_LINK_GITHUB_FRAMEWORK` | `github_framework` | QaaS.Framework repo URL |
+| `QAAS_DOCS_LINK_GITHUB_ASSERTIONS` | `github_assertions` | QaaS.Common.Assertions repo URL |
+| `QAAS_DOCS_LINK_GITHUB_GENERATORS` | `github_generators` | QaaS.Common.Generators repo URL |
+| `QAAS_DOCS_LINK_ALLURE_DOCS` | `allure_docs` | Allure documentation URL |
+| `QAAS_DOCS_LINK_ALLURE_INSTALL` | `allure_install` | Allure CLI install guide URL |
+| `QAAS_DOCS_LINK_DOTNET_SDK` | `dotnet_sdk` | .NET SDK download URL |
+| `QAAS_DOCS_LINK_VSCODE_YAML_EXTENSION` | `vscode_yaml_extension` | VS Code YAML extension URL |
+| `QAAS_DOCS_LINK_AUTOFAC` | `autofac` | Autofac website URL |
+
+In markdown files, links are referenced using Jinja2 syntax: `{{ links.github_runner }}`.
+
 ## 📦 Deployment
 
 ### GitHub Pages (Automatic)

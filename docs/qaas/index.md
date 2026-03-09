@@ -1,12 +1,12 @@
 # QaaS Runner
 
-**QaaS.Runner** is the test orchestrator of the QaaS ecosystem. It reads YAML (or code-based) configuration, executes multi-stage communication sessions against your backend services, stores results, runs assertions, and produces [Allure](https://docs.qameta.io/allure/) test reports.
+**QaaS.Runner** is the test orchestrator of the QaaS ecosystem. It reads YAML (or code-based) configuration, executes multi-stage communication sessions against your backend services, stores results, runs assertions, and produces [Allure]({{ links.allure_docs }}) test reports.
 
 | | |
 |---|---|
 | **Runtime** | .NET 10 |
 | **Package** | `QaaS.Runner` (NuGet) |
-| **Source** | [GitHub — QaaS.Runner](https://github.com/TheSmokeTeam/QaaS.Runner) |
+| **Source** | [GitHub — QaaS.Runner]({{ links.github_runner }}) |
 | **License** | Internal |
 
 ## Key Capabilities

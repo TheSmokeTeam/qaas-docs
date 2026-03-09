@@ -15,7 +15,7 @@ JSON schemas are published with each NuGet package release. Download them from t
 
 ## VS Code
 
-**Requirement**: Install the [YAML extension by Red Hat](https://marketplace.visualstudio.com/items?itemName=redhat.vscode-yaml).
+**Requirement**: Install the [YAML extension by Red Hat]({{ links.vscode_yaml_extension }}).
 
 1. Download the desired schema JSON file into your project (e.g. `schemas/qaasSchema.json`).
 2. Open **File → Preferences → Settings** and search for `yaml.schemas`.

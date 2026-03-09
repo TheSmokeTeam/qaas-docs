@@ -4,9 +4,9 @@
 
 | Requirement | Version |
 |---|---|
-| [.NET SDK](https://dotnet.microsoft.com/download) | **10.0** or later |
+| [.NET SDK]({{ links.dotnet_sdk }}) | **10.0** or later |
 | NuGet feeds | See feed configuration below |
-| Allure CLI *(optional — for viewing reports)* | [Install guide](https://docs.qameta.io/allure/#_installing_a_commandline) |
+| Allure CLI *(optional — for viewing reports)* | [Install guide]({{ links.allure_install }}) |
 
 ### NuGet Feed Configuration
 

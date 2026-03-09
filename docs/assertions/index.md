@@ -7,7 +7,7 @@ The **QaaS.Common.Assertions** NuGet package ships the built-in assertion librar
 | | |
 |---|---|
 | **Package** | `QaaS.Common.Assertions` |
-| **Source** | [GitHub — QaaS.Common.Assertions](https://github.com/TheSmokeTeam/QaaS.Common.Assertions) |
+| **Source** | [GitHub — QaaS.Common.Assertions]({{ links.github_assertions }}) |
 | **Depends on** | [QaaS.Framework.SDK](../framework/projects/sdk.md) |
 
 ## Installation

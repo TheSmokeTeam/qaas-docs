@@ -7,7 +7,7 @@ The **QaaS.Common.Generators** NuGet package ships the built-in generator librar
 | | |
 |---|---|
 | **Package** | `QaaS.Common.Generators` |
-| **Source** | [GitHub — QaaS.Common.Generators](https://github.com/TheSmokeTeam/QaaS.Common.Generators) |
+| **Source** | [GitHub — QaaS.Common.Generators]({{ links.github_generators }}) |
 | **Depends on** | [QaaS.Framework.SDK](../framework/projects/sdk.md) |
 
 ## Installation
