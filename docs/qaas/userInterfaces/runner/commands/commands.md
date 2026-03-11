@@ -35,4 +35,12 @@ To run the QaaS project with any of its commands, the following syntax is requir
 dotnet run <dotnet-parameters> -- <qaas-command>
 ```
 
+## Host Process Control
+
+All runnable commands (`run`, `act`, `assert`, `template`, and `execute`) support the `--no-process-exit` flag.
+
+- By default, `Runner.Run()` terminates the current process with the aggregated exit code after the run completes successfully.
+- With `--no-process-exit`, the runner completes without calling `Environment.Exit(...)`.
+- In embedded hosts, prefer the `RunAndGetExitCode()` API for explicit aggregation when you run multiple runners in one process.
+
 See individual command pages for details: [run](run.md) | [act](act.md) | [assert](assert.md) | [execute](execute.md) | [template](template.md)

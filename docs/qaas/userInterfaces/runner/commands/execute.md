@@ -6,6 +6,10 @@ The `execute` command runs multiple [Runner commands](commands.md) sequentially 
 When running QaaS Runner Commands using the execute command, each QaaS Runner Command
 will receive an ID that will be used to identify it in the logs and allure-results.
 
+!!! Note
+`execute` builds one outer runner from the listed commands. The listed commands contribute `ExecutionBuilder`s,
+but setup, teardown, result serving, and process-exit behavior are still owned by that outer runner.
+
 ## Usage
 
 To view all command options, execute the following command:
@@ -15,6 +19,16 @@ dotnet run <dotnet-parameters> -- execute --help
 ```
 
 This command will display all available options for the execute command, including flags and values.
+
+## Embedded Hosts
+
+Use `--no-process-exit` when the outer `execute` runner should finish and return control to the caller:
+
+```bash
+dotnet run <dotnet-parameters> -- execute executable.yaml --no-process-exit
+```
+
+This is useful when `execute` itself is part of a larger host application. If you need truly independent runners with separate host-controlled lifecycles, create multiple runners in code instead of relying on a single `execute` invocation.
 
 ## Configurations
 

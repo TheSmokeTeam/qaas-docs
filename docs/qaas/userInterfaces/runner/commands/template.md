@@ -11,3 +11,11 @@ dotnet run <dotnet-parameters> -- template --help
 ```
 
 This command will display all available options for the template command, including flags and values.
+
+## Embedded Hosts
+
+Use `--no-process-exit` when `template` is part of a larger orchestration flow and the host process must continue after templating finishes:
+
+```bash
+dotnet run <dotnet-parameters> -- template test.qaas.yaml --no-process-exit
+```

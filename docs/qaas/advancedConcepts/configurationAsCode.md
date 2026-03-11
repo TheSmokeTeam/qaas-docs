@@ -21,7 +21,7 @@ var runner = Bootstrap.New(args);
 - Parses command-line arguments (`args`) with support for overrides.
 - Loads and merges configuration from a YAML file (if specified).
 - Initializes a fully configured `Runner` instance with default behaviors.
-- Returns a ready-to-modify `Runner` object.
+- Returns a ready-to-modify `Runner` object, including host-level behaviors such as process exit handling.
 
 > **Best Practice**: Always use `Bootstrap.New(args)` as the standard entry point. It supports hybrid configuration—YAML for structure, CLI for override—ensuring flexibility across environments.
 
@@ -49,6 +49,71 @@ var executionBuilders = runner.ExecutionBuilders;
 ```
 
 > **Note**: At this stage, no test execution has occurred. The `Runner` is configured and ready for programmatic modification.
+
+---
+
+## Process Exit Behavior
+
+By default, `Runner.Run()` terminates the current process with the aggregated exit code after the runner finishes successfully. That default is convenient for command-line entrypoints and CI jobs that execute exactly one runner.
+
+When you embed QaaS inside another application, or when you want to run several runners sequentially in the same process, disable that behavior and let the outer host decide the final process exit code.
+
+### Disable Process Termination
+
+```csharp
+using QaaS.Runner;
+
+var runner = Bootstrap.New(args);
+runner.ExitProcessOnCompletion = false;
+
+var exitCode = runner.RunAndGetExitCode();
+```
+
+### Relevant APIs
+
+| API | Purpose |
+|--------|-------------|
+| `ExitProcessOnCompletion` | Controls whether `Run()` terminates the current process when the runner completes successfully. Defaults to `true`. |
+| `Run()` | Preserves the default CLI-oriented behavior. If `ExitProcessOnCompletion` is `false`, the runner completes without calling `Environment.Exit(...)`. |
+| `RunAndGetExitCode()` | Runs the full lifecycle and returns the aggregated exit code without terminating the current process. |
+| `LastExitCode` | Stores the exit code from the most recent successful execution. |
+
+> **Recommendation**: In embedded hosts, prefer `RunAndGetExitCode()` over `Run()` so the outer application can aggregate multiple runner results explicitly.
+
+### Multiple Runners In One Host
+
+```csharp
+using QaaS.Runner;
+
+var runnerArguments = new[]
+{
+    new[] { "run", "api.qaas.yaml" },
+    new[] { "run", "messaging.qaas.yaml" },
+    new[] { "assert", "shared-storage.qaas.yaml" }
+};
+
+var finalExitCode = 0;
+
+foreach (var argsForRunner in runnerArguments)
+{
+    var runner = Bootstrap.New(argsForRunner);
+    runner.ExitProcessOnCompletion = false;
+
+    var exitCode = runner.RunAndGetExitCode();
+    if (exitCode != 0)
+    {
+        finalExitCode = 1;
+        break; // Or continue if you want a full sweep before reporting failure
+    }
+}
+
+Environment.ExitCode = finalExitCode;
+```
+
+### `execute` Versus Multiple Runners
+
+- Use `execute` when you want one outer runner lifecycle with one setup, one teardown, and one final exit decision.
+- Use multiple runner instances in code when you need the outer host to control sequencing, stopping rules, or final exit-code aggregation.
 
 ---
 
@@ -163,9 +228,10 @@ public class MyCustomRunner : Runner
         ILifetimeScope scope,
         List<ExecutionBuilder> executionBuilders,
         ILogger logger,
+        Serilog.ILogger serilogLogger,
         bool emptyResults = false,
         bool serveResults = false)
-        : base(scope, executionBuilders, logger, emptyResults, serveResults)
+        : base(scope, executionBuilders, logger, serilogLogger, emptyResults, serveResults)
     {
     }
 
