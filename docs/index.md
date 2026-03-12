@@ -1,21 +1,6 @@
 # QaaS Documentation
 
-**Quality as a Service (QaaS)** is a .NET 10 ecosystem for integration and end-to-end testing of backend applications. Define tests in YAML, extend behaviour with C# hooks, and validate results — all with minimal boilerplate.
-
-```mermaid
-graph LR
-    subgraph Ecosystem
-        Runner["Runner"]
-        Mocker["Mocker"]
-        Framework["Framework"]
-        Hooks["Hooks<br/>(Assertions · Generators · Probes · Processors)"]
-    end
-    Runner -- "orchestrates" --> Framework
-    Runner -- "controls via Redis" --> Mocker
-    Runner -- "loads" --> Hooks
-    Mocker -- "uses" --> Framework
-    Framework -- "protocols" --> ExtSvc["External Services<br/>(Kafka · HTTP · gRPC · S3 · DBs · …)"]
-```
+**QaaS (QA As A Service)** is a .NET 10 ecosystem for integration and end-to-end testing of backend applications. Define tests in YAML, extend behaviour with C# hooks, and validate results — all with minimal boilerplate.
 
 ## Quick Navigation
 
