@@ -286,6 +286,7 @@ extra:
     dotnet_sdk: https://dotnet.microsoft.com/download
     vscode_yaml_extension: https://marketplace.visualstudio.com/items?itemName=redhat.vscode-yaml
     autofac: https://autofac.org/
+    qaas_community: https://discord.gg/RtzBFPU42K
   social:
     - icon: fontawesome/brands/github
       link: https://github.com/TheSmokeTeam/qaas-docs

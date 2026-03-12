@@ -53,3 +53,9 @@
 |                                        | 7 | [Debug Failures](qaas/quickStart/debugTestFailure.md)             | Split act/assert, inspect session data, diagnose issues                  |
 | :material-trophy: **Master**           | 8 | [Maintainable Tests](qaas/quickStart/makeTestMoreMaintainable.md) | Improve structure by using anchors, placeholders, and variable files     |
 |                                        | 9 | [Architecture](qaas/architecture.md)                              | Understand the Runner pipeline and design complex scenarios              |
+
+## Contact Us
+
+Join our community where you can ask questions, report bugs, request features and interact with the community!
+
+Click [Here]({{ links.qaas_community }}) to join the `QaaS Community` channel.
