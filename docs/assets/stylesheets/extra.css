@@ -9,15 +9,20 @@
 
 .admonition table th:first-child,
 .admonition table td:first-child {
-  width: 5%;
+  width: 15%;
 }
 
 .admonition table th:nth-child(2),
 .admonition table td:nth-child(2) {
-  width: 30%;
+  width: 5%;
 }
 
 .admonition table th:nth-child(3),
 .admonition table td:nth-child(3) {
-  width: 65%;
+  width: 25%;
+}
+
+.admonition table th:nth-child(4),
+.admonition table td:nth-child(4) {
+  width: 55%;
 }
