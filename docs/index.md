@@ -6,14 +6,6 @@
 
 <div class="grid cards" markdown>
 
--   :material-rocket-launch:{ .lg .middle } **Getting Started**
-
-    ---
-
-    Install the SDK, write your first test in YAML, run it, and read the Allure report — in under 10 minutes.
-
-    [:octicons-arrow-right-24: Start Here](qaas/quickStart/installation.md)
-
 -   :material-test-tube:{ .lg .middle } **Runner**
 
     ---
