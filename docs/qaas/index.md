@@ -8,13 +8,20 @@
 | **Package** | `QaaS.Runner` (NuGet)                             |
 | **Source**  | [GitHub — QaaS.Runner]({{ links.github_runner }}) |
 
-## How It Works - High-Level Pipeline
+## How It Works
 
-1. **Load** — YAML files are parsed, placeholders resolved, and references merged.
-2. **Build** — `ExecutionBuilder` constructs sessions, data sources, and assertion pipelines.
-3. **Act** — Sessions execute in stages, communicating with external services via protocol adapters.
-4. **Store** — Session data (inputs, outputs, metadata) is persisted.
-5. **Assert** — Assertion hooks run in parallel against stored data; results are written to Allure.
+```mermaid
+flowchart LR
+    Load --> Build --> Act --> Store --> Assert
+```
+
+| Phase      | Description                                                                         |
+|------------|-------------------------------------------------------------------------------------|
+| **Load**   | Parses configuration, resolves placeholders, and merges overwriting files           |
+| **Build**  | Constructs the execution plan — sessions, data sources, and assertion pipelines     |
+| **Act**    | Runs sessions in stages, communicating with external services via protocol adapters |
+| **Store**  | Persists all session data (inputs, outputs, timestamps, metadata)                   |
+| **Assert** | Evaluates assertion hooks against stored data and produces the Allure report        |
 
 ## CLI Commands
 
