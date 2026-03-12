@@ -7,30 +7,8 @@
 | **Runtime** | .NET 10                                           |
 | **Package** | `QaaS.Runner` (NuGet)                             |
 | **Source**  | [GitHub — QaaS.Runner]({{ links.github_runner }}) |
-| **License** | Internal                                          |
 
-## Key Capabilities
-
-- **YAML-first test definition** — describe sessions, data sources, and assertions declaratively.
-- **Plugin system** — extend with custom [Assertions](../assertions/index.md), [Generators](../generators/index.md), [Probes](../probes/index.md), and [Processors](../processors/index.md) via NuGet packages or local DLLs.
-- **17 protocol adapters** — HTTP, gRPC, Kafka, RabbitMQ, IBM MQ, Redis, MongoDB, PostgreSQL, MSSQL, Oracle, Trino, S3, SFTP, Socket, Elasticsearch, Prometheus (via [QaaS.Framework.Protocols](../framework/projects/protocols.md)).
-- **Policy-driven execution** — control throughput, timeouts, and load balancing per session ([Policies](../framework/projects/policies.md)).
-- **Allure reporting** — every assertion result, including flakiness tracking, is written to an Allure-compatible report.
-- **Storage backends** — persist session data to the local file system or AWS S3.
-- **Mocker integration** — coordinate with [QaaS.Mocker](../mocker/index.md) at runtime through Redis pub/sub commands (`Change`, `Trigger`, `Consume`).
-
-## How It Works
-
-```mermaid
-flowchart LR
-    YAML["YAML Config"] --> EB["ExecutionBuilder"]
-    EB --> Sessions
-    Sessions --> |"Publish / Consume / Transact / Probe / Collect / MockerCommand"| Protocols["Protocol Layer"]
-    Protocols --> SUT["System Under Test"]
-    Sessions --> Storage["Storage (S3 / FileSystem)"]
-    Storage --> Assertions
-    Assertions --> Allure["Allure Report"]
-```
+## How It Works - High-Level Pipeline
 
 1. **Load** — YAML files are parsed, placeholders resolved, and references merged.
 2. **Build** — `ExecutionBuilder` constructs sessions, data sources, and assertion pipelines.
@@ -47,9 +25,3 @@ flowchart LR
 | [`assert`](userInterfaces/runner/commands/assert.md)     | Run assertions on previously stored data       |
 | [`execute`](userInterfaces/runner/commands/execute.md)   | Run sequential commands from `executable.yaml` |
 | [`template`](userInterfaces/runner/commands/template.md) | Output a YAML configuration template           |
-
-## Next Steps
-
-- [Architecture deep-dive](architecture.md)
-- [Quick Start — Installation](quickStart/installation.md)
-- [Configuration Reference](userInterfaces/runner/configurationSections/configurationSections.md)
