@@ -2,3 +2,22 @@
   width: 100%;
 }
 
+.admonition table {
+  width: 100%;
+  table-layout: fixed;
+}
+
+.admonition table th:first-child,
+.admonition table td:first-child {
+  width: 5%;
+}
+
+.admonition table th:nth-child(2),
+.admonition table td:nth-child(2) {
+  width: 30%;
+}
+
+.admonition table th:nth-child(3),
+.admonition table td:nth-child(3) {
+  width: 65%;
+}
