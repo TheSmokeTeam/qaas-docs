@@ -272,9 +272,6 @@ markdown_extensions:
   - pymdownx.snippets
   - pymdownx.details
 
-extra_css:
-  - assets/stylesheets/extra.css
-
 extra:
   links:
     github_org: https://github.com/TheSmokeTeam
