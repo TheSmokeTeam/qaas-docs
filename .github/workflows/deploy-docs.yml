@@ -5,6 +5,7 @@ on:
     branches:
       - master
       - unified-docs
+      - fix/free_text
   pull_request:
     branches:
       - master
