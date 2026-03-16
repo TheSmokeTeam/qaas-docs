@@ -30,7 +30,7 @@ install the appropriate **JSON schema** in your IDE.
 
 After installing the schema in your IDE:
 
-Open any `.qaas.yaml` file and you will receive real-time:
+Open any `.yaml` file and you will receive real-time:
 
 - Syntax highlighting
 - Auto-completion
@@ -45,40 +45,36 @@ Open any `.qaas.yaml` file and you will receive real-time:
 
 ### VS Code
 
-1. Download the desired schema JSON file into your project (e.g. `schemas/runnerSchema.json`).
-2. Open **File → Preferences → Settings** and search for `yaml.schemas`.
-3. Click **Edit in settings.json** and add the schema mapping under the `yaml.schemas` object:
+#### Setting Up Schema in VS Code
 
-```json
-"yaml.schemas": { "/path/to/runnerSchema.json": "*.qaas.yaml"}
-```
+1. Download the desired schema file (e.g., `qaasSchema.json`).
+2. Open VS Code → `File` → `Preferences` → `Settings`.
+3. Search for `yaml: schemas`.
+4. Click **"Edit in settings.json"**.
+5. Add the schema mapping under the `yaml.schemas` object:
 
-> Replace `/path/to/qaasSchema.json` with the actual local path to your downloaded schema file.
+    ```json
+    "yaml.schemas": {
+    "/path/to/qaasSchema.json": "*.yaml"
+    }
+    ```
+    
+    > Replace `/path/to/qaasSchema.json` with the actual local path to your downloaded schema file.
 
-4. Save the file and **restart VS Code**.
+6. Save the file and **restart VS Code**.
+7. Open any `.yaml` file — schema validation and auto-completion will now be active.
 
+---
 
-### JetBrains Rider
+### Rider
+
+#### Setting Up Schema in Rider
 
 1. Download the schema file (e.g., `qaasSchema.json`).
 2. Go to: `File` → `Settings` → `Languages & Frameworks` → `Schemas and DTDs` → `JSON Schema Mappings`.
 3. Click the **+** button to add a new mapping:
-    - **Schema file**: Select your downloaded `runnerSchema.json`.
-    - **Pattern**: Enter `*.qaas.yaml` (or a more specific pattern if needed).
+    - **Schema file**: Select your downloaded `qaasSchema.json`.
+    - **Pattern**: Enter `*.yaml` (or a more specific pattern if needed).
 4. Click **Save**.
 
 > **Important**: This configuration is project-specific. You must repeat this setup for each new QaaS project.
-
----
-
-## Tips
-
-- Use the `.qaas.yaml` suffix for your test YAML files so schema mappings can target them precisely.
-- You can add an inline schema hint at the top of a file:
-
-```yaml
-# $schema: ./schemas/runnerSchema.json
-DataSources: []
-Sessions: []
-Assertions: []
-```
