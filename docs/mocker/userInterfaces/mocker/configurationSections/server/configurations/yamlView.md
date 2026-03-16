@@ -1,37 +1,62 @@
 # Server Configurations Yaml View
 
+Use either `Server` or `Servers`. Each item under `Servers` uses the same schema as `Server`.
+
 ```yaml
 Server:
   Type:
-  Socket:
-    ConnectionAcceptanceValue:
-    BindingIpAddress:
-    Endpoints:
-      - TimeoutMs:
-        ProtocolType:
-        Port:
-        LingerTimeSeconds:
-        NagleAlgorithm:
-        BufferSizeBytes:
-        AddressFamily:
-        SocketType:
-        Action:
-          Method:
-          TransactionStubName:
-          DataSourceName:
-          Name:
   Http:
     Port:
-    ConnectionAcceptanceValue:
-    InternalErrorTransactionStubName:
-    NotFoundTransactionStubName:
-    IsLocalhost:
-    IsSecuredSchema:
     Endpoints:
       - Path:
-        FixedPath:
         Actions:
-          - TransactionStubName:
+          - Name:
             Method:
-            Name:
+            TransactionStubName:
+    IsSecuredSchema:
+    CertificatePath:
+    CertificatePassword:
+    IsLocalhost:
+    NotFoundTransactionStubName:
+    InternalErrorTransactionStubName:
+    ConnectionAcceptanceValue:
+  Grpc:
+    Port:
+    Services:
+      - ServiceName:
+        ProtoNamespace:
+        AssemblyName:
+        Actions:
+          - Name:
+            RpcName:
+            TransactionStubName:
+    IsSecuredSchema:
+    CertificatePath:
+    CertificatePassword:
+    IsLocalhost:
+    NotFoundTransactionStubName:
+    InternalErrorTransactionStubName:
+  Socket:
+    BindingIpAddress:
+    ConnectionAcceptanceValue:
+    Endpoints:
+      - Port:
+        ProtocolType:
+        SocketType:
+        AddressFamily:
+        BufferSizeBytes:
+        NagleAlgorithm:
+        LingerTimeSeconds:
+        TimeoutMs:
+        Action:
+          Name:
+          Method:
+          DataSourceName:
+          TransactionStubName:
+
+Servers:
+  - Type:
+    Http: {}
+    Grpc: {}
+    Socket: {}
 ```

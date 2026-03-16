@@ -2,39 +2,34 @@
 
 ## Prerequisites
 
-* `.NET 10 SDK`
-* Global `NuGet.Config` file configured to the following feeds
+- `.NET 10 SDK`
+- A `NuGet.config` that can resolve the packages your mock project uses
 
-```xml
-<add key="Feed_A" value="REDA" />
-<add key="Feed_B" value="REDA" />
-<add key="Feed_C" value="REDA" />
-```
-
-## Packages
-
-Install using `nuget`
-
-### QaaS.Mocker
-
-The main package used to run a QaaS Mocker project.
+## Add `QaaS.Mocker` to an Existing Project
 
 ```bash
-nuget install QaaS.Mocker
+dotnet add package QaaS.Mocker
 ```
 
-## QaaS Project Templates
+If your mock uses shared processors or generators, add the matching companion packages to the same project.
 
-QaaS has dotnet project templates that can be used to create new QaaS projects easily, those project templates can be found [Here](REDA/qaas.projecttemplates.git).
+## Create a New Project from the Template Pack
 
-### Install
+The [QaaS.Mocker.Template](https://github.com/TheSmokeTeam/QaaS.Mocker.Template) repository publishes the template pack used for new mocker projects.
+
+- Template pack ID: `QaaS.Mocker.Template`
+- Template short name: `qaas-mocker`
+
+Follow the installation instructions in that repository, then create a project with:
 
 ```bash
-dotnet new -i "QaaS.ProjectTemplates"
+dotnet new qaas-mocker -n MyCompany.QaaS.Mocker
 ```
 
-### Uninstall
+The generated project includes:
 
-```bash
-dotnet new -u "QaaS.ProjectTemplates"
-```
+- `Program.cs` wired to `QaaS.Mocker.Bootstrap.New(...)`
+- `mocker.qaas.yaml`
+- `Dockerfile`
+- `NuGet.config`
+- GitHub Actions CI
