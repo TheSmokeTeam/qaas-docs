@@ -13,8 +13,8 @@ To enable real-time validation, auto-completion, and contextual suggestions for 
 install the appropriate **JSON schema** in your IDE.
 
 There are two types of schemas available:
-- [**QaaS.Runner**]({{ links.runner_schema }}) schema: Covers all core configuration fields for the QaaS Runner.
-- [**QaaS.Modules**]({{ links.mocker_schema }}) schemas: Cover all hook configuration fields for the QaaS Mocker.
+- [**QaaS.Runner Schema**]({{ links.runner_schema }}) schema: Covers all core configuration fields for the QaaS Runner.
+- [**QaaS.Mocker Schema**]({{ links.mocker_schema }}) schemas: Cover all hook configuration fields for the QaaS Mocker.
 
 | Schema file         | Covers                                                                                                                                                                                                                             |
 |---------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
