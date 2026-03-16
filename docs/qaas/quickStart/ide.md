@@ -12,7 +12,6 @@ intelligent code completion to ensure correctness, reduce errors, and improve pr
 To enable real-time validation, auto-completion, and contextual suggestions for QaaS YAML configurations, you must
 install the appropriate **JSON schema** in your IDE.
 
-There are two types of schemas available:
 - [**QaaS.Runner Schema**]({{ links.runner_schema }}) schema: Covers all core configuration fields for the QaaS Runner.
 - [**QaaS.Mocker Schema**]({{ links.mocker_schema }}) schemas: Cover all hook configuration fields for the QaaS Mocker.
 
