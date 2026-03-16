@@ -288,6 +288,10 @@ extra:
     vscode_yaml_extension: https://marketplace.visualstudio.com/items?itemName=redhat.vscode-yaml
     autofac: https://autofac.org/
     qaas_community: https://discord.gg/RtzBFPU42K
+    nuget_feed_a: feed_a
+    nuget_feed_b: feed_b
+    nuget_feed_c: feed_c
+    qaas_project_templates: link_to_templates
   social:
     - icon: fontawesome/brands/github
       link: https://github.com/TheSmokeTeam/qaas-docs
