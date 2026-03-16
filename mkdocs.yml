@@ -81,6 +81,8 @@ nav:
       - Create a Mock: mocker/quickStart/createMock.md
       - Deploy a Mock: mocker/quickStart/deployMock.md
       - Integrate with Tests: mocker/quickStart/integrateWithTests.md
+    - Advanced Concepts:
+      - Configuration As Code: mocker/advancedConcepts/configurationAsCode.md
     - Configuration Reference:
       - Overview: mocker/userInterfaces/mocker/configurationSections/configurationSections.md
       - DataSources:

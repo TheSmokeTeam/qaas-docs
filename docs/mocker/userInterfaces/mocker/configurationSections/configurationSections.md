@@ -1,41 +1,49 @@
 # Configuration Sections
 
-The `mocker.qaas.yaml` file is divided into the sections below. Each section configures a different aspect of the mock server.
-
-The `mocker.qaas.yaml` configuration file is divided into the following sections
+`mocker.qaas.yaml` is divided into the sections below. Each section configures a different part of the mock runtime.
 
 ```yaml
 DataSources: []
 
 Stubs: []
 
-Controller: []
+Controller:
+  ServerName:
+  Redis: {}
 
-Server: []
+Server: {}
+
+Servers: []
 ```
 
-## Required fields
+## Choosing Between `Server` and `Servers`
 
-Required fields are fields that must be given a value and have no default value, required fields are only required if their parent field is used.
+Use exactly one of the following top-level sections:
 
-For example if the field in the path `SectionA.FieldA` is `required` then as long as `SectionA` is configured it must contain the field `FieldA` like so:
+- `Server` to run one mock server
+- `Servers` to run multiple server runtimes from the same process
+
+Do not configure both in the same file.
+
+When `Servers` is used, action names must be unique across all configured servers.
+
+## Required Fields
+
+Required fields are fields that must be given a value and have no default value. A required field is only required when its parent section is used.
+
+For example, if `SectionA.FieldA` is required, then configuring `SectionA` means `FieldA` must be present:
 
 ```yaml
 SectionA:
   FieldA: content
 ```
 
-however if we dont use `SectionA` there is no need to configure the field `FieldA`:
-
-```yaml
-```
+If `SectionA` is not used, `FieldA` does not need to be configured.
 
 ## Table View Order
 
-All Configurations Table Views are ordered according to 3 rules.
+All configuration table views are ordered according to these rules:
 
-1. The property paths are ordered like a yaml configuration, meaning all fields of every parent are under the parent.
-
-2. Under every parent its fields are ordered by type, first basic types (`integer` / `number` / `string` / `bool`/ `enum`), then arrays (`array`) and lastly fields that have sub fields (`object`).
-
-3. Under every parent within the batch of a certain type first come the `required` fields and then the `not required` fields.
+1. Property paths follow YAML nesting, so child fields appear under their parent.
+2. Under each parent, basic types (`integer`, `number`, `string`, `bool`, `enum`) come first, then arrays, then nested objects.
+3. Within each type group, required fields come before optional fields.

@@ -1,53 +1,105 @@
 # Server
 
-The server section defines the mock server behaviour.
+QaaS.Mocker can start one server through `Server` or multiple servers concurrently through `Servers`. Each server configuration must set `Type` to `Http`, `Grpc`, or `Socket`.
 
-There are currently several `Server` implementations - [`Socket`](#socket), [`Http`](#http), and each one of them has its own capabilities that mock a wide range of scenarios.
+Do not configure both `Server` and `Servers` in the same file.
+
+## Single Server
+
+Use `Server` when you need one runtime:
+
+```yaml
+Server:
+  Type: Http
+  Http: {}
+```
+
+## Multiple Servers
+
+Use `Servers` when you want one process to host several runtimes:
+
+```yaml
+Servers:
+  - Type: Http
+    Http: {}
+  - Type: Socket
+    Socket: {}
+```
+
+When `Servers` is used, action names must be unique across all configured servers. For gRPC actions, if `Actions[].Name` is omitted, the effective name used for uniqueness is `<ServiceName>.<RpcName>`.
+
+## HTTP / HTTPS
+
+`Http` hosts path-based endpoints and maps each HTTP method to a transaction stub.
+
+- `IsSecuredSchema: true` requires `CertificatePath`
+- relative certificate paths are resolved from the current working directory
+- endpoint paths are validated and conflicting path patterns are rejected
+- action names must be unique within the HTTP server
+
+Example:
+
+```yaml
+Server:
+  Type: Http
+  Http:
+    Port: 8080
+    Endpoints:
+      - Path: /health
+        Actions:
+          - Name: HealthAction
+            Method: Get
+            TransactionStubName: HealthStub
+```
+
+## gRPC / gRPCs
+
+`Grpc` hosts gRPC services and binds each RPC method to a transaction stub.
+
+- `IsSecuredSchema: true` requires `CertificatePath`
+- `Services[].Actions[].RpcName` values must be unique within the same service
+- if you plan to target actions through the controller or Runner commands, give the actions explicit names
+
+Example:
+
+```yaml
+Server:
+  Type: Grpc
+  Grpc:
+    Port: 50051
+    Services:
+      - ServiceName: EchoService
+        ProtoNamespace: MyCompany.MyMock.Grpc
+        AssemblyName: MyCompany.MyMock
+        Actions:
+          - Name: EchoAction
+            RpcName: Echo
+            TransactionStubName: EchoStub
+```
 
 ## Socket
 
-Handles raw socket stream communcations as server.
+`Socket` hosts TCP or UDP endpoints and binds each endpoint to a socket action.
 
-Socket mocker has multiple `Endpoint` exposures - it can expose and bind multiple `Port`s and execute one different `SocketMethod` per endpoint, for any clients connecting - anytime.
+- `Broadcast` is not supported over UDP
+- socket type must match protocol (`Tcp` + `Stream`, `Udp` + `Dgram`)
+- `Action.DataSourceName` is required when `Action.Method` is `Broadcast`
 
-**Table Property Path** - `Server.Socket`
+Example:
 
 ```yaml
-Type: Socket
-Socket: {}
+Server:
+  Type: Socket
+  Socket:
+    BindingIpAddress: 127.0.0.1
+    Endpoints:
+      - Port: 7001
+        ProtocolType: Tcp
+        SocketType: Stream
+        TimeoutMs: 1000
+        BufferSizeBytes: 2048
+        Action:
+          Name: SocketCollectAction
+          Method: Collect
+          TransactionStubName: ExampleStub
 ```
-
-???- info "Recommended Tcp Server Configuration"
-    === ":octicons-file-code-16: `Tcp`"
-        ```yaml
-          Socket:
-            ConnectionAcceptanceValue: 8 # Amount of connections to keep asynchronously for all server's endpoint
-            EndPoints:
-                # Example for broadcasting on Tcp connection
-              - Port: 6000
-                ProtocolType: Tcp
-                BufferSizeBytes: 1024 # Decided by the maximum data's size in bytes the transferred in the server-client communication.
-                Action:
-                    Name: BroadcastSamples
-                    Method: Broadcast
-                    DataSourceName: Samples # Data source to generate and broadcast its data on any client connecion.
-                # Example for collecting data from clients on top of Tcp connection
-              - Port: 6001
-                ProtocolType: Tcp
-                BufferSizeBytes: 1024 # The bigger the buffer is - more data collected will be concat to same buffer on top of every server-client channel communication.
-                Action:
-                    Name: CollectSamples
-                    Method: Collect
-        ```
-
-!!! warning "NagleAlgorithm"
-        Nagle option is only relevant for Tcp Socket server!
-        When applying Nagle algorithm on socket server - the communication between the client to the server will be handled differently behind the scenes (data's buffer written to channel will be concatted to bigger buffers to reduce acks by sending multiple buffers at once).
-
-!!! Notice "LingerTimeSeconds"
-        Time to retain connection of client before disposing it. Can be useful when collecting as backup timeout mechanism.
-
-!!! Notice "ConnectionAcceptanceValue"
-        In Udp socket server - the binded endpoint can handle ONE CHANNEL ONLY! Hence this value should be equal to the count of endpoints configured if wanted to handle all channels asynchronously.
-
-## Http
