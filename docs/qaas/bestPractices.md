@@ -77,7 +77,7 @@ anchors:
 
 * You should have 1 variables file for running locally and one for running on k8s.
 * All variable placeholders in the qaas **YAML** file should be written in an additional **YAML** file under a folder called `Variables` called `{runnableFromInCamelCase}.yaml` under `variables` section.
-* All variable place holders fields within the **YAML** file should be written in `camelCase`.
+* All variable placeholders fields within the **YAML** file should be written in `camelCase`.
 
 **Example**:
 
@@ -85,16 +85,16 @@ anchors:
 
 ```yaml
 variables:
-  rabbitmq:
-    host: REDA
-    port: REDA
+  rabbitmq: # credentials for running locally.
+    host: {clusterHost}
+    port: {nodePort}
 ```
 
 `Variables/k8s.yaml`
 
 ```yaml
 variables:
-  rabbitmq:
+  rabbitmq: # credentials for running inside k8s cluster.
     host: rabbitmq
     port: 5672
 ```
