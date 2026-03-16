@@ -209,6 +209,40 @@ QaaS.Runner.Bootstrap.New<MyCustomRunner>(args).Run();
 
 ---
 
+## Run Without Exiting the Current Process
+
+When QaaS.Runner is embedded inside another host process, use the code-first APIs below to keep the current process alive.
+
+### Option 1: Use `RunAndGetExitCode()`
+
+```csharp
+using QaaS.Runner;
+
+var runner = Bootstrap.New(args);
+var exitCode = runner.RunAndGetExitCode();
+
+Console.WriteLine($"Runner finished with exit code {exitCode}");
+```
+
+`RunAndGetExitCode()` runs the full runner lifecycle and returns the aggregated exit code without calling `Environment.Exit(...)`.
+After a successful run, the same value is also available through `runner.LastExitCode`.
+
+### Option 2: Keep `Run()` but Disable Process Exit
+
+```csharp
+using QaaS.Runner;
+
+var runner = Bootstrap.New(args);
+runner.ExitProcessOnCompletion = false;
+runner.Run();
+
+Console.WriteLine($"Runner finished with exit code {runner.LastExitCode}");
+```
+
+When `ExitProcessOnCompletion` is `false`, `Run()` still executes the normal lifecycle, stores the result in `LastExitCode`, and sets `Environment.ExitCode` instead of terminating the current process.
+
+---
+
 ## Advanced Use Case: Conditional Test Orchestration
 
 Leverage programmatic logic to implement sophisticated workflows — such as chaos engineering, rollback strategies, or multiphase validation.
