@@ -86,8 +86,8 @@ anchors:
 ```yaml
 variables:
   rabbitmq: # credentials for running locally.
-    host: {clusterHost}
-    port: {nodePort}
+    host: <clusterHostname>
+    port: <nodePort>
 ```
 
 `Variables/k8s.yaml`
