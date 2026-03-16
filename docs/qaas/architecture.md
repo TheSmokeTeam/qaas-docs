@@ -29,13 +29,13 @@ A QaaS.Runner project is a C#-based project that depends on the `QaaS.Runner` Nu
 
 The framework components that can be configured are:
 
-| Component | Description |
-|---|---|
-| **Storage** | Manages the persistence and retrieval of test data objects from various storage backends (e.g., file systems, S3, databases). |
-| **DataSources** | Provides test data through configurable generators (e.g., random values, JSON templates, database seeds). |
-| **Sessions** | Executes synchronous or asynchronous actions against the system under test (SUT), such as sending HTTP requests, publishing messages, restarting services, or manipulating state. |
-| **Assertions** | Validates the outcomes of sessions using predefined or custom validation logic, and records test results. |
-| **Links** | Integrates with observability systems (e.g., Prometheus, Elasticsearch, Grafana) to retrieve metrics, logs, or traces for analysis and reporting. |
+| Component       | Description                                                                                                                                                                       |
+|-----------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Storage**     | Manages the persistence and retrieval of test data objects from various storage backends (e.g., file systems, S3, databases).                                                     |
+| **DataSources** | Provides test data through configurable generators (e.g., random values, JSON templates, database seeds).                                                                         |
+| **Sessions**    | Executes synchronous or asynchronous actions against the system under test (SUT), such as sending HTTP requests, publishing messages, restarting services, or manipulating state. |
+| **Assertions**  | Validates the outcomes of sessions using predefined or custom validation logic, and records test results.                                                                         |
+| **Links**       | Integrates with observability systems (e.g., Prometheus, Elasticsearch, Grafana) to retrieve metrics, logs, or traces for analysis and reporting.                                 |
 
 ---
 

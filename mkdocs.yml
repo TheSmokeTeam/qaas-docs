@@ -9,7 +9,9 @@ nav:
   - Home: index.md
 
   - Runner:
-    - Introduction: qaas/index.md
+    - General:
+      - Introduction: qaas/index.md
+      - Architecture: qaas/architecture.md
     - Getting Started:
       - Installation: qaas/quickStart/installation.md
       - IDE Setup: qaas/quickStart/ide.md
@@ -19,12 +21,11 @@ nav:
       - Run a Test: qaas/quickStart/runTest.md
       - Maintainable Tests: qaas/quickStart/makeTestMoreMaintainable.md
       - Debug Failures: qaas/quickStart/debugTestFailure.md
-    - Architecture: qaas/architecture.md
     - Advanced Concepts:
       - Stages: qaas/advancedConcepts/stages.md
       - Live Session Data: qaas/advancedConcepts/liveSessionData.md
       - Configuration As Code: qaas/advancedConcepts/configurationAsCode.md
-    - Best Practices: qaas/bestPractices.md
+      - Best Practices: qaas/bestPractices.md
     - CLI Commands:
       - Overview: qaas/userInterfaces/runner/commands/commands.md
       - run: qaas/userInterfaces/runner/commands/run.md
