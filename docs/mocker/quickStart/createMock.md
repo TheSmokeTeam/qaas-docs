@@ -1,210 +1,69 @@
 # Create a Mock
 
-Let's create a simple HTTP mock server. The finished mock is available [here](REDA/dummy-app-mock).
-
-## Mock Spec
-
-The mock server needs to satisfy the following conditions:
-
-* Run on port 80
-* `Get` request on path `/data/` returns some json data from the internal mock server data
-
-## Creating Relevant Files
-
-Now to create the mock, first we open the cmd in the directory where we store our mock project. Then we create a new dotnet project with the `qaas` project template.
+The fastest way to start is the `qaas-mocker` template. After the template pack is installed:
 
 ```bash
-dotnet new qaas.mocker -n DummyAppMock
+dotnet new qaas-mocker -n MyCompany.QaaS.Mocker
 ```
 
-This will create the following C# QaaS Mocker project directory and files
+## What the Template Gives You
 
-```txt
-DummyAppMock/
-|--NuGet.Config
-|--DummyAppMock.sln
-|--README.md
-|--Dockerfile
-|--.gitlab-ci.yml
-|--.gitignore
-|--DummyAppMock/
-|----DummyAppMock.csproj
-|----Program.cs
-|----mocker.qaas.yaml
-|----ServerData/...
-```
+The generated project starts with:
 
-These files will contain basic required information and configurations for a QaaS Mocker project which we can now expend on top of.
+- a `Program.cs` entry point that runs `QaaS.Mocker.Bootstrap.New(...)`
+- a default `mocker.qaas.yaml`
+- a minimal HTTP `/health` action backed by `StatusCodeTransactionProcessor`
+- a `Dockerfile`, `NuGet.config`, and GitHub Actions workflow
 
-For the purpose of this example we will assume we have X json samples already, in a folder called `ServerData`. which we create under the directory `DummyAppMock/DummyAppMock/`.
-
-## Hooks And Plugins
-
-`QaaS.Mocker` introduces additional type of `hook` called `processors`. Further explanation on hooks can be found [here](REDA/quickStart/writeTest/).
-
-`processors` hooks give the mock server logic to execute on a specific endpoint request.
-
-These **Hooks** can be written in the QaaS mocker project and invoked by the `.qaas.yaml` file, such hooks are automatically recognized by the **YAML** file by their class names.
-
-On the other hand **Hooks** can also be provided in a nuget package called a `Plugin`.
-
-QaaS provides a default processors `Plugin`, [QaaS.Common.Processors](REDA) that includes commonly used processors and assertion hooks.
-
-To use them we need to add the `QaaS.Common.Processors` and `QaaS.Common.Generators` nuget packages to our C# project in a version compatible with our `QaaS.Mocker` version
-
-`DummyAppMock.csproj`
-
-```xml
-<ItemGroup>
-  <PackageReference Include="QaaS.Common.Processors" Version="x.x.x" />
-  <PackageReference Include="QaaS.Common.Generators" Version="x.x.x" />
-</ItemGroup>
-```
-
-## Creating Custom Processors
-
-Our mock sever needs to have some behaviours which will be triggered on a specific endpoint. These behaviours are called `stubs`.
-
-Every `stub` is based on a `Processor` hook that processes a given request.
-
-A processor is a `C# class` that implements the interface `IProcessor` from the `QaaS.SDK` package.
-Different servers requires different processor types. In our case, `http` server requires processors of type `TransactionProcessor` which are classes that implemets `ITransactionProcessor` interface.
-
-The `ITransactionProcessor` inherits from the `IProcessor` interface and has a `Process` function that receives a request and returns the corresponding response.
-
-In order to create a custom `TransactionProcessor` we use the `BaseTransactionProcessor` class and extend it with our processor, the `BaseTransactionProcessor` class receives a generic type when extending it, that generic type is an object that represents the configurations our processor expects with their own Data Annotations used to validate the passed configurations.
-
-In our case, we need to define a stub that uses a `data source` and returns items from it
-
-The first and second stub can actually be implemented by the same `processor`.
-
-## Configurating The QaaS Mocker Yaml File
-
-All the mock behaviours are configured at the `mocker.qaas.yaml` file that can invoke and run `hooks`.
-
-We will now see how to configure the `mocker.qaas.yaml` file for our mocks.
-
-### Initial configurations
-
-The YAML file automatically generated in our QaaS Mocker project contains every mocker configuration section:
-`mocker.qaas.yaml`
+The default configuration looks like this:
 
 ```yaml
 DataSources: []
 
-Stubs: []
-
-Controller: 
-  ServerName: PlaceHolderName
-  Redis: {}
+Stubs:
+  - Name: HealthStub
+    Processor: StatusCodeTransactionProcessor
+    ProcessorSpecificConfiguration:
+      StatusCode: 200
 
 Server:
-  Type: Http 
-  Http: 
+  Type: Http
+  Http:
     Port: 8080
-    Endpoints: []
+    IsLocalhost: false
+    Endpoints:
+      - Path: /health
+        Actions:
+          - Name: HealthAction
+            Method: Get
+            TransactionStubName: HealthStub
 ```
 
-### Configuring Data Sources
+## Extend the Mock
 
-In order for the mocker to use the data located in `ServerData` we need to configure a data source.
-a `data source` is a way to provide data to the mocks, its based on a `Generator` hook that it runs in order to create an enumerable of data.
+- Add `DataSources` when a processor or socket broadcast action needs generated input.
+- Add `Stubs` to bind names to `ITransactionProcessor` hooks.
+- Point server actions to stubs with `TransactionStubName`.
+- Use `Server` for one runtime or `Servers` to start several runtimes from the same process.
+- Add `Controller` only when Runner tests need runtime mocker commands.
 
-In our case we need a `Generator` hook that can take raw data from a folder, such a generator exists in the `QaaS.Common.Generators` plugin and is called `FromFileSystem`, we can use it because we added the `QaaS.Common.Generators` plugin to our project.
+## Custom Processors
 
-We also need to give the data source a name so we can reference it in the future, we will give it the name of the folder it came from combined with its generator `FromFileSystemServerData` (we can give it any name, we want it to be as indicative as possible).
+Transaction stubs are backed by `ITransactionProcessor`. You can:
 
-```yaml
-DataSources:
-  - Name: FromFileSystemServerData
-    Generator: FromFileSystem
-    GeneratorSpecificConfiguration:
-      DataArrangeOrder: AsciiAsc
-      FileSystem:
-        Path: ServerData
+- reference processors from companion packages such as `QaaS.Common.Processors`
+- implement a processor in the mock project and reference it by class name
+
+## Run the Generated Mock
+
+From the project directory:
+
+```bash
+dotnet run -- run mocker.qaas.yaml
 ```
 
-### Configuring Stubs
+Then call the default health endpoint. The template configuration returns HTTP `200`.
 
-Now that we have our data prepared we need to define behaviours that our mock server will use later on. Those behaviours are called stubs.
-
-In our case we need a processor that returns data from given data sources, such a processor exists in the `QaaS.Common.Processors` plugin and is called `TransactionFromDataSources`. We can use it because we added the `QaaS.Common.Processors` plugin to our project.
-
-We need to pass to it the `data source` defined above. We also need to give the data source a name so we can reference it in the future.
-
-```yaml
-Stubs:
-  - Name: ServerDataStub
-    Processor: TransactionFromDataSources
-    DataSourceNames: [ FromFileSystemServerData ]
-```
-
-### Configuring Server
-
-Now that we have defined our behaviours, we configure the server by linking stubs to endpoints.
-
-We need the server to run on port 80 and our `ServerDataStub` to execute on a `Get` request at `/data/`:
-
-```yaml
-Server:
-    Type: Http
-    Http:
-        Port: 80
-        EndPoints:
-          - Path: /data/
-            Actions:
-            - Name: DataFromFileSystemAction
-              Method: Get
-              TransactionStubName: ServerDataStub
-```
-
-We defined the server with an `Action` by the name of `DataFromFileSystemAction`. An action is the combination of `Method` and `Stub` in a given `Path`. `DataFromFileSystemAction` is the action relevant to a `Get` request to the path `/data/` and it tells the server to use the `ServerDataStub`
-
-## Yaml Configuration File Validation
-
-### Configuration File Overview
-
-After configuring all the sections above we now have a qaas mocker yaml file that looks like this
-
-`mocker.qaas.yaml`
-
-```yaml
-DataSources:
-  - Name: FromFileSystemServerData
-    Generator: FromFileSystem
-    GeneratorSpecificConfiguration:
-      DataArrangeOrder: AsciiAsc
-      FileSystem:
-        Path: ServerData
-
-Stubs:
-  - Name: ServerDataStub
-    Processor: TransactionFromDataSources
-    DataSourceNames: [ FromFileSystemServerData ]
-
-Server:
-    Type: Http
-    Http:
-        Port: 80
-        EndPoints:
-          - Path: /data/
-            Actions:
-            - Name: DataFromFileSystemAction
-              Method: Get
-              TransactionStubName: ServerDataStub
-```
-
-```txt
-DummyAppMock/
-|--NuGet.Config
-|--DummyAppMock.sln
-|--README.md
-|--Dockerfile
-|--.gitlab-ci.yml
-|--.gitignore
-|--DummyAppMock/
-|----DummyAppMock.csproj
-|----Program.cs
-|----mocker.qaas.yaml
-|----ServerData/...
+```bash
+curl -i http://localhost:8080/health
 ```

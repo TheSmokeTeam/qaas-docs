@@ -1,17 +1,30 @@
 # Integrate with Tests
 
-For end-to-end integration between tests and a mock server, configure the `Controller` section in `mocker.qaas.yaml`.
-
-The Controller bridges `QaaS.Runner` tests and `QaaS.Mocker` servers via Redis pub/sub. Tests send commands to the mocker, making it perform specific actions. See [Mocker Commands](REDA/configurationSections/sessions/types/mockerCommands/) for details.
-
-## Configuring Controller
-
-In order to let the tests and the mocker recognize each other, we configure a controller by setting a name for our mocker server and a redis connection.
-
-```mocker.qaas.yaml```
+Use the optional `Controller` section when `QaaS.Runner` tests need to change stubs, trigger actions, or consume cached mocker traffic through [Mocker Commands](../../qaas/userInterfaces/runner/configurationSections/sessions/types/mockerCommands.md).
 
 ```yaml
 Controller:
   ServerName: MockerExample
-  Redis: # relevant redis connection
+  Redis:
+    Host: localhost:6379
 ```
+
+## When the Controller Starts
+
+The current runtime starts the controller only when both of the following are configured:
+
+- `Controller.ServerName`
+- `Controller.Redis`
+
+If either value is missing, the mocker still starts its servers and skips the controller.
+
+## Action Names Matter
+
+Runner mocker commands target action names. When you use `Servers`, action names must be unique across all configured servers.
+
+For gRPC actions, if `Actions[].Name` is omitted, uniqueness falls back to `<ServiceName>.<RpcName>`.
+
+## Related References
+
+- [Controller configuration reference](../userInterfaces/mocker/configurationSections/controller/overview.md)
+- [Server configuration reference](../userInterfaces/mocker/configurationSections/server/overview.md)
