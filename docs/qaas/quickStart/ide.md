@@ -12,13 +12,13 @@ intelligent code completion to ensure correctness, reduce errors, and improve pr
 To enable real-time validation, auto-completion, and contextual suggestions for QaaS YAML configurations, you must
 install the appropriate **JSON schema** in your IDE.
 
-- [**QaaS.Runner Schema**]({{ links.runner_schema }}) schema: Covers all core configuration fields for the QaaS Runner.
-- [**QaaS.Mocker Schema**]({{ links.mocker_schema }}) schemas: Cover all hook configuration fields for the QaaS Mocker.
+- [**QaaS.Runner Schema**]({{ links.runner_schema }}) - Covers all core configuration fields for the QaaS Runner.
+- [**QaaS.Mocker Schema**]({{ links.mocker_schema }}) - Cover all hook configuration fields for the QaaS Mocker.
 
-| Schema file         | Covers                                                                                                                                                                                                                             |
-|---------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| `runnerSchema.json` | <ul><li>Core `QaaS.Runner` configuration (DataSources, Sessions, Assertions, Storage, Links, MetaData)</li><li>And all its hooks configuration (`QaaS.Common.Assertions`, `QaaS.Common.Generatos`, `QaaS.Common.Probes`)</li></ul> |
-| `mockerSchema.json` | <ul><li>Core `QaaS.Mocker` configuration (DataSources, Stubs, Servers, Controller)</li><li>And all its hooks configuration (`QaaS.Common.Generators`, `QaaS.Common.Processors`)</li></ul>                                          |
+| Schema file         | Covers                                                                                                                                                                                                                         |
+|---------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| `runnerSchema.json` | <ul><li>Core `QaaS.Runner` configuration (DataSources, Sessions, Assertions, Storage, Links, MetaData)</li><li>All its hooks configuration (`QaaS.Common.Assertions`, `QaaS.Common.Generatos`, `QaaS.Common.Probes`)</li></ul> |
+| `mockerSchema.json` | <ul><li>Core `QaaS.Mocker` configuration (DataSources, Stubs, Servers, Controller)</li><li>All its hooks configuration (`QaaS.Common.Generators`, `QaaS.Common.Processors`)</li></ul>                                          |
 
 ## VS Code
 
