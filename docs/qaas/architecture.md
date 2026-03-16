@@ -1,191 +1,53 @@
 # Architecture
 
-## System Overview
+The QaaS framework is built on a plugin system architecture, enabling users to extend and customize the framework by integrating user-provided plugins. This modular design allows for flexible, extensible, and maintainable test automation solutions, where components can be dynamically loaded and orchestrated based on configuration.
 
-QaaS is composed of independently deployable components that share a common [Framework](../framework/index.md) layer.
+---
 
-```mermaid
-graph TB
-    subgraph User["Your Project"]
-        YAML["YAML Config"]
-        Hooks["Custom Hooks<br/>(Assertions · Generators · Probes · Processors)"]
-    end
+## QaaS Project Structure
 
-    subgraph Runner["QaaS.Runner"]
-        EB["ExecutionBuilder"]
-        Sessions["Sessions"]
-        Storage["Storage"]
-        AssertionEngine["Assertion Engine"]
-        Allure["Allure Reporter"]
-    end
+The foundation of any QaaS project is its configuration file, typically a YAML file, which defines the structure, components, and execution flow of the test. This file serves as the entry point for the framework, orchestrating the initialization and execution of core components in a defined sequence.
 
-    subgraph Mocker["QaaS.Mocker"]
-        MockerServer["Servers<br/>(HTTP · gRPC · Socket)"]
-        Stubs["Stubs"]
-        Controller["Controller (Redis)"]
-    end
+The YAML configuration may include:
 
-    subgraph Framework["QaaS.Framework"]
-        SDK["SDK"]
-        Configs["Configurations"]
-        Protocols["Protocols"]
-        Policies["Policies"]
-        Serialization["Serialization"]
-        Providers["Providers"]
-    end
+- Built-in framework features
+- Custom plugin hooks
+- References to external services or data sources
 
-    subgraph External["External Services"]
-        Kafka["Kafka"]
-        RabbitMQ["RabbitMQ"]
-        HTTP["HTTP / gRPC"]
-        S3["S3"]
-        DB["PostgreSQL · MSSQL · Oracle · Trino · MongoDB"]
-        Redis["Redis"]
-        Elastic["Elasticsearch"]
-        Prometheus["Prometheus"]
-        SFTP["SFTP"]
-        IBMMQ["IBM MQ"]
-        Socket["TCP / UDP"]
-    end
+This declarative approach enables rapid setup and configuration, while still supporting programmatic control through Configuration as Code.
 
-    YAML --> EB
-    Hooks --> Providers
-    EB --> Sessions
-    Sessions --> Protocols
-    Sessions --> Storage
-    Storage --> AssertionEngine
-    AssertionEngine --> Allure
-    Sessions -- "MockerCommand" --> Controller
-    Controller --> MockerServer
-    MockerServer --> Stubs
-    Protocols --> External
-```
+---
 
-## Data Flow
+## Types of QaaS Projects
 
-### Runner Execution Pipeline
+### QaaS.Runner Project
 
-```mermaid
-sequenceDiagram
-    participant CLI as CLI (run / act / assert)
-    participant Loader as BaseLoader
-    participant Builder as ExecutionBuilder
-    participant Session as Sessions (stages)
-    participant Protocol as Protocol Layer
-    participant SUT as System Under Test
-    participant Store as Storage (S3 / FS)
-    participant Assert as Assertion Engine
-    participant Report as Allure Reporter
+A QaaS.Runner project is a C#-based project that depends on the `QaaS.Runner` NuGet package. Its primary purpose is to serve as a test execution environment for backend or end-to-end (e2e) applications. These projects are driven by either:
 
-    CLI->>Loader: Parse args + load YAML
-    Loader->>Builder: Build Context
-    Builder->>Session: Create sessions from config
-    Session->>Protocol: Publish / Consume / Transact / Probe / Collect
-    Protocol->>SUT: Send/receive data
-    SUT-->>Protocol: Response
-    Protocol-->>Session: Output data
-    Session->>Store: Persist session data (JSON)
-    Store->>Assert: Load stored data
-    Assert->>Assert: Execute assertion hooks in parallel
-    Assert->>Report: Write Pass/Fail + attachments
-```
+- A YAML configuration file
+- Programmatic configuration via C# (Configuration as Code)
 
-### Mocker Request Flow
+The framework components that can be configured are:
 
-```mermaid
-sequenceDiagram
-    participant Client as Client / SUT
-    participant Server as Mocker Server
-    participant Stub as Stub Cache
-    participant Proc as ITransactionProcessor
-    participant Ctrl as Controller (Redis)
-
-    Client->>Server: HTTP / gRPC / Socket request
-    Server->>Stub: Match request → stub
-    Stub-->>Server: Stub response config
-    Server->>Proc: Execute processor hook (if any)
-    Proc-->>Server: Modified response
-    Server-->>Client: Response
-
-    Note over Ctrl,Server: Runtime control
-    Ctrl->>Server: Change stub / Trigger action
-    Server->>Stub: Swap active stub
-```
-
-## Core Concepts
-
-### Sessions
-
-A session is a named communication workflow that executes in **stages**. Each stage contains one or more **actions** that run with configurable sleep intervals and policies.
-
-| Action Type | Direction | Protocol Examples |
-|---|---|---|
-| **Publisher** | Send only | Kafka, RabbitMQ, HTTP, S3, Redis, SFTP, IBM MQ |
-| **Consumer** | Receive only | Kafka, RabbitMQ, Redis, Socket, Elasticsearch |
-| **Transaction** | Request → Response | HTTP, gRPC |
-| **Probe** | Side effect | Kubernetes ops, DB truncate, Redis flush, S3 cleanup |
-| **Collector** | Fetch metrics | Prometheus |
-| **MockerCommand** | Redis command | Change/Trigger/Consume on Mocker |
-
-### Hooks (Plugin System)
-
-QaaS is a **plugin system**. All business-specific logic is injected through hooks:
-
-| Hook | Base Class | When It Runs |
-|---|---|---|
-| **Assertion** | `BaseAssertion<TConfig>` | After sessions complete; validates stored data |
-| **Generator** | `BaseGenerator<TConfig>` | Before sessions; produces `DataSource` input data |
-| **Probe** | `BaseProbe<TConfig>` | During sessions; performs environment setup/teardown |
-| **Processor** | `IProcessor` / `ITransactionProcessor` | During Mocker request handling; transforms responses |
-
-Hooks are discovered automatically via [Autofac]({{ links.autofac }}) from the project assembly and any referenced NuGet packages (see [Providers](../framework/projects/providers.md)).
-
-### Policies
-
-Policies wrap session actions to control execution timing:
-
-| Policy | Purpose |
+| Component | Description |
 |---|---|
-| `CountPolicy` | Stop after N iterations |
-| `TimeoutPolicy` | Stop after a duration |
-| `LoadBalancePolicy` | Send at a constant rate (messages/sec) |
-| `AdvancedLoadBalancePolicy` | Multi-stage rate control |
-| `IncreasingLoadBalancePolicy` | Ramp from min to max rate |
+| **Storage** | Manages the persistence and retrieval of test data objects from various storage backends (e.g., file systems, S3, databases). |
+| **DataSources** | Provides test data through configurable generators (e.g., random values, JSON templates, database seeds). |
+| **Sessions** | Executes synchronous or asynchronous actions against the system under test (SUT), such as sending HTTP requests, publishing messages, restarting services, or manipulating state. |
+| **Assertions** | Validates the outcomes of sessions using predefined or custom validation logic, and records test results. |
+| **Links** | Integrates with observability systems (e.g., Prometheus, Elasticsearch, Grafana) to retrieve metrics, logs, or traces for analysis and reporting. |
 
-### Protocol Support
+---
 
-The [Protocols](../framework/projects/protocols.md) package provides a unified interface across 17 services:
+## Configuration as Code
 
-| Category | Protocols |
-|---|---|
-| **Messaging** | Kafka, RabbitMQ, IBM MQ |
-| **HTTP / RPC** | HTTP (REST), gRPC |
-| **Databases** | PostgreSQL, MSSQL, Oracle, Trino, MongoDB |
-| **Cache / KV** | Redis |
-| **Search / Monitoring** | Elasticsearch, Prometheus |
-| **File / Storage** | S3, SFTP, Socket (TCP/UDP) |
+QaaS supports full programmatic configuration through C# code, enabling dynamic, conditional, and reusable test workflows. Instead of relying solely on static YAML files, teams can define and modify test configurations at runtime using the full power of C#.
 
-### Configuration Resolution
+This approach allows for:
 
-YAML configuration supports:
+- Dynamic environment-specific setups
+- Conditional execution logic
+- Reusable configuration patterns via classes and methods
+- Integration with external systems using full .NET capabilities
 
-- **`${}` placeholders** — resolved from environment variables, CLI overrides, or other config keys; supports null-coalescing via `??`.
-- **`<<` merge keys** — collapse/merge YAML mappings to reduce duplication.
-- **References** — include external YAML files by keyword (`ReferenceConfig`), with path or HTTP resolution.
-- **Priority order** — CLI args → environment variables → YAML file (last file wins for overlapping keys).
-
-See [Configuration As Code](advancedConcepts/configurationAsCode.md) and [Configuration Resolution](userInterfaces/runner/configurationResolutionPriority.md) for details.
-
-## Project Types
-
-### Runner Project
-
-A .NET 10 console project referencing the `QaaS.Runner` NuGet package.  Entry point is `Bootstrap.Run(args)`, which parses CLI arguments and orchestrates the execution pipeline.
-
-Configurable sections: **MetaData**, **Links**, **DataSources**, **Sessions**, **Assertions**, **Storages**.
-
-### Mocker Project
-
-A .NET 10 console/Docker project referencing the `QaaS.Mocker` NuGet package.  Entry point is `Bootstrap.Run(args)`, which starts servers and the Redis controller.
-
-Configurable sections: **DataSources**, **Stubs**, **Server**, **Controller**.
+For detailed guidance on implementing Configuration as Code, including custom runners, fluent builder patterns, and advanced orchestration, refer to the [Configuration as Code](advancedConcepts/configurationAsCode.md) documentation.
