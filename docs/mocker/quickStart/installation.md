@@ -20,7 +20,27 @@ The [QaaS.Mocker.Template](https://github.com/TheSmokeTeam/QaaS.Mocker.Template)
 - Template pack ID: `QaaS.Mocker.Template`
 - Template short name: `qaas-mocker`
 
-Follow the installation instructions in that repository, then create a project with:
+You can install the template pack from a downloaded release asset or from a local clone.
+
+Install a downloaded `.nupkg`:
+
+```bash
+dotnet new install .\QaaS.Mocker.Template.<version>.nupkg
+```
+
+Install from a local clone of the template repository:
+
+```bash
+dotnet new install .
+```
+
+Verify the template is available:
+
+```bash
+dotnet new list qaas-mocker
+```
+
+Then create a project with:
 
 ```bash
 dotnet new qaas-mocker -n MyCompany.QaaS.Mocker
@@ -32,4 +52,7 @@ The generated project includes:
 - `mocker.qaas.yaml`
 - `Dockerfile`
 - `NuGet.config`
+- a local package source under `.nuget/local-packages` so the generated project can restore the current mocker package chain
 - GitHub Actions CI
+
+Before the first build, restore with the generated `NuGet.config`.

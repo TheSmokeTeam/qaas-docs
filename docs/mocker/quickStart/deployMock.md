@@ -1,6 +1,6 @@
 # Deploy a Mock
 
-Most QaaS mocker projects are deployed as container images. The current template and example project both ship with a multi-stage `Dockerfile` that restores, publishes, and starts the app with `mocker.qaas.yaml`.
+Most QaaS mocker projects are deployed as container images. The current template ships with a multi-stage `Dockerfile` that restores, publishes, and starts the app with `mocker.qaas.yaml`.
 
 ## Build an Image
 
@@ -16,7 +16,7 @@ For the template's default `/health` mock:
 docker run --rm -p 8080:8080 my-qaas-mocker
 ```
 
-If your configuration exposes different ports or multiple servers, publish those ports instead.
+If your configuration exposes different ports or multiple servers, publish those ports instead. If you use HTTPS or gRPC TLS, make sure the referenced certificate files are available inside the image or mounted at runtime.
 
 ## Example Helm Chart
 
