@@ -1,5 +1,7 @@
 # Installation
 
+---
+
 ## Prerequisites
 
 | Requirement                              | Details                           |
@@ -18,33 +20,39 @@ Add this feeds to your global `NuGet.Config` (usually `~/.nuget/NuGet/NuGet.Conf
 <add key="Feed_C" value="{{ links.nuget_feed_c }}" />
 ```
 
+---
+
 ## Packages
 
 Add the packages your project needs. At minimum, you need `QaaS.Runner`; the Common libraries are optional plugins.
 
-```xml
-<ItemGroup>
-  <!-- Required -->
-  <PackageReference Include="QaaS.Runner" Version="*" />
+=== "`.csproj`"
 
-  <!-- Optional plugins — add only what you use -->
-  <PackageReference Include="QaaS.Common.Assertions" Version="*" />
-  <PackageReference Include="QaaS.Common.Generators" Version="*" />
-  <PackageReference Include="QaaS.Common.Probes" Version="*" />
-</ItemGroup>
-```
+    ```xml
+    <ItemGroup>
+      <!-- Required -->
+      <PackageReference Include="QaaS.Runner" Version="*" />
 
-Also, can install via the CLI:
+      <!-- Optional plugins — add only what you use -->
+      <PackageReference Include="QaaS.Common.Assertions" Version="*" />
+      <PackageReference Include="QaaS.Common.Generators" Version="*" />
+      <PackageReference Include="QaaS.Common.Probes" Version="*" />
+    </ItemGroup>
+    ```
 
-```bash
-nuget install QaaS.Runner # required
-nuget install QaaS.Common.Assertions # optional - contains common assertion
-nuget install QaaS.Common.Generators # optional - contains common data generators
-nuget install QaaS.Common.Probes # optional - contains common probes
-```
+=== "CLI"
+
+    ```bash
+    nuget install QaaS.Runner # required
+    nuget install QaaS.Common.Assertions # optional - contains common assertion
+    nuget install QaaS.Common.Generators # optional - contains common data generators
+    nuget install QaaS.Common.Probes # optional - contains common probes
+    ```
 
 !!! tip "Version compatibility"
     All Common packages must share the same `QaaS.Framework.SDK` version (or a compatible newer minor) as the `QaaS.Runner` you reference.
+
+---
 
 ## Project Templates
 
@@ -59,23 +67,24 @@ dotnet new install QaaS.ProjectTemplates
 dotnet new uninstall QaaS.ProjectTemplates
 ```
 
-The template creates:
+??? example "The template creates"
 
-```
-MyServiceTests/
-├── NuGet.Config
-├── MyServiceTests.sln
-├── MyServiceTests/
-│   ├── MyServiceTests.csproj
-│   ├── Program.cs
-│   ├── test.qaas.yaml
-│   └── Variables/
-│       ├── local.yaml
-│       └── k8s.yaml
-```
+    ```
+    MyServiceTests/
+    ├── NuGet.Config
+    ├── MyServiceTests.sln
+    ├── MyServiceTests/
+    │   ├── MyServiceTests.csproj
+    │   ├── Program.cs
+    │   ├── test.qaas.yaml
+    │   └── Variables/
+    │       ├── local.yaml
+    │       └── k8s.yaml
+    ```
+
+---
 
 ## Allure CLI
 
 The Allure CLI tool, along with installation instructions.
 Can be found at: [Allure CLI Repository]({{ links.allure_install }})
-

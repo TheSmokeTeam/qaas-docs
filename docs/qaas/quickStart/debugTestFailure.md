@@ -1,71 +1,43 @@
-# Debug Test Failures
-
-## 1. Increase Log Verbosity
-
-```bat
-dotnet run -- run test.qaas.yaml -l Debug
-```
-
-Use `-l Verbose` for protocol-level trace output.
-
-## 2. Split Act and Assert
-
-Run the phases independently to isolate failures.
-
-**Act only** (run sessions, write SessionData to storage):
-
-```bat
-dotnet run -- act test.qaas.yaml -w Variables/local.yaml
-```
-
-**Assert only** (read existing SessionData, run assertions):
-
-```bat
-dotnet run -- assert test.qaas.yaml -w Variables/local.yaml
-```
-
-Configure `FileSystem` storage to write session data locally:
-
-```yaml
-Storage:
-  Type: FileSystem
-  Path: ./storage
-```
-
-## 3. Inspect Session Data
-
-Open the `storage/` folder. Each JSON file is the `SessionData` of one session:
-
-- **Inputs** keyed by publisher name
-- **Outputs** keyed by consumer name
-- Timestamps on every item (useful for delay assertion debugging)
-
-## 4. View the Allure Report
-
-```bat
-allure serve
-```
-
-The report shows per-assertion pass/fail, failure reason, session data attachments, and observability links.
-
-## 5. Common Failure Causes
-
-| Symptom | Likely cause |
-|---|---|
-| Consumer output count is 0 | `TimeoutMs` too short, or SUT is slow |
-| Hermetic assertion fails | Messages lost in transit; inspect exchange/queue config |
-| `DelayByChunks` fails | System throughput below policy rate |
-| Assertion throws an exception | Missing or misspelled config field |
-| `OutputDeserializableTo` fails | Output format changed; compare raw bytes in session data |
-
-## 6. Logger Reference
-
-See [Logger](../userInterfaces/logger.md) for full Serilog and Elasticsearch sink configuration.
+# Debug Test Failure
 
 ---
 
-You've completed the Getting Started guide! Next, explore:
+## QaaS Logs
 
-- [Runner Architecture](../architecture.md)
-- [Advanced Concepts — Stages](../advancedConcepts/stages.md)
-- [Mocker Introduction](../../mocker/index.md)
+QaaS includes a configurable logger that can output logs to the console or to a file. The log level can be adjusted using the `-l` flag, or the entire logging configuration can be overridden using the `-g` flag.
+
+For more information about the logger, refer to the [Logger documentation](../userInterfaces/logger.md).
+
+---
+
+## QaaS Act/Assert Commands
+
+QaaS provides two specialized commands to help debug test failures:
+
+| Command  | Description                                                                                                              |
+|----------|--------------------------------------------------------------------------------------------------------------------------|
+| `act`    | Runs only the `act` phase of the test, which includes DataSources and Sessions. The output is stored in an external storage location. |
+| `assert` | Runs only the `assert` phase of the test, which includes DataSources and Assertions. It retrieves required data from the same external storage. |
+
+Both commands use the configuration defined in the [Storages](../userInterfaces/runner/configurationSections/storages/overview.md) section to access the external storage.
+
+!!! tip "These commands are particularly useful for"
+
+    - Debugging assertion configurations
+    - Using QaaS solely as a data injector for testing or validation
+
+### Usage Examples
+
+=== "Act only"
+
+    ```bash
+    dotnet run -- act test.qaas.yaml -w Variables/...
+    ```
+
+=== "Assert only"
+
+    ```bash
+    dotnet run -- assert test.qaas.yaml -w Variables/...
+    ```
+
+This workflow allows you to isolate and inspect each phase of the test independently, making it easier to identify and resolve issues.
