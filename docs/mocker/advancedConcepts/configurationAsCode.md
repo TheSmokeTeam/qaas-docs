@@ -93,5 +93,12 @@ Use `AddServer(...)` or `ReplaceServers(...)` when the mocker hosts several runt
 
 There are two useful code-first entry points:
 
-- `builder.Build().Start()` returns the exit code to the current process
-- `new Mocker(builder).Run()` builds, starts, and then exits the current process with the resulting exit code
+- `builder.Build().Start()` returns the exit code without exiting the current process
+- `new MockerRunner(builder).Run()` builds, starts, and then exits the current process with the resulting exit code
+
+If you want the `MockerRunner` convenience wrapper without exiting the current process, pass a custom exit action:
+
+```csharp
+var capturedExitCode = 0;
+new MockerRunner(builder, exitCode => capturedExitCode = exitCode).Run();
+```

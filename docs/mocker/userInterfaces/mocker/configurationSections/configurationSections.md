@@ -27,6 +27,30 @@ Do not configure both in the same file.
 
 When `Servers` is used, action names must be unique across all configured servers.
 
+## Configuration Overrides
+
+The CLI can layer configuration in this order:
+
+1. base YAML file
+2. `--overwrite-files`
+3. `--overwrite-arguments`
+4. configuration-like environment variables unless `--no-env` is used
+
+Environment-variable overrides are intentionally limited to the known mocker section roots:
+
+- `DataSources`
+- `Stubs`
+- `Controller`
+- `Server`
+- `Servers`
+
+Both `:` and `__` separators are supported. For example:
+
+```text
+Servers__0__Http__Port=18443
+Controller:Redis:Host=localhost:6379
+```
+
 ## Required Fields
 
 Required fields are fields that must be given a value and have no default value. A required field is only required when its parent section is used.

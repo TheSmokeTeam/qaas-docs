@@ -2,6 +2,8 @@
 
 Rows documented under `Server.*` also apply to each item under `Servers[]`.
 
+For socket endpoints, the documented supported combinations are `Tcp` + `Stream` and `Udp` + `Dgram`. `Broadcast` actions require a data source and are not supported over UDP.
+
 | Property Path | Type | Required | Default | Description |
 |:---|:---|:---|:---|:---|
 | `Server` | `object` | &#10006 |  | The legacy single server mocker instance to run. |
@@ -49,8 +51,8 @@ Rows documented under `Server.*` also apply to each item under `Servers[]`.
 | `Server.Socket.Endpoints` | `array` (`length` >= `1`) | &#10004 |  | All socket endpoint implementations handled by the socket server. |
 | `Server.Socket.Endpoints[]` | `object` | &#10006 |  |  |
 | `Server.Socket.Endpoints[].Port` | `integer` (`0.0` <= `value` <= `65535.0`) | &#10004 |  | Port that the socket listens on and binds connections to. |
-| `Server.Socket.Endpoints[].ProtocolType` | `enum` [`IP` / `IPv6HopByHopOptions` / `Unspecified` / `Icmp` / `Igmp` / `Ggp` / `IPv4` / `Tcp` / `Pup` / `Udp` / `Idp` / `IPv6` / `IPv6RoutingHeader` / `IPv6FragmentHeader` / `IPSecEncapsulatingSecurityPayload` / `IPSecAuthenticationHeader` / `IcmpV6` / `IPv6NoNextHeader` / `IPv6DestinationOptions` / `ND` / `Raw` / `Ipx` / `Spx` / `SpxII` / `Unknown`] | &#10004 |  | Specifies the protocol to use in the socket. |
-| `Server.Socket.Endpoints[].SocketType` | `enum` [`Stream` / `Dgram` / `Raw` / `Rdm` / `Seqpacket` / `Unknown`] | &#10006 | Stream | Specifies the type of socket. |
+| `Server.Socket.Endpoints[].ProtocolType` | `enum` | &#10004 |  | Specifies the protocol to use in the socket. The documented supported values are `Tcp` and `Udp`. |
+| `Server.Socket.Endpoints[].SocketType` | `enum` | &#10006 | Stream | Specifies the type of socket. Use `Stream` for `Tcp` and `Dgram` for `Udp`. |
 | `Server.Socket.Endpoints[].AddressFamily` | `enum` [`Unspecified` / `Unix` / `InterNetwork` / `ImpLink` / `Pup` / `Chaos` / `NS` / `Ipx` / `Iso` / `Osi` / `Ecma` / `DataKit` / `Ccitt` / `Sna` / `DecNet` / `DataLink` / `Lat` / `HyperChannel` / `AppleTalk` / `NetBios` / `VoiceView` / `FireFox` / `Banyan` / `Atm` / `InterNetworkV6` / `Cluster` / `Ieee12844` / `Irda` / `NetworkDesigners` / `Max` / `Packet` / `ControllerAreaNetwork` / `Unknown`] | &#10006 | InterNetwork | Specifies the address family used to approve connections. |
 | `Server.Socket.Endpoints[].BufferSizeBytes` | `integer` (`0.0` <= `value` <= `2147483647.0`) | &#10006 | 65536 | The size of the communication buffer in bytes. |
 | `Server.Socket.Endpoints[].NagleAlgorithm` | `boolean` | &#10006 | False | Whether to use the Nagle algorithm. |

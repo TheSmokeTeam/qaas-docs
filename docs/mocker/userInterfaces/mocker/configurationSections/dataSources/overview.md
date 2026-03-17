@@ -1,15 +1,15 @@
 # DataSources
 
-The list of the data sources that contain enumerables of data to be generated and iterated later in several places.
+`DataSources` is optional. Each item binds a unique name to an `IGenerator` hook and exposes generated data to the rest of the mock runtime.
 
-Data sources are based on the `hook` `IGenerator` and each data source needs to reference a generator with certain configurations for its data generation.
+Each data source can have its own generator-specific configuration, optional input data sources, and optional serialization or deserialization settings.
 
 ## Usage
 
 Data sources can be used in the following places:
 
-* In [Stubs](../stubs/overview.md) in order to give a certain stub data to be based on.
-* In other [DataSources](overview.md) in order to chain generations of data and enrich it.
-* In specific server implementations, (such as [Socket Server](../server/overview.md#socket)) when the server processes batches of data per connection.
+- in [Stubs](../stubs/overview.md) through `Stubs[].DataSourceNames`
+- in other `DataSources` to chain generations together
+- in [Socket](../server/overview.md#socket) broadcast actions through `Action.DataSourceName`
 
-In every place that data sources can be used the way to reference a specific data source is by its `Name`.
+In every place that data sources can be used, the reference key is the data source `Name`.
