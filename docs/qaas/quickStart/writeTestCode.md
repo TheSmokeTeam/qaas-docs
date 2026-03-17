@@ -1,229 +1,312 @@
-# Write a Test (Code)
+# Write Test With Yaml
 
-This page recreates the exact same DummyApp test from [Write a Test (YAML)](writeTestYaml.md) using C# code. Code-based configuration gives you full type safety, IDE refactoring, and conditional logic.
+Lets write tests for an application that uses `rabbitmq`.
+That application's name is `DummyApp`.
 
----
+The finished test project that will be written in this quick start tutorial can be found [here](REDA/examples/dummyapptests/). In addition a helm chart that deploys a `rabbitmq` that will work with this test project can be found [here](REDA/qaas-quickstart-dummyapp-helm-chart).
 
-## 1. Define the Data Source Using `FromFileSystem` Generator
+## Application spec
 
-This block sets up a data source that reads JSON files from the `TestData` folder, using the `FromFileSystem` generator from the `QaaS.Common.Generators` plugin.
+The application should withstand the following conditions
 
-```csharp
-var fromFileSystemTestDataConfiguration = new FromFileSystemConfig
-{
-    DataArrangeOrder = DataArrangeOrder.AsciiAsc,
-    FileSystem = new FileSystemConfig
-    {
-        Path = "TestData"
-    }
-};
+* Be `100%` hermetic, meaning for every input it receives an output is sent.
 
-var fromFileSystemTestData =
-    new DataSourceBuilder().Named("FromFileSystemTestData").HookNamed(nameof(FromFileSystem))
-        .Configure(fromFileSystemTestDataConfiguration);
+* Withstand an average rate of `50 msg/s`.
+
+* Have an I/O delay of less than `5 seconds`.
+
+* The application receives a json array as input and sends a json array with the same number of items in it as the received json array as output.
+
+The details of the rabbitmq the application uses are
+
+```txt
+Host: rabbitmq
+Port: 5672
+UserName: admin
+Password: admin
+Input Exchange: input
+Output Exchange: output
+I/O Routing Key: /
 ```
 
-- `FromFileSystemConfig` configures how the generator behaves:
-  - `DataArrangeOrder = AsciiAsc`: Ensures files are processed in lexicographic (alphabetical) order.
-  - `FileSystem.Path = "TestData"`: Points to the directory containing your JSON input samples.
-- `DataSourceBuilder` creates a reusable data source named `FromFileSystemTestData`.
-- `.HookNamed(nameof(FromFileSystem))` tells QaaS to use the `FromFileSystem` generator.
+## Creating Relevant Files
 
----
+Now to write the test, first we open the cmd in the directory where we store all of our test projects.
+Then we create a new dotnet project with the `qaas` project template.
 
-## 2. Configure RabbitMQ Connection Settings
-
-This defines the common RabbitMQ connection parameters used across both publisher and consumer.
-
-```csharp
-var rabbitMqConfiguration = new BaseRabbitMqConfig
-{
-    Host = "rabbitmq",
-    Username = "admin",
-    Password = "admin",
-    VirtualHost = "/",
-    Port = 5672
-};
+```bat
+dotnet new qaas.test -n DummyAppTests
 ```
 
-- `BaseRabbitMqConfig` holds shared connection settings.
-- `Host`, `Username`, `Password`, `Port`, and `VirtualHost` match the application spec.
-- The `VirtualHost` is set to `/` (default), which is standard unless otherwise configured.
+This will create the following C# QaaS project directory and files
 
----
-
-## 3. Set Up the Publisher with Load Balancing at 50 msg/s
-
-This builds the publisher that sends messages to the `input` exchange at a rate of 50 messages per second.
-
-```csharp
-var amqpPublisher = new PublisherBuilder().Named("Publisher")
-    .AddDataSource("FromFileSystemTestData")
-    .AddPolicy(new PolicyBuilder().Configure(new LoadBalancePolicyConfig
-    {
-        Rate = 50
-    }))
-    .Configure(new RabbitMqSenderConfig
-    {
-        Host = rabbitMqConfiguration.Host,
-        Username = rabbitMqConfiguration.Username,
-        Password = rabbitMqConfiguration.Password,
-        RoutingKey = "/",
-        Port = rabbitMqConfiguration.Port,
-        ExchangeName = "input"
-    });
+```txt
+DummyAppTests/
+|--NuGet.Config
+|--DummyAppTests.sln
+|--README.md
+|--.gitignore
+|--DummyAppTests/
+|----DummyAppTests.csproj
+|----Program.cs
+|----test.qaas.yaml
+|----Variables/
+|------local.yaml
+|------k8s.yaml
 ```
 
-- `.Named("Publisher")`: Gives the publisher a unique name for reference.
-- `.AddDataSource("FromFileSystemTestData")`: Links the publisher to the previously defined data source.
-- `.AddPolicy(...)`: Applies a `LoadBalance` policy with `Rate = 50`, ensuring the average publishing rate is 50 messages per second.
-- `.Configure(new RabbitMqSenderConfig ...)`: Finalizes the RabbitMQ-specific sending behavior:
-  - Sends to `input` exchange.
-  - Uses the routing key `/`.
-  - Uses the shared connection settings.
+These files will contain basic required information and configurations for a QaaS test project which we can now expend on top of.
 
----
+**NOTE** at this point of the tutorial we will ignore the `Variables` folder and its contents, we will come back to it later on in the [Make Test More Maintainable](makeTestMoreMaintainable.md) tutorial part.
 
-## 4. Set Up the Consumer with JSON Deserialization
+For the purpose of this example we will assume we have X json samples already, in a folder called `TestData`. which we create under our test directory `DummyAppTests/DummyAppTests/`.
 
-This configures the consumer to listen to the `output` exchange and deserialize received messages as JSON.
+File structure after creating relevant files:
 
-```csharp
-var amqpConsumer = new ConsumerBuilder().Named("Consumer")
-    .Configure(new RabbitMqReaderConfig
-    {
-        Host = rabbitMqConfiguration.Host,
-        Username = rabbitMqConfiguration.Username,
-        Password = rabbitMqConfiguration.Password,
-        RoutingKey = "/",
-        Port = rabbitMqConfiguration.Port,
-        ExchangeName = "output"
-    })
-    .WithTimeout(5000)
-    .WithDeserializer(new DeserializeConfig
-    {
-        Deserializer = SerializationType.Json
-    });
+```txt
+DummyAppTests/
+|--NuGet.Config
+|--DummyAppTests.sln
+|--README.md
+|--.gitignore
+|--DummyAppTests/
+|----DummyAppTests.csproj
+|----Program.cs
+|----test.qaas.yaml
+|----Variables/
+|------local.yaml
+|------k8s.yaml
+|----TestData/...
 ```
 
-- `.Named("Consumer")`: Names the consumer for use in assertions.
-- `.Configure(new RabbitMqReaderConfig ...)`: Sets up the RabbitMQ connection for consuming from the `output` exchange.
-- `.WithTimeout(5000)`: Sets a 5-second timeout (5000 ms) for waiting for messages — matches the YAML `TimeoutMs`.
-- `.WithDeserializer(...)`: Specifies that incoming `byte[]` data should be deserialized into .NET objects using `Json`.
+## Hooks And Plugins
 
----
+**Hooks** are C# classes that are recognized by QaaS's framework.
 
-## 5. Build the Session with Publisher and Consumer
+There are 3 types of hooks relevant to a QaaS test project:
 
-Now we combine the publisher and consumer into a single test session.
+* `Generators` hooks used for generating data to send to the tested system and use throughout the test.
+* `Assertions` hooks used for asserting if a test passes or fails.
+* `Probes` hooks used for actions that done to setup or rollback the test.
 
-```csharp
-var session = new SessionBuilder().Named("RabbitMqExchangeWithFromFileSystemTestData")
-    .AddPublisher(amqpPublisher)
-    .AddConsumer(amqpConsumer);
+These **Hooks** can be written in the QaaS test project and invoked by the `.yaml` file or code configuration, such hooks are automatically recognized by QaaS by their class names.
+
+On the other hand **Hooks** can also be provided in a nuget package called a `Plugin`.
+
+QaaS has 3 default `Plugins`, [QaaS.Common.Generators](REDA/v3/), [QaaS.Common.Assertions](REDA/v3/) and [QaaS.Common.Probes](REDA) that include within them a lot of commonly used generators, assertions and probe hooks, in this tutorial we will use some of the assertions offered by the `QaaS.Common.Assertions` package, some of the generators offered by the `QaaS.Common.Generators` and some of the probes offered by the `QaaS.Common.Probes` package in our test project.
+
+To use them we need to add the `QaaS.Common.Assertions`, `QaaS.Common.Generators`, `QaaS.Common.Probes` nuget packages to our C# project in a version compatible with our `QaaS.Runner` version (a version of the packages that has the same `QaaS.Framework.SDK` version or newer (but not breaking) than the `QaaS.Runner` package)
+
+`DummyAppTests.csproj`
+
+```xml
+<ItemGroup>
+  <PackageReference Include="QaaS.Common.Assertions" Version="x.x.x" />
+  <PackageReference Include="QaaS.Common.Generators" Version="x.x.x" />
+  <PackageReference Include="QaaS.Common.Probes" Version="x.x.x" />
+</ItemGroup>
 ```
 
-- `SessionBuilder` creates a test session named `RabbitMqExchangeWithFromFileSystemTestData`.
-- `.AddPublisher(...)` and `.AddConsumer(...)` attach the previously built actions.
+## Configuring The QaaS Yaml File
 
----
+The tests themselves can be configured at the `test.qaas.yaml` file that can invoke and run `hooks`, which are pieces of code written in the C# project that perform a certain action used to test an application.
 
-## 6. Configure the Hermeticity Assertion (100% Output Match)
+We will now see how to configure the `test.qaas.yaml` file for our tests.
 
-We assert that every input message has a corresponding output meaning that the app is 100% hermetic.
+### Initial configurations
 
-```csharp
-var hermeticsConfiguration = new HermeticByInputOutputPercentageConfiguration
-{
-    OutputNames = [amqpConsumer.Name!],
-    InputNames = [amqpPublisher.Name!],
-    ExpectedPercentage = 100
-};
+The yaml file automatically generated in our QaaS project will contains a place to put our yaml anchors
 
-var hermetics = new AssertionBuilder().Named("Hermetics")
-    .AddSessionName(session.Name!)
-    .HookNamed(nameof(HermeticByInputOutputPercentage))
-    .Configure(hermeticsConfiguration);
+`test.qaas.yaml`
+
+```yaml
+anchors: {}
 ```
 
-- `HermeticByInputOutputPercentageConfiguration` defines:
-  - Which output (`Consumer`) and input (`Publisher`) to compare.
-  - `ExpectedPercentage = 100`: Ensures **all** inputs have a matching output.
-- `AssertionBuilder` creates an assertion named `Hermetics`.
-- `.HookNamed(nameof(HermeticByInputOutputPercentage))`: Uses the  `HermeticByInputOutputPercentage` assertion from `QaaS.Common.Assertions`.
+### Configuring Data Sources
 
----
+In order to take our json samples from the folder `TestData` and use them in the test we need to configure a data source.
+a `data source` is a way to provide data to the tests, its based on a `Generator` hook that it runs in order to create an enumerable of data.
 
-## 7. Configure the Delay Assertion (Max 5s Between Messages)
+In our case we need a `Generator` hook that can take raw data from a folder, such a generator exists in the `QaaS.Common.Generators` plugin and is called `FromFileSystem`, we can use it because we added the `QaaS.Common.Generators` plugin to our project.
 
-We verify that the application processes messages within 5 seconds.
+We also need to give the data source a name so we can reference it in the future, we will give it the name of the folder it came from combined with its generator `FromFileSystemTestData` (we can give it any name, we want it to be as indicative as possible).
 
-```csharp
-var delayConfiguration = new DelayByChunksConfiguration
-{
-    Output = new Chunk
-    {
-        Name = amqpConsumer.Name!,
-        ChunkSize = 1
-    },
-    Input = new Chunk
-    {
-        Name = amqpPublisher.Name!,
-        ChunkSize = 1
-    },
-    MaximumDelayMs = 5000
-};
-
-var delay = new AssertionBuilder().Named("Delay")
-    .AddSessionName(session.Name!)
-    .HookNamed(nameof(DelayByChunks))
-    .Configure(delayConfiguration);
+```yaml
+DataSources:
+  - Name: FromFileSystemTestData
+    Generator: FromFileSystem
+    GeneratorConfiguration:
+      DataArrangeOrder: AsciiAsc
+      FileSystem:
+        Path: TestData
 ```
 
-- `DelayByChunksConfiguration` checks the time between **individual chunks** of input and output.
-  - `ChunkSize = 1`: Compares each message individually (not in batches).
-  - `MaximumDelayMs = 5000`: Ensures no message takes longer than 5 seconds to process.
-- `AssertionBuilder` creates a `Delay` assertion tied to the session.
-- Uses the `DelayByChunks` assertion from `QaaS.Common.Assertions`.
+### Configuring The Sessions
 
----
+Now that we have our test data prepared we need to publish it to the `input` exchange and consume the application's output from the `output` exchange, for that we configure a session.
 
-## 8. Finalize the Test Runner with All Components
+That session also needs a name so we can reference it in the future, we will give it a name comprised of the name of the data source used combined with the protocol used - `RabbitMqExchangeWithFromFileSystemTestData`.
 
-This is the final step: assembling everything into the QaaS test runner.
+The session needs a rabbitmq publisher with a policy controlling its publishing rate so its the average rate the application is supposed to withstand, 50 msg/s.
+And it needs a rabbitmq consumer listening to the output exchange simultanously.
 
-```csharp
-var runner = Bootstrap.New(args);
-runner.ExecutionBuilders.Add(new ExecutionBuilder()
-    .AddSession(session)
-    .AddDataSource(fromFileSystemTestData)
-    .AddAssertion(delay)
-    .AddAssertion(hermetics));
+Since we only have 1 publisher and 1 consumer we can simple name them `Publisher` and `Consumer` so its easy to reference them.
+
+`RabbitMqExchange` is a protocol that recieves `byte[]` **serialized** data when publishing to it and returns `byte[]` **serialized** data when consuming from it, our data source's data is already serialized since we didn't specify any `Deserializer` when loading it.
+Meaning we only need to specify the `Deserializer` to use when consuming the output data from the `output` exchange as `Json`.
+
+```yaml
+Sessions:
+  - Name: RabbitMqExchangeWithFromFileSystemTestData
+    Publishers:
+      - Name: Publisher
+        DataSourceNames: [FromFileSystemTestData]
+        Policies:
+          - LoadBalance:
+              Rate: 50
+        RabbitMq: 
+          Host: rabbitmq
+          Username: admin
+          Password: admin
+          RoutingKey: /
+          Port: 5672
+          ExchangeName: input
+    Consumers:
+      - Name: Consumer
+        TimeoutMs: 5000
+        RabbitMq:
+          Host: rabbitmq
+          Username: admin
+          Password: admin
+          RoutingKey: /
+          Port: 5672
+          ExchangeName: output
+        Deserialize:
+          Deserializer: Json
 ```
 
-- `Bootstrap.New(args)` initializes the QaaS test runner with command-line arguments.
-- `ExecutionBuilder` builds the execution plan:
-  - `.AddSession(session)`: Adds the main test session.
-  - `.AddDataSource(fromFileSystemTestData)`: Registers the data source.
-  - `.AddAssertion(delay)` and `.AddAssertion(hermetics)`: Adds both assertions.
-- The runner will now execute:
-  1. Load data from `TestData`.
-  2. Publish at 50 msg/s to `input` exchange.
-  3. Consume from `output` exchange with JSON deserialization.
-  4. Validate hermeticity and delay.
+### Configuring The Assertions
 
-## 9. Run
+Now that we have our sessions configured we want to perform assertions on the data they give us, for that we need to configure the `Assertions` section.
 
-```csharp
-runner.Run();
+We want to assert that our application was 100% hermetic during the session `RabbitMqExchangeWithFromFileSystemTestData`, for that we have a hermetic assertion called `HermeticByInputOutputPercentage` and its one of the common assertions we can use because we added `QaaS.Common.Assertions` as a plugin in our project.
+
+```yaml
+Assertions:
+  - Assertion: HermeticByInputOutputPercentage
+    SessionNames: [RabbitMqExchangeWithFromFileSystemTestData]
+    AssertionConfiguration:
+      OutputNames: [Consumer]
+      InputNames: [Publisher]
+      ExpectedPercentage: 100
 ```
 
-Without this call the runner exits immediately.
+We also want to assert that our application's delay was less than 5 seconds, for that we have a delay assertion called `DelayByChunks` which checks the delay between chunks of inputs and outputs. Its one of the common assertions we can use because we added `QaaS.Common.Assertions` as a plugin in our project. we will add that assertion to the assertion list like so:
 
-## Mixing Code and YAML
+```yaml
+  - Assertion: DelayByChunks
+    SessionNames: [RabbitMqExchangeWithFromFileSystemTestData]
+    AssertionConfiguration:
+      Output:
+        Name: Consumer
+        ChunkSize: 1
+      Input:
+        Name: Publisher
+        ChunkSize: 1
+      MaximumDelayMs: 5000
+```
 
-Code and YAML configuration are additive — anything defined in the YAML file is still loaded. Code-level builders can modify, extend, or override it. See [Configuration As Code](../advancedConcepts/configurationAsCode.md).
+## Yaml Configuration File Validation
 
-## Next Step
+### Configuration File Overview
 
-[Write custom hooks →](writeHooks.md)
+After configuring all the sections above we now have a qaas test yaml file that looks like this
+
+`test.qaas.yaml`
+
+```yaml
+anchors: {}
+
+DataSources:
+  - Name: FromFileSystemTestData
+    Generator: FromFileSystem
+    GeneratorConfiguration:
+      DataArrangeOrder: AsciiAsc
+      FileSystem:
+        Path: TestData
+
+Sessions:
+  - Name: RabbitMqExchangeWithFromFileSystemTestData
+    Publishers:
+      - Name: Publisher
+        DataSourceNames: [FromFileSystemTestData]
+        Policies:
+          - LoadBalance:
+              Rate: 50
+        RabbitMq:   
+          Host: rabbitmq
+          Username: admin
+          Password: admin
+          RoutingKey: /
+          Port: 5672
+          ExchangeName: input
+    Consumers:
+      - Name: Consumer
+        TimeoutMs: 5000
+        RabbitMq:
+          Host: rabbitmq
+          Username: admin
+          Password: admin
+          RoutingKey: /
+          Port: 5672
+          ExchangeName: output
+        Deserialize:
+          Deserializer: Json
+
+Assertions:
+  - Assertion: HermeticByInputOutputPercentage
+    SessionNames: [RabbitMqExchangeWithFromFileSystemTestData]
+    AssertionConfiguration:
+      OutputNames: [Consumer]
+      InputNames: [Publisher]
+      ExpectedPercentage: 100
+  - Assertion: DelayByChunks
+    SessionNames: [RabbitMqExchangeWithFromFileSystemTestData]
+    AssertionConfiguration:
+      Output:
+        Name: Consumer
+        ChunkSize: 1
+      Input:
+        Name: Publisher
+        ChunkSize: 1
+      MaximumDelayMs: 5000
+```
+
+```txt
+DummyAppTests/
+|--NuGet.Config
+|--DummyAppTests.sln
+|--README.md
+|--.gitignore
+|--DummyAppTests/
+|----DummyAppTests.csproj
+|----Program.cs
+|----test.qaas.yaml
+|----Variables/
+|------local.yaml
+|------k8s.yaml
+|----TestData/...
+```
+
+### Templating
+
+If we want to see all the default values qaas has loaded in our configuration file we can template it, to do that we open the terminal in the directory `DummyAppTests/DummyAppTests/` and type
+
+```bat
+dotnet run -- template test.qaas.yaml
+```
+
+which will give us the qaas yaml configuration file as it looks after being loaded by qaas and given default values/changed (:warning: **Note** that the generated template file might not be runnable or valid).
+
+If the configurations are **invalid** the `qaas template` command will throw a fatal log but still continue to template what it can of the configuration file.
