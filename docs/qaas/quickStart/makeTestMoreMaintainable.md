@@ -189,8 +189,8 @@ DummyAppTests/
 ```yaml
 variables:
   rabbitmq:
-    host: REDA
-    port: REDA
+    host: <clusterHostname>
+    port: <nodePort>
 ```
 
 #### **Variables/k8s.yaml**
