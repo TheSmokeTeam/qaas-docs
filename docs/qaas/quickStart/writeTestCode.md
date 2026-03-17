@@ -1,8 +1,8 @@
-# Write a Test (Code)
+# Write Test With Code
 
-This page recreates the exact same DummyApp test from [Write a Test (YAML)](writeTestYaml.md) using C# code. Code-based configuration gives you full type safety, IDE refactoring, and conditional logic.
+Now that we've covered how to configure the test using `test.qaas.yaml`, let's explore how to achieve the **exact same behavior** using **C# code** instead. This approach gives you full programmatic control, better type safety, and easier refactoring, ideal for complex or evolving test scenarios.
 
----
+We’ll walk through each code block, explaining its purpose and how it maps to the YAML configuration from the previous section.
 
 ## 1. Define the Data Source Using `FromFileSystem` Generator
 
@@ -29,8 +29,6 @@ var fromFileSystemTestData =
 - `DataSourceBuilder` creates a reusable data source named `FromFileSystemTestData`.
 - `.HookNamed(nameof(FromFileSystem))` tells QaaS to use the `FromFileSystem` generator.
 
----
-
 ## 2. Configure RabbitMQ Connection Settings
 
 This defines the common RabbitMQ connection parameters used across both publisher and consumer.
@@ -49,8 +47,6 @@ var rabbitMqConfiguration = new BaseRabbitMqConfig
 - `BaseRabbitMqConfig` holds shared connection settings.
 - `Host`, `Username`, `Password`, `Port`, and `VirtualHost` match the application spec.
 - The `VirtualHost` is set to `/` (default), which is standard unless otherwise configured.
-
----
 
 ## 3. Set Up the Publisher with Load Balancing at 50 msg/s
 
@@ -78,11 +74,9 @@ var amqpPublisher = new PublisherBuilder().Named("Publisher")
 - `.AddDataSource("FromFileSystemTestData")`: Links the publisher to the previously defined data source.
 - `.AddPolicy(...)`: Applies a `LoadBalance` policy with `Rate = 50`, ensuring the average publishing rate is 50 messages per second.
 - `.Configure(new RabbitMqSenderConfig ...)`: Finalizes the RabbitMQ-specific sending behavior:
-  - Sends to `input` exchange.
-  - Uses the routing key `/`.
-  - Uses the shared connection settings.
-
----
+    - Sends to `input` exchange.
+    - Uses the routing key `/`.
+    - Uses the shared connection settings.
 
 ## 4. Set Up the Consumer with JSON Deserialization
 
@@ -111,8 +105,6 @@ var amqpConsumer = new ConsumerBuilder().Named("Consumer")
 - `.WithTimeout(5000)`: Sets a 5-second timeout (5000 ms) for waiting for messages — matches the YAML `TimeoutMs`.
 - `.WithDeserializer(...)`: Specifies that incoming `byte[]` data should be deserialized into .NET objects using `Json`.
 
----
-
 ## 5. Build the Session with Publisher and Consumer
 
 Now we combine the publisher and consumer into a single test session.
@@ -125,8 +117,6 @@ var session = new SessionBuilder().Named("RabbitMqExchangeWithFromFileSystemTest
 
 - `SessionBuilder` creates a test session named `RabbitMqExchangeWithFromFileSystemTestData`.
 - `.AddPublisher(...)` and `.AddConsumer(...)` attach the previously built actions.
-
----
 
 ## 6. Configure the Hermeticity Assertion (100% Output Match)
 
@@ -151,8 +141,6 @@ var hermetics = new AssertionBuilder().Named("Hermetics")
   - `ExpectedPercentage = 100`: Ensures **all** inputs have a matching output.
 - `AssertionBuilder` creates an assertion named `Hermetics`.
 - `.HookNamed(nameof(HermeticByInputOutputPercentage))`: Uses the  `HermeticByInputOutputPercentage` assertion from `QaaS.Common.Assertions`.
-
----
 
 ## 7. Configure the Delay Assertion (Max 5s Between Messages)
 
@@ -186,8 +174,6 @@ var delay = new AssertionBuilder().Named("Delay")
 - `AssertionBuilder` creates a `Delay` assertion tied to the session.
 - Uses the `DelayByChunks` assertion from `QaaS.Common.Assertions`.
 
----
-
 ## 8. Finalize the Test Runner with All Components
 
 This is the final step: assembling everything into the QaaS test runner.
@@ -212,18 +198,16 @@ runner.ExecutionBuilders.Add(new ExecutionBuilder()
   3. Consume from `output` exchange with JSON deserialization.
   4. Validate hermeticity and delay.
 
-## 9. Run
+## Running The Configured Test
+
+In order to actually run the test we just configured we need to add the following line:
 
 ```csharp
 runner.Run();
 ```
 
-Without this call the runner exits immediately.
+If we don't, the test will simply never run.
 
-## Mixing Code and YAML
+## Combining Code Configuration With YAML
 
-Code and YAML configuration are additive — anything defined in the YAML file is still loaded. Code-level builders can modify, extend, or override it. See [Configuration As Code](../advancedConcepts/configurationAsCode.md).
-
-## Next Step
-
-[Write custom hooks →](writeHooks.md)
+We are not limited to configuring tests with just code or `YAML`, anything that is configured with `YAML` files is still there and you can acsess it, edit it and run at. More information here: [Configuration As Code](../advancedConcepts/configurationAsCode.md).

@@ -6,4 +6,4 @@
 |-------------|---------------------------------------------------|
 | **Runtime** | .NET 10                                           |
 | **Package** | `QaaS.Runner` (NuGet)                             |
-| **Source**  | [GitHub — QaaS.Runner]({{ links.github_runner }}) |
+| **Source**  | [Repository — QaaS.Runner]({{ links.repository_runner }}) |

@@ -275,13 +275,14 @@ markdown_extensions:
 
 extra:
   links:
-    github_org: https://github.com/TheSmokeTeam
-    github_docs: https://github.com/TheSmokeTeam/qaas-docs
-    github_runner: https://github.com/TheSmokeTeam/QaaS.Runner
-    github_mocker: https://github.com/TheSmokeTeam/QaaS.Mocker
-    github_framework: https://github.com/TheSmokeTeam/QaaS.Framework
-    github_assertions: https://github.com/TheSmokeTeam/QaaS.Common.Assertions
-    github_generators: https://github.com/TheSmokeTeam/QaaS.Common.Generators
+    repository_org: https://github.com/TheSmokeTeam
+    repository_docs: https://github.com/TheSmokeTeam/qaas-docs
+    repository_runner: https://github.com/TheSmokeTeam/QaaS.Runner
+    repository_mocker: https://github.com/TheSmokeTeam/QaaS.Mocker
+    repository_framework: https://github.com/TheSmokeTeam/QaaS.Framework
+    repository_assertions: https://github.com/TheSmokeTeam/QaaS.Common.Assertions
+    repository_generators: https://github.com/TheSmokeTeam/QaaS.Common.Generators
+    repository_probes: https://github.com/TheSmokeTeam/QaaS.Common.Probes
     allure_docs: https://docs.qameta.io/allure/
     allure_install: https://docs.qameta.io/allure/#_installing_a_commandline
     dotnet_sdk: https://dotnet.microsoft.com/download
@@ -292,6 +293,8 @@ extra:
     nuget_feed_b: feed_b
     nuget_feed_c: feed_c
     qaas_project_templates: link_to_templates
+    dummyapp_tests: REDA/examples/dummyapptests/
+    dummyapp_helm_chart: REDA/qaas-quickstart-dummyapp-helm-chart
     runner_schema: https://raw.githubusercontent.com/TheSmokeTeam/QaaS.PackageMirror/master/schemas/runner-family/latest/schema.json
     mocker_schema: https://raw.githubusercontent.com/TheSmokeTeam/QaaS.PackageMirror/master/schemas/mocker-family/latest/schema.json
   social:

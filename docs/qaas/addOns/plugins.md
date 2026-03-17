@@ -8,11 +8,11 @@ A QaaS Plugin is a NuGet package containing **QaaS hooks** (generators, assertio
 
 Examples of built-in QaaS Plugins include:
 
-- [QaaS.Common.Generators](REDA/v3/)  
+- [QaaS.Common.Generators]({{ links.repository_generators }})  
 
-- [QaaS.Common.Assertions](REDA/v3/)  
+- [QaaS.Common.Assertions]({{ links.repository_assertions }})  
 
-- [QaaS.Common.Probes](REDA)  
+- [QaaS.Common.Probes]({{ links.repository_probes }})  
 
 ---
 
