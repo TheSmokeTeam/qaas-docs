@@ -8,8 +8,6 @@ We now have a working test that has produced results. However, the test file has
 
 To address these issues, we can use **anchors**, **placeholders**, and **overwriting files** to improve maintainability and reduce duplication.
 
----
-
 ## Anchors
 
 Anchors allow us to define reusable configuration blocks that are expanded when the YAML is rendered. They help eliminate duplication by creating "macros" for repeated structures.
@@ -127,8 +125,6 @@ Assertions:
 - Use anchors only for complex values (dictionaries or lists).
 - Anchors do not work with overwriting files—changes to an anchor are not propagated to its references in overwritten files.
 
----
-
 ## Placeholders
 
 Placeholders allow dynamic value substitution within YAML configurations. They are especially useful for environment-specific settings.
@@ -169,8 +165,6 @@ This allows the same configuration to be reused across environments by simply ch
 - Place placeholder values under the `variables` section.
 - Use `camelCase` for variable keys.
 - Use placeholders for non-logical, environment-dependent values.
-
----
 
 ## Overwriting Files
 
@@ -223,8 +217,6 @@ dotnet run -- run test.qaas.yaml -w Variables/k8s.yaml
 This approach enables clean separation of concerns and allows the same test logic to be reused across different environments.
 
 > Note: Variable files use the `.yaml` extension because they contain only configuration data, not QaaS-specific structures.
-
----
 
 ## Cases: Handling Repetitive Test Variants
 

@@ -7,8 +7,6 @@ control** for dynamic, conditional, and reusable test logic.
 For teams choosing to use YAML, it is strongly recommended to use a capable IDE with real-time schema validation and
 intelligent code completion to ensure correctness, reduce errors, and improve productivity.
 
----
-
 ## Available Schemas
 
 To enable real-time validation, auto-completion, and contextual suggestions for QaaS YAML configurations, you must
@@ -40,8 +38,6 @@ Open any `.yaml` file and you will receive real-time:
 
 !!! tip
     To trigger suggestions, use `Ctrl + Space`.
-
----
 
 ## IDE Recommendations & Setup
 

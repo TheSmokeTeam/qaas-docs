@@ -1,7 +1,5 @@
 # Installation
 
----
-
 ## Prerequisites
 
 | Requirement                              | Details                           |
@@ -19,8 +17,6 @@ Add this feeds to your global `NuGet.Config` (usually `~/.nuget/NuGet/NuGet.Conf
 <add key="Feed_B" value="{{ links.nuget_feed_b }}" />
 <add key="Feed_C" value="{{ links.nuget_feed_c }}" />
 ```
-
----
 
 ## Packages
 
@@ -52,8 +48,6 @@ Add the packages your project needs. At minimum, you need `QaaS.Runner`; the Com
 !!! tip "Version compatibility"
     All Common packages must share the same `QaaS.Framework.SDK` version (or a compatible newer minor) as the `QaaS.Runner` you reference.
 
----
-
 ## Project Templates
 
 QaaS provides `dotnet new` templates for scaffolding new test projects.
@@ -81,8 +75,6 @@ dotnet new uninstall QaaS.ProjectTemplates
     │       ├── local.yaml
     │       └── k8s.yaml
     ```
-
----
 
 ## Allure CLI
 

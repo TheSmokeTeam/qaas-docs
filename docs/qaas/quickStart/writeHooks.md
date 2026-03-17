@@ -4,8 +4,6 @@ When the built-in `QaaS` plugins do not provide sufficient functionality for tes
 
 > *The application receives a JSON array as input and sends a JSON array with the same number of items as output.*
 
----
-
 ## 1. Creating a Custom Generator: `JsonArrayGenerator`
 
 A generator produces test data and implements the `IGenerator` interface from the `QaaS.Framework.SDK` package. We extend `BaseGenerator<T>` with a configuration record that includes validation and default values.
@@ -78,8 +76,6 @@ DummyAppTests/
 └── TestData/
 ```
 
----
-
 ## 2. Configuring the Generator in `DataSources`
 
 Define a `DataSource` in `test.qaas.yaml` that uses the custom generator with specific configuration.
@@ -94,8 +90,6 @@ DataSources:
 ```
 
 This creates 10 JSON arrays, each with 5 items.
-
----
 
 ## 3. Using the DataSource in a New Session
 
@@ -133,8 +127,6 @@ Sessions:
           Deserializer: Json
 ```
 
----
-
 ## 4. Adding Common Assertions
 
 Apply standard assertions to the new session for hermeticity and delay.
@@ -159,8 +151,6 @@ Assertions:
         ChunkSize: 1
       MaximumDelayMs: 5000
 ```
-
----
 
 ## 5. Creating a Custom Assertion: `LengthAssertion`
 
@@ -226,8 +216,6 @@ Assertions:
       OutputName: Consumer
       ExpectedLength: 5
 ```
-
----
 
 ## 6. Creating a Custom Probe: `PrintCurrentTimeProbe`
 
