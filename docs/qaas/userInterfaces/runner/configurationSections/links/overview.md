@@ -11,7 +11,7 @@ Links can be found by clicking on the relevant test and looking at the Links sec
 Links to a kibana UI.
 
 !!! Tip "Kibana Version"
-    The suggested Kibana to use is the one supported by `REDA` in version `8.4.1`.
+The suggested Kibana to use is the one supported by `{{links.links_kibana_supporter}}` in version `{{links.links_kibana_version}}`.
 
 #### Getting The DataViewId
 
