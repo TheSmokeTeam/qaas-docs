@@ -1,6 +1,8 @@
-# Stages
+# Stages in QaaS: Orchestrating Sequential & Parallel Test Execution
 
-Stages give you fine-grained control over execution order. Actions within the same stage run **in parallel**; stages themselves run **sequentially**. This ensures complex workflows execute correctly without blocking unnecessary work.
+> **Stages** in QaaS provide **fine-grained control over execution order**, enabling you to define **sequential
+dependencies between test phases** while maximizing **parallelism within stages**. This ensures complex workflows
+> execute correctly—without blocking unnecessary work.
 
 ---
 
@@ -79,7 +81,7 @@ sessionBuilder
 > 3. `ValidateProcessing` runs in Stage 1.
 > 4. Only after `ValidateProcessing` completes does Stage 2 begin.
 > 5. `Cleanup` runs in Stage 2.
-> **Outcome**: Predictable, dependency-aware execution with no race conditions.
+     > **Outcome**: Predictable, dependency-aware execution with no race conditions.
 
 ---
 

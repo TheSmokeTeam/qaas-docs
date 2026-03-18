@@ -1,8 +1,8 @@
 # Configuration as Code
 
-While YAML offers a concise, human-readable way to define test scenarios, **Configuration as Code (CaC)** lets you harness the full power of C# for dynamic, conditional, and complex test orchestration.
+**QaaS** is a modern, extensible testing and execution framework designed to support both **declarative configuration via YAML** and **programmatic configuration via C#**. While YAML offers a human-readable, concise way to define test scenarios, **QaaS elevates test automation through Configuration as Code (CaC)**—enabling teams to harness the full expressive power of C# for dynamic, conditional, and complex test orchestration and in order not to be limited by `YAML`.
 
-This guide covers initialization, builder APIs, execution control, and advanced patterns.
+This guide provides a comprehensive, professional overview of **Configuration as Code in QaaS**, covering initialization, configuration, execution control, and advanced patterns for building robust, maintainable, and scalable test systems.
 
 ---
 
@@ -29,14 +29,14 @@ var runner = Bootstrap.New(args);
 
 ## The `Runner`: Central Orchestrator of Test Executions
 
-The `Runner` class represents the core execution context. It manages one or more `ExecutionBuilder` instances, each defining a distinct logical test run. An `Execution` is the combination of actions performed in a single `Case` or `Command` (when using `execute`). When using `run`, `act`, or `assert`, there is a single execution.
+The `Runner` class represents the core execution context in QaaS. It manages one or more `ExecutionBuilder` instances, each execution defining a distinct logical test run. `Execution` can be dfined by the combination of every actions that are performed in a single `Case` or a single `Command` (when using `Execute` command). When using `Run`, `Act` or `Assert` command, there will be a single execution responsible for performing all the actions.
 
-See [QaaS.Framework.Executions](REDA/executions/) for more detail.
+For more documentation about `Executions`, please refer to [QaaS.Framework.Executions](../../framework/projects/executions.md).
 
 ### Core Properties
 
-| Property | Description |
-|--------|-------------|
+| Property            | Description                                                                                  |
+|---------------------|----------------------------------------------------------------------------------------------|
 | `ExecutionBuilders` | A list of `ExecutionBuilder` instances, each representing a separate test execution context. |
 
 ### Accessing the Runner
@@ -56,13 +56,13 @@ var executionBuilders = runner.ExecutionBuilders;
 
 Each `ExecutionBuilder` encapsulates the configuration for a single test execution. It composes multiple components that define behavior, data flow, and validation.
 
-| Component | Purpose |
-|--------|--------|
-| `Sessions` | Defines one or more `SessionBuilder` instances, each representing a sequence of actions against the system. |
-| `Storages` | Configures data persistence mechanisms (e.g., file systems, S3, databases). |
-| `Assertions` | Specifies validation rules and outcome checks. |
-| `DataSources` | All generators to generate data. |
-| `Links` | Integrates external observability systems (e.g., Prometheus, Grafana). |
+| Component     | Purpose                                                                                                     |
+|---------------|-------------------------------------------------------------------------------------------------------------|
+| `Sessions`    | Defines one or more `SessionBuilder` instances, each representing a sequence of actions against the system. |
+| `Storages`    | Configures data persistence mechanisms (e.g., file systems, S3, databases).                                 |
+| `Assertions`  | Specifies validation rules and outcome checks.                                                              |
+| `DataSources` | All generators to generate data.                                                                            |
+| `Links`       | Integrates external observability systems (e.g., Prometheus, Grafana).                                      |
 
 ### Accessing Builder Components
 
@@ -253,4 +253,19 @@ protected override int StartExecutions(List<Execution> executions)
 
 ---
 
-With Configuration as Code, configuration is not just defined — it is engineered.
+> **Conclusion**: **QaaS empowers teams to move beyond static configuration** by embracing **Configuration as Code**—a paradigm that combines the clarity of YAML with the power of C#.
+
+---
+
+## Conclusion
+
+**QaaS** empowers teams to move beyond static YAML configurations by enabling **Configuration as Code**—a flexible, maintainable, and powerful approach to test automation. By combining declarative setup with programmatic control, teams can implement complex, conditional, and dynamic test workflows with confidence.
+
+Use this guide to:
+
+- Initialize **QaaS** runners.
+- Customize sessions, storages, assertions, and links.
+- Add custom actions (e.g., Kafka publishers).
+- Orchestrate executions with full control.
+
+With **QaaS**, configuration is not just defined — it is engineered.
