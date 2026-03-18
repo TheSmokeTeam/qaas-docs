@@ -292,11 +292,11 @@ extra:
     nuget_feed_b: feed_b
     nuget_feed_c: feed_c
     qaas_project_templates: link_to_templates
-    dummyapp_tests: {git}/examples/dummyapptests/
-    dummyapp_helm_chart: {git}/qaas-quickstart-dummyapp-helm-chart
+    dummyapp_tests: GIT/examples/dummyapptests/
+    dummyapp_helm_chart: GIT/qaas-quickstart-dummyapp-helm-chart
     artifactory: artifactory-link
     repository_modules: https://github.com/TheSmokeTeam/QaaS.Common.Modules
-    repository_vap: {git}/versioned-artifact-publisher
+    repository_vap: GIT/versioned-artifact-publisher
     runner_schema: https://raw.githubusercontent.com/TheSmokeTeam/QaaS.PackageMirror/master/schemas/runner-family/latest/schema.json
     mocker_schema: https://raw.githubusercontent.com/TheSmokeTeam/QaaS.PackageMirror/master/schemas/mocker-family/latest/schema.json
   social:
