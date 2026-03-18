@@ -1,6 +1,6 @@
 # Storage
 
-The Storage section contains a external storage lists that qaas inner objects can be stored in or retrieved from when using the `qaas act` or `qaas assert` commands.
+The Storage section contains an external storage lists that qaas inner objects can be stored in or retrieved from when using the `qaas act` or `qaas assert` commands.
 Currently only `SessionData` which is an object generated from [Sessions](../sessions/overview.md) and used by [Assertions](../assertions/overview.md) and [DataSources](../dataSources/overview.md) can be stored or retrieved.
 
 ## Available Storage Types

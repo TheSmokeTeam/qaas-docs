@@ -1,6 +1,8 @@
 # Configuration Sections
 
-The runner YAML file is divided into the sections below. Each section configures a different aspect of the test.
+The QaaS configuration `.yaml` file is divided into the sections below. Each section configures a different aspect of the test.
+In this part of the documentation you can read about all the possible configurations available to you within each configuration section.
+
 
 The `.yaml` configuration file is divided into the following sections
 
