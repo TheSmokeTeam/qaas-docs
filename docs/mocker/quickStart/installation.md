@@ -6,9 +6,9 @@
 * Global `NuGet.Config` file configured to the following feeds
 
 ```xml
-<add key="Feed_A" value="REDA" />
-<add key="Feed_B" value="REDA" />
-<add key="Feed_C" value="REDA" />
+<add key="Feed_A" value="{{ links.nuget_feed_a }}" />
+<add key="Feed_B" value="{{ links.nuget_feed_b }}" />
+<add key="Feed_C" value="{{ links.nuget_feed_c }}" />
 ```
 
 ## Packages
