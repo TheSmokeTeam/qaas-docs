@@ -40,7 +40,7 @@ For the purpose of this example we will assume we have X json samples already, i
 
 ## Hooks And Plugins
 
-`QaaS.Mocker` introduces additional type of `hook` called `processors`. Further explanation on hooks can be found [here](REDA/quickStart/writeTest/).
+`QaaS.Mocker` introduces additional type of `hook` called `processors`. Further explanation on hooks can be found [here](../../qaas/quickStart/writeHooks.md).
 
 `processors` hooks give the mock server logic to execute on a specific endpoint request.
 
@@ -48,7 +48,7 @@ These **Hooks** can be written in the QaaS mocker project and invoked by the `.q
 
 On the other hand **Hooks** can also be provided in a nuget package called a `Plugin`.
 
-QaaS provides a default processors `Plugin`, [QaaS.Common.Processors](REDA) that includes commonly used processors and assertion hooks.
+QaaS provides a default processors `Plugin`, [QaaS.Common.Processors]({{ links.repository_processors }}) that includes commonly used processors and assertion hooks.
 
 To use them we need to add the `QaaS.Common.Processors` and `QaaS.Common.Generators` nuget packages to our C# project in a version compatible with our `QaaS.Mocker` version
 

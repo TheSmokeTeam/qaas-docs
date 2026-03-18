@@ -112,6 +112,7 @@ docker build \
 | `QAAS_DOCS_LINK_REPOSITORY_ASSERTIONS`  | `repository_assertions`  | QaaS.Common.Assertions repo URL                |
 | `QAAS_DOCS_LINK_REPOSITORY_GENERATORS`  | `repository_generators`  | QaaS.Common.Generators repo URL                |
 | `QAAS_DOCS_LINK_REPOSITORY_PROBES`      | `repository_probes`      | QaaS.Common.Probes repo URL                    |
+| `QAAS_DOCS_LINK_REPOSITORY_PROCESSORS`  | `repository_processors`  | QaaS.Common.Processors repo URL                |
 | `QAAS_DOCS_LINK_ALLURE_DOCS`            | `allure_docs`            | Allure documentation URL                       |
 | `QAAS_DOCS_LINK_ALLURE_INSTALL`         | `allure_install`         | Allure CLI install guide URL                   |
 | `QAAS_DOCS_LINK_DOTNET_SDK`             | `dotnet_sdk`             | .NET SDK download URL                          |

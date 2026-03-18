@@ -191,8 +191,140 @@ nav:
           - Overview: generators/availableGenerators/Stacking/overview.md
           - Table View: generators/availableGenerators/Stacking/configuration/tableView.md
           - YAML View: generators/availableGenerators/Stacking/configuration/yamlView.md
-    - Probes: probes/index.md
-    - Processors: processors/index.md
+    - Probes:
+      - Introduction: probes/index.md
+      - Available Probes:
+        - OsRestartPods:
+          - Overview: probes/availableProbes/OsRestartPods/overview.md
+          - Table View: probes/availableProbes/OsRestartPods/configuration/tableView.md
+          - YAML View: probes/availableProbes/OsRestartPods/configuration/yamlView.md
+        - OsExecuteCommandsInContainers:
+          - Overview: probes/availableProbes/OsExecuteCommandsInContainers/overview.md
+          - Table View: probes/availableProbes/OsExecuteCommandsInContainers/configuration/tableView.md
+          - YAML View: probes/availableProbes/OsExecuteCommandsInContainers/configuration/yamlView.md
+        - OsEditYamlConfigMap:
+          - Overview: probes/availableProbes/OsEditYamlConfigMap/overview.md
+          - Table View: probes/availableProbes/OsEditYamlConfigMap/configuration/tableView.md
+          - YAML View: probes/availableProbes/OsEditYamlConfigMap/configuration/yamlView.md
+        - OsScaleDeploymentPods:
+          - Overview: probes/availableProbes/OsScaleDeploymentPods/overview.md
+          - Table View: probes/availableProbes/OsScaleDeploymentPods/configuration/tableView.md
+          - YAML View: probes/availableProbes/OsScaleDeploymentPods/configuration/yamlView.md
+        - OsScaleStatefulSetPods:
+          - Overview: probes/availableProbes/OsScaleStatefulSetPods/overview.md
+          - Table View: probes/availableProbes/OsScaleStatefulSetPods/configuration/tableView.md
+          - YAML View: probes/availableProbes/OsScaleStatefulSetPods/configuration/yamlView.md
+        - OsChangeDeploymentEnvVars:
+          - Overview: probes/availableProbes/OsChangeDeploymentEnvVars/overview.md
+          - Table View: probes/availableProbes/OsChangeDeploymentEnvVars/configuration/tableView.md
+          - YAML View: probes/availableProbes/OsChangeDeploymentEnvVars/configuration/yamlView.md
+        - OsChangeStatefulSetEnvVars:
+          - Overview: probes/availableProbes/OsChangeStatefulSetEnvVars/overview.md
+          - Table View: probes/availableProbes/OsChangeStatefulSetEnvVars/configuration/tableView.md
+          - YAML View: probes/availableProbes/OsChangeStatefulSetEnvVars/configuration/yamlView.md
+        - OsUpdateDeploymentImage:
+          - Overview: probes/availableProbes/OsUpdateDeploymentImage/overview.md
+          - Table View: probes/availableProbes/OsUpdateDeploymentImage/configuration/tableView.md
+          - YAML View: probes/availableProbes/OsUpdateDeploymentImage/configuration/yamlView.md
+        - OsUpdateStatefulSetImage:
+          - Overview: probes/availableProbes/OsUpdateStatefulSetImage/overview.md
+          - Table View: probes/availableProbes/OsUpdateStatefulSetImage/configuration/tableView.md
+          - YAML View: probes/availableProbes/OsUpdateStatefulSetImage/configuration/yamlView.md
+        - OsUpdateDeploymentResources:
+          - Overview: probes/availableProbes/OsUpdateDeploymentResources/overview.md
+          - Table View: probes/availableProbes/OsUpdateDeploymentResources/configuration/tableView.md
+          - YAML View: probes/availableProbes/OsUpdateDeploymentResources/configuration/yamlView.md
+        - OsUpdateStatefulSetResources:
+          - Overview: probes/availableProbes/OsUpdateStatefulSetResources/overview.md
+          - Table View: probes/availableProbes/OsUpdateStatefulSetResources/configuration/tableView.md
+          - YAML View: probes/availableProbes/OsUpdateStatefulSetResources/configuration/yamlView.md
+        - CreateRabbitMqQueues:
+          - Overview: probes/availableProbes/CreateRabbitMqQueues/overview.md
+          - Table View: probes/availableProbes/CreateRabbitMqQueues/configuration/tableView.md
+          - YAML View: probes/availableProbes/CreateRabbitMqQueues/configuration/yamlView.md
+        - CreateRabbitMqExchanges:
+          - Overview: probes/availableProbes/CreateRabbitMqExchanges/overview.md
+          - Table View: probes/availableProbes/CreateRabbitMqExchanges/configuration/tableView.md
+          - YAML View: probes/availableProbes/CreateRabbitMqExchanges/configuration/yamlView.md
+        - CreateRabbitMqBindings:
+          - Overview: probes/availableProbes/CreateRabbitMqBindings/overview.md
+          - Table View: probes/availableProbes/CreateRabbitMqBindings/configuration/tableView.md
+          - YAML View: probes/availableProbes/CreateRabbitMqBindings/configuration/yamlView.md
+        - DeleteRabbitMqQueues:
+          - Overview: probes/availableProbes/DeleteRabbitMqQueues/overview.md
+          - Table View: probes/availableProbes/DeleteRabbitMqQueues/configuration/tableView.md
+          - YAML View: probes/availableProbes/DeleteRabbitMqQueues/configuration/yamlView.md
+        - DeleteRabbitMqExchanges:
+          - Overview: probes/availableProbes/DeleteRabbitMqExchanges/overview.md
+          - Table View: probes/availableProbes/DeleteRabbitMqExchanges/configuration/tableView.md
+          - YAML View: probes/availableProbes/DeleteRabbitMqExchanges/configuration/yamlView.md
+        - DeleteRabbitMqBindings:
+          - Overview: probes/availableProbes/DeleteRabbitMqBindings/overview.md
+          - Table View: probes/availableProbes/DeleteRabbitMqBindings/configuration/tableView.md
+          - YAML View: probes/availableProbes/DeleteRabbitMqBindings/configuration/yamlView.md
+        - PurgeRabbitMqQueues:
+          - Overview: probes/availableProbes/PurgeRabbitMqQueues/overview.md
+          - Table View: probes/availableProbes/PurgeRabbitMqQueues/configuration/tableView.md
+          - YAML View: probes/availableProbes/PurgeRabbitMqQueues/configuration/yamlView.md
+        - FlushAllRedis:
+          - Overview: probes/availableProbes/FlushAllRedis/overview.md
+          - Table View: probes/availableProbes/FlushAllRedis/configuration/tableView.md
+          - YAML View: probes/availableProbes/FlushAllRedis/configuration/yamlView.md
+        - FlushDbRedis:
+          - Overview: probes/availableProbes/FlushDbRedis/overview.md
+          - Table View: probes/availableProbes/FlushDbRedis/configuration/tableView.md
+          - YAML View: probes/availableProbes/FlushDbRedis/configuration/yamlView.md
+        - EmptyRedisByChunks:
+          - Overview: probes/availableProbes/EmptyRedisByChunks/overview.md
+          - Table View: probes/availableProbes/EmptyRedisByChunks/configuration/tableView.md
+          - YAML View: probes/availableProbes/EmptyRedisByChunks/configuration/yamlView.md
+        - EmptyS3Bucket:
+          - Overview: probes/availableProbes/EmptyS3Bucket/overview.md
+          - Table View: probes/availableProbes/EmptyS3Bucket/configuration/tableView.md
+          - YAML View: probes/availableProbes/EmptyS3Bucket/configuration/yamlView.md
+        - DeleteS3Bucket:
+          - Overview: probes/availableProbes/DeleteS3Bucket/overview.md
+          - Table View: probes/availableProbes/DeleteS3Bucket/configuration/tableView.md
+          - YAML View: probes/availableProbes/DeleteS3Bucket/configuration/yamlView.md
+        - MsSqlDataBaseTablesTruncate:
+          - Overview: probes/availableProbes/MsSqlDataBaseTablesTruncate/overview.md
+          - Table View: probes/availableProbes/MsSqlDataBaseTablesTruncate/configuration/tableView.md
+          - YAML View: probes/availableProbes/MsSqlDataBaseTablesTruncate/configuration/yamlView.md
+        - PostgreSqlDataBaseTablesTruncate:
+          - Overview: probes/availableProbes/PostgreSqlDataBaseTablesTruncate/overview.md
+          - Table View: probes/availableProbes/PostgreSqlDataBaseTablesTruncate/configuration/tableView.md
+          - YAML View: probes/availableProbes/PostgreSqlDataBaseTablesTruncate/configuration/yamlView.md
+        - OracleSqlDataBaseTablesTruncate:
+          - Overview: probes/availableProbes/OracleSqlDataBaseTablesTruncate/overview.md
+          - Table View: probes/availableProbes/OracleSqlDataBaseTablesTruncate/configuration/tableView.md
+          - YAML View: probes/availableProbes/OracleSqlDataBaseTablesTruncate/configuration/yamlView.md
+        - EmptyElasticIndices:
+          - Overview: probes/availableProbes/EmptyElasticIndices/overview.md
+          - Table View: probes/availableProbes/EmptyElasticIndices/configuration/tableView.md
+          - YAML View: probes/availableProbes/EmptyElasticIndices/configuration/yamlView.md
+    - Processors:
+      - Introduction: processors/index.md
+      - Available Processors:
+        - ExampleProcessor:
+          - Overview: processors/availableProcessors/ExampleProcessor/overview.md
+          - Table View: processors/availableProcessors/ExampleProcessor/configuration/tableView.md
+          - YAML View: processors/availableProcessors/ExampleProcessor/configuration/yamlView.md
+        - DummyTransactionProcessor:
+          - Overview: processors/availableProcessors/DummyTransactionProcessor/overview.md
+          - Table View: processors/availableProcessors/DummyTransactionProcessor/configuration/tableView.md
+          - YAML View: processors/availableProcessors/DummyTransactionProcessor/configuration/yamlView.md
+        - GrpcEchoProcessor:
+          - Overview: processors/availableProcessors/GrpcEchoProcessor/overview.md
+          - Table View: processors/availableProcessors/GrpcEchoProcessor/configuration/tableView.md
+          - YAML View: processors/availableProcessors/GrpcEchoProcessor/configuration/yamlView.md
+        - StatusCodeTransactionProcessor:
+          - Overview: processors/availableProcessors/StatusCodeTransactionProcessor/overview.md
+          - Table View: processors/availableProcessors/StatusCodeTransactionProcessor/configuration/tableView.md
+          - YAML View: processors/availableProcessors/StatusCodeTransactionProcessor/configuration/yamlView.md
+        - TransactionFromDataSources:
+          - Overview: processors/availableProcessors/TransactionFromDataSources/overview.md
+          - Table View: processors/availableProcessors/TransactionFromDataSources/configuration/tableView.md
+          - YAML View: processors/availableProcessors/TransactionFromDataSources/configuration/yamlView.md
 
   - Framework:
     - Introduction: framework/index.md
@@ -283,6 +415,7 @@ extra:
     repository_assertions: https://github.com/TheSmokeTeam/QaaS.Common.Assertions
     repository_generators: https://github.com/TheSmokeTeam/QaaS.Common.Generators
     repository_probes: https://github.com/TheSmokeTeam/QaaS.Common.Probes
+    repository_processors: https://github.com/TheSmokeTeam/QaaS.Common.Processors
     allure_docs: https://docs.qameta.io/allure/
     allure_install: https://docs.qameta.io/allure/#_installing_a_commandline
     dotnet_sdk: https://dotnet.microsoft.com/download
