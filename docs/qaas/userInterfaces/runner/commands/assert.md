@@ -1,6 +1,6 @@
 # assert
 
-The `assert` command runs only the assertion phase using existing `SessionData` retrieved from the configured [Storages](../configurationSections/storages/overview.md). Pair with [`act`](act.md) for iterative debugging.
+The `assert` command runs only the assertion phase of a QaaS test (according to the given configuration) using existing `SessionData` retrieved from the configured [Storages](../configurationSections/storages/overview.md). Pair with [`act`](act.md) for iterative debugging.
 
 ## Usage
 

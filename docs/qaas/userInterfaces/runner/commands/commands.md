@@ -1,6 +1,6 @@
 # Commands
 
-A QaaS Runner project is a C# .NET project that accepts additional CLI commands controlling how it runs.
+A QaaS Runner project is a C# .NET project that receives additional CLI commands as part of its execution, controlling how it runs.
 
 Running without a command shows the help screen:
 
