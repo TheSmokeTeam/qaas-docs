@@ -1,6 +1,6 @@
 # run
 
-The `run` command executes a full QaaS test — sessions (act) followed by assertions — according to the given configuration files.
+The `run` command executes a full QaaS test — sessions (act) followed by assertions — according to the given configuration.
 
 ## Usage
 

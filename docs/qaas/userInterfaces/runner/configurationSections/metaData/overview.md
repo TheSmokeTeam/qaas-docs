@@ -24,9 +24,10 @@ Each log entry also includes the hostname of the machine where the test was exec
 
 You can monitor QaaS usage and test metadata adoption using the following resources:
 
-- **QaaS Adoption Dashboard**: [View Dashboard](REDA)
-  - User: `REDA`
-  - Password: `REDA`
-- **Custom Explore View**: [Explore Data](REDA)
+- **QaaS Adoption Dashboard**: [View Dashboard]({{links.qaas_adoptation_dashboard}})
+  - User: `{{links.qaas_adoptation_dashboard_user}}`
+  - Password: `{{links.qaas_adoptation_dashboard_password}}`
+- **Custom Explore View**: [Explore Data]({{links.qaas_custom_explore_view}})
+
 
 Use the provided Elasticsearch data source to build custom dashboards and gain deeper insights into test execution patterns, team contributions, and system performance.

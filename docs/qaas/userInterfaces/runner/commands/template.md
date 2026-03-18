@@ -1,6 +1,6 @@
 # template
 
-The `template` command loads and resolves the configuration files (anchors, placeholders, overwrite files) and prints the final merged configuration. Useful for verifying what the runner will actually see at execution time.
+The `template` command loads and resolves the configuration (anchors, placeholders, overwrite files) and prints the final merged configuration. Useful for verifying what the runner will actually see at execution time.
 
 ## Usage
 

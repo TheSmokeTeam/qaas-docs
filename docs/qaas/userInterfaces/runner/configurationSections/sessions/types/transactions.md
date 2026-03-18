@@ -17,21 +17,21 @@ HttpPost: {}
 ```
 
 ???- info "Data Structure"
-    === ":octicons-file-code-16: `Input`"
-        ```yaml
-        Body: <byte[]>
-        ```
-    === ":octicons-file-code-16: `Output`"
-        ```yaml
-        Body: <byte[]>
-        MetaData:
-            Http:
-                StatusCode: <int> # The status code of the HTTP response.
-                ReasonPhrase: <string> # The reason phrase sent by the server.
-                Version: <string> # The HTTP message version. The default is 1.1.
-                Headers: <IDictionary<string, string>> # The collection of HTTP response headers.
-                TrailingHeaders: <IDictionary<string, string>> # The collection of trailing headers in the HTTP response.
-        ```
+=== ":octicons-file-code-16: `Input`"
+```yaml
+Body: <byte[]>
+```
+=== ":octicons-file-code-16: `Output`"
+```yaml
+Body: <byte[]>
+MetaData:
+    Http:
+        StatusCode: <int> # The status code of the HTTP response.
+        ReasonPhrase: <string> # The reason phrase sent by the server.
+        Version: <string> # The HTTP message version. The default is 1.1.
+        Headers: <IDictionary<string, string>> # The collection of HTTP response headers.
+        TrailingHeaders: <IDictionary<string, string>> # The collection of trailing headers in the HTTP response.
+```
 
 ## HttpPut
 
@@ -44,21 +44,21 @@ HttpPut: {}
 ```
 
 ???- info "Data Structure"
-    === ":octicons-file-code-16: `Input`"
-        ```yaml
-        Body: <byte[]>
-        ```
-    === ":octicons-file-code-16: `Output`"
-        ```yaml
-        Body: <byte[]>
-        MetaData:
-            Http:
-                StatusCode: <int> # The status code of the HTTP response.
-                ReasonPhrase: <string> # The reason phrase sent by the server.
-                Version: <string> # The HTTP message version. The default is 1.1.
-                Headers: <IDictionary<string, string>> # The collection of HTTP response headers.
-                TrailingHeaders: <IDictionary<string, string>> # The collection of trailing headers in the HTTP response.
-        ```
+=== ":octicons-file-code-16: `Input`"
+```yaml
+Body: <byte[]>
+```
+=== ":octicons-file-code-16: `Output`"
+```yaml
+Body: <byte[]>
+MetaData:
+    Http:
+        StatusCode: <int> # The status code of the HTTP response.
+        ReasonPhrase: <string> # The reason phrase sent by the server.
+        Version: <string> # The HTTP message version. The default is 1.1.
+        Headers: <IDictionary<string, string>> # The collection of HTTP response headers.
+        TrailingHeaders: <IDictionary<string, string>> # The collection of trailing headers in the HTTP response.
+```
 
 ## HttpGet
 
@@ -71,21 +71,21 @@ HttpGet: {}
 ```
 
 ???- info "Data Structure"
-    === ":octicons-file-code-16: `Input`"
-        ```yaml
-        Body: <byte[]>
-        ```
-    === ":octicons-file-code-16: `Output`"
-        ```yaml
-        Body: <byte[]>
-        MetaData:
-            Http:
-                StatusCode: <int> # The status code of the HTTP response.
-                ReasonPhrase: <string> # The reason phrase sent by the server.
-                Version: <string> # The HTTP message version. The default is 1.1.
-                Headers: <IDictionary<string, string>> # The collection of HTTP response headers.
-                TrailingHeaders: <IDictionary<string, string>> # The collection of trailing headers in the HTTP response.
-        ```
+=== ":octicons-file-code-16: `Input`"
+```yaml
+Body: <byte[]>
+```
+=== ":octicons-file-code-16: `Output`"
+```yaml
+Body: <byte[]>
+MetaData:
+    Http:
+        StatusCode: <int> # The status code of the HTTP response.
+        ReasonPhrase: <string> # The reason phrase sent by the server.
+        Version: <string> # The HTTP message version. The default is 1.1.
+        Headers: <IDictionary<string, string>> # The collection of HTTP response headers.
+        TrailingHeaders: <IDictionary<string, string>> # The collection of trailing headers in the HTTP response.
+```
 
 ## Grpc
 
@@ -98,11 +98,11 @@ Grpc: {}
 ```
 
 ???- info "Data Structure"
-    === ":octicons-file-code-16: `Input`"
-        ```yaml
-        Body: <Google.Protobuf.IMessage>
-        ```
-    === ":octicons-file-code-16: `Output`"
-        ```yaml
-        Body: <Google.Protobuf.IMessage>
-        ```
+=== ":octicons-file-code-16: `Input`"
+```yaml
+Body: <Google.Protobuf.IMessage>
+```
+=== ":octicons-file-code-16: `Output`"
+```yaml
+Body: <Google.Protobuf.IMessage>
+```

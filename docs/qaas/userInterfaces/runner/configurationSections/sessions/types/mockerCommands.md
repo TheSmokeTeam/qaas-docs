@@ -2,7 +2,7 @@
 
 Mocker commands are the integration between `QaaS.Runner`'s tests to `QaaS.Mocker`'s mock servers.
 They provide a way for tests to command and communicate with the mockers.
-Further explanation on `QaaS.Mocker` servers can be found [here](REDA)
+Further explanation on `QaaS.Mocker` servers can be found [here](../../../../../../mocker/userInterfaces/mocker/configurationSections/server/overview.md)
 
 Some mocker commands don't require any data and thus will not create `Input` or `Output` by their name to the `SessionData`, and other mocker commands interact with the mocker's data and will create `Input` and `Output` by their name in the `SessionData` depending on the specific command.
 

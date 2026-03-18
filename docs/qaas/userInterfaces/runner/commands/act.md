@@ -1,6 +1,6 @@
 # act
 
-The `act` command runs only the session phase of a QaaS test and writes the resulting `SessionData` to the configured [Storages](../configurationSections/storages/overview.md). Use this in combination with [`assert`](assert.md) to debug failures.
+The `act` command runs only the session phase of a QaaS test (according to the given configuration) and writes the resulting `SessionData` to the configured [Storages](../configurationSections/storages/overview.md). Use this in combination with [`assert`](assert.md) to debug failures.
 
 ## Usage
 

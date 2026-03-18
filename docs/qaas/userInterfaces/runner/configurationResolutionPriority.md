@@ -1,6 +1,8 @@
 # Configuration Resolution Priority
 
-When loading QaaS configurations, multiple sources are merged in priority order (later overrides earlier):
+When loading qaas configurations we have many different options to parse and load them.
+
+Those options and the order in which they are resolved by default (can be changed using certain CLI flags) is:
 
 * base `.yaml` file
 * `-w` flag's overwrite files by the order they were given
@@ -16,7 +18,7 @@ When loading QaaS configurations, multiple sources are merged in priority order 
 * `<<` arrow
 
 ???- info "--no-env flag"
-        This flag removes all the environment variable resolution from the resolution list.
+This flag removes all the environment variable resolution from the resolution list.
 
 ???- info "--resolve-cases-last flag"
-        This flag takes the `-c` resolution and resolves it after the `-p` instead of in its current order.
+This flag takes the `-c` resolution and resolves it after the `-p` instead of in its current order.
