@@ -18,5 +18,5 @@ The framework is composed of several interconnected projects, each serving a dis
 | [**`QaaS.Framework.Providers`**](./projects/providers.md)           | Enables dynamic loading and registration of hooks (e.g., `IAssertion`, `IGenerator`) from the main application and loaded plugins (DLLs), using Autofac for dependency injection and providing validation during load.                                            |
 | [**`QaaS.Framework.Serialization`**](./projects/serialization.md)   | Provides a suite of serialization/deserialization capabilities (Binary, JSON, XML, MessagePack, YAML, Protobuf) used across the framework for data persistence and communication.                                                                                 |
 
->> Together, these projects form a cohesive, extensible, and robust foundation for building scalable and maintainable data
+> Together, these projects form a cohesive, extensible, and robust foundation for building scalable and maintainable data
 integration and testing solutions.
