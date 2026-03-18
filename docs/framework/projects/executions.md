@@ -1,6 +1,11 @@
 # QaaS.Framework.Executions
 
-The core execution engine of QaaS, responsible for orchestrating the lifecycle of test workflows (runners) and simulation workflows (mockers). It provides a modular architecture for defining, configuring, and running execution logic with dependency injection, configuration, logging, and data handling.
+This project forms the core execution engine of the QaaS ecosystem, responsible for orchestrating and managing the
+lifecycle of test or execution workflows—whether they are **runners** (for actual execution) or **mockers** (for
+simulation).
+
+It provides a modular, extensible architecture for defining, configuring, and running execution logic in a structured
+and testable way, with strong support for dependency injection, configuration, logging, and data handling.
 
 ---
 

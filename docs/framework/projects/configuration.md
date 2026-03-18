@@ -1,6 +1,8 @@
 # QaaS.Framework.Configuration
 
-Shared configuration loading logic and objects. Installed automatically as part of the [SDK](sdk.md) package.
+A package for shared configuration loading logic and objects within the QaaS framework.
+
+This package is installed as part of the [QaaS.Framework.SDK](sdk.md) package.
 
 ---
 
@@ -131,7 +133,7 @@ Supports the YAML `<<` merge key feature, similar to PyYAML and Helm.
 
 ```yaml
 anchor: &anchor
-  team: REDA
+  team: <teamName>
   key: value
 
 <<: *anchor
@@ -141,7 +143,7 @@ key: new_value
 **Result**
 
 ```yaml
-team: REDA
+team: <teamName>
 key: new_value
 ```
 

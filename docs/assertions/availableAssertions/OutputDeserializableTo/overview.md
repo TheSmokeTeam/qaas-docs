@@ -1,8 +1,7 @@
 # OutputDeserializableTo
 
 Checks that all items in a configured output can be deserialized with a configured deserializer.
-
-All supported deserializer's documentation and names that can be used in this assertion can be found at [QaaS.Framework.Serialization](REDA/serialization/).
+All supported deserializer's documentation and names that can be used in this assertion can be found at [QaaS.Framework.Serialization]({{ links.repository_framework }}/serialization).
 
 ## Assertion Parameters
 

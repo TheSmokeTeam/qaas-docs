@@ -1,6 +1,7 @@
 # QaaS.Framework.SDK
 
-The SDK package provides all core QaaS data structures, hook interfaces, and extension methods. Every plugin and project in the QaaS ecosystem depends on it.
+The `QaaS.Framework.SDK` is a C# package used throughout the projects in the `QaaS` ecosystem. It provides all core QaaS objects and functionalities.
+Any **Plugin** written for `QaaS` must use the `QaaS.Framework.SDK` to integrate with the QaaS framework.
 
 ---
 

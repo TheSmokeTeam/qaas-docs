@@ -1,10 +1,13 @@
 # QaaS.Framework.Serialization
 
-Provides serialization and deserialization for 7 formats. Installed automatically as part of the [SDK](sdk.md) package.
+Contains serialization/deserialization functionality
 
-See the [README](REDA/QaaS.Framework.Serialization/README.md) for additional details.
+This package is installed as part of the [QaaS.Framework.SDK](sdk.md) Package.
 
-## Supported Formats
+More about it can be
+read [Here]({{ links.repository_framework }}/serialization/README.md)
+
+## Supported Deserializers/Serializers
 
 | Format | Serializer | Deserializer |
 |---|---|---|

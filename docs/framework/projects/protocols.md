@@ -1,6 +1,9 @@
 # QaaS.Framework.Protocols
 
-Abstracts communication with data sources, sinks, and services behind a unified set of interfaces (`IReader`, `ISender`, `ITransactor`, etc.). Instead of writing custom code for each system, developers work with a consistent API and swap protocols via configuration.
+`QaaS.Framework.Protocols` is a library within the QaaS framework designed to abstract and simplify
+communication with a wide variety of data sources, sinks, and services. It provides a consistent, type-safe, and highly
+configurable interface for reading, writing, and transacting data across diverse protocols, enabling seamless
+integration into data pipelines, ETL processes, and real-time data applications.
 
 ## Core Philosophy
 
