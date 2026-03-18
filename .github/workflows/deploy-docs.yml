@@ -6,6 +6,7 @@ on:
       - master
       - unified-docs
       - fix/free_text
+      - fix/qaas-docs-ref
   pull_request:
     branches:
       - master
@@ -52,7 +53,7 @@ jobs:
           path: ./site
 
   deploy:
-    if: github.event_name == 'push' && (github.ref == 'refs/heads/master' || github.ref == 'refs/heads/unified-docs' || github.ref == 'refs/heads/fix/free_text')
+    if: github.event_name == 'push' && (github.ref == 'refs/heads/master' || github.ref == 'refs/heads/unified-docs' || github.ref == 'refs/heads/fix/free_text' || github.ref == 'refs/heads/fix/qaas-docs-ref')
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
