@@ -1,6 +1,6 @@
 # Plugins
 
-A QaaS Plugin is a NuGet package containing **QaaS hooks** (generators, assertions, probes, or processors). Plugins must reference `QaaS.Framework.SDK`.
+QaaS Plugins are C# NuGet packages that contain **QaaS hooks** — extensibility points that integrate with the QaaS framework. To qualify as a QaaS Plugin, a package must use the `QaaS.Framework.SDK` NuGet package.
 
 ---
 

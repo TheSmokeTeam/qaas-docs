@@ -287,14 +287,16 @@ extra:
     allure_install: https://docs.qameta.io/allure/#_installing_a_commandline
     dotnet_sdk: https://dotnet.microsoft.com/download
     vscode_yaml_extension: https://marketplace.visualstudio.com/items?itemName=redhat.vscode-yaml
-    autofac: https://autofac.org/
     qaas_community: https://discord.gg/RtzBFPU42K
     nuget_feed_a: feed_a
     nuget_feed_b: feed_b
     nuget_feed_c: feed_c
     qaas_project_templates: link_to_templates
-    dummyapp_tests: REDA/examples/dummyapptests/
-    dummyapp_helm_chart: REDA/qaas-quickstart-dummyapp-helm-chart
+    dummyapp_tests: {git}/examples/dummyapptests/
+    dummyapp_helm_chart: {git}/qaas-quickstart-dummyapp-helm-chart
+    artifactory: artifactory-link
+    repository_modules: https://github.com/TheSmokeTeam/QaaS.Common.Modules
+    repository_vap: {git}/versioned-artifact-publisher
     runner_schema: https://raw.githubusercontent.com/TheSmokeTeam/QaaS.PackageMirror/master/schemas/runner-family/latest/schema.json
     mocker_schema: https://raw.githubusercontent.com/TheSmokeTeam/QaaS.PackageMirror/master/schemas/mocker-family/latest/schema.json
   social:
