@@ -308,6 +308,8 @@ If we want to see all the default values qaas has loaded in our configuration fi
 dotnet run -- template test.qaas.yaml
 ```
 
-which will give us the qaas yaml configuration file as it looks after being loaded by qaas and given default values/changed (:warning: **Note** that the generated template file might not be runnable or valid).
+which will give us the qaas yaml configuration file as it looks after being loaded by qaas and given default values/changed 
 
-If the configurations are **invalid** the `qaas template` command will throw a fatal log but still continue to template what it can of the configuration file.
+!!! warning :warning:
+    The generated template file might not be runnable or valid.
+    If the configurations are **invalid** the `qaas template` command will throw a fatal log but still continue to template what it can of the configuration file.
