@@ -2,9 +2,9 @@
 
 The `execute` command runs multiple [Runner commands](commands.md) sequentially within a single test execution.
 
-!!! Note
-When running QaaS Runner Commands using the execute command, each QaaS Runner Command
-will receive an ID that will be used to identify it in the logs and allure-results.
+!!! note
+    When running QaaS Runner Commands using the execute command, each QaaS Runner Command
+    will receive an ID that will be used to identify it in the logs and allure-results.
 
 ## Usage
 

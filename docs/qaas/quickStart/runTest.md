@@ -8,11 +8,9 @@ To execute the QaaS project, open a terminal in the `DummyAppTests/DummyAppTests
 dotnet run -- run test.qaas.yaml -s
 ```
 
-### Notes
-
-- **The `-s` flag**: Automatically opens the Allure report in your default browser after the test completes. This only works if the Allure CLI is installed and added to your system's PATH.
-
-- **The `--` separator**: This is a standard convention in command-line interfaces to indicate the end of command-line options. Everything after `--` is treated as arguments, even if they begin with a hyphen (`-`).
+!!! Notes
+    - **The `-s` flag**: Automatically opens the Allure report in your default browser after the test completes. This only works if the Allure CLI is installed and added to your system's PATH.
+    - **The `--` separator**: This is a standard convention in command-line interfaces to indicate the end of command-line options. Everything after `--` is treated as arguments, even if they begin with a hyphen (`-`).
 
 ### Test Execution Output
 
