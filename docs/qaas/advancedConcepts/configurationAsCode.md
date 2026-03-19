@@ -250,22 +250,3 @@ protected override int StartExecutions(List<Execution> executions)
 > - Support for rollback, retry, or cleanup logic.
 > - Full access to execution state and results.
 > - Maintainable, testable, and version-controlled.
-
----
-
-> **Conclusion**: **QaaS empowers teams to move beyond static configuration** by embracing **Configuration as Code**—a paradigm that combines the clarity of YAML with the power of C#.
-
----
-
-## Conclusion
-
-**QaaS** empowers teams to move beyond static YAML configurations by enabling **Configuration as Code**—a flexible, maintainable, and powerful approach to test automation. By combining declarative setup with programmatic control, teams can implement complex, conditional, and dynamic test workflows with confidence.
-
-Use this guide to:
-
-- Initialize **QaaS** runners.
-- Customize sessions, storages, assertions, and links.
-- Add custom actions (e.g., Kafka publishers).
-- Orchestrate executions with full control.
-
-With **QaaS**, configuration is not just defined — it is engineered.
