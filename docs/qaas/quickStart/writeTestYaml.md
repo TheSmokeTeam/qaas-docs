@@ -302,13 +302,13 @@ DummyAppTests/
 
 ### Templating
 
-If we want to see all the default values qaas has loaded in our configuration file we can template it, to do that we open the terminal in the directory `DummyAppTests/DummyAppTests/` and type
+If we want to see all the values qaas has loaded in our configuration file we can template it, to do that we open the terminal in the directory `DummyAppTests/DummyAppTests/` and type
 
 ```bash
 dotnet run -- template test.qaas.yaml
 ```
 
-which will give us the qaas yaml configuration file as it looks after being loaded by qaas and given default values/changed 
+which will give us the qaas yaml configuration file as it looks after being loaded by qaas and given default or changed values 
 
 !!! Warning "Important"
     The generated template file might not be runnable or valid.
