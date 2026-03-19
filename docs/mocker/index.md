@@ -45,9 +45,3 @@ flowchart TD
 | `lint` | Validate configuration without starting servers |
 | `template` | Print a YAML configuration template |
 
-## Quick Start
-
-1. [Installation](quickStart/installation.md)
-2. [Create a Mock](quickStart/createMock.md)
-3. [Deploy a Mock](quickStart/deployMock.md)
-4. [Integrate with Runner Tests](quickStart/integrateWithTests.md)
