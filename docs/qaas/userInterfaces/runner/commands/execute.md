@@ -41,3 +41,17 @@ Commands:
 | `Commands[].Command`  | `string`                            | &#10004  |         | The QaaS command to execute                                                                                                        |
 | `Commands[].Id`       | `string` (`100` >= `length` >= `1`) | &#10004  |         | A unique identifier to identify the command by                                                                                     |
 | `Commands[].Parallel` | `boolean`                           | &#10006  | false   | Whether to run this command in parallel with other commands coming before and after it that are also set to run in parallel or not |
+
+---
+
+### Example
+
+```yaml
+Commands:
+  - Command: template test.qaas.yaml
+    Id: 1
+  - Command: run test.qaas.yaml
+    Id: 2
+```
+
+In this example, the `execute` command will first run the `template` command with the `test.qaas.yaml` configuration and then run the `run` command with the same configuration.
