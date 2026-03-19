@@ -1,8 +1,8 @@
 # Stages in QaaS: Orchestrating Sequential & Parallel Test Execution
 
-> **Stages** in QaaS provide **fine-grained control over execution order**, enabling you to define **sequential
+**Stages** in QaaS provide **fine-grained control over execution order**, enabling you to define **sequential
 dependencies between test phases** while maximizing **parallelism within stages**. This ensures complex workflows
-> execute correctly—without blocking unnecessary work.
+execute correctly—without blocking unnecessary work.
 
 ---
 
