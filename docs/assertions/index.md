@@ -13,7 +13,7 @@ The **QaaS.Common.Assertions** NuGet package ships the built-in assertion librar
 ## Installation
 
 ```xml
-<PackageReference Include="QaaS.Common.Assertions" Version="*" />
+<PackageReference Include="QaaS.Common.Assertions" Version="x.x.x" />
 ```
 
 ## Writing a Custom Assertion
