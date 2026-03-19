@@ -436,8 +436,6 @@ extra:
     qaas_adoptation_dashboard_user: user
     qaas_adoptation_dashboard_password: password
     qaas_custom_explore_view: link_to_explore_view
-    dummyapp_tests: REDA/examples/dummyapptests/
-    dummyapp_helm_chart: REDA/qaas-quickstart-dummyapp-helm-chart
     runner_schema: https://raw.githubusercontent.com/TheSmokeTeam/QaaS.PackageMirror/master/schemas/runner-family/latest/schema.json
     mocker_schema: https://raw.githubusercontent.com/TheSmokeTeam/QaaS.PackageMirror/master/schemas/mocker-family/latest/schema.json
   social:
