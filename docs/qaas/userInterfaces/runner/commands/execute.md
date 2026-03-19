@@ -20,7 +20,7 @@ This command will display all available options for the execute command, includi
 
 The `execute` command uses a YAML configuration file to know which commands to run.
 
-!!! Warning
+!!! Note "Important"
     The commands in the YAML file are `QaaS Commands` there is **no** need to use **dotnet run** in them.
 
 ### YAML View
