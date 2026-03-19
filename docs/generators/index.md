@@ -13,7 +13,7 @@ The **QaaS.Common.Generators** NuGet package ships the built-in generator librar
 ## Installation
 
 ```xml
-<PackageReference Include="QaaS.Common.Generators" Version="*" />
+<PackageReference Include="QaaS.Common.Generators" Version="x.x.x" />
 ```
 
 ## Writing a Custom Generator
