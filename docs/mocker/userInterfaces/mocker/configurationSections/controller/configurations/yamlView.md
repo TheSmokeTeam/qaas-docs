@@ -1,18 +1,20 @@
-# Controller Configurations YAML View
+<!-- generated hash:55b6ea62a71f sources:mocker-family, Controller, yaml-view -->
+
+# Controller Configurations Yaml View
 
 ```yaml
 Controller:
   ServerName:
   Redis:
-    Host:
-    Username:
-    Password:
-    AbortOnConnectFail: true
-    ConnectRetry: 3
+    AbortOnConnectFail:
+    AsyncTimeout:
     ClientName:
-    AsyncTimeout: 5000
-    Ssl: false
+    ConnectRetry:
+    Host:
+    KeepAlive:
+    Password:
+    RedisDataBase:
+    Ssl:
     SslHost:
-    KeepAlive: 60
-    RedisDataBase: 0
+    Username:
 ```

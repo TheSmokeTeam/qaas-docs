@@ -1,3 +1,5 @@
-# Table View
+﻿# DeleteRabbitMqQueues Table View
 
-Configuration reference placeholder for `DeleteRabbitMqQueues`.
+| Property Path | Type | Required | Default | Description |
+| --- | --- | --- | --- | --- |
+| `ProbeConfiguration` | `DeleteRabbitMqQueuesConfig` | &#10004; |  | Deletes RabbitMQ queues. |

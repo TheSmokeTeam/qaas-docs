@@ -1,5 +1,11 @@
-# EmptyElasticIndices
+﻿# EmptyElasticIndices
 
-Built-in probe documentation placeholder.
+Deletes documents from Elasticsearch indices selected by the configured index filters so the search store starts empty for the run.
 
-This page reserves the generated `overview.md` surface for `EmptyElasticIndices`.
+## Probe Parameters
+
+- **Probe Name** - `EmptyElasticIndices`.
+- **ProbeConfiguration** - `EmptyElasticIndicesConfig`.
+- **DataSources** - Not used.
+- **SessionData** - Not used.
+- **Execution stage** - Typically used in setup or cleanup stages around Runner sessions.

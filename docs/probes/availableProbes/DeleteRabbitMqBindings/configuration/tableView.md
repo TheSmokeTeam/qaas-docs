@@ -1,3 +1,5 @@
-# Table View
+﻿# DeleteRabbitMqBindings Table View
 
-Configuration reference placeholder for `DeleteRabbitMqBindings`.
+| Property Path | Type | Required | Default | Description |
+| --- | --- | --- | --- | --- |
+| `ProbeConfiguration` | `RabbitMqBindingsConfig` | &#10004; |  | Deletes RabbitMQ bindings. |

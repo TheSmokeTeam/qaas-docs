@@ -1,3 +1,6 @@
-# YAML View
+﻿# DeleteRabbitMqExchanges YAML Configuration
 
-YAML reference placeholder for `DeleteRabbitMqExchanges`.
+```yaml
+Probe: DeleteRabbitMqExchanges
+ProbeConfiguration: {}
+```

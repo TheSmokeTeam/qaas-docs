@@ -1,55 +1,62 @@
-# Servers Configurations YAML View
+<!-- generated hash:d3ff169b9f9d sources:mocker-family, Servers, yaml-view -->
+
+# Servers Configurations Yaml View
 
 ```yaml
 Servers:
-  - Http:
+  -
+    Grpc:
       Port:
-      Endpoints:
-        - Path:
-          Actions:
-            - Name:
-              Method:
-              TransactionStubName:
-      IsSecuredSchema: false
-      CertificatePath:
       CertificatePassword:
-      IsLocalhost: false
-      NotFoundTransactionStubName:
+      CertificatePath:
       InternalErrorTransactionStubName:
-      ConnectionAcceptanceValue: 128
-
-  - Grpc:
-      Port:
+      IsLocalhost:
+      IsSecuredSchema:
+      NotFoundTransactionStubName:
       Services:
-        - ServiceName:
-          ProtoNamespace:
+        -
           AssemblyName:
+          ProtoNamespace:
+          ServiceName:
           Actions:
-            - Name:
+            -
               RpcName:
               TransactionStubName:
-      IsSecuredSchema: false
-      CertificatePath:
+              Name:
+    Http:
+      Port:
       CertificatePassword:
-      IsLocalhost: false
-      NotFoundTransactionStubName:
+      CertificatePath:
+      ConnectionAcceptanceValue:
       InternalErrorTransactionStubName:
-
-  - Socket:
-      BindingIpAddress: 0.0.0.0
-      ConnectionAcceptanceValue: 8
+      IsLocalhost:
+      IsSecuredSchema:
+      NotFoundTransactionStubName:
       Endpoints:
-        - Port:
+        -
+          Path:
+          FixedPath:
+          Actions:
+            -
+              Method:
+              TransactionStubName:
+              Name:
+    Socket:
+      BindingIpAddress:
+      ConnectionAcceptanceValue:
+      Endpoints:
+        -
+          Port:
           ProtocolType:
-          SocketType: Stream
-          AddressFamily: InterNetwork
-          BufferSizeBytes: 65536
-          NagleAlgorithm: false
-          LingerTimeSeconds:
           TimeoutMs:
+          AddressFamily:
+          BufferSizeBytes:
+          LingerTimeSeconds:
+          NagleAlgorithm:
+          SocketType:
           Action:
-            Name:
             Method:
             DataSourceName:
+            Name:
             TransactionStubName:
 ```

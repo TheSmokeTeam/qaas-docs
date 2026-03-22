@@ -1,3 +1,5 @@
-# Table View
+﻿# OsRestartPods Table View
 
-Configuration reference placeholder for `OsRestartPods`.
+| Property Path | Type | Required | Default | Description |
+| --- | --- | --- | --- | --- |
+| `ProbeConfiguration` | `OsRestartPodsConfig` | &#10004; |  | Restarts matching pods. |

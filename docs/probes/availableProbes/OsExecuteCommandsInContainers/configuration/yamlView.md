@@ -1,3 +1,6 @@
-# YAML View
+﻿# OsExecuteCommandsInContainers YAML Configuration
 
-YAML reference placeholder for `OsExecuteCommandsInContainers`.
+```yaml
+Probe: OsExecuteCommandsInContainers
+ProbeConfiguration: {}
+```

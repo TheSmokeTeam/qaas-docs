@@ -1,3 +1,6 @@
-# YAML View
+﻿# OsEditYamlConfigMap YAML Configuration
 
-YAML reference placeholder for `OsEditYamlConfigMap`.
+```yaml
+Probe: OsEditYamlConfigMap
+ProbeConfiguration: {}
+```

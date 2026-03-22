@@ -1,3 +1,6 @@
-# YAML View
+﻿# EmptyElasticIndices YAML Configuration
 
-YAML reference placeholder for `EmptyElasticIndices`.
+```yaml
+Probe: EmptyElasticIndices
+ProbeConfiguration: {}
+```

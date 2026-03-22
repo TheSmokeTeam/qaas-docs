@@ -1,5 +1,11 @@
-# DeleteS3Bucket
+﻿# DeleteS3Bucket
 
-Built-in probe documentation placeholder.
+Deletes the configured S3 bucket after the probe has removed or validated its contents.
 
-This page reserves the generated `overview.md` surface for `DeleteS3Bucket`.
+## Probe Parameters
+
+- **Probe Name** - `DeleteS3Bucket`.
+- **ProbeConfiguration** - `DeleteS3BucketConfig`.
+- **DataSources** - Not used.
+- **SessionData** - Not used.
+- **Execution stage** - Typically used in setup or cleanup stages around Runner sessions.

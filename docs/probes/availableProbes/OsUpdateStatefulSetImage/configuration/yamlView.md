@@ -1,3 +1,6 @@
-# YAML View
+﻿# OsUpdateStatefulSetImage YAML Configuration
 
-YAML reference placeholder for `OsUpdateStatefulSetImage`.
+```yaml
+Probe: OsUpdateStatefulSetImage
+ProbeConfiguration: {}
+```

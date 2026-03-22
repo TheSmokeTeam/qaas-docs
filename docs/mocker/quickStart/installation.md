@@ -47,19 +47,21 @@ Add the package to your project:
 
 ## Project Template
 
-The installable template pack for new mocker projects is [QaaS.Mocker.Template]({{ links.repository_mocker_template }}).
-
-### Install
+Use [QaaS.Mocker.Template]({{ links.repository_mocker_template }}) when you want a ready-to-run mocker repo instead of wiring packages by hand.
 
 ```bash
 dotnet new install QaaS.Mocker.Template
+dotnet new qaas-mocker -n MyServiceMock
 ```
 
-### Uninstall
+The generated repo includes:
 
-```bash
-dotnet new uninstall QaaS.Mocker.Template
-```
+- `NuGet.config` pointing at `{{ links.nuget_feed }}`
+- `QaaS.Mocker` with `Version="*"` so restore pulls the latest stable version on the configured feed
+- a minimal `/health` mock under `Servers`
+- `Dockerfile` and generated GitHub Actions CI
+
+If you use Artifactory or another private feed, update the generated `NuGet.config` before the first restore.
 
 ## IDE Setup
 

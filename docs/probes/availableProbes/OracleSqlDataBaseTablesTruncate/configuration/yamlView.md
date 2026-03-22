@@ -1,3 +1,6 @@
-# YAML View
+﻿# OracleSqlDataBaseTablesTruncate YAML Configuration
 
-YAML reference placeholder for `OracleSqlDataBaseTablesTruncate`.
+```yaml
+Probe: OracleSqlDataBaseTablesTruncate
+ProbeConfiguration: {}
+```

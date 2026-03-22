@@ -1,5 +1,11 @@
-# CreateRabbitMqQueues
+﻿# CreateRabbitMqQueues
 
-Built-in probe documentation placeholder.
+Creates one or more RabbitMQ queues with the configured queue arguments on the target broker.
 
-This page reserves the generated `overview.md` surface for `CreateRabbitMqQueues`.
+## Probe Parameters
+
+- **Probe Name** - `CreateRabbitMqQueues`.
+- **ProbeConfiguration** - `CreateRabbitMqQueuesConfig`.
+- **DataSources** - Not used.
+- **SessionData** - Not used.
+- **Execution stage** - Typically used in setup or cleanup stages around Runner sessions.

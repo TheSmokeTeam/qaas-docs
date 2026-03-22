@@ -1,3 +1,5 @@
-# Table View
+﻿# PurgeRabbitMqQueues Table View
 
-Configuration reference placeholder for `PurgeRabbitMqQueues`.
+| Property Path | Type | Required | Default | Description |
+| --- | --- | --- | --- | --- |
+| `ProbeConfiguration` | `PurgeRabbitMqQueuesConfig` | &#10004; |  | Purges RabbitMQ queue contents. |

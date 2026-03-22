@@ -1,3 +1,5 @@
-# Table View
+﻿# OsExecuteCommandsInContainers Table View
 
-Configuration reference placeholder for `OsExecuteCommandsInContainers`.
+| Property Path | Type | Required | Default | Description |
+| --- | --- | --- | --- | --- |
+| `ProbeConfiguration` | `OsExecuteCommandsInContainersConfig` | &#10004; |  | Executes commands inside containers. |

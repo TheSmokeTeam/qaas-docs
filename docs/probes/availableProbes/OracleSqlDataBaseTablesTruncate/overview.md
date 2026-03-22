@@ -1,5 +1,11 @@
-# OracleSqlDataBaseTablesTruncate
+﻿# OracleSqlDataBaseTablesTruncate
 
-Built-in probe documentation placeholder.
+Truncates the configured Oracle tables in the order they are listed.
 
-This page reserves the generated `overview.md` surface for `OracleSqlDataBaseTablesTruncate`.
+## Probe Parameters
+
+- **Probe Name** - `OracleSqlDataBaseTablesTruncate`.
+- **ProbeConfiguration** - `SqlDataBaseTablesTruncateProbeConfig`.
+- **DataSources** - Not used.
+- **SessionData** - Not used.
+- **Execution stage** - Typically used in setup or cleanup stages around Runner sessions.

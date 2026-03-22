@@ -1,3 +1,5 @@
-# Table View
+﻿# CreateRabbitMqExchanges Table View
 
-Configuration reference placeholder for `CreateRabbitMqExchanges`.
+| Property Path | Type | Required | Default | Description |
+| --- | --- | --- | --- | --- |
+| `ProbeConfiguration` | `CreateRabbitMqExchangesConfig` | &#10004; |  | Creates RabbitMQ exchanges. |

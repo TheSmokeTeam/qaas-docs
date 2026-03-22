@@ -1,5 +1,11 @@
-# CreateRabbitMqBindings
+﻿# CreateRabbitMqBindings
 
-Built-in probe documentation placeholder.
+Creates RabbitMQ bindings between exchanges and queues or between exchanges by using the configured broker connection and binding definitions.
 
-This page reserves the generated `overview.md` surface for `CreateRabbitMqBindings`.
+## Probe Parameters
+
+- **Probe Name** - `CreateRabbitMqBindings`.
+- **ProbeConfiguration** - `RabbitMqBindingsConfig`.
+- **DataSources** - Not used.
+- **SessionData** - Not used.
+- **Execution stage** - Typically used in setup or cleanup stages around Runner sessions.

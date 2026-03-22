@@ -1,3 +1,5 @@
-# Table View
+﻿# OsUpdateDeploymentImage Table View
 
-Configuration reference placeholder for `OsUpdateDeploymentImage`.
+| Property Path | Type | Required | Default | Description |
+| --- | --- | --- | --- | --- |
+| `ProbeConfiguration` | `OsUpdateImageProbeConfig` | &#10004; |  | Updates a deployment container image. |

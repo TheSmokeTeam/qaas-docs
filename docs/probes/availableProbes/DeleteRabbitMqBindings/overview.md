@@ -1,5 +1,11 @@
-# DeleteRabbitMqBindings
+﻿# DeleteRabbitMqBindings
 
-Built-in probe documentation placeholder.
+Deletes RabbitMQ bindings using the configured source, destination, routing key, and binding type.
 
-This page reserves the generated `overview.md` surface for `DeleteRabbitMqBindings`.
+## Probe Parameters
+
+- **Probe Name** - `DeleteRabbitMqBindings`.
+- **ProbeConfiguration** - `RabbitMqBindingsConfig`.
+- **DataSources** - Not used.
+- **SessionData** - Not used.
+- **Execution stage** - Typically used in setup or cleanup stages around Runner sessions.

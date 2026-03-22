@@ -1,3 +1,6 @@
-# YAML View
+﻿# EmptyS3Bucket YAML Configuration
 
-YAML reference placeholder for `EmptyS3Bucket`.
+```yaml
+Probe: EmptyS3Bucket
+ProbeConfiguration: {}
+```

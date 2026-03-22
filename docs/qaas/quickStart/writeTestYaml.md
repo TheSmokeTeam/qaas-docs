@@ -1,233 +1,47 @@
-# Write Test With Yaml
+# Write a Test (YAML)
 
-Let's write tests for an application that uses `rabbitmq`.
-That application's name is `DummyApp`.
+This sample publishes one message to RabbitMQ, consumes it back from the same exchange and routing key, and verifies both delivery and timing.
 
-The completed sample is available in the `yaml_configuration` branch of [qaas-runner-quickstart]({{ links.runner_quickstart_repository }}/tree/yaml_configuration).
+The completed sample is available in the `yaml_configuration` branch of [DummyAppTests]({{ links.runner_quickstart_repository }}/tree/yaml_configuration).
 
-## Application spec
-
-The application should withstand the following conditions
-
-* Be `100%` hermetic, meaning for every input it receives an output is sent.
-
-* Withstand an average rate of `50 msg/s`.
-
-* Have an I/O delay of less than `5 seconds`.
-
-* The application receives a json array as input and sends a json array with the same number of items in it as the received json array as output.
-
-The details of the rabbitmq the application uses are
-
-```txt
-Host: rabbitmq
-Port: 5672
-UserName: admin
-Password: admin
-Input Exchange: input
-Output Exchange: output
-I/O Routing Key: /
-```
-
-## Creating Relevant Files
-
-1. Now to write the test, first we open the cmd in the directory where we store all of our test projects.
-2. Then we create a new dotnet project with the `qaas` project template.
+## Create the Project
 
 ```bash
 dotnet new qaas-runner -n DummyAppTests
+cd DummyAppTests
+dotnet add DummyAppTests/DummyAppTests.csproj package QaaS.Common.Assertions
+dotnet add DummyAppTests/DummyAppTests.csproj package QaaS.Common.Generators
 ```
 
-This will create the following C# QaaS project directory and files
+## Keep `Program.cs` Minimal
 
-```txt
-DummyAppTests/
-|--NuGet.Config
-|--DummyAppTests.sln
-|--README.md
-|--.gitignore
-|--DummyAppTests/
-|----DummyAppTests.csproj
-|----Program.cs
-|----test.qaas.yaml
-|----Variables/
-|------local.yaml
-|------k8s.yaml
+`DummyAppTests/Program.cs`
+
+```csharp
+QaaS.Runner.Bootstrap.New(args).Run();
 ```
 
-These files will contain basic required information and configurations for a QaaS test project which we can now expend on top of.
+## Add the Test Data
 
-> **NOTE** at this point of the tutorial we will ignore the `Variables` folder and its contents, we will come back to it later on in the [Make Test More Maintainable](makeTestMoreMaintainable.md) tutorial part.
+`DummyAppTests/TestData/input.json`
 
-For the purpose of this example we will assume we have X json samples already, in a folder called `TestData`. which we create under our test directory `DummyAppTests/DummyAppTests/`.
-
-File structure after creating relevant files:
-
-```txt
-DummyAppTests/
-|--NuGet.Config
-|--DummyAppTests.sln
-|--README.md
-|--.gitignore
-|--DummyAppTests/
-|----DummyAppTests.csproj
-|----Program.cs
-|----test.qaas.yaml
-|----Variables/
-|------local.yaml
-|------k8s.yaml
-|----TestData/...
+```json
+[
+  {
+    "id": 1,
+    "message": "hello from DummyAppTests"
+  }
+]
 ```
 
-## Hooks And Plugins
+## Configure `test.qaas.yaml`
 
-**Hooks** are C# classes that are recognized by QaaS's framework.
-
-There are 3 types of hooks relevant to a QaaS test project:
-
-* `Generators` hooks used for generating data to send to the tested system and use throughout the test.
-* `Assertions` hooks used for asserting if a test passes or fails.
-* `Probes` hooks used for actions that done to setup or rollback the test.
-
-These **Hooks** can be written in the QaaS test project and invoked by the `.yaml` file or code configuration, such hooks are automatically recognized by QaaS by their class names.
-
-On the other hand **Hooks** can also be provided in a nuget package called a `Plugin`.
-
-QaaS has 3 default `Plugins`, [QaaS.Common.Generators]({{ links.repository_generators }}), [QaaS.Common.Assertions]({{ links.repository_assertions }}) and [QaaS.Common.Probes]({{ links.repository_probes }}) that include within them a lot of commonly used generators, assertions and probe hooks, in this tutorial we will use some of the assertions offered by the `QaaS.Common.Assertions` package, some of the generators offered by the `QaaS.Common.Generators` and some of the probes offered by the `QaaS.Common.Probes` package in our test project.
-
-To use them we need to add the `QaaS.Common.Assertions`, `QaaS.Common.Generators`, `QaaS.Common.Probes` nuget packages to our C# project in a version compatible with our `QaaS.Runner` version (a version of the packages that has the same `QaaS.Framework.SDK` version or newer (but not breaking) than the `QaaS.Runner` package)
-
-`DummyAppTests.csproj`
-
-```xml
-<ItemGroup>
-  <PackageReference Include="QaaS.Common.Assertions" Version="x.x.x" />
-  <PackageReference Include="QaaS.Common.Generators" Version="x.x.x" />
-  <PackageReference Include="QaaS.Common.Probes" Version="x.x.x" />
-</ItemGroup>
-```
-
-## Configuring The QaaS Yaml File
-
-The tests themselves can be configured at the `test.qaas.yaml` file that can invoke and run `hooks`, which are pieces of code written in the C# project that perform a certain action used to test an application.
-
-We will now see how to configure the `test.qaas.yaml` file for our tests.
-
-### Initial configurations
-
-The yaml file automatically generated in our QaaS project will contains a place to put our yaml anchors
-
-`test.qaas.yaml`
+`DummyAppTests/test.qaas.yaml`
 
 ```yaml
-anchors: {}
-```
-
-### Configuring Data Sources
-
-In order to take our json samples from the folder `TestData` and use them in the test we need to configure a data source.
-
-a `data source` is a way to provide data to the tests, its based on a `Generator` hook that it runs in order to create an enumerable of data.
-
-In our case we need a `Generator` hook that can take raw data from a folder, such a generator exists in the `QaaS.Common.Generators` plugin and is called `FromFileSystem`, we can use it because we added the `QaaS.Common.Generators` plugin to our project.
-
-We also need to give the data source a name so we can reference it in the future, we will give it the name of the folder it came from combined with its generator `FromFileSystemTestData` (we can give it any name, we want it to be as indicative as possible).
-
-```yaml
-DataSources:
-  - Name: FromFileSystemTestData
-    Generator: FromFileSystem
-    GeneratorConfiguration:
-      DataArrangeOrder: AsciiAsc
-      FileSystem:
-        Path: TestData
-```
-
-### Configuring The Sessions
-
-Now that we have our test data prepared we need to publish it to the `input` exchange and consume the application's output from the `output` exchange, for that we configure a session.
-
-That session also needs a name so we can reference it in the future, we will give it a name comprised of the name of the data source used combined with the protocol used - `RabbitMqExchangeWithFromFileSystemTestData`.
-
-The session needs a rabbitmq publisher with a policy controlling its publishing rate so its the average rate the application is supposed to withstand, 50 msg/s.
-And it needs a rabbitmq consumer listening to the output exchange simultanously.
-
-Since we only have 1 publisher and 1 consumer we can simple name them `Publisher` and `Consumer` so its easy to reference them.
-
-`RabbitMqExchange` is a protocol that recieves `byte[]` **serialized** data when publishing to it and returns `byte[]` **serialized** data when consuming from it, our data source's data is already serialized since we didn't specify any `Deserializer` when loading it.
-Meaning we only need to specify the `Deserializer` to use when consuming the output data from the `output` exchange as `Json`.
-
-```yaml
-Sessions:
-  - Name: RabbitMqExchangeWithFromFileSystemTestData
-    Publishers:
-      - Name: Publisher
-        DataSourceNames: [FromFileSystemTestData]
-        Policies:
-          - LoadBalance:
-              Rate: 50
-        RabbitMq: 
-          Host: rabbitmq
-          Username: admin
-          Password: admin
-          RoutingKey: /
-          Port: 5672
-          ExchangeName: input
-    Consumers:
-      - Name: Consumer
-        TimeoutMs: 5000
-        RabbitMq:
-          Host: rabbitmq
-          Username: admin
-          Password: admin
-          RoutingKey: /
-          Port: 5672
-          ExchangeName: output
-        Deserialize:
-          Deserializer: Json
-```
-
-### Configuring The Assertions
-
-Now that we have our sessions configured we want to perform assertions on the data they give us, for that we need to configure the `Assertions` section.
-
-We want to assert that our application was 100% hermetic during the session `RabbitMqExchangeWithFromFileSystemTestData`, for that we have a hermetic assertion called `HermeticByInputOutputPercentage` and its one of the common assertions we can use because we added `QaaS.Common.Assertions` as a plugin in our project.
-
-```yaml
-Assertions:
-  - Assertion: HermeticByInputOutputPercentage
-    SessionNames: [RabbitMqExchangeWithFromFileSystemTestData]
-    AssertionConfiguration:
-      OutputNames: [Consumer]
-      InputNames: [Publisher]
-      ExpectedPercentage: 100
-```
-
-We also want to assert that our application's delay was less than 5 seconds, for that we have a delay assertion called `DelayByChunks` which checks the delay between chunks of inputs and outputs. Its one of the common assertions we can use because we added `QaaS.Common.Assertions` as a plugin in our project. we will add that assertion to the assertion list like so:
-
-```yaml
-  - Assertion: DelayByChunks
-    SessionNames: [RabbitMqExchangeWithFromFileSystemTestData]
-    AssertionConfiguration:
-      Output:
-        Name: Consumer
-        ChunkSize: 1
-      Input:
-        Name: Publisher
-        ChunkSize: 1
-      MaximumDelayMs: 5000
-```
-
-## Yaml Configuration File Validation
-
-### Configuration File Overview
-
-After configuring all the sections above we now have a qaas test yaml file that looks like this
-
-`test.qaas.yaml`
-
-```yaml
-anchors: {}
+MetaData:
+  Team: Smoke
+  System: DummyApp
 
 DataSources:
   - Name: FromFileSystemTestData
@@ -245,34 +59,36 @@ Sessions:
         Policies:
           - LoadBalance:
               Rate: 50
-        RabbitMq:   
-          Host: rabbitmq
+        RabbitMq:
+          Host: 127.0.0.1
           Username: admin
           Password: admin
-          RoutingKey: /
           Port: 5672
-          ExchangeName: input
+          ExchangeName: amq.direct
+          RoutingKey: dummyapp
     Consumers:
       - Name: Consumer
         TimeoutMs: 5000
         RabbitMq:
-          Host: rabbitmq
+          Host: 127.0.0.1
           Username: admin
           Password: admin
-          RoutingKey: /
           Port: 5672
-          ExchangeName: output
+          ExchangeName: amq.direct
+          RoutingKey: dummyapp
         Deserialize:
           Deserializer: Json
 
 Assertions:
-  - Assertion: HermeticByInputOutputPercentage
+  - Name: HermeticByInputOutputPercentage
+    Assertion: HermeticByInputOutputPercentage
     SessionNames: [RabbitMqExchangeWithFromFileSystemTestData]
     AssertionConfiguration:
       OutputNames: [Consumer]
       InputNames: [Publisher]
       ExpectedPercentage: 100
-  - Assertion: DelayByChunks
+  - Name: DelayByChunks
+    Assertion: DelayByChunks
     SessionNames: [RabbitMqExchangeWithFromFileSystemTestData]
     AssertionConfiguration:
       Output:
@@ -284,32 +100,27 @@ Assertions:
       MaximumDelayMs: 5000
 ```
 
-```txt
-DummyAppTests/
-|--NuGet.Config
-|--DummyAppTests.sln
-|--README.md
-|--.gitignore
-|--DummyAppTests/
-|----DummyAppTests.csproj
-|----Program.cs
-|----test.qaas.yaml
-|----Variables/
-|------local.yaml
-|------k8s.yaml
-|----TestData/...
-```
+The sample uses RabbitMQ's built-in `amq.direct` exchange and the routing key `dummyapp`.
 
-### Templating
-
-If we want to see all the values qaas has loaded in our configuration file we can template it, to do that we open the terminal in the directory `DummyAppTests/DummyAppTests/` and type
+## Start RabbitMQ
 
 ```bash
-dotnet run -- template test.qaas.yaml
+docker run --rm -d --name qaas-runner-rabbit \
+  -p 5672:5672 \
+  -p 15672:15672 \
+  -e RABBITMQ_DEFAULT_USER=admin \
+  -e RABBITMQ_DEFAULT_PASS=admin \
+  rabbitmq:4-management
 ```
 
-which will give us the qaas yaml configuration file as it looks after being loaded by qaas and given default or changed values 
+## Run
 
-!!! Warning "Important"
-    The generated template file might not be runnable or valid.
-    If the configurations are **invalid** the `qaas template` command will throw a fatal log but still continue to template what it can of the configuration file.
+From `DummyAppTests/DummyAppTests`:
+
+```bash
+dotnet run -- run test.qaas.yaml
+```
+
+## Result
+
+Runner publishes the JSON payload from `TestData/input.json`, reads it back through the consumer, and verifies both 100% hermeticity and a maximum end-to-end delay of 5000 ms.

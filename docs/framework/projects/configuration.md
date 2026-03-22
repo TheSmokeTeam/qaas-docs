@@ -1,179 +1,118 @@
-# QaaS.Framework.Configuration
+# QaaS.Framework.Configurations
 
-A package for shared configuration loading logic and objects within the QaaS framework.
+`QaaS.Framework.Configurations` is the Framework solution's configuration engine. It is a standalone package that other QaaS packages reference, including [QaaS.Framework.SDK](./sdk.md). Its responsibility is broader than loading YAML into C# objects. It owns the full flow of building configuration, preprocessing it, binding it, validating it, and updating it.
 
-This package is installed as part of the [QaaS.Framework.SDK](sdk.md) package.
+## What this project contains
 
----
+### Core configuration utilities
 
-## TL;DR
+`ConfigurationUtils.cs` is the main entry point for package-level operations. It contains helpers for:
 
-This package enables:
+- building YAML from typed objects
+- flattening object graphs into configuration key paths
+- binding `IConfiguration` into typed objects
+- loading and validating a configuration object in one step
+- running the package's enriched build flow
 
-- Loading YAML configurations into C# objects
-- Validating those objects using `DataAnnotations`
+`ValidationUtils.cs` contains recursive validation helpers. The validation flow walks nested objects, collections, and dictionaries and returns path-aware validation results instead of validating only the top-level object.
 
----
+### Preprocessing and build pipeline
 
-## Quick Start Example
+The preprocessing layer is split into dedicated files:
 
-Start by defining a C# `record`:
+- `ConfigurationPlaceHolderParser.cs` resolves placeholders such as `${Path}` and `${Path ?? default}`.
+- `ConfigurationCollapseParser.cs` processes YAML `<<` collapse sections.
+- `ConfigurationBuilderExtensions/YamlConfigurationBuilderExtension.cs` adds YAML files to a configuration builder.
+- `ConfigurationProviders/HttpGetYamlConfigurationProvider.cs` and `ConfigurationSources/HttpGetYamlConfigurationSource.cs` let the builder load YAML over HTTP GET.
 
-```csharp
-public record Configuration {}
-```
+This means the package can build configuration from local files, configuration folders, and remote YAML sources before the final binding step happens.
 
-To add a field like `Count` of type `int`, simply add it as a property:
+### Binding and merge internals
 
-```csharp
-public record Configuration
-{
-    public int? Count { get; set; }
-}
-```
+The `ConfigurationBindingUtils` folder contains the lower-level binding helpers that make the public APIs work with nested configuration shapes:
 
-!!! Warning Public Getters and Setters
-    Ensure all properties have **public** `get` and `set` accessors.  
-    If not, the configuration will fail to load.
+- `ConfigurationDictionaryUtils.cs`
+- `ConfigurationListUtils.cs`
+- `ConfigurationMergeUtils.cs`
+- `ConfigurationTypeUtils.cs`
 
-The corresponding YAML configuration would be:
+These files are responsible for mapping configuration sections into objects, lists, dictionaries, and enums, and for merging partial configuration trees without replacing every existing value.
 
-```yaml
-Count: 1
-```
+`ConfigurationUpdateExtensions.cs` exposes the public update surface for applying sparse configuration patches to existing typed objects or configuration trees.
 
-This can now be successfully loaded into the `Configuration` record.
+### References
 
----
+The `References` folder contains the project's reference-expansion subsystem:
 
-### Adding Validation
+- `ReferenceConfig.cs`
+- `ConfigurationReferencesParser.cs`
 
-Use `DataAnnotations` to enforce validation rules. For example, to make `Count` required:
+This logic resolves referenced YAML files and injects referenced content into the active configuration according to the configured replacement rules.
 
-```csharp
-public record Configuration
-{
-    [Required]
-    public int? Count { get; set; }
-}
-```
+### Validation attributes and shared configuration objects
 
----
+The package contains a substantial custom validation library under `CustomValidationAttributes`. These attributes supplement standard `DataAnnotations` with QaaS-specific rules such as conditional required or null behavior, path validation, uniqueness checks, and cross-collection reference checks.
 
-## Usage
+The `CommonConfigurationObjects` folder provides shared configuration types reused by other packages, including:
 
-Create configuration objects using C# `record` or `class` types with properties that have public getters and setters.
+- filesystem-related storage configuration
+- S3 bucket configuration
+- Mongo collection configuration
+- shared storage abstractions
 
-- Use **default values** by initializing properties at declaration.
-- Apply **validation rules** via attributes.
+## Current behavior
 
-### Note on `[Required]` Attribute
+The current source implements the following behavior:
 
-The `[Required]` attribute checks for `null`, not for default values.  
-Since `int` defaults to `0`, not `null`, a non-null `int` will always pass validation—even if no value was explicitly provided.
+- YAML can be loaded from local paths or from HTTP URLs through the same builder flow.
+- Placeholder resolution supports nested references, default values via `??`, object-section copying, and circular-reference detection.
+- `EnrichedBuild` combines placeholder resolution and collapse parsing and can include environment-variable-aware resolution.
+- `<<` collapse is applied recursively across the configuration tree, not only at the top level.
+- Binding supports nested objects, arrays, dictionaries, enums, and configuration-as-code merge scenarios.
+- Standard public-property binding is supported out of the box, and the lower-level binding utilities also support non-public binding when binder options enable it.
+- Recursive validation returns errors that preserve the path of the invalid value, which is important for large configuration graphs.
+- Partial updates can merge sparse typed objects or raw `IConfiguration` trees without discarding omitted values.
+- Reference resolution can inject and reorder list items based on `ReferenceConfig` instructions.
 
-> **Solution**: Use `int?` (nullable) when you want to enforce that a value must be explicitly set.
+## Main source areas
 
-#### Example Usage
+If you are reading the package to understand its responsibilities, these are the highest-signal files and folders:
 
-```csharp
-public record InnerTestConfig
-{
-    [Required]
-    public string? Required { get; set; }
+- `ConfigurationUtils.cs`
+- `ValidationUtils.cs`
+- `ConfigurationPlaceHolderParser.cs`
+- `ConfigurationCollapseParser.cs`
+- `ConfigurationUpdateExtensions.cs`
+- `ConfigurationBuilderExtensions/`
+- `ConfigurationProviders/`
+- `ConfigurationSources/`
+- `ConfigurationBindingUtils/`
+- `References/`
+- `CustomValidationAttributes/`
+- `CommonConfigurationObjects/`
 
-    public string Optional { get; set; } = "default";
+## Companion tests
 
-    public string OptionalWithDefaultValue { get; set; } = "default";
-}
+`QaaS.Framework.Configurations.Tests` is the sibling test project for this package. It is important because it documents behavior that the old docs did not capture well.
 
-public record TestConfig
-{
-    [Required]
-    public string? Required { get; set; }
+The current test suite covers:
 
-    public string Optional { get; set; } = "default";
-
-    public string OptionalWithDefaultValue { get; set; } = "default";
-
-    public InnerTestConfig[] InnerTestConfigs { get; set; }
-
-    public Dictionary<string, InnerTestConfig> InnerTestConfigsDict { get; set; }
-}
-```
-
----
-
-## Custom Validation
-
-Additional validation logic can be found in the namespace:  
-`QaaS.Framework.Configuration.CustomValidationAttributes`
-
----
-
-## Package Contents
-
-### `ValidationUtils`
-
-Contains utility functions for advanced object validation using `DataAnnotations`.
-
-### `ConfigurationUtils`
-
-Provides helper methods for loading and managing configurations (e.g., parsing YAML, validating objects).
-
-### `CustomValidationAttributes`
-
-Contains custom validation attributes for use in configuration models (e.g., `MinLength`, `Range`, etc.).
-
-### `ConfigurationCollapseParser`
-
-Supports the YAML `<<` merge key feature, similar to PyYAML and Helm.
-
-#### Example
-
-```yaml
-anchor: &anchor
-  team: <teamName>
-  key: value
-
-<<: *anchor
-key: new_value
-```
-
-**Result**
-
-```yaml
-team: <teamName>
-key: new_value
-```
-
-> The `<<` key must be followed by a dictionary or list.  
-> Providing a scalar (e.g., string, number) will throw an exception.
-
-#### Invalid
-
-```yaml
-<<: raw_value
-```
-
-#### Valid
-
-```yaml
-<<:
-  key: value
-```
-
-> 💡 **Note**: The `<<` merge operation is applied at the top level of the configuration object.
-
----
-
-## Summary
-
-| Feature                       | Purpose                                      |
-|-------------------------------|----------------------------------------------|
-| YAML → C# Object Mapping      | Load configuration from YAML files           |
-| `DataAnnotations` Support     | Validate configuration structure and values  |
-| `ConfigurationCollapseParser` | Handle YAML `<<` merge syntax                |
-| Custom Attributes & Utilities | Extend validation and configuration handling |
-
-> **Best Practice**: Always use `public` `get`/`set` accessors and nullable types (`T?`) for required fields.
+- YAML emission and configuration flattening
+- nested binding into objects, lists, dictionaries, and enums
+- placeholder defaults, object placeholders, and circular-placeholder errors
+- recursive `<<` collapse behavior
+- environment-variable-aware build paths
+- reference replacement and index-shift behavior
+- recursive validation with path-aware error messages
+- sparse typed updates and raw configuration patching
+- HTTP YAML provider success and failure paths
+- the custom validation attributes and shared configuration objects
+
+Representative test files include:
+
+- `ConfigurationUtilitiesTests.cs`
+- `ConfigurationObjectValidationTests.cs`
+- `ConfigurationUpdateExtensionsTests.cs`
+- `HttpGetYamlConfigurationProviderTests.cs`
+- `AdvancedCustomValidationAttributesTests.cs`
+- `CustomValidationAttributesBehaviorTests.cs`

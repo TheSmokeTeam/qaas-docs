@@ -1,10 +1,10 @@
+<!-- generated hash:53126c931e75 sources:mocker-family, configuration-overview -->
+
 # Configuration Sections
 
-The `mocker.qaas.yaml` file is divided into the sections below. Each section configures a different aspect of the mock runtime.
+This page is generated from the current `QaaS Mocker` family schema.
 
-The selected CLI command changes what QaaS Mocker does with the loaded configuration, but all of `run`, `lint`, and `template` resolve the same configuration sections and overlay sources before execution.
-
-The preferred top-level layout is:
+The current top-level layout is:
 
 ```yaml
 DataSources: []
@@ -14,14 +14,20 @@ Stubs: []
 Controller: {}
 
 Servers: []
+
 ```
 
-`Servers` is the preferred format for new configurations. The legacy `Server` property is still supported by the runtime as a single-server shorthand, but the documentation on this site uses `Servers`.
+## Sections
+
+| Section | Description |
+| ------- | ----------- |
+| `DataSources` | List of data sources that can be used in the rest of the execution. They provide data that can be sent to the tested system or used by the execution itself to perform a multitude of logics. |
+| `Stubs` | List of transaction stubs that can be used for server actions.They provide processing functionality to exercise transaction data. |
+| `Controller` | The server mocker controller configuration |
+| `Servers` | List of server mocker instances to run concurrently. |
 
 ## Table View Order
 
-All configuration table views follow three rules:
-
 1. Property paths follow the YAML hierarchy.
 2. Under every parent, primitive fields come before arrays and nested objects.
-3. The pages document the current property names and preferred `Servers` model from the live `QaaS.Mocker` source.
+3. The pages document the current property names from the live family schema.

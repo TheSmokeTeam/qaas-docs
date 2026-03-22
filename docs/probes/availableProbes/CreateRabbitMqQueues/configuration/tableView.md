@@ -1,3 +1,5 @@
-# Table View
+﻿# CreateRabbitMqQueues Table View
 
-Configuration reference placeholder for `CreateRabbitMqQueues`.
+| Property Path | Type | Required | Default | Description |
+| --- | --- | --- | --- | --- |
+| `ProbeConfiguration` | `CreateRabbitMqQueuesConfig` | &#10004; |  | Creates RabbitMQ queues. |

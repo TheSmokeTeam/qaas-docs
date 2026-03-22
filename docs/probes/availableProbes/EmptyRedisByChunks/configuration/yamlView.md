@@ -1,3 +1,6 @@
-# YAML View
+﻿# EmptyRedisByChunks YAML Configuration
 
-YAML reference placeholder for `EmptyRedisByChunks`.
+```yaml
+Probe: EmptyRedisByChunks
+ProbeConfiguration: {}
+```

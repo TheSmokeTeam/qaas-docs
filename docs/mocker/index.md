@@ -1,6 +1,6 @@
 # QaaS Mocker
 
-**QaaS.Mocker** is a lightweight mock-server framework for HTTP, gRPC, and raw TCP/UDP services. It is built on .NET 10, driven by YAML configuration, and designed for tight integration with [QaaS.Runner](../qaas/index.md) tests.
+**QaaS.Mocker** is the mock-server runtime in the QaaS ecosystem. It runs HTTP, gRPC, and socket mocks from YAML or from code, routes incoming traffic to named stubs, and lets each stub shape its response through reusable or project-local processors.
 
 |             |                                                           |
 | ----------- | --------------------------------------------------------- |
@@ -11,19 +11,11 @@
 
 ## Key Capabilities
 
-- **HTTP server** - Kestrel-based, with per-endpoint route and method matching plus configurable response stubs.
-- **gRPC server** - reflection-based service binding with stubs per service and RPC method.
-- **Socket server** - TCP and UDP endpoints with configurable collect or broadcast behavior.
-- **Runtime control** - an optional Redis-backed **Controller** lets Runner sessions swap stubs, trigger actions, or consume cached transactions at runtime.
-- **Plugin system** - extend the runtime with custom `IProcessor` and `ITransactionProcessor` implementations from the project itself, NuGet packages, or local assemblies.
-- **Multi-server support** - run several HTTP, gRPC, and socket servers from one mocker process through the preferred `Servers` configuration model.
+- **Protocol coverage** - host HTTP, gRPC, TCP, and UDP mocks from one process.
+- **Composable responses** - map endpoints to named stubs, then let processors turn request data and optional data sources into responses.
+- **Data-backed stubs** - preload files or generated data and reuse them across multiple endpoints and actions.
+- **Runtime control** - use the optional controller to switch stubs or drive runtime state externally during Runner flows.
+- **Plugin model** - load processors and generators from the project itself, local assemblies, or NuGet packages.
+- **YAML and code parity** - keep the mock definition in `mocker.qaas.yaml`, build it fluently in C#, or combine both.
 
-## Commands
-
-| Mode       | Description                                     |
-| ---------- | ----------------------------------------------- |
-| `run`      | Start servers and controller (default)          |
-| `lint`     | Validate configuration without starting servers |
-| `template` | Print a YAML configuration template             |
-
-See [CLI Commands](userInterfaces/mocker/commands/commands.md) for usage examples and available flags.
+See [Architecture](architecture.md) for the runtime layout.

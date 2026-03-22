@@ -1,59 +1,38 @@
 # Create a Mock (YAML)
 
-This quick start keeps the mock behavior in `mocker.qaas.yaml` and uses a small custom processor class for the HTTP response logic.
+This version keeps the mock definition in `mocker.qaas.yaml` and uses a small local processor for the response body.
 
-The completed sample is available in the `yaml_configuration` branch of [qaas-mocker-quickstart]({{ links.mocker_quickstart_repository }}/tree/yaml_configuration).
+The completed sample is available in the `yaml_configuration` branch of [DummyAppMock]({{ links.mocker_quickstart_repository }}/tree/yaml_configuration).
 
-## Mock Spec
+## Scenario
 
 The mock should:
 
-- listen on port `80`
-- return JSON data on `GET /data/`
-- load that JSON data from files stored under `ServerData`
+- listen on `http://127.0.0.1:8080`
+- return JSON from `GET /data`
+- load the response body from `ServerData/sample.json`
 
 ## Create the Project
 
 ```bash
 dotnet new qaas-mocker -n DummyAppMock
+cd DummyAppMock
+dotnet add DummyAppMock/DummyAppMock.csproj package QaaS.Common.Generators
 ```
 
-The quick-start project looks like this:
+The sample keeps the response processor local so the quick start stays compatible with the currently published public packages.
 
-```txt
-DummyAppMock/
-|-- NuGet.Config
-|-- DummyAppMock.sln
-|-- README.md
-|-- Dockerfile
-|-- .github/
-|-- DummyAppMock/
-|   |-- DummyAppMock.csproj
-|   |-- Program.cs
-|   |-- mocker.qaas.yaml
-|   |-- Processors/
-|   |   `-- ServerDataProcessor.cs
-|   `-- ServerData/
-|       `-- sample.json
+## Keep `Program.cs` Minimal
+
+`DummyAppMock/Program.cs`
+
+```csharp
+QaaS.Mocker.Bootstrap.New(args).Run();
 ```
 
-## Add the Generator Package
+## Add the Local Processor
 
-The YAML configuration uses the `FromFileSystem` generator from [QaaS.Common.Generators]({{ links.repository_generators }}).
-
-`DummyAppMock.csproj`
-
-```xml
-<ItemGroup>
-  <PackageReference Include="QaaS.Common.Generators" Version="*" />
-</ItemGroup>
-```
-
-## Add a Local Processor
-
-`QaaS.Common.Processors` is retired. The only built-in processor that remains is the framework status hook, so this quick start keeps the file-backed response behavior in a local processor class.
-
-`Processors/ServerDataProcessor.cs`
+`DummyAppMock/Processors/ServerDataProcessor.cs`
 
 ```csharp
 using System.Collections.Immutable;
@@ -69,7 +48,7 @@ public sealed class ServerDataProcessor : BaseTransactionProcessor<NoConfigurati
     public override Data<object> Process(IImmutableList<DataSource> dataSourceList, Data<object> requestData)
     {
         var response = dataSourceList
-            .Single(dataSource => dataSource.Name == "FromFileSystemServerData")
+            .Single(dataSource => dataSource.Name == "ServerData")
             .Retrieve()
             .FirstOrDefault();
 
@@ -81,7 +60,7 @@ public sealed class ServerDataProcessor : BaseTransactionProcessor<NoConfigurati
                 Http = new Http
                 {
                     StatusCode = 200,
-                    Headers = new Dictionary<string, string>
+                    ResponseHeaders = new Dictionary<string, string>
                     {
                         ["Content-Type"] = "application/json"
                     }
@@ -94,13 +73,24 @@ public sealed class ServerDataProcessor : BaseTransactionProcessor<NoConfigurati
 public sealed record NoConfiguration;
 ```
 
+## Add the Response File
+
+`DummyAppMock/ServerData/sample.json`
+
+```json
+{
+  "message": "hello from DummyAppMock",
+  "source": "yaml_configuration"
+}
+```
+
 ## Configure `mocker.qaas.yaml`
 
-The preferred configuration format is `Servers`, even when you only have one server.
+`DummyAppMock/mocker.qaas.yaml`
 
 ```yaml
 DataSources:
-  - Name: FromFileSystemServerData
+  - Name: ServerData
     Generator: FromFileSystem
     GeneratorConfiguration:
       DataArrangeOrder: AsciiAsc
@@ -110,35 +100,30 @@ DataSources:
 Stubs:
   - Name: ServerDataStub
     Processor: ServerDataProcessor
-    DataSourceNames: [FromFileSystemServerData]
+    DataSourceNames: [ServerData]
 
 Servers:
   - Http:
-      Port: 80
+      Port: 8080
+      IsLocalhost: true
       Endpoints:
-        - Path: /data/
+        - Path: /data
           Actions:
-            - Name: DataFromFileSystemAction
+            - Name: GetServerData
               Method: Get
               TransactionStubName: ServerDataStub
 ```
 
-## Validate and Run
+## Run the Mock
 
-Validate the configuration first:
-
-```bash
-dotnet run -- lint mocker.qaas.yaml
-```
-
-Then start the mock:
+From `DummyAppMock/DummyAppMock`:
 
 ```bash
 dotnet run -- run mocker.qaas.yaml
 ```
 
-If port `80` is reserved on your machine, you can keep the YAML unchanged and override it locally:
+Then verify it:
 
 ```bash
-dotnet run -- run mocker.qaas.yaml --overwrite-arguments "Servers:0:Http:Port=8080"
+curl http://127.0.0.1:8080/data
 ```

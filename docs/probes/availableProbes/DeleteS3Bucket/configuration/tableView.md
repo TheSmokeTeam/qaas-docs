@@ -1,3 +1,5 @@
-# Table View
+﻿# DeleteS3Bucket Table View
 
-Configuration reference placeholder for `DeleteS3Bucket`.
+| Property Path | Type | Required | Default | Description |
+| --- | --- | --- | --- | --- |
+| `ProbeConfiguration` | `DeleteS3BucketConfig` | &#10004; |  | Deletes an S3 bucket. |
