@@ -1,116 +1,177 @@
 # Write a Test (Code)
 
-This version builds the same `DummyAppMock` verification flow directly in C#.
+This version builds the same RabbitMQ verification flow directly in C# while keeping `Program.cs` to the bootstrap call only.
 
 The completed sample is available in the `code_configuration` branch of [DummyAppTests]({{ links.runner_quickstart_repository }}/tree/code_configuration).
 
-## Keep the Bootstrap File
-
-Runner still expects a configuration path, so the sample keeps a minimal `test.qaas.yaml`.
+## Keep `test.qaas.yaml` Empty
 
 `DummyAppTests/test.qaas.yaml`
 
 ```yaml
-MetaData:
-  Team: Smoke
-  System: DummyApp
-
-DataSources: []
-
-Sessions: []
-
-Assertions: []
 ```
 
-## Add the Request Input
+If the file is missing, Runner logs a warning and continues with discovered code configurators. The sample keeps the file empty so the command stays identical to the YAML sample.
 
-`DummyAppTests/Requests/request.json`
-
-```json
-{}
-```
-
-## Build the Execution in Code
+## Keep `Program.cs` Minimal
 
 `DummyAppTests/Program.cs`
 
 ```csharp
-using QaaS.Common.Assertions.CommonAssertionsConfigs.HttpMetaDataLogic;
-using QaaS.Common.Assertions.HttpMetaDataLogic;
+QaaS.Runner.Bootstrap.New(args).Run();
+```
+
+## Add the Test Data
+
+`DummyAppTests/TestData/input.json`
+
+```json
+[
+  {
+    "id": 1,
+    "message": "hello from DummyAppTests"
+  }
+]
+```
+
+## Build the Execution in Code
+
+`DummyAppTests/RunnerExecutionBuilderConfigurator.cs`
+
+```csharp
+using QaaS.Common.Assertions.CommonAssertionsConfigs.Delay;
+using QaaS.Common.Assertions.CommonAssertionsConfigs.Hermetic;
+using QaaS.Common.Assertions.Delay;
+using QaaS.Common.Assertions.Hermetic;
 using QaaS.Common.Generators.ConfigurationObjects.FromExternalSourceConfigurations;
 using QaaS.Common.Generators.FromExternalSourceGenerators;
-using QaaS.Framework.Protocols.ConfigurationObjects.Http;
+using QaaS.Framework.Policies;
+using QaaS.Framework.Policies.ConfigurationObjects;
+using QaaS.Framework.Protocols.ConfigurationObjects.RabbitMq;
 using QaaS.Framework.SDK;
 using QaaS.Framework.SDK.DataSourceObjects;
+using QaaS.Framework.Serialization;
 using QaaS.Runner;
 using QaaS.Runner.Assertions.ConfigurationObjects;
-using QaaS.Runner.Sessions.Actions.Transactions.Builders;
+using QaaS.Runner.Sessions.Actions.Consumers.Builders;
+using QaaS.Runner.Sessions.Actions.Publishers.Builders;
 using QaaS.Runner.Sessions.Session.Builders;
 
-Directory.SetCurrentDirectory(AppContext.BaseDirectory);
+namespace DummyAppTests;
 
-var runner = Bootstrap.New(NormalizeArgs(args));
-var executionBuilder = runner.ExecutionBuilders.Single();
-
-var requestData = new DataSourceBuilder()
-    .Named("RequestData")
-    .HookNamed(nameof(FromFileSystem))
-    .Configure(new FromFileSystemConfig
-    {
-        DataArrangeOrder = DataArrangeOrder.AsciiAsc,
-        FileSystem = new FileSystemConfig
-        {
-            Path = "Requests"
-        }
-    });
-
-var transaction = new TransactionBuilder()
-    .Named("GetServerData")
-    .AddDataSource("RequestData")
-    .WithTimeout(5000)
-    .Configure(new HttpTransactorConfig
-    {
-        BaseAddress = "http://127.0.0.1",
-        Method = HttpMethods.Get,
-        Port = 8080,
-        Route = "data"
-    });
-
-var session = new SessionBuilder()
-    .Named("DummyAppSession")
-    .AddTransaction(transaction);
-
-var assertion = new AssertionBuilder
-    {
-        AssertionInstance = null!,
-        Reporter = null!
-    }
-    .Named("GetServerDataReturns200")
-    .HookNamed(nameof(HttpStatus))
-    .AddSessionName("DummyAppSession")
-    .Configure(new HttpStatusConfiguration
-    {
-        StatusCode = 200,
-        OutputNames = ["GetServerData"]
-    });
-
-executionBuilder
-    .WithMetadata(new MetaDataConfig
-    {
-        Team = "Smoke",
-        System = "DummyApp"
-    })
-    .AddDataSource(requestData)
-    .AddSession(session)
-    .AddAssertion(assertion);
-
-runner.Run();
-
-static string[] NormalizeArgs(IEnumerable<string> args)
+public sealed class RunnerExecutionBuilderConfigurator : IExecutionBuilderConfigurator
 {
-    var normalizedArgs = args.ToArray();
-    return normalizedArgs.Length == 0 ? ["run", "test.qaas.yaml"] : normalizedArgs;
+    public void Configure(ExecutionBuilder executionBuilder)
+    {
+        var dataSource = new DataSourceBuilder()
+            .Named("FromFileSystemTestData")
+            .HookNamed(nameof(FromFileSystem))
+            .Configure(new FromFileSystemConfig
+            {
+                DataArrangeOrder = DataArrangeOrder.AsciiAsc,
+                FileSystem = new FileSystemConfig
+                {
+                    Path = "TestData"
+                }
+            });
+
+        var publisher = new PublisherBuilder()
+            .Named("Publisher")
+            .AddDataSource("FromFileSystemTestData")
+            .AddPolicy(new PolicyBuilder().Configure(new LoadBalancePolicyConfig
+            {
+                Rate = 50
+            }))
+            .Configure(new RabbitMqSenderConfig
+            {
+                Host = "127.0.0.1",
+                Username = "admin",
+                Password = "admin",
+                Port = 5672,
+                ExchangeName = "amq.direct",
+                RoutingKey = "dummyapp"
+            });
+
+        var consumer = new ConsumerBuilder()
+            .Named("Consumer")
+            .WithTimeout(5000)
+            .Configure(new RabbitMqReaderConfig
+            {
+                Host = "127.0.0.1",
+                Username = "admin",
+                Password = "admin",
+                Port = 5672,
+                ExchangeName = "amq.direct",
+                RoutingKey = "dummyapp"
+            })
+            .WithDeserializer(new DeserializeConfig
+            {
+                Deserializer = SerializationType.Json
+            });
+
+        var session = new SessionBuilder()
+            .Named("RabbitMqExchangeWithFromFileSystemTestData")
+            .AddPublisher(publisher)
+            .AddConsumer(consumer);
+
+        var hermeticAssertion = new AssertionBuilder
+            {
+                AssertionInstance = null!,
+                Reporter = null!
+            }
+            .Named("HermeticByInputOutputPercentage")
+            .HookNamed(nameof(HermeticByInputOutputPercentage))
+            .AddSessionName("RabbitMqExchangeWithFromFileSystemTestData")
+            .Configure(new HermeticByInputOutputPercentageConfiguration
+            {
+                OutputNames = ["Consumer"],
+                InputNames = ["Publisher"],
+                ExpectedPercentage = 100
+            });
+
+        var delayAssertion = new AssertionBuilder
+            {
+                AssertionInstance = null!,
+                Reporter = null!
+            }
+            .Named("DelayByChunks")
+            .HookNamed(nameof(DelayByChunks))
+            .AddSessionName("RabbitMqExchangeWithFromFileSystemTestData")
+            .Configure(new DelayByChunksConfiguration
+            {
+                Output = new Chunk
+                {
+                    Name = "Consumer",
+                    ChunkSize = 1
+                },
+                Input = new Chunk
+                {
+                    Name = "Publisher",
+                    ChunkSize = 1
+                },
+                MaximumDelayMs = 5000
+            });
+
+        executionBuilder
+            .WithMetadata(new MetaDataConfig
+            {
+                Team = "Smoke",
+                System = "DummyApp"
+            })
+            .AddDataSource(dataSource)
+            .AddSession(session)
+            .AddAssertion(hermeticAssertion)
+            .AddAssertion(delayAssertion);
+    }
 }
 ```
 
-The explicit initialization of `AssertionInstance` and `Reporter` matches the current public package shape of `AssertionBuilder`.
+## Run
+
+Start RabbitMQ as shown in [Run Test](runTest.md), then run the sample:
+
+From `DummyAppTests/DummyAppTests`:
+
+```bash
+dotnet run -- run test.qaas.yaml
+```

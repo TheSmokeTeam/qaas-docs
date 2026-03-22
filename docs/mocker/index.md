@@ -18,4 +18,4 @@
 - **Plugin model** - load processors and generators from the project itself, local assemblies, or NuGet packages.
 - **YAML and code parity** - keep the mock definition in `mocker.qaas.yaml`, build it fluently in C#, or combine both.
 
-See [Architecture](architecture.md) for the runtime layout and [CLI Commands](userInterfaces/mocker/commands/commands.md) for command usage.
+See [Architecture](architecture.md) for the runtime layout.

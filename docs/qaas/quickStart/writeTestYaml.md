@@ -1,6 +1,6 @@
 # Write a Test (YAML)
 
-This sample tests the `DummyAppMock` quick-start mock by calling `GET /data` and asserting that the response status code is `200`.
+This sample publishes one message to RabbitMQ, consumes it back from the same exchange and routing key, and verifies both delivery and timing.
 
 The completed sample is available in the `yaml_configuration` branch of [DummyAppTests]({{ links.runner_quickstart_repository }}/tree/yaml_configuration).
 
@@ -13,29 +13,25 @@ dotnet add DummyAppTests/DummyAppTests.csproj package QaaS.Common.Assertions
 dotnet add DummyAppTests/DummyAppTests.csproj package QaaS.Common.Generators
 ```
 
-## Load Plugin Assemblies
-
-For the YAML sample, explicitly load the assertion and generator packages before bootstrap.
+## Keep `Program.cs` Minimal
 
 `DummyAppTests/Program.cs`
 
 ```csharp
-using System.Reflection;
-
-Directory.SetCurrentDirectory(AppContext.BaseDirectory);
-Assembly.Load("QaaS.Common.Assertions");
-Assembly.Load("QaaS.Common.Generators");
 QaaS.Runner.Bootstrap.New(args).Run();
 ```
 
-## Add the Request Input
+## Add the Test Data
 
-The HTTP transaction is a `GET`, so the request body is ignored. The sample still keeps one file in `Requests` so the data source has one item to drive one transaction.
-
-`DummyAppTests/Requests/request.json`
+`DummyAppTests/TestData/input.json`
 
 ```json
-{}
+[
+  {
+    "id": 1,
+    "message": "hello from DummyAppTests"
+  }
+]
 ```
 
 ## Configure `test.qaas.yaml`
@@ -48,36 +44,83 @@ MetaData:
   System: DummyApp
 
 DataSources:
-  - Name: RequestData
+  - Name: FromFileSystemTestData
     Generator: FromFileSystem
     GeneratorConfiguration:
       DataArrangeOrder: AsciiAsc
       FileSystem:
-        Path: Requests
+        Path: TestData
 
 Sessions:
-  - Name: DummyAppSession
-    Transactions:
-      - Name: GetServerData
-        DataSourceNames: [RequestData]
+  - Name: RabbitMqExchangeWithFromFileSystemTestData
+    Publishers:
+      - Name: Publisher
+        DataSourceNames: [FromFileSystemTestData]
+        Policies:
+          - LoadBalance:
+              Rate: 50
+        RabbitMq:
+          Host: 127.0.0.1
+          Username: admin
+          Password: admin
+          Port: 5672
+          ExchangeName: amq.direct
+          RoutingKey: dummyapp
+    Consumers:
+      - Name: Consumer
         TimeoutMs: 5000
-        Http:
-          BaseAddress: http://127.0.0.1
-          Method: Get
-          Port: 8080
-          Route: data
+        RabbitMq:
+          Host: 127.0.0.1
+          Username: admin
+          Password: admin
+          Port: 5672
+          ExchangeName: amq.direct
+          RoutingKey: dummyapp
+        Deserialize:
+          Deserializer: Json
 
 Assertions:
-  - Name: GetServerDataReturns200
-    Assertion: HttpStatus
-    SessionNames: [DummyAppSession]
+  - Name: HermeticByInputOutputPercentage
+    Assertion: HermeticByInputOutputPercentage
+    SessionNames: [RabbitMqExchangeWithFromFileSystemTestData]
     AssertionConfiguration:
-      StatusCode: 200
-      OutputNames: [GetServerData]
+      OutputNames: [Consumer]
+      InputNames: [Publisher]
+      ExpectedPercentage: 100
+  - Name: DelayByChunks
+    Assertion: DelayByChunks
+    SessionNames: [RabbitMqExchangeWithFromFileSystemTestData]
+    AssertionConfiguration:
+      Output:
+        Name: Consumer
+        ChunkSize: 1
+      Input:
+        Name: Publisher
+        ChunkSize: 1
+      MaximumDelayMs: 5000
 ```
 
-`Route` should be `data`, not `/data/`, so the final request resolves to `http://127.0.0.1:8080/data`.
+The sample uses RabbitMQ's built-in `amq.direct` exchange and the routing key `dummyapp`.
+
+## Start RabbitMQ
+
+```bash
+docker run --rm -d --name qaas-runner-rabbit \
+  -p 5672:5672 \
+  -p 15672:15672 \
+  -e RABBITMQ_DEFAULT_USER=admin \
+  -e RABBITMQ_DEFAULT_PASS=admin \
+  rabbitmq:4-management
+```
+
+## Run
+
+From `DummyAppTests/DummyAppTests`:
+
+```bash
+dotnet run -- run test.qaas.yaml
+```
 
 ## Result
 
-When this file runs against the local mock, Runner performs one HTTP transaction and the `HttpStatus` assertion verifies the `200` response.
+Runner publishes the JSON payload from `TestData/input.json`, reads it back through the consumer, and verifies both 100% hermeticity and a maximum end-to-end delay of 5000 ms.

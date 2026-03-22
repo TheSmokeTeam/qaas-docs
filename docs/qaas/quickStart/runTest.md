@@ -1,6 +1,15 @@
 # Run Test
 
-Start the local mock first, then run the Runner sample from the `DummyAppTests/DummyAppTests` directory.
+Start RabbitMQ first, then run the Runner sample from the `DummyAppTests/DummyAppTests` directory.
+
+```bash
+docker run --rm -d --name qaas-runner-rabbit \
+  -p 5672:5672 \
+  -p 15672:15672 \
+  -e RABBITMQ_DEFAULT_USER=admin \
+  -e RABBITMQ_DEFAULT_PASS=admin \
+  rabbitmq:4-management
+```
 
 ## YAML Sample
 
@@ -10,10 +19,8 @@ dotnet run -- run test.qaas.yaml
 
 ## Code Sample
 
-The code-first sample normalizes empty arguments to `run test.qaas.yaml`, so this also works:
-
 ```bash
-dotnet run
+dotnet run -- run test.qaas.yaml
 ```
 
 ## Output
