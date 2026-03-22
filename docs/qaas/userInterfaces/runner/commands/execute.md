@@ -1,4 +1,4 @@
-<!-- generated hash:5f77990a183f sources:Runner, execute, cli-command -->
+<!-- generated hash:b575bcad5024 sources:Runner, execute, cli-command -->
 
 # execute
 
@@ -63,13 +63,13 @@ Usage:
 
 | Flag | Property | Source Type | Inherited | Required | Default | Value Type | Description |
 | ---- | -------- | ----------- | --------- | -------- | ------- | ---------- | ----------- |
-| `-c`, `--command-ids-to-run` | `CommandIdsToRun` | `QaaS.Runner.Options.ExecuteOptions` | No | No | [] | `System.Collections.Generic.IList<System.String>` | Ids of the commands to run. Only the commands given would run. If none is given runs all commands. |
+| `-c`, `--command-ids-to-run` | `CommandIdsToRun` | `QaaS.Runner.Options.ExecuteOptions` | No | No | [] | `System.Collections.Generic.IList`1[[System.String, System.Private.CoreLib, Version=10.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]` | Ids of the commands to run. Only the commands given would run. If none is given runs all commands. |
 | `--elastic-password` | `ElasticPassword` | `QaaS.Framework.Executions.Options.LoggerOptions` | Yes | No |  | `System.String` | Optional Elasticsearch password for the logger sink. |
 | `--elastic-uri` | `ElasticUri` | `QaaS.Framework.Executions.Options.LoggerOptions` | Yes | No |  | `System.String` | Elasticsearch URI used by the logger sink when send-logs is enabled. |
 | `--elastic-username` | `ElasticUsername` | `QaaS.Framework.Executions.Options.LoggerOptions` | Yes | No |  | `System.String` | Optional Elasticsearch username for the logger sink. |
 | `-e`, `--empty-allure-directory` | `EmptyAllureDirectory` | `QaaS.Runner.Options.ExecuteOptions` | No | No | False | `System.Boolean` | If flag is enabled will automatically empty the allure results directory before running. |
 | `-g`, `--logger-configuration-file` | `LoggerConfigurationFilePath` | `QaaS.Framework.Executions.Options.LoggerOptions` | Yes | No |  | `System.String` | Path to a logger's configuration file, will override the default logger's configuration. Its level can be overridden by the logger-level flag. |
-| `-l`, `--logger-level` | `LoggerLevel` | `QaaS.Framework.Executions.Options.LoggerOptions` | Yes | No |  | `System.Nullable<Serilog.Events.LogEventLevel>` | <br />The logger's level, overrides both the default logger's level (Information) and the level of any logger's configuration given.<br />All available options (not case sensitive) are: Verbose, Debug, <br />Information, Warning, Error, Fatal. |
+| `-l`, `--logger-level` | `LoggerLevel` | `QaaS.Framework.Executions.Options.LoggerOptions` | Yes | No |  | `System.Nullable`1[[Serilog.Events.LogEventLevel, Serilog, Version=4.3.0.0, Culture=neutral, PublicKeyToken=24c2f752a8e58a10]]` | <br />The logger's level, overrides both the default logger's level (Information) and the level of any logger's configuration given.<br />All available options (not case sensitive) are: Verbose, Debug, <br />Information, Warning, Error, Fatal. |
 | `--no-process-exit` | `NoProcessExit` | `QaaS.Runner.Options.ExecuteOptions` | No | No | False | `System.Boolean` | When this flag is used the runner will not terminate the current process after it completes. Useful when embedding QaaS.Runner and orchestrating multiple runners in a single host process. |
 | `--send-logs` | `SendLogs` | `QaaS.Framework.Executions.Options.LoggerOptions` | Yes | No | False | `System.Boolean` | Weather to send the logs to Smokes's logs database |
 | `-s`, `--serve-results` | `AutoServeTestResults` | `QaaS.Runner.Options.ExecuteOptions` | No | No | False | `System.Boolean` | <br />If flag is enabled will automatically serve the test results in a human readable manner using allure after executing all commands.<br />when any of the commands written in the executable configuration file use this flag it will not do anything, this is the deciding flag.<br />Uses a locally installed allure CLI tool, if allure CLI is not installed and added to path the serve will fail.<br /> |

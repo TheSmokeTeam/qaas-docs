@@ -1,4 +1,4 @@
-<!-- generated hash:2a150f8a369c sources:Mocker, functions -->
+<!-- generated hash:eb9289d18f6e sources:Mocker, functions -->
 
 # Mocker Functions
 
@@ -230,126 +230,126 @@ Validates mutually exclusive server settings and multi-server action-name collis
 #### `TransactionStubBuilder.Named(string name) : TransactionStubBuilder`
 
 - Kind: `function`
-- Location: `QaaS.Mocker.Stubs/ConfigurationObjects/TransactionStubBuilder.cs:63`
+- Location: `QaaS.Mocker.Stubs/ConfigurationObjects/TransactionStubBuilder.cs:57`
 
 Sets the stub name.
 
 #### `TransactionStubBuilder.HookNamed(string processorName) : TransactionStubBuilder`
 
 - Kind: `function`
-- Location: `QaaS.Mocker.Stubs/ConfigurationObjects/TransactionStubBuilder.cs:72`
+- Location: `QaaS.Mocker.Stubs/ConfigurationObjects/TransactionStubBuilder.cs:66`
 
 Sets the processor hook name.
 
 #### `TransactionStubBuilder.AddDataSourceName(string dataSourceName) : TransactionStubBuilder`
 
 - Kind: `function`
-- Location: `QaaS.Mocker.Stubs/ConfigurationObjects/TransactionStubBuilder.cs:81`
+- Location: `QaaS.Mocker.Stubs/ConfigurationObjects/TransactionStubBuilder.cs:75`
 
 Adds a single data source name to the stub.
 
 #### `TransactionStubBuilder.WithDataSourceNames(IEnumerable<string> dataSourceNames) : TransactionStubBuilder`
 
 - Kind: `function`
-- Location: `QaaS.Mocker.Stubs/ConfigurationObjects/TransactionStubBuilder.cs:90`
+- Location: `QaaS.Mocker.Stubs/ConfigurationObjects/TransactionStubBuilder.cs:84`
 
 Replaces the data source name list.
 
 #### `TransactionStubBuilder.ClearDataSourceNames() : TransactionStubBuilder`
 
 - Kind: `function`
-- Location: `QaaS.Mocker.Stubs/ConfigurationObjects/TransactionStubBuilder.cs:99`
+- Location: `QaaS.Mocker.Stubs/ConfigurationObjects/TransactionStubBuilder.cs:93`
 
 Removes every configured data source name.
 
 #### `TransactionStubBuilder.Configure(IConfiguration configuration) : TransactionStubBuilder`
 
 - Kind: `function`
-- Location: `QaaS.Mocker.Stubs/ConfigurationObjects/TransactionStubBuilder.cs:108`
+- Location: `QaaS.Mocker.Stubs/ConfigurationObjects/TransactionStubBuilder.cs:102`
 
 Replaces the processor configuration with an existing configuration object.
 
 #### `TransactionStubBuilder.CreateConfiguration(IConfiguration configuration) : TransactionStubBuilder`
 
 - Kind: `function`
-- Location: `QaaS.Mocker.Stubs/ConfigurationObjects/TransactionStubBuilder.cs:117`
+- Location: `QaaS.Mocker.Stubs/ConfigurationObjects/TransactionStubBuilder.cs:111`
 
 Compatibility alias for IConfiguration) that matches the configuration CRUD pattern used by other builders.
 
 #### `TransactionStubBuilder.Configure(object configuration) : TransactionStubBuilder`
 
 - Kind: `function`
-- Location: `QaaS.Mocker.Stubs/ConfigurationObjects/TransactionStubBuilder.cs:125`
+- Location: `QaaS.Mocker.Stubs/ConfigurationObjects/TransactionStubBuilder.cs:119`
 
 Serializes an object into JSON-backed processor configuration.
 
 #### `TransactionStubBuilder.CreateConfiguration(object configuration) : TransactionStubBuilder`
 
 - Kind: `function`
-- Location: `QaaS.Mocker.Stubs/ConfigurationObjects/TransactionStubBuilder.cs:135`
+- Location: `QaaS.Mocker.Stubs/ConfigurationObjects/TransactionStubBuilder.cs:129`
 
 Compatibility alias for Configure(object) that matches the configuration CRUD pattern used by other builders.
 
 #### `TransactionStubBuilder.Create(IConfiguration configuration) : TransactionStubBuilder`
 
 - Kind: `function`
-- Location: `QaaS.Mocker.Stubs/ConfigurationObjects/TransactionStubBuilder.cs:143`
+- Location: `QaaS.Mocker.Stubs/ConfigurationObjects/TransactionStubBuilder.cs:137`
 
 Compatibility alias for IConfiguration) .
 
 #### `TransactionStubBuilder.Create(object configuration) : TransactionStubBuilder`
 
 - Kind: `function`
-- Location: `QaaS.Mocker.Stubs/ConfigurationObjects/TransactionStubBuilder.cs:151`
+- Location: `QaaS.Mocker.Stubs/ConfigurationObjects/TransactionStubBuilder.cs:145`
 
 Compatibility alias for CreateConfiguration(object) .
 
 #### `TransactionStubBuilder.ReadConfiguration() : IConfiguration`
 
 - Kind: `function`
-- Location: `QaaS.Mocker.Stubs/ConfigurationObjects/TransactionStubBuilder.cs:159`
+- Location: `QaaS.Mocker.Stubs/ConfigurationObjects/TransactionStubBuilder.cs:153`
 
 Returns the currently configured processor configuration.
 
 #### `TransactionStubBuilder.UpdateConfiguration(object configuration) : TransactionStubBuilder`
 
 - Kind: `function`
-- Location: `QaaS.Mocker.Stubs/ConfigurationObjects/TransactionStubBuilder.cs:167`
+- Location: `QaaS.Mocker.Stubs/ConfigurationObjects/TransactionStubBuilder.cs:161`
 
 Merges the provided configuration object into the current processor configuration.
 
 #### `TransactionStubBuilder.DeleteConfiguration() : TransactionStubBuilder`
 
 - Kind: `function`
-- Location: `QaaS.Mocker.Stubs/ConfigurationObjects/TransactionStubBuilder.cs:176`
+- Location: `QaaS.Mocker.Stubs/ConfigurationObjects/TransactionStubBuilder.cs:170`
 
 Clears the configured processor configuration.
 
 #### `TransactionStubBuilder.DeserializeRequestBodyWith(DeserializeConfig config) : TransactionStubBuilder`
 
 - Kind: `function`
-- Location: `QaaS.Mocker.Stubs/ConfigurationObjects/TransactionStubBuilder.cs:185`
+- Location: `QaaS.Mocker.Stubs/ConfigurationObjects/TransactionStubBuilder.cs:179`
 
 Configures how request bodies are deserialized before processor execution.
 
 #### `TransactionStubBuilder.SerializeResponseBodyWith(SerializeConfig config) : TransactionStubBuilder`
 
 - Kind: `function`
-- Location: `QaaS.Mocker.Stubs/ConfigurationObjects/TransactionStubBuilder.cs:194`
+- Location: `QaaS.Mocker.Stubs/ConfigurationObjects/TransactionStubBuilder.cs:188`
 
 Configures how response bodies are serialized after processor execution.
 
 #### `TransactionStubBuilder.Build() : TransactionStubConfig`
 
 - Kind: `function`
-- Location: `QaaS.Mocker.Stubs/ConfigurationObjects/TransactionStubBuilder.cs:203`
+- Location: `QaaS.Mocker.Stubs/ConfigurationObjects/TransactionStubBuilder.cs:197`
 
 Materializes the fluent builder into an immutable configuration record.
 
 #### `TransactionStubBuilder.FromConfig(TransactionStubConfig config) : TransactionStubBuilder`
 
 - Kind: `function`
-- Location: `QaaS.Mocker.Stubs/ConfigurationObjects/TransactionStubBuilder.cs:224`
+- Location: `QaaS.Mocker.Stubs/ConfigurationObjects/TransactionStubBuilder.cs:218`
 
 Creates a fluent builder from an existing configuration record.
 
@@ -360,7 +360,7 @@ Creates a fluent builder from an existing configuration record.
 #### `Bootstrap.New(IEnumerable<string>? args = null) : MockerRunner`
 
 - Kind: `function`
-- Location: `QaaS.Mocker/Bootstrap.cs:17`
+- Location: `QaaS.Mocker/Bootstrap.cs:16`
 
 Creates a new MockerRunner from command-line arguments.
 
@@ -371,6 +371,6 @@ Creates a new MockerRunner from command-line arguments.
 #### `MockerRunner.Run() : void`
 
 - Kind: `function`
-- Location: `QaaS.Mocker/MockerRunner.cs:13`
+- Location: `QaaS.Mocker/MockerRunner.cs:12`
 
 _No XML summary provided._

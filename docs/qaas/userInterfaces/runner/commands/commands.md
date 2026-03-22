@@ -1,8 +1,8 @@
-<!-- generated hash:4e63f7242ef3 sources:Runner, cli-overview -->
+<!-- generated hash:65bb6938b1eb sources:Runner, cli-overview -->
 
 # Commands
 
-This page is generated from the live Runner parser and help builders.
+This page is generated from a committed Runner CLI snapshot captured from the live help path.
 
 Running without a command currently prints:
 
