@@ -47,6 +47,7 @@ The static site will be generated in the `site/` directory.
 Runner, Mocker, and Framework reference pages are generated deterministically.
 
 - Family schema contracts come from `QaaS.PackageMirror`.
+- The renderer itself lives in the external `QaaS.Docs.Generator` repository and is pulled into this repo as the `tools/QaaS.Docs.Generator` git submodule.
 - CLI reference pages come from committed snapshots under `tools/QaaS.Docs.Generator/Snapshots/`.
 - Function catalogs come from `tools/QaaS.Docs.Generator/Functions/function-manifest.json` plus source inspection of sibling repositories.
 

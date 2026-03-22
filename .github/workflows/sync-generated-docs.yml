@@ -8,8 +8,9 @@ on:
       - docs/mocker_documentation
     paths:
       - .github/workflows/sync-generated-docs.yml
+      - .gitmodules
       - scripts/Generate-ReferenceDocs.ps1
-      - tools/QaaS.Docs.Generator/**
+      - tools/QaaS.Docs.Generator
       - mkdocs.yml
 
 jobs:
@@ -20,6 +21,7 @@ jobs:
         uses: actions/checkout@v4
         with:
           path: qaas-docs
+          submodules: recursive
 
       - name: Checkout package mirror
         uses: actions/checkout@v4

@@ -21,9 +21,14 @@ $ErrorActionPreference = 'Stop'
 # Update those snapshots manually only when the CLI help output or option surface changes, then
 # rerun this script to regenerate the markdown pages.
 
+$generatorProject = Join-Path $DocsRoot 'tools\QaaS.Docs.Generator\QaaS.Docs.Generator.csproj'
+if (-not (Test-Path $generatorProject)) {
+    throw "QaaS.Docs.Generator is missing. Initialize the docs repo submodule before running this script."
+}
+
 $generatorArgs = @(
     'run',
-    '--project', (Join-Path $DocsRoot 'tools\QaaS.Docs.Generator\QaaS.Docs.Generator.csproj'),
+    '--project', $generatorProject,
     '--configuration', 'Release',
     '--',
     '--docs-root', $DocsRoot,
