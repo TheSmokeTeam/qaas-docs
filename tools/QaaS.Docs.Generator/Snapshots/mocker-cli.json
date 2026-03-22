@@ -1,0 +1,310 @@
+{
+  "GeneratedAtUtc": "2026-03-22T10:49:16.1402683+00:00",
+  "OverviewHelpText": "QaaS.Mocker.CliExport 1.0.0\u002B82f6cff925212b15f3f3720a18552e39720e3c10\r\nCopyright (C) 2026 QaaS.Mocker.CliExport\r\nUsage:\r\n dotnet run [Dotnet Parameters] -- [Command] [Values] [Flags]\r\n\r\n  run         Start the configured mock servers and optional controller runtime.\r\n\r\n  template    Render the effective merged configuration after file, folder, argument, and environment overrides.\r\n\r\n  help        Display more information on a specific command.\r\n\r\n  version     Display version information.\r\n\r\nCommand Details:\r\n\r\nrun:\r\nQaaS.Mocker.CliExport 1.0.0\u002B82f6cff925212b15f3f3720a18552e39720e3c10\r\nCopyright (C) 2026 QaaS.Mocker.CliExport\r\nUsage:\r\n dotnet run [Dotnet Parameters] -- [Command] [Values] [Flags]\r\n\r\n  -w, --overwrite-files              List of files to overwrite the mocker configuration with, The first file overwrites\r\n                                     the mocker\r\n                                     configuration file and then the one after it overwrite the result and so on...\r\n\r\n  -f, --overwrite-folders            List of folders whose yaml files overwrite the mocker configuration in alphabetical\r\n                                     order,\r\n                                     after overwrite files and in the order the folders are given.\r\n\r\n  -r, --overwrite-arguments          List of arguments to overwrite the mocker configuration with, The first argument\r\n                                     overwrites the\r\n                                     mocker configuration and then the one after it overwrites the result and so on...\r\n                                     For example: \u0060Path:To:Variable:To:Overwrite=NewVariableValue\u0060\r\n\r\n  --no-env                           (Default: false) When this flag is used environment variables will not override\r\n                                     loaded configurations.\r\n\r\n  -o, --output-folder                Path to a folder to write the generated templates in.\r\n\r\n  --run-locally                      (Default: false) Runs the project locally and enables exit by any key press.\r\n\r\n  -l, --logger-level                 The logger\u0027s level, overrides both the default logger\u0027s level (Information) and the\r\n                                     level of any logger\u0027s configuration given.\r\n                                     All available options (not case sensitive) are: Verbose, Debug,\r\n                                     Information, Warning, Error, Fatal.\r\n\r\n  -g, --logger-configuration-file    Path to a logger\u0027s configuration file, will override the default logger\u0027s\r\n                                     configuration. Its level can be overridden by the logger-level flag.\r\n\r\n  --send-logs                        (Default: false) Weather to send the logs to Smokes\u0027s logs database\r\n\r\n  --elastic-uri                      Elasticsearch URI used by the logger sink when send-logs is enabled.\r\n\r\n  --elastic-username                 Optional Elasticsearch username for the logger sink.\r\n\r\n  --elastic-password                 Optional Elasticsearch password for the logger sink.\r\n\r\n  --help                             Display this help screen.\r\n\r\n  --version                          Display version information.\r\n\r\n  value pos. 0                       (Default: mocker.qaas.yaml) Path to a mocker yaml configuration file to use with\r\n                                     the command.\u0022\r\n\r\ntemplate:\r\nQaaS.Mocker.CliExport 1.0.0\u002B82f6cff925212b15f3f3720a18552e39720e3c10\r\nCopyright (C) 2026 QaaS.Mocker.CliExport\r\nUsage:\r\n dotnet run [Dotnet Parameters] -- [Command] [Values] [Flags]\r\n\r\n  -w, --overwrite-files              List of files to overwrite the mocker configuration with, The first file overwrites\r\n                                     the mocker\r\n                                     configuration file and then the one after it overwrite the result and so on...\r\n\r\n  -f, --overwrite-folders            List of folders whose yaml files overwrite the mocker configuration in alphabetical\r\n                                     order,\r\n                                     after overwrite files and in the order the folders are given.\r\n\r\n  -r, --overwrite-arguments          List of arguments to overwrite the mocker configuration with, The first argument\r\n                                     overwrites the\r\n                                     mocker configuration and then the one after it overwrites the result and so on...\r\n                                     For example: \u0060Path:To:Variable:To:Overwrite=NewVariableValue\u0060\r\n\r\n  --no-env                           (Default: false) When this flag is used environment variables will not override\r\n                                     loaded configurations.\r\n\r\n  -o, --output-folder                Path to a folder to write the generated templates in.\r\n\r\n  --run-locally                      (Default: false) Runs the project locally and enables exit by any key press.\r\n\r\n  -l, --logger-level                 The logger\u0027s level, overrides both the default logger\u0027s level (Information) and the\r\n                                     level of any logger\u0027s configuration given.\r\n                                     All available options (not case sensitive) are: Verbose, Debug,\r\n                                     Information, Warning, Error, Fatal.\r\n\r\n  -g, --logger-configuration-file    Path to a logger\u0027s configuration file, will override the default logger\u0027s\r\n                                     configuration. Its level can be overridden by the logger-level flag.\r\n\r\n  --send-logs                        (Default: false) Weather to send the logs to Smokes\u0027s logs database\r\n\r\n  --elastic-uri                      Elasticsearch URI used by the logger sink when send-logs is enabled.\r\n\r\n  --elastic-username                 Optional Elasticsearch username for the logger sink.\r\n\r\n  --elastic-password                 Optional Elasticsearch password for the logger sink.\r\n\r\n  --help                             Display this help screen.\r\n\r\n  --version                          Display version information.\r\n\r\n  value pos. 0                       (Default: mocker.qaas.yaml) Path to a mocker yaml configuration file to use with\r\n                                     the command.\u0022\r\n\r\n",
+  "Commands": [
+    {
+      "Name": "run",
+      "Description": "Start the configured mock servers and optional controller runtime.",
+      "HelpText": "QaaS.Mocker.CliExport 1.0.0\u002B82f6cff925212b15f3f3720a18552e39720e3c10\r\nCopyright (C) 2026 QaaS.Mocker.CliExport\r\nUsage:\r\n dotnet run [Dotnet Parameters] -- [Command] [Values] [Flags]\r\n\r\n  -w, --overwrite-files              List of files to overwrite the mocker configuration with, The first file overwrites\r\n                                     the mocker\r\n                                     configuration file and then the one after it overwrite the result and so on...\r\n\r\n  -f, --overwrite-folders            List of folders whose yaml files overwrite the mocker configuration in alphabetical\r\n                                     order,\r\n                                     after overwrite files and in the order the folders are given.\r\n\r\n  -r, --overwrite-arguments          List of arguments to overwrite the mocker configuration with, The first argument\r\n                                     overwrites the\r\n                                     mocker configuration and then the one after it overwrites the result and so on...\r\n                                     For example: \u0060Path:To:Variable:To:Overwrite=NewVariableValue\u0060\r\n\r\n  --no-env                           (Default: false) When this flag is used environment variables will not override\r\n                                     loaded configurations.\r\n\r\n  -o, --output-folder                Path to a folder to write the generated templates in.\r\n\r\n  --run-locally                      (Default: false) Runs the project locally and enables exit by any key press.\r\n\r\n  -l, --logger-level                 The logger\u0027s level, overrides both the default logger\u0027s level (Information) and the\r\n                                     level of any logger\u0027s configuration given.\r\n                                     All available options (not case sensitive) are: Verbose, Debug,\r\n                                     Information, Warning, Error, Fatal.\r\n\r\n  -g, --logger-configuration-file    Path to a logger\u0027s configuration file, will override the default logger\u0027s\r\n                                     configuration. Its level can be overridden by the logger-level flag.\r\n\r\n  --send-logs                        (Default: false) Weather to send the logs to Smokes\u0027s logs database\r\n\r\n  --elastic-uri                      Elasticsearch URI used by the logger sink when send-logs is enabled.\r\n\r\n  --elastic-username                 Optional Elasticsearch username for the logger sink.\r\n\r\n  --elastic-password                 Optional Elasticsearch password for the logger sink.\r\n\r\n  --help                             Display this help screen.\r\n\r\n  --version                          Display version information.\r\n\r\n  value pos. 0                       (Default: mocker.qaas.yaml) Path to a mocker yaml configuration file to use with\r\n                                     the command.\u0022\r\n\r\n",
+      "SourceOptionType": "QaaS.Mocker.Options.RunOptions",
+      "Positionals": [
+        {
+          "Index": 0,
+          "PropertyName": "ConfigurationFile",
+          "ValueType": "string",
+          "Required": true,
+          "DefaultValue": "mocker.qaas.yaml",
+          "HelpText": "Path to a mocker yaml configuration file to use with the command.\u0022",
+          "SourceOptionType": "QaaS.Mocker.Options.MockerOptions",
+          "IsInherited": true
+        }
+      ],
+      "Options": [
+        {
+          "PropertyName": "ElasticPassword",
+          "ShortName": null,
+          "LongName": "elastic-password",
+          "ValueType": "string",
+          "Required": false,
+          "DefaultValue": null,
+          "HelpText": "Optional Elasticsearch password for the logger sink.",
+          "SourceOptionType": "QaaS.Framework.Executions.Options.LoggerOptions",
+          "IsInherited": true
+        },
+        {
+          "PropertyName": "ElasticUri",
+          "ShortName": null,
+          "LongName": "elastic-uri",
+          "ValueType": "string",
+          "Required": false,
+          "DefaultValue": null,
+          "HelpText": "Elasticsearch URI used by the logger sink when send-logs is enabled.",
+          "SourceOptionType": "QaaS.Framework.Executions.Options.LoggerOptions",
+          "IsInherited": true
+        },
+        {
+          "PropertyName": "ElasticUsername",
+          "ShortName": null,
+          "LongName": "elastic-username",
+          "ValueType": "string",
+          "Required": false,
+          "DefaultValue": null,
+          "HelpText": "Optional Elasticsearch username for the logger sink.",
+          "SourceOptionType": "QaaS.Framework.Executions.Options.LoggerOptions",
+          "IsInherited": true
+        },
+        {
+          "PropertyName": "LoggerConfigurationFilePath",
+          "ShortName": "g",
+          "LongName": "logger-configuration-file",
+          "ValueType": "string",
+          "Required": false,
+          "DefaultValue": null,
+          "HelpText": "Path to a logger\u0027s configuration file, will override the default logger\u0027s configuration. Its level can be overridden by the logger-level flag.",
+          "SourceOptionType": "QaaS.Framework.Executions.Options.LoggerOptions",
+          "IsInherited": true
+        },
+        {
+          "PropertyName": "LoggerLevel",
+          "ShortName": "l",
+          "LongName": "logger-level",
+          "ValueType": "LogEventLevel?",
+          "Required": false,
+          "DefaultValue": null,
+          "HelpText": "\r\nThe logger\u0027s level, overrides both the default logger\u0027s level (Information) and the level of any logger\u0027s configuration given.\r\nAll available options (not case sensitive) are: Verbose, Debug, \r\nInformation, Warning, Error, Fatal.",
+          "SourceOptionType": "QaaS.Framework.Executions.Options.LoggerOptions",
+          "IsInherited": true
+        },
+        {
+          "PropertyName": "DontResolveWithEnvironmentVariables",
+          "ShortName": null,
+          "LongName": "no-env",
+          "ValueType": "bool",
+          "Required": false,
+          "DefaultValue": "False",
+          "HelpText": "When this flag is used environment variables will not override loaded configurations.",
+          "SourceOptionType": "QaaS.Mocker.Options.MockerOptions",
+          "IsInherited": true
+        },
+        {
+          "PropertyName": "TemplatesOutputFolder",
+          "ShortName": "o",
+          "LongName": "output-folder",
+          "ValueType": "string",
+          "Required": false,
+          "DefaultValue": null,
+          "HelpText": "Path to a folder to write the generated templates in.",
+          "SourceOptionType": "QaaS.Mocker.Options.MockerOptions",
+          "IsInherited": true
+        },
+        {
+          "PropertyName": "OverwriteArguments",
+          "ShortName": "r",
+          "LongName": "overwrite-arguments",
+          "ValueType": "IList\u003Cstring\u003E",
+          "Required": false,
+          "DefaultValue": "[]",
+          "HelpText": "List of arguments to overwrite the mocker configuration with, The first argument overwrites the \nmocker configuration and then the one after it overwrites the result and so on...\nFor example: \u0060Path:To:Variable:To:Overwrite=NewVariableValue\u0060",
+          "SourceOptionType": "QaaS.Mocker.Options.MockerOptions",
+          "IsInherited": true
+        },
+        {
+          "PropertyName": "OverwriteFiles",
+          "ShortName": "w",
+          "LongName": "overwrite-files",
+          "ValueType": "IList\u003Cstring\u003E",
+          "Required": false,
+          "DefaultValue": "[]",
+          "HelpText": "List of files to overwrite the mocker configuration with, The first file overwrites the mocker\nconfiguration file and then the one after it overwrite the result and so on...",
+          "SourceOptionType": "QaaS.Mocker.Options.MockerOptions",
+          "IsInherited": true
+        },
+        {
+          "PropertyName": "OverwriteFolders",
+          "ShortName": "f",
+          "LongName": "overwrite-folders",
+          "ValueType": "IList\u003Cstring\u003E",
+          "Required": false,
+          "DefaultValue": "[]",
+          "HelpText": "List of folders whose yaml files overwrite the mocker configuration in alphabetical order,\nafter overwrite files and in the order the folders are given.",
+          "SourceOptionType": "QaaS.Mocker.Options.MockerOptions",
+          "IsInherited": true
+        },
+        {
+          "PropertyName": "RunLocally",
+          "ShortName": null,
+          "LongName": "run-locally",
+          "ValueType": "bool",
+          "Required": false,
+          "DefaultValue": "False",
+          "HelpText": "Runs the project locally and enables exit by any key press.",
+          "SourceOptionType": "QaaS.Mocker.Options.MockerOptions",
+          "IsInherited": true
+        },
+        {
+          "PropertyName": "SendLogs",
+          "ShortName": null,
+          "LongName": "send-logs",
+          "ValueType": "bool",
+          "Required": false,
+          "DefaultValue": "False",
+          "HelpText": "Weather to send the logs to Smokes\u0027s logs database",
+          "SourceOptionType": "QaaS.Framework.Executions.Options.LoggerOptions",
+          "IsInherited": true
+        }
+      ]
+    },
+    {
+      "Name": "template",
+      "Description": "Render the effective merged configuration after file, folder, argument, and environment overrides.",
+      "HelpText": "QaaS.Mocker.CliExport 1.0.0\u002B82f6cff925212b15f3f3720a18552e39720e3c10\r\nCopyright (C) 2026 QaaS.Mocker.CliExport\r\nUsage:\r\n dotnet run [Dotnet Parameters] -- [Command] [Values] [Flags]\r\n\r\n  -w, --overwrite-files              List of files to overwrite the mocker configuration with, The first file overwrites\r\n                                     the mocker\r\n                                     configuration file and then the one after it overwrite the result and so on...\r\n\r\n  -f, --overwrite-folders            List of folders whose yaml files overwrite the mocker configuration in alphabetical\r\n                                     order,\r\n                                     after overwrite files and in the order the folders are given.\r\n\r\n  -r, --overwrite-arguments          List of arguments to overwrite the mocker configuration with, The first argument\r\n                                     overwrites the\r\n                                     mocker configuration and then the one after it overwrites the result and so on...\r\n                                     For example: \u0060Path:To:Variable:To:Overwrite=NewVariableValue\u0060\r\n\r\n  --no-env                           (Default: false) When this flag is used environment variables will not override\r\n                                     loaded configurations.\r\n\r\n  -o, --output-folder                Path to a folder to write the generated templates in.\r\n\r\n  --run-locally                      (Default: false) Runs the project locally and enables exit by any key press.\r\n\r\n  -l, --logger-level                 The logger\u0027s level, overrides both the default logger\u0027s level (Information) and the\r\n                                     level of any logger\u0027s configuration given.\r\n                                     All available options (not case sensitive) are: Verbose, Debug,\r\n                                     Information, Warning, Error, Fatal.\r\n\r\n  -g, --logger-configuration-file    Path to a logger\u0027s configuration file, will override the default logger\u0027s\r\n                                     configuration. Its level can be overridden by the logger-level flag.\r\n\r\n  --send-logs                        (Default: false) Weather to send the logs to Smokes\u0027s logs database\r\n\r\n  --elastic-uri                      Elasticsearch URI used by the logger sink when send-logs is enabled.\r\n\r\n  --elastic-username                 Optional Elasticsearch username for the logger sink.\r\n\r\n  --elastic-password                 Optional Elasticsearch password for the logger sink.\r\n\r\n  --help                             Display this help screen.\r\n\r\n  --version                          Display version information.\r\n\r\n  value pos. 0                       (Default: mocker.qaas.yaml) Path to a mocker yaml configuration file to use with\r\n                                     the command.\u0022\r\n\r\n",
+      "SourceOptionType": "QaaS.Mocker.Options.TemplateOptions",
+      "Positionals": [
+        {
+          "Index": 0,
+          "PropertyName": "ConfigurationFile",
+          "ValueType": "string",
+          "Required": true,
+          "DefaultValue": "mocker.qaas.yaml",
+          "HelpText": "Path to a mocker yaml configuration file to use with the command.\u0022",
+          "SourceOptionType": "QaaS.Mocker.Options.MockerOptions",
+          "IsInherited": true
+        }
+      ],
+      "Options": [
+        {
+          "PropertyName": "ElasticPassword",
+          "ShortName": null,
+          "LongName": "elastic-password",
+          "ValueType": "string",
+          "Required": false,
+          "DefaultValue": null,
+          "HelpText": "Optional Elasticsearch password for the logger sink.",
+          "SourceOptionType": "QaaS.Framework.Executions.Options.LoggerOptions",
+          "IsInherited": true
+        },
+        {
+          "PropertyName": "ElasticUri",
+          "ShortName": null,
+          "LongName": "elastic-uri",
+          "ValueType": "string",
+          "Required": false,
+          "DefaultValue": null,
+          "HelpText": "Elasticsearch URI used by the logger sink when send-logs is enabled.",
+          "SourceOptionType": "QaaS.Framework.Executions.Options.LoggerOptions",
+          "IsInherited": true
+        },
+        {
+          "PropertyName": "ElasticUsername",
+          "ShortName": null,
+          "LongName": "elastic-username",
+          "ValueType": "string",
+          "Required": false,
+          "DefaultValue": null,
+          "HelpText": "Optional Elasticsearch username for the logger sink.",
+          "SourceOptionType": "QaaS.Framework.Executions.Options.LoggerOptions",
+          "IsInherited": true
+        },
+        {
+          "PropertyName": "LoggerConfigurationFilePath",
+          "ShortName": "g",
+          "LongName": "logger-configuration-file",
+          "ValueType": "string",
+          "Required": false,
+          "DefaultValue": null,
+          "HelpText": "Path to a logger\u0027s configuration file, will override the default logger\u0027s configuration. Its level can be overridden by the logger-level flag.",
+          "SourceOptionType": "QaaS.Framework.Executions.Options.LoggerOptions",
+          "IsInherited": true
+        },
+        {
+          "PropertyName": "LoggerLevel",
+          "ShortName": "l",
+          "LongName": "logger-level",
+          "ValueType": "LogEventLevel?",
+          "Required": false,
+          "DefaultValue": null,
+          "HelpText": "\r\nThe logger\u0027s level, overrides both the default logger\u0027s level (Information) and the level of any logger\u0027s configuration given.\r\nAll available options (not case sensitive) are: Verbose, Debug, \r\nInformation, Warning, Error, Fatal.",
+          "SourceOptionType": "QaaS.Framework.Executions.Options.LoggerOptions",
+          "IsInherited": true
+        },
+        {
+          "PropertyName": "DontResolveWithEnvironmentVariables",
+          "ShortName": null,
+          "LongName": "no-env",
+          "ValueType": "bool",
+          "Required": false,
+          "DefaultValue": "False",
+          "HelpText": "When this flag is used environment variables will not override loaded configurations.",
+          "SourceOptionType": "QaaS.Mocker.Options.MockerOptions",
+          "IsInherited": true
+        },
+        {
+          "PropertyName": "TemplatesOutputFolder",
+          "ShortName": "o",
+          "LongName": "output-folder",
+          "ValueType": "string",
+          "Required": false,
+          "DefaultValue": null,
+          "HelpText": "Path to a folder to write the generated templates in.",
+          "SourceOptionType": "QaaS.Mocker.Options.MockerOptions",
+          "IsInherited": true
+        },
+        {
+          "PropertyName": "OverwriteArguments",
+          "ShortName": "r",
+          "LongName": "overwrite-arguments",
+          "ValueType": "IList\u003Cstring\u003E",
+          "Required": false,
+          "DefaultValue": "[]",
+          "HelpText": "List of arguments to overwrite the mocker configuration with, The first argument overwrites the \nmocker configuration and then the one after it overwrites the result and so on...\nFor example: \u0060Path:To:Variable:To:Overwrite=NewVariableValue\u0060",
+          "SourceOptionType": "QaaS.Mocker.Options.MockerOptions",
+          "IsInherited": true
+        },
+        {
+          "PropertyName": "OverwriteFiles",
+          "ShortName": "w",
+          "LongName": "overwrite-files",
+          "ValueType": "IList\u003Cstring\u003E",
+          "Required": false,
+          "DefaultValue": "[]",
+          "HelpText": "List of files to overwrite the mocker configuration with, The first file overwrites the mocker\nconfiguration file and then the one after it overwrite the result and so on...",
+          "SourceOptionType": "QaaS.Mocker.Options.MockerOptions",
+          "IsInherited": true
+        },
+        {
+          "PropertyName": "OverwriteFolders",
+          "ShortName": "f",
+          "LongName": "overwrite-folders",
+          "ValueType": "IList\u003Cstring\u003E",
+          "Required": false,
+          "DefaultValue": "[]",
+          "HelpText": "List of folders whose yaml files overwrite the mocker configuration in alphabetical order,\nafter overwrite files and in the order the folders are given.",
+          "SourceOptionType": "QaaS.Mocker.Options.MockerOptions",
+          "IsInherited": true
+        },
+        {
+          "PropertyName": "RunLocally",
+          "ShortName": null,
+          "LongName": "run-locally",
+          "ValueType": "bool",
+          "Required": false,
+          "DefaultValue": "False",
+          "HelpText": "Runs the project locally and enables exit by any key press.",
+          "SourceOptionType": "QaaS.Mocker.Options.MockerOptions",
+          "IsInherited": true
+        },
+        {
+          "PropertyName": "SendLogs",
+          "ShortName": null,
+          "LongName": "send-logs",
+          "ValueType": "bool",
+          "Required": false,
+          "DefaultValue": "False",
+          "HelpText": "Weather to send the logs to Smokes\u0027s logs database",
+          "SourceOptionType": "QaaS.Framework.Executions.Options.LoggerOptions",
+          "IsInherited": true
+        }
+      ]
+    }
+  ]
+}
