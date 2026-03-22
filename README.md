@@ -50,13 +50,8 @@ Runner, Mocker, and Framework reference pages are generated deterministically.
 - CLI reference pages come from committed snapshots under `tools/QaaS.Docs.Generator/Snapshots/`.
 - Function catalogs come from `tools/QaaS.Docs.Generator/Functions/function-manifest.json` plus source inspection of sibling repositories.
 
-When the live CLI help changes, refresh the committed snapshots first:
-
-```powershell
-.\scripts\Refresh-CliSnapshots.ps1
-```
-
-Then regenerate and validate the docs:
+The CLI snapshots in `tools/QaaS.Docs.Generator/Snapshots/` are committed artifacts.
+When the live CLI help changes, recapture the help output manually and update those files, then regenerate and validate the docs:
 
 ```powershell
 .\scripts\Generate-ReferenceDocs.ps1

@@ -19,7 +19,7 @@ It writes the generated markdown into the stable `docs/` paths already used by `
 ## Refresh process
 
 1. Regenerate mirror artifacts in `QaaS.PackageMirror`.
-2. Refresh the committed CLI snapshot files with `scripts/Refresh-CliSnapshots.ps1` only when the live CLI help or option surface changes.
+2. Refresh the committed CLI snapshot files manually only when the live CLI help or option surface changes.
 3. Update `Functions/function-manifest.json` only when the curated user-facing API surface changes.
 4. Run `scripts/Generate-ReferenceDocs.ps1`.
 5. Run the same script with `-Check -BuildSite` before opening a PR.
@@ -29,7 +29,7 @@ It writes the generated markdown into the stable `docs/` paths already used by `
 The CLI snapshots are intentionally committed artifacts.
 
 - They are captured from the live `Bootstrap.New(...)` help paths in `QaaS.Runner` and `QaaS.Mocker`.
-- The refresh script builds a disposable local host outside those repositories, so no docs-only CLI exporter code needs to live in the source repos.
+- They are updated manually and committed after a one-time local capture from those live help paths.
 - The renderer consumes only the committed snapshot JSON files, which keeps `QaaS.Docs.Generator` buildable without project references to sibling repositories.
 
 ## Important constraints
