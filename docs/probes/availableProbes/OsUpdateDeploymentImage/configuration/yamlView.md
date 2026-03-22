@@ -1,3 +1,6 @@
-# YAML View
+﻿# OsUpdateDeploymentImage YAML Configuration
 
-YAML reference placeholder for `OsUpdateDeploymentImage`.
+```yaml
+Probe: OsUpdateDeploymentImage
+ProbeConfiguration: {}
+```

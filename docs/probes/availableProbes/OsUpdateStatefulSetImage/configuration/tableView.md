@@ -1,3 +1,5 @@
-# Table View
+﻿# OsUpdateStatefulSetImage Table View
 
-Configuration reference placeholder for `OsUpdateStatefulSetImage`.
+| Property Path | Type | Required | Default | Description |
+| --- | --- | --- | --- | --- |
+| `ProbeConfiguration` | `OsUpdateImageProbeConfig` | &#10004; |  | Updates a stateful-set container image. |

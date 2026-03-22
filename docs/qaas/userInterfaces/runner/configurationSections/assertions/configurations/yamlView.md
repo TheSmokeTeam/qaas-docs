@@ -1,35 +1,41 @@
+<!-- generated hash:72c0a53d7796 sources:runner-family, Assertions, yaml-view -->
+
 # Assertions Configurations Yaml View
 
 ```yaml
 Assertions:
-  - Name:
+  -
     Assertion:
-    Severity:
-    DisplayTrace:
-    SaveTemplate:
-    SaveAttachments:
-    SaveSessionData:
+    Name:
+    AssertionConfiguration:
     Category:
-    StatusesToReport: []
+    DisplayTrace:
+    SaveAttachments:
+    SaveLogs:
+    SaveSessionData:
+    SaveTemplate:
+    Severity:
+    DataSourceNames: []
+    DataSourcePatterns: []
     Links:
-      - Name:
+      -
+        Name:
         Grafana:
           DashboardId:
           Url:
           Variables:
-            - Value:
+            -
               Key:
-        Prometheus:
-          Url:
-          Expressions: []
+              Value:
         Kibana:
           DataViewId:
           Url:
           KqlQuery:
           TimestampField:
-    DataSourcePatterns: []
-    DataSourceNames: []
+        Prometheus:
+          Url:
+          Expressions: []
     SessionNamePatterns: []
     SessionNames: []
-    AssertionConfiguration:
+    StatusesToReport: []
 ```

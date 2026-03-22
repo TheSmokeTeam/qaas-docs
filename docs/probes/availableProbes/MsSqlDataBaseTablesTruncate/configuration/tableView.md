@@ -1,3 +1,5 @@
-# Table View
+﻿# MsSqlDataBaseTablesTruncate Table View
 
-Configuration reference placeholder for `MsSqlDataBaseTablesTruncate`.
+| Property Path | Type | Required | Default | Description |
+| --- | --- | --- | --- | --- |
+| `ProbeConfiguration` | `SqlDataBaseTablesTruncateProbeConfig` | &#10004; |  | Truncates MSSQL tables. |

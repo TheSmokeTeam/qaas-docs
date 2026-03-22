@@ -26,6 +26,8 @@ nav:
       - Live Session Data: qaas/advancedConcepts/liveSessionData.md
       - Configuration As Code: qaas/advancedConcepts/configurationAsCode.md
       - Best Practices: qaas/bestPractices.md
+    - Functions:
+      - Overview: qaas/functions/index.md
     - CLI Commands:
       - Overview: qaas/userInterfaces/runner/commands/commands.md
       - run: qaas/userInterfaces/runner/commands/run.md
@@ -75,17 +77,20 @@ nav:
       - Modules: qaas/addOns/modules.md
 
   - Mocker:
-    - Introduction: mocker/index.md
+    - General:
+      - Introduction: mocker/index.md
+      - Architecture: mocker/architecture.md
     - Quick Start:
       - Installation: mocker/quickStart/installation.md
       - Create a Mock (YAML): mocker/quickStart/createMock.md
       - Create a Mock (Code): mocker/quickStart/createMockCode.md
       - Deploy a Mock: mocker/quickStart/deployMock.md
       - Integrate with Tests: mocker/quickStart/integrateWithTests.md
+    - Functions:
+      - Overview: mocker/functions/index.md
     - CLI Commands:
       - Overview: mocker/userInterfaces/mocker/commands/commands.md
       - run: mocker/userInterfaces/mocker/commands/run.md
-      - lint: mocker/userInterfaces/mocker/commands/lint.md
       - template: mocker/userInterfaces/mocker/commands/template.md
     - Configuration Reference:
       - Overview: mocker/userInterfaces/mocker/configurationSections/configurationSections.md
@@ -161,6 +166,10 @@ nav:
           - Overview: generators/availableGenerators/FromFileSystem/overview.md
           - Table View: generators/availableGenerators/FromFileSystem/configuration/tableView.md
           - YAML View: generators/availableGenerators/FromFileSystem/configuration/yamlView.md
+        - FromCSV:
+          - Overview: generators/availableGenerators/FromCSV/overview.md
+          - Table View: generators/availableGenerators/FromCSV/configuration/tableView.md
+          - YAML View: generators/availableGenerators/FromCSV/configuration/yamlView.md
         - FromS3:
           - Overview: generators/availableGenerators/FromS3/overview.md
           - Table View: generators/availableGenerators/FromS3/configuration/tableView.md
@@ -256,6 +265,14 @@ nav:
           - Overview: probes/availableProbes/CreateRabbitMqBindings/overview.md
           - Table View: probes/availableProbes/CreateRabbitMqBindings/configuration/tableView.md
           - YAML View: probes/availableProbes/CreateRabbitMqBindings/configuration/yamlView.md
+        - CreateRabbitMqUsers:
+          - Overview: probes/availableProbes/CreateRabbitMqUsers/overview.md
+          - Table View: probes/availableProbes/CreateRabbitMqUsers/configuration/tableView.md
+          - YAML View: probes/availableProbes/CreateRabbitMqUsers/configuration/yamlView.md
+        - CreateRabbitMqVirtualHosts:
+          - Overview: probes/availableProbes/CreateRabbitMqVirtualHosts/overview.md
+          - Table View: probes/availableProbes/CreateRabbitMqVirtualHosts/configuration/tableView.md
+          - YAML View: probes/availableProbes/CreateRabbitMqVirtualHosts/configuration/yamlView.md
         - DeleteRabbitMqQueues:
           - Overview: probes/availableProbes/DeleteRabbitMqQueues/overview.md
           - Table View: probes/availableProbes/DeleteRabbitMqQueues/configuration/tableView.md
@@ -268,10 +285,34 @@ nav:
           - Overview: probes/availableProbes/DeleteRabbitMqBindings/overview.md
           - Table View: probes/availableProbes/DeleteRabbitMqBindings/configuration/tableView.md
           - YAML View: probes/availableProbes/DeleteRabbitMqBindings/configuration/yamlView.md
+        - DeleteRabbitMqPermissions:
+          - Overview: probes/availableProbes/DeleteRabbitMqPermissions/overview.md
+          - Table View: probes/availableProbes/DeleteRabbitMqPermissions/configuration/tableView.md
+          - YAML View: probes/availableProbes/DeleteRabbitMqPermissions/configuration/yamlView.md
+        - DeleteRabbitMqUsers:
+          - Overview: probes/availableProbes/DeleteRabbitMqUsers/overview.md
+          - Table View: probes/availableProbes/DeleteRabbitMqUsers/configuration/tableView.md
+          - YAML View: probes/availableProbes/DeleteRabbitMqUsers/configuration/yamlView.md
+        - DeleteRabbitMqVirtualHosts:
+          - Overview: probes/availableProbes/DeleteRabbitMqVirtualHosts/overview.md
+          - Table View: probes/availableProbes/DeleteRabbitMqVirtualHosts/configuration/tableView.md
+          - YAML View: probes/availableProbes/DeleteRabbitMqVirtualHosts/configuration/yamlView.md
+        - DownloadRabbitMqDefinitions:
+          - Overview: probes/availableProbes/DownloadRabbitMqDefinitions/overview.md
+          - Table View: probes/availableProbes/DownloadRabbitMqDefinitions/configuration/tableView.md
+          - YAML View: probes/availableProbes/DownloadRabbitMqDefinitions/configuration/yamlView.md
         - PurgeRabbitMqQueues:
           - Overview: probes/availableProbes/PurgeRabbitMqQueues/overview.md
           - Table View: probes/availableProbes/PurgeRabbitMqQueues/configuration/tableView.md
           - YAML View: probes/availableProbes/PurgeRabbitMqQueues/configuration/yamlView.md
+        - UploadRabbitMqDefinitions:
+          - Overview: probes/availableProbes/UploadRabbitMqDefinitions/overview.md
+          - Table View: probes/availableProbes/UploadRabbitMqDefinitions/configuration/tableView.md
+          - YAML View: probes/availableProbes/UploadRabbitMqDefinitions/configuration/yamlView.md
+        - UpsertRabbitMqPermissions:
+          - Overview: probes/availableProbes/UpsertRabbitMqPermissions/overview.md
+          - Table View: probes/availableProbes/UpsertRabbitMqPermissions/configuration/tableView.md
+          - YAML View: probes/availableProbes/UpsertRabbitMqPermissions/configuration/yamlView.md
         - FlushAllRedis:
           - Overview: probes/availableProbes/FlushAllRedis/overview.md
           - Table View: probes/availableProbes/FlushAllRedis/configuration/tableView.md
@@ -284,6 +325,18 @@ nav:
           - Overview: probes/availableProbes/EmptyRedisByChunks/overview.md
           - Table View: probes/availableProbes/EmptyRedisByChunks/configuration/tableView.md
           - YAML View: probes/availableProbes/EmptyRedisByChunks/configuration/yamlView.md
+        - ExecuteRedisCommand:
+          - Overview: probes/availableProbes/ExecuteRedisCommand/overview.md
+          - Table View: probes/availableProbes/ExecuteRedisCommand/configuration/tableView.md
+          - YAML View: probes/availableProbes/ExecuteRedisCommand/configuration/yamlView.md
+        - ExecuteRedisCommands:
+          - Overview: probes/availableProbes/ExecuteRedisCommands/overview.md
+          - Table View: probes/availableProbes/ExecuteRedisCommands/configuration/tableView.md
+          - YAML View: probes/availableProbes/ExecuteRedisCommands/configuration/yamlView.md
+        - EmptyMongoDbCollection:
+          - Overview: probes/availableProbes/EmptyMongoDbCollection/overview.md
+          - Table View: probes/availableProbes/EmptyMongoDbCollection/configuration/tableView.md
+          - YAML View: probes/availableProbes/EmptyMongoDbCollection/configuration/yamlView.md
         - EmptyS3Bucket:
           - Overview: probes/availableProbes/EmptyS3Bucket/overview.md
           - Table View: probes/availableProbes/EmptyS3Bucket/configuration/tableView.md
@@ -310,9 +363,48 @@ nav:
           - YAML View: probes/availableProbes/EmptyElasticIndices/configuration/yamlView.md
     - Processors:
       - Introduction: processors/index.md
+      - Available Processors:
+        - ConditionalResponseProcessor:
+          - Overview: processors/availableProcessors/ConditionalResponseProcessor/overview.md
+          - Table View: processors/availableProcessors/ConditionalResponseProcessor/configuration/tableView.md
+          - YAML View: processors/availableProcessors/ConditionalResponseProcessor/configuration/yamlView.md
+        - DataSourceResponseProcessor:
+          - Overview: processors/availableProcessors/DataSourceResponseProcessor/overview.md
+          - Table View: processors/availableProcessors/DataSourceResponseProcessor/configuration/tableView.md
+          - YAML View: processors/availableProcessors/DataSourceResponseProcessor/configuration/yamlView.md
+        - JsonEnvelopeProcessor:
+          - Overview: processors/availableProcessors/JsonEnvelopeProcessor/overview.md
+          - Table View: processors/availableProcessors/JsonEnvelopeProcessor/configuration/tableView.md
+          - YAML View: processors/availableProcessors/JsonEnvelopeProcessor/configuration/yamlView.md
+        - PassThroughProcessor:
+          - Overview: processors/availableProcessors/PassThroughProcessor/overview.md
+          - Table View: processors/availableProcessors/PassThroughProcessor/configuration/tableView.md
+          - YAML View: processors/availableProcessors/PassThroughProcessor/configuration/yamlView.md
+        - ProblemDetailsProcessor:
+          - Overview: processors/availableProcessors/ProblemDetailsProcessor/overview.md
+          - Table View: processors/availableProcessors/ProblemDetailsProcessor/configuration/tableView.md
+          - YAML View: processors/availableProcessors/ProblemDetailsProcessor/configuration/yamlView.md
+        - RequestEchoProcessor:
+          - Overview: processors/availableProcessors/RequestEchoProcessor/overview.md
+          - Table View: processors/availableProcessors/RequestEchoProcessor/configuration/tableView.md
+          - YAML View: processors/availableProcessors/RequestEchoProcessor/configuration/yamlView.md
+        - StaticResponseProcessor:
+          - Overview: processors/availableProcessors/StaticResponseProcessor/overview.md
+          - Table View: processors/availableProcessors/StaticResponseProcessor/configuration/tableView.md
+          - YAML View: processors/availableProcessors/StaticResponseProcessor/configuration/yamlView.md
+        - StatusCodeTransactionProcessor:
+          - Overview: processors/availableProcessors/StatusCodeTransactionProcessor/overview.md
+          - Table View: processors/availableProcessors/StatusCodeTransactionProcessor/configuration/tableView.md
+          - YAML View: processors/availableProcessors/StatusCodeTransactionProcessor/configuration/yamlView.md
+        - TextTransformProcessor:
+          - Overview: processors/availableProcessors/TextTransformProcessor/overview.md
+          - Table View: processors/availableProcessors/TextTransformProcessor/configuration/tableView.md
+          - YAML View: processors/availableProcessors/TextTransformProcessor/configuration/yamlView.md
 
   - Framework:
     - Introduction: framework/index.md
+    - Functions:
+      - Overview: framework/functions/index.md
     - Projects:
       - SDK: framework/projects/sdk.md
       - Configuration: framework/projects/configuration.md
@@ -415,8 +507,8 @@ extra:
     qaas_project_templates: link_to_templates
     dummyapp_tests: GIT/examples/dummyapptests/
     dummyapp_helm_chart: GIT/qaas-quickstart-dummyapp-helm-chart
-    runner_quickstart_repository: https://github.com/eldarush/qaas-runner-quickstart
-    mocker_quickstart_repository: https://github.com/eldarush/qaas-mocker-quickstart
+    runner_quickstart_repository: https://github.com/TheSmokeTeam/DummyAppTests
+    mocker_quickstart_repository: https://github.com/TheSmokeTeam/DummyAppMock
     artifactory: artifactory-link
     repository_modules: https://github.com/TheSmokeTeam/QaaS.Common.Modules
     repository_vap: GIT/versioned-artifact-publisher

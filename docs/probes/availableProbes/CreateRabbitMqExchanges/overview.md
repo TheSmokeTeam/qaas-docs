@@ -1,5 +1,11 @@
-# CreateRabbitMqExchanges
+﻿# CreateRabbitMqExchanges
 
-Built-in probe documentation placeholder.
+Creates one or more RabbitMQ exchanges with the configured durability, auto-delete, and argument settings.
 
-This page reserves the generated `overview.md` surface for `CreateRabbitMqExchanges`.
+## Probe Parameters
+
+- **Probe Name** - `CreateRabbitMqExchanges`.
+- **ProbeConfiguration** - `CreateRabbitMqExchangesConfig`.
+- **DataSources** - Not used.
+- **SessionData** - Not used.
+- **Execution stage** - Typically used in setup or cleanup stages around Runner sessions.

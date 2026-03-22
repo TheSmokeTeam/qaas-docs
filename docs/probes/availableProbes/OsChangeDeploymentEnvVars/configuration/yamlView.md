@@ -1,3 +1,6 @@
-# YAML View
+﻿# OsChangeDeploymentEnvVars YAML Configuration
 
-YAML reference placeholder for `OsChangeDeploymentEnvVars`.
+```yaml
+Probe: OsChangeDeploymentEnvVars
+ProbeConfiguration: {}
+```

@@ -1,5 +1,11 @@
-# PurgeRabbitMqQueues
+﻿# PurgeRabbitMqQueues
 
-Built-in probe documentation placeholder.
+Purges messages from one or more RabbitMQ queues without deleting the queues themselves.
 
-This page reserves the generated `overview.md` surface for `PurgeRabbitMqQueues`.
+## Probe Parameters
+
+- **Probe Name** - `PurgeRabbitMqQueues`.
+- **ProbeConfiguration** - `PurgeRabbitMqQueuesConfig`.
+- **DataSources** - Not used.
+- **SessionData** - Not used.
+- **Execution stage** - Typically used in setup or cleanup stages around Runner sessions.

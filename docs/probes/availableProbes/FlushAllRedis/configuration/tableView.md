@@ -1,3 +1,5 @@
-# Table View
+﻿# FlushAllRedis Table View
 
-Configuration reference placeholder for `FlushAllRedis`.
+| Property Path | Type | Required | Default | Description |
+| --- | --- | --- | --- | --- |
+| `ProbeConfiguration` | `BaseRedisConfig` | &#10004; |  | Runs FLUSHALL on Redis. |

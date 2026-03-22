@@ -1,3 +1,5 @@
-# Table View
+﻿# OsChangeStatefulSetEnvVars Table View
 
-Configuration reference placeholder for `OsChangeStatefulSetEnvVars`.
+| Property Path | Type | Required | Default | Description |
+| --- | --- | --- | --- | --- |
+| `ProbeConfiguration` | `OsChangeEnvVarsConfig` | &#10004; |  | Updates stateful-set environment variables. |

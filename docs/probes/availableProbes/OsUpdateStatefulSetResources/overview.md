@@ -1,5 +1,11 @@
-# OsUpdateStatefulSetResources
+﻿# OsUpdateStatefulSetResources
 
-Built-in probe documentation placeholder.
+Updates container resource requests and limits in a Kubernetes or OpenShift stateful set.
 
-This page reserves the generated `overview.md` surface for `OsUpdateStatefulSetResources`.
+## Probe Parameters
+
+- **Probe Name** - `OsUpdateStatefulSetResources`.
+- **ProbeConfiguration** - `OsUpdateResourcesProbeConfig`.
+- **DataSources** - Not used.
+- **SessionData** - Not used.
+- **Execution stage** - Typically used in setup or cleanup stages around Runner sessions.

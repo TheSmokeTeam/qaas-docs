@@ -1,93 +1,87 @@
 # QaaS.Framework.Providers
 
-## Overview
+`QaaS.Framework.Providers` is the Framework solution's hook-discovery and hook-loading package. It is responsible for finding hook implementations in the current process, resolving the configured hook type, creating the hook instance, injecting `Context`, validating configuration, and registering the final hook collection into Autofac.
 
-The providers enable dynamic loading and registration of hooks into an Autofac `ContainerBuilder`. It discovers hooks
-from the current project and loaded plugins (via DLLs), validates their configurations, and registers them for use.
+## What this project contains
 
-Hooks must implement `IHook` and are resolved by name from assemblies.
+### Hook metadata and object creation
 
----
+The package starts with two small but important pieces:
 
-## Key Components
+- `HookData.cs`, which stores the configured hook name, hook type, and hook configuration
+- `ObjectCreation/IByNameObjectCreator.cs` and `ObjectCreation/ByNameObjectCreator.cs`, which create a runtime instance of the resolved type
 
-### `HookData<THook>`
+This separation lets the package keep configuration data and object creation concerns independent.
 
-- **Purpose**: Metadata container for a hook (name, type, config).
-- **Fields**:
-  - `Name`: Hook identifier.
-  - `Type`: Class name of the hook implementation.
-  - `Configuration`: Configuration settings for the hook.
+### Hook discovery and resolution
 
-### `IHookProvider<THook>`
+The core discovery implementation lives in:
 
-- **Interface** defining how to retrieve a hook by name.
-- **Method**: `GetSupportedInstanceByName(string instanceName)` → returns initialized hook.
+- `Providers/IHookProvider.cs`
+- `Providers/HookProvider.cs`
 
-### `HookProvider<THook>`
+`HookProvider<THook>` scans assemblies, finds supported subclasses of the requested hook contract, resolves the requested type name, and creates the instance through `IByNameObjectCreator`.
 
-- **Implementation** of `IHookProvider<THook>`.
-- **Functionality**:
-  - Scans entry assembly and all referenced `.dll` files.
-  - Finds classes that implement `THook` and match the given name.
-  - Uses `IByNameObjectCreator` to instantiate the hook.
-  - Logs discovery and errors.
+### Validation-aware loading
 
-### `HooksFromProvidersLoader<THook>`
+`HooksFromProvidersLoader.cs` is the layer that takes configured `HookData<THook>` records and turns them into initialized hook instances. It also runs `LoadAndValidateConfiguration(...)` and adds hook-specific prefixes to validation failures so downstream applications can tell which configured hook produced each error.
 
-- **Responsible for**:
-  - Loading and validating hooks from `HookData<THook>` list.
-  - Invoking `LoadAndValidateConfiguration()` on each hook.
-  - Aggregating validation results with context-specific messages.
+### Autofac integration
 
-### `HooksLoaderModule<THook>`
+`Modules/HooksLoaderModule.cs` is the Autofac module for this package. It wires together:
 
-- **Autofac module** to register the entire hook system.
-- **Registers**:
-  - `HookProvider<THook>` → `IHookProvider<THook>`
-  - `HooksFromProvidersLoader<THook>`
-  - A factory that resolves all hooks and populates `ValidationResults`.
+- the hook provider
+- the provider-backed loader
+- the final resolved `IList<KeyValuePair<string, THook>>`
 
----
+This is the registration output that downstream applications usually consume after the container is built.
 
-## Usage
+## Current behavior
 
-Ensure all hooks implement `IHook`.
+The current implementation behaves as follows:
 
-Register the module in your `ContainerBuilder`:
+- discovery starts from the entry assembly
+- discovery also includes assemblies already loaded in the current AppDomain
+- discovery also scans every `.dll` in the application base directory
+- dynamic or broken assemblies are skipped safely during scanning
+- resolution prefers exact full type names or assembly-qualified type names
+- simple type-name matching is used as a fallback when no exact full-name match was supplied
+- duplicate simple names across different assemblies do not always hard-fail; the provider can resolve the first assembly in discovery order and log a warning
+- duplicate simple names within the same assembly are treated as an error
+- `Context` is assigned to the hook instance before configuration loading and validation
+- validation errors are enriched with hook name and type context before they are returned
+- `HooksLoaderModule<THook>` exposes the resolved hook collection as `IList<KeyValuePair<string, THook>>`
 
-```csharp
-var builder = new ContainerBuilder();
-builder.RegisterModule(new HooksLoaderModule<MyHook>(validationResults));
-```
+## Main source areas
 
-Provide:
+The most important files in this package are:
 
-- `Context` (via Autofac).
-- `IByNameObjectCreator`.
-- `IEnumerable<HookData<MyHook>>` (e.g., from configuration).
+- `HookData.cs`
+- `ObjectCreation/ByNameObjectCreator.cs`
+- `Providers/HookProvider.cs`
+- `HooksFromProvidersLoader.cs`
+- `Modules/HooksLoaderModule.cs`
+- `CustomExceptions/UnsupportedSubClassException.cs`
 
-After building, access loaded hooks via:
+## Companion tests
 
-   ```csharp
-   var hooks = container.Resolve<IList<KeyValuePair<string, MyHook>>>();
-   ```
+`QaaS.Framework.Providers.Tests` is the sibling test project for this package.
 
----
+The current tests cover:
 
-## Validation
+- subtype discovery
+- lookup by simple name and full name
+- missing-hook error handling
+- ambiguity handling
+- context injection
+- validation-error enrichment
+- hook metadata storage
+- partial-load assembly recovery
+- broken-assembly skipping
+- Autofac module registration
 
-- All hooks are validated via `LoadAndValidateConfiguration()` during load.
-- Validation errors are enriched with hook name and type context.
-- Results collected in `List<ValidationResult>` passed to `HooksLoaderModule`.
+Representative test files include:
 
----
-
-## Plugin Support
-
-Hooks can be loaded from:
-
-- The main project (entry assembly).
-- Any `.dll` in the application directory.
-
-No additional setup required — all assemblies are scanned automatically.
+- `ProvidersBehaviorTests.cs`
+- `ProvidersCoverageTests.cs`
+- `DuplicateHooks.cs`

@@ -1,3 +1,5 @@
-# Table View
+﻿# PostgreSqlDataBaseTablesTruncate Table View
 
-Configuration reference placeholder for `PostgreSqlDataBaseTablesTruncate`.
+| Property Path | Type | Required | Default | Description |
+| --- | --- | --- | --- | --- |
+| `ProbeConfiguration` | `SqlDataBaseTablesTruncateProbeConfig` | &#10004; |  | Truncates PostgreSQL tables. |

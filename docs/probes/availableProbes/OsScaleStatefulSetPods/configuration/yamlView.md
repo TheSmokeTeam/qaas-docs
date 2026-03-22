@@ -1,3 +1,6 @@
-# YAML View
+﻿# OsScaleStatefulSetPods YAML Configuration
 
-YAML reference placeholder for `OsScaleStatefulSetPods`.
+```yaml
+Probe: OsScaleStatefulSetPods
+ProbeConfiguration: {}
+```

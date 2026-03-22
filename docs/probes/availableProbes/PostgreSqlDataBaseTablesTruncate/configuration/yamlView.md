@@ -1,3 +1,6 @@
-# YAML View
+﻿# PostgreSqlDataBaseTablesTruncate YAML Configuration
 
-YAML reference placeholder for `PostgreSqlDataBaseTablesTruncate`.
+```yaml
+Probe: PostgreSqlDataBaseTablesTruncate
+ProbeConfiguration: {}
+```

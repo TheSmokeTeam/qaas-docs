@@ -1,3 +1,6 @@
-# YAML View
+﻿# OsScaleDeploymentPods YAML Configuration
 
-YAML reference placeholder for `OsScaleDeploymentPods`.
+```yaml
+Probe: OsScaleDeploymentPods
+ProbeConfiguration: {}
+```

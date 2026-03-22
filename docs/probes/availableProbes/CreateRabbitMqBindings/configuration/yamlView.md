@@ -1,3 +1,6 @@
-# YAML View
+﻿# CreateRabbitMqBindings YAML Configuration
 
-YAML reference placeholder for `CreateRabbitMqBindings`.
+```yaml
+Probe: CreateRabbitMqBindings
+ProbeConfiguration: {}
+```

@@ -1,5 +1,11 @@
-# EmptyS3Bucket
+﻿# EmptyS3Bucket
 
-Built-in probe documentation placeholder.
+Deletes objects from the configured S3 bucket and can limit the cleanup to a specific object prefix.
 
-This page reserves the generated `overview.md` surface for `EmptyS3Bucket`.
+## Probe Parameters
+
+- **Probe Name** - `EmptyS3Bucket`.
+- **ProbeConfiguration** - `EmptyS3BucketConfig`.
+- **DataSources** - Not used.
+- **SessionData** - Not used.
+- **Execution stage** - Typically used in setup or cleanup stages around Runner sessions.

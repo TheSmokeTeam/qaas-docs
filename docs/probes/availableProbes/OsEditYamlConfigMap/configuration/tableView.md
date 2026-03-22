@@ -1,3 +1,5 @@
-# Table View
+﻿# OsEditYamlConfigMap Table View
 
-Configuration reference placeholder for `OsEditYamlConfigMap`.
+| Property Path | Type | Required | Default | Description |
+| --- | --- | --- | --- | --- |
+| `ProbeConfiguration` | `OsEditYamlConfigMapConfig` | &#10004; |  | Edits YAML data stored in a ConfigMap. |

@@ -1,18 +1,21 @@
-# DataSources Configurations YAML View
+<!-- generated hash:b34e99f75074 sources:mocker-family, DataSources, yaml-view -->
+
+# DataSources Configurations Yaml View
 
 ```yaml
 DataSources:
-  - Name:
+  -
     Generator:
-    Lazy: false
+    Name:
+    GeneratorConfiguration:
+    Lazy:
     DataSourceNames: []
     DataSourcePatterns: []
-    Serialize:
-      Serializer:
     Deserialize:
       Deserializer:
       SpecificType:
         TypeFullName:
         AssemblyName:
-    GeneratorConfiguration:
+    Serialize:
+      Serializer:
 ```

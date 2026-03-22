@@ -1,3 +1,5 @@
-# Table View
+﻿# OsUpdateDeploymentResources Table View
 
-Configuration reference placeholder for `OsUpdateDeploymentResources`.
+| Property Path | Type | Required | Default | Description |
+| --- | --- | --- | --- | --- |
+| `ProbeConfiguration` | `OsUpdateResourcesProbeConfig` | &#10004; |  | Updates deployment container resources. |

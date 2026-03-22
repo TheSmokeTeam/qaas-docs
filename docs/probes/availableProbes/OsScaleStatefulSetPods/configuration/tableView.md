@@ -1,3 +1,5 @@
-# Table View
+﻿# OsScaleStatefulSetPods Table View
 
-Configuration reference placeholder for `OsScaleStatefulSetPods`.
+| Property Path | Type | Required | Default | Description |
+| --- | --- | --- | --- | --- |
+| `ProbeConfiguration` | `OsScalePodsProbeConfig` | &#10004; |  | Scales stateful-set replicas. |

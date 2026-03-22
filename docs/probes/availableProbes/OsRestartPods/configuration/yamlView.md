@@ -1,3 +1,6 @@
-# YAML View
+﻿# OsRestartPods YAML Configuration
 
-YAML reference placeholder for `OsRestartPods`.
+```yaml
+Probe: OsRestartPods
+ProbeConfiguration: {}
+```

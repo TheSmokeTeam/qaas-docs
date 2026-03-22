@@ -1,3 +1,5 @@
-# Table View
+﻿# OsChangeDeploymentEnvVars Table View
 
-Configuration reference placeholder for `OsChangeDeploymentEnvVars`.
+| Property Path | Type | Required | Default | Description |
+| --- | --- | --- | --- | --- |
+| `ProbeConfiguration` | `OsChangeEnvVarsConfig` | &#10004; |  | Updates deployment environment variables. |

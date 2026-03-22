@@ -1,3 +1,5 @@
-# Table View
+﻿# FlushDbRedis Table View
 
-Configuration reference placeholder for `FlushDbRedis`.
+| Property Path | Type | Required | Default | Description |
+| --- | --- | --- | --- | --- |
+| `ProbeConfiguration` | `RedisDataBaseProbeBaseConfig` | &#10004; |  | Runs FLUSHDB on Redis. |

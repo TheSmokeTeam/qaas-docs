@@ -1,3 +1,5 @@
-# Table View
+﻿# OracleSqlDataBaseTablesTruncate Table View
 
-Configuration reference placeholder for `OracleSqlDataBaseTablesTruncate`.
+| Property Path | Type | Required | Default | Description |
+| --- | --- | --- | --- | --- |
+| `ProbeConfiguration` | `SqlDataBaseTablesTruncateProbeConfig` | &#10004; |  | Truncates Oracle tables. |

@@ -1,3 +1,6 @@
-# YAML View
+﻿# DeleteRabbitMqBindings YAML Configuration
 
-YAML reference placeholder for `DeleteRabbitMqBindings`.
+```yaml
+Probe: DeleteRabbitMqBindings
+ProbeConfiguration: {}
+```
