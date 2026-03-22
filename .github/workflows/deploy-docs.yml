@@ -4,11 +4,13 @@ on:
   push:
     branches:
       - master
+      - docs/mocker_documentation
       - unified-docs
       - fix/free_text
   pull_request:
     branches:
       - master
+      - docs/mocker_documentation
   workflow_dispatch:
 
 permissions:
@@ -52,7 +54,7 @@ jobs:
           path: ./site
 
   deploy:
-    if: github.event_name == 'push' && (github.ref == 'refs/heads/master' || github.ref == 'refs/heads/unified-docs' || github.ref == 'refs/heads/fix/free_text')
+    if: github.event_name == 'push' && (github.ref == 'refs/heads/master' || github.ref == 'refs/heads/docs/mocker_documentation' || github.ref == 'refs/heads/unified-docs' || github.ref == 'refs/heads/fix/free_text')
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}

@@ -1,12 +1,16 @@
+<!-- generated hash:b34e99f75074 sources:runner-family, DataSources, yaml-view -->
+
 # DataSources Configurations Yaml View
 
 ```yaml
 DataSources:
-  - Generator:
+  -
+    Generator:
     Name:
+    GeneratorConfiguration:
     Lazy:
-    DataSourcePatterns: []
     DataSourceNames: []
+    DataSourcePatterns: []
     Deserialize:
       Deserializer:
       SpecificType:
@@ -14,5 +18,4 @@ DataSources:
         AssemblyName:
     Serialize:
       Serializer:
-    GeneratorConfiguration:
 ```

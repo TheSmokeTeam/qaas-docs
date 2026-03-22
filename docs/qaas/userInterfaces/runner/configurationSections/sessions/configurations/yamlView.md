@@ -1,441 +1,457 @@
+<!-- generated hash:faea94a56496 sources:runner-family, Sessions, yaml-view -->
+
 # Sessions Configurations Yaml View
 
 ```yaml
 Sessions:
-  - Name:
-    TimeoutAfterSessionMs:
-    TimeoutBeforeSessionMs:
-    SaveData:
+  -
+    Name:
     Category:
     RunUntilStage:
+    SaveData:
     Stage:
-    Stages:
-      - TimeoutAfter:
-        TimeoutBefore:
-        StageNumber:
-    MockerCommands:
-      - ServerName:
+    TimeoutAfterSessionMs:
+    TimeoutBeforeSessionMs:
+    Collectors:
+      -
         Name:
-        RequestRetries:
+        EndTimeReachedCheckIntervalMs:
+        CollectionRange:
+          EndTimeMs:
+          StartTimeMs:
+        DataFilter:
+          Body:
+          MetaData:
+          Timestamp:
+        Prometheus:
+          Expression:
+          Url:
+          ApiKey:
+          SampleIntervalMs:
+          TimeoutMs:
+    Consumers:
+      -
+        Name:
+        TimeoutMs:
+        Stage:
+        Policies:
+          -
+            AdvancedLoadBalance:
+              Stages:
+                -
+                  Rate:
+                  Amount:
+                  TimeIntervalMs:
+                  TimeoutMs:
+            Count:
+              Count:
+            IncreasingLoadBalance:
+              MaxRate:
+              StartRate:
+              RateIncrease:
+              RateIncreaseIntervalMs:
+              TimeIntervalMs:
+            LoadBalance:
+              Rate:
+              TimeIntervalMs:
+            Timeout:
+              TimeoutMs:
+        DataFilter:
+          Body:
+          MetaData:
+          Timestamp:
+        Deserialize:
+          Deserializer:
+          SpecificType:
+            TypeFullName:
+            AssemblyName:
+        ElasticIndices:
+          IndexPattern:
+          Password:
+          Url:
+          Username:
+          FilterSecondsBeforeRunStartTime:
+          MatchQueryString:
+          ReadBatchSize:
+          ReadFromRunStartTime:
+          RequestTimeoutMs:
+          ScrollContextExpirationMs:
+          TimestampField:
+        IbmMqQueue:
+          Channel:
+          HostName:
+          Manager:
+          Port:
+          QueueName:
+        KafkaTopic:
+          GroupId:
+          Password:
+          TopicName:
+          Username:
+          AutoOffsetReset:
+          EnableAutoCommit:
+          FetchMinBytes:
+          FetchWaitMaxMs:
+          HeartbeatIntervalMs:
+          MaxPollIntervalMs:
+          PartitionAssignmentStrategy:
+          SaslMechanism:
+          SecurityProtocol:
+          SessionTimeOutMs:
+          HostNames: []
+        MsSqlTable:
+          ConnectionString:
+          TableName:
+          CommandTimeoutSeconds:
+          FilterSecondsBeforeRunStartTime:
+          InsertionTimeField:
+          InsertionTimeTimeZoneOffsetSummerTime:
+          ReadFromRunStartTime:
+          WhereStatement:
+          ColumnsToIgnore: []
+        OracleSqlTable:
+          ConnectionString:
+          TableName:
+          CommandTimeoutSeconds:
+          FilterSecondsBeforeRunStartTime:
+          InsertionTimeField:
+          InsertionTimeTimeZoneOffsetSummerTime:
+          ReadFromRunStartTime:
+          WhereStatement:
+          ColumnsToIgnore: []
+        PostgreSqlTable:
+          ConnectionString:
+          TableName:
+          CommandTimeoutSeconds:
+          FilterSecondsBeforeRunStartTime:
+          InsertionTimeField:
+          InsertionTimeTimeZoneOffsetSummerTime:
+          IsInsertionTimeFieldTimeZoneTz:
+          ReadFromRunStartTime:
+          WhereStatement:
+          ColumnsToIgnore: []
+        RabbitMq:
+          Host:
+          ContinuationTimeoutSeconds:
+          CreatedQueueTimeToExpireMs:
+          ExchangeName:
+          HandshakeContinuationTimeoutSeconds:
+          Password:
+          Port:
+          QueueName:
+          RequestedConnectionTimeoutSeconds:
+          RoutingKey:
+          Username:
+          VirtualHost:
+        S3Bucket:
+          AccessKey:
+          SecretKey:
+          ServiceURL:
+          StorageBucket:
+          Delimiter:
+          ForcePathStyle:
+          MaximumRetryCount:
+          Prefix:
+          ReadFromRunStartTime:
+          SkipEmptyObjects:
+        Socket:
+          Host:
+          Port:
+          ProtocolType:
+          AddressFamily:
+          BufferSize:
+          ReceiveTimeoutMs:
+          SeperationChar:
+          SocketType:
+        TrinoSqlTable:
+          Catalog:
+          ClientTag:
+          ConnectionString:
+          Hostname:
+          Password:
+          Schema:
+          TableName:
+          Username:
+          CommandTimeoutSeconds:
+          FilterSecondsBeforeRunStartTime:
+          InsertionTimeField:
+          InsertionTimeTimeZoneOffsetSummerTime:
+          ReadFromRunStartTime:
+          WhereStatement:
+          ColumnsToIgnore: []
+    MockerCommands:
+      -
+        Name:
+        ServerName:
         RequestDurationMs:
+        RequestRetries:
         Stage:
         Command:
+          ChangeActionStub:
+            ActionName:
+            StubName:
           Consume:
             TimeoutMs:
             ActionName:
-            OutputDeserialize:
-              Deserializer:
-              SpecificType:
-                TypeFullName:
-                AssemblyName:
+            InputDataFilter:
+              Body:
+              MetaData:
+              Timestamp:
             InputDeserialize:
               Deserializer:
               SpecificType:
                 TypeFullName:
                 AssemblyName:
             OutputDataFilter:
+              Body:
               MetaData:
               Timestamp:
-              Body:
-            InputDataFilter:
-              MetaData:
-              Timestamp:
-              Body:
+            OutputDeserialize:
+              Deserializer:
+              SpecificType:
+                TypeFullName:
+                AssemblyName:
           TriggerAction:
             ActionName:
             TimeoutMs:
-          ChangeActionStub:
-            StubName:
-            ActionName:
         Redis:
           Host:
-          RedisDataBase:
-          KeepAliveSeconds:
-          SslHost:
-          Ssl:
+          AbortOnConnectFail:
           AsyncTimeoutMs:
           ClientName:
           ConnectRetry:
-          AbortOnConnectFail:
+          KeepAliveSeconds:
           Password:
+          RedisDataBase:
+          Ssl:
+          SslHost:
           Username:
-    Collectors:
-      - Name:
-        EndTimeReachedCheckIntervalMs:
-        Prometheus:
-          Expression:
-          Url:
-          ApiKey:
-          TimeoutMs:
-          SampleIntervalMs:
-        CollectionRange:
-          EndTimeMs:
-          StartTimeMs:
-        DataFilter:
-          MetaData:
-          Timestamp:
-          Body:
     Probes:
-      - Probe:
+      -
         Name:
-        Stage:
-        DataSourcePatterns: []
-        DataSourceNames: []
+        Probe:
         ProbeConfiguration:
-    Transactions:
-      - TimeoutMs:
-        Name:
         Stage:
-        SleepTimeMs:
-        Loop:
+        DataSourceNames: []
+        DataSourcePatterns: []
+    Publishers:
+      -
+        Name:
         Iterations:
+        Loop:
+        SleepTimeMs:
+        Stage:
+        DataSourceNames: []
+        DataSourcePatterns: []
         Policies:
-          - AdvancedLoadBalance:
+          -
+            AdvancedLoadBalance:
               Stages:
-                - Rate:
+                -
+                  Rate:
+                  Amount:
                   TimeIntervalMs:
                   TimeoutMs:
-                  Amount:
+            Count:
+              Count:
             IncreasingLoadBalance:
               MaxRate:
               StartRate:
-              TimeIntervalMs:
-              RateIncreaseIntervalMs:
               RateIncrease:
+              RateIncreaseIntervalMs:
+              TimeIntervalMs:
             LoadBalance:
               Rate:
               TimeIntervalMs:
             Timeout:
               TimeoutMs:
+        Chunk:
+          ChunkSize:
+        DataFilter:
+          Body:
+          MetaData:
+          Timestamp:
+        ElasticIndex:
+          IndexName:
+          Password:
+          Url:
+          Username:
+          BatchSize:
+          PublishAsync:
+          RequestTimeoutMs:
+        KafkaTopic:
+          Password:
+          TopicName:
+          Username:
+          CompressionLevel:
+          CompressionType:
+          DefaultKafkaKey:
+          Headers:
+          MessageSendMaxRetries:
+          MessageSendRetriesIntervalMs:
+          Partition:
+          QueueBufferingBackpressureThreshold:
+          QueueBufferingMaxKbytes:
+          QueueBufferingMaxMessages:
+          SaslMechanism:
+          SecurityProtocol:
+          HostNames: []
+        MongoDbCollection:
+          CollectionName:
+          ConnectionString:
+          DatabaseName:
+        MsSqlTable:
+          ConnectionString:
+          TableName:
+          CommandTimeoutSeconds:
+          IsUDTInsertion:
+        OracleSqlTable:
+          ConnectionString:
+          TableName:
+          CommandTimeoutSeconds:
+        Parallel:
+          Parallelism:
+        PostgreSqlTable:
+          ConnectionString:
+          TableName:
+          CommandTimeoutSeconds:
+        RabbitMq:
+          Host:
+          ContentType:
+          ContinuationTimeoutSeconds:
+          ExchangeName:
+          Expiration:
+          HandshakeContinuationTimeoutSeconds:
+          Headers:
+          Password:
+          Port:
+          QueueName:
+          RequestedConnectionTimeoutSeconds:
+          RoutingKey:
+          Type:
+          Username:
+          VirtualHost:
+        Redis:
+          RedisDataType:
+          AbortOnConnectFail:
+          AsyncTimeout:
+          BatchSize:
+          ClientName:
+          CommandFlags:
+          ConnectRetry:
+          KeepAlive:
+          Password:
+          RedisDataBase:
+          Retries:
+          RetryIntervalMs:
+          Ssl:
+          SslHost:
+          Username:
+          When:
+          HostNames: []
+        S3Bucket:
+          AccessKey:
+          SecretKey:
+          ServiceURL:
+          StorageBucket:
+          ForcePathStyle:
+          Prefix:
+          Retries:
+          S3SentObjectsNaming:
+          S3StorageClass:
+        Serialize:
+          Serializer:
+        Sftp:
+          Hostname:
+          Password:
+          Path:
+          Username:
+          NamingType:
+          Port:
+          Prefix:
+        Socket:
+          Host:
+          Port:
+          ProtocolType:
+          AddressFamily:
+          BufferSize:
+          LingerTimeSeconds:
+          NagleAlgorithm:
+          SendTimeoutMs:
+          SocketType:
+    Stages:
+      -
+        StageNumber:
+        TimeoutAfter:
+        TimeoutBefore:
+    Transactions:
+      -
+        Name:
+        TimeoutMs:
+        Iterations:
+        Loop:
+        SleepTimeMs:
+        Stage:
+        DataSourceNames: []
+        DataSourcePatterns: []
+        Policies:
+          -
+            AdvancedLoadBalance:
+              Stages:
+                -
+                  Rate:
+                  Amount:
+                  TimeIntervalMs:
+                  TimeoutMs:
             Count:
               Count:
-        DataSourcePatterns: []
-        DataSourceNames: []
+            IncreasingLoadBalance:
+              MaxRate:
+              StartRate:
+              RateIncrease:
+              RateIncreaseIntervalMs:
+              TimeIntervalMs:
+            LoadBalance:
+              Rate:
+              TimeIntervalMs:
+            Timeout:
+              TimeoutMs:
         Grpc:
+          AssemblyName:
+          Host:
+          Port:
+          ProtoNameSpace:
           RpcName:
           ServiceName:
-          ProtoNameSpace:
-          AssemblyName:
-          Port:
-          Host:
         Http:
           BaseAddress:
           Method:
+          Headers:
           MessageSendRetriesIntervalMs:
+          Port:
+          RequestHeaders:
           Retries:
           Route:
-          Port:
           JwtAuth:
             Secret:
             BuildJwtConfig:
+            Claims:
+            HierarchicalClaims:
             HttpAuthScheme:
             JwtAlgorithm:
-            HierarchicalClaims:
-            Claims:
-          RequestHeaders:
-          Headers:
+        InputDataFilter:
+          Body:
+          MetaData:
+          Timestamp:
+        InputSerialize:
+          Serializer:
+        OutputDataFilter:
+          Body:
+          MetaData:
+          Timestamp:
         OutputDeserialize:
           Deserializer:
           SpecificType:
             TypeFullName:
             AssemblyName:
-        InputSerialize:
-          Serializer:
-        OutputDataFilter:
-          MetaData:
-          Timestamp:
-          Body:
-        InputDataFilter:
-          MetaData:
-          Timestamp:
-          Body:
-    Publishers:
-      - Name:
-        Stage:
-        SleepTimeMs:
-        Loop:
-        Iterations:
-        Policies:
-          - AdvancedLoadBalance:
-              Stages:
-                - Rate:
-                  TimeIntervalMs:
-                  TimeoutMs:
-                  Amount:
-            IncreasingLoadBalance:
-              MaxRate:
-              StartRate:
-              TimeIntervalMs:
-              RateIncreaseIntervalMs:
-              RateIncrease:
-            LoadBalance:
-              Rate:
-              TimeIntervalMs:
-            Timeout:
-              TimeoutMs:
-            Count:
-              Count:
-        DataSourcePatterns: []
-        DataSourceNames: []
-        Serialize:
-          Serializer:
-        Sftp:
-          Path:
-          Password:
-          Username:
-          Hostname:
-          NamingType:
-          Prefix:
-          Port:
-        MongoDbCollection:
-          CollectionName:
-          DatabaseName:
-          ConnectionString:
-        MsSqlTable:
-          TableName:
-          ConnectionString:
-          CommandTimeoutSeconds:
-          IsUDTInsertion:
-        ElasticIndex:
-          IndexName:
-          Password:
-          Username:
-          Url:
-          PublishAsync:
-          BatchSize:
-          RequestTimeoutMs:
-        Socket:
-          ProtocolType:
-          Port:
-          Host:
-          LingerTimeSeconds:
-          NagleAlgorithm:
-          BufferSize:
-          SendTimeoutMs:
-          AddressFamily:
-          SocketType:
-        S3Bucket:
-          SecretKey:
-          AccessKey:
-          ServiceURL:
-          StorageBucket:
-          S3StorageClass:
-          Retries:
-          S3SentObjectsNaming:
-          Prefix:
-          ForcePathStyle:
-        OracleSqlTable:
-          TableName:
-          ConnectionString:
-          CommandTimeoutSeconds:
-        PostgreSqlTable:
-          TableName:
-          ConnectionString:
-          CommandTimeoutSeconds:
-        Redis:
-          RedisDataType:
-          CommandFlags:
-          When:
-          BatchSize:
-          RetryIntervalMs:
-          Retries:
-          RedisDataBase:
-          KeepAlive:
-          SslHost:
-          Ssl:
-          AsyncTimeout:
-          ClientName:
-          ConnectRetry:
-          AbortOnConnectFail:
-          Password:
-          Username:
-          HostNames: []
-        KafkaTopic:
-          TopicName:
-          Password:
-          Username:
-          CompressionLevel:
-          CompressionType:
-          QueueBufferingBackpressureThreshold:
-          QueueBufferingMaxKbytes:
-          QueueBufferingMaxMessages:
-          MessageSendRetriesIntervalMs:
-          MessageSendMaxRetries:
-          Partition:
-          DefaultKafkaKey:
-          SaslMechanism:
-          SecurityProtocol:
-          HostNames: []
-          Headers:
-        RabbitMq:
-          Host:
-          Expiration:
-          Type:
-          ContentType:
-          QueueName:
-          RoutingKey:
-          ExchangeName:
-          HandshakeContinuationTimeoutSeconds:
-          RequestedConnectionTimeoutSeconds:
-          ContinuationTimeoutSeconds:
-          VirtualHost:
-          Port:
-          Password:
-          Username:
-          Headers:
-        Chunk:
-          ChunkSize:
-        Parallel:
-          Parallelism:
-        DataFilter:
-          MetaData:
-          Timestamp:
-          Body:
-    Consumers:
-      - TimeoutMs:
-        Name:
-        Stage:
-        Policies:
-          - AdvancedLoadBalance:
-              Stages:
-                - Rate:
-                  TimeIntervalMs:
-                  TimeoutMs:
-                  Amount:
-            IncreasingLoadBalance:
-              MaxRate:
-              StartRate:
-              TimeIntervalMs:
-              RateIncreaseIntervalMs:
-              RateIncrease:
-            LoadBalance:
-              Rate:
-              TimeIntervalMs:
-            Timeout:
-              TimeoutMs:
-            Count:
-              Count:
-        Deserialize:
-          Deserializer:
-          SpecificType:
-            TypeFullName:
-            AssemblyName:
-        IbmMqQueue:
-          QueueName:
-          Manager:
-          Channel:
-          Port:
-          HostName:
-        Socket:
-          ProtocolType:
-          Port:
-          Host:
-          SeperationChar:
-          BufferSize:
-          ReceiveTimeoutMs:
-          AddressFamily:
-          SocketType:
-        ElasticIndices:
-          Password:
-          Username:
-          Url:
-          IndexPattern:
-          FilterSecondsBeforeRunStartTime:
-          ReadFromRunStartTime:
-          ScrollContextExpirationMs:
-          ReadBatchSize:
-          TimestampField:
-          RequestTimeoutMs:
-          MatchQueryString:
-        S3Bucket:
-          SecretKey:
-          AccessKey:
-          ServiceURL:
-          StorageBucket:
-          ReadFromRunStartTime:
-          SkipEmptyObjects:
-          MaximumRetryCount:
-          Delimiter:
-          Prefix:
-          ForcePathStyle:
-        PostgreSqlTable:
-          TableName:
-          ConnectionString:
-          IsInsertionTimeFieldTimeZoneTz:
-          CommandTimeoutSeconds:
-          FilterSecondsBeforeRunStartTime:
-          ReadFromRunStartTime:
-          WhereStatement:
-          InsertionTimeTimeZoneOffsetSummerTime:
-          InsertionTimeField:
-          ColumnsToIgnore: []
-        TrinoSqlTable:
-          Hostname:
-          Catalog:
-          Schema:
-          ClientTag:
-          Password:
-          Username:
-          TableName:
-          ConnectionString:
-          CommandTimeoutSeconds:
-          FilterSecondsBeforeRunStartTime:
-          ReadFromRunStartTime:
-          WhereStatement:
-          InsertionTimeTimeZoneOffsetSummerTime:
-          InsertionTimeField:
-          ColumnsToIgnore: []
-        OracleSqlTable:
-          TableName:
-          ConnectionString:
-          CommandTimeoutSeconds:
-          FilterSecondsBeforeRunStartTime:
-          ReadFromRunStartTime:
-          WhereStatement:
-          InsertionTimeTimeZoneOffsetSummerTime:
-          InsertionTimeField:
-          ColumnsToIgnore: []
-        MsSqlTable:
-          TableName:
-          ConnectionString:
-          CommandTimeoutSeconds:
-          FilterSecondsBeforeRunStartTime:
-          ReadFromRunStartTime:
-          WhereStatement:
-          InsertionTimeTimeZoneOffsetSummerTime:
-          InsertionTimeField:
-          ColumnsToIgnore: []
-        KafkaTopic:
-          GroupId:
-          TopicName:
-          Password:
-          Username:
-          FetchWaitMaxMs:
-          FetchMinBytes:
-          MaxPollIntervalMs:
-          PartitionAssignmentStrategy:
-          HeartbeatIntervalMs:
-          EnableAutoCommit:
-          SessionTimeOutMs:
-          AutoOffsetReset:
-          SaslMechanism:
-          SecurityProtocol:
-          HostNames: []
-        RabbitMq:
-          Host:
-          CreatedQueueTimeToExpireMs:
-          QueueName:
-          RoutingKey:
-          ExchangeName:
-          HandshakeContinuationTimeoutSeconds:
-          RequestedConnectionTimeoutSeconds:
-          ContinuationTimeoutSeconds:
-          VirtualHost:
-          Port:
-          Password:
-          Username:
-        DataFilter:
-          MetaData:
-          Timestamp:
-          Body:
 ```

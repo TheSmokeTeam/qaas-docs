@@ -1,20 +1,24 @@
+<!-- generated hash:37c981cc64d6 sources:runner-family, Links, yaml-view -->
+
 # Links Configurations Yaml View
 
 ```yaml
 Links:
-  - Name:
+  -
+    Name:
     Grafana:
       DashboardId:
       Url:
       Variables:
-        - Value:
+        -
           Key:
-    Prometheus:
-      Url:
-      Expressions: []
+          Value:
     Kibana:
       DataViewId:
       Url:
       KqlQuery:
       TimestampField:
+    Prometheus:
+      Url:
+      Expressions: []
 ```
