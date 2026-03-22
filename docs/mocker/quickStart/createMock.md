@@ -22,6 +22,14 @@ dotnet add DummyAppMock/DummyAppMock.csproj package QaaS.Common.Generators
 
 The sample keeps the response processor local so the quick start stays compatible with the currently published public packages.
 
+## Keep `Program.cs` Minimal
+
+`DummyAppMock/Program.cs`
+
+```csharp
+QaaS.Mocker.Bootstrap.New(args).Run();
+```
+
 ## Add the Local Processor
 
 `DummyAppMock/Processors/ServerDataProcessor.cs`
@@ -63,32 +71,6 @@ public sealed class ServerDataProcessor : BaseTransactionProcessor<NoConfigurati
 }
 
 public sealed record NoConfiguration;
-```
-
-## Load the Generator Assembly
-
-For the YAML sample, explicitly load the generator package before bootstrap so hook discovery is deterministic.
-
-`DummyAppMock/Program.cs`
-
-```csharp
-using System.Reflection;
-
-Directory.SetCurrentDirectory(AppContext.BaseDirectory);
-Assembly.Load("QaaS.Common.Generators");
-QaaS.Mocker.Bootstrap.New(NormalizeExampleArgs(args)).Run();
-
-static string[] NormalizeExampleArgs(IEnumerable<string> args)
-{
-    var normalizedArguments = args.ToList();
-    if (normalizedArguments.All(argument =>
-            !string.Equals(argument, "--no-env", StringComparison.OrdinalIgnoreCase)))
-    {
-        normalizedArguments.Add("--no-env");
-    }
-
-    return [.. normalizedArguments];
-}
 ```
 
 ## Add the Response File
@@ -134,8 +116,10 @@ Servers:
 
 ## Run the Mock
 
+From `DummyAppMock/DummyAppMock`:
+
 ```bash
-dotnet run --project DummyAppMock/DummyAppMock.csproj -- run DummyAppMock/mocker.qaas.yaml
+dotnet run -- run mocker.qaas.yaml
 ```
 
 Then verify it:
