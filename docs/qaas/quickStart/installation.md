@@ -52,27 +52,21 @@ Add the packages your project needs. At minimum, you need `QaaS.Runner`; the Com
 
 ## Project Template
 
-The installable template pack for new runner projects is [QaaS.Runner.Template]({{ links.repository_runner_template }}).
+Use [QaaS.Runner.Template]({{ links.repository_runner_template }}) when you want a ready-to-run runner repo instead of wiring packages by hand.
 
 ```bash
-# Install
 dotnet new install QaaS.Runner.Template
-
-# Uninstall
-dotnet new uninstall QaaS.Runner.Template
+dotnet new qaas-runner -n MyServiceTests
 ```
 
-??? example "The template creates"
+The generated repo includes:
 
-    ```txt
-    MyServiceTests/
-    |-- NuGet.Config
-    |-- MyServiceTests.sln
-    `-- MyServiceTests/
-        |-- MyServiceTests.csproj
-        |-- Program.cs
-        `-- test.qaas.yaml
-    ```
+- `NuGet.config` pointing at `{{ links.nuget_feed }}`
+- `QaaS.Runner` with `Version="*"` so restore pulls the latest stable version on the configured feed
+- a minimal valid `test.qaas.yaml`
+- a Rider launch profile for `run test.qaas.yaml`
+
+If you use Artifactory or another private feed, update the generated `NuGet.config` before the first restore.
 
 ## Allure CLI
 
