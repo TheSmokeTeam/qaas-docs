@@ -8,6 +8,12 @@ The `run` command starts the configured QaaS Mocker runtime.
 dotnet run -- run mocker.qaas.yaml
 ```
 
+The compatibility shortcut below still resolves to the same `run` command:
+
+```bash
+dotnet run -- mocker.qaas.yaml
+```
+
 Common variations:
 
 ```bash
@@ -16,4 +22,4 @@ dotnet run -- run mocker.qaas.yaml --overwrite-arguments "Servers:0:Http:Port=80
 dotnet run -- run mocker.qaas.yaml --no-env --run-locally
 ```
 
-Use `dotnet run -- run --help` to see the full option list.
+Use `dotnet run -- run --help` to see only the `run` options, or `dotnet run -- --help` to print the full command overview and every command's help block.

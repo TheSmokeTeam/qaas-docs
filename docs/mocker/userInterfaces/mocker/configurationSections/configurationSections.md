@@ -2,6 +2,8 @@
 
 The `mocker.qaas.yaml` file is divided into the sections below. Each section configures a different aspect of the mock runtime.
 
+The selected CLI command changes what QaaS Mocker does with the loaded configuration, but all of `run`, `lint`, and `template` resolve the same configuration sections and overlay sources before execution.
+
 The preferred top-level layout is:
 
 ```yaml

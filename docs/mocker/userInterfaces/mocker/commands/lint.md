@@ -15,4 +15,4 @@ This is the fastest way to catch issues such as:
 - missing TLS certificate files when `IsSecuredSchema` is enabled
 - missing required stub, controller, or socket settings
 
-Use `dotnet run -- lint --help` to see the full option list.
+Use `dotnet run -- lint --help` to see only the `lint` options, or `dotnet run -- --help` to print the full command overview and every command's help block.

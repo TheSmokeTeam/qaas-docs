@@ -14,4 +14,4 @@ To write the rendered file to a folder instead of standard output:
 dotnet run -- template mocker.qaas.yaml --output-folder artifacts/templates
 ```
 
-Use `dotnet run -- template --help` to see the full option list.
+Use `dotnet run -- template --help` to see only the `template` options, or `dotnet run -- --help` to print the full command overview and every command's help block.
