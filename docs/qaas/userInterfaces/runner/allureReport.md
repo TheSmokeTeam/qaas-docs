@@ -44,7 +44,7 @@ Under the `Test body` section, the test steps are presented in a tree format.
 For each session, the inputs and outputs, and failure reasons if there are any, are shown.
 In addition each session's SessionData `json` can be viewed by clicking the `SessionData` file icon within it.
 
-![Test steps example](../../assets/allure-test-body.png)
+The `Test body` view shows the nested session steps, their inputs and outputs, and any failure reasons captured during execution.
 
 ## Times
 

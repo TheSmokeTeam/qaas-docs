@@ -9,13 +9,6 @@ dotnet run --
 dotnet run -- --help
 ```
 
-For backwards compatibility, providing a configuration file as the first positional value still defaults to `run`, so both of the following forms are valid:
-
-```bash
-dotnet run -- mocker.qaas.yaml
-dotnet run -- run mocker.qaas.yaml
-```
-
 The supported commands are:
 
 | Command | Purpose |

@@ -74,7 +74,7 @@ from the `DummyAppTests/DummyAppTests/` directory (the directory containing the 
   - Logs and attachments
   - Metrics and charts (e.g., throughput, delay, hermeticity)
 
-![allure-results-ui](../assets/allure-results.png)
+The Allure UI opens in your browser and reads from the generated `allure-results` directory.
 
 ### Sharing Results
 

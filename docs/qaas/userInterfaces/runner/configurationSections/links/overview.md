@@ -18,7 +18,7 @@ The suggested Kibana to use is the one supported by `{{links.links_kibana_suppor
 To get the `DataViewId` of a `DataView` in kibana you can go to `Stack Managment` -> `Data Views` select your DataView and go to `Edit data view`.
 There you will see your `DataViewId` under `Custom data view ID`.
 
-![DataViewIdInKibana](../../../../assets/dataViewId.png)
+The `Custom data view ID` field in Kibana's `Edit data view` screen contains the `DataViewId`.
 
 ### Prometheus
 
