@@ -2,20 +2,25 @@
 
 ## Prerequisites
 
-| Requirement                              | Details                           |
-|------------------------------------------|-----------------------------------|
-| [.NET SDK]({{ links.dotnet_sdk }})       | Version **10.0**                  |
-| NuGet feeds                              | More details below                |
-| [Allure CLI]({{ links.allure_install }}) | 0optional - *for viewing reports* |
+| Requirement | Details |
+| ----------- | ------- |
+| [.NET SDK]({{ links.dotnet_sdk }}) | Version **10.0** |
+| NuGet feed | One configurable feed, defaulting to `nuget.org` |
+| [Allure CLI]({{ links.allure_install }}) | Optional, for viewing reports locally |
 
-### NuGet Feed Configuration
+## Global NuGet.Config
 
-Add this feeds to your global `NuGet.Config` (usually `~/.nuget/NuGet/NuGet.Config`):
+Add a single package source to your global `NuGet.Config` file, usually `~/.nuget/NuGet/NuGet.Config`.
+
+The default documentation value is `nuget.org`, and you can override it during docs builds with `QAAS_DOCS_LINK_NUGET_FEED`.
 
 ```xml
-<add key="Feed_A" value="{{ links.nuget_feed_a }}" />
-<add key="Feed_B" value="{{ links.nuget_feed_b }}" />
-<add key="Feed_C" value="{{ links.nuget_feed_c }}" />
+<configuration>
+  <packageSources>
+    <clear />
+    <add key="nuget.org" value="{{ links.nuget_feed }}" protocolVersion="3" />
+  </packageSources>
+</configuration>
 ```
 
 ## Packages
@@ -26,10 +31,7 @@ Add the packages your project needs. At minimum, you need `QaaS.Runner`; the Com
 
     ```xml
     <ItemGroup>
-      <!-- Required -->
       <PackageReference Include="QaaS.Runner" Version="*" />
-
-      <!-- Optional plugins — add only what you use -->
       <PackageReference Include="QaaS.Common.Assertions" Version="*" />
       <PackageReference Include="QaaS.Common.Generators" Version="*" />
       <PackageReference Include="QaaS.Common.Probes" Version="*" />
@@ -39,44 +41,39 @@ Add the packages your project needs. At minimum, you need `QaaS.Runner`; the Com
 === "CLI"
 
     ```bash
-    nuget install QaaS.Runner # required
-    nuget install QaaS.Common.Assertions # optional - contains common assertion
-    nuget install QaaS.Common.Generators # optional - contains common data generators
-    nuget install QaaS.Common.Probes # optional - contains common probes
+    dotnet add package QaaS.Runner
+    dotnet add package QaaS.Common.Assertions
+    dotnet add package QaaS.Common.Generators
+    dotnet add package QaaS.Common.Probes
     ```
 
 !!! tip "Version compatibility"
-    All Common packages must share the same `QaaS.Framework.SDK` version (or a compatible newer minor) as the `QaaS.Runner` you reference.
+    All Common packages must share the same `QaaS.Framework.SDK` version, or a compatible newer minor version, as the `QaaS.Runner` package you reference.
 
-## Project Templates
+## Project Template
 
-QaaS provides `dotnet new` templates for scaffolding new test projects.
-These templates are available at: [QaaS Project Templates Repository]({{ links.qaas_project_templates }})
+The installable template pack for new runner projects is [QaaS.Runner.Template]({{ links.repository_runner_template }}).
 
 ```bash
 # Install
-dotnet new install QaaS.ProjectTemplates
+dotnet new install QaaS.Runner.Template
 
 # Uninstall
-dotnet new uninstall QaaS.ProjectTemplates
+dotnet new uninstall QaaS.Runner.Template
 ```
 
 ??? example "The template creates"
 
-    ```
+    ```txt
     MyServiceTests/
-    ├── NuGet.Config
-    ├── MyServiceTests.sln
-    ├── MyServiceTests/
-    │   ├── MyServiceTests.csproj
-    │   ├── Program.cs
-    │   ├── test.qaas.yaml
-    │   └── Variables/
-    │       ├── local.yaml
-    │       └── k8s.yaml
+    |-- NuGet.Config
+    |-- MyServiceTests.sln
+    `-- MyServiceTests/
+        |-- MyServiceTests.csproj
+        |-- Program.cs
+        `-- test.qaas.yaml
     ```
 
 ## Allure CLI
 
-The Allure CLI tool, along with installation instructions.
-Can be found at: [Allure CLI Repository]({{ links.allure_install }})
+The Allure CLI installation instructions are available in the [official Allure docs]({{ links.allure_install }}).

@@ -1,4 +1,10 @@
 # Controller
 
-The controller section is an optional section used for the interaction between `QaaS.Mocker` and `QaaS.Runner`.
-Those interactions are communicated via `KeyDb` and are triggered by `QaaS.Runner`'s [mocker commands](REDA/configurationSections/sessions/types/mockerCommands/)
+The `Controller` section is optional. When configured with a usable Redis connection, it enables QaaS Runner mocker commands such as changing action stubs, triggering actions, and consuming cached transactions.
+
+The controller is built only when:
+
+- `Controller.ServerName` is set
+- `Controller.Redis` is configured with a usable Redis host
+
+If the Redis connection is missing or unavailable, the runtime skips controller startup and the servers still run.

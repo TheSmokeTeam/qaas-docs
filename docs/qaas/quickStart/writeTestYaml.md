@@ -1,9 +1,9 @@
 # Write Test With Yaml
 
-Lets write tests for an application that uses `rabbitmq`.
+Let's write tests for an application that uses `rabbitmq`.
 That application's name is `DummyApp`.
 
-The finished test project that will be written in this quick start tutorial can be found [here]({{ links.dummyapp_tests }}). In addition a helm chart that deploys a `rabbitmq` that will work with this test project can be found [here]({{ links.dummyapp_helm_chart }}).
+The completed sample is available in the `yaml_configuration` branch of [qaas-runner-quickstart]({{ links.runner_quickstart_repository }}/tree/yaml_configuration).
 
 ## Application spec
 
@@ -35,7 +35,7 @@ I/O Routing Key: /
 2. Then we create a new dotnet project with the `qaas` project template.
 
 ```bash
-dotnet new qaas.test -n DummyAppTests
+dotnet new qaas-runner -n DummyAppTests
 ```
 
 This will create the following C# QaaS project directory and files

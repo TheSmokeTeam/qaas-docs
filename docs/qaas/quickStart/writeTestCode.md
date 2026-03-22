@@ -1,8 +1,12 @@
 # Write Test With Code
 
+The completed sample is available in the `code_configuration` branch of [qaas-runner-quickstart]({{ links.runner_quickstart_repository }}/tree/code_configuration).
+
+That branch keeps a minimal `test.qaas.yaml` file because the Runner bootstrap still expects a configuration path, but the test sections themselves are configured in code.
+
 Now that we've covered how to configure the test using `test.qaas.yaml`, let's explore how to achieve the **exact same behavior** using **C# code** instead. This approach gives you full programmatic control, better type safety, and easier refactoring, ideal for complex or evolving test scenarios.
 
-We’ll walk through each code block, explaining its purpose and how it maps to the YAML configuration from the previous section.
+We'll walk through each code block, explaining its purpose and how it maps to the YAML configuration from the previous section.
 
 ## 1. Define the Data Source Using `FromFileSystem` Generator
 
@@ -102,7 +106,7 @@ var amqpConsumer = new ConsumerBuilder().Named("Consumer")
 
 - `.Named("Consumer")`: Names the consumer for use in assertions.
 - `.Configure(new RabbitMqReaderConfig ...)`: Sets up the RabbitMQ connection for consuming from the `output` exchange.
-- `.WithTimeout(5000)`: Sets a 5-second timeout (5000 ms) for waiting for messages — matches the YAML `TimeoutMs`.
+- `.WithTimeout(5000)`: Sets a 5-second timeout (5000 ms) for waiting for messages and matches the YAML `TimeoutMs`.
 - `.WithDeserializer(...)`: Specifies that incoming `byte[]` data should be deserialized into .NET objects using `Json`.
 
 ## 5. Build the Session with Publisher and Consumer
@@ -210,4 +214,4 @@ If we don't, the test will simply never run.
 
 ## Combining Code Configuration With YAML
 
-We are not limited to configuring tests with just code or `YAML`, anything that is configured with `YAML` files is still there and you can acsess it, edit it and run at. More information here: [Configuration As Code](../advancedConcepts/configurationAsCode.md).
+We are not limited to configuring tests with just code or `YAML`, and anything configured in `YAML` files is still available for code-based access and updates. More information here: [Configuration As Code](../advancedConcepts/configurationAsCode.md).

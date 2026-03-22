@@ -1,16 +1,16 @@
-# Stubs Configurations Yaml View
+# Stubs Configurations YAML View
 
 ```yaml
 Stubs:
-  - Processor:
-    Name:
+  - Name:
+    Processor:
     DataSourceNames: []
-    ResponseBodySerialization:
-      Serializer:
+    ProcessorConfiguration:
     RequestBodyDeserialization:
       Deserializer:
       SpecificType:
         TypeFullName:
         AssemblyName:
-    ProcessorSpecificConfiguration:
+    ResponseBodySerialization:
+      Serializer:
 ```

@@ -1,17 +1,18 @@
-# DataSources Configurations Yaml View
+# DataSources Configurations YAML View
 
 ```yaml
 DataSources:
-  - Generator:
-    Name:
-    Lazy:
+  - Name:
+    Generator:
+    Lazy: false
     DataSourceNames: []
+    DataSourcePatterns: []
+    Serialize:
+      Serializer:
     Deserialize:
       Deserializer:
       SpecificType:
         TypeFullName:
         AssemblyName:
-    Serialize:
-      Serializer:
-    GeneratorSpecificConfiguration:
+    GeneratorConfiguration:
 ```

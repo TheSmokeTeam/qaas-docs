@@ -2,46 +2,28 @@
 
 **QaaS.Mocker** is a lightweight mock-server framework for HTTP, gRPC, and raw TCP/UDP services. It is built on .NET 10, driven by YAML configuration, and designed for tight integration with [QaaS.Runner](../qaas/index.md) tests.
 
-| | |
-|---|---|
-| **Runtime** | .NET 10 |
-| **Package** | `QaaS.Mocker` (NuGet) |
-| **Source** | [Repository — QaaS.Mocker]({{ links.repository_mocker }}) |
-| **Docker** | Multi-stage Dockerfile included |
+|             |                                                           |
+| ----------- | --------------------------------------------------------- |
+| **Runtime** | .NET 10                                                   |
+| **Package** | `QaaS.Mocker` (NuGet)                                     |
+| **Source**  | [Repository - QaaS.Mocker]({{ links.repository_mocker }}) |
+| **Docker**  | Multi-stage Dockerfile included                           |
 
 ## Key Capabilities
 
-- **HTTP server** — Kestrel-based, with per-endpoint route + method matching and configurable response stubs.
-- **gRPC server** — reflection-based service binding; define stubs per service/method.
-- **Socket server** — TCP and UDP with semaphore-controlled concurrency.
-- **Runtime control** — a Redis pub/sub **Controller** lets the Runner (or any client) swap stubs, trigger actions, or consume cached transactions at runtime.
-- **Plugin system** — extend with custom `IProcessor` / `ITransactionProcessor` implementations loaded from NuGet packages or local DLLs.
-- **Stub management** — `TransactionStub` objects map request patterns to canned responses, including serialization format, delay, and status code.
+- **HTTP server** - Kestrel-based, with per-endpoint route and method matching plus configurable response stubs.
+- **gRPC server** - reflection-based service binding with stubs per service and RPC method.
+- **Socket server** - TCP and UDP endpoints with configurable collect or broadcast behavior.
+- **Runtime control** - an optional Redis-backed **Controller** lets Runner sessions swap stubs, trigger actions, or consume cached transactions at runtime.
+- **Plugin system** - extend the runtime with custom `IProcessor` and `ITransactionProcessor` implementations from the project itself, NuGet packages, or local assemblies.
+- **Multi-server support** - run several HTTP, gRPC, and socket servers from one mocker process through the preferred `Servers` configuration model.
 
-## Architecture
+## Commands
 
-```mermaid
-flowchart TD
-    YAML["mocker.qaas.yaml"] --> Loader["MockerLoader"]
-    Loader --> EB["ExecutionBuilder"]
-    EB --> Stubs["Stubs"]
-    EB --> Server["Server (HTTP / gRPC / Socket)"]
-    EB --> Controller["Controller (Redis)"]
-    Server -- "matches request" --> Stubs
-    Controller -- "Change / Trigger / Consume" --> Server
-    Runner["QaaS.Runner"] -- "MockerCommand" --> Controller
-```
+| Mode       | Description                                     |
+| ---------- | ----------------------------------------------- |
+| `run`      | Start servers and controller (default)          |
+| `lint`     | Validate configuration without starting servers |
+| `template` | Print a YAML configuration template             |
 
-1. **Load** — `MockerLoader` reads one or more YAML files, resolves placeholders, and builds the `Context`.
-2. **Build** — `ExecutionBuilder` creates Stubs, Servers, and the Controller from config.
-3. **Serve** — Servers listen for incoming requests, match them to stubs, execute any `ITransactionProcessor` hooks, and return the configured response.
-4. **Control** — The Controller subscribes to a Redis channel. Runner sessions send `MockerCommand` actions (`Change`, `Trigger`, `Consume`) to swap stubs or retrieve cached data.
-
-## CLI Modes
-
-| Mode | Description |
-|---|---|
-| `run` | Start servers and controller (default) |
-| `lint` | Validate configuration without starting servers |
-| `template` | Print a YAML configuration template |
-
+See [CLI Commands](userInterfaces/mocker/commands/commands.md) for usage examples and available flags.

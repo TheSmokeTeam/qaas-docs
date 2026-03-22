@@ -1,18 +1,18 @@
-# Controller Configurations Yaml View
+# Controller Configurations YAML View
 
 ```yaml
 Controller:
   ServerName:
   Redis:
-    RedisDataBase:
-    KeepAlive:
-    SslHost:
-    Ssl:
-    AsyncTimeout:
-    ClientName:
-    ConnectRetry:
-    AbortOnConnectFail:
-    Password:
-    Username:
     Host:
+    Username:
+    Password:
+    AbortOnConnectFail: true
+    ConnectRetry: 3
+    ClientName:
+    AsyncTimeout: 5000
+    Ssl: false
+    SslHost:
+    KeepAlive: 60
+    RedisDataBase: 0
 ```

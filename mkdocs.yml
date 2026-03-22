@@ -78,9 +78,15 @@ nav:
     - Introduction: mocker/index.md
     - Quick Start:
       - Installation: mocker/quickStart/installation.md
-      - Create a Mock: mocker/quickStart/createMock.md
+      - Create a Mock (YAML): mocker/quickStart/createMock.md
+      - Create a Mock (Code): mocker/quickStart/createMockCode.md
       - Deploy a Mock: mocker/quickStart/deployMock.md
       - Integrate with Tests: mocker/quickStart/integrateWithTests.md
+    - CLI Commands:
+      - Overview: mocker/userInterfaces/mocker/commands/commands.md
+      - run: mocker/userInterfaces/mocker/commands/run.md
+      - lint: mocker/userInterfaces/mocker/commands/lint.md
+      - template: mocker/userInterfaces/mocker/commands/template.md
     - Configuration Reference:
       - Overview: mocker/userInterfaces/mocker/configurationSections/configurationSections.md
       - DataSources:
@@ -95,7 +101,7 @@ nav:
         - Overview: mocker/userInterfaces/mocker/configurationSections/controller/overview.md
         - Table View: mocker/userInterfaces/mocker/configurationSections/controller/configurations/tableView.md
         - YAML View: mocker/userInterfaces/mocker/configurationSections/controller/configurations/yamlView.md
-      - Server:
+      - Servers:
         - Overview: mocker/userInterfaces/mocker/configurationSections/server/overview.md
         - Table View: mocker/userInterfaces/mocker/configurationSections/server/configurations/tableView.md
         - YAML View: mocker/userInterfaces/mocker/configurationSections/server/configurations/yamlView.md
@@ -304,27 +310,6 @@ nav:
           - YAML View: probes/availableProbes/EmptyElasticIndices/configuration/yamlView.md
     - Processors:
       - Introduction: processors/index.md
-      - Available Processors:
-        - ExampleProcessor:
-          - Overview: processors/availableProcessors/ExampleProcessor/overview.md
-          - Table View: processors/availableProcessors/ExampleProcessor/configuration/tableView.md
-          - YAML View: processors/availableProcessors/ExampleProcessor/configuration/yamlView.md
-        - DummyTransactionProcessor:
-          - Overview: processors/availableProcessors/DummyTransactionProcessor/overview.md
-          - Table View: processors/availableProcessors/DummyTransactionProcessor/configuration/tableView.md
-          - YAML View: processors/availableProcessors/DummyTransactionProcessor/configuration/yamlView.md
-        - GrpcEchoProcessor:
-          - Overview: processors/availableProcessors/GrpcEchoProcessor/overview.md
-          - Table View: processors/availableProcessors/GrpcEchoProcessor/configuration/tableView.md
-          - YAML View: processors/availableProcessors/GrpcEchoProcessor/configuration/yamlView.md
-        - StatusCodeTransactionProcessor:
-          - Overview: processors/availableProcessors/StatusCodeTransactionProcessor/overview.md
-          - Table View: processors/availableProcessors/StatusCodeTransactionProcessor/configuration/tableView.md
-          - YAML View: processors/availableProcessors/StatusCodeTransactionProcessor/configuration/yamlView.md
-        - TransactionFromDataSources:
-          - Overview: processors/availableProcessors/TransactionFromDataSources/overview.md
-          - Table View: processors/availableProcessors/TransactionFromDataSources/configuration/tableView.md
-          - YAML View: processors/availableProcessors/TransactionFromDataSources/configuration/yamlView.md
 
   - Framework:
     - Introduction: framework/index.md
@@ -416,17 +401,22 @@ extra:
     repository_generators: https://github.com/TheSmokeTeam/QaaS.Common.Generators
     repository_probes: https://github.com/TheSmokeTeam/QaaS.Common.Probes
     repository_processors: https://github.com/TheSmokeTeam/QaaS.Common.Processors
+    repository_runner_template: https://github.com/TheSmokeTeam/QaaS.Runner.Template
+    repository_mocker_template: https://github.com/TheSmokeTeam/QaaS.Mocker.Template
     allure_docs: https://docs.qameta.io/allure/
     allure_install: https://docs.qameta.io/allure/#_installing_a_commandline
     dotnet_sdk: https://dotnet.microsoft.com/download
     vscode_yaml_extension: https://marketplace.visualstudio.com/items?itemName=redhat.vscode-yaml
     qaas_community: https://discord.gg/RtzBFPU42K
+    nuget_feed: https://api.nuget.org/v3/index.json
     nuget_feed_a: feed_a
     nuget_feed_b: feed_b
     nuget_feed_c: feed_c
     qaas_project_templates: link_to_templates
     dummyapp_tests: GIT/examples/dummyapptests/
     dummyapp_helm_chart: GIT/qaas-quickstart-dummyapp-helm-chart
+    runner_quickstart_repository: https://github.com/eldarush/qaas-runner-quickstart
+    mocker_quickstart_repository: https://github.com/eldarush/qaas-mocker-quickstart
     artifactory: artifactory-link
     repository_modules: https://github.com/TheSmokeTeam/QaaS.Common.Modules
     repository_vap: GIT/versioned-artifact-publisher
