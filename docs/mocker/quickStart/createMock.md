@@ -1,5 +1,7 @@
 # Create a Mock (YAML)
 
+Use YAML when the mock shape is mostly declarative and you want the runtime definition to stay easy to scan: where the data comes from, which stub processes it, and which server endpoint exposes it. QaaS.Mocker reads those sections into the same execution builder concepts you will use in larger mocks later.
+
 This version keeps the mock definition in `mocker.qaas.yaml` and uses a small local processor for the response body.
 
 The completed sample is available in the `yaml_configuration` branch of [DummyAppMock]({{ links.mocker_quickstart_repository }}/tree/yaml_configuration).
@@ -31,6 +33,8 @@ QaaS.Mocker.Bootstrap.New(args).Run();
 ```
 
 ## Add the Local Processor
+
+The YAML file will only describe the mock flow. The actual response body is produced by a small local processor that loads the JSON payload from the data source and returns it with an HTTP 200 response.
 
 `DummyAppMock/Processors/ServerDataProcessor.cs`
 
@@ -84,9 +88,61 @@ public sealed record NoConfiguration;
 }
 ```
 
-## Configure `mocker.qaas.yaml`
+## Start with the `DataSources` Section
+
+Begin by telling Mocker where the response payload lives.
 
 `DummyAppMock/mocker.qaas.yaml`
+
+```yaml
+DataSources:
+  - Name: ServerData
+    Generator: FromFileSystem
+    GeneratorConfiguration:
+      DataArrangeOrder: AsciiAsc
+      FileSystem:
+        Path: ServerData
+```
+
+This means: "load files from the local `ServerData` folder and expose them as a named data source called `ServerData`."
+
+## Add the `Stubs` Section
+
+Next add the transaction stub that connects the incoming request to your local processor.
+
+Append this section to `mocker.qaas.yaml`:
+
+```yaml
+Stubs:
+  - Name: ServerDataStub
+    Processor: ServerDataProcessor
+    DataSourceNames: [ServerData]
+```
+
+The stub says that when a request reaches this action, Mocker should call `ServerDataProcessor` and give it the `ServerData` data source.
+
+## Add the `Servers` Section
+
+Finally define the HTTP server and map `GET /data` to the stub you just created.
+
+Append this section to `mocker.qaas.yaml`:
+
+```yaml
+Servers:
+  - Http:
+      Port: 8080
+      IsLocalhost: true
+      Endpoints:
+        - Path: /data
+          Actions:
+            - Name: GetServerData
+              Method: Get
+              TransactionStubName: ServerDataStub
+```
+
+This is the actual mock surface: open port `8080`, listen locally, and route `GET /data` to the stub named `ServerDataStub`.
+
+## Full `mocker.qaas.yaml`
 
 ```yaml
 DataSources:

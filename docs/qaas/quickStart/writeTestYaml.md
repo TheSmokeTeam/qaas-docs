@@ -1,5 +1,7 @@
 # Write a Test (YAML)
 
+Use YAML when you want the test flow to stay declarative, easy to diff, and easy to hand to someone who does not need to read C# first. QaaS.Runner loads the YAML into an execution builder, so the YAML sections below map directly to the runtime concepts you will keep using later: metadata, data sources, sessions, and assertions.
+
 This sample publishes one message to RabbitMQ, consumes it back from the same exchange and routing key, and verifies both delivery and timing.
 
 The completed sample is available in the `yaml_configuration` branch of [DummyAppTests]({{ links.runner_quickstart_repository }}/tree/yaml_configuration).
@@ -21,6 +23,8 @@ dotnet add DummyAppTests/DummyAppTests.csproj package QaaS.Common.Generators
 QaaS.Runner.Bootstrap.New(args).Run();
 ```
 
+The host stays small because the entire test definition will live in `test.qaas.yaml`.
+
 ## Add the Test Data
 
 `DummyAppTests/TestData/input.json`
@@ -34,9 +38,101 @@ QaaS.Runner.Bootstrap.New(args).Run();
 ]
 ```
 
-## Configure `test.qaas.yaml`
+The sample publishes this payload to RabbitMQ and later reads the same payload back from the queue flow.
+
+## Start with `MetaData` and `DataSources`
+
+Start the file with the parts that describe the test at a high level and tell Runner where the input data comes from.
 
 `DummyAppTests/test.qaas.yaml`
+
+```yaml
+MetaData:
+  Team: Smoke
+  System: DummyApp
+
+DataSources:
+  - Name: FromFileSystemTestData
+    Generator: FromFileSystem
+    GeneratorConfiguration:
+      DataArrangeOrder: AsciiAsc
+      FileSystem:
+        Path: TestData
+```
+
+`MetaData` makes the run easier to identify later in reports. `DataSources` says: "load the test payloads from the local `TestData` folder."
+
+## Add the `Sessions` Section
+
+Next add the session that performs the real work. A session groups the actions that exercise the system under test. In this sample there is one publisher and one consumer, both pointed at RabbitMQ's built-in `amq.direct` exchange with the routing key `dummyapp`.
+
+Append this section to `test.qaas.yaml`:
+
+```yaml
+Sessions:
+  - Name: RabbitMqExchangeWithFromFileSystemTestData
+    Publishers:
+      - Name: Publisher
+        DataSourceNames: [FromFileSystemTestData]
+        Policies:
+          - LoadBalance:
+              Rate: 50
+        RabbitMq:
+          Host: 127.0.0.1
+          Username: admin
+          Password: admin
+          Port: 5672
+          ExchangeName: amq.direct
+          RoutingKey: dummyapp
+    Consumers:
+      - Name: Consumer
+        TimeoutMs: 5000
+        RabbitMq:
+          Host: 127.0.0.1
+          Username: admin
+          Password: admin
+          Port: 5672
+          ExchangeName: amq.direct
+          RoutingKey: dummyapp
+        Deserialize:
+          Deserializer: Json
+```
+
+The publisher sends every payload loaded by `FromFileSystemTestData`. The consumer listens on the same exchange and routing key, waits up to five seconds, and deserializes the received body as JSON.
+
+## Add the `Assertions` Section
+
+Finally add the assertions that decide whether the test passed.
+
+Append this section to `test.qaas.yaml`:
+
+```yaml
+Assertions:
+  - Name: HermeticByInputOutputPercentage
+    Assertion: HermeticByInputOutputPercentage
+    SessionNames: [RabbitMqExchangeWithFromFileSystemTestData]
+    AssertionConfiguration:
+      OutputNames: [Consumer]
+      InputNames: [Publisher]
+      ExpectedPercentage: 100
+  - Name: DelayByChunks
+    Assertion: DelayByChunks
+    SessionNames: [RabbitMqExchangeWithFromFileSystemTestData]
+    AssertionConfiguration:
+      Output:
+        Name: Consumer
+        ChunkSize: 1
+      Input:
+        Name: Publisher
+        ChunkSize: 1
+      MaximumDelayMs: 5000
+```
+
+`HermeticByInputOutputPercentage` checks that every input produced a matching output. `DelayByChunks` checks that the output arrives within five seconds.
+
+## Full `test.qaas.yaml`
+
+This is the complete authored configuration after all three sections are combined:
 
 ```yaml
 MetaData:
@@ -99,8 +195,6 @@ Assertions:
         ChunkSize: 1
       MaximumDelayMs: 5000
 ```
-
-The sample uses RabbitMQ's built-in `amq.direct` exchange and the routing key `dummyapp`.
 
 ## Start RabbitMQ
 
