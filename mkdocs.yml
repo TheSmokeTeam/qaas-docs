@@ -493,7 +493,6 @@ extra:
     repository_processors: https://github.com/TheSmokeTeam/QaaS.Common.Processors
     repository_runner_template: https://github.com/TheSmokeTeam/QaaS.Runner.Template
     repository_mocker_template: https://github.com/TheSmokeTeam/QaaS.Mocker.Template
-    repository_modules: https://github.com/TheSmokeTeam/QaaS.Common.Modules
     repository_runner_quickstart: https://github.com/TheSmokeTeam/DummyAppTests
     repository_mocker_quickstart: https://github.com/TheSmokeTeam/DummyAppMock
     repository_vap: GIT/versioned-artifact-publisher

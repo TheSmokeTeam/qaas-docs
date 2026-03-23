@@ -2,36 +2,10 @@
 
 `QaaS Module Packages` are bundles of folders containing YAML files, uploaded as artifacts to Artifactory (`{{ links.artifactory }}`). In the context of `QaaS`, each such artifact is referred to as a **module**. These modules can be used interchangeably with any YAML file within the QaaS framework.
 
----
-
-## QaaS.Common.Modules
-
-QaaS provides a shared module library:
-[QaaS.Common.Modules]({{ links.repository_modules }})
-
-This repository contains reusable YAML configurations that can be leveraged across QaaS projects.
-
----
-
-## Using Modules from Artifactory
-
-To use a YAML file from Artifactory in a `qaas` command, replace the local file path with the full URL to the file in Artifactory.
-
-### Example: Using `commons.yaml` from `CommonModule` v0.1.0
-
-1. Open the target module file in the Artifactory UI.
-2. Copy the URL to the file, for example `{{ links.artifactory }}/commons.yaml`.
-3. Use it in a `run` command via the `-w` (`--with-files`) flag:
-
-```bash
-dotnet run -- run test.qaas.yaml -w {{ links.artifactory }}/commons.yaml
-```
-
----
-
 ## Publishing Your Own Modules
 
-To publish your own modules to Artifactory, use **vap** (`{{ links.repository_vap }}`), the Versioned Artifactory Publisher.
+After creating your own modules, you should publish them to Artifactory.
+You can do it by urself or use a tool we created named [`VAP`](`{{ links.repository_vap }}`) - Versioned Artifactory Publisher, which is a CLI tool that automates the process of publishing modules to Artifactory.
 
 ### Publishing Conventions
 
@@ -53,8 +27,20 @@ To publish your own modules to Artifactory, use **vap** (`{{ links.repository_va
 
 ## Publishing via CI
 
-Automate module publishing using the vap CI step (`{{ links.repository_vap }}`) in GitLab CI templates.
+Automate module publishing using the `VAP` CI step (`{{ links.repository_vap }}`) in GitLab CI templates.
 
-### Example
+---
 
-See the implementation in the [QaaS.Common.Modules]({{ links.repository_modules }}) repository for a real-world example.
+## Using Modules from Artifactory
+
+To use a YAML file from Artifactory in a `qaas` command, replace the local file path with the full URL to the file in Artifactory.
+
+### Example: Using `commons.yaml` from `CommonModule` v0.1.0
+
+1. Open the target module file in the Artifactory UI.
+2. Copy the URL to the file, for example `{{ links.artifactory }}/commons.yaml`.
+3. Use it in a `run` command via the `-w` (`--with-files`) flag:
+
+```bash
+dotnet run -- run test.qaas.yaml -w {{ links.artifactory }}/commons.yaml
+```
