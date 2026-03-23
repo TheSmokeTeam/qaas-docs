@@ -10,6 +10,7 @@ on:
       - .github/workflows/sync-generated-docs.yml
       - .gitmodules
       - scripts/Generate-ReferenceDocs.ps1
+      - scripts/Refresh-CliSnapshots.ps1
       - tools/QaaS.Docs.Generator
       - mkdocs.yml
 

@@ -1,4 +1,4 @@
-<!-- generated hash:1980450b30c5 sources:Mocker, run, cli-command -->
+<!-- generated hash:0fe48085a7aa sources:Mocker, run, cli-command -->
 
 # run
 
@@ -46,32 +46,36 @@ Usage:
 
   --elastic-password                 Optional Elasticsearch password for the logger sink.
 
+  --disable-elastic-defaults         (Default: false) Disables Elastic defaults registered through the runtime defaults
+                                     provider for this run.
+
   --help                             Display this help screen.
 
   --version                          Display version information.
 
   value pos. 0                       (Default: mocker.qaas.yaml) Path to a mocker yaml configuration file to use with
-                                     the command."
+                                     the command.
 ```
 
 ## Positional Arguments
 
 | Position | Property | Source Type | Inherited | Required | Default | Value Type | Description |
 | -------- | -------- | ----------- | --------- | -------- | ------- | ---------- | ----------- |
-| `0` | `ConfigurationFile` | `QaaS.Mocker.Options.MockerOptions` | Yes | Yes | mocker.qaas.yaml | `string` | Path to a mocker yaml configuration file to use with the command." |
+| `0` | `ConfigurationFile` | `QaaS.Mocker.Options.MockerOptions` | Yes | Yes | mocker.qaas.yaml | `string` | Path to a mocker yaml configuration file to use with the command. |
 
 ## Flags
 
 | Flag | Property | Source Type | Inherited | Required | Default | Value Type | Description |
 | ---- | -------- | ----------- | --------- | -------- | ------- | ---------- | ----------- |
+| `--disable-elastic-defaults` | `DisableElasticDefaults` | `QaaS.Framework.Executions.Options.LoggerOptions` | Yes | No | False | `bool` | Disables Elastic defaults registered through the runtime defaults provider for this run. |
 | `--elastic-password` | `ElasticPassword` | `QaaS.Framework.Executions.Options.LoggerOptions` | Yes | No |  | `string` | Optional Elasticsearch password for the logger sink. |
 | `--elastic-uri` | `ElasticUri` | `QaaS.Framework.Executions.Options.LoggerOptions` | Yes | No |  | `string` | Elasticsearch URI used by the logger sink when send-logs is enabled. |
 | `--elastic-username` | `ElasticUsername` | `QaaS.Framework.Executions.Options.LoggerOptions` | Yes | No |  | `string` | Optional Elasticsearch username for the logger sink. |
 | `-g`, `--logger-configuration-file` | `LoggerConfigurationFilePath` | `QaaS.Framework.Executions.Options.LoggerOptions` | Yes | No |  | `string` | Path to a logger's configuration file, will override the default logger's configuration. Its level can be overridden by the logger-level flag. |
-| `-l`, `--logger-level` | `LoggerLevel` | `QaaS.Framework.Executions.Options.LoggerOptions` | Yes | No |  | `LogEventLevel?` | <br />The logger's level, overrides both the default logger's level (Information) and the level of any logger's configuration given.<br />All available options (not case sensitive) are: Verbose, Debug, <br />Information, Warning, Error, Fatal. |
+| `-l`, `--logger-level` | `LoggerLevel` | `QaaS.Framework.Executions.Options.LoggerOptions` | Yes | No |  | `LogEventLevel?` | The logger's level, overrides both the default logger's level (Information) and the level of any logger's configuration given.<br />All available options (not case sensitive) are: Verbose, Debug,<br />Information, Warning, Error, Fatal. |
 | `--no-env` | `DontResolveWithEnvironmentVariables` | `QaaS.Mocker.Options.MockerOptions` | Yes | No | False | `bool` | When this flag is used environment variables will not override loaded configurations. |
 | `-o`, `--output-folder` | `TemplatesOutputFolder` | `QaaS.Mocker.Options.MockerOptions` | Yes | No |  | `string` | Path to a folder to write the generated templates in. |
-| `-r`, `--overwrite-arguments` | `OverwriteArguments` | `QaaS.Mocker.Options.MockerOptions` | Yes | No | [] | `IList<string>` | List of arguments to overwrite the mocker configuration with, The first argument overwrites the <br />mocker configuration and then the one after it overwrites the result and so on...<br />For example: `Path:To:Variable:To:Overwrite=NewVariableValue` |
+| `-r`, `--overwrite-arguments` | `OverwriteArguments` | `QaaS.Mocker.Options.MockerOptions` | Yes | No | [] | `IList<string>` | List of arguments to overwrite the mocker configuration with, The first argument overwrites the<br />mocker configuration and then the one after it overwrites the result and so on...<br />For example: `Path:To:Variable:To:Overwrite=NewVariableValue` |
 | `-w`, `--overwrite-files` | `OverwriteFiles` | `QaaS.Mocker.Options.MockerOptions` | Yes | No | [] | `IList<string>` | List of files to overwrite the mocker configuration with, The first file overwrites the mocker<br />configuration file and then the one after it overwrite the result and so on... |
 | `-f`, `--overwrite-folders` | `OverwriteFolders` | `QaaS.Mocker.Options.MockerOptions` | Yes | No | [] | `IList<string>` | List of folders whose yaml files overwrite the mocker configuration in alphabetical order,<br />after overwrite files and in the order the folders are given. |
 | `--run-locally` | `RunLocally` | `QaaS.Mocker.Options.MockerOptions` | Yes | No | False | `bool` | Runs the project locally and enables exit by any key press. |

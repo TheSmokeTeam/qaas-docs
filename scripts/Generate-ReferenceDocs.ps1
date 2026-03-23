@@ -4,6 +4,7 @@ param(
     [string]$RunnerRoot = (Join-Path (Split-Path -Parent $PSScriptRoot) '..\QaaS.Runner'),
     [string]$MockerRoot = (Join-Path (Split-Path -Parent $PSScriptRoot) '..\QaaS.Mocker'),
     [string]$FrameworkRoot = (Join-Path (Split-Path -Parent $PSScriptRoot) '..\QaaS.Framework'),
+    [switch]$SkipCliSnapshotRefresh,
     [switch]$Check,
     [switch]$BuildSite
 )
@@ -12,18 +13,33 @@ $ErrorActionPreference = 'Stop'
 
 # Regenerates the deterministic Runner, Mocker, and Framework reference pages from:
 # - committed mirror schema contracts
-# - committed CLI snapshots
-# - the current source trees used for the function catalog
+# - freshly captured CLI snapshots
+# - the current source trees used for the annotated function reference pages
 # Run this after updating the committed CLI snapshots or mirror schema artifacts.
 
-# This script intentionally consumes committed CLI snapshots from QaaS.Docs.Generator instead of
-# building documentation exporters inside QaaS.Runner or QaaS.Mocker.
-# Update those snapshots manually only when the CLI help output or option surface changes, then
+# This script captures committed CLI snapshots from the current Runner, Mocker, and Framework
+# source trees before rendering docs, so flag descriptions and help output stay in sync with the
+# workspace without maintaining docs-only exporters in the product repositories.
+# Function grouping and inclusion now come from source-level XML documentation in the sibling
+# product repositories, so update those annotations when the public API surface changes, then
 # rerun this script to regenerate the markdown pages.
 
 $generatorProject = Join-Path $DocsRoot 'tools\QaaS.Docs.Generator\QaaS.Docs.Generator.csproj'
 if (-not (Test-Path $generatorProject)) {
     throw "QaaS.Docs.Generator is missing. Initialize the docs repo submodule before running this script."
+}
+
+$refreshSnapshotsScript = Join-Path $PSScriptRoot 'Refresh-CliSnapshots.ps1'
+if (-not (Test-Path $refreshSnapshotsScript)) {
+    throw "Refresh-CliSnapshots.ps1 is missing from $PSScriptRoot"
+}
+
+if (-not $SkipCliSnapshotRefresh) {
+    & $refreshSnapshotsScript `
+        -DocsRoot $DocsRoot `
+        -RunnerRoot $RunnerRoot `
+        -MockerRoot $MockerRoot `
+        -FrameworkRoot $FrameworkRoot
 }
 
 $generatorArgs = @(

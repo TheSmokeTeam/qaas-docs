@@ -1,376 +1,903 @@
-<!-- generated hash:eb9289d18f6e sources:Mocker, functions -->
+<!-- generated hash:c97e8a6c2c25 sources:Mocker, functions -->
 
 # Mocker Functions
 
-This page is generated from the docs generator function manifest and the current source tree.
+This page is generated from source-level `qaas-docs` annotations and the current source tree.
 
 ## Configuration as Code
 
 ### Executions
 
-#### `ExecutionBuilder.WithContext(InternalContext context) : ExecutionBuilder`
+<hr class="function-separator" />
 
-- Kind: `function`
-- Location: `QaaS.Mocker/ExecutionBuilder.cs:148`
+#### `ExecutionBuilder()`
 
-Replaces the execution context used when building the runtime.
+**Location** `QaaS.Mocker/ExecutionBuilder.cs:137`
 
-#### `ExecutionBuilder.WithLogger(ILogger logger) : ExecutionBuilder`
+**Complete Signature**
+```csharp
+public ExecutionBuilder()
+```
 
-- Kind: `function`
-- Location: `QaaS.Mocker/ExecutionBuilder.cs:157`
+**Docstring**
 
-Replaces the logger stored on the current execution context.
+Creates a new Mocker execution builder with an empty default context.
 
-#### `ExecutionBuilder.WithRootConfiguration(IConfiguration configuration) : ExecutionBuilder`
+Use this constructor when bootstrapping a mocker execution entirely in code before any configuration or runtime services have been attached.
 
-- Kind: `function`
-- Location: `QaaS.Mocker/ExecutionBuilder.cs:166`
+<hr class="function-separator" />
+
+#### `ExecutionBuilder.WithContext(InternalContext context)`
+
+**Location** `QaaS.Mocker/ExecutionBuilder.cs:156`
+
+**Complete Signature**
+```csharp
+public ExecutionBuilder WithContext(InternalContext context)
+```
+
+**Docstring**
+
+Replaces the execution context used by the builder.
+
+Use this method when working with the documented Mocker execution builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
+
+<hr class="function-separator" />
+
+#### `ExecutionBuilder.WithLogger(ILogger logger)`
+
+**Location** `QaaS.Mocker/ExecutionBuilder.cs:169`
+
+**Complete Signature**
+```csharp
+public ExecutionBuilder WithLogger(ILogger logger)
+```
+
+**Docstring**
+
+Replaces the logger stored on the current Mocker execution builder instance.
+
+Use this method when working with the documented Mocker execution builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
+
+<hr class="function-separator" />
+
+#### `ExecutionBuilder.WithRootConfiguration(IConfiguration configuration)`
+
+**Location** `QaaS.Mocker/ExecutionBuilder.cs:182`
+
+**Complete Signature**
+```csharp
+public ExecutionBuilder WithRootConfiguration(IConfiguration configuration)
+```
+
+**Docstring**
 
 Replaces the root configuration stored on the current execution context.
 
-#### `ExecutionBuilder.WithExecutionMode(ExecutionMode executionMode) : ExecutionBuilder`
+Use this method when working with the documented Mocker execution builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
-- Kind: `function`
-- Location: `QaaS.Mocker/ExecutionBuilder.cs:175`
+<hr class="function-separator" />
 
-Sets the execution mode for the resulting runtime.
+#### `ExecutionBuilder.WithExecutionMode(ExecutionMode executionMode)`
 
-#### `ExecutionBuilder.RunLocally(bool runLocally = true) : ExecutionBuilder`
+**Location** `QaaS.Mocker/ExecutionBuilder.cs:195`
 
-- Kind: `function`
-- Location: `QaaS.Mocker/ExecutionBuilder.cs:184`
+**Complete Signature**
+```csharp
+public ExecutionBuilder WithExecutionMode(ExecutionMode executionMode)
+```
 
-Configures whether the built execution waits for an interactive local shutdown signal.
+**Docstring**
 
-#### `ExecutionBuilder.WithTemplateOutputFolder(string? templateOutputFolder) : ExecutionBuilder`
+Sets the execution mode used by the resulting mocker runtime.
 
-- Kind: `function`
-- Location: `QaaS.Mocker/ExecutionBuilder.cs:193`
+Use this method when working with the documented Mocker execution builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
+
+<hr class="function-separator" />
+
+#### `ExecutionBuilder.RunLocally(bool runLocally = true)`
+
+**Location** `QaaS.Mocker/ExecutionBuilder.cs:208`
+
+**Complete Signature**
+```csharp
+public ExecutionBuilder RunLocally(bool runLocally = true)
+```
+
+**Docstring**
+
+Configures whether the mocker waits for an interactive local shutdown signal.
+
+Use this method when working with the documented Mocker execution builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
+
+<hr class="function-separator" />
+
+#### `ExecutionBuilder.WithTemplateOutputFolder(string? templateOutputFolder)`
+
+**Location** `QaaS.Mocker/ExecutionBuilder.cs:221`
+
+**Complete Signature**
+```csharp
+public ExecutionBuilder WithTemplateOutputFolder(string? templateOutputFolder)
+```
+
+**Docstring**
 
 Sets the template output folder used by template mode.
 
-#### `ExecutionBuilder.CreateDataSource(DataSourceBuilder dataSourceBuilder) : ExecutionBuilder`
+Use this method when working with the documented Mocker execution builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
-- Kind: `function`
-- Location: `QaaS.Mocker/ExecutionBuilder.cs:202`
+<hr class="function-separator" />
 
-Adds a new data source and enforces a unique name within the builder.
+#### `ExecutionBuilder.CreateDataSource(DataSourceBuilder dataSourceBuilder)`
 
-#### `ExecutionBuilder.ReadDataSource(string dataSourceName) : DataSourceBuilder?`
+**Location** `QaaS.Mocker/ExecutionBuilder.cs:234`
 
-- Kind: `function`
-- Location: `QaaS.Mocker/ExecutionBuilder.cs:219`
+**Complete Signature**
+```csharp
+public ExecutionBuilder CreateDataSource(DataSourceBuilder dataSourceBuilder)
+```
 
-Returns a configured data source by name, or null when it does not exist.
+**Docstring**
 
-#### `ExecutionBuilder.UpdateDataSource(string dataSourceName, DataSourceBuilder dataSourceBuilder) : ExecutionBuilder`
+Creates or adds the configured data source entry on the current Mocker execution builder instance.
 
-- Kind: `function`
-- Location: `QaaS.Mocker/ExecutionBuilder.cs:228`
+Use this method when working with the documented Mocker execution builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
-Replaces an existing data source by name.
+<hr class="function-separator" />
 
-#### `ExecutionBuilder.DeleteDataSource(string dataSourceName) : ExecutionBuilder`
+#### `ExecutionBuilder.ReadDataSource(string dataSourceName)`
 
-- Kind: `function`
-- Location: `QaaS.Mocker/ExecutionBuilder.cs:253`
+**Location** `QaaS.Mocker/ExecutionBuilder.cs:255`
 
-Removes a configured data source by name.
+**Complete Signature**
+```csharp
+public DataSourceBuilder? ReadDataSource(string dataSourceName)
+```
 
-#### `ExecutionBuilder.CreateStub(TransactionStubBuilder stubBuilder) : ExecutionBuilder`
+**Docstring**
 
-- Kind: `function`
-- Location: `QaaS.Mocker/ExecutionBuilder.cs:268`
+Returns the configured data source currently stored on the Mocker execution builder instance.
 
-Adds a new stub from a code-first stub builder.
+Use this method when working with the documented Mocker execution builder API surface in code. Use it to inspect the current configured state without rebuilding the surrounding collection or runtime object graph.
 
-#### `ExecutionBuilder.CreateStub(TransactionStubConfig stubConfig) : ExecutionBuilder`
+<hr class="function-separator" />
 
-- Kind: `function`
-- Location: `QaaS.Mocker/ExecutionBuilder.cs:273`
+#### `ExecutionBuilder.UpdateDataSource(string dataSourceName, DataSourceBuilder dataSourceBuilder)`
 
-Adds a new stub configuration and enforces a unique stub name.
+**Location** `QaaS.Mocker/ExecutionBuilder.cs:268`
 
-#### `ExecutionBuilder.ReadStub(string stubName) : TransactionStubConfig?`
+**Complete Signature**
+```csharp
+public ExecutionBuilder UpdateDataSource(string dataSourceName, DataSourceBuilder dataSourceBuilder)
+```
 
-- Kind: `function`
-- Location: `QaaS.Mocker/ExecutionBuilder.cs:289`
+**Docstring**
 
-Returns a configured stub by name, or null when it does not exist.
+Updates the configured data source stored on the current Mocker execution builder instance.
 
-#### `ExecutionBuilder.UpdateStub(string stubName, Action<TransactionStubBuilder> configureAction) : ExecutionBuilder`
+Use this method when working with the documented Mocker execution builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
-- Kind: `function`
-- Location: `QaaS.Mocker/ExecutionBuilder.cs:298`
+<hr class="function-separator" />
 
-Updates an existing stub through a mutable builder callback.
+#### `ExecutionBuilder.DeleteDataSource(string dataSourceName)`
 
-#### `ExecutionBuilder.UpdateStub(string stubName, TransactionStubBuilder stubBuilder) : ExecutionBuilder`
+**Location** `QaaS.Mocker/ExecutionBuilder.cs:297`
 
-- Kind: `function`
-- Location: `QaaS.Mocker/ExecutionBuilder.cs:312`
+**Complete Signature**
+```csharp
+public ExecutionBuilder DeleteDataSource(string dataSourceName)
+```
 
-Replaces an existing stub from a code-first stub builder.
+**Docstring**
 
-#### `ExecutionBuilder.UpdateStub(string stubName, TransactionStubConfig stubConfig) : ExecutionBuilder`
+Removes the configured data source from the current Mocker execution builder instance.
 
-- Kind: `function`
-- Location: `QaaS.Mocker/ExecutionBuilder.cs:318`
+Use this method when working with the documented Mocker execution builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
-Replaces an existing stub configuration by name.
+<hr class="function-separator" />
 
-#### `ExecutionBuilder.DeleteStub(string stubName) : ExecutionBuilder`
+#### `ExecutionBuilder.CreateStub(TransactionStubBuilder stubBuilder)`
 
-- Kind: `function`
-- Location: `QaaS.Mocker/ExecutionBuilder.cs:343`
+**Location** `QaaS.Mocker/ExecutionBuilder.cs:316`
 
-Removes a configured stub by name.
+**Complete Signature**
+```csharp
+public ExecutionBuilder CreateStub(TransactionStubBuilder stubBuilder)
+```
 
-#### `ExecutionBuilder.ReadServer() : ServerConfig?`
+**Docstring**
 
-- Kind: `function`
-- Location: `QaaS.Mocker/ExecutionBuilder.cs:358`
+Creates or adds the configured stub entry on the current Mocker execution builder instance.
 
-Returns the legacy single-server configuration, if present.
+Use this method when working with the documented Mocker execution builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
-#### `ExecutionBuilder.ReadServers() : IReadOnlyList<ServerConfig>`
+<hr class="function-separator" />
 
-- Kind: `function`
-- Location: `QaaS.Mocker/ExecutionBuilder.cs:363`
+#### `ExecutionBuilder.CreateStub(TransactionStubConfig stubConfig)`
 
-Returns the currently configured servers as a normalized read-only list.
+**Location** `QaaS.Mocker/ExecutionBuilder.cs:325`
 
-#### `ExecutionBuilder.CreateServer(ServerConfig serverConfig) : ExecutionBuilder`
+**Complete Signature**
+```csharp
+public ExecutionBuilder CreateStub(TransactionStubConfig stubConfig)
+```
 
-- Kind: `function`
-- Location: `QaaS.Mocker/ExecutionBuilder.cs:368`
+**Docstring**
 
-Configures the builder to use a single server definition.
+Creates or adds the configured stub entry on the current Mocker execution builder instance.
 
-#### `ExecutionBuilder.ReplaceServer(ServerConfig serverConfig) : ExecutionBuilder`
+Use this method when working with the documented Mocker execution builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
-- Kind: `function`
-- Location: `QaaS.Mocker/ExecutionBuilder.cs:382`
+<hr class="function-separator" />
 
-Replaces any existing server configuration with a new single server definition.
+#### `ExecutionBuilder.ReadStub(string stubName)`
 
-#### `ExecutionBuilder.AddServer(ServerConfig serverConfig) : ExecutionBuilder`
+**Location** `QaaS.Mocker/ExecutionBuilder.cs:345`
 
-- Kind: `function`
-- Location: `QaaS.Mocker/ExecutionBuilder.cs:394`
+**Complete Signature**
+```csharp
+public TransactionStubConfig? ReadStub(string stubName)
+```
 
-Adds a server to the multi-server configuration and clears the legacy single-server field.
+**Docstring**
 
-#### `ExecutionBuilder.ReplaceServers(params ServerConfig[] serverConfigs) : ExecutionBuilder`
+Returns the configured stub currently stored on the Mocker execution builder instance.
 
-- Kind: `function`
-- Location: `QaaS.Mocker/ExecutionBuilder.cs:406`
+Use this method when working with the documented Mocker execution builder API surface in code. Use it to inspect the current configured state without rebuilding the surrounding collection or runtime object graph.
 
-Replaces the multi-server configuration and clears the legacy single-server field.
+<hr class="function-separator" />
 
-#### `ExecutionBuilder.UpdateServer(Action<ServerConfig> configureAction) : ExecutionBuilder`
+#### `ExecutionBuilder.UpdateStub(string stubName, Action<TransactionStubBuilder> configureAction)`
 
-- Kind: `function`
-- Location: `QaaS.Mocker/ExecutionBuilder.cs:418`
+**Location** `QaaS.Mocker/ExecutionBuilder.cs:358`
 
-Mutates the legacy single-server configuration in place.
+**Complete Signature**
+```csharp
+public ExecutionBuilder UpdateStub(string stubName, Action<TransactionStubBuilder> configureAction)
+```
 
-#### `ExecutionBuilder.ReadController() : ControllerConfig?`
+**Docstring**
 
-- Kind: `function`
-- Location: `QaaS.Mocker/ExecutionBuilder.cs:431`
+Updates the configured stub stored on the current Mocker execution builder instance.
 
-Returns the optional controller configuration.
+Use this method when working with the documented Mocker execution builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
-#### `ExecutionBuilder.CreateController(ControllerConfig controllerConfig) : ExecutionBuilder`
+<hr class="function-separator" />
 
-- Kind: `function`
-- Location: `QaaS.Mocker/ExecutionBuilder.cs:436`
+#### `ExecutionBuilder.UpdateStub(string stubName, TransactionStubBuilder stubBuilder)`
 
-Adds controller configuration when one has not already been configured.
+**Location** `QaaS.Mocker/ExecutionBuilder.cs:376`
 
-#### `ExecutionBuilder.ReplaceController(ControllerConfig? controllerConfig) : ExecutionBuilder`
+**Complete Signature**
+```csharp
+public ExecutionBuilder UpdateStub(string stubName, TransactionStubBuilder stubBuilder)
+```
 
-- Kind: `function`
-- Location: `QaaS.Mocker/ExecutionBuilder.cs:448`
+**Docstring**
 
-Replaces the current controller configuration.
+Updates the configured stub stored on the current Mocker execution builder instance.
 
-#### `ExecutionBuilder.UpdateController(Action<ControllerConfig> configureAction) : ExecutionBuilder`
+Use this method when working with the documented Mocker execution builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
-- Kind: `function`
-- Location: `QaaS.Mocker/ExecutionBuilder.cs:457`
+<hr class="function-separator" />
 
-Mutates the current controller configuration in place.
+#### `ExecutionBuilder.UpdateStub(string stubName, TransactionStubConfig stubConfig)`
 
-#### `ExecutionBuilder.DeleteController() : ExecutionBuilder`
+**Location** `QaaS.Mocker/ExecutionBuilder.cs:386`
 
-- Kind: `function`
-- Location: `QaaS.Mocker/ExecutionBuilder.cs:470`
+**Complete Signature**
+```csharp
+public ExecutionBuilder UpdateStub(string stubName, TransactionStubConfig stubConfig)
+```
 
-Removes the current controller configuration.
+**Docstring**
 
-#### `ExecutionBuilder.Build() : BaseExecution`
+Updates the configured stub stored on the current Mocker execution builder instance.
 
-- Kind: `function`
-- Location: `QaaS.Mocker/ExecutionBuilder.cs:520`
+Use this method when working with the documented Mocker execution builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
-Validates the current configuration and builds the executable runtime graph.
+<hr class="function-separator" />
 
-#### `ExecutionBuilder.Validate(ValidationContext validationContext) : IEnumerable<ValidationResult>`
+#### `ExecutionBuilder.DeleteStub(string stubName)`
 
-- Kind: `function`
-- Location: `QaaS.Mocker/ExecutionBuilder.cs:619`
+**Location** `QaaS.Mocker/ExecutionBuilder.cs:415`
 
-Validates mutually exclusive server settings and multi-server action-name collisions.
+**Complete Signature**
+```csharp
+public ExecutionBuilder DeleteStub(string stubName)
+```
+
+**Docstring**
+
+Removes the configured stub from the current Mocker execution builder instance.
+
+Use this method when working with the documented Mocker execution builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
+
+<hr class="function-separator" />
+
+#### `ExecutionBuilder.ReadServer()`
+
+**Location** `QaaS.Mocker/ExecutionBuilder.cs:434`
+
+**Complete Signature**
+```csharp
+public ServerConfig? ReadServer()
+```
+
+**Docstring**
+
+Returns the configured server currently stored on the Mocker execution builder instance.
+
+Use this method when working with the documented Mocker execution builder API surface in code. Use it to inspect the current configured state without rebuilding the surrounding collection or runtime object graph.
+
+<hr class="function-separator" />
+
+#### `ExecutionBuilder.ReadServers()`
+
+**Location** `QaaS.Mocker/ExecutionBuilder.cs:443`
+
+**Complete Signature**
+```csharp
+public IReadOnlyList<ServerConfig> ReadServers()
+```
+
+**Docstring**
+
+Returns the configured servers currently stored on the Mocker execution builder instance.
+
+Use this method when working with the documented Mocker execution builder API surface in code. Use it to inspect the current configured state without rebuilding the surrounding collection or runtime object graph.
+
+<hr class="function-separator" />
+
+#### `ExecutionBuilder.CreateServer(ServerConfig serverConfig)`
+
+**Location** `QaaS.Mocker/ExecutionBuilder.cs:452`
+
+**Complete Signature**
+```csharp
+public ExecutionBuilder CreateServer(ServerConfig serverConfig)
+```
+
+**Docstring**
+
+Creates or adds the configured server entry on the current Mocker execution builder instance.
+
+Use this method when working with the documented Mocker execution builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
+
+<hr class="function-separator" />
+
+#### `ExecutionBuilder.ReplaceServer(ServerConfig serverConfig)`
+
+**Location** `QaaS.Mocker/ExecutionBuilder.cs:470`
+
+**Complete Signature**
+```csharp
+public ExecutionBuilder ReplaceServer(ServerConfig serverConfig)
+```
+
+**Docstring**
+
+Replaces the configured single-server definition on the current Mocker execution builder instance.
+
+Use this method when working with the documented Mocker execution builder API surface in code. The behavior exposed here is part of the public surface that the generated function documentation groups under 'Configuration as Code / Executions'.
+
+<hr class="function-separator" />
+
+#### `ExecutionBuilder.AddServer(ServerConfig serverConfig)`
+
+**Location** `QaaS.Mocker/ExecutionBuilder.cs:486`
+
+**Complete Signature**
+```csharp
+public ExecutionBuilder AddServer(ServerConfig serverConfig)
+```
+
+**Docstring**
+
+Adds the supplied server to the current Mocker execution builder instance.
+
+Use this method when working with the documented Mocker execution builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
+
+<hr class="function-separator" />
+
+#### `ExecutionBuilder.ReplaceServers(params ServerConfig[] serverConfigs)`
+
+**Location** `QaaS.Mocker/ExecutionBuilder.cs:502`
+
+**Complete Signature**
+```csharp
+public ExecutionBuilder ReplaceServers(params ServerConfig[] serverConfigs)
+```
+
+**Docstring**
+
+Replaces the configured multi-server definitions on the current Mocker execution builder instance.
+
+Use this method when working with the documented Mocker execution builder API surface in code. The behavior exposed here is part of the public surface that the generated function documentation groups under 'Configuration as Code / Executions'.
+
+<hr class="function-separator" />
+
+#### `ExecutionBuilder.UpdateServer(Action<ServerConfig> configureAction)`
+
+**Location** `QaaS.Mocker/ExecutionBuilder.cs:518`
+
+**Complete Signature**
+```csharp
+public ExecutionBuilder UpdateServer(Action<ServerConfig> configureAction)
+```
+
+**Docstring**
+
+Updates the configured server stored on the current Mocker execution builder instance.
+
+Use this method when working with the documented Mocker execution builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
+
+<hr class="function-separator" />
+
+#### `ExecutionBuilder.ReadController()`
+
+**Location** `QaaS.Mocker/ExecutionBuilder.cs:535`
+
+**Complete Signature**
+```csharp
+public ControllerConfig? ReadController()
+```
+
+**Docstring**
+
+Returns the configured controller currently stored on the Mocker execution builder instance.
+
+Use this method when working with the documented Mocker execution builder API surface in code. Use it to inspect the current configured state without rebuilding the surrounding collection or runtime object graph.
+
+<hr class="function-separator" />
+
+#### `ExecutionBuilder.CreateController(ControllerConfig controllerConfig)`
+
+**Location** `QaaS.Mocker/ExecutionBuilder.cs:544`
+
+**Complete Signature**
+```csharp
+public ExecutionBuilder CreateController(ControllerConfig controllerConfig)
+```
+
+**Docstring**
+
+Creates or adds the configured controller entry on the current Mocker execution builder instance.
+
+Use this method when working with the documented Mocker execution builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
+
+<hr class="function-separator" />
+
+#### `ExecutionBuilder.ReplaceController(ControllerConfig? controllerConfig)`
+
+**Location** `QaaS.Mocker/ExecutionBuilder.cs:560`
+
+**Complete Signature**
+```csharp
+public ExecutionBuilder ReplaceController(ControllerConfig? controllerConfig)
+```
+
+**Docstring**
+
+Replaces the configured controller on the current Mocker execution builder instance.
+
+Use this method when working with the documented Mocker execution builder API surface in code. The behavior exposed here is part of the public surface that the generated function documentation groups under 'Configuration as Code / Executions'.
+
+<hr class="function-separator" />
+
+#### `ExecutionBuilder.UpdateController(Action<ControllerConfig> configureAction)`
+
+**Location** `QaaS.Mocker/ExecutionBuilder.cs:573`
+
+**Complete Signature**
+```csharp
+public ExecutionBuilder UpdateController(Action<ControllerConfig> configureAction)
+```
+
+**Docstring**
+
+Updates the configured controller stored on the current Mocker execution builder instance.
+
+Use this method when working with the documented Mocker execution builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
+
+<hr class="function-separator" />
+
+#### `ExecutionBuilder.DeleteController()`
+
+**Location** `QaaS.Mocker/ExecutionBuilder.cs:590`
+
+**Complete Signature**
+```csharp
+public ExecutionBuilder DeleteController()
+```
+
+**Docstring**
+
+Removes the configured controller from the current Mocker execution builder instance.
+
+Use this method when working with the documented Mocker execution builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
+
+<hr class="function-separator" />
+
+#### `ExecutionBuilder.Build()`
+
+**Location** `QaaS.Mocker/ExecutionBuilder.cs:644`
+
+**Complete Signature**
+```csharp
+public override BaseExecution Build()
+```
+
+**Docstring**
+
+Builds the configured Mocker execution builder output from the current state.
+
+Call this after the fluent configuration is complete. The method validates the accumulated state and materializes the runtime or immutable configuration object represented by the builder.
+
+<hr class="function-separator" />
+
+#### `ExecutionBuilder.Validate(ValidationContext validationContext)`
+
+**Location** `QaaS.Mocker/ExecutionBuilder.cs:747`
+
+**Complete Signature**
+```csharp
+public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
+```
+
+**Docstring**
+
+Validates the current Mocker execution builder configuration.
+
+Validation results are returned instead of thrown so callers can aggregate or report configuration problems before running the product.
 
 ### Transaction Stubs
 
-#### `TransactionStubBuilder.Named(string name) : TransactionStubBuilder`
+<hr class="function-separator" />
 
-- Kind: `function`
-- Location: `QaaS.Mocker.Stubs/ConfigurationObjects/TransactionStubBuilder.cs:57`
+#### `TransactionStubBuilder.Named(string name)`
 
-Sets the stub name.
+**Location** `QaaS.Mocker.Stubs/ConfigurationObjects/TransactionStubBuilder.cs:66`
 
-#### `TransactionStubBuilder.HookNamed(string processorName) : TransactionStubBuilder`
+**Complete Signature**
+```csharp
+public TransactionStubBuilder Named(string name)
+```
 
-- Kind: `function`
-- Location: `QaaS.Mocker.Stubs/ConfigurationObjects/TransactionStubBuilder.cs:66`
+**Docstring**
 
-Sets the processor hook name.
+Sets the name used for the current Mocker transaction stub builder instance.
 
-#### `TransactionStubBuilder.AddDataSourceName(string dataSourceName) : TransactionStubBuilder`
+Use this method when working with the documented Mocker transaction stub builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
-- Kind: `function`
-- Location: `QaaS.Mocker.Stubs/ConfigurationObjects/TransactionStubBuilder.cs:75`
+<hr class="function-separator" />
 
-Adds a single data source name to the stub.
+#### `TransactionStubBuilder.HookNamed(string processorName)`
 
-#### `TransactionStubBuilder.WithDataSourceNames(IEnumerable<string> dataSourceNames) : TransactionStubBuilder`
+**Location** `QaaS.Mocker.Stubs/ConfigurationObjects/TransactionStubBuilder.cs:79`
 
-- Kind: `function`
-- Location: `QaaS.Mocker.Stubs/ConfigurationObjects/TransactionStubBuilder.cs:84`
+**Complete Signature**
+```csharp
+public TransactionStubBuilder HookNamed(string processorName)
+```
 
-Replaces the data source name list.
+**Docstring**
 
-#### `TransactionStubBuilder.ClearDataSourceNames() : TransactionStubBuilder`
+Sets the hook implementation name used by the current Mocker transaction stub builder instance.
 
-- Kind: `function`
-- Location: `QaaS.Mocker.Stubs/ConfigurationObjects/TransactionStubBuilder.cs:93`
+Use this method when working with the documented Mocker transaction stub builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
-Removes every configured data source name.
+<hr class="function-separator" />
 
-#### `TransactionStubBuilder.Configure(IConfiguration configuration) : TransactionStubBuilder`
+#### `TransactionStubBuilder.AddDataSourceName(string dataSourceName)`
 
-- Kind: `function`
-- Location: `QaaS.Mocker.Stubs/ConfigurationObjects/TransactionStubBuilder.cs:102`
+**Location** `QaaS.Mocker.Stubs/ConfigurationObjects/TransactionStubBuilder.cs:92`
 
-Replaces the processor configuration with an existing configuration object.
+**Complete Signature**
+```csharp
+public TransactionStubBuilder AddDataSourceName(string dataSourceName)
+```
 
-#### `TransactionStubBuilder.CreateConfiguration(IConfiguration configuration) : TransactionStubBuilder`
+**Docstring**
 
-- Kind: `function`
-- Location: `QaaS.Mocker.Stubs/ConfigurationObjects/TransactionStubBuilder.cs:111`
+Adds the supplied data source name to the current Mocker transaction stub builder instance.
 
-Compatibility alias for IConfiguration) that matches the configuration CRUD pattern used by other builders.
+Use this method when working with the documented Mocker transaction stub builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
-#### `TransactionStubBuilder.Configure(object configuration) : TransactionStubBuilder`
+<hr class="function-separator" />
 
-- Kind: `function`
-- Location: `QaaS.Mocker.Stubs/ConfigurationObjects/TransactionStubBuilder.cs:119`
+#### `TransactionStubBuilder.WithDataSourceNames(IEnumerable<string> dataSourceNames)`
 
-Serializes an object into JSON-backed processor configuration.
+**Location** `QaaS.Mocker.Stubs/ConfigurationObjects/TransactionStubBuilder.cs:105`
 
-#### `TransactionStubBuilder.CreateConfiguration(object configuration) : TransactionStubBuilder`
+**Complete Signature**
+```csharp
+public TransactionStubBuilder WithDataSourceNames(IEnumerable<string> dataSourceNames)
+```
 
-- Kind: `function`
-- Location: `QaaS.Mocker.Stubs/ConfigurationObjects/TransactionStubBuilder.cs:129`
+**Docstring**
 
-Compatibility alias for Configure(object) that matches the configuration CRUD pattern used by other builders.
+Configures data source names on the current Mocker transaction stub builder instance.
 
-#### `TransactionStubBuilder.Create(IConfiguration configuration) : TransactionStubBuilder`
+Use this method when working with the documented Mocker transaction stub builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
-- Kind: `function`
-- Location: `QaaS.Mocker.Stubs/ConfigurationObjects/TransactionStubBuilder.cs:137`
+<hr class="function-separator" />
 
-Compatibility alias for IConfiguration) .
+#### `TransactionStubBuilder.ClearDataSourceNames()`
 
-#### `TransactionStubBuilder.Create(object configuration) : TransactionStubBuilder`
+**Location** `QaaS.Mocker.Stubs/ConfigurationObjects/TransactionStubBuilder.cs:118`
 
-- Kind: `function`
-- Location: `QaaS.Mocker.Stubs/ConfigurationObjects/TransactionStubBuilder.cs:145`
+**Complete Signature**
+```csharp
+public TransactionStubBuilder ClearDataSourceNames()
+```
 
-Compatibility alias for CreateConfiguration(object) .
+**Docstring**
 
-#### `TransactionStubBuilder.ReadConfiguration() : IConfiguration`
+Clears all configured data source names from the current Mocker transaction stub builder instance.
 
-- Kind: `function`
-- Location: `QaaS.Mocker.Stubs/ConfigurationObjects/TransactionStubBuilder.cs:153`
+Use this method when working with the documented Mocker transaction stub builder API surface in code. The behavior exposed here is part of the public surface that the generated function documentation groups under 'Configuration as Code / Transaction Stubs'.
 
-Returns the currently configured processor configuration.
+<hr class="function-separator" />
 
-#### `TransactionStubBuilder.UpdateConfiguration(object configuration) : TransactionStubBuilder`
+#### `TransactionStubBuilder.Configure(IConfiguration configuration)`
 
-- Kind: `function`
-- Location: `QaaS.Mocker.Stubs/ConfigurationObjects/TransactionStubBuilder.cs:161`
+**Location** `QaaS.Mocker.Stubs/ConfigurationObjects/TransactionStubBuilder.cs:131`
 
-Merges the provided configuration object into the current processor configuration.
+**Complete Signature**
+```csharp
+public TransactionStubBuilder Configure(IConfiguration configuration)
+```
 
-#### `TransactionStubBuilder.DeleteConfiguration() : TransactionStubBuilder`
+**Docstring**
 
-- Kind: `function`
-- Location: `QaaS.Mocker.Stubs/ConfigurationObjects/TransactionStubBuilder.cs:170`
+Sets the configuration currently stored on the Mocker transaction stub builder instance.
 
-Clears the configured processor configuration.
+Use this method when working with the documented Mocker transaction stub builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
-#### `TransactionStubBuilder.DeserializeRequestBodyWith(DeserializeConfig config) : TransactionStubBuilder`
+<hr class="function-separator" />
 
-- Kind: `function`
-- Location: `QaaS.Mocker.Stubs/ConfigurationObjects/TransactionStubBuilder.cs:179`
+#### `TransactionStubBuilder.CreateConfiguration(IConfiguration configuration)`
 
-Configures how request bodies are deserialized before processor execution.
+**Location** `QaaS.Mocker.Stubs/ConfigurationObjects/TransactionStubBuilder.cs:144`
 
-#### `TransactionStubBuilder.SerializeResponseBodyWith(SerializeConfig config) : TransactionStubBuilder`
+**Complete Signature**
+```csharp
+public TransactionStubBuilder CreateConfiguration(IConfiguration configuration)
+```
 
-- Kind: `function`
-- Location: `QaaS.Mocker.Stubs/ConfigurationObjects/TransactionStubBuilder.cs:188`
+**Docstring**
 
-Configures how response bodies are serialized after processor execution.
+Sets the configuration currently stored on the Mocker transaction stub builder instance.
 
-#### `TransactionStubBuilder.Build() : TransactionStubConfig`
+Use this method when working with the documented Mocker transaction stub builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
-- Kind: `function`
-- Location: `QaaS.Mocker.Stubs/ConfigurationObjects/TransactionStubBuilder.cs:197`
+<hr class="function-separator" />
 
-Materializes the fluent builder into an immutable configuration record.
+#### `TransactionStubBuilder.Configure(object configuration)`
 
-#### `TransactionStubBuilder.FromConfig(TransactionStubConfig config) : TransactionStubBuilder`
+**Location** `QaaS.Mocker.Stubs/ConfigurationObjects/TransactionStubBuilder.cs:156`
 
-- Kind: `function`
-- Location: `QaaS.Mocker.Stubs/ConfigurationObjects/TransactionStubBuilder.cs:218`
+**Complete Signature**
+```csharp
+public TransactionStubBuilder Configure(object configuration)
+```
 
-Creates a fluent builder from an existing configuration record.
+**Docstring**
+
+Sets the configuration currently stored on the Mocker transaction stub builder instance.
+
+Use this method when working with the documented Mocker transaction stub builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
+
+<hr class="function-separator" />
+
+#### `TransactionStubBuilder.CreateConfiguration(object configuration)`
+
+**Location** `QaaS.Mocker.Stubs/ConfigurationObjects/TransactionStubBuilder.cs:170`
+
+**Complete Signature**
+```csharp
+public TransactionStubBuilder CreateConfiguration(object configuration)
+```
+
+**Docstring**
+
+Sets the configuration currently stored on the Mocker transaction stub builder instance.
+
+Use this method when working with the documented Mocker transaction stub builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
+
+<hr class="function-separator" />
+
+#### `TransactionStubBuilder.Create(IConfiguration configuration)`
+
+**Location** `QaaS.Mocker.Stubs/ConfigurationObjects/TransactionStubBuilder.cs:182`
+
+**Complete Signature**
+```csharp
+public TransactionStubBuilder Create(IConfiguration configuration)
+```
+
+**Docstring**
+
+Sets the configuration currently stored on the Mocker transaction stub builder instance.
+
+Use this method when working with the documented Mocker transaction stub builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
+
+<hr class="function-separator" />
+
+#### `TransactionStubBuilder.Create(object configuration)`
+
+**Location** `QaaS.Mocker.Stubs/ConfigurationObjects/TransactionStubBuilder.cs:194`
+
+**Complete Signature**
+```csharp
+public TransactionStubBuilder Create(object configuration)
+```
+
+**Docstring**
+
+Sets the configuration currently stored on the Mocker transaction stub builder instance.
+
+Use this method when working with the documented Mocker transaction stub builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
+
+<hr class="function-separator" />
+
+#### `TransactionStubBuilder.ReadConfiguration()`
+
+**Location** `QaaS.Mocker.Stubs/ConfigurationObjects/TransactionStubBuilder.cs:206`
+
+**Complete Signature**
+```csharp
+public IConfiguration ReadConfiguration()
+```
+
+**Docstring**
+
+Returns the configuration currently stored on the Mocker transaction stub builder instance.
+
+Use this method when working with the documented Mocker transaction stub builder API surface in code. Use it to inspect the current configured state without rebuilding the surrounding collection or runtime object graph.
+
+<hr class="function-separator" />
+
+#### `TransactionStubBuilder.UpdateConfiguration(object configuration)`
+
+**Location** `QaaS.Mocker.Stubs/ConfigurationObjects/TransactionStubBuilder.cs:218`
+
+**Complete Signature**
+```csharp
+public TransactionStubBuilder UpdateConfiguration(object configuration)
+```
+
+**Docstring**
+
+Updates the configuration currently stored on the Mocker transaction stub builder instance.
+
+Use this method when working with the documented Mocker transaction stub builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
+
+<hr class="function-separator" />
+
+#### `TransactionStubBuilder.DeleteConfiguration()`
+
+**Location** `QaaS.Mocker.Stubs/ConfigurationObjects/TransactionStubBuilder.cs:231`
+
+**Complete Signature**
+```csharp
+public TransactionStubBuilder DeleteConfiguration()
+```
+
+**Docstring**
+
+Clears the configuration currently stored on the Mocker transaction stub builder instance.
+
+Use this method when working with the documented Mocker transaction stub builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
+
+<hr class="function-separator" />
+
+#### `TransactionStubBuilder.DeserializeRequestBodyWith(DeserializeConfig config)`
+
+**Location** `QaaS.Mocker.Stubs/ConfigurationObjects/TransactionStubBuilder.cs:244`
+
+**Complete Signature**
+```csharp
+public TransactionStubBuilder DeserializeRequestBodyWith(DeserializeConfig config)
+```
+
+**Docstring**
+
+Sets how request bodies are deserialized before the stub processor runs.
+
+Use this method when working with the documented Mocker transaction stub builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
+
+<hr class="function-separator" />
+
+#### `TransactionStubBuilder.SerializeResponseBodyWith(SerializeConfig config)`
+
+**Location** `QaaS.Mocker.Stubs/ConfigurationObjects/TransactionStubBuilder.cs:257`
+
+**Complete Signature**
+```csharp
+public TransactionStubBuilder SerializeResponseBodyWith(SerializeConfig config)
+```
+
+**Docstring**
+
+Sets how response bodies are serialized after the stub processor runs.
+
+Use this method when working with the documented Mocker transaction stub builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
+
+<hr class="function-separator" />
+
+#### `TransactionStubBuilder.Build()`
+
+**Location** `QaaS.Mocker.Stubs/ConfigurationObjects/TransactionStubBuilder.cs:270`
+
+**Complete Signature**
+```csharp
+public TransactionStubConfig Build()
+```
+
+**Docstring**
+
+Builds the configured Mocker transaction stub builder output from the current state.
+
+Call this after the fluent configuration is complete. The method validates the accumulated state and materializes the runtime or immutable configuration object represented by the builder.
+
+<hr class="function-separator" />
+
+#### `TransactionStubBuilder.FromConfig(TransactionStubConfig config)`
+
+**Location** `QaaS.Mocker.Stubs/ConfigurationObjects/TransactionStubBuilder.cs:295`
+
+**Complete Signature**
+```csharp
+public static TransactionStubBuilder FromConfig(TransactionStubConfig config)
+```
+
+**Docstring**
+
+Creates a new Mocker transaction stub builder instance from an existing configuration object.
+
+Use this when an existing immutable configuration needs to be brought back into the fluent builder workflow for incremental changes.
 
 ## Getting Started
 
 ### Bootstrap
 
-#### `Bootstrap.New(IEnumerable<string>? args = null) : MockerRunner`
+<hr class="function-separator" />
 
-- Kind: `function`
-- Location: `QaaS.Mocker/Bootstrap.cs:16`
+#### `Bootstrap.New(IEnumerable<string>? args = null)`
 
-Creates a new MockerRunner from command-line arguments.
+**Location** `QaaS.Mocker/Bootstrap.cs:21`
+
+**Complete Signature**
+```csharp
+public static MockerRunner New(IEnumerable<string>? args = null)
+```
+
+**Docstring**
+
+Creates a new MockerRunner instance from the supplied bootstrap inputs.
+
+This is the primary code-first entry point for bootstrapping the product from command-line style arguments so library startup and CLI startup stay aligned.
 
 ## Runtime
 
 ### Mocker Runner
 
-#### `MockerRunner.Run() : void`
+<hr class="function-separator" />
 
-- Kind: `function`
-- Location: `QaaS.Mocker/MockerRunner.cs:12`
+#### `MockerRunner.Run()`
 
-_No XML summary provided._
+**Location** `QaaS.Mocker/MockerRunner.cs:20`
+
+**Complete Signature**
+```csharp
+public void Run()
+```
+
+**Docstring**
+
+Runs the configured QaaS.Mocker execution.
+
+Call this after the mocker execution has been configured and resolved. The method delegates to the underlying execution host.

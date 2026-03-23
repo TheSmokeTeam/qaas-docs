@@ -48,11 +48,10 @@ Runner, Mocker, and Framework reference pages are generated deterministically.
 
 - Family schema contracts come from `QaaS.PackageMirror`.
 - The renderer itself lives in the external `QaaS.Docs.Generator` repository and is pulled into this repo as the `tools/QaaS.Docs.Generator` git submodule.
-- CLI reference pages come from committed snapshots under `tools/QaaS.Docs.Generator/Snapshots/`.
-- Function catalogs come from `tools/QaaS.Docs.Generator/Functions/function-manifest.json` plus source inspection of sibling repositories.
+- CLI reference pages come from snapshots captured automatically into `tools/QaaS.Docs.Generator/Snapshots/` when `Generate-ReferenceDocs.ps1` runs.
+- Function reference pages come from source-level XML doc comments plus `qaas-docs` placement tags in the sibling Runner, Mocker, and Framework repositories.
 
-The CLI snapshots in `tools/QaaS.Docs.Generator/Snapshots/` are committed artifacts.
-When the live CLI help changes, recapture the help output manually and update those files, then regenerate and validate the docs:
+The CLI snapshots in `tools/QaaS.Docs.Generator/Snapshots/` remain committed artifacts, but they are refreshed from the current Runner, Mocker, and Framework worktrees as part of docs generation:
 
 ```powershell
 git submodule update --init --recursive

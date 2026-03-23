@@ -455,6 +455,9 @@ plugins:
   - tags
   - macros
 
+extra_css:
+  - stylesheets/functions.css
+
 markdown_extensions:
   - attr_list
   - md_in_html
