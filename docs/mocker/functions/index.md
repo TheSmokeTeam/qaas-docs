@@ -1,4 +1,4 @@
-<!-- generated hash:a52efc721d78 sources:Mocker, functions, overview -->
+<!-- generated hash:5085e28572f8 sources:Mocker, functions, overview -->
 
 # Mocker Functions
 
@@ -8,18 +8,15 @@ Each category page keeps the table of contents focused on short function names a
 
 Serializer-only `Read` and `Write` members are intentionally omitted from this reference.
 
-## Configuration as Code
+## Builders
 
-- [Executions](configuration-as-code/executions.md) - 31 functions
-- [Transaction Stubs](configuration-as-code/transaction-stubs.md) - 18 functions
+- [Executions](builders/executions.md) - 31 functions
+- [Transaction Stubs](builders/transaction-stubs.md) - 18 functions
 
-## Getting Started
+## Commands
 
-- [Bootstrap](getting-started/bootstrap.md) - 1 function
-
-## Runtime
-
-- [Mocker Runner](runtime/mocker-runner.md) - 1 function
+- [Bootstrap](commands/bootstrap.md) - 2 functions
+- [Mocker Runner](commands/mocker-runner.md) - 1 function
 
 ## Extension Methods
 

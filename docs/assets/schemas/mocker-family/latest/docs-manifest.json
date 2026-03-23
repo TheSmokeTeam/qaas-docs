@@ -1,0 +1,49 @@
+{
+  "familyId": "mocker-family",
+  "generatedAtUtc": "2026-03-22T22:03:29.6552837+00:00",
+  "sections": [
+    {
+      "id": "DataSources",
+      "title": "DataSources",
+      "topLevelPropertyName": "DataSources",
+      "docsSlug": "dataSources",
+      "schemaJsonPointer": "#/properties/DataSources",
+      "order": 0,
+      "overviewSummary": "List of data sources that can be used in the rest of the execution. They provide data that can be sent to the tested system or used by the execution itself to perform a multitude of logics.",
+      "notes": []
+    },
+    {
+      "id": "Stubs",
+      "title": "Stubs",
+      "topLevelPropertyName": "Stubs",
+      "docsSlug": "stubs",
+      "schemaJsonPointer": "#/properties/Stubs",
+      "order": 1,
+      "overviewSummary": "List of transaction stubs that can be used for server actions.They provide processing functionality to exercise transaction data.",
+      "notes": []
+    },
+    {
+      "id": "Controller",
+      "title": "Controller",
+      "topLevelPropertyName": "Controller",
+      "docsSlug": "controller",
+      "schemaJsonPointer": "#/properties/Controller",
+      "order": 2,
+      "overviewSummary": "The server mocker controller configuration",
+      "notes": []
+    },
+    {
+      "id": "Servers",
+      "title": "Servers",
+      "topLevelPropertyName": "Servers",
+      "docsSlug": "server",
+      "schemaJsonPointer": "#/properties/Servers",
+      "order": 3,
+      "overviewSummary": "List of server mocker instances to run concurrently.",
+      "notes": [
+        "Servers is the preferred configuration model for new docs and runtime usage.",
+        "The legacy Server property remains supported as a single-server shorthand."
+      ]
+    }
+  ]
+}

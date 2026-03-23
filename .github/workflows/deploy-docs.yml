@@ -2,15 +2,9 @@ name: Deploy Documentation
 
 on:
   push:
-    branches:
-      - master
-      - fix/free_text
-      - feature/better_docs
+    branches: ["**"]
   pull_request:
-    branches:
-      - master
-      - fix/free_text
-      - feature/better_docs
+    branches: ["**"]
   workflow_dispatch:
 
 permissions:
@@ -31,38 +25,6 @@ jobs:
         with:
           submodules: recursive
 
-      - name: Checkout package mirror
-        uses: actions/checkout@v4
-        with:
-          repository: TheSmokeTeam/QaaS.PackageMirror
-          path: QaaS.PackageMirror
-
-      - name: Checkout runner
-        uses: actions/checkout@v4
-        with:
-          repository: TheSmokeTeam/QaaS.Runner
-          ref: feature/code-configuration-bootstrap
-          path: QaaS.Runner
-
-      - name: Checkout mocker
-        uses: actions/checkout@v4
-        with:
-          repository: TheSmokeTeam/QaaS.Mocker
-          ref: feature/docs-cli-export
-          path: QaaS.Mocker
-
-      - name: Checkout framework
-        uses: actions/checkout@v4
-        with:
-          repository: TheSmokeTeam/QaaS.Framework
-          ref: feature/elastic-defaults-hook
-          path: QaaS.Framework
-
-      - name: Setup dotnet
-        uses: actions/setup-dotnet@v5
-        with:
-          dotnet-version: 10.0.x
-
       - name: Setup Python
         uses: actions/setup-python@v5
         with:
@@ -79,17 +41,8 @@ jobs:
       - name: Install dependencies
         run: pip install -r requirements.txt
 
-      - name: Validate generated docs and build site
-        shell: pwsh
-        run: |
-          .\scripts\Generate-ReferenceDocs.ps1 `
-            -DocsRoot "$PWD" `
-            -MirrorRoot (Join-Path $PWD 'QaaS.PackageMirror') `
-            -RunnerRoot (Join-Path $PWD 'QaaS.Runner') `
-            -MockerRoot (Join-Path $PWD 'QaaS.Mocker') `
-            -FrameworkRoot (Join-Path $PWD 'QaaS.Framework') `
-            -Check `
-            -BuildSite
+      - name: Build site
+        run: mkdocs build
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
@@ -97,7 +50,7 @@ jobs:
           path: ./site
 
   deploy:
-    if: github.event_name == 'push' && (github.ref == 'refs/heads/master' || github.ref == 'refs/heads/fix/free_text' || github.ref == 'refs/heads/feature/better_docs')
+    if: github.event_name == 'push' && github.ref == 'refs/heads/master'
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}

@@ -1,4 +1,4 @@
-<!-- generated hash:fcbff8e46036 sources:Runner, execute, cli-command -->
+<!-- generated hash:fd4315b58990 sources:Runner, execute, cli-command -->
 
 # execute
 
@@ -77,3 +77,15 @@ Usage:
 | `--no-process-exit` | No | No | False | `bool` | When this flag is used the runner will not terminate the current process after it completes. Useful when embedding QaaS.Runner and orchestrating multiple runners in a single host process. |
 | `--send-logs` | Yes | No | False | `bool` | Whether to send logs to the configured Elasticsearch sink. |
 | `-s`, `--serve-results` | No | No | False | `bool` | If flag is enabled will automatically serve the test results in a human readable manner using allure after executing all commands.<br />when any of the commands written in the executable configuration file use this flag it will not do anything, this is the deciding flag.<br />Uses a locally installed allure CLI tool, if allure CLI is not installed and added to path the serve will fail. |
+
+## Executable File
+
+The `execute` command reads a YAML file that contains the nested QaaS commands to run.
+
+```yaml
+Commands:
+  - Command:
+    Id:
+```
+
+Each `Commands` item contains the full QaaS command string and the unique `Id` that the loader uses for filtering and reporting.

@@ -53,6 +53,24 @@ $RunnerRoot = Resolve-NormalizedPath $RunnerRoot
 $MockerRoot = Resolve-NormalizedPath $MockerRoot
 $FrameworkRoot = Resolve-NormalizedPath $FrameworkRoot
 
+function Remove-OrCheckObsoleteGeneratedPath {
+    param(
+        [Parameter(Mandatory)]
+        [string]$RelativePath
+    )
+
+    $fullPath = Join-Path $DocsRoot $RelativePath
+    if (-not (Test-Path $fullPath)) {
+        return
+    }
+
+    if ($Check) {
+        throw "Obsolete generated docs path still exists: $RelativePath"
+    }
+
+    Remove-Item -LiteralPath $fullPath -Recurse -Force
+}
+
 # Regenerates the deterministic Runner, Mocker, and Framework reference pages from:
 # - committed mirror schema contracts
 # - freshly captured CLI snapshots
@@ -84,6 +102,20 @@ if (-not $SkipCliSnapshotRefresh) {
         -FrameworkRoot $FrameworkRoot
 }
 
+@(
+    'docs\qaas\functions\configuration-as-code',
+    'docs\qaas\functions\getting-started',
+    'docs\qaas\functions\runtime',
+    'docs\mocker\functions\configuration-as-code',
+    'docs\mocker\functions\getting-started',
+    'docs\mocker\functions\runtime',
+    'docs\framework\functions\configuration',
+    'docs\framework\functions\framework-apis',
+    'docs\framework\functions\utilities'
+) | ForEach-Object {
+    Remove-OrCheckObsoleteGeneratedPath -RelativePath $_
+}
+
 $generatorArgs = @(
     'run',
     '--project', $generatorProject,
@@ -108,6 +140,12 @@ if ($LASTEXITCODE -ne 0) { throw 'Docs generator failed.' }
     -MirrorRoot $MirrorRoot `
     -Check:$Check
 if ($LASTEXITCODE -ne 0) { throw 'Hook config docs sync failed.' }
+
+& (Join-Path $PSScriptRoot 'Sync-SchemaAssets.ps1') `
+    -DocsRoot $DocsRoot `
+    -MirrorRoot $MirrorRoot `
+    -Check:$Check
+if ($LASTEXITCODE -ne 0) { throw 'Schema asset sync failed.' }
 
 if ($BuildSite) {
     Push-Location $DocsRoot
