@@ -455,6 +455,7 @@ nav:
 
 theme:
   name: material
+  logo: assets/qaas-logo.png
   features:
     - content.code.annotate
     - content.code.copy
@@ -486,7 +487,6 @@ theme:
 
   icon:
     repo: fontawesome/brands/github
-    logo: material/test-tube
 
 plugins:
   - search
@@ -542,7 +542,7 @@ extra:
     dotnet_sdk: https://dotnet.microsoft.com/download
     qaas_community: https://discord.gg/rg2NYT4Mea
     nuget_feed: https://api.nuget.org/v3/index.json
-    artifactory: https://jfrog.com/artifactory/
+    artifactory: https://jfrog.com/artifactory
     runner_schema: ../../assets/schemas/runner-family-schema.json
     mocker_schema: ../../assets/schemas/mocker-family-schema.json
   social:
