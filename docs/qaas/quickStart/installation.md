@@ -12,11 +12,6 @@
 
 Add package sources to your global `NuGet.Config` file, usually `~/.nuget/NuGet/NuGet.Config`.
 
-- A global `NuGet.Config` file configured with the following feed URLs:
-  - `QAAS_DOCS_LINK_NUGET_FEED_A`
-  - `QAAS_DOCS_LINK_NUGET_FEED_B`
-  - `QAAS_DOCS_LINK_NUGET_FEED_C`
-
 ```xml
 <configuration>
   <packageSources>
