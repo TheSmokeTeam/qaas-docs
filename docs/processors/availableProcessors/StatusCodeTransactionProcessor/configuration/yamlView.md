@@ -1,3 +1,6 @@
-# YAML View
+﻿# StatusCodeTransactionProcessor YAML Configuration
 
-YAML reference placeholder for `StatusCodeTransactionProcessor`.
+```yaml
+Processor: StatusCodeTransactionProcessor
+ProcessorConfiguration: {}
+```

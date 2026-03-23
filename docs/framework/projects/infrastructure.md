@@ -1,24 +1,34 @@
 # QaaS.Framework.Infrastructure
 
-This project provides essential utility extensions for `DateTime` and file system operations used throughout the QaaS
-ecosystem.
+`QaaS.Framework.Infrastructure` is the smallest runtime package in the Framework solution. It does not define a large subsystem on its own. Instead, it provides a few shared primitives that other packages reuse when they need consistent time conversion, filesystem-safe names, or a simple domain-builder contract.
 
-## DateTime Extensions
+## What this project contains
 
-- `ConvertDateTimeToUtcByTimeZoneOffset`: Converts a local time to UTC using a specified summer-time offset, adjusting
-  for daylight saving if needed.
-- `ConvertDateTimeFromUtcToTimeZoneByTimeZoneOffset`: Converts UTC time back to local time with proper offset handling.
-- `IsDayLightSavingTimeInGivenDateTime`: Checks if a given datetime falls within daylight saving in Israel’s time zone.
+### `DateTimeExtensions.cs`
 
-These extensions are designed for consistent time handling across environments, especially for systems operating in
-Israel’s time zone (e.g., `Asia/Jerusalem` on Unix, `Israel Standard Time` on Windows).
+This file contains the package's time-conversion helpers:
 
-## File System Extensions
+- `ConvertDateTimeToUtcByTimeZoneOffset` converts a local time to UTC by using the supplied summer-time offset.
+- `ConvertDateTimeFromUtcToTimeZoneByTimeZoneOffset` converts a UTC timestamp back to local time by using the same offset model.
 
-- `MakeValidDirectoryName`: Replaces invalid characters in a string with underscores to create a valid directory name
-  for the current OS.
+The implementation also contains a private daylight-saving helper that resolves Israel timezone rules by using the platform-specific timezone id. That internal helper is part of how the public conversion methods decide whether daylight saving should affect the calculated offset.
 
-### Usage
+### `FileSystemExtensions.cs`
 
-This package is used by [QaaS.Framework.Protocols](protocols.md), which relies on its utilities and also by other packages in the
-QaaS Ecosystem such as `QaaS.Runner`.
+This file contains `MakeValidDirectoryName`, a small helper that replaces invalid filesystem characters with underscores so the resulting string can be used as a directory name on the current operating system.
+
+### `IDomainBuilder.cs`
+
+This file contains the generic `IDomainBuilder<T>` contract. It is intentionally simple and exposes a single `Register()` method for packages that need a common builder-style registration shape.
+
+## Current role in the solution
+
+The project stays deliberately narrow:
+
+- It is the shared place for the framework's offset-based date and time conversion helpers.
+- It contains the filename sanitization helper used when other packages need a safe directory name.
+- It exposes `IDomainBuilder<T>` as a reusable contract instead of duplicating that interface in multiple packages.
+
+## Companion tests
+
+There is currently no `QaaS.Framework.Infrastructure.Tests` project in `QaaS.Framework.sln`. Infrastructure behavior is therefore covered only indirectly through the packages that consume these helpers.

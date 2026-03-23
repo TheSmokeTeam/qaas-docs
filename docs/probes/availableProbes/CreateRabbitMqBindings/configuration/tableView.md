@@ -1,3 +1,5 @@
-# Table View
+﻿# CreateRabbitMqBindings Table View
 
-Configuration reference placeholder for `CreateRabbitMqBindings`.
+| Property Path | Type | Required | Default | Description |
+| --- | --- | --- | --- | --- |
+| `ProbeConfiguration` | `RabbitMqBindingsConfig` | &#10004; |  | Creates RabbitMQ bindings. |

@@ -1,3 +1,6 @@
-# YAML View
+﻿# OsChangeStatefulSetEnvVars YAML Configuration
 
-YAML reference placeholder for `OsChangeStatefulSetEnvVars`.
+```yaml
+Probe: OsChangeStatefulSetEnvVars
+ProbeConfiguration: {}
+```

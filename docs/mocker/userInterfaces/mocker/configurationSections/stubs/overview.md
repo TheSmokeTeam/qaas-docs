@@ -1,3 +1,5 @@
+<!-- generated hash:fdb16c586afc sources:mocker-family, Stubs, overview -->
+
 # Stubs
 
-Stubs are the actual pieces of logic that our mocks use. Stubs are based on a the `hook` `IProcessor` and each stub needs to reference a processor with certain configurations for its specific implementation.
+List of transaction stubs that can be used for server actions.They provide processing functionality to exercise transaction data.

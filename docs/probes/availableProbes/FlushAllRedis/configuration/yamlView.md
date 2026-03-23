@@ -1,3 +1,6 @@
-# YAML View
+﻿# FlushAllRedis YAML Configuration
 
-YAML reference placeholder for `FlushAllRedis`.
+```yaml
+Probe: FlushAllRedis
+ProbeConfiguration: {}
+```

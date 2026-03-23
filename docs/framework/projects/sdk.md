@@ -1,152 +1,138 @@
 # QaaS.Framework.SDK
 
-The `QaaS.Framework.SDK` is a C# package used throughout the projects in the `QaaS` ecosystem. It provides all core QaaS objects and functionalities.
-Any **Plugin** written for `QaaS` must use the `QaaS.Framework.SDK` to integrate with the QaaS framework.
+`QaaS.Framework.SDK` is the main runtime-contract package in the Framework solution. It defines the object model that the rest of QaaS works with: contexts, execution data, sessions, communications, data sources, hook contracts, hook base classes, metadata, and helper extensions. Any hook package that integrates with the Framework depends on this package because it is the shared vocabulary for the runtime.
 
----
+## What this project contains
 
-## Data Structures
+### Context and execution state
 
-The `QaaS.Framework.SDK` contains the following data structures used in its `Hook` interfaces.
+The context layer lives under `ContextObjects` and `ExecutionObjects`:
 
-### `Context`
+- `BaseContext.cs`
+- `Context.cs`
+- `InternalContext.cs`
+- `ContextBuilder.cs`
+- `Bind.cs`
+- `ExecutionData.cs`
+- `ExecutionType.cs`
+- `IExecutionData.cs`
+- `MetaDataConfig.cs`
 
-Data structure used by `Hooks` and QaaS internals, containing the current QaaS execution context:
+`ContextBuilder` is the package's composition point for runtime configuration. It layers the base configuration file, overwrite files, overwrite folders, command-line overwrite arguments, optional case configuration, reference resolution, optional environment-variable resolution, execution id, logger, and running-session state into a final `InternalContext`.
 
-| Property                 | Description                                                                              |
-|--------------------------|------------------------------------------------------------------------------------------|
-| `Logger`                 | A logger for QaaS' internals and `Hooks`                                                 |
-| `RootConfiguration`      | The root of the configuration provided during QaaS execution                             |
-| `CaseName`               | The name of the test case this context was created for                                   |
-| `ExecutionId`            | The unique ID of the execution session                                                   |
-| `CurrentRunningSessions` | An object providing access to all currently running sessions and their live data results |
+`Bind.cs` is the bridge back from configuration to typed objects. It binds from `context.RootConfiguration`, reapplies default values into the configuration tree when needed, and validates the bound object before handing it back to the caller.
 
----
+### Data sources
 
-### `Data`
+The `DataSourceObjects` folder contains:
 
-Represents a single I/O operation in the application.
+- `DataSource.cs`
+- `DataSourceBuilder.cs`
 
-| Property   | Description                                                               |
-|------------|---------------------------------------------------------------------------|
-| `Body`     | The actual I/O data payload                                               |
-| `MetaData` | Protocol-specific metadata (e.g., HTTP status code, RabbitMQ routing key) |
+`DataSource` is the runtime object used when the framework needs to retrieve or reuse data. `DataSourceBuilder` is the configuration and fluent-builder shape for constructing those sources. It supports serializer and deserializer metadata, dependency selection by name or regex, and YAML-friendly configuration output.
 
----
+### Session, communication, and metadata model
 
-### `CommunicationData`
+The `Session` folder contains the runtime data model that most hooks and protocols work with:
 
-Represents the result of a communication action.
+- `DataObjects/`
+- `CommunicationDataObjects/`
+- `SessionDataObjects/`
+- `MetaDataObjects/`
+- `DataFilter.cs`
+- `SessionDataSerialization.cs`
 
-| Property | Description                                                  |
-|----------|--------------------------------------------------------------|
-| `Name`   | The name of the communication action that produced this data |
-| `Data`   | The result data from the communication action                |
+Important runtime types in this area include:
 
----
+- `Data<T>`
+- `DetailedData<T>`
+- `CommunicationData<T>`
+- `RunningCommunicationData<T>`
+- `SessionData`
+- `RunningSessionData`
+- `RunningSessions`
+- `MetaData` and protocol-specific metadata records such as HTTP, Kafka, RabbitMQ, Redis, and storage metadata
 
-### `SessionData`
+`ExecutionData.cs` is the package's execution-state container. It currently holds `DataSources`, `SessionDatas`, and `AssertionResults`.
 
-Contains the results of a completed session.
+### Hooks
 
-| Property          | Description                                                        |
-|-------------------|--------------------------------------------------------------------|
-| `Name`            | The name of the session                                            |
-| `Inputs`          | List of `CommunicationData` representing all input communications  |
-| `Outputs`         | List of `CommunicationData` representing all output communications |
-| `SessionFailures` | List of action failures encountered during session execution       |
-| `UtcStartTime`    | UTC start time of the session                                      |
-| `UtcEndTime`      | UTC end time of the session                                        |
+The hook system lives under `Hooks`:
 
----
+- `IHook.cs`
+- `Assertion/`
+- `Generator/`
+- `Probe/`
+- `Processor/`
+- `BaseHooks/StatusCodeTransactionProcessor.cs`
 
-### `RunningSessionData`
+The current hook families are:
 
-Contains real-time (live) results of a currently running session.
+- `IAssertion` and `BaseAssertion<TConfiguration>`
+- `IGenerator` and `BaseGenerator<TConfiguration>`
+- `IProbe` and `BaseProbe<TConfiguration>`
+- `IProcessor`
+- `ITransactionProcessor` and `BaseTransactionProcessor<TConfiguration>`
 
-| Property  | Description                                                |
-|-----------|------------------------------------------------------------|
-| `Inputs`  | List of `RunningCommunicationData` for live input results  |
-| `Outputs` | List of `RunningCommunicationData` for live output results |
+The transaction-processor path is important. The current SDK does not expose the old `BaseProcessor<TConfiguration>` shape that some stale docs referenced. The built-in `StatusCodeTransactionProcessor` is also part of the package and provides a ready-made processor for status-code-oriented responses.
 
----
+### Filters and extensions
 
-### `RunningCommunicationData`
+The package contains supporting helpers under:
 
-Represents an action currently in progress.
+- `ConfigurationObjectFilters/NameFilters.cs`
+- `ConfigurationObjectFilters/RegexFilters.cs`
+- `Extensions/`
 
-| Property                      | Description                                                                         |
-|-------------------------------|-------------------------------------------------------------------------------------|
-| `Data`                        | Internal real-time data (should not be accessed directly by users)                  |
-| `DataCancellationTokenSource` | Cancellation token for the live data stream; if canceled, the action will terminate |
-| `GetData`                     | Lazy function to retrieve all data produced by the communication action             |
-| `GetLiveData`                 | Lazy function to retrieve data produced *after* the call is made                    |
+These files provide common filtering and lookup helpers for sessions, communications, data sources, and context objects, plus logging helpers that enrich log messages with runtime metadata.
 
----
+## Current behavior
 
-### `DataSource`
+The current implementation provides the following runtime behavior:
 
-Contains all required objects to retrieve data from a configured data source.
+- `ContextBuilder` layers configuration in a deterministic order and can optionally resolve environment-variable placeholders as part of the final build.
+- `ContextBuilder` also resolves configuration references before the context is finalized.
+- `InternalContext` exposes internal-only state such as the running-session registry and the global dictionary access used inside the framework.
+- `ExecutionType` currently includes `Run`, `Template`, `Act`, and `Assert`.
+- `DataSourceBuilder` supports configuration CRUD aliases, named or regex-based source dependencies, serializer and deserializer configuration, and YAML serialization of the builder state.
+- `DataSource` supports cached and lazy retrieval behavior depending on how it is configured.
+- The hook base classes load their configuration from the root configuration and validate it through the shared configuration package.
+- `SessionDataSerialization` serializes and deserializes session and communication payloads by using the Serialization package's factories and `SpecificTypeConfig`.
+- The extension methods cover casting, filtering, lookup, metadata-path access, and logging enrichment across the runtime data model.
 
-> Used internally to manage data retrieval logic for plugins and hooks.
+## Main source areas
 
----
+The highest-signal areas to read are:
 
-## Hooks
+- `ContextObjects/`
+- `ExecutionObjects/`
+- `DataSourceObjects/`
+- `Hooks/`
+- `Session/`
+- `ConfigurationObjectFilters/`
+- `Extensions/`
+- `MetaDataConfig.cs`
 
-The `QaaS.Framework.SDK` provides **four core hooks**, each with an interface and a base class.
-The **interface** defines the contract, while the **base class** adds automatic configuration loading and validation.
+## Companion tests
 
-Hooks are located in the namespace: `QaaS.Framework.SDK.Hooks`.
+`QaaS.Framework.SDK.Tests` is the sibling test project for this package.
 
----
+The current tests cover:
 
-### Assertion Hook
+- context-builder overwrite and environment-resolution paths
+- binding and validation behavior
+- data and communication casting helpers
+- data filtering and lookup helpers
+- running-session access and global dictionary behavior
+- data-source lazy versus cached behavior
+- serializer and deserializer guardrails for session data
+- raw and typed session serialization paths
+- `DataSourceBuilder` configuration CRUD aliases and dependency wiring
+- the built-in `StatusCodeTransactionProcessor`
 
-- **Interface**: `IAssertion`
-- **Base Class**: `BaseAssertion<TConfiguration>`
+Representative test files include:
 
-#### Properties
-
-| Property               | Description                                                                                                                                                                                                                                                                     |
-|------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| `AssertionMessage`     | Message displayed with the assertion result                                                                                                                                                                                                                                     |
-| `AssertionTrace`       | Additional trace information for debugging                                                                                                                                                                                                                                      |
-| `AssertionStatus`      | Final status of the assertion (e.g., `Pass`, `Fail`, `Warning`). Takes precedence over return value                                                                                                                                                                             |
-| `AssertionAttachments` | List of `AssertionAttachment` objects to store with the result. Each attachment has: <br> - `Path`: Unique relative path in the test results directory <br> - `Data`: The actual data to store <br> - `SerializationType`: How to serialize the data (e.g., JSON, Binary, Text) |
-
----
-
-### Generator Hook
-
-- **Interface**: `IGenerator`
-- **Base Class**: `BaseGenerator<TConfiguration>`
-
----
-
-### Probe Hook
-
-- **Interface**: `IProbe`
-- **Base Class**: `BaseProbe<TConfiguration>`
-
----
-
-### Processor Hook
-
-- **Interface**: `IProcessor`
-- **Base Class**: `BaseProcessor<TConfiguration>`
-
----
-
-## Extensions
-
-The `QaaS.Framework.SDK` includes extension methods to simplify working with data structures in hooks.
-
-Available in the namespace: `QaaS.Framework.SDK.Extensions`
-
-### Example Usage
-
-```csharp
-// Get the correct output from the single passed session by name and cast it to the expected type
-var output = sessionDataList.AsSingle().GetOutputByName(Configuration.OutputName!).CastCommunicationData<TExpectedOutputType>();
-```
+- `SDKBehaviorTests.cs`
+- `SDKCoverageEdgeCaseTests.cs`
+- `SDKSerializationCoverageTests.cs`
+- `BuildersTests/DataSourceBuilderTests.cs`

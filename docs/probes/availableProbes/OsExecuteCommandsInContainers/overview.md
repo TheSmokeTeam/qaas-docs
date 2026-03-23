@@ -1,5 +1,11 @@
-# OsExecuteCommandsInContainers
+﻿# OsExecuteCommandsInContainers
 
-Built-in probe documentation placeholder.
+Executes one or more shell commands inside the selected cluster containers.
 
-This page reserves the generated `overview.md` surface for `OsExecuteCommandsInContainers`.
+## Probe Parameters
+
+- **Probe Name** - `OsExecuteCommandsInContainers`.
+- **ProbeConfiguration** - `OsExecuteCommandsInContainersConfig`.
+- **DataSources** - Not used.
+- **SessionData** - Not used.
+- **Execution stage** - Typically used in setup or cleanup stages around Runner sessions.

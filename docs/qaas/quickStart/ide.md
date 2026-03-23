@@ -18,7 +18,7 @@ install the appropriate **JSON schema** in your IDE.
 | Schema file         | Covers                                                                                                                                                                                                                         |
 |---------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | `runnerSchema.json` | <ul><li>Core `QaaS.Runner` configuration (DataSources, Sessions, Assertions, Storage, Links, MetaData)</li><li>All its hooks configuration (`QaaS.Common.Assertions`, `QaaS.Common.Generatos`, `QaaS.Common.Probes`)</li></ul> |
-| `mockerSchema.json` | <ul><li>Core `QaaS.Mocker` configuration (DataSources, Stubs, Servers, Controller)</li><li>All its hooks configuration (`QaaS.Common.Generators`, `QaaS.Common.Processors`)</li></ul>                                          |
+| `mockerSchema.json` | <ul><li>Core `QaaS.Mocker` configuration (DataSources, Stubs, Servers, Controller)</li><li>Generator hook configuration from `QaaS.Common.Generators` and the built-in framework status hook</li><li>Processor-specific sections for local custom processors referenced by your project</li></ul> |
 
 !!! note
     Each schema corresponds to a specific component of the QaaS ecosystem. Use the correct schema based on your

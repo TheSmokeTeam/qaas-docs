@@ -1,5 +1,11 @@
-# OsEditYamlConfigMap
+﻿# OsEditYamlConfigMap
 
-Built-in probe documentation placeholder.
+Loads a YAML document from a ConfigMap, edits the configured paths, and writes the updated YAML back to the cluster.
 
-This page reserves the generated `overview.md` surface for `OsEditYamlConfigMap`.
+## Probe Parameters
+
+- **Probe Name** - `OsEditYamlConfigMap`.
+- **ProbeConfiguration** - `OsEditYamlConfigMapConfig`.
+- **DataSources** - Not used.
+- **SessionData** - Not used.
+- **Execution stage** - Typically used in setup or cleanup stages around Runner sessions.

@@ -1,3 +1,5 @@
-# Table View
+﻿# OsScaleDeploymentPods Table View
 
-Configuration reference placeholder for `OsScaleDeploymentPods`.
+| Property Path | Type | Required | Default | Description |
+| --- | --- | --- | --- | --- |
+| `ProbeConfiguration` | `OsScalePodsProbeConfig` | &#10004; |  | Scales deployment replicas. |

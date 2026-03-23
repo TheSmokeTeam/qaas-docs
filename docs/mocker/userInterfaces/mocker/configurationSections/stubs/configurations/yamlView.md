@@ -1,16 +1,19 @@
+<!-- generated hash:2c3a2a8623a6 sources:mocker-family, Stubs, yaml-view -->
+
 # Stubs Configurations Yaml View
 
 ```yaml
 Stubs:
-  - Processor:
+  -
     Name:
+    Processor:
+    ProcessorConfiguration:
     DataSourceNames: []
-    ResponseBodySerialization:
-      Serializer:
     RequestBodyDeserialization:
       Deserializer:
       SpecificType:
         TypeFullName:
         AssemblyName:
-    ProcessorSpecificConfiguration:
+    ResponseBodySerialization:
+      Serializer:
 ```

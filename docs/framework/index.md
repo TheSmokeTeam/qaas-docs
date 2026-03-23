@@ -1,22 +1,32 @@
 # QaaS.Framework
 
-The `QaaS.Framework` is a comprehensive, modular C# ecosystem designed to standardize and streamline the development,
-execution, and management of data-driven workflows, particularly in testing, integration, and automation scenarios. It
-provides a consistent architecture for defining, configuring, and running complex execution pipelines with strong
-support for configuration, dependency injection, logging, data handling, and extensibility.
+`QaaS.Framework` is a solution of shared runtime packages used by the QaaS applications and hook implementations. It is not a single executable application. In `QaaS.Framework.sln`, the code is split into eight runtime projects and seven companion test projects so that configuration, execution flow, protocols, hook discovery, policies, and serialization can evolve independently.
 
-The framework is composed of several interconnected projects, each serving a distinct purpose:
+This section documents the current contents of those projects as they exist in the solution today.
 
-| Project                                                             | Description                                                                                                                                                                                                                                                       |
-|---------------------------------------------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| [**`QaaS.Framework.SDK`**](./projects/sdk.md)                       | The core package containing shared data structures (`Context`, `Data`,  `SessionData`, etc.) and the base classes for all hooks (`Assertion`, `Generator`, `Probe`, `Processor`). It's required by all plugins and serves as the foundation for interoperability. |
-| [**`QaaS.Framework.Configuration`**](./projects/configuration.md)   | Handles loading and validating configuration from YAML files using `DataAnnotations`. It supports advanced features like YAML `<<` merge keys and provides utilities for robust configuration management.                                                         |
-| [**`QaaS.Framework.Executions`**](./projects/executions.md)         | The core execution engine, responsible for orchestrating workflows. It defines the lifecycle via `IRunner`, `BaseExecution`, and `ILogic`, enabling composable, testable, and configurable execution logic with support for test and mock modes.                  |
-| [**`QaaS.Framework.Infrastructure`**](./projects/infrastructure.md) | Provides essential utility extensions for `DateTime` (with timezone and daylight saving handling) and file system operations (e.g., creating valid directory names), used throughout the ecosystem.                                                               |
-| [**`QaaS.Framework.Policies`**](./projects/policies.md)             | Defines a flexible policy system for controlling communication actions, such as `Timeout`, `LoadBalance`, `AdvancedLoadBalance`, and `IncreasingLoadBalance`, enabling sophisticated load and timing control.                                                     |
-| [**`QaaS.Framework.Protocols`**](./projects/protocols.md)           | Offers a unified, type-safe abstraction for interacting with diverse data sources and services (e.g., Kafka, S3, PostgreSQL, HTTP, gRPC). It uses interfaces like `IReader`, `ISender`, and `ITransactor` to enable consistent data flow across protocols.        |
-| [**`QaaS.Framework.Providers`**](./projects/providers.md)           | Enables dynamic loading and registration of hooks (e.g., `IAssertion`, `IGenerator`) from the main application and loaded plugins (DLLs), using Autofac for dependency injection and providing validation during load.                                            |
-| [**`QaaS.Framework.Serialization`**](./projects/serialization.md)   | Provides a suite of serialization/deserialization capabilities (Binary, JSON, XML, MessagePack, YAML, Protobuf) used across the framework for data persistence and communication.                                                                                 |
+## Runtime projects
 
-> Together, these projects form a cohesive, extensible, and robust foundation for building scalable and maintainable data
-integration and testing solutions.
+| Project | What it contains | Companion test project |
+| --- | --- | --- |
+| [QaaS.Framework.SDK](./projects/sdk.md) | Core runtime contracts and object model: contexts, execution data, session and communication objects, data sources, hook interfaces and base classes, metadata, filters, and helper extensions. | `QaaS.Framework.SDK.Tests` |
+| [QaaS.Framework.Configurations](./projects/configuration.md) | Configuration loading pipeline: YAML ingestion, HTTP YAML sources, placeholder resolution, `<<` collapse handling, reference expansion, recursive binding, recursive validation, and partial-update helpers. | `QaaS.Framework.Configurations.Tests` |
+| [QaaS.Framework.Executions](./projects/executions.md) | Shared execution infrastructure: `IRunner`, `BaseExecution`, `BaseExecutionBuilder`, loader and logging support, CLI parser builders, and help-text generation. | `QaaS.Framework.Executions.Tests` |
+| [QaaS.Framework.Infrastructure](./projects/infrastructure.md) | Small shared utility package containing date and time helpers, filesystem-safe naming, and `IDomainBuilder<T>`. | No dedicated test project in the solution |
+| [QaaS.Framework.Policies](./projects/policies.md) | Policy chain implementation for count, timeout, and load-control behavior, including staged and increasing load-balance policies plus their configuration objects. | `QaaS.Framework.Policies.Tests` |
+| [QaaS.Framework.Protocols](./projects/protocols.md) | Protocol contracts, protocol-specific configuration objects, factories, and concrete integrations for HTTP, gRPC, RabbitMQ, Kafka, Redis, S3, SFTP, SQL, Elastic, Prometheus, IBM MQ, MongoDB, and sockets. | `QaaS.Framework.Protocols.Tests` |
+| [QaaS.Framework.Providers](./projects/providers.md) | Hook discovery and instantiation layer: assembly scanning, type resolution, object creation, validation-aware loading, and Autofac registration. | `QaaS.Framework.Providers.Tests` |
+| [QaaS.Framework.Serialization](./projects/serialization.md) | Serializer and deserializer selection, format-specific implementations, factory classes, and runtime type resolution helpers. | `QaaS.Framework.Serialization.Tests` |
+
+## Companion test projects
+
+The solution also includes one sibling test project for every runtime package except Infrastructure:
+
+- `QaaS.Framework.Configurations.Tests` exercises the configuration pipeline, including placeholders, collapse parsing, reference expansion, recursive validation, update helpers, and HTTP YAML loading.
+- `QaaS.Framework.Executions.Tests` covers loader validation, parser behavior, help-text output, logging configuration, elastic-sink warnings, and the base execution contracts.
+- `QaaS.Framework.SDK.Tests` covers context building, binding, data and session helpers, data-source behavior, hook configuration loading, and session serialization.
+- `QaaS.Framework.Serialization.Tests` verifies factory dispatch, round-trip serialization, type-resolution behavior, and guarded deserialization paths.
+- `QaaS.Framework.Providers.Tests` validates hook discovery, name resolution, ambiguity handling, context injection, validation error enrichment, and Autofac registration.
+- `QaaS.Framework.Protocols.Tests` covers protocol configuration objects, factory dispatch, protocol-specific behavior, SQL helpers, HTTP and S3 flows, and Prometheus parsing.
+- `QaaS.Framework.Policies.Tests` covers policy ordering, stop behavior, builder mapping, timeout and count limits, and staged or increasing load progression.
+
+Use the project pages in this section for the package-level detail. Each page focuses on what the current source tree contains and how the sibling tests describe the intended behavior.

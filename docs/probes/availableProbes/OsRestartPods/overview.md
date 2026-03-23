@@ -1,5 +1,11 @@
-# OsRestartPods
+﻿# OsRestartPods
 
-Built-in probe documentation placeholder.
+Restarts matching pods in the configured namespace by deleting them and letting the platform recreate them.
 
-This page reserves the generated `overview.md` surface for `OsRestartPods`.
+## Probe Parameters
+
+- **Probe Name** - `OsRestartPods`.
+- **ProbeConfiguration** - `OsRestartPodsConfig`.
+- **DataSources** - Not used.
+- **SessionData** - Not used.
+- **Execution stage** - Typically used in setup or cleanup stages around Runner sessions.

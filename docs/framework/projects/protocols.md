@@ -1,81 +1,141 @@
 # QaaS.Framework.Protocols
 
-`QaaS.Framework.Protocols` is a library within the QaaS framework designed to abstract and simplify
-communication with a wide variety of data sources, sinks, and services. It provides a consistent, type-safe, and highly
-configurable interface for reading, writing, and transacting data across diverse protocols, enabling seamless
-integration into data pipelines, ETL processes, and real-time data applications.
+`QaaS.Framework.Protocols` is the Framework solution's integration package for external I/O. It combines protocol contracts, protocol-specific configuration objects, concrete implementations, factories, and supporting utilities. The project consumes the shared session and data model from [QaaS.Framework.SDK](./sdk.md) and turns those objects into real reads, sends, fetches, and request-response interactions.
 
-## Core Philosophy
+## What this project contains
 
-The library is built around the principle of **protocol abstraction**. Instead of writing custom, brittle code for each
-data system (e.g., connecting to Kafka, querying PostgreSQL, sending to S3), developers interact with a unified set of
-interfaces. This promotes:
+### Protocol contracts
 
-* **Reusability:** A single `Data<object>` object can be sent to Kafka, S3, or a database with minimal configuration
-  changes.
-* **Maintainability:** Protocol-specific logic is encapsulated within dedicated classes, making the codebase easier to
-  understand and update.
-* **Flexibility:** The framework supports a vast array of protocols, allowing it to adapt to almost any data integration
-  need.
+The core contracts live directly under the `Protocols` folder:
 
-## Key Components
+- `IReader.cs`
+- `ISender.cs`
+- `IChunkReader.cs`
+- `IChunkSender.cs`
+- `IFetcher.cs`
+- `ITransactor.cs`
+- `IConnectable.cs`
 
-### **Interfaces: The Contract**
+These interfaces divide the integration surface into single-item reads and sends, chunk-based reads and sends, fetch-style reads, and request-response transactions.
 
-The library defines a set of core interfaces that all protocol implementations must adhere to. These interfaces
-establish a consistent contract for data flow.
+### Configuration-object families
 
-* `IReader`: For consuming data from a source (e.g., Kafka, S3, SQL table). It defines the `Read` method.
-* `ISender`: For sending data to a destination (e.g., SFTP, HTTP, Redis). It defines the `Send` method.
-* `IChunkReader` / `IChunkSender`: For handling data in batches (chunks), which is crucial for performance with large
-  datasets (e.g., S3, ElasticSearch).
-* `IFetcher`: For pulling data from a source at a specific time (e.g., Prometheus metrics).
-* `ITransactor`: For performing a request-response interaction, where a request is sent and a response is received (
-  e.g., HTTP, gRPC).
+The `ConfigurationObjects` folder is a major part of the package. It contains both the common protocol interfaces and the protocol-specific configuration families:
 
-### **Protocol Implementations: The Workhorses**
+- common interfaces such as `IReaderConfig`, `ISenderConfig`, `IFetcherConfig`, `ITransactorConfig`, and object-naming configuration
+- `Elastic/`
+- `Grpc/`
+- `Http/`
+- `IbmMq/`
+- `Kafka/`
+- `MongoDb/`
+- `Prometheus/`
+- `RabbitMq/`
+- `Redis/`
+- `S3/`
+- `Sftp/`
+- `Socket/`
+- `Sql/`
 
-The library ships with numerous concrete implementations for popular data protocols. Each implementation is a class that
-inherits from one or more of the core interfaces and handles the specific details of that protocol.
+The factories switch on these concrete configuration types. In practice, this package is not using a generic registry for protocols. The configuration type is what determines which runtime class gets created.
 
-| Protocol                                                         | Use Case                                              | Key Features                                                                                                                                                                        |
-|:-----------------------------------------------------------------|:------------------------------------------------------|:------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **SocketProtocol**                                               | Low-level TCP/UDP communication                       | Configurable address family, socket type, and protocol. Supports timeouts and buffer sizes.                                                                                         |
-| **TrinoSqlProtocol**                                             | Querying data from Trino                              | Uses the Trino ADO.NET driver. Supports complex SQL queries with filtering and time-based queries.                                                                                  |
-| **SftpProtocol**                                                 | Secure file transfer via SFTP                         | Uploads files to a remote server.                                                                                                                                                   |
-| **S3Protocol**                                                   | Interacting with Amazon S3 (or S3-compatible) storage | Reads and writes objects to S3 buckets. Includes sophisticated retry mechanisms and a `WaitUntilConsumptionTimeoutIsReached` method to ensure data is fully written before reading. |
-| **RedisProtocol**                                                | Sending data to Redis                                 | Supports multiple Redis data types (strings, lists, sets, hashes, sorted sets, geospatial). Uses transactions for atomic batch operations.                                          |
-| **RabbitMqProtocol**                                             | Messaging with RabbitMQ                               | Implements both reading from and sending to queues/exchanges. Supports advanced features like message headers, expiration, and routing keys.                                        |
-| **PrometheusProtocol**                                           | Fetching metrics from Prometheus                      | Uses the Prometheus `query_range` API to collect time-series data. Returns data in a structured format.                                                                             |
-| **PostgreSqlProtocol**, **MsSqlProtocol**, **OracleSqlProtocol** | Connecting to relational databases                    | Extends `BaseSqlProtocol` for common SQL operations. Supports bulk inserts, custom queries, and time-based filtering.                                                               |
-| **KafkaTopicProtocol**                                           | Messaging with Apache Kafka                           | Consumes and produces messages to Kafka topics. Supports SASL authentication, compression, and partitioning.                                                                        |
-| **MongoDbProtocol**                                              | Interacting with MongoDB                              | Sends JSON data to a MongoDB collection. Uses the `BsonDocument` model for efficient serialization.                                                                                 |
-| **IbmMqProtocol**                                                | Interacting with IBM MQ                               | Uses the IBM.WMQ library to read messages from a queue.                                                                                                                             |
-| **HttpProtocol**                                                 | Making HTTP requests                                  | A full-featured transactor for HTTP(S) calls. Supports JWT authentication, custom headers, and configurable retry logic.                                                            |
-| **GrpcProtocol**                                                 | Calling gRPC services                                 | Transacts with gRPC servers using protobuf messages. Supports timeouts and error handling.                                                                                          |
-| **ElasticProtocol**                                              | Interacting with Elasticsearch                        | Reads and writes data to Elasticsearch indices. Uses the `scroll` API for large data reads and includes a method to empty indices.                                                  |
+### Concrete protocol implementations
 
-### **Configuration Objects**
+The `Protocols` folder contains the package's concrete integrations, including:
 
-Each protocol is configured via a dedicated configuration class (e.g., `S3BucketSenderConfig`,
-`KafkaTopicReaderConfig`). These classes are populated from
-configuration files (like JSON or code). They encapsulate all the necessary connection
-details (host, port, credentials) and protocol-specific settings (e.g., `Retries`, `TimeoutMs`, `CompressionType`).
+- `HttpProtocol.cs`
+- `GrpcProtocol.cs`
+- `RabbitMqProtocol.cs`
+- `KafkaTopicProtocol.cs`
+- `RedisProtocol.cs`
+- `RedisReaderProtocol.cs`
+- `S3Protocol.cs`
+- `SftpProtocol.cs`
+- `SocketProtocol.cs`
+- `IbmMqProtocol.cs`
+- `MongoDbProtocol.cs`
+- `ElasticProtocol.cs`
+- `PrometheusProtocol.cs`
+- `PostgreSqlProtocol.cs`
+- `MsSqlProtocol.cs`
+- `OracleSqlProtocol.cs`
+- `TrinoSqlProtocol.cs`
+- `BaseSqlProtocol.cs`
 
-### **Data Model: `Data<object>` and `DetailedData<object>`**
+These implementations use SDK types such as `DataFilter`, `Data<T>`, `DetailedData<T>`, `CommunicationData<T>`, and protocol metadata. Those types belong to the SDK package; Protocols uses them but does not define them.
 
-The library uses a standardized data model to represent information being transferred.
+### Factories
 
-* `Data<object>`: The core data container. It holds the `Body` (the actual data, typically as `byte[]` or `JsonObject`),
-  `MetaData` (protocol-specific context like `Http`, `Kafka`, `Redis`, `S3`), and `Timestamp`.
-* `DetailedData<object>`: A richer version of `Data<object>` that includes a `Timestamp` and is used for return values
-  from `Read` and `Send` operations.
+The `Protocols/Factories` folder contains the dispatch layer:
 
-### **Extensibility**
+- `ReaderFactory.cs`
+- `SenderFactory.cs`
+- `FetcherFactory.cs`
+- `TransactorFactory.cs`
 
-The framework is designed to be easily extended. Developers can:
+This is where the package turns configuration objects into concrete protocol instances.
 
-1. **Create a new Protocol:** Implement one of the core interfaces (e.g., `IReader`) and inject it into the system.
-2. **Extend Existing Protocols:** Inherit from an existing protocol class (like `BaseSqlProtocol`) to add custom
-   behavior for a specific database.
-3. **Add New Configuration Objects:** Define a new configuration class to manage the settings for a new protocol.
+### Utilities and extensions
+
+The package also contains supporting code under:
+
+- `Utils/ObjectNameGenerator.cs`
+- `Utils/S3Utils/`
+- `Extentions/HttpExtentions.cs`
+- `Extentions/S3Extentions.cs`
+
+These files support naming strategies, S3 client behavior, and protocol-specific helpers.
+
+## Current behavior
+
+The current source tree supports the following dispatch and behavior:
+
+- `ReaderFactory` creates singular readers for RabbitMQ, Kafka, Socket, IBM MQ, and Redis.
+- `ReaderFactory` creates chunk readers for PostgreSQL, Oracle, MS SQL, Trino, Elastic, and S3.
+- `SenderFactory` chooses a singular or chunk sender by configuration type and by the explicit `isChunkable` flag.
+- `SenderFactory` supports chunk sends for Redis, MS SQL, MongoDB, Elastic, and PostgreSQL.
+- `SenderFactory` supports singular sends for RabbitMQ, Kafka, SFTP, Socket, S3, Oracle, and PostgreSQL.
+- `TransactorFactory` currently supports HTTP and gRPC.
+- `FetcherFactory` currently supports Prometheus.
+- `DataFilter` is applied where large-payload filtering matters, especially in S3 and Elastic flows.
+- `HttpProtocol` implements HTTP request-response behavior including headers, authentication, JWT support, retries, and response metadata handling.
+- `GrpcProtocol` performs gRPC invocation through the package's reflection-driven flow.
+- `S3Protocol` handles object naming, retry-oriented reads, and bucket/object management behavior.
+- `ObjectNameGenerator` supports the package's naming strategies such as random GUIDs and growing numerical series.
+
+## Main source areas
+
+The highest-signal areas to read are:
+
+- `ConfigurationObjects/`
+- `Protocols/`
+- `Protocols/Factories/`
+- `Utils/ObjectNameGenerator.cs`
+- `Utils/S3Utils/`
+
+If you want the fastest route through the package, start with the relevant configuration type, then the factory, then the protocol implementation that factory returns.
+
+## Companion tests
+
+`QaaS.Framework.Protocols.Tests` is the sibling test project for this package.
+
+The current tests cover:
+
+- protocol-configuration validation
+- factory dispatch and unsupported-configuration failures
+- SQL helper behavior
+- HTTP request-response paths
+- gRPC invocation behavior
+- S3 retry and bucket-read behavior
+- Prometheus matrix parsing and error handling
+- Redis send and read behavior
+- additional integration and edge-case coverage across the protocol families
+
+Representative test files include:
+
+- `ProtocolBehaviorTests.cs`
+- `ProtocolAdvancedBehaviorTests.cs`
+- `BaseSqlTests.cs`
+- `ProtocolConfigurationObjectsTests.cs`
+- `ProtocolCoverageEdgeCaseTests.cs`
+- `ProtocolIntegrationCoverageTests.cs`

@@ -1,3 +1,5 @@
-# Table View
+﻿# StatusCodeTransactionProcessor Table View
 
-Configuration reference placeholder for `StatusCodeTransactionProcessor`.
+| Property Path | Type | Required | Default | Description |
+| --- | --- | --- | --- | --- |
+| `ProcessorConfiguration` | `StatusCodeConfiguration` | &#10004; |  | Returns an empty response body with a configured status code. |

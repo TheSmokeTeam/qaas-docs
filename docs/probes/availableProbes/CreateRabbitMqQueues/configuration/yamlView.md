@@ -1,3 +1,6 @@
-# YAML View
+﻿# CreateRabbitMqQueues YAML Configuration
 
-YAML reference placeholder for `CreateRabbitMqQueues`.
+```yaml
+Probe: CreateRabbitMqQueues
+ProbeConfiguration: {}
+```

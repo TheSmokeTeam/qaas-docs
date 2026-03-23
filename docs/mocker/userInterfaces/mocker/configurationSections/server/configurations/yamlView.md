@@ -1,37 +1,62 @@
-# Server Configurations Yaml View
+<!-- generated hash:d3ff169b9f9d sources:mocker-family, Servers, yaml-view -->
+
+# Servers Configurations Yaml View
 
 ```yaml
-Server:
-  Type:
-  Socket:
-    ConnectionAcceptanceValue:
-    BindingIpAddress:
-    Endpoints:
-      - TimeoutMs:
-        ProtocolType:
-        Port:
-        LingerTimeSeconds:
-        NagleAlgorithm:
-        BufferSizeBytes:
-        AddressFamily:
-        SocketType:
-        Action:
-          Method:
-          TransactionStubName:
-          DataSourceName:
-          Name:
-  Http:
-    Port:
-    ConnectionAcceptanceValue:
-    InternalErrorTransactionStubName:
-    NotFoundTransactionStubName:
-    IsLocalhost:
-    IsSecuredSchema:
-    Endpoints:
-      - Path:
-        FixedPath:
-        Actions:
-          - TransactionStubName:
+Servers:
+  -
+    Grpc:
+      Port:
+      CertificatePassword:
+      CertificatePath:
+      InternalErrorTransactionStubName:
+      IsLocalhost:
+      IsSecuredSchema:
+      NotFoundTransactionStubName:
+      Services:
+        -
+          AssemblyName:
+          ProtoNamespace:
+          ServiceName:
+          Actions:
+            -
+              RpcName:
+              TransactionStubName:
+              Name:
+    Http:
+      Port:
+      CertificatePassword:
+      CertificatePath:
+      ConnectionAcceptanceValue:
+      InternalErrorTransactionStubName:
+      IsLocalhost:
+      IsSecuredSchema:
+      NotFoundTransactionStubName:
+      Endpoints:
+        -
+          Path:
+          FixedPath:
+          Actions:
+            -
+              Method:
+              TransactionStubName:
+              Name:
+    Socket:
+      BindingIpAddress:
+      ConnectionAcceptanceValue:
+      Endpoints:
+        -
+          Port:
+          ProtocolType:
+          TimeoutMs:
+          AddressFamily:
+          BufferSizeBytes:
+          LingerTimeSeconds:
+          NagleAlgorithm:
+          SocketType:
+          Action:
             Method:
+            DataSourceName:
             Name:
+            TransactionStubName:
 ```

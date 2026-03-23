@@ -42,6 +42,24 @@ mkdocs build
 
 The static site will be generated in the `site/` directory.
 
+## Deterministic Reference Docs
+
+Runner, Mocker, and Framework reference pages are generated deterministically.
+
+- Family schema contracts come from `QaaS.PackageMirror`.
+- The renderer itself lives in the external `QaaS.Docs.Generator` repository and is pulled into this repo as the `tools/QaaS.Docs.Generator` git submodule.
+- CLI reference pages come from committed snapshots under `tools/QaaS.Docs.Generator/Snapshots/`.
+- Function catalogs come from `tools/QaaS.Docs.Generator/Functions/function-manifest.json` plus source inspection of sibling repositories.
+
+The CLI snapshots in `tools/QaaS.Docs.Generator/Snapshots/` are committed artifacts.
+When the live CLI help changes, recapture the help output manually and update those files, then regenerate and validate the docs:
+
+```powershell
+git submodule update --init --recursive
+.\scripts\Generate-ReferenceDocs.ps1
+.\scripts\Generate-ReferenceDocs.ps1 -Check -BuildSite
+```
+
 ## 📁 Project Structure
 
 ```

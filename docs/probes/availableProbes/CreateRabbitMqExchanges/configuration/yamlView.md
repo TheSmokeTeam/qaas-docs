@@ -1,3 +1,6 @@
-# YAML View
+﻿# CreateRabbitMqExchanges YAML Configuration
 
-YAML reference placeholder for `CreateRabbitMqExchanges`.
+```yaml
+Probe: CreateRabbitMqExchanges
+ProbeConfiguration: {}
+```

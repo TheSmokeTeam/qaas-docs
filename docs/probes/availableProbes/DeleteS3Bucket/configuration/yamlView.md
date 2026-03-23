@@ -1,3 +1,6 @@
-# YAML View
+﻿# DeleteS3Bucket YAML Configuration
 
-YAML reference placeholder for `DeleteS3Bucket`.
+```yaml
+Probe: DeleteS3Bucket
+ProbeConfiguration: {}
+```

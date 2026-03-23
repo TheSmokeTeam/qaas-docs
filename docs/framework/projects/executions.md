@@ -1,154 +1,87 @@
 # QaaS.Framework.Executions
 
-This project forms the core execution engine of the QaaS ecosystem, responsible for orchestrating and managing the
-lifecycle of test or execution workflows—whether they are **runners** (for actual execution) or **mockers** (for
-simulation).
+`QaaS.Framework.Executions` is the shared execution-infrastructure package in the Framework solution. It is not the full application layer for Runner or Mocker. Instead, it provides the common runtime base classes, loader behavior, CLI helpers, and logging setup that those higher-level applications build on.
 
-It provides a modular, extensible architecture for defining, configuring, and running execution logic in a structured
-and testable way, with strong support for dependency injection, configuration, logging, and data handling.
+## What this project contains
 
----
+### Runtime contracts and base types
 
-## **Purpose**
+The minimal execution surface is defined by:
 
-The primary goal of this project is to **abstract and standardize the execution lifecycle** of QaaS workflows. It
-enables developers to:
+- `IRunner.cs`, which exposes `Run()`
+- `BaseExecution.cs`, which holds `Context`, `ExecutionType`, `Start()`, and `Dispose()`
+- `BaseExecutionBuilder.cs`, which standardizes how runtime packages build validated execution instances
+- `Logics/ILogic.cs`, which currently exposes a single `Run(ExecutionData)` method
 
-- Define execution logic in a reusable, composable way.
-- Configure data sources dynamically.
-- Control execution behavior based on context (e.g., test vs. mock mode).
-- Integrate with external configuration and logging systems.
-- Build and load execution runners based on command-line or configuration inputs.
+This package no longer defines mode-specific logic such as `ShouldRun(ExecutionType)` in `ILogic`. That older shape is not the current interface.
 
----
+### Loader and logging support
 
-## **Core Components**
+The loader and logging layer lives in:
 
-### `IRunner` – The Execution Entry Point
+- `Loaders/BaseLoader.cs`
+- `Options/LoggerOptions.cs`
+- `ExecutionLogging.cs`
 
-```csharp
-public interface IRunner
-{
-    public void Run();
-}
-```
+`BaseLoader<TOptions, TRunner>` validates the supplied options, configures logging, and leaves concrete runner creation to the derived loader. `ExecutionLogging.cs` contains the shared default logger setup and the optional Elasticsearch sink integration used by downstream applications.
 
-- **Purpose**: Defines the contract for any executable entity (e.g., a test runner, data generator, or mock server).
-- **Role**: Acts as the entry point for starting an execution. The `Run()` method triggers the full execution flow.
-- **Extensibility**: Concrete implementations (e.g., `Runner`, `Mocker`) inherit from this interface and define
-  their own behavior.
+### Shared CLI helpers
 
----
+The `CommandLineBuilders` folder contains:
 
-### `BaseExecutionBuilder<TContext, TExecutionData>` – Execution Configuration Builder
+- `ParserBuilder.cs`
+- `HelpTextBuilder.cs`
 
-This abstract class is responsible for **building execution instances** with configurable components.
+These files centralize the shared command-line parsing rules and help-text formatting used by applications built on this package.
 
-#### Key Features
+### Compatibility surface
 
-- **Generic Design**: `TContext` and `TExecutionData` allow type-safe context and data modeling.
-- **Data Sources**:
+`Constants.cs` still exists as an obsolete compatibility wrapper so downstream consumers can migrate without breaking immediately.
 
-  ```csharp
-  public DataSourceBuilder[] DataSources { get; set; } = [];
-  ```
+## Current behavior
 
-  - Configures data sources (e.g., databases, APIs, files) used during execution.
-  - Validated via attributes like `[UniquePropertyInEnumerable]` and
-      `[AllItemsInEnumerablePropertyInEnumerableExistAsPropertyInEnumerable]`.
-- **Abstract Method**:
+The current implementation focuses on a narrow but important set of responsibilities:
 
-  ```csharp
-  protected abstract IEnumerable<DataSource> BuildDataSources();
-  ```
+- `BaseExecutionBuilder<TContext, TExecutionData>` validates the configured `DataSources` and then leaves `BuildDataSources()` and `Build()` to the concrete application layer.
+- `BaseExecution` provides the common runtime shape that downstream applications extend with their own start and cleanup behavior.
+- `BaseLoader<TOptions, TRunner>` validates options recursively before runner creation.
+- The loader can create a console logger or a YAML-configured Serilog pipeline, depending on the provided logging configuration.
+- `ExecutionLogging.cs` can enrich logging with an Elasticsearch sink, while also keeping a console-only default logger path available.
+- `ParserBuilder.cs` configures case-insensitive parsing behavior for the shared CLI layer.
+- `HelpTextBuilder.cs` injects the framework's custom usage-line formatting.
 
-  - Allows subclasses to define how data sources are instantiated.
-- **Build Method**:
+## Main source areas
 
-  ```csharp
-  public abstract BaseExecution Build();
-  ```
+The most important files in this package are:
 
-  - Returns a configured `BaseExecution` instance, encapsulating the full execution context and logic.
+- `BaseExecution.cs`
+- `BaseExecutionBuilder.cs`
+- `IRunner.cs`
+- `Logics/ILogic.cs`
+- `Loaders/BaseLoader.cs`
+- `Options/LoggerOptions.cs`
+- `ExecutionLogging.cs`
+- `CommandLineBuilders/ParserBuilder.cs`
+- `CommandLineBuilders/HelpTextBuilder.cs`
+- `Constants.cs`
 
-> **Usage Pattern**: Subclasses (e.g., `ExecutionBuilder`) override `BuildDataSources()` and `Build()` to create
-> specific execution flows.
+## Companion tests
 
----
+`QaaS.Framework.Executions.Tests` validates the shared execution layer without relying on the higher-level applications.
 
-### `BaseExecution` – The Execution Runtime Base
+The current test suite covers:
 
-```csharp
-public abstract class BaseExecution : IDisposable
-{
-    protected Context Context { get; set; } = null!;
-    protected ExecutionType Type { get; set; }
-    
-    public abstract int Start();
-    public abstract void Dispose();
-}
-```
+- default logger-option values
+- recursive option validation and invalid-configuration failures
+- YAML logger-configuration-file support
+- parser enum case-insensitivity and invalid-verb behavior
+- help-text usage output
+- elastic-sink warnings for missing, partial, and invalid connection settings
+- default logger initialization
+- compatibility constants
+- the basic `BaseExecution` and `BaseExecutionBuilder` contract
 
-- **Purpose**: Represents the runtime state and behavior of an execution.
-- **Key Properties**:
-  - `Context`: Holds shared state and data during execution.
-  - `Type`: Specifies the execution mode (e.g., `Test`, `Mock`, `Validation`), used to control logic flow.
-- **Core Methods**:
-  - `Start()`: Begins the execution process and returns an exit code (e.g., 0 for success).
-  - `Dispose()`: Ensures proper cleanup of resources (e.g., connections, files).
+Representative test files include:
 
-> **Lifecycle**: Built via `BaseExecutionBuilder`, then `Start()` is called to run the logic.
-
----
-
-### `ILogic` – Composable Execution Logic
-
-```csharp
-public interface ILogic
-{
-    bool ShouldRun(ExecutionType executionType);
-    ExecutionData Run(ExecutionData executionData);
-}
-```
-
-- **Purpose**: Encapsulates individual units of logic.
-- **Two Key Methods**:
-  - `ShouldRun(ExecutionType)`: Determines if this logic should execute based on the current mode (e.g., assertions
-      not running in act mode).
-  - `Run(ExecutionData)`: Executes the logic and modifies the `ExecutionData` (e.g., adding results, metadata).
-
----
-
-### `BaseLoader<TOptions, TRunner>` – Runner Loader & Configuration Resolver
-
-This abstract class is responsible for **loading and initializing a runner** based on provided options.
-
-#### Key Responsibilities
-
-- **Option Validation**: Uses `ValidationUtils.TryValidateObjectRecursive()` to ensure command-line or config inputs are
-  valid.
-- **Logger Setup**:
-  - Supports both **default console logging** and **custom configuration files (YAML)**.
-  - Can override log levels via the `--logger-level` flag.
-- **Dependency Injection**: Injects `TOptions` and `ILogger` into the loader.
-- **Abstract Method**:
-
-  ```csharp
-  public abstract TRunner GetLoadedRunner();
-  ```
-
-  - Subclasses (e.g., `TestRunnerLoader`) implement this to instantiate and return the correct `IRunner`.
-
----
-
-## **Execution Flow (High-Level)**
-
-1. **CLI Input** → Parsed via `ParserBuilder`.
-2. **Options Loaded** → Validated by `BaseLoader<TOptions, TRunner>`.
-3. **Logger Configured** → Based on `--logger-level` and/or `--logger-configuration-file`.
-4. **Builder Instantiated** → `BaseExecutionBuilder<TContext, TExecutionData>` creates execution context and data
-   sources.
-5. **Execution Built** → `Build()` returns a `BaseExecution` instance.
-6. **Logic Pipeline Executed** → `ShouldRun()` filters logic; `Run()` executes each logic step.
-7. **Start() Called** → Execution begins, returns exit code.
-8. **Dispose() Called** → Resources cleaned up.
+- `ExecutionsBehaviorTests.cs`
+- `ExecutionsCoverageEdgeCaseTests.cs`

@@ -1,5 +1,11 @@
-# PostgreSqlDataBaseTablesTruncate
+﻿# PostgreSqlDataBaseTablesTruncate
 
-Built-in probe documentation placeholder.
+Truncates the configured PostgreSQL tables in the order they are listed.
 
-This page reserves the generated `overview.md` surface for `PostgreSqlDataBaseTablesTruncate`.
+## Probe Parameters
+
+- **Probe Name** - `PostgreSqlDataBaseTablesTruncate`.
+- **ProbeConfiguration** - `SqlDataBaseTablesTruncateProbeConfig`.
+- **DataSources** - Not used.
+- **SessionData** - Not used.
+- **Execution stage** - Typically used in setup or cleanup stages around Runner sessions.

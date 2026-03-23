@@ -1,3 +1,6 @@
-# YAML View
+﻿# MsSqlDataBaseTablesTruncate YAML Configuration
 
-YAML reference placeholder for `MsSqlDataBaseTablesTruncate`.
+```yaml
+Probe: MsSqlDataBaseTablesTruncate
+ProbeConfiguration: {}
+```

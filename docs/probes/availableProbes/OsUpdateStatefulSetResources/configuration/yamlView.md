@@ -1,3 +1,6 @@
-# YAML View
+﻿# OsUpdateStatefulSetResources YAML Configuration
 
-YAML reference placeholder for `OsUpdateStatefulSetResources`.
+```yaml
+Probe: OsUpdateStatefulSetResources
+ProbeConfiguration: {}
+```

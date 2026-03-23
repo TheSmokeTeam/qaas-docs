@@ -1,3 +1,6 @@
-# YAML View
+﻿# PurgeRabbitMqQueues YAML Configuration
 
-YAML reference placeholder for `PurgeRabbitMqQueues`.
+```yaml
+Probe: PurgeRabbitMqQueues
+ProbeConfiguration: {}
+```

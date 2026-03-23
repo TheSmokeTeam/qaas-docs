@@ -1,3 +1,5 @@
-# Table View
+﻿# DeleteRabbitMqExchanges Table View
 
-Configuration reference placeholder for `DeleteRabbitMqExchanges`.
+| Property Path | Type | Required | Default | Description |
+| --- | --- | --- | --- | --- |
+| `ProbeConfiguration` | `DeleteRabbitMqExchangesConfig` | &#10004; |  | Deletes RabbitMQ exchanges. |

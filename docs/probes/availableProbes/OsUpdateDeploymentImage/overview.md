@@ -1,5 +1,11 @@
-# OsUpdateDeploymentImage
+﻿# OsUpdateDeploymentImage
 
-Built-in probe documentation placeholder.
+Updates the image of one container in a Kubernetes or OpenShift deployment.
 
-This page reserves the generated `overview.md` surface for `OsUpdateDeploymentImage`.
+## Probe Parameters
+
+- **Probe Name** - `OsUpdateDeploymentImage`.
+- **ProbeConfiguration** - `OsUpdateImageProbeConfig`.
+- **DataSources** - Not used.
+- **SessionData** - Not used.
+- **Execution stage** - Typically used in setup or cleanup stages around Runner sessions.

@@ -1,8 +1,6 @@
 # ValidateHermeticMetricsByInputOutputPercentage
 
-Checks that hermetic percentage calculated by given input and outputs is equal to hermetic percentage calculated by the `Metrics Hermetics Formula`:
-
-![metricsHemeticsFormula.png](../../assets/metricsHermeticsFormula.png)
+Checks that hermetic percentage calculated by given input and outputs is equal to hermetic percentage calculated by the `Metrics Hermetics Formula`.
 
 ## Assertion Parameters
 
