@@ -1,4 +1,4 @@
-<!-- generated hash:2fb41c3a5b9a sources:Mocker, run, cli-command -->
+<!-- generated hash:468ae228989a sources:Mocker, run, cli-command -->
 
 # run
 
@@ -38,7 +38,7 @@ Usage:
   -g, --logger-configuration-file    Path to a logger's configuration file, will override the default logger's
                                      configuration. Its level can be overridden by the logger-level flag.
 
-  --send-logs                        (Default: false) Whether to send the logs to Smoke's logs database
+  --send-logs                        (Default: false) Whether to send logs to the configured Elasticsearch sink.
 
   --elastic-uri                      Elasticsearch URI used by the logger sink when send-logs is enabled.
 
@@ -79,4 +79,4 @@ Usage:
 | `-w`, `--overwrite-files` | `OverwriteFiles` | `Mocker options` | Yes | No | [] | `string list` | List of files to overwrite the mocker configuration with, The first file overwrites the mocker<br />configuration file and then the one after it overwrite the result and so on... |
 | `-f`, `--overwrite-folders` | `OverwriteFolders` | `Mocker options` | Yes | No | [] | `string list` | List of folders whose yaml files overwrite the mocker configuration in alphabetical order,<br />after overwrite files and in the order the folders are given. |
 | `--run-locally` | `RunLocally` | `Mocker options` | Yes | No | False | `bool` | Runs the project locally and enables exit by any key press. |
-| `--send-logs` | `SendLogs` | `Logger options` | Yes | No | False | `bool` | Whether to send the logs to Smoke's logs database |
+| `--send-logs` | `SendLogs` | `Logger options` | Yes | No | False | `bool` | Whether to send logs to the configured Elasticsearch sink. |

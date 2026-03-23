@@ -1,4 +1,4 @@
-<!-- generated hash:e0272afc9b49 sources:Runner, execute, cli-command -->
+<!-- generated hash:52af8014100f sources:Runner, execute, cli-command -->
 
 # execute
 
@@ -37,7 +37,7 @@ Usage:
   -g, --logger-configuration-file    Path to a logger's configuration file, will override the default logger's
                                      configuration. Its level can be overridden by the logger-level flag.
 
-  --send-logs                        (Default: false) Whether to send the logs to Smoke's logs database
+  --send-logs                        (Default: false) Whether to send logs to the configured Elasticsearch sink.
 
   --elastic-uri                      Elasticsearch URI used by the logger sink when send-logs is enabled.
 
@@ -75,5 +75,5 @@ Usage:
 | `-g`, `--logger-configuration-file` | `LoggerConfigurationFilePath` | `Logger options` | Yes | No |  | `string` | Path to a logger's configuration file, will override the default logger's configuration. Its level can be overridden by the logger-level flag. |
 | `-l`, `--logger-level` | `LoggerLevel` | `Logger options` | Yes | No |  | `LogEventLevel (optional)` | The logger's level, overrides both the default logger's level (Information) and the level of any logger's configuration given.<br />All available options (not case sensitive) are: Verbose, Debug,<br />Information, Warning, Error, Fatal. |
 | `--no-process-exit` | `NoProcessExit` | `Execute options` | No | No | False | `bool` | When this flag is used the runner will not terminate the current process after it completes. Useful when embedding QaaS.Runner and orchestrating multiple runners in a single host process. |
-| `--send-logs` | `SendLogs` | `Logger options` | Yes | No | False | `bool` | Whether to send the logs to Smoke's logs database |
+| `--send-logs` | `SendLogs` | `Logger options` | Yes | No | False | `bool` | Whether to send logs to the configured Elasticsearch sink. |
 | `-s`, `--serve-results` | `AutoServeTestResults` | `Execute options` | No | No | False | `bool` | If flag is enabled will automatically serve the test results in a human readable manner using allure after executing all commands.<br />when any of the commands written in the executable configuration file use this flag it will not do anything, this is the deciding flag.<br />Uses a locally installed allure CLI tool, if allure CLI is not installed and added to path the serve will fail. |

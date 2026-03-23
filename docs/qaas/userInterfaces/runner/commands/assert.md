@@ -1,4 +1,4 @@
-<!-- generated hash:da18bbab9a78 sources:Runner, assert, cli-command -->
+<!-- generated hash:e8356ced0ff1 sources:Runner, assert, cli-command -->
 
 # assert
 
@@ -112,7 +112,7 @@ Usage:
   -g, --logger-configuration-file    Path to a logger's configuration file, will override the default logger's
                                      configuration. Its level can be overridden by the logger-level flag.
 
-  --send-logs                        (Default: false) Whether to send the logs to Smoke's logs database
+  --send-logs                        (Default: false) Whether to send logs to the configured Elasticsearch sink.
 
   --elastic-uri                      Elasticsearch URI used by the logger sink when send-logs is enabled.
 
@@ -159,7 +159,7 @@ Usage:
 | `-r`, `--overwrite-arguments` | `OverwriteArguments` | `Base options` | Yes | No | [] | `string list` | List of arguments to overwrite the qaas configuration with, The first argument overwrites the qaas configuration and then the one after it overwrites the result and so on...<br />For example: `Path:To:Variable:To:Overwrite=NewVariableValue` |
 | `-p`, `--push-references` | `PushReferences` | `Base options` | Yes | No | [] | `string list` | References to push onto the qaas configuration.<br />References are configurations that are pushed in the completed test case's root level list configurations instead of a certain keyword to replace,<br />if such a keyword is not found for a certain list nothing will be added to it.<br />The items added to the configuration list will have a prefix of the given keyword to replace added to their unique name field.<br /><br />For example:<br />If we push the reference below<br />`reference.yaml`<br />```<br />Sessions:<br />  - Name: A<br />  - Name: B<br />```<br />On the configuration below<br />`test.qaas.yaml`<br />```<br />Sessions:<br />  - Name: First<br />  - ReplaceKeyWord<br />  - Name: Seconds<br />```<br />With the replace keyword `ReplaceKeyWord` we will get the following results:<br />```<br />Sessions:<br />  - Name: First<br />  - Name: ReplaceKeyWordA<br />  - Name: ReplaceKeyWordB<br />  - Name: Seconds<br />```<br /><br />The syntax to add a reference is:<br />`-p KeyWordToReplace Path/To/Reference.yaml PathToReferenceOverridingFiles.yaml`<br /><br />To add multiple references you can invoke the -p flag multiple times or<br /> use a single -p flag but have the references separated by the KeyWordToReplace:<br />`-p KeyWordToReplace1 Reference1.yaml -p KeyWordToReplace2 Reference2.yaml`<br />Or<br />`-p KeyWordToReplace1 Reference1.yaml KeyWordToReplace2 Reference2.yaml`<br /><br />!!! Note that the `KeyWordToReplace` must not end with the suffix `.yml` or `.yaml`. |
 | `--resolve-cases-last` | `ResolveCasesLast` | `Base options` | Yes | No | False | `bool` | When this flag is used cases will be resolved after all other types of configuration resolutions, instead of its default behaviour which is after overwrite files and before references. |
-| `--send-logs` | `SendLogs` | `Logger options` | Yes | No | False | `bool` | Whether to send the logs to Smoke's logs database |
+| `--send-logs` | `SendLogs` | `Logger options` | Yes | No | False | `bool` | Whether to send logs to the configured Elasticsearch sink. |
 | `-s`, `--serve-results` | `AutoServeTestResults` | `Assertable options` | Yes | No | False | `bool` | If flag is enabled will automatically serve the test results in a human readable manner after performing the assertions. |
 | `--session-categories` | `SessionCategoriesToRun` | `Base options` | Yes | No | [] | `string list` | Used to filter the session categories to run. |
 | `-i`, `--session-names` | `SessionNamesToRun` | `Base options` | Yes | No | [] | `string list` | Names of the sessions to run. |

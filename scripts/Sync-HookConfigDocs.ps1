@@ -244,15 +244,21 @@ function Format-TypeName {
     param([string]$TypeName)
 
     switch ($TypeName) {
-        'array' { return 'Array' }
-        'boolean' { return 'Boolean' }
-        'integer' { return 'Integer' }
-        'null' { return 'Null' }
-        'number' { return 'Number' }
-        'object' { return 'Object' }
-        'string' { return 'String' }
-        default { return (Get-Culture).TextInfo.ToTitleCase($TypeName) }
+        'array' { return 'list' }
+        'boolean' { return 'true/false' }
+        'integer' { return 'integer' }
+        'null' { return 'null' }
+        'number' { return 'number' }
+        'object' { return 'object' }
+        'string' { return 'string' }
+        default { return $TypeName.ToLowerInvariant() }
     }
+}
+
+function Join-FriendlyTypes {
+    param([string[]]$TypeNames)
+
+    return ($TypeNames -join ' or ')
 }
 
 function Describe-Schema {
@@ -260,15 +266,23 @@ function Describe-Schema {
 
     $enumValues = @(Convert-ToArray (Get-PropertyValue $Schema 'enum'))
     if ($enumValues.Count -gt 0) {
-        return 'enum [' + (($enumValues | ForEach-Object { [string]$_ }) -join ' / ') + ']'
+        return 'one of [' + (($enumValues | ForEach-Object { [string]$_ }) -join ' / ') + ']'
     }
 
     $types = @(Get-SchemaTypes $Schema)
     if ($types.Count -eq 0) {
-        return 'Object'
+        return 'object'
     }
 
-    return (($types | ForEach-Object { Format-TypeName $_ }) -join ' | ')
+    $friendlyTypes = @(
+        $types |
+            ForEach-Object { Format-TypeName $_ } |
+            Sort-Object `
+                @{ Expression = { if ($_ -eq 'null') { 1 } else { 0 } } }, `
+                @{ Expression = { $_ } } -Unique
+    )
+
+    return Join-FriendlyTypes $friendlyTypes
 }
 
 function Format-Scalar {
