@@ -96,7 +96,40 @@ This token must be able to update repository metadata for `TheSmokeTeam/qaas-doc
 
 Optional variable:
 
-- `DOCKERHUB_REPOSITORY`
+| Environment Variable                    | `extra.links` Key        | Description                                    |
+|-----------------------------------------|--------------------------|------------------------------------------------|
+| `QAAS_DOCS_LINK_REPOSITORY_ORG`         | `repository_org`         | Organization repository URL                    |
+| `QAAS_DOCS_LINK_REPOSITORY_RUNNER`      | `repository_runner`      | QaaS.Runner repo URL                           |
+| `QAAS_DOCS_LINK_REPOSITORY_MOCKER`      | `repository_mocker`      | QaaS.Mocker repo URL                           |
+| `QAAS_DOCS_LINK_REPOSITORY_FRAMEWORK`   | `repository_framework`   | QaaS.Framework repo URL                        |
+| `QAAS_DOCS_LINK_REPOSITORY_ASSERTIONS`  | `repository_assertions`  | QaaS.Common.Assertions repo URL                |
+| `QAAS_DOCS_LINK_REPOSITORY_GENERATORS`  | `repository_generators`  | QaaS.Common.Generators repo URL                |
+| `QAAS_DOCS_LINK_REPOSITORY_PROBES`      | `repository_probes`      | QaaS.Common.Probes repo URL                    |
+| `QAAS_DOCS_LINK_REPOSITORY_PROCESSORS`  | `repository_processors`  | QaaS.Common.Processors repo URL                |
+| `QAAS_DOCS_LINK_REPOSITORY_RUNNER_TEMPLATE` | `repository_runner_template` | QaaS.Runner.Template repo URL             |
+| `QAAS_DOCS_LINK_REPOSITORY_MOCKER_TEMPLATE` | `repository_mocker_template` | QaaS.Mocker.Template repo URL             |
+| `QAAS_DOCS_LINK_ALLURE_DOCS`            | `allure_docs`            | Allure documentation URL                       |
+| `QAAS_DOCS_LINK_ALLURE_INSTALL`         | `allure_install`         | Allure CLI install guide URL                   |
+| `QAAS_DOCS_LINK_DOTNET_SDK`             | `dotnet_sdk`             | .NET SDK download URL                          |
+| `QAAS_DOCS_LINK_VSCODE_YAML_EXTENSION`  | `vscode_yaml_extension`  | VS Code YAML extension URL                     |
+| `QAAS_DOCS_LINK_QAAS_COMMUNITY`         | `qaas_community`         | QaaS community URL                             |
+| `QAAS_DOCS_LINK_NUGET_FEED`             | `nuget_feed`             | NuGet feed URL                                 |
+| `QAAS_DOCS_LINK_NUGET_FEED_A`           | `nuget_feed_a`           | NuGet feed A URL                               |
+| `QAAS_DOCS_LINK_NUGET_FEED_B`           | `nuget_feed_b`           | NuGet feed B URL                               |
+| `QAAS_DOCS_LINK_NUGET_FEED_C`           | `nuget_feed_c`           | NuGet feed C URL                               |
+| `QAAS_DOCS_LINK_LINKS_KIBANA_SUPPORTER` | `links_kibana_supporter` | Kibana supporter link                          |
+| `QAAS_DOCS_LINK_LINKS_KIBANA_VERSION`   | `links_kibana_version`   | Kibana version                                 |
+| `QAAS_DOCS_LINK_QAAS_PROJECT_TEMPLATES` | `qaas_project_templates` | QaaS project templates URL                     |
+| `QAAS_DOCS_LINK_QAAS_ADOPTATION_DASHBOARD` | `qaas_adoptation_dashboard` | Adoption dashboard URL                    |
+| `QAAS_DOCS_LINK_QAAS_ADOPTATION_DASHBOARD_USER` | `qaas_adoptation_dashboard_user` | Adoption dashboard user          |
+| `QAAS_DOCS_LINK_QAAS_ADOPTATION_DASHBOARD_PASSWORD` | `qaas_adoptation_dashboard_password` | Adoption dashboard password |
+| `QAAS_DOCS_LINK_RUNNER_QUICKSTART_REPOSITORY` | `runner_quickstart_repository` | Runner quickstart repository URL       |
+| `QAAS_DOCS_LINK_MOCKER_QUICKSTART_REPOSITORY` | `mocker_quickstart_repository` | Mocker quickstart repository URL       |
+| `QAAS_DOCS_LINK_ARTIFACTORY`            | `artifactory`            | Artifactory base URL                           |
+| `QAAS_DOCS_LINK_REPOSITORY_MODULES`     | `repository_modules`     | QaaS.Common.Modules repository URL             |
+| `QAAS_DOCS_LINK_REPOSITORY_VAP`         | `repository_vap`         | Versioned Artifactory Publisher repository URL |
+| `QAAS_DOCS_LINK_RUNNER_SCHEMA`          | `runner_schema`          | QaaS.Runner schema URL                         |
+| `QAAS_DOCS_LINK_MOCKER_SCHEMA`          | `mocker_schema`          | QaaS.Mocker schema URL                         |
 
 If `DOCKERHUB_REPOSITORY` is not set, CI uses `${DOCKER_USERNAME}/${repo-name}`.
 

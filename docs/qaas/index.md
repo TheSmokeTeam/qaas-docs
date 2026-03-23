@@ -1,6 +1,6 @@
 # QaaS Runner
 
-**QaaS.Runner** is the execution engine of the QaaS ecosystem. It loads YAML- or code-based test configuration, runs setup and cleanup hooks, drives protocol sessions against the system under test, stores the resulting session data, evaluates assertions, and writes [Allure]({{ links.allure_docs }}) results.
+**QaaS.Runner** is the execution engine of the QaaS ecosystem. It loads YAML or code-based test configuration, runs setup and cleanup hooks, drives protocol sessions against the system under test, stores the resulting session data, evaluates assertions, and writes [Allure]({{ links.allure_docs }}) results.
 
 |             |                                                   |
 | ----------- | ------------------------------------------------- |
