@@ -1,15 +1,57 @@
 param(
-    [string]$DocsRoot = (Split-Path -Parent $PSScriptRoot),
-    [string]$MirrorRoot = (Join-Path (Split-Path -Parent $PSScriptRoot) '..\QaaS.PackageMirror'),
-    [string]$RunnerRoot = (Join-Path (Split-Path -Parent $PSScriptRoot) '..\QaaS.Runner'),
-    [string]$MockerRoot = (Join-Path (Split-Path -Parent $PSScriptRoot) '..\QaaS.Mocker'),
-    [string]$FrameworkRoot = (Join-Path (Split-Path -Parent $PSScriptRoot) '..\QaaS.Framework'),
+    [string]$DocsRoot,
+    [string]$MirrorRoot,
+    [string]$RunnerRoot,
+    [string]$MockerRoot,
+    [string]$FrameworkRoot,
     [switch]$SkipCliSnapshotRefresh,
     [switch]$Check,
     [switch]$BuildSite
 )
 
 $ErrorActionPreference = 'Stop'
+
+function Resolve-NormalizedPath {
+    param(
+        [Parameter(Mandatory)]
+        [string]$Path
+    )
+
+    $resolvedPath = Resolve-Path -LiteralPath $Path -ErrorAction SilentlyContinue
+    if ($null -ne $resolvedPath) {
+        return $resolvedPath.ProviderPath
+    }
+
+    return [System.IO.Path]::GetFullPath($Path)
+}
+
+$workspaceRoot = Resolve-NormalizedPath (Join-Path (Split-Path -Parent $PSScriptRoot) '..')
+
+if ([string]::IsNullOrWhiteSpace($DocsRoot)) {
+    $DocsRoot = Split-Path -Parent $PSScriptRoot
+}
+
+if ([string]::IsNullOrWhiteSpace($MirrorRoot)) {
+    $MirrorRoot = Join-Path $workspaceRoot 'QaaS.PackageMirror'
+}
+
+if ([string]::IsNullOrWhiteSpace($RunnerRoot)) {
+    $RunnerRoot = Join-Path $workspaceRoot 'QaaS.Runner'
+}
+
+if ([string]::IsNullOrWhiteSpace($MockerRoot)) {
+    $MockerRoot = Join-Path $workspaceRoot 'QaaS.Mocker'
+}
+
+if ([string]::IsNullOrWhiteSpace($FrameworkRoot)) {
+    $FrameworkRoot = Join-Path $workspaceRoot 'QaaS.Framework'
+}
+
+$DocsRoot = Resolve-NormalizedPath $DocsRoot
+$MirrorRoot = Resolve-NormalizedPath $MirrorRoot
+$RunnerRoot = Resolve-NormalizedPath $RunnerRoot
+$MockerRoot = Resolve-NormalizedPath $MockerRoot
+$FrameworkRoot = Resolve-NormalizedPath $FrameworkRoot
 
 # Regenerates the deterministic Runner, Mocker, and Framework reference pages from:
 # - committed mirror schema contracts

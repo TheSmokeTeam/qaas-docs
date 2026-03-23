@@ -84,10 +84,10 @@ jobs:
         run: |
           .\scripts\Generate-ReferenceDocs.ps1 `
             -DocsRoot "$PWD" `
-            -MirrorRoot "$PWD\QaaS.PackageMirror" `
-            -RunnerRoot "$PWD\QaaS.Runner" `
-            -MockerRoot "$PWD\QaaS.Mocker" `
-            -FrameworkRoot "$PWD\QaaS.Framework" `
+            -MirrorRoot (Join-Path $PWD 'QaaS.PackageMirror') `
+            -RunnerRoot (Join-Path $PWD 'QaaS.Runner') `
+            -MockerRoot (Join-Path $PWD 'QaaS.Mocker') `
+            -FrameworkRoot (Join-Path $PWD 'QaaS.Framework') `
             -Check `
             -BuildSite
 

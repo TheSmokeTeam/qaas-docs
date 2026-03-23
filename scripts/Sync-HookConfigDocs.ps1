@@ -1,10 +1,37 @@
 param(
-    [string]$DocsRoot = (Split-Path -Parent $PSScriptRoot),
-    [string]$MirrorRoot = (Join-Path (Split-Path -Parent $PSScriptRoot) '..\QaaS.PackageMirror'),
+    [string]$DocsRoot,
+    [string]$MirrorRoot,
     [switch]$Check
 )
 
 $ErrorActionPreference = 'Stop'
+
+function Resolve-NormalizedPath {
+    param(
+        [Parameter(Mandatory)]
+        [string]$Path
+    )
+
+    $resolvedPath = Resolve-Path -LiteralPath $Path -ErrorAction SilentlyContinue
+    if ($null -ne $resolvedPath) {
+        return $resolvedPath.ProviderPath
+    }
+
+    return [System.IO.Path]::GetFullPath($Path)
+}
+
+$workspaceRoot = Resolve-NormalizedPath (Join-Path (Split-Path -Parent $PSScriptRoot) '..')
+
+if ([string]::IsNullOrWhiteSpace($DocsRoot)) {
+    $DocsRoot = Split-Path -Parent $PSScriptRoot
+}
+
+if ([string]::IsNullOrWhiteSpace($MirrorRoot)) {
+    $MirrorRoot = Join-Path $workspaceRoot 'QaaS.PackageMirror'
+}
+
+$DocsRoot = Resolve-NormalizedPath $DocsRoot
+$MirrorRoot = Resolve-NormalizedPath $MirrorRoot
 Set-StrictMode -Version Latest
 
 $failures = New-Object 'System.Collections.Generic.List[string]'

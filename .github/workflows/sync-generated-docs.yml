@@ -74,10 +74,10 @@ jobs:
         shell: pwsh
         run: |
           .\qaas-docs\scripts\Generate-ReferenceDocs.ps1 `
-            -DocsRoot "$PWD\qaas-docs" `
-            -MirrorRoot "$PWD\QaaS.PackageMirror" `
-            -RunnerRoot "$PWD\QaaS.Runner" `
-            -MockerRoot "$PWD\QaaS.Mocker" `
-            -FrameworkRoot "$PWD\QaaS.Framework" `
+            -DocsRoot (Join-Path $PWD 'qaas-docs') `
+            -MirrorRoot (Join-Path $PWD 'QaaS.PackageMirror') `
+            -RunnerRoot (Join-Path $PWD 'QaaS.Runner') `
+            -MockerRoot (Join-Path $PWD 'QaaS.Mocker') `
+            -FrameworkRoot (Join-Path $PWD 'QaaS.Framework') `
             -Check `
             -BuildSite
