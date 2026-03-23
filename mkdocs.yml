@@ -137,9 +137,9 @@ nav:
         - YAML View: mocker/userInterfaces/mocker/configurationSections/server/configurations/yamlView.md
 
   - Hooks:
-    - Change Log: hooks/changeLog.md
     - Assertions:
       - Introduction: assertions/index.md
+      - Change Log: assertions/changeLog.md
       - Available Assertions:
         - HermeticByExpectedOutputCount:
           - Overview: assertions/availableAssertions/HermeticByExpectedOutputCount/overview.md
@@ -187,6 +187,7 @@ nav:
           - YAML View: assertions/availableAssertions/ValidateHermeticMetricsByInputOutputPercentage/configuration/yamlView.md
     - Generators:
       - Introduction: generators/index.md
+      - Change Log: generators/changeLog.md
       - Available Generators:
         - FromFileSystem:
           - Overview: generators/availableGenerators/FromFileSystem/overview.md
@@ -234,6 +235,7 @@ nav:
           - YAML View: generators/availableGenerators/Stacking/configuration/yamlView.md
     - Probes:
       - Introduction: probes/index.md
+      - Change Log: probes/changeLog.md
       - Available Probes:
         - OsRestartPods:
           - Overview: probes/availableProbes/OsRestartPods/overview.md
@@ -389,6 +391,7 @@ nav:
           - YAML View: probes/availableProbes/EmptyElasticIndices/configuration/yamlView.md
     - Processors:
       - Introduction: processors/index.md
+      - Change Log: processors/changeLog.md
       - Available Processors:
         - ConditionalResponseProcessor:
           - Overview: processors/availableProcessors/ConditionalResponseProcessor/overview.md
@@ -557,14 +560,6 @@ extra:
     qaas_adoptation_dashboard_user: user
     qaas_adoptation_dashboard_password: password
     qaas_custom_explore_view: link_to_explore_view
-    changelog_runner: https://github.com/TheSmokeTeam/QaaS.Runner/blob/master/CHANGELOG.md
-    changelog_mocker: https://github.com/TheSmokeTeam/QaaS.Mocker/blob/master/CHANGELOG.md
-    changelog_mocker_communication_objects: https://github.com/TheSmokeTeam/Qaas.Mocker.CommunicationObjects/blob/master/CHANGELOG.md
-    changelog_framework: https://github.com/TheSmokeTeam/QaaS.Framework/blob/master/CHANGELOG.md
-    changelog_assertions: https://github.com/TheSmokeTeam/QaaS.Common.Assertions/blob/master/CHANGELOG.md
-    changelog_generators: https://github.com/TheSmokeTeam/QaaS.Common.Generators/blob/master/CHANGELOG.md
-    changelog_probes: https://github.com/TheSmokeTeam/QaaS.Common.Probes/blob/master/CHANGELOG.md
-    changelog_processors: https://github.com/TheSmokeTeam/QaaS.Common.Processors/blob/master/CHANGELOG.md
     runner_schema: ../../assets/schemas/runner-family-schema.json
     mocker_schema: ../../assets/schemas/mocker-family-schema.json
   social:
