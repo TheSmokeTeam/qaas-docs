@@ -525,7 +525,6 @@ markdown_extensions:
 
 extra:
   links:
-    repository_org: https://github.com/TheSmokeTeam
     repository_runner: https://github.com/TheSmokeTeam/QaaS.Runner
     repository_mocker: https://github.com/TheSmokeTeam/QaaS.Mocker
     repository_mocker_communication_objects: https://github.com/TheSmokeTeam/Qaas.Mocker.CommunicationObjects
@@ -536,8 +535,11 @@ extra:
     repository_processors: https://github.com/TheSmokeTeam/QaaS.Common.Processors
     repository_runner_template: https://github.com/TheSmokeTeam/QaaS.Runner.Template
     repository_mocker_template: https://github.com/TheSmokeTeam/QaaS.Mocker.Template
-    allure_docs: https://docs.qameta.io/allure/
-    allure_install: https://docs.qameta.io/allure/#_installing_a_commandline
+    repository_modules: https://github.com/TheSmokeTeam/QaaS.Common.Modules
+    repository_runner_quickstart: https://github.com/TheSmokeTeam/DummyAppTests
+    repository_mocker_quickstart: https://github.com/TheSmokeTeam/DummyAppMock
+    repository_vap: GIT/versioned-artifact-publisher
+    allure_installation_guide: https://docs.qameta.io/allure/#_installing_a_commandline
     dotnet_sdk: https://dotnet.microsoft.com/download
     vscode_yaml_extension: https://marketplace.visualstudio.com/items?itemName=redhat.vscode-yaml
     qaas_community: https://discord.gg/rg2NYT4Mea
@@ -545,12 +547,7 @@ extra:
     nuget_feed_a: https://api.nuget.org/v3/index.json
     nuget_feed_b: https://api.nuget.org/v3/index.json
     nuget_feed_c: https://api.nuget.org/v3/index.json
-    qaas_project_templates: link_to_templates
-    runner_quickstart_repository: https://github.com/TheSmokeTeam/DummyAppTests
-    mocker_quickstart_repository: https://github.com/TheSmokeTeam/DummyAppMock
     artifactory: link_to_artifactory
-    repository_modules: https://github.com/TheSmokeTeam/QaaS.Common.Modules
-    repository_vap: GIT/versioned-artifact-publisher
     links_kibana_supporter: kibana_supporter
     links_kibana_version: 8.4.1
     qaas_adoptation_dashboard: link_to_adoptation_dashboard

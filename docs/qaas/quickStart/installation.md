@@ -6,7 +6,7 @@
 | ----------- | ------- |
 | [.NET SDK]({{ links.dotnet_sdk }}) | Version **10.0** |
 | NuGet feed | One configurable feed, defaulting to `nuget.org` |
-| [Allure CLI]({{ links.allure_install }}) | Optional, for viewing reports locally |
+| [Allure CLI]({{ links.allure_installation_guide }}) | Optional, for viewing reports locally |
 
 ## Global NuGet.Config
 
@@ -70,4 +70,4 @@ If you use Artifactory or another private feed, update the generated `NuGet.conf
 
 ## Allure CLI
 
-The Allure CLI installation instructions are available in the [official Allure docs]({{ links.allure_install }}).
+The Allure CLI installation instructions are available in the [official Allure docs]({{ links.allure_installation_guide }}).

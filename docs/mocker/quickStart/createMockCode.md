@@ -2,7 +2,7 @@
 
 Use code configuration when the mock should be assembled with normal C# builders instead of one static YAML file. The runtime concepts stay the same as the YAML guide: a data source feeds a stub, and a server action points to that stub.
 
-The completed sample is available in the `code_configuration` branch of [DummyAppMock]({{ links.mocker_quickstart_repository }}/tree/code_configuration).
+The completed sample is available in the `code_configuration` branch of [DummyAppMock]({{ links.repository_mocker_quickstart }}/tree/code_configuration).
 
 ## Scenario
 
