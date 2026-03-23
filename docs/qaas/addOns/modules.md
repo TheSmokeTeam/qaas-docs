@@ -27,7 +27,7 @@ You can do it by urself or use a tool we created named [`VAP`](`{{ links.reposit
 
 ## Publishing via CI
 
-Automate module publishing using the `VAP` CI step (`{{ links.repository_vap }}`) in GitLab CI templates.
+Automate module publishing using the [`VAP` CI step](`{{ links.repository_vap }}`) in GitLab CI templates.
 
 ---
 
