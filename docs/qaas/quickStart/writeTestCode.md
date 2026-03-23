@@ -108,8 +108,8 @@ Append this code inside `Configure`:
                 Username = "admin",
                 Password = "admin",
                 Port = 5672,
-                ExchangeName = "amq.direct",
-                RoutingKey = "dummyapp"
+                ExchangeName = "input",
+                RoutingKey = "/"
             });
 
         var consumer = new ConsumerBuilder()
@@ -121,8 +121,8 @@ Append this code inside `Configure`:
                 Username = "admin",
                 Password = "admin",
                 Port = 5672,
-                ExchangeName = "amq.direct",
-                RoutingKey = "dummyapp"
+                ExchangeName = "output",
+                RoutingKey = "/"
             })
             .WithDeserializer(new DeserializeConfig
             {
@@ -135,7 +135,7 @@ Append this code inside `Configure`:
             .AddConsumer(consumer);
 ```
 
-The session code mirrors the YAML session block: one publisher sends the input, one consumer reads the output, and both point to the same exchange and routing key.
+The session code mirrors the YAML session block: one publisher sends the input to `input`, one consumer reads the output from `output`, and together they model the same RabbitMQ contract described in the YAML guide.
 
 ## Add the Assertions
 
@@ -256,8 +256,8 @@ public sealed class RunnerExecutionBuilderConfigurator
                 Username = "admin",
                 Password = "admin",
                 Port = 5672,
-                ExchangeName = "amq.direct",
-                RoutingKey = "dummyapp"
+                ExchangeName = "input",
+                RoutingKey = "/"
             });
 
         var consumer = new ConsumerBuilder()
@@ -269,8 +269,8 @@ public sealed class RunnerExecutionBuilderConfigurator
                 Username = "admin",
                 Password = "admin",
                 Port = 5672,
-                ExchangeName = "amq.direct",
-                RoutingKey = "dummyapp"
+                ExchangeName = "output",
+                RoutingKey = "/"
             })
             .WithDeserializer(new DeserializeConfig
             {
@@ -348,7 +348,7 @@ foreach (var executionBuilder in runner.ExecutionBuilders)
 runner.Run();
 ```
 
-## Start RabbitMQ
+## Start RabbitMQ and Wire the Exchanges
 
 ```bash
 docker run --rm -d --name qaas-runner-rabbit \
@@ -357,6 +357,15 @@ docker run --rm -d --name qaas-runner-rabbit \
   -e RABBITMQ_DEFAULT_USER=admin \
   -e RABBITMQ_DEFAULT_PASS=admin \
   rabbitmq:4-management
+
+docker exec qaas-runner-rabbit rabbitmqadmin -u admin -p admin --non-interactive \
+  exchanges declare --name input --type direct --durable true
+
+docker exec qaas-runner-rabbit rabbitmqadmin -u admin -p admin --non-interactive \
+  exchanges declare --name output --type direct --durable true
+
+docker exec qaas-runner-rabbit rabbitmqadmin -u admin -p admin --non-interactive \
+  bindings declare --source input --destination-type exchange --destination output --routing-key /
 ```
 
 ## Run
@@ -369,4 +378,4 @@ dotnet run -- run test.qaas.yaml
 
 ## Result
 
-Runner builds the same RabbitMQ flow as the YAML guide, publishes the payload from `TestData/input.json`, consumes it back, and verifies both hermeticity and delay.
+Runner builds the same RabbitMQ flow as the YAML guide, publishes the payload from `TestData/input.json` to `input`, consumes it from `output`, and verifies both hermeticity and delay. In the quick start RabbitMQ's exchange binding stands in for the real application hop.

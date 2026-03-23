@@ -183,3 +183,5 @@ Then verify it:
 ```bash
 curl http://127.0.0.1:8080/data
 ```
+
+The mock keeps running after the check. Stop it with `Ctrl+C` when you are done.

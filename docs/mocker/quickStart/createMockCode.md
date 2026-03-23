@@ -27,7 +27,7 @@ dotnet add DummyAppMock/DummyAppMock.csproj package QaaS.Common.Generators
 ```yaml
 ```
 
-The current public `QaaS.Mocker` package does not auto-discover code configurators yet, so this quick start builds the execution directly in `Program.cs`. The empty file stays in the project so the folder layout still mirrors the YAML quick start.
+The current public `QaaS.Mocker` package does not auto-discover code configurators yet, so this quick start builds the execution directly in `Program.cs`. `Program.cs` does not read this file. The empty file stays in the project only so the folder layout still mirrors the YAML quick start.
 
 ## Reuse the Same Local Processor
 
@@ -236,3 +236,5 @@ Then verify it:
 ```bash
 curl http://127.0.0.1:8080/data
 ```
+
+The mock keeps running after the check. Stop it with `Ctrl+C` when you are done.

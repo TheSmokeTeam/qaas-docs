@@ -2,7 +2,7 @@
 
 Use YAML when you want the test flow to stay declarative, easy to diff, and easy to hand to someone who does not need to read C# first. QaaS.Runner loads the YAML into an execution builder, so the YAML sections below map directly to the runtime concepts you will keep using later: metadata, data sources, sessions, and assertions.
 
-This sample publishes one message to RabbitMQ, consumes it back from the same exchange and routing key, and verifies both delivery and timing.
+This sample publishes one message to RabbitMQ's `input` exchange, waits for a response on the `output` exchange, and verifies both delivery and timing.
 
 The completed sample is available in the `yaml_configuration` branch of [DummyAppTests]({{ links.runner_quickstart_repository }}/tree/yaml_configuration).
 
@@ -38,7 +38,7 @@ The host stays small because the entire test definition will live in `test.qaas.
 ]
 ```
 
-The sample publishes this payload to RabbitMQ and later reads the same payload back from the queue flow.
+The sample publishes this payload to RabbitMQ and then checks that it comes back through the expected `input` to `output` flow.
 
 ## Start with `MetaData` and `DataSources`
 
@@ -64,7 +64,7 @@ DataSources:
 
 ## Add the `Sessions` Section
 
-Next add the session that performs the real work. A session groups the actions that exercise the system under test. In this sample there is one publisher and one consumer, both pointed at RabbitMQ's built-in `amq.direct` exchange with the routing key `dummyapp`.
+Next add the session that performs the real work. A session groups the actions that exercise the system under test. In this sample the publisher writes to RabbitMQ's `input` exchange and the consumer listens on the `output` exchange, which matches the older DummyApp contract from the previous docs.
 
 Append this section to `test.qaas.yaml`:
 
@@ -82,8 +82,8 @@ Sessions:
           Username: admin
           Password: admin
           Port: 5672
-          ExchangeName: amq.direct
-          RoutingKey: dummyapp
+          ExchangeName: input
+          RoutingKey: /
     Consumers:
       - Name: Consumer
         TimeoutMs: 5000
@@ -92,13 +92,13 @@ Sessions:
           Username: admin
           Password: admin
           Port: 5672
-          ExchangeName: amq.direct
-          RoutingKey: dummyapp
+          ExchangeName: output
+          RoutingKey: /
         Deserialize:
           Deserializer: Json
 ```
 
-The publisher sends every payload loaded by `FromFileSystemTestData`. The consumer listens on the same exchange and routing key, waits up to five seconds, and deserializes the received body as JSON.
+The publisher sends every payload loaded by `FromFileSystemTestData` to the `input` exchange. The consumer listens on the `output` exchange, waits up to five seconds, and deserializes the received body as JSON. In a real test your application would move the message from `input` to `output`; for the local quick start we wire those exchanges together in RabbitMQ so you can prove the Runner flow first.
 
 ## Add the `Assertions` Section
 
@@ -160,8 +160,8 @@ Sessions:
           Username: admin
           Password: admin
           Port: 5672
-          ExchangeName: amq.direct
-          RoutingKey: dummyapp
+          ExchangeName: input
+          RoutingKey: /
     Consumers:
       - Name: Consumer
         TimeoutMs: 5000
@@ -170,8 +170,8 @@ Sessions:
           Username: admin
           Password: admin
           Port: 5672
-          ExchangeName: amq.direct
-          RoutingKey: dummyapp
+          ExchangeName: output
+          RoutingKey: /
         Deserialize:
           Deserializer: Json
 
@@ -196,7 +196,7 @@ Assertions:
       MaximumDelayMs: 5000
 ```
 
-## Start RabbitMQ
+## Start RabbitMQ and Wire the Exchanges
 
 ```bash
 docker run --rm -d --name qaas-runner-rabbit \
@@ -205,6 +205,15 @@ docker run --rm -d --name qaas-runner-rabbit \
   -e RABBITMQ_DEFAULT_USER=admin \
   -e RABBITMQ_DEFAULT_PASS=admin \
   rabbitmq:4-management
+
+docker exec qaas-runner-rabbit rabbitmqadmin -u admin -p admin --non-interactive \
+  exchanges declare --name input --type direct --durable true
+
+docker exec qaas-runner-rabbit rabbitmqadmin -u admin -p admin --non-interactive \
+  exchanges declare --name output --type direct --durable true
+
+docker exec qaas-runner-rabbit rabbitmqadmin -u admin -p admin --non-interactive \
+  bindings declare --source input --destination-type exchange --destination output --routing-key /
 ```
 
 ## Run
@@ -217,4 +226,4 @@ dotnet run -- run test.qaas.yaml
 
 ## Result
 
-Runner publishes the JSON payload from `TestData/input.json`, reads it back through the consumer, and verifies both 100% hermeticity and a maximum end-to-end delay of 5000 ms.
+Runner publishes the JSON payload from `TestData/input.json` to `input`, the local RabbitMQ binding forwards it to `output`, and the consumer verifies both 100% hermeticity and a maximum end-to-end delay of 5000 ms. Once you connect a real application, that application should be the component that consumes from `input` and publishes to `output`.
