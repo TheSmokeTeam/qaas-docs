@@ -20,7 +20,7 @@ jobs:
       DOCKER_REPOSITORY_NAME: ${{ vars.DOCKER_REPOSITORY_NAME || github.event.repository.name }}
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
 
       - name: Check Docker Hub secrets
         id: docker-secrets

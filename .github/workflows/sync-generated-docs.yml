@@ -18,31 +18,31 @@ jobs:
     runs-on: windows-latest
     steps:
       - name: Checkout docs repo
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
         with:
           path: qaas-docs
           submodules: recursive
 
       - name: Checkout package mirror
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
         with:
           repository: TheSmokeTeam/QaaS.PackageMirror
           path: QaaS.PackageMirror
 
       - name: Checkout runner
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
         with:
           repository: TheSmokeTeam/QaaS.Runner
           path: QaaS.Runner
 
       - name: Checkout mocker
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
         with:
           repository: TheSmokeTeam/QaaS.Mocker
           path: QaaS.Mocker
 
       - name: Checkout framework
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
         with:
           repository: TheSmokeTeam/QaaS.Framework
           path: QaaS.Framework
