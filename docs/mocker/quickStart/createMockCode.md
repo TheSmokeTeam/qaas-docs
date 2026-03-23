@@ -27,28 +27,27 @@ dotnet add DummyAppMock/DummyAppMock.csproj package QaaS.Common.Generators
 ```yaml
 ```
 
-The current public `QaaS.Mocker` package does not auto-discover code configurators yet, so this quick start builds the execution directly in `Program.cs`. `Program.cs` does not read this file. The empty file stays in the project only so the folder layout still mirrors the YAML quick start.
+The mocker CLI still expects a configuration-file argument, so keep the file in the project even when the execution is configured from code. The file can stay empty because `IExecutionBuilderConfigurator` implementations are applied after the bootstrap loader creates the execution builder.
 
 ## Reuse the Same Local Processor
 
 Use the same `ServerDataProcessor` shown in the YAML quick start.
 
-## Use a Small Host in `Program.cs`
+## Use the Normal Bootstrap Entry Point
 
 `DummyAppMock/Program.cs`
 
 ```csharp
-var executionBuilder = new QaaS.Mocker.ExecutionBuilder();
-var configurator = new DummyAppMock.MockerExecutionBuilderConfigurator();
+var effectiveArgs = args.Length == 0
+    ? ["run", "mocker.qaas.yaml", "--no-env"]
+    : args;
 
-configurator.Configure(executionBuilder);
-
-new QaaS.Mocker.MockerRunner(executionBuilder).Run();
+QaaS.Mocker.Bootstrap.New(effectiveArgs).Run();
 ```
 
-This host stays small, but it is honest about where the configuration lives: the execution builder is created in code and then passed straight to `MockerRunner`.
+This keeps the host small and lets the normal CLI/bootstrap pipeline discover code configurators automatically from the entry assembly and copied output dependencies.
 
-## Build the Data Source First
+## Implement `IExecutionBuilderConfigurator`
 
 Create `DummyAppMock/MockerExecutionBuilderConfigurator.cs` and begin with the part that loads the response payload from disk.
 
@@ -65,7 +64,7 @@ using HttpMethod = QaaS.Mocker.Servers.ConfigurationObjects.HttpServerConfigs.Ht
 
 namespace DummyAppMock;
 
-public sealed class MockerExecutionBuilderConfigurator
+public sealed class MockerExecutionBuilderConfigurator : IExecutionBuilderConfigurator
 {
     public void Configure(ExecutionBuilder executionBuilder)
     {
@@ -135,7 +134,7 @@ Append this code inside `Configure`:
 }
 ```
 
-At this point the code-first mock describes the same flow as the YAML version, but with normal C# builders.
+At this point the code-first mock describes the same flow as the YAML version, but with normal C# builders that the mocker bootstrap applies automatically.
 
 ## Full `MockerExecutionBuilderConfigurator.cs`
 
@@ -152,7 +151,7 @@ using HttpMethod = QaaS.Mocker.Servers.ConfigurationObjects.HttpServerConfigs.Ht
 
 namespace DummyAppMock;
 
-public sealed class MockerExecutionBuilderConfigurator
+public sealed class MockerExecutionBuilderConfigurator : IExecutionBuilderConfigurator
 {
     public void Configure(ExecutionBuilder executionBuilder)
     {
@@ -204,12 +203,11 @@ public sealed class MockerExecutionBuilderConfigurator
 ## Full `Program.cs`
 
 ```csharp
-var executionBuilder = new QaaS.Mocker.ExecutionBuilder();
-var configurator = new DummyAppMock.MockerExecutionBuilderConfigurator();
+var effectiveArgs = args.Length == 0
+    ? ["run", "mocker.qaas.yaml", "--no-env"]
+    : args;
 
-configurator.Configure(executionBuilder);
-
-new QaaS.Mocker.MockerRunner(executionBuilder).Run();
+QaaS.Mocker.Bootstrap.New(effectiveArgs).Run();
 ```
 
 ## Add the Response File

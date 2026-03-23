@@ -11,9 +11,9 @@
 | `GeneratorConfiguration.JsonFieldReplacements[].Path` | `String` | &#10004 |  | The path (JSONPath query language Feb 2024, by Stefan Gossner) of the field to inject to |
 | `GeneratorConfiguration.JsonFieldReplacements[].ValueType` | `enum [Null / FromDataSource / DateTime / UnixEpochTime / String / Boolean / Integer / Double / ByteArray]` | &#10006 |  | The type of static field injection to use |
 | `GeneratorConfiguration.JsonFieldReplacements[].Boolean` | `Object | String` | &#10006 |  | The value of the field if the type is 'Boolean' |
-| `GeneratorConfiguration.JsonFieldReplacements[].Boolean.Value` | `Boolean | String` | &#10006 |  | The literal value to inject when this manual value configuration is selected. |
+| `GeneratorConfiguration.JsonFieldReplacements[].Boolean.Value` | `Boolean | String` | &#10006 |  |  |
 | `GeneratorConfiguration.JsonFieldReplacements[].ByteArray` | `Object | String` | &#10006 |  | The value of the field if the type is 'ByteArray' |
-| `GeneratorConfiguration.JsonFieldReplacements[].ByteArray.Value` | `String` | &#10006 |  | The literal value to inject when this manual value configuration is selected. |
+| `GeneratorConfiguration.JsonFieldReplacements[].ByteArray.Value` | `String` | &#10006 |  |  |
 | `GeneratorConfiguration.JsonFieldReplacements[].DateTime` | `Object | String` | &#10006 |  | The date-time field configuration |
 | `GeneratorConfiguration.JsonFieldReplacements[].DateTime.Day` | `Integer | Null | String` | &#10006 |  | Constant Day of the date time |
 | `GeneratorConfiguration.JsonFieldReplacements[].DateTime.DayOffset` | `Integer | String` | &#10006 | 0 | Day offset from the date time |
@@ -30,14 +30,14 @@
 | `GeneratorConfiguration.JsonFieldReplacements[].DateTime.TimeZone` | `Null | String` | &#10006 |  | Timezone of the date time (default UTC) |
 | `GeneratorConfiguration.JsonFieldReplacements[].DateTime.Year` | `Integer | Null | String` | &#10006 |  | Constant Year of the date time |
 | `GeneratorConfiguration.JsonFieldReplacements[].Double` | `Object | String` | &#10006 |  | The value of the field if the type is 'Double' |
-| `GeneratorConfiguration.JsonFieldReplacements[].Double.Value` | `Number | String` | &#10006 |  | The literal value to inject when this manual value configuration is selected. |
+| `GeneratorConfiguration.JsonFieldReplacements[].Double.Value` | `Number | String` | &#10006 |  |  |
 | `GeneratorConfiguration.JsonFieldReplacements[].FromDataSource` | `Object | String` | &#10006 |  | The generation field configuration |
 | `GeneratorConfiguration.JsonFieldReplacements[].FromDataSource.Name` | `String` | &#10004 |  | The name of the data source to use for the value of the field |
 | `GeneratorConfiguration.JsonFieldReplacements[].FromDataSource.OutOfRangePolicy` | `enum [Null / Loop]` | &#10006 |  | The policy to use if the data source is out of range |
 | `GeneratorConfiguration.JsonFieldReplacements[].Integer` | `Object | String` | &#10006 |  | The value of the field if the type is 'Integer' |
-| `GeneratorConfiguration.JsonFieldReplacements[].Integer.Value` | `Integer | String` | &#10006 |  | The literal value to inject when this manual value configuration is selected. |
+| `GeneratorConfiguration.JsonFieldReplacements[].Integer.Value` | `Integer | String` | &#10006 |  |  |
 | `GeneratorConfiguration.JsonFieldReplacements[].String` | `Object | String` | &#10006 |  | The value of the field if the type is 'String' |
-| `GeneratorConfiguration.JsonFieldReplacements[].String.Value` | `String` | &#10006 |  | The literal value to inject when this manual value configuration is selected. |
+| `GeneratorConfiguration.JsonFieldReplacements[].String.Value` | `String` | &#10006 |  |  |
 | `GeneratorConfiguration.JsonFieldReplacements[].UnixEpochTime` | `Object | String` | &#10006 |  | The unix epoch time field configuration |
 | `GeneratorConfiguration.JsonFieldReplacements[].UnixEpochTime.Day` | `Integer | Null | String` | &#10006 |  | Constant Day of the date time |
 | `GeneratorConfiguration.JsonFieldReplacements[].UnixEpochTime.DayOffset` | `Integer | String` | &#10006 | 0 | Day offset from the date time |

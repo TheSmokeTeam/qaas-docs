@@ -1,4 +1,4 @@
-<!-- generated hash:ab8ac2d43851 sources:Framework, functions -->
+<!-- generated hash:f7a8f517c684 sources:Framework, functions -->
 
 # Framework Functions
 
@@ -271,40 +271,6 @@ Enable this when configuration values should resolve environment variables while
 
 <hr class="function-separator" />
 
-#### `ContextBuilder.SetCurrentRunningSessions(IInternalRunningSessions runningSessions)`
-
-**Location** `QaaS.Framework.SDK/ContextObjects/ContextBuilder.cs:219`
-
-**Complete Signature**
-```csharp
-public IContextBuilder SetCurrentRunningSessions(IInternalRunningSessions runningSessions)
-```
-
-**Docstring**
-
-Sets the running-session store used by the built context.
-
-The running-session store allows runtime components to coordinate and inspect active sessions through the built context.
-
-<hr class="function-separator" />
-
-#### `ContextBuilder.BuildInternal()`
-
-**Location** `QaaS.Framework.SDK/ContextObjects/ContextBuilder.cs:267`
-
-**Complete Signature**
-```csharp
-public InternalContext BuildInternal()
-```
-
-**Docstring**
-
-Builds an internal QaaS context from the current builder state.
-
-Call this after all configuration inputs, overwrite sources, and resolution options have been registered on the builder. The returned internal context is used by the runtime bootstrap flow.
-
-<hr class="function-separator" />
-
 #### `ContextBuilder.Build()`
 
 **Location** `QaaS.Framework.SDK/ContextObjects/ContextBuilder.cs:285`
@@ -326,7 +292,7 @@ Prefer BuildInternal() for the active runtime path.
 
 #### `DataSourceBuilder.Named(string name)`
 
-**Location** `QaaS.Framework.SDK/DataSourceObjects/DataSourceBuilder.cs:67`
+**Location** `QaaS.Framework.SDK/DataSourceObjects/DataSourceBuilder.cs:60`
 
 **Complete Signature**
 ```csharp
@@ -343,7 +309,7 @@ Use this method when working with the documented Framework data source builder A
 
 #### `DataSourceBuilder.HookNamed(string hookName)`
 
-**Location** `QaaS.Framework.SDK/DataSourceObjects/DataSourceBuilder.cs:80`
+**Location** `QaaS.Framework.SDK/DataSourceObjects/DataSourceBuilder.cs:73`
 
 **Complete Signature**
 ```csharp
@@ -360,7 +326,7 @@ Use this method when working with the documented Framework data source builder A
 
 #### `DataSourceBuilder.AddDataSourceName(string dataSourceName)`
 
-**Location** `QaaS.Framework.SDK/DataSourceObjects/DataSourceBuilder.cs:93`
+**Location** `QaaS.Framework.SDK/DataSourceObjects/DataSourceBuilder.cs:86`
 
 **Complete Signature**
 ```csharp
@@ -377,7 +343,7 @@ Use this method when working with the documented Framework data source builder A
 
 #### `DataSourceBuilder.AddDataSourcePattern(string dataSourcePattern)`
 
-**Location** `QaaS.Framework.SDK/DataSourceObjects/DataSourceBuilder.cs:106`
+**Location** `QaaS.Framework.SDK/DataSourceObjects/DataSourceBuilder.cs:99`
 
 **Complete Signature**
 ```csharp
@@ -394,7 +360,7 @@ Use this method when working with the documented Framework data source builder A
 
 #### `DataSourceBuilder.WithSerializer(SerializeConfig serializeConfig)`
 
-**Location** `QaaS.Framework.SDK/DataSourceObjects/DataSourceBuilder.cs:119`
+**Location** `QaaS.Framework.SDK/DataSourceObjects/DataSourceBuilder.cs:112`
 
 **Complete Signature**
 ```csharp
@@ -411,7 +377,7 @@ Use this method when working with the documented Framework data source builder A
 
 #### `DataSourceBuilder.WithDeserializer(DeserializeConfig deserializeConfig)`
 
-**Location** `QaaS.Framework.SDK/DataSourceObjects/DataSourceBuilder.cs:132`
+**Location** `QaaS.Framework.SDK/DataSourceObjects/DataSourceBuilder.cs:125`
 
 **Complete Signature**
 ```csharp
@@ -428,7 +394,7 @@ Use this method when working with the documented Framework data source builder A
 
 #### `DataSourceBuilder.IsLazy()`
 
-**Location** `QaaS.Framework.SDK/DataSourceObjects/DataSourceBuilder.cs:145`
+**Location** `QaaS.Framework.SDK/DataSourceObjects/DataSourceBuilder.cs:138`
 
 **Complete Signature**
 ```csharp
@@ -445,7 +411,7 @@ Use this method when working with the documented Framework data source builder A
 
 #### `DataSourceBuilder.Configure(object configuration)`
 
-**Location** `QaaS.Framework.SDK/DataSourceObjects/DataSourceBuilder.cs:158`
+**Location** `QaaS.Framework.SDK/DataSourceObjects/DataSourceBuilder.cs:151`
 
 **Complete Signature**
 ```csharp
@@ -462,7 +428,7 @@ The supplied object is serialized to JSON and loaded into the builder as the new
 
 #### `DataSourceBuilder.CreateConfiguration(object configuration)`
 
-**Location** `QaaS.Framework.SDK/DataSourceObjects/DataSourceBuilder.cs:172`
+**Location** `QaaS.Framework.SDK/DataSourceObjects/DataSourceBuilder.cs:165`
 
 **Complete Signature**
 ```csharp
@@ -479,7 +445,7 @@ This is an alias for Configure and replaces any existing generator configuration
 
 #### `DataSourceBuilder.Create(object configuration)`
 
-**Location** `QaaS.Framework.SDK/DataSourceObjects/DataSourceBuilder.cs:184`
+**Location** `QaaS.Framework.SDK/DataSourceObjects/DataSourceBuilder.cs:177`
 
 **Complete Signature**
 ```csharp
@@ -496,7 +462,7 @@ This is a shorthand alias for CreateConfiguration.
 
 #### `DataSourceBuilder.ReadConfiguration()`
 
-**Location** `QaaS.Framework.SDK/DataSourceObjects/DataSourceBuilder.cs:196`
+**Location** `QaaS.Framework.SDK/DataSourceObjects/DataSourceBuilder.cs:189`
 
 **Complete Signature**
 ```csharp
@@ -513,7 +479,7 @@ Use this method when working with the documented Framework data source builder A
 
 #### `DataSourceBuilder.UpdateConfiguration(object configuration)`
 
-**Location** `QaaS.Framework.SDK/DataSourceObjects/DataSourceBuilder.cs:208`
+**Location** `QaaS.Framework.SDK/DataSourceObjects/DataSourceBuilder.cs:201`
 
 **Complete Signature**
 ```csharp
@@ -530,7 +496,7 @@ Use this when only part of the generator configuration should change and existin
 
 #### `DataSourceBuilder.UpsertConfiguration(object configuration)`
 
-**Location** `QaaS.Framework.SDK/DataSourceObjects/DataSourceBuilder.cs:221`
+**Location** `QaaS.Framework.SDK/DataSourceObjects/DataSourceBuilder.cs:214`
 
 **Complete Signature**
 ```csharp
@@ -547,7 +513,7 @@ This is an alias for UpdateConfiguration.
 
 #### `DataSourceBuilder.DeleteConfiguration()`
 
-**Location** `QaaS.Framework.SDK/DataSourceObjects/DataSourceBuilder.cs:233`
+**Location** `QaaS.Framework.SDK/DataSourceObjects/DataSourceBuilder.cs:226`
 
 **Complete Signature**
 ```csharp
@@ -564,7 +530,7 @@ After this call, the builder holds an empty configuration until a new one is sup
 
 #### `DataSourceBuilder.Read(IParser parser, Type expectedType, ObjectDeserializer nestedObjectDeserializer)`
 
-**Location** `QaaS.Framework.SDK/DataSourceObjects/DataSourceBuilder.cs:246`
+**Location** `QaaS.Framework.SDK/DataSourceObjects/DataSourceBuilder.cs:239`
 
 **Complete Signature**
 ```csharp
@@ -581,7 +547,7 @@ DataSourceBuilder only supports YAML serialization through Write; custom deseria
 
 #### `DataSourceBuilder.Write(IEmitter emitter, ObjectSerializer nestedObjectSerializer)`
 
-**Location** `QaaS.Framework.SDK/DataSourceObjects/DataSourceBuilder.cs:259`
+**Location** `QaaS.Framework.SDK/DataSourceObjects/DataSourceBuilder.cs:252`
 
 **Complete Signature**
 ```csharp
@@ -598,7 +564,7 @@ This method participates in the YAML serialization surface that backs configurat
 
 #### `DataSourceBuilder.Register()`
 
-**Location** `QaaS.Framework.SDK/DataSourceObjects/DataSourceBuilder.cs:283`
+**Location** `QaaS.Framework.SDK/DataSourceObjects/DataSourceBuilder.cs:276`
 
 **Complete Signature**
 ```csharp
@@ -611,30 +577,13 @@ Registers the configured data source definition and returns the resulting data s
 
 Registration produces the immutable data-source descriptor that is later resolved against generator hooks during execution build.
 
-<hr class="function-separator" />
-
-#### `DataSourceBuilder.Build(InternalContext context, IEnumerable<DataSource> dataSources, IEnumerable<KeyValuePair<string, IGenerator>> generators)`
-
-**Location** `QaaS.Framework.SDK/DataSourceObjects/DataSourceBuilder.cs:304`
-
-**Complete Signature**
-```csharp
-public DataSource Build(InternalContext context, IEnumerable<DataSource> dataSources, IEnumerable<KeyValuePair<string, IGenerator>> generators)
-```
-
-**Docstring**
-
-Builds the configured data source for execution.
-
-This resolves the configured generator, links any referenced data sources, and finalizes the registered data source before execution begins.
-
 ### Policies
 
 <hr class="function-separator" />
 
 #### `PolicyBuilder.Configure(IPolicyConfig config)`
 
-**Location** `QaaS.Framework.Policies/PolicyBuilder.cs:43`
+**Location** `QaaS.Framework.Policies/PolicyBuilder.cs:38`
 
 **Complete Signature**
 ```csharp
@@ -651,7 +600,7 @@ Use this method when working with the documented Framework policy builder API su
 
 #### `PolicyBuilder.Build()`
 
-**Location** `QaaS.Framework.Policies/PolicyBuilder.cs:77`
+**Location** `QaaS.Framework.Policies/PolicyBuilder.cs:72`
 
 **Complete Signature**
 ```csharp
@@ -668,7 +617,7 @@ Call this after the fluent configuration is complete. The method validates the a
 
 #### `PolicyBuilder.BuildPolicies(PolicyBuilder[]? policyBuilders)`
 
-**Location** `QaaS.Framework.Policies/PolicyBuilder.cs:114`
+**Location** `QaaS.Framework.Policies/PolicyBuilder.cs:109`
 
 **Complete Signature**
 ```csharp

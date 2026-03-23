@@ -1,4 +1,4 @@
-<!-- generated hash:cafc7919b9f6 sources:Runner, functions -->
+<!-- generated hash:e1b121df40fa sources:Runner, functions -->
 
 # Runner Functions
 
@@ -12,7 +12,7 @@ This page is generated from source-level `qaas-docs` annotations and the current
 
 #### `AssertionBuilder.Read(IParser parser, Type expectedType, ObjectDeserializer nestedObjectDeserializer)`
 
-**Location** `QaaS.Runner.Assertions/ConfigurationObjects/AssertionBuilder.cs:113`
+**Location** `QaaS.Runner.Assertions/ConfigurationObjects/AssertionBuilder.cs:99`
 
 **Complete Signature**
 ```csharp
@@ -29,7 +29,7 @@ This method participates in the YAML serialization surface that backs configurat
 
 #### `AssertionBuilder.Write(IEmitter emitter, ObjectSerializer nestedObjectSerializer)`
 
-**Location** `QaaS.Runner.Assertions/ConfigurationObjects/AssertionBuilder.cs:126`
+**Location** `QaaS.Runner.Assertions/ConfigurationObjects/AssertionBuilder.cs:112`
 
 **Complete Signature**
 ```csharp
@@ -46,7 +46,7 @@ This method participates in the YAML serialization surface that backs configurat
 
 #### `AssertionBuilder.ReportOnlyStatuses(IList<AssertionStatus> statusesToReport)`
 
-**Location** `QaaS.Runner.Assertions/ConfigurationObjects/AssertionBuilder.cs:151`
+**Location** `QaaS.Runner.Assertions/ConfigurationObjects/AssertionBuilder.cs:137`
 
 **Complete Signature**
 ```csharp
@@ -63,7 +63,7 @@ Use this method when working with the documented Runner assertion builder API su
 
 #### `AssertionBuilder.WithCategory(string category)`
 
-**Location** `QaaS.Runner.Assertions/ConfigurationObjects/AssertionBuilder.cs:164`
+**Location** `QaaS.Runner.Assertions/ConfigurationObjects/AssertionBuilder.cs:150`
 
 **Complete Signature**
 ```csharp
@@ -80,7 +80,7 @@ Use this method when working with the documented Runner assertion builder API su
 
 #### `AssertionBuilder.WeatherToSaveSessionData(bool weatherToSaveSessionData)`
 
-**Location** `QaaS.Runner.Assertions/ConfigurationObjects/AssertionBuilder.cs:177`
+**Location** `QaaS.Runner.Assertions/ConfigurationObjects/AssertionBuilder.cs:163`
 
 **Complete Signature**
 ```csharp
@@ -97,7 +97,7 @@ Use this method when working with the documented Runner assertion builder API su
 
 #### `AssertionBuilder.WeatherToSaveLogs(bool weatherToSaveLogs)`
 
-**Location** `QaaS.Runner.Assertions/ConfigurationObjects/AssertionBuilder.cs:190`
+**Location** `QaaS.Runner.Assertions/ConfigurationObjects/AssertionBuilder.cs:176`
 
 **Complete Signature**
 ```csharp
@@ -114,7 +114,7 @@ Use this method when working with the documented Runner assertion builder API su
 
 #### `AssertionBuilder.WeatherToSaveConfigurationTemplate(bool weatherToSaveConfigurationTemplate)`
 
-**Location** `QaaS.Runner.Assertions/ConfigurationObjects/AssertionBuilder.cs:203`
+**Location** `QaaS.Runner.Assertions/ConfigurationObjects/AssertionBuilder.cs:189`
 
 **Complete Signature**
 ```csharp
@@ -131,7 +131,7 @@ Use this method when working with the documented Runner assertion builder API su
 
 #### `AssertionBuilder.WithSeverity(AssertionSeverity severity)`
 
-**Location** `QaaS.Runner.Assertions/ConfigurationObjects/AssertionBuilder.cs:216`
+**Location** `QaaS.Runner.Assertions/ConfigurationObjects/AssertionBuilder.cs:202`
 
 **Complete Signature**
 ```csharp
@@ -148,7 +148,7 @@ Use this method when working with the documented Runner assertion builder API su
 
 #### `AssertionBuilder.WeatherToSaveAttachments(bool weatherToSaveAttachments)`
 
-**Location** `QaaS.Runner.Assertions/ConfigurationObjects/AssertionBuilder.cs:229`
+**Location** `QaaS.Runner.Assertions/ConfigurationObjects/AssertionBuilder.cs:215`
 
 **Complete Signature**
 ```csharp
@@ -165,7 +165,7 @@ Use this method when working with the documented Runner assertion builder API su
 
 #### `AssertionBuilder.WeatherToDisplayTrace(bool weatherToDisplayTrace)`
 
-**Location** `QaaS.Runner.Assertions/ConfigurationObjects/AssertionBuilder.cs:242`
+**Location** `QaaS.Runner.Assertions/ConfigurationObjects/AssertionBuilder.cs:228`
 
 **Complete Signature**
 ```csharp
@@ -182,7 +182,7 @@ Use this method when working with the documented Runner assertion builder API su
 
 #### `AssertionBuilder.Named(string name)`
 
-**Location** `QaaS.Runner.Assertions/ConfigurationObjects/AssertionBuilder.cs:255`
+**Location** `QaaS.Runner.Assertions/ConfigurationObjects/AssertionBuilder.cs:241`
 
 **Complete Signature**
 ```csharp
@@ -199,7 +199,7 @@ Use this method when working with the documented Runner assertion builder API su
 
 #### `AssertionBuilder.HookNamed(string hookName)`
 
-**Location** `QaaS.Runner.Assertions/ConfigurationObjects/AssertionBuilder.cs:268`
+**Location** `QaaS.Runner.Assertions/ConfigurationObjects/AssertionBuilder.cs:254`
 
 **Complete Signature**
 ```csharp
@@ -216,7 +216,7 @@ Use this method when working with the documented Runner assertion builder API su
 
 #### `AssertionBuilder.AddDataSourceName(string dataSourceName)`
 
-**Location** `QaaS.Runner.Assertions/ConfigurationObjects/AssertionBuilder.cs:281`
+**Location** `QaaS.Runner.Assertions/ConfigurationObjects/AssertionBuilder.cs:267`
 
 **Complete Signature**
 ```csharp
@@ -233,7 +233,7 @@ Use this method when working with the documented Runner assertion builder API su
 
 #### `AssertionBuilder.CreateDataSourceName(string dataSourceName)`
 
-**Location** `QaaS.Runner.Assertions/ConfigurationObjects/AssertionBuilder.cs:294`
+**Location** `QaaS.Runner.Assertions/ConfigurationObjects/AssertionBuilder.cs:280`
 
 **Complete Signature**
 ```csharp
@@ -250,7 +250,7 @@ Use this method when working with the documented Runner assertion builder API su
 
 #### `AssertionBuilder.ReadDataSourceNames()`
 
-**Location** `QaaS.Runner.Assertions/ConfigurationObjects/AssertionBuilder.cs:306`
+**Location** `QaaS.Runner.Assertions/ConfigurationObjects/AssertionBuilder.cs:292`
 
 **Complete Signature**
 ```csharp
@@ -267,7 +267,7 @@ Use this method when working with the documented Runner assertion builder API su
 
 #### `AssertionBuilder.UpdateDataSourceName(string existingValue, string newValue)`
 
-**Location** `QaaS.Runner.Assertions/ConfigurationObjects/AssertionBuilder.cs:318`
+**Location** `QaaS.Runner.Assertions/ConfigurationObjects/AssertionBuilder.cs:304`
 
 **Complete Signature**
 ```csharp
@@ -284,7 +284,7 @@ Use this method when working with the documented Runner assertion builder API su
 
 #### `AssertionBuilder.DeleteDataSourceName(string dataSourceName)`
 
-**Location** `QaaS.Runner.Assertions/ConfigurationObjects/AssertionBuilder.cs:336`
+**Location** `QaaS.Runner.Assertions/ConfigurationObjects/AssertionBuilder.cs:322`
 
 **Complete Signature**
 ```csharp
@@ -301,7 +301,7 @@ Use this method when working with the documented Runner assertion builder API su
 
 #### `AssertionBuilder.AddDataSourcePattern(string dataSourcePattern)`
 
-**Location** `QaaS.Runner.Assertions/ConfigurationObjects/AssertionBuilder.cs:349`
+**Location** `QaaS.Runner.Assertions/ConfigurationObjects/AssertionBuilder.cs:335`
 
 **Complete Signature**
 ```csharp
@@ -318,7 +318,7 @@ Use this method when working with the documented Runner assertion builder API su
 
 #### `AssertionBuilder.CreateDataSourcePattern(string dataSourcePattern)`
 
-**Location** `QaaS.Runner.Assertions/ConfigurationObjects/AssertionBuilder.cs:362`
+**Location** `QaaS.Runner.Assertions/ConfigurationObjects/AssertionBuilder.cs:348`
 
 **Complete Signature**
 ```csharp
@@ -335,7 +335,7 @@ Use this method when working with the documented Runner assertion builder API su
 
 #### `AssertionBuilder.ReadDataSourcePatterns()`
 
-**Location** `QaaS.Runner.Assertions/ConfigurationObjects/AssertionBuilder.cs:374`
+**Location** `QaaS.Runner.Assertions/ConfigurationObjects/AssertionBuilder.cs:360`
 
 **Complete Signature**
 ```csharp
@@ -352,7 +352,7 @@ Use this method when working with the documented Runner assertion builder API su
 
 #### `AssertionBuilder.UpdateDataSourcePattern(string existingValue, string newValue)`
 
-**Location** `QaaS.Runner.Assertions/ConfigurationObjects/AssertionBuilder.cs:386`
+**Location** `QaaS.Runner.Assertions/ConfigurationObjects/AssertionBuilder.cs:372`
 
 **Complete Signature**
 ```csharp
@@ -369,7 +369,7 @@ Use this method when working with the documented Runner assertion builder API su
 
 #### `AssertionBuilder.DeleteDataSourcePattern(string dataSourcePattern)`
 
-**Location** `QaaS.Runner.Assertions/ConfigurationObjects/AssertionBuilder.cs:404`
+**Location** `QaaS.Runner.Assertions/ConfigurationObjects/AssertionBuilder.cs:390`
 
 **Complete Signature**
 ```csharp
@@ -386,7 +386,7 @@ Use this method when working with the documented Runner assertion builder API su
 
 #### `AssertionBuilder.AddSessionName(string sessionName)`
 
-**Location** `QaaS.Runner.Assertions/ConfigurationObjects/AssertionBuilder.cs:417`
+**Location** `QaaS.Runner.Assertions/ConfigurationObjects/AssertionBuilder.cs:403`
 
 **Complete Signature**
 ```csharp
@@ -403,7 +403,7 @@ Use this method when working with the documented Runner assertion builder API su
 
 #### `AssertionBuilder.CreateSessionName(string sessionName)`
 
-**Location** `QaaS.Runner.Assertions/ConfigurationObjects/AssertionBuilder.cs:430`
+**Location** `QaaS.Runner.Assertions/ConfigurationObjects/AssertionBuilder.cs:416`
 
 **Complete Signature**
 ```csharp
@@ -420,7 +420,7 @@ Use this method when working with the documented Runner assertion builder API su
 
 #### `AssertionBuilder.ReadSessionNames()`
 
-**Location** `QaaS.Runner.Assertions/ConfigurationObjects/AssertionBuilder.cs:442`
+**Location** `QaaS.Runner.Assertions/ConfigurationObjects/AssertionBuilder.cs:428`
 
 **Complete Signature**
 ```csharp
@@ -437,7 +437,7 @@ Use this method when working with the documented Runner assertion builder API su
 
 #### `AssertionBuilder.UpdateSessionName(string existingValue, string newValue)`
 
-**Location** `QaaS.Runner.Assertions/ConfigurationObjects/AssertionBuilder.cs:454`
+**Location** `QaaS.Runner.Assertions/ConfigurationObjects/AssertionBuilder.cs:440`
 
 **Complete Signature**
 ```csharp
@@ -454,7 +454,7 @@ Use this method when working with the documented Runner assertion builder API su
 
 #### `AssertionBuilder.DeleteSessionName(string sessionName)`
 
-**Location** `QaaS.Runner.Assertions/ConfigurationObjects/AssertionBuilder.cs:477`
+**Location** `QaaS.Runner.Assertions/ConfigurationObjects/AssertionBuilder.cs:463`
 
 **Complete Signature**
 ```csharp
@@ -471,7 +471,7 @@ Use this method when working with the documented Runner assertion builder API su
 
 #### `AssertionBuilder.AddSessionPattern(string sessionPattern)`
 
-**Location** `QaaS.Runner.Assertions/ConfigurationObjects/AssertionBuilder.cs:490`
+**Location** `QaaS.Runner.Assertions/ConfigurationObjects/AssertionBuilder.cs:476`
 
 **Complete Signature**
 ```csharp
@@ -488,7 +488,7 @@ Use this method when working with the documented Runner assertion builder API su
 
 #### `AssertionBuilder.CreateSessionPattern(string sessionPattern)`
 
-**Location** `QaaS.Runner.Assertions/ConfigurationObjects/AssertionBuilder.cs:505`
+**Location** `QaaS.Runner.Assertions/ConfigurationObjects/AssertionBuilder.cs:491`
 
 **Complete Signature**
 ```csharp
@@ -505,7 +505,7 @@ Use this method when working with the documented Runner assertion builder API su
 
 #### `AssertionBuilder.ReadSessionPatterns()`
 
-**Location** `QaaS.Runner.Assertions/ConfigurationObjects/AssertionBuilder.cs:517`
+**Location** `QaaS.Runner.Assertions/ConfigurationObjects/AssertionBuilder.cs:503`
 
 **Complete Signature**
 ```csharp
@@ -522,7 +522,7 @@ Use this method when working with the documented Runner assertion builder API su
 
 #### `AssertionBuilder.UpdateSessionPattern(string existingValue, string newValue)`
 
-**Location** `QaaS.Runner.Assertions/ConfigurationObjects/AssertionBuilder.cs:529`
+**Location** `QaaS.Runner.Assertions/ConfigurationObjects/AssertionBuilder.cs:515`
 
 **Complete Signature**
 ```csharp
@@ -539,7 +539,7 @@ Use this method when working with the documented Runner assertion builder API su
 
 #### `AssertionBuilder.DeleteSessionPattern(string sessionPattern)`
 
-**Location** `QaaS.Runner.Assertions/ConfigurationObjects/AssertionBuilder.cs:552`
+**Location** `QaaS.Runner.Assertions/ConfigurationObjects/AssertionBuilder.cs:538`
 
 **Complete Signature**
 ```csharp
@@ -556,7 +556,7 @@ Use this method when working with the documented Runner assertion builder API su
 
 #### `AssertionBuilder.AddLink(LinkBuilder linkBuilder)`
 
-**Location** `QaaS.Runner.Assertions/ConfigurationObjects/AssertionBuilder.cs:565`
+**Location** `QaaS.Runner.Assertions/ConfigurationObjects/AssertionBuilder.cs:551`
 
 **Complete Signature**
 ```csharp
@@ -573,7 +573,7 @@ Use this method when working with the documented Runner assertion builder API su
 
 #### `AssertionBuilder.CreateLink(LinkBuilder linkBuilder)`
 
-**Location** `QaaS.Runner.Assertions/ConfigurationObjects/AssertionBuilder.cs:578`
+**Location** `QaaS.Runner.Assertions/ConfigurationObjects/AssertionBuilder.cs:564`
 
 **Complete Signature**
 ```csharp
@@ -590,7 +590,7 @@ Use this method when working with the documented Runner assertion builder API su
 
 #### `AssertionBuilder.ReadLinks()`
 
-**Location** `QaaS.Runner.Assertions/ConfigurationObjects/AssertionBuilder.cs:590`
+**Location** `QaaS.Runner.Assertions/ConfigurationObjects/AssertionBuilder.cs:576`
 
 **Complete Signature**
 ```csharp
@@ -607,7 +607,7 @@ Use this method when working with the documented Runner assertion builder API su
 
 #### `AssertionBuilder.UpdateLink(string name, LinkBuilder linkBuilder)`
 
-**Location** `QaaS.Runner.Assertions/ConfigurationObjects/AssertionBuilder.cs:602`
+**Location** `QaaS.Runner.Assertions/ConfigurationObjects/AssertionBuilder.cs:588`
 
 **Complete Signature**
 ```csharp
@@ -624,7 +624,7 @@ Use this method when working with the documented Runner assertion builder API su
 
 #### `AssertionBuilder.DeleteLink(string name)`
 
-**Location** `QaaS.Runner.Assertions/ConfigurationObjects/AssertionBuilder.cs:620`
+**Location** `QaaS.Runner.Assertions/ConfigurationObjects/AssertionBuilder.cs:606`
 
 **Complete Signature**
 ```csharp
@@ -641,7 +641,7 @@ Use this method when working with the documented Runner assertion builder API su
 
 #### `AssertionBuilder.Configure(object configuration)`
 
-**Location** `QaaS.Runner.Assertions/ConfigurationObjects/AssertionBuilder.cs:633`
+**Location** `QaaS.Runner.Assertions/ConfigurationObjects/AssertionBuilder.cs:619`
 
 **Complete Signature**
 ```csharp
@@ -658,7 +658,7 @@ Use this method when working with the documented Runner assertion builder API su
 
 #### `AssertionBuilder.CreateConfiguration(object configuration)`
 
-**Location** `QaaS.Runner.Assertions/ConfigurationObjects/AssertionBuilder.cs:647`
+**Location** `QaaS.Runner.Assertions/ConfigurationObjects/AssertionBuilder.cs:633`
 
 **Complete Signature**
 ```csharp
@@ -675,7 +675,7 @@ Use this method when working with the documented Runner assertion builder API su
 
 #### `AssertionBuilder.Create(object configuration)`
 
-**Location** `QaaS.Runner.Assertions/ConfigurationObjects/AssertionBuilder.cs:659`
+**Location** `QaaS.Runner.Assertions/ConfigurationObjects/AssertionBuilder.cs:645`
 
 **Complete Signature**
 ```csharp
@@ -692,7 +692,7 @@ Use this method when working with the documented Runner assertion builder API su
 
 #### `AssertionBuilder.ReadConfiguration()`
 
-**Location** `QaaS.Runner.Assertions/ConfigurationObjects/AssertionBuilder.cs:671`
+**Location** `QaaS.Runner.Assertions/ConfigurationObjects/AssertionBuilder.cs:657`
 
 **Complete Signature**
 ```csharp
@@ -709,7 +709,7 @@ Use this method when working with the documented Runner assertion builder API su
 
 #### `AssertionBuilder.UpdateConfiguration(object configuration)`
 
-**Location** `QaaS.Runner.Assertions/ConfigurationObjects/AssertionBuilder.cs:683`
+**Location** `QaaS.Runner.Assertions/ConfigurationObjects/AssertionBuilder.cs:669`
 
 **Complete Signature**
 ```csharp
@@ -726,7 +726,7 @@ Use this method when working with the documented Runner assertion builder API su
 
 #### `AssertionBuilder.DeleteConfiguration()`
 
-**Location** `QaaS.Runner.Assertions/ConfigurationObjects/AssertionBuilder.cs:696`
+**Location** `QaaS.Runner.Assertions/ConfigurationObjects/AssertionBuilder.cs:682`
 
 **Complete Signature**
 ```csharp
@@ -745,7 +745,7 @@ Use this method when working with the documented Runner assertion builder API su
 
 #### `CollectorBuilder.Named(string name)`
 
-**Location** `QaaS.Runner.Sessions/Actions/Collectors/CollectorBuilder.cs:54`
+**Location** `QaaS.Runner.Sessions/Actions/Collectors/CollectorBuilder.cs:50`
 
 **Complete Signature**
 ```csharp
@@ -762,7 +762,7 @@ Use this method when working with the documented Runner collector builder API su
 
 #### `CollectorBuilder.FilterData(DataFilter dataFilter)`
 
-**Location** `QaaS.Runner.Sessions/Actions/Collectors/CollectorBuilder.cs:67`
+**Location** `QaaS.Runner.Sessions/Actions/Collectors/CollectorBuilder.cs:63`
 
 **Complete Signature**
 ```csharp
@@ -779,7 +779,7 @@ Use this method when working with the documented Runner collector builder API su
 
 #### `CollectorBuilder.CollectInRange(CollectionRange collectionRange)`
 
-**Location** `QaaS.Runner.Sessions/Actions/Collectors/CollectorBuilder.cs:80`
+**Location** `QaaS.Runner.Sessions/Actions/Collectors/CollectorBuilder.cs:76`
 
 **Complete Signature**
 ```csharp
@@ -796,7 +796,7 @@ Use this method when working with the documented Runner collector builder API su
 
 #### `CollectorBuilder.Create(IFetcherConfig config)`
 
-**Location** `QaaS.Runner.Sessions/Actions/Collectors/CollectorBuilder.cs:93`
+**Location** `QaaS.Runner.Sessions/Actions/Collectors/CollectorBuilder.cs:89`
 
 **Complete Signature**
 ```csharp
@@ -813,7 +813,7 @@ Use this method when working with the documented Runner collector builder API su
 
 #### `CollectorBuilder.CreateConfiguration(IFetcherConfig config)`
 
-**Location** `QaaS.Runner.Sessions/Actions/Collectors/CollectorBuilder.cs:105`
+**Location** `QaaS.Runner.Sessions/Actions/Collectors/CollectorBuilder.cs:101`
 
 **Complete Signature**
 ```csharp
@@ -830,7 +830,7 @@ Use this method when working with the documented Runner collector builder API su
 
 #### `CollectorBuilder.ReadConfiguration()`
 
-**Location** `QaaS.Runner.Sessions/Actions/Collectors/CollectorBuilder.cs:117`
+**Location** `QaaS.Runner.Sessions/Actions/Collectors/CollectorBuilder.cs:113`
 
 **Complete Signature**
 ```csharp
@@ -847,7 +847,7 @@ Use this method when working with the documented Runner collector builder API su
 
 #### `CollectorBuilder.UpdateConfiguration(Func<IFetcherConfig, IFetcherConfig> update)`
 
-**Location** `QaaS.Runner.Sessions/Actions/Collectors/CollectorBuilder.cs:129`
+**Location** `QaaS.Runner.Sessions/Actions/Collectors/CollectorBuilder.cs:125`
 
 **Complete Signature**
 ```csharp
@@ -864,7 +864,7 @@ Use this method when working with the documented Runner collector builder API su
 
 #### `CollectorBuilder.UpdateConfiguration(IFetcherConfig config)`
 
-**Location** `QaaS.Runner.Sessions/Actions/Collectors/CollectorBuilder.cs:143`
+**Location** `QaaS.Runner.Sessions/Actions/Collectors/CollectorBuilder.cs:139`
 
 **Complete Signature**
 ```csharp
@@ -881,7 +881,7 @@ Use this method when working with the documented Runner collector builder API su
 
 #### `CollectorBuilder.UpdateConfiguration(object configuration)`
 
-**Location** `QaaS.Runner.Sessions/Actions/Collectors/CollectorBuilder.cs:157`
+**Location** `QaaS.Runner.Sessions/Actions/Collectors/CollectorBuilder.cs:153`
 
 **Complete Signature**
 ```csharp
@@ -898,7 +898,7 @@ Use this method when working with the documented Runner collector builder API su
 
 #### `CollectorBuilder.DeleteConfiguration()`
 
-**Location** `QaaS.Runner.Sessions/Actions/Collectors/CollectorBuilder.cs:171`
+**Location** `QaaS.Runner.Sessions/Actions/Collectors/CollectorBuilder.cs:167`
 
 **Complete Signature**
 ```csharp
@@ -915,7 +915,7 @@ Use this method when working with the documented Runner collector builder API su
 
 #### `CollectorBuilder.Configure(IFetcherConfig config)`
 
-**Location** `QaaS.Runner.Sessions/Actions/Collectors/CollectorBuilder.cs:189`
+**Location** `QaaS.Runner.Sessions/Actions/Collectors/CollectorBuilder.cs:185`
 
 **Complete Signature**
 ```csharp
@@ -1242,7 +1242,7 @@ Use this method when working with the documented Runner consumer builder API sur
 
 #### `ExecutionBuilder.WithGlobalDict(Dictionary<string, object?> globalDict)`
 
-**Location** `QaaS.Runner/ExecutionBuilder.cs:246`
+**Location** `QaaS.Runner/ExecutionBuilder.cs:241`
 
 **Complete Signature**
 ```csharp
@@ -1259,7 +1259,7 @@ Use this method when working with the documented Runner execution builder API su
 
 #### `ExecutionBuilder.AddSession(SessionBuilder sessionBuilder)`
 
-**Location** `QaaS.Runner/ExecutionBuilder.cs:259`
+**Location** `QaaS.Runner/ExecutionBuilder.cs:254`
 
 **Complete Signature**
 ```csharp
@@ -1276,7 +1276,7 @@ Use this method when working with the documented Runner execution builder API su
 
 #### `ExecutionBuilder.CreateSession(SessionBuilder sessionBuilder)`
 
-**Location** `QaaS.Runner/ExecutionBuilder.cs:272`
+**Location** `QaaS.Runner/ExecutionBuilder.cs:267`
 
 **Complete Signature**
 ```csharp
@@ -1293,7 +1293,7 @@ Use this method when working with the documented Runner execution builder API su
 
 #### `ExecutionBuilder.ReadSessions()`
 
-**Location** `QaaS.Runner/ExecutionBuilder.cs:284`
+**Location** `QaaS.Runner/ExecutionBuilder.cs:279`
 
 **Complete Signature**
 ```csharp
@@ -1310,7 +1310,7 @@ Use this method when working with the documented Runner execution builder API su
 
 #### `ExecutionBuilder.UpdateSession(string sessionName, SessionBuilder sessionBuilder)`
 
-**Location** `QaaS.Runner/ExecutionBuilder.cs:296`
+**Location** `QaaS.Runner/ExecutionBuilder.cs:291`
 
 **Complete Signature**
 ```csharp
@@ -1327,7 +1327,7 @@ Use this method when working with the documented Runner execution builder API su
 
 #### `ExecutionBuilder.DeleteSession(string sessionName)`
 
-**Location** `QaaS.Runner/ExecutionBuilder.cs:309`
+**Location** `QaaS.Runner/ExecutionBuilder.cs:304`
 
 **Complete Signature**
 ```csharp
@@ -1344,7 +1344,7 @@ Use this method when working with the documented Runner execution builder API su
 
 #### `ExecutionBuilder.AddAssertion(AssertionBuilder assertionBuilder)`
 
-**Location** `QaaS.Runner/ExecutionBuilder.cs:322`
+**Location** `QaaS.Runner/ExecutionBuilder.cs:317`
 
 **Complete Signature**
 ```csharp
@@ -1361,7 +1361,7 @@ Use this method when working with the documented Runner execution builder API su
 
 #### `ExecutionBuilder.CreateAssertion(AssertionBuilder assertionBuilder)`
 
-**Location** `QaaS.Runner/ExecutionBuilder.cs:335`
+**Location** `QaaS.Runner/ExecutionBuilder.cs:330`
 
 **Complete Signature**
 ```csharp
@@ -1378,7 +1378,7 @@ Use this method when working with the documented Runner execution builder API su
 
 #### `ExecutionBuilder.ReadAssertions()`
 
-**Location** `QaaS.Runner/ExecutionBuilder.cs:347`
+**Location** `QaaS.Runner/ExecutionBuilder.cs:342`
 
 **Complete Signature**
 ```csharp
@@ -1395,7 +1395,7 @@ Use this method when working with the documented Runner execution builder API su
 
 #### `ExecutionBuilder.UpdateAssertion(string assertionName, AssertionBuilder assertionBuilder)`
 
-**Location** `QaaS.Runner/ExecutionBuilder.cs:359`
+**Location** `QaaS.Runner/ExecutionBuilder.cs:354`
 
 **Complete Signature**
 ```csharp
@@ -1412,7 +1412,7 @@ Use this method when working with the documented Runner execution builder API su
 
 #### `ExecutionBuilder.DeleteAssertion(string assertionName)`
 
-**Location** `QaaS.Runner/ExecutionBuilder.cs:372`
+**Location** `QaaS.Runner/ExecutionBuilder.cs:367`
 
 **Complete Signature**
 ```csharp
@@ -1429,7 +1429,7 @@ Use this method when working with the documented Runner execution builder API su
 
 #### `ExecutionBuilder.AddStorage(StorageBuilder storageBuilder)`
 
-**Location** `QaaS.Runner/ExecutionBuilder.cs:385`
+**Location** `QaaS.Runner/ExecutionBuilder.cs:380`
 
 **Complete Signature**
 ```csharp
@@ -1446,7 +1446,7 @@ Use this method when working with the documented Runner execution builder API su
 
 #### `ExecutionBuilder.CreateStorage(StorageBuilder storageBuilder)`
 
-**Location** `QaaS.Runner/ExecutionBuilder.cs:398`
+**Location** `QaaS.Runner/ExecutionBuilder.cs:393`
 
 **Complete Signature**
 ```csharp
@@ -1463,7 +1463,7 @@ Use this method when working with the documented Runner execution builder API su
 
 #### `ExecutionBuilder.ReadStorages()`
 
-**Location** `QaaS.Runner/ExecutionBuilder.cs:410`
+**Location** `QaaS.Runner/ExecutionBuilder.cs:405`
 
 **Complete Signature**
 ```csharp
@@ -1480,7 +1480,7 @@ Use this method when working with the documented Runner execution builder API su
 
 #### `ExecutionBuilder.UpdateStorageAt(int index, StorageBuilder storageBuilder)`
 
-**Location** `QaaS.Runner/ExecutionBuilder.cs:422`
+**Location** `QaaS.Runner/ExecutionBuilder.cs:417`
 
 **Complete Signature**
 ```csharp
@@ -1497,7 +1497,7 @@ Use this method when working with the documented Runner execution builder API su
 
 #### `ExecutionBuilder.DeleteStorageAt(int index)`
 
-**Location** `QaaS.Runner/ExecutionBuilder.cs:435`
+**Location** `QaaS.Runner/ExecutionBuilder.cs:430`
 
 **Complete Signature**
 ```csharp
@@ -1514,7 +1514,7 @@ Use this method when working with the documented Runner execution builder API su
 
 #### `ExecutionBuilder.AddDataSource(DataSourceBuilder dataSourceBuilder)`
 
-**Location** `QaaS.Runner/ExecutionBuilder.cs:448`
+**Location** `QaaS.Runner/ExecutionBuilder.cs:443`
 
 **Complete Signature**
 ```csharp
@@ -1531,7 +1531,7 @@ Use this method when working with the documented Runner execution builder API su
 
 #### `ExecutionBuilder.CreateDataSource(DataSourceBuilder dataSourceBuilder)`
 
-**Location** `QaaS.Runner/ExecutionBuilder.cs:461`
+**Location** `QaaS.Runner/ExecutionBuilder.cs:456`
 
 **Complete Signature**
 ```csharp
@@ -1548,7 +1548,7 @@ Use this method when working with the documented Runner execution builder API su
 
 #### `ExecutionBuilder.ReadDataSources()`
 
-**Location** `QaaS.Runner/ExecutionBuilder.cs:473`
+**Location** `QaaS.Runner/ExecutionBuilder.cs:468`
 
 **Complete Signature**
 ```csharp
@@ -1565,7 +1565,7 @@ Use this method when working with the documented Runner execution builder API su
 
 #### `ExecutionBuilder.UpdateDataSource(string dataSourceName, DataSourceBuilder dataSourceBuilder)`
 
-**Location** `QaaS.Runner/ExecutionBuilder.cs:485`
+**Location** `QaaS.Runner/ExecutionBuilder.cs:480`
 
 **Complete Signature**
 ```csharp
@@ -1582,7 +1582,7 @@ Use this method when working with the documented Runner execution builder API su
 
 #### `ExecutionBuilder.DeleteDataSource(string dataSourceName)`
 
-**Location** `QaaS.Runner/ExecutionBuilder.cs:498`
+**Location** `QaaS.Runner/ExecutionBuilder.cs:493`
 
 **Complete Signature**
 ```csharp
@@ -1599,7 +1599,7 @@ Use this method when working with the documented Runner execution builder API su
 
 #### `ExecutionBuilder.AddLink(LinkBuilder linkBuilder)`
 
-**Location** `QaaS.Runner/ExecutionBuilder.cs:511`
+**Location** `QaaS.Runner/ExecutionBuilder.cs:506`
 
 **Complete Signature**
 ```csharp
@@ -1616,7 +1616,7 @@ Use this method when working with the documented Runner execution builder API su
 
 #### `ExecutionBuilder.CreateLink(LinkBuilder linkBuilder)`
 
-**Location** `QaaS.Runner/ExecutionBuilder.cs:524`
+**Location** `QaaS.Runner/ExecutionBuilder.cs:519`
 
 **Complete Signature**
 ```csharp
@@ -1633,7 +1633,7 @@ Use this method when working with the documented Runner execution builder API su
 
 #### `ExecutionBuilder.ReadLinks()`
 
-**Location** `QaaS.Runner/ExecutionBuilder.cs:536`
+**Location** `QaaS.Runner/ExecutionBuilder.cs:531`
 
 **Complete Signature**
 ```csharp
@@ -1648,9 +1648,26 @@ Use this method when working with the documented Runner execution builder API su
 
 <hr class="function-separator" />
 
+#### `ExecutionBuilder.ReadMetaData()`
+
+**Location** `QaaS.Runner/ExecutionBuilder.cs:543`
+
+**Complete Signature**
+```csharp
+public MetaDataConfig? ReadMetaData()
+```
+
+**Docstring**
+
+Returns the metadata currently stored on the Runner execution builder instance.
+
+Use this method when working with the documented Runner execution builder API surface in code. Use it to inspect the current configured state without rebuilding the surrounding collection or runtime object graph.
+
+<hr class="function-separator" />
+
 #### `ExecutionBuilder.UpdateLinkAt(int index, LinkBuilder linkBuilder)`
 
-**Location** `QaaS.Runner/ExecutionBuilder.cs:548`
+**Location** `QaaS.Runner/ExecutionBuilder.cs:555`
 
 **Complete Signature**
 ```csharp
@@ -1667,7 +1684,7 @@ Use this method when working with the documented Runner execution builder API su
 
 #### `ExecutionBuilder.DeleteLinkAt(int index)`
 
-**Location** `QaaS.Runner/ExecutionBuilder.cs:561`
+**Location** `QaaS.Runner/ExecutionBuilder.cs:568`
 
 **Complete Signature**
 ```csharp
@@ -1684,7 +1701,7 @@ Use this method when working with the documented Runner execution builder API su
 
 #### `ExecutionBuilder.ExecutionType(ExecutionType executionType)`
 
-**Location** `QaaS.Runner/ExecutionBuilder.cs:574`
+**Location** `QaaS.Runner/ExecutionBuilder.cs:581`
 
 **Complete Signature**
 ```csharp
@@ -1701,7 +1718,7 @@ Use this method when working with the documented Runner execution builder API su
 
 #### `ExecutionBuilder.SetCase(string caseName)`
 
-**Location** `QaaS.Runner/ExecutionBuilder.cs:593`
+**Location** `QaaS.Runner/ExecutionBuilder.cs:600`
 
 **Complete Signature**
 ```csharp
@@ -1718,7 +1735,7 @@ Case files are used as the final scenario-specific overlay that shapes the runti
 
 #### `ExecutionBuilder.SetExecutionId(string executionId)`
 
-**Location** `QaaS.Runner/ExecutionBuilder.cs:606`
+**Location** `QaaS.Runner/ExecutionBuilder.cs:613`
 
 **Complete Signature**
 ```csharp
@@ -1735,7 +1752,7 @@ The execution identifier flows into the built context and can later be used by l
 
 #### `ExecutionBuilder.WithMetadata(MetaDataConfig metaDataConfig)`
 
-**Location** `QaaS.Runner/ExecutionBuilder.cs:619`
+**Location** `QaaS.Runner/ExecutionBuilder.cs:626`
 
 **Complete Signature**
 ```csharp
@@ -1752,7 +1769,7 @@ Use this method when working with the documented Runner execution builder API su
 
 #### `ExecutionBuilder.Build()`
 
-**Location** `QaaS.Runner/ExecutionBuilder.cs:914`
+**Location** `QaaS.Runner/ExecutionBuilder.cs:921`
 
 **Complete Signature**
 ```csharp
@@ -1771,7 +1788,7 @@ Call this after the fluent configuration is complete. The method validates the a
 
 #### `LinkBuilder.Named(string name)`
 
-**Location** `QaaS.Runner.Assertions/ConfigurationObjects/LinkBuilder.cs:35`
+**Location** `QaaS.Runner.Assertions/ConfigurationObjects/LinkBuilder.cs:32`
 
 **Complete Signature**
 ```csharp
@@ -1788,7 +1805,7 @@ Use this method when working with the documented Runner link builder API surface
 
 #### `LinkBuilder.Create(ILinkConfig config)`
 
-**Location** `QaaS.Runner.Assertions/ConfigurationObjects/LinkBuilder.cs:48`
+**Location** `QaaS.Runner.Assertions/ConfigurationObjects/LinkBuilder.cs:45`
 
 **Complete Signature**
 ```csharp
@@ -1805,7 +1822,7 @@ Use this method when working with the documented Runner link builder API surface
 
 #### `LinkBuilder.CreateConfiguration(ILinkConfig config)`
 
-**Location** `QaaS.Runner.Assertions/ConfigurationObjects/LinkBuilder.cs:60`
+**Location** `QaaS.Runner.Assertions/ConfigurationObjects/LinkBuilder.cs:57`
 
 **Complete Signature**
 ```csharp
@@ -1822,7 +1839,7 @@ Use this method when working with the documented Runner link builder API surface
 
 #### `LinkBuilder.ReadConfiguration()`
 
-**Location** `QaaS.Runner.Assertions/ConfigurationObjects/LinkBuilder.cs:72`
+**Location** `QaaS.Runner.Assertions/ConfigurationObjects/LinkBuilder.cs:69`
 
 **Complete Signature**
 ```csharp
@@ -1839,7 +1856,7 @@ Use this method when working with the documented Runner link builder API surface
 
 #### `LinkBuilder.UpdateConfiguration(Func<ILinkConfig, ILinkConfig> update)`
 
-**Location** `QaaS.Runner.Assertions/ConfigurationObjects/LinkBuilder.cs:94`
+**Location** `QaaS.Runner.Assertions/ConfigurationObjects/LinkBuilder.cs:91`
 
 **Complete Signature**
 ```csharp
@@ -1856,7 +1873,7 @@ Use this method when working with the documented Runner link builder API surface
 
 #### `LinkBuilder.UpdateConfiguration(ILinkConfig config)`
 
-**Location** `QaaS.Runner.Assertions/ConfigurationObjects/LinkBuilder.cs:108`
+**Location** `QaaS.Runner.Assertions/ConfigurationObjects/LinkBuilder.cs:105`
 
 **Complete Signature**
 ```csharp
@@ -1873,7 +1890,7 @@ Use this method when working with the documented Runner link builder API surface
 
 #### `LinkBuilder.UpdateConfiguration(object configuration)`
 
-**Location** `QaaS.Runner.Assertions/ConfigurationObjects/LinkBuilder.cs:122`
+**Location** `QaaS.Runner.Assertions/ConfigurationObjects/LinkBuilder.cs:119`
 
 **Complete Signature**
 ```csharp
@@ -1890,7 +1907,7 @@ Use this method when working with the documented Runner link builder API surface
 
 #### `LinkBuilder.DeleteConfiguration()`
 
-**Location** `QaaS.Runner.Assertions/ConfigurationObjects/LinkBuilder.cs:136`
+**Location** `QaaS.Runner.Assertions/ConfigurationObjects/LinkBuilder.cs:133`
 
 **Complete Signature**
 ```csharp
@@ -1907,7 +1924,7 @@ Use this method when working with the documented Runner link builder API surface
 
 #### `LinkBuilder.Configure(ILinkConfig config)`
 
-**Location** `QaaS.Runner.Assertions/ConfigurationObjects/LinkBuilder.cs:156`
+**Location** `QaaS.Runner.Assertions/ConfigurationObjects/LinkBuilder.cs:153`
 
 **Complete Signature**
 ```csharp
@@ -1926,7 +1943,7 @@ Use this method when working with the documented Runner link builder API surface
 
 #### `MockerCommandBuilder.Named(string name)`
 
-**Location** `QaaS.Runner.Sessions/Actions/MockerCommands/MockerCommandBuilder.cs:55`
+**Location** `QaaS.Runner.Sessions/Actions/MockerCommands/MockerCommandBuilder.cs:49`
 
 **Complete Signature**
 ```csharp
@@ -1943,7 +1960,7 @@ Use this method when working with the documented Runner mocker command builder A
 
 #### `MockerCommandBuilder.AtStage(int stage)`
 
-**Location** `QaaS.Runner.Sessions/Actions/MockerCommands/MockerCommandBuilder.cs:68`
+**Location** `QaaS.Runner.Sessions/Actions/MockerCommands/MockerCommandBuilder.cs:62`
 
 **Complete Signature**
 ```csharp
@@ -1960,7 +1977,7 @@ Use this method when working with the documented Runner mocker command builder A
 
 #### `MockerCommandBuilder.WithServerName(string serverName)`
 
-**Location** `QaaS.Runner.Sessions/Actions/MockerCommands/MockerCommandBuilder.cs:81`
+**Location** `QaaS.Runner.Sessions/Actions/MockerCommands/MockerCommandBuilder.cs:75`
 
 **Complete Signature**
 ```csharp
@@ -1977,7 +1994,7 @@ Use this method when working with the documented Runner mocker command builder A
 
 #### `MockerCommandBuilder.WithRedis(RedisConfig redis)`
 
-**Location** `QaaS.Runner.Sessions/Actions/MockerCommands/MockerCommandBuilder.cs:94`
+**Location** `QaaS.Runner.Sessions/Actions/MockerCommands/MockerCommandBuilder.cs:88`
 
 **Complete Signature**
 ```csharp
@@ -1994,7 +2011,7 @@ Use this method when working with the documented Runner mocker command builder A
 
 #### `MockerCommandBuilder.WithRequestDurationMs(int requestDurationMs)`
 
-**Location** `QaaS.Runner.Sessions/Actions/MockerCommands/MockerCommandBuilder.cs:107`
+**Location** `QaaS.Runner.Sessions/Actions/MockerCommands/MockerCommandBuilder.cs:101`
 
 **Complete Signature**
 ```csharp
@@ -2011,7 +2028,7 @@ Use this method when working with the documented Runner mocker command builder A
 
 #### `MockerCommandBuilder.WithRequestRetries(int requestRetries)`
 
-**Location** `QaaS.Runner.Sessions/Actions/MockerCommands/MockerCommandBuilder.cs:120`
+**Location** `QaaS.Runner.Sessions/Actions/MockerCommands/MockerCommandBuilder.cs:114`
 
 **Complete Signature**
 ```csharp
@@ -2028,7 +2045,7 @@ Use this method when working with the documented Runner mocker command builder A
 
 #### `MockerCommandBuilder.Configure(MockerCommandConfig command)`
 
-**Location** `QaaS.Runner.Sessions/Actions/MockerCommands/MockerCommandBuilder.cs:133`
+**Location** `QaaS.Runner.Sessions/Actions/MockerCommands/MockerCommandBuilder.cs:127`
 
 **Complete Signature**
 ```csharp
@@ -2045,7 +2062,7 @@ Use this method when working with the documented Runner mocker command builder A
 
 #### `MockerCommandBuilder.WithCommand(MockerCommandConfig command)`
 
-**Location** `QaaS.Runner.Sessions/Actions/MockerCommands/MockerCommandBuilder.cs:146`
+**Location** `QaaS.Runner.Sessions/Actions/MockerCommands/MockerCommandBuilder.cs:140`
 
 **Complete Signature**
 ```csharp
@@ -2062,7 +2079,7 @@ Use this method when working with the documented Runner mocker command builder A
 
 #### `MockerCommandBuilder.CreateConfiguration(MockerCommandConfig command)`
 
-**Location** `QaaS.Runner.Sessions/Actions/MockerCommands/MockerCommandBuilder.cs:158`
+**Location** `QaaS.Runner.Sessions/Actions/MockerCommands/MockerCommandBuilder.cs:152`
 
 **Complete Signature**
 ```csharp
@@ -2079,7 +2096,7 @@ Use this method when working with the documented Runner mocker command builder A
 
 #### `MockerCommandBuilder.Create(MockerCommandConfig command)`
 
-**Location** `QaaS.Runner.Sessions/Actions/MockerCommands/MockerCommandBuilder.cs:170`
+**Location** `QaaS.Runner.Sessions/Actions/MockerCommands/MockerCommandBuilder.cs:164`
 
 **Complete Signature**
 ```csharp
@@ -2096,7 +2113,7 @@ Use this method when working with the documented Runner mocker command builder A
 
 #### `MockerCommandBuilder.ReadConfiguration()`
 
-**Location** `QaaS.Runner.Sessions/Actions/MockerCommands/MockerCommandBuilder.cs:182`
+**Location** `QaaS.Runner.Sessions/Actions/MockerCommands/MockerCommandBuilder.cs:176`
 
 **Complete Signature**
 ```csharp
@@ -2113,7 +2130,7 @@ Use this method when working with the documented Runner mocker command builder A
 
 #### `MockerCommandBuilder.UpdateConfiguration(Func<MockerCommandConfig, MockerCommandConfig> update)`
 
-**Location** `QaaS.Runner.Sessions/Actions/MockerCommands/MockerCommandBuilder.cs:194`
+**Location** `QaaS.Runner.Sessions/Actions/MockerCommands/MockerCommandBuilder.cs:188`
 
 **Complete Signature**
 ```csharp
@@ -2130,7 +2147,7 @@ Use this method when working with the documented Runner mocker command builder A
 
 #### `MockerCommandBuilder.UpdateConfiguration(MockerCommandConfig command)`
 
-**Location** `QaaS.Runner.Sessions/Actions/MockerCommands/MockerCommandBuilder.cs:208`
+**Location** `QaaS.Runner.Sessions/Actions/MockerCommands/MockerCommandBuilder.cs:202`
 
 **Complete Signature**
 ```csharp
@@ -2147,7 +2164,7 @@ Use this method when working with the documented Runner mocker command builder A
 
 #### `MockerCommandBuilder.UpdateConfiguration(object configuration)`
 
-**Location** `QaaS.Runner.Sessions/Actions/MockerCommands/MockerCommandBuilder.cs:223`
+**Location** `QaaS.Runner.Sessions/Actions/MockerCommands/MockerCommandBuilder.cs:217`
 
 **Complete Signature**
 ```csharp
@@ -2164,7 +2181,7 @@ Use this method when working with the documented Runner mocker command builder A
 
 #### `MockerCommandBuilder.DeleteConfiguration()`
 
-**Location** `QaaS.Runner.Sessions/Actions/MockerCommands/MockerCommandBuilder.cs:238`
+**Location** `QaaS.Runner.Sessions/Actions/MockerCommands/MockerCommandBuilder.cs:232`
 
 **Complete Signature**
 ```csharp
@@ -2183,7 +2200,7 @@ Use this method when working with the documented Runner mocker command builder A
 
 #### `ProbeBuilder.Read(IParser parser, Type expectedType, ObjectDeserializer nestedObjectDeserializer)`
 
-**Location** `QaaS.Runner.Sessions/Actions/Probes/ProbeBuilder.cs:55`
+**Location** `QaaS.Runner.Sessions/Actions/Probes/ProbeBuilder.cs:50`
 
 **Complete Signature**
 ```csharp
@@ -2200,7 +2217,7 @@ This method participates in the YAML serialization surface that backs configurat
 
 #### `ProbeBuilder.Write(IEmitter emitter, ObjectSerializer nestedObjectSerializer)`
 
-**Location** `QaaS.Runner.Sessions/Actions/Probes/ProbeBuilder.cs:68`
+**Location** `QaaS.Runner.Sessions/Actions/Probes/ProbeBuilder.cs:63`
 
 **Complete Signature**
 ```csharp
@@ -2217,7 +2234,7 @@ This method participates in the YAML serialization surface that backs configurat
 
 #### `ProbeBuilder.Named(string name)`
 
-**Location** `QaaS.Runner.Sessions/Actions/Probes/ProbeBuilder.cs:88`
+**Location** `QaaS.Runner.Sessions/Actions/Probes/ProbeBuilder.cs:83`
 
 **Complete Signature**
 ```csharp
@@ -2234,7 +2251,7 @@ Use this method when working with the documented Runner probe builder API surfac
 
 #### `ProbeBuilder.AtStage(int stage)`
 
-**Location** `QaaS.Runner.Sessions/Actions/Probes/ProbeBuilder.cs:101`
+**Location** `QaaS.Runner.Sessions/Actions/Probes/ProbeBuilder.cs:96`
 
 **Complete Signature**
 ```csharp
@@ -2251,7 +2268,7 @@ Use this method when working with the documented Runner probe builder API surfac
 
 #### `ProbeBuilder.HookNamed(string hookName)`
 
-**Location** `QaaS.Runner.Sessions/Actions/Probes/ProbeBuilder.cs:114`
+**Location** `QaaS.Runner.Sessions/Actions/Probes/ProbeBuilder.cs:109`
 
 **Complete Signature**
 ```csharp
@@ -2268,7 +2285,7 @@ Use this method when working with the documented Runner probe builder API surfac
 
 #### `ProbeBuilder.AddDataSourceName(string dataSourceName)`
 
-**Location** `QaaS.Runner.Sessions/Actions/Probes/ProbeBuilder.cs:127`
+**Location** `QaaS.Runner.Sessions/Actions/Probes/ProbeBuilder.cs:122`
 
 **Complete Signature**
 ```csharp
@@ -2285,7 +2302,7 @@ Use this method when working with the documented Runner probe builder API surfac
 
 #### `ProbeBuilder.CreateDataSourceName(string dataSourceName)`
 
-**Location** `QaaS.Runner.Sessions/Actions/Probes/ProbeBuilder.cs:142`
+**Location** `QaaS.Runner.Sessions/Actions/Probes/ProbeBuilder.cs:137`
 
 **Complete Signature**
 ```csharp
@@ -2302,7 +2319,7 @@ Use this method when working with the documented Runner probe builder API surfac
 
 #### `ProbeBuilder.ReadDataSourceNames()`
 
-**Location** `QaaS.Runner.Sessions/Actions/Probes/ProbeBuilder.cs:154`
+**Location** `QaaS.Runner.Sessions/Actions/Probes/ProbeBuilder.cs:149`
 
 **Complete Signature**
 ```csharp
@@ -2319,7 +2336,7 @@ Use this method when working with the documented Runner probe builder API surfac
 
 #### `ProbeBuilder.UpdateDataSourceName(string existingValue, string newValue)`
 
-**Location** `QaaS.Runner.Sessions/Actions/Probes/ProbeBuilder.cs:166`
+**Location** `QaaS.Runner.Sessions/Actions/Probes/ProbeBuilder.cs:161`
 
 **Complete Signature**
 ```csharp
@@ -2336,7 +2353,7 @@ Use this method when working with the documented Runner probe builder API surfac
 
 #### `ProbeBuilder.DeleteDataSourceName(string dataSourceName)`
 
-**Location** `QaaS.Runner.Sessions/Actions/Probes/ProbeBuilder.cs:184`
+**Location** `QaaS.Runner.Sessions/Actions/Probes/ProbeBuilder.cs:179`
 
 **Complete Signature**
 ```csharp
@@ -2353,7 +2370,7 @@ Use this method when working with the documented Runner probe builder API surfac
 
 #### `ProbeBuilder.RemoveDataSourceName(string dataSourceName)`
 
-**Location** `QaaS.Runner.Sessions/Actions/Probes/ProbeBuilder.cs:197`
+**Location** `QaaS.Runner.Sessions/Actions/Probes/ProbeBuilder.cs:192`
 
 **Complete Signature**
 ```csharp
@@ -2370,7 +2387,7 @@ Use this method when working with the documented Runner probe builder API surfac
 
 #### `ProbeBuilder.AddDataSourcePattern(string dataSourcePattern)`
 
-**Location** `QaaS.Runner.Sessions/Actions/Probes/ProbeBuilder.cs:209`
+**Location** `QaaS.Runner.Sessions/Actions/Probes/ProbeBuilder.cs:204`
 
 **Complete Signature**
 ```csharp
@@ -2387,7 +2404,7 @@ Use this method when working with the documented Runner probe builder API surfac
 
 #### `ProbeBuilder.CreateDataSourcePattern(string dataSourcePattern)`
 
-**Location** `QaaS.Runner.Sessions/Actions/Probes/ProbeBuilder.cs:224`
+**Location** `QaaS.Runner.Sessions/Actions/Probes/ProbeBuilder.cs:219`
 
 **Complete Signature**
 ```csharp
@@ -2404,7 +2421,7 @@ Use this method when working with the documented Runner probe builder API surfac
 
 #### `ProbeBuilder.ReadDataSourcePatterns()`
 
-**Location** `QaaS.Runner.Sessions/Actions/Probes/ProbeBuilder.cs:236`
+**Location** `QaaS.Runner.Sessions/Actions/Probes/ProbeBuilder.cs:231`
 
 **Complete Signature**
 ```csharp
@@ -2421,7 +2438,7 @@ Use this method when working with the documented Runner probe builder API surfac
 
 #### `ProbeBuilder.UpdateDataSourcePattern(string existingValue, string newValue)`
 
-**Location** `QaaS.Runner.Sessions/Actions/Probes/ProbeBuilder.cs:248`
+**Location** `QaaS.Runner.Sessions/Actions/Probes/ProbeBuilder.cs:243`
 
 **Complete Signature**
 ```csharp
@@ -2438,7 +2455,7 @@ Use this method when working with the documented Runner probe builder API surfac
 
 #### `ProbeBuilder.DeleteDataSourcePattern(string dataSourcePattern)`
 
-**Location** `QaaS.Runner.Sessions/Actions/Probes/ProbeBuilder.cs:266`
+**Location** `QaaS.Runner.Sessions/Actions/Probes/ProbeBuilder.cs:261`
 
 **Complete Signature**
 ```csharp
@@ -2455,7 +2472,7 @@ Use this method when working with the documented Runner probe builder API surfac
 
 #### `ProbeBuilder.RemoveDataSourcePattern(string dataSourcePattern)`
 
-**Location** `QaaS.Runner.Sessions/Actions/Probes/ProbeBuilder.cs:279`
+**Location** `QaaS.Runner.Sessions/Actions/Probes/ProbeBuilder.cs:274`
 
 **Complete Signature**
 ```csharp
@@ -2472,7 +2489,7 @@ Use this method when working with the documented Runner probe builder API surfac
 
 #### `ProbeBuilder.Configure(object configuration)`
 
-**Location** `QaaS.Runner.Sessions/Actions/Probes/ProbeBuilder.cs:291`
+**Location** `QaaS.Runner.Sessions/Actions/Probes/ProbeBuilder.cs:286`
 
 **Complete Signature**
 ```csharp
@@ -2489,7 +2506,7 @@ Use this method when working with the documented Runner probe builder API surfac
 
 #### `ProbeBuilder.CreateConfiguration(object configuration)`
 
-**Location** `QaaS.Runner.Sessions/Actions/Probes/ProbeBuilder.cs:305`
+**Location** `QaaS.Runner.Sessions/Actions/Probes/ProbeBuilder.cs:300`
 
 **Complete Signature**
 ```csharp
@@ -2506,7 +2523,7 @@ Use this method when working with the documented Runner probe builder API surfac
 
 #### `ProbeBuilder.Create(object configuration)`
 
-**Location** `QaaS.Runner.Sessions/Actions/Probes/ProbeBuilder.cs:317`
+**Location** `QaaS.Runner.Sessions/Actions/Probes/ProbeBuilder.cs:312`
 
 **Complete Signature**
 ```csharp
@@ -2523,7 +2540,7 @@ Use this method when working with the documented Runner probe builder API surfac
 
 #### `ProbeBuilder.ReadConfiguration()`
 
-**Location** `QaaS.Runner.Sessions/Actions/Probes/ProbeBuilder.cs:329`
+**Location** `QaaS.Runner.Sessions/Actions/Probes/ProbeBuilder.cs:324`
 
 **Complete Signature**
 ```csharp
@@ -2540,7 +2557,7 @@ Use this method when working with the documented Runner probe builder API surfac
 
 #### `ProbeBuilder.UpdateConfiguration(object configuration)`
 
-**Location** `QaaS.Runner.Sessions/Actions/Probes/ProbeBuilder.cs:341`
+**Location** `QaaS.Runner.Sessions/Actions/Probes/ProbeBuilder.cs:336`
 
 **Complete Signature**
 ```csharp
@@ -2557,7 +2574,7 @@ Use this method when working with the documented Runner probe builder API surfac
 
 #### `ProbeBuilder.DeleteConfiguration()`
 
-**Location** `QaaS.Runner.Sessions/Actions/Probes/ProbeBuilder.cs:354`
+**Location** `QaaS.Runner.Sessions/Actions/Probes/ProbeBuilder.cs:349`
 
 **Complete Signature**
 ```csharp
@@ -4059,7 +4076,7 @@ Use this method when working with the documented Runner session builder API surf
 
 #### `StorageBuilder.WithJsonStorageFormat(Formatting format)`
 
-**Location** `QaaS.Runner.Storage/StorageBuilder.cs:45`
+**Location** `QaaS.Runner.Storage/StorageBuilder.cs:42`
 
 **Complete Signature**
 ```csharp
@@ -4076,7 +4093,7 @@ Use this method when working with the documented Runner storage builder API surf
 
 #### `StorageBuilder.Create(IStorageConfig storageConfig)`
 
-**Location** `QaaS.Runner.Storage/StorageBuilder.cs:58`
+**Location** `QaaS.Runner.Storage/StorageBuilder.cs:55`
 
 **Complete Signature**
 ```csharp
@@ -4093,7 +4110,7 @@ Use this method when working with the documented Runner storage builder API surf
 
 #### `StorageBuilder.CreateConfiguration(IStorageConfig storageConfig)`
 
-**Location** `QaaS.Runner.Storage/StorageBuilder.cs:70`
+**Location** `QaaS.Runner.Storage/StorageBuilder.cs:67`
 
 **Complete Signature**
 ```csharp
@@ -4110,7 +4127,7 @@ Use this method when working with the documented Runner storage builder API surf
 
 #### `StorageBuilder.ReadConfiguration()`
 
-**Location** `QaaS.Runner.Storage/StorageBuilder.cs:82`
+**Location** `QaaS.Runner.Storage/StorageBuilder.cs:79`
 
 **Complete Signature**
 ```csharp
@@ -4127,7 +4144,7 @@ Use this method when working with the documented Runner storage builder API surf
 
 #### `StorageBuilder.UpdateConfiguration(Func<IStorageConfig, IStorageConfig> update)`
 
-**Location** `QaaS.Runner.Storage/StorageBuilder.cs:94`
+**Location** `QaaS.Runner.Storage/StorageBuilder.cs:91`
 
 **Complete Signature**
 ```csharp
@@ -4144,7 +4161,7 @@ Use this method when working with the documented Runner storage builder API surf
 
 #### `StorageBuilder.UpdateConfiguration(IStorageConfig storageConfig)`
 
-**Location** `QaaS.Runner.Storage/StorageBuilder.cs:108`
+**Location** `QaaS.Runner.Storage/StorageBuilder.cs:105`
 
 **Complete Signature**
 ```csharp
@@ -4161,7 +4178,7 @@ Use this method when working with the documented Runner storage builder API surf
 
 #### `StorageBuilder.UpdateConfiguration(object configuration)`
 
-**Location** `QaaS.Runner.Storage/StorageBuilder.cs:122`
+**Location** `QaaS.Runner.Storage/StorageBuilder.cs:119`
 
 **Complete Signature**
 ```csharp
@@ -4178,7 +4195,7 @@ Use this method when working with the documented Runner storage builder API surf
 
 #### `StorageBuilder.DeleteConfiguration()`
 
-**Location** `QaaS.Runner.Storage/StorageBuilder.cs:136`
+**Location** `QaaS.Runner.Storage/StorageBuilder.cs:133`
 
 **Complete Signature**
 ```csharp
@@ -4195,7 +4212,7 @@ Use this method when working with the documented Runner storage builder API surf
 
 #### `StorageBuilder.Configure(IStorageConfig storageConfig)`
 
-**Location** `QaaS.Runner.Storage/StorageBuilder.cs:148`
+**Location** `QaaS.Runner.Storage/StorageBuilder.cs:145`
 
 **Complete Signature**
 ```csharp
@@ -4214,7 +4231,7 @@ Use this method when working with the documented Runner storage builder API surf
 
 #### `TransactionBuilder.Named(string name)`
 
-**Location** `QaaS.Runner.Sessions/Actions/Transactions/Builders/TransactionBuilder.cs:87`
+**Location** `QaaS.Runner.Sessions/Actions/Transactions/Builders/TransactionBuilder.cs:75`
 
 **Complete Signature**
 ```csharp
@@ -4231,7 +4248,7 @@ Use this method when working with the documented Runner transaction builder API 
 
 #### `TransactionBuilder.AtStage(int stage)`
 
-**Location** `QaaS.Runner.Sessions/Actions/Transactions/Builders/TransactionBuilder.cs:100`
+**Location** `QaaS.Runner.Sessions/Actions/Transactions/Builders/TransactionBuilder.cs:88`
 
 **Complete Signature**
 ```csharp
@@ -4248,7 +4265,7 @@ Use this method when working with the documented Runner transaction builder API 
 
 #### `TransactionBuilder.WithTimeout(int timeoutMs)`
 
-**Location** `QaaS.Runner.Sessions/Actions/Transactions/Builders/TransactionBuilder.cs:113`
+**Location** `QaaS.Runner.Sessions/Actions/Transactions/Builders/TransactionBuilder.cs:101`
 
 **Complete Signature**
 ```csharp
@@ -4265,7 +4282,7 @@ Use this method when working with the documented Runner transaction builder API 
 
 #### `TransactionBuilder.FilterInputData(DataFilter dataFilter)`
 
-**Location** `QaaS.Runner.Sessions/Actions/Transactions/Builders/TransactionBuilder.cs:126`
+**Location** `QaaS.Runner.Sessions/Actions/Transactions/Builders/TransactionBuilder.cs:114`
 
 **Complete Signature**
 ```csharp
@@ -4282,7 +4299,7 @@ Use this method when working with the documented Runner transaction builder API 
 
 #### `TransactionBuilder.FilterOutputData(DataFilter dataFilter)`
 
-**Location** `QaaS.Runner.Sessions/Actions/Transactions/Builders/TransactionBuilder.cs:139`
+**Location** `QaaS.Runner.Sessions/Actions/Transactions/Builders/TransactionBuilder.cs:127`
 
 **Complete Signature**
 ```csharp
@@ -4299,7 +4316,7 @@ Use this method when working with the documented Runner transaction builder API 
 
 #### `TransactionBuilder.WithDeserializer(DeserializeConfig deserializeConfig)`
 
-**Location** `QaaS.Runner.Sessions/Actions/Transactions/Builders/TransactionBuilder.cs:152`
+**Location** `QaaS.Runner.Sessions/Actions/Transactions/Builders/TransactionBuilder.cs:140`
 
 **Complete Signature**
 ```csharp
@@ -4316,7 +4333,7 @@ Use this method when working with the documented Runner transaction builder API 
 
 #### `TransactionBuilder.WithSerializer(SerializeConfig serializeConfig)`
 
-**Location** `QaaS.Runner.Sessions/Actions/Transactions/Builders/TransactionBuilder.cs:165`
+**Location** `QaaS.Runner.Sessions/Actions/Transactions/Builders/TransactionBuilder.cs:153`
 
 **Complete Signature**
 ```csharp
@@ -4333,7 +4350,7 @@ Use this method when working with the documented Runner transaction builder API 
 
 #### `TransactionBuilder.WithIterations(int iterations)`
 
-**Location** `QaaS.Runner.Sessions/Actions/Transactions/Builders/TransactionBuilder.cs:178`
+**Location** `QaaS.Runner.Sessions/Actions/Transactions/Builders/TransactionBuilder.cs:166`
 
 **Complete Signature**
 ```csharp
@@ -4350,7 +4367,7 @@ Use this method when working with the documented Runner transaction builder API 
 
 #### `TransactionBuilder.AddDataSource(string dataSourceName)`
 
-**Location** `QaaS.Runner.Sessions/Actions/Transactions/Builders/TransactionBuilder.cs:191`
+**Location** `QaaS.Runner.Sessions/Actions/Transactions/Builders/TransactionBuilder.cs:179`
 
 **Complete Signature**
 ```csharp
@@ -4367,7 +4384,7 @@ Use this method when working with the documented Runner transaction builder API 
 
 #### `TransactionBuilder.CreateDataSource(string dataSourceName)`
 
-**Location** `QaaS.Runner.Sessions/Actions/Transactions/Builders/TransactionBuilder.cs:206`
+**Location** `QaaS.Runner.Sessions/Actions/Transactions/Builders/TransactionBuilder.cs:194`
 
 **Complete Signature**
 ```csharp
@@ -4384,7 +4401,7 @@ Use this method when working with the documented Runner transaction builder API 
 
 #### `TransactionBuilder.AddDataSourcePattern(string dataSourcePattern)`
 
-**Location** `QaaS.Runner.Sessions/Actions/Transactions/Builders/TransactionBuilder.cs:218`
+**Location** `QaaS.Runner.Sessions/Actions/Transactions/Builders/TransactionBuilder.cs:206`
 
 **Complete Signature**
 ```csharp
@@ -4401,7 +4418,7 @@ Use this method when working with the documented Runner transaction builder API 
 
 #### `TransactionBuilder.CreateDataSourcePattern(string dataSourcePattern)`
 
-**Location** `QaaS.Runner.Sessions/Actions/Transactions/Builders/TransactionBuilder.cs:233`
+**Location** `QaaS.Runner.Sessions/Actions/Transactions/Builders/TransactionBuilder.cs:221`
 
 **Complete Signature**
 ```csharp
@@ -4418,7 +4435,7 @@ Use this method when working with the documented Runner transaction builder API 
 
 #### `TransactionBuilder.InLoops()`
 
-**Location** `QaaS.Runner.Sessions/Actions/Transactions/Builders/TransactionBuilder.cs:245`
+**Location** `QaaS.Runner.Sessions/Actions/Transactions/Builders/TransactionBuilder.cs:233`
 
 **Complete Signature**
 ```csharp
@@ -4435,7 +4452,7 @@ Use this method when working with the documented Runner transaction builder API 
 
 #### `TransactionBuilder.WithSleep(ulong sleepTimeMs)`
 
-**Location** `QaaS.Runner.Sessions/Actions/Transactions/Builders/TransactionBuilder.cs:258`
+**Location** `QaaS.Runner.Sessions/Actions/Transactions/Builders/TransactionBuilder.cs:246`
 
 **Complete Signature**
 ```csharp
@@ -4452,7 +4469,7 @@ Use this method when working with the documented Runner transaction builder API 
 
 #### `TransactionBuilder.AddPolicy(PolicyBuilder policy)`
 
-**Location** `QaaS.Runner.Sessions/Actions/Transactions/Builders/TransactionBuilder.cs:271`
+**Location** `QaaS.Runner.Sessions/Actions/Transactions/Builders/TransactionBuilder.cs:259`
 
 **Complete Signature**
 ```csharp
@@ -4469,7 +4486,7 @@ Use this method when working with the documented Runner transaction builder API 
 
 #### `TransactionBuilder.CreatePolicy(PolicyBuilder policy)`
 
-**Location** `QaaS.Runner.Sessions/Actions/Transactions/Builders/TransactionBuilder.cs:286`
+**Location** `QaaS.Runner.Sessions/Actions/Transactions/Builders/TransactionBuilder.cs:274`
 
 **Complete Signature**
 ```csharp
@@ -4486,7 +4503,7 @@ Use this method when working with the documented Runner transaction builder API 
 
 #### `TransactionBuilder.ReadPolicies()`
 
-**Location** `QaaS.Runner.Sessions/Actions/Transactions/Builders/TransactionBuilder.cs:298`
+**Location** `QaaS.Runner.Sessions/Actions/Transactions/Builders/TransactionBuilder.cs:286`
 
 **Complete Signature**
 ```csharp
@@ -4503,7 +4520,7 @@ Use this method when working with the documented Runner transaction builder API 
 
 #### `TransactionBuilder.UpdatePolicyAt(int index, PolicyBuilder policy)`
 
-**Location** `QaaS.Runner.Sessions/Actions/Transactions/Builders/TransactionBuilder.cs:310`
+**Location** `QaaS.Runner.Sessions/Actions/Transactions/Builders/TransactionBuilder.cs:298`
 
 **Complete Signature**
 ```csharp
@@ -4520,7 +4537,7 @@ Use this method when working with the documented Runner transaction builder API 
 
 #### `TransactionBuilder.DeletePolicyAt(int index)`
 
-**Location** `QaaS.Runner.Sessions/Actions/Transactions/Builders/TransactionBuilder.cs:328`
+**Location** `QaaS.Runner.Sessions/Actions/Transactions/Builders/TransactionBuilder.cs:316`
 
 **Complete Signature**
 ```csharp
@@ -4537,7 +4554,7 @@ Use this method when working with the documented Runner transaction builder API 
 
 #### `TransactionBuilder.ReadDataSources()`
 
-**Location** `QaaS.Runner.Sessions/Actions/Transactions/Builders/TransactionBuilder.cs:346`
+**Location** `QaaS.Runner.Sessions/Actions/Transactions/Builders/TransactionBuilder.cs:334`
 
 **Complete Signature**
 ```csharp
@@ -4554,7 +4571,7 @@ Use this method when working with the documented Runner transaction builder API 
 
 #### `TransactionBuilder.UpdateDataSource(string existingValue, string newValue)`
 
-**Location** `QaaS.Runner.Sessions/Actions/Transactions/Builders/TransactionBuilder.cs:358`
+**Location** `QaaS.Runner.Sessions/Actions/Transactions/Builders/TransactionBuilder.cs:346`
 
 **Complete Signature**
 ```csharp
@@ -4571,7 +4588,7 @@ Use this method when working with the documented Runner transaction builder API 
 
 #### `TransactionBuilder.DeleteDataSource(string dataSourceName)`
 
-**Location** `QaaS.Runner.Sessions/Actions/Transactions/Builders/TransactionBuilder.cs:381`
+**Location** `QaaS.Runner.Sessions/Actions/Transactions/Builders/TransactionBuilder.cs:369`
 
 **Complete Signature**
 ```csharp
@@ -4588,7 +4605,7 @@ Use this method when working with the documented Runner transaction builder API 
 
 #### `TransactionBuilder.ReadDataSourcePatterns()`
 
-**Location** `QaaS.Runner.Sessions/Actions/Transactions/Builders/TransactionBuilder.cs:394`
+**Location** `QaaS.Runner.Sessions/Actions/Transactions/Builders/TransactionBuilder.cs:382`
 
 **Complete Signature**
 ```csharp
@@ -4605,7 +4622,7 @@ Use this method when working with the documented Runner transaction builder API 
 
 #### `TransactionBuilder.UpdateDataSourcePattern(string existingValue, string newValue)`
 
-**Location** `QaaS.Runner.Sessions/Actions/Transactions/Builders/TransactionBuilder.cs:406`
+**Location** `QaaS.Runner.Sessions/Actions/Transactions/Builders/TransactionBuilder.cs:394`
 
 **Complete Signature**
 ```csharp
@@ -4622,7 +4639,7 @@ Use this method when working with the documented Runner transaction builder API 
 
 #### `TransactionBuilder.DeleteDataSourcePattern(string dataSourcePattern)`
 
-**Location** `QaaS.Runner.Sessions/Actions/Transactions/Builders/TransactionBuilder.cs:429`
+**Location** `QaaS.Runner.Sessions/Actions/Transactions/Builders/TransactionBuilder.cs:417`
 
 **Complete Signature**
 ```csharp
@@ -4639,7 +4656,7 @@ Use this method when working with the documented Runner transaction builder API 
 
 #### `TransactionBuilder.CreateConfiguration(ITransactorConfig config)`
 
-**Location** `QaaS.Runner.Sessions/Actions/Transactions/Builders/TransactionBuilder.cs:442`
+**Location** `QaaS.Runner.Sessions/Actions/Transactions/Builders/TransactionBuilder.cs:430`
 
 **Complete Signature**
 ```csharp
@@ -4656,7 +4673,7 @@ Use this method when working with the documented Runner transaction builder API 
 
 #### `TransactionBuilder.Create(ITransactorConfig config)`
 
-**Location** `QaaS.Runner.Sessions/Actions/Transactions/Builders/TransactionBuilder.cs:454`
+**Location** `QaaS.Runner.Sessions/Actions/Transactions/Builders/TransactionBuilder.cs:442`
 
 **Complete Signature**
 ```csharp
@@ -4673,7 +4690,7 @@ Use this method when working with the documented Runner transaction builder API 
 
 #### `TransactionBuilder.ReadConfiguration()`
 
-**Location** `QaaS.Runner.Sessions/Actions/Transactions/Builders/TransactionBuilder.cs:466`
+**Location** `QaaS.Runner.Sessions/Actions/Transactions/Builders/TransactionBuilder.cs:454`
 
 **Complete Signature**
 ```csharp
@@ -4690,7 +4707,7 @@ Use this method when working with the documented Runner transaction builder API 
 
 #### `TransactionBuilder.UpdateConfiguration(Func<ITransactorConfig, ITransactorConfig> update)`
 
-**Location** `QaaS.Runner.Sessions/Actions/Transactions/Builders/TransactionBuilder.cs:478`
+**Location** `QaaS.Runner.Sessions/Actions/Transactions/Builders/TransactionBuilder.cs:466`
 
 **Complete Signature**
 ```csharp
@@ -4707,7 +4724,7 @@ Use this method when working with the documented Runner transaction builder API 
 
 #### `TransactionBuilder.UpdateConfiguration(ITransactorConfig config)`
 
-**Location** `QaaS.Runner.Sessions/Actions/Transactions/Builders/TransactionBuilder.cs:492`
+**Location** `QaaS.Runner.Sessions/Actions/Transactions/Builders/TransactionBuilder.cs:480`
 
 **Complete Signature**
 ```csharp
@@ -4724,7 +4741,7 @@ Use this method when working with the documented Runner transaction builder API 
 
 #### `TransactionBuilder.UpdateConfiguration(object configuration)`
 
-**Location** `QaaS.Runner.Sessions/Actions/Transactions/Builders/TransactionBuilder.cs:506`
+**Location** `QaaS.Runner.Sessions/Actions/Transactions/Builders/TransactionBuilder.cs:494`
 
 **Complete Signature**
 ```csharp
@@ -4741,7 +4758,7 @@ Use this method when working with the documented Runner transaction builder API 
 
 #### `TransactionBuilder.DeleteConfiguration()`
 
-**Location** `QaaS.Runner.Sessions/Actions/Transactions/Builders/TransactionBuilder.cs:520`
+**Location** `QaaS.Runner.Sessions/Actions/Transactions/Builders/TransactionBuilder.cs:508`
 
 **Complete Signature**
 ```csharp
@@ -4758,7 +4775,7 @@ Use this method when working with the documented Runner transaction builder API 
 
 #### `TransactionBuilder.Configure(ITransactorConfig config)`
 
-**Location** `QaaS.Runner.Sessions/Actions/Transactions/Builders/TransactionBuilder.cs:539`
+**Location** `QaaS.Runner.Sessions/Actions/Transactions/Builders/TransactionBuilder.cs:527`
 
 **Complete Signature**
 ```csharp

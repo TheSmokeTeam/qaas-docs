@@ -1,252 +1,196 @@
 # Configuration as Code
 
-**QaaS** is a modern, extensible testing and execution framework designed to support both **declarative configuration via YAML** and **programmatic configuration via C#**. While YAML offers a human-readable, concise way to define test scenarios, **QaaS elevates test automation through Configuration as Code (CaC)**—enabling teams to harness the full expressive power of C# for dynamic, conditional, and complex test orchestration and in order not to be limited by `YAML`.
+QaaS supports both declarative YAML and programmatic C# configuration. YAML is still the best fit for static scenarios and checked-in test cases. Configuration as Code is the better option when the execution needs branching logic, reusable helpers, shared conventions, or dynamic values that are awkward to express in YAML.
 
-This guide provides a comprehensive, professional overview of **Configuration as Code in QaaS**, covering initialization, configuration, execution control, and advanced patterns for building robust, maintainable, and scalable test systems.
+The current recommended model is:
 
----
+1. keep using the normal `Bootstrap.New(...)` entry point
+2. pass a configuration-file argument, even if the file is empty
+3. implement `IExecutionBuilderConfigurator` in the entry assembly or a copied dependency
+4. let Runner or Mocker discover that configurator automatically and apply it after YAML is loaded
 
-## Initialization: Bootstrap the Runner
+## Bootstrap First
 
-The entry point for every QaaS execution is the `Bootstrap` class, which orchestrates the initialization of the framework based on command-line arguments and optional configuration files.
+Start from the standard bootstrap path instead of constructing runners manually.
+
+```csharp
+var effectiveArgs = args.Length == 0
+    ? ["run", "test.qaas.yaml", "--no-env"]
+    : args;
+
+QaaS.Runner.Bootstrap.New(effectiveArgs).Run();
+```
+
+For Mocker the pattern is the same:
+
+```csharp
+var effectiveArgs = args.Length == 0
+    ? ["run", "mocker.qaas.yaml", "--no-env"]
+    : args;
+
+QaaS.Mocker.Bootstrap.New(effectiveArgs).Run();
+```
+
+This keeps CLI behavior, logging, overrides, and environment handling aligned with the normal runtime path.
+
+## Keep the YAML File, Even When It Is Empty
+
+The loaders still expect a configuration-file argument. In code-first scenarios that file can stay empty or contain only the static baseline that you want to keep in YAML.
+
+This gives you a practical hybrid model:
+
+- YAML for defaults, shared structure, or checked-in examples
+- C# for computed values, composition, and conditional behavior
+
+## Implement a Configurator
+
+Runner and Mocker both discover `IExecutionBuilderConfigurator` implementations automatically.
+
+Runner:
 
 ```csharp
 using QaaS.Runner;
 
-var runner = Bootstrap.New(args);
-```
-
-### Key Responsibilities of `Bootstrap.New(args)`
-
-- Parses command-line arguments (`args`) with support for overrides.
-- Loads and merges configuration from a YAML file (if specified).
-- Initializes a fully configured `Runner` instance with default behaviors.
-- Returns a ready-to-modify `Runner` object.
-
-> **Best Practice**: Always use `Bootstrap.New(args)` as the standard entry point. It supports hybrid configuration—YAML for structure, CLI for override—ensuring flexibility across environments.
-
----
-
-## The `Runner`: Central Orchestrator of Test Executions
-
-The `Runner` class represents the core execution context in QaaS. It manages one or more `ExecutionBuilder` instances, each execution defining a distinct logical test run. `Execution` can be dfined by the combination of every actions that are performed in a single `Case` or a single `Command` (when using `Execute` command). When using `Run`, `Act` or `Assert` command, there will be a single execution responsible for performing all the actions.
-
-For more documentation about `Executions`, please refer to [QaaS.Framework.Executions](../../framework/projects/executions.md).
-
-### Core Properties
-
-| Property            | Description                                                                                  |
-|---------------------|----------------------------------------------------------------------------------------------|
-| `ExecutionBuilders` | A list of `ExecutionBuilder` instances, each representing a separate test execution context. |
-
-### Accessing the Runner
-
-```csharp
-using QaaS.Runner;
-
-var runner = Bootstrap.New(args);
-var executionBuilders = runner.ExecutionBuilders;
-```
-
-> **Note**: At this stage, no test execution has occurred. The `Runner` is configured and ready for programmatic modification.
-
----
-
-## ExecutionBuilder: Define a Logical Test Execution
-
-Each `ExecutionBuilder` encapsulates the configuration for a single test execution. It composes multiple components that define behavior, data flow, and validation.
-
-| Component     | Purpose                                                                                                     |
-|---------------|-------------------------------------------------------------------------------------------------------------|
-| `Sessions`    | Defines one or more `SessionBuilder` instances, each representing a sequence of actions against the system. |
-| `Storages`    | Configures data persistence mechanisms (e.g., file systems, S3, databases).                                 |
-| `Assertions`  | Specifies validation rules and outcome checks.                                                              |
-| `DataSources` | All generators to generate data.                                                                            |
-| `Links`       | Integrates external observability systems (e.g., Prometheus, Grafana).                                      |
-
-### Accessing Builder Components
-
-```csharp
-using QaaS.Framework.SDK.Extensions;
-
-var runner = Bootstrap.New(args);
-var executionBuilder = runner.ExecutionBuilders.AsSingle(); // Asserts exactly one
-
-var sessionBuilders = executionBuilder.Sessions;
-var storageBuilders = executionBuilder.Storages;
-var assertionBuilders = executionBuilder.Assertions;
-var linkBuilders = executionBuilder.Links;
-var dataSourceBuilders = executionBuilder.DataSources;
-```
-
-> **Tip**: Use `AsSingle()` only when you are certain there is exactly one `ExecutionBuilder`. For flexibility, use `First()`, `FirstOrDefault()`, or indexing (`[0]`) when handling dynamic configurations.
-
----
-
-## Modifying Builders: Fluent Configuration via Code
-
-QaaS provides a fluent, type-safe API for modifying test configurations programmatically. This enables dynamic, conditional, and reusable test logic.
-
-### Example: Rename Session and Set Stage
-
-```csharp
-var sessionBuilder = executionBuilder.Sessions.AsSingle();
-sessionBuilder.Named("NewSessionName");
-sessionBuilder.AtStage(2);
-```
-
-> **Pro Tip**: Leverage IntelliSense (`Ctrl+Space`) to explore available methods and discover configuration options.
-
----
-
-## Advanced Integration
-
-For complex integrations — QaaS allows full C# control via builder patterns that accept complex configuration objects.
-
-### Example: Add a Kafka Topic Publisher
-
-```csharp
-using Confluent.Kafka;
-using QaaS.Framework.Protocols.ConfigurationObjects.Kafka;
-using QaaS.Framework.SDK.Extensions;
-using QaaS.Runner;
-using QaaS.Runner.Sessions.Actions.Publishers.Builders;
-
-var runner = Bootstrap.New(args);
-var executionBuilder = runner.ExecutionBuilders.AsSingle();
-var sessionBuilder = executionBuilder.Sessions.AsSingle();
-
-// Configure Kafka sender
-var kafkaTopicConfig = new KafkaTopicSenderConfig
+public sealed class RunnerExecutionBuilderConfigurator : IExecutionBuilderConfigurator
 {
-    TopicName = "test-topic",
-    Username = "admin",
-    Password = "secret",
-    HostNames = ["kafka1.example.com", "kafka2.example.com"],
-    SaslMechanism = SaslMechanism.ScramSha256,
-    SecurityProtocol = SecurityProtocol.SaslPlaintext
-};
+    public void Configure(ExecutionBuilder executionBuilder)
+    {
+        // add or replace builder state here
+    }
+}
+```
 
-// Build and attach publisher
-var kafkaPublisher = new PublisherBuilder()
-    .Named("KafkaPublisher")
-    .Configure(kafkaTopicConfig).WithDataSource("DataSource");
+Mocker:
 
-sessionBuilder.AddPublisher(kafkaPublisher);
+```csharp
+using QaaS.Mocker;
 
-// Execute
+public sealed class MockerExecutionBuilderConfigurator : IExecutionBuilderConfigurator
+{
+    public void Configure(ExecutionBuilder executionBuilder)
+    {
+        // add or replace builder state here
+    }
+}
+```
+
+The configurator runs after the loader has created the execution builder, so it can extend or replace the state that came from YAML.
+
+## What the Configurator Should Own
+
+Use the configurator to express the parts of the runtime that benefit from code:
+
+- build data sources from reusable helpers
+- attach sessions, assertions, links, storages, or stubs conditionally
+- compute metadata or policies from environment-specific inputs
+- apply conventions that should stay consistent across many tests or mocks
+
+Typical Runner example:
+
+```csharp
+public sealed class RunnerExecutionBuilderConfigurator : IExecutionBuilderConfigurator
+{
+    public void Configure(ExecutionBuilder executionBuilder)
+    {
+        executionBuilder
+            .WithMetadata(new MetaDataConfig
+            {
+                Team = "Smoke",
+                System = "DummyApp"
+            })
+            .AddDataSource(new DataSourceBuilder()
+                .Named("Inputs")
+                .HookNamed(nameof(FromFileSystem))
+                .Configure(new FromFileSystemConfig
+                {
+                    FileSystem = new FileSystemConfig
+                    {
+                        Path = "TestData"
+                    }
+                }));
+    }
+}
+```
+
+Typical Mocker example:
+
+```csharp
+public sealed class MockerExecutionBuilderConfigurator : IExecutionBuilderConfigurator
+{
+    public void Configure(ExecutionBuilder executionBuilder)
+    {
+        executionBuilder
+            .CreateDataSource(new DataSourceBuilder()
+                .Named("ServerData")
+                .HookNamed(nameof(FromFileSystem))
+                .Configure(new FromFileSystemConfig
+                {
+                    FileSystem = new FileSystemConfig
+                    {
+                        Path = "ServerData"
+                    }
+                }))
+            .CreateStub(new TransactionStubBuilder()
+                .Named("ServerDataStub")
+                .HookNamed(nameof(ServerDataProcessor))
+                .AddDataSourceName("ServerData"));
+    }
+}
+```
+
+## Discovery Rules
+
+The configurator loaders scan:
+
+- the entry assembly
+- already loaded assemblies
+- copied `.dll` files in the output directory
+
+That means you can keep configurators inside the app itself or move them into reusable helper assemblies that are copied to the output folder.
+
+If the configuration file path does not exist but one or more configurators are discovered, the loaders continue and log a warning instead of failing immediately. That is what makes the empty-file bootstrap pattern work.
+
+## Prefer Configurators Over Mutating `runner.ExecutionBuilders`
+
+Older examples often showed:
+
+```csharp
+var runner = Bootstrap.New(args);
+
+foreach (var executionBuilder in runner.ExecutionBuilders)
+{
+    // mutate execution builders here
+}
+
 runner.Run();
 ```
 
-> **Benefits**:
->
-> - Full access to C# ecosystem.
-> - Dynamic configuration based on environment, runtime state, or external inputs.
-> - Reusable, testable, and version-controlled code.
+That approach is no longer the recommended starting point. It couples your host code to the loader output shape and spreads configuration behavior outside the discovery pipeline.
 
----
+Prefer `IExecutionBuilderConfigurator` instead because it:
 
-## Custom Runner: Extend and Override Core Behavior
+- keeps the host minimal
+- composes cleanly with YAML
+- works for both Runner and Mocker
+- is covered by the current loader tests
 
-When default behavior is insufficient, QaaS allows you to **extend the `Runner` class** and override key lifecycle methods to implement custom orchestration logic.
+## When a Custom Runner Still Makes Sense
 
-## `Runner.Run()` Logic
+Extending `Runner` is still useful when you want to change lifecycle behavior rather than just configuration shape. Examples:
 
-The `Run()` method is composed of a series of methods that execute one after the other and are responsible for the actions performed before or after the executions are run (such as clearing the `allure-results` folder before the tests run and wiring the resutls to it after the tests finish). Along with those `Run` contains the logic for building the `Execution`s from the `ExecutionBuilder`s and starting the `Execution`s. To view the methods run order and signatures, open the default `Runner` class and go to `Run()` method.
+- custom setup or teardown
+- orchestration across multiple execution phases
+- custom exit-code handling
+- domain-specific execution sequencing
 
-### Inherit from `Runner`
+Use `Bootstrap.New<TRunner>(...)` for that case, but keep configuration concerns in configurators unless you truly need lifecycle control.
 
-```csharp
-public class MyCustomRunner : Runner
-{
-    public MyCustomRunner(
-        ILifetimeScope scope,
-        List<ExecutionBuilder> executionBuilders,
-        ILogger logger,
-        bool emptyResults = false,
-        bool serveResults = false)
-        : base(scope, executionBuilders, logger, emptyResults, serveResults)
-    {
-    }
+## Practical Guidance
 
-    protected override void Setup()
-    {
-        Console.WriteLine("Custom setup: Initializing test environment...");
-        // Add custom pre-execution logic (e.g., start services, warm caches)
-        base.Setup(); // Optional: preserve base behavior
-    }
+- Start with YAML when the scenario is static and easy to read.
+- Move to code when you need reuse, composition, branching, or shared conventions.
+- Keep the entry point thin.
+- Put runtime shape into `IExecutionBuilderConfigurator`.
+- Let bootstrap keep ownership of loading, overrides, logging, and environment resolution.
 
-    protected override void Teardown()
-    {
-        Console.WriteLine("Custom teardown: Cleaning up resources...");
-        // Add post-execution cleanup (e.g., stop containers, export logs)
-        base.Teardown(); // Optional: preserve base behavior
-    }
-
-    protected override List<Execution> BuildExecutions()
-    {
-        // Customize execution construction
-        var executions = base.BuildExecutions();
-        // Add, filter, or modify executions dynamically
-        return executions;
-    }
-}
-```
-
-> **Note**: All `virtual` methods in `Runner` are designed for extension. Use `base.` calls when you want to preserve default behavior.
-
----
-
-## Using the Custom Runner
-
-To activate your custom runner, use the generic `Bootstrap.New<TRunner>` overload:
-
-```csharp
-QaaS.Runner.Bootstrap.New<MyCustomRunner>(args).Run();
-```
-
-> This enables **full control** over the test lifecycle while retaining all built-in functionality of QaaS.
-
----
-
-## Advanced Use Case: Conditional Test Orchestration
-
-Leverage programmatic logic to implement sophisticated workflows — such as chaos engineering, rollback strategies, or multiphase validation.
-
-### Example: Chaos Engineering Workflow
-
-```csharp
-protected override int StartExecutions(List<Execution> executions)
-{
-    int? finalResult = null;
-
-    // Step 1: Validate steady state
-    var steadyStateResult = executions.First().Start();
-
-    // Step 2: Proceed only if steady state is healthy
-    if (steadyStateResult == 0)
-    {
-        // Step 3: Execute experiment
-        executions[1].Start();
-
-        // Step 4: Validate post-experiment state
-        finalResult = executions.First().Start();
-
-        // Step 5: Rollback if experiment failed
-        if (finalResult != 0)
-        {
-            executions[2].Start(); // Rollback phase
-        }
-    }
-
-    // Step 6: Return final outcome
-    return finalResult ?? steadyStateResult;
-}
-```
-
-> **Benefits**:
->
-> - Dynamic decision-making based on real-time test outcomes.
-> - Support for rollback, retry, or cleanup logic.
-> - Full access to execution state and results.
-> - Maintainable, testable, and version-controlled.
+The quick-start pages for [Write a Test (Code)](../quickStart/writeTestCode.md) and [Create a Mock (Code)](../../mocker/quickStart/createMockCode.md) show the current recommended pattern end to end.

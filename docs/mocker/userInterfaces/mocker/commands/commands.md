@@ -1,4 +1,4 @@
-<!-- generated hash:c0aa65098341 sources:Mocker, cli-overview -->
+<!-- generated hash:ced5468ae4d5 sources:Mocker, cli-overview -->
 
 # Commands
 
@@ -52,7 +52,7 @@ Usage:
   -g, --logger-configuration-file    Path to a logger's configuration file, will override the default logger's
                                      configuration. Its level can be overridden by the logger-level flag.
 
-  --send-logs                        (Default: false) Whether to send the logs to Smokes's logs database
+  --send-logs                        (Default: false) Whether to send the logs to Smoke's logs database
 
   --elastic-uri                      Elasticsearch URI used by the logger sink when send-logs is enabled.
 
@@ -102,7 +102,7 @@ Usage:
   -g, --logger-configuration-file    Path to a logger's configuration file, will override the default logger's
                                      configuration. Its level can be overridden by the logger-level flag.
 
-  --send-logs                        (Default: false) Whether to send the logs to Smokes's logs database
+  --send-logs                        (Default: false) Whether to send the logs to Smoke's logs database
 
   --elastic-uri                      Elasticsearch URI used by the logger sink when send-logs is enabled.
 
@@ -130,18 +130,18 @@ Usage:
 
 ## Common Flags
 
-| Flag | Required | Default | Type | Description |
-| ---- | -------- | ------- | ---- | ----------- |
-| `--disable-elastic-defaults` | No | False | `bool` | Disables Elastic defaults registered through the runtime defaults provider for this run. |
-| `--elastic-password` | No |  | `string` | Optional Elasticsearch password for the logger sink. |
-| `--elastic-uri` | No |  | `string` | Elasticsearch URI used by the logger sink when send-logs is enabled. |
-| `--elastic-username` | No |  | `string` | Optional Elasticsearch username for the logger sink. |
-| `-g`, `--logger-configuration-file` | No |  | `string` | Path to a logger's configuration file, will override the default logger's configuration. Its level can be overridden by the logger-level flag. |
-| `-l`, `--logger-level` | No |  | `LogEventLevel?` | The logger's level, overrides both the default logger's level (Information) and the level of any logger's configuration given.<br />All available options (not case sensitive) are: Verbose, Debug,<br />Information, Warning, Error, Fatal. |
-| `--no-env` | No | False | `bool` | When this flag is used environment variables will not override loaded configurations. |
-| `-o`, `--output-folder` | No |  | `string` | Path to a folder to write the generated templates in. |
-| `-r`, `--overwrite-arguments` | No | [] | `IList<string>` | List of arguments to overwrite the mocker configuration with, The first argument overwrites the<br />mocker configuration and then the one after it overwrites the result and so on...<br />For example: `Path:To:Variable:To:Overwrite=NewVariableValue` |
-| `-w`, `--overwrite-files` | No | [] | `IList<string>` | List of files to overwrite the mocker configuration with, The first file overwrites the mocker<br />configuration file and then the one after it overwrite the result and so on... |
-| `-f`, `--overwrite-folders` | No | [] | `IList<string>` | List of folders whose yaml files overwrite the mocker configuration in alphabetical order,<br />after overwrite files and in the order the folders are given. |
-| `--run-locally` | No | False | `bool` | Runs the project locally and enables exit by any key press. |
-| `--send-logs` | No | False | `bool` | Whether to send the logs to Smokes's logs database |
+| Flag | Required | Default | Type | Source Type | Description |
+| ---- | -------- | ------- | ---- | ----------- | ----------- |
+| `--disable-elastic-defaults` | No | False | `bool` | `Logger options` | Disables Elastic defaults registered through the runtime defaults provider for this run. |
+| `--elastic-password` | No |  | `string` | `Logger options` | Optional Elasticsearch password for the logger sink. |
+| `--elastic-uri` | No |  | `string` | `Logger options` | Elasticsearch URI used by the logger sink when send-logs is enabled. |
+| `--elastic-username` | No |  | `string` | `Logger options` | Optional Elasticsearch username for the logger sink. |
+| `-g`, `--logger-configuration-file` | No |  | `string` | `Logger options` | Path to a logger's configuration file, will override the default logger's configuration. Its level can be overridden by the logger-level flag. |
+| `-l`, `--logger-level` | No |  | `LogEventLevel (optional)` | `Logger options` | The logger's level, overrides both the default logger's level (Information) and the level of any logger's configuration given.<br />All available options (not case sensitive) are: Verbose, Debug,<br />Information, Warning, Error, Fatal. |
+| `--no-env` | No | False | `bool` | `Mocker options` | When this flag is used environment variables will not override loaded configurations. |
+| `-o`, `--output-folder` | No |  | `string` | `Mocker options` | Path to a folder to write the generated templates in. |
+| `-r`, `--overwrite-arguments` | No | [] | `string list` | `Mocker options` | List of arguments to overwrite the mocker configuration with, The first argument overwrites the<br />mocker configuration and then the one after it overwrites the result and so on...<br />For example: `Path:To:Variable:To:Overwrite=NewVariableValue` |
+| `-w`, `--overwrite-files` | No | [] | `string list` | `Mocker options` | List of files to overwrite the mocker configuration with, The first file overwrites the mocker<br />configuration file and then the one after it overwrite the result and so on... |
+| `-f`, `--overwrite-folders` | No | [] | `string list` | `Mocker options` | List of folders whose yaml files overwrite the mocker configuration in alphabetical order,<br />after overwrite files and in the order the folders are given. |
+| `--run-locally` | No | False | `bool` | `Mocker options` | Runs the project locally and enables exit by any key press. |
+| `--send-logs` | No | False | `bool` | `Logger options` | Whether to send the logs to Smoke's logs database |

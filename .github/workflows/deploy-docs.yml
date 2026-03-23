@@ -4,14 +4,13 @@ on:
   push:
     branches:
       - master
-      - docs/mocker_documentation
-      - unified-docs
       - fix/free_text
-      - fix/improve_docs
+      - feature/better_docs
   pull_request:
     branches:
       - master
-      - docs/mocker_documentation
+      - fix/free_text
+      - feature/better_docs
   workflow_dispatch:
 
 permissions:
@@ -29,6 +28,40 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
+        with:
+          submodules: recursive
+
+      - name: Checkout package mirror
+        uses: actions/checkout@v4
+        with:
+          repository: TheSmokeTeam/QaaS.PackageMirror
+          path: QaaS.PackageMirror
+
+      - name: Checkout runner
+        uses: actions/checkout@v4
+        with:
+          repository: TheSmokeTeam/QaaS.Runner
+          ref: feature/code-configuration-bootstrap
+          path: QaaS.Runner
+
+      - name: Checkout mocker
+        uses: actions/checkout@v4
+        with:
+          repository: TheSmokeTeam/QaaS.Mocker
+          ref: feature/docs-cli-export
+          path: QaaS.Mocker
+
+      - name: Checkout framework
+        uses: actions/checkout@v4
+        with:
+          repository: TheSmokeTeam/QaaS.Framework
+          ref: feature/elastic-defaults-hook
+          path: QaaS.Framework
+
+      - name: Setup dotnet
+        uses: actions/setup-dotnet@v5
+        with:
+          dotnet-version: 10.0.x
 
       - name: Setup Python
         uses: actions/setup-python@v5
@@ -46,8 +79,17 @@ jobs:
       - name: Install dependencies
         run: pip install -r requirements.txt
 
-      - name: Build documentation
-        run: mkdocs build
+      - name: Validate generated docs and build site
+        shell: pwsh
+        run: |
+          .\scripts\Generate-ReferenceDocs.ps1 `
+            -DocsRoot "$PWD" `
+            -MirrorRoot "$PWD\..\QaaS.PackageMirror" `
+            -RunnerRoot "$PWD\..\QaaS.Runner" `
+            -MockerRoot "$PWD\..\QaaS.Mocker" `
+            -FrameworkRoot "$PWD\..\QaaS.Framework" `
+            -Check `
+            -BuildSite
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
@@ -55,7 +97,7 @@ jobs:
           path: ./site
 
   deploy:
-    if: github.event_name == 'push' && (github.ref == 'refs/heads/master' || github.ref == 'refs/heads/docs/mocker_documentation' || github.ref == 'refs/heads/unified-docs' || github.ref == 'refs/heads/fix/free_text' || github.ref == 'refs/heads/fix/improve_docs')
+    if: github.event_name == 'push' && (github.ref == 'refs/heads/master' || github.ref == 'refs/heads/fix/free_text' || github.ref == 'refs/heads/feature/better_docs')
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}

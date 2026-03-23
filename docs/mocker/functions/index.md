@@ -1,4 +1,4 @@
-<!-- generated hash:c97e8a6c2c25 sources:Mocker, functions -->
+<!-- generated hash:7217de98aa47 sources:Mocker, functions -->
 
 # Mocker Functions
 
@@ -12,7 +12,7 @@ This page is generated from source-level `qaas-docs` annotations and the current
 
 #### `ExecutionBuilder()`
 
-**Location** `QaaS.Mocker/ExecutionBuilder.cs:137`
+**Location** `QaaS.Mocker/ExecutionBuilder.cs:133`
 
 **Complete Signature**
 ```csharp
@@ -27,26 +27,9 @@ Use this constructor when bootstrapping a mocker execution entirely in code befo
 
 <hr class="function-separator" />
 
-#### `ExecutionBuilder.WithContext(InternalContext context)`
-
-**Location** `QaaS.Mocker/ExecutionBuilder.cs:156`
-
-**Complete Signature**
-```csharp
-public ExecutionBuilder WithContext(InternalContext context)
-```
-
-**Docstring**
-
-Replaces the execution context used by the builder.
-
-Use this method when working with the documented Mocker execution builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
-
-<hr class="function-separator" />
-
 #### `ExecutionBuilder.WithLogger(ILogger logger)`
 
-**Location** `QaaS.Mocker/ExecutionBuilder.cs:169`
+**Location** `QaaS.Mocker/ExecutionBuilder.cs:165`
 
 **Complete Signature**
 ```csharp
@@ -63,7 +46,7 @@ Use this method when working with the documented Mocker execution builder API su
 
 #### `ExecutionBuilder.WithRootConfiguration(IConfiguration configuration)`
 
-**Location** `QaaS.Mocker/ExecutionBuilder.cs:182`
+**Location** `QaaS.Mocker/ExecutionBuilder.cs:178`
 
 **Complete Signature**
 ```csharp
@@ -80,7 +63,7 @@ Use this method when working with the documented Mocker execution builder API su
 
 #### `ExecutionBuilder.WithExecutionMode(ExecutionMode executionMode)`
 
-**Location** `QaaS.Mocker/ExecutionBuilder.cs:195`
+**Location** `QaaS.Mocker/ExecutionBuilder.cs:191`
 
 **Complete Signature**
 ```csharp
@@ -97,7 +80,7 @@ Use this method when working with the documented Mocker execution builder API su
 
 #### `ExecutionBuilder.RunLocally(bool runLocally = true)`
 
-**Location** `QaaS.Mocker/ExecutionBuilder.cs:208`
+**Location** `QaaS.Mocker/ExecutionBuilder.cs:204`
 
 **Complete Signature**
 ```csharp
@@ -114,7 +97,7 @@ Use this method when working with the documented Mocker execution builder API su
 
 #### `ExecutionBuilder.WithTemplateOutputFolder(string? templateOutputFolder)`
 
-**Location** `QaaS.Mocker/ExecutionBuilder.cs:221`
+**Location** `QaaS.Mocker/ExecutionBuilder.cs:217`
 
 **Complete Signature**
 ```csharp
@@ -131,7 +114,7 @@ Use this method when working with the documented Mocker execution builder API su
 
 #### `ExecutionBuilder.CreateDataSource(DataSourceBuilder dataSourceBuilder)`
 
-**Location** `QaaS.Mocker/ExecutionBuilder.cs:234`
+**Location** `QaaS.Mocker/ExecutionBuilder.cs:230`
 
 **Complete Signature**
 ```csharp
@@ -148,7 +131,7 @@ Use this method when working with the documented Mocker execution builder API su
 
 #### `ExecutionBuilder.ReadDataSource(string dataSourceName)`
 
-**Location** `QaaS.Mocker/ExecutionBuilder.cs:255`
+**Location** `QaaS.Mocker/ExecutionBuilder.cs:251`
 
 **Complete Signature**
 ```csharp
@@ -165,7 +148,7 @@ Use this method when working with the documented Mocker execution builder API su
 
 #### `ExecutionBuilder.UpdateDataSource(string dataSourceName, DataSourceBuilder dataSourceBuilder)`
 
-**Location** `QaaS.Mocker/ExecutionBuilder.cs:268`
+**Location** `QaaS.Mocker/ExecutionBuilder.cs:264`
 
 **Complete Signature**
 ```csharp
@@ -182,7 +165,7 @@ Use this method when working with the documented Mocker execution builder API su
 
 #### `ExecutionBuilder.DeleteDataSource(string dataSourceName)`
 
-**Location** `QaaS.Mocker/ExecutionBuilder.cs:297`
+**Location** `QaaS.Mocker/ExecutionBuilder.cs:293`
 
 **Complete Signature**
 ```csharp
@@ -199,7 +182,7 @@ Use this method when working with the documented Mocker execution builder API su
 
 #### `ExecutionBuilder.CreateStub(TransactionStubBuilder stubBuilder)`
 
-**Location** `QaaS.Mocker/ExecutionBuilder.cs:316`
+**Location** `QaaS.Mocker/ExecutionBuilder.cs:312`
 
 **Complete Signature**
 ```csharp
@@ -216,7 +199,7 @@ Use this method when working with the documented Mocker execution builder API su
 
 #### `ExecutionBuilder.CreateStub(TransactionStubConfig stubConfig)`
 
-**Location** `QaaS.Mocker/ExecutionBuilder.cs:325`
+**Location** `QaaS.Mocker/ExecutionBuilder.cs:321`
 
 **Complete Signature**
 ```csharp
@@ -233,7 +216,7 @@ Use this method when working with the documented Mocker execution builder API su
 
 #### `ExecutionBuilder.ReadStub(string stubName)`
 
-**Location** `QaaS.Mocker/ExecutionBuilder.cs:345`
+**Location** `QaaS.Mocker/ExecutionBuilder.cs:341`
 
 **Complete Signature**
 ```csharp
@@ -250,7 +233,7 @@ Use this method when working with the documented Mocker execution builder API su
 
 #### `ExecutionBuilder.UpdateStub(string stubName, Action<TransactionStubBuilder> configureAction)`
 
-**Location** `QaaS.Mocker/ExecutionBuilder.cs:358`
+**Location** `QaaS.Mocker/ExecutionBuilder.cs:354`
 
 **Complete Signature**
 ```csharp
@@ -267,7 +250,7 @@ Use this method when working with the documented Mocker execution builder API su
 
 #### `ExecutionBuilder.UpdateStub(string stubName, TransactionStubBuilder stubBuilder)`
 
-**Location** `QaaS.Mocker/ExecutionBuilder.cs:376`
+**Location** `QaaS.Mocker/ExecutionBuilder.cs:372`
 
 **Complete Signature**
 ```csharp
@@ -284,7 +267,7 @@ Use this method when working with the documented Mocker execution builder API su
 
 #### `ExecutionBuilder.UpdateStub(string stubName, TransactionStubConfig stubConfig)`
 
-**Location** `QaaS.Mocker/ExecutionBuilder.cs:386`
+**Location** `QaaS.Mocker/ExecutionBuilder.cs:382`
 
 **Complete Signature**
 ```csharp
@@ -301,7 +284,7 @@ Use this method when working with the documented Mocker execution builder API su
 
 #### `ExecutionBuilder.DeleteStub(string stubName)`
 
-**Location** `QaaS.Mocker/ExecutionBuilder.cs:415`
+**Location** `QaaS.Mocker/ExecutionBuilder.cs:411`
 
 **Complete Signature**
 ```csharp
@@ -318,7 +301,7 @@ Use this method when working with the documented Mocker execution builder API su
 
 #### `ExecutionBuilder.ReadServer()`
 
-**Location** `QaaS.Mocker/ExecutionBuilder.cs:434`
+**Location** `QaaS.Mocker/ExecutionBuilder.cs:430`
 
 **Complete Signature**
 ```csharp
@@ -335,7 +318,7 @@ Use this method when working with the documented Mocker execution builder API su
 
 #### `ExecutionBuilder.ReadServers()`
 
-**Location** `QaaS.Mocker/ExecutionBuilder.cs:443`
+**Location** `QaaS.Mocker/ExecutionBuilder.cs:439`
 
 **Complete Signature**
 ```csharp
@@ -352,7 +335,7 @@ Use this method when working with the documented Mocker execution builder API su
 
 #### `ExecutionBuilder.CreateServer(ServerConfig serverConfig)`
 
-**Location** `QaaS.Mocker/ExecutionBuilder.cs:452`
+**Location** `QaaS.Mocker/ExecutionBuilder.cs:448`
 
 **Complete Signature**
 ```csharp
@@ -369,7 +352,7 @@ Use this method when working with the documented Mocker execution builder API su
 
 #### `ExecutionBuilder.ReplaceServer(ServerConfig serverConfig)`
 
-**Location** `QaaS.Mocker/ExecutionBuilder.cs:470`
+**Location** `QaaS.Mocker/ExecutionBuilder.cs:466`
 
 **Complete Signature**
 ```csharp
@@ -386,7 +369,7 @@ Use this method when working with the documented Mocker execution builder API su
 
 #### `ExecutionBuilder.AddServer(ServerConfig serverConfig)`
 
-**Location** `QaaS.Mocker/ExecutionBuilder.cs:486`
+**Location** `QaaS.Mocker/ExecutionBuilder.cs:482`
 
 **Complete Signature**
 ```csharp
@@ -403,7 +386,7 @@ Use this method when working with the documented Mocker execution builder API su
 
 #### `ExecutionBuilder.ReplaceServers(params ServerConfig[] serverConfigs)`
 
-**Location** `QaaS.Mocker/ExecutionBuilder.cs:502`
+**Location** `QaaS.Mocker/ExecutionBuilder.cs:498`
 
 **Complete Signature**
 ```csharp
@@ -420,7 +403,7 @@ Use this method when working with the documented Mocker execution builder API su
 
 #### `ExecutionBuilder.UpdateServer(Action<ServerConfig> configureAction)`
 
-**Location** `QaaS.Mocker/ExecutionBuilder.cs:518`
+**Location** `QaaS.Mocker/ExecutionBuilder.cs:514`
 
 **Complete Signature**
 ```csharp
@@ -437,7 +420,7 @@ Use this method when working with the documented Mocker execution builder API su
 
 #### `ExecutionBuilder.ReadController()`
 
-**Location** `QaaS.Mocker/ExecutionBuilder.cs:535`
+**Location** `QaaS.Mocker/ExecutionBuilder.cs:531`
 
 **Complete Signature**
 ```csharp
@@ -454,7 +437,7 @@ Use this method when working with the documented Mocker execution builder API su
 
 #### `ExecutionBuilder.CreateController(ControllerConfig controllerConfig)`
 
-**Location** `QaaS.Mocker/ExecutionBuilder.cs:544`
+**Location** `QaaS.Mocker/ExecutionBuilder.cs:540`
 
 **Complete Signature**
 ```csharp
@@ -471,7 +454,7 @@ Use this method when working with the documented Mocker execution builder API su
 
 #### `ExecutionBuilder.ReplaceController(ControllerConfig? controllerConfig)`
 
-**Location** `QaaS.Mocker/ExecutionBuilder.cs:560`
+**Location** `QaaS.Mocker/ExecutionBuilder.cs:556`
 
 **Complete Signature**
 ```csharp
@@ -488,7 +471,7 @@ Use this method when working with the documented Mocker execution builder API su
 
 #### `ExecutionBuilder.UpdateController(Action<ControllerConfig> configureAction)`
 
-**Location** `QaaS.Mocker/ExecutionBuilder.cs:573`
+**Location** `QaaS.Mocker/ExecutionBuilder.cs:569`
 
 **Complete Signature**
 ```csharp
@@ -505,7 +488,7 @@ Use this method when working with the documented Mocker execution builder API su
 
 #### `ExecutionBuilder.DeleteController()`
 
-**Location** `QaaS.Mocker/ExecutionBuilder.cs:590`
+**Location** `QaaS.Mocker/ExecutionBuilder.cs:586`
 
 **Complete Signature**
 ```csharp
@@ -522,7 +505,7 @@ Use this method when working with the documented Mocker execution builder API su
 
 #### `ExecutionBuilder.Build()`
 
-**Location** `QaaS.Mocker/ExecutionBuilder.cs:644`
+**Location** `QaaS.Mocker/ExecutionBuilder.cs:640`
 
 **Complete Signature**
 ```csharp
@@ -539,7 +522,7 @@ Call this after the fluent configuration is complete. The method validates the a
 
 #### `ExecutionBuilder.Validate(ValidationContext validationContext)`
 
-**Location** `QaaS.Mocker/ExecutionBuilder.cs:747`
+**Location** `QaaS.Mocker/ExecutionBuilder.cs:744`
 
 **Complete Signature**
 ```csharp
@@ -558,7 +541,7 @@ Validation results are returned instead of thrown so callers can aggregate or re
 
 #### `TransactionStubBuilder.Named(string name)`
 
-**Location** `QaaS.Mocker.Stubs/ConfigurationObjects/TransactionStubBuilder.cs:66`
+**Location** `QaaS.Mocker.Stubs/ConfigurationObjects/TransactionStubBuilder.cs:63`
 
 **Complete Signature**
 ```csharp
@@ -575,7 +558,7 @@ Use this method when working with the documented Mocker transaction stub builder
 
 #### `TransactionStubBuilder.HookNamed(string processorName)`
 
-**Location** `QaaS.Mocker.Stubs/ConfigurationObjects/TransactionStubBuilder.cs:79`
+**Location** `QaaS.Mocker.Stubs/ConfigurationObjects/TransactionStubBuilder.cs:76`
 
 **Complete Signature**
 ```csharp
@@ -592,7 +575,7 @@ Use this method when working with the documented Mocker transaction stub builder
 
 #### `TransactionStubBuilder.AddDataSourceName(string dataSourceName)`
 
-**Location** `QaaS.Mocker.Stubs/ConfigurationObjects/TransactionStubBuilder.cs:92`
+**Location** `QaaS.Mocker.Stubs/ConfigurationObjects/TransactionStubBuilder.cs:89`
 
 **Complete Signature**
 ```csharp
@@ -609,7 +592,7 @@ Use this method when working with the documented Mocker transaction stub builder
 
 #### `TransactionStubBuilder.WithDataSourceNames(IEnumerable<string> dataSourceNames)`
 
-**Location** `QaaS.Mocker.Stubs/ConfigurationObjects/TransactionStubBuilder.cs:105`
+**Location** `QaaS.Mocker.Stubs/ConfigurationObjects/TransactionStubBuilder.cs:102`
 
 **Complete Signature**
 ```csharp
@@ -626,7 +609,7 @@ Use this method when working with the documented Mocker transaction stub builder
 
 #### `TransactionStubBuilder.ClearDataSourceNames()`
 
-**Location** `QaaS.Mocker.Stubs/ConfigurationObjects/TransactionStubBuilder.cs:118`
+**Location** `QaaS.Mocker.Stubs/ConfigurationObjects/TransactionStubBuilder.cs:115`
 
 **Complete Signature**
 ```csharp
@@ -643,7 +626,7 @@ Use this method when working with the documented Mocker transaction stub builder
 
 #### `TransactionStubBuilder.Configure(IConfiguration configuration)`
 
-**Location** `QaaS.Mocker.Stubs/ConfigurationObjects/TransactionStubBuilder.cs:131`
+**Location** `QaaS.Mocker.Stubs/ConfigurationObjects/TransactionStubBuilder.cs:128`
 
 **Complete Signature**
 ```csharp
@@ -660,7 +643,7 @@ Use this method when working with the documented Mocker transaction stub builder
 
 #### `TransactionStubBuilder.CreateConfiguration(IConfiguration configuration)`
 
-**Location** `QaaS.Mocker.Stubs/ConfigurationObjects/TransactionStubBuilder.cs:144`
+**Location** `QaaS.Mocker.Stubs/ConfigurationObjects/TransactionStubBuilder.cs:141`
 
 **Complete Signature**
 ```csharp
@@ -677,7 +660,7 @@ Use this method when working with the documented Mocker transaction stub builder
 
 #### `TransactionStubBuilder.Configure(object configuration)`
 
-**Location** `QaaS.Mocker.Stubs/ConfigurationObjects/TransactionStubBuilder.cs:156`
+**Location** `QaaS.Mocker.Stubs/ConfigurationObjects/TransactionStubBuilder.cs:153`
 
 **Complete Signature**
 ```csharp
@@ -694,7 +677,7 @@ Use this method when working with the documented Mocker transaction stub builder
 
 #### `TransactionStubBuilder.CreateConfiguration(object configuration)`
 
-**Location** `QaaS.Mocker.Stubs/ConfigurationObjects/TransactionStubBuilder.cs:170`
+**Location** `QaaS.Mocker.Stubs/ConfigurationObjects/TransactionStubBuilder.cs:167`
 
 **Complete Signature**
 ```csharp
@@ -711,7 +694,7 @@ Use this method when working with the documented Mocker transaction stub builder
 
 #### `TransactionStubBuilder.Create(IConfiguration configuration)`
 
-**Location** `QaaS.Mocker.Stubs/ConfigurationObjects/TransactionStubBuilder.cs:182`
+**Location** `QaaS.Mocker.Stubs/ConfigurationObjects/TransactionStubBuilder.cs:179`
 
 **Complete Signature**
 ```csharp
@@ -728,7 +711,7 @@ Use this method when working with the documented Mocker transaction stub builder
 
 #### `TransactionStubBuilder.Create(object configuration)`
 
-**Location** `QaaS.Mocker.Stubs/ConfigurationObjects/TransactionStubBuilder.cs:194`
+**Location** `QaaS.Mocker.Stubs/ConfigurationObjects/TransactionStubBuilder.cs:191`
 
 **Complete Signature**
 ```csharp
@@ -745,7 +728,7 @@ Use this method when working with the documented Mocker transaction stub builder
 
 #### `TransactionStubBuilder.ReadConfiguration()`
 
-**Location** `QaaS.Mocker.Stubs/ConfigurationObjects/TransactionStubBuilder.cs:206`
+**Location** `QaaS.Mocker.Stubs/ConfigurationObjects/TransactionStubBuilder.cs:203`
 
 **Complete Signature**
 ```csharp
@@ -762,7 +745,7 @@ Use this method when working with the documented Mocker transaction stub builder
 
 #### `TransactionStubBuilder.UpdateConfiguration(object configuration)`
 
-**Location** `QaaS.Mocker.Stubs/ConfigurationObjects/TransactionStubBuilder.cs:218`
+**Location** `QaaS.Mocker.Stubs/ConfigurationObjects/TransactionStubBuilder.cs:225`
 
 **Complete Signature**
 ```csharp
@@ -779,7 +762,7 @@ Use this method when working with the documented Mocker transaction stub builder
 
 #### `TransactionStubBuilder.DeleteConfiguration()`
 
-**Location** `QaaS.Mocker.Stubs/ConfigurationObjects/TransactionStubBuilder.cs:231`
+**Location** `QaaS.Mocker.Stubs/ConfigurationObjects/TransactionStubBuilder.cs:238`
 
 **Complete Signature**
 ```csharp
@@ -796,7 +779,7 @@ Use this method when working with the documented Mocker transaction stub builder
 
 #### `TransactionStubBuilder.DeserializeRequestBodyWith(DeserializeConfig config)`
 
-**Location** `QaaS.Mocker.Stubs/ConfigurationObjects/TransactionStubBuilder.cs:244`
+**Location** `QaaS.Mocker.Stubs/ConfigurationObjects/TransactionStubBuilder.cs:251`
 
 **Complete Signature**
 ```csharp
@@ -813,7 +796,7 @@ Use this method when working with the documented Mocker transaction stub builder
 
 #### `TransactionStubBuilder.SerializeResponseBodyWith(SerializeConfig config)`
 
-**Location** `QaaS.Mocker.Stubs/ConfigurationObjects/TransactionStubBuilder.cs:257`
+**Location** `QaaS.Mocker.Stubs/ConfigurationObjects/TransactionStubBuilder.cs:264`
 
 **Complete Signature**
 ```csharp
@@ -830,7 +813,7 @@ Use this method when working with the documented Mocker transaction stub builder
 
 #### `TransactionStubBuilder.Build()`
 
-**Location** `QaaS.Mocker.Stubs/ConfigurationObjects/TransactionStubBuilder.cs:270`
+**Location** `QaaS.Mocker.Stubs/ConfigurationObjects/TransactionStubBuilder.cs:277`
 
 **Complete Signature**
 ```csharp
@@ -847,7 +830,7 @@ Call this after the fluent configuration is complete. The method validates the a
 
 #### `TransactionStubBuilder.FromConfig(TransactionStubConfig config)`
 
-**Location** `QaaS.Mocker.Stubs/ConfigurationObjects/TransactionStubBuilder.cs:295`
+**Location** `QaaS.Mocker.Stubs/ConfigurationObjects/TransactionStubBuilder.cs:302`
 
 **Complete Signature**
 ```csharp

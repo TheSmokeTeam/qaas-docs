@@ -2,10 +2,16 @@ name: Sync Generated Docs
 
 on:
   workflow_dispatch:
+  pull_request:
+    branches:
+      - master
+      - fix/free_text
+      - feature/better_docs
   push:
     branches:
       - master
-      - docs/mocker_documentation
+      - fix/free_text
+      - feature/better_docs
     paths:
       - .github/workflows/sync-generated-docs.yml
       - .gitmodules
@@ -33,18 +39,21 @@ jobs:
         uses: actions/checkout@v4
         with:
           repository: TheSmokeTeam/QaaS.Runner
+          ref: feature/code-configuration-bootstrap
           path: QaaS.Runner
 
       - name: Checkout mocker
         uses: actions/checkout@v4
         with:
           repository: TheSmokeTeam/QaaS.Mocker
+          ref: feature/docs-cli-export
           path: QaaS.Mocker
 
       - name: Checkout framework
         uses: actions/checkout@v4
         with:
           repository: TheSmokeTeam/QaaS.Framework
+          ref: feature/elastic-defaults-hook
           path: QaaS.Framework
 
       - name: Setup dotnet

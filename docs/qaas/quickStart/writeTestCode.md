@@ -1,6 +1,6 @@
 # Write a Test (Code)
 
-Use code configuration when the test needs normal language features such as reuse, branching, computed values, or helper methods shared across many tests. The runtime concepts stay the same as the YAML guide, but instead of authoring them in `test.qaas.yaml` you build the execution builder directly in C#.
+Use code configuration when the test needs normal language features such as reuse, branching, computed values, or helper methods shared across many tests. The runtime concepts stay the same as the YAML guide, but instead of authoring them in `test.qaas.yaml` you implement `IExecutionBuilderConfigurator` and let Runner apply it automatically during bootstrap.
 
 The completed sample is available in the `code_configuration` branch of [DummyAppTests]({{ links.runner_quickstart_repository }}/tree/code_configuration).
 
@@ -11,25 +11,21 @@ The completed sample is available in the `code_configuration` branch of [DummyAp
 ```yaml
 ```
 
-The current public Runner CLI still expects a valid configuration file path, so keep the file and leave it empty. Bootstrap creates the execution builder from that empty file, then the sample fills the builder in from code before Runner starts.
+Runner still expects a configuration-file argument, so keep the file in the project even when the execution is built from code. The file can stay empty because discovered configurators run after the loader creates the execution builder.
 
-## Use a Small Host in `Program.cs`
+## Use the Normal Bootstrap Entry Point
 
 `DummyAppTests/Program.cs`
 
 ```csharp
-var runner = QaaS.Runner.Bootstrap.New(args);
-var configurator = new DummyAppTests.RunnerExecutionBuilderConfigurator();
+var effectiveArgs = args.Length == 0
+    ? ["run", "test.qaas.yaml", "--no-env"]
+    : args;
 
-foreach (var executionBuilder in runner.ExecutionBuilders)
-{
-    configurator.Configure(executionBuilder);
-}
-
-runner.Run();
+QaaS.Runner.Bootstrap.New(effectiveArgs).Run();
 ```
 
-This host keeps the normal Runner CLI behavior, but gives you one place to inject code-based configuration before execution begins.
+This keeps the standard CLI/bootstrap behavior, but still lets the entry assembly inject code-first configuration before execution begins.
 
 ## Add the Test Data
 
@@ -44,7 +40,7 @@ This host keeps the normal Runner CLI behavior, but gives you one place to injec
 ]
 ```
 
-## Start with Metadata and the Data Source
+## Implement `IExecutionBuilderConfigurator`
 
 Create `DummyAppTests/RunnerExecutionBuilderConfigurator.cs` and begin with the metadata and data source. This is the code equivalent of the first YAML section from the previous guide.
 
@@ -69,7 +65,7 @@ using QaaS.Runner.Sessions.Session.Builders;
 
 namespace DummyAppTests;
 
-public sealed class RunnerExecutionBuilderConfigurator
+public sealed class RunnerExecutionBuilderConfigurator : IExecutionBuilderConfigurator
 {
     public void Configure(ExecutionBuilder executionBuilder)
     {
@@ -187,7 +183,7 @@ These are the same two checks as the YAML version: one checks that every input p
 
 ## Attach Everything to the Execution Builder
 
-Finish the method by attaching the metadata, the data source, the session, and the assertions to the builder that Bootstrap created for this run.
+Finish the method by attaching the metadata, the data source, the session, and the assertions to the builder that Runner discovered for this run.
 
 ```csharp
         executionBuilder
@@ -227,7 +223,7 @@ using QaaS.Runner.Sessions.Session.Builders;
 
 namespace DummyAppTests;
 
-public sealed class RunnerExecutionBuilderConfigurator
+public sealed class RunnerExecutionBuilderConfigurator : IExecutionBuilderConfigurator
 {
     public void Configure(ExecutionBuilder executionBuilder)
     {
@@ -337,35 +333,11 @@ public sealed class RunnerExecutionBuilderConfigurator
 ## Full `Program.cs`
 
 ```csharp
-var runner = QaaS.Runner.Bootstrap.New(args);
-var configurator = new DummyAppTests.RunnerExecutionBuilderConfigurator();
+var effectiveArgs = args.Length == 0
+    ? ["run", "test.qaas.yaml", "--no-env"]
+    : args;
 
-foreach (var executionBuilder in runner.ExecutionBuilders)
-{
-    configurator.Configure(executionBuilder);
-}
-
-runner.Run();
-```
-
-## Start RabbitMQ and Wire the Exchanges
-
-```bash
-docker run --rm -d --name qaas-runner-rabbit \
-  -p 5672:5672 \
-  -p 15672:15672 \
-  -e RABBITMQ_DEFAULT_USER=admin \
-  -e RABBITMQ_DEFAULT_PASS=admin \
-  rabbitmq:4-management
-
-docker exec qaas-runner-rabbit rabbitmqadmin -u admin -p admin --non-interactive \
-  exchanges declare --name input --type direct --durable true
-
-docker exec qaas-runner-rabbit rabbitmqadmin -u admin -p admin --non-interactive \
-  exchanges declare --name output --type direct --durable true
-
-docker exec qaas-runner-rabbit rabbitmqadmin -u admin -p admin --non-interactive \
-  bindings declare --source input --destination-type exchange --destination output --routing-key /
+QaaS.Runner.Bootstrap.New(effectiveArgs).Run();
 ```
 
 ## Run
@@ -373,9 +345,7 @@ docker exec qaas-runner-rabbit rabbitmqadmin -u admin -p admin --non-interactive
 From `DummyAppTests/DummyAppTests`:
 
 ```bash
-dotnet run -- run test.qaas.yaml
+dotnet run
 ```
 
-## Result
-
-Runner builds the same RabbitMQ flow as the YAML guide, publishes the payload from `TestData/input.json` to `input`, consumes it from `output`, and verifies both hermeticity and delay. In the quick start RabbitMQ's exchange binding stands in for the real application hop.
+The program uses the standard Runner bootstrap, discovers `RunnerExecutionBuilderConfigurator`, and applies the code-first configuration before the execution starts.

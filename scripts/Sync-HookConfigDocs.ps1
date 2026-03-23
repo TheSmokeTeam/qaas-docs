@@ -407,6 +407,51 @@ function Write-OrCheckFile {
     [System.IO.File]::WriteAllText($fullPath, $Content)
 }
 
+function Get-HookDocsDirectory {
+    param(
+        [string]$Kind,
+        [string]$Slug
+    )
+
+    return Join-Path $kindSpecs[$Kind].DocsDirectory $Slug
+}
+
+function Test-ShouldPublishHookDocs {
+    param(
+        [string]$Kind,
+        [string]$Slug
+    )
+
+    if ($Kind -ne 'processor') {
+        return $true
+    }
+
+    $overviewRelativePath = Join-Path (Get-HookDocsDirectory $Kind $Slug) 'overview.md'
+    return Test-Path (Join-Path $DocsRoot $overviewRelativePath)
+}
+
+function Remove-OrCheckFilteredHookDocs {
+    param(
+        [string]$Kind,
+        [string]$Slug
+    )
+
+    $hookRelativePath = Get-HookDocsDirectory $Kind $Slug
+    $hookFullPath = Join-Path $DocsRoot $hookRelativePath
+
+    if ($Check) {
+        if (Test-Path $hookFullPath) {
+            $failures.Add("Filtered hook docs should not exist: $hookRelativePath") | Out-Null
+        }
+
+        return
+    }
+
+    if (Test-Path $hookFullPath) {
+        Remove-Item $hookFullPath -Recurse -Force
+    }
+}
+
 $hooksByKey = @{}
 foreach ($familyId in @('runner-family', 'mocker-family')) {
     $familyArtifacts = Get-FamilyArtifacts $familyId
@@ -419,6 +464,11 @@ foreach ($familyId in @('runner-family', 'mocker-family')) {
         $slug = Sanitize-HookSlug ([string]$hook.docsSlug)
         if ([string]::IsNullOrWhiteSpace($slug)) {
             $slug = Sanitize-HookSlug ([string]$hook.title)
+        }
+
+        if (-not (Test-ShouldPublishHookDocs $kind $slug)) {
+            Remove-OrCheckFilteredHookDocs $kind $slug
+            continue
         }
 
         $schemaPointer = [string]$hook.configurationSchemaJsonPointer
@@ -464,7 +514,7 @@ foreach ($entry in @($hooksByKey.Values | Sort-Object Kind, Slug)) {
     Add-YamlLines $yamlLines 0 $entry.RootName $entry.Schema
     $yamlLines.Add('```') | Out-Null
 
-    $baseRelativePath = Join-Path $kindSpecs[$entry.Kind].DocsDirectory "$($entry.Slug)\configuration"
+    $baseRelativePath = Join-Path (Get-HookDocsDirectory $entry.Kind $entry.Slug) 'configuration'
     Write-OrCheckFile (Join-Path $baseRelativePath 'tableView.md') (([string]::Join("`r`n", $tableLines)) + "`r`n")
     Write-OrCheckFile (Join-Path $baseRelativePath 'yamlView.md') (([string]::Join("`r`n", $yamlLines)) + "`r`n")
     $documentCount += 2
