@@ -6,6 +6,7 @@ This file is generated automatically from CI from git history.
 
 ## Unreleased
 
+- docs(changelog): add automated changelog
 - docs(logging): clarify elastic sink help text
 - refactor(config): expose framework configuration getters
 - docs(logging): fix send-logs help text

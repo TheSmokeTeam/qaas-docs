@@ -1,4 +1,4 @@
-<!-- generated hash:20ec1b3c7064 sources:runner-family, OsChangeDeploymentEnvVars, table-view -->
+<!-- generated hash:d09a7550ec93 sources:runner-family, OsChangeDeploymentEnvVars, table-view -->
 
 # OsChangeDeploymentEnvVars Configurations Table View
 
@@ -13,7 +13,7 @@
 | `ProbeConfiguration.EnvVarsToRemove` | `list or string` | &#10006 |  | The environment variables to remove |
 | `ProbeConfiguration.EnvVarsToRemove[]` | `string` | &#10006 |  |  |
 | `ProbeConfiguration.Openshift` | `object or string` | &#10004 |  | The openshift environment to perform action in |
-| `ProbeConfiguration.Openshift.Cluster` | `string` | &#10004 |  | The openshift cluster api (for example REDA) |
+| `ProbeConfiguration.Openshift.Cluster` | `string` | &#10004 |  | The openshift cluster api |
 | `ProbeConfiguration.Openshift.Namespace` | `string` | &#10004 |  | The openshift namespace the application is at |
 | `ProbeConfiguration.Openshift.Password` | `string` | &#10004 |  | Password of the username with access to the openshift namespace and application |
 | `ProbeConfiguration.Openshift.Username` | `string` | &#10004 |  | Username with access to the openshift namespace and application |

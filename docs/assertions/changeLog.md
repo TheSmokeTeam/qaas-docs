@@ -6,6 +6,8 @@ This file is generated automatically from CI from git history.
 
 ## Unreleased
 
+- chore(deps): bump framework packages
+- docs(assertions): add hook XML summaries
 - docs(changelog): add automated changelog
 
 ## 3.1.3-alpha.1 - 2026-03-22

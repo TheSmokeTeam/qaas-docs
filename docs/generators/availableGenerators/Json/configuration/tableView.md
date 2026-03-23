@@ -1,4 +1,4 @@
-<!-- generated hash:bfe3fc4b466e sources:mocker-family, Json, table-view -->
+<!-- generated hash:8826b63acd94 sources:mocker-family, Json, table-view -->
 
 # Json Configurations Table View
 
@@ -13,9 +13,9 @@
 | `GeneratorConfiguration.JsonFieldReplacements[].Path` | `string` | &#10004 |  | The path (JSONPath query language Feb 2024, by Stefan Gossner) of the field to inject to |
 | `GeneratorConfiguration.JsonFieldReplacements[].ValueType` | `one of [Null / FromDataSource / DateTime / UnixEpochTime / String / Boolean / Integer / Double / ByteArray]` | &#10006 |  | The type of static field injection to use |
 | `GeneratorConfiguration.JsonFieldReplacements[].Boolean` | `object or string` | &#10006 |  | The value of the field if the type is 'Boolean' |
-| `GeneratorConfiguration.JsonFieldReplacements[].Boolean.Value` | `string or true/false` | &#10006 |  |  |
+| `GeneratorConfiguration.JsonFieldReplacements[].Boolean.Value` | `string or true/false` | &#10006 |  | The literal value to inject when this manual value configuration is selected. |
 | `GeneratorConfiguration.JsonFieldReplacements[].ByteArray` | `object or string` | &#10006 |  | The value of the field if the type is 'ByteArray' |
-| `GeneratorConfiguration.JsonFieldReplacements[].ByteArray.Value` | `string` | &#10006 |  |  |
+| `GeneratorConfiguration.JsonFieldReplacements[].ByteArray.Value` | `string` | &#10006 |  | The literal value to inject when this manual value configuration is selected. |
 | `GeneratorConfiguration.JsonFieldReplacements[].DateTime` | `object or string` | &#10006 |  | The date-time field configuration |
 | `GeneratorConfiguration.JsonFieldReplacements[].DateTime.Day` | `integer or string or null` | &#10006 |  | Constant Day of the date time |
 | `GeneratorConfiguration.JsonFieldReplacements[].DateTime.DayOffset` | `integer or string` | &#10006 | 0 | Day offset from the date time |
@@ -32,14 +32,14 @@
 | `GeneratorConfiguration.JsonFieldReplacements[].DateTime.TimeZone` | `string or null` | &#10006 |  | Timezone of the date time (default UTC) |
 | `GeneratorConfiguration.JsonFieldReplacements[].DateTime.Year` | `integer or string or null` | &#10006 |  | Constant Year of the date time |
 | `GeneratorConfiguration.JsonFieldReplacements[].Double` | `object or string` | &#10006 |  | The value of the field if the type is 'Double' |
-| `GeneratorConfiguration.JsonFieldReplacements[].Double.Value` | `number or string` | &#10006 |  |  |
+| `GeneratorConfiguration.JsonFieldReplacements[].Double.Value` | `number or string` | &#10006 |  | The literal value to inject when this manual value configuration is selected. |
 | `GeneratorConfiguration.JsonFieldReplacements[].FromDataSource` | `object or string` | &#10006 |  | The generation field configuration |
 | `GeneratorConfiguration.JsonFieldReplacements[].FromDataSource.Name` | `string` | &#10004 |  | The name of the data source to use for the value of the field |
 | `GeneratorConfiguration.JsonFieldReplacements[].FromDataSource.OutOfRangePolicy` | `one of [Null / Loop]` | &#10006 |  | The policy to use if the data source is out of range |
 | `GeneratorConfiguration.JsonFieldReplacements[].Integer` | `object or string` | &#10006 |  | The value of the field if the type is 'Integer' |
-| `GeneratorConfiguration.JsonFieldReplacements[].Integer.Value` | `integer or string` | &#10006 |  |  |
+| `GeneratorConfiguration.JsonFieldReplacements[].Integer.Value` | `integer or string` | &#10006 |  | The literal value to inject when this manual value configuration is selected. |
 | `GeneratorConfiguration.JsonFieldReplacements[].String` | `object or string` | &#10006 |  | The value of the field if the type is 'String' |
-| `GeneratorConfiguration.JsonFieldReplacements[].String.Value` | `string` | &#10006 |  |  |
+| `GeneratorConfiguration.JsonFieldReplacements[].String.Value` | `string` | &#10006 |  | The literal value to inject when this manual value configuration is selected. |
 | `GeneratorConfiguration.JsonFieldReplacements[].UnixEpochTime` | `object or string` | &#10006 |  | The unix epoch time field configuration |
 | `GeneratorConfiguration.JsonFieldReplacements[].UnixEpochTime.Day` | `integer or string or null` | &#10006 |  | Constant Day of the date time |
 | `GeneratorConfiguration.JsonFieldReplacements[].UnixEpochTime.DayOffset` | `integer or string` | &#10006 | 0 | Day offset from the date time |

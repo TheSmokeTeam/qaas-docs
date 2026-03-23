@@ -1293,7 +1293,8 @@
                           "pattern": "\\$\\{.*\\}",
                           "properties": {
                             "Value": {
-                              "type": "string"
+                              "type": "string",
+                              "description": "The literal value to inject when this manual value configuration is selected."
                             }
                           }
                         },
@@ -1310,6 +1311,7 @@
                                 "integer",
                                 "string"
                               ],
+                              "description": "The literal value to inject when this manual value configuration is selected.",
                               "format": "int32",
                               "pattern": "\\$\\{.*\\}"
                             }
@@ -1328,6 +1330,7 @@
                                 "number",
                                 "string"
                               ],
+                              "description": "The literal value to inject when this manual value configuration is selected.",
                               "format": "double",
                               "pattern": "\\$\\{.*\\}"
                             }
@@ -1346,6 +1349,7 @@
                                 "boolean",
                                 "string"
                               ],
+                              "description": "The literal value to inject when this manual value configuration is selected.",
                               "pattern": "\\$\\{.*\\}"
                             }
                           }
@@ -1360,6 +1364,7 @@
                           "properties": {
                             "Value": {
                               "type": "string",
+                              "description": "The literal value to inject when this manual value configuration is selected.",
                               "format": "byte"
                             }
                           }
@@ -1839,7 +1844,8 @@
                           "pattern": "\\$\\{.*\\}",
                           "properties": {
                             "Value": {
-                              "type": "string"
+                              "type": "string",
+                              "description": "The literal value to inject when this manual value configuration is selected."
                             }
                           }
                         },
@@ -1856,6 +1862,7 @@
                                 "integer",
                                 "string"
                               ],
+                              "description": "The literal value to inject when this manual value configuration is selected.",
                               "format": "int32",
                               "pattern": "\\$\\{.*\\}"
                             }
@@ -1874,6 +1881,7 @@
                                 "number",
                                 "string"
                               ],
+                              "description": "The literal value to inject when this manual value configuration is selected.",
                               "format": "double",
                               "pattern": "\\$\\{.*\\}"
                             }
@@ -1892,6 +1900,7 @@
                                 "boolean",
                                 "string"
                               ],
+                              "description": "The literal value to inject when this manual value configuration is selected.",
                               "pattern": "\\$\\{.*\\}"
                             }
                           }
@@ -1906,6 +1915,7 @@
                           "properties": {
                             "Value": {
                               "type": "string",
+                              "description": "The literal value to inject when this manual value configuration is selected.",
                               "format": "byte"
                             }
                           }
@@ -2211,9 +2221,14 @@
               {
                 "type": "string",
                 "enum": [
-                  "DummyTransactionProcessor",
-                  "ExampleProcessor",
-                  "GrpcEchoProcessor"
+                  "ConditionalResponseProcessor",
+                  "DataSourceResponseProcessor",
+                  "JsonEnvelopeProcessor",
+                  "PassThroughProcessor",
+                  "ProblemDetailsProcessor",
+                  "RequestEchoProcessor",
+                  "StaticResponseProcessor",
+                  "TextTransformProcessor"
                 ]
               },
               {
@@ -2221,9 +2236,14 @@
               }
             ],
             "x-qaas-known-values": [
-              "DummyTransactionProcessor",
-              "ExampleProcessor",
-              "GrpcEchoProcessor"
+              "ConditionalResponseProcessor",
+              "DataSourceResponseProcessor",
+              "JsonEnvelopeProcessor",
+              "PassThroughProcessor",
+              "ProblemDetailsProcessor",
+              "RequestEchoProcessor",
+              "StaticResponseProcessor",
+              "TextTransformProcessor"
             ]
           },
           "DataSourceNames": {
@@ -2337,7 +2357,7 @@
         },
         "anyOf": [
           {
-            "title": "DummyTransactionProcessor",
+            "title": "ConditionalResponseProcessor",
             "type": [
               "object",
               "string"
@@ -2351,35 +2371,126 @@
                 "type": "string",
                 "description": "The name of the processor to use",
                 "enum": [
-                  "DummyTransactionProcessor"
+                  "ConditionalResponseProcessor"
                 ]
               },
               "ProcessorConfiguration": {
-                "title": "DummyTransactionProcessor",
+                "title": "ConditionalResponseProcessor",
                 "type": [
                   "object",
                   "string"
                 ],
                 "pattern": "\\$\\{.*\\}",
                 "required": [
-                  "DummyKey",
-                  "DummyValue"
+                  "Rules",
+                  "DefaultStatusCode",
+                  "DefaultContentType"
                 ],
                 "properties": {
-                  "DummyKey": {
-                    "type": "string",
-                    "description": "Dummy Json Body Key"
+                  "Rules": {
+                    "type": [
+                      "array",
+                      "string"
+                    ],
+                    "description": "Rules evaluated in order. The first matching rule wins.",
+                    "pattern": "\\$\\{.*\\}",
+                    "items": {
+                      "type": [
+                        "object",
+                        "string"
+                      ],
+                      "pattern": "\\$\\{.*\\}",
+                      "required": [
+                        "ExpectedValue",
+                        "StatusCode",
+                        "ContentType"
+                      ],
+                      "properties": {
+                        "RequestHeaderName": {
+                          "type": [
+                            "null",
+                            "string"
+                          ],
+                          "description": "Request header name to match"
+                        },
+                        "PathParameterName": {
+                          "type": [
+                            "null",
+                            "string"
+                          ],
+                          "description": "Path parameter name to match"
+                        },
+                        "ExpectedValue": {
+                          "type": "string",
+                          "description": "Expected value for the selected request header or path parameter"
+                        },
+                        "ResponseBody": {
+                          "type": [
+                            "null",
+                            "string"
+                          ],
+                          "description": "Response body when the rule matches"
+                        },
+                        "StatusCode": {
+                          "type": [
+                            "integer",
+                            "string"
+                          ],
+                          "description": "Response Status Code when the rule matches",
+                          "format": "int32",
+                          "pattern": "\\$\\{.*\\}"
+                        },
+                        "ContentType": {
+                          "type": "string",
+                          "description": "Response Content-Type header when the rule matches"
+                        },
+                        "ResponseHeaders": {
+                          "type": [
+                            "null",
+                            "object",
+                            "string"
+                          ],
+                          "description": "Response headers when the rule matches",
+                          "pattern": "\\$\\{.*\\}"
+                        }
+                      }
+                    }
                   },
-                  "DummyValue": {
+                  "DefaultBody": {
+                    "type": [
+                      "null",
+                      "string"
+                    ],
+                    "description": "Fallback response body when no rule matches"
+                  },
+                  "DefaultStatusCode": {
+                    "type": [
+                      "integer",
+                      "string"
+                    ],
+                    "description": "Fallback response Status Code",
+                    "format": "int32",
+                    "pattern": "\\$\\{.*\\}"
+                  },
+                  "DefaultContentType": {
                     "type": "string",
-                    "description": "Dummy Json Body Value"
+                    "description": "Fallback response Content-Type header"
+                  },
+                  "DefaultResponseHeaders": {
+                    "type": [
+                      "null",
+                      "object",
+                      "string"
+                    ],
+                    "description": "Fallback response headers",
+                    "pattern": "\\$\\{.*\\}"
                   }
                 }
               }
             }
           },
           {
-            "title": "ExampleProcessor",
+            "title": "DataSourceResponseProcessor",
             "type": [
               "object",
               "string"
@@ -2393,21 +2504,89 @@
                 "type": "string",
                 "description": "The name of the processor to use",
                 "enum": [
-                  "ExampleProcessor"
+                  "DataSourceResponseProcessor"
                 ]
               },
               "ProcessorConfiguration": {
-                "title": "ExampleProcessor",
+                "title": "DataSourceResponseProcessor",
                 "type": [
                   "object",
                   "string"
                 ],
-                "pattern": "\\$\\{.*\\}"
+                "pattern": "\\$\\{.*\\}",
+                "required": [
+                  "SelectionMode",
+                  "StatusCode"
+                ],
+                "properties": {
+                  "DataSourceName": {
+                    "type": [
+                      "null",
+                      "string"
+                    ],
+                    "description": "Optional data source name. When omitted, the first data source is used."
+                  },
+                  "SelectionMode": {
+                    "type": "string",
+                    "description": "Selection mode used to pick a generated item from the resolved data source",
+                    "x-enumNames": [
+                      "First",
+                      "Last",
+                      "ByIndex"
+                    ],
+                    "enum": [
+                      "First",
+                      "Last",
+                      "ByIndex"
+                    ]
+                  },
+                  "Index": {
+                    "type": [
+                      "integer",
+                      "string"
+                    ],
+                    "description": "Zero-based item index used when SelectionMode is ByIndex",
+                    "format": "int32",
+                    "pattern": "\\$\\{.*\\}"
+                  },
+                  "StatusCode": {
+                    "type": [
+                      "integer",
+                      "string"
+                    ],
+                    "description": "Response Status Code",
+                    "format": "int32",
+                    "pattern": "\\$\\{.*\\}"
+                  },
+                  "ContentType": {
+                    "type": [
+                      "null",
+                      "string"
+                    ],
+                    "description": "Optional response Content-Type header"
+                  },
+                  "FallbackBody": {
+                    "type": [
+                      "null",
+                      "string"
+                    ],
+                    "description": "Fallback body to return when the data source cannot be resolved or selected"
+                  },
+                  "ResponseHeaders": {
+                    "type": [
+                      "null",
+                      "object",
+                      "string"
+                    ],
+                    "description": "Additional response headers",
+                    "pattern": "\\$\\{.*\\}"
+                  }
+                }
               }
             }
           },
           {
-            "title": "GrpcEchoProcessor",
+            "title": "JsonEnvelopeProcessor",
             "type": [
               "object",
               "string"
@@ -2421,16 +2600,387 @@
                 "type": "string",
                 "description": "The name of the processor to use",
                 "enum": [
-                  "GrpcEchoProcessor"
+                  "JsonEnvelopeProcessor"
                 ]
               },
               "ProcessorConfiguration": {
-                "title": "GrpcEchoProcessor",
+                "title": "JsonEnvelopeProcessor",
                 "type": [
                   "object",
                   "string"
                 ],
-                "pattern": "\\$\\{.*\\}"
+                "pattern": "\\$\\{.*\\}",
+                "required": [
+                  "StatusCode",
+                  "ContentType",
+                  "BodyPropertyName"
+                ],
+                "properties": {
+                  "StatusCode": {
+                    "type": [
+                      "integer",
+                      "string"
+                    ],
+                    "description": "Response Status Code",
+                    "format": "int32",
+                    "pattern": "\\$\\{.*\\}"
+                  },
+                  "ContentType": {
+                    "type": "string",
+                    "description": "Response Content-Type header"
+                  },
+                  "BodyPropertyName": {
+                    "type": "string",
+                    "description": "Name of the JSON property that will contain the request body"
+                  },
+                  "IncludeBodyType": {
+                    "type": [
+                      "boolean",
+                      "string"
+                    ],
+                    "description": "Include the CLR body type as bodyType in the response",
+                    "pattern": "\\$\\{.*\\}"
+                  },
+                  "IncludeUri": {
+                    "type": [
+                      "boolean",
+                      "string"
+                    ],
+                    "description": "Include the request URI as uri in the response",
+                    "pattern": "\\$\\{.*\\}"
+                  },
+                  "IncludeRequestHeaders": {
+                    "type": [
+                      "boolean",
+                      "string"
+                    ],
+                    "description": "Include request headers as requestHeaders in the response",
+                    "pattern": "\\$\\{.*\\}"
+                  },
+                  "IncludePathParameters": {
+                    "type": [
+                      "boolean",
+                      "string"
+                    ],
+                    "description": "Include path parameters as pathParameters in the response",
+                    "pattern": "\\$\\{.*\\}"
+                  },
+                  "ResponseHeaders": {
+                    "type": [
+                      "null",
+                      "object",
+                      "string"
+                    ],
+                    "description": "Additional response headers",
+                    "pattern": "\\$\\{.*\\}"
+                  }
+                }
+              }
+            }
+          },
+          {
+            "title": "PassThroughProcessor",
+            "type": [
+              "object",
+              "string"
+            ],
+            "pattern": "\\$\\{.*\\}",
+            "required": [
+              "Processor"
+            ],
+            "properties": {
+              "Processor": {
+                "type": "string",
+                "description": "The name of the processor to use",
+                "enum": [
+                  "PassThroughProcessor"
+                ]
+              },
+              "ProcessorConfiguration": {
+                "title": "PassThroughProcessor",
+                "type": [
+                  "object",
+                  "string"
+                ],
+                "pattern": "\\$\\{.*\\}",
+                "required": [
+                  "StatusCode"
+                ],
+                "properties": {
+                  "StatusCode": {
+                    "type": [
+                      "integer",
+                      "string"
+                    ],
+                    "description": "Response Status Code",
+                    "format": "int32",
+                    "pattern": "\\$\\{.*\\}"
+                  },
+                  "ContentType": {
+                    "type": [
+                      "null",
+                      "string"
+                    ],
+                    "description": "Optional response Content-Type header"
+                  },
+                  "ResponseHeaders": {
+                    "type": [
+                      "null",
+                      "object",
+                      "string"
+                    ],
+                    "description": "Additional response headers",
+                    "pattern": "\\$\\{.*\\}"
+                  },
+                  "PreserveMetaData": {
+                    "type": [
+                      "boolean",
+                      "string"
+                    ],
+                    "description": "Preserve request metadata and only replace the HTTP response metadata",
+                    "pattern": "\\$\\{.*\\}"
+                  }
+                }
+              }
+            }
+          },
+          {
+            "title": "ProblemDetailsProcessor",
+            "type": [
+              "object",
+              "string"
+            ],
+            "pattern": "\\$\\{.*\\}",
+            "required": [
+              "Processor"
+            ],
+            "properties": {
+              "Processor": {
+                "type": "string",
+                "description": "The name of the processor to use",
+                "enum": [
+                  "ProblemDetailsProcessor"
+                ]
+              },
+              "ProcessorConfiguration": {
+                "title": "ProblemDetailsProcessor",
+                "type": [
+                  "object",
+                  "string"
+                ],
+                "pattern": "\\$\\{.*\\}",
+                "required": [
+                  "StatusCode",
+                  "Title",
+                  "Type",
+                  "ContentType"
+                ],
+                "properties": {
+                  "StatusCode": {
+                    "type": [
+                      "integer",
+                      "string"
+                    ],
+                    "description": "Response Status Code",
+                    "format": "int32",
+                    "pattern": "\\$\\{.*\\}"
+                  },
+                  "Title": {
+                    "type": "string",
+                    "description": "Problem details title"
+                  },
+                  "Detail": {
+                    "type": [
+                      "null",
+                      "string"
+                    ],
+                    "description": "Problem details detail"
+                  },
+                  "Type": {
+                    "type": "string",
+                    "description": "Problem details type"
+                  },
+                  "Instance": {
+                    "type": [
+                      "null",
+                      "string"
+                    ],
+                    "description": "Explicit problem details instance"
+                  },
+                  "UseRequestUriAsInstance": {
+                    "type": [
+                      "boolean",
+                      "string"
+                    ],
+                    "description": "Use the request URI as the problem details instance when no explicit instance is configured",
+                    "pattern": "\\$\\{.*\\}"
+                  },
+                  "ContentType": {
+                    "type": "string",
+                    "description": "Response Content-Type header"
+                  },
+                  "Extensions": {
+                    "type": [
+                      "null",
+                      "object",
+                      "string"
+                    ],
+                    "description": "Additional problem details extension fields",
+                    "pattern": "\\$\\{.*\\}"
+                  },
+                  "ResponseHeaders": {
+                    "type": [
+                      "null",
+                      "object",
+                      "string"
+                    ],
+                    "description": "Additional response headers",
+                    "pattern": "\\$\\{.*\\}"
+                  }
+                }
+              }
+            }
+          },
+          {
+            "title": "RequestEchoProcessor",
+            "type": [
+              "object",
+              "string"
+            ],
+            "pattern": "\\$\\{.*\\}",
+            "required": [
+              "Processor"
+            ],
+            "properties": {
+              "Processor": {
+                "type": "string",
+                "description": "The name of the processor to use",
+                "enum": [
+                  "RequestEchoProcessor"
+                ]
+              },
+              "ProcessorConfiguration": {
+                "title": "RequestEchoProcessor",
+                "type": [
+                  "object",
+                  "string"
+                ],
+                "pattern": "\\$\\{.*\\}",
+                "required": [
+                  "StatusCode",
+                  "ContentType"
+                ],
+                "properties": {
+                  "StatusCode": {
+                    "type": [
+                      "integer",
+                      "string"
+                    ],
+                    "description": "Response Status Code",
+                    "format": "int32",
+                    "pattern": "\\$\\{.*\\}"
+                  },
+                  "ContentType": {
+                    "type": "string",
+                    "description": "Response Content-Type header"
+                  },
+                  "IncludeRequestHeaders": {
+                    "type": [
+                      "boolean",
+                      "string"
+                    ],
+                    "description": "Include request headers in the echoed JSON response",
+                    "pattern": "\\$\\{.*\\}"
+                  },
+                  "IncludePathParameters": {
+                    "type": [
+                      "boolean",
+                      "string"
+                    ],
+                    "description": "Include request path parameters in the echoed JSON response",
+                    "pattern": "\\$\\{.*\\}"
+                  },
+                  "IncludeUri": {
+                    "type": [
+                      "boolean",
+                      "string"
+                    ],
+                    "description": "Include request Uri in the echoed JSON response",
+                    "pattern": "\\$\\{.*\\}"
+                  },
+                  "ResponseHeaders": {
+                    "type": [
+                      "null",
+                      "object",
+                      "string"
+                    ],
+                    "description": "Additional response headers",
+                    "pattern": "\\$\\{.*\\}"
+                  }
+                }
+              }
+            }
+          },
+          {
+            "title": "StaticResponseProcessor",
+            "type": [
+              "object",
+              "string"
+            ],
+            "pattern": "\\$\\{.*\\}",
+            "required": [
+              "Processor"
+            ],
+            "properties": {
+              "Processor": {
+                "type": "string",
+                "description": "The name of the processor to use",
+                "enum": [
+                  "StaticResponseProcessor"
+                ]
+              },
+              "ProcessorConfiguration": {
+                "title": "StaticResponseProcessor",
+                "type": [
+                  "object",
+                  "string"
+                ],
+                "pattern": "\\$\\{.*\\}",
+                "required": [
+                  "StatusCode",
+                  "ContentType"
+                ],
+                "properties": {
+                  "Body": {
+                    "type": [
+                      "null",
+                      "string"
+                    ],
+                    "description": "Response body to return as UTF-8 text"
+                  },
+                  "StatusCode": {
+                    "type": [
+                      "integer",
+                      "string"
+                    ],
+                    "description": "Response Status Code",
+                    "format": "int32",
+                    "pattern": "\\$\\{.*\\}"
+                  },
+                  "ContentType": {
+                    "type": "string",
+                    "description": "Response Content-Type header"
+                  },
+                  "ResponseHeaders": {
+                    "type": [
+                      "null",
+                      "object",
+                      "string"
+                    ],
+                    "description": "Additional response headers",
+                    "pattern": "\\$\\{.*\\}"
+                  }
+                }
               }
             }
           },
@@ -2506,6 +3056,92 @@
                     ],
                     "description": "Response Status Code",
                     "format": "int32",
+                    "pattern": "\\$\\{.*\\}"
+                  }
+                }
+              }
+            }
+          },
+          {
+            "title": "TextTransformProcessor",
+            "type": [
+              "object",
+              "string"
+            ],
+            "pattern": "\\$\\{.*\\}",
+            "required": [
+              "Processor"
+            ],
+            "properties": {
+              "Processor": {
+                "type": "string",
+                "description": "The name of the processor to use",
+                "enum": [
+                  "TextTransformProcessor"
+                ]
+              },
+              "ProcessorConfiguration": {
+                "title": "TextTransformProcessor",
+                "type": [
+                  "object",
+                  "string"
+                ],
+                "pattern": "\\$\\{.*\\}",
+                "required": [
+                  "StatusCode",
+                  "ContentType"
+                ],
+                "properties": {
+                  "StatusCode": {
+                    "type": [
+                      "integer",
+                      "string"
+                    ],
+                    "description": "Response Status Code",
+                    "format": "int32",
+                    "pattern": "\\$\\{.*\\}"
+                  },
+                  "ContentType": {
+                    "type": "string",
+                    "description": "Response Content-Type header"
+                  },
+                  "Prefix": {
+                    "type": "string",
+                    "description": "Text to prepend to the transformed payload"
+                  },
+                  "Suffix": {
+                    "type": "string",
+                    "description": "Text to append to the transformed payload"
+                  },
+                  "SearchText": {
+                    "type": [
+                      "null",
+                      "string"
+                    ],
+                    "description": "Optional text to search for in the incoming payload"
+                  },
+                  "ReplacementText": {
+                    "type": [
+                      "null",
+                      "string"
+                    ],
+                    "description": "Replacement text for SearchText. Null removes the matched text."
+                  },
+                  "TrimWhitespace": {
+                    "type": [
+                      "boolean",
+                      "string"
+                    ],
+                    "description": "Trim leading and trailing whitespace before applying prefix, suffix, and replacement",
+                    "pattern": "\\$\\{.*\\}"
+                  },
+                  "ResponseHeaders": {
+                    "type": [
+                      "null",
+                      "object",
+                      "string"
+                    ],
+                    "description": "Additional response headers",
                     "pattern": "\\$\\{.*\\}"
                   }
                 }
@@ -5220,5 +5856,5 @@
     }
   },
   "x-qaas-family": "mocker-family",
-  "x-qaas-generated-at-utc": "2026-03-23T18:29:28.5448580+00:00"
+  "x-qaas-generated-at-utc": "2026-03-23T20:15:15.9456191+00:00"
 }

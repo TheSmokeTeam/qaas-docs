@@ -1,4 +1,4 @@
-<!-- generated hash:8819beda751d sources:Runner, functions, overview -->
+<!-- generated hash:b986b717c2be sources:Runner, functions, overview -->
 
 # Runner Functions
 
@@ -6,14 +6,12 @@ This overview is generated from source-level `qaas-docs` annotations and the cur
 
 Each category page keeps the table of contents focused on short function names and collapses the location, signature, and XML doc comments behind each entry.
 
-Serializer-only `Read` and `Write` members are intentionally omitted from this reference.
-
 ## Builders
 
 - [Assertions](builders/assertions.md) - 41 functions
 - [Collectors](builders/collectors.md) - 11 functions
 - [Consumers](builders/consumers.md) - 18 functions
-- [Executions](builders/executions.md) - 31 functions
+- [Executions](builders/executions.md) - 32 functions
 - [Links](builders/links.md) - 9 functions
 - [Mocker Commands](builders/mocker-commands.md) - 15 functions
 - [Probes](builders/probes.md) - 21 functions

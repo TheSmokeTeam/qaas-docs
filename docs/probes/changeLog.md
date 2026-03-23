@@ -6,6 +6,8 @@ This file is generated automatically from CI from git history.
 
 ## Unreleased
 
+- chore(deps): bump framework packages
+- fix(probes): remove reda reference from openshift api
 - docs(probes): add hook XML summaries
 - docs(changelog): add automated changelog
 

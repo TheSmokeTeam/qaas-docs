@@ -1,4 +1,4 @@
-<!-- generated hash:f8bd94788d3a sources:Runner, functions, Builders, Executions -->
+<!-- generated hash:28bfa5da8531 sources:Runner, functions, Builders, Executions -->
 
 # Executions
 
@@ -16,7 +16,7 @@ Each entry uses the short function name as the table-of-contents label. Expand a
     
     **Declaring Type** `ExecutionBuilder`
     
-    **Location** `QaaS.Runner/ExecutionBuilder.cs:246`
+    **Location** `QaaS.Runner/ExecutionBuilder.cs:241`
     
     **Signature**
     ```csharp
@@ -39,7 +39,7 @@ Each entry uses the short function name as the table-of-contents label. Expand a
     
     **Declaring Type** `ExecutionBuilder`
     
-    **Location** `QaaS.Runner/ExecutionBuilder.cs:259`
+    **Location** `QaaS.Runner/ExecutionBuilder.cs:254`
     
     **Signature**
     ```csharp
@@ -62,7 +62,7 @@ Each entry uses the short function name as the table-of-contents label. Expand a
     
     **Declaring Type** `ExecutionBuilder`
     
-    **Location** `QaaS.Runner/ExecutionBuilder.cs:272`
+    **Location** `QaaS.Runner/ExecutionBuilder.cs:267`
     
     **Signature**
     ```csharp
@@ -85,7 +85,7 @@ Each entry uses the short function name as the table-of-contents label. Expand a
     
     **Declaring Type** `ExecutionBuilder`
     
-    **Location** `QaaS.Runner/ExecutionBuilder.cs:284`
+    **Location** `QaaS.Runner/ExecutionBuilder.cs:279`
     
     **Signature**
     ```csharp
@@ -108,7 +108,7 @@ Each entry uses the short function name as the table-of-contents label. Expand a
     
     **Declaring Type** `ExecutionBuilder`
     
-    **Location** `QaaS.Runner/ExecutionBuilder.cs:296`
+    **Location** `QaaS.Runner/ExecutionBuilder.cs:291`
     
     **Signature**
     ```csharp
@@ -131,7 +131,7 @@ Each entry uses the short function name as the table-of-contents label. Expand a
     
     **Declaring Type** `ExecutionBuilder`
     
-    **Location** `QaaS.Runner/ExecutionBuilder.cs:309`
+    **Location** `QaaS.Runner/ExecutionBuilder.cs:304`
     
     **Signature**
     ```csharp
@@ -154,7 +154,7 @@ Each entry uses the short function name as the table-of-contents label. Expand a
     
     **Declaring Type** `ExecutionBuilder`
     
-    **Location** `QaaS.Runner/ExecutionBuilder.cs:322`
+    **Location** `QaaS.Runner/ExecutionBuilder.cs:317`
     
     **Signature**
     ```csharp
@@ -177,7 +177,7 @@ Each entry uses the short function name as the table-of-contents label. Expand a
     
     **Declaring Type** `ExecutionBuilder`
     
-    **Location** `QaaS.Runner/ExecutionBuilder.cs:335`
+    **Location** `QaaS.Runner/ExecutionBuilder.cs:330`
     
     **Signature**
     ```csharp
@@ -200,7 +200,7 @@ Each entry uses the short function name as the table-of-contents label. Expand a
     
     **Declaring Type** `ExecutionBuilder`
     
-    **Location** `QaaS.Runner/ExecutionBuilder.cs:347`
+    **Location** `QaaS.Runner/ExecutionBuilder.cs:342`
     
     **Signature**
     ```csharp
@@ -223,7 +223,7 @@ Each entry uses the short function name as the table-of-contents label. Expand a
     
     **Declaring Type** `ExecutionBuilder`
     
-    **Location** `QaaS.Runner/ExecutionBuilder.cs:359`
+    **Location** `QaaS.Runner/ExecutionBuilder.cs:354`
     
     **Signature**
     ```csharp
@@ -246,7 +246,7 @@ Each entry uses the short function name as the table-of-contents label. Expand a
     
     **Declaring Type** `ExecutionBuilder`
     
-    **Location** `QaaS.Runner/ExecutionBuilder.cs:372`
+    **Location** `QaaS.Runner/ExecutionBuilder.cs:367`
     
     **Signature**
     ```csharp
@@ -269,7 +269,7 @@ Each entry uses the short function name as the table-of-contents label. Expand a
     
     **Declaring Type** `ExecutionBuilder`
     
-    **Location** `QaaS.Runner/ExecutionBuilder.cs:385`
+    **Location** `QaaS.Runner/ExecutionBuilder.cs:380`
     
     **Signature**
     ```csharp
@@ -292,7 +292,7 @@ Each entry uses the short function name as the table-of-contents label. Expand a
     
     **Declaring Type** `ExecutionBuilder`
     
-    **Location** `QaaS.Runner/ExecutionBuilder.cs:398`
+    **Location** `QaaS.Runner/ExecutionBuilder.cs:393`
     
     **Signature**
     ```csharp
@@ -315,7 +315,7 @@ Each entry uses the short function name as the table-of-contents label. Expand a
     
     **Declaring Type** `ExecutionBuilder`
     
-    **Location** `QaaS.Runner/ExecutionBuilder.cs:410`
+    **Location** `QaaS.Runner/ExecutionBuilder.cs:405`
     
     **Signature**
     ```csharp
@@ -338,7 +338,7 @@ Each entry uses the short function name as the table-of-contents label. Expand a
     
     **Declaring Type** `ExecutionBuilder`
     
-    **Location** `QaaS.Runner/ExecutionBuilder.cs:422`
+    **Location** `QaaS.Runner/ExecutionBuilder.cs:417`
     
     **Signature**
     ```csharp
@@ -361,7 +361,7 @@ Each entry uses the short function name as the table-of-contents label. Expand a
     
     **Declaring Type** `ExecutionBuilder`
     
-    **Location** `QaaS.Runner/ExecutionBuilder.cs:435`
+    **Location** `QaaS.Runner/ExecutionBuilder.cs:430`
     
     **Signature**
     ```csharp
@@ -384,7 +384,7 @@ Each entry uses the short function name as the table-of-contents label. Expand a
     
     **Declaring Type** `ExecutionBuilder`
     
-    **Location** `QaaS.Runner/ExecutionBuilder.cs:448`
+    **Location** `QaaS.Runner/ExecutionBuilder.cs:443`
     
     **Signature**
     ```csharp
@@ -407,7 +407,7 @@ Each entry uses the short function name as the table-of-contents label. Expand a
     
     **Declaring Type** `ExecutionBuilder`
     
-    **Location** `QaaS.Runner/ExecutionBuilder.cs:461`
+    **Location** `QaaS.Runner/ExecutionBuilder.cs:456`
     
     **Signature**
     ```csharp
@@ -430,7 +430,7 @@ Each entry uses the short function name as the table-of-contents label. Expand a
     
     **Declaring Type** `ExecutionBuilder`
     
-    **Location** `QaaS.Runner/ExecutionBuilder.cs:473`
+    **Location** `QaaS.Runner/ExecutionBuilder.cs:468`
     
     **Signature**
     ```csharp
@@ -453,7 +453,7 @@ Each entry uses the short function name as the table-of-contents label. Expand a
     
     **Declaring Type** `ExecutionBuilder`
     
-    **Location** `QaaS.Runner/ExecutionBuilder.cs:485`
+    **Location** `QaaS.Runner/ExecutionBuilder.cs:480`
     
     **Signature**
     ```csharp
@@ -476,7 +476,7 @@ Each entry uses the short function name as the table-of-contents label. Expand a
     
     **Declaring Type** `ExecutionBuilder`
     
-    **Location** `QaaS.Runner/ExecutionBuilder.cs:498`
+    **Location** `QaaS.Runner/ExecutionBuilder.cs:493`
     
     **Signature**
     ```csharp
@@ -499,7 +499,7 @@ Each entry uses the short function name as the table-of-contents label. Expand a
     
     **Declaring Type** `ExecutionBuilder`
     
-    **Location** `QaaS.Runner/ExecutionBuilder.cs:511`
+    **Location** `QaaS.Runner/ExecutionBuilder.cs:506`
     
     **Signature**
     ```csharp
@@ -522,7 +522,7 @@ Each entry uses the short function name as the table-of-contents label. Expand a
     
     **Declaring Type** `ExecutionBuilder`
     
-    **Location** `QaaS.Runner/ExecutionBuilder.cs:524`
+    **Location** `QaaS.Runner/ExecutionBuilder.cs:519`
     
     **Signature**
     ```csharp
@@ -545,7 +545,7 @@ Each entry uses the short function name as the table-of-contents label. Expand a
     
     **Declaring Type** `ExecutionBuilder`
     
-    **Location** `QaaS.Runner/ExecutionBuilder.cs:536`
+    **Location** `QaaS.Runner/ExecutionBuilder.cs:531`
     
     **Signature**
     ```csharp
@@ -555,6 +555,29 @@ Each entry uses the short function name as the table-of-contents label. Expand a
     **Docstring**
     
     Returns the configured links currently stored on the Runner execution builder instance.
+    
+    Use this method when working with the documented Runner execution builder API surface in code. Use it to inspect the current configured state without rebuilding the surrounding collection or runtime object graph.
+
+## `ReadMetaData`
+
+??? info "Location, signature, and docstring"
+    **Member**
+    `ExecutionBuilder.ReadMetaData()`
+    
+    **Kind** `function`
+    
+    **Declaring Type** `ExecutionBuilder`
+    
+    **Location** `QaaS.Runner/ExecutionBuilder.cs:543`
+    
+    **Signature**
+    ```csharp
+    public MetaDataConfig? ReadMetaData()
+    ```
+    
+    **Docstring**
+    
+    Returns the metadata currently stored on the Runner execution builder instance.
     
     Use this method when working with the documented Runner execution builder API surface in code. Use it to inspect the current configured state without rebuilding the surrounding collection or runtime object graph.
 
@@ -568,7 +591,7 @@ Each entry uses the short function name as the table-of-contents label. Expand a
     
     **Declaring Type** `ExecutionBuilder`
     
-    **Location** `QaaS.Runner/ExecutionBuilder.cs:548`
+    **Location** `QaaS.Runner/ExecutionBuilder.cs:555`
     
     **Signature**
     ```csharp
@@ -591,7 +614,7 @@ Each entry uses the short function name as the table-of-contents label. Expand a
     
     **Declaring Type** `ExecutionBuilder`
     
-    **Location** `QaaS.Runner/ExecutionBuilder.cs:561`
+    **Location** `QaaS.Runner/ExecutionBuilder.cs:568`
     
     **Signature**
     ```csharp
@@ -614,7 +637,7 @@ Each entry uses the short function name as the table-of-contents label. Expand a
     
     **Declaring Type** `ExecutionBuilder`
     
-    **Location** `QaaS.Runner/ExecutionBuilder.cs:574`
+    **Location** `QaaS.Runner/ExecutionBuilder.cs:581`
     
     **Signature**
     ```csharp
@@ -637,7 +660,7 @@ Each entry uses the short function name as the table-of-contents label. Expand a
     
     **Declaring Type** `ExecutionBuilder`
     
-    **Location** `QaaS.Runner/ExecutionBuilder.cs:593`
+    **Location** `QaaS.Runner/ExecutionBuilder.cs:600`
     
     **Signature**
     ```csharp
@@ -660,7 +683,7 @@ Each entry uses the short function name as the table-of-contents label. Expand a
     
     **Declaring Type** `ExecutionBuilder`
     
-    **Location** `QaaS.Runner/ExecutionBuilder.cs:606`
+    **Location** `QaaS.Runner/ExecutionBuilder.cs:613`
     
     **Signature**
     ```csharp
@@ -683,7 +706,7 @@ Each entry uses the short function name as the table-of-contents label. Expand a
     
     **Declaring Type** `ExecutionBuilder`
     
-    **Location** `QaaS.Runner/ExecutionBuilder.cs:619`
+    **Location** `QaaS.Runner/ExecutionBuilder.cs:626`
     
     **Signature**
     ```csharp
@@ -706,7 +729,7 @@ Each entry uses the short function name as the table-of-contents label. Expand a
     
     **Declaring Type** `ExecutionBuilder`
     
-    **Location** `QaaS.Runner/ExecutionBuilder.cs:914`
+    **Location** `QaaS.Runner/ExecutionBuilder.cs:921`
     
     **Signature**
     ```csharp

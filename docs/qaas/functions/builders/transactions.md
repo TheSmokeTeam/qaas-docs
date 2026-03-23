@@ -1,4 +1,4 @@
-<!-- generated hash:bfcc4f9bf19a sources:Runner, functions, Builders, Transactions -->
+<!-- generated hash:472a1e97d878 sources:Runner, functions, Builders, Transactions -->
 
 # Transactions
 
@@ -16,7 +16,7 @@ Each entry uses the short function name as the table-of-contents label. Expand a
     
     **Declaring Type** `TransactionBuilder`
     
-    **Location** `QaaS.Runner.Sessions/Actions/Transactions/Builders/TransactionBuilder.cs:87`
+    **Location** `QaaS.Runner.Sessions/Actions/Transactions/Builders/TransactionBuilder.cs:75`
     
     **Signature**
     ```csharp
@@ -39,7 +39,7 @@ Each entry uses the short function name as the table-of-contents label. Expand a
     
     **Declaring Type** `TransactionBuilder`
     
-    **Location** `QaaS.Runner.Sessions/Actions/Transactions/Builders/TransactionBuilder.cs:100`
+    **Location** `QaaS.Runner.Sessions/Actions/Transactions/Builders/TransactionBuilder.cs:88`
     
     **Signature**
     ```csharp
@@ -62,7 +62,7 @@ Each entry uses the short function name as the table-of-contents label. Expand a
     
     **Declaring Type** `TransactionBuilder`
     
-    **Location** `QaaS.Runner.Sessions/Actions/Transactions/Builders/TransactionBuilder.cs:113`
+    **Location** `QaaS.Runner.Sessions/Actions/Transactions/Builders/TransactionBuilder.cs:101`
     
     **Signature**
     ```csharp
@@ -85,7 +85,7 @@ Each entry uses the short function name as the table-of-contents label. Expand a
     
     **Declaring Type** `TransactionBuilder`
     
-    **Location** `QaaS.Runner.Sessions/Actions/Transactions/Builders/TransactionBuilder.cs:126`
+    **Location** `QaaS.Runner.Sessions/Actions/Transactions/Builders/TransactionBuilder.cs:114`
     
     **Signature**
     ```csharp
@@ -108,7 +108,7 @@ Each entry uses the short function name as the table-of-contents label. Expand a
     
     **Declaring Type** `TransactionBuilder`
     
-    **Location** `QaaS.Runner.Sessions/Actions/Transactions/Builders/TransactionBuilder.cs:139`
+    **Location** `QaaS.Runner.Sessions/Actions/Transactions/Builders/TransactionBuilder.cs:127`
     
     **Signature**
     ```csharp
@@ -131,7 +131,7 @@ Each entry uses the short function name as the table-of-contents label. Expand a
     
     **Declaring Type** `TransactionBuilder`
     
-    **Location** `QaaS.Runner.Sessions/Actions/Transactions/Builders/TransactionBuilder.cs:152`
+    **Location** `QaaS.Runner.Sessions/Actions/Transactions/Builders/TransactionBuilder.cs:140`
     
     **Signature**
     ```csharp
@@ -154,7 +154,7 @@ Each entry uses the short function name as the table-of-contents label. Expand a
     
     **Declaring Type** `TransactionBuilder`
     
-    **Location** `QaaS.Runner.Sessions/Actions/Transactions/Builders/TransactionBuilder.cs:165`
+    **Location** `QaaS.Runner.Sessions/Actions/Transactions/Builders/TransactionBuilder.cs:153`
     
     **Signature**
     ```csharp
@@ -177,7 +177,7 @@ Each entry uses the short function name as the table-of-contents label. Expand a
     
     **Declaring Type** `TransactionBuilder`
     
-    **Location** `QaaS.Runner.Sessions/Actions/Transactions/Builders/TransactionBuilder.cs:178`
+    **Location** `QaaS.Runner.Sessions/Actions/Transactions/Builders/TransactionBuilder.cs:166`
     
     **Signature**
     ```csharp
@@ -200,7 +200,7 @@ Each entry uses the short function name as the table-of-contents label. Expand a
     
     **Declaring Type** `TransactionBuilder`
     
-    **Location** `QaaS.Runner.Sessions/Actions/Transactions/Builders/TransactionBuilder.cs:191`
+    **Location** `QaaS.Runner.Sessions/Actions/Transactions/Builders/TransactionBuilder.cs:179`
     
     **Signature**
     ```csharp
@@ -223,7 +223,7 @@ Each entry uses the short function name as the table-of-contents label. Expand a
     
     **Declaring Type** `TransactionBuilder`
     
-    **Location** `QaaS.Runner.Sessions/Actions/Transactions/Builders/TransactionBuilder.cs:206`
+    **Location** `QaaS.Runner.Sessions/Actions/Transactions/Builders/TransactionBuilder.cs:194`
     
     **Signature**
     ```csharp
@@ -246,7 +246,7 @@ Each entry uses the short function name as the table-of-contents label. Expand a
     
     **Declaring Type** `TransactionBuilder`
     
-    **Location** `QaaS.Runner.Sessions/Actions/Transactions/Builders/TransactionBuilder.cs:218`
+    **Location** `QaaS.Runner.Sessions/Actions/Transactions/Builders/TransactionBuilder.cs:206`
     
     **Signature**
     ```csharp
@@ -269,7 +269,7 @@ Each entry uses the short function name as the table-of-contents label. Expand a
     
     **Declaring Type** `TransactionBuilder`
     
-    **Location** `QaaS.Runner.Sessions/Actions/Transactions/Builders/TransactionBuilder.cs:233`
+    **Location** `QaaS.Runner.Sessions/Actions/Transactions/Builders/TransactionBuilder.cs:221`
     
     **Signature**
     ```csharp
@@ -292,7 +292,7 @@ Each entry uses the short function name as the table-of-contents label. Expand a
     
     **Declaring Type** `TransactionBuilder`
     
-    **Location** `QaaS.Runner.Sessions/Actions/Transactions/Builders/TransactionBuilder.cs:245`
+    **Location** `QaaS.Runner.Sessions/Actions/Transactions/Builders/TransactionBuilder.cs:233`
     
     **Signature**
     ```csharp
@@ -315,7 +315,7 @@ Each entry uses the short function name as the table-of-contents label. Expand a
     
     **Declaring Type** `TransactionBuilder`
     
-    **Location** `QaaS.Runner.Sessions/Actions/Transactions/Builders/TransactionBuilder.cs:258`
+    **Location** `QaaS.Runner.Sessions/Actions/Transactions/Builders/TransactionBuilder.cs:246`
     
     **Signature**
     ```csharp
@@ -338,7 +338,7 @@ Each entry uses the short function name as the table-of-contents label. Expand a
     
     **Declaring Type** `TransactionBuilder`
     
-    **Location** `QaaS.Runner.Sessions/Actions/Transactions/Builders/TransactionBuilder.cs:271`
+    **Location** `QaaS.Runner.Sessions/Actions/Transactions/Builders/TransactionBuilder.cs:259`
     
     **Signature**
     ```csharp
@@ -361,7 +361,7 @@ Each entry uses the short function name as the table-of-contents label. Expand a
     
     **Declaring Type** `TransactionBuilder`
     
-    **Location** `QaaS.Runner.Sessions/Actions/Transactions/Builders/TransactionBuilder.cs:286`
+    **Location** `QaaS.Runner.Sessions/Actions/Transactions/Builders/TransactionBuilder.cs:274`
     
     **Signature**
     ```csharp
@@ -384,7 +384,7 @@ Each entry uses the short function name as the table-of-contents label. Expand a
     
     **Declaring Type** `TransactionBuilder`
     
-    **Location** `QaaS.Runner.Sessions/Actions/Transactions/Builders/TransactionBuilder.cs:298`
+    **Location** `QaaS.Runner.Sessions/Actions/Transactions/Builders/TransactionBuilder.cs:286`
     
     **Signature**
     ```csharp
@@ -407,7 +407,7 @@ Each entry uses the short function name as the table-of-contents label. Expand a
     
     **Declaring Type** `TransactionBuilder`
     
-    **Location** `QaaS.Runner.Sessions/Actions/Transactions/Builders/TransactionBuilder.cs:310`
+    **Location** `QaaS.Runner.Sessions/Actions/Transactions/Builders/TransactionBuilder.cs:298`
     
     **Signature**
     ```csharp
@@ -430,7 +430,7 @@ Each entry uses the short function name as the table-of-contents label. Expand a
     
     **Declaring Type** `TransactionBuilder`
     
-    **Location** `QaaS.Runner.Sessions/Actions/Transactions/Builders/TransactionBuilder.cs:328`
+    **Location** `QaaS.Runner.Sessions/Actions/Transactions/Builders/TransactionBuilder.cs:316`
     
     **Signature**
     ```csharp
@@ -453,7 +453,7 @@ Each entry uses the short function name as the table-of-contents label. Expand a
     
     **Declaring Type** `TransactionBuilder`
     
-    **Location** `QaaS.Runner.Sessions/Actions/Transactions/Builders/TransactionBuilder.cs:346`
+    **Location** `QaaS.Runner.Sessions/Actions/Transactions/Builders/TransactionBuilder.cs:334`
     
     **Signature**
     ```csharp
@@ -476,7 +476,7 @@ Each entry uses the short function name as the table-of-contents label. Expand a
     
     **Declaring Type** `TransactionBuilder`
     
-    **Location** `QaaS.Runner.Sessions/Actions/Transactions/Builders/TransactionBuilder.cs:358`
+    **Location** `QaaS.Runner.Sessions/Actions/Transactions/Builders/TransactionBuilder.cs:346`
     
     **Signature**
     ```csharp
@@ -499,7 +499,7 @@ Each entry uses the short function name as the table-of-contents label. Expand a
     
     **Declaring Type** `TransactionBuilder`
     
-    **Location** `QaaS.Runner.Sessions/Actions/Transactions/Builders/TransactionBuilder.cs:381`
+    **Location** `QaaS.Runner.Sessions/Actions/Transactions/Builders/TransactionBuilder.cs:369`
     
     **Signature**
     ```csharp
@@ -522,7 +522,7 @@ Each entry uses the short function name as the table-of-contents label. Expand a
     
     **Declaring Type** `TransactionBuilder`
     
-    **Location** `QaaS.Runner.Sessions/Actions/Transactions/Builders/TransactionBuilder.cs:394`
+    **Location** `QaaS.Runner.Sessions/Actions/Transactions/Builders/TransactionBuilder.cs:382`
     
     **Signature**
     ```csharp
@@ -545,7 +545,7 @@ Each entry uses the short function name as the table-of-contents label. Expand a
     
     **Declaring Type** `TransactionBuilder`
     
-    **Location** `QaaS.Runner.Sessions/Actions/Transactions/Builders/TransactionBuilder.cs:406`
+    **Location** `QaaS.Runner.Sessions/Actions/Transactions/Builders/TransactionBuilder.cs:394`
     
     **Signature**
     ```csharp
@@ -568,7 +568,7 @@ Each entry uses the short function name as the table-of-contents label. Expand a
     
     **Declaring Type** `TransactionBuilder`
     
-    **Location** `QaaS.Runner.Sessions/Actions/Transactions/Builders/TransactionBuilder.cs:429`
+    **Location** `QaaS.Runner.Sessions/Actions/Transactions/Builders/TransactionBuilder.cs:417`
     
     **Signature**
     ```csharp
@@ -591,7 +591,7 @@ Each entry uses the short function name as the table-of-contents label. Expand a
     
     **Declaring Type** `TransactionBuilder`
     
-    **Location** `QaaS.Runner.Sessions/Actions/Transactions/Builders/TransactionBuilder.cs:442`
+    **Location** `QaaS.Runner.Sessions/Actions/Transactions/Builders/TransactionBuilder.cs:430`
     
     **Signature**
     ```csharp
@@ -614,7 +614,7 @@ Each entry uses the short function name as the table-of-contents label. Expand a
     
     **Declaring Type** `TransactionBuilder`
     
-    **Location** `QaaS.Runner.Sessions/Actions/Transactions/Builders/TransactionBuilder.cs:454`
+    **Location** `QaaS.Runner.Sessions/Actions/Transactions/Builders/TransactionBuilder.cs:442`
     
     **Signature**
     ```csharp
@@ -637,7 +637,7 @@ Each entry uses the short function name as the table-of-contents label. Expand a
     
     **Declaring Type** `TransactionBuilder`
     
-    **Location** `QaaS.Runner.Sessions/Actions/Transactions/Builders/TransactionBuilder.cs:466`
+    **Location** `QaaS.Runner.Sessions/Actions/Transactions/Builders/TransactionBuilder.cs:454`
     
     **Signature**
     ```csharp
@@ -660,7 +660,7 @@ Each entry uses the short function name as the table-of-contents label. Expand a
     
     **Declaring Type** `TransactionBuilder`
     
-    **Location** `QaaS.Runner.Sessions/Actions/Transactions/Builders/TransactionBuilder.cs:478`
+    **Location** `QaaS.Runner.Sessions/Actions/Transactions/Builders/TransactionBuilder.cs:466`
     
     **Signature**
     ```csharp
@@ -683,7 +683,7 @@ Each entry uses the short function name as the table-of-contents label. Expand a
     
     **Declaring Type** `TransactionBuilder`
     
-    **Location** `QaaS.Runner.Sessions/Actions/Transactions/Builders/TransactionBuilder.cs:492`
+    **Location** `QaaS.Runner.Sessions/Actions/Transactions/Builders/TransactionBuilder.cs:480`
     
     **Signature**
     ```csharp
@@ -706,7 +706,7 @@ Each entry uses the short function name as the table-of-contents label. Expand a
     
     **Declaring Type** `TransactionBuilder`
     
-    **Location** `QaaS.Runner.Sessions/Actions/Transactions/Builders/TransactionBuilder.cs:506`
+    **Location** `QaaS.Runner.Sessions/Actions/Transactions/Builders/TransactionBuilder.cs:494`
     
     **Signature**
     ```csharp
@@ -729,7 +729,7 @@ Each entry uses the short function name as the table-of-contents label. Expand a
     
     **Declaring Type** `TransactionBuilder`
     
-    **Location** `QaaS.Runner.Sessions/Actions/Transactions/Builders/TransactionBuilder.cs:520`
+    **Location** `QaaS.Runner.Sessions/Actions/Transactions/Builders/TransactionBuilder.cs:508`
     
     **Signature**
     ```csharp
@@ -752,7 +752,7 @@ Each entry uses the short function name as the table-of-contents label. Expand a
     
     **Declaring Type** `TransactionBuilder`
     
-    **Location** `QaaS.Runner.Sessions/Actions/Transactions/Builders/TransactionBuilder.cs:539`
+    **Location** `QaaS.Runner.Sessions/Actions/Transactions/Builders/TransactionBuilder.cs:527`
     
     **Signature**
     ```csharp
