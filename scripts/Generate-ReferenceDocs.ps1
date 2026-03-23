@@ -172,6 +172,21 @@ function Get-ChangelogBody {
     return $content.Trim()
 }
 
+function Get-ExistingChangelogBody {
+    param(
+        [Parameter(Mandatory)]
+        [string]$RelativePath
+    )
+
+    $existingContent = Get-GeneratedMarkdown -Path (Join-Path $DocsRoot $RelativePath)
+    if ([string]::IsNullOrWhiteSpace($existingContent)) {
+        return $null
+    }
+
+    $existingContent = $existingContent -replace '(?is)^\s*#.*?\n\s*_Generated from .*?_\s*\n+', ''
+    return $existingContent.Trim()
+}
+
 function Sync-ChangelogPage {
     param(
         [Parameter(Mandatory)]
@@ -190,7 +205,18 @@ function Sync-ChangelogPage {
         [string]$SourceReference
     )
 
-    $body = Get-ChangelogBody -RepositoryRoot $RepositoryRoot -RepositoryName $RepositoryName
+    try {
+        $body = Get-ChangelogBody -RepositoryRoot $RepositoryRoot -RepositoryName $RepositoryName
+    }
+    catch {
+        $body = Get-ExistingChangelogBody -RelativePath $RelativePath
+        if ([string]::IsNullOrWhiteSpace($body)) {
+            throw
+        }
+
+        Write-Warning "Falling back to the existing docs copy for $RepositoryName because CHANGELOG.md is missing in $RepositoryRoot."
+    }
+
     $content = @(
         "# $Title",
         '',
