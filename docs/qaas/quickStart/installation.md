@@ -68,4 +68,4 @@ If you use Artifactory or another private feed, update the generated `NuGet.conf
 
 ## Allure CLI
 
-The Allure CLI installation instructions are available in the [official Allure docs]({{ links.allure_installation_guide }}).
+The Allure CLI installation instructions are available [Here]({{ links.allure_installation_guide }}).
