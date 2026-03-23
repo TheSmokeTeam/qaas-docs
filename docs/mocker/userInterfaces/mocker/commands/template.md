@@ -1,4 +1,4 @@
-<!-- generated hash:9ced774f6ca2 sources:Mocker, template, cli-command -->
+<!-- generated hash:2dc813cfaf0f sources:Mocker, template, cli-command -->
 
 # template
 
@@ -65,18 +65,18 @@ Usage:
 
 ## Flags
 
-| Flag | Property | Source Type | Inherited | Required | Default | Value Type | Description |
-| ---- | -------- | ----------- | --------- | -------- | ------- | ---------- | ----------- |
-| `--disable-elastic-defaults` | `DisableElasticDefaults` | `Logger options` | Yes | No | False | `bool` | Disables Elastic defaults registered through the runtime defaults provider for this run. |
-| `--elastic-password` | `ElasticPassword` | `Logger options` | Yes | No |  | `string` | Optional Elasticsearch password for the logger sink. |
-| `--elastic-uri` | `ElasticUri` | `Logger options` | Yes | No |  | `string` | Elasticsearch URI used by the logger sink when send-logs is enabled. |
-| `--elastic-username` | `ElasticUsername` | `Logger options` | Yes | No |  | `string` | Optional Elasticsearch username for the logger sink. |
-| `-g`, `--logger-configuration-file` | `LoggerConfigurationFilePath` | `Logger options` | Yes | No |  | `string` | Path to a logger's configuration file, will override the default logger's configuration. Its level can be overridden by the logger-level flag. |
-| `-l`, `--logger-level` | `LoggerLevel` | `Logger options` | Yes | No |  | `LogEventLevel (optional)` | The logger's level, overrides both the default logger's level (Information) and the level of any logger's configuration given.<br />All available options (not case sensitive) are: Verbose, Debug,<br />Information, Warning, Error, Fatal. |
-| `--no-env` | `DontResolveWithEnvironmentVariables` | `Mocker options` | Yes | No | False | `bool` | When this flag is used environment variables will not override loaded configurations. |
-| `-o`, `--output-folder` | `TemplatesOutputFolder` | `Mocker options` | Yes | No |  | `string` | Path to a folder to write the generated templates in. |
-| `-r`, `--overwrite-arguments` | `OverwriteArguments` | `Mocker options` | Yes | No | [] | `string list` | List of arguments to overwrite the mocker configuration with, The first argument overwrites the<br />mocker configuration and then the one after it overwrites the result and so on...<br />For example: `Path:To:Variable:To:Overwrite=NewVariableValue` |
-| `-w`, `--overwrite-files` | `OverwriteFiles` | `Mocker options` | Yes | No | [] | `string list` | List of files to overwrite the mocker configuration with, The first file overwrites the mocker<br />configuration file and then the one after it overwrite the result and so on... |
-| `-f`, `--overwrite-folders` | `OverwriteFolders` | `Mocker options` | Yes | No | [] | `string list` | List of folders whose yaml files overwrite the mocker configuration in alphabetical order,<br />after overwrite files and in the order the folders are given. |
-| `--run-locally` | `RunLocally` | `Mocker options` | Yes | No | False | `bool` | Runs the project locally and enables exit by any key press. |
-| `--send-logs` | `SendLogs` | `Logger options` | Yes | No | False | `bool` | Whether to send logs to the configured Elasticsearch sink. |
+| Flag | Inherited | Required | Default | Value Type | Description |
+| ---- | --------- | -------- | ------- | ---------- | ----------- |
+| `--disable-elastic-defaults` | Yes | No | False | `bool` | Disables Elastic defaults registered through the runtime defaults provider for this run. |
+| `--elastic-password` | Yes | No |  | `string` | Optional Elasticsearch password for the logger sink. |
+| `--elastic-uri` | Yes | No |  | `string` | Elasticsearch URI used by the logger sink when send-logs is enabled. |
+| `--elastic-username` | Yes | No |  | `string` | Optional Elasticsearch username for the logger sink. |
+| `-g`, `--logger-configuration-file` | Yes | No |  | `string` | Path to a logger's configuration file, will override the default logger's configuration. Its level can be overridden by the logger-level flag. |
+| `-l`, `--logger-level` | Yes | No |  | `LogEventLevel (optional)` | The logger's level, overrides both the default logger's level (Information) and the level of any logger's configuration given.<br />All available options (not case sensitive) are: Verbose, Debug,<br />Information, Warning, Error, Fatal. |
+| `--no-env` | Yes | No | False | `bool` | When this flag is used environment variables will not override loaded configurations. |
+| `-o`, `--output-folder` | Yes | No |  | `string` | Path to a folder to write the generated templates in. |
+| `-r`, `--overwrite-arguments` | Yes | No | [] | `string list` | List of arguments to overwrite the mocker configuration with, The first argument overwrites the<br />mocker configuration and then the one after it overwrites the result and so on...<br />For example: `Path:To:Variable:To:Overwrite=NewVariableValue` |
+| `-w`, `--overwrite-files` | Yes | No | [] | `string list` | List of files to overwrite the mocker configuration with, The first file overwrites the mocker<br />configuration file and then the one after it overwrite the result and so on... |
+| `-f`, `--overwrite-folders` | Yes | No | [] | `string list` | List of folders whose yaml files overwrite the mocker configuration in alphabetical order,<br />after overwrite files and in the order the folders are given. |
+| `--run-locally` | Yes | No | False | `bool` | Runs the project locally and enables exit by any key press. |
+| `--send-logs` | Yes | No | False | `bool` | Whether to send logs to the configured Elasticsearch sink. |
