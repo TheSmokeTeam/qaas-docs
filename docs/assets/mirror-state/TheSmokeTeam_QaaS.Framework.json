@@ -1,17 +1,13 @@
 {
   "repository": "TheSmokeTeam/QaaS.Framework",
-  "tag": "1.2.5",
-  "origin": "https://github.com/TheSmokeTeam/QaaS.Framework/actions/runs/23385369910",
-  "runId": "23385369910",
-  "updatedAtUtc": "2026-03-22T22:01:46.3150210+00:00",
+  "tag": "1.2.7",
+  "origin": "https://github.com/TheSmokeTeam/QaaS.Framework/actions/runs/23429966910",
+  "runId": "23429966910",
+  "updatedAtUtc": "2026-03-23T14:45:45.3915543+00:00",
   "packages": [
     {
       "name": "autofac",
       "version": "9.1.0"
-    },
-    {
-      "name": "nh.trino.client",
-      "version": "2025.11.15.6"
     },
     {
       "name": "nh.trino.data.ado",
@@ -38,44 +34,48 @@
       "version": "23.26.100"
     },
     {
-      "name": "newtonsoft.json",
-      "version": "13.0.4"
-    },
-    {
       "name": "pipelines.sockets.unofficial",
       "version": "2.2.8"
     },
     {
+      "name": "nh.trino.client",
+      "version": "2025.11.15.6"
+    },
+    {
+      "name": "qaas.elasticbootstrap",
+      "version": "1.0.0"
+    },
+    {
       "name": "qaas.framework.executions",
-      "version": "1.2.5"
+      "version": "1.2.7"
     },
     {
       "name": "qaas.framework.infrastructure",
-      "version": "1.2.5"
+      "version": "1.2.7"
     },
     {
       "name": "qaas.framework.policies",
-      "version": "1.2.5"
+      "version": "1.2.7"
     },
     {
       "name": "qaas.framework.protocols",
-      "version": "1.2.5"
+      "version": "1.2.7"
     },
     {
       "name": "qaas.framework.providers",
-      "version": "1.2.5"
+      "version": "1.2.7"
     },
     {
       "name": "qaas.framework.sdk",
-      "version": "1.2.5"
+      "version": "1.2.7"
     },
     {
       "name": "qaas.framework.serialization",
-      "version": "1.2.5"
+      "version": "1.2.7"
     },
     {
       "name": "qaas.framework.configurations",
-      "version": "1.2.5"
+      "version": "1.2.7"
     },
     {
       "name": "rabbitmq.client",
@@ -83,15 +83,11 @@
     },
     {
       "name": "newtonsoft.json",
-      "version": "13.0.3"
+      "version": "13.0.4"
     },
     {
-      "name": "netstandard.library",
-      "version": "1.6.1"
-    },
-    {
-      "name": "microsoft.sqlserver.server",
-      "version": "1.0.0"
+      "name": "newtonsoft.json",
+      "version": "13.0.1"
     },
     {
       "name": "microsoft.testing.extensions.telemetry",
@@ -118,15 +114,15 @@
       "version": "18.0.1"
     },
     {
-      "name": "newtonsoft.json",
-      "version": "13.0.1"
-    },
-    {
       "name": "microsoft.testplatform.objectmodel",
       "version": "18.0.1"
     },
     {
-      "name": "microsoft.testplatform.testhost",
+      "name": "newtonsoft.json",
+      "version": "13.0.3"
+    },
+    {
+      "name": "microsoft.testplatform.objectmodel",
       "version": "18.3.0"
     },
     {
@@ -154,12 +150,16 @@
       "version": "3.1.0"
     },
     {
-      "name": "microsoft.testplatform.objectmodel",
+      "name": "netstandard.library",
+      "version": "1.6.1"
+    },
+    {
+      "name": "microsoft.testplatform.testhost",
       "version": "18.3.0"
     },
     {
-      "name": "microsoft.netcore.platforms",
-      "version": "1.1.0"
+      "name": "microsoft.sqlserver.server",
+      "version": "1.0.0"
     },
     {
       "name": "serilog",
@@ -318,16 +318,16 @@
       "version": "10.0.0"
     },
     {
-      "name": "yamldotnet",
-      "version": "16.3.0"
+      "name": "microsoft.netcore.platforms",
+      "version": "1.1.0"
     },
     {
       "name": "microsoft.net.test.sdk",
       "version": "18.3.0"
     },
     {
-      "name": "microsoft.identitymodel.tokens",
-      "version": "7.7.1"
+      "name": "microsoft.net.stringtools",
+      "version": "17.11.4"
     },
     {
       "name": "messagepackanalyzer",
@@ -478,20 +478,16 @@
       "version": "2.13.2"
     },
     {
-      "name": "microsoft.net.stringtools",
-      "version": "17.11.4"
-    },
-    {
       "name": "microsoft.extensions.configuration.fileextensions",
       "version": "2.0.0"
     },
     {
-      "name": "microsoft.extensions.dependencyinjection",
+      "name": "microsoft.extensions.configuration.json",
       "version": "10.0.5"
     },
     {
-      "name": "microsoft.extensions.logging.abstractions",
-      "version": "9.0.11"
+      "name": "microsoft.extensions.dependencyinjection",
+      "version": "10.0.5"
     },
     {
       "name": "microsoft.extensions.options",
@@ -518,16 +514,16 @@
       "version": "9.0.11"
     },
     {
-      "name": "microsoft.extensions.logging.abstractions",
-      "version": "8.0.3"
-    },
-    {
       "name": "microsoft.identity.client",
       "version": "4.78.0"
     },
     {
-      "name": "microsoft.identity.client.extensions.msal",
-      "version": "4.78.0"
+      "name": "microsoft.extensions.logging.abstractions",
+      "version": "9.0.11"
+    },
+    {
+      "name": "microsoft.identity.client",
+      "version": "4.80.0"
     },
     {
       "name": "microsoft.identitymodel.abstractions",
@@ -554,12 +550,16 @@
       "version": "7.7.1"
     },
     {
-      "name": "microsoft.identity.client",
-      "version": "4.80.0"
+      "name": "microsoft.identitymodel.tokens",
+      "version": "7.7.1"
     },
     {
-      "name": "microsoft.extensions.configuration.json",
-      "version": "10.0.5"
+      "name": "microsoft.identity.client.extensions.msal",
+      "version": "4.78.0"
+    },
+    {
+      "name": "microsoft.extensions.logging.abstractions",
+      "version": "8.0.3"
     },
     {
       "name": "microsoft.extensions.logging.abstractions",
@@ -567,7 +567,7 @@
     },
     {
       "name": "microsoft.extensions.logging.abstractions",
-      "version": "10.0.5"
+      "version": "2.0.0"
     },
     {
       "name": "microsoft.extensions.dependencyinjection.abstractions",
@@ -598,12 +598,12 @@
       "version": "10.0.5"
     },
     {
-      "name": "microsoft.extensions.logging.abstractions",
+      "name": "microsoft.extensions.fileproviders.abstractions",
       "version": "2.0.0"
     },
     {
-      "name": "microsoft.extensions.fileproviders.abstractions",
-      "version": "2.0.0"
+      "name": "microsoft.extensions.fileproviders.physical",
+      "version": "10.0.5"
     },
     {
       "name": "microsoft.extensions.fileproviders.physical",
@@ -634,8 +634,12 @@
       "version": "10.0.0"
     },
     {
-      "name": "microsoft.extensions.fileproviders.physical",
+      "name": "microsoft.extensions.logging.abstractions",
       "version": "10.0.5"
+    },
+    {
+      "name": "yamldotnet",
+      "version": "16.3.0"
     },
     {
       "name": "zstdsharp.port",
