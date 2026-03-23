@@ -1,4 +1,4 @@
-<!-- generated hash:d8a72a150e74 sources:runner-family, OsExecuteCommandsInContainers, table-view -->
+<!-- generated hash:2977d75503f4 sources:runner-family, OsExecuteCommandsInContainers, table-view -->
 
 # OsExecuteCommandsInContainers Configurations Table View
 
@@ -11,7 +11,7 @@
 | `ProbeConfiguration.Commands` | `list or string` | &#10004 |  | A list of the commands to execute in the chosen containers |
 | `ProbeConfiguration.Commands[]` | `string` | &#10006 |  |  |
 | `ProbeConfiguration.Openshift` | `object or string` | &#10004 |  | The openshift environment to perform action in |
-| `ProbeConfiguration.Openshift.Cluster` | `string` | &#10004 |  | The openshift cluster api (for example REDA) |
+| `ProbeConfiguration.Openshift.Cluster` | `string` | &#10004 |  | The openshift cluster api |
 | `ProbeConfiguration.Openshift.Namespace` | `string` | &#10004 |  | The openshift namespace the application is at |
 | `ProbeConfiguration.Openshift.Password` | `string` | &#10004 |  | Password of the username with access to the openshift namespace and application |
 | `ProbeConfiguration.Openshift.Username` | `string` | &#10004 |  | Username with access to the openshift namespace and application |

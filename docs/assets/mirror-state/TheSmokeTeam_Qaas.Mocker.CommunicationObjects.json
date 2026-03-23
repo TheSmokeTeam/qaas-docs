@@ -1,9 +1,9 @@
 {
   "repository": "TheSmokeTeam/Qaas.Mocker.CommunicationObjects",
-  "tag": "2.0.2",
-  "origin": "https://github.com/TheSmokeTeam/Qaas.Mocker.CommunicationObjects/actions/runs/23385522114",
-  "runId": "23385522114",
-  "updatedAtUtc": "2026-03-23T18:28:41.6385734+00:00",
+  "tag": "2.0.3",
+  "origin": "https://github.com/TheSmokeTeam/Qaas.Mocker.CommunicationObjects/actions/runs/23455245593",
+  "runId": "23455245593",
+  "updatedAtUtc": "2026-03-23T20:14:27.3179356+00:00",
   "packages": [
     {
       "name": "coverlet.collector",
@@ -67,19 +67,19 @@
     },
     {
       "name": "qaas.framework.configurations",
-      "version": "1.2.5"
+      "version": "1.2.8"
     },
     {
       "name": "qaas.framework.sdk",
-      "version": "1.2.5"
+      "version": "1.2.8"
     },
     {
       "name": "qaas.framework.serialization",
-      "version": "1.2.5"
+      "version": "1.2.8"
     },
     {
       "name": "qaas.mocker.communicationobjects",
-      "version": "2.0.2"
+      "version": "2.0.3"
     },
     {
       "name": "serilog",

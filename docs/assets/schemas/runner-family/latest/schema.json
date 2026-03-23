@@ -1293,7 +1293,8 @@
                           "pattern": "\\$\\{.*\\}",
                           "properties": {
                             "Value": {
-                              "type": "string"
+                              "type": "string",
+                              "description": "The literal value to inject when this manual value configuration is selected."
                             }
                           }
                         },
@@ -1310,6 +1311,7 @@
                                 "integer",
                                 "string"
                               ],
+                              "description": "The literal value to inject when this manual value configuration is selected.",
                               "format": "int32",
                               "pattern": "\\$\\{.*\\}"
                             }
@@ -1328,6 +1330,7 @@
                                 "number",
                                 "string"
                               ],
+                              "description": "The literal value to inject when this manual value configuration is selected.",
                               "format": "double",
                               "pattern": "\\$\\{.*\\}"
                             }
@@ -1346,6 +1349,7 @@
                                 "boolean",
                                 "string"
                               ],
+                              "description": "The literal value to inject when this manual value configuration is selected.",
                               "pattern": "\\$\\{.*\\}"
                             }
                           }
@@ -1360,6 +1364,7 @@
                           "properties": {
                             "Value": {
                               "type": "string",
+                              "description": "The literal value to inject when this manual value configuration is selected.",
                               "format": "byte"
                             }
                           }
@@ -1839,7 +1844,8 @@
                           "pattern": "\\$\\{.*\\}",
                           "properties": {
                             "Value": {
-                              "type": "string"
+                              "type": "string",
+                              "description": "The literal value to inject when this manual value configuration is selected."
                             }
                           }
                         },
@@ -1856,6 +1862,7 @@
                                 "integer",
                                 "string"
                               ],
+                              "description": "The literal value to inject when this manual value configuration is selected.",
                               "format": "int32",
                               "pattern": "\\$\\{.*\\}"
                             }
@@ -1874,6 +1881,7 @@
                                 "number",
                                 "string"
                               ],
+                              "description": "The literal value to inject when this manual value configuration is selected.",
                               "format": "double",
                               "pattern": "\\$\\{.*\\}"
                             }
@@ -1892,6 +1900,7 @@
                                 "boolean",
                                 "string"
                               ],
+                              "description": "The literal value to inject when this manual value configuration is selected.",
                               "pattern": "\\$\\{.*\\}"
                             }
                           }
@@ -1906,6 +1915,7 @@
                           "properties": {
                             "Value": {
                               "type": "string",
+                              "description": "The literal value to inject when this manual value configuration is selected.",
                               "format": "byte"
                             }
                           }
@@ -8812,7 +8822,7 @@
                           "properties": {
                             "Cluster": {
                               "type": "string",
-                              "description": "The openshift cluster api (for example REDA)"
+                              "description": "The openshift cluster api"
                             },
                             "Username": {
                               "type": "string",
@@ -8932,7 +8942,7 @@
                           "properties": {
                             "Cluster": {
                               "type": "string",
-                              "description": "The openshift cluster api (for example REDA)"
+                              "description": "The openshift cluster api"
                             },
                             "Username": {
                               "type": "string",
@@ -9024,7 +9034,7 @@
                           "properties": {
                             "Cluster": {
                               "type": "string",
-                              "description": "The openshift cluster api (for example REDA)"
+                              "description": "The openshift cluster api"
                             },
                             "Username": {
                               "type": "string",
@@ -9108,7 +9118,7 @@
                           "properties": {
                             "Cluster": {
                               "type": "string",
-                              "description": "The openshift cluster api (for example REDA)"
+                              "description": "The openshift cluster api"
                             },
                             "Username": {
                               "type": "string",
@@ -9203,7 +9213,7 @@
                           "properties": {
                             "Cluster": {
                               "type": "string",
-                              "description": "The openshift cluster api (for example REDA)"
+                              "description": "The openshift cluster api"
                             },
                             "Username": {
                               "type": "string",
@@ -9333,7 +9343,7 @@
                           "properties": {
                             "Cluster": {
                               "type": "string",
-                              "description": "The openshift cluster api (for example REDA)"
+                              "description": "The openshift cluster api"
                             },
                             "Username": {
                               "type": "string",
@@ -9437,7 +9447,7 @@
                           "properties": {
                             "Cluster": {
                               "type": "string",
-                              "description": "The openshift cluster api (for example REDA)"
+                              "description": "The openshift cluster api"
                             },
                             "Username": {
                               "type": "string",
@@ -9546,7 +9556,7 @@
                           "properties": {
                             "Cluster": {
                               "type": "string",
-                              "description": "The openshift cluster api (for example REDA)"
+                              "description": "The openshift cluster api"
                             },
                             "Username": {
                               "type": "string",
@@ -9649,7 +9659,7 @@
                           "properties": {
                             "Cluster": {
                               "type": "string",
-                              "description": "The openshift cluster api (for example REDA)"
+                              "description": "The openshift cluster api"
                             },
                             "Username": {
                               "type": "string",
@@ -9807,7 +9817,7 @@
                           "properties": {
                             "Cluster": {
                               "type": "string",
-                              "description": "The openshift cluster api (for example REDA)"
+                              "description": "The openshift cluster api"
                             },
                             "Username": {
                               "type": "string",
@@ -9910,7 +9920,7 @@
                           "properties": {
                             "Cluster": {
                               "type": "string",
-                              "description": "The openshift cluster api (for example REDA)"
+                              "description": "The openshift cluster api"
                             },
                             "Username": {
                               "type": "string",
@@ -12723,5 +12733,5 @@
     }
   },
   "x-qaas-family": "runner-family",
-  "x-qaas-generated-at-utc": "2026-03-23T18:29:17.5324514+00:00"
+  "x-qaas-generated-at-utc": "2026-03-23T20:15:01.0004003+00:00"
 }

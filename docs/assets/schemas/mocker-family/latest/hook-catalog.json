@@ -1,6 +1,6 @@
 {
   "familyId": "mocker-family",
-  "generatedAtUtc": "2026-03-23T18:29:28.5472473+00:00",
+  "generatedAtUtc": "2026-03-23T20:15:15.9478283+00:00",
   "hookTypes": [
     {
       "hookKind": "generator",
@@ -125,36 +125,80 @@
     },
     {
       "hookKind": "processor",
-      "title": "DummyTransactionProcessor",
-      "docsSlug": "DummyTransactionProcessor",
+      "title": "ConditionalResponseProcessor",
+      "docsSlug": "ConditionalResponseProcessor",
       "selectorNames": [
-        "DummyTransactionProcessor"
+        "ConditionalResponseProcessor"
       ],
-      "configurationTitle": "DummyTransactionProcessor",
+      "configurationTitle": "ConditionalResponseProcessor",
       "description": null,
       "configurationSchemaJsonPointer": "#/properties/Stubs/items/anyOf/0/properties/ProcessorConfiguration"
     },
     {
       "hookKind": "processor",
-      "title": "ExampleProcessor",
-      "docsSlug": "ExampleProcessor",
+      "title": "DataSourceResponseProcessor",
+      "docsSlug": "DataSourceResponseProcessor",
       "selectorNames": [
-        "ExampleProcessor"
+        "DataSourceResponseProcessor"
       ],
-      "configurationTitle": "ExampleProcessor",
+      "configurationTitle": "DataSourceResponseProcessor",
       "description": null,
       "configurationSchemaJsonPointer": "#/properties/Stubs/items/anyOf/1/properties/ProcessorConfiguration"
     },
     {
       "hookKind": "processor",
-      "title": "GrpcEchoProcessor",
-      "docsSlug": "GrpcEchoProcessor",
+      "title": "JsonEnvelopeProcessor",
+      "docsSlug": "JsonEnvelopeProcessor",
       "selectorNames": [
-        "GrpcEchoProcessor"
+        "JsonEnvelopeProcessor"
       ],
-      "configurationTitle": "GrpcEchoProcessor",
+      "configurationTitle": "JsonEnvelopeProcessor",
       "description": null,
       "configurationSchemaJsonPointer": "#/properties/Stubs/items/anyOf/2/properties/ProcessorConfiguration"
+    },
+    {
+      "hookKind": "processor",
+      "title": "PassThroughProcessor",
+      "docsSlug": "PassThroughProcessor",
+      "selectorNames": [
+        "PassThroughProcessor"
+      ],
+      "configurationTitle": "PassThroughProcessor",
+      "description": null,
+      "configurationSchemaJsonPointer": "#/properties/Stubs/items/anyOf/3/properties/ProcessorConfiguration"
+    },
+    {
+      "hookKind": "processor",
+      "title": "ProblemDetailsProcessor",
+      "docsSlug": "ProblemDetailsProcessor",
+      "selectorNames": [
+        "ProblemDetailsProcessor"
+      ],
+      "configurationTitle": "ProblemDetailsProcessor",
+      "description": null,
+      "configurationSchemaJsonPointer": "#/properties/Stubs/items/anyOf/4/properties/ProcessorConfiguration"
+    },
+    {
+      "hookKind": "processor",
+      "title": "RequestEchoProcessor",
+      "docsSlug": "RequestEchoProcessor",
+      "selectorNames": [
+        "RequestEchoProcessor"
+      ],
+      "configurationTitle": "RequestEchoProcessor",
+      "description": null,
+      "configurationSchemaJsonPointer": "#/properties/Stubs/items/anyOf/5/properties/ProcessorConfiguration"
+    },
+    {
+      "hookKind": "processor",
+      "title": "StaticResponseProcessor",
+      "docsSlug": "StaticResponseProcessor",
+      "selectorNames": [
+        "StaticResponseProcessor"
+      ],
+      "configurationTitle": "StaticResponseProcessor",
+      "description": null,
+      "configurationSchemaJsonPointer": "#/properties/Stubs/items/anyOf/6/properties/ProcessorConfiguration"
     },
     {
       "hookKind": "processor",
@@ -163,7 +207,18 @@
       "selectorNames": [],
       "configurationTitle": "StatusCodeTransactionProcessor",
       "description": null,
-      "configurationSchemaJsonPointer": "#/properties/Stubs/items/anyOf/3/properties/ProcessorConfiguration"
+      "configurationSchemaJsonPointer": "#/properties/Stubs/items/anyOf/7/properties/ProcessorConfiguration"
+    },
+    {
+      "hookKind": "processor",
+      "title": "TextTransformProcessor",
+      "docsSlug": "TextTransformProcessor",
+      "selectorNames": [
+        "TextTransformProcessor"
+      ],
+      "configurationTitle": "TextTransformProcessor",
+      "description": null,
+      "configurationSchemaJsonPointer": "#/properties/Stubs/items/anyOf/9/properties/ProcessorConfiguration"
     }
   ]
 }

@@ -1,4 +1,4 @@
-<!-- generated hash:f43cdd6017fa sources:runner-family, OsRestartPods, table-view -->
+<!-- generated hash:e01a97f33e5b sources:runner-family, OsRestartPods, table-view -->
 
 # OsRestartPods Configurations Table View
 
@@ -10,7 +10,7 @@
 | `ProbeConfiguration.ApplicationLabels` | `list or string` | &#10004 |  | A list of the k8s labels of the pods to execute the command in, for example: app=test |
 | `ProbeConfiguration.ApplicationLabels[]` | `string` | &#10006 |  |  |
 | `ProbeConfiguration.Openshift` | `object or string` | &#10004 |  | The openshift environment to perform action in |
-| `ProbeConfiguration.Openshift.Cluster` | `string` | &#10004 |  | The openshift cluster api (for example REDA) |
+| `ProbeConfiguration.Openshift.Cluster` | `string` | &#10004 |  | The openshift cluster api |
 | `ProbeConfiguration.Openshift.Namespace` | `string` | &#10004 |  | The openshift namespace the application is at |
 | `ProbeConfiguration.Openshift.Password` | `string` | &#10004 |  | Password of the username with access to the openshift namespace and application |
 | `ProbeConfiguration.Openshift.Username` | `string` | &#10004 |  | Username with access to the openshift namespace and application |

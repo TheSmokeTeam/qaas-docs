@@ -1,9 +1,9 @@
 {
   "repository": "TheSmokeTeam/QaaS.Mocker",
-  "tag": "2.0.5",
-  "origin": "https://github.com/TheSmokeTeam/QaaS.Mocker/actions/runs/23386287345",
-  "runId": "23386287345",
-  "updatedAtUtc": "2026-03-23T18:28:34.8651805+00:00",
+  "tag": "2.0.6",
+  "origin": "https://github.com/TheSmokeTeam/QaaS.Mocker/actions/runs/23455881192",
+  "runId": "23455881192",
+  "updatedAtUtc": "2026-03-23T20:14:20.6806554+00:00",
   "packages": [
     {
       "name": "autofac",
@@ -11,51 +11,51 @@
     },
     {
       "name": "qaas.framework.executions",
-      "version": "1.2.5"
+      "version": "1.2.8"
     },
     {
       "name": "qaas.framework.infrastructure",
-      "version": "1.2.5"
+      "version": "1.2.8"
     },
     {
       "name": "qaas.framework.policies",
-      "version": "1.2.5"
+      "version": "1.2.8"
     },
     {
       "name": "qaas.framework.protocols",
-      "version": "1.2.5"
+      "version": "1.2.8"
     },
     {
       "name": "qaas.framework.providers",
-      "version": "1.2.5"
+      "version": "1.2.8"
     },
     {
       "name": "qaas.framework.sdk",
-      "version": "1.2.5"
+      "version": "1.2.8"
     },
     {
       "name": "qaas.framework.serialization",
-      "version": "1.2.5"
+      "version": "1.2.8"
     },
     {
       "name": "qaas.framework.configurations",
-      "version": "1.2.5"
+      "version": "1.2.8"
     },
     {
       "name": "qaas.mocker",
-      "version": "2.0.5"
+      "version": "2.0.6"
     },
     {
       "name": "qaas.mocker.controller",
-      "version": "2.0.5"
+      "version": "2.0.6"
     },
     {
       "name": "qaas.mocker.servers",
-      "version": "2.0.5"
+      "version": "2.0.6"
     },
     {
       "name": "qaas.mocker.stubs",
-      "version": "2.0.5"
+      "version": "2.0.6"
     },
     {
       "name": "rabbitmq.client",
@@ -75,7 +75,11 @@
     },
     {
       "name": "qaas.mocker.communicationobjects",
-      "version": "2.0.2"
+      "version": "2.0.3"
+    },
+    {
+      "name": "qaas.elasticbootstrap",
+      "version": "1.0.0"
     },
     {
       "name": "pipelines.sockets.unofficial",
@@ -84,14 +88,6 @@
     {
       "name": "oracle.manageddataaccess.core",
       "version": "23.26.100"
-    },
-    {
-      "name": "nunit3testadapter",
-      "version": "6.1.0"
-    },
-    {
-      "name": "microsoft.testplatform.objectmodel",
-      "version": "18.3.0"
     },
     {
       "name": "microsoft.testplatform.testhost",
@@ -156,6 +152,10 @@
     {
       "name": "nunit.analyzers",
       "version": "4.12.0"
+    },
+    {
+      "name": "nunit3testadapter",
+      "version": "6.1.0"
     },
     {
       "name": "serilog",
@@ -247,7 +247,7 @@
     },
     {
       "name": "microsoft.testplatform.objectmodel",
-      "version": "18.0.1"
+      "version": "18.3.0"
     },
     {
       "name": "system.diagnostics.eventlog",
@@ -330,15 +330,15 @@
       "version": "6.0.0"
     },
     {
-      "name": "yamldotnet",
-      "version": "16.3.0"
+      "name": "microsoft.testplatform.objectmodel",
+      "version": "18.0.1"
     },
     {
       "name": "microsoft.testplatform.adapterutilities",
       "version": "18.0.1"
     },
     {
-      "name": "microsoft.testing.platform",
+      "name": "microsoft.testing.platform.msbuild",
       "version": "2.0.2"
     },
     {
@@ -370,12 +370,12 @@
       "version": "9.0.11"
     },
     {
-      "name": "messagepack.annotations",
-      "version": "3.1.4"
-    },
-    {
       "name": "microsoft.extensions.caching.memory",
       "version": "9.0.11"
+    },
+    {
+      "name": "microsoft.extensions.configuration",
+      "version": "10.0.0"
     },
     {
       "name": "microsoft.extensions.configuration",
@@ -406,16 +406,20 @@
       "version": "10.0.5"
     },
     {
-      "name": "microsoft.extensions.configuration",
-      "version": "10.0.0"
+      "name": "microsoft.extensions.configuration.fileextensions",
+      "version": "10.0.5"
+    },
+    {
+      "name": "messagepack.annotations",
+      "version": "3.1.4"
+    },
+    {
+      "name": "microsoft.extensions.configuration.fileextensions",
+      "version": "2.0.0"
     },
     {
       "name": "messagepack",
       "version": "3.1.4"
-    },
-    {
-      "name": "librdkafka.redist",
-      "version": "2.13.2"
     },
     {
       "name": "jwt",
@@ -490,24 +494,20 @@
       "version": "9.4.5"
     },
     {
-      "name": "microsoft.extensions.configuration.fileextensions",
-      "version": "10.0.5"
+      "name": "librdkafka.redist",
+      "version": "2.13.2"
     },
     {
-      "name": "microsoft.extensions.configuration.fileextensions",
-      "version": "2.0.0"
+      "name": "yamldotnet",
+      "version": "16.3.0"
     },
     {
       "name": "microsoft.extensions.configuration.json",
       "version": "10.0.5"
     },
     {
-      "name": "microsoft.extensions.dependencyinjection",
+      "name": "microsoft.extensions.dependencyinjection.abstractions",
       "version": "10.0.5"
-    },
-    {
-      "name": "microsoft.identity.client",
-      "version": "4.78.0"
     },
     {
       "name": "microsoft.identity.client",
@@ -574,23 +574,23 @@
       "version": "2.0.2"
     },
     {
-      "name": "microsoft.extensions.primitives",
-      "version": "9.0.11"
-    },
-    {
-      "name": "microsoft.testing.platform.msbuild",
+      "name": "microsoft.testing.platform",
       "version": "2.0.2"
     },
     {
-      "name": "microsoft.extensions.primitives",
+      "name": "microsoft.identity.client",
+      "version": "4.78.0"
+    },
+    {
+      "name": "microsoft.extensions.dependencyinjection",
       "version": "10.0.5"
     },
     {
-      "name": "microsoft.extensions.options",
+      "name": "microsoft.extensions.primitives",
       "version": "9.0.11"
     },
     {
-      "name": "microsoft.extensions.dependencyinjection.abstractions",
+      "name": "microsoft.extensions.options.dataannotations",
       "version": "10.0.5"
     },
     {
@@ -658,7 +658,11 @@
       "version": "10.0.5"
     },
     {
-      "name": "microsoft.extensions.options.dataannotations",
+      "name": "microsoft.extensions.options",
+      "version": "9.0.11"
+    },
+    {
+      "name": "microsoft.extensions.primitives",
       "version": "10.0.5"
     },
     {

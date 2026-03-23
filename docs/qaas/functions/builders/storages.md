@@ -1,4 +1,4 @@
-<!-- generated hash:d156659f1c9d sources:Runner, functions, Builders, Storages -->
+<!-- generated hash:ca25e9c760fb sources:Runner, functions, Builders, Storages -->
 
 # Storages
 
@@ -16,7 +16,7 @@ Each entry uses the short function name as the table-of-contents label. Expand a
     
     **Declaring Type** `StorageBuilder`
     
-    **Location** `QaaS.Runner.Storage/StorageBuilder.cs:45`
+    **Location** `QaaS.Runner.Storage/StorageBuilder.cs:42`
     
     **Signature**
     ```csharp
@@ -39,7 +39,7 @@ Each entry uses the short function name as the table-of-contents label. Expand a
     
     **Declaring Type** `StorageBuilder`
     
-    **Location** `QaaS.Runner.Storage/StorageBuilder.cs:58`
+    **Location** `QaaS.Runner.Storage/StorageBuilder.cs:55`
     
     **Signature**
     ```csharp
@@ -62,7 +62,7 @@ Each entry uses the short function name as the table-of-contents label. Expand a
     
     **Declaring Type** `StorageBuilder`
     
-    **Location** `QaaS.Runner.Storage/StorageBuilder.cs:70`
+    **Location** `QaaS.Runner.Storage/StorageBuilder.cs:67`
     
     **Signature**
     ```csharp
@@ -85,7 +85,7 @@ Each entry uses the short function name as the table-of-contents label. Expand a
     
     **Declaring Type** `StorageBuilder`
     
-    **Location** `QaaS.Runner.Storage/StorageBuilder.cs:82`
+    **Location** `QaaS.Runner.Storage/StorageBuilder.cs:79`
     
     **Signature**
     ```csharp
@@ -108,7 +108,7 @@ Each entry uses the short function name as the table-of-contents label. Expand a
     
     **Declaring Type** `StorageBuilder`
     
-    **Location** `QaaS.Runner.Storage/StorageBuilder.cs:94`
+    **Location** `QaaS.Runner.Storage/StorageBuilder.cs:91`
     
     **Signature**
     ```csharp
@@ -131,7 +131,7 @@ Each entry uses the short function name as the table-of-contents label. Expand a
     
     **Declaring Type** `StorageBuilder`
     
-    **Location** `QaaS.Runner.Storage/StorageBuilder.cs:108`
+    **Location** `QaaS.Runner.Storage/StorageBuilder.cs:105`
     
     **Signature**
     ```csharp
@@ -154,7 +154,7 @@ Each entry uses the short function name as the table-of-contents label. Expand a
     
     **Declaring Type** `StorageBuilder`
     
-    **Location** `QaaS.Runner.Storage/StorageBuilder.cs:122`
+    **Location** `QaaS.Runner.Storage/StorageBuilder.cs:119`
     
     **Signature**
     ```csharp
@@ -177,7 +177,7 @@ Each entry uses the short function name as the table-of-contents label. Expand a
     
     **Declaring Type** `StorageBuilder`
     
-    **Location** `QaaS.Runner.Storage/StorageBuilder.cs:136`
+    **Location** `QaaS.Runner.Storage/StorageBuilder.cs:133`
     
     **Signature**
     ```csharp
@@ -200,7 +200,7 @@ Each entry uses the short function name as the table-of-contents label. Expand a
     
     **Declaring Type** `StorageBuilder`
     
-    **Location** `QaaS.Runner.Storage/StorageBuilder.cs:148`
+    **Location** `QaaS.Runner.Storage/StorageBuilder.cs:145`
     
     **Signature**
     ```csharp

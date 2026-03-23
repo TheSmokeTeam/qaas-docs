@@ -1,4 +1,4 @@
-<!-- generated hash:75e87a490d99 sources:Runner, functions, Builders, Collectors -->
+<!-- generated hash:7337178f3ef6 sources:Runner, functions, Builders, Collectors -->
 
 # Collectors
 
@@ -16,7 +16,7 @@ Each entry uses the short function name as the table-of-contents label. Expand a
     
     **Declaring Type** `CollectorBuilder`
     
-    **Location** `QaaS.Runner.Sessions/Actions/Collectors/CollectorBuilder.cs:54`
+    **Location** `QaaS.Runner.Sessions/Actions/Collectors/CollectorBuilder.cs:50`
     
     **Signature**
     ```csharp
@@ -39,7 +39,7 @@ Each entry uses the short function name as the table-of-contents label. Expand a
     
     **Declaring Type** `CollectorBuilder`
     
-    **Location** `QaaS.Runner.Sessions/Actions/Collectors/CollectorBuilder.cs:67`
+    **Location** `QaaS.Runner.Sessions/Actions/Collectors/CollectorBuilder.cs:63`
     
     **Signature**
     ```csharp
@@ -62,7 +62,7 @@ Each entry uses the short function name as the table-of-contents label. Expand a
     
     **Declaring Type** `CollectorBuilder`
     
-    **Location** `QaaS.Runner.Sessions/Actions/Collectors/CollectorBuilder.cs:80`
+    **Location** `QaaS.Runner.Sessions/Actions/Collectors/CollectorBuilder.cs:76`
     
     **Signature**
     ```csharp
@@ -85,7 +85,7 @@ Each entry uses the short function name as the table-of-contents label. Expand a
     
     **Declaring Type** `CollectorBuilder`
     
-    **Location** `QaaS.Runner.Sessions/Actions/Collectors/CollectorBuilder.cs:93`
+    **Location** `QaaS.Runner.Sessions/Actions/Collectors/CollectorBuilder.cs:89`
     
     **Signature**
     ```csharp
@@ -108,7 +108,7 @@ Each entry uses the short function name as the table-of-contents label. Expand a
     
     **Declaring Type** `CollectorBuilder`
     
-    **Location** `QaaS.Runner.Sessions/Actions/Collectors/CollectorBuilder.cs:105`
+    **Location** `QaaS.Runner.Sessions/Actions/Collectors/CollectorBuilder.cs:101`
     
     **Signature**
     ```csharp
@@ -131,7 +131,7 @@ Each entry uses the short function name as the table-of-contents label. Expand a
     
     **Declaring Type** `CollectorBuilder`
     
-    **Location** `QaaS.Runner.Sessions/Actions/Collectors/CollectorBuilder.cs:117`
+    **Location** `QaaS.Runner.Sessions/Actions/Collectors/CollectorBuilder.cs:113`
     
     **Signature**
     ```csharp
@@ -154,7 +154,7 @@ Each entry uses the short function name as the table-of-contents label. Expand a
     
     **Declaring Type** `CollectorBuilder`
     
-    **Location** `QaaS.Runner.Sessions/Actions/Collectors/CollectorBuilder.cs:129`
+    **Location** `QaaS.Runner.Sessions/Actions/Collectors/CollectorBuilder.cs:125`
     
     **Signature**
     ```csharp
@@ -177,7 +177,7 @@ Each entry uses the short function name as the table-of-contents label. Expand a
     
     **Declaring Type** `CollectorBuilder`
     
-    **Location** `QaaS.Runner.Sessions/Actions/Collectors/CollectorBuilder.cs:143`
+    **Location** `QaaS.Runner.Sessions/Actions/Collectors/CollectorBuilder.cs:139`
     
     **Signature**
     ```csharp
@@ -200,7 +200,7 @@ Each entry uses the short function name as the table-of-contents label. Expand a
     
     **Declaring Type** `CollectorBuilder`
     
-    **Location** `QaaS.Runner.Sessions/Actions/Collectors/CollectorBuilder.cs:157`
+    **Location** `QaaS.Runner.Sessions/Actions/Collectors/CollectorBuilder.cs:153`
     
     **Signature**
     ```csharp
@@ -223,7 +223,7 @@ Each entry uses the short function name as the table-of-contents label. Expand a
     
     **Declaring Type** `CollectorBuilder`
     
-    **Location** `QaaS.Runner.Sessions/Actions/Collectors/CollectorBuilder.cs:171`
+    **Location** `QaaS.Runner.Sessions/Actions/Collectors/CollectorBuilder.cs:167`
     
     **Signature**
     ```csharp
@@ -246,7 +246,7 @@ Each entry uses the short function name as the table-of-contents label. Expand a
     
     **Declaring Type** `CollectorBuilder`
     
-    **Location** `QaaS.Runner.Sessions/Actions/Collectors/CollectorBuilder.cs:189`
+    **Location** `QaaS.Runner.Sessions/Actions/Collectors/CollectorBuilder.cs:185`
     
     **Signature**
     ```csharp
