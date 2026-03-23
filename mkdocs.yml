@@ -543,7 +543,6 @@ extra:
     dotnet_sdk: https://dotnet.microsoft.com/download
     vscode_yaml_extension: https://marketplace.visualstudio.com/items?itemName=redhat.vscode-yaml
     qaas_community: https://discord.gg/rg2NYT4Mea
-    nuget_feed: https://api.nuget.org/v3/index.json
     nuget_feed_a: https://api.nuget.org/v3/index.json
     nuget_feed_b: https://api.nuget.org/v3/index.json
     nuget_feed_c: https://api.nuget.org/v3/index.json

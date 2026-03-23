@@ -115,10 +115,9 @@ Optional variable:
 | `QAAS_DOCS_LINK_DOTNET_SDK`                         | `dotnet_sdk`                         | .NET SDK download URL                          |
 | `QAAS_DOCS_LINK_VSCODE_YAML_EXTENSION`              | `vscode_yaml_extension`              | VS Code YAML extension URL                     |
 | `QAAS_DOCS_LINK_QAAS_COMMUNITY`                     | `qaas_community`                     | QaaS community URL                             |
-| `QAAS_DOCS_LINK_NUGET_FEED`                         | `nuget_feed`                         | Primary NuGet feed URL used in install guides  |
-| `QAAS_DOCS_LINK_NUGET_FEED_A`                       | `nuget_feed_a`                       | Alternate NuGet feed A URL                     |
-| `QAAS_DOCS_LINK_NUGET_FEED_B`                       | `nuget_feed_b`                       | Alternate NuGet feed B URL                     |
-| `QAAS_DOCS_LINK_NUGET_FEED_C`                       | `nuget_feed_c`                       | Alternate NuGet feed C URL                     |
+| `QAAS_DOCS_LINK_NUGET_FEED_A`                       | `nuget_feed_a`                       | NuGet `NuGet.Config` feed link                 |
+| `QAAS_DOCS_LINK_NUGET_FEED_B`                       | `nuget_feed_b`                       | NuGet `NuGet.Config` feed link                 |
+| `QAAS_DOCS_LINK_NUGET_FEED_C`                       | `nuget_feed_c`                       | NuGet `NuGet.Config` feed link                 |
 | `QAAS_DOCS_LINK_ARTIFACTORY`                        | `artifactory`                        | Artifactory base URL                           |
 | `QAAS_DOCS_LINK_LINKS_KIBANA_SUPPORTER`             | `links_kibana_supporter`             | Kibana supporter endpoint/alias                |
 | `QAAS_DOCS_LINK_LINKS_KIBANA_VERSION`               | `links_kibana_version`               | Kibana version value used in docs text         |

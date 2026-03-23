@@ -5,20 +5,25 @@
 | Requirement | Details |
 | ----------- | ------- |
 | [.NET SDK]({{ links.dotnet_sdk }}) | Version **10.0** |
-| NuGet feed | One configurable feed, defaulting to `nuget.org` |
+| NuGet feed | A global `NuGet.Config` file configured with feed URLs A, B, and C |
 | IDE setup | Recommended for YAML schema validation and completion |
 
 ## Global NuGet.Config
 
-Add a single package source to your global `NuGet.Config` file, usually `~/.nuget/NuGet/NuGet.Config`.
+Add package sources to your global `NuGet.Config` file, usually `~/.nuget/NuGet/NuGet.Config`.
 
-The default documentation value is `nuget.org`, and you can override it during docs builds with `QAAS_DOCS_LINK_NUGET_FEED`.
+- A global `NuGet.Config` file configured with the following feed URLs:
+  - `QAAS_DOCS_LINK_NUGET_FEED_A`
+  - `QAAS_DOCS_LINK_NUGET_FEED_B`
+  - `QAAS_DOCS_LINK_NUGET_FEED_C`
 
 ```xml
 <configuration>
   <packageSources>
     <clear />
-    <add key="nuget.org" value="{{ links.nuget_feed }}" protocolVersion="3" />
+    <add key="feed_a" value="{{ links.nuget_feed_a }}" protocolVersion="3" />
+    <add key="feed_b" value="{{ links.nuget_feed_b }}" protocolVersion="3" />
+    <add key="feed_c" value="{{ links.nuget_feed_c }}" protocolVersion="3" />
   </packageSources>
 </configuration>
 ```
@@ -58,8 +63,11 @@ dotnet new qaas-mocker -n MyServiceMock
 
 The generated repo includes:
 
-- `NuGet.config` pointing at `{{ links.nuget_feed }}`
-- `QaaS.Mocker` with `Version="*"` so restore pulls the latest stable version on the configured feed
+- `NuGet.config` pointing at:
+  - `{{ links.nuget_feed_a }}`
+  - `{{ links.nuget_feed_b }}`
+  - `{{ links.nuget_feed_c }}`
+- `QaaS.Mocker` with `Version="x.x.x"` (set a concrete package version for your project)
 - a minimal `/health` mock under `Servers`
 - `Dockerfile` and generated GitHub Actions CI
 
