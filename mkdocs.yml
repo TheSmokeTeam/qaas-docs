@@ -28,6 +28,23 @@ nav:
       - Best Practices: qaas/bestPractices.md
     - Functions:
       - Overview: qaas/functions/index.md
+      - Configuration as Code:
+        - Assertions: qaas/functions/configuration-as-code/assertions.md
+        - Collectors: qaas/functions/configuration-as-code/collectors.md
+        - Consumers: qaas/functions/configuration-as-code/consumers.md
+        - Executions: qaas/functions/configuration-as-code/executions.md
+        - Links: qaas/functions/configuration-as-code/links.md
+        - Mocker Commands: qaas/functions/configuration-as-code/mocker-commands.md
+        - Probes: qaas/functions/configuration-as-code/probes.md
+        - Publishers: qaas/functions/configuration-as-code/publishers.md
+        - Sessions: qaas/functions/configuration-as-code/sessions.md
+        - Storages: qaas/functions/configuration-as-code/storages.md
+        - Transactions: qaas/functions/configuration-as-code/transactions.md
+      - Getting Started:
+        - Bootstrap: qaas/functions/getting-started/bootstrap.md
+      - Runtime:
+        - Runner: qaas/functions/runtime/runner.md
+      - Extension Methods: qaas/functions/extension-methods.md
     - CLI Commands:
       - Overview: qaas/userInterfaces/runner/commands/commands.md
       - run: qaas/userInterfaces/runner/commands/run.md
@@ -88,6 +105,14 @@ nav:
       - Integrate with Tests: mocker/quickStart/integrateWithTests.md
     - Functions:
       - Overview: mocker/functions/index.md
+      - Configuration as Code:
+        - Executions: mocker/functions/configuration-as-code/executions.md
+        - Transaction Stubs: mocker/functions/configuration-as-code/transaction-stubs.md
+      - Getting Started:
+        - Bootstrap: mocker/functions/getting-started/bootstrap.md
+      - Runtime:
+        - Mocker Runner: mocker/functions/runtime/mocker-runner.md
+      - Extension Methods: mocker/functions/extension-methods.md
     - CLI Commands:
       - Overview: mocker/userInterfaces/mocker/commands/commands.md
       - run: mocker/userInterfaces/mocker/commands/run.md
@@ -405,6 +430,16 @@ nav:
     - Introduction: framework/index.md
     - Functions:
       - Overview: framework/functions/index.md
+      - Configuration:
+        - Placeholders: framework/functions/configuration/placeholders.md
+        - YAML: framework/functions/configuration/yaml.md
+      - Framework APIs:
+        - Contexts: framework/functions/framework-apis/contexts.md
+        - Data Sources: framework/functions/framework-apis/data-sources.md
+        - Policies: framework/functions/framework-apis/policies.md
+      - Utilities:
+        - Enumerables: framework/functions/utilities/enumerables.md
+      - Extension Methods: framework/functions/extension-methods.md
     - Projects:
       - SDK: framework/projects/sdk.md
       - Configuration: framework/projects/configuration.md

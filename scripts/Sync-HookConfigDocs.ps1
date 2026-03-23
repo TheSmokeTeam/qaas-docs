@@ -310,6 +310,12 @@ function Escape-Markdown {
     return $text.Replace('|', '\|').Replace("`r", '').Replace("`n", '<br />')
 }
 
+function Normalize-LineEndings {
+    param([string]$Text)
+
+    return $Text.Replace("`r`n", "`n").Replace("`r", "`n")
+}
+
 function Sanitize-HookSlug {
     param([string]$Title)
 
@@ -436,8 +442,9 @@ function Write-OrCheckFile {
             return
         }
 
-        $existing = [System.IO.File]::ReadAllText($fullPath)
-        if ($existing -ne $Content) {
+        $existing = Normalize-LineEndings ([System.IO.File]::ReadAllText($fullPath))
+        $candidate = Normalize-LineEndings $Content
+        if ($existing -ne $candidate) {
             $failures.Add("Generated hook doc drift: $RelativePath") | Out-Null
         }
 
