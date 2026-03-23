@@ -2,12 +2,10 @@
 
 `QaaS Module Packages` are bundles of folders containing YAML files, uploaded as artifacts to Artifactory (`{{ links.artifactory }}`). In the context of `QaaS`, each such artifact is referred to as a **module**. These modules can be used interchangeably with any YAML file within the QaaS framework.
 
-## Publishing Your Own Modules
-
-After creating your own modules, you should publish them to Artifactory.
-You can do it by urself or use a tool we created named [`VAP`](`{{ links.repository_vap }}`) - Versioned Artifactory Publisher, which is a CLI tool that automates the process of publishing modules to Artifactory.
-
 ### Publishing Conventions
+
+!!! Note "Recommendation"
+    After you create a module you should publish it to Artifactory.
 
 - Place modules under `{{ links.artifactory }}`
 - Module directory names must be in **PascalCase**
@@ -28,6 +26,8 @@ You can do it by urself or use a tool we created named [`VAP`](`{{ links.reposit
 ## Publishing via CI
 
 Automate module publishing using the [`VAP` CI step](`{{ links.repository_vap }}`) in GitLab CI templates.
+
+`VAP` (Versioned Artifactory Publisher) - tool that simplifies the process of publishing modules to Artifactory.
 
 ---
 
