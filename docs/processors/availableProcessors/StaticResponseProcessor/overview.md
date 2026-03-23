@@ -1,3 +1,7 @@
+<!-- generated hash:32cd8fb8b170 sources:processor, StaticResponseProcessor, overview -->
+
+# StaticResponseProcessor
+
 <!-- generated hash:731fa498d490 sources:processor, StaticResponseProcessor, overview -->
 
 # StaticResponseProcessor

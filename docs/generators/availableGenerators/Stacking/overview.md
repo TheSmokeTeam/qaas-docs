@@ -1,3 +1,7 @@
+<!-- generated hash:6bcd5139ac07 sources:generator, Stacking, overview -->
+
+# Stacking
+
 <!-- generated hash:1caf4cc27375 sources:generator, Stacking, overview -->
 
 # Stacking

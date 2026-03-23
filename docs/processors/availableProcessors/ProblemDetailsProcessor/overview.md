@@ -1,3 +1,7 @@
+<!-- generated hash:4aa2b340da54 sources:processor, ProblemDetailsProcessor, overview -->
+
+# ProblemDetailsProcessor
+
 <!-- generated hash:f7d349e8069d sources:processor, ProblemDetailsProcessor, overview -->
 
 # ProblemDetailsProcessor

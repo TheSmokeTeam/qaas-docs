@@ -1,3 +1,7 @@
+<!-- generated hash:261d33bc97c0 sources:assertion, ObjectOutputJsonSchema, overview -->
+
+# ObjectOutputJsonSchema
+
 <!-- generated hash:c9d97ec91baa sources:assertion, ObjectOutputJsonSchema, overview -->
 
 # ObjectOutputJsonSchema

@@ -1,3 +1,7 @@
+<!-- generated hash:8aca5987a9e4 sources:processor, TextTransformProcessor, overview -->
+
+# TextTransformProcessor
+
 <!-- generated hash:e7ab848ddc94 sources:processor, TextTransformProcessor, overview -->
 
 # TextTransformProcessor

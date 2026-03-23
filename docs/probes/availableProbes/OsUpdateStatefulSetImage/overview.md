@@ -1,3 +1,7 @@
+<!-- generated hash:22ed4b1a954b sources:probe, OsUpdateStatefulSetImage, overview -->
+
+# OsUpdateStatefulSetImage
+
 <!-- generated hash:2295f0d8cec4 sources:probe, OsUpdateStatefulSetImage, overview -->
 
 # OsUpdateStatefulSetImage

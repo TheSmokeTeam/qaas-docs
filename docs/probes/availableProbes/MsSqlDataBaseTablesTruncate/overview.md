@@ -1,3 +1,7 @@
+<!-- generated hash:d08a60b00207 sources:probe, MsSqlDataBaseTablesTruncate, overview -->
+
+# MsSqlDataBaseTablesTruncate
+
 <!-- generated hash:43b363470eff sources:probe, MsSqlDataBaseTablesTruncate, overview -->
 
 # MsSqlDataBaseTablesTruncate

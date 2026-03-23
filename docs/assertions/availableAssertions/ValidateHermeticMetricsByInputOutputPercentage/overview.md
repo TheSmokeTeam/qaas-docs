@@ -1,3 +1,7 @@
+<!-- generated hash:fc17cb9237ea sources:assertion, ValidateHermeticMetricsByInputOutputPercentage, overview -->
+
+# ValidateHermeticMetricsByInputOutputPercentage
+
 <!-- generated hash:4a0344b2dad4 sources:assertion, ValidateHermeticMetricsByInputOutputPercentage, overview -->
 
 # ValidateHermeticMetricsByInputOutputPercentage

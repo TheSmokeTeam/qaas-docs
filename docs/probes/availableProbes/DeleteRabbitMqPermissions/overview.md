@@ -1,3 +1,7 @@
+<!-- generated hash:9418e81a9bc3 sources:probe, DeleteRabbitMqPermissions, overview -->
+
+# DeleteRabbitMqPermissions
+
 <!-- generated hash:1ccd78008afc sources:probe, DeleteRabbitMqPermissions, overview -->
 
 # DeleteRabbitMqPermissions

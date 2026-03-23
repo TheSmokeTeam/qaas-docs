@@ -1,3 +1,7 @@
+<!-- generated hash:a837c92b94c1 sources:probe, OracleSqlDataBaseTablesTruncate, overview -->
+
+# OracleSqlDataBaseTablesTruncate
+
 <!-- generated hash:198448df60ac sources:probe, OracleSqlDataBaseTablesTruncate, overview -->
 
 # OracleSqlDataBaseTablesTruncate
