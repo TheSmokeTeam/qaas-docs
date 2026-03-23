@@ -485,7 +485,6 @@ markdown_extensions:
 extra:
   links:
     repository_org: https://github.com/TheSmokeTeam
-    repository_docs: https://github.com/TheSmokeTeam/qaas-docs
     repository_runner: https://github.com/TheSmokeTeam/QaaS.Runner
     repository_mocker: https://github.com/TheSmokeTeam/QaaS.Mocker
     repository_framework: https://github.com/TheSmokeTeam/QaaS.Framework
@@ -501,15 +500,13 @@ extra:
     vscode_yaml_extension: https://marketplace.visualstudio.com/items?itemName=redhat.vscode-yaml
     qaas_community: https://discord.gg/rg2NYT4Mea
     nuget_feed: https://api.nuget.org/v3/index.json
-    nuget_feed_a: feed_a
-    nuget_feed_b: feed_b
-    nuget_feed_c: feed_c
+    nuget_feed_a: https://api.nuget.org/v3/index.json
+    nuget_feed_b: https://api.nuget.org/v3/index.json
+    nuget_feed_c: https://api.nuget.org/v3/index.json
     qaas_project_templates: link_to_templates
-    dummyapp_tests: GIT/examples/dummyapptests/
-    dummyapp_helm_chart: GIT/qaas-quickstart-dummyapp-helm-chart
     runner_quickstart_repository: https://github.com/TheSmokeTeam/DummyAppTests
     mocker_quickstart_repository: https://github.com/TheSmokeTeam/DummyAppMock
-    artifactory: artifactory-link
+    artifactory: link_to_artifactory
     repository_modules: https://github.com/TheSmokeTeam/QaaS.Common.Modules
     repository_vap: GIT/versioned-artifact-publisher
     links_kibana_supporter: kibana_supporter
@@ -517,7 +514,6 @@ extra:
     qaas_adoptation_dashboard: link_to_adoptation_dashboard
     qaas_adoptation_dashboard_user: user
     qaas_adoptation_dashboard_password: password
-    qaas_custom_explore_view: link_to_explore_view
     runner_schema: https://raw.githubusercontent.com/TheSmokeTeam/QaaS.PackageMirror/master/schemas/runner-family/latest/schema.json
     mocker_schema: https://raw.githubusercontent.com/TheSmokeTeam/QaaS.PackageMirror/master/schemas/mocker-family/latest/schema.json
   social:

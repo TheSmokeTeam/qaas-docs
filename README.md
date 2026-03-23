@@ -129,7 +129,6 @@ docker run --rm -p 8000:8000 \
 | Environment Variable                    | `extra.links` Key        | Description                                    |
 |-----------------------------------------|--------------------------|------------------------------------------------|
 | `QAAS_DOCS_LINK_REPOSITORY_ORG`         | `repository_org`         | Organization repository URL                    |
-| `QAAS_DOCS_LINK_REPOSITORY_DOCS`        | `repository_docs`        | Documentation repo URL                         |
 | `QAAS_DOCS_LINK_REPOSITORY_RUNNER`      | `repository_runner`      | QaaS.Runner repo URL                           |
 | `QAAS_DOCS_LINK_REPOSITORY_MOCKER`      | `repository_mocker`      | QaaS.Mocker repo URL                           |
 | `QAAS_DOCS_LINK_REPOSITORY_FRAMEWORK`   | `repository_framework`   | QaaS.Framework repo URL                        |
@@ -154,9 +153,6 @@ docker run --rm -p 8000:8000 \
 | `QAAS_DOCS_LINK_QAAS_ADOPTATION_DASHBOARD` | `qaas_adoptation_dashboard` | Adoption dashboard URL                    |
 | `QAAS_DOCS_LINK_QAAS_ADOPTATION_DASHBOARD_USER` | `qaas_adoptation_dashboard_user` | Adoption dashboard user          |
 | `QAAS_DOCS_LINK_QAAS_ADOPTATION_DASHBOARD_PASSWORD` | `qaas_adoptation_dashboard_password` | Adoption dashboard password |
-| `QAAS_DOCS_LINK_QAAS_CUSTOM_EXPLORE_VIEW` | `qaas_custom_explore_view` | Custom explore view link                    |
-| `QAAS_DOCS_LINK_DUMMYAPP_TESTS`         | `dummyapp_tests`         | DummyApp test project URL                      |
-| `QAAS_DOCS_LINK_DUMMYAPP_HELM_CHART`    | `dummyapp_helm_chart`    | DummyApp Helm chart URL                        |
 | `QAAS_DOCS_LINK_RUNNER_QUICKSTART_REPOSITORY` | `runner_quickstart_repository` | Runner quickstart repository URL       |
 | `QAAS_DOCS_LINK_MOCKER_QUICKSTART_REPOSITORY` | `mocker_quickstart_repository` | Mocker quickstart repository URL       |
 | `QAAS_DOCS_LINK_ARTIFACTORY`            | `artifactory`            | Artifactory base URL                           |
