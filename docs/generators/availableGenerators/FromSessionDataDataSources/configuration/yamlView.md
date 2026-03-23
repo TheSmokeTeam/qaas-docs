@@ -1,6 +1,11 @@
-# FromSessionDataDataSources YAML Configuration
+# FromSessionDataDataSources Configurations Yaml View
 
 ```yaml
-Generator: FromSessionDataDataSources
-GeneratorConfiguration: []
+GeneratorConfiguration:
+  -
+    SessionName:
+    CommunicationDataList:
+      -
+        Name:
+        Type:
 ```

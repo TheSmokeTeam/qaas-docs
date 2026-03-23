@@ -1,6 +1,9 @@
-﻿# EmptyMongoDbCollection YAML Configuration
+# EmptyMongoDbCollection Configurations Yaml View
 
 ```yaml
-Probe: EmptyMongoDbCollection
-ProbeConfiguration: {}
+ProbeConfiguration:
+  CollectionName:
+  ConnectionString:
+  DatabaseName:
+  ChunkSize:
 ```

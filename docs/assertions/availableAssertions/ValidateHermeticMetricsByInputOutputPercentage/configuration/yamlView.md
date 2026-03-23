@@ -1,15 +1,15 @@
-# ValidateHermeticMetricsByInputOutputPercentage YAML Configuration
+# ValidateHermeticMetricsByInputOutputPercentage Configurations Yaml View
 
 ```yaml
-Assertion: ValidateHermeticMetricsByInputOutputPercentage
 AssertionConfiguration:
-  OutputMetricName:
   InputMetricName:
   MetricOutputSourceName:
-  SplitMetricName:
-  FilteredMetricName:
+  OutputMetricName:
   CombineMetricName:
+  FilteredMetricName:
+  InputsAreOutputs:
   ProcessMetricName:
+  SplitMetricName:
   Tolerance:
   InputNames: []
   OutputNames: []

@@ -1,6 +1,16 @@
-﻿# DownloadRabbitMqDefinitions YAML Configuration
+# DownloadRabbitMqDefinitions Configurations Yaml View
 
 ```yaml
-Probe: DownloadRabbitMqDefinitions
-ProbeConfiguration: {}
+ProbeConfiguration:
+  DefinitionsFilePath:
+  Host:
+  AllowInvalidServerCertificates:
+  ManagementPort:
+  ManagementScheme:
+  Password:
+  Port:
+  RequestTimeoutMs:
+  Username:
+  VirtualHost:
+  VirtualHostName:
 ```

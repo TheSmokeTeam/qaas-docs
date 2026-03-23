@@ -1,6 +1,6 @@
-﻿# StatusCodeTransactionProcessor YAML Configuration
+# StatusCodeTransactionProcessor Configurations Yaml View
 
 ```yaml
-Processor: StatusCodeTransactionProcessor
-ProcessorConfiguration: {}
+ProcessorConfiguration:
+  StatusCode:
 ```

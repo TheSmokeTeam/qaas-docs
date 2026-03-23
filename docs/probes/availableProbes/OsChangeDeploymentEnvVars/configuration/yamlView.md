@@ -1,6 +1,16 @@
-﻿# OsChangeDeploymentEnvVars YAML Configuration
+# OsChangeDeploymentEnvVars Configurations Yaml View
 
 ```yaml
-Probe: OsChangeDeploymentEnvVars
-ProbeConfiguration: {}
+ProbeConfiguration:
+  ReplicaSetName:
+  ContainerName:
+  EnvVarsToUpdate:
+  IntervalBetweenDesiredStateChecksMs:
+  TimeoutWaitForDesiredStateSeconds:
+  EnvVarsToRemove: []
+  Openshift:
+    Cluster:
+    Namespace:
+    Password:
+    Username:
 ```

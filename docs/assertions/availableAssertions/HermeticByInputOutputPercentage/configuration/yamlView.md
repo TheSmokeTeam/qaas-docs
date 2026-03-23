@@ -1,11 +1,10 @@
-# HermeticByInputOutputPercentage YAML Configuration
+# HermeticByInputOutputPercentage Configurations Yaml View
 
 ```yaml
-Assertion: HermeticByInputOutputPercentage
 AssertionConfiguration:
   ExpectedPercentage:
-  MidpointRounding:
   InputsAreOutputs:
+  MidpointRounding:
   InputNames: []
   OutputNames: []
 ```

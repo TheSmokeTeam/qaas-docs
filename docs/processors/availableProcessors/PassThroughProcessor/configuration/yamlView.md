@@ -1,6 +1,9 @@
-﻿# PassThroughProcessor YAML Configuration
+# PassThroughProcessor Configurations Yaml View
 
 ```yaml
-Processor: PassThroughProcessor
-ProcessorConfiguration: {}
+ProcessorConfiguration:
+  StatusCode:
+  ContentType:
+  PreserveMetaData:
+  ResponseHeaders:
 ```

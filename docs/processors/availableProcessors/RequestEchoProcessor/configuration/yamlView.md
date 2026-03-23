@@ -1,6 +1,11 @@
-﻿# RequestEchoProcessor YAML Configuration
+# RequestEchoProcessor Configurations Yaml View
 
 ```yaml
-Processor: RequestEchoProcessor
-ProcessorConfiguration: {}
+ProcessorConfiguration:
+  ContentType:
+  StatusCode:
+  IncludePathParameters:
+  IncludeRequestHeaders:
+  IncludeUri:
+  ResponseHeaders:
 ```

@@ -1,7 +1,6 @@
-# HermeticByExpectedOutputCountInRange YAML Configuration
+# HermeticByExpectedOutputCountInRange Configurations Yaml View
 
 ```yaml
-Assertion: HermeticByExpectedOutputCountInRange
 AssertionConfiguration:
   ExpectedMaximumCount:
   ExpectedMinimumCount:

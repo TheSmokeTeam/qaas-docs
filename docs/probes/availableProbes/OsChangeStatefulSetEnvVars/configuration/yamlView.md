@@ -1,6 +1,16 @@
-﻿# OsChangeStatefulSetEnvVars YAML Configuration
+# OsChangeStatefulSetEnvVars Configurations Yaml View
 
 ```yaml
-Probe: OsChangeStatefulSetEnvVars
-ProbeConfiguration: {}
+ProbeConfiguration:
+  ReplicaSetName:
+  ContainerName:
+  EnvVarsToUpdate:
+  IntervalBetweenDesiredStateChecksMs:
+  TimeoutWaitForDesiredStateSeconds:
+  EnvVarsToRemove: []
+  Openshift:
+    Cluster:
+    Namespace:
+    Password:
+    Username:
 ```

@@ -1,6 +1,15 @@
-﻿# DeleteRabbitMqUsers YAML Configuration
+# DeleteRabbitMqUsers Configurations Yaml View
 
 ```yaml
-Probe: DeleteRabbitMqUsers
-ProbeConfiguration: {}
+ProbeConfiguration:
+  Host:
+  AllowInvalidServerCertificates:
+  ManagementPort:
+  ManagementScheme:
+  Password:
+  Port:
+  RequestTimeoutMs:
+  Username:
+  VirtualHost:
+  Usernames: []
 ```

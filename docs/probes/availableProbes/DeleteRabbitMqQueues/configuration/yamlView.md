@@ -1,6 +1,11 @@
-﻿# DeleteRabbitMqQueues YAML Configuration
+# DeleteRabbitMqQueues Configurations Yaml View
 
 ```yaml
-Probe: DeleteRabbitMqQueues
-ProbeConfiguration: {}
+ProbeConfiguration:
+  Host:
+  Password:
+  Port:
+  Username:
+  VirtualHost:
+  QueueNames: []
 ```

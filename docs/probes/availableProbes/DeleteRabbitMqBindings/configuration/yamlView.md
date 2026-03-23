@@ -1,6 +1,17 @@
-﻿# DeleteRabbitMqBindings YAML Configuration
+# DeleteRabbitMqBindings Configurations Yaml View
 
 ```yaml
-Probe: DeleteRabbitMqBindings
-ProbeConfiguration: {}
+ProbeConfiguration:
+  Host:
+  Password:
+  Port:
+  Username:
+  VirtualHost:
+  Bindings:
+    -
+      DestinationName:
+      SourceName:
+      Arguments:
+      BindingType:
+      RoutingKey:
 ```

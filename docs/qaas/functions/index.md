@@ -1,4 +1,4 @@
-<!-- generated hash:baa8d09cb0d1 sources:Runner, functions -->
+<!-- generated hash:d3523ed27bd1 sources:Runner, functions -->
 
 # Runner Functions
 
@@ -11,1975 +11,2533 @@ This page is generated from the docs generator function manifest and the current
 #### `AssertionBuilder.Read(IParser parser, Type expectedType, ObjectDeserializer nestedObjectDeserializer) : void`
 
 - Kind: `function`
-- Location: `QaaS.Runner.Assertions/ConfigurationObjects/AssertionBuilder.cs:109`
+- Location: `QaaS.Runner.Assertions/ConfigurationObjects/AssertionBuilder.cs:113`
 
-Reads YAML configuration (not supported for AssertionBuilder)
+Reads the serialized configuration for the current Runner assertion builder instance.
+
+This method participates in the YAML serialization surface that backs configuration-as-code support.
 
 #### `AssertionBuilder.Write(IEmitter emitter, ObjectSerializer nestedObjectSerializer) : void`
 
 - Kind: `function`
-- Location: `QaaS.Runner.Assertions/ConfigurationObjects/AssertionBuilder.cs:118`
+- Location: `QaaS.Runner.Assertions/ConfigurationObjects/AssertionBuilder.cs:126`
 
-Writes the assertion builder configuration to YAML emitter
+Writes the current Runner assertion builder configuration to the configured serializer output.
+
+This method participates in the YAML serialization surface that backs configuration-as-code support.
 
 #### `AssertionBuilder.ReportOnlyStatuses(IList<AssertionStatus> statusesToReport) : AssertionBuilder`
 
 - Kind: `function`
-- Location: `QaaS.Runner.Assertions/ConfigurationObjects/AssertionBuilder.cs:141`
+- Location: `QaaS.Runner.Assertions/ConfigurationObjects/AssertionBuilder.cs:151`
 
-Sets which assertion statuses should be reported
+Sets which assertion statuses should be included in reports.
+
+Use this method when working with the documented Runner assertion builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
 #### `AssertionBuilder.WithCategory(string category) : AssertionBuilder`
 
 - Kind: `function`
-- Location: `QaaS.Runner.Assertions/ConfigurationObjects/AssertionBuilder.cs:152`
+- Location: `QaaS.Runner.Assertions/ConfigurationObjects/AssertionBuilder.cs:164`
 
-Sets the category for the assertion
+Configures category on the current Runner assertion builder instance.
+
+Use this method when working with the documented Runner assertion builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
 #### `AssertionBuilder.WeatherToSaveSessionData(bool weatherToSaveSessionData) : AssertionBuilder`
 
 - Kind: `function`
-- Location: `QaaS.Runner.Assertions/ConfigurationObjects/AssertionBuilder.cs:163`
+- Location: `QaaS.Runner.Assertions/ConfigurationObjects/AssertionBuilder.cs:177`
 
-Sets whether to save session data
+Configures whether session data is saved with the assertion result.
+
+Use this method when working with the documented Runner assertion builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
 #### `AssertionBuilder.WeatherToSaveLogs(bool weatherToSaveLogs) : AssertionBuilder`
 
 - Kind: `function`
-- Location: `QaaS.Runner.Assertions/ConfigurationObjects/AssertionBuilder.cs:174`
+- Location: `QaaS.Runner.Assertions/ConfigurationObjects/AssertionBuilder.cs:190`
 
-Sets whether to save session logs.
+Configures whether logs are saved with the assertion result.
+
+Use this method when working with the documented Runner assertion builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
 #### `AssertionBuilder.WeatherToSaveConfigurationTemplate(bool weatherToSaveConfigurationTemplate) : AssertionBuilder`
 
 - Kind: `function`
-- Location: `QaaS.Runner.Assertions/ConfigurationObjects/AssertionBuilder.cs:185`
+- Location: `QaaS.Runner.Assertions/ConfigurationObjects/AssertionBuilder.cs:203`
 
-Sets whether to save configuration template
+Configures whether the rendered configuration template is saved with the assertion result.
+
+Use this method when working with the documented Runner assertion builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
 #### `AssertionBuilder.WithSeverity(AssertionSeverity severity) : AssertionBuilder`
 
 - Kind: `function`
-- Location: `QaaS.Runner.Assertions/ConfigurationObjects/AssertionBuilder.cs:196`
+- Location: `QaaS.Runner.Assertions/ConfigurationObjects/AssertionBuilder.cs:216`
 
-Sets the severity level for the assertion
+Sets the severity associated with the assertion result.
+
+Use this method when working with the documented Runner assertion builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
 #### `AssertionBuilder.WeatherToSaveAttachments(bool weatherToSaveAttachments) : AssertionBuilder`
 
 - Kind: `function`
-- Location: `QaaS.Runner.Assertions/ConfigurationObjects/AssertionBuilder.cs:207`
+- Location: `QaaS.Runner.Assertions/ConfigurationObjects/AssertionBuilder.cs:229`
 
-Sets whether to save attachments
+Configures whether attachments are saved with the assertion result.
+
+Use this method when working with the documented Runner assertion builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
 #### `AssertionBuilder.WeatherToDisplayTrace(bool weatherToDisplayTrace) : AssertionBuilder`
 
 - Kind: `function`
-- Location: `QaaS.Runner.Assertions/ConfigurationObjects/AssertionBuilder.cs:218`
+- Location: `QaaS.Runner.Assertions/ConfigurationObjects/AssertionBuilder.cs:242`
 
-Sets whether to display assertion trace
+Configures whether the assertion trace is displayed with the result.
+
+Use this method when working with the documented Runner assertion builder API surface in code. The behavior exposed here is part of the public surface that the generated function documentation groups under 'Configuration as Code / Assertions'.
 
 #### `AssertionBuilder.Named(string name) : AssertionBuilder`
 
 - Kind: `function`
-- Location: `QaaS.Runner.Assertions/ConfigurationObjects/AssertionBuilder.cs:229`
+- Location: `QaaS.Runner.Assertions/ConfigurationObjects/AssertionBuilder.cs:255`
 
-Sets the display name for the assertion
+Sets the name used for the current Runner assertion builder instance.
+
+Use this method when working with the documented Runner assertion builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
 #### `AssertionBuilder.HookNamed(string hookName) : AssertionBuilder`
 
 - Kind: `function`
-- Location: `QaaS.Runner.Assertions/ConfigurationObjects/AssertionBuilder.cs:240`
+- Location: `QaaS.Runner.Assertions/ConfigurationObjects/AssertionBuilder.cs:268`
 
-Sets the assertion hook implementation name
+Sets the hook implementation name used by the current Runner assertion builder instance.
+
+Use this method when working with the documented Runner assertion builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
 #### `AssertionBuilder.AddDataSourceName(string dataSourceName) : AssertionBuilder`
 
 - Kind: `function`
-- Location: `QaaS.Runner.Assertions/ConfigurationObjects/AssertionBuilder.cs:251`
+- Location: `QaaS.Runner.Assertions/ConfigurationObjects/AssertionBuilder.cs:281`
 
-Adds a data source name filter
+Adds the supplied data source name to the current Runner assertion builder instance.
+
+Use this method when working with the documented Runner assertion builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
 #### `AssertionBuilder.CreateDataSourceName(string dataSourceName) : AssertionBuilder`
 
 - Kind: `function`
-- Location: `QaaS.Runner.Assertions/ConfigurationObjects/AssertionBuilder.cs:257`
+- Location: `QaaS.Runner.Assertions/ConfigurationObjects/AssertionBuilder.cs:294`
 
-_No XML summary provided._
+Creates or adds the configured data source name entry on the current Runner assertion builder instance.
+
+Use this method when working with the documented Runner assertion builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
 #### `AssertionBuilder.ReadDataSourceNames() : IReadOnlyList<string>`
 
 - Kind: `function`
-- Location: `QaaS.Runner.Assertions/ConfigurationObjects/AssertionBuilder.cs:262`
+- Location: `QaaS.Runner.Assertions/ConfigurationObjects/AssertionBuilder.cs:306`
 
-_No XML summary provided._
+Returns the configured data source names currently stored on the Runner assertion builder instance.
+
+Use this method when working with the documented Runner assertion builder API surface in code. Use it to inspect the current configured state without rebuilding the surrounding collection or runtime object graph.
 
 #### `AssertionBuilder.UpdateDataSourceName(string existingValue, string newValue) : AssertionBuilder`
 
 - Kind: `function`
-- Location: `QaaS.Runner.Assertions/ConfigurationObjects/AssertionBuilder.cs:267`
+- Location: `QaaS.Runner.Assertions/ConfigurationObjects/AssertionBuilder.cs:318`
 
-_No XML summary provided._
+Updates the configured data source name stored on the current Runner assertion builder instance.
+
+Use this method when working with the documented Runner assertion builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
 #### `AssertionBuilder.DeleteDataSourceName(string dataSourceName) : AssertionBuilder`
 
 - Kind: `function`
-- Location: `QaaS.Runner.Assertions/ConfigurationObjects/AssertionBuilder.cs:278`
+- Location: `QaaS.Runner.Assertions/ConfigurationObjects/AssertionBuilder.cs:336`
 
-_No XML summary provided._
+Removes the configured data source name from the current Runner assertion builder instance.
+
+Use this method when working with the documented Runner assertion builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
 #### `AssertionBuilder.AddDataSourcePattern(string dataSourcePattern) : AssertionBuilder`
 
 - Kind: `function`
-- Location: `QaaS.Runner.Assertions/ConfigurationObjects/AssertionBuilder.cs:289`
+- Location: `QaaS.Runner.Assertions/ConfigurationObjects/AssertionBuilder.cs:349`
 
-Adds a data source pattern filter
+Adds the supplied data source pattern to the current Runner assertion builder instance.
+
+Use this method when working with the documented Runner assertion builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
 #### `AssertionBuilder.CreateDataSourcePattern(string dataSourcePattern) : AssertionBuilder`
 
 - Kind: `function`
-- Location: `QaaS.Runner.Assertions/ConfigurationObjects/AssertionBuilder.cs:295`
+- Location: `QaaS.Runner.Assertions/ConfigurationObjects/AssertionBuilder.cs:362`
 
-_No XML summary provided._
+Creates or adds the configured data source pattern entry on the current Runner assertion builder instance.
+
+Use this method when working with the documented Runner assertion builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
 #### `AssertionBuilder.ReadDataSourcePatterns() : IReadOnlyList<string>`
 
 - Kind: `function`
-- Location: `QaaS.Runner.Assertions/ConfigurationObjects/AssertionBuilder.cs:300`
+- Location: `QaaS.Runner.Assertions/ConfigurationObjects/AssertionBuilder.cs:374`
 
-_No XML summary provided._
+Returns the configured data source patterns currently stored on the Runner assertion builder instance.
+
+Use this method when working with the documented Runner assertion builder API surface in code. Use it to inspect the current configured state without rebuilding the surrounding collection or runtime object graph.
 
 #### `AssertionBuilder.UpdateDataSourcePattern(string existingValue, string newValue) : AssertionBuilder`
 
 - Kind: `function`
-- Location: `QaaS.Runner.Assertions/ConfigurationObjects/AssertionBuilder.cs:305`
+- Location: `QaaS.Runner.Assertions/ConfigurationObjects/AssertionBuilder.cs:386`
 
-_No XML summary provided._
+Updates the configured data source pattern stored on the current Runner assertion builder instance.
+
+Use this method when working with the documented Runner assertion builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
 #### `AssertionBuilder.DeleteDataSourcePattern(string dataSourcePattern) : AssertionBuilder`
 
 - Kind: `function`
-- Location: `QaaS.Runner.Assertions/ConfigurationObjects/AssertionBuilder.cs:316`
+- Location: `QaaS.Runner.Assertions/ConfigurationObjects/AssertionBuilder.cs:404`
 
-_No XML summary provided._
+Removes the configured data source pattern from the current Runner assertion builder instance.
+
+Use this method when working with the documented Runner assertion builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
 #### `AssertionBuilder.AddSessionName(string sessionName) : AssertionBuilder`
 
 - Kind: `function`
-- Location: `QaaS.Runner.Assertions/ConfigurationObjects/AssertionBuilder.cs:327`
+- Location: `QaaS.Runner.Assertions/ConfigurationObjects/AssertionBuilder.cs:417`
 
-Adds a session name filter
+Adds the supplied session name to the current Runner assertion builder instance.
+
+Use this method when working with the documented Runner assertion builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
 #### `AssertionBuilder.CreateSessionName(string sessionName) : AssertionBuilder`
 
 - Kind: `function`
-- Location: `QaaS.Runner.Assertions/ConfigurationObjects/AssertionBuilder.cs:333`
+- Location: `QaaS.Runner.Assertions/ConfigurationObjects/AssertionBuilder.cs:430`
 
-_No XML summary provided._
+Creates or adds the configured session name entry on the current Runner assertion builder instance.
+
+Use this method when working with the documented Runner assertion builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
 #### `AssertionBuilder.ReadSessionNames() : IReadOnlyList<string>`
 
 - Kind: `function`
-- Location: `QaaS.Runner.Assertions/ConfigurationObjects/AssertionBuilder.cs:338`
+- Location: `QaaS.Runner.Assertions/ConfigurationObjects/AssertionBuilder.cs:442`
 
-_No XML summary provided._
+Returns the configured session names currently stored on the Runner assertion builder instance.
+
+Use this method when working with the documented Runner assertion builder API surface in code. Use it to inspect the current configured state without rebuilding the surrounding collection or runtime object graph.
 
 #### `AssertionBuilder.UpdateSessionName(string existingValue, string newValue) : AssertionBuilder`
 
 - Kind: `function`
-- Location: `QaaS.Runner.Assertions/ConfigurationObjects/AssertionBuilder.cs:343`
+- Location: `QaaS.Runner.Assertions/ConfigurationObjects/AssertionBuilder.cs:454`
 
-_No XML summary provided._
+Updates the configured session name stored on the current Runner assertion builder instance.
+
+Use this method when working with the documented Runner assertion builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
 #### `AssertionBuilder.DeleteSessionName(string sessionName) : AssertionBuilder`
 
 - Kind: `function`
-- Location: `QaaS.Runner.Assertions/ConfigurationObjects/AssertionBuilder.cs:359`
+- Location: `QaaS.Runner.Assertions/ConfigurationObjects/AssertionBuilder.cs:477`
 
-_No XML summary provided._
+Removes the configured session name from the current Runner assertion builder instance.
+
+Use this method when working with the documented Runner assertion builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
 #### `AssertionBuilder.AddSessionPattern(string sessionPattern) : AssertionBuilder`
 
 - Kind: `function`
-- Location: `QaaS.Runner.Assertions/ConfigurationObjects/AssertionBuilder.cs:370`
+- Location: `QaaS.Runner.Assertions/ConfigurationObjects/AssertionBuilder.cs:490`
 
-Adds a session name pattern filter
+Adds the supplied session pattern to the current Runner assertion builder instance.
+
+Use this method when working with the documented Runner assertion builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
 #### `AssertionBuilder.CreateSessionPattern(string sessionPattern) : AssertionBuilder`
 
 - Kind: `function`
-- Location: `QaaS.Runner.Assertions/ConfigurationObjects/AssertionBuilder.cs:378`
+- Location: `QaaS.Runner.Assertions/ConfigurationObjects/AssertionBuilder.cs:505`
 
-_No XML summary provided._
+Creates or adds the configured session pattern entry on the current Runner assertion builder instance.
+
+Use this method when working with the documented Runner assertion builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
 #### `AssertionBuilder.ReadSessionPatterns() : IReadOnlyList<string>`
 
 - Kind: `function`
-- Location: `QaaS.Runner.Assertions/ConfigurationObjects/AssertionBuilder.cs:383`
+- Location: `QaaS.Runner.Assertions/ConfigurationObjects/AssertionBuilder.cs:517`
 
-_No XML summary provided._
+Returns the configured session patterns currently stored on the Runner assertion builder instance.
+
+Use this method when working with the documented Runner assertion builder API surface in code. Use it to inspect the current configured state without rebuilding the surrounding collection or runtime object graph.
 
 #### `AssertionBuilder.UpdateSessionPattern(string existingValue, string newValue) : AssertionBuilder`
 
 - Kind: `function`
-- Location: `QaaS.Runner.Assertions/ConfigurationObjects/AssertionBuilder.cs:388`
+- Location: `QaaS.Runner.Assertions/ConfigurationObjects/AssertionBuilder.cs:529`
 
-_No XML summary provided._
+Updates the configured session pattern stored on the current Runner assertion builder instance.
+
+Use this method when working with the documented Runner assertion builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
 #### `AssertionBuilder.DeleteSessionPattern(string sessionPattern) : AssertionBuilder`
 
 - Kind: `function`
-- Location: `QaaS.Runner.Assertions/ConfigurationObjects/AssertionBuilder.cs:404`
+- Location: `QaaS.Runner.Assertions/ConfigurationObjects/AssertionBuilder.cs:552`
 
-_No XML summary provided._
+Removes the configured session pattern from the current Runner assertion builder instance.
+
+Use this method when working with the documented Runner assertion builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
 #### `AssertionBuilder.AddLink(LinkBuilder linkBuilder) : AssertionBuilder`
 
 - Kind: `function`
-- Location: `QaaS.Runner.Assertions/ConfigurationObjects/AssertionBuilder.cs:415`
+- Location: `QaaS.Runner.Assertions/ConfigurationObjects/AssertionBuilder.cs:565`
 
-Adds a link builder to the assertion
+Adds the supplied link to the current Runner assertion builder instance.
+
+Use this method when working with the documented Runner assertion builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
 #### `AssertionBuilder.CreateLink(LinkBuilder linkBuilder) : AssertionBuilder`
 
 - Kind: `function`
-- Location: `QaaS.Runner.Assertions/ConfigurationObjects/AssertionBuilder.cs:421`
+- Location: `QaaS.Runner.Assertions/ConfigurationObjects/AssertionBuilder.cs:578`
 
-_No XML summary provided._
+Creates or adds the configured link entry on the current Runner assertion builder instance.
+
+Use this method when working with the documented Runner assertion builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
 #### `AssertionBuilder.ReadLinks() : IReadOnlyList<LinkBuilder>`
 
 - Kind: `function`
-- Location: `QaaS.Runner.Assertions/ConfigurationObjects/AssertionBuilder.cs:426`
+- Location: `QaaS.Runner.Assertions/ConfigurationObjects/AssertionBuilder.cs:590`
 
-_No XML summary provided._
+Returns the configured links currently stored on the Runner assertion builder instance.
+
+Use this method when working with the documented Runner assertion builder API surface in code. Use it to inspect the current configured state without rebuilding the surrounding collection or runtime object graph.
 
 #### `AssertionBuilder.UpdateLink(string name, LinkBuilder linkBuilder) : AssertionBuilder`
 
 - Kind: `function`
-- Location: `QaaS.Runner.Assertions/ConfigurationObjects/AssertionBuilder.cs:431`
+- Location: `QaaS.Runner.Assertions/ConfigurationObjects/AssertionBuilder.cs:602`
 
-_No XML summary provided._
+Updates the configured link stored on the current Runner assertion builder instance.
+
+Use this method when working with the documented Runner assertion builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
 #### `AssertionBuilder.DeleteLink(string name) : AssertionBuilder`
 
 - Kind: `function`
-- Location: `QaaS.Runner.Assertions/ConfigurationObjects/AssertionBuilder.cs:442`
+- Location: `QaaS.Runner.Assertions/ConfigurationObjects/AssertionBuilder.cs:620`
 
-_No XML summary provided._
+Removes the configured link from the current Runner assertion builder instance.
+
+Use this method when working with the documented Runner assertion builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
 #### `AssertionBuilder.Configure(object configuration) : AssertionBuilder`
 
 - Kind: `function`
-- Location: `QaaS.Runner.Assertions/ConfigurationObjects/AssertionBuilder.cs:453`
+- Location: `QaaS.Runner.Assertions/ConfigurationObjects/AssertionBuilder.cs:633`
 
-Configures the assertion with a configuration object
+Sets the configuration currently stored on the Runner assertion builder instance.
+
+Use this method when working with the documented Runner assertion builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
 #### `AssertionBuilder.CreateConfiguration(object configuration) : AssertionBuilder`
 
 - Kind: `function`
-- Location: `QaaS.Runner.Assertions/ConfigurationObjects/AssertionBuilder.cs:463`
+- Location: `QaaS.Runner.Assertions/ConfigurationObjects/AssertionBuilder.cs:647`
 
-Compatibility alias for Configure that matches the configuration CRUD pattern used by other builders.
+Sets the configuration currently stored on the Runner assertion builder instance.
+
+Use this method when working with the documented Runner assertion builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
 #### `AssertionBuilder.Create(object configuration) : AssertionBuilder`
 
 - Kind: `function`
-- Location: `QaaS.Runner.Assertions/ConfigurationObjects/AssertionBuilder.cs:471`
+- Location: `QaaS.Runner.Assertions/ConfigurationObjects/AssertionBuilder.cs:659`
 
-Compatibility alias for CreateConfiguration .
+Sets the configuration currently stored on the Runner assertion builder instance.
+
+Use this method when working with the documented Runner assertion builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
 #### `AssertionBuilder.ReadConfiguration() : IConfiguration`
 
 - Kind: `function`
-- Location: `QaaS.Runner.Assertions/ConfigurationObjects/AssertionBuilder.cs:479`
+- Location: `QaaS.Runner.Assertions/ConfigurationObjects/AssertionBuilder.cs:671`
 
-Returns the currently configured assertion hook configuration.
+Returns the configuration currently stored on the Runner assertion builder instance.
+
+Use this method when working with the documented Runner assertion builder API surface in code. Use it to inspect the current configured state without rebuilding the surrounding collection or runtime object graph.
 
 #### `AssertionBuilder.UpdateConfiguration(object configuration) : AssertionBuilder`
 
 - Kind: `function`
-- Location: `QaaS.Runner.Assertions/ConfigurationObjects/AssertionBuilder.cs:487`
+- Location: `QaaS.Runner.Assertions/ConfigurationObjects/AssertionBuilder.cs:683`
 
-Merges the provided configuration object into the current assertion hook configuration.
+Updates the configuration currently stored on the Runner assertion builder instance.
+
+Use this method when working with the documented Runner assertion builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
 #### `AssertionBuilder.DeleteConfiguration() : AssertionBuilder`
 
 - Kind: `function`
-- Location: `QaaS.Runner.Assertions/ConfigurationObjects/AssertionBuilder.cs:496`
+- Location: `QaaS.Runner.Assertions/ConfigurationObjects/AssertionBuilder.cs:696`
 
-Clears the configured assertion hook configuration.
+Clears the configuration currently stored on the Runner assertion builder instance.
+
+Use this method when working with the documented Runner assertion builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
 ### Collectors
 
 #### `CollectorBuilder.Named(string name) : CollectorBuilder`
 
 - Kind: `function`
-- Location: `QaaS.Runner.Sessions/Actions/Collectors/CollectorBuilder.cs:50`
+- Location: `QaaS.Runner.Sessions/Actions/Collectors/CollectorBuilder.cs:54`
 
-Sets the collector name.
+Sets the name used for the current Runner collector builder instance.
+
+Use this method when working with the documented Runner collector builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
 #### `CollectorBuilder.FilterData(DataFilter dataFilter) : CollectorBuilder`
 
 - Kind: `function`
-- Location: `QaaS.Runner.Sessions/Actions/Collectors/CollectorBuilder.cs:59`
+- Location: `QaaS.Runner.Sessions/Actions/Collectors/CollectorBuilder.cs:67`
 
-Sets the collector's data filter.
+Sets the data filter used by the current Runner collector builder instance.
+
+Use this method when working with the documented Runner collector builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
 #### `CollectorBuilder.CollectInRange(CollectionRange collectionRange) : CollectorBuilder`
 
 - Kind: `function`
-- Location: `QaaS.Runner.Sessions/Actions/Collectors/CollectorBuilder.cs:68`
+- Location: `QaaS.Runner.Sessions/Actions/Collectors/CollectorBuilder.cs:80`
 
-Sets the relative time window used for collection.
+Configures collect in range on the current Runner collector builder instance.
+
+Use this method when working with the documented Runner collector builder API surface in code. The behavior exposed here is part of the public surface that the generated function documentation groups under 'Configuration as Code / Collectors'.
 
 #### `CollectorBuilder.Create(IFetcherConfig config) : CollectorBuilder`
 
 - Kind: `function`
-- Location: `QaaS.Runner.Sessions/Actions/Collectors/CollectorBuilder.cs:77`
+- Location: `QaaS.Runner.Sessions/Actions/Collectors/CollectorBuilder.cs:93`
 
-Compatibility alias for CreateConfiguration .
+Sets the configuration currently stored on the Runner collector builder instance.
+
+Use this method when working with the documented Runner collector builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
 #### `CollectorBuilder.CreateConfiguration(IFetcherConfig config) : CollectorBuilder`
 
 - Kind: `function`
-- Location: `QaaS.Runner.Sessions/Actions/Collectors/CollectorBuilder.cs:85`
+- Location: `QaaS.Runner.Sessions/Actions/Collectors/CollectorBuilder.cs:105`
 
-Sets the configured collector fetcher source.
+Sets the configuration currently stored on the Runner collector builder instance.
+
+Use this method when working with the documented Runner collector builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
 #### `CollectorBuilder.ReadConfiguration() : IFetcherConfig?`
 
 - Kind: `function`
-- Location: `QaaS.Runner.Sessions/Actions/Collectors/CollectorBuilder.cs:93`
+- Location: `QaaS.Runner.Sessions/Actions/Collectors/CollectorBuilder.cs:117`
 
-Returns the currently configured fetcher source, if any.
+Returns the configuration currently stored on the Runner collector builder instance.
+
+Use this method when working with the documented Runner collector builder API surface in code. Use it to inspect the current configured state without rebuilding the surrounding collection or runtime object graph.
 
 #### `CollectorBuilder.UpdateConfiguration(Func<IFetcherConfig, IFetcherConfig> update) : CollectorBuilder`
 
 - Kind: `function`
-- Location: `QaaS.Runner.Sessions/Actions/Collectors/CollectorBuilder.cs:101`
+- Location: `QaaS.Runner.Sessions/Actions/Collectors/CollectorBuilder.cs:129`
 
-Applies a computed partial update to the current collector configuration while preserving omitted fields.
+Updates the configuration currently stored on the Runner collector builder instance.
+
+Use this method when working with the documented Runner collector builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
 #### `CollectorBuilder.UpdateConfiguration(IFetcherConfig config) : CollectorBuilder`
 
 - Kind: `function`
-- Location: `QaaS.Runner.Sessions/Actions/Collectors/CollectorBuilder.cs:111`
+- Location: `QaaS.Runner.Sessions/Actions/Collectors/CollectorBuilder.cs:143`
 
-Updates the collector configuration by merging same-type values and replacing the current type when needed.
+Updates the configuration currently stored on the Runner collector builder instance.
+
+Use this method when working with the documented Runner collector builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
 #### `CollectorBuilder.UpdateConfiguration(object configuration) : CollectorBuilder`
 
 - Kind: `function`
-- Location: `QaaS.Runner.Sessions/Actions/Collectors/CollectorBuilder.cs:121`
+- Location: `QaaS.Runner.Sessions/Actions/Collectors/CollectorBuilder.cs:157`
 
-Updates the collector configuration from an object-shaped patch while preserving omitted fields.
+Updates the configuration currently stored on the Runner collector builder instance.
+
+Use this method when working with the documented Runner collector builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
 #### `CollectorBuilder.DeleteConfiguration() : CollectorBuilder`
 
 - Kind: `function`
-- Location: `QaaS.Runner.Sessions/Actions/Collectors/CollectorBuilder.cs:131`
+- Location: `QaaS.Runner.Sessions/Actions/Collectors/CollectorBuilder.cs:171`
 
-Clears the configured fetcher source.
+Clears the configuration currently stored on the Runner collector builder instance.
+
+Use this method when working with the documented Runner collector builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
 #### `CollectorBuilder.Configure(IFetcherConfig config) : CollectorBuilder`
 
 - Kind: `function`
-- Location: `QaaS.Runner.Sessions/Actions/Collectors/CollectorBuilder.cs:145`
+- Location: `QaaS.Runner.Sessions/Actions/Collectors/CollectorBuilder.cs:189`
 
-Replaces the current collector fetcher source with the provided configuration type.
+Sets the configuration currently stored on the Runner collector builder instance.
+
+Use this method when working with the documented Runner collector builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
 ### Consumers
 
 #### `ConsumerBuilder.Named(string name) : ConsumerBuilder`
 
 - Kind: `function`
-- Location: `QaaS.Runner.Sessions/Actions/Consumers/Builders/ConsumerBuilderLogic.cs:27`
+- Location: `QaaS.Runner.Sessions/Actions/Consumers/Builders/ConsumerBuilderLogic.cs:34`
 
-_No XML summary provided._
+Sets the name used for the current Runner consumer builder instance.
+
+Use this method when working with the documented Runner consumer builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
 #### `ConsumerBuilder.AtStage(int stage) : ConsumerBuilder`
 
 - Kind: `function`
-- Location: `QaaS.Runner.Sessions/Actions/Consumers/Builders/ConsumerBuilderLogic.cs:33`
+- Location: `QaaS.Runner.Sessions/Actions/Consumers/Builders/ConsumerBuilderLogic.cs:47`
 
-_No XML summary provided._
+Sets the stage used by the current Runner consumer builder instance.
+
+Use this method when working with the documented Runner consumer builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
 #### `ConsumerBuilder.WithTimeout(int timeoutMs) : ConsumerBuilder`
 
 - Kind: `function`
-- Location: `QaaS.Runner.Sessions/Actions/Consumers/Builders/ConsumerBuilderLogic.cs:39`
+- Location: `QaaS.Runner.Sessions/Actions/Consumers/Builders/ConsumerBuilderLogic.cs:60`
 
-_No XML summary provided._
+Configures timeout on the current Runner consumer builder instance.
+
+Use this method when working with the documented Runner consumer builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
 #### `ConsumerBuilder.FilterData(DataFilter dataFilter) : ConsumerBuilder`
 
 - Kind: `function`
-- Location: `QaaS.Runner.Sessions/Actions/Consumers/Builders/ConsumerBuilderLogic.cs:45`
+- Location: `QaaS.Runner.Sessions/Actions/Consumers/Builders/ConsumerBuilderLogic.cs:73`
 
-_No XML summary provided._
+Sets the data filter used by the current Runner consumer builder instance.
+
+Use this method when working with the documented Runner consumer builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
 #### `ConsumerBuilder.WithDeserializer(DeserializeConfig deserializeConfig) : ConsumerBuilder`
 
 - Kind: `function`
-- Location: `QaaS.Runner.Sessions/Actions/Consumers/Builders/ConsumerBuilderLogic.cs:51`
+- Location: `QaaS.Runner.Sessions/Actions/Consumers/Builders/ConsumerBuilderLogic.cs:86`
 
-_No XML summary provided._
+Sets the deserializer configuration used by the current Runner consumer builder instance.
+
+Use this method when working with the documented Runner consumer builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
 #### `ConsumerBuilder.AddPolicy(PolicyBuilder policy) : ConsumerBuilder`
 
 - Kind: `function`
-- Location: `QaaS.Runner.Sessions/Actions/Consumers/Builders/ConsumerBuilderLogic.cs:57`
+- Location: `QaaS.Runner.Sessions/Actions/Consumers/Builders/ConsumerBuilderLogic.cs:99`
 
-_No XML summary provided._
+Adds the supplied policy to the current Runner consumer builder instance.
+
+Use this method when working with the documented Runner consumer builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
 #### `ConsumerBuilder.CreatePolicy(PolicyBuilder policy) : ConsumerBuilder`
 
 - Kind: `function`
-- Location: `QaaS.Runner.Sessions/Actions/Consumers/Builders/ConsumerBuilderLogic.cs:65`
+- Location: `QaaS.Runner.Sessions/Actions/Consumers/Builders/ConsumerBuilderLogic.cs:114`
 
-_No XML summary provided._
+Creates or adds the configured policy entry on the current Runner consumer builder instance.
+
+Use this method when working with the documented Runner consumer builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
 #### `ConsumerBuilder.ReadPolicies() : IReadOnlyList<PolicyBuilder>`
 
 - Kind: `function`
-- Location: `QaaS.Runner.Sessions/Actions/Consumers/Builders/ConsumerBuilderLogic.cs:70`
+- Location: `QaaS.Runner.Sessions/Actions/Consumers/Builders/ConsumerBuilderLogic.cs:126`
 
-_No XML summary provided._
+Returns the configured policies currently stored on the Runner consumer builder instance.
+
+Use this method when working with the documented Runner consumer builder API surface in code. Use it to inspect the current configured state without rebuilding the surrounding collection or runtime object graph.
 
 #### `ConsumerBuilder.UpdatePolicyAt(int index, PolicyBuilder policy) : ConsumerBuilder`
 
 - Kind: `function`
-- Location: `QaaS.Runner.Sessions/Actions/Consumers/Builders/ConsumerBuilderLogic.cs:75`
+- Location: `QaaS.Runner.Sessions/Actions/Consumers/Builders/ConsumerBuilderLogic.cs:138`
 
-_No XML summary provided._
+Updates the configured policy at stored on the current Runner consumer builder instance.
+
+Use this method when working with the documented Runner consumer builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
 #### `ConsumerBuilder.DeletePolicyAt(int index) : ConsumerBuilder`
 
 - Kind: `function`
-- Location: `QaaS.Runner.Sessions/Actions/Consumers/Builders/ConsumerBuilderLogic.cs:86`
+- Location: `QaaS.Runner.Sessions/Actions/Consumers/Builders/ConsumerBuilderLogic.cs:156`
 
-_No XML summary provided._
+Removes the configured policy at from the current Runner consumer builder instance.
+
+Use this method when working with the documented Runner consumer builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
 #### `ConsumerBuilder.CreateConfiguration(IReaderConfig config) : ConsumerBuilder`
 
 - Kind: `function`
-- Location: `QaaS.Runner.Sessions/Actions/Consumers/Builders/ConsumerBuilderLogic.cs:100`
+- Location: `QaaS.Runner.Sessions/Actions/Consumers/Builders/ConsumerBuilderLogic.cs:174`
 
-Compatibility alias for Configure that matches the configuration CRUD pattern used by other builders.
+Sets the configuration currently stored on the Runner consumer builder instance.
+
+Use this method when working with the documented Runner consumer builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
 #### `ConsumerBuilder.Create(IReaderConfig config) : ConsumerBuilder`
 
 - Kind: `function`
-- Location: `QaaS.Runner.Sessions/Actions/Consumers/Builders/ConsumerBuilderLogic.cs:108`
+- Location: `QaaS.Runner.Sessions/Actions/Consumers/Builders/ConsumerBuilderLogic.cs:186`
 
-Compatibility alias for CreateConfiguration .
+Sets the configuration currently stored on the Runner consumer builder instance.
+
+Use this method when working with the documented Runner consumer builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
 #### `ConsumerBuilder.ReadConfiguration() : IReaderConfig?`
 
 - Kind: `function`
-- Location: `QaaS.Runner.Sessions/Actions/Consumers/Builders/ConsumerBuilderLogic.cs:116`
+- Location: `QaaS.Runner.Sessions/Actions/Consumers/Builders/ConsumerBuilderLogic.cs:198`
 
-Returns the currently configured reader source, if any.
+Returns the configuration currently stored on the Runner consumer builder instance.
+
+Use this method when working with the documented Runner consumer builder API surface in code. Use it to inspect the current configured state without rebuilding the surrounding collection or runtime object graph.
 
 #### `ConsumerBuilder.UpdateConfiguration(Func<IReaderConfig, IReaderConfig> update) : ConsumerBuilder`
 
 - Kind: `function`
-- Location: `QaaS.Runner.Sessions/Actions/Consumers/Builders/ConsumerBuilderLogic.cs:133`
+- Location: `QaaS.Runner.Sessions/Actions/Consumers/Builders/ConsumerBuilderLogic.cs:219`
 
-Applies a computed partial update to the current consumer configuration while preserving omitted fields.
+Updates the configuration currently stored on the Runner consumer builder instance.
+
+Use this method when working with the documented Runner consumer builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
 #### `ConsumerBuilder.UpdateConfiguration(IReaderConfig config) : ConsumerBuilder`
 
 - Kind: `function`
-- Location: `QaaS.Runner.Sessions/Actions/Consumers/Builders/ConsumerBuilderLogic.cs:143`
+- Location: `QaaS.Runner.Sessions/Actions/Consumers/Builders/ConsumerBuilderLogic.cs:233`
 
-Updates the consumer configuration by merging same-type values and replacing the current type when needed.
+Updates the configuration currently stored on the Runner consumer builder instance.
+
+Use this method when working with the documented Runner consumer builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
 #### `ConsumerBuilder.UpdateConfiguration(object configuration) : ConsumerBuilder`
 
 - Kind: `function`
-- Location: `QaaS.Runner.Sessions/Actions/Consumers/Builders/ConsumerBuilderLogic.cs:153`
+- Location: `QaaS.Runner.Sessions/Actions/Consumers/Builders/ConsumerBuilderLogic.cs:247`
 
-Updates the consumer configuration from an object-shaped patch while preserving omitted fields.
+Updates the configuration currently stored on the Runner consumer builder instance.
+
+Use this method when working with the documented Runner consumer builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
 #### `ConsumerBuilder.DeleteConfiguration() : ConsumerBuilder`
 
 - Kind: `function`
-- Location: `QaaS.Runner.Sessions/Actions/Consumers/Builders/ConsumerBuilderLogic.cs:163`
+- Location: `QaaS.Runner.Sessions/Actions/Consumers/Builders/ConsumerBuilderLogic.cs:261`
 
-Clears the configured reader source.
+Clears the configuration currently stored on the Runner consumer builder instance.
+
+Use this method when working with the documented Runner consumer builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
 #### `ConsumerBuilder.Configure(IReaderConfig config) : ConsumerBuilder`
 
 - Kind: `function`
-- Location: `QaaS.Runner.Sessions/Actions/Consumers/Builders/ConsumerBuilderLogic.cs:186`
+- Location: `QaaS.Runner.Sessions/Actions/Consumers/Builders/ConsumerBuilderLogic.cs:288`
 
-Replaces the current reader source with the provided configuration type.
+Sets the configuration currently stored on the Runner consumer builder instance.
+
+Use this method when working with the documented Runner consumer builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
 ### Executions
 
 #### `ExecutionBuilder.WithGlobalDict(Dictionary<string, object?> globalDict) : ExecutionBuilder`
 
 - Kind: `function`
-- Location: `QaaS.Runner/ExecutionBuilder.cs:239`
+- Location: `QaaS.Runner/ExecutionBuilder.cs:246`
 
-_No XML summary provided._
+Replaces the global dictionary stored on the runner execution context.
+
+Use this method when working with the documented Runner execution builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
 #### `ExecutionBuilder.AddSession(SessionBuilder sessionBuilder) : ExecutionBuilder`
 
 - Kind: `function`
-- Location: `QaaS.Runner/ExecutionBuilder.cs:245`
+- Location: `QaaS.Runner/ExecutionBuilder.cs:259`
 
-_No XML summary provided._
+Adds the supplied session to the current Runner execution builder instance.
+
+Use this method when working with the documented Runner execution builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
 #### `ExecutionBuilder.CreateSession(SessionBuilder sessionBuilder) : ExecutionBuilder`
 
 - Kind: `function`
-- Location: `QaaS.Runner/ExecutionBuilder.cs:251`
+- Location: `QaaS.Runner/ExecutionBuilder.cs:272`
 
-_No XML summary provided._
+Creates or adds the configured session entry on the current Runner execution builder instance.
+
+Use this method when working with the documented Runner execution builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
 #### `ExecutionBuilder.ReadSessions() : IReadOnlyList<SessionBuilder>`
 
 - Kind: `function`
-- Location: `QaaS.Runner/ExecutionBuilder.cs:256`
+- Location: `QaaS.Runner/ExecutionBuilder.cs:284`
 
-_No XML summary provided._
+Returns the configured sessions currently stored on the Runner execution builder instance.
+
+Use this method when working with the documented Runner execution builder API surface in code. Use it to inspect the current configured state without rebuilding the surrounding collection or runtime object graph.
 
 #### `ExecutionBuilder.UpdateSession(string sessionName, SessionBuilder sessionBuilder) : ExecutionBuilder`
 
 - Kind: `function`
-- Location: `QaaS.Runner/ExecutionBuilder.cs:261`
+- Location: `QaaS.Runner/ExecutionBuilder.cs:296`
 
-_No XML summary provided._
+Updates the configured session stored on the current Runner execution builder instance.
+
+Use this method when working with the documented Runner execution builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
 #### `ExecutionBuilder.DeleteSession(string sessionName) : ExecutionBuilder`
 
 - Kind: `function`
-- Location: `QaaS.Runner/ExecutionBuilder.cs:267`
+- Location: `QaaS.Runner/ExecutionBuilder.cs:309`
 
-_No XML summary provided._
+Removes the configured session from the current Runner execution builder instance.
+
+Use this method when working with the documented Runner execution builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
 #### `ExecutionBuilder.AddAssertion(AssertionBuilder assertionBuilder) : ExecutionBuilder`
 
 - Kind: `function`
-- Location: `QaaS.Runner/ExecutionBuilder.cs:273`
+- Location: `QaaS.Runner/ExecutionBuilder.cs:322`
 
-_No XML summary provided._
+Adds the supplied assertion to the current Runner execution builder instance.
+
+Use this method when working with the documented Runner execution builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
 #### `ExecutionBuilder.CreateAssertion(AssertionBuilder assertionBuilder) : ExecutionBuilder`
 
 - Kind: `function`
-- Location: `QaaS.Runner/ExecutionBuilder.cs:279`
+- Location: `QaaS.Runner/ExecutionBuilder.cs:335`
 
-_No XML summary provided._
+Creates or adds the configured assertion entry on the current Runner execution builder instance.
+
+Use this method when working with the documented Runner execution builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
 #### `ExecutionBuilder.ReadAssertions() : IReadOnlyList<AssertionBuilder>`
 
 - Kind: `function`
-- Location: `QaaS.Runner/ExecutionBuilder.cs:284`
+- Location: `QaaS.Runner/ExecutionBuilder.cs:347`
 
-_No XML summary provided._
+Returns the configured assertions currently stored on the Runner execution builder instance.
+
+Use this method when working with the documented Runner execution builder API surface in code. Use it to inspect the current configured state without rebuilding the surrounding collection or runtime object graph.
 
 #### `ExecutionBuilder.UpdateAssertion(string assertionName, AssertionBuilder assertionBuilder) : ExecutionBuilder`
 
 - Kind: `function`
-- Location: `QaaS.Runner/ExecutionBuilder.cs:289`
+- Location: `QaaS.Runner/ExecutionBuilder.cs:359`
 
-_No XML summary provided._
+Updates the configured assertion stored on the current Runner execution builder instance.
+
+Use this method when working with the documented Runner execution builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
 #### `ExecutionBuilder.DeleteAssertion(string assertionName) : ExecutionBuilder`
 
 - Kind: `function`
-- Location: `QaaS.Runner/ExecutionBuilder.cs:295`
+- Location: `QaaS.Runner/ExecutionBuilder.cs:372`
 
-_No XML summary provided._
+Removes the configured assertion from the current Runner execution builder instance.
+
+Use this method when working with the documented Runner execution builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
 #### `ExecutionBuilder.AddStorage(StorageBuilder storageBuilder) : ExecutionBuilder`
 
 - Kind: `function`
-- Location: `QaaS.Runner/ExecutionBuilder.cs:301`
+- Location: `QaaS.Runner/ExecutionBuilder.cs:385`
 
-_No XML summary provided._
+Adds the supplied storage to the current Runner execution builder instance.
+
+Use this method when working with the documented Runner execution builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
 #### `ExecutionBuilder.CreateStorage(StorageBuilder storageBuilder) : ExecutionBuilder`
 
 - Kind: `function`
-- Location: `QaaS.Runner/ExecutionBuilder.cs:307`
+- Location: `QaaS.Runner/ExecutionBuilder.cs:398`
 
-_No XML summary provided._
+Creates or adds the configured storage entry on the current Runner execution builder instance.
+
+Use this method when working with the documented Runner execution builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
 #### `ExecutionBuilder.ReadStorages() : IReadOnlyList<StorageBuilder>`
 
 - Kind: `function`
-- Location: `QaaS.Runner/ExecutionBuilder.cs:312`
+- Location: `QaaS.Runner/ExecutionBuilder.cs:410`
 
-_No XML summary provided._
+Returns the configured storages currently stored on the Runner execution builder instance.
+
+Use this method when working with the documented Runner execution builder API surface in code. Use it to inspect the current configured state without rebuilding the surrounding collection or runtime object graph.
 
 #### `ExecutionBuilder.UpdateStorageAt(int index, StorageBuilder storageBuilder) : ExecutionBuilder`
 
 - Kind: `function`
-- Location: `QaaS.Runner/ExecutionBuilder.cs:317`
+- Location: `QaaS.Runner/ExecutionBuilder.cs:422`
 
-_No XML summary provided._
+Updates the configured storage at stored on the current Runner execution builder instance.
+
+Use this method when working with the documented Runner execution builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
 #### `ExecutionBuilder.DeleteStorageAt(int index) : ExecutionBuilder`
 
 - Kind: `function`
-- Location: `QaaS.Runner/ExecutionBuilder.cs:323`
+- Location: `QaaS.Runner/ExecutionBuilder.cs:435`
 
-_No XML summary provided._
+Removes the configured storage at from the current Runner execution builder instance.
+
+Use this method when working with the documented Runner execution builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
 #### `ExecutionBuilder.AddDataSource(DataSourceBuilder dataSourceBuilder) : ExecutionBuilder`
 
 - Kind: `function`
-- Location: `QaaS.Runner/ExecutionBuilder.cs:329`
+- Location: `QaaS.Runner/ExecutionBuilder.cs:448`
 
-_No XML summary provided._
+Adds the supplied data source to the current Runner execution builder instance.
+
+Use this method when working with the documented Runner execution builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
 #### `ExecutionBuilder.CreateDataSource(DataSourceBuilder dataSourceBuilder) : ExecutionBuilder`
 
 - Kind: `function`
-- Location: `QaaS.Runner/ExecutionBuilder.cs:335`
+- Location: `QaaS.Runner/ExecutionBuilder.cs:461`
 
-_No XML summary provided._
+Creates or adds the configured data source entry on the current Runner execution builder instance.
+
+Use this method when working with the documented Runner execution builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
 #### `ExecutionBuilder.ReadDataSources() : IReadOnlyList<DataSourceBuilder>`
 
 - Kind: `function`
-- Location: `QaaS.Runner/ExecutionBuilder.cs:340`
+- Location: `QaaS.Runner/ExecutionBuilder.cs:473`
 
-_No XML summary provided._
+Returns the configured data sources currently stored on the Runner execution builder instance.
+
+Use this method when working with the documented Runner execution builder API surface in code. Use it to inspect the current configured state without rebuilding the surrounding collection or runtime object graph.
 
 #### `ExecutionBuilder.UpdateDataSource(string dataSourceName, DataSourceBuilder dataSourceBuilder) : ExecutionBuilder`
 
 - Kind: `function`
-- Location: `QaaS.Runner/ExecutionBuilder.cs:345`
+- Location: `QaaS.Runner/ExecutionBuilder.cs:485`
 
-_No XML summary provided._
+Updates the configured data source stored on the current Runner execution builder instance.
+
+Use this method when working with the documented Runner execution builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
 #### `ExecutionBuilder.DeleteDataSource(string dataSourceName) : ExecutionBuilder`
 
 - Kind: `function`
-- Location: `QaaS.Runner/ExecutionBuilder.cs:351`
+- Location: `QaaS.Runner/ExecutionBuilder.cs:498`
 
-_No XML summary provided._
+Removes the configured data source from the current Runner execution builder instance.
+
+Use this method when working with the documented Runner execution builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
 #### `ExecutionBuilder.AddLink(LinkBuilder linkBuilder) : ExecutionBuilder`
 
 - Kind: `function`
-- Location: `QaaS.Runner/ExecutionBuilder.cs:357`
+- Location: `QaaS.Runner/ExecutionBuilder.cs:511`
 
-_No XML summary provided._
+Adds the supplied link to the current Runner execution builder instance.
+
+Use this method when working with the documented Runner execution builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
 #### `ExecutionBuilder.CreateLink(LinkBuilder linkBuilder) : ExecutionBuilder`
 
 - Kind: `function`
-- Location: `QaaS.Runner/ExecutionBuilder.cs:363`
+- Location: `QaaS.Runner/ExecutionBuilder.cs:524`
 
-_No XML summary provided._
+Creates or adds the configured link entry on the current Runner execution builder instance.
+
+Use this method when working with the documented Runner execution builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
 #### `ExecutionBuilder.ReadLinks() : IReadOnlyList<LinkBuilder>`
 
 - Kind: `function`
-- Location: `QaaS.Runner/ExecutionBuilder.cs:368`
+- Location: `QaaS.Runner/ExecutionBuilder.cs:536`
 
-_No XML summary provided._
+Returns the configured links currently stored on the Runner execution builder instance.
+
+Use this method when working with the documented Runner execution builder API surface in code. Use it to inspect the current configured state without rebuilding the surrounding collection or runtime object graph.
 
 #### `ExecutionBuilder.UpdateLinkAt(int index, LinkBuilder linkBuilder) : ExecutionBuilder`
 
 - Kind: `function`
-- Location: `QaaS.Runner/ExecutionBuilder.cs:373`
+- Location: `QaaS.Runner/ExecutionBuilder.cs:548`
 
-_No XML summary provided._
+Updates the configured link at stored on the current Runner execution builder instance.
+
+Use this method when working with the documented Runner execution builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
 #### `ExecutionBuilder.DeleteLinkAt(int index) : ExecutionBuilder`
 
 - Kind: `function`
-- Location: `QaaS.Runner/ExecutionBuilder.cs:379`
+- Location: `QaaS.Runner/ExecutionBuilder.cs:561`
 
-_No XML summary provided._
+Removes the configured link at from the current Runner execution builder instance.
+
+Use this method when working with the documented Runner execution builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
 #### `ExecutionBuilder.ExecutionType(ExecutionType executionType) : ExecutionBuilder`
 
 - Kind: `function`
-- Location: `QaaS.Runner/ExecutionBuilder.cs:385`
+- Location: `QaaS.Runner/ExecutionBuilder.cs:574`
 
-_No XML summary provided._
+Sets the execution type used when the runner execution is built.
+
+Use this method when working with the documented Runner execution builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
 #### `ExecutionBuilder.SetCase(string caseName) : ExecutionBuilder`
 
 - Kind: `function`
-- Location: `QaaS.Runner/ExecutionBuilder.cs:397`
+- Location: `QaaS.Runner/ExecutionBuilder.cs:593`
 
-_No XML summary provided._
+Sets the case file applied by the context builder.
+
+Case files are used as the final scenario-specific overlay that shapes the runtime configuration for a specific execution.
 
 #### `ExecutionBuilder.SetExecutionId(string executionId) : ExecutionBuilder`
 
 - Kind: `function`
-- Location: `QaaS.Runner/ExecutionBuilder.cs:403`
+- Location: `QaaS.Runner/ExecutionBuilder.cs:606`
 
-_No XML summary provided._
+Sets the execution identifier stored on the built context.
+
+The execution identifier flows into the built context and can later be used by logging, reports, and storage integrations.
 
 #### `ExecutionBuilder.WithMetadata(MetaDataConfig metaDataConfig) : ExecutionBuilder`
 
 - Kind: `function`
-- Location: `QaaS.Runner/ExecutionBuilder.cs:409`
+- Location: `QaaS.Runner/ExecutionBuilder.cs:619`
 
-_No XML summary provided._
+Sets the metadata configuration stored on the execution.
+
+Use this method when working with the documented Runner execution builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
 #### `ExecutionBuilder.Build() : Execution`
 
 - Kind: `function`
-- Location: `QaaS.Runner/ExecutionBuilder.cs:698`
+- Location: `QaaS.Runner/ExecutionBuilder.cs:914`
 
-_No XML summary provided._
+Builds the configured Runner execution builder output from the current state.
+
+Call this after the fluent configuration is complete. The method validates the accumulated state and materializes the runtime or immutable configuration object represented by the builder.
 
 ### Links
 
 #### `LinkBuilder.Named(string name) : LinkBuilder`
 
 - Kind: `function`
-- Location: `QaaS.Runner.Assertions/ConfigurationObjects/LinkBuilder.cs:31`
+- Location: `QaaS.Runner.Assertions/ConfigurationObjects/LinkBuilder.cs:35`
 
-Sets the display name used for the generated link.
+Sets the name used for the current Runner link builder instance.
+
+Use this method when working with the documented Runner link builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
 #### `LinkBuilder.Create(ILinkConfig config) : LinkBuilder`
 
 - Kind: `function`
-- Location: `QaaS.Runner.Assertions/ConfigurationObjects/LinkBuilder.cs:40`
+- Location: `QaaS.Runner.Assertions/ConfigurationObjects/LinkBuilder.cs:48`
 
-Compatibility alias for CreateConfiguration .
+Sets the configuration currently stored on the Runner link builder instance.
+
+Use this method when working with the documented Runner link builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
 #### `LinkBuilder.CreateConfiguration(ILinkConfig config) : LinkBuilder`
 
 - Kind: `function`
-- Location: `QaaS.Runner.Assertions/ConfigurationObjects/LinkBuilder.cs:48`
+- Location: `QaaS.Runner.Assertions/ConfigurationObjects/LinkBuilder.cs:60`
 
-Sets the configured link source.
+Sets the configuration currently stored on the Runner link builder instance.
+
+Use this method when working with the documented Runner link builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
 #### `LinkBuilder.ReadConfiguration() : ILinkConfig?`
 
 - Kind: `function`
-- Location: `QaaS.Runner.Assertions/ConfigurationObjects/LinkBuilder.cs:56`
+- Location: `QaaS.Runner.Assertions/ConfigurationObjects/LinkBuilder.cs:72`
 
-Returns the currently configured link source, if any.
+Returns the configuration currently stored on the Runner link builder instance.
+
+Use this method when working with the documented Runner link builder API surface in code. Use it to inspect the current configured state without rebuilding the surrounding collection or runtime object graph.
 
 #### `LinkBuilder.UpdateConfiguration(Func<ILinkConfig, ILinkConfig> update) : LinkBuilder`
 
 - Kind: `function`
-- Location: `QaaS.Runner.Assertions/ConfigurationObjects/LinkBuilder.cs:74`
+- Location: `QaaS.Runner.Assertions/ConfigurationObjects/LinkBuilder.cs:94`
 
-Applies a computed partial update to the currently configured link config while preserving omitted fields.
+Updates the configuration currently stored on the Runner link builder instance.
+
+Use this method when working with the documented Runner link builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
 #### `LinkBuilder.UpdateConfiguration(ILinkConfig config) : LinkBuilder`
 
 - Kind: `function`
-- Location: `QaaS.Runner.Assertions/ConfigurationObjects/LinkBuilder.cs:84`
+- Location: `QaaS.Runner.Assertions/ConfigurationObjects/LinkBuilder.cs:108`
 
-Updates the configured link config by merging same-type values and replacing the current type when needed.
+Updates the configuration currently stored on the Runner link builder instance.
+
+Use this method when working with the documented Runner link builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
 #### `LinkBuilder.UpdateConfiguration(object configuration) : LinkBuilder`
 
 - Kind: `function`
-- Location: `QaaS.Runner.Assertions/ConfigurationObjects/LinkBuilder.cs:94`
+- Location: `QaaS.Runner.Assertions/ConfigurationObjects/LinkBuilder.cs:122`
 
-Updates the configured link config from an object-shaped patch while preserving omitted fields.
+Updates the configuration currently stored on the Runner link builder instance.
+
+Use this method when working with the documented Runner link builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
 #### `LinkBuilder.DeleteConfiguration() : LinkBuilder`
 
 - Kind: `function`
-- Location: `QaaS.Runner.Assertions/ConfigurationObjects/LinkBuilder.cs:104`
+- Location: `QaaS.Runner.Assertions/ConfigurationObjects/LinkBuilder.cs:136`
 
-Clears the configured link source.
+Clears the configuration currently stored on the Runner link builder instance.
+
+Use this method when working with the documented Runner link builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
 #### `LinkBuilder.Configure(ILinkConfig config) : LinkBuilder`
 
 - Kind: `function`
-- Location: `QaaS.Runner.Assertions/ConfigurationObjects/LinkBuilder.cs:120`
+- Location: `QaaS.Runner.Assertions/ConfigurationObjects/LinkBuilder.cs:156`
 
-Replaces the current link source with the provided configuration type.
+Sets the configuration currently stored on the Runner link builder instance.
+
+Use this method when working with the documented Runner link builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
 ### Mocker Commands
 
 #### `MockerCommandBuilder.Named(string name) : MockerCommandBuilder`
 
 - Kind: `function`
-- Location: `QaaS.Runner.Sessions/Actions/MockerCommands/MockerCommandBuilder.cs:51`
+- Location: `QaaS.Runner.Sessions/Actions/MockerCommands/MockerCommandBuilder.cs:55`
 
-Sets the command name.
+Sets the name used for the current Runner mocker command builder instance.
+
+Use this method when working with the documented Runner mocker command builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
 #### `MockerCommandBuilder.AtStage(int stage) : MockerCommandBuilder`
 
 - Kind: `function`
-- Location: `QaaS.Runner.Sessions/Actions/MockerCommands/MockerCommandBuilder.cs:60`
+- Location: `QaaS.Runner.Sessions/Actions/MockerCommands/MockerCommandBuilder.cs:68`
 
-Sets the stage in which this command runs.
+Sets the stage used by the current Runner mocker command builder instance.
+
+Use this method when working with the documented Runner mocker command builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
 #### `MockerCommandBuilder.WithServerName(string serverName) : MockerCommandBuilder`
 
 - Kind: `function`
-- Location: `QaaS.Runner.Sessions/Actions/MockerCommands/MockerCommandBuilder.cs:69`
+- Location: `QaaS.Runner.Sessions/Actions/MockerCommands/MockerCommandBuilder.cs:81`
 
-Sets the target mocker server name.
+Configures server name on the current Runner mocker command builder instance.
+
+Use this method when working with the documented Runner mocker command builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
 #### `MockerCommandBuilder.WithRedis(RedisConfig redis) : MockerCommandBuilder`
 
 - Kind: `function`
-- Location: `QaaS.Runner.Sessions/Actions/MockerCommands/MockerCommandBuilder.cs:78`
+- Location: `QaaS.Runner.Sessions/Actions/MockerCommands/MockerCommandBuilder.cs:94`
 
-Sets redis connectivity used to communicate with the mocker.
+Configures redis on the current Runner mocker command builder instance.
+
+Use this method when working with the documented Runner mocker command builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
 #### `MockerCommandBuilder.WithRequestDurationMs(int requestDurationMs) : MockerCommandBuilder`
 
 - Kind: `function`
-- Location: `QaaS.Runner.Sessions/Actions/MockerCommands/MockerCommandBuilder.cs:87`
+- Location: `QaaS.Runner.Sessions/Actions/MockerCommands/MockerCommandBuilder.cs:107`
 
-Sets per-request wait duration in milliseconds between retries.
+Configures request duration ms on the current Runner mocker command builder instance.
+
+Use this method when working with the documented Runner mocker command builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
 #### `MockerCommandBuilder.WithRequestRetries(int requestRetries) : MockerCommandBuilder`
 
 - Kind: `function`
-- Location: `QaaS.Runner.Sessions/Actions/MockerCommands/MockerCommandBuilder.cs:96`
+- Location: `QaaS.Runner.Sessions/Actions/MockerCommands/MockerCommandBuilder.cs:120`
 
-Sets retry count for ping/command requests.
+Configures request retries on the current Runner mocker command builder instance.
+
+Use this method when working with the documented Runner mocker command builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
 #### `MockerCommandBuilder.Configure(MockerCommandConfig command) : MockerCommandBuilder`
 
 - Kind: `function`
-- Location: `QaaS.Runner.Sessions/Actions/MockerCommands/MockerCommandBuilder.cs:105`
+- Location: `QaaS.Runner.Sessions/Actions/MockerCommands/MockerCommandBuilder.cs:133`
 
-Sets command-specific configuration. Exactly one supported command type must be configured.
+Sets the configuration currently stored on the Runner mocker command builder instance.
+
+Use this method when working with the documented Runner mocker command builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
 #### `MockerCommandBuilder.WithCommand(MockerCommandConfig command) : MockerCommandBuilder`
 
 - Kind: `function`
-- Location: `QaaS.Runner.Sessions/Actions/MockerCommands/MockerCommandBuilder.cs:114`
+- Location: `QaaS.Runner.Sessions/Actions/MockerCommands/MockerCommandBuilder.cs:146`
 
-Compatibility alias for Configure .
+Configures command on the current Runner mocker command builder instance.
+
+Use this method when working with the documented Runner mocker command builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
 #### `MockerCommandBuilder.CreateConfiguration(MockerCommandConfig command) : MockerCommandBuilder`
 
 - Kind: `function`
-- Location: `QaaS.Runner.Sessions/Actions/MockerCommands/MockerCommandBuilder.cs:122`
+- Location: `QaaS.Runner.Sessions/Actions/MockerCommands/MockerCommandBuilder.cs:158`
 
-Compatibility alias for Configure that matches the configuration CRUD pattern used by other builders.
+Sets the configuration currently stored on the Runner mocker command builder instance.
+
+Use this method when working with the documented Runner mocker command builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
 #### `MockerCommandBuilder.Create(MockerCommandConfig command) : MockerCommandBuilder`
 
 - Kind: `function`
-- Location: `QaaS.Runner.Sessions/Actions/MockerCommands/MockerCommandBuilder.cs:130`
+- Location: `QaaS.Runner.Sessions/Actions/MockerCommands/MockerCommandBuilder.cs:170`
 
-Compatibility alias for CreateConfiguration .
+Sets the configuration currently stored on the Runner mocker command builder instance.
+
+Use this method when working with the documented Runner mocker command builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
 #### `MockerCommandBuilder.ReadConfiguration() : MockerCommandConfig?`
 
 - Kind: `function`
-- Location: `QaaS.Runner.Sessions/Actions/MockerCommands/MockerCommandBuilder.cs:138`
+- Location: `QaaS.Runner.Sessions/Actions/MockerCommands/MockerCommandBuilder.cs:182`
 
-Returns the currently configured mocker command configuration, if any.
+Returns the configuration currently stored on the Runner mocker command builder instance.
+
+Use this method when working with the documented Runner mocker command builder API surface in code. Use it to inspect the current configured state without rebuilding the surrounding collection or runtime object graph.
 
 #### `MockerCommandBuilder.UpdateConfiguration(Func<MockerCommandConfig, MockerCommandConfig> update) : MockerCommandBuilder`
 
 - Kind: `function`
-- Location: `QaaS.Runner.Sessions/Actions/MockerCommands/MockerCommandBuilder.cs:146`
+- Location: `QaaS.Runner.Sessions/Actions/MockerCommands/MockerCommandBuilder.cs:194`
 
-Applies a computed partial update to the current mocker command configuration while preserving omitted fields.
+Updates the configuration currently stored on the Runner mocker command builder instance.
+
+Use this method when working with the documented Runner mocker command builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
 #### `MockerCommandBuilder.UpdateConfiguration(MockerCommandConfig command) : MockerCommandBuilder`
 
 - Kind: `function`
-- Location: `QaaS.Runner.Sessions/Actions/MockerCommands/MockerCommandBuilder.cs:156`
+- Location: `QaaS.Runner.Sessions/Actions/MockerCommands/MockerCommandBuilder.cs:208`
 
-Updates the mocker command configuration by merging same-type values and replacing the current type when needed.
+Updates the configuration currently stored on the Runner mocker command builder instance.
+
+Use this method when working with the documented Runner mocker command builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
 #### `MockerCommandBuilder.UpdateConfiguration(object configuration) : MockerCommandBuilder`
 
 - Kind: `function`
-- Location: `QaaS.Runner.Sessions/Actions/MockerCommands/MockerCommandBuilder.cs:167`
+- Location: `QaaS.Runner.Sessions/Actions/MockerCommands/MockerCommandBuilder.cs:223`
 
-Updates the mocker command configuration from an object-shaped patch while preserving omitted fields.
+Updates the configuration currently stored on the Runner mocker command builder instance.
+
+Use this method when working with the documented Runner mocker command builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
 #### `MockerCommandBuilder.DeleteConfiguration() : MockerCommandBuilder`
 
 - Kind: `function`
-- Location: `QaaS.Runner.Sessions/Actions/MockerCommands/MockerCommandBuilder.cs:178`
+- Location: `QaaS.Runner.Sessions/Actions/MockerCommands/MockerCommandBuilder.cs:238`
 
-Clears the configured mocker command.
+Clears the configuration currently stored on the Runner mocker command builder instance.
+
+Use this method when working with the documented Runner mocker command builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
 ### Probes
 
 #### `ProbeBuilder.Read(IParser parser, Type expectedType, ObjectDeserializer nestedObjectDeserializer) : void`
 
 - Kind: `function`
-- Location: `QaaS.Runner.Sessions/Actions/Probes/ProbeBuilder.cs:51`
+- Location: `QaaS.Runner.Sessions/Actions/Probes/ProbeBuilder.cs:55`
 
-Reads YAML configuration for a probe builder.
+Reads the serialized configuration for the current Runner probe builder instance.
+
+This method participates in the YAML serialization surface that backs configuration-as-code support.
 
 #### `ProbeBuilder.Write(IEmitter emitter, ObjectSerializer nestedObjectSerializer) : void`
 
 - Kind: `function`
-- Location: `QaaS.Runner.Sessions/Actions/Probes/ProbeBuilder.cs:60`
+- Location: `QaaS.Runner.Sessions/Actions/Probes/ProbeBuilder.cs:68`
 
-Writes the probe builder configuration to YAML.
+Writes the current Runner probe builder configuration to the configured serializer output.
+
+This method participates in the YAML serialization surface that backs configuration-as-code support.
 
 #### `ProbeBuilder.Named(string name) : ProbeBuilder`
 
 - Kind: `function`
-- Location: `QaaS.Runner.Sessions/Actions/Probes/ProbeBuilder.cs:76`
+- Location: `QaaS.Runner.Sessions/Actions/Probes/ProbeBuilder.cs:88`
 
-Sets the probe name.
+Sets the name used for the current Runner probe builder instance.
+
+Use this method when working with the documented Runner probe builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
 #### `ProbeBuilder.AtStage(int stage) : ProbeBuilder`
 
 - Kind: `function`
-- Location: `QaaS.Runner.Sessions/Actions/Probes/ProbeBuilder.cs:85`
+- Location: `QaaS.Runner.Sessions/Actions/Probes/ProbeBuilder.cs:101`
 
-Sets the stage in which the probe runs.
+Sets the stage used by the current Runner probe builder instance.
+
+Use this method when working with the documented Runner probe builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
 #### `ProbeBuilder.HookNamed(string hookName) : ProbeBuilder`
 
 - Kind: `function`
-- Location: `QaaS.Runner.Sessions/Actions/Probes/ProbeBuilder.cs:94`
+- Location: `QaaS.Runner.Sessions/Actions/Probes/ProbeBuilder.cs:114`
 
-Sets the probe hook implementation name.
+Sets the hook implementation name used by the current Runner probe builder instance.
+
+Use this method when working with the documented Runner probe builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
 #### `ProbeBuilder.AddDataSourceName(string dataSourceName) : ProbeBuilder`
 
 - Kind: `function`
-- Location: `QaaS.Runner.Sessions/Actions/Probes/ProbeBuilder.cs:103`
+- Location: `QaaS.Runner.Sessions/Actions/Probes/ProbeBuilder.cs:127`
 
-Adds a data source name input to the probe.
+Adds the supplied data source name to the current Runner probe builder instance.
+
+Use this method when working with the documented Runner probe builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
 #### `ProbeBuilder.CreateDataSourceName(string dataSourceName) : ProbeBuilder`
 
 - Kind: `function`
-- Location: `QaaS.Runner.Sessions/Actions/Probes/ProbeBuilder.cs:114`
+- Location: `QaaS.Runner.Sessions/Actions/Probes/ProbeBuilder.cs:142`
 
-Compatibility alias for AddDataSourceName .
+Creates or adds the configured data source name entry on the current Runner probe builder instance.
+
+Use this method when working with the documented Runner probe builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
 #### `ProbeBuilder.ReadDataSourceNames() : IReadOnlyList<string>`
 
 - Kind: `function`
-- Location: `QaaS.Runner.Sessions/Actions/Probes/ProbeBuilder.cs:122`
+- Location: `QaaS.Runner.Sessions/Actions/Probes/ProbeBuilder.cs:154`
 
-Returns the configured probe data source names.
+Returns the configured data source names currently stored on the Runner probe builder instance.
+
+Use this method when working with the documented Runner probe builder API surface in code. Use it to inspect the current configured state without rebuilding the surrounding collection or runtime object graph.
 
 #### `ProbeBuilder.UpdateDataSourceName(string existingValue, string newValue) : ProbeBuilder`
 
 - Kind: `function`
-- Location: `QaaS.Runner.Sessions/Actions/Probes/ProbeBuilder.cs:130`
+- Location: `QaaS.Runner.Sessions/Actions/Probes/ProbeBuilder.cs:166`
 
-Replaces one configured probe data source name with another.
+Updates the configured data source name stored on the current Runner probe builder instance.
+
+Use this method when working with the documented Runner probe builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
 #### `ProbeBuilder.DeleteDataSourceName(string dataSourceName) : ProbeBuilder`
 
 - Kind: `function`
-- Location: `QaaS.Runner.Sessions/Actions/Probes/ProbeBuilder.cs:144`
+- Location: `QaaS.Runner.Sessions/Actions/Probes/ProbeBuilder.cs:184`
 
-Removes a configured probe data source name.
+Removes the configured data source name from the current Runner probe builder instance.
+
+Use this method when working with the documented Runner probe builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
 #### `ProbeBuilder.RemoveDataSourceName(string dataSourceName) : ProbeBuilder`
 
 - Kind: `function`
-- Location: `QaaS.Runner.Sessions/Actions/Probes/ProbeBuilder.cs:153`
+- Location: `QaaS.Runner.Sessions/Actions/Probes/ProbeBuilder.cs:197`
 
-Compatibility alias for DeleteDataSourceName .
+Configures remove data source name on the current Runner probe builder instance.
+
+Use this method when working with the documented Runner probe builder API surface in code. The behavior exposed here is part of the public surface that the generated function documentation groups under 'Configuration as Code / Probes'.
 
 #### `ProbeBuilder.AddDataSourcePattern(string dataSourcePattern) : ProbeBuilder`
 
 - Kind: `function`
-- Location: `QaaS.Runner.Sessions/Actions/Probes/ProbeBuilder.cs:161`
+- Location: `QaaS.Runner.Sessions/Actions/Probes/ProbeBuilder.cs:209`
 
-Adds a data source pattern input to the probe.
+Adds the supplied data source pattern to the current Runner probe builder instance.
+
+Use this method when working with the documented Runner probe builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
 #### `ProbeBuilder.CreateDataSourcePattern(string dataSourcePattern) : ProbeBuilder`
 
 - Kind: `function`
-- Location: `QaaS.Runner.Sessions/Actions/Probes/ProbeBuilder.cs:172`
+- Location: `QaaS.Runner.Sessions/Actions/Probes/ProbeBuilder.cs:224`
 
-Compatibility alias for AddDataSourcePattern .
+Creates or adds the configured data source pattern entry on the current Runner probe builder instance.
+
+Use this method when working with the documented Runner probe builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
 #### `ProbeBuilder.ReadDataSourcePatterns() : IReadOnlyList<string>`
 
 - Kind: `function`
-- Location: `QaaS.Runner.Sessions/Actions/Probes/ProbeBuilder.cs:180`
+- Location: `QaaS.Runner.Sessions/Actions/Probes/ProbeBuilder.cs:236`
 
-Returns the configured probe data source patterns.
+Returns the configured data source patterns currently stored on the Runner probe builder instance.
+
+Use this method when working with the documented Runner probe builder API surface in code. Use it to inspect the current configured state without rebuilding the surrounding collection or runtime object graph.
 
 #### `ProbeBuilder.UpdateDataSourcePattern(string existingValue, string newValue) : ProbeBuilder`
 
 - Kind: `function`
-- Location: `QaaS.Runner.Sessions/Actions/Probes/ProbeBuilder.cs:188`
+- Location: `QaaS.Runner.Sessions/Actions/Probes/ProbeBuilder.cs:248`
 
-Replaces one configured probe data source pattern with another.
+Updates the configured data source pattern stored on the current Runner probe builder instance.
+
+Use this method when working with the documented Runner probe builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
 #### `ProbeBuilder.DeleteDataSourcePattern(string dataSourcePattern) : ProbeBuilder`
 
 - Kind: `function`
-- Location: `QaaS.Runner.Sessions/Actions/Probes/ProbeBuilder.cs:202`
+- Location: `QaaS.Runner.Sessions/Actions/Probes/ProbeBuilder.cs:266`
 
-Removes a configured probe data source pattern.
+Removes the configured data source pattern from the current Runner probe builder instance.
+
+Use this method when working with the documented Runner probe builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
 #### `ProbeBuilder.RemoveDataSourcePattern(string dataSourcePattern) : ProbeBuilder`
 
 - Kind: `function`
-- Location: `QaaS.Runner.Sessions/Actions/Probes/ProbeBuilder.cs:211`
+- Location: `QaaS.Runner.Sessions/Actions/Probes/ProbeBuilder.cs:279`
 
-Compatibility alias for DeleteDataSourcePattern .
+Configures remove data source pattern on the current Runner probe builder instance.
+
+Use this method when working with the documented Runner probe builder API surface in code. The behavior exposed here is part of the public surface that the generated function documentation groups under 'Configuration as Code / Probes'.
 
 #### `ProbeBuilder.Configure(object configuration) : ProbeBuilder`
 
 - Kind: `function`
-- Location: `QaaS.Runner.Sessions/Actions/Probes/ProbeBuilder.cs:219`
+- Location: `QaaS.Runner.Sessions/Actions/Probes/ProbeBuilder.cs:291`
 
-Replaces the current probe configuration with the provided configuration object.
+Sets the configuration currently stored on the Runner probe builder instance.
+
+Use this method when working with the documented Runner probe builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
 #### `ProbeBuilder.CreateConfiguration(object configuration) : ProbeBuilder`
 
 - Kind: `function`
-- Location: `QaaS.Runner.Sessions/Actions/Probes/ProbeBuilder.cs:229`
+- Location: `QaaS.Runner.Sessions/Actions/Probes/ProbeBuilder.cs:305`
 
-Compatibility alias for Configure that matches the configuration CRUD pattern used by other builders.
+Sets the configuration currently stored on the Runner probe builder instance.
+
+Use this method when working with the documented Runner probe builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
 #### `ProbeBuilder.Create(object configuration) : ProbeBuilder`
 
 - Kind: `function`
-- Location: `QaaS.Runner.Sessions/Actions/Probes/ProbeBuilder.cs:237`
+- Location: `QaaS.Runner.Sessions/Actions/Probes/ProbeBuilder.cs:317`
 
-Compatibility alias for CreateConfiguration .
+Sets the configuration currently stored on the Runner probe builder instance.
+
+Use this method when working with the documented Runner probe builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
 #### `ProbeBuilder.ReadConfiguration() : IConfiguration`
 
 - Kind: `function`
-- Location: `QaaS.Runner.Sessions/Actions/Probes/ProbeBuilder.cs:245`
+- Location: `QaaS.Runner.Sessions/Actions/Probes/ProbeBuilder.cs:329`
 
-Returns the currently configured probe configuration.
+Returns the configuration currently stored on the Runner probe builder instance.
+
+Use this method when working with the documented Runner probe builder API surface in code. Use it to inspect the current configured state without rebuilding the surrounding collection or runtime object graph.
 
 #### `ProbeBuilder.UpdateConfiguration(object configuration) : ProbeBuilder`
 
 - Kind: `function`
-- Location: `QaaS.Runner.Sessions/Actions/Probes/ProbeBuilder.cs:253`
+- Location: `QaaS.Runner.Sessions/Actions/Probes/ProbeBuilder.cs:341`
 
-Merges the provided configuration object into the current probe configuration.
+Updates the configuration currently stored on the Runner probe builder instance.
+
+Use this method when working with the documented Runner probe builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
 #### `ProbeBuilder.DeleteConfiguration() : ProbeBuilder`
 
 - Kind: `function`
-- Location: `QaaS.Runner.Sessions/Actions/Probes/ProbeBuilder.cs:262`
+- Location: `QaaS.Runner.Sessions/Actions/Probes/ProbeBuilder.cs:354`
 
-Clears the configured probe configuration.
+Clears the configuration currently stored on the Runner probe builder instance.
+
+Use this method when working with the documented Runner probe builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
 ### Publishers
 
 #### `PublisherBuilder.Named(string name) : PublisherBuilder`
 
 - Kind: `function`
-- Location: `QaaS.Runner.Sessions/Actions/Publishers/Builders/PublisherBuilderLogic.cs:30`
+- Location: `QaaS.Runner.Sessions/Actions/Publishers/Builders/PublisherBuilderLogic.cs:37`
 
-_No XML summary provided._
+Sets the name used for the current Runner publisher builder instance.
+
+Use this method when working with the documented Runner publisher builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
 #### `PublisherBuilder.AtStage(int stage) : PublisherBuilder`
 
 - Kind: `function`
-- Location: `QaaS.Runner.Sessions/Actions/Publishers/Builders/PublisherBuilderLogic.cs:36`
+- Location: `QaaS.Runner.Sessions/Actions/Publishers/Builders/PublisherBuilderLogic.cs:50`
 
-_No XML summary provided._
+Sets the stage used by the current Runner publisher builder instance.
+
+Use this method when working with the documented Runner publisher builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
 #### `PublisherBuilder.FilterData(DataFilter dataFilter) : PublisherBuilder`
 
 - Kind: `function`
-- Location: `QaaS.Runner.Sessions/Actions/Publishers/Builders/PublisherBuilderLogic.cs:42`
+- Location: `QaaS.Runner.Sessions/Actions/Publishers/Builders/PublisherBuilderLogic.cs:63`
 
-_No XML summary provided._
+Sets the data filter used by the current Runner publisher builder instance.
+
+Use this method when working with the documented Runner publisher builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
 #### `PublisherBuilder.WithSerializer(SerializeConfig serializeConfig) : PublisherBuilder`
 
 - Kind: `function`
-- Location: `QaaS.Runner.Sessions/Actions/Publishers/Builders/PublisherBuilderLogic.cs:48`
+- Location: `QaaS.Runner.Sessions/Actions/Publishers/Builders/PublisherBuilderLogic.cs:76`
 
-_No XML summary provided._
+Sets the serializer configuration used by the current Runner publisher builder instance.
+
+Use this method when working with the documented Runner publisher builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
 #### `PublisherBuilder.WithIterations(int iterations) : PublisherBuilder`
 
 - Kind: `function`
-- Location: `QaaS.Runner.Sessions/Actions/Publishers/Builders/PublisherBuilderLogic.cs:54`
+- Location: `QaaS.Runner.Sessions/Actions/Publishers/Builders/PublisherBuilderLogic.cs:89`
 
-_No XML summary provided._
+Sets how many iterations the transaction should execute.
+
+Use this method when working with the documented Runner publisher builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
 #### `PublisherBuilder.AddDataSource(string dataSourceName) : PublisherBuilder`
 
 - Kind: `function`
-- Location: `QaaS.Runner.Sessions/Actions/Publishers/Builders/PublisherBuilderLogic.cs:60`
+- Location: `QaaS.Runner.Sessions/Actions/Publishers/Builders/PublisherBuilderLogic.cs:102`
 
-_No XML summary provided._
+Adds the supplied data source to the current Runner publisher builder instance.
+
+Use this method when working with the documented Runner publisher builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
 #### `PublisherBuilder.CreateDataSource(string dataSourceName) : PublisherBuilder`
 
 - Kind: `function`
-- Location: `QaaS.Runner.Sessions/Actions/Publishers/Builders/PublisherBuilderLogic.cs:68`
+- Location: `QaaS.Runner.Sessions/Actions/Publishers/Builders/PublisherBuilderLogic.cs:117`
 
-_No XML summary provided._
+Creates or adds the configured data source entry on the current Runner publisher builder instance.
+
+Use this method when working with the documented Runner publisher builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
 #### `PublisherBuilder.ReadDataSources() : IReadOnlyList<string>`
 
 - Kind: `function`
-- Location: `QaaS.Runner.Sessions/Actions/Publishers/Builders/PublisherBuilderLogic.cs:73`
+- Location: `QaaS.Runner.Sessions/Actions/Publishers/Builders/PublisherBuilderLogic.cs:129`
 
-_No XML summary provided._
+Returns the configured data sources currently stored on the Runner publisher builder instance.
+
+Use this method when working with the documented Runner publisher builder API surface in code. Use it to inspect the current configured state without rebuilding the surrounding collection or runtime object graph.
 
 #### `PublisherBuilder.UpdateDataSource(string existingValue, string newValue) : PublisherBuilder`
 
 - Kind: `function`
-- Location: `QaaS.Runner.Sessions/Actions/Publishers/Builders/PublisherBuilderLogic.cs:78`
+- Location: `QaaS.Runner.Sessions/Actions/Publishers/Builders/PublisherBuilderLogic.cs:141`
 
-_No XML summary provided._
+Updates the configured data source stored on the current Runner publisher builder instance.
+
+Use this method when working with the documented Runner publisher builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
 #### `PublisherBuilder.DeleteDataSource(string dataSourceName) : PublisherBuilder`
 
 - Kind: `function`
-- Location: `QaaS.Runner.Sessions/Actions/Publishers/Builders/PublisherBuilderLogic.cs:94`
+- Location: `QaaS.Runner.Sessions/Actions/Publishers/Builders/PublisherBuilderLogic.cs:164`
 
-_No XML summary provided._
+Removes the configured data source from the current Runner publisher builder instance.
+
+Use this method when working with the documented Runner publisher builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
 #### `PublisherBuilder.AddDataSourcePattern(string dataSourcePattern) : PublisherBuilder`
 
 - Kind: `function`
-- Location: `QaaS.Runner.Sessions/Actions/Publishers/Builders/PublisherBuilderLogic.cs:100`
+- Location: `QaaS.Runner.Sessions/Actions/Publishers/Builders/PublisherBuilderLogic.cs:177`
 
-_No XML summary provided._
+Adds the supplied data source pattern to the current Runner publisher builder instance.
+
+Use this method when working with the documented Runner publisher builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
 #### `PublisherBuilder.CreateDataSourcePattern(string dataSourcePattern) : PublisherBuilder`
 
 - Kind: `function`
-- Location: `QaaS.Runner.Sessions/Actions/Publishers/Builders/PublisherBuilderLogic.cs:108`
+- Location: `QaaS.Runner.Sessions/Actions/Publishers/Builders/PublisherBuilderLogic.cs:192`
 
-_No XML summary provided._
+Creates or adds the configured data source pattern entry on the current Runner publisher builder instance.
+
+Use this method when working with the documented Runner publisher builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
 #### `PublisherBuilder.ReadDataSourcePatterns() : IReadOnlyList<string>`
 
 - Kind: `function`
-- Location: `QaaS.Runner.Sessions/Actions/Publishers/Builders/PublisherBuilderLogic.cs:113`
+- Location: `QaaS.Runner.Sessions/Actions/Publishers/Builders/PublisherBuilderLogic.cs:204`
 
-_No XML summary provided._
+Returns the configured data source patterns currently stored on the Runner publisher builder instance.
+
+Use this method when working with the documented Runner publisher builder API surface in code. Use it to inspect the current configured state without rebuilding the surrounding collection or runtime object graph.
 
 #### `PublisherBuilder.UpdateDataSourcePattern(string existingValue, string newValue) : PublisherBuilder`
 
 - Kind: `function`
-- Location: `QaaS.Runner.Sessions/Actions/Publishers/Builders/PublisherBuilderLogic.cs:118`
+- Location: `QaaS.Runner.Sessions/Actions/Publishers/Builders/PublisherBuilderLogic.cs:216`
 
-_No XML summary provided._
+Updates the configured data source pattern stored on the current Runner publisher builder instance.
+
+Use this method when working with the documented Runner publisher builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
 #### `PublisherBuilder.DeleteDataSourcePattern(string dataSourcePattern) : PublisherBuilder`
 
 - Kind: `function`
-- Location: `QaaS.Runner.Sessions/Actions/Publishers/Builders/PublisherBuilderLogic.cs:134`
+- Location: `QaaS.Runner.Sessions/Actions/Publishers/Builders/PublisherBuilderLogic.cs:239`
 
-_No XML summary provided._
+Removes the configured data source pattern from the current Runner publisher builder instance.
+
+Use this method when working with the documented Runner publisher builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
 #### `PublisherBuilder.InLoops() : PublisherBuilder`
 
 - Kind: `function`
-- Location: `QaaS.Runner.Sessions/Actions/Publishers/Builders/PublisherBuilderLogic.cs:140`
+- Location: `QaaS.Runner.Sessions/Actions/Publishers/Builders/PublisherBuilderLogic.cs:252`
 
-_No XML summary provided._
+Marks the transaction to execute continuously in loop mode.
+
+Use this method when working with the documented Runner publisher builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
 #### `PublisherBuilder.WithSleep(ulong sleepTimeMs) : PublisherBuilder`
 
 - Kind: `function`
-- Location: `QaaS.Runner.Sessions/Actions/Publishers/Builders/PublisherBuilderLogic.cs:146`
+- Location: `QaaS.Runner.Sessions/Actions/Publishers/Builders/PublisherBuilderLogic.cs:265`
 
-_No XML summary provided._
+Sets the delay applied between transaction iterations.
+
+Use this method when working with the documented Runner publisher builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
 #### `PublisherBuilder.WithChunks(Chunks chunks) : PublisherBuilder`
 
 - Kind: `function`
-- Location: `QaaS.Runner.Sessions/Actions/Publishers/Builders/PublisherBuilderLogic.cs:152`
+- Location: `QaaS.Runner.Sessions/Actions/Publishers/Builders/PublisherBuilderLogic.cs:278`
 
-_No XML summary provided._
+Configures chunks on the current Runner publisher builder instance.
+
+Use this method when working with the documented Runner publisher builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
 #### `PublisherBuilder.AddPolicy(PolicyBuilder policy) : PublisherBuilder`
 
 - Kind: `function`
-- Location: `QaaS.Runner.Sessions/Actions/Publishers/Builders/PublisherBuilderLogic.cs:158`
+- Location: `QaaS.Runner.Sessions/Actions/Publishers/Builders/PublisherBuilderLogic.cs:291`
 
-_No XML summary provided._
+Adds the supplied policy to the current Runner publisher builder instance.
+
+Use this method when working with the documented Runner publisher builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
 #### `PublisherBuilder.CreatePolicy(PolicyBuilder policy) : PublisherBuilder`
 
 - Kind: `function`
-- Location: `QaaS.Runner.Sessions/Actions/Publishers/Builders/PublisherBuilderLogic.cs:166`
+- Location: `QaaS.Runner.Sessions/Actions/Publishers/Builders/PublisherBuilderLogic.cs:306`
 
-_No XML summary provided._
+Creates or adds the configured policy entry on the current Runner publisher builder instance.
+
+Use this method when working with the documented Runner publisher builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
 #### `PublisherBuilder.ReadPolicies() : IReadOnlyList<PolicyBuilder>`
 
 - Kind: `function`
-- Location: `QaaS.Runner.Sessions/Actions/Publishers/Builders/PublisherBuilderLogic.cs:171`
+- Location: `QaaS.Runner.Sessions/Actions/Publishers/Builders/PublisherBuilderLogic.cs:318`
 
-_No XML summary provided._
+Returns the configured policies currently stored on the Runner publisher builder instance.
+
+Use this method when working with the documented Runner publisher builder API surface in code. Use it to inspect the current configured state without rebuilding the surrounding collection or runtime object graph.
 
 #### `PublisherBuilder.UpdatePolicyAt(int index, PolicyBuilder policy) : PublisherBuilder`
 
 - Kind: `function`
-- Location: `QaaS.Runner.Sessions/Actions/Publishers/Builders/PublisherBuilderLogic.cs:176`
+- Location: `QaaS.Runner.Sessions/Actions/Publishers/Builders/PublisherBuilderLogic.cs:330`
 
-_No XML summary provided._
+Updates the configured policy at stored on the current Runner publisher builder instance.
+
+Use this method when working with the documented Runner publisher builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
 #### `PublisherBuilder.DeletePolicyAt(int index) : PublisherBuilder`
 
 - Kind: `function`
-- Location: `QaaS.Runner.Sessions/Actions/Publishers/Builders/PublisherBuilderLogic.cs:187`
+- Location: `QaaS.Runner.Sessions/Actions/Publishers/Builders/PublisherBuilderLogic.cs:348`
 
-_No XML summary provided._
+Removes the configured policy at from the current Runner publisher builder instance.
+
+Use this method when working with the documented Runner publisher builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
 #### `PublisherBuilder.WithParallelism(int parallelism) : PublisherBuilder`
 
 - Kind: `function`
-- Location: `QaaS.Runner.Sessions/Actions/Publishers/Builders/PublisherBuilderLogic.cs:198`
+- Location: `QaaS.Runner.Sessions/Actions/Publishers/Builders/PublisherBuilderLogic.cs:366`
 
-_No XML summary provided._
+Configures parallelism on the current Runner publisher builder instance.
+
+Use this method when working with the documented Runner publisher builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
 #### `PublisherBuilder.CreateConfiguration(ISenderConfig config) : PublisherBuilder`
 
 - Kind: `function`
-- Location: `QaaS.Runner.Sessions/Actions/Publishers/Builders/PublisherBuilderLogic.cs:207`
+- Location: `QaaS.Runner.Sessions/Actions/Publishers/Builders/PublisherBuilderLogic.cs:379`
 
-Compatibility alias for Configure that matches the configuration CRUD pattern used by other builders.
+Sets the configuration currently stored on the Runner publisher builder instance.
+
+Use this method when working with the documented Runner publisher builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
 #### `PublisherBuilder.Create(ISenderConfig config) : PublisherBuilder`
 
 - Kind: `function`
-- Location: `QaaS.Runner.Sessions/Actions/Publishers/Builders/PublisherBuilderLogic.cs:215`
+- Location: `QaaS.Runner.Sessions/Actions/Publishers/Builders/PublisherBuilderLogic.cs:391`
 
-Compatibility alias for CreateConfiguration .
+Sets the configuration currently stored on the Runner publisher builder instance.
+
+Use this method when working with the documented Runner publisher builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
 #### `PublisherBuilder.ReadConfiguration() : ISenderConfig?`
 
 - Kind: `function`
-- Location: `QaaS.Runner.Sessions/Actions/Publishers/Builders/PublisherBuilderLogic.cs:223`
+- Location: `QaaS.Runner.Sessions/Actions/Publishers/Builders/PublisherBuilderLogic.cs:403`
 
-Returns the currently configured sender source, if any.
+Returns the configuration currently stored on the Runner publisher builder instance.
+
+Use this method when working with the documented Runner publisher builder API surface in code. Use it to inspect the current configured state without rebuilding the surrounding collection or runtime object graph.
 
 #### `PublisherBuilder.UpdateConfiguration(Func<ISenderConfig, ISenderConfig> update) : PublisherBuilder`
 
 - Kind: `function`
-- Location: `QaaS.Runner.Sessions/Actions/Publishers/Builders/PublisherBuilderLogic.cs:241`
+- Location: `QaaS.Runner.Sessions/Actions/Publishers/Builders/PublisherBuilderLogic.cs:425`
 
-Applies a computed partial update to the current publisher configuration while preserving omitted fields.
+Updates the configuration currently stored on the Runner publisher builder instance.
+
+Use this method when working with the documented Runner publisher builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
 #### `PublisherBuilder.UpdateConfiguration(ISenderConfig config) : PublisherBuilder`
 
 - Kind: `function`
-- Location: `QaaS.Runner.Sessions/Actions/Publishers/Builders/PublisherBuilderLogic.cs:251`
+- Location: `QaaS.Runner.Sessions/Actions/Publishers/Builders/PublisherBuilderLogic.cs:439`
 
-Updates the publisher configuration by merging same-type values and replacing the current type when needed.
+Updates the configuration currently stored on the Runner publisher builder instance.
+
+Use this method when working with the documented Runner publisher builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
 #### `PublisherBuilder.UpdateConfiguration(object configuration) : PublisherBuilder`
 
 - Kind: `function`
-- Location: `QaaS.Runner.Sessions/Actions/Publishers/Builders/PublisherBuilderLogic.cs:261`
+- Location: `QaaS.Runner.Sessions/Actions/Publishers/Builders/PublisherBuilderLogic.cs:453`
 
-Updates the publisher configuration from an object-shaped patch while preserving omitted fields.
+Updates the configuration currently stored on the Runner publisher builder instance.
+
+Use this method when working with the documented Runner publisher builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
 #### `PublisherBuilder.DeleteConfiguration() : PublisherBuilder`
 
 - Kind: `function`
-- Location: `QaaS.Runner.Sessions/Actions/Publishers/Builders/PublisherBuilderLogic.cs:271`
+- Location: `QaaS.Runner.Sessions/Actions/Publishers/Builders/PublisherBuilderLogic.cs:467`
 
-Clears the configured sender source.
+Clears the configuration currently stored on the Runner publisher builder instance.
+
+Use this method when working with the documented Runner publisher builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
 #### `PublisherBuilder.Configure(ISenderConfig config) : PublisherBuilder`
 
 - Kind: `function`
-- Location: `QaaS.Runner.Sessions/Actions/Publishers/Builders/PublisherBuilderLogic.cs:295`
+- Location: `QaaS.Runner.Sessions/Actions/Publishers/Builders/PublisherBuilderLogic.cs:495`
 
-Replaces the current sender source with the provided configuration type.
+Sets the configuration currently stored on the Runner publisher builder instance.
+
+Use this method when working with the documented Runner publisher builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
 ### Sessions
 
 #### `SessionBuilder.Named(string name) : SessionBuilder`
 
 - Kind: `function`
-- Location: `QaaS.Runner.Sessions/Session/Builders/SessionBuilderLogic.cs:18`
+- Location: `QaaS.Runner.Sessions/Session/Builders/SessionBuilderLogic.cs:25`
 
-_No XML summary provided._
+Sets the name used for the current Runner session builder instance.
+
+Use this method when working with the documented Runner session builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
 #### `SessionBuilder.WithTimeoutBefore(uint timeout) : SessionBuilder`
 
 - Kind: `function`
-- Location: `QaaS.Runner.Sessions/Session/Builders/SessionBuilderLogic.cs:24`
+- Location: `QaaS.Runner.Sessions/Session/Builders/SessionBuilderLogic.cs:38`
 
-_No XML summary provided._
+Sets the timeout applied before the session runs.
+
+Use this method when working with the documented Runner session builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
 #### `SessionBuilder.WithTimeoutAfter(uint timeout) : SessionBuilder`
 
 - Kind: `function`
-- Location: `QaaS.Runner.Sessions/Session/Builders/SessionBuilderLogic.cs:30`
+- Location: `QaaS.Runner.Sessions/Session/Builders/SessionBuilderLogic.cs:51`
 
-_No XML summary provided._
+Sets the timeout applied after the session runs.
+
+Use this method when working with the documented Runner session builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
 #### `SessionBuilder.AtStage(int stage) : SessionBuilder`
 
 - Kind: `function`
-- Location: `QaaS.Runner.Sessions/Session/Builders/SessionBuilderLogic.cs:36`
+- Location: `QaaS.Runner.Sessions/Session/Builders/SessionBuilderLogic.cs:64`
 
-_No XML summary provided._
+Sets the stage used by the current Runner session builder instance.
+
+Use this method when working with the documented Runner session builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
 #### `SessionBuilder.RunSessionUntilStage(int stage) : SessionBuilder`
 
 - Kind: `function`
-- Location: `QaaS.Runner.Sessions/Session/Builders/SessionBuilderLogic.cs:43`
+- Location: `QaaS.Runner.Sessions/Session/Builders/SessionBuilderLogic.cs:78`
 
-_No XML summary provided._
+Limits the session to run only until the specified stage.
+
+Use this method when working with the documented Runner session builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
 #### `SessionBuilder.DiscardData() : SessionBuilder`
 
 - Kind: `function`
-- Location: `QaaS.Runner.Sessions/Session/Builders/SessionBuilderLogic.cs:49`
+- Location: `QaaS.Runner.Sessions/Session/Builders/SessionBuilderLogic.cs:91`
 
-_No XML summary provided._
+Disables data persistence for the configured session.
+
+Use this method when working with the documented Runner session builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
 #### `SessionBuilder.WithinCategory(string category) : SessionBuilder`
 
 - Kind: `function`
-- Location: `QaaS.Runner.Sessions/Session/Builders/SessionBuilderLogic.cs:55`
+- Location: `QaaS.Runner.Sessions/Session/Builders/SessionBuilderLogic.cs:104`
 
-_No XML summary provided._
+Sets the category used by the current Runner session builder instance.
+
+Use this method when working with the documented Runner session builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
 #### `SessionBuilder.AddConsumer(ConsumerBuilder consumerBuilder) : SessionBuilder`
 
 - Kind: `function`
-- Location: `QaaS.Runner.Sessions/Session/Builders/SessionBuilderLogic.cs:61`
+- Location: `QaaS.Runner.Sessions/Session/Builders/SessionBuilderLogic.cs:117`
 
-_No XML summary provided._
+Adds the supplied consumer to the current Runner session builder instance.
+
+Use this method when working with the documented Runner session builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
 #### `SessionBuilder.CreateConsumer(ConsumerBuilder consumerBuilder) : SessionBuilder`
 
 - Kind: `function`
-- Location: `QaaS.Runner.Sessions/Session/Builders/SessionBuilderLogic.cs:67`
+- Location: `QaaS.Runner.Sessions/Session/Builders/SessionBuilderLogic.cs:130`
 
-_No XML summary provided._
+Creates or adds the configured consumer entry on the current Runner session builder instance.
+
+Use this method when working with the documented Runner session builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
 #### `SessionBuilder.ReadConsumers() : IReadOnlyList<ConsumerBuilder>`
 
 - Kind: `function`
-- Location: `QaaS.Runner.Sessions/Session/Builders/SessionBuilderLogic.cs:72`
+- Location: `QaaS.Runner.Sessions/Session/Builders/SessionBuilderLogic.cs:142`
 
-_No XML summary provided._
+Returns the configured consumers currently stored on the Runner session builder instance.
+
+Use this method when working with the documented Runner session builder API surface in code. Use it to inspect the current configured state without rebuilding the surrounding collection or runtime object graph.
 
 #### `SessionBuilder.ReadConsumer(string name) : ConsumerBuilder?`
 
 - Kind: `function`
-- Location: `QaaS.Runner.Sessions/Session/Builders/SessionBuilderLogic.cs:77`
+- Location: `QaaS.Runner.Sessions/Session/Builders/SessionBuilderLogic.cs:154`
 
-_No XML summary provided._
+Returns the configured consumer currently stored on the Runner session builder instance.
+
+Use this method when working with the documented Runner session builder API surface in code. Use it to inspect the current configured state without rebuilding the surrounding collection or runtime object graph.
 
 #### `SessionBuilder.UpdateConsumer(string name, ConsumerBuilder consumerBuilder) : SessionBuilder`
 
 - Kind: `function`
-- Location: `QaaS.Runner.Sessions/Session/Builders/SessionBuilderLogic.cs:82`
+- Location: `QaaS.Runner.Sessions/Session/Builders/SessionBuilderLogic.cs:166`
 
-_No XML summary provided._
+Updates the configured consumer stored on the current Runner session builder instance.
+
+Use this method when working with the documented Runner session builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
 #### `SessionBuilder.UpdateConsumer(string name, Func<ConsumerBuilder, ConsumerBuilder> update) : SessionBuilder`
 
 - Kind: `function`
-- Location: `QaaS.Runner.Sessions/Session/Builders/SessionBuilderLogic.cs:88`
+- Location: `QaaS.Runner.Sessions/Session/Builders/SessionBuilderLogic.cs:179`
 
-_No XML summary provided._
+Updates the configured consumer stored on the current Runner session builder instance.
+
+Use this method when working with the documented Runner session builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
 #### `SessionBuilder.DeleteConsumer(string name) : SessionBuilder`
 
 - Kind: `function`
-- Location: `QaaS.Runner.Sessions/Session/Builders/SessionBuilderLogic.cs:94`
+- Location: `QaaS.Runner.Sessions/Session/Builders/SessionBuilderLogic.cs:192`
 
-_No XML summary provided._
+Removes the configured consumer from the current Runner session builder instance.
+
+Use this method when working with the documented Runner session builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
 #### `SessionBuilder.AddPublisher(PublisherBuilder publisherBuilder) : SessionBuilder`
 
 - Kind: `function`
-- Location: `QaaS.Runner.Sessions/Session/Builders/SessionBuilderLogic.cs:100`
+- Location: `QaaS.Runner.Sessions/Session/Builders/SessionBuilderLogic.cs:205`
 
-_No XML summary provided._
+Adds the supplied publisher to the current Runner session builder instance.
+
+Use this method when working with the documented Runner session builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
 #### `SessionBuilder.CreatePublisher(PublisherBuilder publisherBuilder) : SessionBuilder`
 
 - Kind: `function`
-- Location: `QaaS.Runner.Sessions/Session/Builders/SessionBuilderLogic.cs:106`
+- Location: `QaaS.Runner.Sessions/Session/Builders/SessionBuilderLogic.cs:218`
 
-_No XML summary provided._
+Creates or adds the configured publisher entry on the current Runner session builder instance.
+
+Use this method when working with the documented Runner session builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
 #### `SessionBuilder.ReadPublishers() : IReadOnlyList<PublisherBuilder>`
 
 - Kind: `function`
-- Location: `QaaS.Runner.Sessions/Session/Builders/SessionBuilderLogic.cs:111`
+- Location: `QaaS.Runner.Sessions/Session/Builders/SessionBuilderLogic.cs:230`
 
-_No XML summary provided._
+Returns the configured publishers currently stored on the Runner session builder instance.
+
+Use this method when working with the documented Runner session builder API surface in code. Use it to inspect the current configured state without rebuilding the surrounding collection or runtime object graph.
 
 #### `SessionBuilder.ReadPublisher(string name) : PublisherBuilder?`
 
 - Kind: `function`
-- Location: `QaaS.Runner.Sessions/Session/Builders/SessionBuilderLogic.cs:116`
+- Location: `QaaS.Runner.Sessions/Session/Builders/SessionBuilderLogic.cs:242`
 
-_No XML summary provided._
+Returns the configured publisher currently stored on the Runner session builder instance.
+
+Use this method when working with the documented Runner session builder API surface in code. Use it to inspect the current configured state without rebuilding the surrounding collection or runtime object graph.
 
 #### `SessionBuilder.UpdatePublisher(string name, PublisherBuilder publisherBuilder) : SessionBuilder`
 
 - Kind: `function`
-- Location: `QaaS.Runner.Sessions/Session/Builders/SessionBuilderLogic.cs:121`
+- Location: `QaaS.Runner.Sessions/Session/Builders/SessionBuilderLogic.cs:254`
 
-_No XML summary provided._
+Updates the configured publisher stored on the current Runner session builder instance.
+
+Use this method when working with the documented Runner session builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
 #### `SessionBuilder.UpdatePublisher(string name, Func<PublisherBuilder, PublisherBuilder> update) : SessionBuilder`
 
 - Kind: `function`
-- Location: `QaaS.Runner.Sessions/Session/Builders/SessionBuilderLogic.cs:127`
+- Location: `QaaS.Runner.Sessions/Session/Builders/SessionBuilderLogic.cs:267`
 
-_No XML summary provided._
+Updates the configured publisher stored on the current Runner session builder instance.
+
+Use this method when working with the documented Runner session builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
 #### `SessionBuilder.DeletePublisher(string name) : SessionBuilder`
 
 - Kind: `function`
-- Location: `QaaS.Runner.Sessions/Session/Builders/SessionBuilderLogic.cs:133`
+- Location: `QaaS.Runner.Sessions/Session/Builders/SessionBuilderLogic.cs:280`
 
-_No XML summary provided._
+Removes the configured publisher from the current Runner session builder instance.
+
+Use this method when working with the documented Runner session builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
 #### `SessionBuilder.AddTransaction(TransactionBuilder transactionBuilder) : SessionBuilder`
 
 - Kind: `function`
-- Location: `QaaS.Runner.Sessions/Session/Builders/SessionBuilderLogic.cs:139`
+- Location: `QaaS.Runner.Sessions/Session/Builders/SessionBuilderLogic.cs:293`
 
-_No XML summary provided._
+Adds the supplied transaction to the current Runner session builder instance.
+
+Use this method when working with the documented Runner session builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
 #### `SessionBuilder.CreateTransaction(TransactionBuilder transactionBuilder) : SessionBuilder`
 
 - Kind: `function`
-- Location: `QaaS.Runner.Sessions/Session/Builders/SessionBuilderLogic.cs:145`
+- Location: `QaaS.Runner.Sessions/Session/Builders/SessionBuilderLogic.cs:306`
 
-_No XML summary provided._
+Creates or adds the configured transaction entry on the current Runner session builder instance.
+
+Use this method when working with the documented Runner session builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
 #### `SessionBuilder.ReadTransactions() : IReadOnlyList<TransactionBuilder>`
 
 - Kind: `function`
-- Location: `QaaS.Runner.Sessions/Session/Builders/SessionBuilderLogic.cs:150`
+- Location: `QaaS.Runner.Sessions/Session/Builders/SessionBuilderLogic.cs:318`
 
-_No XML summary provided._
+Returns the configured transactions currently stored on the Runner session builder instance.
+
+Use this method when working with the documented Runner session builder API surface in code. Use it to inspect the current configured state without rebuilding the surrounding collection or runtime object graph.
 
 #### `SessionBuilder.ReadTransaction(string name) : TransactionBuilder?`
 
 - Kind: `function`
-- Location: `QaaS.Runner.Sessions/Session/Builders/SessionBuilderLogic.cs:155`
+- Location: `QaaS.Runner.Sessions/Session/Builders/SessionBuilderLogic.cs:330`
 
-_No XML summary provided._
+Returns the configured transaction currently stored on the Runner session builder instance.
+
+Use this method when working with the documented Runner session builder API surface in code. Use it to inspect the current configured state without rebuilding the surrounding collection or runtime object graph.
 
 #### `SessionBuilder.UpdateTransaction(string name, TransactionBuilder transactionBuilder) : SessionBuilder`
 
 - Kind: `function`
-- Location: `QaaS.Runner.Sessions/Session/Builders/SessionBuilderLogic.cs:160`
+- Location: `QaaS.Runner.Sessions/Session/Builders/SessionBuilderLogic.cs:342`
 
-_No XML summary provided._
+Updates the configured transaction stored on the current Runner session builder instance.
+
+Use this method when working with the documented Runner session builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
 #### `SessionBuilder.UpdateTransaction(string name, Func<TransactionBuilder, TransactionBuilder> update) : SessionBuilder`
 
 - Kind: `function`
-- Location: `QaaS.Runner.Sessions/Session/Builders/SessionBuilderLogic.cs:166`
+- Location: `QaaS.Runner.Sessions/Session/Builders/SessionBuilderLogic.cs:355`
 
-_No XML summary provided._
+Updates the configured transaction stored on the current Runner session builder instance.
+
+Use this method when working with the documented Runner session builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
 #### `SessionBuilder.DeleteTransaction(string name) : SessionBuilder`
 
 - Kind: `function`
-- Location: `QaaS.Runner.Sessions/Session/Builders/SessionBuilderLogic.cs:172`
+- Location: `QaaS.Runner.Sessions/Session/Builders/SessionBuilderLogic.cs:368`
 
-_No XML summary provided._
+Removes the configured transaction from the current Runner session builder instance.
+
+Use this method when working with the documented Runner session builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
 #### `SessionBuilder.AddProbe(ProbeBuilder probeBuilder) : SessionBuilder`
 
 - Kind: `function`
-- Location: `QaaS.Runner.Sessions/Session/Builders/SessionBuilderLogic.cs:178`
+- Location: `QaaS.Runner.Sessions/Session/Builders/SessionBuilderLogic.cs:381`
 
-_No XML summary provided._
+Adds the supplied probe to the current Runner session builder instance.
+
+Use this method when working with the documented Runner session builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
 #### `SessionBuilder.CreateProbe(ProbeBuilder probeBuilder) : SessionBuilder`
 
 - Kind: `function`
-- Location: `QaaS.Runner.Sessions/Session/Builders/SessionBuilderLogic.cs:184`
+- Location: `QaaS.Runner.Sessions/Session/Builders/SessionBuilderLogic.cs:394`
 
-_No XML summary provided._
+Creates or adds the configured probe entry on the current Runner session builder instance.
+
+Use this method when working with the documented Runner session builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
 #### `SessionBuilder.ReadProbes() : IReadOnlyList<ProbeBuilder>`
 
 - Kind: `function`
-- Location: `QaaS.Runner.Sessions/Session/Builders/SessionBuilderLogic.cs:189`
+- Location: `QaaS.Runner.Sessions/Session/Builders/SessionBuilderLogic.cs:406`
 
-_No XML summary provided._
+Returns the configured probes currently stored on the Runner session builder instance.
+
+Use this method when working with the documented Runner session builder API surface in code. Use it to inspect the current configured state without rebuilding the surrounding collection or runtime object graph.
 
 #### `SessionBuilder.ReadProbe(string name) : ProbeBuilder?`
 
 - Kind: `function`
-- Location: `QaaS.Runner.Sessions/Session/Builders/SessionBuilderLogic.cs:194`
+- Location: `QaaS.Runner.Sessions/Session/Builders/SessionBuilderLogic.cs:418`
 
-_No XML summary provided._
+Returns the configured probe currently stored on the Runner session builder instance.
+
+Use this method when working with the documented Runner session builder API surface in code. Use it to inspect the current configured state without rebuilding the surrounding collection or runtime object graph.
 
 #### `SessionBuilder.UpdateProbe(string name, ProbeBuilder probeBuilder) : SessionBuilder`
 
 - Kind: `function`
-- Location: `QaaS.Runner.Sessions/Session/Builders/SessionBuilderLogic.cs:199`
+- Location: `QaaS.Runner.Sessions/Session/Builders/SessionBuilderLogic.cs:430`
 
-_No XML summary provided._
+Updates the configured probe stored on the current Runner session builder instance.
+
+Use this method when working with the documented Runner session builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
 #### `SessionBuilder.UpdateProbe(string name, Func<ProbeBuilder, ProbeBuilder> update) : SessionBuilder`
 
 - Kind: `function`
-- Location: `QaaS.Runner.Sessions/Session/Builders/SessionBuilderLogic.cs:205`
+- Location: `QaaS.Runner.Sessions/Session/Builders/SessionBuilderLogic.cs:443`
 
-_No XML summary provided._
+Updates the configured probe stored on the current Runner session builder instance.
+
+Use this method when working with the documented Runner session builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
 #### `SessionBuilder.DeleteProbe(string name) : SessionBuilder`
 
 - Kind: `function`
-- Location: `QaaS.Runner.Sessions/Session/Builders/SessionBuilderLogic.cs:211`
+- Location: `QaaS.Runner.Sessions/Session/Builders/SessionBuilderLogic.cs:456`
 
-_No XML summary provided._
+Removes the configured probe from the current Runner session builder instance.
+
+Use this method when working with the documented Runner session builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
 #### `SessionBuilder.AddCollector(CollectorBuilder collectorBuilder) : SessionBuilder`
 
 - Kind: `function`
-- Location: `QaaS.Runner.Sessions/Session/Builders/SessionBuilderLogic.cs:217`
+- Location: `QaaS.Runner.Sessions/Session/Builders/SessionBuilderLogic.cs:469`
 
-_No XML summary provided._
+Adds the supplied collector to the current Runner session builder instance.
+
+Use this method when working with the documented Runner session builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
 #### `SessionBuilder.CreateCollector(CollectorBuilder collectorBuilder) : SessionBuilder`
 
 - Kind: `function`
-- Location: `QaaS.Runner.Sessions/Session/Builders/SessionBuilderLogic.cs:223`
+- Location: `QaaS.Runner.Sessions/Session/Builders/SessionBuilderLogic.cs:482`
 
-_No XML summary provided._
+Creates or adds the configured collector entry on the current Runner session builder instance.
+
+Use this method when working with the documented Runner session builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
 #### `SessionBuilder.ReadCollectors() : IReadOnlyList<CollectorBuilder>`
 
 - Kind: `function`
-- Location: `QaaS.Runner.Sessions/Session/Builders/SessionBuilderLogic.cs:228`
+- Location: `QaaS.Runner.Sessions/Session/Builders/SessionBuilderLogic.cs:494`
 
-_No XML summary provided._
+Returns the configured collectors currently stored on the Runner session builder instance.
+
+Use this method when working with the documented Runner session builder API surface in code. Use it to inspect the current configured state without rebuilding the surrounding collection or runtime object graph.
 
 #### `SessionBuilder.ReadCollector(string name) : CollectorBuilder?`
 
 - Kind: `function`
-- Location: `QaaS.Runner.Sessions/Session/Builders/SessionBuilderLogic.cs:233`
+- Location: `QaaS.Runner.Sessions/Session/Builders/SessionBuilderLogic.cs:506`
 
-_No XML summary provided._
+Returns the configured collector currently stored on the Runner session builder instance.
+
+Use this method when working with the documented Runner session builder API surface in code. Use it to inspect the current configured state without rebuilding the surrounding collection or runtime object graph.
 
 #### `SessionBuilder.UpdateCollector(string name, CollectorBuilder collectorBuilder) : SessionBuilder`
 
 - Kind: `function`
-- Location: `QaaS.Runner.Sessions/Session/Builders/SessionBuilderLogic.cs:238`
+- Location: `QaaS.Runner.Sessions/Session/Builders/SessionBuilderLogic.cs:518`
 
-_No XML summary provided._
+Updates the configured collector stored on the current Runner session builder instance.
+
+Use this method when working with the documented Runner session builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
 #### `SessionBuilder.UpdateCollector(string name, Func<CollectorBuilder, CollectorBuilder> update) : SessionBuilder`
 
 - Kind: `function`
-- Location: `QaaS.Runner.Sessions/Session/Builders/SessionBuilderLogic.cs:244`
+- Location: `QaaS.Runner.Sessions/Session/Builders/SessionBuilderLogic.cs:531`
 
-_No XML summary provided._
+Updates the configured collector stored on the current Runner session builder instance.
+
+Use this method when working with the documented Runner session builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
 #### `SessionBuilder.DeleteCollector(string name) : SessionBuilder`
 
 - Kind: `function`
-- Location: `QaaS.Runner.Sessions/Session/Builders/SessionBuilderLogic.cs:250`
+- Location: `QaaS.Runner.Sessions/Session/Builders/SessionBuilderLogic.cs:544`
 
-_No XML summary provided._
+Removes the configured collector from the current Runner session builder instance.
+
+Use this method when working with the documented Runner session builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
 #### `SessionBuilder.AddMockerCommand(MockerCommandBuilder mockerCommandBuilder) : SessionBuilder`
 
 - Kind: `function`
-- Location: `QaaS.Runner.Sessions/Session/Builders/SessionBuilderLogic.cs:256`
+- Location: `QaaS.Runner.Sessions/Session/Builders/SessionBuilderLogic.cs:557`
 
-_No XML summary provided._
+Adds the supplied mocker command to the current Runner session builder instance.
+
+Use this method when working with the documented Runner session builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
 #### `SessionBuilder.CreateMockerCommand(MockerCommandBuilder mockerCommandBuilder) : SessionBuilder`
 
 - Kind: `function`
-- Location: `QaaS.Runner.Sessions/Session/Builders/SessionBuilderLogic.cs:264`
+- Location: `QaaS.Runner.Sessions/Session/Builders/SessionBuilderLogic.cs:572`
 
-_No XML summary provided._
+Creates or adds the configured mocker command entry on the current Runner session builder instance.
+
+Use this method when working with the documented Runner session builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
 #### `SessionBuilder.ReadMockerCommands() : IReadOnlyList<MockerCommandBuilder>`
 
 - Kind: `function`
-- Location: `QaaS.Runner.Sessions/Session/Builders/SessionBuilderLogic.cs:269`
+- Location: `QaaS.Runner.Sessions/Session/Builders/SessionBuilderLogic.cs:584`
 
-_No XML summary provided._
+Returns the configured mocker commands currently stored on the Runner session builder instance.
+
+Use this method when working with the documented Runner session builder API surface in code. Use it to inspect the current configured state without rebuilding the surrounding collection or runtime object graph.
 
 #### `SessionBuilder.ReadMockerCommand(string name) : MockerCommandBuilder?`
 
 - Kind: `function`
-- Location: `QaaS.Runner.Sessions/Session/Builders/SessionBuilderLogic.cs:274`
+- Location: `QaaS.Runner.Sessions/Session/Builders/SessionBuilderLogic.cs:596`
 
-_No XML summary provided._
+Returns the configured mocker command currently stored on the Runner session builder instance.
+
+Use this method when working with the documented Runner session builder API surface in code. Use it to inspect the current configured state without rebuilding the surrounding collection or runtime object graph.
 
 #### `SessionBuilder.UpdateMockerCommand(string name, MockerCommandBuilder mockerCommandBuilder) : SessionBuilder`
 
 - Kind: `function`
-- Location: `QaaS.Runner.Sessions/Session/Builders/SessionBuilderLogic.cs:279`
+- Location: `QaaS.Runner.Sessions/Session/Builders/SessionBuilderLogic.cs:608`
 
-_No XML summary provided._
+Updates the configured mocker command stored on the current Runner session builder instance.
+
+Use this method when working with the documented Runner session builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
 #### `SessionBuilder.UpdateMockerCommand(string name, Func<MockerCommandBuilder, MockerCommandBuilder> update) : SessionBuilder`
 
 - Kind: `function`
-- Location: `QaaS.Runner.Sessions/Session/Builders/SessionBuilderLogic.cs:285`
+- Location: `QaaS.Runner.Sessions/Session/Builders/SessionBuilderLogic.cs:621`
 
-_No XML summary provided._
+Updates the configured mocker command stored on the current Runner session builder instance.
+
+Use this method when working with the documented Runner session builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
 #### `SessionBuilder.DeleteMockerCommand(string name) : SessionBuilder`
 
 - Kind: `function`
-- Location: `QaaS.Runner.Sessions/Session/Builders/SessionBuilderLogic.cs:291`
+- Location: `QaaS.Runner.Sessions/Session/Builders/SessionBuilderLogic.cs:634`
 
-_No XML summary provided._
+Removes the configured mocker command from the current Runner session builder instance.
+
+Use this method when working with the documented Runner session builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
 #### `SessionBuilder.AddStage(StageConfig stage) : SessionBuilder`
 
 - Kind: `function`
-- Location: `QaaS.Runner.Sessions/Session/Builders/SessionBuilderLogic.cs:297`
+- Location: `QaaS.Runner.Sessions/Session/Builders/SessionBuilderLogic.cs:647`
 
-_No XML summary provided._
+Adds the supplied stage to the current Runner session builder instance.
+
+Use this method when working with the documented Runner session builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
 #### `SessionBuilder.CreateStage(StageConfig stage) : SessionBuilder`
 
 - Kind: `function`
-- Location: `QaaS.Runner.Sessions/Session/Builders/SessionBuilderLogic.cs:303`
+- Location: `QaaS.Runner.Sessions/Session/Builders/SessionBuilderLogic.cs:660`
 
-_No XML summary provided._
+Creates or adds the configured stage entry on the current Runner session builder instance.
+
+Use this method when working with the documented Runner session builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
 #### `SessionBuilder.ReadStages() : IReadOnlyList<StageConfig>`
 
 - Kind: `function`
-- Location: `QaaS.Runner.Sessions/Session/Builders/SessionBuilderLogic.cs:308`
+- Location: `QaaS.Runner.Sessions/Session/Builders/SessionBuilderLogic.cs:672`
 
-_No XML summary provided._
+Returns the configured stages currently stored on the Runner session builder instance.
+
+Use this method when working with the documented Runner session builder API surface in code. Use it to inspect the current configured state without rebuilding the surrounding collection or runtime object graph.
 
 #### `SessionBuilder.ReadStage(int stageNumber) : StageConfig?`
 
 - Kind: `function`
-- Location: `QaaS.Runner.Sessions/Session/Builders/SessionBuilderLogic.cs:313`
+- Location: `QaaS.Runner.Sessions/Session/Builders/SessionBuilderLogic.cs:684`
 
-_No XML summary provided._
+Returns the configured stage currently stored on the Runner session builder instance.
+
+Use this method when working with the documented Runner session builder API surface in code. Use it to inspect the current configured state without rebuilding the surrounding collection or runtime object graph.
 
 #### `SessionBuilder.UpdateStage(int stageNumber, StageConfig stage) : SessionBuilder`
 
 - Kind: `function`
-- Location: `QaaS.Runner.Sessions/Session/Builders/SessionBuilderLogic.cs:318`
+- Location: `QaaS.Runner.Sessions/Session/Builders/SessionBuilderLogic.cs:696`
 
-_No XML summary provided._
+Updates the configured stage stored on the current Runner session builder instance.
+
+Use this method when working with the documented Runner session builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
 #### `SessionBuilder.DeleteStage(int stageNumber) : SessionBuilder`
 
 - Kind: `function`
-- Location: `QaaS.Runner.Sessions/Session/Builders/SessionBuilderLogic.cs:330`
+- Location: `QaaS.Runner.Sessions/Session/Builders/SessionBuilderLogic.cs:715`
 
-_No XML summary provided._
+Removes the configured stage from the current Runner session builder instance.
+
+Use this method when working with the documented Runner session builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
 ### Storages
 
 #### `StorageBuilder.WithJsonStorageFormat(Formatting format) : StorageBuilder`
 
 - Kind: `function`
-- Location: `QaaS.Runner.Storage/StorageBuilder.cs:41`
+- Location: `QaaS.Runner.Storage/StorageBuilder.cs:45`
 
 Sets the JSON formatting used by runtime storages.
+
+Use this method when working with the documented Runner storage builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
 #### `StorageBuilder.Create(IStorageConfig storageConfig) : StorageBuilder`
 
 - Kind: `function`
-- Location: `QaaS.Runner.Storage/StorageBuilder.cs:50`
+- Location: `QaaS.Runner.Storage/StorageBuilder.cs:58`
 
-Compatibility alias for CreateConfiguration .
+Sets the configuration currently stored on the Runner storage builder instance.
+
+Use this method when working with the documented Runner storage builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
 #### `StorageBuilder.CreateConfiguration(IStorageConfig storageConfig) : StorageBuilder`
 
 - Kind: `function`
-- Location: `QaaS.Runner.Storage/StorageBuilder.cs:58`
+- Location: `QaaS.Runner.Storage/StorageBuilder.cs:70`
 
-Sets the configured storage implementation source.
+Sets the configuration currently stored on the Runner storage builder instance.
+
+Use this method when working with the documented Runner storage builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
 #### `StorageBuilder.ReadConfiguration() : IStorageConfig?`
 
 - Kind: `function`
-- Location: `QaaS.Runner.Storage/StorageBuilder.cs:66`
+- Location: `QaaS.Runner.Storage/StorageBuilder.cs:82`
 
-Returns the currently configured storage source, if any.
+Returns the configuration currently stored on the Runner storage builder instance.
+
+Use this method when working with the documented Runner storage builder API surface in code. Use it to inspect the current configured state without rebuilding the surrounding collection or runtime object graph.
 
 #### `StorageBuilder.UpdateConfiguration(Func<IStorageConfig, IStorageConfig> update) : StorageBuilder`
 
 - Kind: `function`
-- Location: `QaaS.Runner.Storage/StorageBuilder.cs:74`
+- Location: `QaaS.Runner.Storage/StorageBuilder.cs:94`
 
-Applies a computed partial update to the current storage configuration while preserving omitted fields.
+Updates the configuration currently stored on the Runner storage builder instance.
+
+Use this method when working with the documented Runner storage builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
 #### `StorageBuilder.UpdateConfiguration(IStorageConfig storageConfig) : StorageBuilder`
 
 - Kind: `function`
-- Location: `QaaS.Runner.Storage/StorageBuilder.cs:84`
+- Location: `QaaS.Runner.Storage/StorageBuilder.cs:108`
 
-Updates the storage configuration by merging same-type values and replacing the current type when needed.
+Updates the configuration currently stored on the Runner storage builder instance.
+
+Use this method when working with the documented Runner storage builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
 #### `StorageBuilder.UpdateConfiguration(object configuration) : StorageBuilder`
 
 - Kind: `function`
-- Location: `QaaS.Runner.Storage/StorageBuilder.cs:94`
+- Location: `QaaS.Runner.Storage/StorageBuilder.cs:122`
 
-Updates the storage configuration from an object-shaped patch while preserving omitted fields.
+Updates the configuration currently stored on the Runner storage builder instance.
+
+Use this method when working with the documented Runner storage builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
 #### `StorageBuilder.DeleteConfiguration() : StorageBuilder`
 
 - Kind: `function`
-- Location: `QaaS.Runner.Storage/StorageBuilder.cs:104`
+- Location: `QaaS.Runner.Storage/StorageBuilder.cs:136`
 
-Clears the configured storage source.
+Clears the configuration currently stored on the Runner storage builder instance.
+
+Use this method when working with the documented Runner storage builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
 #### `StorageBuilder.Configure(IStorageConfig storageConfig) : StorageBuilder`
 
 - Kind: `function`
-- Location: `QaaS.Runner.Storage/StorageBuilder.cs:112`
+- Location: `QaaS.Runner.Storage/StorageBuilder.cs:148`
 
-Replaces the current storage source with the provided configuration type.
+Sets the configuration currently stored on the Runner storage builder instance.
+
+Use this method when working with the documented Runner storage builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
 ### Transactions
 
 #### `TransactionBuilder.Named(string name) : TransactionBuilder`
 
 - Kind: `function`
-- Location: `QaaS.Runner.Sessions/Actions/Transactions/Builders/TransactionBuilder.cs:80`
+- Location: `QaaS.Runner.Sessions/Actions/Transactions/Builders/TransactionBuilder.cs:87`
 
-_No XML summary provided._
+Sets the name used for the current Runner transaction builder instance.
+
+Use this method when working with the documented Runner transaction builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
 #### `TransactionBuilder.AtStage(int stage) : TransactionBuilder`
 
 - Kind: `function`
-- Location: `QaaS.Runner.Sessions/Actions/Transactions/Builders/TransactionBuilder.cs:86`
+- Location: `QaaS.Runner.Sessions/Actions/Transactions/Builders/TransactionBuilder.cs:100`
 
-_No XML summary provided._
+Sets the stage used by the current Runner transaction builder instance.
+
+Use this method when working with the documented Runner transaction builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
 #### `TransactionBuilder.WithTimeout(int timeoutMs) : TransactionBuilder`
 
 - Kind: `function`
-- Location: `QaaS.Runner.Sessions/Actions/Transactions/Builders/TransactionBuilder.cs:92`
+- Location: `QaaS.Runner.Sessions/Actions/Transactions/Builders/TransactionBuilder.cs:113`
 
-_No XML summary provided._
+Configures timeout on the current Runner transaction builder instance.
+
+Use this method when working with the documented Runner transaction builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
 #### `TransactionBuilder.FilterInputData(DataFilter dataFilter) : TransactionBuilder`
 
 - Kind: `function`
-- Location: `QaaS.Runner.Sessions/Actions/Transactions/Builders/TransactionBuilder.cs:98`
+- Location: `QaaS.Runner.Sessions/Actions/Transactions/Builders/TransactionBuilder.cs:126`
 
-_No XML summary provided._
+Sets the input data filter used by the transaction.
+
+Use this method when working with the documented Runner transaction builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
 #### `TransactionBuilder.FilterOutputData(DataFilter dataFilter) : TransactionBuilder`
 
 - Kind: `function`
-- Location: `QaaS.Runner.Sessions/Actions/Transactions/Builders/TransactionBuilder.cs:104`
+- Location: `QaaS.Runner.Sessions/Actions/Transactions/Builders/TransactionBuilder.cs:139`
 
-_No XML summary provided._
+Sets the output data filter used by the transaction.
+
+Use this method when working with the documented Runner transaction builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
 #### `TransactionBuilder.WithDeserializer(DeserializeConfig deserializeConfig) : TransactionBuilder`
 
 - Kind: `function`
-- Location: `QaaS.Runner.Sessions/Actions/Transactions/Builders/TransactionBuilder.cs:110`
+- Location: `QaaS.Runner.Sessions/Actions/Transactions/Builders/TransactionBuilder.cs:152`
 
-_No XML summary provided._
+Sets the deserializer configuration used by the current Runner transaction builder instance.
+
+Use this method when working with the documented Runner transaction builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
 #### `TransactionBuilder.WithSerializer(SerializeConfig serializeConfig) : TransactionBuilder`
 
 - Kind: `function`
-- Location: `QaaS.Runner.Sessions/Actions/Transactions/Builders/TransactionBuilder.cs:116`
+- Location: `QaaS.Runner.Sessions/Actions/Transactions/Builders/TransactionBuilder.cs:165`
 
-_No XML summary provided._
+Sets the serializer configuration used by the current Runner transaction builder instance.
+
+Use this method when working with the documented Runner transaction builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
 #### `TransactionBuilder.WithIterations(int iterations) : TransactionBuilder`
 
 - Kind: `function`
-- Location: `QaaS.Runner.Sessions/Actions/Transactions/Builders/TransactionBuilder.cs:122`
+- Location: `QaaS.Runner.Sessions/Actions/Transactions/Builders/TransactionBuilder.cs:178`
 
-_No XML summary provided._
+Sets how many iterations the transaction should execute.
+
+Use this method when working with the documented Runner transaction builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
 #### `TransactionBuilder.AddDataSource(string dataSourceName) : TransactionBuilder`
 
 - Kind: `function`
-- Location: `QaaS.Runner.Sessions/Actions/Transactions/Builders/TransactionBuilder.cs:128`
+- Location: `QaaS.Runner.Sessions/Actions/Transactions/Builders/TransactionBuilder.cs:191`
 
-_No XML summary provided._
+Adds the supplied data source to the current Runner transaction builder instance.
+
+Use this method when working with the documented Runner transaction builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
 #### `TransactionBuilder.CreateDataSource(string dataSourceName) : TransactionBuilder`
 
 - Kind: `function`
-- Location: `QaaS.Runner.Sessions/Actions/Transactions/Builders/TransactionBuilder.cs:136`
+- Location: `QaaS.Runner.Sessions/Actions/Transactions/Builders/TransactionBuilder.cs:206`
 
-_No XML summary provided._
+Creates or adds the configured data source entry on the current Runner transaction builder instance.
+
+Use this method when working with the documented Runner transaction builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
 #### `TransactionBuilder.AddDataSourcePattern(string dataSourcePattern) : TransactionBuilder`
 
 - Kind: `function`
-- Location: `QaaS.Runner.Sessions/Actions/Transactions/Builders/TransactionBuilder.cs:141`
+- Location: `QaaS.Runner.Sessions/Actions/Transactions/Builders/TransactionBuilder.cs:218`
 
-_No XML summary provided._
+Adds the supplied data source pattern to the current Runner transaction builder instance.
+
+Use this method when working with the documented Runner transaction builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
 #### `TransactionBuilder.CreateDataSourcePattern(string dataSourcePattern) : TransactionBuilder`
 
 - Kind: `function`
-- Location: `QaaS.Runner.Sessions/Actions/Transactions/Builders/TransactionBuilder.cs:149`
+- Location: `QaaS.Runner.Sessions/Actions/Transactions/Builders/TransactionBuilder.cs:233`
 
-_No XML summary provided._
+Creates or adds the configured data source pattern entry on the current Runner transaction builder instance.
+
+Use this method when working with the documented Runner transaction builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
 #### `TransactionBuilder.InLoops() : TransactionBuilder`
 
 - Kind: `function`
-- Location: `QaaS.Runner.Sessions/Actions/Transactions/Builders/TransactionBuilder.cs:154`
+- Location: `QaaS.Runner.Sessions/Actions/Transactions/Builders/TransactionBuilder.cs:245`
 
-_No XML summary provided._
+Marks the transaction to execute continuously in loop mode.
+
+Use this method when working with the documented Runner transaction builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
 #### `TransactionBuilder.WithSleep(ulong sleepTimeMs) : TransactionBuilder`
 
 - Kind: `function`
-- Location: `QaaS.Runner.Sessions/Actions/Transactions/Builders/TransactionBuilder.cs:160`
+- Location: `QaaS.Runner.Sessions/Actions/Transactions/Builders/TransactionBuilder.cs:258`
 
-_No XML summary provided._
+Sets the delay applied between transaction iterations.
+
+Use this method when working with the documented Runner transaction builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
 #### `TransactionBuilder.AddPolicy(PolicyBuilder policy) : TransactionBuilder`
 
 - Kind: `function`
-- Location: `QaaS.Runner.Sessions/Actions/Transactions/Builders/TransactionBuilder.cs:166`
+- Location: `QaaS.Runner.Sessions/Actions/Transactions/Builders/TransactionBuilder.cs:271`
 
-_No XML summary provided._
+Adds the supplied policy to the current Runner transaction builder instance.
+
+Use this method when working with the documented Runner transaction builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
 #### `TransactionBuilder.CreatePolicy(PolicyBuilder policy) : TransactionBuilder`
 
 - Kind: `function`
-- Location: `QaaS.Runner.Sessions/Actions/Transactions/Builders/TransactionBuilder.cs:174`
+- Location: `QaaS.Runner.Sessions/Actions/Transactions/Builders/TransactionBuilder.cs:286`
 
-_No XML summary provided._
+Creates or adds the configured policy entry on the current Runner transaction builder instance.
+
+Use this method when working with the documented Runner transaction builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
 #### `TransactionBuilder.ReadPolicies() : IReadOnlyList<PolicyBuilder>`
 
 - Kind: `function`
-- Location: `QaaS.Runner.Sessions/Actions/Transactions/Builders/TransactionBuilder.cs:179`
+- Location: `QaaS.Runner.Sessions/Actions/Transactions/Builders/TransactionBuilder.cs:298`
 
-_No XML summary provided._
+Returns the configured policies currently stored on the Runner transaction builder instance.
+
+Use this method when working with the documented Runner transaction builder API surface in code. Use it to inspect the current configured state without rebuilding the surrounding collection or runtime object graph.
 
 #### `TransactionBuilder.UpdatePolicyAt(int index, PolicyBuilder policy) : TransactionBuilder`
 
 - Kind: `function`
-- Location: `QaaS.Runner.Sessions/Actions/Transactions/Builders/TransactionBuilder.cs:184`
+- Location: `QaaS.Runner.Sessions/Actions/Transactions/Builders/TransactionBuilder.cs:310`
 
-_No XML summary provided._
+Updates the configured policy at stored on the current Runner transaction builder instance.
+
+Use this method when working with the documented Runner transaction builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
 #### `TransactionBuilder.DeletePolicyAt(int index) : TransactionBuilder`
 
 - Kind: `function`
-- Location: `QaaS.Runner.Sessions/Actions/Transactions/Builders/TransactionBuilder.cs:195`
+- Location: `QaaS.Runner.Sessions/Actions/Transactions/Builders/TransactionBuilder.cs:328`
 
-_No XML summary provided._
+Removes the configured policy at from the current Runner transaction builder instance.
+
+Use this method when working with the documented Runner transaction builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
 #### `TransactionBuilder.ReadDataSources() : IReadOnlyList<string>`
 
 - Kind: `function`
-- Location: `QaaS.Runner.Sessions/Actions/Transactions/Builders/TransactionBuilder.cs:206`
+- Location: `QaaS.Runner.Sessions/Actions/Transactions/Builders/TransactionBuilder.cs:346`
 
-_No XML summary provided._
+Returns the configured data sources currently stored on the Runner transaction builder instance.
+
+Use this method when working with the documented Runner transaction builder API surface in code. Use it to inspect the current configured state without rebuilding the surrounding collection or runtime object graph.
 
 #### `TransactionBuilder.UpdateDataSource(string existingValue, string newValue) : TransactionBuilder`
 
 - Kind: `function`
-- Location: `QaaS.Runner.Sessions/Actions/Transactions/Builders/TransactionBuilder.cs:211`
+- Location: `QaaS.Runner.Sessions/Actions/Transactions/Builders/TransactionBuilder.cs:358`
 
-_No XML summary provided._
+Updates the configured data source stored on the current Runner transaction builder instance.
+
+Use this method when working with the documented Runner transaction builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
 #### `TransactionBuilder.DeleteDataSource(string dataSourceName) : TransactionBuilder`
 
 - Kind: `function`
-- Location: `QaaS.Runner.Sessions/Actions/Transactions/Builders/TransactionBuilder.cs:227`
+- Location: `QaaS.Runner.Sessions/Actions/Transactions/Builders/TransactionBuilder.cs:381`
 
-_No XML summary provided._
+Removes the configured data source from the current Runner transaction builder instance.
+
+Use this method when working with the documented Runner transaction builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
 #### `TransactionBuilder.ReadDataSourcePatterns() : IReadOnlyList<string>`
 
 - Kind: `function`
-- Location: `QaaS.Runner.Sessions/Actions/Transactions/Builders/TransactionBuilder.cs:233`
+- Location: `QaaS.Runner.Sessions/Actions/Transactions/Builders/TransactionBuilder.cs:394`
 
-_No XML summary provided._
+Returns the configured data source patterns currently stored on the Runner transaction builder instance.
+
+Use this method when working with the documented Runner transaction builder API surface in code. Use it to inspect the current configured state without rebuilding the surrounding collection or runtime object graph.
 
 #### `TransactionBuilder.UpdateDataSourcePattern(string existingValue, string newValue) : TransactionBuilder`
 
 - Kind: `function`
-- Location: `QaaS.Runner.Sessions/Actions/Transactions/Builders/TransactionBuilder.cs:238`
+- Location: `QaaS.Runner.Sessions/Actions/Transactions/Builders/TransactionBuilder.cs:406`
 
-_No XML summary provided._
+Updates the configured data source pattern stored on the current Runner transaction builder instance.
+
+Use this method when working with the documented Runner transaction builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
 #### `TransactionBuilder.DeleteDataSourcePattern(string dataSourcePattern) : TransactionBuilder`
 
 - Kind: `function`
-- Location: `QaaS.Runner.Sessions/Actions/Transactions/Builders/TransactionBuilder.cs:254`
+- Location: `QaaS.Runner.Sessions/Actions/Transactions/Builders/TransactionBuilder.cs:429`
 
-_No XML summary provided._
+Removes the configured data source pattern from the current Runner transaction builder instance.
+
+Use this method when working with the documented Runner transaction builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
 #### `TransactionBuilder.CreateConfiguration(ITransactorConfig config) : TransactionBuilder`
 
 - Kind: `function`
-- Location: `QaaS.Runner.Sessions/Actions/Transactions/Builders/TransactionBuilder.cs:263`
+- Location: `QaaS.Runner.Sessions/Actions/Transactions/Builders/TransactionBuilder.cs:442`
 
-Compatibility alias for Configure that matches the configuration CRUD pattern used by other builders.
+Sets the configuration currently stored on the Runner transaction builder instance.
+
+Use this method when working with the documented Runner transaction builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
 #### `TransactionBuilder.Create(ITransactorConfig config) : TransactionBuilder`
 
 - Kind: `function`
-- Location: `QaaS.Runner.Sessions/Actions/Transactions/Builders/TransactionBuilder.cs:271`
+- Location: `QaaS.Runner.Sessions/Actions/Transactions/Builders/TransactionBuilder.cs:454`
 
-Compatibility alias for CreateConfiguration .
+Sets the configuration currently stored on the Runner transaction builder instance.
+
+Use this method when working with the documented Runner transaction builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
 #### `TransactionBuilder.ReadConfiguration() : ITransactorConfig?`
 
 - Kind: `function`
-- Location: `QaaS.Runner.Sessions/Actions/Transactions/Builders/TransactionBuilder.cs:279`
+- Location: `QaaS.Runner.Sessions/Actions/Transactions/Builders/TransactionBuilder.cs:466`
 
-Returns the currently configured transactor source, if any.
+Returns the configuration currently stored on the Runner transaction builder instance.
+
+Use this method when working with the documented Runner transaction builder API surface in code. Use it to inspect the current configured state without rebuilding the surrounding collection or runtime object graph.
 
 #### `TransactionBuilder.UpdateConfiguration(Func<ITransactorConfig, ITransactorConfig> update) : TransactionBuilder`
 
 - Kind: `function`
-- Location: `QaaS.Runner.Sessions/Actions/Transactions/Builders/TransactionBuilder.cs:287`
+- Location: `QaaS.Runner.Sessions/Actions/Transactions/Builders/TransactionBuilder.cs:478`
 
-Applies a computed partial update to the current transaction configuration while preserving omitted fields.
+Updates the configuration currently stored on the Runner transaction builder instance.
+
+Use this method when working with the documented Runner transaction builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
 #### `TransactionBuilder.UpdateConfiguration(ITransactorConfig config) : TransactionBuilder`
 
 - Kind: `function`
-- Location: `QaaS.Runner.Sessions/Actions/Transactions/Builders/TransactionBuilder.cs:297`
+- Location: `QaaS.Runner.Sessions/Actions/Transactions/Builders/TransactionBuilder.cs:492`
 
-Updates the transaction configuration by merging same-type values and replacing the current type when needed.
+Updates the configuration currently stored on the Runner transaction builder instance.
+
+Use this method when working with the documented Runner transaction builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
 #### `TransactionBuilder.UpdateConfiguration(object configuration) : TransactionBuilder`
 
 - Kind: `function`
-- Location: `QaaS.Runner.Sessions/Actions/Transactions/Builders/TransactionBuilder.cs:307`
+- Location: `QaaS.Runner.Sessions/Actions/Transactions/Builders/TransactionBuilder.cs:506`
 
-Updates the transaction configuration from an object-shaped patch while preserving omitted fields.
+Updates the configuration currently stored on the Runner transaction builder instance.
+
+Use this method when working with the documented Runner transaction builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
 #### `TransactionBuilder.DeleteConfiguration() : TransactionBuilder`
 
 - Kind: `function`
-- Location: `QaaS.Runner.Sessions/Actions/Transactions/Builders/TransactionBuilder.cs:317`
+- Location: `QaaS.Runner.Sessions/Actions/Transactions/Builders/TransactionBuilder.cs:520`
 
-Clears the configured transactor source.
+Clears the configuration currently stored on the Runner transaction builder instance.
+
+Use this method when working with the documented Runner transaction builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
 #### `TransactionBuilder.Configure(ITransactorConfig config) : TransactionBuilder`
 
 - Kind: `function`
-- Location: `QaaS.Runner.Sessions/Actions/Transactions/Builders/TransactionBuilder.cs:332`
+- Location: `QaaS.Runner.Sessions/Actions/Transactions/Builders/TransactionBuilder.cs:539`
 
-Replaces the current transactor source with the provided configuration type.
+Sets the configuration currently stored on the Runner transaction builder instance.
+
+Use this method when working with the documented Runner transaction builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
 ## Getting Started
 
@@ -1988,16 +2546,20 @@ Replaces the current transactor source with the provided configuration type.
 #### `Bootstrap.New(IEnumerable<string>? args = null) : Runner`
 
 - Kind: `function`
-- Location: `QaaS.Runner/Bootstrap.cs:28`
+- Location: `QaaS.Runner/Bootstrap.cs:30`
 
-Creates a new Runner instance using default Runner type
+Creates a new Runner bootstrap instance from the supplied bootstrap inputs.
+
+This is the primary code-first entry point for bootstrapping the product from command-line style arguments so library startup and CLI startup stay aligned.
 
 #### `Bootstrap.New<TRunner>(IEnumerable<string>? args = null) : Runner`
 
 - Kind: `function`
-- Location: `QaaS.Runner/Bootstrap.cs:38`
+- Location: `QaaS.Runner/Bootstrap.cs:42`
 
-Creates new Runner instance filled with QaaS objects based on parsed command-line arguments
+Creates a new Runner bootstrap instance from the supplied bootstrap inputs.
+
+This is the primary code-first entry point for bootstrapping the product from command-line style arguments so library startup and CLI startup stay aligned.
 
 ## Runtime
 
@@ -2006,20 +2568,26 @@ Creates new Runner instance filled with QaaS objects based on parsed command-lin
 #### `Runner.Run() : void`
 
 - Kind: `function`
-- Location: `QaaS.Runner/Runner.cs:66`
+- Location: `QaaS.Runner/Runner.cs:70`
 
-Runs the configured lifecycle and applies the resulting exit code to the current process policy.
+Runs the configured lifecycle and applies the resulting exit code policy.
+
+Call this when the current process should honor Runner exit behavior. If the caller needs to inspect the exit code without terminating the process, prefer RunAndGetExitCode().
 
 #### `Runner.RunAndGetExitCode() : int`
 
 - Kind: `function`
-- Location: `QaaS.Runner/Runner.cs:76`
+- Location: `QaaS.Runner/Runner.cs:83`
 
-Runs the configured lifecycle and returns the resulting exit code without terminating the current process.
+Runs the configured lifecycle and returns the resulting exit code to the caller.
+
+Call this when the caller wants to control how the resulting exit code is handled instead of letting Runner apply its default process policy.
 
 #### `Runner.Dispose() : void`
 
 - Kind: `function`
-- Location: `QaaS.Runner/Runner.cs:223`
+- Location: `QaaS.Runner/Runner.cs:234`
 
-Disposes the runner scope exactly once.
+Releases the resources owned by the Runner runner instance.
+
+Dispose should be called exactly once when the host is no longer needed so scopes, loggers, and other runtime resources are released deterministically.

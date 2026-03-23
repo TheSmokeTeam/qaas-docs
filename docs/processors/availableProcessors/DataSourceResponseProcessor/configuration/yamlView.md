@@ -1,6 +1,12 @@
-﻿# DataSourceResponseProcessor YAML Configuration
+# DataSourceResponseProcessor Configurations Yaml View
 
 ```yaml
-Processor: DataSourceResponseProcessor
-ProcessorConfiguration: {}
+ProcessorConfiguration:
+  SelectionMode:
+  StatusCode:
+  ContentType:
+  DataSourceName:
+  FallbackBody:
+  Index:
+  ResponseHeaders:
 ```

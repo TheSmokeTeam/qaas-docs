@@ -1,6 +1,15 @@
-﻿# DeleteRabbitMqVirtualHosts YAML Configuration
+# DeleteRabbitMqVirtualHosts Configurations Yaml View
 
 ```yaml
-Probe: DeleteRabbitMqVirtualHosts
-ProbeConfiguration: {}
+ProbeConfiguration:
+  Host:
+  AllowInvalidServerCertificates:
+  ManagementPort:
+  ManagementScheme:
+  Password:
+  Port:
+  RequestTimeoutMs:
+  Username:
+  VirtualHost:
+  VirtualHostNames: []
 ```

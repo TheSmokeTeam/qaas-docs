@@ -1,7 +1,6 @@
-# OutputDeserializableTo YAML Configuration
+# OutputDeserializableTo Configurations Yaml View
 
 ```yaml
-Assertion: OutputDeserializableTo
 AssertionConfiguration:
   OutputName:
   Deserialize:

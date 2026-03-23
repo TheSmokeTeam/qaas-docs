@@ -1,6 +1,21 @@
-﻿# CreateRabbitMqUsers YAML Configuration
+# CreateRabbitMqUsers Configurations Yaml View
 
 ```yaml
-Probe: CreateRabbitMqUsers
-ProbeConfiguration: {}
+ProbeConfiguration:
+  Host:
+  AllowInvalidServerCertificates:
+  ManagementPort:
+  ManagementScheme:
+  Password:
+  Port:
+  RequestTimeoutMs:
+  Username:
+  VirtualHost:
+  Users:
+    -
+      Username:
+      HashingAlgorithm:
+      Password:
+      PasswordHash:
+      Tags: []
 ```

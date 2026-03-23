@@ -1,10 +1,9 @@
-# FromDataLake YAML Configuration
+# FromDataLake Configurations Yaml View
 
 ```yaml
-Generator: FromDataLake
 GeneratorConfiguration:
-  Query:
   Password:
+  Query:
   Username:
   Catalog:
   ClientTag:

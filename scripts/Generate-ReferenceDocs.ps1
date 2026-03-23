@@ -45,6 +45,12 @@ if ($Check) {
 dotnet @generatorArgs
 if ($LASTEXITCODE -ne 0) { throw 'Docs generator failed.' }
 
+& (Join-Path $PSScriptRoot 'Sync-HookConfigDocs.ps1') `
+    -DocsRoot $DocsRoot `
+    -MirrorRoot $MirrorRoot `
+    -Check:$Check
+if ($LASTEXITCODE -ne 0) { throw 'Hook config docs sync failed.' }
+
 if ($BuildSite) {
     Push-Location $DocsRoot
     try {

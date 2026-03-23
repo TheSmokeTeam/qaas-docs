@@ -1,6 +1,17 @@
-﻿# FromCSV YAML Configuration
+# FromCSV Configurations Yaml View
 
 ```yaml
-Generator: FromCSV
-GeneratorConfiguration: {}
+GeneratorConfiguration:
+  DataArrangeOrder:
+  Delimiter:
+  Count:
+  DataUuidRegexExpression:
+  HasHeaderRecord:
+  SkipEmptyRows:
+  StorageMetaData:
+  TrimWhiteSpace:
+  ColumnNames: []
+  FileSystem:
+    Path:
+    SearchPattern:
 ```
