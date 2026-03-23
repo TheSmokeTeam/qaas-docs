@@ -7,6 +7,7 @@ on:
       - docs/mocker_documentation
       - unified-docs
       - fix/free_text
+      - fix/improve_docs
   pull_request:
     branches:
       - master
@@ -54,7 +55,7 @@ jobs:
           path: ./site
 
   deploy:
-    if: github.event_name == 'push' && (github.ref == 'refs/heads/master' || github.ref == 'refs/heads/docs/mocker_documentation' || github.ref == 'refs/heads/unified-docs' || github.ref == 'refs/heads/fix/free_text')
+    if: github.event_name == 'push' && (github.ref == 'refs/heads/master' || github.ref == 'refs/heads/docs/mocker_documentation' || github.ref == 'refs/heads/unified-docs' || github.ref == 'refs/heads/fix/free_text' || github.ref == 'refs/heads/fix/improve_docs')
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
