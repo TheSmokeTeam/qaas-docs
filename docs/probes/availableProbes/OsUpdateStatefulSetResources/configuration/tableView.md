@@ -1,3 +1,5 @@
+<!-- generated hash:b1d51a587e4d sources:runner-family, OsUpdateStatefulSetResources, table-view -->
+
 # OsUpdateStatefulSetResources Configurations Table View
 
 | Property Path | Type | Required | Default | Description |

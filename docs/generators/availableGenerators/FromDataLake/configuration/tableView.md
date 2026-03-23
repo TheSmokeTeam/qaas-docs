@@ -1,3 +1,5 @@
+<!-- generated hash:1a29456f93c8 sources:mocker-family, FromDataLake, table-view -->
+
 # FromDataLake Configurations Table View
 
 | Property Path | Type | Required | Default | Description |
@@ -9,5 +11,5 @@
 | `GeneratorConfiguration.Catalog` | `string` | &#10006 | hive | The datalake catalog to query |
 | `GeneratorConfiguration.ClientTag` | `string` | &#10006 | qaas | The client tag to use for connection |
 | `GeneratorConfiguration.TrinoServerUri` | `string` | &#10006 | http://localhost:8080 | The trino server to connnect to |
-| `GeneratorConfiguration.ColumnsToIgnore` | `list or string` | &#10006 |  | The columns to ignore in the query results, if no columns are given doesn't ignore any columns |
+| `GeneratorConfiguration.ColumnsToIgnore` | `list or string` | &#10006 | [] | The columns to ignore in the query results, if no columns are given doesn't ignore any columns |
 | `GeneratorConfiguration.ColumnsToIgnore[]` | `string` | &#10006 |  |  |

@@ -1,3 +1,5 @@
+<!-- generated hash:2129fde3ea4c sources:runner-family, OsUpdateStatefulSetImage, yaml-view -->
+
 # OsUpdateStatefulSetImage Configurations Yaml View
 
 ```yaml

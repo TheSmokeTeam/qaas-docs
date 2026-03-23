@@ -344,12 +344,6 @@ Restore-TrackedDocsPageIfSectionsMissing `
     -RelativePath 'docs\mocker\functions\index.md' `
     -RequiredSections @('Builders', 'Commands')
 
-& (Join-Path $PSScriptRoot 'Sync-HookConfigDocs.ps1') `
-    -DocsRoot $DocsRoot `
-    -MirrorRoot $MirrorRoot `
-    -Check:$Check
-if ($LASTEXITCODE -ne 0) { throw 'Hook config docs sync failed.' }
-
 & (Join-Path $PSScriptRoot 'Sync-SchemaAssets.ps1') `
     -DocsRoot $DocsRoot `
     -MirrorRoot $MirrorRoot `

@@ -1,3 +1,5 @@
+<!-- generated hash:670ea8dc34d1 sources:runner-family, OsScaleStatefulSetPods, yaml-view -->
+
 # OsScaleStatefulSetPods Configurations Yaml View
 
 ```yaml

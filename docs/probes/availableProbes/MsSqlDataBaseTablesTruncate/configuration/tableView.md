@@ -1,3 +1,5 @@
+<!-- generated hash:df421c0da1ad sources:runner-family, MsSqlDataBaseTablesTruncate, table-view -->
+
 # MsSqlDataBaseTablesTruncate Configurations Table View
 
 | Property Path | Type | Required | Default | Description |

@@ -1,3 +1,5 @@
+<!-- generated hash:77920d0eba26 sources:runner-family, DownloadRabbitMqDefinitions, yaml-view -->
+
 # DownloadRabbitMqDefinitions Configurations Yaml View
 
 ```yaml

@@ -1,3 +1,5 @@
+<!-- generated hash:1ee3a1452d50 sources:runner-family, DeleteRabbitMqPermissions, yaml-view -->
+
 # DeleteRabbitMqPermissions Configurations Yaml View
 
 ```yaml

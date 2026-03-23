@@ -1,3 +1,5 @@
+<!-- generated hash:3301f0682dfa sources:runner-family, UpsertRabbitMqPermissions, yaml-view -->
+
 # UpsertRabbitMqPermissions Configurations Yaml View
 
 ```yaml

@@ -1,3 +1,5 @@
+<!-- generated hash:3999b236e4fa sources:runner-family, CreateRabbitMqVirtualHosts, yaml-view -->
+
 # CreateRabbitMqVirtualHosts Configurations Yaml View
 
 ```yaml

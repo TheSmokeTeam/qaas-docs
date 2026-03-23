@@ -1,3 +1,5 @@
+<!-- generated hash:94df1353d5f1 sources:runner-family, OracleSqlDataBaseTablesTruncate, table-view -->
+
 # OracleSqlDataBaseTablesTruncate Configurations Table View
 
 | Property Path | Type | Required | Default | Description |
