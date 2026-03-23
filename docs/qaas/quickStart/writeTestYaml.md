@@ -98,7 +98,7 @@ Sessions:
           Deserializer: Json
 ```
 
-The publisher sends every payload loaded by `FromFileSystemTestData` to the `input` exchange. The consumer listens on the `output` exchange, waits up to five seconds, and deserializes the received body as JSON. In a real test your application would move the message from `input` to `output`; for the local quick start we wire those exchanges together in RabbitMQ so you can prove the Runner flow first.
+The publisher sends every payload loaded by `FromFileSystemTestData` to the `input` exchange. The consumer listens on the `output` exchange, waits up to five seconds, and deserializes the received body as JSON. In a real test, your application or local quick-start environment should move the message from `input` to `output`.
 
 ## Add the `Assertions` Section
 
@@ -196,26 +196,6 @@ Assertions:
       MaximumDelayMs: 5000
 ```
 
-## Start RabbitMQ and Wire the Exchanges
-
-```bash
-docker run --rm -d --name qaas-runner-rabbit \
-  -p 5672:5672 \
-  -p 15672:15672 \
-  -e RABBITMQ_DEFAULT_USER=admin \
-  -e RABBITMQ_DEFAULT_PASS=admin \
-  rabbitmq:4-management
-
-docker exec qaas-runner-rabbit rabbitmqadmin -u admin -p admin --non-interactive \
-  exchanges declare --name input --type direct --durable true
-
-docker exec qaas-runner-rabbit rabbitmqadmin -u admin -p admin --non-interactive \
-  exchanges declare --name output --type direct --durable true
-
-docker exec qaas-runner-rabbit rabbitmqadmin -u admin -p admin --non-interactive \
-  bindings declare --source input --destination-type exchange --destination output --routing-key /
-```
-
 ## Run
 
 From `DummyAppTests/DummyAppTests`:
@@ -226,4 +206,4 @@ dotnet run -- run test.qaas.yaml
 
 ## Result
 
-Runner publishes the JSON payload from `TestData/input.json` to `input`, the local RabbitMQ binding forwards it to `output`, and the consumer verifies both 100% hermeticity and a maximum end-to-end delay of 5000 ms. Once you connect a real application, that application should be the component that consumes from `input` and publishes to `output`.
+Runner publishes the JSON payload from `TestData/input.json` to `input`, then waits for the corresponding response on `output`. The consumer verifies both 100% hermeticity and a maximum end-to-end delay of 5000 ms. Once you connect a real application, that application should be the component that consumes from `input` and publishes to `output`.
