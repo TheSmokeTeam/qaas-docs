@@ -63,9 +63,9 @@ if ([string]::IsNullOrWhiteSpace($runnerFrameworkVersion)) {
     throw "Could not resolve QaaS.Framework.Executions package version from $runnerInfrastructureProject"
 }
 
-if (-not [string]::Equals($mockerFrameworkVersion, $runnerFrameworkVersion, [System.StringComparison]::Ordinal)) {
-    throw "Runner and Mocker reference different QaaS.Framework.Executions versions ($runnerFrameworkVersion vs $mockerFrameworkVersion)."
-}
+$frameworkVersions = @($runnerFrameworkVersion, $mockerFrameworkVersion) |
+    Where-Object { -not [string]::IsNullOrWhiteSpace($_) } |
+    Select-Object -Unique
 
 function Invoke-SnapshotHost {
     param(
@@ -1079,13 +1079,15 @@ try {
 </configuration>
 "@ | Set-Content -Path $restoreConfigPath -Encoding UTF8
 
-    dotnet pack $frameworkSolution `
-        -c Release `
-        -o $frameworkFeedRoot `
-        -p:PackageVersion=$runnerFrameworkVersion `
-        -p:Version=$runnerFrameworkVersion
-    if ($LASTEXITCODE -ne 0) {
-        throw "Failed to pack QaaS.Framework into $frameworkFeedRoot"
+    foreach ($frameworkVersion in $frameworkVersions) {
+        dotnet pack $frameworkSolution `
+            -c Release `
+            -o $frameworkFeedRoot `
+            -p:PackageVersion=$frameworkVersion `
+            -p:Version=$frameworkVersion
+        if ($LASTEXITCODE -ne 0) {
+            throw "Failed to pack QaaS.Framework into $frameworkFeedRoot for version $frameworkVersion"
+        }
     }
 
     Invoke-SnapshotHost `

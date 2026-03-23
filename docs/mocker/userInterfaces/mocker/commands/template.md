@@ -1,4 +1,4 @@
-<!-- generated hash:984e61097fdd sources:Mocker, template, cli-command -->
+<!-- generated hash:3f46f0d58059 sources:Mocker, template, cli-command -->
 
 # template
 
@@ -38,7 +38,7 @@ Usage:
   -g, --logger-configuration-file    Path to a logger's configuration file, will override the default logger's
                                      configuration. Its level can be overridden by the logger-level flag.
 
-  --send-logs                        (Default: false) Weather to send the logs to Smokes's logs database
+  --send-logs                        (Default: false) Whether to send the logs to Smokes's logs database
 
   --elastic-uri                      Elasticsearch URI used by the logger sink when send-logs is enabled.
 
@@ -79,4 +79,4 @@ Usage:
 | `-w`, `--overwrite-files` | `OverwriteFiles` | `QaaS.Mocker.Options.MockerOptions` | Yes | No | [] | `IList<string>` | List of files to overwrite the mocker configuration with, The first file overwrites the mocker<br />configuration file and then the one after it overwrite the result and so on... |
 | `-f`, `--overwrite-folders` | `OverwriteFolders` | `QaaS.Mocker.Options.MockerOptions` | Yes | No | [] | `IList<string>` | List of folders whose yaml files overwrite the mocker configuration in alphabetical order,<br />after overwrite files and in the order the folders are given. |
 | `--run-locally` | `RunLocally` | `QaaS.Mocker.Options.MockerOptions` | Yes | No | False | `bool` | Runs the project locally and enables exit by any key press. |
-| `--send-logs` | `SendLogs` | `QaaS.Framework.Executions.Options.LoggerOptions` | Yes | No | False | `bool` | Weather to send the logs to Smokes's logs database |
+| `--send-logs` | `SendLogs` | `QaaS.Framework.Executions.Options.LoggerOptions` | Yes | No | False | `bool` | Whether to send the logs to Smokes's logs database |

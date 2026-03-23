@@ -1,4 +1,4 @@
-<!-- generated hash:7a1e2cb8c7a1 sources:Mocker, cli-overview -->
+<!-- generated hash:c0aa65098341 sources:Mocker, cli-overview -->
 
 # Commands
 
@@ -52,7 +52,7 @@ Usage:
   -g, --logger-configuration-file    Path to a logger's configuration file, will override the default logger's
                                      configuration. Its level can be overridden by the logger-level flag.
 
-  --send-logs                        (Default: false) Weather to send the logs to Smokes's logs database
+  --send-logs                        (Default: false) Whether to send the logs to Smokes's logs database
 
   --elastic-uri                      Elasticsearch URI used by the logger sink when send-logs is enabled.
 
@@ -102,7 +102,7 @@ Usage:
   -g, --logger-configuration-file    Path to a logger's configuration file, will override the default logger's
                                      configuration. Its level can be overridden by the logger-level flag.
 
-  --send-logs                        (Default: false) Weather to send the logs to Smokes's logs database
+  --send-logs                        (Default: false) Whether to send the logs to Smokes's logs database
 
   --elastic-uri                      Elasticsearch URI used by the logger sink when send-logs is enabled.
 
@@ -144,4 +144,4 @@ Usage:
 | `-w`, `--overwrite-files` | No | [] | `IList<string>` | List of files to overwrite the mocker configuration with, The first file overwrites the mocker<br />configuration file and then the one after it overwrite the result and so on... |
 | `-f`, `--overwrite-folders` | No | [] | `IList<string>` | List of folders whose yaml files overwrite the mocker configuration in alphabetical order,<br />after overwrite files and in the order the folders are given. |
 | `--run-locally` | No | False | `bool` | Runs the project locally and enables exit by any key press. |
-| `--send-logs` | No | False | `bool` | Weather to send the logs to Smokes's logs database |
+| `--send-logs` | No | False | `bool` | Whether to send the logs to Smokes's logs database |
