@@ -3,7 +3,7 @@
   "tag": "1.1.2",
   "origin": "https://github.com/TheSmokeTeam/QaaS.Common.Probes/actions/runs/23386216954",
   "runId": "23386216954",
-  "updatedAtUtc": "2026-03-22T22:01:26.5705633+00:00",
+  "updatedAtUtc": "2026-03-23T14:57:41.5115319+00:00",
   "packages": [
     {
       "name": "awssdk.core",

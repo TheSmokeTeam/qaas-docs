@@ -2503,13 +2503,11 @@
                         ],
                         "description": "This policy executes actions in separate stages, each stage has a rate in which to execute the actions included in it and a count or timeout to know after how many actions or after how much time to end the stage and move to the next.",
                         "pattern": "\\$\\{.*\\}",
-                        "required": [
-                          "Stages"
-                        ],
                         "properties": {
                           "Stages": {
                             "type": [
                               "array",
+                              "null",
                               "string"
                             ],
                             "description": "The stages of publishing information, in each stage the messages will be publishedwith a given rate untill 'Amount' messages are generated or untill 'TimeoutMs' is reached",
@@ -4094,13 +4092,11 @@
                         ],
                         "description": "This policy executes actions in separate stages, each stage has a rate in which to execute the actions included in it and a count or timeout to know after how many actions or after how much time to end the stage and move to the next.",
                         "pattern": "\\$\\{.*\\}",
-                        "required": [
-                          "Stages"
-                        ],
                         "properties": {
                           "Stages": {
                             "type": [
                               "array",
+                              "null",
                               "string"
                             ],
                             "description": "The stages of publishing information, in each stage the messages will be publishedwith a given rate untill 'Amount' messages are generated or untill 'TimeoutMs' is reached",
@@ -5642,13 +5638,11 @@
                         ],
                         "description": "This policy executes actions in separate stages, each stage has a rate in which to execute the actions included in it and a count or timeout to know after how many actions or after how much time to end the stage and move to the next.",
                         "pattern": "\\$\\{.*\\}",
-                        "required": [
-                          "Stages"
-                        ],
                         "properties": {
                           "Stages": {
                             "type": [
                               "array",
+                              "null",
                               "string"
                             ],
                             "description": "The stages of publishing information, in each stage the messages will be publishedwith a given rate untill 'Amount' messages are generated or untill 'TimeoutMs' is reached",
@@ -12729,5 +12723,5 @@
     }
   },
   "x-qaas-family": "runner-family",
-  "x-qaas-generated-at-utc": "2026-03-22T22:03:20.2825730+00:00"
+  "x-qaas-generated-at-utc": "2026-03-23T14:59:30.0152416+00:00"
 }

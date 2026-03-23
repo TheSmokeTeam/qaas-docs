@@ -1,4 +1,4 @@
-<!-- generated hash:3b63d795f5ed sources:runner-family, Sessions, table-view -->
+<!-- generated hash:057264a7ad7f sources:runner-family, Sessions, table-view -->
 
 # Sessions Configurations Table View
 
@@ -38,7 +38,7 @@
 | `Sessions[].Consumers[].Policies` | `list or string` | &#10006 |  | List of policies to use when communicating with this action's protocol |
 | `Sessions[].Consumers[].Policies[]` | `object or string` | &#10006 |  |  |
 | `Sessions[].Consumers[].Policies[].AdvancedLoadBalance` | `object or string` | &#10006 |  | This policy executes actions in separate stages, each stage has a rate in which to execute the actions included in it and a count or timeout to know after how many actions or after how much time to end the stage and move to the next. |
-| `Sessions[].Consumers[].Policies[].AdvancedLoadBalance.Stages` | `list or string` | &#10004 |  | The stages of publishing information, in each stage the messages will be publishedwith a given rate untill 'Amount' messages are generated or untill 'TimeoutMs' is reached |
+| `Sessions[].Consumers[].Policies[].AdvancedLoadBalance.Stages` | `list or string or null` | &#10006 |  | The stages of publishing information, in each stage the messages will be publishedwith a given rate untill 'Amount' messages are generated or untill 'TimeoutMs' is reached |
 | `Sessions[].Consumers[].Policies[].AdvancedLoadBalance.Stages[]` | `object or string` | &#10006 |  |  |
 | `Sessions[].Consumers[].Policies[].AdvancedLoadBalance.Stages[].Rate` | `number or string` | &#10004 |  | The amount of actions to perform every `TimeIntervalMs` milliseconds |
 | `Sessions[].Consumers[].Policies[].AdvancedLoadBalance.Stages[].Amount` | `integer or string or null` | &#10006 |  | The number of times to perform action |
@@ -256,7 +256,7 @@
 | `Sessions[].Publishers[].Policies` | `list or string` | &#10006 |  | List of policies to use when communicating with this action's protocol |
 | `Sessions[].Publishers[].Policies[]` | `object or string` | &#10006 |  |  |
 | `Sessions[].Publishers[].Policies[].AdvancedLoadBalance` | `object or string` | &#10006 |  | This policy executes actions in separate stages, each stage has a rate in which to execute the actions included in it and a count or timeout to know after how many actions or after how much time to end the stage and move to the next. |
-| `Sessions[].Publishers[].Policies[].AdvancedLoadBalance.Stages` | `list or string` | &#10004 |  | The stages of publishing information, in each stage the messages will be publishedwith a given rate untill 'Amount' messages are generated or untill 'TimeoutMs' is reached |
+| `Sessions[].Publishers[].Policies[].AdvancedLoadBalance.Stages` | `list or string or null` | &#10006 |  | The stages of publishing information, in each stage the messages will be publishedwith a given rate untill 'Amount' messages are generated or untill 'TimeoutMs' is reached |
 | `Sessions[].Publishers[].Policies[].AdvancedLoadBalance.Stages[]` | `object or string` | &#10006 |  |  |
 | `Sessions[].Publishers[].Policies[].AdvancedLoadBalance.Stages[].Rate` | `number or string` | &#10004 |  | The amount of actions to perform every `TimeIntervalMs` milliseconds |
 | `Sessions[].Publishers[].Policies[].AdvancedLoadBalance.Stages[].Amount` | `integer or string or null` | &#10006 |  | The number of times to perform action |
@@ -411,7 +411,7 @@
 | `Sessions[].Transactions[].Policies` | `list or string` | &#10006 |  | List of policies to use when communicating with this action's protocol |
 | `Sessions[].Transactions[].Policies[]` | `object or string` | &#10006 |  |  |
 | `Sessions[].Transactions[].Policies[].AdvancedLoadBalance` | `object or string` | &#10006 |  | This policy executes actions in separate stages, each stage has a rate in which to execute the actions included in it and a count or timeout to know after how many actions or after how much time to end the stage and move to the next. |
-| `Sessions[].Transactions[].Policies[].AdvancedLoadBalance.Stages` | `list or string` | &#10004 |  | The stages of publishing information, in each stage the messages will be publishedwith a given rate untill 'Amount' messages are generated or untill 'TimeoutMs' is reached |
+| `Sessions[].Transactions[].Policies[].AdvancedLoadBalance.Stages` | `list or string or null` | &#10006 |  | The stages of publishing information, in each stage the messages will be publishedwith a given rate untill 'Amount' messages are generated or untill 'TimeoutMs' is reached |
 | `Sessions[].Transactions[].Policies[].AdvancedLoadBalance.Stages[]` | `object or string` | &#10006 |  |  |
 | `Sessions[].Transactions[].Policies[].AdvancedLoadBalance.Stages[].Rate` | `number or string` | &#10004 |  | The amount of actions to perform every `TimeIntervalMs` milliseconds |
 | `Sessions[].Transactions[].Policies[].AdvancedLoadBalance.Stages[].Amount` | `integer or string or null` | &#10006 |  | The number of times to perform action |
