@@ -1,4 +1,4 @@
-<!-- generated hash:591b137b0592 sources:Framework, functions, Builders, Policies -->
+<!-- generated hash:924b8e7ecc6f sources:Framework, functions, Builders, Policies -->
 
 # Policies
 
@@ -16,7 +16,7 @@ Each entry uses the short function name as the table-of-contents label. Expand a
     
     **Declaring Type** `PolicyBuilder`
     
-    **Location** `QaaS.Framework.Policies/PolicyBuilder.cs:38`
+    **Location** `QaaS.Framework.Policies/PolicyBuilder.cs:43`
     
     **Signature**
     ```csharp
@@ -39,7 +39,7 @@ Each entry uses the short function name as the table-of-contents label. Expand a
     
     **Declaring Type** `PolicyBuilder`
     
-    **Location** `QaaS.Framework.Policies/PolicyBuilder.cs:72`
+    **Location** `QaaS.Framework.Policies/PolicyBuilder.cs:77`
     
     **Signature**
     ```csharp
@@ -62,7 +62,7 @@ Each entry uses the short function name as the table-of-contents label. Expand a
     
     **Declaring Type** `PolicyBuilder`
     
-    **Location** `QaaS.Framework.Policies/PolicyBuilder.cs:109`
+    **Location** `QaaS.Framework.Policies/PolicyBuilder.cs:114`
     
     **Signature**
     ```csharp

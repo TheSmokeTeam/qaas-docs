@@ -3,7 +3,7 @@
   "tag": "2.0.5",
   "origin": "https://github.com/TheSmokeTeam/QaaS.Mocker/actions/runs/23386287345",
   "runId": "23386287345",
-  "updatedAtUtc": "2026-03-23T18:07:15.2025341+00:00",
+  "updatedAtUtc": "2026-03-23T18:25:33.2483704+00:00",
   "packages": [
     {
       "name": "autofac",
