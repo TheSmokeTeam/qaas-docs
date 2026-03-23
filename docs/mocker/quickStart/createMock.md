@@ -131,7 +131,7 @@ Append this section to `mocker.qaas.yaml`:
 Servers:
   - Http:
       Port: 8080
-      IsLocalhost: true
+      IsLocalhost: false
       Endpoints:
         - Path: /data
           Actions:
@@ -161,7 +161,7 @@ Stubs:
 Servers:
   - Http:
       Port: 8080
-      IsLocalhost: true
+      IsLocalhost: false
       Endpoints:
         - Path: /data
           Actions:

@@ -55,7 +55,7 @@ var executionBuilder = new ExecutionBuilder()
             Http = new HttpServerConfig
             {
                 Port = 8080,
-                IsLocalhost = true,
+                IsLocalhost = false,
                 Endpoints =
                 [
                     new HttpEndpointConfig
