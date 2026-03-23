@@ -1,11 +1,7 @@
-﻿# DataSourceResponseProcessor
+<!-- generated hash:e66b55f6518f sources:processor, DataSourceResponseProcessor, overview -->
 
-Selects generated data from one configured data source and turns that payload into the HTTP response body. It supports first, last, and explicit index selection, plus an optional fallback body when selection fails.
+# DataSourceResponseProcessor
 
-## Processor Parameters
+Builds the response from generated data produced by one configured data source.
 
-- **Processor Name** - `DataSourceResponseProcessor`.
-- **ProcessorConfiguration** - `DataSourceResponseConfiguration`.
-- **DataSources** - Uses the configured stub data sources.
-- **RequestData** - Does not inspect the request body.
-- **SessionData** - Not used.
+_This overview is generated automatically from the hook source summary._

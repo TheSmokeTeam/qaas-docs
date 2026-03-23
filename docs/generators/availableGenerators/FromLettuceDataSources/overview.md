@@ -1,18 +1,7 @@
+<!-- generated hash:eee732eb7e05 sources:generator, FromLettuceDataSources, overview -->
+
 # FromLettuceDataSources
 
-Supports generating data from multiple DataSources that contain lettuce files.
+Generates data from the enumerable of data sources it receives that is in `Lettuce` file format, presumes all items in the enumerable are deserialized into Json
 
-???- info "Data Structure"
-    === ":octicons-file-code-16: `Data`"
-        ```yaml
-        Body: <byte[]>
-        MetaData:
-          RabbitMq:
-            RoutingKey: <string> # The routing key in the lettuce file.
-        ```
-
-## DataSource Parameters
-
-* **Generator Name** - `FromLettuceDataSources`.
-* **DataSources** - All Used. Must all be deserialized with `Json` as its default type (JsonNode).
-* **SessionData** - Passed to used DataSources.
+_This overview is generated automatically from the hook source summary._

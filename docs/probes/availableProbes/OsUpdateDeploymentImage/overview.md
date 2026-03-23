@@ -1,11 +1,7 @@
-﻿# OsUpdateDeploymentImage
+<!-- generated hash:e664818206ab sources:probe, OsUpdateDeploymentImage, overview -->
+
+# OsUpdateDeploymentImage
 
 Updates the image of one container in a Kubernetes or OpenShift deployment.
 
-## Probe Parameters
-
-- **Probe Name** - `OsUpdateDeploymentImage`.
-- **ProbeConfiguration** - `OsUpdateImageProbeConfig`.
-- **DataSources** - Not used.
-- **SessionData** - Not used.
-- **Execution stage** - Typically used in setup or cleanup stages around Runner sessions.
+_This overview is generated automatically from the hook source summary._

@@ -6,6 +6,7 @@ This file is generated automatically from CI from git history.
 
 ## Unreleased
 
+- docs(changelog): add automated changelog
 - feat(mocker): support custom bootstrap runner types
 - refactor(config): expose mocker configuration getters
 - test(stubs): reflect internal serializer config access

@@ -1,11 +1,7 @@
-﻿# UploadRabbitMqDefinitions
+<!-- generated hash:20caea106002 sources:probe, UploadRabbitMqDefinitions, overview -->
+
+# UploadRabbitMqDefinitions
 
 Uploads a definitions document to the RabbitMQ management API to recreate or synchronize broker topology.
 
-## Probe Parameters
-
-- **Probe Name** - `UploadRabbitMqDefinitions`.
-- **ProbeConfiguration** - `UploadRabbitMqDefinitionsConfig`.
-- **DataSources** - Not used.
-- **SessionData** - Not used.
-- **Execution stage** - Typically used in setup or cleanup stages around Runner sessions.
+_This overview is generated automatically from the hook source summary._

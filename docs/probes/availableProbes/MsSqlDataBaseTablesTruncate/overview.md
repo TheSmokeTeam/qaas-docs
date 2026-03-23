@@ -1,11 +1,7 @@
-﻿# MsSqlDataBaseTablesTruncate
+<!-- generated hash:43b363470eff sources:probe, MsSqlDataBaseTablesTruncate, overview -->
 
-Truncates the configured MSSQL tables in the order they are listed.
+# MsSqlDataBaseTablesTruncate
 
-## Probe Parameters
+Truncates the configured Microsoft SQL Server tables in the order they are listed.
 
-- **Probe Name** - `MsSqlDataBaseTablesTruncate`.
-- **ProbeConfiguration** - `SqlDataBaseTablesTruncateProbeConfig`.
-- **DataSources** - Not used.
-- **SessionData** - Not used.
-- **Execution stage** - Typically used in setup or cleanup stages around Runner sessions.
+_This overview is generated automatically from the hook source summary._

@@ -1,16 +1,7 @@
+<!-- generated hash:4233be307c6d sources:generator, FromDataSources, overview -->
+
 # FromDataSources
 
-Combines multiple data sources together.
+Generates data from the enumerable of data sources it receives
 
-???- info "Data Structure"
-    === ":octicons-file-code-16: `Data`"
-        ```yaml
-        Body: <object>
-        MetaData: <object> # Whatever metadata the data from the combined data sources had
-        ```
-
-## DataSource Parameters
-
-* **Generator Name** - `FromDataSources`.
-* **DataSources** - All Used.
-* **SessionData** - Passed to used DataSources.
+_This overview is generated automatically from the hook source summary._

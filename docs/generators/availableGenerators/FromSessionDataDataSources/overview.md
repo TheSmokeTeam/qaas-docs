@@ -1,16 +1,7 @@
+<!-- generated hash:a134ac50500c sources:generator, FromSessionDataDataSources, overview -->
+
 # FromSessionDataDataSources
 
-Supports generating data from multiple DataSources that contain SessionData files.
+Generates data from the enumerable of data sources it receives, presumes all items in the enumerable are serialized and can be treated as a byte array
 
-???- info "Data Structure"
-    === ":octicons-file-code-16: `Data`"
-        ```yaml
-        Body: <object>
-        MetaData: <object> # Whatever metadata the data from the SessionData had
-        ```
-
-## DataSource Parameters
-
-* **Generator Name** - `FromSessionDataDataSources`.
-* **DataSources** - All Used. Must all be serialized (`byte[]`) `SessionData` items.
-* **SessionData** - Passed to used DataSources.
+_This overview is generated automatically from the hook source summary._

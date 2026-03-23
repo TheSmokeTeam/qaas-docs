@@ -1,11 +1,7 @@
-﻿# StaticResponseProcessor
+<!-- generated hash:731fa498d490 sources:processor, StaticResponseProcessor, overview -->
 
-Returns a fixed UTF-8 response body with the configured status code, content type, and extra response headers.
+# StaticResponseProcessor
 
-## Processor Parameters
+Returns a fixed UTF-8 response body with the configured status code, content type, and headers.
 
-- **Processor Name** - `StaticResponseProcessor`.
-- **ProcessorConfiguration** - `StaticResponseConfiguration`.
-- **DataSources** - Not used.
-- **RequestData** - Does not inspect the request.
-- **SessionData** - Not used.
+_This overview is generated automatically from the hook source summary._

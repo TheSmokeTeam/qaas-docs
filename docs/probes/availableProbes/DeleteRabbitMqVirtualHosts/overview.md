@@ -1,11 +1,7 @@
-﻿# DeleteRabbitMqVirtualHosts
+<!-- generated hash:9b3a0c3791cd sources:probe, DeleteRabbitMqVirtualHosts, overview -->
+
+# DeleteRabbitMqVirtualHosts
 
 Deletes RabbitMQ virtual hosts through the management API.
 
-## Probe Parameters
-
-- **Probe Name** - `DeleteRabbitMqVirtualHosts`.
-- **ProbeConfiguration** - `DeleteRabbitMqVirtualHostsConfig`.
-- **DataSources** - Not used.
-- **SessionData** - Not used.
-- **Execution stage** - Typically used in setup or cleanup stages around Runner sessions.
+_This overview is generated automatically from the hook source summary._

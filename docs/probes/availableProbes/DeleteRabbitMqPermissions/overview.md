@@ -1,11 +1,7 @@
-﻿# DeleteRabbitMqPermissions
+<!-- generated hash:1ccd78008afc sources:probe, DeleteRabbitMqPermissions, overview -->
+
+# DeleteRabbitMqPermissions
 
 Deletes RabbitMQ user permissions in one or more virtual hosts through the management API.
 
-## Probe Parameters
-
-- **Probe Name** - `DeleteRabbitMqPermissions`.
-- **ProbeConfiguration** - `DeleteRabbitMqPermissionsConfig`.
-- **DataSources** - Not used.
-- **SessionData** - Not used.
-- **Execution stage** - Typically used in setup or cleanup stages around Runner sessions.
+_This overview is generated automatically from the hook source summary._

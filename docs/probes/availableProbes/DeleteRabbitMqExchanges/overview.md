@@ -1,11 +1,7 @@
-﻿# DeleteRabbitMqExchanges
+<!-- generated hash:50f1ce1e1430 sources:probe, DeleteRabbitMqExchanges, overview -->
 
-Deletes one or more RabbitMQ exchanges from the configured virtual host.
+# DeleteRabbitMqExchanges
 
-## Probe Parameters
+Probe that deletes rabbitmq exchanges
 
-- **Probe Name** - `DeleteRabbitMqExchanges`.
-- **ProbeConfiguration** - `DeleteRabbitMqExchangesConfig`.
-- **DataSources** - Not used.
-- **SessionData** - Not used.
-- **Execution stage** - Typically used in setup or cleanup stages around Runner sessions.
+_This overview is generated automatically from the hook source summary._

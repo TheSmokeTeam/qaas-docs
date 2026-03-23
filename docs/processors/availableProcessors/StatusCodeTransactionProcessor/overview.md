@@ -1,11 +1,7 @@
-﻿# StatusCodeTransactionProcessor
+<!-- generated hash:566c18941a9e sources:processor, StatusCodeTransactionProcessor, overview -->
 
-Returns an empty response body with only the configured HTTP status code. This is the minimal reusable status-only processor from QaaS.Framework.SDK.
+# StatusCodeTransactionProcessor
 
-## Processor Parameters
+Skim Transaction Processor which returns empty-bodied data objects with Status Code configuration.
 
-- **Processor Name** - `StatusCodeTransactionProcessor`.
-- **ProcessorConfiguration** - `StatusCodeConfiguration`.
-- **DataSources** - Not used.
-- **RequestData** - Does not inspect the request.
-- **SessionData** - Not used.
+_This overview is generated automatically from the hook source summary._

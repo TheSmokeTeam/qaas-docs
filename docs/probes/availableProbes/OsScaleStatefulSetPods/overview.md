@@ -1,11 +1,7 @@
-﻿# OsScaleStatefulSetPods
+<!-- generated hash:346b8ec04d5f sources:probe, OsScaleStatefulSetPods, overview -->
 
-Scales a Kubernetes or OpenShift stateful set to the configured replica count.
+# OsScaleStatefulSetPods
 
-## Probe Parameters
+Probe that scales openshift stateful sets
 
-- **Probe Name** - `OsScaleStatefulSetPods`.
-- **ProbeConfiguration** - `OsScalePodsProbeConfig`.
-- **DataSources** - Not used.
-- **SessionData** - Not used.
-- **Execution stage** - Typically used in setup or cleanup stages around Runner sessions.
+_This overview is generated automatically from the hook source summary._

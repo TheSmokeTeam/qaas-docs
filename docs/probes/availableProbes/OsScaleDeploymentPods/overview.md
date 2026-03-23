@@ -1,11 +1,7 @@
-﻿# OsScaleDeploymentPods
+<!-- generated hash:86d8209533ce sources:probe, OsScaleDeploymentPods, overview -->
 
-Scales a Kubernetes or OpenShift deployment to the configured replica count.
+# OsScaleDeploymentPods
 
-## Probe Parameters
+Probe that scales openshift deployments
 
-- **Probe Name** - `OsScaleDeploymentPods`.
-- **ProbeConfiguration** - `OsScalePodsProbeConfig`.
-- **DataSources** - Not used.
-- **SessionData** - Not used.
-- **Execution stage** - Typically used in setup or cleanup stages around Runner sessions.
+_This overview is generated automatically from the hook source summary._

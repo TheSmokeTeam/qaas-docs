@@ -1,5 +1,32 @@
-<!-- generated hash:0133683c3683 sources:runner-family, MetaData, overview -->
-
 # MetaData
 
-The metadata for the tests' run
+The `MetaData` section is used to define additional information about tests, enhancing traceability and observability. It includes the following standard fields:
+
+- `Team`: The team responsible for maintaining and executing the tests.
+- `System`: The system or component under test.
+
+In addition to these standard fields, you can include custom `ExtraLabels` to further categorize tests. Examples of useful labels include:
+
+- `Component`
+- `Cluster`
+- `Environment`
+- `Feature`
+
+Labels are not limited to those examples and can be anything you want.
+
+## Purpose And Usage
+
+Metadata is embedded into test logs and sent to REDA's Elasticsearch instance for centralized observability. This enables effective monitoring and analysis through the QaaS platform.
+
+Each log entry also includes the hostname of the machine where the test was executed, whether locally or via CI, providing additional context for debugging and auditing.
+
+## Observability And Dashboards
+
+You can monitor QaaS usage and test metadata adoption using the following resources:
+
+- **QaaS Adoption Dashboard**: [View Dashboard](REDA)
+  User: `REDA`
+  Password: `REDA`
+- **Custom Explore View**: [Explore Data](REDA)
+
+Use the provided Elasticsearch data source to build custom dashboards and gain deeper insights into test execution patterns, team contributions, and system performance.

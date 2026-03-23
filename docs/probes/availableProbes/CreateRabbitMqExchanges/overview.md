@@ -1,11 +1,7 @@
-﻿# CreateRabbitMqExchanges
+<!-- generated hash:17ac122d7ebc sources:probe, CreateRabbitMqExchanges, overview -->
 
-Creates one or more RabbitMQ exchanges with the configured durability, auto-delete, and argument settings.
+# CreateRabbitMqExchanges
 
-## Probe Parameters
+Creates one or more RabbitMQ exchanges with the configured durability, auto-delete, and arguments.
 
-- **Probe Name** - `CreateRabbitMqExchanges`.
-- **ProbeConfiguration** - `CreateRabbitMqExchangesConfig`.
-- **DataSources** - Not used.
-- **SessionData** - Not used.
-- **Execution stage** - Typically used in setup or cleanup stages around Runner sessions.
+_This overview is generated automatically from the hook source summary._

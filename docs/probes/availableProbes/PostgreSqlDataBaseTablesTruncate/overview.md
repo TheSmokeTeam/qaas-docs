@@ -1,11 +1,7 @@
-﻿# PostgreSqlDataBaseTablesTruncate
+<!-- generated hash:ba41f5bad918 sources:probe, PostgreSqlDataBaseTablesTruncate, overview -->
+
+# PostgreSqlDataBaseTablesTruncate
 
 Truncates the configured PostgreSQL tables in the order they are listed.
 
-## Probe Parameters
-
-- **Probe Name** - `PostgreSqlDataBaseTablesTruncate`.
-- **ProbeConfiguration** - `SqlDataBaseTablesTruncateProbeConfig`.
-- **DataSources** - Not used.
-- **SessionData** - Not used.
-- **Execution stage** - Typically used in setup or cleanup stages around Runner sessions.
+_This overview is generated automatically from the hook source summary._

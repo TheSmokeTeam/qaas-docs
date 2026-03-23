@@ -1,16 +1,7 @@
+<!-- generated hash:06a3338e3ca4 sources:generator, FromDataLake, overview -->
+
 # FromDataLake
 
-Retrieves data from a the dataLake.
+Retrieves rows from the configured data lake query and exposes each row as a generated JSON object.
 
-???- info "Data Structure"
-    === ":octicons-file-code-16: `Data`"
-        ```yaml
-        Body: <object>
-        MetaData: <object>
-        ```
-
-## DataSource Parameters
-
-* **Generator Name** - `FromDataLake`.
-* **DataSources** - Not Used.
-* **SessionData** - Not Used.
+_This overview is generated automatically from the hook source summary._

@@ -1,11 +1,7 @@
-﻿# RequestEchoProcessor
+<!-- generated hash:b885b08b1bf6 sources:processor, RequestEchoProcessor, overview -->
 
-Builds a JSON echo response that includes the incoming request body and can also expose request headers, captured path parameters, and the resolved request URI.
+# RequestEchoProcessor
 
-## Processor Parameters
+Returns a JSON response that echoes the incoming request body and optional request metadata.
 
-- **Processor Name** - `RequestEchoProcessor`.
-- **ProcessorConfiguration** - `RequestEchoConfiguration`.
-- **DataSources** - Not used.
-- **RequestData** - Uses the incoming request body and HTTP metadata.
-- **SessionData** - Not used.
+_This overview is generated automatically from the hook source summary._

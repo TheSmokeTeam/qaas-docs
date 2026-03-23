@@ -1,11 +1,7 @@
-﻿# PurgeRabbitMqQueues
+<!-- generated hash:c77cdea559e4 sources:probe, PurgeRabbitMqQueues, overview -->
 
-Purges messages from one or more RabbitMQ queues without deleting the queues themselves.
+# PurgeRabbitMqQueues
 
-## Probe Parameters
+Probe that purges rabbitmq queues
 
-- **Probe Name** - `PurgeRabbitMqQueues`.
-- **ProbeConfiguration** - `PurgeRabbitMqQueuesConfig`.
-- **DataSources** - Not used.
-- **SessionData** - Not used.
-- **Execution stage** - Typically used in setup or cleanup stages around Runner sessions.
+_This overview is generated automatically from the hook source summary._

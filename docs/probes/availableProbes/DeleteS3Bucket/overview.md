@@ -1,11 +1,7 @@
-﻿# DeleteS3Bucket
+<!-- generated hash:a5728f5e9b0f sources:probe, DeleteS3Bucket, overview -->
 
-Deletes the configured S3 bucket after the probe has removed or validated its contents.
+# DeleteS3Bucket
 
-## Probe Parameters
+Probe to delete a s3 bucket
 
-- **Probe Name** - `DeleteS3Bucket`.
-- **ProbeConfiguration** - `DeleteS3BucketConfig`.
-- **DataSources** - Not used.
-- **SessionData** - Not used.
-- **Execution stage** - Typically used in setup or cleanup stages around Runner sessions.
+_This overview is generated automatically from the hook source summary._

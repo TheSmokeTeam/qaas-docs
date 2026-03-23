@@ -1,10 +1,9 @@
-<!-- generated hash:d3ba65e28aa1 sources:runner-family, configuration-overview -->
-
 # Configuration Sections
 
-This page is generated from the current `QaaS Runner` family schema.
+Each configuration section in the `.yaml` file is used to perform a different action and has its own configurations and descriptions.
+In this part of the documentation you can read about all the possible configurations available to you within each configuration section.
 
-The current top-level layout is:
+The `.yaml` configuration file is divided into the following sections:
 
 ```yaml
 Links: []
@@ -18,22 +17,28 @@ Sessions: []
 Assertions: []
 
 MetaData: {}
-
 ```
 
-## Sections
+## Required Fields
 
-| Section | Description |
-| ------- | ----------- |
-| `MetaData` | The metadata for the tests' run |
-| `Links` | The links generated on test results, used to view observability data outputted by the tested application. These links are generated per test result to be relevant specifically to that test and the time it ran at |
-| `Storages` | External storages qaas inner objects can be stored in or retrieved from when using the `qaas act` (to create and store) or `qaas assert` (to retrieve and use) commands |
-| `DataSources` | List of data sources that can be used in the rest of the execution. They provide data that can be sent to the tested system or used by the execution itself to perform a multitude of logics. |
-| `Sessions` | List of all sessions to run. Sessions contain the actions performed against the tested system and its underlying infrastructure in order to receive response data from the tested system to assert on. |
-| `Assertions` | The list of assertions performed on the sessions' results in order to decide the test's status, each assertion produces a different test result. |
+Required fields are fields that must be given a value and have no default value. Required fields are only required if their parent field is used.
+
+For example, if the field in the path `SectionA.FieldA` is `required`, then as long as `SectionA` is configured it must contain the field `FieldA`:
+
+```yaml
+SectionA:
+  FieldA: content
+```
+
+If `SectionA` is not used, there is no need to configure `FieldA`:
+
+```yaml
+```
 
 ## Table View Order
 
-1. Property paths follow the YAML hierarchy.
-2. Under every parent, primitive fields come before arrays and nested objects.
-3. The pages document the current property names from the live family schema.
+All configuration table views are ordered according to three rules.
+
+1. The property paths are ordered like a YAML configuration, meaning all fields of every parent are under that parent.
+2. Under every parent, fields are ordered by type: first basic types (`integer` / `number` / `string` / `bool` / `enum`), then arrays (`array`), and lastly fields that have sub-fields (`object`).
+3. Under every parent, within each type batch, `required` fields come before `not required` fields.
