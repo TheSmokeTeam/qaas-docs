@@ -1,6 +1,18 @@
-﻿# ExecuteRedisCommand YAML Configuration
+# ExecuteRedisCommand Configurations Yaml View
 
 ```yaml
-Probe: ExecuteRedisCommand
-ProbeConfiguration: {}
+ProbeConfiguration:
+  Command:
+  AbortOnConnectFail:
+  AsyncTimeout:
+  ClientName:
+  ConnectRetry:
+  KeepAlive:
+  Password:
+  RedisDataBase:
+  Ssl:
+  SslHost:
+  Username:
+  HostNames: []
+  Arguments: []
 ```

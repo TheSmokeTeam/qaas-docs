@@ -1,6 +1,21 @@
-﻿# UpsertRabbitMqPermissions YAML Configuration
+# UpsertRabbitMqPermissions Configurations Yaml View
 
 ```yaml
-Probe: UpsertRabbitMqPermissions
-ProbeConfiguration: {}
+ProbeConfiguration:
+  Host:
+  AllowInvalidServerCertificates:
+  ManagementPort:
+  ManagementScheme:
+  Password:
+  Port:
+  RequestTimeoutMs:
+  Username:
+  VirtualHost:
+  Permissions:
+    -
+      Username:
+      VirtualHostName:
+      Configure:
+      Read:
+      Write:
 ```

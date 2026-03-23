@@ -1,6 +1,10 @@
-﻿# DeleteS3Bucket YAML Configuration
+# DeleteS3Bucket Configurations Yaml View
 
 ```yaml
-Probe: DeleteS3Bucket
-ProbeConfiguration: {}
+ProbeConfiguration:
+  AccessKey:
+  SecretKey:
+  ServiceURL:
+  StorageBucket:
+  ForcePathStyle:
 ```

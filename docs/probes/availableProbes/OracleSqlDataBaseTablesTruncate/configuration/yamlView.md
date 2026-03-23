@@ -1,6 +1,8 @@
-﻿# OracleSqlDataBaseTablesTruncate YAML Configuration
+# OracleSqlDataBaseTablesTruncate Configurations Yaml View
 
 ```yaml
-Probe: OracleSqlDataBaseTablesTruncate
-ProbeConfiguration: {}
+ProbeConfiguration:
+  ConnectionString:
+  CommandTimeoutSeconds:
+  TableNames: []
 ```

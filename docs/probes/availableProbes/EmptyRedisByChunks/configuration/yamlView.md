@@ -1,6 +1,18 @@
-﻿# EmptyRedisByChunks YAML Configuration
+# EmptyRedisByChunks Configurations Yaml View
 
 ```yaml
-Probe: EmptyRedisByChunks
-ProbeConfiguration: {}
+ProbeConfiguration:
+  AbortOnConnectFail:
+  AsyncTimeout:
+  BatchSize:
+  ClientName:
+  ConnectRetry:
+  KeepAlive:
+  KeyRegexPattern:
+  Password:
+  RedisDataBase:
+  Ssl:
+  SslHost:
+  Username:
+  HostNames: []
 ```

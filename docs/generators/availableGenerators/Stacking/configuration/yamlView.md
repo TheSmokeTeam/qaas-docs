@@ -1,9 +1,8 @@
-# Stacking YAML Configuration
+# Stacking Configurations Yaml View
 
 ```yaml
-Generator: Stacking
 GeneratorConfiguration:
-  LoopFinishedGenerators:
   Count:
+  LoopFinishedGenerators:
   ItemsPerGenerator: []
 ```

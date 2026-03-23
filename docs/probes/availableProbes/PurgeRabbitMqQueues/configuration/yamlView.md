@@ -1,6 +1,11 @@
-﻿# PurgeRabbitMqQueues YAML Configuration
+# PurgeRabbitMqQueues Configurations Yaml View
 
 ```yaml
-Probe: PurgeRabbitMqQueues
-ProbeConfiguration: {}
+ProbeConfiguration:
+  Host:
+  Password:
+  Port:
+  Username:
+  VirtualHost:
+  QueueNames: []
 ```

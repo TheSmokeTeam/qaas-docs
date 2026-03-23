@@ -9,7 +9,7 @@ on:
     paths:
       - .github/workflows/sync-generated-docs.yml
       - .gitmodules
-      - scripts/Generate-ReferenceDocs.ps1
+      - scripts/**
       - tools/QaaS.Docs.Generator
       - mkdocs.yml
 

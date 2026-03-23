@@ -1,6 +1,15 @@
-﻿# OsUpdateStatefulSetImage YAML Configuration
+# OsUpdateStatefulSetImage Configurations Yaml View
 
 ```yaml
-Probe: OsUpdateStatefulSetImage
-ProbeConfiguration: {}
+ProbeConfiguration:
+  ContainerName:
+  DesiredImage:
+  ReplicaSetName:
+  IntervalBetweenDesiredStateChecksMs:
+  TimeoutWaitForDesiredStateSeconds:
+  Openshift:
+    Cluster:
+    Namespace:
+    Password:
+    Username:
 ```

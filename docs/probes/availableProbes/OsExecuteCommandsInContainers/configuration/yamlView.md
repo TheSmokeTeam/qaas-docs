@@ -1,6 +1,13 @@
-﻿# OsExecuteCommandsInContainers YAML Configuration
+# OsExecuteCommandsInContainers Configurations Yaml View
 
 ```yaml
-Probe: OsExecuteCommandsInContainers
-ProbeConfiguration: {}
+ProbeConfiguration:
+  ContainerName:
+  ApplicationLabels: []
+  Commands: []
+  Openshift:
+    Cluster:
+    Namespace:
+    Password:
+    Username:
 ```

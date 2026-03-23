@@ -1,7 +1,6 @@
-# ObjectOutputJsonSchema YAML Configuration
+# ObjectOutputJsonSchema Configurations Yaml View
 
 ```yaml
-Assertion: ObjectOutputJsonSchema
 AssertionConfiguration:
   OutputName:
 ```

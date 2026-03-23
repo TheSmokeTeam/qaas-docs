@@ -1,6 +1,11 @@
-﻿# DeleteRabbitMqExchanges YAML Configuration
+# DeleteRabbitMqExchanges Configurations Yaml View
 
 ```yaml
-Probe: DeleteRabbitMqExchanges
-ProbeConfiguration: {}
+ProbeConfiguration:
+  Host:
+  Password:
+  Port:
+  Username:
+  VirtualHost:
+  ExchangeNames: []
 ```

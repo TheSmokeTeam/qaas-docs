@@ -1,6 +1,13 @@
-﻿# TextTransformProcessor YAML Configuration
+# TextTransformProcessor Configurations Yaml View
 
 ```yaml
-Processor: TextTransformProcessor
-ProcessorConfiguration: {}
+ProcessorConfiguration:
+  ContentType:
+  StatusCode:
+  Prefix:
+  ReplacementText:
+  ResponseHeaders:
+  SearchText:
+  Suffix:
+  TrimWhitespace:
 ```

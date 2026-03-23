@@ -1,6 +1,8 @@
-﻿# PostgreSqlDataBaseTablesTruncate YAML Configuration
+# PostgreSqlDataBaseTablesTruncate Configurations Yaml View
 
 ```yaml
-Probe: PostgreSqlDataBaseTablesTruncate
-ProbeConfiguration: {}
+ProbeConfiguration:
+  ConnectionString:
+  CommandTimeoutSeconds:
+  TableNames: []
 ```

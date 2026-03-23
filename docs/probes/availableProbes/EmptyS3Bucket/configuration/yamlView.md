@@ -1,6 +1,11 @@
-﻿# EmptyS3Bucket YAML Configuration
+# EmptyS3Bucket Configurations Yaml View
 
 ```yaml
-Probe: EmptyS3Bucket
-ProbeConfiguration: {}
+ProbeConfiguration:
+  AccessKey:
+  SecretKey:
+  ServiceURL:
+  StorageBucket:
+  ForcePathStyle:
+  Prefix:
 ```

@@ -1,9 +1,9 @@
-# DelayByChunks YAML Configuration
+# DelayByChunks Configurations Yaml View
 
 ```yaml
-Assertion: DelayByChunks
 AssertionConfiguration:
   MaximumDelayMs:
+  InputsAreOutputs:
   MaximumNegativeDelayBufferMs:
   Input:
     ChunkSize:

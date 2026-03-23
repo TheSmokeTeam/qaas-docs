@@ -1,6 +1,14 @@
-﻿# ProblemDetailsProcessor YAML Configuration
+# ProblemDetailsProcessor Configurations Yaml View
 
 ```yaml
-Processor: ProblemDetailsProcessor
-ProcessorConfiguration: {}
+ProcessorConfiguration:
+  ContentType:
+  StatusCode:
+  Title:
+  Type:
+  Detail:
+  Extensions:
+  Instance:
+  ResponseHeaders:
+  UseRequestUriAsInstance:
 ```

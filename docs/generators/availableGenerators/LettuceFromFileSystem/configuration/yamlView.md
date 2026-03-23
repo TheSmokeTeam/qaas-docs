@@ -1,12 +1,11 @@
-# LettuceFromFileSystem YAML Configuration
+# LettuceFromFileSystem Configurations Yaml View
 
 ```yaml
-Generator: LettuceFromFileSystem
 GeneratorConfiguration:
   DataArrangeOrder:
-  StorageMetaData:
-  DataUuidRegexExpression:
   Count:
+  DataUuidRegexExpression:
+  StorageMetaData:
   FileSystem:
     Path:
     SearchPattern:

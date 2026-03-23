@@ -1,7 +1,6 @@
-# FromDataSources YAML Configuration
+# FromDataSources Configurations Yaml View
 
 ```yaml
-Generator: FromDataSources
 GeneratorConfiguration:
   Count:
 ```

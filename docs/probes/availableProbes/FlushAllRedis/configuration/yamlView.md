@@ -1,6 +1,15 @@
-﻿# FlushAllRedis YAML Configuration
+# FlushAllRedis Configurations Yaml View
 
 ```yaml
-Probe: FlushAllRedis
-ProbeConfiguration: {}
+ProbeConfiguration:
+  AbortOnConnectFail:
+  AsyncTimeout:
+  ClientName:
+  ConnectRetry:
+  KeepAlive:
+  Password:
+  Ssl:
+  SslHost:
+  Username:
+  HostNames: []
 ```

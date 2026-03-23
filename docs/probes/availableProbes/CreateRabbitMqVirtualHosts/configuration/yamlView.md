@@ -1,6 +1,22 @@
-﻿# CreateRabbitMqVirtualHosts YAML Configuration
+# CreateRabbitMqVirtualHosts Configurations Yaml View
 
 ```yaml
-Probe: CreateRabbitMqVirtualHosts
-ProbeConfiguration: {}
+ProbeConfiguration:
+  Host:
+  AllowInvalidServerCertificates:
+  ManagementPort:
+  ManagementScheme:
+  Password:
+  Port:
+  RequestTimeoutMs:
+  Username:
+  VirtualHost:
+  VirtualHosts:
+    -
+      Name:
+      DefaultQueueType:
+      Description:
+      ProtectedFromDeletion:
+      Tracing:
+      Tags: []
 ```

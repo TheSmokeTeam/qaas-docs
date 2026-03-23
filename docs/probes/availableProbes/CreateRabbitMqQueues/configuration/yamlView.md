@@ -1,6 +1,17 @@
-﻿# CreateRabbitMqQueues YAML Configuration
+# CreateRabbitMqQueues Configurations Yaml View
 
 ```yaml
-Probe: CreateRabbitMqQueues
-ProbeConfiguration: {}
+ProbeConfiguration:
+  Host:
+  Password:
+  Port:
+  Username:
+  VirtualHost:
+  Queues:
+    -
+      Exclusive:
+      Name:
+      Arguments:
+      AutoDelete:
+      Durable:
 ```

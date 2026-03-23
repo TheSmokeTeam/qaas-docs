@@ -6,7 +6,7 @@ Environment variable naming convention:
     QAAS_DOCS_LINK_<KEY_UPPER> overrides extra.links.<key>
 
 Examples:
-    export QAAS_DOCS_LINK_GITHUB_RUNNER=https://github.com/MyOrg/QaaS.Runner
+    export QAAS_DOCS_LINK_REPOSITORY_RUNNER=https://github.com/MyOrg/QaaS.Runner
     export QAAS_DOCS_LINK_ALLURE_DOCS=https://allure.example.com/docs/
 """
 
@@ -31,4 +31,3 @@ def define_env(env):
             links[key] = env_value
 
     env.conf["extra"]["links"] = links
-

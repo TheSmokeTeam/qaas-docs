@@ -1,6 +1,18 @@
-﻿# ConditionalResponseProcessor YAML Configuration
+# ConditionalResponseProcessor Configurations Yaml View
 
 ```yaml
-Processor: ConditionalResponseProcessor
-ProcessorConfiguration: {}
+ProcessorConfiguration:
+  DefaultContentType:
+  DefaultStatusCode:
+  DefaultBody:
+  DefaultResponseHeaders:
+  Rules:
+    -
+      ContentType:
+      ExpectedValue:
+      StatusCode:
+      PathParameterName:
+      RequestHeaderName:
+      ResponseBody:
+      ResponseHeaders:
 ```

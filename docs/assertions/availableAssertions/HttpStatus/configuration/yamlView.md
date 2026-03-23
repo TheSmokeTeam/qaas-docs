@@ -1,7 +1,6 @@
-# HttpStatus YAML Configuration
+# HttpStatus Configurations Yaml View
 
 ```yaml
-Assertion: HttpStatus
 AssertionConfiguration:
   StatusCode:
   OutputNames: []

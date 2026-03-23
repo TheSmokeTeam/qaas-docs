@@ -1,6 +1,15 @@
-﻿# OsUpdateDeploymentImage YAML Configuration
+# OsUpdateDeploymentImage Configurations Yaml View
 
 ```yaml
-Probe: OsUpdateDeploymentImage
-ProbeConfiguration: {}
+ProbeConfiguration:
+  ContainerName:
+  DesiredImage:
+  ReplicaSetName:
+  IntervalBetweenDesiredStateChecksMs:
+  TimeoutWaitForDesiredStateSeconds:
+  Openshift:
+    Cluster:
+    Namespace:
+    Password:
+    Username:
 ```

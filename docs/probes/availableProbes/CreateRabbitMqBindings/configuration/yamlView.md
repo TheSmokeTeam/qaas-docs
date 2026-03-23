@@ -1,6 +1,17 @@
-﻿# CreateRabbitMqBindings YAML Configuration
+# CreateRabbitMqBindings Configurations Yaml View
 
 ```yaml
-Probe: CreateRabbitMqBindings
-ProbeConfiguration: {}
+ProbeConfiguration:
+  Host:
+  Password:
+  Port:
+  Username:
+  VirtualHost:
+  Bindings:
+    -
+      DestinationName:
+      SourceName:
+      Arguments:
+      BindingType:
+      RoutingKey:
 ```

@@ -1,296 +1,720 @@
-<!-- generated hash:c37baff253ae sources:Framework, functions -->
+<!-- generated hash:ab8ac2d43851 sources:Framework, functions -->
 
 # Framework Functions
 
-This page is generated from the docs generator function manifest and the current source tree.
+This page is generated from source-level `qaas-docs` annotations and the current source tree.
 
 ## Configuration
 
 ### Placeholders
 
-#### `PlaceholderConfigurationBuilderExtension.AddPlaceholderResolver(this IConfigurationBuilder configurationBuilder) : IConfigurationBuilder`
+<hr class="function-separator" />
 
-- Kind: `function`
-- Location: `QaaS.Framework.Configurations/ConfigurationBuilderExtensions/PlaceholderConfigurationBuilderExtension.cs:15`
+#### `PlaceholderConfigurationBuilderExtension.AddPlaceholderResolver(this IConfigurationBuilder configurationBuilder)`
 
-Resolves placeholders in the configurationBuilder
+**Location** `QaaS.Framework.Configurations/ConfigurationBuilderExtensions/PlaceholderConfigurationBuilderExtension.cs:17`
+
+**Complete Signature**
+```csharp
+public static IConfigurationBuilder AddPlaceholderResolver(this IConfigurationBuilder configurationBuilder)
+```
+
+**Docstring**
+
+Adds the placeholder-resolving configuration source to the configuration builder.
+
+Call this extension before building IConfiguration when placeholder expansion should be applied as part of the configuration pipeline.
 
 ### YAML
 
-#### `YamlConfigurationBuilderExtension.AddYamlFromHttpGet(this IConfigurationBuilder builder, string yamlUrl, TimeSpan? timeout = null) : IConfigurationBuilder`
+<hr class="function-separator" />
 
-- Kind: `function`
-- Location: `QaaS.Framework.Configurations/ConfigurationBuilderExtensions/YamlConfigurationBuilderExtension.cs:21`
+#### `YamlConfigurationBuilderExtension.AddYamlFromHttpGet(this IConfigurationBuilder builder, string yamlUrl, TimeSpan? timeout = null)`
 
-Adds the HttpGetYamlConfigurationSource configuration source to the IConfigurationBuilder
+**Location** `QaaS.Framework.Configurations/ConfigurationBuilderExtensions/YamlConfigurationBuilderExtension.cs:20`
 
-#### `YamlConfigurationBuilderExtension.AddYaml(this IConfigurationBuilder builder, string yamlPath) : IConfigurationBuilder`
+**Complete Signature**
+```csharp
+public static IConfigurationBuilder AddYamlFromHttpGet(this IConfigurationBuilder builder, string yamlUrl, TimeSpan? timeout = null)
+```
 
-- Kind: `function`
-- Location: `QaaS.Framework.Configurations/ConfigurationBuilderExtensions/YamlConfigurationBuilderExtension.cs:36`
+**Docstring**
 
-Adds a YAML to the IConfigurationBuilder with CollapseShiftLeftArrowsInConfiguration support, if the yaml starts with http:// or https:// adds it using AddYamlFromHttpGet else adds it using the `AddYamlFile`
+Adds a YAML configuration source that is loaded through HTTP GET.
+
+Call this extension during configuration bootstrap when YAML should be loaded remotely instead of from the local file system.
+
+<hr class="function-separator" />
+
+#### `YamlConfigurationBuilderExtension.AddYaml(this IConfigurationBuilder builder, string yamlPath)`
+
+**Location** `QaaS.Framework.Configurations/ConfigurationBuilderExtensions/YamlConfigurationBuilderExtension.cs:33`
+
+**Complete Signature**
+```csharp
+public static IConfigurationBuilder AddYaml(this IConfigurationBuilder builder, string yamlPath)
+```
+
+**Docstring**
+
+Adds a YAML configuration source from a local file path or URL.
+
+Call this extension during configuration bootstrap so YAML sources go through the same QaaS-aware loading path for files and remote URLs.
 
 ## Framework APIs
 
 ### Contexts
 
-#### `ContextBuilder.SetLogger(ILogger logger) : IContextBuilder`
+<hr class="function-separator" />
 
-- Kind: `function`
-- Location: `QaaS.Framework.SDK/ContextObjects/ContextBuilder.cs:68`
+#### `ContextBuilder(string configurationFile, IList<string>? referenceResolutionPaths = null, IList<string>? uniqueIdPathRegexes = null)`
 
-_No XML summary provided._
+**Location** `QaaS.Framework.SDK/ContextObjects/ContextBuilder.cs:44`
 
-#### `ContextBuilder.SetConfigurationFile(string? configurationFile) : IContextBuilder`
+**Complete Signature**
+```csharp
+public ContextBuilder(string configurationFile, IList<string>? referenceResolutionPaths = null, IList<string>? uniqueIdPathRegexes = null)
+```
 
-- Kind: `function`
-- Location: `QaaS.Framework.SDK/ContextObjects/ContextBuilder.cs:75`
+**Docstring**
 
-_No XML summary provided._
+Creates a context builder that starts from a base QaaS configuration file.
 
-#### `ContextBuilder.WithOverwriteFile(string? overwriteFile) : IContextBuilder`
+Use this constructor when the context should load its initial configuration from a file path before overwrite sources and reference resolution are applied.
 
-- Kind: `function`
-- Location: `QaaS.Framework.SDK/ContextObjects/ContextBuilder.cs:83`
+<hr class="function-separator" />
 
-_No XML summary provided._
+#### `ContextBuilder(IConfigurationBuilder configurationBuilder, IList<string>? referenceResolutionPaths = null, IList<string>? uniqueIdPathRegexes = null)`
 
-#### `ContextBuilder.WithOverwriteFolder(string? overwriteFolder) : IContextBuilder`
+**Location** `QaaS.Framework.SDK/ContextObjects/ContextBuilder.cs:66`
 
-- Kind: `function`
-- Location: `QaaS.Framework.SDK/ContextObjects/ContextBuilder.cs:91`
+**Complete Signature**
+```csharp
+public ContextBuilder(IConfigurationBuilder configurationBuilder, IList<string>? referenceResolutionPaths = null, IList<string>? uniqueIdPathRegexes = null)
+```
 
-_No XML summary provided._
+**Docstring**
 
-#### `ContextBuilder.SetCase(string? caseFile) : IContextBuilder`
+Creates a context builder that starts from an existing configuration builder pipeline.
 
-- Kind: `function`
-- Location: `QaaS.Framework.SDK/ContextObjects/ContextBuilder.cs:99`
+Use this constructor when configuration sources are assembled externally and should be handed to the QaaS context pipeline as-is.
 
-_No XML summary provided._
+<hr class="function-separator" />
 
-#### `ContextBuilder.SetExecutionId(string? executionId) : IContextBuilder`
+#### `ContextBuilder.SetLogger(ILogger logger)`
 
-- Kind: `function`
-- Location: `QaaS.Framework.SDK/ContextObjects/ContextBuilder.cs:109`
+**Location** `QaaS.Framework.SDK/ContextObjects/ContextBuilder.cs:82`
 
-_No XML summary provided._
+**Complete Signature**
+```csharp
+public IContextBuilder SetLogger(ILogger logger)
+```
 
-#### `ContextBuilder.WithOverwriteArgument(string? argument) : IContextBuilder`
+**Docstring**
 
-- Kind: `function`
-- Location: `QaaS.Framework.SDK/ContextObjects/ContextBuilder.cs:116`
+Sets the logger stored on the built context.
 
-_No XML summary provided._
+The configured logger becomes the logger used by the context itself and by runtime components resolved from that context.
 
-#### `ContextBuilder.WithReferenceResolution(ReferenceConfig referenceConfig) : IContextBuilder`
+<hr class="function-separator" />
 
-- Kind: `function`
-- Location: `QaaS.Framework.SDK/ContextObjects/ContextBuilder.cs:124`
+#### `ContextBuilder.SetConfigurationFile(string? configurationFile)`
 
-_No XML summary provided._
+**Location** `QaaS.Framework.SDK/ContextObjects/ContextBuilder.cs:95`
 
-#### `ContextBuilder.ResolveCaseLast() : IContextBuilder`
+**Complete Signature**
+```csharp
+public IContextBuilder SetConfigurationFile(string? configurationFile)
+```
 
-- Kind: `function`
-- Location: `QaaS.Framework.SDK/ContextObjects/ContextBuilder.cs:131`
+**Docstring**
 
-_No XML summary provided._
+Sets the base configuration file used by the context builder.
 
-#### `ContextBuilder.WithEnvironmentVariableResolution() : IContextBuilder`
+Use this when the base configuration file should be selected or replaced after the builder has been created.
 
-- Kind: `function`
-- Location: `QaaS.Framework.SDK/ContextObjects/ContextBuilder.cs:138`
+<hr class="function-separator" />
 
-_No XML summary provided._
+#### `ContextBuilder.WithOverwriteFile(string? overwriteFile)`
 
-#### `ContextBuilder.SetCurrentRunningSessions(IInternalRunningSessions runningSessions) : IContextBuilder`
+**Location** `QaaS.Framework.SDK/ContextObjects/ContextBuilder.cs:109`
 
-- Kind: `function`
-- Location: `QaaS.Framework.SDK/ContextObjects/ContextBuilder.cs:145`
+**Complete Signature**
+```csharp
+public IContextBuilder WithOverwriteFile(string? overwriteFile)
+```
 
-_No XML summary provided._
+**Docstring**
 
-#### `ContextBuilder.BuildInternal() : InternalContext`
+Adds an overwrite file that should be applied during context construction.
 
-- Kind: `function`
-- Location: `QaaS.Framework.SDK/ContextObjects/ContextBuilder.cs:187`
+Overwrite files are applied after the base configuration and before the final configuration is built.
 
-_No XML summary provided._
+<hr class="function-separator" />
 
-#### `ContextBuilder.Build() : Context`
+#### `ContextBuilder.WithOverwriteFolder(string? overwriteFolder)`
 
-- Kind: `function`
-- Location: `QaaS.Framework.SDK/ContextObjects/ContextBuilder.cs:199`
+**Location** `QaaS.Framework.SDK/ContextObjects/ContextBuilder.cs:123`
 
-_No XML summary provided._
+**Complete Signature**
+```csharp
+public IContextBuilder WithOverwriteFolder(string? overwriteFolder)
+```
+
+**Docstring**
+
+Adds an overwrite folder whose YAML files should be applied during context construction.
+
+Every YAML file discovered in the folder is applied as an overwrite source in the order returned by the file-system enumeration.
+
+<hr class="function-separator" />
+
+#### `ContextBuilder.SetCase(string? caseFile)`
+
+**Location** `QaaS.Framework.SDK/ContextObjects/ContextBuilder.cs:137`
+
+**Complete Signature**
+```csharp
+public IContextBuilder SetCase(string? caseFile)
+```
+
+**Docstring**
+
+Sets the case file used during context construction.
+
+The supplied value is also stored as the case name on the built context.
+
+<hr class="function-separator" />
+
+#### `ContextBuilder.SetExecutionId(string? executionId)`
+
+**Location** `QaaS.Framework.SDK/ContextObjects/ContextBuilder.cs:153`
+
+**Complete Signature**
+```csharp
+public IContextBuilder SetExecutionId(string? executionId)
+```
+
+**Docstring**
+
+Sets the execution identifier stored on the built context.
+
+The execution identifier flows into the built context and can later be used by logging, reports, and storage integrations.
+
+<hr class="function-separator" />
+
+#### `ContextBuilder.WithOverwriteArgument(string? argument)`
+
+**Location** `QaaS.Framework.SDK/ContextObjects/ContextBuilder.cs:166`
+
+**Complete Signature**
+```csharp
+public IContextBuilder WithOverwriteArgument(string? argument)
+```
+
+**Docstring**
+
+Adds a command-line style overwrite argument to the context builder.
+
+Use this when command-line style overrides should participate in the same configuration pipeline as YAML sources.
+
+<hr class="function-separator" />
+
+#### `ContextBuilder.WithReferenceResolution(ReferenceConfig referenceConfig)`
+
+**Location** `QaaS.Framework.SDK/ContextObjects/ContextBuilder.cs:180`
+
+**Complete Signature**
+```csharp
+public IContextBuilder WithReferenceResolution(ReferenceConfig referenceConfig)
+```
+
+**Docstring**
+
+Adds a reference-resolution rule to the context builder.
+
+Reference-resolution rules are applied while building the final configuration so linked configuration values can be expanded consistently.
+
+<hr class="function-separator" />
+
+#### `ContextBuilder.ResolveCaseLast()`
+
+**Location** `QaaS.Framework.SDK/ContextObjects/ContextBuilder.cs:193`
+
+**Complete Signature**
+```csharp
+public IContextBuilder ResolveCaseLast()
+```
+
+**Docstring**
+
+Delays case-file application until after reference resolution has completed.
+
+This changes resolution order so the case overlay is applied after references are expanded from the base configuration and overwrites.
+
+<hr class="function-separator" />
+
+#### `ContextBuilder.WithEnvironmentVariableResolution()`
+
+**Location** `QaaS.Framework.SDK/ContextObjects/ContextBuilder.cs:206`
+
+**Complete Signature**
+```csharp
+public IContextBuilder WithEnvironmentVariableResolution()
+```
+
+**Docstring**
+
+Enables environment-variable expansion while the context is being built.
+
+Enable this when configuration values should resolve environment variables while the context is being built.
+
+<hr class="function-separator" />
+
+#### `ContextBuilder.SetCurrentRunningSessions(IInternalRunningSessions runningSessions)`
+
+**Location** `QaaS.Framework.SDK/ContextObjects/ContextBuilder.cs:219`
+
+**Complete Signature**
+```csharp
+public IContextBuilder SetCurrentRunningSessions(IInternalRunningSessions runningSessions)
+```
+
+**Docstring**
+
+Sets the running-session store used by the built context.
+
+The running-session store allows runtime components to coordinate and inspect active sessions through the built context.
+
+<hr class="function-separator" />
+
+#### `ContextBuilder.BuildInternal()`
+
+**Location** `QaaS.Framework.SDK/ContextObjects/ContextBuilder.cs:267`
+
+**Complete Signature**
+```csharp
+public InternalContext BuildInternal()
+```
+
+**Docstring**
+
+Builds an internal QaaS context from the current builder state.
+
+Call this after all configuration inputs, overwrite sources, and resolution options have been registered on the builder. The returned internal context is used by the runtime bootstrap flow.
+
+<hr class="function-separator" />
+
+#### `ContextBuilder.Build()`
+
+**Location** `QaaS.Framework.SDK/ContextObjects/ContextBuilder.cs:285`
+
+**Complete Signature**
+```csharp
+[Obsolete("Function no longer in use, Use BuildInternal instead")] public Context Build()
+```
+
+**Docstring**
+
+Builds the obsolete public Context projection from the current builder state.
+
+Prefer BuildInternal() for the active runtime path.
 
 ### Data Sources
 
-#### `DataSourceBuilder.Named(string name) : DataSourceBuilder`
+<hr class="function-separator" />
 
-- Kind: `function`
-- Location: `QaaS.Framework.SDK/DataSourceObjects/DataSourceBuilder.cs:60`
+#### `DataSourceBuilder.Named(string name)`
 
-_No XML summary provided._
+**Location** `QaaS.Framework.SDK/DataSourceObjects/DataSourceBuilder.cs:67`
 
-#### `DataSourceBuilder.HookNamed(string hookName) : DataSourceBuilder`
+**Complete Signature**
+```csharp
+public DataSourceBuilder Named(string name)
+```
 
-- Kind: `function`
-- Location: `QaaS.Framework.SDK/DataSourceObjects/DataSourceBuilder.cs:66`
+**Docstring**
 
-_No XML summary provided._
+Sets the name used for the current Framework data source builder instance.
 
-#### `DataSourceBuilder.AddDataSourceName(string dataSourceName) : DataSourceBuilder`
+Use this method when working with the documented Framework data source builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
-- Kind: `function`
-- Location: `QaaS.Framework.SDK/DataSourceObjects/DataSourceBuilder.cs:72`
+<hr class="function-separator" />
 
-_No XML summary provided._
+#### `DataSourceBuilder.HookNamed(string hookName)`
 
-#### `DataSourceBuilder.AddDataSourcePattern(string dataSourcePattern) : DataSourceBuilder`
+**Location** `QaaS.Framework.SDK/DataSourceObjects/DataSourceBuilder.cs:80`
 
-- Kind: `function`
-- Location: `QaaS.Framework.SDK/DataSourceObjects/DataSourceBuilder.cs:78`
+**Complete Signature**
+```csharp
+public DataSourceBuilder HookNamed(string hookName)
+```
 
-_No XML summary provided._
+**Docstring**
 
-#### `DataSourceBuilder.WithSerializer(SerializeConfig serializeConfig) : DataSourceBuilder`
+Sets the hook implementation name used by the current Framework data source builder instance.
 
-- Kind: `function`
-- Location: `QaaS.Framework.SDK/DataSourceObjects/DataSourceBuilder.cs:84`
+Use this method when working with the documented Framework data source builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
-_No XML summary provided._
+<hr class="function-separator" />
 
-#### `DataSourceBuilder.WithDeserializer(DeserializeConfig deserializeConfig) : DataSourceBuilder`
+#### `DataSourceBuilder.AddDataSourceName(string dataSourceName)`
 
-- Kind: `function`
-- Location: `QaaS.Framework.SDK/DataSourceObjects/DataSourceBuilder.cs:90`
+**Location** `QaaS.Framework.SDK/DataSourceObjects/DataSourceBuilder.cs:93`
 
-_No XML summary provided._
+**Complete Signature**
+```csharp
+public DataSourceBuilder AddDataSourceName(string dataSourceName)
+```
 
-#### `DataSourceBuilder.IsLazy() : DataSourceBuilder`
+**Docstring**
 
-- Kind: `function`
-- Location: `QaaS.Framework.SDK/DataSourceObjects/DataSourceBuilder.cs:96`
+Adds the supplied data source name to the current Framework data source builder instance.
 
-_No XML summary provided._
+Use this method when working with the documented Framework data source builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
-#### `DataSourceBuilder.Configure(object configuration) : DataSourceBuilder`
+<hr class="function-separator" />
 
-- Kind: `function`
-- Location: `QaaS.Framework.SDK/DataSourceObjects/DataSourceBuilder.cs:102`
+#### `DataSourceBuilder.AddDataSourcePattern(string dataSourcePattern)`
 
-_No XML summary provided._
+**Location** `QaaS.Framework.SDK/DataSourceObjects/DataSourceBuilder.cs:106`
 
-#### `DataSourceBuilder.CreateConfiguration(object configuration) : DataSourceBuilder`
+**Complete Signature**
+```csharp
+public DataSourceBuilder AddDataSourcePattern(string dataSourcePattern)
+```
 
-- Kind: `function`
-- Location: `QaaS.Framework.SDK/DataSourceObjects/DataSourceBuilder.cs:112`
+**Docstring**
 
-Compatibility alias for Configure that matches the configuration CRUD pattern used by other builders.
+Adds the supplied data source pattern to the current Framework data source builder instance.
 
-#### `DataSourceBuilder.Create(object configuration) : DataSourceBuilder`
+Use this method when working with the documented Framework data source builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
-- Kind: `function`
-- Location: `QaaS.Framework.SDK/DataSourceObjects/DataSourceBuilder.cs:120`
+<hr class="function-separator" />
 
-Compatibility alias for CreateConfiguration .
+#### `DataSourceBuilder.WithSerializer(SerializeConfig serializeConfig)`
 
-#### `DataSourceBuilder.ReadConfiguration() : IConfiguration`
+**Location** `QaaS.Framework.SDK/DataSourceObjects/DataSourceBuilder.cs:119`
 
-- Kind: `function`
-- Location: `QaaS.Framework.SDK/DataSourceObjects/DataSourceBuilder.cs:128`
+**Complete Signature**
+```csharp
+public DataSourceBuilder WithSerializer(SerializeConfig serializeConfig)
+```
 
-Returns the currently configured generator configuration.
+**Docstring**
 
-#### `DataSourceBuilder.UpdateConfiguration(object configuration) : DataSourceBuilder`
+Sets the serializer configuration used by the current Framework data source builder instance.
 
-- Kind: `function`
-- Location: `QaaS.Framework.SDK/DataSourceObjects/DataSourceBuilder.cs:136`
+Use this method when working with the documented Framework data source builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
-Merges the provided configuration object into the current generator configuration.
+<hr class="function-separator" />
 
-#### `DataSourceBuilder.UpsertConfiguration(object configuration) : DataSourceBuilder`
+#### `DataSourceBuilder.WithDeserializer(DeserializeConfig deserializeConfig)`
 
-- Kind: `function`
-- Location: `QaaS.Framework.SDK/DataSourceObjects/DataSourceBuilder.cs:145`
+**Location** `QaaS.Framework.SDK/DataSourceObjects/DataSourceBuilder.cs:132`
 
-Compatibility alias for UpdateConfiguration .
+**Complete Signature**
+```csharp
+public DataSourceBuilder WithDeserializer(DeserializeConfig deserializeConfig)
+```
 
-#### `DataSourceBuilder.DeleteConfiguration() : DataSourceBuilder`
+**Docstring**
 
-- Kind: `function`
-- Location: `QaaS.Framework.SDK/DataSourceObjects/DataSourceBuilder.cs:153`
+Sets the deserializer configuration used by the current Framework data source builder instance.
 
-Clears the configured generator configuration.
+Use this method when working with the documented Framework data source builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
-#### `DataSourceBuilder.Read(IParser parser, Type expectedType, ObjectDeserializer nestedObjectDeserializer) : void`
+<hr class="function-separator" />
 
-- Kind: `function`
-- Location: `QaaS.Framework.SDK/DataSourceObjects/DataSourceBuilder.cs:159`
+#### `DataSourceBuilder.IsLazy()`
 
-_No XML summary provided._
+**Location** `QaaS.Framework.SDK/DataSourceObjects/DataSourceBuilder.cs:145`
 
-#### `DataSourceBuilder.Write(IEmitter emitter, ObjectSerializer nestedObjectSerializer) : void`
+**Complete Signature**
+```csharp
+public DataSourceBuilder IsLazy()
+```
 
-- Kind: `function`
-- Location: `QaaS.Framework.SDK/DataSourceObjects/DataSourceBuilder.cs:165`
+**Docstring**
 
-_No XML summary provided._
+Marks the data source for lazy resolution.
 
-#### `DataSourceBuilder.Register() : DataSource`
+Use this method when working with the documented Framework data source builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
-- Kind: `function`
-- Location: `QaaS.Framework.SDK/DataSourceObjects/DataSourceBuilder.cs:182`
+<hr class="function-separator" />
 
-_No XML summary provided._
+#### `DataSourceBuilder.Configure(object configuration)`
 
-#### `DataSourceBuilder.Build(InternalContext context, IEnumerable<DataSource> dataSources, IEnumerable<KeyValuePair<string, IGenerator>> generators) : DataSource`
+**Location** `QaaS.Framework.SDK/DataSourceObjects/DataSourceBuilder.cs:158`
 
-- Kind: `function`
-- Location: `QaaS.Framework.SDK/DataSourceObjects/DataSourceBuilder.cs:196`
+**Complete Signature**
+```csharp
+public DataSourceBuilder Configure(object configuration)
+```
 
-_No XML summary provided._
+**Docstring**
+
+Replaces the generator configuration with the supplied object.
+
+The supplied object is serialized to JSON and loaded into the builder as the new generator configuration.
+
+<hr class="function-separator" />
+
+#### `DataSourceBuilder.CreateConfiguration(object configuration)`
+
+**Location** `QaaS.Framework.SDK/DataSourceObjects/DataSourceBuilder.cs:172`
+
+**Complete Signature**
+```csharp
+public DataSourceBuilder CreateConfiguration(object configuration)
+```
+
+**Docstring**
+
+Creates the generator configuration from the supplied object.
+
+This is an alias for Configure and replaces any existing generator configuration.
+
+<hr class="function-separator" />
+
+#### `DataSourceBuilder.Create(object configuration)`
+
+**Location** `QaaS.Framework.SDK/DataSourceObjects/DataSourceBuilder.cs:184`
+
+**Complete Signature**
+```csharp
+public DataSourceBuilder Create(object configuration)
+```
+
+**Docstring**
+
+Creates the generator configuration from the supplied object.
+
+This is a shorthand alias for CreateConfiguration.
+
+<hr class="function-separator" />
+
+#### `DataSourceBuilder.ReadConfiguration()`
+
+**Location** `QaaS.Framework.SDK/DataSourceObjects/DataSourceBuilder.cs:196`
+
+**Complete Signature**
+```csharp
+public IConfiguration ReadConfiguration()
+```
+
+**Docstring**
+
+Returns the configuration currently stored on the Framework data source builder instance.
+
+Use this method when working with the documented Framework data source builder API surface in code. Use it to inspect the current configured state without rebuilding the surrounding collection or runtime object graph.
+
+<hr class="function-separator" />
+
+#### `DataSourceBuilder.UpdateConfiguration(object configuration)`
+
+**Location** `QaaS.Framework.SDK/DataSourceObjects/DataSourceBuilder.cs:208`
+
+**Complete Signature**
+```csharp
+public DataSourceBuilder UpdateConfiguration(object configuration)
+```
+
+**Docstring**
+
+Merges the supplied object into the current generator configuration.
+
+Use this when only part of the generator configuration should change and existing values should be preserved where possible.
+
+<hr class="function-separator" />
+
+#### `DataSourceBuilder.UpsertConfiguration(object configuration)`
+
+**Location** `QaaS.Framework.SDK/DataSourceObjects/DataSourceBuilder.cs:221`
+
+**Complete Signature**
+```csharp
+public DataSourceBuilder UpsertConfiguration(object configuration)
+```
+
+**Docstring**
+
+Updates or creates the generator configuration from the supplied object.
+
+This is an alias for UpdateConfiguration.
+
+<hr class="function-separator" />
+
+#### `DataSourceBuilder.DeleteConfiguration()`
+
+**Location** `QaaS.Framework.SDK/DataSourceObjects/DataSourceBuilder.cs:233`
+
+**Complete Signature**
+```csharp
+public DataSourceBuilder DeleteConfiguration()
+```
+
+**Docstring**
+
+Clears the current generator configuration.
+
+After this call, the builder holds an empty configuration until a new one is supplied.
+
+<hr class="function-separator" />
+
+#### `DataSourceBuilder.Read(IParser parser, Type expectedType, ObjectDeserializer nestedObjectDeserializer)`
+
+**Location** `QaaS.Framework.SDK/DataSourceObjects/DataSourceBuilder.cs:246`
+
+**Complete Signature**
+```csharp
+public void Read(IParser parser, Type expectedType, ObjectDeserializer nestedObjectDeserializer)
+```
+
+**Docstring**
+
+Rejects custom YAML deserialization for DataSourceBuilder.
+
+DataSourceBuilder only supports YAML serialization through Write; custom deserialization through IYamlConvertible.Read is intentionally unsupported.
+
+<hr class="function-separator" />
+
+#### `DataSourceBuilder.Write(IEmitter emitter, ObjectSerializer nestedObjectSerializer)`
+
+**Location** `QaaS.Framework.SDK/DataSourceObjects/DataSourceBuilder.cs:259`
+
+**Complete Signature**
+```csharp
+public void Write(IEmitter emitter, ObjectSerializer nestedObjectSerializer)
+```
+
+**Docstring**
+
+Writes the current Framework data source builder configuration to the configured serializer output.
+
+This method participates in the YAML serialization surface that backs configuration-as-code support.
+
+<hr class="function-separator" />
+
+#### `DataSourceBuilder.Register()`
+
+**Location** `QaaS.Framework.SDK/DataSourceObjects/DataSourceBuilder.cs:283`
+
+**Complete Signature**
+```csharp
+public DataSource Register()
+```
+
+**Docstring**
+
+Registers the configured data source definition and returns the resulting data source descriptor.
+
+Registration produces the immutable data-source descriptor that is later resolved against generator hooks during execution build.
+
+<hr class="function-separator" />
+
+#### `DataSourceBuilder.Build(InternalContext context, IEnumerable<DataSource> dataSources, IEnumerable<KeyValuePair<string, IGenerator>> generators)`
+
+**Location** `QaaS.Framework.SDK/DataSourceObjects/DataSourceBuilder.cs:304`
+
+**Complete Signature**
+```csharp
+public DataSource Build(InternalContext context, IEnumerable<DataSource> dataSources, IEnumerable<KeyValuePair<string, IGenerator>> generators)
+```
+
+**Docstring**
+
+Builds the configured data source for execution.
+
+This resolves the configured generator, links any referenced data sources, and finalizes the registered data source before execution begins.
 
 ### Policies
 
-#### `PolicyBuilder.Configure(IPolicyConfig config) : PolicyBuilder`
+<hr class="function-separator" />
 
-- Kind: `function`
-- Location: `QaaS.Framework.Policies/PolicyBuilder.cs:36`
+#### `PolicyBuilder.Configure(IPolicyConfig config)`
 
-_No XML summary provided._
+**Location** `QaaS.Framework.Policies/PolicyBuilder.cs:43`
 
-#### `PolicyBuilder.Build() : Policy`
+**Complete Signature**
+```csharp
+public PolicyBuilder Configure(IPolicyConfig config)
+```
 
-- Kind: `function`
-- Location: `QaaS.Framework.Policies/PolicyBuilder.cs:63`
+**Docstring**
 
-_No XML summary provided._
+Sets the configuration currently stored on the Framework policy builder instance.
 
-#### `PolicyBuilder.BuildPolicies(PolicyBuilder[]? policyBuilders) : Policy?`
+Use this method when working with the documented Framework policy builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
-- Kind: `function`
-- Location: `QaaS.Framework.Policies/PolicyBuilder.cs:93`
+<hr class="function-separator" />
 
-_No XML summary provided._
+#### `PolicyBuilder.Build()`
+
+**Location** `QaaS.Framework.Policies/PolicyBuilder.cs:77`
+
+**Complete Signature**
+```csharp
+public Policy Build()
+```
+
+**Docstring**
+
+Builds the configured Framework policy builder output from the current state.
+
+Call this after the fluent configuration is complete. The method validates the accumulated state and materializes the runtime or immutable configuration object represented by the builder.
+
+<hr class="function-separator" />
+
+#### `PolicyBuilder.BuildPolicies(PolicyBuilder[]? policyBuilders)`
+
+**Location** `QaaS.Framework.Policies/PolicyBuilder.cs:114`
+
+**Complete Signature**
+```csharp
+public static Policy? BuildPolicies(PolicyBuilder[]? policyBuilders)
+```
+
+**Docstring**
+
+Builds a policy chain from the supplied policy builder collection.
+
+This helper lets callers collapse several fluent policy builders into the policy chain consumed by the runtime configuration surface.
 
 ## Utilities
 
 ### Enumerables
 
-#### `EnumerableExtensions.AsSingle<TItem>(this IEnumerable<TItem> enumerable) : TItem`
+<hr class="function-separator" />
 
-- Kind: `function`
-- Location: `QaaS.Framework.SDK/Extensions/EnumerableExtensions.cs:17`
+#### `EnumerableExtensions.AsSingle<TItem>(this IEnumerable<TItem> enumerable)`
 
-Validates the enumerable only consists of one item, if not throws indicative exception, if yes returns that one item
+**Location** `QaaS.Framework.SDK/Extensions/EnumerableExtensions.cs:17`
 
-#### `EnumerableExtensions.GetFilteredConfigurationObjectList<TData, TPattern>(IImmutableList<TData> dataList, IEnumerable<TPattern>? conditionFieldItemEnumerable, Func<TData, TPattern, bool> filter, string nameOfDataList) : IList<TData>`
+**Complete Signature**
+```csharp
+public static TItem AsSingle<TItem>(this IEnumerable<TItem> enumerable)
+```
 
-- Kind: `function`
-- Location: `QaaS.Framework.SDK/Extensions/EnumerableExtensions.cs:55`
+**Docstring**
 
-Returns only the data objects from 'dataList' that pass the given filter.
+Returns the single item contained in the provided sequence.
+
+The helper enforces the invariant that exactly one item must be present and throws when the sequence is empty or contains more than one value.
+
+<hr class="function-separator" />
+
+#### `EnumerableExtensions.GetFilteredConfigurationObjectList<TData, TPattern>(IImmutableList<TData> dataList, IEnumerable<TPattern>? conditionFieldItemEnumerable, Func<TData, TPattern, bool> filter, string nameOfDataList)`
+
+**Location** `QaaS.Framework.SDK/Extensions/EnumerableExtensions.cs:44`
+
+**Complete Signature**
+```csharp
+public static IList<TData> GetFilteredConfigurationObjectList<TData, TPattern>(IImmutableList<TData> dataList, IEnumerable<TPattern>? conditionFieldItemEnumerable, Func<TData, TPattern, bool> filter, string nameOfDataList)
+```
+
+**Docstring**
+
+Filters configuration objects by the supplied conditions and returns the matching items.
+
+Throws when a requested condition does not match any item so callers can fail fast on invalid configuration references.

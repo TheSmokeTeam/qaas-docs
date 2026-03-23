@@ -1,6 +1,13 @@
-﻿# JsonEnvelopeProcessor YAML Configuration
+# JsonEnvelopeProcessor Configurations Yaml View
 
 ```yaml
-Processor: JsonEnvelopeProcessor
-ProcessorConfiguration: {}
+ProcessorConfiguration:
+  BodyPropertyName:
+  ContentType:
+  StatusCode:
+  IncludeBodyType:
+  IncludePathParameters:
+  IncludeRequestHeaders:
+  IncludeUri:
+  ResponseHeaders:
 ```

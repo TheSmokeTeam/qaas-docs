@@ -1,11 +1,11 @@
-# OutputContentByExpectedCsvResults YAML Configuration
+# OutputContentByExpectedCsvResults Configurations Yaml View
 
 ```yaml
-Assertion: OutputContentByExpectedCsvResults
 AssertionConfiguration:
-  OutputName:
-  JsonConverterType:
-  DataSourceName:
-  ResultsMetaDataStorageKey:
   ColumnNameToFieldPathMap:
+  OutputName:
+  CompareRowsNotInOrder:
+  DataSourceName:
+  JsonConverterType:
+  ResultsMetaDataStorageKey:
 ```
