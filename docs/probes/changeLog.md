@@ -6,6 +6,7 @@ This file is generated automatically from CI from git history.
 
 ## Unreleased
 
+- docs(probes): add hook XML summaries
 - docs(changelog): add automated changelog
 
 ## 1.1.3-alpha.1 - 2026-03-22
