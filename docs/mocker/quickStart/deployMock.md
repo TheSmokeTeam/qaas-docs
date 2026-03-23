@@ -4,8 +4,8 @@ Once the mock works locally, package it as a container image and deploy it with 
 
 The finished chart lives in the quick-start repository branches alongside the sample project:
 
-- [YAML configuration branch]({{ links.mocker_quickstart_repository }}/tree/yaml_configuration)
-- [Code configuration branch]({{ links.mocker_quickstart_repository }}/tree/code_configuration)
+- [YAML configuration branch]({{ links.repository_mocker_quickstart }}/tree/yaml_configuration)
+- [Code configuration branch]({{ links.repository_mocker_quickstart }}/tree/code_configuration)
 
 ## Build the Image
 

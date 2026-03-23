@@ -2,7 +2,7 @@
 
 This version keeps `Program.cs` to the bootstrap call only and moves the entire mock configuration into a discovered configurator type.
 
-The completed sample is available in the `code_configuration` branch of [DummyAppMock]({{ links.mocker_quickstart_repository }}/tree/code_configuration).
+The completed sample is available in the `code_configuration` branch of [DummyAppMock]({{ links.repository_mocker_quickstart }}/tree/code_configuration).
 
 ## Scenario
 

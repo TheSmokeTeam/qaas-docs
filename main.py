@@ -7,7 +7,7 @@ Environment variable naming convention:
 
 Examples:
     export QAAS_DOCS_LINK_REPOSITORY_RUNNER=https://github.com/MyOrg/QaaS.Runner
-    export QAAS_DOCS_LINK_ALLURE_DOCS=https://allure.example.com/docs/
+    export QAAS_DOCS_LINK_ALLURE_INSTALLATION_GUIDE=https://allure.example.com/install
 """
 
 import os

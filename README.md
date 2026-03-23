@@ -6,13 +6,13 @@ Unified documentation for the Quality as a Service (QaaS) platform and its compo
 
 ## 📚 Documentation Sections
 
-| Section | Description |
-|---------|-------------|
-| **Runner** | Main testing framework - architecture, quick start, and advanced concepts |
-| **Mocker** | Mock service creation and deployment |
-| **Assertions** | Test assertion types and configurations |
-| **Generators** | Data generation from various sources |
-| **Framework** | Low-level SDK and infrastructure documentation |
+| Section        | Description                                                               |
+|----------------|---------------------------------------------------------------------------|
+| **Runner**     | Main testing framework - architecture, quick start, and advanced concepts |
+| **Mocker**     | Mock service creation and deployment                                      |
+| **Assertions** | Test assertion types and configurations                                   |
+| **Generators** | Data generation from various sources                                      |
+| **Framework**  | Low-level SDK and infrastructure documentation                            |
 
 ## 🚀 Quick Start
 
@@ -95,7 +95,6 @@ All external links used across the documentation are defined in `mkdocs.yml` und
 ```yaml
 extra:
   links:
-    repository_org: https://github.com/TheSmokeTeam
     repository_runner: https://github.com/TheSmokeTeam/QaaS.Runner
     repository_mocker: https://github.com/TheSmokeTeam/QaaS.Mocker
     # ... etc.
@@ -106,7 +105,7 @@ extra:
 ```bash
 # Local development
 export QAAS_DOCS_LINK_REPOSITORY_RUNNER=https://github.com/MyOrg/QaaS.Runner
-export QAAS_DOCS_LINK_ALLURE_DOCS=https://allure.example.com/docs/
+export QAAS_DOCS_LINK_ALLURE_INSTALLATION_GUIDE=https://allure.example.com/install
 mkdocs serve
 ```
 
@@ -126,40 +125,37 @@ docker run --rm -p 8000:8000 \
 
 **Available variables:**
 
-| Environment Variable                    | `extra.links` Key        | Description                                    |
-|-----------------------------------------|--------------------------|------------------------------------------------|
-| `QAAS_DOCS_LINK_REPOSITORY_ORG`         | `repository_org`         | Organization repository URL                    |
-| `QAAS_DOCS_LINK_REPOSITORY_RUNNER`      | `repository_runner`      | QaaS.Runner repo URL                           |
-| `QAAS_DOCS_LINK_REPOSITORY_MOCKER`      | `repository_mocker`      | QaaS.Mocker repo URL                           |
-| `QAAS_DOCS_LINK_REPOSITORY_FRAMEWORK`   | `repository_framework`   | QaaS.Framework repo URL                        |
-| `QAAS_DOCS_LINK_REPOSITORY_ASSERTIONS`  | `repository_assertions`  | QaaS.Common.Assertions repo URL                |
-| `QAAS_DOCS_LINK_REPOSITORY_GENERATORS`  | `repository_generators`  | QaaS.Common.Generators repo URL                |
-| `QAAS_DOCS_LINK_REPOSITORY_PROBES`      | `repository_probes`      | QaaS.Common.Probes repo URL                    |
-| `QAAS_DOCS_LINK_REPOSITORY_PROCESSORS`  | `repository_processors`  | QaaS.Common.Processors repo URL                |
-| `QAAS_DOCS_LINK_REPOSITORY_RUNNER_TEMPLATE` | `repository_runner_template` | QaaS.Runner.Template repo URL             |
-| `QAAS_DOCS_LINK_REPOSITORY_MOCKER_TEMPLATE` | `repository_mocker_template` | QaaS.Mocker.Template repo URL             |
-| `QAAS_DOCS_LINK_ALLURE_DOCS`            | `allure_docs`            | Allure documentation URL                       |
-| `QAAS_DOCS_LINK_ALLURE_INSTALL`         | `allure_install`         | Allure CLI install guide URL                   |
-| `QAAS_DOCS_LINK_DOTNET_SDK`             | `dotnet_sdk`             | .NET SDK download URL                          |
-| `QAAS_DOCS_LINK_VSCODE_YAML_EXTENSION`  | `vscode_yaml_extension`  | VS Code YAML extension URL                     |
-| `QAAS_DOCS_LINK_QAAS_COMMUNITY`         | `qaas_community`         | QaaS community URL                             |
-| `QAAS_DOCS_LINK_NUGET_FEED`             | `nuget_feed`             | NuGet feed URL                                 |
-| `QAAS_DOCS_LINK_NUGET_FEED_A`           | `nuget_feed_a`           | NuGet feed A URL                               |
-| `QAAS_DOCS_LINK_NUGET_FEED_B`           | `nuget_feed_b`           | NuGet feed B URL                               |
-| `QAAS_DOCS_LINK_NUGET_FEED_C`           | `nuget_feed_c`           | NuGet feed C URL                               |
-| `QAAS_DOCS_LINK_LINKS_KIBANA_SUPPORTER` | `links_kibana_supporter` | Kibana supporter link                          |
-| `QAAS_DOCS_LINK_LINKS_KIBANA_VERSION`   | `links_kibana_version`   | Kibana version                                 |
-| `QAAS_DOCS_LINK_QAAS_PROJECT_TEMPLATES` | `qaas_project_templates` | QaaS project templates URL                     |
-| `QAAS_DOCS_LINK_QAAS_ADOPTATION_DASHBOARD` | `qaas_adoptation_dashboard` | Adoption dashboard URL                    |
-| `QAAS_DOCS_LINK_QAAS_ADOPTATION_DASHBOARD_USER` | `qaas_adoptation_dashboard_user` | Adoption dashboard user          |
-| `QAAS_DOCS_LINK_QAAS_ADOPTATION_DASHBOARD_PASSWORD` | `qaas_adoptation_dashboard_password` | Adoption dashboard password |
-| `QAAS_DOCS_LINK_RUNNER_QUICKSTART_REPOSITORY` | `runner_quickstart_repository` | Runner quickstart repository URL       |
-| `QAAS_DOCS_LINK_MOCKER_QUICKSTART_REPOSITORY` | `mocker_quickstart_repository` | Mocker quickstart repository URL       |
-| `QAAS_DOCS_LINK_ARTIFACTORY`            | `artifactory`            | Artifactory base URL                           |
-| `QAAS_DOCS_LINK_REPOSITORY_MODULES`     | `repository_modules`     | QaaS.Common.Modules repository URL             |
-| `QAAS_DOCS_LINK_REPOSITORY_VAP`         | `repository_vap`         | Versioned Artifactory Publisher repository URL |
-| `QAAS_DOCS_LINK_RUNNER_SCHEMA`          | `runner_schema`          | QaaS.Runner schema URL                         |
-| `QAAS_DOCS_LINK_MOCKER_SCHEMA`          | `mocker_schema`          | QaaS.Mocker schema URL                         |
+| Environment Variable                                | `extra.links` Key                    | Description                                    |
+|-----------------------------------------------------|--------------------------------------|------------------------------------------------|
+| `QAAS_DOCS_LINK_REPOSITORY_RUNNER`                  | `repository_runner`                  | QaaS.Runner repo URL                           |
+| `QAAS_DOCS_LINK_REPOSITORY_MOCKER`                  | `repository_mocker`                  | QaaS.Mocker repo URL                           |
+| `QAAS_DOCS_LINK_REPOSITORY_FRAMEWORK`               | `repository_framework`               | QaaS.Framework repo URL                        |
+| `QAAS_DOCS_LINK_REPOSITORY_ASSERTIONS`              | `repository_assertions`              | QaaS.Common.Assertions repo URL                |
+| `QAAS_DOCS_LINK_REPOSITORY_GENERATORS`              | `repository_generators`              | QaaS.Common.Generators repo URL                |
+| `QAAS_DOCS_LINK_REPOSITORY_PROBES`                  | `repository_probes`                  | QaaS.Common.Probes repo URL                    |
+| `QAAS_DOCS_LINK_REPOSITORY_PROCESSORS`              | `repository_processors`              | QaaS.Common.Processors repo URL                |
+| `QAAS_DOCS_LINK_REPOSITORY_RUNNER_TEMPLATE`         | `repository_runner_template`         | QaaS.Runner.Template repo URL                  |
+| `QAAS_DOCS_LINK_REPOSITORY_MOCKER_TEMPLATE`         | `repository_mocker_template`         | QaaS.Mocker.Template repo URL                  |
+| `QAAS_DOCS_LINK_REPOSITORY_MODULES`                 | `repository_modules`                 | QaaS module package repository URL             |
+| `QAAS_DOCS_LINK_REPOSITORY_RUNNER_QUICKSTART`       | `repository_runner_quickstart`       | DummyAppTests quickstart repository URL        |
+| `QAAS_DOCS_LINK_REPOSITORY_MOCKER_QUICKSTART`       | `repository_mocker_quickstart`       | DummyAppMock quickstart repository URL         |
+| `QAAS_DOCS_LINK_REPOSITORY_VAP`                     | `repository_vap`                     | Versioned Artifactory Publisher repository URL |
+| `QAAS_DOCS_LINK_ALLURE_INSTALLATION_GUIDE`          | `allure_installation_guide`          | Allure CLI installation guide URL              |
+| `QAAS_DOCS_LINK_DOTNET_SDK`                         | `dotnet_sdk`                         | .NET SDK download URL                          |
+| `QAAS_DOCS_LINK_VSCODE_YAML_EXTENSION`              | `vscode_yaml_extension`              | VS Code YAML extension URL                     |
+| `QAAS_DOCS_LINK_QAAS_COMMUNITY`                     | `qaas_community`                     | QaaS community URL                             |
+| `QAAS_DOCS_LINK_NUGET_FEED`                         | `nuget_feed`                         | Primary NuGet feed URL used in install guides  |
+| `QAAS_DOCS_LINK_NUGET_FEED_A`                       | `nuget_feed_a`                       | Alternate NuGet feed A URL                     |
+| `QAAS_DOCS_LINK_NUGET_FEED_B`                       | `nuget_feed_b`                       | Alternate NuGet feed B URL                     |
+| `QAAS_DOCS_LINK_NUGET_FEED_C`                       | `nuget_feed_c`                       | Alternate NuGet feed C URL                     |
+| `QAAS_DOCS_LINK_ARTIFACTORY`                        | `artifactory`                        | Artifactory base URL                           |
+| `QAAS_DOCS_LINK_LINKS_KIBANA_SUPPORTER`             | `links_kibana_supporter`             | Kibana supporter endpoint/alias                |
+| `QAAS_DOCS_LINK_LINKS_KIBANA_VERSION`               | `links_kibana_version`               | Kibana version value used in docs text         |
+| `QAAS_DOCS_LINK_QAAS_ADOPTATION_DASHBOARD`          | `qaas_adoptation_dashboard`          | Adoption dashboard URL                         |
+| `QAAS_DOCS_LINK_QAAS_ADOPTATION_DASHBOARD_USER`     | `qaas_adoptation_dashboard_user`     | Adoption dashboard username                    |
+| `QAAS_DOCS_LINK_QAAS_ADOPTATION_DASHBOARD_PASSWORD` | `qaas_adoptation_dashboard_password` | Adoption dashboard password                    |
+| `QAAS_DOCS_LINK_RUNNER_SCHEMA`                      | `runner_schema`                      | QaaS.Runner schema URL                         |
+| `QAAS_DOCS_LINK_MOCKER_SCHEMA`                      | `mocker_schema`                      | QaaS.Mocker schema URL                         |
 
 In markdown files, links are referenced using Jinja2 syntax: `{{ links.repository_runner }}`.
 

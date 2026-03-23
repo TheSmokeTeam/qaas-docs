@@ -2,7 +2,7 @@
 
 This version builds the same RabbitMQ verification flow directly in C# while keeping `Program.cs` to the bootstrap call only.
 
-The completed sample is available in the `code_configuration` branch of [DummyAppTests]({{ links.runner_quickstart_repository }}/tree/code_configuration).
+The completed sample is available in the `code_configuration` branch of [DummyAppTests]({{ links.repository_runner_quickstart }}/tree/code_configuration).
 
 ## Keep `test.qaas.yaml` Empty
 

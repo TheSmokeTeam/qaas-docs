@@ -2,7 +2,7 @@
 
 This sample publishes one message to RabbitMQ, consumes it back from the same exchange and routing key, and verifies both delivery and timing.
 
-The completed sample is available in the `yaml_configuration` branch of [DummyAppTests]({{ links.runner_quickstart_repository }}/tree/yaml_configuration).
+The completed sample is available in the `yaml_configuration` branch of [DummyAppTests]({{ links.repository_runner_quickstart }}/tree/yaml_configuration).
 
 ## Create the Project
 
