@@ -1,4 +1,4 @@
-<!-- generated hash:be4d58e602b4 sources:Framework, functions, Builders, Data Sources -->
+<!-- generated hash:b25f6e924da2 sources:Framework, functions, Builders, Data Sources -->
 
 # Data Sources
 
@@ -16,7 +16,7 @@ Each entry uses the short function name as the table-of-contents label. Expand a
     
     **Declaring Type** `DataSourceBuilder`
     
-    **Location** `QaaS.Framework.SDK/DataSourceObjects/DataSourceBuilder.cs:60`
+    **Location** `QaaS.Framework.SDK/DataSourceObjects/DataSourceBuilder.cs:67`
     
     **Signature**
     ```csharp
@@ -39,7 +39,7 @@ Each entry uses the short function name as the table-of-contents label. Expand a
     
     **Declaring Type** `DataSourceBuilder`
     
-    **Location** `QaaS.Framework.SDK/DataSourceObjects/DataSourceBuilder.cs:73`
+    **Location** `QaaS.Framework.SDK/DataSourceObjects/DataSourceBuilder.cs:80`
     
     **Signature**
     ```csharp
@@ -62,7 +62,7 @@ Each entry uses the short function name as the table-of-contents label. Expand a
     
     **Declaring Type** `DataSourceBuilder`
     
-    **Location** `QaaS.Framework.SDK/DataSourceObjects/DataSourceBuilder.cs:86`
+    **Location** `QaaS.Framework.SDK/DataSourceObjects/DataSourceBuilder.cs:93`
     
     **Signature**
     ```csharp
@@ -85,7 +85,7 @@ Each entry uses the short function name as the table-of-contents label. Expand a
     
     **Declaring Type** `DataSourceBuilder`
     
-    **Location** `QaaS.Framework.SDK/DataSourceObjects/DataSourceBuilder.cs:99`
+    **Location** `QaaS.Framework.SDK/DataSourceObjects/DataSourceBuilder.cs:106`
     
     **Signature**
     ```csharp
@@ -108,7 +108,7 @@ Each entry uses the short function name as the table-of-contents label. Expand a
     
     **Declaring Type** `DataSourceBuilder`
     
-    **Location** `QaaS.Framework.SDK/DataSourceObjects/DataSourceBuilder.cs:112`
+    **Location** `QaaS.Framework.SDK/DataSourceObjects/DataSourceBuilder.cs:119`
     
     **Signature**
     ```csharp
@@ -131,7 +131,7 @@ Each entry uses the short function name as the table-of-contents label. Expand a
     
     **Declaring Type** `DataSourceBuilder`
     
-    **Location** `QaaS.Framework.SDK/DataSourceObjects/DataSourceBuilder.cs:125`
+    **Location** `QaaS.Framework.SDK/DataSourceObjects/DataSourceBuilder.cs:132`
     
     **Signature**
     ```csharp
@@ -154,7 +154,7 @@ Each entry uses the short function name as the table-of-contents label. Expand a
     
     **Declaring Type** `DataSourceBuilder`
     
-    **Location** `QaaS.Framework.SDK/DataSourceObjects/DataSourceBuilder.cs:138`
+    **Location** `QaaS.Framework.SDK/DataSourceObjects/DataSourceBuilder.cs:145`
     
     **Signature**
     ```csharp
@@ -177,7 +177,7 @@ Each entry uses the short function name as the table-of-contents label. Expand a
     
     **Declaring Type** `DataSourceBuilder`
     
-    **Location** `QaaS.Framework.SDK/DataSourceObjects/DataSourceBuilder.cs:151`
+    **Location** `QaaS.Framework.SDK/DataSourceObjects/DataSourceBuilder.cs:158`
     
     **Signature**
     ```csharp
@@ -200,7 +200,7 @@ Each entry uses the short function name as the table-of-contents label. Expand a
     
     **Declaring Type** `DataSourceBuilder`
     
-    **Location** `QaaS.Framework.SDK/DataSourceObjects/DataSourceBuilder.cs:165`
+    **Location** `QaaS.Framework.SDK/DataSourceObjects/DataSourceBuilder.cs:172`
     
     **Signature**
     ```csharp
@@ -223,7 +223,7 @@ Each entry uses the short function name as the table-of-contents label. Expand a
     
     **Declaring Type** `DataSourceBuilder`
     
-    **Location** `QaaS.Framework.SDK/DataSourceObjects/DataSourceBuilder.cs:177`
+    **Location** `QaaS.Framework.SDK/DataSourceObjects/DataSourceBuilder.cs:184`
     
     **Signature**
     ```csharp
@@ -246,7 +246,7 @@ Each entry uses the short function name as the table-of-contents label. Expand a
     
     **Declaring Type** `DataSourceBuilder`
     
-    **Location** `QaaS.Framework.SDK/DataSourceObjects/DataSourceBuilder.cs:189`
+    **Location** `QaaS.Framework.SDK/DataSourceObjects/DataSourceBuilder.cs:196`
     
     **Signature**
     ```csharp
@@ -269,7 +269,7 @@ Each entry uses the short function name as the table-of-contents label. Expand a
     
     **Declaring Type** `DataSourceBuilder`
     
-    **Location** `QaaS.Framework.SDK/DataSourceObjects/DataSourceBuilder.cs:201`
+    **Location** `QaaS.Framework.SDK/DataSourceObjects/DataSourceBuilder.cs:208`
     
     **Signature**
     ```csharp
@@ -292,7 +292,7 @@ Each entry uses the short function name as the table-of-contents label. Expand a
     
     **Declaring Type** `DataSourceBuilder`
     
-    **Location** `QaaS.Framework.SDK/DataSourceObjects/DataSourceBuilder.cs:214`
+    **Location** `QaaS.Framework.SDK/DataSourceObjects/DataSourceBuilder.cs:221`
     
     **Signature**
     ```csharp
@@ -315,7 +315,7 @@ Each entry uses the short function name as the table-of-contents label. Expand a
     
     **Declaring Type** `DataSourceBuilder`
     
-    **Location** `QaaS.Framework.SDK/DataSourceObjects/DataSourceBuilder.cs:226`
+    **Location** `QaaS.Framework.SDK/DataSourceObjects/DataSourceBuilder.cs:233`
     
     **Signature**
     ```csharp
@@ -338,7 +338,7 @@ Each entry uses the short function name as the table-of-contents label. Expand a
     
     **Declaring Type** `DataSourceBuilder`
     
-    **Location** `QaaS.Framework.SDK/DataSourceObjects/DataSourceBuilder.cs:276`
+    **Location** `QaaS.Framework.SDK/DataSourceObjects/DataSourceBuilder.cs:283`
     
     **Signature**
     ```csharp
