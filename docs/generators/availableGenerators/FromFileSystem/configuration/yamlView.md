@@ -1,12 +1,11 @@
-# FromFileSystem YAML Configuration
+# FromFileSystem Configurations Yaml View
 
 ```yaml
-Generator: FromFileSystem
 GeneratorConfiguration:
   DataArrangeOrder:
-  StorageMetaData:
-  DataUuidRegexExpression:
   Count:
+  DataUuidRegexExpression:
+  StorageMetaData:
   FileSystem:
     Path:
     SearchPattern:

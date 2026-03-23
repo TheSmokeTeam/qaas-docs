@@ -1,6 +1,11 @@
-﻿# EmptyElasticIndices YAML Configuration
+# EmptyElasticIndices Configurations Yaml View
 
 ```yaml
-Probe: EmptyElasticIndices
-ProbeConfiguration: {}
+ProbeConfiguration:
+  IndexPattern:
+  Password:
+  Url:
+  Username:
+  MatchQueryString:
+  RequestTimeoutMs:
 ```

@@ -1,7 +1,6 @@
-# HermeticByExpectedOutputCount YAML Configuration
+# HermeticByExpectedOutputCount Configurations Yaml View
 
 ```yaml
-Assertion: HermeticByExpectedOutputCount
 AssertionConfiguration:
   ExpectedCount:
   OutputNames: []

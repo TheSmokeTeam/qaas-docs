@@ -1,7 +1,6 @@
-# FromLettuceDataSources YAML Configuration
+# FromLettuceDataSources Configurations Yaml View
 
 ```yaml
-Generator: FromLettuceDataSources
 GeneratorConfiguration:
   Count:
 ```

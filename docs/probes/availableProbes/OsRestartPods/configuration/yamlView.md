@@ -1,6 +1,13 @@
-﻿# OsRestartPods YAML Configuration
+# OsRestartPods Configurations Yaml View
 
 ```yaml
-Probe: OsRestartPods
-ProbeConfiguration: {}
+ProbeConfiguration:
+  IntervalBetweenDesiredStateChecksMs:
+  TimeoutWaitForDesiredStateSeconds:
+  ApplicationLabels: []
+  Openshift:
+    Cluster:
+    Namespace:
+    Password:
+    Username:
 ```

@@ -1,6 +1,8 @@
-﻿# MsSqlDataBaseTablesTruncate YAML Configuration
+# MsSqlDataBaseTablesTruncate Configurations Yaml View
 
 ```yaml
-Probe: MsSqlDataBaseTablesTruncate
-ProbeConfiguration: {}
+ProbeConfiguration:
+  ConnectionString:
+  CommandTimeoutSeconds:
+  TableNames: []
 ```

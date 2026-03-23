@@ -1,6 +1,9 @@
-﻿# StaticResponseProcessor YAML Configuration
+# StaticResponseProcessor Configurations Yaml View
 
 ```yaml
-Processor: StaticResponseProcessor
-ProcessorConfiguration: {}
+ProcessorConfiguration:
+  ContentType:
+  StatusCode:
+  Body:
+  ResponseHeaders:
 ```

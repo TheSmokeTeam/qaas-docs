@@ -1,10 +1,10 @@
-# DelayByAverage YAML Configuration
+# DelayByAverage Configurations Yaml View
 
 ```yaml
-Assertion: DelayByAverage
 AssertionConfiguration:
-  MaximumDelayMs:
   InputName:
+  MaximumDelayMs:
   OutputName:
+  InputsAreOutputs:
   MaximumNegativeDelayBufferMs:
 ```

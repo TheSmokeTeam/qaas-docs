@@ -1,6 +1,17 @@
-﻿# CreateRabbitMqExchanges YAML Configuration
+# CreateRabbitMqExchanges Configurations Yaml View
 
 ```yaml
-Probe: CreateRabbitMqExchanges
-ProbeConfiguration: {}
+ProbeConfiguration:
+  Host:
+  Password:
+  Port:
+  Username:
+  VirtualHost:
+  Exchanges:
+    -
+      Name:
+      Arguments:
+      AutoDelete:
+      Durable:
+      Type:
 ```

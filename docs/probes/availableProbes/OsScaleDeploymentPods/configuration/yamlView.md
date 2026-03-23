@@ -1,6 +1,14 @@
-﻿# OsScaleDeploymentPods YAML Configuration
+# OsScaleDeploymentPods Configurations Yaml View
 
 ```yaml
-Probe: OsScaleDeploymentPods
-ProbeConfiguration: {}
+ProbeConfiguration:
+  DesiredNumberOfPods:
+  ReplicaSetName:
+  IntervalBetweenDesiredStateChecksMs:
+  TimeoutWaitForDesiredStateSeconds:
+  Openshift:
+    Cluster:
+    Namespace:
+    Password:
+    Username:
 ```

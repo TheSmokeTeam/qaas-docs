@@ -1,6 +1,17 @@
-﻿# UploadRabbitMqDefinitions YAML Configuration
+# UploadRabbitMqDefinitions Configurations Yaml View
 
 ```yaml
-Probe: UploadRabbitMqDefinitions
-ProbeConfiguration: {}
+ProbeConfiguration:
+  Host:
+  AllowInvalidServerCertificates:
+  DefinitionsFilePath:
+  DefinitionsJson:
+  ManagementPort:
+  ManagementScheme:
+  Password:
+  Port:
+  RequestTimeoutMs:
+  Username:
+  VirtualHost:
+  VirtualHostName:
 ```

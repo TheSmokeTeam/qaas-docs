@@ -1,20 +1,19 @@
-# FromS3 YAML Configuration
+# FromS3 Configurations Yaml View
 
 ```yaml
-Generator: FromS3
 GeneratorConfiguration:
   DataArrangeOrder:
+  Count:
+  DataUuidRegexExpression:
   LoadMetadataFirst:
   StorageMetaData:
-  DataUuidRegexExpression:
-  Count:
   S3:
-    SecretKey:
     AccessKey:
+    SecretKey:
     ServiceURL:
     StorageBucket:
-    SkipEmptyObjects:
-    Prefix:
     Delimiter:
     ForcePathStyle:
+    Prefix:
+    SkipEmptyObjects:
 ```

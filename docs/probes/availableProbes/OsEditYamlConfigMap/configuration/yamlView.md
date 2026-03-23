@@ -1,6 +1,13 @@
-﻿# OsEditYamlConfigMap YAML Configuration
+# OsEditYamlConfigMap Configurations Yaml View
 
 ```yaml
-Probe: OsEditYamlConfigMap
-ProbeConfiguration: {}
+ProbeConfiguration:
+  ConfigMapName:
+  ConfigMapYamlFileName:
+  ValuesToEdit:
+  Openshift:
+    Cluster:
+    Namespace:
+    Password:
+    Username:
 ```
