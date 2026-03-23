@@ -77,7 +77,7 @@ The docs repository uses a single workflow: [`.github/workflows/ci.yml`](.github
 It handles:
 
 - site validation on pushes and pull requests
-- GitHub Pages deployment on pushes to the default branch
+- GitHub Pages deployment on pushes to `master`
 - Docker image publish on tag pushes and manual dispatch
 - GitHub repository overview updates from this README on tag pushes and manual dispatch
 
@@ -124,7 +124,6 @@ External page links used by docs content:
 | `QAAS_DOCS_LINK_REPOSITORY_MOCKER_TEMPLATE`         | `repository_mocker_template`         | QaaS.Mocker.Template repo URL                  |
 | `QAAS_DOCS_LINK_REPOSITORY_RUNNER_QUICKSTART`       | `repository_runner_quickstart`       | DummyAppTests quickstart repository URL        |
 | `QAAS_DOCS_LINK_REPOSITORY_MOCKER_QUICKSTART`       | `repository_mocker_quickstart`       | DummyAppMock quickstart repository URL         |
-| `QAAS_DOCS_LINK_REPOSITORY_VAP`                     | `repository_vap`                     | Versioned Artifactory Publisher repository URL |
 | `QAAS_DOCS_LINK_ALLURE_INSTALLATION_GUIDE`          | `allure_installation_guide`          | Allure CLI installation guide URL              |
 | `QAAS_DOCS_LINK_DOTNET_SDK`                         | `dotnet_sdk`                         | .NET SDK download URL                          |
 | `QAAS_DOCS_LINK_QAAS_COMMUNITY`                     | `qaas_community`                     | QaaS community URL                             |
@@ -145,3 +144,12 @@ docker run -p 8000:8000 qaas-docs
 ```
 
 The container builds the docs site at startup, so `QAAS_DOCS_LINK_*` environment overrides are applied without rebuilding the image.
+
+Override links at container runtime with normal Docker environment variables:
+
+```bash
+docker run -p 8000:8000 \
+  -e QAAS_DOCS_SITE_URL=https://docs.example.com/qaas/ \
+  -e QAAS_DOCS_LINK_REPOSITORY_RUNNER=https://github.com/example/QaaS.Runner \
+  qaas-docs
+```

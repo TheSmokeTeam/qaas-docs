@@ -8,18 +8,6 @@ Some mocker commands do not produce session data. Others interact with the mocke
 
 **Table Property Path** - `Sessions[].MockerCommands[]`
 
-## Common Fields
-
-The current mocker command schema includes the shared fields below:
-
-- `Name`
-- `Stage`
-- `ServerName`
-- `Redis`
-- `Command`
-- `RequestDurationMs`
-- `RequestRetries`
-
 ## ChangeActionStub
 
 Changes the stub for a specific mock action endpoint.

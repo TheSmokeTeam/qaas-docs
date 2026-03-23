@@ -12,7 +12,6 @@ nav:
     - General:
       - Introduction: qaas/index.md
       - Architecture: qaas/architecture.md
-      - Change Log: qaas/changeLog.md
     - Getting Started:
       - Installation: qaas/quickStart/installation.md
       - IDE Setup: qaas/quickStart/ide.md
@@ -92,12 +91,12 @@ nav:
     - Extensibility:
       - Plugins: qaas/addOns/plugins.md
       - Modules: qaas/addOns/modules.md
+    - Change Log: qaas/changeLog.md
 
   - Mocker:
     - General:
       - Introduction: mocker/index.md
       - Architecture: mocker/architecture.md
-      - Change Log: mocker/changeLog.md
     - Quick Start:
       - Installation: mocker/quickStart/installation.md
       - Create a Mock (YAML): mocker/quickStart/createMock.md
@@ -135,6 +134,7 @@ nav:
         - Overview: mocker/userInterfaces/mocker/configurationSections/server/overview.md
         - Table View: mocker/userInterfaces/mocker/configurationSections/server/configurations/tableView.md
         - YAML View: mocker/userInterfaces/mocker/configurationSections/server/configurations/yamlView.md
+    - Change Log: mocker/changeLog.md
 
   - Hooks:
     - Assertions:
@@ -540,7 +540,6 @@ extra:
     repository_mocker_template: https://github.com/TheSmokeTeam/QaaS.Mocker.Template
     repository_runner_quickstart: https://github.com/TheSmokeTeam/DummyAppTests
     repository_mocker_quickstart: https://github.com/TheSmokeTeam/DummyAppMock
-    repository_vap: GIT/versioned-artifact-publisher
     allure_installation_guide: https://docs.qameta.io/allure/#_installing_a_commandline
     dotnet_sdk: https://dotnet.microsoft.com/download
     qaas_community: https://discord.gg/rg2NYT4Mea

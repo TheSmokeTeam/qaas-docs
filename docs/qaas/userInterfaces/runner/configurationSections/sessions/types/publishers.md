@@ -4,23 +4,6 @@ Publishers are communication actions that send data to the system. Every publish
 
 **Table Property Path** - `Sessions[].Publishers[]`
 
-## Common Fields
-
-The current publisher schema includes the shared fields below:
-
-- `Name`
-- `DataSourceNames`
-- `DataSourcePatterns`
-- `DataFilter`
-- `Iterations`
-- `Loop`
-- `SleepTimeMs`
-- `Parallel`
-- `Chunk`
-- `Stage`
-- `Policies`
-- `Serialize`
-
 ## RabbitMq
 
 Publishes messages to a RabbitMQ exchange or queue.
