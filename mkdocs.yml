@@ -11,8 +11,8 @@ nav:
   - Runner:
     - General:
       - Introduction: qaas/index.md
-      - Change Log: qaas/changeLog.md
       - Architecture: qaas/architecture.md
+      - Change Log: qaas/changeLog.md
     - Getting Started:
       - Installation: qaas/quickStart/installation.md
       - IDE Setup: qaas/quickStart/ide.md
@@ -96,8 +96,8 @@ nav:
   - Mocker:
     - General:
       - Introduction: mocker/index.md
-      - Change Log: mocker/changeLog.md
       - Architecture: mocker/architecture.md
+      - Change Log: mocker/changeLog.md
     - Quick Start:
       - Installation: mocker/quickStart/installation.md
       - Create a Mock (YAML): mocker/quickStart/createMock.md
@@ -139,7 +139,6 @@ nav:
   - Hooks:
     - Assertions:
       - Introduction: assertions/index.md
-      - Change Log: assertions/changeLog.md
       - Available Assertions:
         - HermeticByExpectedOutputCount:
           - Overview: assertions/availableAssertions/HermeticByExpectedOutputCount/overview.md
@@ -185,9 +184,9 @@ nav:
           - Overview: assertions/availableAssertions/ValidateHermeticMetricsByInputOutputPercentage/overview.md
           - Table View: assertions/availableAssertions/ValidateHermeticMetricsByInputOutputPercentage/configuration/tableView.md
           - YAML View: assertions/availableAssertions/ValidateHermeticMetricsByInputOutputPercentage/configuration/yamlView.md
+      - Change Log: assertions/changeLog.md
     - Generators:
       - Introduction: generators/index.md
-      - Change Log: generators/changeLog.md
       - Available Generators:
         - FromFileSystem:
           - Overview: generators/availableGenerators/FromFileSystem/overview.md
@@ -233,9 +232,9 @@ nav:
           - Overview: generators/availableGenerators/Stacking/overview.md
           - Table View: generators/availableGenerators/Stacking/configuration/tableView.md
           - YAML View: generators/availableGenerators/Stacking/configuration/yamlView.md
+      - Change Log: generators/changeLog.md
     - Probes:
       - Introduction: probes/index.md
-      - Change Log: probes/changeLog.md
       - Available Probes:
         - OsRestartPods:
           - Overview: probes/availableProbes/OsRestartPods/overview.md
@@ -389,9 +388,9 @@ nav:
           - Overview: probes/availableProbes/EmptyElasticIndices/overview.md
           - Table View: probes/availableProbes/EmptyElasticIndices/configuration/tableView.md
           - YAML View: probes/availableProbes/EmptyElasticIndices/configuration/yamlView.md
+      - Change Log: probes/changeLog.md
     - Processors:
       - Introduction: processors/index.md
-      - Change Log: processors/changeLog.md
       - Available Processors:
         - ConditionalResponseProcessor:
           - Overview: processors/availableProcessors/ConditionalResponseProcessor/overview.md
@@ -429,10 +428,10 @@ nav:
           - Overview: processors/availableProcessors/TextTransformProcessor/overview.md
           - Table View: processors/availableProcessors/TextTransformProcessor/configuration/tableView.md
           - YAML View: processors/availableProcessors/TextTransformProcessor/configuration/yamlView.md
+      - Change Log: processors/changeLog.md
 
   - Framework:
     - Introduction: framework/index.md
-    - Change Log: framework/changeLog.md
     - Functions:
       - Overview: framework/functions/index.md
       - Builders:
@@ -452,6 +451,7 @@ nav:
       - Protocols: framework/projects/protocols.md
       - Providers: framework/projects/providers.md
       - Serialization: framework/projects/serialization.md
+    - Change Log: framework/changeLog.md
 
 theme:
   name: material
@@ -525,6 +525,9 @@ markdown_extensions:
 
 extra:
   links:
+    docs_site: https://TheSmokeTeam.github.io/qaas-docs/
+    repository_docs: https://github.com/TheSmokeTeam/qaas-docs
+    repository_docs_ci: https://github.com/TheSmokeTeam/qaas-docs/actions/workflows/ci.yml
     repository_runner: https://github.com/TheSmokeTeam/QaaS.Runner
     repository_mocker: https://github.com/TheSmokeTeam/QaaS.Mocker
     repository_mocker_communication_objects: https://github.com/TheSmokeTeam/Qaas.Mocker.CommunicationObjects

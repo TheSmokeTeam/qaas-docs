@@ -94,12 +94,27 @@ Repository overview sync uses:
 
 This token must be able to update repository metadata for `TheSmokeTeam/qaas-docs`.
 
-Optional variable:
+Docs URLs are defined with defaults in `mkdocs.yml` and can be overridden during build or CI via environment variables.
+
+Core site settings:
+
+| Environment Variable | Setting | Description |
+|----------------------|---------|-------------|
+| `QAAS_DOCS_SITE_URL` | `site_url` | Public docs site URL |
+| `QAAS_DOCS_REPO_NAME` | `repo_name` | Repository display name shown by MkDocs |
+| `QAAS_DOCS_REPO_URL` | `repo_url` | Repository URL used by MkDocs |
+| `QAAS_DOCS_SOCIAL_GITHUB_URL` | `extra.social[].link` | GitHub social link shown in the site chrome |
+
+External page links used by docs content:
 
 | Environment Variable                                | `extra.links` Key                    | Description                                    |
 |-----------------------------------------------------|--------------------------------------|------------------------------------------------|
+| `QAAS_DOCS_LINK_DOCS_SITE`                          | `docs_site`                          | Published docs site URL                        |
+| `QAAS_DOCS_LINK_REPOSITORY_DOCS`                    | `repository_docs`                    | `qaas-docs` repository URL                     |
+| `QAAS_DOCS_LINK_REPOSITORY_DOCS_CI`                 | `repository_docs_ci`                 | `qaas-docs` CI workflow URL                    |
 | `QAAS_DOCS_LINK_REPOSITORY_RUNNER`                  | `repository_runner`                  | QaaS.Runner repo URL                           |
 | `QAAS_DOCS_LINK_REPOSITORY_MOCKER`                  | `repository_mocker`                  | QaaS.Mocker repo URL                           |
+| `QAAS_DOCS_LINK_REPOSITORY_MOCKER_COMMUNICATION_OBJECTS` | `repository_mocker_communication_objects` | QaaS.Mocker communication objects repo URL |
 | `QAAS_DOCS_LINK_REPOSITORY_FRAMEWORK`               | `repository_framework`               | QaaS.Framework repo URL                        |
 | `QAAS_DOCS_LINK_REPOSITORY_ASSERTIONS`              | `repository_assertions`              | QaaS.Common.Assertions repo URL                |
 | `QAAS_DOCS_LINK_REPOSITORY_GENERATORS`              | `repository_generators`              | QaaS.Common.Generators repo URL                |

@@ -1,4 +1,4 @@
-<!-- generated hash:0d1a72321e5e sources:runner-family, CreateRabbitMqQueues, yaml-view -->
+<!-- generated hash:918aac8669f5 sources:runner-family, CreateRabbitMqQueues, yaml-view -->
 
 # CreateRabbitMqQueues Configurations Yaml View
 
@@ -10,8 +10,7 @@ ProbeConfiguration:
   Username:
   VirtualHost:
   Queues:
-    -
-      Exclusive:
+    - Exclusive:
       Name:
       Arguments:
       AutoDelete:

@@ -1,13 +1,11 @@
-<!-- generated hash:cdb17778cee9 sources:mocker-family, FromSessionDataDataSources, yaml-view -->
+<!-- generated hash:6769d17af618 sources:mocker-family, FromSessionDataDataSources, yaml-view -->
 
 # FromSessionDataDataSources Configurations Yaml View
 
 ```yaml
 GeneratorConfiguration:
-  -
-    SessionName:
+  - SessionName:
     CommunicationDataList:
-      -
-        Name:
+      - Name:
         Type:
 ```

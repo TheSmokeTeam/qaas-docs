@@ -19,22 +19,6 @@ Assertions: []
 MetaData: {}
 ```
 
-## Required Fields
-
-Required fields are fields that must be given a value and have no default value. Required fields are only required if their parent field is used.
-
-For example, if the field in the path `SectionA.FieldA` is `required`, then as long as `SectionA` is configured it must contain the field `FieldA`:
-
-```yaml
-SectionA:
-  FieldA: content
-```
-
-If `SectionA` is not used, there is no need to configure `FieldA`:
-
-```yaml
-```
-
 ## Table View Order
 
 All configuration table views are ordered according to three rules.

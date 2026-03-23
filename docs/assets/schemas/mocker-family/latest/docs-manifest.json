@@ -1,6 +1,6 @@
 {
   "familyId": "mocker-family",
-  "generatedAtUtc": "2026-03-23T14:59:40.4455224+00:00",
+  "generatedAtUtc": "2026-03-23T17:42:13.6301258+00:00",
   "sections": [
     {
       "id": "DataSources",
@@ -39,7 +39,7 @@
       "docsSlug": "server",
       "schemaJsonPointer": "#/properties/Servers",
       "order": 3,
-      "overviewSummary": "List of server mocker instances to run concurrently.",
+      "overviewSummary": "Servers defines the listeners that QaaS.Mocker starts for a mock execution. Each item hosts one concrete protocol configuration such as \u0060Http\u0060, \u0060Grpc\u0060, or \u0060Socket\u0060, so a single mocker run can expose multiple endpoints concurrently while keeping protocol-specific settings isolated per server entry.",
       "notes": [
         "Servers is the preferred configuration model for new docs and runtime usage.",
         "The legacy Server property remains supported as a single-server shorthand."

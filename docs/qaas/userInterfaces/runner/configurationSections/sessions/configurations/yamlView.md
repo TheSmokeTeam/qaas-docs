@@ -1,11 +1,10 @@
-<!-- generated hash:faea94a56496 sources:runner-family, Sessions, yaml-view -->
+<!-- generated hash:eab78f8fdb04 sources:runner-family, Sessions, yaml-view -->
 
 # Sessions Configurations Yaml View
 
 ```yaml
 Sessions:
-  -
-    Name:
+  - Name:
     Category:
     RunUntilStage:
     SaveData:
@@ -13,8 +12,7 @@ Sessions:
     TimeoutAfterSessionMs:
     TimeoutBeforeSessionMs:
     Collectors:
-      -
-        Name:
+      - Name:
         EndTimeReachedCheckIntervalMs:
         CollectionRange:
           EndTimeMs:
@@ -30,19 +28,16 @@ Sessions:
           SampleIntervalMs:
           TimeoutMs:
     Consumers:
-      -
-        Name:
+      - Name:
         TimeoutMs:
         Stage:
         Policies:
-          -
-            AdvancedLoadBalance:
-              Stages:
-                -
-                  Rate:
-                  Amount:
-                  TimeIntervalMs:
-                  TimeoutMs:
+          - AdvancedLoadBalance:
+            Stages:
+              - Rate:
+                Amount:
+                TimeIntervalMs:
+                TimeoutMs:
             Count:
               Count:
             IncreasingLoadBalance:
@@ -180,8 +175,7 @@ Sessions:
           WhereStatement:
           ColumnsToIgnore: []
     MockerCommands:
-      -
-        Name:
+      - Name:
         ServerName:
         RequestDurationMs:
         RequestRetries:
@@ -227,16 +221,14 @@ Sessions:
           SslHost:
           Username:
     Probes:
-      -
-        Name:
+      - Name:
         Probe:
         ProbeConfiguration:
         Stage:
         DataSourceNames: []
         DataSourcePatterns: []
     Publishers:
-      -
-        Name:
+      - Name:
         Iterations:
         Loop:
         SleepTimeMs:
@@ -244,14 +236,12 @@ Sessions:
         DataSourceNames: []
         DataSourcePatterns: []
         Policies:
-          -
-            AdvancedLoadBalance:
-              Stages:
-                -
-                  Rate:
-                  Amount:
-                  TimeIntervalMs:
-                  TimeoutMs:
+          - AdvancedLoadBalance:
+            Stages:
+              - Rate:
+                Amount:
+                TimeIntervalMs:
+                TimeoutMs:
             Count:
               Count:
             IncreasingLoadBalance:
@@ -380,13 +370,11 @@ Sessions:
           SendTimeoutMs:
           SocketType:
     Stages:
-      -
-        StageNumber:
+      - StageNumber:
         TimeoutAfter:
         TimeoutBefore:
     Transactions:
-      -
-        Name:
+      - Name:
         TimeoutMs:
         Iterations:
         Loop:
@@ -395,14 +383,12 @@ Sessions:
         DataSourceNames: []
         DataSourcePatterns: []
         Policies:
-          -
-            AdvancedLoadBalance:
-              Stages:
-                -
-                  Rate:
-                  Amount:
-                  TimeIntervalMs:
-                  TimeoutMs:
+          - AdvancedLoadBalance:
+            Stages:
+              - Rate:
+                Amount:
+                TimeIntervalMs:
+                TimeoutMs:
             Count:
               Count:
             IncreasingLoadBalance:

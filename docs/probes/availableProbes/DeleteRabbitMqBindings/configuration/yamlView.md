@@ -1,4 +1,4 @@
-<!-- generated hash:a38a5f1d11ee sources:runner-family, DeleteRabbitMqBindings, yaml-view -->
+<!-- generated hash:73960210a1ca sources:runner-family, DeleteRabbitMqBindings, yaml-view -->
 
 # DeleteRabbitMqBindings Configurations Yaml View
 
@@ -10,8 +10,7 @@ ProbeConfiguration:
   Username:
   VirtualHost:
   Bindings:
-    -
-      DestinationName:
+    - DestinationName:
       SourceName:
       Arguments:
       BindingType:

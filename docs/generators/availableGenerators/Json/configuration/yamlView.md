@@ -1,4 +1,4 @@
-<!-- generated hash:75c048a5c0d3 sources:mocker-family, Json, yaml-view -->
+<!-- generated hash:7d5634530769 sources:mocker-family, Json, yaml-view -->
 
 # Json Configurations Yaml View
 
@@ -8,8 +8,7 @@ GeneratorConfiguration:
   JsonDataSourceName:
   OutputObjectType:
   JsonFieldReplacements:
-    -
-      Path:
+    - Path:
       ValueType:
       Boolean:
         Value:

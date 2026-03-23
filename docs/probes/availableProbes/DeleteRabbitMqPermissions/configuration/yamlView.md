@@ -1,4 +1,4 @@
-<!-- generated hash:1ee3a1452d50 sources:runner-family, DeleteRabbitMqPermissions, yaml-view -->
+<!-- generated hash:979c0479873a sources:runner-family, DeleteRabbitMqPermissions, yaml-view -->
 
 # DeleteRabbitMqPermissions Configurations Yaml View
 
@@ -14,7 +14,6 @@ ProbeConfiguration:
   Username:
   VirtualHost:
   Permissions:
-    -
-      Username:
+    - Username:
       VirtualHostName:
 ```

@@ -1,4 +1,4 @@
-<!-- generated hash:3301f0682dfa sources:runner-family, UpsertRabbitMqPermissions, yaml-view -->
+<!-- generated hash:ff57e1c48a54 sources:runner-family, UpsertRabbitMqPermissions, yaml-view -->
 
 # UpsertRabbitMqPermissions Configurations Yaml View
 
@@ -14,8 +14,7 @@ ProbeConfiguration:
   Username:
   VirtualHost:
   Permissions:
-    -
-      Username:
+    - Username:
       VirtualHostName:
       Configure:
       Read:

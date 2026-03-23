@@ -17,6 +17,35 @@ concurrency:
   group: docs-${{ github.workflow }}-${{ github.ref }}
   cancel-in-progress: false
 
+env:
+  QAAS_DOCS_SITE_URL: ${{ vars.QAAS_DOCS_SITE_URL || 'https://TheSmokeTeam.github.io/qaas-docs/' }}
+  QAAS_DOCS_REPO_NAME: ${{ vars.QAAS_DOCS_REPO_NAME || 'QaaS' }}
+  QAAS_DOCS_REPO_URL: ${{ vars.QAAS_DOCS_REPO_URL || 'https://github.com/TheSmokeTeam/qaas-docs' }}
+  QAAS_DOCS_SOCIAL_GITHUB_URL: ${{ vars.QAAS_DOCS_SOCIAL_GITHUB_URL || 'https://github.com/TheSmokeTeam/qaas-docs' }}
+  QAAS_DOCS_LINK_DOCS_SITE: ${{ vars.QAAS_DOCS_LINK_DOCS_SITE || 'https://TheSmokeTeam.github.io/qaas-docs/' }}
+  QAAS_DOCS_LINK_REPOSITORY_DOCS: ${{ vars.QAAS_DOCS_LINK_REPOSITORY_DOCS || 'https://github.com/TheSmokeTeam/qaas-docs' }}
+  QAAS_DOCS_LINK_REPOSITORY_DOCS_CI: ${{ vars.QAAS_DOCS_LINK_REPOSITORY_DOCS_CI || 'https://github.com/TheSmokeTeam/qaas-docs/actions/workflows/ci.yml' }}
+  QAAS_DOCS_LINK_REPOSITORY_RUNNER: ${{ vars.QAAS_DOCS_LINK_REPOSITORY_RUNNER || 'https://github.com/TheSmokeTeam/QaaS.Runner' }}
+  QAAS_DOCS_LINK_REPOSITORY_MOCKER: ${{ vars.QAAS_DOCS_LINK_REPOSITORY_MOCKER || 'https://github.com/TheSmokeTeam/QaaS.Mocker' }}
+  QAAS_DOCS_LINK_REPOSITORY_MOCKER_COMMUNICATION_OBJECTS: ${{ vars.QAAS_DOCS_LINK_REPOSITORY_MOCKER_COMMUNICATION_OBJECTS || 'https://github.com/TheSmokeTeam/Qaas.Mocker.CommunicationObjects' }}
+  QAAS_DOCS_LINK_REPOSITORY_FRAMEWORK: ${{ vars.QAAS_DOCS_LINK_REPOSITORY_FRAMEWORK || 'https://github.com/TheSmokeTeam/QaaS.Framework' }}
+  QAAS_DOCS_LINK_REPOSITORY_ASSERTIONS: ${{ vars.QAAS_DOCS_LINK_REPOSITORY_ASSERTIONS || 'https://github.com/TheSmokeTeam/QaaS.Common.Assertions' }}
+  QAAS_DOCS_LINK_REPOSITORY_GENERATORS: ${{ vars.QAAS_DOCS_LINK_REPOSITORY_GENERATORS || 'https://github.com/TheSmokeTeam/QaaS.Common.Generators' }}
+  QAAS_DOCS_LINK_REPOSITORY_PROBES: ${{ vars.QAAS_DOCS_LINK_REPOSITORY_PROBES || 'https://github.com/TheSmokeTeam/QaaS.Common.Probes' }}
+  QAAS_DOCS_LINK_REPOSITORY_PROCESSORS: ${{ vars.QAAS_DOCS_LINK_REPOSITORY_PROCESSORS || 'https://github.com/TheSmokeTeam/QaaS.Common.Processors' }}
+  QAAS_DOCS_LINK_REPOSITORY_RUNNER_TEMPLATE: ${{ vars.QAAS_DOCS_LINK_REPOSITORY_RUNNER_TEMPLATE || 'https://github.com/TheSmokeTeam/QaaS.Runner.Template' }}
+  QAAS_DOCS_LINK_REPOSITORY_MOCKER_TEMPLATE: ${{ vars.QAAS_DOCS_LINK_REPOSITORY_MOCKER_TEMPLATE || 'https://github.com/TheSmokeTeam/QaaS.Mocker.Template' }}
+  QAAS_DOCS_LINK_REPOSITORY_RUNNER_QUICKSTART: ${{ vars.QAAS_DOCS_LINK_REPOSITORY_RUNNER_QUICKSTART || 'https://github.com/TheSmokeTeam/DummyAppTests' }}
+  QAAS_DOCS_LINK_REPOSITORY_MOCKER_QUICKSTART: ${{ vars.QAAS_DOCS_LINK_REPOSITORY_MOCKER_QUICKSTART || 'https://github.com/TheSmokeTeam/DummyAppMock' }}
+  QAAS_DOCS_LINK_REPOSITORY_VAP: ${{ vars.QAAS_DOCS_LINK_REPOSITORY_VAP || 'GIT/versioned-artifact-publisher' }}
+  QAAS_DOCS_LINK_ALLURE_INSTALLATION_GUIDE: ${{ vars.QAAS_DOCS_LINK_ALLURE_INSTALLATION_GUIDE || 'https://docs.qameta.io/allure/#_installing_a_commandline' }}
+  QAAS_DOCS_LINK_DOTNET_SDK: ${{ vars.QAAS_DOCS_LINK_DOTNET_SDK || 'https://dotnet.microsoft.com/download' }}
+  QAAS_DOCS_LINK_QAAS_COMMUNITY: ${{ vars.QAAS_DOCS_LINK_QAAS_COMMUNITY || 'https://discord.gg/rg2NYT4Mea' }}
+  QAAS_DOCS_LINK_NUGET_FEED: ${{ vars.QAAS_DOCS_LINK_NUGET_FEED || 'https://api.nuget.org/v3/index.json' }}
+  QAAS_DOCS_LINK_ARTIFACTORY: ${{ vars.QAAS_DOCS_LINK_ARTIFACTORY || 'https://jfrog.com/artifactory' }}
+  QAAS_DOCS_LINK_RUNNER_SCHEMA: ${{ vars.QAAS_DOCS_LINK_RUNNER_SCHEMA || '../../assets/schemas/runner-family-schema.json' }}
+  QAAS_DOCS_LINK_MOCKER_SCHEMA: ${{ vars.QAAS_DOCS_LINK_MOCKER_SCHEMA || '../../assets/schemas/mocker-family-schema.json' }}
+
 jobs:
   build-site:
     runs-on: ubuntu-latest
@@ -152,8 +181,6 @@ jobs:
           python - <<'PY'
           import os
           import pathlib
-          import re
-
           text = pathlib.Path("README.md").read_text(encoding="utf-8")
           lines = [line.strip() for line in text.splitlines()]
 
@@ -167,8 +194,7 @@ jobs:
           if not description:
             raise SystemExit("Unable to extract repository description from README.md.")
 
-          homepage_match = re.search(r"https://TheSmokeTeam\.github\.io/qaas-docs/?", text)
-          homepage = homepage_match.group(0) if homepage_match else ""
+          homepage = os.environ.get("QAAS_DOCS_SITE_URL", "")
 
           output = pathlib.Path(os.environ["GITHUB_OUTPUT"])
           with output.open("a", encoding="utf-8") as handle:

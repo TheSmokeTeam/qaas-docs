@@ -7,8 +7,7 @@ ProcessorConfiguration:
   DefaultBody:
   DefaultResponseHeaders:
   Rules:
-    -
-      ContentType:
+    - ContentType:
       ExpectedValue:
       StatusCode:
       PathParameterName:

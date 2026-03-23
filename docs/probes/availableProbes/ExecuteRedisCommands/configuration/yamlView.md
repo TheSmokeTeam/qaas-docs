@@ -1,4 +1,4 @@
-<!-- generated hash:0208840f7341 sources:runner-family, ExecuteRedisCommands, yaml-view -->
+<!-- generated hash:079baa6ee29a sources:runner-family, ExecuteRedisCommands, yaml-view -->
 
 # ExecuteRedisCommands Configurations Yaml View
 
@@ -15,8 +15,7 @@ ProbeConfiguration:
   SslHost:
   Username:
   Commands:
-    -
-      Command:
+    - Command:
       Arguments: []
   HostNames: []
 ```

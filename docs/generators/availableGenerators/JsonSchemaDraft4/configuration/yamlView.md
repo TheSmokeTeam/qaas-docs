@@ -1,4 +1,4 @@
-<!-- generated hash:2ae846c4359d sources:mocker-family, JsonSchemaDraft4, yaml-view -->
+<!-- generated hash:6a815f898abc sources:mocker-family, JsonSchemaDraft4, yaml-view -->
 
 # JsonSchemaDraft4 Configurations Yaml View
 
@@ -9,8 +9,7 @@ GeneratorConfiguration:
   OutputObjectType:
   Seed:
   JsonFieldReplacements:
-    -
-      Path:
+    - Path:
       ValueType:
       Boolean:
         Value:

@@ -41,7 +41,7 @@ Assertions: []
 
 ### 4.2 QaaS Runner Configuration Sections Order
 
-* All used qaas runner configuration sections should be configured in the logical running order with the metadata sections on the top which will be `Links` -> `Storage` -> `DataSources` -> `Sessions` -> `Assertions`.
+* All used qaas runner configuration sections should be configured in the logical running order with the metadata sections on the top which will be `Links` -> `Storages` -> `DataSources` -> `Sessions` -> `Assertions`.
 * There should be a single empty line between the end of a configuration section and the start of the next one.
 
 **Example**:
@@ -49,7 +49,7 @@ Assertions: []
 ```yaml
 Links: ...
 
-Storage: ...
+Storages: ...
 
 DataSources: ...
 

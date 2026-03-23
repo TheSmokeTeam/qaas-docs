@@ -9,10 +9,10 @@ The completed sample is available in the `code_configuration` branch of [DummyAp
 `DummyAppTests/test.qaas.yaml`
 
 ```yaml
-# Intentionally blank. Program.cs attaches the execution configuration after bootstrap loads this file.
+# Intentionally blank. Program.cs builds the execution definition after bootstrap loads this file.
 ```
 
-Runner still expects a configuration-file argument, but the execution builder exists as soon as bootstrap loads the run. In this guide, `Program.cs` takes that loaded builder, updates it with the same metadata, data source, session, and assertions as the YAML sample, and then runs it.
+Runner still expects a configuration-file argument, so the code sample keeps the empty file in place and then builds the execution definition in `Program.cs`.
 
 ## Add the Test Data
 
@@ -50,13 +50,7 @@ using QaaS.Runner.Sessions.Actions.Consumers.Builders;
 using QaaS.Runner.Sessions.Actions.Publishers.Builders;
 using QaaS.Runner.Sessions.Session.Builders;
 
-Directory.SetCurrentDirectory(AppContext.BaseDirectory);
-
-var effectiveArgs = args.Length == 0
-    ? ["run", "test.qaas.yaml", "--no-env"]
-    : args;
-
-var runner = QaaS.Runner.Bootstrap.New(effectiveArgs);
+var runner = QaaS.Runner.Bootstrap.New(args);
 var executionBuilder = runner.ExecutionBuilders.Single();
 
 var dataSource = new DataSourceBuilder()
@@ -67,7 +61,7 @@ var dataSource = new DataSourceBuilder()
         DataArrangeOrder = DataArrangeOrder.AsciiAsc,
         FileSystem = new FileSystemConfig
         {
-            Path = "TestData"
+            Path = Path.Combine(AppContext.BaseDirectory, "TestData")
         }
     });
 
@@ -182,7 +176,7 @@ This keeps the standard bootstrap path intact:
 From `DummyAppTests/DummyAppTests`:
 
 ```bash
-dotnet run
+dotnet run -- run test.qaas.yaml --no-env
 ```
 
-If you want to pass explicit Runner flags instead of using the default `run test.qaas.yaml --no-env` arguments, pass them normally after `dotnet run --`.
+If you want to pass different Runner flags, append them after `dotnet run --`.

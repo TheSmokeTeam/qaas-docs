@@ -1,4 +1,4 @@
-<!-- generated hash:379d7525a768 sources:runner-family, CreateRabbitMqExchanges, yaml-view -->
+<!-- generated hash:8f911b66499f sources:runner-family, CreateRabbitMqExchanges, yaml-view -->
 
 # CreateRabbitMqExchanges Configurations Yaml View
 
@@ -10,8 +10,7 @@ ProbeConfiguration:
   Username:
   VirtualHost:
   Exchanges:
-    -
-      Name:
+    - Name:
       Arguments:
       AutoDelete:
       Durable:

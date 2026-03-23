@@ -4,25 +4,16 @@ Use code configuration when the mock should be assembled with normal C# builders
 
 The completed sample is available in the `code_configuration` branch of [DummyAppMock]({{ links.repository_mocker_quickstart }}/tree/code_configuration).
 
-## Scenario
+## Add the Response File
 
-The code-first sample keeps the same behavior as the YAML sample:
+`DummyAppMock/ServerData/sample.json`
 
-- listen on `http://127.0.0.1:8080`
-- return JSON from `GET /data`
-- read the response body from `ServerData/sample.json`
-
-## Packages
-
-```bash
-dotnet new qaas-mocker -n DummyAppMock
-cd DummyAppMock
-dotnet add DummyAppMock/DummyAppMock.csproj package QaaS.Common.Generators
+```json
+{
+  "message": "hello from DummyAppMock",
+  "source": "code_configuration"
+}
 ```
-
-## Keep the Configuration in Code
-
-The stable `QaaS.Mocker` package already supports building the mock directly from C# builder objects, so this guide keeps the runtime configuration entirely inside `Program.cs`.
 
 ## Reuse the Same Local Processor
 
@@ -42,8 +33,6 @@ using QaaS.Mocker.Servers.ConfigurationObjects;
 using QaaS.Mocker.Servers.ConfigurationObjects.HttpServerConfigs;
 using QaaS.Mocker.Stubs.ConfigurationObjects;
 
-Directory.SetCurrentDirectory(AppContext.BaseDirectory);
-
 var executionBuilder = new ExecutionBuilder()
     .CreateDataSource(new DataSourceBuilder()
         .Named("ServerData")
@@ -53,7 +42,7 @@ var executionBuilder = new ExecutionBuilder()
             DataArrangeOrder = DataArrangeOrder.AsciiAsc,
             FileSystem = new FileSystemConfig
             {
-                Path = "ServerData"
+                Path = Path.Combine(AppContext.BaseDirectory, "ServerData")
             }
         }))
     .CreateStub(new TransactionStubBuilder()
@@ -94,23 +83,12 @@ This keeps the runtime behavior aligned with the YAML guide:
 - `ExecutionBuilder` uses the same builder methods as the YAML sample: data source, stub, then server.
 - `MockerRunner` runs the resulting mock exactly as defined in `Program.cs`.
 
-## Add the Response File
-
-`DummyAppMock/ServerData/sample.json`
-
-```json
-{
-  "message": "hello from DummyAppMock",
-  "source": "code_configuration"
-}
-```
-
 ## Run
 
-From `DummyAppMock/DummyAppMock`:
+From the repository root:
 
 ```bash
-dotnet run
+dotnet run --project DummyAppMock/DummyAppMock.csproj
 ```
 
 Then verify it:

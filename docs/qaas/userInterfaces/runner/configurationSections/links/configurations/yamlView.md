@@ -1,17 +1,15 @@
-<!-- generated hash:37c981cc64d6 sources:runner-family, Links, yaml-view -->
+<!-- generated hash:687f66e20351 sources:runner-family, Links, yaml-view -->
 
 # Links Configurations Yaml View
 
 ```yaml
 Links:
-  -
-    Name:
+  - Name:
     Grafana:
       DashboardId:
       Url:
       Variables:
-        -
-          Key:
+        - Key:
           Value:
     Kibana:
       DataViewId:

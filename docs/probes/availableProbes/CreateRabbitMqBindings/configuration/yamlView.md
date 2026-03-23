@@ -1,4 +1,4 @@
-<!-- generated hash:f7cc81755eaf sources:runner-family, CreateRabbitMqBindings, yaml-view -->
+<!-- generated hash:5d14f2d23996 sources:runner-family, CreateRabbitMqBindings, yaml-view -->
 
 # CreateRabbitMqBindings Configurations Yaml View
 
@@ -10,8 +10,7 @@ ProbeConfiguration:
   Username:
   VirtualHost:
   Bindings:
-    -
-      DestinationName:
+    - DestinationName:
       SourceName:
       Arguments:
       BindingType:

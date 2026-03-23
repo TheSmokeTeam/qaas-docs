@@ -1,8 +1,6 @@
-<!-- generated hash:4219a678925d sources:Mocker, cli-overview -->
+<!-- generated hash:d5b458b6a107 sources:Mocker, cli-overview -->
 
 # Commands
-
-This page is generated from a committed Mocker CLI snapshot captured from the live help path.
 
 Running without a command currently prints:
 

@@ -1,4 +1,4 @@
-<!-- generated hash:3999b236e4fa sources:runner-family, CreateRabbitMqVirtualHosts, yaml-view -->
+<!-- generated hash:522c6750b56d sources:runner-family, CreateRabbitMqVirtualHosts, yaml-view -->
 
 # CreateRabbitMqVirtualHosts Configurations Yaml View
 
@@ -14,8 +14,7 @@ ProbeConfiguration:
   Username:
   VirtualHost:
   VirtualHosts:
-    -
-      Name:
+    - Name:
       DefaultQueueType:
       Description:
       ProtectedFromDeletion:
