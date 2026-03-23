@@ -107,7 +107,6 @@ Optional variable:
 | `QAAS_DOCS_LINK_REPOSITORY_PROCESSORS`              | `repository_processors`              | QaaS.Common.Processors repo URL                |
 | `QAAS_DOCS_LINK_REPOSITORY_RUNNER_TEMPLATE`         | `repository_runner_template`         | QaaS.Runner.Template repo URL                  |
 | `QAAS_DOCS_LINK_REPOSITORY_MOCKER_TEMPLATE`         | `repository_mocker_template`         | QaaS.Mocker.Template repo URL                  |
-| `QAAS_DOCS_LINK_REPOSITORY_MODULES`                 | `repository_modules`                 | QaaS module package repository URL             |
 | `QAAS_DOCS_LINK_REPOSITORY_RUNNER_QUICKSTART`       | `repository_runner_quickstart`       | DummyAppTests quickstart repository URL        |
 | `QAAS_DOCS_LINK_REPOSITORY_MOCKER_QUICKSTART`       | `repository_mocker_quickstart`       | DummyAppMock quickstart repository URL         |
 | `QAAS_DOCS_LINK_REPOSITORY_VAP`                     | `repository_vap`                     | Versioned Artifactory Publisher repository URL |
