@@ -123,6 +123,21 @@ function Get-GeneratedMarkdown {
     return (([System.IO.File]::ReadAllText($Path, $Utf8NoBom)) -replace "`r`n", "`n")
 }
 
+function Get-TrackedDocsContent {
+    param(
+        [Parameter(Mandatory)]
+        [string]$RelativePath
+    )
+
+    $gitRelativePath = $RelativePath.Replace('\', '/')
+    $content = git -C $DocsRoot show "HEAD:$gitRelativePath" 2>$null
+    if ($LASTEXITCODE -ne 0) {
+        return $null
+    }
+
+    return (($content -join "`n") -replace "`r`n", "`n")
+}
+
 function Set-OrCheckGeneratedMarkdown {
     param(
         [Parameter(Mandatory)]
@@ -228,6 +243,47 @@ function Sync-ChangelogPage {
     Set-OrCheckGeneratedMarkdown -RelativePath $RelativePath -Content $content
 }
 
+function Restore-TrackedDocsPageIfSectionsMissing {
+    param(
+        [Parameter(Mandatory)]
+        [string]$RelativePath,
+
+        [Parameter(Mandatory)]
+        [string[]]$RequiredSections
+    )
+
+    $currentContent = Get-GeneratedMarkdown -Path (Join-Path $DocsRoot $RelativePath)
+    if ([string]::IsNullOrWhiteSpace($currentContent)) {
+        return
+    }
+
+    $missingSections = @($RequiredSections | Where-Object {
+        $section = [regex]::Escape($_)
+        $currentContent -notmatch "(?m)^## $section$"
+    })
+
+    if ($missingSections.Count -eq 0) {
+        return
+    }
+
+    $trackedContent = Get-TrackedDocsContent -RelativePath $RelativePath
+    if ([string]::IsNullOrWhiteSpace($trackedContent)) {
+        throw "Generated docs page '$RelativePath' is missing required sections ($($missingSections -join ', ')) and no tracked fallback exists."
+    }
+
+    $trackedMissingSections = @($RequiredSections | Where-Object {
+        $section = [regex]::Escape($_)
+        $trackedContent -notmatch "(?m)^## $section$"
+    })
+
+    if ($trackedMissingSections.Count -gt 0) {
+        throw "Tracked docs page '$RelativePath' is also missing required sections ($($trackedMissingSections -join ', '))."
+    }
+
+    Write-Warning "Falling back to the tracked docs page for $RelativePath because the generated output is missing sections: $($missingSections -join ', ')."
+    Set-OrCheckGeneratedMarkdown -RelativePath $RelativePath -Content $trackedContent
+}
+
 $generatorProject = Join-Path $DocsRoot 'tools\QaaS.Docs.Generator\QaaS.Docs.Generator.csproj'
 if (-not (Test-Path $generatorProject)) {
     throw "QaaS.Docs.Generator is missing. Initialize the docs repo submodule before running this script."
@@ -279,6 +335,14 @@ if ($Check) {
 
 dotnet @generatorArgs
 if ($LASTEXITCODE -ne 0) { throw 'Docs generator failed.' }
+
+Restore-TrackedDocsPageIfSectionsMissing `
+    -RelativePath 'docs\qaas\functions\index.md' `
+    -RequiredSections @('Builders', 'Commands')
+
+Restore-TrackedDocsPageIfSectionsMissing `
+    -RelativePath 'docs\mocker\functions\index.md' `
+    -RequiredSections @('Builders', 'Commands')
 
 & (Join-Path $PSScriptRoot 'Sync-HookConfigDocs.ps1') `
     -DocsRoot $DocsRoot `
