@@ -541,17 +541,9 @@ extra:
     repository_vap: GIT/versioned-artifact-publisher
     allure_installation_guide: https://docs.qameta.io/allure/#_installing_a_commandline
     dotnet_sdk: https://dotnet.microsoft.com/download
-    vscode_yaml_extension: https://marketplace.visualstudio.com/items?itemName=redhat.vscode-yaml
     qaas_community: https://discord.gg/rg2NYT4Mea
-    nuget_feed_a: https://api.nuget.org/v3/index.json
-    nuget_feed_b: https://api.nuget.org/v3/index.json
-    nuget_feed_c: https://api.nuget.org/v3/index.json
-    artifactory: link_to_artifactory
-    links_kibana_supporter: kibana_supporter
-    links_kibana_version: 8.4.1
-    qaas_adoptation_dashboard: link_to_adoptation_dashboard
-    qaas_adoptation_dashboard_user: user
-    qaas_adoptation_dashboard_password: password
+    nuget_feed: https://api.nuget.org/v3/index.json
+    artifactory: https://www.nuget.org
     runner_schema: ../../assets/schemas/runner-family-schema.json
     mocker_schema: ../../assets/schemas/mocker-family-schema.json
   social:

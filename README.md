@@ -113,17 +113,9 @@ Optional variable:
 | `QAAS_DOCS_LINK_REPOSITORY_VAP`                     | `repository_vap`                     | Versioned Artifactory Publisher repository URL |
 | `QAAS_DOCS_LINK_ALLURE_INSTALLATION_GUIDE`          | `allure_installation_guide`          | Allure CLI installation guide URL              |
 | `QAAS_DOCS_LINK_DOTNET_SDK`                         | `dotnet_sdk`                         | .NET SDK download URL                          |
-| `QAAS_DOCS_LINK_VSCODE_YAML_EXTENSION`              | `vscode_yaml_extension`              | VS Code YAML extension URL                     |
 | `QAAS_DOCS_LINK_QAAS_COMMUNITY`                     | `qaas_community`                     | QaaS community URL                             |
-| `QAAS_DOCS_LINK_NUGET_FEED_A`                       | `nuget_feed_a`                       | NuGet `NuGet.Config` feed link                 |
-| `QAAS_DOCS_LINK_NUGET_FEED_B`                       | `nuget_feed_b`                       | NuGet `NuGet.Config` feed link                 |
-| `QAAS_DOCS_LINK_NUGET_FEED_C`                       | `nuget_feed_c`                       | NuGet `NuGet.Config` feed link                 |
+| `QAAS_DOCS_LINK_NUGET_FEED`                         | `nuget_feed`                         | NuGet `NuGet.Config` feed link                 |
 | `QAAS_DOCS_LINK_ARTIFACTORY`                        | `artifactory`                        | Artifactory base URL                           |
-| `QAAS_DOCS_LINK_LINKS_KIBANA_SUPPORTER`             | `links_kibana_supporter`             | Kibana supporter endpoint/alias                |
-| `QAAS_DOCS_LINK_LINKS_KIBANA_VERSION`               | `links_kibana_version`               | Kibana version value used in docs text         |
-| `QAAS_DOCS_LINK_QAAS_ADOPTATION_DASHBOARD`          | `qaas_adoptation_dashboard`          | Adoption dashboard URL                         |
-| `QAAS_DOCS_LINK_QAAS_ADOPTATION_DASHBOARD_USER`     | `qaas_adoptation_dashboard_user`     | Adoption dashboard username                    |
-| `QAAS_DOCS_LINK_QAAS_ADOPTATION_DASHBOARD_PASSWORD` | `qaas_adoptation_dashboard_password` | Adoption dashboard password                    |
 | `QAAS_DOCS_LINK_RUNNER_SCHEMA`                      | `runner_schema`                      | QaaS.Runner schema URL                         |
 | `QAAS_DOCS_LINK_MOCKER_SCHEMA`                      | `mocker_schema`                      | QaaS.Mocker schema URL                         |
 

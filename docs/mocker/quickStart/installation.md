@@ -2,24 +2,22 @@
 
 ## Prerequisites
 
-| Requirement | Details |
-| ----------- | ------- |
-| [.NET SDK]({{ links.dotnet_sdk }}) | Version **10.0** |
-| NuGet feed | A global `NuGet.Config` file configured with feed URLs A, B, and C |
-| IDE setup | Recommended for YAML schema validation and completion |
+| Requirement                        | Details                                                             |
+|------------------------------------|---------------------------------------------------------------------|
+| [.NET SDK]({{ links.dotnet_sdk }}) | Version **10.0**                                                    |
+| NuGet feed                         | A global `NuGet.Config` file configured with the correct nuget feed |
+| IDE setup                          | Recommended for YAML schema validation and completion               |
 
 ## Global NuGet.Config
 
-Add package sources to your global `NuGet.Config` file, usually `~/.nuget/NuGet/NuGet.Config`.
+Add the relevant package source to your global `NuGet.Config` file, usually `~/.nuget/NuGet/NuGet.Config`.
 
 ```xml
 <configuration>
-  <packageSources>
-    <clear />
-    <add key="feed_a" value="{{ links.nuget_feed_a }}" protocolVersion="3" />
-    <add key="feed_b" value="{{ links.nuget_feed_b }}" protocolVersion="3" />
-    <add key="feed_c" value="{{ links.nuget_feed_c }}" protocolVersion="3" />
-  </packageSources>
+    <packageSources>
+        <clear />
+        <add key="nuget_feed" value="{{ links.nuget_feed }}" protocolVersion="3" />
+    </packageSources>
 </configuration>
 ```
 
@@ -58,10 +56,7 @@ dotnet new qaas-mocker -n MyServiceMock
 
 The generated repo includes:
 
-- `NuGet.config` pointing at:
-  - `{{ links.nuget_feed_a }}`
-  - `{{ links.nuget_feed_b }}`
-  - `{{ links.nuget_feed_c }}`
+- `NuGet.config` pointing at: `{{ links.nuget_feed }}`
 - `QaaS.Mocker` with `Version="x.x.x"` (set a concrete package version for your project)
 - a minimal `/health` mock under `Servers`
 - `Dockerfile` and generated GitHub Actions CI
@@ -104,11 +99,8 @@ After installing the schema in your IDE:
 
 === "VS Code"
 
-    1. Install the [YAML extension for VS Code]({{ links.vscode_yaml_extension }}).
-    2. Open VS Code -> `File` -> `Preferences` -> `Settings`.
-    3. Search for `yaml: schemas`.
-    4. Click **"Edit in settings.json"**.
-    5. Add a schema mapping:
+    1. Open `settings.json`.
+    2. Add a schema mapping:
 
         ```json
         "yaml.schemas": {
