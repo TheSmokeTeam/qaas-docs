@@ -29,9 +29,9 @@ Add the package to your project:
 
     ```xml
     <ItemGroup>
-      <PackageReference Include="QaaS.Mocker" Version="*" />
-      <PackageReference Include="QaaS.Common.Generators" Version="*" />
-      <PackageReference Include="QaaS.Common.Processors" Version="*" />
+      <PackageReference Include="QaaS.Mocker" Version="x.x.x" />
+      <PackageReference Include="QaaS.Common.Generators" Version="x.x.x" />
+      <PackageReference Include="QaaS.Common.Processors" Version="x.x.x" />
     </ItemGroup>
     ```
 
