@@ -29,8 +29,9 @@ Add the package to your project:
 
     ```xml
     <ItemGroup>
-      <PackageReference Include="QaaS.Mocker" Version="x.x.x" />
-      <PackageReference Include="QaaS.Common.Generators" Version="x.x.x" />
+      <PackageReference Include="QaaS.Mocker" Version="*" />
+      <PackageReference Include="QaaS.Common.Generators" Version="*" />
+      <PackageReference Include="QaaS.Common.Processors" Version="*" />
     </ItemGroup>
     ```
 
@@ -39,9 +40,10 @@ Add the package to your project:
     ```bash
     dotnet add package QaaS.Mocker
     dotnet add package QaaS.Common.Generators
+    dotnet add package QaaS.Common.Processors
     ```
 
-`QaaS.Common.Generators` is optional in general, but it is used by the quick-start examples on this site.
+`QaaS.Common.Generators` is optional in general, but it is used by the quick-start examples on this site. `QaaS.Common.Processors` is also optional, but install it when you want packaged reusable processors instead of only project-local processor classes.
 
 ## Project Template
 
@@ -63,30 +65,37 @@ If you use Artifactory or another private feed, update the generated `NuGet.conf
 
 ## IDE Setup
 
-All QaaS projects can be configured using either **YAML** files or **C# code**. YAML is convenient for versioned configuration, while C# is useful when you need programmatic composition, reuse, or conditional behavior.
+All QaaS projects can be configured using either **YAML** files or **C# code** (Configuration as Code). While YAML provides a declarative, human-readable format ideal for version control and collaboration, **C# offers full programmatic control** for dynamic, conditional, and reusable mock logic.
 
-If you work with YAML, use an IDE with schema validation and completion enabled.
+For teams choosing to use YAML, it is strongly recommended to use a capable IDE with real-time schema validation and intelligent code completion to ensure correctness, reduce errors, and improve productivity.
 
 ### Available Schemas
 
-- [**QaaS.Runner Schema**]({{ links.runner_schema }}) - covers Runner configuration and its common hook packages.
-- [**QaaS.Mocker Schema**]({{ links.mocker_schema }}) - covers Mocker configuration and its common hook packages.
+- [**QaaS.Runner Schema**]({{ links.runner_schema }}) - Covers all core configuration fields for the QaaS Runner.
+- [**QaaS.Mocker Schema**]({{ links.mocker_schema }}) - Covers all hook configuration fields for the QaaS Mocker.
 
 | Schema file | Covers |
 | ----------- | ------ |
 | `runnerSchema.json` | Core `QaaS.Runner` configuration plus the commonly documented Runner hook packages |
-| `mockerSchema.json` | Core `QaaS.Mocker` configuration plus the commonly documented Mocker hook packages |
+| `mockerSchema.json` | Core `QaaS.Mocker` configuration, generator hook configuration from `QaaS.Common.Generators`, common packaged processor configuration, and project-local processor sections referenced by your mock |
+
+!!! note
+    Each schema corresponds to a specific component of the QaaS ecosystem. Use the correct schema based on your configuration file's content.
+    Moreover, each schema covers all its relevant hooks even if their NuGet packages are not yet installed in the project.
 
 ### Using the Schema
 
-After the schema is configured in your IDE, you get:
+After installing the schema in your IDE:
 
 - syntax highlighting
 - auto-completion
 - validation errors for invalid values or missing required fields
 - contextual suggestions for the current section of the file
 
-### IDE Recommendations
+!!! tip
+    To trigger suggestions, use `Ctrl + Space`.
+
+## IDE Recommendations & Setup
 
 === "VS Code"
 
@@ -100,8 +109,15 @@ After the schema is configured in your IDE, you get:
         }
         ```
 
+    6. Save the file and restart VS Code.
+    7. Open any `.yaml` file and schema validation plus auto-completion will now be active.
+
 === "Rider"
 
     1. Open `File` -> `Settings` -> `Languages & Frameworks` -> `Schemas and DTDs` -> `JSON Schema Mappings`.
-    2. Add the schema file or URL you want to use.
-    3. Map it to `mocker.qaas.yaml` or another project-specific YAML pattern.
+    2. Click the **+** button to add a new mapping.
+    3. Add the schema file or URL you want to use.
+    4. Map it to `mocker.qaas.yaml` or another project-specific YAML pattern.
+
+    !!! warning "Important"
+        This configuration is project-specific. You must repeat this setup for each new QaaS project.

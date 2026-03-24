@@ -1,16 +1,7 @@
+<!-- generated hash:1caf4cc27375 sources:generator, Stacking, overview -->
+
 # Stacking
 
-Supports generating data from multiple DataSources by configured items per generator.
+Combines multiple data sources by taking a configured number of items from each source in turn.
 
-???- info "Data Structure"
-    === ":octicons-file-code-16: `Data`"
-        ```yaml
-        Body: <object>
-        MetaData: <object> # Whatever metadata the data from the combined data sources had
-        ```
-
-## DataSource Parameters
-
-* **Generator Name** - `Stacking`
-* **DataSources** - Used
-* **SessionData** - Passed to used DataSources
+_This overview is generated automatically from the hook source summary._

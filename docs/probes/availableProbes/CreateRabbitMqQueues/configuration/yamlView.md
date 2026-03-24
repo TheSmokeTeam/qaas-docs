@@ -1,6 +1,18 @@
-﻿# CreateRabbitMqQueues YAML Configuration
+<!-- generated hash:918aac8669f5 sources:runner-family, CreateRabbitMqQueues, yaml-view -->
+
+# CreateRabbitMqQueues Configurations Yaml View
 
 ```yaml
-Probe: CreateRabbitMqQueues
-ProbeConfiguration: {}
+ProbeConfiguration:
+  Host:
+  Password:
+  Port:
+  Username:
+  VirtualHost:
+  Queues:
+    - Exclusive:
+      Name:
+      Arguments:
+      AutoDelete:
+      Durable:
 ```

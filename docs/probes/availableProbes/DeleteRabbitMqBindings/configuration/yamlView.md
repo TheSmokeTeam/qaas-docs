@@ -1,6 +1,18 @@
-﻿# DeleteRabbitMqBindings YAML Configuration
+<!-- generated hash:73960210a1ca sources:runner-family, DeleteRabbitMqBindings, yaml-view -->
+
+# DeleteRabbitMqBindings Configurations Yaml View
 
 ```yaml
-Probe: DeleteRabbitMqBindings
-ProbeConfiguration: {}
+ProbeConfiguration:
+  Host:
+  Password:
+  Port:
+  Username:
+  VirtualHost:
+  Bindings:
+    - DestinationName:
+      SourceName:
+      Arguments:
+      BindingType:
+      RoutingKey:
 ```

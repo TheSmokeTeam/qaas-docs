@@ -28,6 +28,22 @@ nav:
       - Best Practices: qaas/bestPractices.md
     - Functions:
       - Overview: qaas/functions/index.md
+      - Builders:
+        - Assertions: qaas/functions/builders/assertions.md
+        - Collectors: qaas/functions/builders/collectors.md
+        - Consumers: qaas/functions/builders/consumers.md
+        - Executions: qaas/functions/builders/executions.md
+        - Links: qaas/functions/builders/links.md
+        - Mocker Commands: qaas/functions/builders/mocker-commands.md
+        - Probes: qaas/functions/builders/probes.md
+        - Publishers: qaas/functions/builders/publishers.md
+        - Sessions: qaas/functions/builders/sessions.md
+        - Storages: qaas/functions/builders/storages.md
+        - Transactions: qaas/functions/builders/transactions.md
+      - Commands:
+        - Bootstrap: qaas/functions/commands/bootstrap.md
+        - Runner: qaas/functions/commands/runner.md
+      - Extension Methods: qaas/functions/extension-methods.md
     - CLI Commands:
       - Overview: qaas/userInterfaces/runner/commands/commands.md
       - run: qaas/userInterfaces/runner/commands/run.md
@@ -75,6 +91,7 @@ nav:
     - Extensibility:
       - Plugins: qaas/addOns/plugins.md
       - Modules: qaas/addOns/modules.md
+    - Change Log: qaas/changeLog.md
 
   - Mocker:
     - General:
@@ -88,6 +105,13 @@ nav:
       - Integrate with Tests: mocker/quickStart/integrateWithTests.md
     - Functions:
       - Overview: mocker/functions/index.md
+      - Builders:
+        - Executions: mocker/functions/builders/executions.md
+        - Transaction Stubs: mocker/functions/builders/transaction-stubs.md
+      - Commands:
+        - Bootstrap: mocker/functions/commands/bootstrap.md
+        - Mocker Runner: mocker/functions/commands/mocker-runner.md
+      - Extension Methods: mocker/functions/extension-methods.md
     - CLI Commands:
       - Overview: mocker/userInterfaces/mocker/commands/commands.md
       - run: mocker/userInterfaces/mocker/commands/run.md
@@ -110,6 +134,7 @@ nav:
         - Overview: mocker/userInterfaces/mocker/configurationSections/server/overview.md
         - Table View: mocker/userInterfaces/mocker/configurationSections/server/configurations/tableView.md
         - YAML View: mocker/userInterfaces/mocker/configurationSections/server/configurations/yamlView.md
+    - Change Log: mocker/changeLog.md
 
   - Hooks:
     - Assertions:
@@ -159,6 +184,7 @@ nav:
           - Overview: assertions/availableAssertions/ValidateHermeticMetricsByInputOutputPercentage/overview.md
           - Table View: assertions/availableAssertions/ValidateHermeticMetricsByInputOutputPercentage/configuration/tableView.md
           - YAML View: assertions/availableAssertions/ValidateHermeticMetricsByInputOutputPercentage/configuration/yamlView.md
+      - Change Log: assertions/changeLog.md
     - Generators:
       - Introduction: generators/index.md
       - Available Generators:
@@ -206,6 +232,7 @@ nav:
           - Overview: generators/availableGenerators/Stacking/overview.md
           - Table View: generators/availableGenerators/Stacking/configuration/tableView.md
           - YAML View: generators/availableGenerators/Stacking/configuration/yamlView.md
+      - Change Log: generators/changeLog.md
     - Probes:
       - Introduction: probes/index.md
       - Available Probes:
@@ -361,6 +388,7 @@ nav:
           - Overview: probes/availableProbes/EmptyElasticIndices/overview.md
           - Table View: probes/availableProbes/EmptyElasticIndices/configuration/tableView.md
           - YAML View: probes/availableProbes/EmptyElasticIndices/configuration/yamlView.md
+      - Change Log: probes/changeLog.md
     - Processors:
       - Introduction: processors/index.md
       - Available Processors:
@@ -400,11 +428,20 @@ nav:
           - Overview: processors/availableProcessors/TextTransformProcessor/overview.md
           - Table View: processors/availableProcessors/TextTransformProcessor/configuration/tableView.md
           - YAML View: processors/availableProcessors/TextTransformProcessor/configuration/yamlView.md
+      - Change Log: processors/changeLog.md
 
   - Framework:
     - Introduction: framework/index.md
     - Functions:
       - Overview: framework/functions/index.md
+      - Builders:
+        - Data Sources: framework/functions/builders/data-sources.md
+        - Policies: framework/functions/builders/policies.md
+      - Contexts: framework/functions/contexts.md
+      - Placeholders: framework/functions/placeholders.md
+      - YAML: framework/functions/yaml.md
+      - Enumerables: framework/functions/enumerables.md
+      - Extension Methods: framework/functions/extension-methods.md
     - Projects:
       - SDK: framework/projects/sdk.md
       - Configuration: framework/projects/configuration.md
@@ -414,6 +451,7 @@ nav:
       - Protocols: framework/projects/protocols.md
       - Providers: framework/projects/providers.md
       - Serialization: framework/projects/serialization.md
+    - Change Log: framework/changeLog.md
 
 theme:
   name: material
@@ -455,6 +493,9 @@ plugins:
   - tags
   - macros
 
+extra_css:
+  - stylesheets/functions.css
+
 markdown_extensions:
   - attr_list
   - md_in_html
@@ -484,8 +525,12 @@ markdown_extensions:
 
 extra:
   links:
+    docs_site: https://TheSmokeTeam.github.io/qaas-docs/
+    repository_docs: https://github.com/TheSmokeTeam/qaas-docs
+    repository_docs_ci: https://github.com/TheSmokeTeam/qaas-docs/actions/workflows/ci.yml
     repository_runner: https://github.com/TheSmokeTeam/QaaS.Runner
     repository_mocker: https://github.com/TheSmokeTeam/QaaS.Mocker
+    repository_mocker_communication_objects: https://github.com/TheSmokeTeam/Qaas.Mocker.CommunicationObjects
     repository_framework: https://github.com/TheSmokeTeam/QaaS.Framework
     repository_assertions: https://github.com/TheSmokeTeam/QaaS.Common.Assertions
     repository_generators: https://github.com/TheSmokeTeam/QaaS.Common.Generators
@@ -495,14 +540,13 @@ extra:
     repository_mocker_template: https://github.com/TheSmokeTeam/QaaS.Mocker.Template
     repository_runner_quickstart: https://github.com/TheSmokeTeam/DummyAppTests
     repository_mocker_quickstart: https://github.com/TheSmokeTeam/DummyAppMock
-    repository_vap: GIT/versioned-artifact-publisher
     allure_installation_guide: https://docs.qameta.io/allure/#_installing_a_commandline
     dotnet_sdk: https://dotnet.microsoft.com/download
     qaas_community: https://discord.gg/rg2NYT4Mea
     nuget_feed: https://api.nuget.org/v3/index.json
     artifactory: https://jfrog.com/artifactory
-    runner_schema: https://raw.githubusercontent.com/TheSmokeTeam/QaaS.PackageMirror/master/schemas/runner-family/latest/schema.json
-    mocker_schema: https://raw.githubusercontent.com/TheSmokeTeam/QaaS.PackageMirror/master/schemas/mocker-family/latest/schema.json
+    runner_schema: ../../assets/schemas/runner-family-schema.json
+    mocker_schema: ../../assets/schemas/mocker-family-schema.json
   social:
     - icon: fontawesome/brands/github
       link: https://github.com/TheSmokeTeam/qaas-docs

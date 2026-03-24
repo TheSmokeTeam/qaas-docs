@@ -1,12 +1,58 @@
-# Json YAML Configuration
+<!-- generated hash:7d5634530769 sources:mocker-family, Json, yaml-view -->
+
+# Json Configurations Yaml View
 
 ```yaml
-Generator: Json
 GeneratorConfiguration:
-  JsonDataSourceName:
   Count:
+  JsonDataSourceName:
   OutputObjectType:
-  JsonFieldReplacements: []
+  JsonFieldReplacements:
+    - Path:
+      ValueType:
+      Boolean:
+        Value:
+      ByteArray:
+        Value:
+      DateTime:
+        Day:
+        DayOffset:
+        Format:
+        Hour:
+        HourOffset:
+        Millisecond:
+        MillisecondOffset:
+        Minute:
+        MinuteOffset:
+        Month:
+        Second:
+        SecondOffset:
+        TimeZone:
+        Year:
+      Double:
+        Value:
+      FromDataSource:
+        Name:
+        OutOfRangePolicy:
+      Integer:
+        Value:
+      String:
+        Value:
+      UnixEpochTime:
+        Day:
+        DayOffset:
+        Hour:
+        HourOffset:
+        Millisecond:
+        MillisecondOffset:
+        Minute:
+        MinuteOffset:
+        Month:
+        Second:
+        SecondOffset:
+        UnixEpochObjectType:
+        UnixEpochScaleType:
+        Year:
   OutputObjectTypeConfiguration:
     TypeFullName:
     AssemblyName:

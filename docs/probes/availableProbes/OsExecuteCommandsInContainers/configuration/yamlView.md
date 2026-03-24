@@ -1,6 +1,15 @@
-﻿# OsExecuteCommandsInContainers YAML Configuration
+<!-- generated hash:52a2a50c94e4 sources:runner-family, OsExecuteCommandsInContainers, yaml-view -->
+
+# OsExecuteCommandsInContainers Configurations Yaml View
 
 ```yaml
-Probe: OsExecuteCommandsInContainers
-ProbeConfiguration: {}
+ProbeConfiguration:
+  ContainerName:
+  ApplicationLabels: []
+  Commands: []
+  Openshift:
+    Cluster:
+    Namespace:
+    Password:
+    Username:
 ```

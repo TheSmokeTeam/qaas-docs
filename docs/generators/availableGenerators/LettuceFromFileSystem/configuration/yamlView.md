@@ -1,12 +1,13 @@
-# LettuceFromFileSystem YAML Configuration
+<!-- generated hash:11d6c9ed17f9 sources:mocker-family, LettuceFromFileSystem, yaml-view -->
+
+# LettuceFromFileSystem Configurations Yaml View
 
 ```yaml
-Generator: LettuceFromFileSystem
 GeneratorConfiguration:
   DataArrangeOrder:
-  StorageMetaData:
-  DataUuidRegexExpression:
   Count:
+  DataUuidRegexExpression:
+  StorageMetaData:
   FileSystem:
     Path:
     SearchPattern:

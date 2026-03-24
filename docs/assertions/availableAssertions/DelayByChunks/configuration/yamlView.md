@@ -1,9 +1,11 @@
-# DelayByChunks YAML Configuration
+<!-- generated hash:fd50fc17a8f3 sources:runner-family, DelayByChunks, yaml-view -->
+
+# DelayByChunks Configurations Yaml View
 
 ```yaml
-Assertion: DelayByChunks
 AssertionConfiguration:
   MaximumDelayMs:
+  InputsAreOutputs:
   MaximumNegativeDelayBufferMs:
   Input:
     ChunkSize:

@@ -1,6 +1,21 @@
-﻿# ExecuteRedisCommands YAML Configuration
+<!-- generated hash:079baa6ee29a sources:runner-family, ExecuteRedisCommands, yaml-view -->
+
+# ExecuteRedisCommands Configurations Yaml View
 
 ```yaml
-Probe: ExecuteRedisCommands
-ProbeConfiguration: {}
+ProbeConfiguration:
+  AbortOnConnectFail:
+  AsyncTimeout:
+  ClientName:
+  ConnectRetry:
+  KeepAlive:
+  Password:
+  RedisDataBase:
+  Ssl:
+  SslHost:
+  Username:
+  Commands:
+    - Command:
+      Arguments: []
+  HostNames: []
 ```

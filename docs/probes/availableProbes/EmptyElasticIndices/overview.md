@@ -1,11 +1,7 @@
-﻿# EmptyElasticIndices
+<!-- generated hash:f17b1106d2b9 sources:probe, EmptyElasticIndices, overview -->
 
-Deletes documents from Elasticsearch indices selected by the configured index filters so the search store starts empty for the run.
+# EmptyElasticIndices
 
-## Probe Parameters
+Empties elastic indices by their index pattern
 
-- **Probe Name** - `EmptyElasticIndices`.
-- **ProbeConfiguration** - `EmptyElasticIndicesConfig`.
-- **DataSources** - Not used.
-- **SessionData** - Not used.
-- **Execution stage** - Typically used in setup or cleanup stages around Runner sessions.
+_This overview is generated automatically from the hook source summary._

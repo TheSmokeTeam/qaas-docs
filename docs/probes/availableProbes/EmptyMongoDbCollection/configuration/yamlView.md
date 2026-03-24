@@ -1,6 +1,11 @@
-﻿# EmptyMongoDbCollection YAML Configuration
+<!-- generated hash:f3a56e382d8a sources:runner-family, EmptyMongoDbCollection, yaml-view -->
+
+# EmptyMongoDbCollection Configurations Yaml View
 
 ```yaml
-Probe: EmptyMongoDbCollection
-ProbeConfiguration: {}
+ProbeConfiguration:
+  CollectionName:
+  ConnectionString:
+  DatabaseName:
+  ChunkSize:
 ```

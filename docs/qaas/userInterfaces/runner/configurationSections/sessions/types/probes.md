@@ -5,4 +5,4 @@ Probes are based on the `hook` `IProbe` and are actions that effect the system/i
 Probes can use `SessionData` and `DataSource` lists in order to get relevent information to perform their action.
 Behaviour.
 
-In order to see all of the avaialble probes visit [QaaS.Common.Probes]({{ links.repository_probes }})
+In order to see all of the available probes visit [QaaS.Common.Probes](../../../../../../probes/index.md).

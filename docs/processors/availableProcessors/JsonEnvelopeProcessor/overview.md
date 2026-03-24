@@ -1,11 +1,7 @@
-﻿# JsonEnvelopeProcessor
+<!-- generated hash:1e414c2ebea6 sources:processor, JsonEnvelopeProcessor, overview -->
 
-Wraps the incoming payload in a JSON object and can include request metadata such as URI, headers, path parameters, and the CLR body type.
+# JsonEnvelopeProcessor
 
-## Processor Parameters
+Wraps the incoming request payload and optional request metadata in a JSON envelope response.
 
-- **Processor Name** - `JsonEnvelopeProcessor`.
-- **ProcessorConfiguration** - `JsonEnvelopeConfiguration`.
-- **DataSources** - Not used.
-- **RequestData** - Reads the incoming request body and optional HTTP metadata.
-- **SessionData** - Not used.
+_This overview is generated automatically from the hook source summary._

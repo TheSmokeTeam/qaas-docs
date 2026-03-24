@@ -1,6 +1,18 @@
-﻿# CreateRabbitMqExchanges YAML Configuration
+<!-- generated hash:8f911b66499f sources:runner-family, CreateRabbitMqExchanges, yaml-view -->
+
+# CreateRabbitMqExchanges Configurations Yaml View
 
 ```yaml
-Probe: CreateRabbitMqExchanges
-ProbeConfiguration: {}
+ProbeConfiguration:
+  Host:
+  Password:
+  Port:
+  Username:
+  VirtualHost:
+  Exchanges:
+    - Name:
+      Arguments:
+      AutoDelete:
+      Durable:
+      Type:
 ```

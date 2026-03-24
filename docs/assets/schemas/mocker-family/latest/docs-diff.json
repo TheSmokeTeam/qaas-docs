@@ -1,0 +1,13 @@
+{
+  "familyId": "mocker-family",
+  "generatedAtUtc": "2026-03-23T20:15:15.9478283+00:00",
+  "previousSnapshotId": "20260323-195826",
+  "currentSnapshotId": "20260323-201444",
+  "hasPreviousSnapshot": true,
+  "packageSignatureChanged": false,
+  "removedSections": [],
+  "addedSections": [],
+  "removedHooks": [],
+  "addedHooks": [],
+  "packageChanges": []
+}

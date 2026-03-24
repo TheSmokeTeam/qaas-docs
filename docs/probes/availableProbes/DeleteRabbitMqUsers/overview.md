@@ -1,11 +1,7 @@
-﻿# DeleteRabbitMqUsers
+<!-- generated hash:49d1d9ae9b7e sources:probe, DeleteRabbitMqUsers, overview -->
+
+# DeleteRabbitMqUsers
 
 Deletes RabbitMQ users through the management API.
 
-## Probe Parameters
-
-- **Probe Name** - `DeleteRabbitMqUsers`.
-- **ProbeConfiguration** - `DeleteRabbitMqUsersConfig`.
-- **DataSources** - Not used.
-- **SessionData** - Not used.
-- **Execution stage** - Typically used in setup or cleanup stages around Runner sessions.
+_This overview is generated automatically from the hook source summary._

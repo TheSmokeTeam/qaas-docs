@@ -1,18 +1,16 @@
 # Mocker Commands
 
-Mocker commands are the integration between `QaaS.Runner`'s tests to `QaaS.Mocker`'s mock servers.
-They provide a way for tests to command and communicate with the mockers.
-Further explanation on `QaaS.Mocker` servers can be found [here](../../../../../../mocker/userInterfaces/mocker/configurationSections/server/overview.md)
+Mocker commands connect `QaaS.Runner` tests to `QaaS.Mocker` servers. They let a test change mock behavior, trigger mock-side actions, or consume mock activity.
 
-Some mocker commands don't require any data and thus will not create `Input` or `Output` by their name to the `SessionData`, and other mocker commands interact with the mocker's data and will create `Input` and `Output` by their name in the `SessionData` depending on the specific command.
+Further explanation on `QaaS.Mocker` servers can be found [here](../../../../../../mocker/userInterfaces/mocker/configurationSections/server/overview.md).
+
+Some mocker commands do not produce session data. Others interact with the mocker's data and create `Input` and `Output` values in `SessionData` depending on the command type.
 
 **Table Property Path** - `Sessions[].MockerCommands[]`
 
-## Mocker Commands Types
+## ChangeActionStub
 
-### ChangeActionStub
-
-Command the mocker server to change stub for a specific action endpoint by a stub and action name
+Changes the stub for a specific mock action endpoint.
 
 **Table Property Path** - `Sessions[].MockerCommands[].Command.ChangeActionStub`
 
@@ -21,9 +19,20 @@ Type: ChangeActionStub
 ChangeActionStub: {}
 ```
 
-### Consume
+## TriggerAction
 
-Command the mocker server to send the input data received by the mocker and the output data sent by the mocker to the tests. The data received by the mocker will be an `Input` with the name of the mocker action in the `SessionData` and the data sent by the mocker will be an `Output` with the name of the mocker action in the  `SessionData`.
+Triggers a mock action endpoint.
+
+**Table Property Path** - `Sessions[].MockerCommands[].Command.TriggerAction`
+
+```yaml
+Type: TriggerAction
+TriggerAction: {}
+```
+
+## Consume
+
+Consumes data received by the mocker and data sent by the mocker.
 
 **Table Property Path** - `Sessions[].MockerCommands[].Command.Consume`
 
@@ -33,14 +42,14 @@ Consume: {}
 
 ???- info "Data Structure"
     === ":octicons-file-code-16: `Input`"
-        ```yaml
-        Body: <byte[]>
-        MetaData:
-            Http:
-                Uri: <Uri> The uri of the request.
-                RequestHeaders: <IDictionary<string, string>> # The collection of HTTP request headers.
-        ```
+    ```yaml
+    Body: <byte[]>
+    MetaData:
+        Http:
+            Uri: <Uri>
+            RequestHeaders: <IDictionary<string, string>>
+    ```
     === ":octicons-file-code-16: `Output`"
-        ```yaml
-        Body: <byte[]>
-        ```
+    ```yaml
+    Body: <byte[]>
+    ```

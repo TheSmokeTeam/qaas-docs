@@ -1,6 +1,12 @@
-﻿# DeleteS3Bucket YAML Configuration
+<!-- generated hash:6a2c36a5fe5f sources:runner-family, DeleteS3Bucket, yaml-view -->
+
+# DeleteS3Bucket Configurations Yaml View
 
 ```yaml
-Probe: DeleteS3Bucket
-ProbeConfiguration: {}
+ProbeConfiguration:
+  AccessKey:
+  SecretKey:
+  ServiceURL:
+  StorageBucket:
+  ForcePathStyle:
 ```

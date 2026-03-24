@@ -105,7 +105,7 @@ Sessions:
           - LoadBalance:
               Rate: 50
         RabbitMq:
-          Host: rabbitmq
+          Host: 127.0.0.1
           Username: admin
           Password: admin
           RoutingKey: /
@@ -117,7 +117,7 @@ Sessions:
       - Name: Consumer
         TimeoutMs: 5000
         RabbitMq:
-          Host: rabbitmq
+          Host: 127.0.0.1
           Username: admin
           Password: admin
           RoutingKey: /
@@ -133,14 +133,16 @@ Apply standard assertions to the new session for hermeticity and delay.
 
 ```yaml
 Assertions:
-  - Assertion: HermeticByInputOutputPercentage
+  - Name: HermeticByInputOutputPercentage
+    Assertion: HermeticByInputOutputPercentage
     SessionNames: [RabbitMqExchangeWith10Samples]
     AssertionConfiguration:
       OutputNames: [Consumer]
       InputNames: [Publisher]
       ExpectedPercentage: 100
 
-  - Assertion: DelayByChunks
+  - Name: DelayByChunks
+    Assertion: DelayByChunks
     SessionNames: [RabbitMqExchangeWith10Samples]
     AssertionConfiguration:
       Output:
@@ -210,7 +212,8 @@ public class LengthAssertion : BaseAssertion<LengthAssertionConfiguration>
 
 ```yaml
 Assertions:
-  - Assertion: LengthAssertion
+  - Name: LengthAssertion
+    Assertion: LengthAssertion
     SessionNames: [RabbitMqExchangeWith10Samples]
     AssertionConfiguration:
       OutputName: Consumer
@@ -262,7 +265,9 @@ Sessions:
 ## Final `test.qaas.yaml` Overview
 
 ```yaml
-anchors: {}
+MetaData:
+  Team: Smoke
+  System: DummyApp
 
 DataSources:
   - Name: FromFileSystemTestData
@@ -289,7 +294,7 @@ Sessions:
           - LoadBalance:
               Rate: 50
         RabbitMq:
-          Host: rabbitmq
+          Host: 127.0.0.1
           Username: admin
           Password: admin
           RoutingKey: /
@@ -299,7 +304,7 @@ Sessions:
       - Name: Consumer
         TimeoutMs: 5000
         RabbitMq:
-          Host: rabbitmq
+          Host: 127.0.0.1
           Username: admin
           Password: admin
           RoutingKey: /
@@ -315,7 +320,7 @@ Sessions:
           - LoadBalance:
               Rate: 50
         RabbitMq:
-          Host: rabbitmq
+          Host: 127.0.0.1
           Username: admin
           Password: admin
           RoutingKey: /
@@ -327,7 +332,7 @@ Sessions:
       - Name: Consumer
         TimeoutMs: 5000
         RabbitMq:
-          Host: rabbitmq
+          Host: 127.0.0.1
           Username: admin
           Password: admin
           RoutingKey: /
@@ -337,13 +342,15 @@ Sessions:
           Deserializer: Json
 
 Assertions:
-  - Assertion: HermeticByInputOutputPercentage
+  - Name: HermeticByInputOutputPercentage
+    Assertion: HermeticByInputOutputPercentage
     SessionNames: [RabbitMqExchangeWithFromFileSystemTestData]
     AssertionConfiguration:
       OutputNames: [Consumer]
       InputNames: [Publisher]
       ExpectedPercentage: 100
-  - Assertion: DelayByChunks
+  - Name: DelayByChunks
+    Assertion: DelayByChunks
     SessionNames: [RabbitMqExchangeWithFromFileSystemTestData]
     AssertionConfiguration:
       Output:
@@ -353,13 +360,15 @@ Assertions:
         Name: Publisher
         ChunkSize: 1
       MaximumDelayMs: 5000
-  - Assertion: HermeticByInputOutputPercentage
+  - Name: HermeticByInputOutputPercentage
+    Assertion: HermeticByInputOutputPercentage
     SessionNames: [RabbitMqExchangeWith10Samples]
     AssertionConfiguration:
       OutputNames: [Consumer]
       InputNames: [Publisher]
       ExpectedPercentage: 100
-  - Assertion: DelayByChunks
+  - Name: DelayByChunks
+    Assertion: DelayByChunks
     SessionNames: [RabbitMqExchangeWith10Samples]
     AssertionConfiguration:
       Output:
@@ -369,7 +378,8 @@ Assertions:
         Name: Publisher
         ChunkSize: 1
       MaximumDelayMs: 5000
-  - Assertion: LengthAssertion
+  - Name: LengthAssertion
+    Assertion: LengthAssertion
     SessionNames: [RabbitMqExchangeWith10Samples]
     AssertionConfiguration:
       OutputName: Consumer

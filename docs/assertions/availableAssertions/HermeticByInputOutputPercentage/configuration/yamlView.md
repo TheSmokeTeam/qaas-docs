@@ -1,11 +1,12 @@
-# HermeticByInputOutputPercentage YAML Configuration
+<!-- generated hash:ee2bf71f632d sources:runner-family, HermeticByInputOutputPercentage, yaml-view -->
+
+# HermeticByInputOutputPercentage Configurations Yaml View
 
 ```yaml
-Assertion: HermeticByInputOutputPercentage
 AssertionConfiguration:
   ExpectedPercentage:
-  MidpointRounding:
   InputsAreOutputs:
+  MidpointRounding:
   InputNames: []
   OutputNames: []
 ```

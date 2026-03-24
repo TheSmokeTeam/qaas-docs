@@ -1,11 +1,7 @@
-﻿# DeleteRabbitMqQueues
+<!-- generated hash:981304a22bd3 sources:probe, DeleteRabbitMqQueues, overview -->
 
-Deletes one or more RabbitMQ queues from the configured broker and virtual host.
+# DeleteRabbitMqQueues
 
-## Probe Parameters
+Probe that deletes rabbitmq queues
 
-- **Probe Name** - `DeleteRabbitMqQueues`.
-- **ProbeConfiguration** - `DeleteRabbitMqQueuesConfig`.
-- **DataSources** - Not used.
-- **SessionData** - Not used.
-- **Execution stage** - Typically used in setup or cleanup stages around Runner sessions.
+_This overview is generated automatically from the hook source summary._

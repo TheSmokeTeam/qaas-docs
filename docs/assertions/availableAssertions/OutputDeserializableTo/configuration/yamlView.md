@@ -1,7 +1,8 @@
-# OutputDeserializableTo YAML Configuration
+<!-- generated hash:3addf9f1c186 sources:runner-family, OutputDeserializableTo, yaml-view -->
+
+# OutputDeserializableTo Configurations Yaml View
 
 ```yaml
-Assertion: OutputDeserializableTo
 AssertionConfiguration:
   OutputName:
   Deserialize:

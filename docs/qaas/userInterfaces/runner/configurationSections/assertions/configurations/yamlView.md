@@ -1,11 +1,10 @@
-<!-- generated hash:72c0a53d7796 sources:runner-family, Assertions, yaml-view -->
+<!-- generated hash:fba82c108c90 sources:runner-family, Assertions, yaml-view -->
 
 # Assertions Configurations Yaml View
 
 ```yaml
 Assertions:
-  -
-    Assertion:
+  - Assertion:
     Name:
     AssertionConfiguration:
     Category:
@@ -18,14 +17,12 @@ Assertions:
     DataSourceNames: []
     DataSourcePatterns: []
     Links:
-      -
-        Name:
+      - Name:
         Grafana:
           DashboardId:
           Url:
           Variables:
-            -
-              Key:
+            - Key:
               Value:
         Kibana:
           DataViewId:

@@ -1,6 +1,14 @@
-﻿# DataSourceResponseProcessor YAML Configuration
+<!-- generated hash:56d6050d1525 sources:mocker-family, DataSourceResponseProcessor, yaml-view -->
+
+# DataSourceResponseProcessor Configurations Yaml View
 
 ```yaml
-Processor: DataSourceResponseProcessor
-ProcessorConfiguration: {}
+ProcessorConfiguration:
+  SelectionMode:
+  StatusCode:
+  ContentType:
+  DataSourceName:
+  FallbackBody:
+  Index:
+  ResponseHeaders:
 ```

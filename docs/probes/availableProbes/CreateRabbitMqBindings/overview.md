@@ -1,11 +1,7 @@
-﻿# CreateRabbitMqBindings
+<!-- generated hash:3daf11b189e6 sources:probe, CreateRabbitMqBindings, overview -->
 
-Creates RabbitMQ bindings between exchanges and queues or between exchanges by using the configured broker connection and binding definitions.
+# CreateRabbitMqBindings
 
-## Probe Parameters
+Creates RabbitMQ bindings between exchanges and queues or between exchanges by using the configured binding definitions.
 
-- **Probe Name** - `CreateRabbitMqBindings`.
-- **ProbeConfiguration** - `RabbitMqBindingsConfig`.
-- **DataSources** - Not used.
-- **SessionData** - Not used.
-- **Execution stage** - Typically used in setup or cleanup stages around Runner sessions.
+_This overview is generated automatically from the hook source summary._

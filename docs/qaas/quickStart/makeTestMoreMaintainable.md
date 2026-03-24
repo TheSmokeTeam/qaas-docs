@@ -57,12 +57,14 @@ anchors:
           <<: *rabbitMqExchangeAnchor
           ExchangeName: output
   hermeticAssertionAnchor: &hermeticAssertionAnchor
+    Name: HermeticByInputOutputPercentage
     Assertion: HermeticByInputOutputPercentage
     AssertionConfiguration:
       OutputNames: [Consumer]
       InputNames: [Publisher]
       ExpectedPercentage: 100
   delayAssertionAnchor: &delayAssertionAnchor
+    Name: DelayByChunks
     Assertion: DelayByChunks
     AssertionConfiguration:
       Output:
@@ -111,7 +113,8 @@ Assertions:
     SessionNames: [RabbitMqExchangeWith10Samples]
   - <<: *delayAssertionAnchor
     SessionNames: [RabbitMqExchangeWith10Samples]
-  - Assertion: LengthAssertion
+  - Name: LengthAssertion
+    Assertion: LengthAssertion
     SessionNames: [RabbitMqExchangeWith10Samples]
     AssertionConfiguration:
       OutputName: Consumer
@@ -258,13 +261,15 @@ Sessions:
           ExchangeName: output
 
 Assertions:
-  - Assertion: HermeticByInputOutputPercentage
+  - Name: HermeticByInputOutputPercentage
+    Assertion: HermeticByInputOutputPercentage
     SessionNames: [Session]
     AssertionConfiguration:
       OutputNames: [Consumer]
       InputNames: [Publisher]
       ExpectedPercentage: 100
-  - Assertion: DelayByChunks
+  - Name: DelayByChunks
+    Assertion: DelayByChunks
     SessionNames: [Session]
     AssertionConfiguration:
       Output:

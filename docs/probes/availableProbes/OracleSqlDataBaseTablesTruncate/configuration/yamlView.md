@@ -1,6 +1,10 @@
-﻿# OracleSqlDataBaseTablesTruncate YAML Configuration
+<!-- generated hash:46e4eb999475 sources:runner-family, OracleSqlDataBaseTablesTruncate, yaml-view -->
+
+# OracleSqlDataBaseTablesTruncate Configurations Yaml View
 
 ```yaml
-Probe: OracleSqlDataBaseTablesTruncate
-ProbeConfiguration: {}
+ProbeConfiguration:
+  ConnectionString:
+  CommandTimeoutSeconds:
+  TableNames: []
 ```

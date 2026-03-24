@@ -1,11 +1,7 @@
-﻿# OracleSqlDataBaseTablesTruncate
+<!-- generated hash:198448df60ac sources:probe, OracleSqlDataBaseTablesTruncate, overview -->
+
+# OracleSqlDataBaseTablesTruncate
 
 Truncates the configured Oracle tables in the order they are listed.
 
-## Probe Parameters
-
-- **Probe Name** - `OracleSqlDataBaseTablesTruncate`.
-- **ProbeConfiguration** - `SqlDataBaseTablesTruncateProbeConfig`.
-- **DataSources** - Not used.
-- **SessionData** - Not used.
-- **Execution stage** - Typically used in setup or cleanup stages around Runner sessions.
+_This overview is generated automatically from the hook source summary._

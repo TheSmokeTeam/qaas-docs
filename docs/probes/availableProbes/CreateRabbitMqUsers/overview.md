@@ -1,11 +1,7 @@
-﻿# CreateRabbitMqUsers
+<!-- generated hash:319e43a74b90 sources:probe, CreateRabbitMqUsers, overview -->
 
-Creates RabbitMQ users through the management API and applies the configured credentials and tags.
+# CreateRabbitMqUsers
 
-## Probe Parameters
+Creates RabbitMQ users through the management API with the configured credentials and tags.
 
-- **Probe Name** - `CreateRabbitMqUsers`.
-- **ProbeConfiguration** - `CreateRabbitMqUsersConfig`.
-- **DataSources** - Not used.
-- **SessionData** - Not used.
-- **Execution stage** - Typically used in setup or cleanup stages around Runner sessions.
+_This overview is generated automatically from the hook source summary._

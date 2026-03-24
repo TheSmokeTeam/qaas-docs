@@ -1,20 +1,21 @@
-# FromS3 YAML Configuration
+<!-- generated hash:5dc50744f544 sources:mocker-family, FromS3, yaml-view -->
+
+# FromS3 Configurations Yaml View
 
 ```yaml
-Generator: FromS3
 GeneratorConfiguration:
   DataArrangeOrder:
+  Count:
+  DataUuidRegexExpression:
   LoadMetadataFirst:
   StorageMetaData:
-  DataUuidRegexExpression:
-  Count:
   S3:
-    SecretKey:
     AccessKey:
+    SecretKey:
     ServiceURL:
     StorageBucket:
-    SkipEmptyObjects:
-    Prefix:
     Delimiter:
     ForcePathStyle:
+    Prefix:
+    SkipEmptyObjects:
 ```

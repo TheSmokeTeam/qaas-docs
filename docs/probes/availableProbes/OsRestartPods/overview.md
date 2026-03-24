@@ -1,11 +1,7 @@
-﻿# OsRestartPods
+<!-- generated hash:05df992ff5dc sources:probe, OsRestartPods, overview -->
 
-Restarts matching pods in the configured namespace by deleting them and letting the platform recreate them.
+# OsRestartPods
 
-## Probe Parameters
+Probe that restarts all pods with configured labels in the configured namespace
 
-- **Probe Name** - `OsRestartPods`.
-- **ProbeConfiguration** - `OsRestartPodsConfig`.
-- **DataSources** - Not used.
-- **SessionData** - Not used.
-- **Execution stage** - Typically used in setup or cleanup stages around Runner sessions.
+_This overview is generated automatically from the hook source summary._

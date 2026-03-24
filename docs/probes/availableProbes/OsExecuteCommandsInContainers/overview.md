@@ -1,11 +1,7 @@
-﻿# OsExecuteCommandsInContainers
+<!-- generated hash:ed5d9c9fc1c2 sources:probe, OsExecuteCommandsInContainers, overview -->
 
-Executes one or more shell commands inside the selected cluster containers.
+# OsExecuteCommandsInContainers
 
-## Probe Parameters
+Probe that Executes a command passed by the `cmd` string variable on every pod and container if passed to the function
 
-- **Probe Name** - `OsExecuteCommandsInContainers`.
-- **ProbeConfiguration** - `OsExecuteCommandsInContainersConfig`.
-- **DataSources** - Not used.
-- **SessionData** - Not used.
-- **Execution stage** - Typically used in setup or cleanup stages around Runner sessions.
+_This overview is generated automatically from the hook source summary._

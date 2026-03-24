@@ -1,11 +1,10 @@
-<!-- generated hash:71f20141f809 sources:runner-family, Storages, yaml-view -->
+<!-- generated hash:6160efa37080 sources:runner-family, Storages, yaml-view -->
 
 # Storages Configurations Yaml View
 
 ```yaml
 Storages:
-  -
-    JsonStorageFormat:
+  - JsonStorageFormat:
     FileSystem:
       Path:
       SearchPattern:

@@ -1,11 +1,7 @@
-﻿# PassThroughProcessor
+<!-- generated hash:cda7feb2508f sources:processor, PassThroughProcessor, overview -->
 
-Returns the incoming request payload unchanged while applying configured response status and headers. It can preserve the original request metadata or replace it with fresh response metadata.
+# PassThroughProcessor
 
-## Processor Parameters
+Returns the incoming request payload unchanged while applying the configured response metadata.
 
-- **Processor Name** - `PassThroughProcessor`.
-- **ProcessorConfiguration** - `PassThroughConfiguration`.
-- **DataSources** - Not used.
-- **RequestData** - Uses the incoming request body and optional metadata.
-- **SessionData** - Not used.
+_This overview is generated automatically from the hook source summary._

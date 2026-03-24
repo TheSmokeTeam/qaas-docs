@@ -1,6 +1,16 @@
-﻿# OsScaleStatefulSetPods YAML Configuration
+<!-- generated hash:670ea8dc34d1 sources:runner-family, OsScaleStatefulSetPods, yaml-view -->
+
+# OsScaleStatefulSetPods Configurations Yaml View
 
 ```yaml
-Probe: OsScaleStatefulSetPods
-ProbeConfiguration: {}
+ProbeConfiguration:
+  DesiredNumberOfPods:
+  ReplicaSetName:
+  IntervalBetweenDesiredStateChecksMs:
+  TimeoutWaitForDesiredStateSeconds:
+  Openshift:
+    Cluster:
+    Namespace:
+    Password:
+    Username:
 ```

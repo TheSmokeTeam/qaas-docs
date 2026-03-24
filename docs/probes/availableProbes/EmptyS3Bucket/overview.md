@@ -1,11 +1,7 @@
-﻿# EmptyS3Bucket
+<!-- generated hash:aeefb7d8db42 sources:probe, EmptyS3Bucket, overview -->
 
-Deletes objects from the configured S3 bucket and can limit the cleanup to a specific object prefix.
+# EmptyS3Bucket
 
-## Probe Parameters
+Probe to empty a s3 bucket according to a certain prefix
 
-- **Probe Name** - `EmptyS3Bucket`.
-- **ProbeConfiguration** - `EmptyS3BucketConfig`.
-- **DataSources** - Not used.
-- **SessionData** - Not used.
-- **Execution stage** - Typically used in setup or cleanup stages around Runner sessions.
+_This overview is generated automatically from the hook source summary._

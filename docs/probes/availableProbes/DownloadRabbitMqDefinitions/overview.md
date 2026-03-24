@@ -1,11 +1,7 @@
-﻿# DownloadRabbitMqDefinitions
+<!-- generated hash:98ccacd44519 sources:probe, DownloadRabbitMqDefinitions, overview -->
 
-Downloads broker definitions from the RabbitMQ management API so the current topology can be captured and reused.
+# DownloadRabbitMqDefinitions
 
-## Probe Parameters
+Downloads RabbitMQ definitions from the management API so the current topology can be captured and reused.
 
-- **Probe Name** - `DownloadRabbitMqDefinitions`.
-- **ProbeConfiguration** - `DownloadRabbitMqDefinitionsConfig`.
-- **DataSources** - Not used.
-- **SessionData** - Not used.
-- **Execution stage** - Typically used in setup or cleanup stages around Runner sessions.
+_This overview is generated automatically from the hook source summary._

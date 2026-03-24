@@ -1,11 +1,7 @@
-﻿# EmptyMongoDbCollection
+<!-- generated hash:c3c528c2c5cf sources:probe, EmptyMongoDbCollection, overview -->
 
-Deletes all documents from the configured MongoDB collection so the collection starts clean for the test run.
+# EmptyMongoDbCollection
 
-## Probe Parameters
+Deletes all documents from the configured MongoDB collection so it starts clean for the test run.
 
-- **Probe Name** - `EmptyMongoDbCollection`.
-- **ProbeConfiguration** - `EmptyMongoDbCollectionConfig`.
-- **DataSources** - Not used.
-- **SessionData** - Not used.
-- **Execution stage** - Typically used in setup or cleanup stages around Runner sessions.
+_This overview is generated automatically from the hook source summary._

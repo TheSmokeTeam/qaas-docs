@@ -1,11 +1,7 @@
-﻿# ExecuteRedisCommands
+<!-- generated hash:3e14146245be sources:probe, ExecuteRedisCommands, overview -->
+
+# ExecuteRedisCommands
 
 Executes multiple Redis commands sequentially against the selected Redis database.
 
-## Probe Parameters
-
-- **Probe Name** - `ExecuteRedisCommands`.
-- **ProbeConfiguration** - `RedisExecuteCommandsConfig`.
-- **DataSources** - Not used.
-- **SessionData** - Not used.
-- **Execution stage** - Typically used in setup or cleanup stages around Runner sessions.
+_This overview is generated automatically from the hook source summary._

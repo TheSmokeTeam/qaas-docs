@@ -1,11 +1,7 @@
-﻿# ProblemDetailsProcessor
+<!-- generated hash:f7d349e8069d sources:processor, ProblemDetailsProcessor, overview -->
 
-Returns an RFC 7807 style problem-details JSON payload with configurable status, type, title, detail, instance, extensions, and response headers.
+# ProblemDetailsProcessor
 
-## Processor Parameters
+Returns an RFC 7807 style problem-details JSON response using the configured status and fields.
 
-- **Processor Name** - `ProblemDetailsProcessor`.
-- **ProcessorConfiguration** - `ProblemDetailsConfiguration`.
-- **DataSources** - Not used.
-- **RequestData** - Optionally uses the request URI as the problem instance.
-- **SessionData** - Not used.
+_This overview is generated automatically from the hook source summary._

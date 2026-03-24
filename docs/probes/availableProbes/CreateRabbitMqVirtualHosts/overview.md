@@ -1,11 +1,7 @@
-﻿# CreateRabbitMqVirtualHosts
+<!-- generated hash:53aef4fde8d8 sources:probe, CreateRabbitMqVirtualHosts, overview -->
 
-Creates RabbitMQ virtual hosts through the management API so later sessions and probes can use them.
+# CreateRabbitMqVirtualHosts
 
-## Probe Parameters
+Creates RabbitMQ virtual hosts through the management API so later probes and sessions can use them.
 
-- **Probe Name** - `CreateRabbitMqVirtualHosts`.
-- **ProbeConfiguration** - `CreateRabbitMqVirtualHostsConfig`.
-- **DataSources** - Not used.
-- **SessionData** - Not used.
-- **Execution stage** - Typically used in setup or cleanup stages around Runner sessions.
+_This overview is generated automatically from the hook source summary._

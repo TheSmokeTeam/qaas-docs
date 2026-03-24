@@ -1,11 +1,7 @@
-﻿# OsChangeDeploymentEnvVars
+<!-- generated hash:cc975a9d2256 sources:probe, OsChangeDeploymentEnvVars, overview -->
 
-Updates environment variables on a Kubernetes or OpenShift deployment and applies the change by replacing the deployment spec.
+# OsChangeDeploymentEnvVars
 
-## Probe Parameters
+Probe that changes the environment variables of a deployment
 
-- **Probe Name** - `OsChangeDeploymentEnvVars`.
-- **ProbeConfiguration** - `OsChangeEnvVarsConfig`.
-- **DataSources** - Not used.
-- **SessionData** - Not used.
-- **Execution stage** - Typically used in setup or cleanup stages around Runner sessions.
+_This overview is generated automatically from the hook source summary._

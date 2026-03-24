@@ -18,7 +18,7 @@ Those options and the order in which they are resolved by default (can be change
 * `<<` arrow
 
 ???- info "--no-env flag"
-This flag removes all the environment variable resolution from the resolution list.
+This flag disables environment-variable resolution everywhere in the pipeline, including pushed references and the final merged configuration.
 
 ???- info "--resolve-cases-last flag"
-This flag takes the `-c` resolution and resolves it after the `-p` instead of in its current order.
+This flag moves the `-c` case overlay to the very end of the pipeline, so it is applied after overwrite files, overwrite folders, overwrite arguments, pushed references, and environment-variable resolution.

@@ -1,28 +1,25 @@
-<!-- generated hash:d3ff169b9f9d sources:mocker-family, Servers, yaml-view -->
+<!-- generated hash:52e4a44377b6 sources:mocker-family, Servers, yaml-view -->
 
 # Servers Configurations Yaml View
 
 ```yaml
 Servers:
-  -
-    Grpc:
-      Port:
-      CertificatePassword:
-      CertificatePath:
-      InternalErrorTransactionStubName:
-      IsLocalhost:
-      IsSecuredSchema:
-      NotFoundTransactionStubName:
-      Services:
-        -
-          AssemblyName:
-          ProtoNamespace:
-          ServiceName:
-          Actions:
-            -
-              RpcName:
-              TransactionStubName:
-              Name:
+  - Grpc:
+    Port:
+    CertificatePassword:
+    CertificatePath:
+    InternalErrorTransactionStubName:
+    IsLocalhost:
+    IsSecuredSchema:
+    NotFoundTransactionStubName:
+    Services:
+      - AssemblyName:
+        ProtoNamespace:
+        ServiceName:
+        Actions:
+          - RpcName:
+            TransactionStubName:
+            Name:
     Http:
       Port:
       CertificatePassword:
@@ -33,20 +30,17 @@ Servers:
       IsSecuredSchema:
       NotFoundTransactionStubName:
       Endpoints:
-        -
-          Path:
+        - Path:
           FixedPath:
           Actions:
-            -
-              Method:
+            - Method:
               TransactionStubName:
               Name:
     Socket:
       BindingIpAddress:
       ConnectionAcceptanceValue:
       Endpoints:
-        -
-          Port:
+        - Port:
           ProtocolType:
           TimeoutMs:
           AddressFamily:

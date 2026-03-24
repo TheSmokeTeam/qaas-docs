@@ -1,11 +1,7 @@
-﻿# OsChangeStatefulSetEnvVars
+<!-- generated hash:24d89a7bbf1c sources:probe, OsChangeStatefulSetEnvVars, overview -->
 
-Updates environment variables on a Kubernetes or OpenShift stateful set and applies the change by replacing the stateful set spec.
+# OsChangeStatefulSetEnvVars
 
-## Probe Parameters
+Probe that changes the environment variables of a statefulSet
 
-- **Probe Name** - `OsChangeStatefulSetEnvVars`.
-- **ProbeConfiguration** - `OsChangeEnvVarsConfig`.
-- **DataSources** - Not used.
-- **SessionData** - Not used.
-- **Execution stage** - Typically used in setup or cleanup stages around Runner sessions.
+_This overview is generated automatically from the hook source summary._

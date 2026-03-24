@@ -1,6 +1,18 @@
-﻿# CreateRabbitMqBindings YAML Configuration
+<!-- generated hash:5d14f2d23996 sources:runner-family, CreateRabbitMqBindings, yaml-view -->
+
+# CreateRabbitMqBindings Configurations Yaml View
 
 ```yaml
-Probe: CreateRabbitMqBindings
-ProbeConfiguration: {}
+ProbeConfiguration:
+  Host:
+  Password:
+  Port:
+  Username:
+  VirtualHost:
+  Bindings:
+    - DestinationName:
+      SourceName:
+      Arguments:
+      BindingType:
+      RoutingKey:
 ```

@@ -1,11 +1,7 @@
-﻿# OsEditYamlConfigMap
+<!-- generated hash:432b70323f2a sources:probe, OsEditYamlConfigMap, overview -->
 
-Loads a YAML document from a ConfigMap, edits the configured paths, and writes the updated YAML back to the cluster.
+# OsEditYamlConfigMap
 
-## Probe Parameters
+Probe that edits yaml config maps
 
-- **Probe Name** - `OsEditYamlConfigMap`.
-- **ProbeConfiguration** - `OsEditYamlConfigMapConfig`.
-- **DataSources** - Not used.
-- **SessionData** - Not used.
-- **Execution stage** - Typically used in setup or cleanup stages around Runner sessions.
+_This overview is generated automatically from the hook source summary._

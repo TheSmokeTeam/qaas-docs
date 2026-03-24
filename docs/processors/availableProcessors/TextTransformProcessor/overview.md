@@ -1,11 +1,7 @@
-﻿# TextTransformProcessor
+<!-- generated hash:e7ab848ddc94 sources:processor, TextTransformProcessor, overview -->
 
-Reads the incoming payload as text, optionally trims whitespace, applies a search-and-replace operation, and then prepends or appends configured text before returning the response.
+# TextTransformProcessor
 
-## Processor Parameters
+Reads the incoming payload as text, applies the configured text transformation, and returns the transformed response.
 
-- **Processor Name** - `TextTransformProcessor`.
-- **ProcessorConfiguration** - `TextTransformConfiguration`.
-- **DataSources** - Not used.
-- **RequestData** - Uses the incoming request body as text.
-- **SessionData** - Not used.
+_This overview is generated automatically from the hook source summary._

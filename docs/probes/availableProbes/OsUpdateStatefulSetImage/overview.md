@@ -1,11 +1,7 @@
-﻿# OsUpdateStatefulSetImage
+<!-- generated hash:2295f0d8cec4 sources:probe, OsUpdateStatefulSetImage, overview -->
+
+# OsUpdateStatefulSetImage
 
 Updates the image of one container in a Kubernetes or OpenShift stateful set.
 
-## Probe Parameters
-
-- **Probe Name** - `OsUpdateStatefulSetImage`.
-- **ProbeConfiguration** - `OsUpdateImageProbeConfig`.
-- **DataSources** - Not used.
-- **SessionData** - Not used.
-- **Execution stage** - Typically used in setup or cleanup stages around Runner sessions.
+_This overview is generated automatically from the hook source summary._

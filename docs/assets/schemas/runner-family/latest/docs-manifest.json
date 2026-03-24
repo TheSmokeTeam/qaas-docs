@@ -1,0 +1,68 @@
+{
+  "familyId": "runner-family",
+  "generatedAtUtc": "2026-03-23T20:15:01.0049096+00:00",
+  "sections": [
+    {
+      "id": "MetaData",
+      "title": "MetaData",
+      "topLevelPropertyName": "MetaData",
+      "docsSlug": "metaData",
+      "schemaJsonPointer": "#/properties/MetaData",
+      "order": 0,
+      "overviewSummary": "The metadata for the tests\u0027 run",
+      "notes": []
+    },
+    {
+      "id": "Links",
+      "title": "Links",
+      "topLevelPropertyName": "Links",
+      "docsSlug": "links",
+      "schemaJsonPointer": "#/properties/Links",
+      "order": 1,
+      "overviewSummary": "The links generated on test results, used to view observability data outputted by the tested application. These links are generated per test result to be relevant specifically to that test and the time it ran at",
+      "notes": []
+    },
+    {
+      "id": "Storages",
+      "title": "Storages",
+      "topLevelPropertyName": "Storages",
+      "docsSlug": "storages",
+      "schemaJsonPointer": "#/properties/Storages",
+      "order": 2,
+      "overviewSummary": "External storages qaas inner objects can be stored in or retrieved from when using the \u0060qaas act\u0060 (to create and store) or \u0060qaas assert\u0060 (to retrieve and use) commands",
+      "notes": []
+    },
+    {
+      "id": "DataSources",
+      "title": "DataSources",
+      "topLevelPropertyName": "DataSources",
+      "docsSlug": "dataSources",
+      "schemaJsonPointer": "#/properties/DataSources",
+      "order": 3,
+      "overviewSummary": "List of data sources that can be used in the rest of the execution. They provide data that can be sent to the tested system or used by the execution itself to perform a multitude of logics.",
+      "notes": []
+    },
+    {
+      "id": "Sessions",
+      "title": "Sessions",
+      "topLevelPropertyName": "Sessions",
+      "docsSlug": "sessions",
+      "schemaJsonPointer": "#/properties/Sessions",
+      "order": 4,
+      "overviewSummary": "List of all sessions to run. Sessions contain the actions performed against the tested system and its underlying infrastructure in order to receive response data from the tested system to assert on.",
+      "notes": [
+        "Session documentation includes RunUntilStage and per-stage Stages[] overrides."
+      ]
+    },
+    {
+      "id": "Assertions",
+      "title": "Assertions",
+      "topLevelPropertyName": "Assertions",
+      "docsSlug": "assertions",
+      "schemaJsonPointer": "#/properties/Assertions",
+      "order": 5,
+      "overviewSummary": "The list of assertions performed on the sessions\u0027 results in order to decide the test\u0027s status, each assertion produces a different test result.",
+      "notes": []
+    }
+  ]
+}

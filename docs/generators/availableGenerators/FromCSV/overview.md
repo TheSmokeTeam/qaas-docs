@@ -1,18 +1,7 @@
-﻿# FromCSV
+<!-- generated hash:c4a7d874421e sources:generator, FromCSV, overview -->
 
-Reads CSV files from the configured file-system path and turns each row into a generated data item. It reuses the file-discovery behavior of `FromFileSystem`, then parses rows according to the delimiter, header, and trimming settings.
+# FromCSV
 
-???- info "Data Structure"
-    === ":octicons-file-code-16: `Data`"
-        ```yaml
-        Body: <object>
-        MetaData:
-            Storage:
-              Key: <string> # Includes the file key plus the CSV row index
-        ```
+Reads CSV files from the configured file-system path and turns each row into generated data items.
 
-## DataSource Parameters
-
-- **Generator Name** - `FromCSV`.
-- **DataSources** - Not used.
-- **SessionData** - Not used.
+_This overview is generated automatically from the hook source summary._

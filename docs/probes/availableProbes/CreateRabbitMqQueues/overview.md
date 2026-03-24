@@ -1,11 +1,7 @@
-﻿# CreateRabbitMqQueues
+<!-- generated hash:a8593ece0416 sources:probe, CreateRabbitMqQueues, overview -->
 
-Creates one or more RabbitMQ queues with the configured queue arguments on the target broker.
+# CreateRabbitMqQueues
 
-## Probe Parameters
+Creates one or more RabbitMQ queues with the configured queue arguments.
 
-- **Probe Name** - `CreateRabbitMqQueues`.
-- **ProbeConfiguration** - `CreateRabbitMqQueuesConfig`.
-- **DataSources** - Not used.
-- **SessionData** - Not used.
-- **Execution stage** - Typically used in setup or cleanup stages around Runner sessions.
+_This overview is generated automatically from the hook source summary._
