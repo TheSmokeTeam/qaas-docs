@@ -2,6 +2,8 @@
 
 # Executions
 
+Source-driven reference for `Mocker` functions in the `Builders / Executions` category.
+
 Each entry uses the short function name as the table-of-contents label. Expand an entry to inspect its location, signature, and XML doc comments.
 
 ## `ExecutionBuilder`

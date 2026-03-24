@@ -1,4 +1,4 @@
-<!-- generated hash:c0e5fc7018c1 sources:Framework, functions, overview -->
+<!-- generated hash:f7afad3a236b sources:Framework, functions, overview -->
 
 # Framework Functions
 
