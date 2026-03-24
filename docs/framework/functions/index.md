@@ -8,16 +8,16 @@ Each category page keeps the table of contents focused on short function names a
 
 ## Builders
 
-- [Data Sources](builders/data-sources.md) - 15 functions
-- [Policies](builders/policies.md) - 3 functions
+- [Data Sources](builders/data-sources.md)
+- [Policies](builders/policies.md)
 
 ## Functions
 
-- [Contexts](contexts.md) - 12 functions
-- [Enumerables](enumerables.md) - 2 functions
-- [Placeholders](placeholders.md) - 1 function
-- [YAML](yaml.md) - 2 functions
+- [Contexts](contexts.md)
+- [Enumerables](enumerables.md)
+- [Placeholders](placeholders.md)
+- [YAML](yaml.md)
 
 ## Extension Methods
 
-- [Extension Methods](extension-methods.md) - 39 extension methods
+- [Extension Methods](extension-methods.md)

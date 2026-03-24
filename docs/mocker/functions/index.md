@@ -8,14 +8,14 @@ Each category page keeps the table of contents focused on short function names a
 
 ## Builders
 
-- [Executions](builders/executions.md) - 31 functions
-- [Transaction Stubs](builders/transaction-stubs.md) - 18 functions
+- [Executions](builders/executions.md)
+- [Transaction Stubs](builders/transaction-stubs.md)
 
 ## Commands
 
-- [Bootstrap](commands/bootstrap.md) - 2 functions
-- [Mocker Runner](commands/mocker-runner.md) - 1 function
+- [Bootstrap](commands/bootstrap.md)
+- [Mocker Runner](commands/mocker-runner.md)
 
 ## Extension Methods
 
-- [Extension Methods](extension-methods.md) - 5 extension methods
+- [Extension Methods](extension-methods.md)
