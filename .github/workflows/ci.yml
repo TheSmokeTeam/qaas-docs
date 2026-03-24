@@ -80,7 +80,7 @@ jobs:
           path: ./site
 
   deploy-pages:
-    if: github.event_name == 'push' && github.ref == 'refs/heads/master'
+    if: github.event_name == 'push' && (github.ref == 'refs/heads/master' || github.ref == 'refs/heads/fix/imptove_docks)')
     needs: build-site
     environment:
       name: github-pages
