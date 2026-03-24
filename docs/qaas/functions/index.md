@@ -8,23 +8,23 @@ Each category page keeps the table of contents focused on short function names a
 
 ## Builders
 
-- [Assertions](builders/assertions.md) - 41 functions
-- [Collectors](builders/collectors.md) - 11 functions
-- [Consumers](builders/consumers.md) - 18 functions
-- [Executions](builders/executions.md) - 32 functions
-- [Links](builders/links.md) - 9 functions
-- [Mocker Commands](builders/mocker-commands.md) - 15 functions
-- [Probes](builders/probes.md) - 21 functions
-- [Publishers](builders/publishers.md) - 32 functions
-- [Sessions](builders/sessions.md) - 55 functions
-- [Storages](builders/storages.md) - 9 functions
-- [Transactions](builders/transactions.md) - 33 functions
+- [Assertions](builders/assertions.md)
+- [Collectors](builders/collectors.md)
+- [Consumers](builders/consumers.md)
+- [Executions](builders/executions.md)
+- [Links](builders/links.md)
+- [Mocker Commands](builders/mocker-commands.md)
+- [Probes](builders/probes.md)
+- [Publishers](builders/publishers.md)
+- [Sessions](builders/sessions.md)
+- [Storages](builders/storages.md)
+- [Transactions](builders/transactions.md)
 
 ## Commands
 
-- [Bootstrap](commands/bootstrap.md) - 2 functions
-- [Runner](commands/runner.md) - 3 functions
+- [Bootstrap](commands/bootstrap.md)
+- [Runner](commands/runner.md)
 
 ## Extension Methods
 
-- [Extension Methods](extension-methods.md) - 11 extension methods
+- [Extension Methods](extension-methods.md)
