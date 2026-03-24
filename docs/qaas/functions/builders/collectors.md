@@ -1,6 +1,6 @@
-<!-- generated hash:7337178f3ef6 sources:Runner, functions, Builders, Collectors -->
-
 # Collectors
+
+Source-driven reference for `Runner` functions in the `Builders / Collectors` category.
 
 Each entry uses the short function name as the table-of-contents label. Expand an entry to inspect its location, signature, and XML doc comments.
 

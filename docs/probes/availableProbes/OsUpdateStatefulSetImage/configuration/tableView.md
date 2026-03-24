@@ -1,5 +1,3 @@
-<!-- generated hash:5d95ffd8a140 sources:runner-family, OsUpdateStatefulSetImage, table-view -->
-
 # OsUpdateStatefulSetImage Configurations Table View
 
 | Property Path | Type | Required | Default | Description |

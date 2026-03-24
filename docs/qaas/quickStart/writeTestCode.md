@@ -2,7 +2,7 @@
 
 Use code configuration when the test should stay in normal C#: helper methods, branching, computed values, and shared building blocks are all easier there. The runtime behavior stays identical to the YAML guide, but this version keeps the full test definition in `Program.cs`.
 
-The completed sample is available in the `code_configuration` branch of [DummyAppTests]({{ links.repository_runner_quickstart }}/tree/code_configuration).
+The completed sample is available at [DummyAppTests (Code)]({{ links.repository_runner_quickstart_code }}).
 
 ## Keep `test.qaas.yaml` Empty
 

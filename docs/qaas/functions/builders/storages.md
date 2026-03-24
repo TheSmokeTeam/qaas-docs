@@ -1,6 +1,6 @@
-<!-- generated hash:ca25e9c760fb sources:Runner, functions, Builders, Storages -->
-
 # Storages
+
+Source-driven reference for `Runner` functions in the `Builders / Storages` category.
 
 Each entry uses the short function name as the table-of-contents label. Expand an entry to inspect its location, signature, and XML doc comments.
 

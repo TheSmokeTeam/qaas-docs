@@ -1,5 +1,3 @@
-<!-- generated hash:4a27e1f7c98c sources:mocker-family, JsonSchemaDraft4, table-view -->
-
 # JsonSchemaDraft4 Configurations Table View
 
 | Property Path | Type | Required | Default | Description |

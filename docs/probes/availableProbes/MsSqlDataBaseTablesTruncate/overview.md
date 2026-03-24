@@ -1,5 +1,3 @@
-<!-- generated hash:43b363470eff sources:probe, MsSqlDataBaseTablesTruncate, overview -->
-
 # MsSqlDataBaseTablesTruncate
 
 Truncates the configured Microsoft SQL Server tables in the order they are listed.

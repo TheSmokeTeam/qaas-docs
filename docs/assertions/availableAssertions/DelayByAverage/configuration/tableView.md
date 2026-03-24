@@ -1,5 +1,3 @@
-<!-- generated hash:8b24b4300bcf sources:runner-family, DelayByAverage, table-view -->
-
 # DelayByAverage Configurations Table View
 
 | Property Path | Type | Required | Default | Description |

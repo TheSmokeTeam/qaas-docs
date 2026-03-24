@@ -1,5 +1,3 @@
-<!-- generated hash:b986b717c2be sources:Runner, functions, overview -->
-
 # Runner Functions
 
 This overview is generated from source-level `qaas-docs` annotations and the current public extension-method surface.

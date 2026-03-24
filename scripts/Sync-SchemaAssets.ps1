@@ -77,6 +77,23 @@ function Copy-OrCheckFile {
     Copy-Item -LiteralPath $SourcePath -Destination $DestinationPath -Force
 }
 
+function Remove-OrCheckObsoletePath {
+    param(
+        [Parameter(Mandatory)]
+        [string]$Path
+    )
+
+    if (-not (Test-Path $Path)) {
+        return
+    }
+
+    if ($Check) {
+        throw "Obsolete mirrored docs asset still exists: $Path"
+    }
+
+    Remove-Item -LiteralPath $Path -Recurse -Force
+}
+
 if ([string]::IsNullOrWhiteSpace($DocsRoot)) {
     $DocsRoot = Split-Path -Parent $PSScriptRoot
 }
@@ -91,14 +108,17 @@ $MirrorRoot = Resolve-NormalizedPath $MirrorRoot
 
 $sourceRoot = Join-Path $MirrorRoot 'schemas'
 $destinationRoot = Join-Path $DocsRoot 'docs\assets\schemas'
-$stateSourceRoot = Join-Path $MirrorRoot 'state'
-$stateDestinationRoot = Join-Path $DocsRoot 'docs\assets\mirror-state'
+
+@(
+    (Join-Path $destinationRoot 'index.json'),
+    (Join-Path $destinationRoot 'runner-family'),
+    (Join-Path $destinationRoot 'mocker-family'),
+    (Join-Path $DocsRoot 'docs\assets\mirror-state')
+) | ForEach-Object {
+    Remove-OrCheckObsoletePath -Path $_
+}
 
 $pairs = @(
-    @{
-        Source = Join-Path $sourceRoot 'index.json'
-        Destination = Join-Path $destinationRoot 'index.json'
-    }
     @{
         Source = Join-Path $sourceRoot 'runner-family\latest\schema.json'
         Destination = Join-Path $destinationRoot 'runner-family-schema.json'
@@ -113,32 +133,4 @@ foreach ($pair in $pairs) {
     Copy-OrCheckFile -SourcePath $pair.Source -DestinationPath $pair.Destination
 }
 
-$mirroredDirectories = @(
-    @{
-        Source = Join-Path $sourceRoot 'runner-family\latest'
-        Destination = Join-Path $destinationRoot 'runner-family\latest'
-    }
-    @{
-        Source = Join-Path $sourceRoot 'mocker-family\latest'
-        Destination = Join-Path $destinationRoot 'mocker-family\latest'
-    }
-    @{
-        Source = $stateSourceRoot
-        Destination = $stateDestinationRoot
-    }
-)
-
-foreach ($directoryMap in $mirroredDirectories) {
-    if (-not (Test-Path $directoryMap.Source)) {
-        throw "Missing schema asset directory: $($directoryMap.Source)"
-    }
-
-    $files = Get-ChildItem -Path $directoryMap.Source -File -Recurse | Sort-Object FullName
-    foreach ($file in $files) {
-        $relativePath = Get-RelativeFilePath -RootPath $directoryMap.Source -ChildPath $file.FullName
-        $destinationPath = Join-Path $directoryMap.Destination $relativePath
-        Copy-OrCheckFile -SourcePath $file.FullName -DestinationPath $destinationPath
-    }
-}
-
-Write-Host ("{0} schema and state assets." -f ($(if ($Check) { 'Validated mirrored docs assets' } else { 'Synced mirrored docs assets' })))
+Write-Host ("{0} schema assets." -f ($(if ($Check) { 'Validated mirrored docs assets' } else { 'Synced mirrored docs assets' })))

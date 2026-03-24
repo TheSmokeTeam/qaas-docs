@@ -1,5 +1,3 @@
-<!-- generated hash:cd14c33c2ba7 sources:runner-family, Assertions, table-view -->
-
 # Assertions Configurations Table View
 
 | Property Path | Type | Required | Default | Description |

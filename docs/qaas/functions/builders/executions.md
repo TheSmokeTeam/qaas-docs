@@ -1,6 +1,6 @@
-<!-- generated hash:28bfa5da8531 sources:Runner, functions, Builders, Executions -->
-
 # Executions
+
+Source-driven reference for `Runner` functions in the `Builders / Executions` category.
 
 Each entry uses the short function name as the table-of-contents label. Expand an entry to inspect its location, signature, and XML doc comments.
 

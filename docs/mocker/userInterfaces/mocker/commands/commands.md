@@ -1,5 +1,3 @@
-<!-- generated hash:d5b458b6a107 sources:Mocker, cli-overview -->
-
 # Commands
 
 Running without a command currently prints:
@@ -123,8 +121,8 @@ Usage:
 
 | Command | Description |
 | ------- | ----------- |
-| [`run`](run.md) | Start the configured mock servers and optional controller runtime. |
-| [`template`](template.md) | Render the effective merged configuration after file, folder, argument, and environment overrides. |
+| `run` | Start the configured mock servers and optional controller runtime. |
+| `template` | Render the effective merged configuration after file, folder, argument, and environment overrides. |
 
 ## Common Flags
 

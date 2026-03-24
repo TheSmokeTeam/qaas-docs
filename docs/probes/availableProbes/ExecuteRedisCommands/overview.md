@@ -1,5 +1,3 @@
-<!-- generated hash:3e14146245be sources:probe, ExecuteRedisCommands, overview -->
-
 # ExecuteRedisCommands
 
 Executes multiple Redis commands sequentially against the selected Redis database.

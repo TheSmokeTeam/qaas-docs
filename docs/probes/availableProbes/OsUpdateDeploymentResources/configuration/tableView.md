@@ -1,5 +1,3 @@
-<!-- generated hash:04ddfb0ad7ee sources:runner-family, OsUpdateDeploymentResources, table-view -->
-
 # OsUpdateDeploymentResources Configurations Table View
 
 | Property Path | Type | Required | Default | Description |

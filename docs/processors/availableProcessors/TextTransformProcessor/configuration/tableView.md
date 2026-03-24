@@ -1,5 +1,3 @@
-<!-- generated hash:0b6b9bd20564 sources:mocker-family, TextTransformProcessor, table-view -->
-
 # TextTransformProcessor Configurations Table View
 
 | Property Path | Type | Required | Default | Description |

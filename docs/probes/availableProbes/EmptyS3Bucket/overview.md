@@ -1,5 +1,3 @@
-<!-- generated hash:aeefb7d8db42 sources:probe, EmptyS3Bucket, overview -->
-
 # EmptyS3Bucket
 
 Probe to empty a s3 bucket according to a certain prefix

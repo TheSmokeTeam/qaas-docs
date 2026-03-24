@@ -1,5 +1,3 @@
-<!-- generated hash:16fe191d3f27 sources:assertion, HermeticByExpectedOutputCountInRange, overview -->
-
 # HermeticByExpectedOutputCountInRange
 
 Performs a hermetic test by comparing the count of a given output in a session to a given expected minimum and maximum

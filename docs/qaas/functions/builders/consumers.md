@@ -1,6 +1,6 @@
-<!-- generated hash:90b8caf0a235 sources:Runner, functions, Builders, Consumers -->
-
 # Consumers
+
+Source-driven reference for `Runner` functions in the `Builders / Consumers` category.
 
 Each entry uses the short function name as the table-of-contents label. Expand an entry to inspect its location, signature, and XML doc comments.
 

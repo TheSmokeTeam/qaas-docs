@@ -1,5 +1,3 @@
-<!-- generated hash:227115e866bc sources:Framework, functions, extension-methods -->
-
 # Extension Methods
 
 This page collects public `Framework` extension methods that have XML documentation or explicit docs annotations.

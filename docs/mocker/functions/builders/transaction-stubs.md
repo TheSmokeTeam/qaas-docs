@@ -1,6 +1,6 @@
-<!-- generated hash:034791f52279 sources:Mocker, functions, Builders, Transaction Stubs -->
-
 # Transaction Stubs
+
+Source-driven reference for `Mocker` functions in the `Builders / Transaction Stubs` category.
 
 Each entry uses the short function name as the table-of-contents label. Expand an entry to inspect its location, signature, and XML doc comments.
 

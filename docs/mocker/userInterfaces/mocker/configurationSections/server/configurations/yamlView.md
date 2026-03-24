@@ -1,5 +1,3 @@
-<!-- generated hash:52e4a44377b6 sources:mocker-family, Servers, yaml-view -->
-
 # Servers Configurations Yaml View
 
 ```yaml

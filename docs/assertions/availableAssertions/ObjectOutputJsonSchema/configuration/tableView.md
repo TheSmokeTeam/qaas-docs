@@ -1,5 +1,3 @@
-<!-- generated hash:9d98cedc2744 sources:runner-family, ObjectOutputJsonSchema, table-view -->
-
 # ObjectOutputJsonSchema Configurations Table View
 
 | Property Path | Type | Required | Default | Description |

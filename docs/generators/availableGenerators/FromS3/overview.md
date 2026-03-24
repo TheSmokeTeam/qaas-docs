@@ -1,5 +1,3 @@
-<!-- generated hash:1604b2c5b210 sources:generator, FromS3, overview -->
-
 # FromS3
 
 Retrieves data from objects in a configured S3 bucket and prefix.

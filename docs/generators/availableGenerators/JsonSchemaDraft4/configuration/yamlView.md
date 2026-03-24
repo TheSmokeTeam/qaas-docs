@@ -1,5 +1,3 @@
-<!-- generated hash:6a815f898abc sources:mocker-family, JsonSchemaDraft4, yaml-view -->
-
 # JsonSchemaDraft4 Configurations Yaml View
 
 ```yaml

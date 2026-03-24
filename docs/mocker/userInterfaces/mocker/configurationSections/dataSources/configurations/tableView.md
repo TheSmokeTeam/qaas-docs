@@ -1,5 +1,3 @@
-<!-- generated hash:caf1fe2a98c5 sources:mocker-family, DataSources, table-view -->
-
 # DataSources Configurations Table View
 
 | Property Path | Type | Required | Default | Description |

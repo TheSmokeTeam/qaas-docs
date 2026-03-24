@@ -1,5 +1,3 @@
-<!-- generated hash:5d2c6cc62183 sources:generator, FromFileSystem, overview -->
-
 # FromFileSystem
 
 Retrieves data from files under a configured path in the local file system.

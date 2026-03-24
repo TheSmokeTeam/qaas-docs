@@ -48,7 +48,7 @@ Runner, Mocker, and Framework reference pages are generated deterministically.
 - CLI reference pages come from committed snapshots under `tools/QaaS.Docs.Generator/Snapshots/`.
 - Function reference pages come from source-level XML doc comments plus `qaas-docs` placement tags in the sibling product repositories.
 - Hook configuration reference pages come from the mirrored family schema hook catalogs.
-- Schema assets are mirrored into `docs/assets/` so both the site and the Docker image include downloadable schema files.
+- Stable schema download assets are mirrored into `docs/assets/` so both the site and the Docker image include downloadable schema files without volatile mirror metadata.
 
 Regenerate and validate the reference docs locally:
 
@@ -63,7 +63,7 @@ git submodule update --init --recursive
 ```text
 qaas-docs/
 |-- docs/                         Source markdown and generated reference docs
-|-- docs/assets/                  Mirrored schema and state assets bundled into the site
+|-- docs/assets/                  Bundled schema download assets used by the site
 |-- mkdocs.yml                    MkDocs configuration
 |-- scripts/                      Docs generation helpers
 |-- tools/QaaS.Docs.Generator/    Generator submodule
@@ -111,7 +111,6 @@ External page links used by docs content:
 |-----------------------------------------------------|--------------------------------------|------------------------------------------------|
 | `QAAS_DOCS_LINK_DOCS_SITE`                          | `docs_site`                          | Published docs site URL                        |
 | `QAAS_DOCS_LINK_REPOSITORY_DOCS`                    | `repository_docs`                    | `qaas-docs` repository URL                     |
-| `QAAS_DOCS_LINK_REPOSITORY_DOCS_CI`                 | `repository_docs_ci`                 | `qaas-docs` CI workflow URL                    |
 | `QAAS_DOCS_LINK_REPOSITORY_RUNNER`                  | `repository_runner`                  | QaaS.Runner repo URL                           |
 | `QAAS_DOCS_LINK_REPOSITORY_MOCKER`                  | `repository_mocker`                  | QaaS.Mocker repo URL                           |
 | `QAAS_DOCS_LINK_REPOSITORY_MOCKER_COMMUNICATION_OBJECTS` | `repository_mocker_communication_objects` | QaaS.Mocker communication objects repo URL |
@@ -122,8 +121,10 @@ External page links used by docs content:
 | `QAAS_DOCS_LINK_REPOSITORY_PROCESSORS`              | `repository_processors`              | QaaS.Common.Processors repo URL                |
 | `QAAS_DOCS_LINK_REPOSITORY_RUNNER_TEMPLATE`         | `repository_runner_template`         | QaaS.Runner.Template repo URL                  |
 | `QAAS_DOCS_LINK_REPOSITORY_MOCKER_TEMPLATE`         | `repository_mocker_template`         | QaaS.Mocker.Template repo URL                  |
-| `QAAS_DOCS_LINK_REPOSITORY_RUNNER_QUICKSTART`       | `repository_runner_quickstart`       | DummyAppTests quickstart repository URL        |
-| `QAAS_DOCS_LINK_REPOSITORY_MOCKER_QUICKSTART`       | `repository_mocker_quickstart`       | DummyAppMock quickstart repository URL         |
+| `QAAS_DOCS_LINK_REPOSITORY_RUNNER_QUICKSTART_CODE`  | `repository_runner_quickstart_code`  | DummyAppTests code quick-start URL             |
+| `QAAS_DOCS_LINK_REPOSITORY_RUNNER_QUICKSTART_YAML`  | `repository_runner_quickstart_yaml`  | DummyAppTests YAML quick-start URL             |
+| `QAAS_DOCS_LINK_REPOSITORY_MOCKER_QUICKSTART_CODE`  | `repository_mocker_quickstart_code`  | DummyAppMock code quick-start URL              |
+| `QAAS_DOCS_LINK_REPOSITORY_MOCKER_QUICKSTART_YAML`  | `repository_mocker_quickstart_yaml`  | DummyAppMock YAML quick-start URL              |
 | `QAAS_DOCS_LINK_ALLURE_INSTALLATION_GUIDE`          | `allure_installation_guide`          | Allure CLI installation guide URL              |
 | `QAAS_DOCS_LINK_DOTNET_SDK`                         | `dotnet_sdk`                         | .NET SDK download URL                          |
 | `QAAS_DOCS_LINK_QAAS_COMMUNITY`                     | `qaas_community`                     | QaaS community URL                             |

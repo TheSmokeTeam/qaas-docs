@@ -1,5 +1,3 @@
-<!-- generated hash:e01a97f33e5b sources:runner-family, OsRestartPods, table-view -->
-
 # OsRestartPods Configurations Table View
 
 | Property Path | Type | Required | Default | Description |

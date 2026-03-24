@@ -1,6 +1,6 @@
-<!-- generated hash:5272cd9a63bd sources:Runner, functions, Builders, Assertions -->
-
 # Assertions
+
+Source-driven reference for `Runner` functions in the `Builders / Assertions` category.
 
 Each entry uses the short function name as the table-of-contents label. Expand an entry to inspect its location, signature, and XML doc comments.
 

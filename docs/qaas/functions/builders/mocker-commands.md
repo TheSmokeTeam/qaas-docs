@@ -1,6 +1,6 @@
-<!-- generated hash:18d1c05b5b66 sources:Runner, functions, Builders, Mocker Commands -->
-
 # Mocker Commands
+
+Source-driven reference for `Runner` functions in the `Builders / Mocker Commands` category.
 
 Each entry uses the short function name as the table-of-contents label. Expand an entry to inspect its location, signature, and XML doc comments.
 

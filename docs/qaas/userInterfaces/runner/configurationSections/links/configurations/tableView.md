@@ -1,5 +1,3 @@
-<!-- generated hash:5b5cdd844a26 sources:runner-family, Links, table-view -->
-
 # Links Configurations Table View
 
 | Property Path | Type | Required | Default | Description |

@@ -1,5 +1,3 @@
-<!-- generated hash:ecf6a28b57b7 sources:runner-family, MetaData, table-view -->
-
 # MetaData Configurations Table View
 
 | Property Path | Type | Required | Default | Description |

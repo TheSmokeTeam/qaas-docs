@@ -1,5 +1,3 @@
-<!-- generated hash:8c25c73473a2 sources:mocker-family, ProblemDetailsProcessor, table-view -->
-
 # ProblemDetailsProcessor Configurations Table View
 
 | Property Path | Type | Required | Default | Description |

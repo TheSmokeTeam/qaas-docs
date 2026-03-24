@@ -1,5 +1,3 @@
-<!-- generated hash:82655dd0d337 sources:Runner, functions, extension-methods -->
-
 # Extension Methods
 
 This page collects public `Runner` extension methods that have XML documentation or explicit docs annotations.

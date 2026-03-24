@@ -1,5 +1,3 @@
-<!-- generated hash:4233be307c6d sources:generator, FromDataSources, overview -->
-
 # FromDataSources
 
 Generates data from the enumerable of data sources it receives

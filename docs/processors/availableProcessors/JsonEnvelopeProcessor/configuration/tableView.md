@@ -1,5 +1,3 @@
-<!-- generated hash:a34b79b78ce1 sources:mocker-family, JsonEnvelopeProcessor, table-view -->
-
 # JsonEnvelopeProcessor Configurations Table View
 
 | Property Path | Type | Required | Default | Description |

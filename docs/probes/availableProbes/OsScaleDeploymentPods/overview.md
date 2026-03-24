@@ -1,5 +1,3 @@
-<!-- generated hash:86d8209533ce sources:probe, OsScaleDeploymentPods, overview -->
-
 # OsScaleDeploymentPods
 
 Probe that scales openshift deployments

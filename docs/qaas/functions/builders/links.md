@@ -1,6 +1,6 @@
-<!-- generated hash:04b92bad49d3 sources:Runner, functions, Builders, Links -->
-
 # Links
+
+Source-driven reference for `Runner` functions in the `Builders / Links` category.
 
 Each entry uses the short function name as the table-of-contents label. Expand an entry to inspect its location, signature, and XML doc comments.
 

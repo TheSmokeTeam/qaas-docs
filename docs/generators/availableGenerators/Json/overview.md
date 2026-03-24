@@ -1,5 +1,3 @@
-<!-- generated hash:7df799c377fc sources:generator, Json, overview -->
-
 # Json
 
 Generates JSON data from a configured prototype document.

@@ -1,5 +1,3 @@
-<!-- generated hash:53aef4fde8d8 sources:probe, CreateRabbitMqVirtualHosts, overview -->
-
 # CreateRabbitMqVirtualHosts
 
 Creates RabbitMQ virtual hosts through the management API so later probes and sessions can use them.

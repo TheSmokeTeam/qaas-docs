@@ -1,6 +1,6 @@
-<!-- generated hash:be4d58e602b4 sources:Framework, functions, Builders, Data Sources -->
-
 # Data Sources
+
+Source-driven reference for `Framework` functions in the `Builders / Data Sources` category.
 
 Each entry uses the short function name as the table-of-contents label. Expand an entry to inspect its location, signature, and XML doc comments.
 

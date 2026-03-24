@@ -1,5 +1,3 @@
-<!-- generated hash:da0372f438b2 sources:probe, FlushDbRedis, overview -->
-
 # FlushDbRedis
 
 Runs Redis FLUSHDB against the selected Redis database.

@@ -1,5 +1,3 @@
-<!-- generated hash:cda7feb2508f sources:processor, PassThroughProcessor, overview -->
-
 # PassThroughProcessor
 
 Returns the incoming request payload unchanged while applying the configured response metadata.

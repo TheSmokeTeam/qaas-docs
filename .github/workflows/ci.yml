@@ -24,7 +24,6 @@ env:
   QAAS_DOCS_SOCIAL_GITHUB_URL: ${{ vars.QAAS_DOCS_SOCIAL_GITHUB_URL || 'https://github.com/TheSmokeTeam/qaas-docs' }}
   QAAS_DOCS_LINK_DOCS_SITE: ${{ vars.QAAS_DOCS_LINK_DOCS_SITE || 'https://TheSmokeTeam.github.io/qaas-docs/' }}
   QAAS_DOCS_LINK_REPOSITORY_DOCS: ${{ vars.QAAS_DOCS_LINK_REPOSITORY_DOCS || 'https://github.com/TheSmokeTeam/qaas-docs' }}
-  QAAS_DOCS_LINK_REPOSITORY_DOCS_CI: ${{ vars.QAAS_DOCS_LINK_REPOSITORY_DOCS_CI || 'https://github.com/TheSmokeTeam/qaas-docs/actions/workflows/ci.yml' }}
   QAAS_DOCS_LINK_REPOSITORY_RUNNER: ${{ vars.QAAS_DOCS_LINK_REPOSITORY_RUNNER || 'https://github.com/TheSmokeTeam/QaaS.Runner' }}
   QAAS_DOCS_LINK_REPOSITORY_MOCKER: ${{ vars.QAAS_DOCS_LINK_REPOSITORY_MOCKER || 'https://github.com/TheSmokeTeam/QaaS.Mocker' }}
   QAAS_DOCS_LINK_REPOSITORY_MOCKER_COMMUNICATION_OBJECTS: ${{ vars.QAAS_DOCS_LINK_REPOSITORY_MOCKER_COMMUNICATION_OBJECTS || 'https://github.com/TheSmokeTeam/Qaas.Mocker.CommunicationObjects' }}
@@ -35,8 +34,10 @@ env:
   QAAS_DOCS_LINK_REPOSITORY_PROCESSORS: ${{ vars.QAAS_DOCS_LINK_REPOSITORY_PROCESSORS || 'https://github.com/TheSmokeTeam/QaaS.Common.Processors' }}
   QAAS_DOCS_LINK_REPOSITORY_RUNNER_TEMPLATE: ${{ vars.QAAS_DOCS_LINK_REPOSITORY_RUNNER_TEMPLATE || 'https://github.com/TheSmokeTeam/QaaS.Runner.Template' }}
   QAAS_DOCS_LINK_REPOSITORY_MOCKER_TEMPLATE: ${{ vars.QAAS_DOCS_LINK_REPOSITORY_MOCKER_TEMPLATE || 'https://github.com/TheSmokeTeam/QaaS.Mocker.Template' }}
-  QAAS_DOCS_LINK_REPOSITORY_RUNNER_QUICKSTART: ${{ vars.QAAS_DOCS_LINK_REPOSITORY_RUNNER_QUICKSTART || 'https://github.com/TheSmokeTeam/DummyAppTests' }}
-  QAAS_DOCS_LINK_REPOSITORY_MOCKER_QUICKSTART: ${{ vars.QAAS_DOCS_LINK_REPOSITORY_MOCKER_QUICKSTART || 'https://github.com/TheSmokeTeam/DummyAppMock' }}
+  QAAS_DOCS_LINK_REPOSITORY_RUNNER_QUICKSTART_CODE: ${{ vars.QAAS_DOCS_LINK_REPOSITORY_RUNNER_QUICKSTART_CODE || 'https://github.com/TheSmokeTeam/DummyAppTests/tree/code_configuration' }}
+  QAAS_DOCS_LINK_REPOSITORY_RUNNER_QUICKSTART_YAML: ${{ vars.QAAS_DOCS_LINK_REPOSITORY_RUNNER_QUICKSTART_YAML || 'https://github.com/TheSmokeTeam/DummyAppTests/tree/yaml_configuration' }}
+  QAAS_DOCS_LINK_REPOSITORY_MOCKER_QUICKSTART_CODE: ${{ vars.QAAS_DOCS_LINK_REPOSITORY_MOCKER_QUICKSTART_CODE || 'https://github.com/TheSmokeTeam/DummyAppMock/tree/code_configuration' }}
+  QAAS_DOCS_LINK_REPOSITORY_MOCKER_QUICKSTART_YAML: ${{ vars.QAAS_DOCS_LINK_REPOSITORY_MOCKER_QUICKSTART_YAML || 'https://github.com/TheSmokeTeam/DummyAppMock/tree/yaml_configuration' }}
   QAAS_DOCS_LINK_ALLURE_INSTALLATION_GUIDE: ${{ vars.QAAS_DOCS_LINK_ALLURE_INSTALLATION_GUIDE || 'https://docs.qameta.io/allure/#_installing_a_commandline' }}
   QAAS_DOCS_LINK_DOTNET_SDK: ${{ vars.QAAS_DOCS_LINK_DOTNET_SDK || 'https://dotnet.microsoft.com/download' }}
   QAAS_DOCS_LINK_QAAS_COMMUNITY: ${{ vars.QAAS_DOCS_LINK_QAAS_COMMUNITY || 'https://discord.gg/rg2NYT4Mea' }}

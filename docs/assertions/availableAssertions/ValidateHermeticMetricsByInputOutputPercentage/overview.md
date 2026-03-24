@@ -1,5 +1,3 @@
-<!-- generated hash:4a0344b2dad4 sources:assertion, ValidateHermeticMetricsByInputOutputPercentage, overview -->
-
 # ValidateHermeticMetricsByInputOutputPercentage
 
 Compares the hermetic percentage calculated from configured inputs and outputs with the hermetic percentage reported by the metrics output.

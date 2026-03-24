@@ -1,5 +1,3 @@
-<!-- generated hash:2dc813cfaf0f sources:Mocker, template, cli-command -->
-
 # template
 
 Render the effective merged configuration after file, folder, argument, and environment overrides.

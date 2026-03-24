@@ -1,5 +1,3 @@
-<!-- generated hash:904f73c626d2 sources:runner-family, EmptyElasticIndices, table-view -->
-
 # EmptyElasticIndices Configurations Table View
 
 | Property Path | Type | Required | Default | Description |

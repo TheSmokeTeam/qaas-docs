@@ -1,5 +1,3 @@
-<!-- generated hash:3daf11b189e6 sources:probe, CreateRabbitMqBindings, overview -->
-
 # CreateRabbitMqBindings
 
 Creates RabbitMQ bindings between exchanges and queues or between exchanges by using the configured binding definitions.

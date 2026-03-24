@@ -1,5 +1,3 @@
-<!-- generated hash:dd6d63043120 sources:assertion, OutputDeserializableTo, overview -->
-
 # OutputDeserializableTo
 
 Performs a logic test that checks if the items of a configured output can all be deserialized using a configured deserializer

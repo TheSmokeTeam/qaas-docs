@@ -1,5 +1,3 @@
-<!-- generated hash:50f1ce1e1430 sources:probe, DeleteRabbitMqExchanges, overview -->
-
 # DeleteRabbitMqExchanges
 
 Probe that deletes rabbitmq exchanges

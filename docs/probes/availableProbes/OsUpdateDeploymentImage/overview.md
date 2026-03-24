@@ -1,5 +1,3 @@
-<!-- generated hash:e664818206ab sources:probe, OsUpdateDeploymentImage, overview -->
-
 # OsUpdateDeploymentImage
 
 Updates the image of one container in a Kubernetes or OpenShift deployment.

@@ -1,5 +1,3 @@
-<!-- generated hash:1b357884f716 sources:mocker-family, Stubs, yaml-view -->
-
 # Stubs Configurations Yaml View
 
 ```yaml

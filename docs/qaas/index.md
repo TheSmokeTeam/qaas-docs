@@ -6,7 +6,7 @@
 | ----------- | ------------------------------------------------- |
 | **Runtime** | .NET 10                                           |
 | **Package** | `QaaS.Runner` (NuGet)                             |
-| **Source**  | [Repository - QaaS.Runner]({{ links.repository_runner }}) |
+| **Source**  | [QaaS.Runner]({{ links.repository_runner }}) |
 
 ## Key Capabilities
 

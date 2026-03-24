@@ -1,5 +1,3 @@
-<!-- generated hash:b1b4406ee923 sources:runner-family, OsScaleStatefulSetPods, table-view -->
-
 # OsScaleStatefulSetPods Configurations Table View
 
 | Property Path | Type | Required | Default | Description |

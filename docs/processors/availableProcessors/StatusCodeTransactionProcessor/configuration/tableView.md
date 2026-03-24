@@ -1,5 +1,3 @@
-<!-- generated hash:d44fe31afd8d sources:mocker-family, StatusCodeTransactionProcessor, table-view -->
-
 # StatusCodeTransactionProcessor Configurations Table View
 
 | Property Path | Type | Required | Default | Description |

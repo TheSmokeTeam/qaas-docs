@@ -1,5 +1,3 @@
-<!-- generated hash:73a58fb4d2fc sources:mocker-family, StaticResponseProcessor, table-view -->
-
 # StaticResponseProcessor Configurations Table View
 
 | Property Path | Type | Required | Default | Description |

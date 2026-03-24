@@ -7,7 +7,7 @@ The **QaaS.Common.Probes** NuGet package ships the built-in probe library. You c
 |                |                                                                  |
 |----------------|------------------------------------------------------------------|
 | **Package**    | `QaaS.Common.Probes`                                             |
-| **Source**     | [Repository - QaaS.Common.Probes]({{ links.repository_probes }}) |
+| **Source**     | [QaaS.Common.Probes]({{ links.repository_probes }}) |
 | **Depends on** | [QaaS.Framework.SDK](../framework/projects/sdk.md)               |
 
 ## Installation

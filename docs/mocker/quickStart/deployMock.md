@@ -2,10 +2,10 @@
 
 Once the mock works locally, package it as a container image and deploy it with a native Helm chart.
 
-The finished chart lives in the quick-start repository branches alongside the sample project:
+The finished chart lives alongside the sample project:
 
-- [YAML configuration branch]({{ links.repository_mocker_quickstart }}/tree/yaml_configuration)
-- [Code configuration branch]({{ links.repository_mocker_quickstart }}/tree/code_configuration)
+- [DummyAppMock (YAML)]({{ links.repository_mocker_quickstart_yaml }})
+- [DummyAppMock (Code)]({{ links.repository_mocker_quickstart_code }})
 
 ## Build the Image
 

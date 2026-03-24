@@ -1,5 +1,3 @@
-<!-- generated hash:c77cdea559e4 sources:probe, PurgeRabbitMqQueues, overview -->
-
 # PurgeRabbitMqQueues
 
 Probe that purges rabbitmq queues
