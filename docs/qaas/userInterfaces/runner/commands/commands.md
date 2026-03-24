@@ -3,7 +3,7 @@
 A QaaS Runner project is a C# .NET project that receives additional CLI commands as part of its execution, controlling how it runs.
 
 !!! Tip
-    To see all available commands and all relevant information about them, you can use the '--help' flag -
+    To see all available commands and all relevant information about them, you can use the '--help' flag: <br>
     1. Without any command to see all available commands:
     ```bash
     dotnet run -- --help
@@ -16,7 +16,7 @@ A QaaS Runner project is a C# .NET project that receives additional CLI commands
     ```bash
     dotnet run -- <qaas-command> <qaas-command-flags> --help
     ```
-    Also - You can look at the dedicated page for each command in the documentation. (There are tables with all the information about the positional arguments and flags).
+    <br> Also - You can look at the dedicated page for each command in the documentation. (There are tables with all the information about the positional arguments and flags).
 
 To run the QaaS project with any of its commands, the following syntax is required:
 
