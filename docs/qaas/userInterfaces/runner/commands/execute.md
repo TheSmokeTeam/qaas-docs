@@ -2,16 +2,16 @@
 
 The `execute` command runs multiple [Runner commands](commands.md) sequentially within a single test execution.
 
-!!! note
-When running QaaS Runner Commands using the execute command, each QaaS Runner Command
-will receive an ID that will be used to identify it in the logs and allure-results.
+!!! Note
+    When running QaaS Runner Commands using the execute command, each QaaS Runner Command
+    will receive an ID that will be used to identify it in the logs and allure-results.
 
 ## Configurations
 
 The `execute` command uses a YAML configuration file to know which commands to run.
 
 !!! Note "Important"
-The commands in the YAML file are `QaaS Commands` there is **no** need to use **dotnet run** in them.
+    The commands in the YAML file are `QaaS Commands` there is **no** need to use **dotnet run** in them.
 
 ### YAML View
 
