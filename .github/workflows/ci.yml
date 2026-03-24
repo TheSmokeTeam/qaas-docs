@@ -74,13 +74,13 @@ jobs:
         run: mkdocs build
 
       - name: Upload Pages artifact
-        if: github.event_name == 'push' && (github.ref == 'refs/heads/master' || github.ref == 'refs/heads/fix/imptove_docks)')
+        if: github.event_name == 'push' && (github.ref == 'refs/heads/master' || github.ref == 'refs/heads/fix/improve_docs')
         uses: actions/upload-pages-artifact@v3
         with:
           path: ./site
 
   deploy-pages:
-    if: github.event_name == 'push' && (github.ref == 'refs/heads/master' || github.ref == 'refs/heads/fix/imptove_docks)')
+    if: github.event_name == 'push' && (github.ref == 'refs/heads/master' || github.ref == 'refs/heads/fix/improve_docs')
     needs: build-site
     environment:
       name: github-pages
