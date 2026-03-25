@@ -23,7 +23,7 @@ dotnet add DummyAppTests/DummyAppTests.csproj package QaaS.Common.Generators
 QaaS.Runner.Bootstrap.New(args).Run();
 ```
 
-The host stays small because the entire test definition will live in `test.qaas.yaml`.
+The host stays small because the entire test definition will live in `test.qaas.yaml`. With this YAML-only host, empty program arguments now show help text, so the run command must pass `run test.qaas.yaml` explicitly.
 
 ## Add the Test Data
 
@@ -201,7 +201,7 @@ Assertions:
 From `DummyAppTests/DummyAppTests`:
 
 ```bash
-dotnet run
+dotnet run -- run test.qaas.yaml
 ```
 
 ## Result

@@ -36,26 +36,27 @@ dotnet run -- run test.qaas.yaml
 dotnet run -- run mocker.qaas.yaml
 ```
 
-If your host chooses a code-defined no-args path before it delegates to bootstrap, that invocation bypasses the YAML resolution path unless you explicitly bootstrap from a file yourself.
+With the current contract, `Bootstrap.New(args).Run()` with empty args prints help text. Bootstrap no longer guesses that an empty argument list means "use the default YAML file." That choice now belongs to the host.
 
-That is exactly how the public quick-start code samples are structured:
+The rule is:
 
-- `dotnet run` uses the code-defined path
-- `dotnet run -- run ...` uses the YAML-defined path
-- `dotnet run -- template` on the code branches prints the YAML-equivalent shape of the code-defined configuration so it can be diffed against the checked-in YAML sample
+- code-only host: `Program.cs` may choose a no-args code path
+- YAML-only host: pass `run <file>`
+- host with both code and YAML present: pass arguments explicitly so the user chooses the path
 
 ## Runner: Practical Public-Package Pattern
 
 For Runner, the practical public-package pattern is:
 
-1. keep using `Bootstrap.New(args)` so the normal command-line pipeline still handles explicit YAML runs
-2. on the no-args path, bootstrap from a temporary empty file and then populate `runner.ExecutionBuilders.Single()`
-3. on the explicit YAML path, do not mutate the builder and let the normal loader resolution stand
+1. keep using `Bootstrap.New(args)` so the normal command-line pipeline handles explicit YAML runs
+2. if you want a no-args code path, choose it yourself in `Program.cs`
+3. if a default YAML file is also present, do not use the no-args path; require explicit program arguments instead
 
-That is why the current Runner code quick start uses one `Program.cs` file with two branches:
+That is why the current Runner code quick start keeps the sample host code-only:
 
 - no args: code-defined execution
-- explicit `run ...`: YAML-defined execution
+- `template` with no file: YAML-equivalent output for inspection or redirection
+- YAML quick start: separate host, explicit `run test.qaas.yaml`
 
 `IExecutionBuilderConfigurator` is available in the current public Runner package, but the quick-start sample intentionally keeps the code path in `Program.cs` because it makes the code-vs-YAML split completely explicit in one place.
 
@@ -85,16 +86,7 @@ That is why the current Mocker code quick start uses:
 
 The public sample repos keep the authored YAML file even on the code branches. That is intentional.
 
-It gives you three useful capabilities:
-
-- explicit YAML runs still work from the same host
-- the code-defined path can be validated against a checked-in YAML baseline
-- the docs can show a code sample and a YAML sample that stay in sync
-
-In other words, the hybrid host is not “half configured.” It is one host that deliberately exposes two entry paths:
-
-- code path for `dotnet run`
-- YAML path for `dotnet run -- run ...`
+If you choose to keep both code and YAML in the same host, make the user pass arguments so the startup path is explicit.
 
 ## When to Choose Each Style
 

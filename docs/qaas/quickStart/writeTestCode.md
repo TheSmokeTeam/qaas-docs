@@ -1,9 +1,8 @@
 # Write a Test (Code)
 
-Use code configuration when the test should stay in normal C#: helper methods, branching, computed values, and shared building blocks are all easier there. The public quick-start sample keeps two entry paths in the same host:
+Use code configuration when the test should stay in normal C#: helper methods, branching, computed values, and shared building blocks are all easier there. In the current contract, empty program arguments are reserved for code-only hosts. If a default YAML file is also present, you must pass arguments explicitly.
 
 - `dotnet run` uses the code-defined execution in `Program.cs`
-- `dotnet run -- run test.qaas.yaml` uses the checked-in YAML file instead
 - `dotnet run -- template` prints the YAML-equivalent shape of the code-defined execution so you can diff it against the YAML sample
 
 The completed sample is available at [DummyAppTests (Code)]({{ links.repository_runner_quickstart_code }}).
@@ -17,9 +16,9 @@ dotnet add DummyAppTests/DummyAppTests.csproj package QaaS.Common.Assertions
 dotnet add DummyAppTests/DummyAppTests.csproj package QaaS.Common.Generators
 ```
 
-## Clear the Launch Arguments
+## Keep the Host Code-Only
 
-The YAML template path uses `run test.qaas.yaml` launch arguments so `dotnet run` works for the YAML quick start. For the code quick start, remove those launch arguments so `dotnet run` is a real no-args invocation.
+No-args startup is only valid when this host is code-only. Do not keep a default `test.qaas.yaml` next to this sample if you want `dotnet run` with no extra arguments to execute the code path.
 
 `DummyAppTests/Properties/launchSettings.json`
 
@@ -32,74 +31,6 @@ The YAML template path uses `run test.qaas.yaml` launch arguments so `dotnet run
     }
   }
 }
-```
-
-## Keep the YAML Baseline
-
-The code sample keeps the same authored YAML as the YAML quick start so explicit `run` still works and the code path can be validated against a real file.
-
-`DummyAppTests/test.qaas.yaml`
-
-```yaml
-MetaData:
-  Team: Smoke
-  System: DummyApp
-
-DataSources:
-  - Name: FromFileSystemTestData
-    Generator: FromFileSystem
-    GeneratorConfiguration:
-      DataArrangeOrder: AsciiAsc
-      FileSystem:
-        Path: TestData
-
-Sessions:
-  - Name: RabbitMqExchangeWithFromFileSystemTestData
-    Publishers:
-      - Name: Publisher
-        DataSourceNames: [FromFileSystemTestData]
-        Policies:
-          - LoadBalance:
-              Rate: 50
-        RabbitMq:
-          Host: 127.0.0.1
-          Username: admin
-          Password: admin
-          Port: 5672
-          ExchangeName: input
-          RoutingKey: /
-    Consumers:
-      - Name: Consumer
-        TimeoutMs: 5000
-        RabbitMq:
-          Host: 127.0.0.1
-          Username: admin
-          Password: admin
-          Port: 5672
-          ExchangeName: output
-          RoutingKey: /
-        Deserialize:
-          Deserializer: Json
-
-Assertions:
-  - Name: HermeticByInputOutputPercentage
-    Assertion: HermeticByInputOutputPercentage
-    SessionNames: [RabbitMqExchangeWithFromFileSystemTestData]
-    AssertionConfiguration:
-      OutputNames: [Consumer]
-      InputNames: [Publisher]
-      ExpectedPercentage: 100
-  - Name: DelayByChunks
-    Assertion: DelayByChunks
-    SessionNames: [RabbitMqExchangeWithFromFileSystemTestData]
-    AssertionConfiguration:
-      Output:
-        Name: Consumer
-        ChunkSize: 1
-      Input:
-        Name: Publisher
-        ChunkSize: 1
-      MaximumDelayMs: 5000
 ```
 
 ## Add the Test Data
@@ -168,6 +99,12 @@ static bool ShouldUseCodeConfiguration(string[] args, out CodeExecutionMode code
 
     if (args.Length == 0)
     {
+        if (HasDefaultYamlConfiguration())
+        {
+            codeExecutionMode = default;
+            return false;
+        }
+
         codeExecutionMode = CodeExecutionMode.Run;
         return true;
     }
@@ -198,7 +135,74 @@ static string EnsureCodeBootstrapFile()
 
 static void RenderCodeTemplate()
 {
-    Console.WriteLine(File.ReadAllText(Path.Combine(AppContext.BaseDirectory, "test.qaas.yaml")));
+    var template = """
+MetaData:
+  Team: Smoke
+  System: DummyApp
+
+DataSources:
+  - Name: FromFileSystemTestData
+    Generator: FromFileSystem
+    GeneratorConfiguration:
+      DataArrangeOrder: AsciiAsc
+      FileSystem:
+        Path: TestData
+
+Sessions:
+  - Name: RabbitMqExchangeWithFromFileSystemTestData
+    Publishers:
+      - Name: Publisher
+        DataSourceNames: [FromFileSystemTestData]
+        Policies:
+          - LoadBalance:
+              Rate: 50
+        RabbitMq:
+          Host: 127.0.0.1
+          Username: admin
+          Password: admin
+          Port: 5672
+          ExchangeName: input
+          RoutingKey: /
+    Consumers:
+      - Name: Consumer
+        TimeoutMs: 5000
+        RabbitMq:
+          Host: 127.0.0.1
+          Username: admin
+          Password: admin
+          Port: 5672
+          ExchangeName: output
+          RoutingKey: /
+        Deserialize:
+          Deserializer: Json
+
+Assertions:
+  - Name: HermeticByInputOutputPercentage
+    Assertion: HermeticByInputOutputPercentage
+    SessionNames: [RabbitMqExchangeWithFromFileSystemTestData]
+    AssertionConfiguration:
+      OutputNames: [Consumer]
+      InputNames: [Publisher]
+      ExpectedPercentage: 100
+  - Name: DelayByChunks
+    Assertion: DelayByChunks
+    SessionNames: [RabbitMqExchangeWithFromFileSystemTestData]
+    AssertionConfiguration:
+      Output:
+        Name: Consumer
+        ChunkSize: 1
+      Input:
+        Name: Publisher
+        ChunkSize: 1
+      MaximumDelayMs: 5000
+""";
+
+    Console.WriteLine(template);
+}
+
+static bool HasDefaultYamlConfiguration()
+{
+    return File.Exists(Path.Combine(AppContext.BaseDirectory, "test.qaas.yaml"));
 }
 
 static bool HasExplicitTemplateConfigurationPath(IReadOnlyList<string> args)
@@ -332,11 +336,12 @@ enum CodeExecutionMode
 }
 ```
 
-The host keeps three behaviors in one place:
+The host keeps two entry points:
 
 - no args: build the execution in code and run it
 - `template` with no file: print the YAML-equivalent shape of that code-defined execution
-- explicit `run ...` or `run test.qaas.yaml`: stay on the normal YAML/bootstrap path
+
+If you later add a default YAML file to the same host, stop relying on the no-args path and pass the YAML explicitly instead.
 
 ## Run the Code Path
 
@@ -353,11 +358,5 @@ dotnet run -- template
 ```
 
 That output should match the authored `test.qaas.yaml` shape shown above.
-
-## Run the YAML Path From the Same Host
-
-```bash
-dotnet run -- run test.qaas.yaml
-```
 
 The sample expects a local RabbitMQ broker on `127.0.0.1:5672` and a component that relays the published message from `input` to `output`, the same way the quick-start CI smoke test does.

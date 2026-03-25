@@ -1,9 +1,8 @@
 # Create a Mock (Code)
 
-Use code configuration when the mock should be assembled with normal C# builders instead of one static YAML file. The public quick-start sample keeps two entry paths in the same host:
+Use code configuration when the mock should be assembled with normal C# builders instead of one static YAML file. In the current contract, empty program arguments are reserved for code-only hosts. If a default YAML file is also present, you must pass arguments explicitly.
 
 - `dotnet run` uses the code-defined mock in `Program.cs`
-- `dotnet run -- run mocker.qaas.yaml` uses the checked-in YAML file instead
 - `dotnet run -- template` prints the YAML-equivalent shape of the code-defined mock so you can diff it against the YAML sample
 
 The completed sample is available at [DummyAppMock (Code)]({{ links.repository_mocker_quickstart_code }}).
@@ -19,9 +18,9 @@ dotnet add DummyAppMock/DummyAppMock.csproj package QaaS.Common.Generators --ver
 
 The direct code-built HTTP server sample shown below currently relies on the published public package combination above.
 
-## Clear the Launch Arguments
+## Keep the Host Code-Only
 
-The YAML template path uses `mocker.qaas.yaml` launch arguments so `dotnet run` works for the YAML quick start. For the code quick start, remove those launch arguments so `dotnet run` is a real no-args invocation.
+No-args startup is only valid when this host is code-only. Do not keep a default `mocker.qaas.yaml` next to this sample if you want `dotnet run` with no extra arguments to execute the code path.
 
 `DummyAppMock/Properties/launchSettings.json`
 
@@ -34,38 +33,6 @@ The YAML template path uses `mocker.qaas.yaml` launch arguments so `dotnet run` 
     }
   }
 }
-```
-
-## Keep the YAML Baseline
-
-The code sample keeps the same authored YAML as the YAML quick start so explicit `run` still works and the code path can be validated against a real file.
-
-`DummyAppMock/mocker.qaas.yaml`
-
-```yaml
-DataSources:
-  - Name: ServerData
-    Generator: FromFileSystem
-    GeneratorConfiguration:
-      DataArrangeOrder: AsciiAsc
-      FileSystem:
-        Path: ServerData
-
-Stubs:
-  - Name: ServerDataStub
-    Processor: ServerDataProcessor
-    DataSourceNames: [ServerData]
-
-Servers:
-  - Http:
-      Port: 8080
-      IsLocalhost: false
-      Endpoints:
-        - Path: /data
-          Actions:
-            - Name: GetServerData
-              Method: Get
-              TransactionStubName: ServerDataStub
 ```
 
 ## Add the Response File
@@ -123,6 +90,12 @@ static bool ShouldUseCodeConfiguration(string[] args, out CodeExecutionMode exec
 
     if (args.Length == 0)
     {
+        if (HasDefaultYamlConfiguration())
+        {
+            executionMode = default;
+            return false;
+        }
+
         executionMode = CodeExecutionMode.Run;
         return true;
     }
@@ -221,6 +194,11 @@ Servers:
     File.WriteAllText(Path.Combine(outputFolder, "template.qaas.yaml"), template + Environment.NewLine);
 }
 
+static bool HasDefaultYamlConfiguration()
+{
+    return File.Exists(Path.Combine(AppContext.BaseDirectory, "mocker.qaas.yaml"));
+}
+
 static string[] NormalizeYamlArguments(string[] args)
 {
     if (args.Length == 1 && LooksLikeConfigurationPath(args[0]))
@@ -288,11 +266,12 @@ enum CodeExecutionMode
 }
 ```
 
-The host keeps three behaviors in one place:
+The host keeps two entry points:
 
 - no args: build the mock in code and run it
 - `template` with no file: print the YAML-equivalent shape of that code-defined mock
-- explicit `run ...` or `run mocker.qaas.yaml`: stay on the normal YAML/bootstrap path
+
+If you later add a default YAML file to the same host, stop relying on the no-args path and pass the YAML explicitly instead.
 
 ## Run the Code Path
 
@@ -315,11 +294,5 @@ dotnet run -- template
 ```
 
 That output should match the authored `mocker.qaas.yaml` shape shown above.
-
-## Run the YAML Path From the Same Host
-
-```bash
-dotnet run -- run mocker.qaas.yaml
-```
 
 The mock keeps running after the check. Stop it with `Ctrl+C` when you are done.

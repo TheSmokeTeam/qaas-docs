@@ -32,6 +32,8 @@ The sample keeps the response processor local so the quick start stays compatibl
 QaaS.Mocker.Bootstrap.New(args).Run();
 ```
 
+This host is YAML-only. Empty program arguments therefore show help text, so the run command must pass `run mocker.qaas.yaml` explicitly.
+
 ## Add the Local Processor
 
 The YAML file will only describe the mock flow. The actual response body is produced by a small local processor that loads the JSON payload from the data source and returns it with an HTTP 200 response.
@@ -175,7 +177,7 @@ Servers:
 From `DummyAppMock/DummyAppMock`:
 
 ```bash
-dotnet run
+dotnet run -- run mocker.qaas.yaml
 ```
 
 Then verify it:
