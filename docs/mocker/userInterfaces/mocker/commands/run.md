@@ -1,3 +1,5 @@
+<!-- generated hash:94083fcc6bc8 sources:Mocker, run, cli-command -->
+
 # run
 
 Start the configured mock servers and optional controller runtime.

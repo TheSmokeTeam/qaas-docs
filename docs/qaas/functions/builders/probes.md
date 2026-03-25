@@ -1,7 +1,5 @@
 # Probes
 
-Source-driven reference for `Runner` functions in the `Builders / Probes` category.
-
 Each entry uses the short function name as the table-of-contents label. Expand an entry to inspect its location, signature, and XML doc comments.
 
 ## `Named`

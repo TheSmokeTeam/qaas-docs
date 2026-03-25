@@ -1,7 +1,5 @@
 # Policies
 
-Source-driven reference for `Framework` functions in the `Builders / Policies` category.
-
 Each entry uses the short function name as the table-of-contents label. Expand an entry to inspect its location, signature, and XML doc comments.
 
 ## `Configure`
