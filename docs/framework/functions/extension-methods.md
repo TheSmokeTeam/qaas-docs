@@ -374,7 +374,7 @@ Annotated extension methods continue to appear in their regular category pages; 
     
     **Declaring Type** `ConfigurationUtils (extension type)`
     
-    **Location** `QaaS.Framework.Configurations/ConfigurationUtils.cs:243`
+    **Location** `QaaS.Framework.Configurations/ConfigurationUtils.cs:234`
     
     **Signature**
     ```csharp
@@ -395,7 +395,7 @@ Annotated extension methods continue to appear in their regular category pages; 
     
     **Declaring Type** `ConfigurationUtils (extension type)`
     
-    **Location** `QaaS.Framework.Configurations/ConfigurationUtils.cs:271`
+    **Location** `QaaS.Framework.Configurations/ConfigurationUtils.cs:262`
     
     **Signature**
     ```csharp
@@ -416,7 +416,7 @@ Annotated extension methods continue to appear in their regular category pages; 
     
     **Declaring Type** `ConfigurationUtils (extension type)`
     
-    **Location** `QaaS.Framework.Configurations/ConfigurationUtils.cs:280`
+    **Location** `QaaS.Framework.Configurations/ConfigurationUtils.cs:271`
     
     **Signature**
     ```csharp
