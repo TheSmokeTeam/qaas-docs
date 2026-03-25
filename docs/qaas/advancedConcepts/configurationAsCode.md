@@ -5,9 +5,9 @@ QaaS supports both declarative YAML and programmatic C# configuration. YAML is s
 The current recommended model is:
 
 1. keep using the normal `Bootstrap.New(...)` entry point
-2. keep the conventional configuration file next to the app, even if the file is empty
+2. keep the conventional configuration file when you want a YAML baseline or the default no-args startup path
 3. implement `IExecutionBuilderConfigurator` in the entry assembly or a copied dependency
-4. let Runner or Mocker discover that configurator automatically and apply it after YAML is loaded
+4. let Runner or Mocker discover that configurator automatically and apply it after the loader has resolved the YAML input, if any
 
 ## Bootstrap First
 
@@ -15,42 +15,35 @@ Start from the standard bootstrap path instead of constructing runners manually.
 
 ```csharp
 QaaS.Runner.Bootstrap.New(args).Run();
+QaaS.Mocker.Bootstrap.New(args).Run();
 ```
 
-For Runner, if `args` is empty and `test.qaas.yaml` exists in the app output directory, bootstrap now treats that as `run <absolute path to test.qaas.yaml>`.
+Bootstrap now handles the common default cases directly:
 
-If you want a fixed local fallback that also injects extra flags such as `--no-env`, you can still wrap the arguments explicitly:
+- Runner: if `args` is empty and `test.qaas.yaml` exists in the app output directory, bootstrap treats that as `run <absolute path to test.qaas.yaml>`.
+- Mocker: if `args` is empty and either `mocker.qaas.yaml` exists in the app output directory or a discovered `IExecutionBuilderConfigurator` can build the execution in code, bootstrap treats that as `run <absolute path to mocker.qaas.yaml>`.
+- For both products, passing a bare configuration path such as `test.qaas.yaml`, `mocker.qaas.yaml`, or `configs/local.yaml` still implies `run <path>`.
 
-```csharp
-var effectiveArgs = args.Length == 0
-    ? ["run", Path.Combine(AppContext.BaseDirectory, "test.qaas.yaml"), "--no-env"]
-    : args;
-
-QaaS.Runner.Bootstrap.New(effectiveArgs).Run();
-```
-
-For Mocker keep the explicit arguments:
-
-```csharp
-var effectiveArgs = args.Length == 0
-    ? ["run", Path.Combine(AppContext.BaseDirectory, "mocker.qaas.yaml"), "--no-env"]
-    : args;
-
-QaaS.Mocker.Bootstrap.New(effectiveArgs).Run();
-```
+Mocker has one extra detail that matters for real hosts: when the selected configuration file name is exactly `mocker.qaas.yaml`, the loader resolves that default file from `AppContext.BaseDirectory`. Other relative file names still resolve from the current working directory. If the default file is missing but a code configurator was discovered, the loader logs a warning and continues with the code-built execution instead of failing immediately.
 
 This keeps CLI behavior, logging, overrides, and environment handling aligned with the normal runtime path.
 
-## Keep the YAML File, Even When It Is Empty
+## Keep the YAML File When It Helps
 
-Runner and Mocker still expect their normal configuration file names. In code-first scenarios that file can stay empty or contain only the static baseline that you want to keep in YAML.
+Runner and Mocker still use their normal configuration file names as the conventional entry point for YAML loading. In code-first scenarios that file can stay empty or contain only the static baseline that you want to keep in YAML.
 
 Use the conventional file names:
 
 - Runner: `test.qaas.yaml`
 - Mocker: `mocker.qaas.yaml`
 
-This gives you a practical hybrid model:
+In practice:
+
+- keep `test.qaas.yaml` next to a Runner host when you want `Bootstrap.New(args)` with empty args to take the standard default path
+- keep `mocker.qaas.yaml` next to a Mocker host when you want the same default path without a warning, or when you want `run` without an explicit file name to load a concrete YAML baseline
+- omit `mocker.qaas.yaml` only when the mock is fully defined in code and you are comfortable with the loader warning that YAML was skipped
+
+That gives you a practical hybrid model:
 
 - YAML for defaults, shared structure, or checked-in examples
 - C# for computed values, composition, and conditional behavior
@@ -87,7 +80,7 @@ public sealed class MockerExecutionBuilderConfigurator : IExecutionBuilderConfig
 }
 ```
 
-The configurator runs after the loader has created the execution builder, so it can extend or replace the state that came from YAML.
+The configurator runs after the loader has created the execution builder, so it can extend or replace the state that came from YAML, or populate the builder from scratch when YAML loading was skipped.
 
 When you refer to local files from code, prefer paths rooted at `AppContext.BaseDirectory` so the host does not depend on the caller's working directory.
 

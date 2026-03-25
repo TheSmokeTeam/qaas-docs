@@ -1,6 +1,6 @@
 # Write a Test (Code)
 
-Use code configuration when the test should stay in normal C#: helper methods, branching, computed values, and shared building blocks are all easier there. The runtime behavior stays identical to the YAML guide, but this version keeps the full test definition in `Program.cs`.
+Use code configuration when the test should stay in normal C#: helper methods, branching, computed values, and shared building blocks are all easier there. The runtime behavior stays identical to the YAML guide, but this version keeps the full test definition in code instead of YAML.
 
 The completed sample is available at [DummyAppTests (Code)]({{ links.repository_runner_quickstart_code }}).
 
@@ -9,10 +9,10 @@ The completed sample is available at [DummyAppTests (Code)]({{ links.repository_
 `DummyAppTests/test.qaas.yaml`
 
 ```yaml
-# Intentionally blank. Program.cs builds the execution definition after bootstrap loads this file.
+# Intentionally blank. ProgramConfigurator builds the execution definition after bootstrap loads this file.
 ```
 
-Runner still expects a configuration-file argument, so the code sample keeps the empty file in place and then builds the execution definition in `Program.cs`.
+When `args` is empty, bootstrap now treats the conventional file in the app output directory as `run <absolute path to test.qaas.yaml>`, so the code sample keeps the empty file in place and then builds the execution definition in `Program.cs`.
 
 ## Add the Test Data
 
@@ -27,9 +27,17 @@ Runner still expects a configuration-file argument, so the code sample keeps the
 ]
 ```
 
-## Build the Test in `Program.cs`
+## Keep `Program.cs` Minimal
 
 `DummyAppTests/Program.cs`
+
+```csharp
+QaaS.Runner.Bootstrap.New(args).Run();
+```
+
+## Add the Execution Configurator
+
+`DummyAppTests/ProgramConfigurator.cs`
 
 ```csharp
 using QaaS.Common.Assertions.CommonAssertionsConfigs.Delay;
@@ -50,133 +58,134 @@ using QaaS.Runner.Sessions.Actions.Consumers.Builders;
 using QaaS.Runner.Sessions.Actions.Publishers.Builders;
 using QaaS.Runner.Sessions.Session.Builders;
 
-var runner = QaaS.Runner.Bootstrap.New(args);
-var executionBuilder = runner.ExecutionBuilders.Single();
-
-var dataSource = new DataSourceBuilder()
-    .Named("FromFileSystemTestData")
-    .HookNamed(nameof(FromFileSystem))
-    .Configure(new FromFileSystemConfig
-    {
-        DataArrangeOrder = DataArrangeOrder.AsciiAsc,
-        FileSystem = new FileSystemConfig
-        {
-            Path = Path.Combine(AppContext.BaseDirectory, "TestData")
-        }
-    });
-
-var rabbitMqConfiguration = new BaseRabbitMqConfig
+internal sealed class ProgramConfigurator : IExecutionBuilderConfigurator
 {
-    Host = "127.0.0.1",
-    Username = "admin",
-    Password = "admin",
-    VirtualHost = "/",
-    Port = 5672
-};
+    public void Configure(ExecutionBuilder executionBuilder)
+    {
+        var dataSource = new DataSourceBuilder()
+            .Named("FromFileSystemTestData")
+            .HookNamed(nameof(FromFileSystem))
+            .Configure(new FromFileSystemConfig
+            {
+                DataArrangeOrder = DataArrangeOrder.AsciiAsc,
+                FileSystem = new FileSystemConfig
+                {
+                    Path = Path.Combine(AppContext.BaseDirectory, "TestData")
+                }
+            });
 
-var publisher = new PublisherBuilder()
-    .Named("Publisher")
-    .AddDataSource("FromFileSystemTestData")
-    .AddPolicy(new PolicyBuilder().Configure(new LoadBalancePolicyConfig
-    {
-        Rate = 50
-    }))
-    .Configure(new RabbitMqSenderConfig
-    {
-        Host = rabbitMqConfiguration.Host,
-        Username = rabbitMqConfiguration.Username,
-        Password = rabbitMqConfiguration.Password,
-        Port = rabbitMqConfiguration.Port,
-        ExchangeName = "input",
-        RoutingKey = "/"
-    });
-
-var consumer = new ConsumerBuilder()
-    .Named("Consumer")
-    .WithTimeout(5000)
-    .Configure(new RabbitMqReaderConfig
-    {
-        Host = rabbitMqConfiguration.Host,
-        Username = rabbitMqConfiguration.Username,
-        Password = rabbitMqConfiguration.Password,
-        Port = rabbitMqConfiguration.Port,
-        ExchangeName = "output",
-        RoutingKey = "/"
-    })
-    .WithDeserializer(new DeserializeConfig
-    {
-        Deserializer = SerializationType.Json
-    });
-
-var session = new SessionBuilder()
-    .Named("RabbitMqExchangeWithFromFileSystemTestData")
-    .AddPublisher(publisher)
-    .AddConsumer(consumer);
-
-var hermeticAssertion = new AssertionBuilder
-    {
-        AssertionInstance = null!,
-        Reporter = null!
-    }
-    .Named("HermeticByInputOutputPercentage")
-    .HookNamed(nameof(HermeticByInputOutputPercentage))
-    .AddSessionName(session.Name!)
-    .Configure(new HermeticByInputOutputPercentageConfiguration
-    {
-        OutputNames = [consumer.Name!],
-        InputNames = [publisher.Name!],
-        ExpectedPercentage = 100
-    });
-
-var delayAssertion = new AssertionBuilder
-    {
-        AssertionInstance = null!,
-        Reporter = null!
-    }
-    .Named("DelayByChunks")
-    .HookNamed(nameof(DelayByChunks))
-    .AddSessionName(session.Name!)
-    .Configure(new DelayByChunksConfiguration
-    {
-        Output = new Chunk
+        var rabbitMqConfiguration = new BaseRabbitMqConfig
         {
-            Name = consumer.Name!,
-            ChunkSize = 1
-        },
-        Input = new Chunk
-        {
-            Name = publisher.Name!,
-            ChunkSize = 1
-        },
-        MaximumDelayMs = 5000
-    });
+            Host = "127.0.0.1",
+            Username = "admin",
+            Password = "admin",
+            VirtualHost = "/",
+            Port = 5672
+        };
 
-executionBuilder
-    .WithMetadata(new MetaDataConfig
-    {
-        Team = "Smoke",
-        System = "DummyApp"
-    })
-    .AddDataSource(dataSource)
-    .AddSession(session)
-    .AddAssertion(hermeticAssertion)
-    .AddAssertion(delayAssertion);
+        var publisher = new PublisherBuilder()
+            .Named("Publisher")
+            .AddDataSource("FromFileSystemTestData")
+            .AddPolicy(new PolicyBuilder().Configure(new LoadBalancePolicyConfig
+            {
+                Rate = 50
+            }))
+            .Configure(new RabbitMqSenderConfig
+            {
+                Host = rabbitMqConfiguration.Host,
+                Username = rabbitMqConfiguration.Username,
+                Password = rabbitMqConfiguration.Password,
+                Port = rabbitMqConfiguration.Port,
+                ExchangeName = "input",
+                RoutingKey = "/"
+            });
 
-runner.Run();
+        var consumer = new ConsumerBuilder()
+            .Named("Consumer")
+            .WithTimeout(5000)
+            .Configure(new RabbitMqReaderConfig
+            {
+                Host = rabbitMqConfiguration.Host,
+                Username = rabbitMqConfiguration.Username,
+                Password = rabbitMqConfiguration.Password,
+                Port = rabbitMqConfiguration.Port,
+                ExchangeName = "output",
+                RoutingKey = "/"
+            })
+            .WithDeserializer(new DeserializeConfig
+            {
+                Deserializer = SerializationType.Json
+            });
+
+        var session = new SessionBuilder()
+            .Named("RabbitMqExchangeWithFromFileSystemTestData")
+            .AddPublisher(publisher)
+            .AddConsumer(consumer);
+
+        var hermeticAssertion = new AssertionBuilder
+            {
+                AssertionInstance = null!,
+                Reporter = null!
+            }
+            .Named("HermeticByInputOutputPercentage")
+            .HookNamed(nameof(HermeticByInputOutputPercentage))
+            .AddSessionName(session.Name!)
+            .Configure(new HermeticByInputOutputPercentageConfiguration
+            {
+                OutputNames = [consumer.Name!],
+                InputNames = [publisher.Name!],
+                ExpectedPercentage = 100
+            });
+
+        var delayAssertion = new AssertionBuilder
+            {
+                AssertionInstance = null!,
+                Reporter = null!
+            }
+            .Named("DelayByChunks")
+            .HookNamed(nameof(DelayByChunks))
+            .AddSessionName(session.Name!)
+            .Configure(new DelayByChunksConfiguration
+            {
+                Output = new Chunk
+                {
+                    Name = consumer.Name!,
+                    ChunkSize = 1
+                },
+                Input = new Chunk
+                {
+                    Name = publisher.Name!,
+                    ChunkSize = 1
+                },
+                MaximumDelayMs = 5000
+            });
+
+        executionBuilder
+            .WithMetadata(new MetaDataConfig
+            {
+                Team = "Smoke",
+                System = "DummyApp"
+            })
+            .AddDataSource(dataSource)
+            .AddSession(session)
+            .AddAssertion(hermeticAssertion)
+            .AddAssertion(delayAssertion);
+    }
+}
 ```
 
-This keeps the standard bootstrap path intact:
+This keeps the standard bootstrap path intact while moving the test shape into the discovered configurator:
 
-- `Bootstrap.New(...)` parses the normal Runner CLI arguments.
-- `runner.ExecutionBuilders.Single()` gives you the builder created from `test.qaas.yaml`.
-- The rest of `Program.cs` updates that builder with the exact same data source, session, and assertions shown in the YAML guide.
+- `Program.cs` stays on `Bootstrap.New(args).Run()`.
+- `ProgramConfigurator` is discovered automatically from the entry assembly.
+- The configurator owns the test-specific data source, session, and assertions instead of mutating `runner.ExecutionBuilders` after bootstrap.
 
 ## Run
 
 From `DummyAppTests/DummyAppTests`:
 
 ```bash
-dotnet run -- run test.qaas.yaml --no-env
+dotnet run
 ```
 
 If you want to pass different Runner flags, append them after `dotnet run --`.

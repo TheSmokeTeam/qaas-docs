@@ -4,6 +4,14 @@ Use code configuration when the mock should be assembled with normal C# builders
 
 The completed sample is available at [DummyAppMock (Code)]({{ links.repository_mocker_quickstart_code }}).
 
+## Keep `mocker.qaas.yaml` Empty
+
+`DummyAppMock/mocker.qaas.yaml`
+
+```yaml
+# Intentionally blank. ProgramConfigurator builds the mock definition after bootstrap starts.
+```
+
 ## Add the Response File
 
 `DummyAppMock/ServerData/sample.json`
@@ -19,9 +27,17 @@ The completed sample is available at [DummyAppMock (Code)]({{ links.repository_m
 
 Use the same `ServerDataProcessor` shown in the YAML quick start.
 
-## Build the Mock in `Program.cs`
+## Keep `Program.cs` Minimal
 
 `DummyAppMock/Program.cs`
+
+```csharp
+QaaS.Mocker.Bootstrap.New(args).Run();
+```
+
+## Add the Execution Configurator
+
+`DummyAppMock/ProgramConfigurator.cs`
 
 ```csharp
 using DummyAppMock.Processors;
@@ -33,55 +49,59 @@ using QaaS.Mocker.Servers.ConfigurationObjects;
 using QaaS.Mocker.Servers.ConfigurationObjects.HttpServerConfigs;
 using QaaS.Mocker.Stubs.ConfigurationObjects;
 
-var executionBuilder = new ExecutionBuilder()
-    .CreateDataSource(new DataSourceBuilder()
-        .Named("ServerData")
-        .HookNamed(nameof(FromFileSystem))
-        .Configure(new FromFileSystemConfig
-        {
-            DataArrangeOrder = DataArrangeOrder.AsciiAsc,
-            FileSystem = new FileSystemConfig
-            {
-                Path = Path.Combine(AppContext.BaseDirectory, "ServerData")
-            }
-        }))
-    .CreateStub(new TransactionStubBuilder()
-        .Named("ServerDataStub")
-        .HookNamed(nameof(ServerDataProcessor))
-        .AddDataSourceName("ServerData"))
-    .ReplaceServers(
-    new ServerConfig
+internal sealed class ProgramConfigurator : IExecutionBuilderConfigurator
+{
+    public void Configure(ExecutionBuilder executionBuilder)
     {
-        Http = new HttpServerConfig
-        {
-            Port = 8080,
-            IsLocalhost = false,
-            Endpoints =
-            [
-                new HttpEndpointConfig
+        executionBuilder
+            .CreateDataSource(new DataSourceBuilder()
+                .Named("ServerData")
+                .HookNamed(nameof(FromFileSystem))
+                .Configure(new FromFileSystemConfig
                 {
-                    Path = "/data",
-                    Actions =
-                    [
-                        new HttpEndpointActionConfig
-                        {
-                            Name = "GetServerData",
-                            Method = QaaS.Mocker.Servers.ConfigurationObjects.HttpServerConfigs.HttpMethod.Get,
-                            TransactionStubName = "ServerDataStub"
-                        }
-                    ]
-                }
-            ]
-        }
-    });
-
-new MockerRunner(executionBuilder).Run();
+                    DataArrangeOrder = DataArrangeOrder.AsciiAsc,
+                    FileSystem = new FileSystemConfig
+                    {
+                        Path = Path.Combine(AppContext.BaseDirectory, "ServerData")
+                    }
+                }))
+            .CreateStub(new TransactionStubBuilder()
+                .Named("ServerDataStub")
+                .HookNamed(nameof(ServerDataProcessor))
+                .AddDataSourceName("ServerData"))
+            .ReplaceServers(
+                new ServerConfig
+                {
+                    Http = new HttpServerConfig
+                    {
+                        Port = 8080,
+                        IsLocalhost = false,
+                        Endpoints = [
+                            new HttpEndpointConfig
+                            {
+                                Path = "/data",
+                                Actions = [
+                                    new HttpEndpointActionConfig
+                                    {
+                                        Name = "GetServerData",
+                                        Method = QaaS.Mocker.Servers.ConfigurationObjects.HttpServerConfigs.HttpMethod.Get,
+                                        TransactionStubName = "ServerDataStub"
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                });
+    }
+}
 ```
 
-This keeps the runtime behavior aligned with the YAML guide:
+This keeps the runtime behavior aligned with the YAML guide while preserving the normal bootstrap flow:
 
-- `ExecutionBuilder` uses the same builder methods as the YAML sample: data source, stub, then server.
-- `MockerRunner` runs the resulting mock exactly as defined in `Program.cs`.
+- `Program.cs` stays on the normal `Bootstrap.New(args).Run()` entry point.
+- `ProgramConfigurator` is discovered automatically from the entry assembly.
+- The configurator uses the same builder sequence as the YAML sample: data source, stub, then server.
+- The conventional empty `mocker.qaas.yaml` keeps `dotnet run` and `dotnet run -- run` on the standard default path without extra argument wrappers.
 
 ## Run
 
