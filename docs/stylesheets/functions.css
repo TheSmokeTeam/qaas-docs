@@ -1,0 +1,16 @@
+hr.function-separator {
+  margin: 2.5rem 0 1.5rem;
+  border: 0;
+  border-top: 0.3rem solid var(--md-primary-fg-color);
+  border-radius: 999px;
+  opacity: 0.35;
+}
+
+.md-typeset hr.function-separator + h4 {
+  margin-top: 0;
+}
+
+.md-typeset hr.function-separator + h4 code {
+  white-space: normal;
+  word-break: break-word;
+}

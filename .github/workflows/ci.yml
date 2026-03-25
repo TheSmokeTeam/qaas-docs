@@ -1,0 +1,219 @@
+name: CI
+
+on:
+  push:
+    branches: ["**"]
+    tags: ["**"]
+  pull_request:
+    branches: ["**"]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: docs-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: false
+
+env:
+  QAAS_DOCS_SITE_URL: ${{ vars.QAAS_DOCS_SITE_URL || 'https://TheSmokeTeam.github.io/qaas-docs/' }}
+  QAAS_DOCS_REPO_NAME: ${{ vars.QAAS_DOCS_REPO_NAME || 'QaaS' }}
+  QAAS_DOCS_REPO_URL: ${{ vars.QAAS_DOCS_REPO_URL || 'https://github.com/TheSmokeTeam/qaas-docs' }}
+  QAAS_DOCS_SOCIAL_GITHUB_URL: ${{ vars.QAAS_DOCS_SOCIAL_GITHUB_URL || 'https://github.com/TheSmokeTeam/qaas-docs' }}
+  QAAS_DOCS_LINK_DOCS_SITE: ${{ vars.QAAS_DOCS_LINK_DOCS_SITE || 'https://TheSmokeTeam.github.io/qaas-docs/' }}
+  QAAS_DOCS_LINK_REPOSITORY_DOCS: ${{ vars.QAAS_DOCS_LINK_REPOSITORY_DOCS || 'https://github.com/TheSmokeTeam/qaas-docs' }}
+  QAAS_DOCS_LINK_REPOSITORY_RUNNER: ${{ vars.QAAS_DOCS_LINK_REPOSITORY_RUNNER || 'https://github.com/TheSmokeTeam/QaaS.Runner' }}
+  QAAS_DOCS_LINK_REPOSITORY_MOCKER: ${{ vars.QAAS_DOCS_LINK_REPOSITORY_MOCKER || 'https://github.com/TheSmokeTeam/QaaS.Mocker' }}
+  QAAS_DOCS_LINK_REPOSITORY_MOCKER_COMMUNICATION_OBJECTS: ${{ vars.QAAS_DOCS_LINK_REPOSITORY_MOCKER_COMMUNICATION_OBJECTS || 'https://github.com/TheSmokeTeam/Qaas.Mocker.CommunicationObjects' }}
+  QAAS_DOCS_LINK_REPOSITORY_FRAMEWORK: ${{ vars.QAAS_DOCS_LINK_REPOSITORY_FRAMEWORK || 'https://github.com/TheSmokeTeam/QaaS.Framework' }}
+  QAAS_DOCS_LINK_REPOSITORY_ASSERTIONS: ${{ vars.QAAS_DOCS_LINK_REPOSITORY_ASSERTIONS || 'https://github.com/TheSmokeTeam/QaaS.Common.Assertions' }}
+  QAAS_DOCS_LINK_REPOSITORY_GENERATORS: ${{ vars.QAAS_DOCS_LINK_REPOSITORY_GENERATORS || 'https://github.com/TheSmokeTeam/QaaS.Common.Generators' }}
+  QAAS_DOCS_LINK_REPOSITORY_PROBES: ${{ vars.QAAS_DOCS_LINK_REPOSITORY_PROBES || 'https://github.com/TheSmokeTeam/QaaS.Common.Probes' }}
+  QAAS_DOCS_LINK_REPOSITORY_PROCESSORS: ${{ vars.QAAS_DOCS_LINK_REPOSITORY_PROCESSORS || 'https://github.com/TheSmokeTeam/QaaS.Common.Processors' }}
+  QAAS_DOCS_LINK_REPOSITORY_RUNNER_TEMPLATE: ${{ vars.QAAS_DOCS_LINK_REPOSITORY_RUNNER_TEMPLATE || 'https://github.com/TheSmokeTeam/QaaS.Runner.Template' }}
+  QAAS_DOCS_LINK_REPOSITORY_MOCKER_TEMPLATE: ${{ vars.QAAS_DOCS_LINK_REPOSITORY_MOCKER_TEMPLATE || 'https://github.com/TheSmokeTeam/QaaS.Mocker.Template' }}
+  QAAS_DOCS_LINK_REPOSITORY_RUNNER_QUICKSTART_CODE: ${{ vars.QAAS_DOCS_LINK_REPOSITORY_RUNNER_QUICKSTART_CODE || 'https://github.com/TheSmokeTeam/DummyAppTests/tree/code_configuration' }}
+  QAAS_DOCS_LINK_REPOSITORY_RUNNER_QUICKSTART_YAML: ${{ vars.QAAS_DOCS_LINK_REPOSITORY_RUNNER_QUICKSTART_YAML || 'https://github.com/TheSmokeTeam/DummyAppTests/tree/yaml_configuration' }}
+  QAAS_DOCS_LINK_REPOSITORY_MOCKER_QUICKSTART_CODE: ${{ vars.QAAS_DOCS_LINK_REPOSITORY_MOCKER_QUICKSTART_CODE || 'https://github.com/TheSmokeTeam/DummyAppMock/tree/code_configuration' }}
+  QAAS_DOCS_LINK_REPOSITORY_MOCKER_QUICKSTART_YAML: ${{ vars.QAAS_DOCS_LINK_REPOSITORY_MOCKER_QUICKSTART_YAML || 'https://github.com/TheSmokeTeam/DummyAppMock/tree/yaml_configuration' }}
+  QAAS_DOCS_LINK_ALLURE_INSTALLATION_GUIDE: ${{ vars.QAAS_DOCS_LINK_ALLURE_INSTALLATION_GUIDE || 'https://docs.qameta.io/allure/#_installing_a_commandline' }}
+  QAAS_DOCS_LINK_DOTNET_SDK: ${{ vars.QAAS_DOCS_LINK_DOTNET_SDK || 'https://dotnet.microsoft.com/download' }}
+  QAAS_DOCS_LINK_QAAS_COMMUNITY: ${{ vars.QAAS_DOCS_LINK_QAAS_COMMUNITY || 'https://discord.gg/rg2NYT4Mea' }}
+  QAAS_DOCS_LINK_NUGET_FEED: ${{ vars.QAAS_DOCS_LINK_NUGET_FEED || 'https://api.nuget.org/v3/index.json' }}
+  QAAS_DOCS_LINK_ARTIFACTORY: ${{ vars.QAAS_DOCS_LINK_ARTIFACTORY || 'https://jfrog.com/artifactory' }}
+  QAAS_DOCS_LINK_RUNNER_SCHEMA: ${{ vars.QAAS_DOCS_LINK_RUNNER_SCHEMA || '../../assets/schemas/runner-family-schema.json' }}
+  QAAS_DOCS_LINK_MOCKER_SCHEMA: ${{ vars.QAAS_DOCS_LINK_MOCKER_SCHEMA || '../../assets/schemas/mocker-family-schema.json' }}
+
+jobs:
+  build-site:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          submodules: recursive
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Cache dependencies
+        uses: actions/cache@v4
+        with:
+          path: ~/.cache/pip
+          key: ${{ runner.os }}-pip-${{ hashFiles('requirements.txt') }}
+          restore-keys: |
+            ${{ runner.os }}-pip-
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      - name: Build site
+        run: mkdocs build
+
+      - name: Upload Pages artifact
+        if: github.event_name == 'push' && (github.ref == 'refs/heads/master' || github.ref == 'refs/heads/fix/improve_docs' || github.ref == 'refs/heads/fix/docs_errors')
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: ./site
+
+  deploy-pages:
+    if: github.event_name == 'push' && (github.ref == 'refs/heads/master' || github.ref == 'refs/heads/fix/improve_docs' || github.ref == 'refs/heads/fix/docs_errors')
+    needs: build-site
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
+
+  publish-docker-image:
+    if: startsWith(github.ref, 'refs/tags/') || github.event_name == 'workflow_dispatch'
+    needs: build-site
+    runs-on: ubuntu-latest
+    env:
+      DOCKER_REPOSITORY_NAME: ${{ vars.DOCKER_REPOSITORY_NAME || github.event.repository.name }}
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Check Docker Hub secrets
+        id: docker-secrets
+        shell: bash
+        run: |
+          if [[ -n "${{ secrets.DOCKER_USERNAME || secrets.DOCKERHUB_USERNAME }}" && -n "${{ secrets.DOCKER_PASSWORD || secrets.DOCKERHUB_TOKEN }}" ]]; then
+            echo "enabled=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "enabled=false" >> "$GITHUB_OUTPUT"
+            echo "Docker Hub secrets are not configured. Skipping image push."
+          fi
+
+      - name: Set Docker tags
+        if: steps.docker-secrets.outputs.enabled == 'true'
+        id: docker-tags
+        shell: bash
+        run: |
+          username="${{ secrets.DOCKER_USERNAME || secrets.DOCKERHUB_USERNAME }}"
+          repository_name="${{ env.DOCKER_REPOSITORY_NAME }}"
+          repository_override="${{ vars.DOCKERHUB_REPOSITORY }}"
+          if [[ -n "${repository_override}" ]]; then
+            image="${repository_override}"
+          else
+            image="${username}/${repository_name}"
+          fi
+          {
+            echo "image=${image}"
+            echo "value<<EOF"
+            echo "${image}:${GITHUB_REF_NAME}"
+            echo "${image}:sha-${GITHUB_SHA}"
+            echo "EOF"
+          } >> "$GITHUB_OUTPUT"
+
+      - name: Set up Docker Buildx
+        if: steps.docker-secrets.outputs.enabled == 'true'
+        uses: docker/setup-buildx-action@v3
+
+      - name: Log in to Docker Hub
+        if: steps.docker-secrets.outputs.enabled == 'true'
+        uses: docker/login-action@v3
+        with:
+          username: ${{ secrets.DOCKER_USERNAME || secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKER_PASSWORD || secrets.DOCKERHUB_TOKEN }}
+
+      - name: Build and push image
+        if: steps.docker-secrets.outputs.enabled == 'true'
+        uses: docker/build-push-action@v6
+        with:
+          context: .
+          file: ./Dockerfile
+          push: true
+          tags: ${{ steps.docker-tags.outputs.value }}
+          cache-from: type=gha
+          cache-to: type=gha,mode=max
+
+  update-repository-overview:
+    if: startsWith(github.ref, 'refs/tags/') || github.event_name == 'workflow_dispatch'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Check overview token
+        id: overview-token
+        shell: bash
+        run: |
+          if [[ -n "${{ secrets.REPOSITORY_OVERVIEW_TOKEN }}" ]]; then
+            echo "enabled=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "enabled=false" >> "$GITHUB_OUTPUT"
+            echo "REPOSITORY_OVERVIEW_TOKEN is not configured. Skipping repository overview update."
+          fi
+
+      - name: Extract overview fields from README
+        if: steps.overview-token.outputs.enabled == 'true'
+        id: overview
+        shell: bash
+        run: |
+          python - <<'PY'
+          import os
+          import pathlib
+          text = pathlib.Path("README.md").read_text(encoding="utf-8")
+          lines = [line.strip() for line in text.splitlines()]
+
+          description = ""
+          for line in lines:
+            if not line or line.startswith("#") or line.startswith("[!["):
+              continue
+            description = line
+            break
+
+          if not description:
+            raise SystemExit("Unable to extract repository description from README.md.")
+
+          homepage = os.environ.get("QAAS_DOCS_SITE_URL", "")
+
+          output = pathlib.Path(os.environ["GITHUB_OUTPUT"])
+          with output.open("a", encoding="utf-8") as handle:
+            handle.write("description<<EOF\n")
+            handle.write(description[:350] + "\n")
+            handle.write("EOF\n")
+            handle.write(f"homepage={homepage}\n")
+          PY
+
+      - name: Update GitHub repository overview
+        if: steps.overview-token.outputs.enabled == 'true'
+        uses: actions/github-script@v7
+        with:
+          github-token: ${{ secrets.REPOSITORY_OVERVIEW_TOKEN }}
+          script: |
+            await github.rest.repos.update({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              description: `${{ steps.overview.outputs.description }}`,
+              homepage: `${{ steps.overview.outputs.homepage }}`
+            });
