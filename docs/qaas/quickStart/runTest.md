@@ -5,7 +5,7 @@ Once the local quick-start environment is ready, run the sample from the project
 ## YAML Sample
 
 ```bash
-dotnet run -- run test.qaas.yaml
+dotnet run
 ```
 
 ## Code Sample

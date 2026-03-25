@@ -1,207 +1,123 @@
 # Configuration as Code
 
-QaaS supports both declarative YAML and programmatic C# configuration. YAML is still the best fit for static scenarios and checked-in test cases. Configuration as Code is the better option when the execution needs branching logic, reusable helpers, shared conventions, or dynamic values that are awkward to express in YAML.
+QaaS supports both declarative YAML and programmatic C# configuration. YAML is still the best fit for static scenarios and checked-in test cases. Configuration as Code is the better option when the host needs branching logic, reusable helpers, shared conventions, or dynamic values that are awkward to express in YAML.
 
-The current recommended model is:
+The important part is to separate two different questions:
 
-1. keep using the normal `Bootstrap.New(...)` entry point
-2. keep the conventional configuration file when you want a YAML baseline or the default no-args startup path
-3. implement `IExecutionBuilderConfigurator` in the entry assembly or a copied dependency
-4. let Runner or Mocker discover that configurator automatically and apply it after the loader has resolved the YAML input, if any
+1. how QaaS resolves configuration when you run through the normal CLI/bootstrap flow
+2. how your host chooses between a code-defined path and a YAML-defined path before it calls that flow
 
-## Bootstrap First
+## Start With Resolution Rules
 
-Start from the standard bootstrap path instead of constructing runners manually.
+When you stay on the normal CLI/bootstrap path, the resolution model is:
+
+1. choose the execution mode from the command line: `run`, `act`, `assert`, `template`, or `execute` for Runner, `run` or `template` for Mocker
+2. resolve the base configuration file from the explicit file path or from the product default name
+3. apply the normal overwrite and merge inputs for that command
+4. apply environment variable overrides unless `--no-env` was passed
+5. materialize the execution builder and run or template it
+
+For the conventional default file names:
+
+- Runner uses `test.qaas.yaml`
+- Mocker uses `mocker.qaas.yaml`
+
+That means these commands stay entirely on the YAML/bootstrap path:
 
 ```csharp
 QaaS.Runner.Bootstrap.New(args).Run();
 QaaS.Mocker.Bootstrap.New(args).Run();
 ```
 
-Bootstrap now handles the common default cases directly:
+And from the shell:
 
-- Runner: if `args` is empty and `test.qaas.yaml` exists in the app output directory, bootstrap treats that as `run <absolute path to test.qaas.yaml>`.
-- Mocker: if `args` is empty and either `mocker.qaas.yaml` exists in the app output directory or a discovered `IExecutionBuilderConfigurator` can build the execution in code, bootstrap treats that as `run <absolute path to mocker.qaas.yaml>`.
-- For both products, passing a bare configuration path such as `test.qaas.yaml`, `mocker.qaas.yaml`, or `configs/local.yaml` still implies `run <path>`.
-
-Mocker has one extra detail that matters for real hosts: when the selected configuration file name is exactly `mocker.qaas.yaml`, the loader resolves that default file from `AppContext.BaseDirectory`. Other relative file names still resolve from the current working directory. If the default file is missing but a code configurator was discovered, the loader logs a warning and continues with the code-built execution instead of failing immediately.
-
-This keeps CLI behavior, logging, overrides, and environment handling aligned with the normal runtime path.
-
-## Keep the YAML File When It Helps
-
-Runner and Mocker still use their normal configuration file names as the conventional entry point for YAML loading. In code-first scenarios that file can stay empty or contain only the static baseline that you want to keep in YAML.
-
-Use the conventional file names:
-
-- Runner: `test.qaas.yaml`
-- Mocker: `mocker.qaas.yaml`
-
-In practice:
-
-- keep `test.qaas.yaml` next to a Runner host when you want `Bootstrap.New(args)` with empty args to take the standard default path
-- keep `mocker.qaas.yaml` next to a Mocker host when you want the same default path without a warning, or when you want `run` without an explicit file name to load a concrete YAML baseline
-- omit `mocker.qaas.yaml` only when the mock is fully defined in code and you are comfortable with the loader warning that YAML was skipped
-
-That gives you a practical hybrid model:
-
-- YAML for defaults, shared structure, or checked-in examples
-- C# for computed values, composition, and conditional behavior
-
-## Implement a Configurator
-
-Runner and Mocker both discover `IExecutionBuilderConfigurator` implementations automatically.
-
-Runner:
-
-```csharp
-using QaaS.Runner;
-
-public sealed class RunnerExecutionBuilderConfigurator : IExecutionBuilderConfigurator
-{
-    public void Configure(ExecutionBuilder executionBuilder)
-    {
-        // add or replace builder state here
-    }
-}
+```bash
+dotnet run -- run test.qaas.yaml
+dotnet run -- run mocker.qaas.yaml
 ```
 
-Mocker:
+If your host chooses a code-defined no-args path before it delegates to bootstrap, that invocation bypasses the YAML resolution path unless you explicitly bootstrap from a file yourself.
+
+That is exactly how the public quick-start code samples are structured:
+
+- `dotnet run` uses the code-defined path
+- `dotnet run -- run ...` uses the YAML-defined path
+- `dotnet run -- template` on the code branches prints the YAML-equivalent shape of the code-defined configuration so it can be diffed against the checked-in YAML sample
+
+## Runner: Practical Public-Package Pattern
+
+For Runner, the practical public-package pattern is:
+
+1. keep using `Bootstrap.New(args)` so the normal command-line pipeline still handles explicit YAML runs
+2. on the no-args path, bootstrap from a temporary empty file and then populate `runner.ExecutionBuilders.Single()`
+3. on the explicit YAML path, do not mutate the builder and let the normal loader resolution stand
+
+That is why the current Runner code quick start uses one `Program.cs` file with two branches:
+
+- no args: code-defined execution
+- explicit `run ...`: YAML-defined execution
+
+`IExecutionBuilderConfigurator` is available in the current public Runner package, but the quick-start sample intentionally keeps the code path in `Program.cs` because it makes the code-vs-YAML split completely explicit in one place.
+
+## Mocker: Practical Public-Package Pattern
+
+For the currently published public packages, the practical Mocker pattern is different.
+
+The full HTTP server sample shown in the public quick start still uses:
 
 ```csharp
-using QaaS.Mocker;
+var executionBuilder = new ExecutionBuilder()
+    // data source, stub, and server wiring
+    ;
 
-public sealed class MockerExecutionBuilderConfigurator : IExecutionBuilderConfigurator
-{
-    public void Configure(ExecutionBuilder executionBuilder)
-    {
-        // add or replace builder state here
-    }
-}
+new MockerRunner(executionBuilder).Run();
 ```
 
-The configurator runs after the loader has created the execution builder, so it can extend or replace the state that came from YAML, or populate the builder from scratch when YAML loading was skipped.
+The reason is that the currently published public `QaaS.Mocker` package line used by the direct code sample exposes the builder path that can create the full HTTP server shape shown in the docs. The newer configurator-oriented public surface is not yet sufficient for that same end-to-end sample server definition, so the public quick-start sample stays on the direct builder path and pins the matching package versions in its project setup.
 
-When you refer to local files from code, prefer paths rooted at `AppContext.BaseDirectory` so the host does not depend on the caller's working directory.
+That is why the current Mocker code quick start uses:
 
-## What the Configurator Should Own
+- no args: direct code-built `ExecutionBuilder`
+- explicit `run ...`: normal YAML/bootstrap flow
+- `template` with no file: the host prints the YAML-equivalent shape of the code-defined mock
 
-Use the configurator to express the parts of the runtime that benefit from code:
+## Keep YAML Next to Code
 
-- build data sources from reusable helpers
-- attach sessions, assertions, links, storages, or stubs conditionally
-- compute metadata or policies from environment-specific inputs
-- apply conventions that should stay consistent across many tests or mocks
+The public sample repos keep the authored YAML file even on the code branches. That is intentional.
 
-Typical Runner example:
+It gives you three useful capabilities:
 
-```csharp
-public sealed class RunnerExecutionBuilderConfigurator : IExecutionBuilderConfigurator
-{
-    public void Configure(ExecutionBuilder executionBuilder)
-    {
-        executionBuilder
-            .WithMetadata(new MetaDataConfig
-            {
-                Team = "Smoke",
-                System = "DummyApp"
-            })
-            .AddDataSource(new DataSourceBuilder()
-                .Named("Inputs")
-                .HookNamed(nameof(FromFileSystem))
-                .Configure(new FromFileSystemConfig
-                {
-                    FileSystem = new FileSystemConfig
-                    {
-                        Path = Path.Combine(AppContext.BaseDirectory, "TestData")
-                    }
-                }));
-    }
-}
-```
+- explicit YAML runs still work from the same host
+- the code-defined path can be validated against a checked-in YAML baseline
+- the docs can show a code sample and a YAML sample that stay in sync
 
-Typical Mocker example:
+In other words, the hybrid host is not “half configured.” It is one host that deliberately exposes two entry paths:
 
-```csharp
-public sealed class MockerExecutionBuilderConfigurator : IExecutionBuilderConfigurator
-{
-    public void Configure(ExecutionBuilder executionBuilder)
-    {
-        executionBuilder
-            .CreateDataSource(new DataSourceBuilder()
-                .Named("ServerData")
-                .HookNamed(nameof(FromFileSystem))
-                .Configure(new FromFileSystemConfig
-                {
-                    FileSystem = new FileSystemConfig
-                    {
-                        Path = Path.Combine(AppContext.BaseDirectory, "ServerData")
-                    }
-                }))
-            .CreateStub(new TransactionStubBuilder()
-                .Named("ServerDataStub")
-                .HookNamed(nameof(ServerDataProcessor))
-                .AddDataSourceName("ServerData"));
-    }
-}
-```
+- code path for `dotnet run`
+- YAML path for `dotnet run -- run ...`
 
-## Discovery Rules
+## When to Choose Each Style
 
-The configurator loaders scan:
+Choose YAML when:
 
-- the entry assembly
-- already loaded assemblies
-- copied `.dll` files in the output directory
+- the scenario is mostly static
+- you want the runtime shape to stay easy to diff and review
+- the configuration is part of the checked-in artifact you want others to edit directly
 
-That means you can keep configurators inside the app itself or move them into reusable helper assemblies that are copied to the output folder.
+Choose code when:
 
-If the configuration file path does not exist but one or more configurators are discovered, the loaders continue and log a warning instead of failing immediately. That is what makes the empty-file bootstrap pattern work.
+- you need helper methods, branching, loops, or shared composition
+- values come from runtime decisions that are awkward to encode declaratively
+- you want one host to offer both a code path and an explicit YAML path
 
-## Prefer Configurators Over Mutating `runner.ExecutionBuilders`
+## Template Validation
 
-Older examples often showed:
+The public quick-start samples use `template` as the parity check:
 
-```csharp
-var runner = Bootstrap.New(args);
+- the code branches render the YAML-equivalent shape of the code-defined configuration
+- the YAML branches keep the authored YAML file that the code output is meant to match
 
-foreach (var executionBuilder in runner.ExecutionBuilders)
-{
-    // mutate execution builders here
-}
-
-runner.Run();
-```
-
-That approach is no longer the recommended starting point. It couples your host code to the loader output shape and spreads configuration behavior outside the discovery pipeline.
-
-Prefer `IExecutionBuilderConfigurator` instead because it:
-
-- keeps the host minimal
-- composes cleanly with YAML
-- works for both Runner and Mocker
-- is covered by the current loader tests
-
-## When a Custom Runner Still Makes Sense
-
-Extending `Runner` is still useful when you want to change lifecycle behavior rather than just configuration shape. Examples:
-
-- custom setup or teardown
-- orchestration across multiple execution phases
-- custom exit-code handling
-- domain-specific execution sequencing
-
-Use `Bootstrap.New<TRunner>(...)` for that case, but keep configuration concerns in configurators unless you truly need lifecycle control.
-
-## Practical Guidance
-
-- Start with YAML when the scenario is static and easy to read.
-- Move to code when you need reuse, composition, branching, or shared conventions.
-- Keep the entry point thin.
-- Put runtime shape into `IExecutionBuilderConfigurator`.
-- Let bootstrap keep ownership of loading, overrides, logging, and environment resolution.
-
-The quick-start pages for [Write a Test (Code)](../quickStart/writeTestCode.md) and [Create a Mock (Code)](../../mocker/quickStart/createMockCode.md) show the current recommended pattern end to end.
+That gives you a concrete validation loop: if the code branch template output diverges from the checked-in YAML baseline, the two variants are no longer representing the same configuration.
 
 ## Keep the Host Process Alive After `Run()`
 

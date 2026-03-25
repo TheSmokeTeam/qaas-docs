@@ -84,7 +84,7 @@ public sealed record NoConfiguration;
 ```json
 {
   "message": "hello from DummyAppMock",
-  "source": "yaml_configuration"
+  "source": "dummy_app_mock"
 }
 ```
 
@@ -175,7 +175,7 @@ Servers:
 From `DummyAppMock/DummyAppMock`:
 
 ```bash
-dotnet run -- run mocker.qaas.yaml
+dotnet run
 ```
 
 Then verify it:

@@ -201,7 +201,7 @@ Assertions:
 From `DummyAppTests/DummyAppTests`:
 
 ```bash
-dotnet run -- run test.qaas.yaml
+dotnet run
 ```
 
 ## Result
