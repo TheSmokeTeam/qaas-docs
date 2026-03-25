@@ -194,3 +194,37 @@ Use `Bootstrap.New<TRunner>(...)` for that case, but keep configuration concerns
 - Let bootstrap keep ownership of loading, overrides, logging, and environment resolution.
 
 The quick-start pages for [Write a Test (Code)](../quickStart/writeTestCode.md) and [Create a Mock (Code)](../../mocker/quickStart/createMockCode.md) show the current recommended pattern end to end.
+
+## Keep the Host Process Alive After `Run()`
+
+`Runner.Run()` exits the current process by default when execution completes. In `Runner.cs` this is controlled by `ExitProcessOnCompletion`, which defaults to `true`.
+
+If you are embedding QaaS Runner inside another host process, set it to `false` before calling `Run()`. That changes completion behavior from `Environment.Exit(exitCode)` to just setting `Environment.ExitCode` and returning control to your code.
+
+```csharp
+using QaaS.Runner;
+
+var effectiveArgs = args.Length == 0
+    ? ["run", "test.qaas.yaml", "--no-env"]
+    : args;
+
+var runner = Bootstrap.New(effectiveArgs);
+runner.ExitProcessOnCompletion = false;
+
+runner.Run();
+
+Console.WriteLine($"Runner finished and the host is still alive. ExitCode={Environment.ExitCode}");
+```
+
+This is useful when QaaS is only one step inside a larger process, for example:
+
+- a custom test host that runs several tools in sequence
+- an IDE or service that should keep running after the QaaS execution ends
+- integration tests that want to execute the full runner lifecycle without terminating the test process
+
+In other words:
+
+- `ExitProcessOnCompletion = true`: `Run()` completes by terminating the process
+- `ExitProcessOnCompletion = false`: `Run()` completes by setting `Environment.ExitCode` and returning
+
+If you want to decide yourself what to do with the exit code, an even more explicit option is `runner.RunAndGetExitCode()`, which returns the computed exit code directly without applying the default completion policy for you.
