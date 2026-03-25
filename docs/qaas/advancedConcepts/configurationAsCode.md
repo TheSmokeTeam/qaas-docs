@@ -5,7 +5,7 @@ QaaS supports both declarative YAML and programmatic C# configuration. YAML is s
 The current recommended model is:
 
 1. keep using the normal `Bootstrap.New(...)` entry point
-2. pass a configuration-file argument, even if the file is empty
+2. keep the conventional configuration file next to the app, even if the file is empty
 3. implement `IExecutionBuilderConfigurator` in the entry assembly or a copied dependency
 4. let Runner or Mocker discover that configurator automatically and apply it after YAML is loaded
 
@@ -14,6 +14,18 @@ The current recommended model is:
 Start from the standard bootstrap path instead of constructing runners manually.
 
 ```csharp
+Directory.SetCurrentDirectory(AppContext.BaseDirectory);
+
+QaaS.Runner.Bootstrap.New(args).Run();
+```
+
+For Runner, if `args` is empty and `test.qaas.yaml` exists next to the app, bootstrap now treats that as `run test.qaas.yaml`.
+
+If you want a fixed local fallback that also injects extra flags such as `--no-env`, you can still wrap the arguments explicitly:
+
+```csharp
+Directory.SetCurrentDirectory(AppContext.BaseDirectory);
+
 var effectiveArgs = args.Length == 0
     ? ["run", "test.qaas.yaml", "--no-env"]
     : args;
@@ -21,9 +33,11 @@ var effectiveArgs = args.Length == 0
 QaaS.Runner.Bootstrap.New(effectiveArgs).Run();
 ```
 
-For Mocker the pattern is the same:
+For Mocker keep the explicit arguments:
 
 ```csharp
+Directory.SetCurrentDirectory(AppContext.BaseDirectory);
+
 var effectiveArgs = args.Length == 0
     ? ["run", "mocker.qaas.yaml", "--no-env"]
     : args;
@@ -35,7 +49,12 @@ This keeps CLI behavior, logging, overrides, and environment handling aligned wi
 
 ## Keep the YAML File, Even When It Is Empty
 
-The loaders still expect a configuration-file argument. In code-first scenarios that file can stay empty or contain only the static baseline that you want to keep in YAML.
+Runner and Mocker still expect their normal configuration file names. In code-first scenarios that file can stay empty or contain only the static baseline that you want to keep in YAML.
+
+Use the conventional file names:
+
+- Runner: `test.qaas.yaml`
+- Mocker: `mocker.qaas.yaml`
 
 This gives you a practical hybrid model:
 
@@ -204,11 +223,9 @@ If you are embedding QaaS Runner inside another host process, set it to `false` 
 ```csharp
 using QaaS.Runner;
 
-var effectiveArgs = args.Length == 0
-    ? ["run", "test.qaas.yaml", "--no-env"]
-    : args;
+Directory.SetCurrentDirectory(AppContext.BaseDirectory);
 
-var runner = Bootstrap.New(effectiveArgs);
+var runner = Bootstrap.New(args);
 runner.ExitProcessOnCompletion = false;
 
 runner.Run();
