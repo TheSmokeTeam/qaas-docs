@@ -2868,6 +2868,18 @@
                       "maximum": 2147483647.0,
                       "minimum": 0.0,
                       "pattern": "\\$\\{.*\\}"
+                    },
+                    "MessageMaxBytes": {
+                      "type": [
+                        "integer",
+                        "string"
+                      ],
+                      "description": "Maximum allowed Kafka message size in bytes. Must not exceed broker/topic limits.",
+                      "format": "int32",
+                      "default": 1000000,
+                      "maximum": 4000000.0,
+                      "minimum": 500000.0,
+                      "pattern": "\\$\\{.*\\}"
                     }
                   }
                 },
@@ -4481,6 +4493,18 @@
                       ],
                       "description": "Compression level for selected CompressionType algorithm, higher values will result in better compression at the cost of more CPU usage.",
                       "format": "int32",
+                      "pattern": "\\$\\{.*\\}"
+                    },
+                    "MessageMaxBytes": {
+                      "type": [
+                        "integer",
+                        "string"
+                      ],
+                      "description": "Maximum allowed Kafka message size in bytes. Must not exceed broker/topic limits.",
+                      "format": "int32",
+                      "default": 1000000,
+                      "maximum": 4000000.0,
+                      "minimum": 500000.0,
                       "pattern": "\\$\\{.*\\}"
                     }
                   }

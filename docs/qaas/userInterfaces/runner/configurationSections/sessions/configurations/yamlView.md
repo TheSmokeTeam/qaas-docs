@@ -87,6 +87,7 @@ Sessions:
           FetchWaitMaxMs:
           HeartbeatIntervalMs:
           MaxPollIntervalMs:
+          MessageMaxBytes:
           PartitionAssignmentStrategy:
           SaslMechanism:
           SecurityProtocol:
@@ -275,6 +276,7 @@ Sessions:
           CompressionType:
           DefaultKafkaKey:
           Headers:
+          MessageMaxBytes:
           MessageSendMaxRetries:
           MessageSendRetriesIntervalMs:
           Partition:
