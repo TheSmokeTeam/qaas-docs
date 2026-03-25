@@ -14,20 +14,16 @@ The current recommended model is:
 Start from the standard bootstrap path instead of constructing runners manually.
 
 ```csharp
-Directory.SetCurrentDirectory(AppContext.BaseDirectory);
-
 QaaS.Runner.Bootstrap.New(args).Run();
 ```
 
-For Runner, if `args` is empty and `test.qaas.yaml` exists next to the app, bootstrap now treats that as `run test.qaas.yaml`.
+For Runner, if `args` is empty and `test.qaas.yaml` exists in the app output directory, bootstrap now treats that as `run <absolute path to test.qaas.yaml>`.
 
 If you want a fixed local fallback that also injects extra flags such as `--no-env`, you can still wrap the arguments explicitly:
 
 ```csharp
-Directory.SetCurrentDirectory(AppContext.BaseDirectory);
-
 var effectiveArgs = args.Length == 0
-    ? ["run", "test.qaas.yaml", "--no-env"]
+    ? ["run", Path.Combine(AppContext.BaseDirectory, "test.qaas.yaml"), "--no-env"]
     : args;
 
 QaaS.Runner.Bootstrap.New(effectiveArgs).Run();
@@ -36,10 +32,8 @@ QaaS.Runner.Bootstrap.New(effectiveArgs).Run();
 For Mocker keep the explicit arguments:
 
 ```csharp
-Directory.SetCurrentDirectory(AppContext.BaseDirectory);
-
 var effectiveArgs = args.Length == 0
-    ? ["run", "mocker.qaas.yaml", "--no-env"]
+    ? ["run", Path.Combine(AppContext.BaseDirectory, "mocker.qaas.yaml"), "--no-env"]
     : args;
 
 QaaS.Mocker.Bootstrap.New(effectiveArgs).Run();
@@ -95,6 +89,8 @@ public sealed class MockerExecutionBuilderConfigurator : IExecutionBuilderConfig
 
 The configurator runs after the loader has created the execution builder, so it can extend or replace the state that came from YAML.
 
+When you refer to local files from code, prefer paths rooted at `AppContext.BaseDirectory` so the host does not depend on the caller's working directory.
+
 ## What the Configurator Should Own
 
 Use the configurator to express the parts of the runtime that benefit from code:
@@ -124,7 +120,7 @@ public sealed class RunnerExecutionBuilderConfigurator : IExecutionBuilderConfig
                 {
                     FileSystem = new FileSystemConfig
                     {
-                        Path = "TestData"
+                        Path = Path.Combine(AppContext.BaseDirectory, "TestData")
                     }
                 }));
     }
@@ -146,7 +142,7 @@ public sealed class MockerExecutionBuilderConfigurator : IExecutionBuilderConfig
                 {
                     FileSystem = new FileSystemConfig
                     {
-                        Path = "ServerData"
+                        Path = Path.Combine(AppContext.BaseDirectory, "ServerData")
                     }
                 }))
             .CreateStub(new TransactionStubBuilder()
@@ -222,8 +218,6 @@ If you are embedding QaaS Runner inside another host process, set it to `false` 
 
 ```csharp
 using QaaS.Runner;
-
-Directory.SetCurrentDirectory(AppContext.BaseDirectory);
 
 var runner = Bootstrap.New(args);
 runner.ExitProcessOnCompletion = false;
