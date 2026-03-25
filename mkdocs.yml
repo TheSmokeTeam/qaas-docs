@@ -487,6 +487,9 @@ plugins:
   - tags
   - macros
 
+extra_javascript:
+  - assets/javascripts/current-page-title.js
+
 extra_css:
   - stylesheets/functions.css
 
