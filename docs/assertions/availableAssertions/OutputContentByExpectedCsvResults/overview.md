@@ -1,5 +1,3 @@
-<!-- generated hash:83c95ca5075d sources:assertion, OutputContentByExpectedCsvResults, overview -->
-
 # OutputContentByExpectedCsvResults
 
 Checks that the configured output content matches the expected values loaded from a CSV results file.

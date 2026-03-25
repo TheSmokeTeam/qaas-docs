@@ -1,5 +1,3 @@
-<!-- generated hash:034791f52279 sources:Mocker, functions, Builders, Transaction Stubs -->
-
 # Transaction Stubs
 
 Each entry uses the short function name as the table-of-contents label. Expand an entry to inspect its location, signature, and XML doc comments.

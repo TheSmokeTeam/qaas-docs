@@ -1,5 +1,3 @@
-<!-- generated hash:c0e5fc7018c1 sources:Framework, functions, overview -->
-
 # Framework Functions
 
 This overview is generated from source-level `qaas-docs` annotations and the current public extension-method surface.

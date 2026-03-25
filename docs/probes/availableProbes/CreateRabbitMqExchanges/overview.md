@@ -1,5 +1,3 @@
-<!-- generated hash:17ac122d7ebc sources:probe, CreateRabbitMqExchanges, overview -->
-
 # CreateRabbitMqExchanges
 
 Creates one or more RabbitMQ exchanges with the configured durability, auto-delete, and arguments.

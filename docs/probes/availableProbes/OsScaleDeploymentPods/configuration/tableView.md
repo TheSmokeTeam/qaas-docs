@@ -1,5 +1,3 @@
-<!-- generated hash:30227b96d3ce sources:runner-family, OsScaleDeploymentPods, table-view -->
-
 # OsScaleDeploymentPods Configurations Table View
 
 | Property Path | Type | Required | Default | Description |

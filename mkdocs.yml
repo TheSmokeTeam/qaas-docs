@@ -91,7 +91,6 @@ nav:
     - Extensibility:
       - Plugins: qaas/addOns/plugins.md
       - Modules: qaas/addOns/modules.md
-    - Change Log: qaas/changeLog.md
 
   - Mocker:
     - General:
@@ -134,7 +133,6 @@ nav:
         - Overview: mocker/userInterfaces/mocker/configurationSections/server/overview.md
         - Table View: mocker/userInterfaces/mocker/configurationSections/server/configurations/tableView.md
         - YAML View: mocker/userInterfaces/mocker/configurationSections/server/configurations/yamlView.md
-    - Change Log: mocker/changeLog.md
 
   - Hooks:
     - Assertions:
@@ -184,7 +182,6 @@ nav:
           - Overview: assertions/availableAssertions/ValidateHermeticMetricsByInputOutputPercentage/overview.md
           - Table View: assertions/availableAssertions/ValidateHermeticMetricsByInputOutputPercentage/configuration/tableView.md
           - YAML View: assertions/availableAssertions/ValidateHermeticMetricsByInputOutputPercentage/configuration/yamlView.md
-      - Change Log: assertions/changeLog.md
     - Generators:
       - Introduction: generators/index.md
       - Available Generators:
@@ -232,7 +229,6 @@ nav:
           - Overview: generators/availableGenerators/Stacking/overview.md
           - Table View: generators/availableGenerators/Stacking/configuration/tableView.md
           - YAML View: generators/availableGenerators/Stacking/configuration/yamlView.md
-      - Change Log: generators/changeLog.md
     - Probes:
       - Introduction: probes/index.md
       - Available Probes:
@@ -388,7 +384,6 @@ nav:
           - Overview: probes/availableProbes/EmptyElasticIndices/overview.md
           - Table View: probes/availableProbes/EmptyElasticIndices/configuration/tableView.md
           - YAML View: probes/availableProbes/EmptyElasticIndices/configuration/yamlView.md
-      - Change Log: probes/changeLog.md
     - Processors:
       - Introduction: processors/index.md
       - Available Processors:
@@ -428,7 +423,6 @@ nav:
           - Overview: processors/availableProcessors/TextTransformProcessor/overview.md
           - Table View: processors/availableProcessors/TextTransformProcessor/configuration/tableView.md
           - YAML View: processors/availableProcessors/TextTransformProcessor/configuration/yamlView.md
-      - Change Log: processors/changeLog.md
 
   - Framework:
     - Introduction: framework/index.md
@@ -451,11 +445,11 @@ nav:
       - Protocols: framework/projects/protocols.md
       - Providers: framework/projects/providers.md
       - Serialization: framework/projects/serialization.md
-    - Change Log: framework/changeLog.md
 
 theme:
   name: material
   logo: assets/qaas-logo.png
+  favicon: assets/qaas-logo.png
   features:
     - content.code.annotate
     - content.code.copy
@@ -493,6 +487,9 @@ plugins:
   - tags
   - macros
 
+extra_javascript:
+  - assets/javascripts/current-page-title.js
+
 extra_css:
   - stylesheets/functions.css
 
@@ -527,7 +524,6 @@ extra:
   links:
     docs_site: https://TheSmokeTeam.github.io/qaas-docs/
     repository_docs: https://github.com/TheSmokeTeam/qaas-docs
-    repository_docs_ci: https://github.com/TheSmokeTeam/qaas-docs/actions/workflows/ci.yml
     repository_runner: https://github.com/TheSmokeTeam/QaaS.Runner
     repository_mocker: https://github.com/TheSmokeTeam/QaaS.Mocker
     repository_mocker_communication_objects: https://github.com/TheSmokeTeam/Qaas.Mocker.CommunicationObjects
@@ -538,8 +534,10 @@ extra:
     repository_processors: https://github.com/TheSmokeTeam/QaaS.Common.Processors
     repository_runner_template: https://github.com/TheSmokeTeam/QaaS.Runner.Template
     repository_mocker_template: https://github.com/TheSmokeTeam/QaaS.Mocker.Template
-    repository_runner_quickstart: https://github.com/TheSmokeTeam/DummyAppTests
-    repository_mocker_quickstart: https://github.com/TheSmokeTeam/DummyAppMock
+    repository_runner_quickstart_code: https://github.com/TheSmokeTeam/DummyAppTests/tree/code_configuration
+    repository_runner_quickstart_yaml: https://github.com/TheSmokeTeam/DummyAppTests/tree/yaml_configuration
+    repository_mocker_quickstart_code: https://github.com/TheSmokeTeam/DummyAppMock/tree/code_configuration
+    repository_mocker_quickstart_yaml: https://github.com/TheSmokeTeam/DummyAppMock/tree/yaml_configuration
     allure_installation_guide: https://docs.qameta.io/allure/#_installing_a_commandline
     dotnet_sdk: https://dotnet.microsoft.com/download
     qaas_community: https://discord.gg/rg2NYT4Mea

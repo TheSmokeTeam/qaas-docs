@@ -1,5 +1,3 @@
-<!-- generated hash:06147d8bef55 sources:runner-family, PostgreSqlDataBaseTablesTruncate, table-view -->
-
 # PostgreSqlDataBaseTablesTruncate Configurations Table View
 
 | Property Path | Type | Required | Default | Description |

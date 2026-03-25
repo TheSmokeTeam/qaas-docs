@@ -1,5 +1,3 @@
-<!-- generated hash:432b70323f2a sources:probe, OsEditYamlConfigMap, overview -->
-
 # OsEditYamlConfigMap
 
 Probe that edits yaml config maps

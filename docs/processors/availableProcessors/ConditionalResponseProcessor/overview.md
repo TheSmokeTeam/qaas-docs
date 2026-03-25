@@ -1,5 +1,3 @@
-<!-- generated hash:34327861c07a sources:processor, ConditionalResponseProcessor, overview -->
-
 # ConditionalResponseProcessor
 
 Returns the first configured response whose rule matches the incoming request metadata, or the configured default response when no rule matches.

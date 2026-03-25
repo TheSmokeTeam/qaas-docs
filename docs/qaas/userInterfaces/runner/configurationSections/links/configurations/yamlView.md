@@ -1,5 +1,3 @@
-<!-- generated hash:687f66e20351 sources:runner-family, Links, yaml-view -->
-
 # Links Configurations Yaml View
 
 ```yaml

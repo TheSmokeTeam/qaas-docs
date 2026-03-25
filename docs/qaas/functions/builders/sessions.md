@@ -1,5 +1,3 @@
-<!-- generated hash:62c4d42381c7 sources:Runner, functions, Builders, Sessions -->
-
 # Sessions
 
 Each entry uses the short function name as the table-of-contents label. Expand an entry to inspect its location, signature, and XML doc comments.

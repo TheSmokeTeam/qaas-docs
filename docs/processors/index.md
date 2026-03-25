@@ -7,7 +7,7 @@ The **QaaS.Common.Processors** package is the reusable processor library for sha
 |                |                                                                          |
 | -------------- | ------------------------------------------------------------------------ |
 | **Package**    | `QaaS.Common.Processors`                                                 |
-| **Source**     | [Repository - QaaS.Common.Processors]({{ links.repository_processors }}) |
+| **Source**     | [QaaS.Common.Processors]({{ links.repository_processors }}) |
 | **Depends on** | [QaaS.Framework.SDK](../framework/projects/sdk.md)                       |
 
 ## Installation

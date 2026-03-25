@@ -1,5 +1,3 @@
-<!-- generated hash:56bb89140fb9 sources:runner-family, CreateRabbitMqUsers, yaml-view -->
-
 # CreateRabbitMqUsers Configurations Yaml View
 
 ```yaml

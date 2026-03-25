@@ -1,5 +1,3 @@
-<!-- generated hash:b9bb9a4b8d5c sources:Mocker, functions, overview -->
-
 # Mocker Functions
 
 This overview is generated from source-level `qaas-docs` annotations and the current public extension-method surface.

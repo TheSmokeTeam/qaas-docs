@@ -1,5 +1,3 @@
-<!-- generated hash:10b67b040f84 sources:runner-family, HermeticByExpectedOutputCount, table-view -->
-
 # HermeticByExpectedOutputCount Configurations Table View
 
 | Property Path | Type | Required | Default | Description |

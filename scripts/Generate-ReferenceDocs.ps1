@@ -96,7 +96,7 @@ function Remove-OrCheckObsoleteGeneratedPath {
     Remove-Item -LiteralPath $fullPath -Recurse -Force
 }
 
-# Regenerates the deterministic Runner, Mocker, Framework, and hook changelog reference pages from:
+# Regenerates the deterministic Runner, Mocker, Framework, and hook reference pages from:
 # - committed mirror schema contracts
 # - freshly captured CLI snapshots
 # - the current source trees used for the annotated function reference pages
@@ -106,9 +106,8 @@ function Remove-OrCheckObsoleteGeneratedPath {
 # source trees before rendering docs, so flag descriptions and help output stay in sync with the
 # workspace without maintaining docs-only exporters in the product repositories.
 # Function grouping and inclusion now come from source-level XML documentation in the sibling
-# product repositories, and the changelog pages are embedded from the sibling package repositories,
-# so update those annotations or changelogs when the public API surface changes, then rerun this
-# script to regenerate the markdown pages.
+# product repositories, so update those annotations when the public API surface changes, then rerun
+# this script to regenerate the markdown pages.
 
 function Get-GeneratedMarkdown {
     param(
@@ -165,82 +164,6 @@ function Set-OrCheckGeneratedMarkdown {
     }
 
     [System.IO.File]::WriteAllText($fullPath, $normalizedExpected.Replace("`n", [System.Environment]::NewLine), $Utf8NoBom)
-}
-
-function Get-ChangelogBody {
-    param(
-        [Parameter(Mandatory)]
-        [string]$RepositoryRoot,
-
-        [Parameter(Mandatory)]
-        [string]$RepositoryName
-    )
-
-    $changelogPath = Join-Path $RepositoryRoot 'CHANGELOG.md'
-    if (-not (Test-Path -LiteralPath $changelogPath)) {
-        throw "CHANGELOG.md is missing for $RepositoryName at $RepositoryRoot"
-    }
-
-    $content = [System.IO.File]::ReadAllText($changelogPath, $Utf8NoBom)
-    $content = $content -replace [char]0xFEFF, ''
-    $content = $content -replace '(?is)^\s*#\s+changelog\s*\r?\n+', ''
-    return $content.Trim()
-}
-
-function Get-ExistingChangelogBody {
-    param(
-        [Parameter(Mandatory)]
-        [string]$RelativePath
-    )
-
-    $existingContent = Get-GeneratedMarkdown -Path (Join-Path $DocsRoot $RelativePath)
-    if ([string]::IsNullOrWhiteSpace($existingContent)) {
-        return $null
-    }
-
-    $existingContent = $existingContent -replace '(?is)^\s*#.*?\n\s*_Generated from .*?_\s*\n+', ''
-    return $existingContent.Trim()
-}
-
-function Sync-ChangelogPage {
-    param(
-        [Parameter(Mandatory)]
-        [string]$RelativePath,
-
-        [Parameter(Mandatory)]
-        [string]$Title,
-
-        [Parameter(Mandatory)]
-        [string]$RepositoryRoot,
-
-        [Parameter(Mandatory)]
-        [string]$RepositoryName,
-
-        [Parameter(Mandatory)]
-        [string]$SourceReference
-    )
-
-    try {
-        $body = Get-ChangelogBody -RepositoryRoot $RepositoryRoot -RepositoryName $RepositoryName
-    }
-    catch {
-        $body = Get-ExistingChangelogBody -RelativePath $RelativePath
-        if ([string]::IsNullOrWhiteSpace($body)) {
-            throw
-        }
-
-        Write-Warning "Falling back to the existing docs copy for $RepositoryName because CHANGELOG.md is missing in $RepositoryRoot."
-    }
-
-    $content = @(
-        "# $Title",
-        '',
-        "_Generated from $SourceReference `CHANGELOG.md`._",
-        '',
-        $body
-    ) -join "`n"
-
-    Set-OrCheckGeneratedMarkdown -RelativePath $RelativePath -Content $content
 }
 
 function Restore-TrackedDocsPageIfSectionsMissing {
@@ -312,7 +235,14 @@ if (-not $SkipCliSnapshotRefresh) {
     'docs\framework\functions\configuration',
     'docs\framework\functions\framework-apis',
     'docs\framework\functions\utilities',
-    'docs\hooks\changeLog.md'
+    'docs\hooks\changeLog.md',
+    'docs\qaas\changeLog.md',
+    'docs\mocker\changeLog.md',
+    'docs\framework\changeLog.md',
+    'docs\assertions\changeLog.md',
+    'docs\generators\changeLog.md',
+    'docs\probes\changeLog.md',
+    'docs\processors\changeLog.md'
 ) | ForEach-Object {
     Remove-OrCheckObsoleteGeneratedPath -RelativePath $_
 }
@@ -349,55 +279,6 @@ Restore-TrackedDocsPageIfSectionsMissing `
     -MirrorRoot $MirrorRoot `
     -Check:$Check
 if ($LASTEXITCODE -ne 0) { throw 'Schema asset sync failed.' }
-
-Sync-ChangelogPage `
-    -RelativePath 'docs\qaas\changeLog.md' `
-    -Title 'Runner Change Log' `
-    -RepositoryRoot $RunnerRoot `
-    -RepositoryName 'QaaS.Runner' `
-    -SourceReference '[QaaS.Runner]({{ links.repository_runner }})'
-
-Sync-ChangelogPage `
-    -RelativePath 'docs\mocker\changeLog.md' `
-    -Title 'Mocker Change Log' `
-    -RepositoryRoot $MockerRoot `
-    -RepositoryName 'QaaS.Mocker' `
-    -SourceReference '[QaaS.Mocker]({{ links.repository_mocker }})'
-
-Sync-ChangelogPage `
-    -RelativePath 'docs\framework\changeLog.md' `
-    -Title 'Framework Change Log' `
-    -RepositoryRoot $FrameworkRoot `
-    -RepositoryName 'QaaS.Framework' `
-    -SourceReference '[QaaS.Framework]({{ links.repository_framework }})'
-
-Sync-ChangelogPage `
-    -RelativePath 'docs\assertions\changeLog.md' `
-    -Title 'Assertions Change Log' `
-    -RepositoryRoot $AssertionsRoot `
-    -RepositoryName 'QaaS.Common.Assertions' `
-    -SourceReference '[QaaS.Common.Assertions]({{ links.repository_assertions }})'
-
-Sync-ChangelogPage `
-    -RelativePath 'docs\generators\changeLog.md' `
-    -Title 'Generators Change Log' `
-    -RepositoryRoot $GeneratorsRoot `
-    -RepositoryName 'QaaS.Common.Generators' `
-    -SourceReference '[QaaS.Common.Generators]({{ links.repository_generators }})'
-
-Sync-ChangelogPage `
-    -RelativePath 'docs\probes\changeLog.md' `
-    -Title 'Probes Change Log' `
-    -RepositoryRoot $ProbesRoot `
-    -RepositoryName 'QaaS.Common.Probes' `
-    -SourceReference '[QaaS.Common.Probes]({{ links.repository_probes }})'
-
-Sync-ChangelogPage `
-    -RelativePath 'docs\processors\changeLog.md' `
-    -Title 'Processors Change Log' `
-    -RepositoryRoot $ProcessorsRoot `
-    -RepositoryName 'QaaS.Common.Processors' `
-    -SourceReference '[QaaS.Common.Processors]({{ links.repository_processors }})'
 
 if ($BuildSite) {
     Push-Location $DocsRoot

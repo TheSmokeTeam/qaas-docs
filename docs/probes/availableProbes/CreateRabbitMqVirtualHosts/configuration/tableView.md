@@ -1,5 +1,3 @@
-<!-- generated hash:e9b3b6de6d61 sources:runner-family, CreateRabbitMqVirtualHosts, table-view -->
-
 # CreateRabbitMqVirtualHosts Configurations Table View
 
 | Property Path | Type | Required | Default | Description |

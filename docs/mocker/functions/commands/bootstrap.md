@@ -1,5 +1,3 @@
-<!-- generated hash:39e71d9f7a64 sources:Mocker, functions, Commands, Bootstrap -->
-
 # Bootstrap
 
 Each entry uses the short function name as the table-of-contents label. Expand an entry to inspect its location, signature, and XML doc comments.

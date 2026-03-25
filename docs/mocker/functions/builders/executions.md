@@ -1,5 +1,3 @@
-<!-- generated hash:8235af8542e8 sources:Mocker, functions, Builders, Executions -->
-
 # Executions
 
 Each entry uses the short function name as the table-of-contents label. Expand an entry to inspect its location, signature, and XML doc comments.

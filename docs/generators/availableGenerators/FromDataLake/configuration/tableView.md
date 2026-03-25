@@ -1,5 +1,3 @@
-<!-- generated hash:1a29456f93c8 sources:mocker-family, FromDataLake, table-view -->
-
 # FromDataLake Configurations Table View
 
 | Property Path | Type | Required | Default | Description |

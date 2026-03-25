@@ -1,5 +1,3 @@
-<!-- generated hash:62555311a87d sources:Framework, functions, Functions, YAML -->
-
 # YAML
 
 Each entry uses the short function name as the table-of-contents label. Expand an entry to inspect its location, signature, and XML doc comments.

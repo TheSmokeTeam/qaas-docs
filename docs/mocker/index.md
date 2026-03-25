@@ -6,7 +6,7 @@
 | ----------- | --------------------------------------------------------- |
 | **Runtime** | .NET 10                                                   |
 | **Package** | `QaaS.Mocker` (NuGet)                                     |
-| **Source**  | [Repository - QaaS.Mocker]({{ links.repository_mocker }}) |
+| **Source**  | [QaaS.Mocker]({{ links.repository_mocker }}) |
 | **Docker**  | Multi-stage Dockerfile included                           |
 
 ## Key Capabilities

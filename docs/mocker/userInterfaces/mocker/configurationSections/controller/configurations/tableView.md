@@ -1,5 +1,3 @@
-<!-- generated hash:5c66be19fd2d sources:mocker-family, Controller, table-view -->
-
 # Controller Configurations Table View
 
 | Property Path | Type | Required | Default | Description |

@@ -1,5 +1,3 @@
-<!-- generated hash:aa7a30898b17 sources:runner-family, ExecuteRedisCommands, table-view -->
-
 # ExecuteRedisCommands Configurations Table View
 
 | Property Path | Type | Required | Default | Description |

@@ -1,5 +1,3 @@
-<!-- generated hash:05c11ca35471 sources:generator, JsonSchemaDraft4, overview -->
-
 # JsonSchemaDraft4
 
 Generates JSON data that conforms to a configured JSON Schema Draft 4 document.

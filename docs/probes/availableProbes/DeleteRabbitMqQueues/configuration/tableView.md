@@ -1,5 +1,3 @@
-<!-- generated hash:b4102ecc5ab6 sources:runner-family, DeleteRabbitMqQueues, table-view -->
-
 # DeleteRabbitMqQueues Configurations Table View
 
 | Property Path | Type | Required | Default | Description |

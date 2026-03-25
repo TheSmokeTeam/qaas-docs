@@ -4,7 +4,7 @@ Use YAML when you want the test flow to stay declarative, easy to diff, and easy
 
 This sample publishes one message to RabbitMQ's `input` exchange, waits for a response on the `output` exchange, and verifies both delivery and timing.
 
-The completed sample is available in the `yaml_configuration` branch of [DummyAppTests]({{ links.repository_runner_quickstart }}/tree/yaml_configuration).
+The completed sample is available at [DummyAppTests (YAML)]({{ links.repository_runner_quickstart_yaml }}).
 
 ## Create the Project
 
@@ -23,7 +23,7 @@ dotnet add DummyAppTests/DummyAppTests.csproj package QaaS.Common.Generators
 QaaS.Runner.Bootstrap.New(args).Run();
 ```
 
-The host stays small because the entire test definition will live in `test.qaas.yaml`.
+The host stays small because the entire test definition will live in `test.qaas.yaml`. With this YAML-only host, empty program arguments now show help text, so the run command must pass `run test.qaas.yaml` explicitly.
 
 ## Add the Test Data
 

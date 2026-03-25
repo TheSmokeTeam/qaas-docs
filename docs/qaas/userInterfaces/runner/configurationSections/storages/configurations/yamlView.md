@@ -1,5 +1,3 @@
-<!-- generated hash:6160efa37080 sources:runner-family, Storages, yaml-view -->
-
 # Storages Configurations Yaml View
 
 ```yaml

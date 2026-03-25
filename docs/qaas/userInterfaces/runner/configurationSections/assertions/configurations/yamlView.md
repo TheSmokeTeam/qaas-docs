@@ -1,5 +1,3 @@
-<!-- generated hash:fba82c108c90 sources:runner-family, Assertions, yaml-view -->
-
 # Assertions Configurations Yaml View
 
 ```yaml

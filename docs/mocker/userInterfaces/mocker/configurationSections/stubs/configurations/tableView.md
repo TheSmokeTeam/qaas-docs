@@ -1,5 +1,3 @@
-<!-- generated hash:2b06ca30ae3b sources:mocker-family, Stubs, table-view -->
-
 # Stubs Configurations Table View
 
 | Property Path | Type | Required | Default | Description |

@@ -1,5 +1,3 @@
-<!-- generated hash:de491517b36e sources:mocker-family, DataSourceResponseProcessor, table-view -->
-
 # DataSourceResponseProcessor Configurations Table View
 
 | Property Path | Type | Required | Default | Description |

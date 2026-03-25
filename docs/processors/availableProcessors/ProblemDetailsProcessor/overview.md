@@ -1,5 +1,3 @@
-<!-- generated hash:f7d349e8069d sources:processor, ProblemDetailsProcessor, overview -->
-
 # ProblemDetailsProcessor
 
 Returns an RFC 7807 style problem-details JSON response using the configured status and fields.

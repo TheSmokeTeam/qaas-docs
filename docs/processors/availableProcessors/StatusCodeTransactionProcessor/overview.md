@@ -1,5 +1,3 @@
-<!-- generated hash:566c18941a9e sources:processor, StatusCodeTransactionProcessor, overview -->
-
 # StatusCodeTransactionProcessor
 
 Skim Transaction Processor which returns empty-bodied data objects with Status Code configuration.

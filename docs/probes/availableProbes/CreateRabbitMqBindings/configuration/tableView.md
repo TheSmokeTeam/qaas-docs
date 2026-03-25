@@ -1,5 +1,3 @@
-<!-- generated hash:7c2ab4c85d1b sources:runner-family, CreateRabbitMqBindings, table-view -->
-
 # CreateRabbitMqBindings Configurations Table View
 
 | Property Path | Type | Required | Default | Description |

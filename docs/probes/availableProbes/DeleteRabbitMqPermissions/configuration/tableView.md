@@ -1,5 +1,3 @@
-<!-- generated hash:d2e091a3bf79 sources:runner-family, DeleteRabbitMqPermissions, table-view -->
-
 # DeleteRabbitMqPermissions Configurations Table View
 
 | Property Path | Type | Required | Default | Description |

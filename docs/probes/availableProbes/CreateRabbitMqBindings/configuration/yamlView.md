@@ -1,5 +1,3 @@
-<!-- generated hash:5d14f2d23996 sources:runner-family, CreateRabbitMqBindings, yaml-view -->
-
 # CreateRabbitMqBindings Configurations Yaml View
 
 ```yaml

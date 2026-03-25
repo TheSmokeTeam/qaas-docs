@@ -4,7 +4,7 @@ Use YAML when the mock shape is mostly declarative and you want the runtime defi
 
 This version keeps the mock definition in `mocker.qaas.yaml` and uses a small local processor for the response body.
 
-The completed sample is available in the `yaml_configuration` branch of [DummyAppMock]({{ links.repository_mocker_quickstart }}/tree/yaml_configuration).
+The completed sample is available at [DummyAppMock (YAML)]({{ links.repository_mocker_quickstart_yaml }}).
 
 ## Scenario
 
@@ -31,6 +31,8 @@ The sample keeps the response processor local so the quick start stays compatibl
 ```csharp
 QaaS.Mocker.Bootstrap.New(args).Run();
 ```
+
+This host is YAML-only. Empty program arguments therefore show help text, so the run command must pass `run mocker.qaas.yaml` explicitly.
 
 ## Add the Local Processor
 
@@ -84,7 +86,7 @@ public sealed record NoConfiguration;
 ```json
 {
   "message": "hello from DummyAppMock",
-  "source": "yaml_configuration"
+  "source": "dummy_app_mock"
 }
 ```
 

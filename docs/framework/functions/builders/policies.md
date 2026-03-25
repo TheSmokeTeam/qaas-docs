@@ -1,5 +1,3 @@
-<!-- generated hash:591b137b0592 sources:Framework, functions, Builders, Policies -->
-
 # Policies
 
 Each entry uses the short function name as the table-of-contents label. Expand an entry to inspect its location, signature, and XML doc comments.

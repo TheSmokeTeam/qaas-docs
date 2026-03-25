@@ -1,5 +1,3 @@
-<!-- generated hash:c966caaa2d37 sources:Mocker, functions, extension-methods -->
-
 # Extension Methods
 
 This page collects public `Mocker` extension methods that have XML documentation or explicit docs annotations.

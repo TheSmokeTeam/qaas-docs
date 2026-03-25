@@ -1,5 +1,3 @@
-<!-- generated hash:eab78f8fdb04 sources:runner-family, Sessions, yaml-view -->
-
 # Sessions Configurations Yaml View
 
 ```yaml

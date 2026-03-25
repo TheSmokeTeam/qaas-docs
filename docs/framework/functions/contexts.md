@@ -1,5 +1,3 @@
-<!-- generated hash:841bfcb54122 sources:Framework, functions, Functions, Contexts -->
-
 # Contexts
 
 Each entry uses the short function name as the table-of-contents label. Expand an entry to inspect its location, signature, and XML doc comments.

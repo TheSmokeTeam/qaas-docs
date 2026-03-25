@@ -1,5 +1,3 @@
-<!-- generated hash:9a9a79977f43 sources:Framework, functions, Functions, Enumerables -->
-
 # Enumerables
 
 Each entry uses the short function name as the table-of-contents label. Expand an entry to inspect its location, signature, and XML doc comments.

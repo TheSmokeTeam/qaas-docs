@@ -1,5 +1,3 @@
-<!-- generated hash:8fdaf6d449b3 sources:runner-family, OsEditYamlConfigMap, table-view -->
-
 # OsEditYamlConfigMap Configurations Table View
 
 | Property Path | Type | Required | Default | Description |

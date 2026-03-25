@@ -1,5 +1,3 @@
-<!-- generated hash:981304a22bd3 sources:probe, DeleteRabbitMqQueues, overview -->
-
 # DeleteRabbitMqQueues
 
 Probe that deletes rabbitmq queues

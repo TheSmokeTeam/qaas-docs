@@ -1,5 +1,3 @@
-<!-- generated hash:6f4b7ea7ceb3 sources:runner-family, OsChangeStatefulSetEnvVars, table-view -->
-
 # OsChangeStatefulSetEnvVars Configurations Table View
 
 | Property Path | Type | Required | Default | Description |

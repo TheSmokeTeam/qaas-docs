@@ -1,5 +1,3 @@
-<!-- generated hash:a8593ece0416 sources:probe, CreateRabbitMqQueues, overview -->
-
 # CreateRabbitMqQueues
 
 Creates one or more RabbitMQ queues with the configured queue arguments.

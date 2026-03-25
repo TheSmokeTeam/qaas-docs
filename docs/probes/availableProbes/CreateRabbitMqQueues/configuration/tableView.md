@@ -1,5 +1,3 @@
-<!-- generated hash:77cc6f069ba3 sources:runner-family, CreateRabbitMqQueues, table-view -->
-
 # CreateRabbitMqQueues Configurations Table View
 
 | Property Path | Type | Required | Default | Description |

@@ -1,5 +1,3 @@
-<!-- generated hash:918aac8669f5 sources:runner-family, CreateRabbitMqQueues, yaml-view -->
-
 # CreateRabbitMqQueues Configurations Yaml View
 
 ```yaml

@@ -1,5 +1,3 @@
-<!-- generated hash:20caea106002 sources:probe, UploadRabbitMqDefinitions, overview -->
-
 # UploadRabbitMqDefinitions
 
 Uploads a definitions document to the RabbitMQ management API to recreate or synchronize broker topology.

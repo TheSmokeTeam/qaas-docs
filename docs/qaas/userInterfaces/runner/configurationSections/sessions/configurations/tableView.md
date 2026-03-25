@@ -1,5 +1,3 @@
-<!-- generated hash:057264a7ad7f sources:runner-family, Sessions, table-view -->
-
 # Sessions Configurations Table View
 
 | Property Path | Type | Required | Default | Description |

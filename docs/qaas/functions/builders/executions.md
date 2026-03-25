@@ -1,5 +1,3 @@
-<!-- generated hash:28bfa5da8531 sources:Runner, functions, Builders, Executions -->
-
 # Executions
 
 Each entry uses the short function name as the table-of-contents label. Expand an entry to inspect its location, signature, and XML doc comments.

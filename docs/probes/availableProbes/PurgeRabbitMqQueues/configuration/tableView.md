@@ -1,5 +1,3 @@
-<!-- generated hash:b30c14ca9a0c sources:runner-family, PurgeRabbitMqQueues, table-view -->
-
 # PurgeRabbitMqQueues Configurations Table View
 
 | Property Path | Type | Required | Default | Description |

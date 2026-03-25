@@ -1,5 +1,3 @@
-<!-- generated hash:48f5950d930f sources:runner-family, Storages, table-view -->
-
 # Storages Configurations Table View
 
 | Property Path | Type | Required | Default | Description |

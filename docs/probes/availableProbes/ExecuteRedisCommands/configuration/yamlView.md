@@ -1,5 +1,3 @@
-<!-- generated hash:079baa6ee29a sources:runner-family, ExecuteRedisCommands, yaml-view -->
-
 # ExecuteRedisCommands Configurations Yaml View
 
 ```yaml

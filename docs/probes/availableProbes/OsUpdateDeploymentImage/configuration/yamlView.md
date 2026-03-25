@@ -1,5 +1,3 @@
-<!-- generated hash:b9d13771fb26 sources:runner-family, OsUpdateDeploymentImage, yaml-view -->
-
 # OsUpdateDeploymentImage Configurations Yaml View
 
 ```yaml

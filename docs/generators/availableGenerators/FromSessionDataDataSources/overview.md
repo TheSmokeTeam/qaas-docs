@@ -1,5 +1,3 @@
-<!-- generated hash:a134ac50500c sources:generator, FromSessionDataDataSources, overview -->
-
 # FromSessionDataDataSources
 
 Generates data from the enumerable of data sources it receives, presumes all items in the enumerable are serialized and can be treated as a byte array

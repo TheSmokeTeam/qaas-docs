@@ -1,5 +1,3 @@
-<!-- generated hash:e66b55f6518f sources:processor, DataSourceResponseProcessor, overview -->
-
 # DataSourceResponseProcessor
 
 Builds the response from generated data produced by one configured data source.
