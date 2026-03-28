@@ -4,8 +4,6 @@ Generates JSON data that conforms to a configured JSON Schema Draft 4 document.
 
 > Logical group: Structured payloads / Schema-based JSON
 
-> Logical group: Structured payloads / Schema-based JSON
-
 ## What It Does
 
 Generates JSON documents from a Draft 4 JSON schema and then applies the same field-replacement system used by the regular `Json` generator.

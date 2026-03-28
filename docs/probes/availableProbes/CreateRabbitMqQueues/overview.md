@@ -4,8 +4,6 @@ Creates one or more RabbitMQ queues with the configured queue arguments.
 
 > Logical group: RabbitMQ administration / Queues lifecycle
 
-> Logical group: RabbitMQ administration / Queues lifecycle
-
 ## What It Does
 
 Creates RabbitMQ queues through the AMQP connection defined in the probe configuration.

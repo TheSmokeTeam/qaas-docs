@@ -4,8 +4,6 @@ Probe to delete a s3 bucket
 
 > Logical group: Object storage / S3 bucket deletion
 
-> Logical group: Object storage / S3 bucket deletion
-
 ## What It Does
 
 Deletes an S3-compatible bucket after first emptying all objects from it.

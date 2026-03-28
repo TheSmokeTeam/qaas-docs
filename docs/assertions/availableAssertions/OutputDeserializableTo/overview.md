@@ -4,8 +4,6 @@ Performs a logic test that checks if the items of a configured output can all be
 
 > Logical group: Contract validation / Deserialization validation
 
-> Logical group: Contract validation / Deserialization validation
-
 ## What It Does
 
 Takes every item from one output, treats the body as serialized bytes, and tries to deserialize each item with the configured deserializer.

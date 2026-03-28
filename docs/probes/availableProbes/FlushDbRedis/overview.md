@@ -4,8 +4,6 @@ Runs Redis FLUSHDB against the selected Redis database.
 
 > Logical group: Redis maintenance / Database flush
 
-> Logical group: Redis maintenance / Database flush
-
 ## What It Does
 
 Runs `FLUSHDB` on one selected Redis database and removes every key from that database only.

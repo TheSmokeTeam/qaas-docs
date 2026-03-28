@@ -4,8 +4,6 @@ Probe that purges rabbitmq queues
 
 > Logical group: RabbitMQ administration / Queues lifecycle
 
-> Logical group: RabbitMQ administration / Queues lifecycle
-
 ## What It Does
 
 Purges all messages from the configured RabbitMQ queues through the AMQP connection, while keeping the queues themselves.

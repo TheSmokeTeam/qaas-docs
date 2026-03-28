@@ -4,8 +4,6 @@ Retrieves rows from the configured data lake query and exposes each row as a gen
 
 > Logical group: External sources / Data lake
 
-> Logical group: External sources / Data lake
-
 ## What It Does
 
 Runs a Trino query and emits the returned rows as generated JSON-like objects.

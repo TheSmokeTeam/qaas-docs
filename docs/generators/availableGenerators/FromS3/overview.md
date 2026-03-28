@@ -4,8 +4,6 @@ Retrieves data from objects in a configured S3 bucket and prefix.
 
 > Logical group: External sources / S3 storage
 
-> Logical group: External sources / S3 storage
-
 ## What It Does
 
 Reads objects from an S3-compatible bucket and emits one generated item per object.

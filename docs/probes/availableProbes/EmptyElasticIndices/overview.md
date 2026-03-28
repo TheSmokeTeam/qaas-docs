@@ -4,8 +4,6 @@ Empties elastic indices by their index pattern
 
 > Logical group: Document stores / Elastic indices
 
-> Logical group: Document stores / Elastic indices
-
 ## What It Does
 
 Finds Elasticsearch indices that match the configured pattern and deletes documents from them with a delete-by-query operation.

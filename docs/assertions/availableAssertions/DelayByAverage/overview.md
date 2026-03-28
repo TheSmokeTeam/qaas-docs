@@ -4,8 +4,6 @@ Checks for delay between an input source to an output source by subtracting the 
 
 > Logical group: Latency / Average latency
 
-> Logical group: Latency / Average latency
-
 ## What It Does
 
 Measures latency by taking every timestamp in the named input list, every timestamp in the named output list, calculating the average time for each side, and comparing the difference against `MaximumDelayMs`.

@@ -4,8 +4,6 @@ Deletes RabbitMQ virtual hosts through the management API.
 
 > Logical group: RabbitMQ administration / Virtual hosts lifecycle
 
-> Logical group: RabbitMQ administration / Virtual hosts lifecycle
-
 ## What It Does
 
 Deletes RabbitMQ virtual hosts through the management API.

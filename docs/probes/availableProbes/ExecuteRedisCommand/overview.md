@@ -4,8 +4,6 @@ Executes one Redis command with optional arguments against the selected Redis da
 
 > Logical group: Redis maintenance / Command execution
 
-> Logical group: Redis maintenance / Command execution
-
 ## What It Does
 
 Runs one Redis command with the configured arguments against the selected Redis database.

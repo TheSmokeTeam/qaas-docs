@@ -4,8 +4,6 @@ Creates one or more RabbitMQ exchanges with the configured durability, auto-dele
 
 > Logical group: RabbitMQ administration / Exchanges lifecycle
 
-> Logical group: RabbitMQ administration / Exchanges lifecycle
-
 ## What It Does
 
 Creates RabbitMQ exchanges through the AMQP connection defined in the probe configuration.

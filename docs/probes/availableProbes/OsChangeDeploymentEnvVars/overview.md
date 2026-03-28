@@ -4,8 +4,6 @@ Probe that changes the environment variables of a deployment
 
 > Logical group: Cluster orchestration / Environment variables
 
-> Logical group: Cluster orchestration / Environment variables
-
 ## What It Does
 
 Updates or removes environment variables on a deployment and then waits for the deployment to converge to its desired state.

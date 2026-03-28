@@ -4,8 +4,6 @@ Probe that deletes rabbitmq exchanges
 
 > Logical group: RabbitMQ administration / Exchanges lifecycle
 
-> Logical group: RabbitMQ administration / Exchanges lifecycle
-
 ## What It Does
 
 Deletes RabbitMQ exchanges through the AMQP connection defined in the probe configuration.

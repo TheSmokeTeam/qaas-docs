@@ -1,0 +1,95 @@
+# Executions: Data source selection
+
+This page mirrors the `Data source selection` section from [Executions](../executions.md).
+
+## `CreateDataSource`
+
+??? info "Source file, signature, and docstring"
+    **Member**
+    `ExecutionBuilder.CreateDataSource(DataSourceBuilder dataSourceBuilder)`
+    
+    **Kind** `function`
+    
+    **Declaring Type** `ExecutionBuilder`
+    
+    **Source File** `QaaS.Mocker/ExecutionBuilder.cs`
+    
+    **Signature**
+    ```csharp
+    public ExecutionBuilder CreateDataSource(DataSourceBuilder dataSourceBuilder)
+    ```
+    
+    **Docstring**
+    
+    Creates or adds the configured data source entry on the current Mocker execution builder instance.
+    
+    Use this method when working with the documented Mocker execution builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
+
+## `ReadDataSource`
+
+??? info "Source file, signature, and docstring"
+    **Member**
+    `ExecutionBuilder.ReadDataSource(string dataSourceName)`
+    
+    **Kind** `function`
+    
+    **Declaring Type** `ExecutionBuilder`
+    
+    **Source File** `QaaS.Mocker/ExecutionBuilder.cs`
+    
+    **Signature**
+    ```csharp
+    public DataSourceBuilder? ReadDataSource(string dataSourceName)
+    ```
+    
+    **Docstring**
+    
+    Returns the configured data source currently stored on the Mocker execution builder instance.
+    
+    Use this method when working with the documented Mocker execution builder API surface in code. Use it to inspect the current configured state without rebuilding the surrounding collection or runtime object graph.
+
+## `UpdateDataSource`
+
+??? info "Source file, signature, and docstring"
+    **Member**
+    `ExecutionBuilder.UpdateDataSource(string dataSourceName, DataSourceBuilder dataSourceBuilder)`
+    
+    **Kind** `function`
+    
+    **Declaring Type** `ExecutionBuilder`
+    
+    **Source File** `QaaS.Mocker/ExecutionBuilder.cs`
+    
+    **Signature**
+    ```csharp
+    public ExecutionBuilder UpdateDataSource(string dataSourceName, DataSourceBuilder dataSourceBuilder)
+    ```
+    
+    **Docstring**
+    
+    Updates the configured data source stored on the current Mocker execution builder instance.
+    
+    Use this method when working with the documented Mocker execution builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
+
+## `DeleteDataSource`
+
+??? info "Source file, signature, and docstring"
+    **Member**
+    `ExecutionBuilder.DeleteDataSource(string dataSourceName)`
+    
+    **Kind** `function`
+    
+    **Declaring Type** `ExecutionBuilder`
+    
+    **Source File** `QaaS.Mocker/ExecutionBuilder.cs`
+    
+    **Signature**
+    ```csharp
+    public ExecutionBuilder DeleteDataSource(string dataSourceName)
+    ```
+    
+    **Docstring**
+    
+    Removes the configured data source from the current Mocker execution builder instance.
+    
+    Use this method when working with the documented Mocker execution builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.

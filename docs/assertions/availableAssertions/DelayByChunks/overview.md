@@ -4,8 +4,6 @@ Checks for delay between an input source to an output source by subtracting the 
 
 > Logical group: Latency / Chunk latency
 
-> Logical group: Latency / Chunk latency
-
 ## What It Does
 
 Splits the named input and output streams into ordered chunks, computes one timestamp per chunk, and then checks whether each output chunk arrives within the allowed delay relative to the matching input chunk.

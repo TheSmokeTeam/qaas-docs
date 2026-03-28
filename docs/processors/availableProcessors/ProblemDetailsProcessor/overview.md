@@ -4,8 +4,6 @@ Returns an RFC 7807 style problem-details JSON response using the configured sta
 
 > Logical group: Error responses / Problem details
 
-> Logical group: Error responses / Problem details
-
 ## What It Does
 
 Builds a problem-details style JSON response with a title, type, detail, instance, status code, and optional extension fields.

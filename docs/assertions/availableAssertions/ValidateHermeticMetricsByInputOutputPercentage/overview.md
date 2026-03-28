@@ -4,8 +4,6 @@ Compares the hermetic percentage calculated from configured inputs and outputs w
 
 > Logical group: Hermeticity / Metrics percentage validation
 
-> Logical group: Hermeticity / Metrics percentage validation
-
 ## What It Does
 
 Calculates hermetic behavior in two different ways and compares the results: first from the real input/output counts in the selected communication data, and second from the latest metric values found in a metrics output.

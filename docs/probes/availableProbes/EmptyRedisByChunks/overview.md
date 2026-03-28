@@ -4,8 +4,6 @@ Scans the selected Redis database in batches and deletes matching keys, optional
 
 > Logical group: Other / EmptyRedisByChunks
 
-> Logical group: Other / EmptyRedisByChunks
-
 ## What It Does
 
 Scans the selected Redis database and deletes matching keys in batches instead of trying to remove everything in one call.

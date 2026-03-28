@@ -4,8 +4,6 @@ Retrieves data from files under a configured path in the local file system.
 
 > Logical group: External sources / File system
 
-> Logical group: External sources / File system
-
 ## What It Does
 
 Reads files from a local directory and emits each matched file as one generated item.

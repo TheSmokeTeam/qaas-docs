@@ -4,8 +4,6 @@ Retrieves lettuce-formatted files from the configured file-system path and expos
 
 > Logical group: External sources / Lettuce files
 
-> Logical group: External sources / Lettuce files
-
 ## What It Does
 
 Reads lettuce envelope files directly from the local file system, decodes the base64 `Body`, and emits the decoded payload bytes.

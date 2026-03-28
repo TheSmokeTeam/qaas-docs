@@ -4,8 +4,6 @@ Performs a hermetic test by comparing the count of a given output in a session t
 
 > Logical group: Hermeticity / Exact output count
 
-> Logical group: Hermeticity / Exact output count
-
 ## What It Does
 
 Adds up the number of items found in the configured output names across every session given to the assertion and compares that total with one exact expected count.

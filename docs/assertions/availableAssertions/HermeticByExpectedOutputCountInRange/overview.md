@@ -4,8 +4,6 @@ Performs a hermetic test by comparing the count of a given output in a session t
 
 > Logical group: Hermeticity / Output count range
 
-> Logical group: Hermeticity / Output count range
-
 ## What It Does
 
 Adds up the number of items in the configured output names across the selected sessions and checks whether the total falls between a minimum and a maximum inclusive boundary.

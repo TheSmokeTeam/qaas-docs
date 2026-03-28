@@ -4,8 +4,6 @@ Deletes all documents from the configured MongoDB collection so it starts clean 
 
 > Logical group: Document stores / MongoDB collections
 
-> Logical group: Document stores / MongoDB collections
-
 ## What It Does
 
 Deletes documents from one MongoDB collection in chunks until the collection is empty.

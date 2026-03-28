@@ -4,8 +4,6 @@ Updates container resource requests and limits in a Kubernetes or OpenShift depl
 
 > Logical group: Cluster orchestration / Resource tuning
 
-> Logical group: Cluster orchestration / Resource tuning
-
 ## What It Does
 
 Updates CPU and memory requests and limits on a deployment container, then waits for the deployment to converge.

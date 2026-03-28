@@ -4,8 +4,6 @@ Executes multiple Redis commands sequentially against the selected Redis databas
 
 > Logical group: Redis maintenance / Command execution
 
-> Logical group: Redis maintenance / Command execution
-
 ## What It Does
 
 Runs a configured sequence of Redis commands in order against the selected database.

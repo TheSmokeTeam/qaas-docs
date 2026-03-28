@@ -4,8 +4,6 @@ Checks whether the percentage between configured inputs and outputs stays within
 
 > Logical group: Hermeticity / Input/output percentage range
 
-> Logical group: Hermeticity / Input/output percentage range
-
 ## What It Does
 
 Sums the configured input and output counts, calculates the real output-to-input percentage, and checks whether that real percentage stays within the configured inclusive minimum and maximum range.

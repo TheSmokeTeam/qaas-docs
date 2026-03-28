@@ -28,22 +28,124 @@ nav:
       - Best Practices: qaas/bestPractices.md
     - Functions:
       - Overview: qaas/functions/index.md
+      # qaas-docs-generator start: runner-functions
       - Builders:
-        - Assertions: qaas/functions/builders/assertions.md
-        - Collectors: qaas/functions/builders/collectors.md
-        - Consumers: qaas/functions/builders/consumers.md
-        - Executions: qaas/functions/builders/executions.md
-        - Links: qaas/functions/builders/links.md
-        - Mocker Commands: qaas/functions/builders/mocker-commands.md
-        - Probes: qaas/functions/builders/probes.md
-        - Publishers: qaas/functions/builders/publishers.md
-        - Sessions: qaas/functions/builders/sessions.md
-        - Storages: qaas/functions/builders/storages.md
-        - Transactions: qaas/functions/builders/transactions.md
+        - Assertions:
+          - Overview: qaas/functions/builders/assertions.md
+          - Identity and hook selection: qaas/functions/builders/assertions-sections/identity-and-hook-selection.md
+          - Classification: qaas/functions/builders/assertions-sections/classification.md
+          - Data source selection: qaas/functions/builders/assertions-sections/data-source-selection.md
+          - Session selection: qaas/functions/builders/assertions-sections/session-selection.md
+          - Links: qaas/functions/builders/assertions-sections/links.md
+          - Reporting and artifacts: qaas/functions/builders/assertions-sections/reporting-and-artifacts.md
+          - Inspection: qaas/functions/builders/assertions-sections/inspection.md
+          - Collection helpers: qaas/functions/builders/assertions-sections/collection-helpers.md
+          - General: qaas/functions/builders/assertions-sections/general.md
+        - Collectors:
+          - Overview: qaas/functions/builders/collectors.md
+          - Identity and hook selection: qaas/functions/builders/collectors-sections/identity-and-hook-selection.md
+          - Inspection: qaas/functions/builders/collectors-sections/inspection.md
+          - Collection helpers: qaas/functions/builders/collectors-sections/collection-helpers.md
+          - General: qaas/functions/builders/collectors-sections/general.md
+        - Consumers:
+          - Overview: qaas/functions/builders/consumers.md
+          - Identity and hook selection: qaas/functions/builders/consumers-sections/identity-and-hook-selection.md
+          - Execution order: qaas/functions/builders/consumers-sections/execution-order.md
+          - Policies: qaas/functions/builders/consumers-sections/policies.md
+          - Configuration: qaas/functions/builders/consumers-sections/configuration.md
+          - Inspection: qaas/functions/builders/consumers-sections/inspection.md
+          - Collection helpers: qaas/functions/builders/consumers-sections/collection-helpers.md
+          - General: qaas/functions/builders/consumers-sections/general.md
+        - Executions:
+          - Overview: qaas/functions/builders/executions.md
+          - Data source selection: qaas/functions/builders/executions-sections/data-source-selection.md
+          - Session selection: qaas/functions/builders/executions-sections/session-selection.md
+          - Links: qaas/functions/builders/executions-sections/links.md
+          - Storages: qaas/functions/builders/executions-sections/storages.md
+          - Assertions: qaas/functions/builders/executions-sections/assertions.md
+          - Executions: qaas/functions/builders/executions-sections/executions.md
+          - Configuration: qaas/functions/builders/executions-sections/configuration.md
+          - Inspection: qaas/functions/builders/executions-sections/inspection.md
+          - General: qaas/functions/builders/executions-sections/general.md
+        - Links:
+          - Overview: qaas/functions/builders/links.md
+          - Identity and hook selection: qaas/functions/builders/links-sections/identity-and-hook-selection.md
+          - Inspection: qaas/functions/builders/links-sections/inspection.md
+          - Collection helpers: qaas/functions/builders/links-sections/collection-helpers.md
+          - General: qaas/functions/builders/links-sections/general.md
+        - Mocker Commands:
+          - Overview: qaas/functions/builders/mocker-commands.md
+          - Identity and hook selection: qaas/functions/builders/mocker-commands-sections/identity-and-hook-selection.md
+          - Execution order: qaas/functions/builders/mocker-commands-sections/execution-order.md
+          - Servers: qaas/functions/builders/mocker-commands-sections/servers.md
+          - Configuration: qaas/functions/builders/mocker-commands-sections/configuration.md
+          - Inspection: qaas/functions/builders/mocker-commands-sections/inspection.md
+          - Collection helpers: qaas/functions/builders/mocker-commands-sections/collection-helpers.md
+          - General: qaas/functions/builders/mocker-commands-sections/general.md
+        - Probes:
+          - Overview: qaas/functions/builders/probes.md
+          - Identity and hook selection: qaas/functions/builders/probes-sections/identity-and-hook-selection.md
+          - Execution order: qaas/functions/builders/probes-sections/execution-order.md
+          - Data source selection: qaas/functions/builders/probes-sections/data-source-selection.md
+          - Inspection: qaas/functions/builders/probes-sections/inspection.md
+          - Collection helpers: qaas/functions/builders/probes-sections/collection-helpers.md
+          - General: qaas/functions/builders/probes-sections/general.md
+        - Publishers:
+          - Overview: qaas/functions/builders/publishers.md
+          - Identity and hook selection: qaas/functions/builders/publishers-sections/identity-and-hook-selection.md
+          - Execution order: qaas/functions/builders/publishers-sections/execution-order.md
+          - Data source selection: qaas/functions/builders/publishers-sections/data-source-selection.md
+          - Policies: qaas/functions/builders/publishers-sections/policies.md
+          - Configuration: qaas/functions/builders/publishers-sections/configuration.md
+          - Inspection: qaas/functions/builders/publishers-sections/inspection.md
+          - Collection helpers: qaas/functions/builders/publishers-sections/collection-helpers.md
+          - General: qaas/functions/builders/publishers-sections/general.md
+        - Sessions:
+          - Overview: qaas/functions/builders/sessions.md
+          - Identity and hook selection: qaas/functions/builders/sessions-sections/identity-and-hook-selection.md
+          - Execution order: qaas/functions/builders/sessions-sections/execution-order.md
+          - Classification: qaas/functions/builders/sessions-sections/classification.md
+          - Session selection: qaas/functions/builders/sessions-sections/session-selection.md
+          - Probes: qaas/functions/builders/sessions-sections/probes.md
+          - Publishers: qaas/functions/builders/sessions-sections/publishers.md
+          - Consumers: qaas/functions/builders/sessions-sections/consumers.md
+          - Transactions: qaas/functions/builders/sessions-sections/transactions.md
+          - Collectors: qaas/functions/builders/sessions-sections/collectors.md
+          - Stages: qaas/functions/builders/sessions-sections/stages.md
+          - Configuration: qaas/functions/builders/sessions-sections/configuration.md
+          - Inspection: qaas/functions/builders/sessions-sections/inspection.md
+          - Collection helpers: qaas/functions/builders/sessions-sections/collection-helpers.md
+          - General: qaas/functions/builders/sessions-sections/general.md
+        - Storages:
+          - Overview: qaas/functions/builders/storages.md
+          - Storages: qaas/functions/builders/storages-sections/storages.md
+          - Inspection: qaas/functions/builders/storages-sections/inspection.md
+          - Collection helpers: qaas/functions/builders/storages-sections/collection-helpers.md
+          - General: qaas/functions/builders/storages-sections/general.md
+        - Transactions:
+          - Overview: qaas/functions/builders/transactions.md
+          - Identity and hook selection: qaas/functions/builders/transactions-sections/identity-and-hook-selection.md
+          - Execution order: qaas/functions/builders/transactions-sections/execution-order.md
+          - Data source selection: qaas/functions/builders/transactions-sections/data-source-selection.md
+          - Input selection: qaas/functions/builders/transactions-sections/input-selection.md
+          - Output selection: qaas/functions/builders/transactions-sections/output-selection.md
+          - Policies: qaas/functions/builders/transactions-sections/policies.md
+          - Configuration: qaas/functions/builders/transactions-sections/configuration.md
+          - Inspection: qaas/functions/builders/transactions-sections/inspection.md
+          - Collection helpers: qaas/functions/builders/transactions-sections/collection-helpers.md
+          - General: qaas/functions/builders/transactions-sections/general.md
       - Commands:
         - Bootstrap: qaas/functions/commands/bootstrap.md
         - Runner: qaas/functions/commands/runner.md
-      - Extension Methods: qaas/functions/extension-methods.md
+      - Extension Methods:
+        - Extension Methods:
+          - Overview: qaas/functions/extension-methods.md
+          - Configuration mutation: qaas/functions/extension-methods-sections/configuration-mutation.md
+          - Context artifact: qaas/functions/extension-methods-sections/context-artifact.md
+          - Date time: qaas/functions/extension-methods-sections/date-time.md
+          - Detailed data: qaas/functions/extension-methods-sections/detailed-data.md
+          - Session: qaas/functions/extension-methods-sections/session.md
+      # qaas-docs-generator end: runner-functions
     - CLI Commands:
       - Overview: qaas/userInterfaces/runner/commands/commands.md
       - run: qaas/userInterfaces/runner/commands/run.md
@@ -124,13 +226,37 @@ nav:
       - Integrate with Tests: mocker/quickStart/integrateWithTests.md
     - Functions:
       - Overview: mocker/functions/index.md
+      # qaas-docs-generator start: mocker-functions
       - Builders:
-        - Executions: mocker/functions/builders/executions.md
-        - Transaction Stubs: mocker/functions/builders/transaction-stubs.md
+        - Executions:
+          - Overview: mocker/functions/builders/executions.md
+          - Data source selection: mocker/functions/builders/executions-sections/data-source-selection.md
+          - Output selection: mocker/functions/builders/executions-sections/output-selection.md
+          - Servers: mocker/functions/builders/executions-sections/servers.md
+          - Transaction stubs: mocker/functions/builders/executions-sections/transaction-stubs.md
+          - Executions: mocker/functions/builders/executions-sections/executions.md
+          - Configuration: mocker/functions/builders/executions-sections/configuration.md
+          - Reporting and artifacts: mocker/functions/builders/executions-sections/reporting-and-artifacts.md
+          - Inspection: mocker/functions/builders/executions-sections/inspection.md
+          - Collection helpers: mocker/functions/builders/executions-sections/collection-helpers.md
+          - General: mocker/functions/builders/executions-sections/general.md
+        - Transaction Stubs:
+          - Overview: mocker/functions/builders/transaction-stubs.md
+          - Identity and hook selection: mocker/functions/builders/transaction-stubs-sections/identity-and-hook-selection.md
+          - Data source selection: mocker/functions/builders/transaction-stubs-sections/data-source-selection.md
+          - Inspection: mocker/functions/builders/transaction-stubs-sections/inspection.md
+          - Collection helpers: mocker/functions/builders/transaction-stubs-sections/collection-helpers.md
+          - General: mocker/functions/builders/transaction-stubs-sections/general.md
       - Commands:
         - Bootstrap: mocker/functions/commands/bootstrap.md
         - Mocker Runner: mocker/functions/commands/mocker-runner.md
-      - Extension Methods: mocker/functions/extension-methods.md
+      - Extension Methods:
+        - Extension Methods:
+          - Overview: mocker/functions/extension-methods.md
+          - Data: mocker/functions/extension-methods-sections/data.md
+          - Http: mocker/functions/extension-methods-sections/http.md
+          - Socket: mocker/functions/extension-methods-sections/socket.md
+      # qaas-docs-generator end: mocker-functions
     - CLI Commands:
       - Overview: mocker/userInterfaces/mocker/commands/commands.md
       - run: mocker/userInterfaces/mocker/commands/run.md
@@ -157,305 +283,371 @@ nav:
   - Hooks:
     - Assertions:
       - Introduction: assertions/index.md
+      # qaas-docs-generator start: hook-assertions
       - Available Assertions:
-        - HermeticByExpectedOutputCount:
-          - Overview: assertions/availableAssertions/HermeticByExpectedOutputCount/overview.md
-          - Table View: assertions/availableAssertions/HermeticByExpectedOutputCount/configuration/tableView.md
-          - YAML View: assertions/availableAssertions/HermeticByExpectedOutputCount/configuration/yamlView.md
-        - HermeticByExpectedOutputCountInRange:
-          - Overview: assertions/availableAssertions/HermeticByExpectedOutputCountInRange/overview.md
-          - Table View: assertions/availableAssertions/HermeticByExpectedOutputCountInRange/configuration/tableView.md
-          - YAML View: assertions/availableAssertions/HermeticByExpectedOutputCountInRange/configuration/yamlView.md
-        - HermeticByInputOutputPercentage:
-          - Overview: assertions/availableAssertions/HermeticByInputOutputPercentage/overview.md
-          - Table View: assertions/availableAssertions/HermeticByInputOutputPercentage/configuration/tableView.md
-          - YAML View: assertions/availableAssertions/HermeticByInputOutputPercentage/configuration/yamlView.md
-        - HermeticByInputOutputPercentageInRange:
-          - Overview: assertions/availableAssertions/HermeticByInputOutputPercentageInRange/overview.md
-          - Table View: assertions/availableAssertions/HermeticByInputOutputPercentageInRange/configuration/tableView.md
-          - YAML View: assertions/availableAssertions/HermeticByInputOutputPercentageInRange/configuration/yamlView.md
-        - DelayByAverage:
-          - Overview: assertions/availableAssertions/DelayByAverage/overview.md
-          - Table View: assertions/availableAssertions/DelayByAverage/configuration/tableView.md
-          - YAML View: assertions/availableAssertions/DelayByAverage/configuration/yamlView.md
-        - DelayByChunks:
-          - Overview: assertions/availableAssertions/DelayByChunks/overview.md
-          - Table View: assertions/availableAssertions/DelayByChunks/configuration/tableView.md
-          - YAML View: assertions/availableAssertions/DelayByChunks/configuration/yamlView.md
-        - HttpStatus:
-          - Overview: assertions/availableAssertions/HttpStatus/overview.md
-          - Table View: assertions/availableAssertions/HttpStatus/configuration/tableView.md
-          - YAML View: assertions/availableAssertions/HttpStatus/configuration/yamlView.md
-        - OutputDeserializableTo:
-          - Overview: assertions/availableAssertions/OutputDeserializableTo/overview.md
-          - Table View: assertions/availableAssertions/OutputDeserializableTo/configuration/tableView.md
-          - YAML View: assertions/availableAssertions/OutputDeserializableTo/configuration/yamlView.md
-        - ObjectOutputJsonSchema:
-          - Overview: assertions/availableAssertions/ObjectOutputJsonSchema/overview.md
-          - Table View: assertions/availableAssertions/ObjectOutputJsonSchema/configuration/tableView.md
-          - YAML View: assertions/availableAssertions/ObjectOutputJsonSchema/configuration/yamlView.md
-        - OutputContentByExpectedCsvResults:
-          - Overview: assertions/availableAssertions/OutputContentByExpectedCsvResults/overview.md
-          - Table View: assertions/availableAssertions/OutputContentByExpectedCsvResults/configuration/tableView.md
-          - YAML View: assertions/availableAssertions/OutputContentByExpectedCsvResults/configuration/yamlView.md
-        - ValidateHermeticMetricsByInputOutputPercentage:
-          - Overview: assertions/availableAssertions/ValidateHermeticMetricsByInputOutputPercentage/overview.md
-          - Table View: assertions/availableAssertions/ValidateHermeticMetricsByInputOutputPercentage/configuration/tableView.md
-          - YAML View: assertions/availableAssertions/ValidateHermeticMetricsByInputOutputPercentage/configuration/yamlView.md
+        - Latency:
+          - DelayByAverage:
+            - Overview: assertions/availableAssertions/DelayByAverage/overview.md
+            - Table View: assertions/availableAssertions/DelayByAverage/configuration/tableView.md
+            - YAML View: assertions/availableAssertions/DelayByAverage/configuration/yamlView.md
+          - DelayByChunks:
+            - Overview: assertions/availableAssertions/DelayByChunks/overview.md
+            - Table View: assertions/availableAssertions/DelayByChunks/configuration/tableView.md
+            - YAML View: assertions/availableAssertions/DelayByChunks/configuration/yamlView.md
+        - Hermeticity:
+          - HermeticByInputOutputPercentage:
+            - Overview: assertions/availableAssertions/HermeticByInputOutputPercentage/overview.md
+            - Table View: assertions/availableAssertions/HermeticByInputOutputPercentage/configuration/tableView.md
+            - YAML View: assertions/availableAssertions/HermeticByInputOutputPercentage/configuration/yamlView.md
+          - HermeticByExpectedOutputCount:
+            - Overview: assertions/availableAssertions/HermeticByExpectedOutputCount/overview.md
+            - Table View: assertions/availableAssertions/HermeticByExpectedOutputCount/configuration/tableView.md
+            - YAML View: assertions/availableAssertions/HermeticByExpectedOutputCount/configuration/yamlView.md
+          - HermeticByInputOutputPercentageInRange:
+            - Overview: assertions/availableAssertions/HermeticByInputOutputPercentageInRange/overview.md
+            - Table View: assertions/availableAssertions/HermeticByInputOutputPercentageInRange/configuration/tableView.md
+            - YAML View: assertions/availableAssertions/HermeticByInputOutputPercentageInRange/configuration/yamlView.md
+          - ValidateHermeticMetricsByInputOutputPercentage:
+            - Overview: assertions/availableAssertions/ValidateHermeticMetricsByInputOutputPercentage/overview.md
+            - Table View: assertions/availableAssertions/ValidateHermeticMetricsByInputOutputPercentage/configuration/tableView.md
+            - YAML View: assertions/availableAssertions/ValidateHermeticMetricsByInputOutputPercentage/configuration/yamlView.md
+          - HermeticByExpectedOutputCountInRange:
+            - Overview: assertions/availableAssertions/HermeticByExpectedOutputCountInRange/overview.md
+            - Table View: assertions/availableAssertions/HermeticByExpectedOutputCountInRange/configuration/tableView.md
+            - YAML View: assertions/availableAssertions/HermeticByExpectedOutputCountInRange/configuration/yamlView.md
+        - Content validation:
+          - OutputContentByExpectedCsvResults:
+            - Overview: assertions/availableAssertions/OutputContentByExpectedCsvResults/overview.md
+            - Table View: assertions/availableAssertions/OutputContentByExpectedCsvResults/configuration/tableView.md
+            - YAML View: assertions/availableAssertions/OutputContentByExpectedCsvResults/configuration/yamlView.md
+        - Contract validation:
+          - OutputDeserializableTo:
+            - Overview: assertions/availableAssertions/OutputDeserializableTo/overview.md
+            - Table View: assertions/availableAssertions/OutputDeserializableTo/configuration/tableView.md
+            - YAML View: assertions/availableAssertions/OutputDeserializableTo/configuration/yamlView.md
+          - ObjectOutputJsonSchema:
+            - Overview: assertions/availableAssertions/ObjectOutputJsonSchema/overview.md
+            - Table View: assertions/availableAssertions/ObjectOutputJsonSchema/configuration/tableView.md
+            - YAML View: assertions/availableAssertions/ObjectOutputJsonSchema/configuration/yamlView.md
+        - Transport metadata:
+          - HttpStatus:
+            - Overview: assertions/availableAssertions/HttpStatus/overview.md
+            - Table View: assertions/availableAssertions/HttpStatus/configuration/tableView.md
+            - YAML View: assertions/availableAssertions/HttpStatus/configuration/yamlView.md
+      # qaas-docs-generator end: hook-assertions
     - Generators:
       - Introduction: generators/index.md
+      # qaas-docs-generator start: hook-generators
       - Available Generators:
-        - FromFileSystem:
-          - Overview: generators/availableGenerators/FromFileSystem/overview.md
-          - Table View: generators/availableGenerators/FromFileSystem/configuration/tableView.md
-          - YAML View: generators/availableGenerators/FromFileSystem/configuration/yamlView.md
-        - FromCSV:
-          - Overview: generators/availableGenerators/FromCSV/overview.md
-          - Table View: generators/availableGenerators/FromCSV/configuration/tableView.md
-          - YAML View: generators/availableGenerators/FromCSV/configuration/yamlView.md
-        - FromS3:
-          - Overview: generators/availableGenerators/FromS3/overview.md
-          - Table View: generators/availableGenerators/FromS3/configuration/tableView.md
-          - YAML View: generators/availableGenerators/FromS3/configuration/yamlView.md
-        - FromDataLake:
-          - Overview: generators/availableGenerators/FromDataLake/overview.md
-          - Table View: generators/availableGenerators/FromDataLake/configuration/tableView.md
-          - YAML View: generators/availableGenerators/FromDataLake/configuration/yamlView.md
-        - FromDataSources:
-          - Overview: generators/availableGenerators/FromDataSources/overview.md
-          - Table View: generators/availableGenerators/FromDataSources/configuration/tableView.md
-          - YAML View: generators/availableGenerators/FromDataSources/configuration/yamlView.md
-        - FromLettuceDataSources:
-          - Overview: generators/availableGenerators/FromLettuceDataSources/overview.md
-          - Table View: generators/availableGenerators/FromLettuceDataSources/configuration/tableView.md
-          - YAML View: generators/availableGenerators/FromLettuceDataSources/configuration/yamlView.md
-        - FromSessionDataDataSources:
-          - Overview: generators/availableGenerators/FromSessionDataDataSources/overview.md
-          - Table View: generators/availableGenerators/FromSessionDataDataSources/configuration/tableView.md
-          - YAML View: generators/availableGenerators/FromSessionDataDataSources/configuration/yamlView.md
-        - Json:
-          - Overview: generators/availableGenerators/Json/overview.md
-          - Table View: generators/availableGenerators/Json/configuration/tableView.md
-          - YAML View: generators/availableGenerators/Json/configuration/yamlView.md
-        - JsonSchemaDraft4:
-          - Overview: generators/availableGenerators/JsonSchemaDraft4/overview.md
-          - Table View: generators/availableGenerators/JsonSchemaDraft4/configuration/tableView.md
-          - YAML View: generators/availableGenerators/JsonSchemaDraft4/configuration/yamlView.md
-        - LettuceFromFileSystem:
-          - Overview: generators/availableGenerators/LettuceFromFileSystem/overview.md
-          - Table View: generators/availableGenerators/LettuceFromFileSystem/configuration/tableView.md
-          - YAML View: generators/availableGenerators/LettuceFromFileSystem/configuration/yamlView.md
-        - Stacking:
-          - Overview: generators/availableGenerators/Stacking/overview.md
-          - Table View: generators/availableGenerators/Stacking/configuration/tableView.md
-          - YAML View: generators/availableGenerators/Stacking/configuration/yamlView.md
+        - External sources:
+          - FromCSV:
+            - Overview: generators/availableGenerators/FromCSV/overview.md
+            - Table View: generators/availableGenerators/FromCSV/configuration/tableView.md
+            - YAML View: generators/availableGenerators/FromCSV/configuration/yamlView.md
+          - FromDataLake:
+            - Overview: generators/availableGenerators/FromDataLake/overview.md
+            - Table View: generators/availableGenerators/FromDataLake/configuration/tableView.md
+            - YAML View: generators/availableGenerators/FromDataLake/configuration/yamlView.md
+          - FromFileSystem:
+            - Overview: generators/availableGenerators/FromFileSystem/overview.md
+            - Table View: generators/availableGenerators/FromFileSystem/configuration/tableView.md
+            - YAML View: generators/availableGenerators/FromFileSystem/configuration/yamlView.md
+          - LettuceFromFileSystem:
+            - Overview: generators/availableGenerators/LettuceFromFileSystem/overview.md
+            - Table View: generators/availableGenerators/LettuceFromFileSystem/configuration/tableView.md
+            - YAML View: generators/availableGenerators/LettuceFromFileSystem/configuration/yamlView.md
+          - FromS3:
+            - Overview: generators/availableGenerators/FromS3/overview.md
+            - Table View: generators/availableGenerators/FromS3/configuration/tableView.md
+            - YAML View: generators/availableGenerators/FromS3/configuration/yamlView.md
+        - Existing data sources:
+          - FromDataSources:
+            - Overview: generators/availableGenerators/FromDataSources/overview.md
+            - Table View: generators/availableGenerators/FromDataSources/configuration/tableView.md
+            - YAML View: generators/availableGenerators/FromDataSources/configuration/yamlView.md
+          - FromLettuceDataSources:
+            - Overview: generators/availableGenerators/FromLettuceDataSources/overview.md
+            - Table View: generators/availableGenerators/FromLettuceDataSources/configuration/tableView.md
+            - YAML View: generators/availableGenerators/FromLettuceDataSources/configuration/yamlView.md
+          - FromSessionDataDataSources:
+            - Overview: generators/availableGenerators/FromSessionDataDataSources/overview.md
+            - Table View: generators/availableGenerators/FromSessionDataDataSources/configuration/tableView.md
+            - YAML View: generators/availableGenerators/FromSessionDataDataSources/configuration/yamlView.md
+          - Stacking:
+            - Overview: generators/availableGenerators/Stacking/overview.md
+            - Table View: generators/availableGenerators/Stacking/configuration/tableView.md
+            - YAML View: generators/availableGenerators/Stacking/configuration/yamlView.md
+        - Structured payloads:
+          - Json:
+            - Overview: generators/availableGenerators/Json/overview.md
+            - Table View: generators/availableGenerators/Json/configuration/tableView.md
+            - YAML View: generators/availableGenerators/Json/configuration/yamlView.md
+          - JsonSchemaDraft4:
+            - Overview: generators/availableGenerators/JsonSchemaDraft4/overview.md
+            - Table View: generators/availableGenerators/JsonSchemaDraft4/configuration/tableView.md
+            - YAML View: generators/availableGenerators/JsonSchemaDraft4/configuration/yamlView.md
+      # qaas-docs-generator end: hook-generators
     - Probes:
       - Introduction: probes/index.md
+      # qaas-docs-generator start: hook-probes
       - Available Probes:
-        - OsRestartPods:
-          - Overview: probes/availableProbes/OsRestartPods/overview.md
-          - Table View: probes/availableProbes/OsRestartPods/configuration/tableView.md
-          - YAML View: probes/availableProbes/OsRestartPods/configuration/yamlView.md
-        - OsExecuteCommandsInContainers:
-          - Overview: probes/availableProbes/OsExecuteCommandsInContainers/overview.md
-          - Table View: probes/availableProbes/OsExecuteCommandsInContainers/configuration/tableView.md
-          - YAML View: probes/availableProbes/OsExecuteCommandsInContainers/configuration/yamlView.md
-        - OsEditYamlConfigMap:
-          - Overview: probes/availableProbes/OsEditYamlConfigMap/overview.md
-          - Table View: probes/availableProbes/OsEditYamlConfigMap/configuration/tableView.md
-          - YAML View: probes/availableProbes/OsEditYamlConfigMap/configuration/yamlView.md
-        - OsScaleDeploymentPods:
-          - Overview: probes/availableProbes/OsScaleDeploymentPods/overview.md
-          - Table View: probes/availableProbes/OsScaleDeploymentPods/configuration/tableView.md
-          - YAML View: probes/availableProbes/OsScaleDeploymentPods/configuration/yamlView.md
-        - OsScaleStatefulSetPods:
-          - Overview: probes/availableProbes/OsScaleStatefulSetPods/overview.md
-          - Table View: probes/availableProbes/OsScaleStatefulSetPods/configuration/tableView.md
-          - YAML View: probes/availableProbes/OsScaleStatefulSetPods/configuration/yamlView.md
-        - OsChangeDeploymentEnvVars:
-          - Overview: probes/availableProbes/OsChangeDeploymentEnvVars/overview.md
-          - Table View: probes/availableProbes/OsChangeDeploymentEnvVars/configuration/tableView.md
-          - YAML View: probes/availableProbes/OsChangeDeploymentEnvVars/configuration/yamlView.md
-        - OsChangeStatefulSetEnvVars:
-          - Overview: probes/availableProbes/OsChangeStatefulSetEnvVars/overview.md
-          - Table View: probes/availableProbes/OsChangeStatefulSetEnvVars/configuration/tableView.md
-          - YAML View: probes/availableProbes/OsChangeStatefulSetEnvVars/configuration/yamlView.md
-        - OsUpdateDeploymentImage:
-          - Overview: probes/availableProbes/OsUpdateDeploymentImage/overview.md
-          - Table View: probes/availableProbes/OsUpdateDeploymentImage/configuration/tableView.md
-          - YAML View: probes/availableProbes/OsUpdateDeploymentImage/configuration/yamlView.md
-        - OsUpdateStatefulSetImage:
-          - Overview: probes/availableProbes/OsUpdateStatefulSetImage/overview.md
-          - Table View: probes/availableProbes/OsUpdateStatefulSetImage/configuration/tableView.md
-          - YAML View: probes/availableProbes/OsUpdateStatefulSetImage/configuration/yamlView.md
-        - OsUpdateDeploymentResources:
-          - Overview: probes/availableProbes/OsUpdateDeploymentResources/overview.md
-          - Table View: probes/availableProbes/OsUpdateDeploymentResources/configuration/tableView.md
-          - YAML View: probes/availableProbes/OsUpdateDeploymentResources/configuration/yamlView.md
-        - OsUpdateStatefulSetResources:
-          - Overview: probes/availableProbes/OsUpdateStatefulSetResources/overview.md
-          - Table View: probes/availableProbes/OsUpdateStatefulSetResources/configuration/tableView.md
-          - YAML View: probes/availableProbes/OsUpdateStatefulSetResources/configuration/yamlView.md
-        - CreateRabbitMqQueues:
-          - Overview: probes/availableProbes/CreateRabbitMqQueues/overview.md
-          - Table View: probes/availableProbes/CreateRabbitMqQueues/configuration/tableView.md
-          - YAML View: probes/availableProbes/CreateRabbitMqQueues/configuration/yamlView.md
-        - CreateRabbitMqExchanges:
-          - Overview: probes/availableProbes/CreateRabbitMqExchanges/overview.md
-          - Table View: probes/availableProbes/CreateRabbitMqExchanges/configuration/tableView.md
-          - YAML View: probes/availableProbes/CreateRabbitMqExchanges/configuration/yamlView.md
-        - CreateRabbitMqBindings:
-          - Overview: probes/availableProbes/CreateRabbitMqBindings/overview.md
-          - Table View: probes/availableProbes/CreateRabbitMqBindings/configuration/tableView.md
-          - YAML View: probes/availableProbes/CreateRabbitMqBindings/configuration/yamlView.md
-        - CreateRabbitMqUsers:
-          - Overview: probes/availableProbes/CreateRabbitMqUsers/overview.md
-          - Table View: probes/availableProbes/CreateRabbitMqUsers/configuration/tableView.md
-          - YAML View: probes/availableProbes/CreateRabbitMqUsers/configuration/yamlView.md
-        - CreateRabbitMqVirtualHosts:
-          - Overview: probes/availableProbes/CreateRabbitMqVirtualHosts/overview.md
-          - Table View: probes/availableProbes/CreateRabbitMqVirtualHosts/configuration/tableView.md
-          - YAML View: probes/availableProbes/CreateRabbitMqVirtualHosts/configuration/yamlView.md
-        - DeleteRabbitMqQueues:
-          - Overview: probes/availableProbes/DeleteRabbitMqQueues/overview.md
-          - Table View: probes/availableProbes/DeleteRabbitMqQueues/configuration/tableView.md
-          - YAML View: probes/availableProbes/DeleteRabbitMqQueues/configuration/yamlView.md
-        - DeleteRabbitMqExchanges:
-          - Overview: probes/availableProbes/DeleteRabbitMqExchanges/overview.md
-          - Table View: probes/availableProbes/DeleteRabbitMqExchanges/configuration/tableView.md
-          - YAML View: probes/availableProbes/DeleteRabbitMqExchanges/configuration/yamlView.md
-        - DeleteRabbitMqBindings:
-          - Overview: probes/availableProbes/DeleteRabbitMqBindings/overview.md
-          - Table View: probes/availableProbes/DeleteRabbitMqBindings/configuration/tableView.md
-          - YAML View: probes/availableProbes/DeleteRabbitMqBindings/configuration/yamlView.md
-        - DeleteRabbitMqPermissions:
-          - Overview: probes/availableProbes/DeleteRabbitMqPermissions/overview.md
-          - Table View: probes/availableProbes/DeleteRabbitMqPermissions/configuration/tableView.md
-          - YAML View: probes/availableProbes/DeleteRabbitMqPermissions/configuration/yamlView.md
-        - DeleteRabbitMqUsers:
-          - Overview: probes/availableProbes/DeleteRabbitMqUsers/overview.md
-          - Table View: probes/availableProbes/DeleteRabbitMqUsers/configuration/tableView.md
-          - YAML View: probes/availableProbes/DeleteRabbitMqUsers/configuration/yamlView.md
-        - DeleteRabbitMqVirtualHosts:
-          - Overview: probes/availableProbes/DeleteRabbitMqVirtualHosts/overview.md
-          - Table View: probes/availableProbes/DeleteRabbitMqVirtualHosts/configuration/tableView.md
-          - YAML View: probes/availableProbes/DeleteRabbitMqVirtualHosts/configuration/yamlView.md
-        - DownloadRabbitMqDefinitions:
-          - Overview: probes/availableProbes/DownloadRabbitMqDefinitions/overview.md
-          - Table View: probes/availableProbes/DownloadRabbitMqDefinitions/configuration/tableView.md
-          - YAML View: probes/availableProbes/DownloadRabbitMqDefinitions/configuration/yamlView.md
-        - PurgeRabbitMqQueues:
-          - Overview: probes/availableProbes/PurgeRabbitMqQueues/overview.md
-          - Table View: probes/availableProbes/PurgeRabbitMqQueues/configuration/tableView.md
-          - YAML View: probes/availableProbes/PurgeRabbitMqQueues/configuration/yamlView.md
-        - UploadRabbitMqDefinitions:
-          - Overview: probes/availableProbes/UploadRabbitMqDefinitions/overview.md
-          - Table View: probes/availableProbes/UploadRabbitMqDefinitions/configuration/tableView.md
-          - YAML View: probes/availableProbes/UploadRabbitMqDefinitions/configuration/yamlView.md
-        - UpsertRabbitMqPermissions:
-          - Overview: probes/availableProbes/UpsertRabbitMqPermissions/overview.md
-          - Table View: probes/availableProbes/UpsertRabbitMqPermissions/configuration/tableView.md
-          - YAML View: probes/availableProbes/UpsertRabbitMqPermissions/configuration/yamlView.md
-        - FlushAllRedis:
-          - Overview: probes/availableProbes/FlushAllRedis/overview.md
-          - Table View: probes/availableProbes/FlushAllRedis/configuration/tableView.md
-          - YAML View: probes/availableProbes/FlushAllRedis/configuration/yamlView.md
-        - FlushDbRedis:
-          - Overview: probes/availableProbes/FlushDbRedis/overview.md
-          - Table View: probes/availableProbes/FlushDbRedis/configuration/tableView.md
-          - YAML View: probes/availableProbes/FlushDbRedis/configuration/yamlView.md
-        - EmptyRedisByChunks:
-          - Overview: probes/availableProbes/EmptyRedisByChunks/overview.md
-          - Table View: probes/availableProbes/EmptyRedisByChunks/configuration/tableView.md
-          - YAML View: probes/availableProbes/EmptyRedisByChunks/configuration/yamlView.md
-        - ExecuteRedisCommand:
-          - Overview: probes/availableProbes/ExecuteRedisCommand/overview.md
-          - Table View: probes/availableProbes/ExecuteRedisCommand/configuration/tableView.md
-          - YAML View: probes/availableProbes/ExecuteRedisCommand/configuration/yamlView.md
-        - ExecuteRedisCommands:
-          - Overview: probes/availableProbes/ExecuteRedisCommands/overview.md
-          - Table View: probes/availableProbes/ExecuteRedisCommands/configuration/tableView.md
-          - YAML View: probes/availableProbes/ExecuteRedisCommands/configuration/yamlView.md
-        - EmptyMongoDbCollection:
-          - Overview: probes/availableProbes/EmptyMongoDbCollection/overview.md
-          - Table View: probes/availableProbes/EmptyMongoDbCollection/configuration/tableView.md
-          - YAML View: probes/availableProbes/EmptyMongoDbCollection/configuration/yamlView.md
-        - EmptyS3Bucket:
-          - Overview: probes/availableProbes/EmptyS3Bucket/overview.md
-          - Table View: probes/availableProbes/EmptyS3Bucket/configuration/tableView.md
-          - YAML View: probes/availableProbes/EmptyS3Bucket/configuration/yamlView.md
-        - DeleteS3Bucket:
-          - Overview: probes/availableProbes/DeleteS3Bucket/overview.md
-          - Table View: probes/availableProbes/DeleteS3Bucket/configuration/tableView.md
-          - YAML View: probes/availableProbes/DeleteS3Bucket/configuration/yamlView.md
-        - MsSqlDataBaseTablesTruncate:
-          - Overview: probes/availableProbes/MsSqlDataBaseTablesTruncate/overview.md
-          - Table View: probes/availableProbes/MsSqlDataBaseTablesTruncate/configuration/tableView.md
-          - YAML View: probes/availableProbes/MsSqlDataBaseTablesTruncate/configuration/yamlView.md
-        - PostgreSqlDataBaseTablesTruncate:
-          - Overview: probes/availableProbes/PostgreSqlDataBaseTablesTruncate/overview.md
-          - Table View: probes/availableProbes/PostgreSqlDataBaseTablesTruncate/configuration/tableView.md
-          - YAML View: probes/availableProbes/PostgreSqlDataBaseTablesTruncate/configuration/yamlView.md
-        - OracleSqlDataBaseTablesTruncate:
-          - Overview: probes/availableProbes/OracleSqlDataBaseTablesTruncate/overview.md
-          - Table View: probes/availableProbes/OracleSqlDataBaseTablesTruncate/configuration/tableView.md
-          - YAML View: probes/availableProbes/OracleSqlDataBaseTablesTruncate/configuration/yamlView.md
-        - EmptyElasticIndices:
-          - Overview: probes/availableProbes/EmptyElasticIndices/overview.md
-          - Table View: probes/availableProbes/EmptyElasticIndices/configuration/tableView.md
-          - YAML View: probes/availableProbes/EmptyElasticIndices/configuration/yamlView.md
+        - RabbitMQ administration:
+          - CreateRabbitMqBindings:
+            - Overview: probes/availableProbes/CreateRabbitMqBindings/overview.md
+            - Table View: probes/availableProbes/CreateRabbitMqBindings/configuration/tableView.md
+            - YAML View: probes/availableProbes/CreateRabbitMqBindings/configuration/yamlView.md
+          - DeleteRabbitMqBindings:
+            - Overview: probes/availableProbes/DeleteRabbitMqBindings/overview.md
+            - Table View: probes/availableProbes/DeleteRabbitMqBindings/configuration/tableView.md
+            - YAML View: probes/availableProbes/DeleteRabbitMqBindings/configuration/yamlView.md
+          - DownloadRabbitMqDefinitions:
+            - Overview: probes/availableProbes/DownloadRabbitMqDefinitions/overview.md
+            - Table View: probes/availableProbes/DownloadRabbitMqDefinitions/configuration/tableView.md
+            - YAML View: probes/availableProbes/DownloadRabbitMqDefinitions/configuration/yamlView.md
+          - UploadRabbitMqDefinitions:
+            - Overview: probes/availableProbes/UploadRabbitMqDefinitions/overview.md
+            - Table View: probes/availableProbes/UploadRabbitMqDefinitions/configuration/tableView.md
+            - YAML View: probes/availableProbes/UploadRabbitMqDefinitions/configuration/yamlView.md
+          - CreateRabbitMqExchanges:
+            - Overview: probes/availableProbes/CreateRabbitMqExchanges/overview.md
+            - Table View: probes/availableProbes/CreateRabbitMqExchanges/configuration/tableView.md
+            - YAML View: probes/availableProbes/CreateRabbitMqExchanges/configuration/yamlView.md
+          - DeleteRabbitMqExchanges:
+            - Overview: probes/availableProbes/DeleteRabbitMqExchanges/overview.md
+            - Table View: probes/availableProbes/DeleteRabbitMqExchanges/configuration/tableView.md
+            - YAML View: probes/availableProbes/DeleteRabbitMqExchanges/configuration/yamlView.md
+          - DeleteRabbitMqPermissions:
+            - Overview: probes/availableProbes/DeleteRabbitMqPermissions/overview.md
+            - Table View: probes/availableProbes/DeleteRabbitMqPermissions/configuration/tableView.md
+            - YAML View: probes/availableProbes/DeleteRabbitMqPermissions/configuration/yamlView.md
+          - UpsertRabbitMqPermissions:
+            - Overview: probes/availableProbes/UpsertRabbitMqPermissions/overview.md
+            - Table View: probes/availableProbes/UpsertRabbitMqPermissions/configuration/tableView.md
+            - YAML View: probes/availableProbes/UpsertRabbitMqPermissions/configuration/yamlView.md
+          - CreateRabbitMqQueues:
+            - Overview: probes/availableProbes/CreateRabbitMqQueues/overview.md
+            - Table View: probes/availableProbes/CreateRabbitMqQueues/configuration/tableView.md
+            - YAML View: probes/availableProbes/CreateRabbitMqQueues/configuration/yamlView.md
+          - DeleteRabbitMqQueues:
+            - Overview: probes/availableProbes/DeleteRabbitMqQueues/overview.md
+            - Table View: probes/availableProbes/DeleteRabbitMqQueues/configuration/tableView.md
+            - YAML View: probes/availableProbes/DeleteRabbitMqQueues/configuration/yamlView.md
+          - PurgeRabbitMqQueues:
+            - Overview: probes/availableProbes/PurgeRabbitMqQueues/overview.md
+            - Table View: probes/availableProbes/PurgeRabbitMqQueues/configuration/tableView.md
+            - YAML View: probes/availableProbes/PurgeRabbitMqQueues/configuration/yamlView.md
+          - CreateRabbitMqUsers:
+            - Overview: probes/availableProbes/CreateRabbitMqUsers/overview.md
+            - Table View: probes/availableProbes/CreateRabbitMqUsers/configuration/tableView.md
+            - YAML View: probes/availableProbes/CreateRabbitMqUsers/configuration/yamlView.md
+          - DeleteRabbitMqUsers:
+            - Overview: probes/availableProbes/DeleteRabbitMqUsers/overview.md
+            - Table View: probes/availableProbes/DeleteRabbitMqUsers/configuration/tableView.md
+            - YAML View: probes/availableProbes/DeleteRabbitMqUsers/configuration/yamlView.md
+          - CreateRabbitMqVirtualHosts:
+            - Overview: probes/availableProbes/CreateRabbitMqVirtualHosts/overview.md
+            - Table View: probes/availableProbes/CreateRabbitMqVirtualHosts/configuration/tableView.md
+            - YAML View: probes/availableProbes/CreateRabbitMqVirtualHosts/configuration/yamlView.md
+          - DeleteRabbitMqVirtualHosts:
+            - Overview: probes/availableProbes/DeleteRabbitMqVirtualHosts/overview.md
+            - Table View: probes/availableProbes/DeleteRabbitMqVirtualHosts/configuration/tableView.md
+            - YAML View: probes/availableProbes/DeleteRabbitMqVirtualHosts/configuration/yamlView.md
+        - Redis maintenance:
+          - ExecuteRedisCommand:
+            - Overview: probes/availableProbes/ExecuteRedisCommand/overview.md
+            - Table View: probes/availableProbes/ExecuteRedisCommand/configuration/tableView.md
+            - YAML View: probes/availableProbes/ExecuteRedisCommand/configuration/yamlView.md
+          - ExecuteRedisCommands:
+            - Overview: probes/availableProbes/ExecuteRedisCommands/overview.md
+            - Table View: probes/availableProbes/ExecuteRedisCommands/configuration/tableView.md
+            - YAML View: probes/availableProbes/ExecuteRedisCommands/configuration/yamlView.md
+          - FlushAllRedis:
+            - Overview: probes/availableProbes/FlushAllRedis/overview.md
+            - Table View: probes/availableProbes/FlushAllRedis/configuration/tableView.md
+            - YAML View: probes/availableProbes/FlushAllRedis/configuration/yamlView.md
+          - FlushDbRedis:
+            - Overview: probes/availableProbes/FlushDbRedis/overview.md
+            - Table View: probes/availableProbes/FlushDbRedis/configuration/tableView.md
+            - YAML View: probes/availableProbes/FlushDbRedis/configuration/yamlView.md
+        - Document stores:
+          - EmptyElasticIndices:
+            - Overview: probes/availableProbes/EmptyElasticIndices/overview.md
+            - Table View: probes/availableProbes/EmptyElasticIndices/configuration/tableView.md
+            - YAML View: probes/availableProbes/EmptyElasticIndices/configuration/yamlView.md
+          - EmptyMongoDbCollection:
+            - Overview: probes/availableProbes/EmptyMongoDbCollection/overview.md
+            - Table View: probes/availableProbes/EmptyMongoDbCollection/configuration/tableView.md
+            - YAML View: probes/availableProbes/EmptyMongoDbCollection/configuration/yamlView.md
+        - Object storage:
+          - DeleteS3Bucket:
+            - Overview: probes/availableProbes/DeleteS3Bucket/overview.md
+            - Table View: probes/availableProbes/DeleteS3Bucket/configuration/tableView.md
+            - YAML View: probes/availableProbes/DeleteS3Bucket/configuration/yamlView.md
+          - EmptyS3Bucket:
+            - Overview: probes/availableProbes/EmptyS3Bucket/overview.md
+            - Table View: probes/availableProbes/EmptyS3Bucket/configuration/tableView.md
+            - YAML View: probes/availableProbes/EmptyS3Bucket/configuration/yamlView.md
+        - SQL maintenance:
+          - MsSqlDataBaseTablesTruncate:
+            - Overview: probes/availableProbes/MsSqlDataBaseTablesTruncate/overview.md
+            - Table View: probes/availableProbes/MsSqlDataBaseTablesTruncate/configuration/tableView.md
+            - YAML View: probes/availableProbes/MsSqlDataBaseTablesTruncate/configuration/yamlView.md
+          - OracleSqlDataBaseTablesTruncate:
+            - Overview: probes/availableProbes/OracleSqlDataBaseTablesTruncate/overview.md
+            - Table View: probes/availableProbes/OracleSqlDataBaseTablesTruncate/configuration/tableView.md
+            - YAML View: probes/availableProbes/OracleSqlDataBaseTablesTruncate/configuration/yamlView.md
+          - PostgreSqlDataBaseTablesTruncate:
+            - Overview: probes/availableProbes/PostgreSqlDataBaseTablesTruncate/overview.md
+            - Table View: probes/availableProbes/PostgreSqlDataBaseTablesTruncate/configuration/tableView.md
+            - YAML View: probes/availableProbes/PostgreSqlDataBaseTablesTruncate/configuration/yamlView.md
+        - Cluster orchestration:
+          - OsEditYamlConfigMap:
+            - Overview: probes/availableProbes/OsEditYamlConfigMap/overview.md
+            - Table View: probes/availableProbes/OsEditYamlConfigMap/configuration/tableView.md
+            - YAML View: probes/availableProbes/OsEditYamlConfigMap/configuration/yamlView.md
+          - OsChangeDeploymentEnvVars:
+            - Overview: probes/availableProbes/OsChangeDeploymentEnvVars/overview.md
+            - Table View: probes/availableProbes/OsChangeDeploymentEnvVars/configuration/tableView.md
+            - YAML View: probes/availableProbes/OsChangeDeploymentEnvVars/configuration/yamlView.md
+          - OsChangeStatefulSetEnvVars:
+            - Overview: probes/availableProbes/OsChangeStatefulSetEnvVars/overview.md
+            - Table View: probes/availableProbes/OsChangeStatefulSetEnvVars/configuration/tableView.md
+            - YAML View: probes/availableProbes/OsChangeStatefulSetEnvVars/configuration/yamlView.md
+          - OsUpdateDeploymentImage:
+            - Overview: probes/availableProbes/OsUpdateDeploymentImage/overview.md
+            - Table View: probes/availableProbes/OsUpdateDeploymentImage/configuration/tableView.md
+            - YAML View: probes/availableProbes/OsUpdateDeploymentImage/configuration/yamlView.md
+          - OsUpdateStatefulSetImage:
+            - Overview: probes/availableProbes/OsUpdateStatefulSetImage/overview.md
+            - Table View: probes/availableProbes/OsUpdateStatefulSetImage/configuration/tableView.md
+            - YAML View: probes/availableProbes/OsUpdateStatefulSetImage/configuration/yamlView.md
+          - OsExecuteCommandsInContainers:
+            - Overview: probes/availableProbes/OsExecuteCommandsInContainers/overview.md
+            - Table View: probes/availableProbes/OsExecuteCommandsInContainers/configuration/tableView.md
+            - YAML View: probes/availableProbes/OsExecuteCommandsInContainers/configuration/yamlView.md
+          - OsRestartPods:
+            - Overview: probes/availableProbes/OsRestartPods/overview.md
+            - Table View: probes/availableProbes/OsRestartPods/configuration/tableView.md
+            - YAML View: probes/availableProbes/OsRestartPods/configuration/yamlView.md
+          - OsUpdateDeploymentResources:
+            - Overview: probes/availableProbes/OsUpdateDeploymentResources/overview.md
+            - Table View: probes/availableProbes/OsUpdateDeploymentResources/configuration/tableView.md
+            - YAML View: probes/availableProbes/OsUpdateDeploymentResources/configuration/yamlView.md
+          - OsUpdateStatefulSetResources:
+            - Overview: probes/availableProbes/OsUpdateStatefulSetResources/overview.md
+            - Table View: probes/availableProbes/OsUpdateStatefulSetResources/configuration/tableView.md
+            - YAML View: probes/availableProbes/OsUpdateStatefulSetResources/configuration/yamlView.md
+          - OsScaleDeploymentPods:
+            - Overview: probes/availableProbes/OsScaleDeploymentPods/overview.md
+            - Table View: probes/availableProbes/OsScaleDeploymentPods/configuration/tableView.md
+            - YAML View: probes/availableProbes/OsScaleDeploymentPods/configuration/yamlView.md
+          - OsScaleStatefulSetPods:
+            - Overview: probes/availableProbes/OsScaleStatefulSetPods/overview.md
+            - Table View: probes/availableProbes/OsScaleStatefulSetPods/configuration/tableView.md
+            - YAML View: probes/availableProbes/OsScaleStatefulSetPods/configuration/yamlView.md
+        - Other:
+          - EmptyRedisByChunks:
+            - Overview: probes/availableProbes/EmptyRedisByChunks/overview.md
+            - Table View: probes/availableProbes/EmptyRedisByChunks/configuration/tableView.md
+            - YAML View: probes/availableProbes/EmptyRedisByChunks/configuration/yamlView.md
+      # qaas-docs-generator end: hook-probes
     - Processors:
       - Introduction: processors/index.md
+      # qaas-docs-generator start: hook-processors
       - Available Processors:
-        - ConditionalResponseProcessor:
-          - Overview: processors/availableProcessors/ConditionalResponseProcessor/overview.md
-          - Table View: processors/availableProcessors/ConditionalResponseProcessor/configuration/tableView.md
-          - YAML View: processors/availableProcessors/ConditionalResponseProcessor/configuration/yamlView.md
-        - DataSourceResponseProcessor:
-          - Overview: processors/availableProcessors/DataSourceResponseProcessor/overview.md
-          - Table View: processors/availableProcessors/DataSourceResponseProcessor/configuration/tableView.md
-          - YAML View: processors/availableProcessors/DataSourceResponseProcessor/configuration/yamlView.md
-        - JsonEnvelopeProcessor:
-          - Overview: processors/availableProcessors/JsonEnvelopeProcessor/overview.md
-          - Table View: processors/availableProcessors/JsonEnvelopeProcessor/configuration/tableView.md
-          - YAML View: processors/availableProcessors/JsonEnvelopeProcessor/configuration/yamlView.md
-        - PassThroughProcessor:
-          - Overview: processors/availableProcessors/PassThroughProcessor/overview.md
-          - Table View: processors/availableProcessors/PassThroughProcessor/configuration/tableView.md
-          - YAML View: processors/availableProcessors/PassThroughProcessor/configuration/yamlView.md
-        - ProblemDetailsProcessor:
-          - Overview: processors/availableProcessors/ProblemDetailsProcessor/overview.md
-          - Table View: processors/availableProcessors/ProblemDetailsProcessor/configuration/tableView.md
-          - YAML View: processors/availableProcessors/ProblemDetailsProcessor/configuration/yamlView.md
-        - RequestEchoProcessor:
-          - Overview: processors/availableProcessors/RequestEchoProcessor/overview.md
-          - Table View: processors/availableProcessors/RequestEchoProcessor/configuration/tableView.md
-          - YAML View: processors/availableProcessors/RequestEchoProcessor/configuration/yamlView.md
-        - StaticResponseProcessor:
-          - Overview: processors/availableProcessors/StaticResponseProcessor/overview.md
-          - Table View: processors/availableProcessors/StaticResponseProcessor/configuration/tableView.md
-          - YAML View: processors/availableProcessors/StaticResponseProcessor/configuration/yamlView.md
-        - StatusCodeTransactionProcessor:
-          - Overview: processors/availableProcessors/StatusCodeTransactionProcessor/overview.md
-          - Table View: processors/availableProcessors/StatusCodeTransactionProcessor/configuration/tableView.md
-          - YAML View: processors/availableProcessors/StatusCodeTransactionProcessor/configuration/yamlView.md
-        - TextTransformProcessor:
-          - Overview: processors/availableProcessors/TextTransformProcessor/overview.md
-          - Table View: processors/availableProcessors/TextTransformProcessor/configuration/tableView.md
-          - YAML View: processors/availableProcessors/TextTransformProcessor/configuration/yamlView.md
-
+        - Static responses:
+          - StaticResponseProcessor:
+            - Overview: processors/availableProcessors/StaticResponseProcessor/overview.md
+            - Table View: processors/availableProcessors/StaticResponseProcessor/configuration/tableView.md
+            - YAML View: processors/availableProcessors/StaticResponseProcessor/configuration/yamlView.md
+          - StatusCodeTransactionProcessor:
+            - Overview: processors/availableProcessors/StatusCodeTransactionProcessor/overview.md
+            - Table View: processors/availableProcessors/StatusCodeTransactionProcessor/configuration/tableView.md
+            - YAML View: processors/availableProcessors/StatusCodeTransactionProcessor/configuration/yamlView.md
+        - Request-derived responses:
+          - RequestEchoProcessor:
+            - Overview: processors/availableProcessors/RequestEchoProcessor/overview.md
+            - Table View: processors/availableProcessors/RequestEchoProcessor/configuration/tableView.md
+            - YAML View: processors/availableProcessors/RequestEchoProcessor/configuration/yamlView.md
+          - PassThroughProcessor:
+            - Overview: processors/availableProcessors/PassThroughProcessor/overview.md
+            - Table View: processors/availableProcessors/PassThroughProcessor/configuration/tableView.md
+            - YAML View: processors/availableProcessors/PassThroughProcessor/configuration/yamlView.md
+        - Transformations:
+          - JsonEnvelopeProcessor:
+            - Overview: processors/availableProcessors/JsonEnvelopeProcessor/overview.md
+            - Table View: processors/availableProcessors/JsonEnvelopeProcessor/configuration/tableView.md
+            - YAML View: processors/availableProcessors/JsonEnvelopeProcessor/configuration/yamlView.md
+          - TextTransformProcessor:
+            - Overview: processors/availableProcessors/TextTransformProcessor/overview.md
+            - Table View: processors/availableProcessors/TextTransformProcessor/configuration/tableView.md
+            - YAML View: processors/availableProcessors/TextTransformProcessor/configuration/yamlView.md
+        - Data-driven responses:
+          - ConditionalResponseProcessor:
+            - Overview: processors/availableProcessors/ConditionalResponseProcessor/overview.md
+            - Table View: processors/availableProcessors/ConditionalResponseProcessor/configuration/tableView.md
+            - YAML View: processors/availableProcessors/ConditionalResponseProcessor/configuration/yamlView.md
+          - DataSourceResponseProcessor:
+            - Overview: processors/availableProcessors/DataSourceResponseProcessor/overview.md
+            - Table View: processors/availableProcessors/DataSourceResponseProcessor/configuration/tableView.md
+            - YAML View: processors/availableProcessors/DataSourceResponseProcessor/configuration/yamlView.md
+        - Error responses:
+          - ProblemDetailsProcessor:
+            - Overview: processors/availableProcessors/ProblemDetailsProcessor/overview.md
+            - Table View: processors/availableProcessors/ProblemDetailsProcessor/configuration/tableView.md
+            - YAML View: processors/availableProcessors/ProblemDetailsProcessor/configuration/yamlView.md
+      # qaas-docs-generator end: hook-processors
   - Framework:
     - Introduction: framework/index.md
     - Functions:
       - Overview: framework/functions/index.md
+      # qaas-docs-generator start: framework-functions
       - Builders:
-        - Data Sources: framework/functions/builders/data-sources.md
+        - Data Sources:
+          - Overview: framework/functions/builders/data-sources.md
+          - Identity and hook selection: framework/functions/builders/data-sources-sections/identity-and-hook-selection.md
+          - Data source selection: framework/functions/builders/data-sources-sections/data-source-selection.md
+          - Configuration: framework/functions/builders/data-sources-sections/configuration.md
+          - Inspection: framework/functions/builders/data-sources-sections/inspection.md
+          - Collection helpers: framework/functions/builders/data-sources-sections/collection-helpers.md
+          - General: framework/functions/builders/data-sources-sections/general.md
         - Policies: framework/functions/builders/policies.md
-      - Contexts: framework/functions/contexts.md
-      - Placeholders: framework/functions/placeholders.md
-      - YAML: framework/functions/yaml.md
-      - Enumerables: framework/functions/enumerables.md
-      - Extension Methods: framework/functions/extension-methods.md
+      - Functions:
+        - Contexts:
+          - Overview: framework/functions/contexts.md
+          - Executions: framework/functions/contexts-sections/executions.md
+          - Contexts: framework/functions/contexts-sections/contexts.md
+          - Configuration: framework/functions/contexts-sections/configuration.md
+          - Reporting and artifacts: framework/functions/contexts-sections/reporting-and-artifacts.md
+          - General: framework/functions/contexts-sections/general.md
+        - Enumerables: framework/functions/enumerables.md
+        - Placeholders: framework/functions/placeholders.md
+        - YAML: framework/functions/yaml.md
+      - Extension Methods:
+        - Extension Methods:
+          - Overview: framework/functions/extension-methods.md
+          - Configuration:
+            - Overview: framework/functions/extension-methods-sections/configuration.md
+            - Placeholders: framework/functions/extension-methods-sections/configuration/placeholders.md
+            - YAML: framework/functions/extension-methods-sections/configuration/yaml.md
+          - Extension Methods:
+            - Overview: framework/functions/extension-methods-sections/extension-methods.md
+            - Communication data: framework/functions/extension-methods-sections/extension-methods/communication-data.md
+            - Configuration merge utilities: framework/functions/extension-methods-sections/extension-methods/configuration-merge-utilities.md
+            - Configuration references parser: framework/functions/extension-methods-sections/extension-methods/configuration-references-parser.md
+            - Configuration update: framework/functions/extension-methods-sections/extension-methods/configuration-update.md
+            - Configuration utilities: framework/functions/extension-methods-sections/extension-methods/configuration-utilities.md
+            - Data: framework/functions/extension-methods-sections/extension-methods/data.md
+            - Data source: framework/functions/extension-methods-sections/extension-methods/data-source.md
+            - Date time: framework/functions/extension-methods-sections/extension-methods/date-time.md
+            - Running communication data: framework/functions/extension-methods-sections/extension-methods/running-communication-data.md
+            - Running session data: framework/functions/extension-methods-sections/extension-methods/running-session-data.md
+            - Serilog: framework/functions/extension-methods-sections/extension-methods/serilog.md
+            - Session data: framework/functions/extension-methods-sections/extension-methods/session-data.md
+          - Utilities:
+            - Overview: framework/functions/extension-methods-sections/utilities.md
+            - Enumerables: framework/functions/extension-methods-sections/utilities/enumerables.md
+      # qaas-docs-generator end: framework-functions
     - Projects:
       - SDK: framework/projects/sdk.md
       - Configuration: framework/projects/configuration.md

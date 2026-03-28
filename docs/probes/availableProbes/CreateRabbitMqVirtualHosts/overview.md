@@ -4,8 +4,6 @@ Creates RabbitMQ virtual hosts through the management API so later probes and se
 
 > Logical group: RabbitMQ administration / Virtual hosts lifecycle
 
-> Logical group: RabbitMQ administration / Virtual hosts lifecycle
-
 ## What It Does
 
 Creates RabbitMQ virtual hosts through the management API.

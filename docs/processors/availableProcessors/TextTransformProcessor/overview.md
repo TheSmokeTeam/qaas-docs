@@ -4,8 +4,6 @@ Reads the incoming payload as text, applies the configured text transformation, 
 
 > Logical group: Transformations / Text transformation
 
-> Logical group: Transformations / Text transformation
-
 ## What It Does
 
 Reads the incoming request body as text, optionally trims it, replaces matched text, and then adds a prefix and suffix before returning the transformed result.
