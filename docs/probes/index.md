@@ -54,8 +54,11 @@ The built-in hooks below are grouped by usage area so it is easier to shortlist 
 
 ### Databases
 
+- [DeleteElasticIndices](availableProbes/DeleteElasticIndices/overview.md): Deletes every Elasticsearch index that matches the configured index pattern.
 - [EmptyElasticIndices](availableProbes/EmptyElasticIndices/overview.md): Empties elastic indices by their index pattern
+- [DropMongoDbCollection](availableProbes/DropMongoDbCollection/overview.md): Drops the configured MongoDB collection so a later run can recreate it from scratch.
 - [EmptyMongoDbCollection](availableProbes/EmptyMongoDbCollection/overview.md): Deletes all documents from the configured MongoDB collection so it starts clean for the test run.
+- [CreateS3Bucket](availableProbes/CreateS3Bucket/overview.md): Ensures the configured S3 bucket exists by creating it when it is missing.
 - [DeleteS3Bucket](availableProbes/DeleteS3Bucket/overview.md): Probe to delete a s3 bucket
 - [EmptyS3Bucket](availableProbes/EmptyS3Bucket/overview.md): Probe to empty a s3 bucket according to a certain prefix
 

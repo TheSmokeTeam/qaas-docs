@@ -471,14 +471,26 @@ nav:
             - Table View: probes/availableProbes/FlushDbRedis/configuration/tableView.md
             - YAML View: probes/availableProbes/FlushDbRedis/configuration/yamlView.md
         - Databases:
+          - DeleteElasticIndices:
+            - Overview: probes/availableProbes/DeleteElasticIndices/overview.md
+            - Table View: probes/availableProbes/DeleteElasticIndices/configuration/tableView.md
+            - YAML View: probes/availableProbes/DeleteElasticIndices/configuration/yamlView.md
           - EmptyElasticIndices:
             - Overview: probes/availableProbes/EmptyElasticIndices/overview.md
             - Table View: probes/availableProbes/EmptyElasticIndices/configuration/tableView.md
             - YAML View: probes/availableProbes/EmptyElasticIndices/configuration/yamlView.md
+          - DropMongoDbCollection:
+            - Overview: probes/availableProbes/DropMongoDbCollection/overview.md
+            - Table View: probes/availableProbes/DropMongoDbCollection/configuration/tableView.md
+            - YAML View: probes/availableProbes/DropMongoDbCollection/configuration/yamlView.md
           - EmptyMongoDbCollection:
             - Overview: probes/availableProbes/EmptyMongoDbCollection/overview.md
             - Table View: probes/availableProbes/EmptyMongoDbCollection/configuration/tableView.md
             - YAML View: probes/availableProbes/EmptyMongoDbCollection/configuration/yamlView.md
+          - CreateS3Bucket:
+            - Overview: probes/availableProbes/CreateS3Bucket/overview.md
+            - Table View: probes/availableProbes/CreateS3Bucket/configuration/tableView.md
+            - YAML View: probes/availableProbes/CreateS3Bucket/configuration/yamlView.md
           - DeleteS3Bucket:
             - Overview: probes/availableProbes/DeleteS3Bucket/overview.md
             - Table View: probes/availableProbes/DeleteS3Bucket/configuration/tableView.md
