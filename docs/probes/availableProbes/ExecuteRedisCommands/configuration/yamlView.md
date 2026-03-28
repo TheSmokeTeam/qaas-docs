@@ -14,6 +14,11 @@ ProbeConfiguration:
   Username:
   Commands:
     - Command:
+      StoreResultAs:
       Arguments: []
   HostNames: []
+  RepeatUntil:
+    ExpectedValue:
+    ResultPath:
+    MaxIterations:
 ```
