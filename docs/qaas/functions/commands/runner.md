@@ -1,10 +1,11 @@
 # Runner
 
-Each entry uses the short function name as the table-of-contents label. Expand an entry to inspect its location, signature, and XML doc comments.
+Each entry uses the short function name as the table-of-contents label. Expand an entry to inspect its source file, signature, and XML doc comments.
+
 
 ## `Run`
 
-??? info "Location, signature, and docstring"
+??? info "Source file, signature, and docstring"
     **Member**
     `Runner.Run()`
     
@@ -12,7 +13,7 @@ Each entry uses the short function name as the table-of-contents label. Expand a
     
     **Declaring Type** `Runner`
     
-    **Location** `QaaS.Runner/Runner.cs:70`
+    **Source File** `QaaS.Runner/Runner.cs`
     
     **Signature**
     ```csharp
@@ -27,7 +28,7 @@ Each entry uses the short function name as the table-of-contents label. Expand a
 
 ## `RunAndGetExitCode`
 
-??? info "Location, signature, and docstring"
+??? info "Source file, signature, and docstring"
     **Member**
     `Runner.RunAndGetExitCode()`
     
@@ -35,7 +36,7 @@ Each entry uses the short function name as the table-of-contents label. Expand a
     
     **Declaring Type** `Runner`
     
-    **Location** `QaaS.Runner/Runner.cs:83`
+    **Source File** `QaaS.Runner/Runner.cs`
     
     **Signature**
     ```csharp
@@ -50,7 +51,7 @@ Each entry uses the short function name as the table-of-contents label. Expand a
 
 ## `Dispose`
 
-??? info "Location, signature, and docstring"
+??? info "Source file, signature, and docstring"
     **Member**
     `Runner.Dispose()`
     
@@ -58,7 +59,7 @@ Each entry uses the short function name as the table-of-contents label. Expand a
     
     **Declaring Type** `Runner`
     
-    **Location** `QaaS.Runner/Runner.cs:234`
+    **Source File** `QaaS.Runner/Runner.cs`
     
     **Signature**
     ```csharp

@@ -1,21 +1,23 @@
 # Framework Functions
 
-This overview is generated from source-level `qaas-docs` annotations and the current public extension-method surface.
+This overview indexes the current public function surface documented through source-level `qaas-docs` annotations and extension-method XML docs.
 
-Each category page keeps the table of contents focused on short function names and collapses the location, signature, and XML doc comments behind each entry.
+Each category page keeps the table of contents focused on short function names and collapses the source file, signature, and XML doc comments behind each entry.
 
-## Builders
+## Available Functions
+
+### Builders
 
 - [Data Sources](builders/data-sources.md)
 - [Policies](builders/policies.md)
 
-## Functions
+### Functions
 
 - [Contexts](contexts.md)
 - [Enumerables](enumerables.md)
 - [Placeholders](placeholders.md)
 - [YAML](yaml.md)
 
-## Extension Methods
+### Extension Methods
 
 - [Extension Methods](extension-methods.md)

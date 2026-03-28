@@ -1,6 +1,6 @@
 # Storages
 
-The Storages section contains external storage definitions that QaaS runtime objects can be stored in or retrieved from when using the `qaas act` or `qaas assert` commands.
+The Storages section contains external storage definitions that QaaS runtime objects can be stored in or retrieved from when using the [`qaas act`](../../commands/act.md) or [`qaas assert`](../../commands/assert.md) commands.
 Currently, the main stored object is `SessionData`, which is generated from [Sessions](../sessions/overview.md) and then used by [Assertions](../assertions/overview.md) and [DataSources](../dataSources/overview.md).
 
 ## Available Storage Types

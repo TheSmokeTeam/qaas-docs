@@ -1,6 +1,6 @@
 # Create a Mock (YAML)
 
-Use YAML when the mock shape is mostly declarative and you want the runtime definition to stay easy to scan: where the data comes from, which stub processes it, and which server endpoint exposes it. QaaS.Mocker reads those sections into the same execution builder concepts you will use in larger mocks later.
+Use YAML when the mock shape is mostly declarative and you want the runtime definition to stay easy to scan: where the [DataSources](../userInterfaces/mocker/configurationSections/dataSources/overview.md) come from, which [Stub](../userInterfaces/mocker/configurationSections/stubs/overview.md) processes them, and which [Server](../userInterfaces/mocker/configurationSections/server/overview.md) endpoint exposes them. QaaS.Mocker reads those sections into the same execution builder concepts you will use in larger mocks later.
 
 This version keeps the mock definition in `mocker.qaas.yaml` and uses a small local processor for the response body.
 
@@ -22,7 +22,7 @@ cd DummyAppMock
 dotnet add DummyAppMock/DummyAppMock.csproj package QaaS.Common.Generators
 ```
 
-The sample keeps the response processor local so the quick start stays compatible with the currently published public packages.
+The sample keeps the response [Processor](../../processors/index.md) local so the quick start stays compatible with the currently published public packages.
 
 ## Keep `Program.cs` Minimal
 
@@ -92,7 +92,7 @@ public sealed record NoConfiguration;
 
 ## Start with the `DataSources` Section
 
-Begin by telling Mocker where the response payload lives.
+Begin by telling Mocker where the response payload lives through [DataSources](../userInterfaces/mocker/configurationSections/dataSources/overview.md).
 
 `DummyAppMock/mocker.qaas.yaml`
 
@@ -121,11 +121,11 @@ Stubs:
     DataSourceNames: [ServerData]
 ```
 
-The stub says that when a request reaches this action, Mocker should call `ServerDataProcessor` and give it the `ServerData` data source.
+The [Stub](../userInterfaces/mocker/configurationSections/stubs/overview.md) says that when a request reaches this action, Mocker should call `ServerDataProcessor` and give it the `ServerData` data source.
 
 ## Add the `Servers` Section
 
-Finally define the HTTP server and map `GET /data` to the stub you just created.
+Finally define the [Server](../userInterfaces/mocker/configurationSections/server/overview.md) and map `GET /data` to the stub you just created.
 
 Append this section to `mocker.qaas.yaml`:
 

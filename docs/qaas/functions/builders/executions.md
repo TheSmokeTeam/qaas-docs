@@ -1,378 +1,14 @@
 # Executions
 
-Each entry uses the short function name as the table-of-contents label. Expand an entry to inspect its location, signature, and XML doc comments.
+Each entry uses the short function name as the table-of-contents label. Expand an entry to inspect its source file, signature, and XML doc comments.
 
-## `WithGlobalDict`
+The functions on this page are grouped by responsibility so related operations stay together.
 
-??? info "Location, signature, and docstring"
-    **Member**
-    `ExecutionBuilder.WithGlobalDict(Dictionary<string, object?> globalDict)`
-    
-    **Kind** `function`
-    
-    **Declaring Type** `ExecutionBuilder`
-    
-    **Location** `QaaS.Runner/ExecutionBuilder.cs:241`
-    
-    **Signature**
-    ```csharp
-    public ExecutionBuilder WithGlobalDict(Dictionary<string, object?> globalDict)
-    ```
-    
-    **Docstring**
-    
-    Replaces the global dictionary stored on the runner execution context.
-    
-    Use this method when working with the documented Runner execution builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
+## Data source selection
 
-## `AddSession`
+### `AddDataSource`
 
-??? info "Location, signature, and docstring"
-    **Member**
-    `ExecutionBuilder.AddSession(SessionBuilder sessionBuilder)`
-    
-    **Kind** `function`
-    
-    **Declaring Type** `ExecutionBuilder`
-    
-    **Location** `QaaS.Runner/ExecutionBuilder.cs:254`
-    
-    **Signature**
-    ```csharp
-    public ExecutionBuilder AddSession(SessionBuilder sessionBuilder)
-    ```
-    
-    **Docstring**
-    
-    Adds the supplied session to the current Runner execution builder instance.
-    
-    Use this method when working with the documented Runner execution builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
-
-## `CreateSession`
-
-??? info "Location, signature, and docstring"
-    **Member**
-    `ExecutionBuilder.CreateSession(SessionBuilder sessionBuilder)`
-    
-    **Kind** `function`
-    
-    **Declaring Type** `ExecutionBuilder`
-    
-    **Location** `QaaS.Runner/ExecutionBuilder.cs:267`
-    
-    **Signature**
-    ```csharp
-    public ExecutionBuilder CreateSession(SessionBuilder sessionBuilder)
-    ```
-    
-    **Docstring**
-    
-    Creates or adds the configured session entry on the current Runner execution builder instance.
-    
-    Use this method when working with the documented Runner execution builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
-
-## `ReadSessions`
-
-??? info "Location, signature, and docstring"
-    **Member**
-    `ExecutionBuilder.ReadSessions()`
-    
-    **Kind** `function`
-    
-    **Declaring Type** `ExecutionBuilder`
-    
-    **Location** `QaaS.Runner/ExecutionBuilder.cs:279`
-    
-    **Signature**
-    ```csharp
-    public IReadOnlyList<SessionBuilder> ReadSessions()
-    ```
-    
-    **Docstring**
-    
-    Returns the configured sessions currently stored on the Runner execution builder instance.
-    
-    Use this method when working with the documented Runner execution builder API surface in code. Use it to inspect the current configured state without rebuilding the surrounding collection or runtime object graph.
-
-## `UpdateSession`
-
-??? info "Location, signature, and docstring"
-    **Member**
-    `ExecutionBuilder.UpdateSession(string sessionName, SessionBuilder sessionBuilder)`
-    
-    **Kind** `function`
-    
-    **Declaring Type** `ExecutionBuilder`
-    
-    **Location** `QaaS.Runner/ExecutionBuilder.cs:291`
-    
-    **Signature**
-    ```csharp
-    public ExecutionBuilder UpdateSession(string sessionName, SessionBuilder sessionBuilder)
-    ```
-    
-    **Docstring**
-    
-    Updates the configured session stored on the current Runner execution builder instance.
-    
-    Use this method when working with the documented Runner execution builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
-
-## `DeleteSession`
-
-??? info "Location, signature, and docstring"
-    **Member**
-    `ExecutionBuilder.DeleteSession(string sessionName)`
-    
-    **Kind** `function`
-    
-    **Declaring Type** `ExecutionBuilder`
-    
-    **Location** `QaaS.Runner/ExecutionBuilder.cs:304`
-    
-    **Signature**
-    ```csharp
-    public ExecutionBuilder DeleteSession(string sessionName)
-    ```
-    
-    **Docstring**
-    
-    Removes the configured session from the current Runner execution builder instance.
-    
-    Use this method when working with the documented Runner execution builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
-
-## `AddAssertion`
-
-??? info "Location, signature, and docstring"
-    **Member**
-    `ExecutionBuilder.AddAssertion(AssertionBuilder assertionBuilder)`
-    
-    **Kind** `function`
-    
-    **Declaring Type** `ExecutionBuilder`
-    
-    **Location** `QaaS.Runner/ExecutionBuilder.cs:317`
-    
-    **Signature**
-    ```csharp
-    public ExecutionBuilder AddAssertion(AssertionBuilder assertionBuilder)
-    ```
-    
-    **Docstring**
-    
-    Adds the supplied assertion to the current Runner execution builder instance.
-    
-    Use this method when working with the documented Runner execution builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
-
-## `CreateAssertion`
-
-??? info "Location, signature, and docstring"
-    **Member**
-    `ExecutionBuilder.CreateAssertion(AssertionBuilder assertionBuilder)`
-    
-    **Kind** `function`
-    
-    **Declaring Type** `ExecutionBuilder`
-    
-    **Location** `QaaS.Runner/ExecutionBuilder.cs:330`
-    
-    **Signature**
-    ```csharp
-    public ExecutionBuilder CreateAssertion(AssertionBuilder assertionBuilder)
-    ```
-    
-    **Docstring**
-    
-    Creates or adds the configured assertion entry on the current Runner execution builder instance.
-    
-    Use this method when working with the documented Runner execution builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
-
-## `ReadAssertions`
-
-??? info "Location, signature, and docstring"
-    **Member**
-    `ExecutionBuilder.ReadAssertions()`
-    
-    **Kind** `function`
-    
-    **Declaring Type** `ExecutionBuilder`
-    
-    **Location** `QaaS.Runner/ExecutionBuilder.cs:342`
-    
-    **Signature**
-    ```csharp
-    public IReadOnlyList<AssertionBuilder> ReadAssertions()
-    ```
-    
-    **Docstring**
-    
-    Returns the configured assertions currently stored on the Runner execution builder instance.
-    
-    Use this method when working with the documented Runner execution builder API surface in code. Use it to inspect the current configured state without rebuilding the surrounding collection or runtime object graph.
-
-## `UpdateAssertion`
-
-??? info "Location, signature, and docstring"
-    **Member**
-    `ExecutionBuilder.UpdateAssertion(string assertionName, AssertionBuilder assertionBuilder)`
-    
-    **Kind** `function`
-    
-    **Declaring Type** `ExecutionBuilder`
-    
-    **Location** `QaaS.Runner/ExecutionBuilder.cs:354`
-    
-    **Signature**
-    ```csharp
-    public ExecutionBuilder UpdateAssertion(string assertionName, AssertionBuilder assertionBuilder)
-    ```
-    
-    **Docstring**
-    
-    Updates the configured assertion stored on the current Runner execution builder instance.
-    
-    Use this method when working with the documented Runner execution builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
-
-## `DeleteAssertion`
-
-??? info "Location, signature, and docstring"
-    **Member**
-    `ExecutionBuilder.DeleteAssertion(string assertionName)`
-    
-    **Kind** `function`
-    
-    **Declaring Type** `ExecutionBuilder`
-    
-    **Location** `QaaS.Runner/ExecutionBuilder.cs:367`
-    
-    **Signature**
-    ```csharp
-    public ExecutionBuilder DeleteAssertion(string assertionName)
-    ```
-    
-    **Docstring**
-    
-    Removes the configured assertion from the current Runner execution builder instance.
-    
-    Use this method when working with the documented Runner execution builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
-
-## `AddStorage`
-
-??? info "Location, signature, and docstring"
-    **Member**
-    `ExecutionBuilder.AddStorage(StorageBuilder storageBuilder)`
-    
-    **Kind** `function`
-    
-    **Declaring Type** `ExecutionBuilder`
-    
-    **Location** `QaaS.Runner/ExecutionBuilder.cs:380`
-    
-    **Signature**
-    ```csharp
-    public ExecutionBuilder AddStorage(StorageBuilder storageBuilder)
-    ```
-    
-    **Docstring**
-    
-    Adds the supplied storage to the current Runner execution builder instance.
-    
-    Use this method when working with the documented Runner execution builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
-
-## `CreateStorage`
-
-??? info "Location, signature, and docstring"
-    **Member**
-    `ExecutionBuilder.CreateStorage(StorageBuilder storageBuilder)`
-    
-    **Kind** `function`
-    
-    **Declaring Type** `ExecutionBuilder`
-    
-    **Location** `QaaS.Runner/ExecutionBuilder.cs:393`
-    
-    **Signature**
-    ```csharp
-    public ExecutionBuilder CreateStorage(StorageBuilder storageBuilder)
-    ```
-    
-    **Docstring**
-    
-    Creates or adds the configured storage entry on the current Runner execution builder instance.
-    
-    Use this method when working with the documented Runner execution builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
-
-## `ReadStorages`
-
-??? info "Location, signature, and docstring"
-    **Member**
-    `ExecutionBuilder.ReadStorages()`
-    
-    **Kind** `function`
-    
-    **Declaring Type** `ExecutionBuilder`
-    
-    **Location** `QaaS.Runner/ExecutionBuilder.cs:405`
-    
-    **Signature**
-    ```csharp
-    public IReadOnlyList<StorageBuilder> ReadStorages()
-    ```
-    
-    **Docstring**
-    
-    Returns the configured storages currently stored on the Runner execution builder instance.
-    
-    Use this method when working with the documented Runner execution builder API surface in code. Use it to inspect the current configured state without rebuilding the surrounding collection or runtime object graph.
-
-## `UpdateStorageAt`
-
-??? info "Location, signature, and docstring"
-    **Member**
-    `ExecutionBuilder.UpdateStorageAt(int index, StorageBuilder storageBuilder)`
-    
-    **Kind** `function`
-    
-    **Declaring Type** `ExecutionBuilder`
-    
-    **Location** `QaaS.Runner/ExecutionBuilder.cs:417`
-    
-    **Signature**
-    ```csharp
-    public ExecutionBuilder UpdateStorageAt(int index, StorageBuilder storageBuilder)
-    ```
-    
-    **Docstring**
-    
-    Updates the configured storage at the specified index on the current Runner execution builder instance.
-    
-    Use this method when working with the documented Runner execution builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
-
-## `DeleteStorageAt`
-
-??? info "Location, signature, and docstring"
-    **Member**
-    `ExecutionBuilder.DeleteStorageAt(int index)`
-    
-    **Kind** `function`
-    
-    **Declaring Type** `ExecutionBuilder`
-    
-    **Location** `QaaS.Runner/ExecutionBuilder.cs:430`
-    
-    **Signature**
-    ```csharp
-    public ExecutionBuilder DeleteStorageAt(int index)
-    ```
-    
-    **Docstring**
-    
-    Removes the configured storage at the specified index from the current Runner execution builder instance.
-    
-    Use this method when working with the documented Runner execution builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
-
-## `AddDataSource`
-
-??? info "Location, signature, and docstring"
+??? info "Source file, signature, and docstring"
     **Member**
     `ExecutionBuilder.AddDataSource(DataSourceBuilder dataSourceBuilder)`
     
@@ -380,7 +16,7 @@ Each entry uses the short function name as the table-of-contents label. Expand a
     
     **Declaring Type** `ExecutionBuilder`
     
-    **Location** `QaaS.Runner/ExecutionBuilder.cs:443`
+    **Source File** `QaaS.Runner/ExecutionBuilder.cs`
     
     **Signature**
     ```csharp
@@ -393,9 +29,9 @@ Each entry uses the short function name as the table-of-contents label. Expand a
     
     Use this method when working with the documented Runner execution builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
-## `CreateDataSource`
+### `CreateDataSource`
 
-??? info "Location, signature, and docstring"
+??? info "Source file, signature, and docstring"
     **Member**
     `ExecutionBuilder.CreateDataSource(DataSourceBuilder dataSourceBuilder)`
     
@@ -403,7 +39,7 @@ Each entry uses the short function name as the table-of-contents label. Expand a
     
     **Declaring Type** `ExecutionBuilder`
     
-    **Location** `QaaS.Runner/ExecutionBuilder.cs:456`
+    **Source File** `QaaS.Runner/ExecutionBuilder.cs`
     
     **Signature**
     ```csharp
@@ -416,9 +52,9 @@ Each entry uses the short function name as the table-of-contents label. Expand a
     
     Use this method when working with the documented Runner execution builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
-## `ReadDataSources`
+### `ReadDataSources`
 
-??? info "Location, signature, and docstring"
+??? info "Source file, signature, and docstring"
     **Member**
     `ExecutionBuilder.ReadDataSources()`
     
@@ -426,7 +62,7 @@ Each entry uses the short function name as the table-of-contents label. Expand a
     
     **Declaring Type** `ExecutionBuilder`
     
-    **Location** `QaaS.Runner/ExecutionBuilder.cs:468`
+    **Source File** `QaaS.Runner/ExecutionBuilder.cs`
     
     **Signature**
     ```csharp
@@ -439,9 +75,9 @@ Each entry uses the short function name as the table-of-contents label. Expand a
     
     Use this method when working with the documented Runner execution builder API surface in code. Use it to inspect the current configured state without rebuilding the surrounding collection or runtime object graph.
 
-## `UpdateDataSource`
+### `UpdateDataSource`
 
-??? info "Location, signature, and docstring"
+??? info "Source file, signature, and docstring"
     **Member**
     `ExecutionBuilder.UpdateDataSource(string dataSourceName, DataSourceBuilder dataSourceBuilder)`
     
@@ -449,7 +85,7 @@ Each entry uses the short function name as the table-of-contents label. Expand a
     
     **Declaring Type** `ExecutionBuilder`
     
-    **Location** `QaaS.Runner/ExecutionBuilder.cs:480`
+    **Source File** `QaaS.Runner/ExecutionBuilder.cs`
     
     **Signature**
     ```csharp
@@ -462,9 +98,9 @@ Each entry uses the short function name as the table-of-contents label. Expand a
     
     Use this method when working with the documented Runner execution builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
-## `DeleteDataSource`
+### `DeleteDataSource`
 
-??? info "Location, signature, and docstring"
+??? info "Source file, signature, and docstring"
     **Member**
     `ExecutionBuilder.DeleteDataSource(string dataSourceName)`
     
@@ -472,7 +108,7 @@ Each entry uses the short function name as the table-of-contents label. Expand a
     
     **Declaring Type** `ExecutionBuilder`
     
-    **Location** `QaaS.Runner/ExecutionBuilder.cs:493`
+    **Source File** `QaaS.Runner/ExecutionBuilder.cs`
     
     **Signature**
     ```csharp
@@ -485,9 +121,128 @@ Each entry uses the short function name as the table-of-contents label. Expand a
     
     Use this method when working with the documented Runner execution builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
-## `AddLink`
+## Session selection
 
-??? info "Location, signature, and docstring"
+### `AddSession`
+
+??? info "Source file, signature, and docstring"
+    **Member**
+    `ExecutionBuilder.AddSession(SessionBuilder sessionBuilder)`
+    
+    **Kind** `function`
+    
+    **Declaring Type** `ExecutionBuilder`
+    
+    **Source File** `QaaS.Runner/ExecutionBuilder.cs`
+    
+    **Signature**
+    ```csharp
+    public ExecutionBuilder AddSession(SessionBuilder sessionBuilder)
+    ```
+    
+    **Docstring**
+    
+    Adds the supplied session to the current Runner execution builder instance.
+    
+    Use this method when working with the documented Runner execution builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
+
+### `CreateSession`
+
+??? info "Source file, signature, and docstring"
+    **Member**
+    `ExecutionBuilder.CreateSession(SessionBuilder sessionBuilder)`
+    
+    **Kind** `function`
+    
+    **Declaring Type** `ExecutionBuilder`
+    
+    **Source File** `QaaS.Runner/ExecutionBuilder.cs`
+    
+    **Signature**
+    ```csharp
+    public ExecutionBuilder CreateSession(SessionBuilder sessionBuilder)
+    ```
+    
+    **Docstring**
+    
+    Creates or adds the configured session entry on the current Runner execution builder instance.
+    
+    Use this method when working with the documented Runner execution builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
+
+### `ReadSessions`
+
+??? info "Source file, signature, and docstring"
+    **Member**
+    `ExecutionBuilder.ReadSessions()`
+    
+    **Kind** `function`
+    
+    **Declaring Type** `ExecutionBuilder`
+    
+    **Source File** `QaaS.Runner/ExecutionBuilder.cs`
+    
+    **Signature**
+    ```csharp
+    public IReadOnlyList<SessionBuilder> ReadSessions()
+    ```
+    
+    **Docstring**
+    
+    Returns the configured sessions currently stored on the Runner execution builder instance.
+    
+    Use this method when working with the documented Runner execution builder API surface in code. Use it to inspect the current configured state without rebuilding the surrounding collection or runtime object graph.
+
+### `UpdateSession`
+
+??? info "Source file, signature, and docstring"
+    **Member**
+    `ExecutionBuilder.UpdateSession(string sessionName, SessionBuilder sessionBuilder)`
+    
+    **Kind** `function`
+    
+    **Declaring Type** `ExecutionBuilder`
+    
+    **Source File** `QaaS.Runner/ExecutionBuilder.cs`
+    
+    **Signature**
+    ```csharp
+    public ExecutionBuilder UpdateSession(string sessionName, SessionBuilder sessionBuilder)
+    ```
+    
+    **Docstring**
+    
+    Updates the configured session stored on the current Runner execution builder instance.
+    
+    Use this method when working with the documented Runner execution builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
+
+### `DeleteSession`
+
+??? info "Source file, signature, and docstring"
+    **Member**
+    `ExecutionBuilder.DeleteSession(string sessionName)`
+    
+    **Kind** `function`
+    
+    **Declaring Type** `ExecutionBuilder`
+    
+    **Source File** `QaaS.Runner/ExecutionBuilder.cs`
+    
+    **Signature**
+    ```csharp
+    public ExecutionBuilder DeleteSession(string sessionName)
+    ```
+    
+    **Docstring**
+    
+    Removes the configured session from the current Runner execution builder instance.
+    
+    Use this method when working with the documented Runner execution builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
+
+## Links
+
+### `AddLink`
+
+??? info "Source file, signature, and docstring"
     **Member**
     `ExecutionBuilder.AddLink(LinkBuilder linkBuilder)`
     
@@ -495,7 +250,7 @@ Each entry uses the short function name as the table-of-contents label. Expand a
     
     **Declaring Type** `ExecutionBuilder`
     
-    **Location** `QaaS.Runner/ExecutionBuilder.cs:506`
+    **Source File** `QaaS.Runner/ExecutionBuilder.cs`
     
     **Signature**
     ```csharp
@@ -508,9 +263,9 @@ Each entry uses the short function name as the table-of-contents label. Expand a
     
     Use this method when working with the documented Runner execution builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
-## `CreateLink`
+### `CreateLink`
 
-??? info "Location, signature, and docstring"
+??? info "Source file, signature, and docstring"
     **Member**
     `ExecutionBuilder.CreateLink(LinkBuilder linkBuilder)`
     
@@ -518,7 +273,7 @@ Each entry uses the short function name as the table-of-contents label. Expand a
     
     **Declaring Type** `ExecutionBuilder`
     
-    **Location** `QaaS.Runner/ExecutionBuilder.cs:519`
+    **Source File** `QaaS.Runner/ExecutionBuilder.cs`
     
     **Signature**
     ```csharp
@@ -531,9 +286,9 @@ Each entry uses the short function name as the table-of-contents label. Expand a
     
     Use this method when working with the documented Runner execution builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
-## `ReadLinks`
+### `ReadLinks`
 
-??? info "Location, signature, and docstring"
+??? info "Source file, signature, and docstring"
     **Member**
     `ExecutionBuilder.ReadLinks()`
     
@@ -541,7 +296,7 @@ Each entry uses the short function name as the table-of-contents label. Expand a
     
     **Declaring Type** `ExecutionBuilder`
     
-    **Location** `QaaS.Runner/ExecutionBuilder.cs:531`
+    **Source File** `QaaS.Runner/ExecutionBuilder.cs`
     
     **Signature**
     ```csharp
@@ -554,32 +309,9 @@ Each entry uses the short function name as the table-of-contents label. Expand a
     
     Use this method when working with the documented Runner execution builder API surface in code. Use it to inspect the current configured state without rebuilding the surrounding collection or runtime object graph.
 
-## `ReadMetaData`
+### `UpdateLinkAt`
 
-??? info "Location, signature, and docstring"
-    **Member**
-    `ExecutionBuilder.ReadMetaData()`
-    
-    **Kind** `function`
-    
-    **Declaring Type** `ExecutionBuilder`
-    
-    **Location** `QaaS.Runner/ExecutionBuilder.cs:543`
-    
-    **Signature**
-    ```csharp
-    public MetaDataConfig? ReadMetaData()
-    ```
-    
-    **Docstring**
-    
-    Returns the metadata currently stored on the Runner execution builder instance.
-    
-    Use this method when working with the documented Runner execution builder API surface in code. Use it to inspect the current configured state without rebuilding the surrounding collection or runtime object graph.
-
-## `UpdateLinkAt`
-
-??? info "Location, signature, and docstring"
+??? info "Source file, signature, and docstring"
     **Member**
     `ExecutionBuilder.UpdateLinkAt(int index, LinkBuilder linkBuilder)`
     
@@ -587,7 +319,7 @@ Each entry uses the short function name as the table-of-contents label. Expand a
     
     **Declaring Type** `ExecutionBuilder`
     
-    **Location** `QaaS.Runner/ExecutionBuilder.cs:555`
+    **Source File** `QaaS.Runner/ExecutionBuilder.cs`
     
     **Signature**
     ```csharp
@@ -600,9 +332,9 @@ Each entry uses the short function name as the table-of-contents label. Expand a
     
     Use this method when working with the documented Runner execution builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
-## `DeleteLinkAt`
+### `DeleteLinkAt`
 
-??? info "Location, signature, and docstring"
+??? info "Source file, signature, and docstring"
     **Member**
     `ExecutionBuilder.DeleteLinkAt(int index)`
     
@@ -610,7 +342,7 @@ Each entry uses the short function name as the table-of-contents label. Expand a
     
     **Declaring Type** `ExecutionBuilder`
     
-    **Location** `QaaS.Runner/ExecutionBuilder.cs:568`
+    **Source File** `QaaS.Runner/ExecutionBuilder.cs`
     
     **Signature**
     ```csharp
@@ -623,9 +355,245 @@ Each entry uses the short function name as the table-of-contents label. Expand a
     
     Use this method when working with the documented Runner execution builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
-## `ExecutionType`
+## Storages
 
-??? info "Location, signature, and docstring"
+### `AddStorage`
+
+??? info "Source file, signature, and docstring"
+    **Member**
+    `ExecutionBuilder.AddStorage(StorageBuilder storageBuilder)`
+    
+    **Kind** `function`
+    
+    **Declaring Type** `ExecutionBuilder`
+    
+    **Source File** `QaaS.Runner/ExecutionBuilder.cs`
+    
+    **Signature**
+    ```csharp
+    public ExecutionBuilder AddStorage(StorageBuilder storageBuilder)
+    ```
+    
+    **Docstring**
+    
+    Adds the supplied storage to the current Runner execution builder instance.
+    
+    Use this method when working with the documented Runner execution builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
+
+### `CreateStorage`
+
+??? info "Source file, signature, and docstring"
+    **Member**
+    `ExecutionBuilder.CreateStorage(StorageBuilder storageBuilder)`
+    
+    **Kind** `function`
+    
+    **Declaring Type** `ExecutionBuilder`
+    
+    **Source File** `QaaS.Runner/ExecutionBuilder.cs`
+    
+    **Signature**
+    ```csharp
+    public ExecutionBuilder CreateStorage(StorageBuilder storageBuilder)
+    ```
+    
+    **Docstring**
+    
+    Creates or adds the configured storage entry on the current Runner execution builder instance.
+    
+    Use this method when working with the documented Runner execution builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
+
+### `ReadStorages`
+
+??? info "Source file, signature, and docstring"
+    **Member**
+    `ExecutionBuilder.ReadStorages()`
+    
+    **Kind** `function`
+    
+    **Declaring Type** `ExecutionBuilder`
+    
+    **Source File** `QaaS.Runner/ExecutionBuilder.cs`
+    
+    **Signature**
+    ```csharp
+    public IReadOnlyList<StorageBuilder> ReadStorages()
+    ```
+    
+    **Docstring**
+    
+    Returns the configured storages currently stored on the Runner execution builder instance.
+    
+    Use this method when working with the documented Runner execution builder API surface in code. Use it to inspect the current configured state without rebuilding the surrounding collection or runtime object graph.
+
+### `UpdateStorageAt`
+
+??? info "Source file, signature, and docstring"
+    **Member**
+    `ExecutionBuilder.UpdateStorageAt(int index, StorageBuilder storageBuilder)`
+    
+    **Kind** `function`
+    
+    **Declaring Type** `ExecutionBuilder`
+    
+    **Source File** `QaaS.Runner/ExecutionBuilder.cs`
+    
+    **Signature**
+    ```csharp
+    public ExecutionBuilder UpdateStorageAt(int index, StorageBuilder storageBuilder)
+    ```
+    
+    **Docstring**
+    
+    Updates the configured storage at the specified index on the current Runner execution builder instance.
+    
+    Use this method when working with the documented Runner execution builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
+
+### `DeleteStorageAt`
+
+??? info "Source file, signature, and docstring"
+    **Member**
+    `ExecutionBuilder.DeleteStorageAt(int index)`
+    
+    **Kind** `function`
+    
+    **Declaring Type** `ExecutionBuilder`
+    
+    **Source File** `QaaS.Runner/ExecutionBuilder.cs`
+    
+    **Signature**
+    ```csharp
+    public ExecutionBuilder DeleteStorageAt(int index)
+    ```
+    
+    **Docstring**
+    
+    Removes the configured storage at the specified index from the current Runner execution builder instance.
+    
+    Use this method when working with the documented Runner execution builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
+
+## Assertions
+
+### `AddAssertion`
+
+??? info "Source file, signature, and docstring"
+    **Member**
+    `ExecutionBuilder.AddAssertion(AssertionBuilder assertionBuilder)`
+    
+    **Kind** `function`
+    
+    **Declaring Type** `ExecutionBuilder`
+    
+    **Source File** `QaaS.Runner/ExecutionBuilder.cs`
+    
+    **Signature**
+    ```csharp
+    public ExecutionBuilder AddAssertion(AssertionBuilder assertionBuilder)
+    ```
+    
+    **Docstring**
+    
+    Adds the supplied assertion to the current Runner execution builder instance.
+    
+    Use this method when working with the documented Runner execution builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
+
+### `CreateAssertion`
+
+??? info "Source file, signature, and docstring"
+    **Member**
+    `ExecutionBuilder.CreateAssertion(AssertionBuilder assertionBuilder)`
+    
+    **Kind** `function`
+    
+    **Declaring Type** `ExecutionBuilder`
+    
+    **Source File** `QaaS.Runner/ExecutionBuilder.cs`
+    
+    **Signature**
+    ```csharp
+    public ExecutionBuilder CreateAssertion(AssertionBuilder assertionBuilder)
+    ```
+    
+    **Docstring**
+    
+    Creates or adds the configured assertion entry on the current Runner execution builder instance.
+    
+    Use this method when working with the documented Runner execution builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
+
+### `ReadAssertions`
+
+??? info "Source file, signature, and docstring"
+    **Member**
+    `ExecutionBuilder.ReadAssertions()`
+    
+    **Kind** `function`
+    
+    **Declaring Type** `ExecutionBuilder`
+    
+    **Source File** `QaaS.Runner/ExecutionBuilder.cs`
+    
+    **Signature**
+    ```csharp
+    public IReadOnlyList<AssertionBuilder> ReadAssertions()
+    ```
+    
+    **Docstring**
+    
+    Returns the configured assertions currently stored on the Runner execution builder instance.
+    
+    Use this method when working with the documented Runner execution builder API surface in code. Use it to inspect the current configured state without rebuilding the surrounding collection or runtime object graph.
+
+### `UpdateAssertion`
+
+??? info "Source file, signature, and docstring"
+    **Member**
+    `ExecutionBuilder.UpdateAssertion(string assertionName, AssertionBuilder assertionBuilder)`
+    
+    **Kind** `function`
+    
+    **Declaring Type** `ExecutionBuilder`
+    
+    **Source File** `QaaS.Runner/ExecutionBuilder.cs`
+    
+    **Signature**
+    ```csharp
+    public ExecutionBuilder UpdateAssertion(string assertionName, AssertionBuilder assertionBuilder)
+    ```
+    
+    **Docstring**
+    
+    Updates the configured assertion stored on the current Runner execution builder instance.
+    
+    Use this method when working with the documented Runner execution builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
+
+### `DeleteAssertion`
+
+??? info "Source file, signature, and docstring"
+    **Member**
+    `ExecutionBuilder.DeleteAssertion(string assertionName)`
+    
+    **Kind** `function`
+    
+    **Declaring Type** `ExecutionBuilder`
+    
+    **Source File** `QaaS.Runner/ExecutionBuilder.cs`
+    
+    **Signature**
+    ```csharp
+    public ExecutionBuilder DeleteAssertion(string assertionName)
+    ```
+    
+    **Docstring**
+    
+    Removes the configured assertion from the current Runner execution builder instance.
+    
+    Use this method when working with the documented Runner execution builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
+
+## Executions
+
+### `ExecutionType`
+
+??? info "Source file, signature, and docstring"
     **Member**
     `ExecutionBuilder.ExecutionType(ExecutionType executionType)`
     
@@ -633,7 +601,7 @@ Each entry uses the short function name as the table-of-contents label. Expand a
     
     **Declaring Type** `ExecutionBuilder`
     
-    **Location** `QaaS.Runner/ExecutionBuilder.cs:581`
+    **Source File** `QaaS.Runner/ExecutionBuilder.cs`
     
     **Signature**
     ```csharp
@@ -646,32 +614,9 @@ Each entry uses the short function name as the table-of-contents label. Expand a
     
     Use this method when working with the documented Runner execution builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
-## `SetCase`
+### `SetExecutionId`
 
-??? info "Location, signature, and docstring"
-    **Member**
-    `ExecutionBuilder.SetCase(string caseName)`
-    
-    **Kind** `function`
-    
-    **Declaring Type** `ExecutionBuilder`
-    
-    **Location** `QaaS.Runner/ExecutionBuilder.cs:600`
-    
-    **Signature**
-    ```csharp
-    public ExecutionBuilder SetCase(string caseName)
-    ```
-    
-    **Docstring**
-    
-    Sets the case file applied by the context builder.
-    
-    Case files are used as the final scenario-specific overlay that shapes the runtime configuration for a specific execution.
-
-## `SetExecutionId`
-
-??? info "Location, signature, and docstring"
+??? info "Source file, signature, and docstring"
     **Member**
     `ExecutionBuilder.SetExecutionId(string executionId)`
     
@@ -679,7 +624,7 @@ Each entry uses the short function name as the table-of-contents label. Expand a
     
     **Declaring Type** `ExecutionBuilder`
     
-    **Location** `QaaS.Runner/ExecutionBuilder.cs:613`
+    **Source File** `QaaS.Runner/ExecutionBuilder.cs`
     
     **Signature**
     ```csharp
@@ -692,9 +637,57 @@ Each entry uses the short function name as the table-of-contents label. Expand a
     
     The execution identifier flows into the built context and can later be used by logging, reports, and storage integrations.
 
-## `WithMetadata`
+## Configuration
 
-??? info "Location, signature, and docstring"
+### `WithGlobalDict`
+
+??? info "Source file, signature, and docstring"
+    **Member**
+    `ExecutionBuilder.WithGlobalDict(Dictionary<string, object?> globalDict)`
+    
+    **Kind** `function`
+    
+    **Declaring Type** `ExecutionBuilder`
+    
+    **Source File** `QaaS.Runner/ExecutionBuilder.cs`
+    
+    **Signature**
+    ```csharp
+    public ExecutionBuilder WithGlobalDict(Dictionary<string, object?> globalDict)
+    ```
+    
+    **Docstring**
+    
+    Replaces the global dictionary stored on the runner execution context.
+    
+    Use this method when working with the documented Runner execution builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
+
+### `SetCase`
+
+??? info "Source file, signature, and docstring"
+    **Member**
+    `ExecutionBuilder.SetCase(string caseName)`
+    
+    **Kind** `function`
+    
+    **Declaring Type** `ExecutionBuilder`
+    
+    **Source File** `QaaS.Runner/ExecutionBuilder.cs`
+    
+    **Signature**
+    ```csharp
+    public ExecutionBuilder SetCase(string caseName)
+    ```
+    
+    **Docstring**
+    
+    Sets the case file applied by the context builder.
+    
+    Case files are used as the final scenario-specific overlay that shapes the runtime configuration for a specific execution.
+
+### `WithMetadata`
+
+??? info "Source file, signature, and docstring"
     **Member**
     `ExecutionBuilder.WithMetadata(MetaDataConfig metaDataConfig)`
     
@@ -702,7 +695,7 @@ Each entry uses the short function name as the table-of-contents label. Expand a
     
     **Declaring Type** `ExecutionBuilder`
     
-    **Location** `QaaS.Runner/ExecutionBuilder.cs:626`
+    **Source File** `QaaS.Runner/ExecutionBuilder.cs`
     
     **Signature**
     ```csharp
@@ -715,9 +708,36 @@ Each entry uses the short function name as the table-of-contents label. Expand a
     
     Use this method when working with the documented Runner execution builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
-## `Build`
+## Inspection
 
-??? info "Location, signature, and docstring"
+### `ReadMetaData`
+
+??? info "Source file, signature, and docstring"
+    **Member**
+    `ExecutionBuilder.ReadMetaData()`
+    
+    **Kind** `function`
+    
+    **Declaring Type** `ExecutionBuilder`
+    
+    **Source File** `QaaS.Runner/ExecutionBuilder.cs`
+    
+    **Signature**
+    ```csharp
+    public MetaDataConfig? ReadMetaData()
+    ```
+    
+    **Docstring**
+    
+    Returns the metadata currently stored on the Runner execution builder instance.
+    
+    Use this method when working with the documented Runner execution builder API surface in code. Use it to inspect the current configured state without rebuilding the surrounding collection or runtime object graph.
+
+## General
+
+### `Build`
+
+??? info "Source file, signature, and docstring"
     **Member**
     `ExecutionBuilder.Build()`
     
@@ -725,7 +745,7 @@ Each entry uses the short function name as the table-of-contents label. Expand a
     
     **Declaring Type** `ExecutionBuilder`
     
-    **Location** `QaaS.Runner/ExecutionBuilder.cs:921`
+    **Source File** `QaaS.Runner/ExecutionBuilder.cs`
     
     **Signature**
     ```csharp

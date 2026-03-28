@@ -1,10 +1,14 @@
 # Probes
 
-Each entry uses the short function name as the table-of-contents label. Expand an entry to inspect its location, signature, and XML doc comments.
+Each entry uses the short function name as the table-of-contents label. Expand an entry to inspect its source file, signature, and XML doc comments.
 
-## `Named`
+The functions on this page are grouped by responsibility so related operations stay together.
 
-??? info "Location, signature, and docstring"
+## Identity and hook selection
+
+### `Named`
+
+??? info "Source file, signature, and docstring"
     **Member**
     `ProbeBuilder.Named(string name)`
     
@@ -12,7 +16,7 @@ Each entry uses the short function name as the table-of-contents label. Expand a
     
     **Declaring Type** `ProbeBuilder`
     
-    **Location** `QaaS.Runner.Sessions/Actions/Probes/ProbeBuilder.cs:83`
+    **Source File** `QaaS.Runner.Sessions/Actions/Probes/ProbeBuilder.cs`
     
     **Signature**
     ```csharp
@@ -25,32 +29,9 @@ Each entry uses the short function name as the table-of-contents label. Expand a
     
     Use this method when working with the documented Runner probe builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
-## `AtStage`
+### `HookNamed`
 
-??? info "Location, signature, and docstring"
-    **Member**
-    `ProbeBuilder.AtStage(int stage)`
-    
-    **Kind** `function`
-    
-    **Declaring Type** `ProbeBuilder`
-    
-    **Location** `QaaS.Runner.Sessions/Actions/Probes/ProbeBuilder.cs:96`
-    
-    **Signature**
-    ```csharp
-    public ProbeBuilder AtStage(int stage)
-    ```
-    
-    **Docstring**
-    
-    Sets the stage used by the current Runner probe builder instance.
-    
-    Use this method when working with the documented Runner probe builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
-
-## `HookNamed`
-
-??? info "Location, signature, and docstring"
+??? info "Source file, signature, and docstring"
     **Member**
     `ProbeBuilder.HookNamed(string hookName)`
     
@@ -58,7 +39,7 @@ Each entry uses the short function name as the table-of-contents label. Expand a
     
     **Declaring Type** `ProbeBuilder`
     
-    **Location** `QaaS.Runner.Sessions/Actions/Probes/ProbeBuilder.cs:109`
+    **Source File** `QaaS.Runner.Sessions/Actions/Probes/ProbeBuilder.cs`
     
     **Signature**
     ```csharp
@@ -71,9 +52,36 @@ Each entry uses the short function name as the table-of-contents label. Expand a
     
     Use this method when working with the documented Runner probe builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
-## `AddDataSourceName`
+## Execution order
 
-??? info "Location, signature, and docstring"
+### `AtStage`
+
+??? info "Source file, signature, and docstring"
+    **Member**
+    `ProbeBuilder.AtStage(int stage)`
+    
+    **Kind** `function`
+    
+    **Declaring Type** `ProbeBuilder`
+    
+    **Source File** `QaaS.Runner.Sessions/Actions/Probes/ProbeBuilder.cs`
+    
+    **Signature**
+    ```csharp
+    public ProbeBuilder AtStage(int stage)
+    ```
+    
+    **Docstring**
+    
+    Sets the stage used by the current Runner probe builder instance.
+    
+    Use this method when working with the documented Runner probe builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
+
+## Data source selection
+
+### `AddDataSourceName`
+
+??? info "Source file, signature, and docstring"
     **Member**
     `ProbeBuilder.AddDataSourceName(string dataSourceName)`
     
@@ -81,7 +89,7 @@ Each entry uses the short function name as the table-of-contents label. Expand a
     
     **Declaring Type** `ProbeBuilder`
     
-    **Location** `QaaS.Runner.Sessions/Actions/Probes/ProbeBuilder.cs:122`
+    **Source File** `QaaS.Runner.Sessions/Actions/Probes/ProbeBuilder.cs`
     
     **Signature**
     ```csharp
@@ -94,9 +102,9 @@ Each entry uses the short function name as the table-of-contents label. Expand a
     
     Use this method when working with the documented Runner probe builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
-## `CreateDataSourceName`
+### `CreateDataSourceName`
 
-??? info "Location, signature, and docstring"
+??? info "Source file, signature, and docstring"
     **Member**
     `ProbeBuilder.CreateDataSourceName(string dataSourceName)`
     
@@ -104,7 +112,7 @@ Each entry uses the short function name as the table-of-contents label. Expand a
     
     **Declaring Type** `ProbeBuilder`
     
-    **Location** `QaaS.Runner.Sessions/Actions/Probes/ProbeBuilder.cs:137`
+    **Source File** `QaaS.Runner.Sessions/Actions/Probes/ProbeBuilder.cs`
     
     **Signature**
     ```csharp
@@ -117,9 +125,9 @@ Each entry uses the short function name as the table-of-contents label. Expand a
     
     Use this method when working with the documented Runner probe builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
-## `ReadDataSourceNames`
+### `ReadDataSourceNames`
 
-??? info "Location, signature, and docstring"
+??? info "Source file, signature, and docstring"
     **Member**
     `ProbeBuilder.ReadDataSourceNames()`
     
@@ -127,7 +135,7 @@ Each entry uses the short function name as the table-of-contents label. Expand a
     
     **Declaring Type** `ProbeBuilder`
     
-    **Location** `QaaS.Runner.Sessions/Actions/Probes/ProbeBuilder.cs:149`
+    **Source File** `QaaS.Runner.Sessions/Actions/Probes/ProbeBuilder.cs`
     
     **Signature**
     ```csharp
@@ -140,9 +148,9 @@ Each entry uses the short function name as the table-of-contents label. Expand a
     
     Use this method when working with the documented Runner probe builder API surface in code. Use it to inspect the current configured state without rebuilding the surrounding collection or runtime object graph.
 
-## `UpdateDataSourceName`
+### `UpdateDataSourceName`
 
-??? info "Location, signature, and docstring"
+??? info "Source file, signature, and docstring"
     **Member**
     `ProbeBuilder.UpdateDataSourceName(string existingValue, string newValue)`
     
@@ -150,7 +158,7 @@ Each entry uses the short function name as the table-of-contents label. Expand a
     
     **Declaring Type** `ProbeBuilder`
     
-    **Location** `QaaS.Runner.Sessions/Actions/Probes/ProbeBuilder.cs:161`
+    **Source File** `QaaS.Runner.Sessions/Actions/Probes/ProbeBuilder.cs`
     
     **Signature**
     ```csharp
@@ -163,9 +171,9 @@ Each entry uses the short function name as the table-of-contents label. Expand a
     
     Use this method when working with the documented Runner probe builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
-## `DeleteDataSourceName`
+### `DeleteDataSourceName`
 
-??? info "Location, signature, and docstring"
+??? info "Source file, signature, and docstring"
     **Member**
     `ProbeBuilder.DeleteDataSourceName(string dataSourceName)`
     
@@ -173,7 +181,7 @@ Each entry uses the short function name as the table-of-contents label. Expand a
     
     **Declaring Type** `ProbeBuilder`
     
-    **Location** `QaaS.Runner.Sessions/Actions/Probes/ProbeBuilder.cs:179`
+    **Source File** `QaaS.Runner.Sessions/Actions/Probes/ProbeBuilder.cs`
     
     **Signature**
     ```csharp
@@ -186,9 +194,9 @@ Each entry uses the short function name as the table-of-contents label. Expand a
     
     Use this method when working with the documented Runner probe builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
-## `RemoveDataSourceName`
+### `RemoveDataSourceName`
 
-??? info "Location, signature, and docstring"
+??? info "Source file, signature, and docstring"
     **Member**
     `ProbeBuilder.RemoveDataSourceName(string dataSourceName)`
     
@@ -196,7 +204,7 @@ Each entry uses the short function name as the table-of-contents label. Expand a
     
     **Declaring Type** `ProbeBuilder`
     
-    **Location** `QaaS.Runner.Sessions/Actions/Probes/ProbeBuilder.cs:192`
+    **Source File** `QaaS.Runner.Sessions/Actions/Probes/ProbeBuilder.cs`
     
     **Signature**
     ```csharp
@@ -209,9 +217,9 @@ Each entry uses the short function name as the table-of-contents label. Expand a
     
     Use this method when working with the documented Runner probe builder API surface in code. The behavior exposed here is part of the public surface that the generated function documentation groups under 'Configuration as Code / Probes'.
 
-## `AddDataSourcePattern`
+### `AddDataSourcePattern`
 
-??? info "Location, signature, and docstring"
+??? info "Source file, signature, and docstring"
     **Member**
     `ProbeBuilder.AddDataSourcePattern(string dataSourcePattern)`
     
@@ -219,7 +227,7 @@ Each entry uses the short function name as the table-of-contents label. Expand a
     
     **Declaring Type** `ProbeBuilder`
     
-    **Location** `QaaS.Runner.Sessions/Actions/Probes/ProbeBuilder.cs:204`
+    **Source File** `QaaS.Runner.Sessions/Actions/Probes/ProbeBuilder.cs`
     
     **Signature**
     ```csharp
@@ -232,9 +240,9 @@ Each entry uses the short function name as the table-of-contents label. Expand a
     
     Use this method when working with the documented Runner probe builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
-## `CreateDataSourcePattern`
+### `CreateDataSourcePattern`
 
-??? info "Location, signature, and docstring"
+??? info "Source file, signature, and docstring"
     **Member**
     `ProbeBuilder.CreateDataSourcePattern(string dataSourcePattern)`
     
@@ -242,7 +250,7 @@ Each entry uses the short function name as the table-of-contents label. Expand a
     
     **Declaring Type** `ProbeBuilder`
     
-    **Location** `QaaS.Runner.Sessions/Actions/Probes/ProbeBuilder.cs:219`
+    **Source File** `QaaS.Runner.Sessions/Actions/Probes/ProbeBuilder.cs`
     
     **Signature**
     ```csharp
@@ -255,9 +263,9 @@ Each entry uses the short function name as the table-of-contents label. Expand a
     
     Use this method when working with the documented Runner probe builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
-## `ReadDataSourcePatterns`
+### `ReadDataSourcePatterns`
 
-??? info "Location, signature, and docstring"
+??? info "Source file, signature, and docstring"
     **Member**
     `ProbeBuilder.ReadDataSourcePatterns()`
     
@@ -265,7 +273,7 @@ Each entry uses the short function name as the table-of-contents label. Expand a
     
     **Declaring Type** `ProbeBuilder`
     
-    **Location** `QaaS.Runner.Sessions/Actions/Probes/ProbeBuilder.cs:231`
+    **Source File** `QaaS.Runner.Sessions/Actions/Probes/ProbeBuilder.cs`
     
     **Signature**
     ```csharp
@@ -278,9 +286,9 @@ Each entry uses the short function name as the table-of-contents label. Expand a
     
     Use this method when working with the documented Runner probe builder API surface in code. Use it to inspect the current configured state without rebuilding the surrounding collection or runtime object graph.
 
-## `UpdateDataSourcePattern`
+### `UpdateDataSourcePattern`
 
-??? info "Location, signature, and docstring"
+??? info "Source file, signature, and docstring"
     **Member**
     `ProbeBuilder.UpdateDataSourcePattern(string existingValue, string newValue)`
     
@@ -288,7 +296,7 @@ Each entry uses the short function name as the table-of-contents label. Expand a
     
     **Declaring Type** `ProbeBuilder`
     
-    **Location** `QaaS.Runner.Sessions/Actions/Probes/ProbeBuilder.cs:243`
+    **Source File** `QaaS.Runner.Sessions/Actions/Probes/ProbeBuilder.cs`
     
     **Signature**
     ```csharp
@@ -301,9 +309,9 @@ Each entry uses the short function name as the table-of-contents label. Expand a
     
     Use this method when working with the documented Runner probe builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
-## `DeleteDataSourcePattern`
+### `DeleteDataSourcePattern`
 
-??? info "Location, signature, and docstring"
+??? info "Source file, signature, and docstring"
     **Member**
     `ProbeBuilder.DeleteDataSourcePattern(string dataSourcePattern)`
     
@@ -311,7 +319,7 @@ Each entry uses the short function name as the table-of-contents label. Expand a
     
     **Declaring Type** `ProbeBuilder`
     
-    **Location** `QaaS.Runner.Sessions/Actions/Probes/ProbeBuilder.cs:261`
+    **Source File** `QaaS.Runner.Sessions/Actions/Probes/ProbeBuilder.cs`
     
     **Signature**
     ```csharp
@@ -324,9 +332,9 @@ Each entry uses the short function name as the table-of-contents label. Expand a
     
     Use this method when working with the documented Runner probe builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
-## `RemoveDataSourcePattern`
+### `RemoveDataSourcePattern`
 
-??? info "Location, signature, and docstring"
+??? info "Source file, signature, and docstring"
     **Member**
     `ProbeBuilder.RemoveDataSourcePattern(string dataSourcePattern)`
     
@@ -334,7 +342,7 @@ Each entry uses the short function name as the table-of-contents label. Expand a
     
     **Declaring Type** `ProbeBuilder`
     
-    **Location** `QaaS.Runner.Sessions/Actions/Probes/ProbeBuilder.cs:274`
+    **Source File** `QaaS.Runner.Sessions/Actions/Probes/ProbeBuilder.cs`
     
     **Signature**
     ```csharp
@@ -347,78 +355,11 @@ Each entry uses the short function name as the table-of-contents label. Expand a
     
     Use this method when working with the documented Runner probe builder API surface in code. The behavior exposed here is part of the public surface that the generated function documentation groups under 'Configuration as Code / Probes'.
 
-## `Configure`
+## Inspection
 
-??? info "Location, signature, and docstring"
-    **Member**
-    `ProbeBuilder.Configure(object configuration)`
-    
-    **Kind** `function`
-    
-    **Declaring Type** `ProbeBuilder`
-    
-    **Location** `QaaS.Runner.Sessions/Actions/Probes/ProbeBuilder.cs:286`
-    
-    **Signature**
-    ```csharp
-    public ProbeBuilder Configure(object configuration)
-    ```
-    
-    **Docstring**
-    
-    Sets the configuration currently stored on the Runner probe builder instance.
-    
-    Use this method when working with the documented Runner probe builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
+### `ReadConfiguration`
 
-## `CreateConfiguration`
-
-??? info "Location, signature, and docstring"
-    **Member**
-    `ProbeBuilder.CreateConfiguration(object configuration)`
-    
-    **Kind** `function`
-    
-    **Declaring Type** `ProbeBuilder`
-    
-    **Location** `QaaS.Runner.Sessions/Actions/Probes/ProbeBuilder.cs:300`
-    
-    **Signature**
-    ```csharp
-    public ProbeBuilder CreateConfiguration(object configuration)
-    ```
-    
-    **Docstring**
-    
-    Sets the configuration currently stored on the Runner probe builder instance.
-    
-    Use this method when working with the documented Runner probe builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
-
-## `Create`
-
-??? info "Location, signature, and docstring"
-    **Member**
-    `ProbeBuilder.Create(object configuration)`
-    
-    **Kind** `function`
-    
-    **Declaring Type** `ProbeBuilder`
-    
-    **Location** `QaaS.Runner.Sessions/Actions/Probes/ProbeBuilder.cs:312`
-    
-    **Signature**
-    ```csharp
-    public ProbeBuilder Create(object configuration)
-    ```
-    
-    **Docstring**
-    
-    Sets the configuration currently stored on the Runner probe builder instance.
-    
-    Use this method when working with the documented Runner probe builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
-
-## `ReadConfiguration`
-
-??? info "Location, signature, and docstring"
+??? info "Source file, signature, and docstring"
     **Member**
     `ProbeBuilder.ReadConfiguration()`
     
@@ -426,7 +367,7 @@ Each entry uses the short function name as the table-of-contents label. Expand a
     
     **Declaring Type** `ProbeBuilder`
     
-    **Location** `QaaS.Runner.Sessions/Actions/Probes/ProbeBuilder.cs:324`
+    **Source File** `QaaS.Runner.Sessions/Actions/Probes/ProbeBuilder.cs`
     
     **Signature**
     ```csharp
@@ -439,9 +380,57 @@ Each entry uses the short function name as the table-of-contents label. Expand a
     
     Use this method when working with the documented Runner probe builder API surface in code. Use it to inspect the current configured state without rebuilding the surrounding collection or runtime object graph.
 
-## `UpdateConfiguration`
+## Collection helpers
 
-??? info "Location, signature, and docstring"
+### `CreateConfiguration`
+
+??? info "Source file, signature, and docstring"
+    **Member**
+    `ProbeBuilder.CreateConfiguration(object configuration)`
+    
+    **Kind** `function`
+    
+    **Declaring Type** `ProbeBuilder`
+    
+    **Source File** `QaaS.Runner.Sessions/Actions/Probes/ProbeBuilder.cs`
+    
+    **Signature**
+    ```csharp
+    public ProbeBuilder CreateConfiguration(object configuration)
+    ```
+    
+    **Docstring**
+    
+    Sets the configuration currently stored on the Runner probe builder instance.
+    
+    Use this method when working with the documented Runner probe builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
+
+### `Create`
+
+??? info "Source file, signature, and docstring"
+    **Member**
+    `ProbeBuilder.Create(object configuration)`
+    
+    **Kind** `function`
+    
+    **Declaring Type** `ProbeBuilder`
+    
+    **Source File** `QaaS.Runner.Sessions/Actions/Probes/ProbeBuilder.cs`
+    
+    **Signature**
+    ```csharp
+    public ProbeBuilder Create(object configuration)
+    ```
+    
+    **Docstring**
+    
+    Sets the configuration currently stored on the Runner probe builder instance.
+    
+    Use this method when working with the documented Runner probe builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
+
+### `UpdateConfiguration`
+
+??? info "Source file, signature, and docstring"
     **Member**
     `ProbeBuilder.UpdateConfiguration(object configuration)`
     
@@ -449,7 +438,7 @@ Each entry uses the short function name as the table-of-contents label. Expand a
     
     **Declaring Type** `ProbeBuilder`
     
-    **Location** `QaaS.Runner.Sessions/Actions/Probes/ProbeBuilder.cs:336`
+    **Source File** `QaaS.Runner.Sessions/Actions/Probes/ProbeBuilder.cs`
     
     **Signature**
     ```csharp
@@ -462,9 +451,9 @@ Each entry uses the short function name as the table-of-contents label. Expand a
     
     Use this method when working with the documented Runner probe builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
-## `DeleteConfiguration`
+### `DeleteConfiguration`
 
-??? info "Location, signature, and docstring"
+??? info "Source file, signature, and docstring"
     **Member**
     `ProbeBuilder.DeleteConfiguration()`
     
@@ -472,7 +461,7 @@ Each entry uses the short function name as the table-of-contents label. Expand a
     
     **Declaring Type** `ProbeBuilder`
     
-    **Location** `QaaS.Runner.Sessions/Actions/Probes/ProbeBuilder.cs:349`
+    **Source File** `QaaS.Runner.Sessions/Actions/Probes/ProbeBuilder.cs`
     
     **Signature**
     ```csharp
@@ -482,5 +471,30 @@ Each entry uses the short function name as the table-of-contents label. Expand a
     **Docstring**
     
     Clears the configuration currently stored on the Runner probe builder instance.
+    
+    Use this method when working with the documented Runner probe builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
+
+## General
+
+### `Configure`
+
+??? info "Source file, signature, and docstring"
+    **Member**
+    `ProbeBuilder.Configure(object configuration)`
+    
+    **Kind** `function`
+    
+    **Declaring Type** `ProbeBuilder`
+    
+    **Source File** `QaaS.Runner.Sessions/Actions/Probes/ProbeBuilder.cs`
+    
+    **Signature**
+    ```csharp
+    public ProbeBuilder Configure(object configuration)
+    ```
+    
+    **Docstring**
+    
+    Sets the configuration currently stored on the Runner probe builder instance.
     
     Use this method when working with the documented Runner probe builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.

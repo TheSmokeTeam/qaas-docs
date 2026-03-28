@@ -10,7 +10,7 @@ The `execute` command runs multiple [Runner commands](commands.md) sequentially 
 
 The `execute` command uses a YAML configuration file to know which commands to run.
 
-!!! Note "Important"
+!!! warning "⚠️ Important"
     The commands in the YAML file are `QaaS Commands` there is **no** need to use **dotnet run** in them.
 
 ### YAML View

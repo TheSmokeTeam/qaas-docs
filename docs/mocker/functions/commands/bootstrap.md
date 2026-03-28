@@ -1,10 +1,11 @@
 # Bootstrap
 
-Each entry uses the short function name as the table-of-contents label. Expand an entry to inspect its location, signature, and XML doc comments.
+Each entry uses the short function name as the table-of-contents label. Expand an entry to inspect its source file, signature, and XML doc comments.
+
 
 ## `New`
 
-??? info "Location, signature, and docstring"
+??? info "Source file, signature, and docstring"
     **Member**
     `Bootstrap.New(IEnumerable<string>? args = null)`
     
@@ -12,7 +13,7 @@ Each entry uses the short function name as the table-of-contents label. Expand a
     
     **Declaring Type** `Bootstrap`
     
-    **Location** `QaaS.Mocker/Bootstrap.cs:21`
+    **Source File** `QaaS.Mocker/Bootstrap.cs`
     
     **Signature**
     ```csharp
@@ -27,7 +28,7 @@ Each entry uses the short function name as the table-of-contents label. Expand a
 
 ## `New<TRunner>`
 
-??? info "Location, signature, and docstring"
+??? info "Source file, signature, and docstring"
     **Member**
     `Bootstrap.New<TRunner>(IEnumerable<string>? args = null)`
     
@@ -35,7 +36,7 @@ Each entry uses the short function name as the table-of-contents label. Expand a
     
     **Declaring Type** `Bootstrap`
     
-    **Location** `QaaS.Mocker/Bootstrap.cs:34`
+    **Source File** `QaaS.Mocker/Bootstrap.cs`
     
     **Signature**
     ```csharp

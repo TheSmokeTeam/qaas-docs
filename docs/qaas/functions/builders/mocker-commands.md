@@ -1,10 +1,14 @@
 # Mocker Commands
 
-Each entry uses the short function name as the table-of-contents label. Expand an entry to inspect its location, signature, and XML doc comments.
+Each entry uses the short function name as the table-of-contents label. Expand an entry to inspect its source file, signature, and XML doc comments.
 
-## `Named`
+The functions on this page are grouped by responsibility so related operations stay together.
 
-??? info "Location, signature, and docstring"
+## Identity and hook selection
+
+### `Named`
+
+??? info "Source file, signature, and docstring"
     **Member**
     `MockerCommandBuilder.Named(string name)`
     
@@ -12,7 +16,7 @@ Each entry uses the short function name as the table-of-contents label. Expand a
     
     **Declaring Type** `MockerCommandBuilder`
     
-    **Location** `QaaS.Runner.Sessions/Actions/MockerCommands/MockerCommandBuilder.cs:49`
+    **Source File** `QaaS.Runner.Sessions/Actions/MockerCommands/MockerCommandBuilder.cs`
     
     **Signature**
     ```csharp
@@ -25,9 +29,11 @@ Each entry uses the short function name as the table-of-contents label. Expand a
     
     Use this method when working with the documented Runner mocker command builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
-## `AtStage`
+## Execution order
 
-??? info "Location, signature, and docstring"
+### `AtStage`
+
+??? info "Source file, signature, and docstring"
     **Member**
     `MockerCommandBuilder.AtStage(int stage)`
     
@@ -35,7 +41,7 @@ Each entry uses the short function name as the table-of-contents label. Expand a
     
     **Declaring Type** `MockerCommandBuilder`
     
-    **Location** `QaaS.Runner.Sessions/Actions/MockerCommands/MockerCommandBuilder.cs:62`
+    **Source File** `QaaS.Runner.Sessions/Actions/MockerCommands/MockerCommandBuilder.cs`
     
     **Signature**
     ```csharp
@@ -48,9 +54,11 @@ Each entry uses the short function name as the table-of-contents label. Expand a
     
     Use this method when working with the documented Runner mocker command builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
-## `WithServerName`
+## Servers
 
-??? info "Location, signature, and docstring"
+### `WithServerName`
+
+??? info "Source file, signature, and docstring"
     **Member**
     `MockerCommandBuilder.WithServerName(string serverName)`
     
@@ -58,7 +66,7 @@ Each entry uses the short function name as the table-of-contents label. Expand a
     
     **Declaring Type** `MockerCommandBuilder`
     
-    **Location** `QaaS.Runner.Sessions/Actions/MockerCommands/MockerCommandBuilder.cs:75`
+    **Source File** `QaaS.Runner.Sessions/Actions/MockerCommands/MockerCommandBuilder.cs`
     
     **Signature**
     ```csharp
@@ -71,9 +79,11 @@ Each entry uses the short function name as the table-of-contents label. Expand a
     
     Use this method when working with the documented Runner mocker command builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
-## `WithRedis`
+## Configuration
 
-??? info "Location, signature, and docstring"
+### `WithRedis`
+
+??? info "Source file, signature, and docstring"
     **Member**
     `MockerCommandBuilder.WithRedis(RedisConfig redis)`
     
@@ -81,7 +91,7 @@ Each entry uses the short function name as the table-of-contents label. Expand a
     
     **Declaring Type** `MockerCommandBuilder`
     
-    **Location** `QaaS.Runner.Sessions/Actions/MockerCommands/MockerCommandBuilder.cs:88`
+    **Source File** `QaaS.Runner.Sessions/Actions/MockerCommands/MockerCommandBuilder.cs`
     
     **Signature**
     ```csharp
@@ -94,9 +104,9 @@ Each entry uses the short function name as the table-of-contents label. Expand a
     
     Use this method when working with the documented Runner mocker command builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
-## `WithRequestDurationMs`
+### `WithRequestDurationMs`
 
-??? info "Location, signature, and docstring"
+??? info "Source file, signature, and docstring"
     **Member**
     `MockerCommandBuilder.WithRequestDurationMs(int requestDurationMs)`
     
@@ -104,7 +114,7 @@ Each entry uses the short function name as the table-of-contents label. Expand a
     
     **Declaring Type** `MockerCommandBuilder`
     
-    **Location** `QaaS.Runner.Sessions/Actions/MockerCommands/MockerCommandBuilder.cs:101`
+    **Source File** `QaaS.Runner.Sessions/Actions/MockerCommands/MockerCommandBuilder.cs`
     
     **Signature**
     ```csharp
@@ -117,9 +127,9 @@ Each entry uses the short function name as the table-of-contents label. Expand a
     
     Use this method when working with the documented Runner mocker command builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
-## `WithRequestRetries`
+### `WithRequestRetries`
 
-??? info "Location, signature, and docstring"
+??? info "Source file, signature, and docstring"
     **Member**
     `MockerCommandBuilder.WithRequestRetries(int requestRetries)`
     
@@ -127,7 +137,7 @@ Each entry uses the short function name as the table-of-contents label. Expand a
     
     **Declaring Type** `MockerCommandBuilder`
     
-    **Location** `QaaS.Runner.Sessions/Actions/MockerCommands/MockerCommandBuilder.cs:114`
+    **Source File** `QaaS.Runner.Sessions/Actions/MockerCommands/MockerCommandBuilder.cs`
     
     **Signature**
     ```csharp
@@ -140,32 +150,9 @@ Each entry uses the short function name as the table-of-contents label. Expand a
     
     Use this method when working with the documented Runner mocker command builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
-## `Configure`
+### `WithCommand`
 
-??? info "Location, signature, and docstring"
-    **Member**
-    `MockerCommandBuilder.Configure(MockerCommandConfig command)`
-    
-    **Kind** `function`
-    
-    **Declaring Type** `MockerCommandBuilder`
-    
-    **Location** `QaaS.Runner.Sessions/Actions/MockerCommands/MockerCommandBuilder.cs:127`
-    
-    **Signature**
-    ```csharp
-    public MockerCommandBuilder Configure(MockerCommandConfig command)
-    ```
-    
-    **Docstring**
-    
-    Sets the configuration currently stored on the Runner mocker command builder instance.
-    
-    Use this method when working with the documented Runner mocker command builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
-
-## `WithCommand`
-
-??? info "Location, signature, and docstring"
+??? info "Source file, signature, and docstring"
     **Member**
     `MockerCommandBuilder.WithCommand(MockerCommandConfig command)`
     
@@ -173,7 +160,7 @@ Each entry uses the short function name as the table-of-contents label. Expand a
     
     **Declaring Type** `MockerCommandBuilder`
     
-    **Location** `QaaS.Runner.Sessions/Actions/MockerCommands/MockerCommandBuilder.cs:140`
+    **Source File** `QaaS.Runner.Sessions/Actions/MockerCommands/MockerCommandBuilder.cs`
     
     **Signature**
     ```csharp
@@ -186,55 +173,11 @@ Each entry uses the short function name as the table-of-contents label. Expand a
     
     Use this method when working with the documented Runner mocker command builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
-## `CreateConfiguration`
+## Inspection
 
-??? info "Location, signature, and docstring"
-    **Member**
-    `MockerCommandBuilder.CreateConfiguration(MockerCommandConfig command)`
-    
-    **Kind** `function`
-    
-    **Declaring Type** `MockerCommandBuilder`
-    
-    **Location** `QaaS.Runner.Sessions/Actions/MockerCommands/MockerCommandBuilder.cs:152`
-    
-    **Signature**
-    ```csharp
-    public MockerCommandBuilder CreateConfiguration(MockerCommandConfig command)
-    ```
-    
-    **Docstring**
-    
-    Sets the configuration currently stored on the Runner mocker command builder instance.
-    
-    Use this method when working with the documented Runner mocker command builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
+### `ReadConfiguration`
 
-## `Create`
-
-??? info "Location, signature, and docstring"
-    **Member**
-    `MockerCommandBuilder.Create(MockerCommandConfig command)`
-    
-    **Kind** `function`
-    
-    **Declaring Type** `MockerCommandBuilder`
-    
-    **Location** `QaaS.Runner.Sessions/Actions/MockerCommands/MockerCommandBuilder.cs:164`
-    
-    **Signature**
-    ```csharp
-    public MockerCommandBuilder Create(MockerCommandConfig command)
-    ```
-    
-    **Docstring**
-    
-    Sets the configuration currently stored on the Runner mocker command builder instance.
-    
-    Use this method when working with the documented Runner mocker command builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
-
-## `ReadConfiguration`
-
-??? info "Location, signature, and docstring"
+??? info "Source file, signature, and docstring"
     **Member**
     `MockerCommandBuilder.ReadConfiguration()`
     
@@ -242,7 +185,7 @@ Each entry uses the short function name as the table-of-contents label. Expand a
     
     **Declaring Type** `MockerCommandBuilder`
     
-    **Location** `QaaS.Runner.Sessions/Actions/MockerCommands/MockerCommandBuilder.cs:176`
+    **Source File** `QaaS.Runner.Sessions/Actions/MockerCommands/MockerCommandBuilder.cs`
     
     **Signature**
     ```csharp
@@ -255,9 +198,57 @@ Each entry uses the short function name as the table-of-contents label. Expand a
     
     Use this method when working with the documented Runner mocker command builder API surface in code. Use it to inspect the current configured state without rebuilding the surrounding collection or runtime object graph.
 
-## `UpdateConfiguration`
+## Collection helpers
 
-??? info "Location, signature, and docstring"
+### `CreateConfiguration`
+
+??? info "Source file, signature, and docstring"
+    **Member**
+    `MockerCommandBuilder.CreateConfiguration(MockerCommandConfig command)`
+    
+    **Kind** `function`
+    
+    **Declaring Type** `MockerCommandBuilder`
+    
+    **Source File** `QaaS.Runner.Sessions/Actions/MockerCommands/MockerCommandBuilder.cs`
+    
+    **Signature**
+    ```csharp
+    public MockerCommandBuilder CreateConfiguration(MockerCommandConfig command)
+    ```
+    
+    **Docstring**
+    
+    Sets the configuration currently stored on the Runner mocker command builder instance.
+    
+    Use this method when working with the documented Runner mocker command builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
+
+### `Create`
+
+??? info "Source file, signature, and docstring"
+    **Member**
+    `MockerCommandBuilder.Create(MockerCommandConfig command)`
+    
+    **Kind** `function`
+    
+    **Declaring Type** `MockerCommandBuilder`
+    
+    **Source File** `QaaS.Runner.Sessions/Actions/MockerCommands/MockerCommandBuilder.cs`
+    
+    **Signature**
+    ```csharp
+    public MockerCommandBuilder Create(MockerCommandConfig command)
+    ```
+    
+    **Docstring**
+    
+    Sets the configuration currently stored on the Runner mocker command builder instance.
+    
+    Use this method when working with the documented Runner mocker command builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
+
+### `UpdateConfiguration`
+
+??? info "Source file, signature, and docstring"
     **Member**
     `MockerCommandBuilder.UpdateConfiguration(Func<MockerCommandConfig, MockerCommandConfig> update)`
     
@@ -265,7 +256,7 @@ Each entry uses the short function name as the table-of-contents label. Expand a
     
     **Declaring Type** `MockerCommandBuilder`
     
-    **Location** `QaaS.Runner.Sessions/Actions/MockerCommands/MockerCommandBuilder.cs:188`
+    **Source File** `QaaS.Runner.Sessions/Actions/MockerCommands/MockerCommandBuilder.cs`
     
     **Signature**
     ```csharp
@@ -278,9 +269,9 @@ Each entry uses the short function name as the table-of-contents label. Expand a
     
     Use this method when working with the documented Runner mocker command builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
-## `UpdateConfiguration`
+### `UpdateConfiguration`
 
-??? info "Location, signature, and docstring"
+??? info "Source file, signature, and docstring"
     **Member**
     `MockerCommandBuilder.UpdateConfiguration(MockerCommandConfig command)`
     
@@ -288,7 +279,7 @@ Each entry uses the short function name as the table-of-contents label. Expand a
     
     **Declaring Type** `MockerCommandBuilder`
     
-    **Location** `QaaS.Runner.Sessions/Actions/MockerCommands/MockerCommandBuilder.cs:202`
+    **Source File** `QaaS.Runner.Sessions/Actions/MockerCommands/MockerCommandBuilder.cs`
     
     **Signature**
     ```csharp
@@ -301,9 +292,9 @@ Each entry uses the short function name as the table-of-contents label. Expand a
     
     Use this method when working with the documented Runner mocker command builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
-## `UpdateConfiguration`
+### `UpdateConfiguration`
 
-??? info "Location, signature, and docstring"
+??? info "Source file, signature, and docstring"
     **Member**
     `MockerCommandBuilder.UpdateConfiguration(object configuration)`
     
@@ -311,7 +302,7 @@ Each entry uses the short function name as the table-of-contents label. Expand a
     
     **Declaring Type** `MockerCommandBuilder`
     
-    **Location** `QaaS.Runner.Sessions/Actions/MockerCommands/MockerCommandBuilder.cs:217`
+    **Source File** `QaaS.Runner.Sessions/Actions/MockerCommands/MockerCommandBuilder.cs`
     
     **Signature**
     ```csharp
@@ -324,9 +315,9 @@ Each entry uses the short function name as the table-of-contents label. Expand a
     
     Use this method when working with the documented Runner mocker command builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
-## `DeleteConfiguration`
+### `DeleteConfiguration`
 
-??? info "Location, signature, and docstring"
+??? info "Source file, signature, and docstring"
     **Member**
     `MockerCommandBuilder.DeleteConfiguration()`
     
@@ -334,7 +325,7 @@ Each entry uses the short function name as the table-of-contents label. Expand a
     
     **Declaring Type** `MockerCommandBuilder`
     
-    **Location** `QaaS.Runner.Sessions/Actions/MockerCommands/MockerCommandBuilder.cs:232`
+    **Source File** `QaaS.Runner.Sessions/Actions/MockerCommands/MockerCommandBuilder.cs`
     
     **Signature**
     ```csharp
@@ -344,5 +335,30 @@ Each entry uses the short function name as the table-of-contents label. Expand a
     **Docstring**
     
     Clears the configuration currently stored on the Runner mocker command builder instance.
+    
+    Use this method when working with the documented Runner mocker command builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
+
+## General
+
+### `Configure`
+
+??? info "Source file, signature, and docstring"
+    **Member**
+    `MockerCommandBuilder.Configure(MockerCommandConfig command)`
+    
+    **Kind** `function`
+    
+    **Declaring Type** `MockerCommandBuilder`
+    
+    **Source File** `QaaS.Runner.Sessions/Actions/MockerCommands/MockerCommandBuilder.cs`
+    
+    **Signature**
+    ```csharp
+    public MockerCommandBuilder Configure(MockerCommandConfig command)
+    ```
+    
+    **Docstring**
+    
+    Sets the configuration currently stored on the Runner mocker command builder instance.
     
     Use this method when working with the documented Runner mocker command builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.

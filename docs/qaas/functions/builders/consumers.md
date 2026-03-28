@@ -1,10 +1,14 @@
 # Consumers
 
-Each entry uses the short function name as the table-of-contents label. Expand an entry to inspect its location, signature, and XML doc comments.
+Each entry uses the short function name as the table-of-contents label. Expand an entry to inspect its source file, signature, and XML doc comments.
 
-## `Named`
+The functions on this page are grouped by responsibility so related operations stay together.
 
-??? info "Location, signature, and docstring"
+## Identity and hook selection
+
+### `Named`
+
+??? info "Source file, signature, and docstring"
     **Member**
     `ConsumerBuilder.Named(string name)`
     
@@ -12,7 +16,7 @@ Each entry uses the short function name as the table-of-contents label. Expand a
     
     **Declaring Type** `ConsumerBuilder`
     
-    **Location** `QaaS.Runner.Sessions/Actions/Consumers/Builders/ConsumerBuilderLogic.cs:34`
+    **Source File** `QaaS.Runner.Sessions/Actions/Consumers/Builders/ConsumerBuilderLogic.cs`
     
     **Signature**
     ```csharp
@@ -25,9 +29,11 @@ Each entry uses the short function name as the table-of-contents label. Expand a
     
     Use this method when working with the documented Runner consumer builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
-## `AtStage`
+## Execution order
 
-??? info "Location, signature, and docstring"
+### `AtStage`
+
+??? info "Source file, signature, and docstring"
     **Member**
     `ConsumerBuilder.AtStage(int stage)`
     
@@ -35,7 +41,7 @@ Each entry uses the short function name as the table-of-contents label. Expand a
     
     **Declaring Type** `ConsumerBuilder`
     
-    **Location** `QaaS.Runner.Sessions/Actions/Consumers/Builders/ConsumerBuilderLogic.cs:47`
+    **Source File** `QaaS.Runner.Sessions/Actions/Consumers/Builders/ConsumerBuilderLogic.cs`
     
     **Signature**
     ```csharp
@@ -48,78 +54,11 @@ Each entry uses the short function name as the table-of-contents label. Expand a
     
     Use this method when working with the documented Runner consumer builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
-## `WithTimeout`
+## Policies
 
-??? info "Location, signature, and docstring"
-    **Member**
-    `ConsumerBuilder.WithTimeout(int timeoutMs)`
-    
-    **Kind** `function`
-    
-    **Declaring Type** `ConsumerBuilder`
-    
-    **Location** `QaaS.Runner.Sessions/Actions/Consumers/Builders/ConsumerBuilderLogic.cs:60`
-    
-    **Signature**
-    ```csharp
-    public ConsumerBuilder WithTimeout(int timeoutMs)
-    ```
-    
-    **Docstring**
-    
-    Configures timeout on the current Runner consumer builder instance.
-    
-    Use this method when working with the documented Runner consumer builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
+### `AddPolicy`
 
-## `FilterData`
-
-??? info "Location, signature, and docstring"
-    **Member**
-    `ConsumerBuilder.FilterData(DataFilter dataFilter)`
-    
-    **Kind** `function`
-    
-    **Declaring Type** `ConsumerBuilder`
-    
-    **Location** `QaaS.Runner.Sessions/Actions/Consumers/Builders/ConsumerBuilderLogic.cs:73`
-    
-    **Signature**
-    ```csharp
-    public ConsumerBuilder FilterData(DataFilter dataFilter)
-    ```
-    
-    **Docstring**
-    
-    Sets the data filter used by the current Runner consumer builder instance.
-    
-    Use this method when working with the documented Runner consumer builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
-
-## `WithDeserializer`
-
-??? info "Location, signature, and docstring"
-    **Member**
-    `ConsumerBuilder.WithDeserializer(DeserializeConfig deserializeConfig)`
-    
-    **Kind** `function`
-    
-    **Declaring Type** `ConsumerBuilder`
-    
-    **Location** `QaaS.Runner.Sessions/Actions/Consumers/Builders/ConsumerBuilderLogic.cs:86`
-    
-    **Signature**
-    ```csharp
-    public ConsumerBuilder WithDeserializer(DeserializeConfig deserializeConfig)
-    ```
-    
-    **Docstring**
-    
-    Sets the deserializer configuration used by the current Runner consumer builder instance.
-    
-    Use this method when working with the documented Runner consumer builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
-
-## `AddPolicy`
-
-??? info "Location, signature, and docstring"
+??? info "Source file, signature, and docstring"
     **Member**
     `ConsumerBuilder.AddPolicy(PolicyBuilder policy)`
     
@@ -127,7 +66,7 @@ Each entry uses the short function name as the table-of-contents label. Expand a
     
     **Declaring Type** `ConsumerBuilder`
     
-    **Location** `QaaS.Runner.Sessions/Actions/Consumers/Builders/ConsumerBuilderLogic.cs:99`
+    **Source File** `QaaS.Runner.Sessions/Actions/Consumers/Builders/ConsumerBuilderLogic.cs`
     
     **Signature**
     ```csharp
@@ -140,9 +79,9 @@ Each entry uses the short function name as the table-of-contents label. Expand a
     
     Use this method when working with the documented Runner consumer builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
-## `CreatePolicy`
+### `CreatePolicy`
 
-??? info "Location, signature, and docstring"
+??? info "Source file, signature, and docstring"
     **Member**
     `ConsumerBuilder.CreatePolicy(PolicyBuilder policy)`
     
@@ -150,7 +89,7 @@ Each entry uses the short function name as the table-of-contents label. Expand a
     
     **Declaring Type** `ConsumerBuilder`
     
-    **Location** `QaaS.Runner.Sessions/Actions/Consumers/Builders/ConsumerBuilderLogic.cs:114`
+    **Source File** `QaaS.Runner.Sessions/Actions/Consumers/Builders/ConsumerBuilderLogic.cs`
     
     **Signature**
     ```csharp
@@ -163,32 +102,9 @@ Each entry uses the short function name as the table-of-contents label. Expand a
     
     Use this method when working with the documented Runner consumer builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
-## `ReadPolicies`
+### `UpdatePolicyAt`
 
-??? info "Location, signature, and docstring"
-    **Member**
-    `ConsumerBuilder.ReadPolicies()`
-    
-    **Kind** `function`
-    
-    **Declaring Type** `ConsumerBuilder`
-    
-    **Location** `QaaS.Runner.Sessions/Actions/Consumers/Builders/ConsumerBuilderLogic.cs:126`
-    
-    **Signature**
-    ```csharp
-    public IReadOnlyList<PolicyBuilder> ReadPolicies()
-    ```
-    
-    **Docstring**
-    
-    Returns the configured policies currently stored on the Runner consumer builder instance.
-    
-    Use this method when working with the documented Runner consumer builder API surface in code. Use it to inspect the current configured state without rebuilding the surrounding collection or runtime object graph.
-
-## `UpdatePolicyAt`
-
-??? info "Location, signature, and docstring"
+??? info "Source file, signature, and docstring"
     **Member**
     `ConsumerBuilder.UpdatePolicyAt(int index, PolicyBuilder policy)`
     
@@ -196,7 +112,7 @@ Each entry uses the short function name as the table-of-contents label. Expand a
     
     **Declaring Type** `ConsumerBuilder`
     
-    **Location** `QaaS.Runner.Sessions/Actions/Consumers/Builders/ConsumerBuilderLogic.cs:138`
+    **Source File** `QaaS.Runner.Sessions/Actions/Consumers/Builders/ConsumerBuilderLogic.cs`
     
     **Signature**
     ```csharp
@@ -209,9 +125,9 @@ Each entry uses the short function name as the table-of-contents label. Expand a
     
     Use this method when working with the documented Runner consumer builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
-## `DeletePolicyAt`
+### `DeletePolicyAt`
 
-??? info "Location, signature, and docstring"
+??? info "Source file, signature, and docstring"
     **Member**
     `ConsumerBuilder.DeletePolicyAt(int index)`
     
@@ -219,7 +135,7 @@ Each entry uses the short function name as the table-of-contents label. Expand a
     
     **Declaring Type** `ConsumerBuilder`
     
-    **Location** `QaaS.Runner.Sessions/Actions/Consumers/Builders/ConsumerBuilderLogic.cs:156`
+    **Source File** `QaaS.Runner.Sessions/Actions/Consumers/Builders/ConsumerBuilderLogic.cs`
     
     **Signature**
     ```csharp
@@ -232,55 +148,82 @@ Each entry uses the short function name as the table-of-contents label. Expand a
     
     Use this method when working with the documented Runner consumer builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
-## `CreateConfiguration`
+## Configuration
 
-??? info "Location, signature, and docstring"
+### `WithTimeout`
+
+??? info "Source file, signature, and docstring"
     **Member**
-    `ConsumerBuilder.CreateConfiguration(IReaderConfig config)`
+    `ConsumerBuilder.WithTimeout(int timeoutMs)`
     
     **Kind** `function`
     
     **Declaring Type** `ConsumerBuilder`
     
-    **Location** `QaaS.Runner.Sessions/Actions/Consumers/Builders/ConsumerBuilderLogic.cs:174`
+    **Source File** `QaaS.Runner.Sessions/Actions/Consumers/Builders/ConsumerBuilderLogic.cs`
     
     **Signature**
     ```csharp
-    public ConsumerBuilder CreateConfiguration(IReaderConfig config)
+    public ConsumerBuilder WithTimeout(int timeoutMs)
     ```
     
     **Docstring**
     
-    Sets the configuration currently stored on the Runner consumer builder instance.
+    Configures timeout on the current Runner consumer builder instance.
     
     Use this method when working with the documented Runner consumer builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
-## `Create`
+### `WithDeserializer`
 
-??? info "Location, signature, and docstring"
+??? info "Source file, signature, and docstring"
     **Member**
-    `ConsumerBuilder.Create(IReaderConfig config)`
+    `ConsumerBuilder.WithDeserializer(DeserializeConfig deserializeConfig)`
     
     **Kind** `function`
     
     **Declaring Type** `ConsumerBuilder`
     
-    **Location** `QaaS.Runner.Sessions/Actions/Consumers/Builders/ConsumerBuilderLogic.cs:186`
+    **Source File** `QaaS.Runner.Sessions/Actions/Consumers/Builders/ConsumerBuilderLogic.cs`
     
     **Signature**
     ```csharp
-    public ConsumerBuilder Create(IReaderConfig config)
+    public ConsumerBuilder WithDeserializer(DeserializeConfig deserializeConfig)
     ```
     
     **Docstring**
     
-    Sets the configuration currently stored on the Runner consumer builder instance.
+    Sets the deserializer configuration used by the current Runner consumer builder instance.
     
     Use this method when working with the documented Runner consumer builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
-## `ReadConfiguration`
+## Inspection
 
-??? info "Location, signature, and docstring"
+### `ReadPolicies`
+
+??? info "Source file, signature, and docstring"
+    **Member**
+    `ConsumerBuilder.ReadPolicies()`
+    
+    **Kind** `function`
+    
+    **Declaring Type** `ConsumerBuilder`
+    
+    **Source File** `QaaS.Runner.Sessions/Actions/Consumers/Builders/ConsumerBuilderLogic.cs`
+    
+    **Signature**
+    ```csharp
+    public IReadOnlyList<PolicyBuilder> ReadPolicies()
+    ```
+    
+    **Docstring**
+    
+    Returns the configured policies currently stored on the Runner consumer builder instance.
+    
+    Use this method when working with the documented Runner consumer builder API surface in code. Use it to inspect the current configured state without rebuilding the surrounding collection or runtime object graph.
+
+### `ReadConfiguration`
+
+??? info "Source file, signature, and docstring"
     **Member**
     `ConsumerBuilder.ReadConfiguration()`
     
@@ -288,7 +231,7 @@ Each entry uses the short function name as the table-of-contents label. Expand a
     
     **Declaring Type** `ConsumerBuilder`
     
-    **Location** `QaaS.Runner.Sessions/Actions/Consumers/Builders/ConsumerBuilderLogic.cs:198`
+    **Source File** `QaaS.Runner.Sessions/Actions/Consumers/Builders/ConsumerBuilderLogic.cs`
     
     **Signature**
     ```csharp
@@ -301,9 +244,57 @@ Each entry uses the short function name as the table-of-contents label. Expand a
     
     Use this method when working with the documented Runner consumer builder API surface in code. Use it to inspect the current configured state without rebuilding the surrounding collection or runtime object graph.
 
-## `UpdateConfiguration`
+## Collection helpers
 
-??? info "Location, signature, and docstring"
+### `CreateConfiguration`
+
+??? info "Source file, signature, and docstring"
+    **Member**
+    `ConsumerBuilder.CreateConfiguration(IReaderConfig config)`
+    
+    **Kind** `function`
+    
+    **Declaring Type** `ConsumerBuilder`
+    
+    **Source File** `QaaS.Runner.Sessions/Actions/Consumers/Builders/ConsumerBuilderLogic.cs`
+    
+    **Signature**
+    ```csharp
+    public ConsumerBuilder CreateConfiguration(IReaderConfig config)
+    ```
+    
+    **Docstring**
+    
+    Sets the configuration currently stored on the Runner consumer builder instance.
+    
+    Use this method when working with the documented Runner consumer builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
+
+### `Create`
+
+??? info "Source file, signature, and docstring"
+    **Member**
+    `ConsumerBuilder.Create(IReaderConfig config)`
+    
+    **Kind** `function`
+    
+    **Declaring Type** `ConsumerBuilder`
+    
+    **Source File** `QaaS.Runner.Sessions/Actions/Consumers/Builders/ConsumerBuilderLogic.cs`
+    
+    **Signature**
+    ```csharp
+    public ConsumerBuilder Create(IReaderConfig config)
+    ```
+    
+    **Docstring**
+    
+    Sets the configuration currently stored on the Runner consumer builder instance.
+    
+    Use this method when working with the documented Runner consumer builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
+
+### `UpdateConfiguration`
+
+??? info "Source file, signature, and docstring"
     **Member**
     `ConsumerBuilder.UpdateConfiguration(Func<IReaderConfig, IReaderConfig> update)`
     
@@ -311,7 +302,7 @@ Each entry uses the short function name as the table-of-contents label. Expand a
     
     **Declaring Type** `ConsumerBuilder`
     
-    **Location** `QaaS.Runner.Sessions/Actions/Consumers/Builders/ConsumerBuilderLogic.cs:219`
+    **Source File** `QaaS.Runner.Sessions/Actions/Consumers/Builders/ConsumerBuilderLogic.cs`
     
     **Signature**
     ```csharp
@@ -324,9 +315,9 @@ Each entry uses the short function name as the table-of-contents label. Expand a
     
     Use this method when working with the documented Runner consumer builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
-## `UpdateConfiguration`
+### `UpdateConfiguration`
 
-??? info "Location, signature, and docstring"
+??? info "Source file, signature, and docstring"
     **Member**
     `ConsumerBuilder.UpdateConfiguration(IReaderConfig config)`
     
@@ -334,7 +325,7 @@ Each entry uses the short function name as the table-of-contents label. Expand a
     
     **Declaring Type** `ConsumerBuilder`
     
-    **Location** `QaaS.Runner.Sessions/Actions/Consumers/Builders/ConsumerBuilderLogic.cs:233`
+    **Source File** `QaaS.Runner.Sessions/Actions/Consumers/Builders/ConsumerBuilderLogic.cs`
     
     **Signature**
     ```csharp
@@ -347,9 +338,9 @@ Each entry uses the short function name as the table-of-contents label. Expand a
     
     Use this method when working with the documented Runner consumer builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
-## `UpdateConfiguration`
+### `UpdateConfiguration`
 
-??? info "Location, signature, and docstring"
+??? info "Source file, signature, and docstring"
     **Member**
     `ConsumerBuilder.UpdateConfiguration(object configuration)`
     
@@ -357,7 +348,7 @@ Each entry uses the short function name as the table-of-contents label. Expand a
     
     **Declaring Type** `ConsumerBuilder`
     
-    **Location** `QaaS.Runner.Sessions/Actions/Consumers/Builders/ConsumerBuilderLogic.cs:247`
+    **Source File** `QaaS.Runner.Sessions/Actions/Consumers/Builders/ConsumerBuilderLogic.cs`
     
     **Signature**
     ```csharp
@@ -370,9 +361,9 @@ Each entry uses the short function name as the table-of-contents label. Expand a
     
     Use this method when working with the documented Runner consumer builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
-## `DeleteConfiguration`
+### `DeleteConfiguration`
 
-??? info "Location, signature, and docstring"
+??? info "Source file, signature, and docstring"
     **Member**
     `ConsumerBuilder.DeleteConfiguration()`
     
@@ -380,7 +371,7 @@ Each entry uses the short function name as the table-of-contents label. Expand a
     
     **Declaring Type** `ConsumerBuilder`
     
-    **Location** `QaaS.Runner.Sessions/Actions/Consumers/Builders/ConsumerBuilderLogic.cs:261`
+    **Source File** `QaaS.Runner.Sessions/Actions/Consumers/Builders/ConsumerBuilderLogic.cs`
     
     **Signature**
     ```csharp
@@ -393,9 +384,34 @@ Each entry uses the short function name as the table-of-contents label. Expand a
     
     Use this method when working with the documented Runner consumer builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
-## `Configure`
+## General
 
-??? info "Location, signature, and docstring"
+### `FilterData`
+
+??? info "Source file, signature, and docstring"
+    **Member**
+    `ConsumerBuilder.FilterData(DataFilter dataFilter)`
+    
+    **Kind** `function`
+    
+    **Declaring Type** `ConsumerBuilder`
+    
+    **Source File** `QaaS.Runner.Sessions/Actions/Consumers/Builders/ConsumerBuilderLogic.cs`
+    
+    **Signature**
+    ```csharp
+    public ConsumerBuilder FilterData(DataFilter dataFilter)
+    ```
+    
+    **Docstring**
+    
+    Sets the data filter used by the current Runner consumer builder instance.
+    
+    Use this method when working with the documented Runner consumer builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
+
+### `Configure`
+
+??? info "Source file, signature, and docstring"
     **Member**
     `ConsumerBuilder.Configure(IReaderConfig config)`
     
@@ -403,7 +419,7 @@ Each entry uses the short function name as the table-of-contents label. Expand a
     
     **Declaring Type** `ConsumerBuilder`
     
-    **Location** `QaaS.Runner.Sessions/Actions/Consumers/Builders/ConsumerBuilderLogic.cs:288`
+    **Source File** `QaaS.Runner.Sessions/Actions/Consumers/Builders/ConsumerBuilderLogic.cs`
     
     **Signature**
     ```csharp

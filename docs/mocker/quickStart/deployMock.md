@@ -24,6 +24,9 @@ COPY --from=build /app/publish .
 ENTRYPOINT ["dotnet", "DummyAppMock.dll", "mocker.qaas.yaml"]
 ```
 
+!!! warning "⚠️ Important"
+    Build the project as part of the Docker image build, then push that finished runtime image to your registry. The deployed container should only pull the published image and start the already-built application. It should not compile the project during pod startup.
+
 Build and push the image to your registry:
 
 ```bash
@@ -31,12 +34,14 @@ docker build -t ghcr.io/my-org/dummy-app-mock:1.0.0 .
 docker push ghcr.io/my-org/dummy-app-mock:1.0.0
 ```
 
+After the image is published, Kubernetes only needs to pull `ghcr.io/my-org/dummy-app-mock:1.0.0` and run it. Rebuilding is only needed when you publish a new image tag.
+
 ## Native Helm Chart
 
 This chart deploys:
 
 - the mocker container
-- a Redis instance for the optional controller
+- a Redis instance for the optional [Controller](../userInterfaces/mocker/configurationSections/controller/overview.md)
 - a service for the mocker HTTP endpoint
 
 ### `Chart.yaml`
@@ -180,4 +185,4 @@ spec:
 helm upgrade --install dummy-app-mock ./chart
 ```
 
-The mocker becomes reachable through the mocker service, and the controller connects to Redis through the injected `Controller__Redis__Host` environment variable.
+The mocker becomes reachable through the mocker service, and the [Controller](../userInterfaces/mocker/configurationSections/controller/overview.md) connects to Redis through the injected `Controller__Redis__Host` environment variable.

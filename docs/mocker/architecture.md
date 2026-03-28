@@ -1,11 +1,11 @@
 # Architecture
 
-QaaS.Mocker has a small runtime surface, but the execution path is structured. Configuration is loaded first, then converted into a runtime graph of data sources, stubs, servers, and the optional controller.
+[QaaS.Mocker](index.md) has a small runtime surface, but the execution path is structured. Configuration is loaded first, then converted into a runtime graph of [DataSources](userInterfaces/mocker/configurationSections/dataSources/overview.md), [Stubs](userInterfaces/mocker/configurationSections/stubs/overview.md), [Servers](userInterfaces/mocker/configurationSections/server/overview.md), and the optional [Controller](userInterfaces/mocker/configurationSections/controller/overview.md).
 
 ## Runtime Flow
 
 1. **Bootstrap** loads configuration from YAML, code, overwrite files, overwrite arguments, and environment variables.
-2. **Execution building** resolves `DataSources`, `Stubs`, `Servers`, and `Controller` into in-memory runtime objects.
+2. **Execution building** resolves [DataSources](userInterfaces/mocker/configurationSections/dataSources/overview.md), [Stubs](userInterfaces/mocker/configurationSections/stubs/overview.md), [Servers](userInterfaces/mocker/configurationSections/server/overview.md), and [Controller](userInterfaces/mocker/configurationSections/controller/overview.md) into in-memory runtime objects.
 3. **Server startup** creates the configured HTTP, gRPC, or socket listeners.
 4. **Request handling** matches the incoming request to an endpoint action, resolves the target stub, and runs its processor.
 5. **Response shaping** returns the `Data<object>` produced by the processor as protocol-specific output.
@@ -14,7 +14,7 @@ QaaS.Mocker has a small runtime surface, but the execution path is structured. C
 
 ### DataSources
 
-Data sources are optional inputs for a stub. They usually come from generators such as `FromFileSystem`, but they can also be built in code. A processor can read one or more named data sources and decide which generated item becomes the response payload.
+Data sources are optional inputs for a stub. They usually come from generators such as `FromFileSystem` in [QaaS.Common.Generators](../generators/index.md), but they can also be built in code. A [Processor](../processors/index.md) can read one or more named data sources and decide which generated item becomes the response payload.
 
 ### Stubs
 
@@ -43,11 +43,11 @@ Processors are the code that actually creates the response. They receive:
 - the resolved stub data sources
 - the incoming request body and metadata
 
-They return a `Data<object>` with body and metadata that Mocker translates into the outgoing protocol response. This is why processors are the core extension point in the mocker runtime.
+They return a `Data<object>` with body and metadata that Mocker translates into the outgoing protocol response. This is why [QaaS.Common.Processors](../processors/index.md) and project-local processors are the core extension point in the Mocker runtime.
 
 ### Controller
 
-The controller is optional. When enabled, it adds a Redis-backed coordination surface that Runner sessions or other automation can use to switch stubs, trigger runtime actions, or consume cached runtime data. Local quick starts can ignore it, but deployment scenarios often enable it.
+The controller is optional. When enabled, it adds a Redis-backed coordination surface that [QaaS.Runner](../qaas/index.md) sessions or other automation can use to switch stubs, trigger runtime actions, or consume cached runtime data. Local quick starts can ignore it, but deployment scenarios often enable it.
 
 ## Why The Model Scales
 

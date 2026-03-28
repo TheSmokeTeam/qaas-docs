@@ -1,10 +1,11 @@
 # Mocker Runner
 
-Each entry uses the short function name as the table-of-contents label. Expand an entry to inspect its location, signature, and XML doc comments.
+Each entry uses the short function name as the table-of-contents label. Expand an entry to inspect its source file, signature, and XML doc comments.
+
 
 ## `Run`
 
-??? info "Location, signature, and docstring"
+??? info "Source file, signature, and docstring"
     **Member**
     `MockerRunner.Run()`
     
@@ -12,7 +13,7 @@ Each entry uses the short function name as the table-of-contents label. Expand a
     
     **Declaring Type** `MockerRunner`
     
-    **Location** `QaaS.Mocker/MockerRunner.cs:32`
+    **Source File** `QaaS.Mocker/MockerRunner.cs`
     
     **Signature**
     ```csharp

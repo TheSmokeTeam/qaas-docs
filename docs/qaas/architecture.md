@@ -1,20 +1,20 @@
 # Architecture
 
-The QaaS framework is built on a plugin system architecture, enabling users to extend and customize the framework by integrating user-provided plugins. This modular design allows for flexible, extensible, and maintainable test automation solutions, where components can be dynamically loaded and orchestrated based on configuration.
+The [QaaS.Framework](../framework/index.md) runtime is built around a [Plugins](addOns/plugins.md) model that lets you extend and customize QaaS by integrating user-provided packages. This modular design allows for flexible, extensible, and maintainable test automation solutions, where components can be dynamically loaded and orchestrated based on configuration.
 
 ---
 
 ## QaaS Project Structure
 
-The foundation of any QaaS project is its configuration file, typically a YAML file, which defines the structure, components, and execution flow of the test. This file serves as the entry point for the framework, orchestrating the initialization and execution of core components in a defined sequence.
+The foundation of any QaaS project is its configuration file, typically a YAML file, which defines the structure, components, and execution flow of the test. This file serves as the entry point for the runtime, orchestrating the initialization and execution of core components in a defined sequence.
 
 The YAML configuration may include:
 
-- Built-in framework features
-- Custom plugin hooks
-- References to external services or data sources
+- Built-in [QaaS.Framework](../framework/index.md) features
+- Custom [Plugins](addOns/plugins.md) and hook packages
+- References to external services or [DataSources](userInterfaces/runner/configurationSections/dataSources/overview.md)
 
-This declarative approach enables rapid setup and configuration, while still supporting programmatic control through Configuration as Code.
+This declarative approach enables rapid setup and configuration, while still supporting programmatic control through [Configuration as Code](advancedConcepts/configurationAsCode.md).
 
 ---
 
@@ -22,20 +22,20 @@ This declarative approach enables rapid setup and configuration, while still sup
 
 ### QaaS.Runner Project
 
-A QaaS.Runner project is a C#-based project that depends on the `QaaS.Runner` NuGet package. Its primary purpose is to serve as a test execution environment for backend or end-to-end (e2e) applications. These projects are driven by either:
+A [QaaS.Runner](index.md) project is a C#-based project that depends on the `QaaS.Runner` NuGet package. Its primary purpose is to serve as a test execution environment for backend or end-to-end (e2e) applications. These projects are driven by either:
 
 - A YAML configuration file
-- Programmatic configuration via C# (Configuration as Code)
+- Programmatic configuration via C# ([Configuration as Code](advancedConcepts/configurationAsCode.md))
 
 The framework components that can be configured are:
 
 | Component       | Description                                                                                                                                                                       |
 |-----------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **Storage**     | Manages the persistence and retrieval of test data objects from various storage backends (e.g., file systems, S3, databases).                                                     |
-| **DataSources** | Provides test data through configurable generators (e.g., random values, JSON templates, database seeds).                                                                         |
-| **Sessions**    | Executes synchronous or asynchronous actions against the system under test (SUT), such as sending HTTP requests, publishing messages, restarting services, or manipulating state. |
-| **Assertions**  | Validates the outcomes of sessions using predefined or custom validation logic, and records test results.                                                                         |
-| **Links**       | Integrates with observability systems (e.g., Prometheus, Elasticsearch, Grafana) to retrieve metrics, logs, or traces for analysis and reporting.                                 |
+| **Storages**    | Manages the persistence and retrieval of test data objects through [Storages](userInterfaces/runner/configurationSections/storages/overview.md) such as file systems, S3, or databases. |
+| **DataSources** | Provides test data through [DataSources](userInterfaces/runner/configurationSections/dataSources/overview.md) and configurable generators. |
+| **Sessions**    | Executes synchronous or asynchronous work through [Sessions](userInterfaces/runner/configurationSections/sessions/overview.md), such as sending HTTP requests, publishing messages, restarting services, or manipulating state. |
+| **Assertions**  | Validates the outcomes of sessions through [Assertions](userInterfaces/runner/configurationSections/assertions/overview.md) and records test results. |
+| **Links**       | Integrates with observability systems through [Links](userInterfaces/runner/configurationSections/links/overview.md) to retrieve metrics, logs, or traces for analysis and reporting. |
 
 ---
 

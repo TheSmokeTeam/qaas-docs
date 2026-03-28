@@ -1,10 +1,14 @@
 # Storages
 
-Each entry uses the short function name as the table-of-contents label. Expand an entry to inspect its location, signature, and XML doc comments.
+Each entry uses the short function name as the table-of-contents label. Expand an entry to inspect its source file, signature, and XML doc comments.
 
-## `WithJsonStorageFormat`
+The functions on this page are grouped by responsibility so related operations stay together.
 
-??? info "Location, signature, and docstring"
+## Storages
+
+### `WithJsonStorageFormat`
+
+??? info "Source file, signature, and docstring"
     **Member**
     `StorageBuilder.WithJsonStorageFormat(Formatting format)`
     
@@ -12,7 +16,7 @@ Each entry uses the short function name as the table-of-contents label. Expand a
     
     **Declaring Type** `StorageBuilder`
     
-    **Location** `QaaS.Runner.Storage/StorageBuilder.cs:42`
+    **Source File** `QaaS.Runner.Storage/StorageBuilder.cs`
     
     **Signature**
     ```csharp
@@ -25,55 +29,11 @@ Each entry uses the short function name as the table-of-contents label. Expand a
     
     Use this method when working with the documented Runner storage builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
-## `Create`
+## Inspection
 
-??? info "Location, signature, and docstring"
-    **Member**
-    `StorageBuilder.Create(IStorageConfig storageConfig)`
-    
-    **Kind** `function`
-    
-    **Declaring Type** `StorageBuilder`
-    
-    **Location** `QaaS.Runner.Storage/StorageBuilder.cs:55`
-    
-    **Signature**
-    ```csharp
-    public StorageBuilder Create(IStorageConfig storageConfig)
-    ```
-    
-    **Docstring**
-    
-    Sets the configuration currently stored on the Runner storage builder instance.
-    
-    Use this method when working with the documented Runner storage builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
+### `ReadConfiguration`
 
-## `CreateConfiguration`
-
-??? info "Location, signature, and docstring"
-    **Member**
-    `StorageBuilder.CreateConfiguration(IStorageConfig storageConfig)`
-    
-    **Kind** `function`
-    
-    **Declaring Type** `StorageBuilder`
-    
-    **Location** `QaaS.Runner.Storage/StorageBuilder.cs:67`
-    
-    **Signature**
-    ```csharp
-    public StorageBuilder CreateConfiguration(IStorageConfig storageConfig)
-    ```
-    
-    **Docstring**
-    
-    Sets the configuration currently stored on the Runner storage builder instance.
-    
-    Use this method when working with the documented Runner storage builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
-
-## `ReadConfiguration`
-
-??? info "Location, signature, and docstring"
+??? info "Source file, signature, and docstring"
     **Member**
     `StorageBuilder.ReadConfiguration()`
     
@@ -81,7 +41,7 @@ Each entry uses the short function name as the table-of-contents label. Expand a
     
     **Declaring Type** `StorageBuilder`
     
-    **Location** `QaaS.Runner.Storage/StorageBuilder.cs:79`
+    **Source File** `QaaS.Runner.Storage/StorageBuilder.cs`
     
     **Signature**
     ```csharp
@@ -94,9 +54,57 @@ Each entry uses the short function name as the table-of-contents label. Expand a
     
     Use this method when working with the documented Runner storage builder API surface in code. Use it to inspect the current configured state without rebuilding the surrounding collection or runtime object graph.
 
-## `UpdateConfiguration`
+## Collection helpers
 
-??? info "Location, signature, and docstring"
+### `Create`
+
+??? info "Source file, signature, and docstring"
+    **Member**
+    `StorageBuilder.Create(IStorageConfig storageConfig)`
+    
+    **Kind** `function`
+    
+    **Declaring Type** `StorageBuilder`
+    
+    **Source File** `QaaS.Runner.Storage/StorageBuilder.cs`
+    
+    **Signature**
+    ```csharp
+    public StorageBuilder Create(IStorageConfig storageConfig)
+    ```
+    
+    **Docstring**
+    
+    Sets the configuration currently stored on the Runner storage builder instance.
+    
+    Use this method when working with the documented Runner storage builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
+
+### `CreateConfiguration`
+
+??? info "Source file, signature, and docstring"
+    **Member**
+    `StorageBuilder.CreateConfiguration(IStorageConfig storageConfig)`
+    
+    **Kind** `function`
+    
+    **Declaring Type** `StorageBuilder`
+    
+    **Source File** `QaaS.Runner.Storage/StorageBuilder.cs`
+    
+    **Signature**
+    ```csharp
+    public StorageBuilder CreateConfiguration(IStorageConfig storageConfig)
+    ```
+    
+    **Docstring**
+    
+    Sets the configuration currently stored on the Runner storage builder instance.
+    
+    Use this method when working with the documented Runner storage builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
+
+### `UpdateConfiguration`
+
+??? info "Source file, signature, and docstring"
     **Member**
     `StorageBuilder.UpdateConfiguration(Func<IStorageConfig, IStorageConfig> update)`
     
@@ -104,7 +112,7 @@ Each entry uses the short function name as the table-of-contents label. Expand a
     
     **Declaring Type** `StorageBuilder`
     
-    **Location** `QaaS.Runner.Storage/StorageBuilder.cs:91`
+    **Source File** `QaaS.Runner.Storage/StorageBuilder.cs`
     
     **Signature**
     ```csharp
@@ -117,9 +125,9 @@ Each entry uses the short function name as the table-of-contents label. Expand a
     
     Use this method when working with the documented Runner storage builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
-## `UpdateConfiguration`
+### `UpdateConfiguration`
 
-??? info "Location, signature, and docstring"
+??? info "Source file, signature, and docstring"
     **Member**
     `StorageBuilder.UpdateConfiguration(IStorageConfig storageConfig)`
     
@@ -127,7 +135,7 @@ Each entry uses the short function name as the table-of-contents label. Expand a
     
     **Declaring Type** `StorageBuilder`
     
-    **Location** `QaaS.Runner.Storage/StorageBuilder.cs:105`
+    **Source File** `QaaS.Runner.Storage/StorageBuilder.cs`
     
     **Signature**
     ```csharp
@@ -140,9 +148,9 @@ Each entry uses the short function name as the table-of-contents label. Expand a
     
     Use this method when working with the documented Runner storage builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
-## `UpdateConfiguration`
+### `UpdateConfiguration`
 
-??? info "Location, signature, and docstring"
+??? info "Source file, signature, and docstring"
     **Member**
     `StorageBuilder.UpdateConfiguration(object configuration)`
     
@@ -150,7 +158,7 @@ Each entry uses the short function name as the table-of-contents label. Expand a
     
     **Declaring Type** `StorageBuilder`
     
-    **Location** `QaaS.Runner.Storage/StorageBuilder.cs:119`
+    **Source File** `QaaS.Runner.Storage/StorageBuilder.cs`
     
     **Signature**
     ```csharp
@@ -163,9 +171,9 @@ Each entry uses the short function name as the table-of-contents label. Expand a
     
     Use this method when working with the documented Runner storage builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
-## `DeleteConfiguration`
+### `DeleteConfiguration`
 
-??? info "Location, signature, and docstring"
+??? info "Source file, signature, and docstring"
     **Member**
     `StorageBuilder.DeleteConfiguration()`
     
@@ -173,7 +181,7 @@ Each entry uses the short function name as the table-of-contents label. Expand a
     
     **Declaring Type** `StorageBuilder`
     
-    **Location** `QaaS.Runner.Storage/StorageBuilder.cs:133`
+    **Source File** `QaaS.Runner.Storage/StorageBuilder.cs`
     
     **Signature**
     ```csharp
@@ -186,9 +194,11 @@ Each entry uses the short function name as the table-of-contents label. Expand a
     
     Use this method when working with the documented Runner storage builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
-## `Configure`
+## General
 
-??? info "Location, signature, and docstring"
+### `Configure`
+
+??? info "Source file, signature, and docstring"
     **Member**
     `StorageBuilder.Configure(IStorageConfig storageConfig)`
     
@@ -196,7 +206,7 @@ Each entry uses the short function name as the table-of-contents label. Expand a
     
     **Declaring Type** `StorageBuilder`
     
-    **Location** `QaaS.Runner.Storage/StorageBuilder.cs:145`
+    **Source File** `QaaS.Runner.Storage/StorageBuilder.cs`
     
     **Signature**
     ```csharp

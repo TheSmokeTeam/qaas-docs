@@ -1,10 +1,11 @@
 # YAML
 
-Each entry uses the short function name as the table-of-contents label. Expand an entry to inspect its location, signature, and XML doc comments.
+Each entry uses the short function name as the table-of-contents label. Expand an entry to inspect its source file, signature, and XML doc comments.
+
 
 ## `AddYamlFromHttpGet`
 
-??? info "Location, signature, and docstring"
+??? info "Source file, signature, and docstring"
     **Member**
     `YamlConfigurationBuilderExtension.AddYamlFromHttpGet(this IConfigurationBuilder builder, string yamlUrl, TimeSpan? timeout = null)`
     
@@ -12,7 +13,7 @@ Each entry uses the short function name as the table-of-contents label. Expand a
     
     **Declaring Type** `YamlConfigurationBuilderExtension (extension type)`
     
-    **Location** `QaaS.Framework.Configurations/ConfigurationBuilderExtensions/YamlConfigurationBuilderExtension.cs:20`
+    **Source File** `QaaS.Framework.Configurations/ConfigurationBuilderExtensions/YamlConfigurationBuilderExtension.cs`
     
     **Signature**
     ```csharp
@@ -27,7 +28,7 @@ Each entry uses the short function name as the table-of-contents label. Expand a
 
 ## `AddYaml`
 
-??? info "Location, signature, and docstring"
+??? info "Source file, signature, and docstring"
     **Member**
     `YamlConfigurationBuilderExtension.AddYaml(this IConfigurationBuilder builder, string yamlPath)`
     
@@ -35,7 +36,7 @@ Each entry uses the short function name as the table-of-contents label. Expand a
     
     **Declaring Type** `YamlConfigurationBuilderExtension (extension type)`
     
-    **Location** `QaaS.Framework.Configurations/ConfigurationBuilderExtensions/YamlConfigurationBuilderExtension.cs:33`
+    **Source File** `QaaS.Framework.Configurations/ConfigurationBuilderExtensions/YamlConfigurationBuilderExtension.cs`
     
     **Signature**
     ```csharp

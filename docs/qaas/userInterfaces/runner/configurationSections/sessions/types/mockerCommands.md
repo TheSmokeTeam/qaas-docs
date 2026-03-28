@@ -1,8 +1,8 @@
 # Mocker Commands
 
-Mocker commands connect `QaaS.Runner` tests to `QaaS.Mocker` servers. They let a test change mock behavior, trigger mock-side actions, or consume mock activity.
+Mocker commands connect [QaaS.Runner](../../../../../../qaas/index.md) tests to [QaaS.Mocker](../../../../../../mocker/index.md) servers. They let a test change mock behavior, trigger mock-side actions, or consume mock activity.
 
-Further explanation on `QaaS.Mocker` servers can be found [here](../../../../../../mocker/userInterfaces/mocker/configurationSections/server/overview.md).
+For the transport-side configuration, see [QaaS.Mocker Servers](../../../../../../mocker/userInterfaces/mocker/configurationSections/server/overview.md).
 
 Some mocker commands do not produce session data. Others interact with the mocker's data and create `Input` and `Output` values in `SessionData` depending on the command type.
 

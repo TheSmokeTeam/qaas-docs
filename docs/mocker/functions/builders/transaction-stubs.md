@@ -1,10 +1,14 @@
 # Transaction Stubs
 
-Each entry uses the short function name as the table-of-contents label. Expand an entry to inspect its location, signature, and XML doc comments.
+Each entry uses the short function name as the table-of-contents label. Expand an entry to inspect its source file, signature, and XML doc comments.
 
-## `Named`
+The functions on this page are grouped by responsibility so related operations stay together.
 
-??? info "Location, signature, and docstring"
+## Identity and hook selection
+
+### `Named`
+
+??? info "Source file, signature, and docstring"
     **Member**
     `TransactionStubBuilder.Named(string name)`
     
@@ -12,7 +16,7 @@ Each entry uses the short function name as the table-of-contents label. Expand a
     
     **Declaring Type** `TransactionStubBuilder`
     
-    **Location** `QaaS.Mocker.Stubs/ConfigurationObjects/TransactionStubBuilder.cs:63`
+    **Source File** `QaaS.Mocker.Stubs/ConfigurationObjects/TransactionStubBuilder.cs`
     
     **Signature**
     ```csharp
@@ -25,9 +29,9 @@ Each entry uses the short function name as the table-of-contents label. Expand a
     
     Use this method when working with the documented Mocker transaction stub builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
-## `HookNamed`
+### `HookNamed`
 
-??? info "Location, signature, and docstring"
+??? info "Source file, signature, and docstring"
     **Member**
     `TransactionStubBuilder.HookNamed(string processorName)`
     
@@ -35,7 +39,7 @@ Each entry uses the short function name as the table-of-contents label. Expand a
     
     **Declaring Type** `TransactionStubBuilder`
     
-    **Location** `QaaS.Mocker.Stubs/ConfigurationObjects/TransactionStubBuilder.cs:76`
+    **Source File** `QaaS.Mocker.Stubs/ConfigurationObjects/TransactionStubBuilder.cs`
     
     **Signature**
     ```csharp
@@ -48,9 +52,11 @@ Each entry uses the short function name as the table-of-contents label. Expand a
     
     Use this method when working with the documented Mocker transaction stub builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
-## `AddDataSourceName`
+## Data source selection
 
-??? info "Location, signature, and docstring"
+### `AddDataSourceName`
+
+??? info "Source file, signature, and docstring"
     **Member**
     `TransactionStubBuilder.AddDataSourceName(string dataSourceName)`
     
@@ -58,7 +64,7 @@ Each entry uses the short function name as the table-of-contents label. Expand a
     
     **Declaring Type** `TransactionStubBuilder`
     
-    **Location** `QaaS.Mocker.Stubs/ConfigurationObjects/TransactionStubBuilder.cs:89`
+    **Source File** `QaaS.Mocker.Stubs/ConfigurationObjects/TransactionStubBuilder.cs`
     
     **Signature**
     ```csharp
@@ -71,9 +77,9 @@ Each entry uses the short function name as the table-of-contents label. Expand a
     
     Use this method when working with the documented Mocker transaction stub builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
-## `WithDataSourceNames`
+### `WithDataSourceNames`
 
-??? info "Location, signature, and docstring"
+??? info "Source file, signature, and docstring"
     **Member**
     `TransactionStubBuilder.WithDataSourceNames(IEnumerable<string> dataSourceNames)`
     
@@ -81,7 +87,7 @@ Each entry uses the short function name as the table-of-contents label. Expand a
     
     **Declaring Type** `TransactionStubBuilder`
     
-    **Location** `QaaS.Mocker.Stubs/ConfigurationObjects/TransactionStubBuilder.cs:102`
+    **Source File** `QaaS.Mocker.Stubs/ConfigurationObjects/TransactionStubBuilder.cs`
     
     **Signature**
     ```csharp
@@ -94,9 +100,9 @@ Each entry uses the short function name as the table-of-contents label. Expand a
     
     Use this method when working with the documented Mocker transaction stub builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
-## `ClearDataSourceNames`
+### `ClearDataSourceNames`
 
-??? info "Location, signature, and docstring"
+??? info "Source file, signature, and docstring"
     **Member**
     `TransactionStubBuilder.ClearDataSourceNames()`
     
@@ -104,7 +110,7 @@ Each entry uses the short function name as the table-of-contents label. Expand a
     
     **Declaring Type** `TransactionStubBuilder`
     
-    **Location** `QaaS.Mocker.Stubs/ConfigurationObjects/TransactionStubBuilder.cs:115`
+    **Source File** `QaaS.Mocker.Stubs/ConfigurationObjects/TransactionStubBuilder.cs`
     
     **Signature**
     ```csharp
@@ -117,147 +123,11 @@ Each entry uses the short function name as the table-of-contents label. Expand a
     
     Use this method when working with the documented Mocker transaction stub builder API surface in code. The behavior exposed here is part of the public surface that the generated function documentation groups under 'Configuration as Code / Transaction Stubs'.
 
-## `Configure`
+## Inspection
 
-??? info "Location, signature, and docstring"
-    **Member**
-    `TransactionStubBuilder.Configure(IConfiguration configuration)`
-    
-    **Kind** `function`
-    
-    **Declaring Type** `TransactionStubBuilder`
-    
-    **Location** `QaaS.Mocker.Stubs/ConfigurationObjects/TransactionStubBuilder.cs:128`
-    
-    **Signature**
-    ```csharp
-    public TransactionStubBuilder Configure(IConfiguration configuration)
-    ```
-    
-    **Docstring**
-    
-    Sets the configuration currently stored on the Mocker transaction stub builder instance.
-    
-    Use this method when working with the documented Mocker transaction stub builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
+### `ReadConfiguration`
 
-## `CreateConfiguration`
-
-??? info "Location, signature, and docstring"
-    **Member**
-    `TransactionStubBuilder.CreateConfiguration(IConfiguration configuration)`
-    
-    **Kind** `function`
-    
-    **Declaring Type** `TransactionStubBuilder`
-    
-    **Location** `QaaS.Mocker.Stubs/ConfigurationObjects/TransactionStubBuilder.cs:141`
-    
-    **Signature**
-    ```csharp
-    public TransactionStubBuilder CreateConfiguration(IConfiguration configuration)
-    ```
-    
-    **Docstring**
-    
-    Sets the configuration currently stored on the Mocker transaction stub builder instance.
-    
-    Use this method when working with the documented Mocker transaction stub builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
-
-## `Configure`
-
-??? info "Location, signature, and docstring"
-    **Member**
-    `TransactionStubBuilder.Configure(object configuration)`
-    
-    **Kind** `function`
-    
-    **Declaring Type** `TransactionStubBuilder`
-    
-    **Location** `QaaS.Mocker.Stubs/ConfigurationObjects/TransactionStubBuilder.cs:153`
-    
-    **Signature**
-    ```csharp
-    public TransactionStubBuilder Configure(object configuration)
-    ```
-    
-    **Docstring**
-    
-    Sets the configuration currently stored on the Mocker transaction stub builder instance.
-    
-    Use this method when working with the documented Mocker transaction stub builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
-
-## `CreateConfiguration`
-
-??? info "Location, signature, and docstring"
-    **Member**
-    `TransactionStubBuilder.CreateConfiguration(object configuration)`
-    
-    **Kind** `function`
-    
-    **Declaring Type** `TransactionStubBuilder`
-    
-    **Location** `QaaS.Mocker.Stubs/ConfigurationObjects/TransactionStubBuilder.cs:167`
-    
-    **Signature**
-    ```csharp
-    public TransactionStubBuilder CreateConfiguration(object configuration)
-    ```
-    
-    **Docstring**
-    
-    Sets the configuration currently stored on the Mocker transaction stub builder instance.
-    
-    Use this method when working with the documented Mocker transaction stub builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
-
-## `Create`
-
-??? info "Location, signature, and docstring"
-    **Member**
-    `TransactionStubBuilder.Create(IConfiguration configuration)`
-    
-    **Kind** `function`
-    
-    **Declaring Type** `TransactionStubBuilder`
-    
-    **Location** `QaaS.Mocker.Stubs/ConfigurationObjects/TransactionStubBuilder.cs:179`
-    
-    **Signature**
-    ```csharp
-    public TransactionStubBuilder Create(IConfiguration configuration)
-    ```
-    
-    **Docstring**
-    
-    Sets the configuration currently stored on the Mocker transaction stub builder instance.
-    
-    Use this method when working with the documented Mocker transaction stub builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
-
-## `Create`
-
-??? info "Location, signature, and docstring"
-    **Member**
-    `TransactionStubBuilder.Create(object configuration)`
-    
-    **Kind** `function`
-    
-    **Declaring Type** `TransactionStubBuilder`
-    
-    **Location** `QaaS.Mocker.Stubs/ConfigurationObjects/TransactionStubBuilder.cs:191`
-    
-    **Signature**
-    ```csharp
-    public TransactionStubBuilder Create(object configuration)
-    ```
-    
-    **Docstring**
-    
-    Sets the configuration currently stored on the Mocker transaction stub builder instance.
-    
-    Use this method when working with the documented Mocker transaction stub builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
-
-## `ReadConfiguration`
-
-??? info "Location, signature, and docstring"
+??? info "Source file, signature, and docstring"
     **Member**
     `TransactionStubBuilder.ReadConfiguration()`
     
@@ -265,7 +135,7 @@ Each entry uses the short function name as the table-of-contents label. Expand a
     
     **Declaring Type** `TransactionStubBuilder`
     
-    **Location** `QaaS.Mocker.Stubs/ConfigurationObjects/TransactionStubBuilder.cs:203`
+    **Source File** `QaaS.Mocker.Stubs/ConfigurationObjects/TransactionStubBuilder.cs`
     
     **Signature**
     ```csharp
@@ -278,9 +148,103 @@ Each entry uses the short function name as the table-of-contents label. Expand a
     
     Use this method when working with the documented Mocker transaction stub builder API surface in code. Use it to inspect the current configured state without rebuilding the surrounding collection or runtime object graph.
 
-## `UpdateConfiguration`
+## Collection helpers
 
-??? info "Location, signature, and docstring"
+### `CreateConfiguration`
+
+??? info "Source file, signature, and docstring"
+    **Member**
+    `TransactionStubBuilder.CreateConfiguration(IConfiguration configuration)`
+    
+    **Kind** `function`
+    
+    **Declaring Type** `TransactionStubBuilder`
+    
+    **Source File** `QaaS.Mocker.Stubs/ConfigurationObjects/TransactionStubBuilder.cs`
+    
+    **Signature**
+    ```csharp
+    public TransactionStubBuilder CreateConfiguration(IConfiguration configuration)
+    ```
+    
+    **Docstring**
+    
+    Sets the configuration currently stored on the Mocker transaction stub builder instance.
+    
+    Use this method when working with the documented Mocker transaction stub builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
+
+### `CreateConfiguration`
+
+??? info "Source file, signature, and docstring"
+    **Member**
+    `TransactionStubBuilder.CreateConfiguration(object configuration)`
+    
+    **Kind** `function`
+    
+    **Declaring Type** `TransactionStubBuilder`
+    
+    **Source File** `QaaS.Mocker.Stubs/ConfigurationObjects/TransactionStubBuilder.cs`
+    
+    **Signature**
+    ```csharp
+    public TransactionStubBuilder CreateConfiguration(object configuration)
+    ```
+    
+    **Docstring**
+    
+    Sets the configuration currently stored on the Mocker transaction stub builder instance.
+    
+    Use this method when working with the documented Mocker transaction stub builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
+
+### `Create`
+
+??? info "Source file, signature, and docstring"
+    **Member**
+    `TransactionStubBuilder.Create(IConfiguration configuration)`
+    
+    **Kind** `function`
+    
+    **Declaring Type** `TransactionStubBuilder`
+    
+    **Source File** `QaaS.Mocker.Stubs/ConfigurationObjects/TransactionStubBuilder.cs`
+    
+    **Signature**
+    ```csharp
+    public TransactionStubBuilder Create(IConfiguration configuration)
+    ```
+    
+    **Docstring**
+    
+    Sets the configuration currently stored on the Mocker transaction stub builder instance.
+    
+    Use this method when working with the documented Mocker transaction stub builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
+
+### `Create`
+
+??? info "Source file, signature, and docstring"
+    **Member**
+    `TransactionStubBuilder.Create(object configuration)`
+    
+    **Kind** `function`
+    
+    **Declaring Type** `TransactionStubBuilder`
+    
+    **Source File** `QaaS.Mocker.Stubs/ConfigurationObjects/TransactionStubBuilder.cs`
+    
+    **Signature**
+    ```csharp
+    public TransactionStubBuilder Create(object configuration)
+    ```
+    
+    **Docstring**
+    
+    Sets the configuration currently stored on the Mocker transaction stub builder instance.
+    
+    Use this method when working with the documented Mocker transaction stub builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
+
+### `UpdateConfiguration`
+
+??? info "Source file, signature, and docstring"
     **Member**
     `TransactionStubBuilder.UpdateConfiguration(object configuration)`
     
@@ -288,7 +252,7 @@ Each entry uses the short function name as the table-of-contents label. Expand a
     
     **Declaring Type** `TransactionStubBuilder`
     
-    **Location** `QaaS.Mocker.Stubs/ConfigurationObjects/TransactionStubBuilder.cs:225`
+    **Source File** `QaaS.Mocker.Stubs/ConfigurationObjects/TransactionStubBuilder.cs`
     
     **Signature**
     ```csharp
@@ -301,9 +265,9 @@ Each entry uses the short function name as the table-of-contents label. Expand a
     
     Use this method when working with the documented Mocker transaction stub builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
-## `DeleteConfiguration`
+### `DeleteConfiguration`
 
-??? info "Location, signature, and docstring"
+??? info "Source file, signature, and docstring"
     **Member**
     `TransactionStubBuilder.DeleteConfiguration()`
     
@@ -311,7 +275,7 @@ Each entry uses the short function name as the table-of-contents label. Expand a
     
     **Declaring Type** `TransactionStubBuilder`
     
-    **Location** `QaaS.Mocker.Stubs/ConfigurationObjects/TransactionStubBuilder.cs:238`
+    **Source File** `QaaS.Mocker.Stubs/ConfigurationObjects/TransactionStubBuilder.cs`
     
     **Signature**
     ```csharp
@@ -324,9 +288,57 @@ Each entry uses the short function name as the table-of-contents label. Expand a
     
     Use this method when working with the documented Mocker transaction stub builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
-## `DeserializeRequestBodyWith`
+## General
 
-??? info "Location, signature, and docstring"
+### `Configure`
+
+??? info "Source file, signature, and docstring"
+    **Member**
+    `TransactionStubBuilder.Configure(IConfiguration configuration)`
+    
+    **Kind** `function`
+    
+    **Declaring Type** `TransactionStubBuilder`
+    
+    **Source File** `QaaS.Mocker.Stubs/ConfigurationObjects/TransactionStubBuilder.cs`
+    
+    **Signature**
+    ```csharp
+    public TransactionStubBuilder Configure(IConfiguration configuration)
+    ```
+    
+    **Docstring**
+    
+    Sets the configuration currently stored on the Mocker transaction stub builder instance.
+    
+    Use this method when working with the documented Mocker transaction stub builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
+
+### `Configure`
+
+??? info "Source file, signature, and docstring"
+    **Member**
+    `TransactionStubBuilder.Configure(object configuration)`
+    
+    **Kind** `function`
+    
+    **Declaring Type** `TransactionStubBuilder`
+    
+    **Source File** `QaaS.Mocker.Stubs/ConfigurationObjects/TransactionStubBuilder.cs`
+    
+    **Signature**
+    ```csharp
+    public TransactionStubBuilder Configure(object configuration)
+    ```
+    
+    **Docstring**
+    
+    Sets the configuration currently stored on the Mocker transaction stub builder instance.
+    
+    Use this method when working with the documented Mocker transaction stub builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
+
+### `DeserializeRequestBodyWith`
+
+??? info "Source file, signature, and docstring"
     **Member**
     `TransactionStubBuilder.DeserializeRequestBodyWith(DeserializeConfig config)`
     
@@ -334,7 +346,7 @@ Each entry uses the short function name as the table-of-contents label. Expand a
     
     **Declaring Type** `TransactionStubBuilder`
     
-    **Location** `QaaS.Mocker.Stubs/ConfigurationObjects/TransactionStubBuilder.cs:251`
+    **Source File** `QaaS.Mocker.Stubs/ConfigurationObjects/TransactionStubBuilder.cs`
     
     **Signature**
     ```csharp
@@ -347,9 +359,9 @@ Each entry uses the short function name as the table-of-contents label. Expand a
     
     Use this method when working with the documented Mocker transaction stub builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
-## `SerializeResponseBodyWith`
+### `SerializeResponseBodyWith`
 
-??? info "Location, signature, and docstring"
+??? info "Source file, signature, and docstring"
     **Member**
     `TransactionStubBuilder.SerializeResponseBodyWith(SerializeConfig config)`
     
@@ -357,7 +369,7 @@ Each entry uses the short function name as the table-of-contents label. Expand a
     
     **Declaring Type** `TransactionStubBuilder`
     
-    **Location** `QaaS.Mocker.Stubs/ConfigurationObjects/TransactionStubBuilder.cs:264`
+    **Source File** `QaaS.Mocker.Stubs/ConfigurationObjects/TransactionStubBuilder.cs`
     
     **Signature**
     ```csharp
@@ -370,9 +382,9 @@ Each entry uses the short function name as the table-of-contents label. Expand a
     
     Use this method when working with the documented Mocker transaction stub builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
-## `Build`
+### `Build`
 
-??? info "Location, signature, and docstring"
+??? info "Source file, signature, and docstring"
     **Member**
     `TransactionStubBuilder.Build()`
     
@@ -380,7 +392,7 @@ Each entry uses the short function name as the table-of-contents label. Expand a
     
     **Declaring Type** `TransactionStubBuilder`
     
-    **Location** `QaaS.Mocker.Stubs/ConfigurationObjects/TransactionStubBuilder.cs:277`
+    **Source File** `QaaS.Mocker.Stubs/ConfigurationObjects/TransactionStubBuilder.cs`
     
     **Signature**
     ```csharp
@@ -393,9 +405,9 @@ Each entry uses the short function name as the table-of-contents label. Expand a
     
     Call this after the fluent configuration is complete. The method validates the accumulated state and materializes the runtime or immutable configuration object represented by the builder.
 
-## `FromConfig`
+### `FromConfig`
 
-??? info "Location, signature, and docstring"
+??? info "Source file, signature, and docstring"
     **Member**
     `TransactionStubBuilder.FromConfig(TransactionStubConfig config)`
     
@@ -403,7 +415,7 @@ Each entry uses the short function name as the table-of-contents label. Expand a
     
     **Declaring Type** `TransactionStubBuilder`
     
-    **Location** `QaaS.Mocker.Stubs/ConfigurationObjects/TransactionStubBuilder.cs:302`
+    **Source File** `QaaS.Mocker.Stubs/ConfigurationObjects/TransactionStubBuilder.cs`
     
     **Signature**
     ```csharp

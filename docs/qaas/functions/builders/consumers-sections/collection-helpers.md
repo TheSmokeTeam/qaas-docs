@@ -1,0 +1,141 @@
+# Consumers: Collection helpers
+
+This page mirrors the `Collection helpers` section from [Consumers](../consumers.md).
+
+## `CreateConfiguration`
+
+??? info "Source file, signature, and docstring"
+    **Member**
+    `ConsumerBuilder.CreateConfiguration(IReaderConfig config)`
+    
+    **Kind** `function`
+    
+    **Declaring Type** `ConsumerBuilder`
+    
+    **Source File** `QaaS.Runner.Sessions/Actions/Consumers/Builders/ConsumerBuilderLogic.cs`
+    
+    **Signature**
+    ```csharp
+    public ConsumerBuilder CreateConfiguration(IReaderConfig config)
+    ```
+    
+    **Docstring**
+    
+    Sets the configuration currently stored on the Runner consumer builder instance.
+    
+    Use this method when working with the documented Runner consumer builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
+
+## `Create`
+
+??? info "Source file, signature, and docstring"
+    **Member**
+    `ConsumerBuilder.Create(IReaderConfig config)`
+    
+    **Kind** `function`
+    
+    **Declaring Type** `ConsumerBuilder`
+    
+    **Source File** `QaaS.Runner.Sessions/Actions/Consumers/Builders/ConsumerBuilderLogic.cs`
+    
+    **Signature**
+    ```csharp
+    public ConsumerBuilder Create(IReaderConfig config)
+    ```
+    
+    **Docstring**
+    
+    Sets the configuration currently stored on the Runner consumer builder instance.
+    
+    Use this method when working with the documented Runner consumer builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
+
+## `UpdateConfiguration`
+
+??? info "Source file, signature, and docstring"
+    **Member**
+    `ConsumerBuilder.UpdateConfiguration(Func<IReaderConfig, IReaderConfig> update)`
+    
+    **Kind** `function`
+    
+    **Declaring Type** `ConsumerBuilder`
+    
+    **Source File** `QaaS.Runner.Sessions/Actions/Consumers/Builders/ConsumerBuilderLogic.cs`
+    
+    **Signature**
+    ```csharp
+    public ConsumerBuilder UpdateConfiguration(Func<IReaderConfig, IReaderConfig> update)
+    ```
+    
+    **Docstring**
+    
+    Updates the configuration currently stored on the Runner consumer builder instance.
+    
+    Use this method when working with the documented Runner consumer builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
+
+## `UpdateConfiguration`
+
+??? info "Source file, signature, and docstring"
+    **Member**
+    `ConsumerBuilder.UpdateConfiguration(IReaderConfig config)`
+    
+    **Kind** `function`
+    
+    **Declaring Type** `ConsumerBuilder`
+    
+    **Source File** `QaaS.Runner.Sessions/Actions/Consumers/Builders/ConsumerBuilderLogic.cs`
+    
+    **Signature**
+    ```csharp
+    public ConsumerBuilder UpdateConfiguration(IReaderConfig config)
+    ```
+    
+    **Docstring**
+    
+    Updates the configuration currently stored on the Runner consumer builder instance.
+    
+    Use this method when working with the documented Runner consumer builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
+
+## `UpdateConfiguration`
+
+??? info "Source file, signature, and docstring"
+    **Member**
+    `ConsumerBuilder.UpdateConfiguration(object configuration)`
+    
+    **Kind** `function`
+    
+    **Declaring Type** `ConsumerBuilder`
+    
+    **Source File** `QaaS.Runner.Sessions/Actions/Consumers/Builders/ConsumerBuilderLogic.cs`
+    
+    **Signature**
+    ```csharp
+    public ConsumerBuilder UpdateConfiguration(object configuration)
+    ```
+    
+    **Docstring**
+    
+    Updates the configuration currently stored on the Runner consumer builder instance.
+    
+    Use this method when working with the documented Runner consumer builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
+
+## `DeleteConfiguration`
+
+??? info "Source file, signature, and docstring"
+    **Member**
+    `ConsumerBuilder.DeleteConfiguration()`
+    
+    **Kind** `function`
+    
+    **Declaring Type** `ConsumerBuilder`
+    
+    **Source File** `QaaS.Runner.Sessions/Actions/Consumers/Builders/ConsumerBuilderLogic.cs`
+    
+    **Signature**
+    ```csharp
+    public ConsumerBuilder DeleteConfiguration()
+    ```
+    
+    **Docstring**
+    
+    Clears the configuration currently stored on the Runner consumer builder instance.
+    
+    Use this method when working with the documented Runner consumer builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.

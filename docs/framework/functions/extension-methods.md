@@ -10,7 +10,7 @@ Annotated extension methods continue to appear in their regular category pages; 
 
 #### `AddPlaceholderResolver`
 
-??? info "Location, signature, and docstring"
+??? info "Source file, signature, and docstring"
     **Member**
     `PlaceholderConfigurationBuilderExtension.AddPlaceholderResolver(this IConfigurationBuilder configurationBuilder)`
     
@@ -18,7 +18,7 @@ Annotated extension methods continue to appear in their regular category pages; 
     
     **Declaring Type** `PlaceholderConfigurationBuilderExtension (extension type)`
     
-    **Location** `QaaS.Framework.Configurations/ConfigurationBuilderExtensions/PlaceholderConfigurationBuilderExtension.cs:17`
+    **Source File** `QaaS.Framework.Configurations/ConfigurationBuilderExtensions/PlaceholderConfigurationBuilderExtension.cs`
     
     **Signature**
     ```csharp
@@ -35,7 +35,7 @@ Annotated extension methods continue to appear in their regular category pages; 
 
 #### `AddYamlFromHttpGet`
 
-??? info "Location, signature, and docstring"
+??? info "Source file, signature, and docstring"
     **Member**
     `YamlConfigurationBuilderExtension.AddYamlFromHttpGet(this IConfigurationBuilder builder, string yamlUrl, TimeSpan? timeout = null)`
     
@@ -43,7 +43,7 @@ Annotated extension methods continue to appear in their regular category pages; 
     
     **Declaring Type** `YamlConfigurationBuilderExtension (extension type)`
     
-    **Location** `QaaS.Framework.Configurations/ConfigurationBuilderExtensions/YamlConfigurationBuilderExtension.cs:20`
+    **Source File** `QaaS.Framework.Configurations/ConfigurationBuilderExtensions/YamlConfigurationBuilderExtension.cs`
     
     **Signature**
     ```csharp
@@ -58,7 +58,7 @@ Annotated extension methods continue to appear in their regular category pages; 
 
 #### `AddYaml`
 
-??? info "Location, signature, and docstring"
+??? info "Source file, signature, and docstring"
     **Member**
     `YamlConfigurationBuilderExtension.AddYaml(this IConfigurationBuilder builder, string yamlPath)`
     
@@ -66,7 +66,7 @@ Annotated extension methods continue to appear in their regular category pages; 
     
     **Declaring Type** `YamlConfigurationBuilderExtension (extension type)`
     
-    **Location** `QaaS.Framework.Configurations/ConfigurationBuilderExtensions/YamlConfigurationBuilderExtension.cs:33`
+    **Source File** `QaaS.Framework.Configurations/ConfigurationBuilderExtensions/YamlConfigurationBuilderExtension.cs`
     
     **Signature**
     ```csharp
@@ -85,7 +85,7 @@ Annotated extension methods continue to appear in their regular category pages; 
 
 #### `GetCommunicationDataByName<TData>`
 
-??? info "Location, signature, and docstring"
+??? info "Source file, signature, and docstring"
     **Member**
     `CommunicationDataExtensions.GetCommunicationDataByName<TData>(this IEnumerable<CommunicationData<TData>>? communicationDataEnumerable, string communicationDataName, string? communicationDataType = null)`
     
@@ -93,7 +93,7 @@ Annotated extension methods continue to appear in their regular category pages; 
     
     **Declaring Type** `CommunicationDataExtensions (extension type)`
     
-    **Location** `QaaS.Framework.SDK/Extensions/CommunicationDataExtensions.cs:23`
+    **Source File** `QaaS.Framework.SDK/Extensions/CommunicationDataExtensions.cs`
     
     **Signature**
     ```csharp
@@ -106,7 +106,7 @@ Annotated extension methods continue to appear in their regular category pages; 
 
 #### `CastCommunicationData<TCastTo>`
 
-??? info "Location, signature, and docstring"
+??? info "Source file, signature, and docstring"
     **Member**
     `CommunicationDataExtensions.CastCommunicationData<TCastTo>(this CommunicationData<object> communicationData, string? communicationDataType = null)`
     
@@ -114,7 +114,7 @@ Annotated extension methods continue to appear in their regular category pages; 
     
     **Declaring Type** `CommunicationDataExtensions (extension type)`
     
-    **Location** `QaaS.Framework.SDK/Extensions/CommunicationDataExtensions.cs:50`
+    **Source File** `QaaS.Framework.SDK/Extensions/CommunicationDataExtensions.cs`
     
     **Signature**
     ```csharp
@@ -127,7 +127,7 @@ Annotated extension methods continue to appear in their regular category pages; 
 
 #### `GetDataByIoMatchIndex<TData>`
 
-??? info "Location, signature, and docstring"
+??? info "Source file, signature, and docstring"
     **Member**
     `CommunicationDataExtensions.GetDataByIoMatchIndex<TData>(this CommunicationData<TData> communicationData, int ioMatchIndex)`
     
@@ -135,7 +135,7 @@ Annotated extension methods continue to appear in their regular category pages; 
     
     **Declaring Type** `CommunicationDataExtensions (extension type)`
     
-    **Location** `QaaS.Framework.SDK/Extensions/CommunicationDataExtensions.cs:81`
+    **Source File** `QaaS.Framework.SDK/Extensions/CommunicationDataExtensions.cs`
     
     **Signature**
     ```csharp
@@ -150,7 +150,7 @@ Annotated extension methods continue to appear in their regular category pages; 
 
 #### `MergeConfigurationObjectIntoIConfiguration`
 
-??? info "Location, signature, and docstring"
+??? info "Source file, signature, and docstring"
     **Member**
     `ConfigurationMergeUtils.MergeConfigurationObjectIntoIConfiguration(this IConfiguration configuration, object? configurationObject)`
     
@@ -158,7 +158,7 @@ Annotated extension methods continue to appear in their regular category pages; 
     
     **Declaring Type** `ConfigurationMergeUtils (extension type)`
     
-    **Location** `QaaS.Framework.Configurations/ConfigurationBindingUtils/ConfigurationMergeUtils.cs:29`
+    **Source File** `QaaS.Framework.Configurations/ConfigurationBindingUtils/ConfigurationMergeUtils.cs`
     
     **Signature**
     ```csharp
@@ -171,7 +171,7 @@ Annotated extension methods continue to appear in their regular category pages; 
 
 #### `MergeConfiguration<TConfiguration>`
 
-??? info "Location, signature, and docstring"
+??? info "Source file, signature, and docstring"
     **Member**
     `ConfigurationMergeUtils.MergeConfiguration<TConfiguration>(this TConfiguration? currentConfiguration, TConfiguration? newConfiguration)`
     
@@ -179,7 +179,7 @@ Annotated extension methods continue to appear in their regular category pages; 
     
     **Declaring Type** `ConfigurationMergeUtils (extension type)`
     
-    **Location** `QaaS.Framework.Configurations/ConfigurationBindingUtils/ConfigurationMergeUtils.cs:42`
+    **Source File** `QaaS.Framework.Configurations/ConfigurationBindingUtils/ConfigurationMergeUtils.cs`
     
     **Signature**
     ```csharp
@@ -194,7 +194,7 @@ Annotated extension methods continue to appear in their regular category pages; 
 
 #### `ResolveReferencesInConfiguration`
 
-??? info "Location, signature, and docstring"
+??? info "Source file, signature, and docstring"
     **Member**
     `ConfigurationReferencesParser.ResolveReferencesInConfiguration(this IConfiguration builtConfiguration, ICollection<ReferenceConfig>? referenceConfigs, IList<string>? referenceResolutionPaths, IList<string>? uniqueIdPathRegexes, bool resolveReferencesWithEnvironmentVariables)`
     
@@ -202,7 +202,7 @@ Annotated extension methods continue to appear in their regular category pages; 
     
     **Declaring Type** `ConfigurationReferencesParser (extension type)`
     
-    **Location** `QaaS.Framework.Configurations/References/ConfigurationReferencesParser.cs:29`
+    **Source File** `QaaS.Framework.Configurations/References/ConfigurationReferencesParser.cs`
     
     **Signature**
     ```csharp
@@ -217,7 +217,7 @@ Annotated extension methods continue to appear in their regular category pages; 
 
 #### `UpdateConfiguration<TConfiguration>`
 
-??? info "Location, signature, and docstring"
+??? info "Source file, signature, and docstring"
     **Member**
     `ConfigurationUpdateExtensions.UpdateConfiguration<TConfiguration>(this TConfiguration? currentConfiguration, TConfiguration incomingConfiguration)`
     
@@ -225,7 +225,7 @@ Annotated extension methods continue to appear in their regular category pages; 
     
     **Declaring Type** `ConfigurationUpdateExtensions (extension type)`
     
-    **Location** `QaaS.Framework.Configurations/ConfigurationUpdateExtensions.cs:24`
+    **Source File** `QaaS.Framework.Configurations/ConfigurationUpdateExtensions.cs`
     
     **Signature**
     ```csharp
@@ -238,7 +238,7 @@ Annotated extension methods continue to appear in their regular category pages; 
 
 #### `UpdateConfiguration<TConfiguration>`
 
-??? info "Location, signature, and docstring"
+??? info "Source file, signature, and docstring"
     **Member**
     `ConfigurationUpdateExtensions.UpdateConfiguration<TConfiguration>(this TConfiguration? currentConfiguration, object incomingConfiguration)`
     
@@ -246,7 +246,7 @@ Annotated extension methods continue to appear in their regular category pages; 
     
     **Declaring Type** `ConfigurationUpdateExtensions (extension type)`
     
-    **Location** `QaaS.Framework.Configurations/ConfigurationUpdateExtensions.cs:59`
+    **Source File** `QaaS.Framework.Configurations/ConfigurationUpdateExtensions.cs`
     
     **Signature**
     ```csharp
@@ -259,7 +259,7 @@ Annotated extension methods continue to appear in their regular category pages; 
 
 #### `UpdateConfiguration`
 
-??? info "Location, signature, and docstring"
+??? info "Source file, signature, and docstring"
     **Member**
     `ConfigurationUpdateExtensions.UpdateConfiguration(this IConfiguration? currentConfiguration, object incomingConfiguration)`
     
@@ -267,7 +267,7 @@ Annotated extension methods continue to appear in their regular category pages; 
     
     **Declaring Type** `ConfigurationUpdateExtensions (extension type)`
     
-    **Location** `QaaS.Framework.Configurations/ConfigurationUpdateExtensions.cs:106`
+    **Source File** `QaaS.Framework.Configurations/ConfigurationUpdateExtensions.cs`
     
     **Signature**
     ```csharp
@@ -282,7 +282,7 @@ Annotated extension methods continue to appear in their regular category pages; 
 
 #### `BindConfigurationObjectToIConfiguration`
 
-??? info "Location, signature, and docstring"
+??? info "Source file, signature, and docstring"
     **Member**
     `IConfigurationUtils.BindConfigurationObjectToIConfiguration(this IConfiguration configuration, object? configurationObject)`
     
@@ -290,7 +290,7 @@ Annotated extension methods continue to appear in their regular category pages; 
     
     **Declaring Type** `IConfigurationUtils (extension type)`
     
-    **Location** `QaaS.Framework.Configurations/ConfigurationBindingUtils/IConfigurationUtils.cs:16`
+    **Source File** `QaaS.Framework.Configurations/ConfigurationBindingUtils/IConfigurationUtils.cs`
     
     **Signature**
     ```csharp
@@ -303,7 +303,7 @@ Annotated extension methods continue to appear in their regular category pages; 
 
 #### `GetDictionaryFromConfiguration`
 
-??? info "Location, signature, and docstring"
+??? info "Source file, signature, and docstring"
     **Member**
     `IConfigurationUtils.GetDictionaryFromConfiguration(this IConfiguration? configuration)`
     
@@ -311,7 +311,7 @@ Annotated extension methods continue to appear in their regular category pages; 
     
     **Declaring Type** `IConfigurationUtils (extension type)`
     
-    **Location** `QaaS.Framework.Configurations/ConfigurationBindingUtils/IConfigurationUtils.cs:24`
+    **Source File** `QaaS.Framework.Configurations/ConfigurationBindingUtils/IConfigurationUtils.cs`
     
     **Signature**
     ```csharp
@@ -324,7 +324,7 @@ Annotated extension methods continue to appear in their regular category pages; 
 
 #### `BuildConfigurationAsYaml`
 
-??? info "Location, signature, and docstring"
+??? info "Source file, signature, and docstring"
     **Member**
     `ConfigurationUtils.BuildConfigurationAsYaml(this IConfiguration configuration, List<string>? configurationSectionNames = null)`
     
@@ -332,7 +332,7 @@ Annotated extension methods continue to appear in their regular category pages; 
     
     **Declaring Type** `ConfigurationUtils (extension type)`
     
-    **Location** `QaaS.Framework.Configurations/ConfigurationUtils.cs:30`
+    **Source File** `QaaS.Framework.Configurations/ConfigurationUtils.cs`
     
     **Signature**
     ```csharp
@@ -345,7 +345,7 @@ Annotated extension methods continue to appear in their regular category pages; 
 
 #### `LoadAndValidateConfiguration<TConfiguration>`
 
-??? info "Location, signature, and docstring"
+??? info "Source file, signature, and docstring"
     **Member**
     `ConfigurationUtils.LoadAndValidateConfiguration<TConfiguration>(this IConfiguration configuration, BinderOptions? binderOptions = null, ILogger? logger = null)`
     
@@ -353,7 +353,7 @@ Annotated extension methods continue to appear in their regular category pages; 
     
     **Declaring Type** `ConfigurationUtils (extension type)`
     
-    **Location** `QaaS.Framework.Configurations/ConfigurationUtils.cs:202`
+    **Source File** `QaaS.Framework.Configurations/ConfigurationUtils.cs`
     
     **Signature**
     ```csharp
@@ -366,7 +366,7 @@ Annotated extension methods continue to appear in their regular category pages; 
 
 #### `EnrichedBuild`
 
-??? info "Location, signature, and docstring"
+??? info "Source file, signature, and docstring"
     **Member**
     `ConfigurationUtils.EnrichedBuild(this IConfigurationBuilder configurationBuilder, bool addEnvironmentVariables)`
     
@@ -374,7 +374,7 @@ Annotated extension methods continue to appear in their regular category pages; 
     
     **Declaring Type** `ConfigurationUtils (extension type)`
     
-    **Location** `QaaS.Framework.Configurations/ConfigurationUtils.cs:243`
+    **Source File** `QaaS.Framework.Configurations/ConfigurationUtils.cs`
     
     **Signature**
     ```csharp
@@ -387,7 +387,7 @@ Annotated extension methods continue to appear in their regular category pages; 
 
 #### `BindToObject<T>`
 
-??? info "Location, signature, and docstring"
+??? info "Source file, signature, and docstring"
     **Member**
     `ConfigurationUtils.BindToObject<T>(this IConfiguration source, BinderOptions binderOptions, ILogger? logger = null)`
     
@@ -395,7 +395,7 @@ Annotated extension methods continue to appear in their regular category pages; 
     
     **Declaring Type** `ConfigurationUtils (extension type)`
     
-    **Location** `QaaS.Framework.Configurations/ConfigurationUtils.cs:271`
+    **Source File** `QaaS.Framework.Configurations/ConfigurationUtils.cs`
     
     **Signature**
     ```csharp
@@ -408,7 +408,7 @@ Annotated extension methods continue to appear in their regular category pages; 
 
 #### `BindToObject`
 
-??? info "Location, signature, and docstring"
+??? info "Source file, signature, and docstring"
     **Member**
     `ConfigurationUtils.BindToObject(this IConfiguration source, Type objectType, BinderOptions binderOptions, ILogger? logger = null)`
     
@@ -416,7 +416,7 @@ Annotated extension methods continue to appear in their regular category pages; 
     
     **Declaring Type** `ConfigurationUtils (extension type)`
     
-    **Location** `QaaS.Framework.Configurations/ConfigurationUtils.cs:280`
+    **Source File** `QaaS.Framework.Configurations/ConfigurationUtils.cs`
     
     **Signature**
     ```csharp
@@ -431,7 +431,7 @@ Annotated extension methods continue to appear in their regular category pages; 
 
 #### `CastObjectData<TCasted>`
 
-??? info "Location, signature, and docstring"
+??? info "Source file, signature, and docstring"
     **Member**
     `DataExtensions.CastObjectData<TCasted>(this Data<object> data)`
     
@@ -439,7 +439,7 @@ Annotated extension methods continue to appear in their regular category pages; 
     
     **Declaring Type** `DataExtensions (extension type)`
     
-    **Location** `QaaS.Framework.SDK/Extensions/DataExtensions.cs:17`
+    **Source File** `QaaS.Framework.SDK/Extensions/DataExtensions.cs`
     
     **Signature**
     ```csharp
@@ -452,7 +452,7 @@ Annotated extension methods continue to appear in their regular category pages; 
 
 #### `CastToObjectData<TData>`
 
-??? info "Location, signature, and docstring"
+??? info "Source file, signature, and docstring"
     **Member**
     `DataExtensions.CastToObjectData<TData>(this Data<TData> data)`
     
@@ -460,7 +460,7 @@ Annotated extension methods continue to appear in their regular category pages; 
     
     **Declaring Type** `DataExtensions (extension type)`
     
-    **Location** `QaaS.Framework.SDK/Extensions/DataExtensions.cs:40`
+    **Source File** `QaaS.Framework.SDK/Extensions/DataExtensions.cs`
     
     **Signature**
     ```csharp
@@ -473,7 +473,7 @@ Annotated extension methods continue to appear in their regular category pages; 
 
 #### `CastObjectDetailedData<TCasted>`
 
-??? info "Location, signature, and docstring"
+??? info "Source file, signature, and docstring"
     **Member**
     `DataExtensions.CastObjectDetailedData<TCasted>(this DetailedData<object> detailedData)`
     
@@ -481,7 +481,7 @@ Annotated extension methods continue to appear in their regular category pages; 
     
     **Declaring Type** `DataExtensions (extension type)`
     
-    **Location** `QaaS.Framework.SDK/Extensions/DataExtensions.cs:55`
+    **Source File** `QaaS.Framework.SDK/Extensions/DataExtensions.cs`
     
     **Signature**
     ```csharp
@@ -494,7 +494,7 @@ Annotated extension methods continue to appear in their regular category pages; 
 
 #### `CastToObjectDetailedData<TData>`
 
-??? info "Location, signature, and docstring"
+??? info "Source file, signature, and docstring"
     **Member**
     `DataExtensions.CastToObjectDetailedData<TData>(this DetailedData<TData> detailedData)`
     
@@ -502,7 +502,7 @@ Annotated extension methods continue to appear in their regular category pages; 
     
     **Declaring Type** `DataExtensions (extension type)`
     
-    **Location** `QaaS.Framework.SDK/Extensions/DataExtensions.cs:80`
+    **Source File** `QaaS.Framework.SDK/Extensions/DataExtensions.cs`
     
     **Signature**
     ```csharp
@@ -515,7 +515,7 @@ Annotated extension methods continue to appear in their regular category pages; 
 
 #### `FilterData<TData>`
 
-??? info "Location, signature, and docstring"
+??? info "Source file, signature, and docstring"
     **Member**
     `DataExtensions.FilterData<TData>(this DetailedData<TData> dataItemToFilter, DataFilter dataFilter)`
     
@@ -523,7 +523,7 @@ Annotated extension methods continue to appear in their regular category pages; 
     
     **Declaring Type** `DataExtensions (extension type)`
     
-    **Location** `QaaS.Framework.SDK/Extensions/DataExtensions.cs:93`
+    **Source File** `QaaS.Framework.SDK/Extensions/DataExtensions.cs`
     
     **Signature**
     ```csharp
@@ -538,7 +538,7 @@ Annotated extension methods continue to appear in their regular category pages; 
 
 #### `GetDataSourceByName`
 
-??? info "Location, signature, and docstring"
+??? info "Source file, signature, and docstring"
     **Member**
     `DataSourceExtensions.GetDataSourceByName(this IEnumerable<DataSource>? dataSourceEnumerable, string dataSourceName)`
     
@@ -546,7 +546,7 @@ Annotated extension methods continue to appear in their regular category pages; 
     
     **Declaring Type** `DataSourceExtensions (extension type)`
     
-    **Location** `QaaS.Framework.SDK/Extensions/DataSourceExtensions.cs:20`
+    **Source File** `QaaS.Framework.SDK/Extensions/DataSourceExtensions.cs`
     
     **Signature**
     ```csharp
@@ -559,7 +559,7 @@ Annotated extension methods continue to appear in their regular category pages; 
 
 #### `RetrieveAndCast<TCastTo>`
 
-??? info "Location, signature, and docstring"
+??? info "Source file, signature, and docstring"
     **Member**
     `DataSourceExtensions.RetrieveAndCast<TCastTo>(this DataSource dataSource, IImmutableList<SessionData>? ranSessionsDataList = null)`
     
@@ -567,7 +567,7 @@ Annotated extension methods continue to appear in their regular category pages; 
     
     **Declaring Type** `DataSourceExtensions (extension type)`
     
-    **Location** `QaaS.Framework.SDK/Extensions/DataSourceExtensions.cs:43`
+    **Source File** `QaaS.Framework.SDK/Extensions/DataSourceExtensions.cs`
     
     **Signature**
     ```csharp
@@ -582,19 +582,19 @@ Annotated extension methods continue to appear in their regular category pages; 
 
 #### `ConvertDateTimeToUtcByTimeZoneOffset`
 
-??? info "Location, signature, and docstring"
+??? info "Source file, signature, and docstring"
     **Member**
-    `DateTimeExtensions.ConvertDateTimeToUtcByTimeZoneOffset(this DateTime timeToConvertToUtc, int insertionTimeTimeZoneOffsetSummerTime, bool? isDayLightSavingTime = null)`
+    `DateTimeExtensions.ConvertDateTimeToUtcByTimeZoneOffset(this DateTime timeToConvertToUtc, int insertionTimeTimeZoneOffsetSummerTime, bool? isDayLightSavingTime = null, string? timeZoneId = null)`
     
     **Kind** `function`
     
     **Declaring Type** `DateTimeExtensions (extension type)`
     
-    **Location** `QaaS.Framework.Infrastructure/DateTimeExtensions.cs:20`
+    **Source File** `QaaS.Framework.Infrastructure/DateTimeExtensions.cs`
     
     **Signature**
     ```csharp
-    public static DateTime ConvertDateTimeToUtcByTimeZoneOffset(this DateTime timeToConvertToUtc, int insertionTimeTimeZoneOffsetSummerTime, bool? isDayLightSavingTime = null)
+    public static DateTime ConvertDateTimeToUtcByTimeZoneOffset(this DateTime timeToConvertToUtc, int insertionTimeTimeZoneOffsetSummerTime, bool? isDayLightSavingTime = null, string? timeZoneId = null)
     ```
     
     **Docstring**
@@ -603,19 +603,19 @@ Annotated extension methods continue to appear in their regular category pages; 
 
 #### `ConvertDateTimeFromUtcToTimeZoneByTimeZoneOffset`
 
-??? info "Location, signature, and docstring"
+??? info "Source file, signature, and docstring"
     **Member**
-    `DateTimeExtensions.ConvertDateTimeFromUtcToTimeZoneByTimeZoneOffset(this DateTime utcTimeToConvert, int timeZoneOffsetSummerTime, bool? isDayLightSavingTime = null)`
+    `DateTimeExtensions.ConvertDateTimeFromUtcToTimeZoneByTimeZoneOffset(this DateTime utcTimeToConvert, int timeZoneOffsetSummerTime, bool? isDayLightSavingTime = null, string? timeZoneId = null)`
     
     **Kind** `function`
     
     **Declaring Type** `DateTimeExtensions (extension type)`
     
-    **Location** `QaaS.Framework.Infrastructure/DateTimeExtensions.cs:42`
+    **Source File** `QaaS.Framework.Infrastructure/DateTimeExtensions.cs`
     
     **Signature**
     ```csharp
-    public static DateTime ConvertDateTimeFromUtcToTimeZoneByTimeZoneOffset(this DateTime utcTimeToConvert, int timeZoneOffsetSummerTime, bool? isDayLightSavingTime = null)
+    public static DateTime ConvertDateTimeFromUtcToTimeZoneByTimeZoneOffset(this DateTime utcTimeToConvert, int timeZoneOffsetSummerTime, bool? isDayLightSavingTime = null, string? timeZoneId = null)
     ```
     
     **Docstring**
@@ -626,7 +626,7 @@ Annotated extension methods continue to appear in their regular category pages; 
 
 #### `GetRunningCommunicationDataByName<TData>`
 
-??? info "Location, signature, and docstring"
+??? info "Source file, signature, and docstring"
     **Member**
     `RunningCommunicationDataExtensions.GetRunningCommunicationDataByName<TData>(this IEnumerable<RunningCommunicationData<TData>>? runningCommunicationDataEnumerable, string runningCommunicationDataName, string? runningCommunicationDataType = null)`
     
@@ -634,7 +634,7 @@ Annotated extension methods continue to appear in their regular category pages; 
     
     **Declaring Type** `RunningCommunicationDataExtensions (extension type)`
     
-    **Location** `QaaS.Framework.SDK/Extensions/RunningCommunicationDataExtensions.cs:22`
+    **Source File** `QaaS.Framework.SDK/Extensions/RunningCommunicationDataExtensions.cs`
     
     **Signature**
     ```csharp
@@ -649,7 +649,7 @@ Annotated extension methods continue to appear in their regular category pages; 
 
 #### `GetInputByName<TInput, TOutput>`
 
-??? info "Location, signature, and docstring"
+??? info "Source file, signature, and docstring"
     **Member**
     `RunningSessionDataExtensions.GetInputByName<TInput, TOutput>(this RunningSessionData<TInput, TOutput>? runningSessionData, string inputName)`
     
@@ -657,7 +657,7 @@ Annotated extension methods continue to appear in their regular category pages; 
     
     **Declaring Type** `RunningSessionDataExtensions (extension type)`
     
-    **Location** `QaaS.Framework.SDK/Extensions/RunningSessionDataExtensions.cs:17`
+    **Source File** `QaaS.Framework.SDK/Extensions/RunningSessionDataExtensions.cs`
     
     **Signature**
     ```csharp
@@ -670,7 +670,7 @@ Annotated extension methods continue to appear in their regular category pages; 
 
 #### `GetOutputByName<TInput, TOutput>`
 
-??? info "Location, signature, and docstring"
+??? info "Source file, signature, and docstring"
     **Member**
     `RunningSessionDataExtensions.GetOutputByName<TInput, TOutput>(this RunningSessionData<TInput, TOutput>? runningSessionData, string outputName)`
     
@@ -678,7 +678,7 @@ Annotated extension methods continue to appear in their regular category pages; 
     
     **Declaring Type** `RunningSessionDataExtensions (extension type)`
     
-    **Location** `QaaS.Framework.SDK/Extensions/RunningSessionDataExtensions.cs:31`
+    **Source File** `QaaS.Framework.SDK/Extensions/RunningSessionDataExtensions.cs`
     
     **Signature**
     ```csharp
@@ -693,7 +693,7 @@ Annotated extension methods continue to appear in their regular category pages; 
 
 #### `WithHostname`
 
-??? info "Location, signature, and docstring"
+??? info "Source file, signature, and docstring"
     **Member**
     `SerilogExtensions.WithHostname(this LoggerEnrichmentConfiguration enrichmentConfiguration)`
     
@@ -701,7 +701,7 @@ Annotated extension methods continue to appear in their regular category pages; 
     
     **Declaring Type** `SerilogExtensions (extension type)`
     
-    **Location** `QaaS.Framework.SDK/Extensions/LoggingExetentions.cs:16`
+    **Source File** `QaaS.Framework.SDK/Extensions/LoggingExetentions.cs`
     
     **Signature**
     ```csharp
@@ -714,7 +714,7 @@ Annotated extension methods continue to appear in their regular category pages; 
 
 #### `WithEnvironment`
 
-??? info "Location, signature, and docstring"
+??? info "Source file, signature, and docstring"
     **Member**
     `SerilogExtensions.WithEnvironment(this LoggerEnrichmentConfiguration enrichmentConfiguration)`
     
@@ -722,7 +722,7 @@ Annotated extension methods continue to appear in their regular category pages; 
     
     **Declaring Type** `SerilogExtensions (extension type)`
     
-    **Location** `QaaS.Framework.SDK/Extensions/LoggingExetentions.cs:27`
+    **Source File** `QaaS.Framework.SDK/Extensions/LoggingExetentions.cs`
     
     **Signature**
     ```csharp
@@ -737,7 +737,7 @@ Annotated extension methods continue to appear in their regular category pages; 
 
 #### `GetSessionDataByName<TInput, TOutput>`
 
-??? info "Location, signature, and docstring"
+??? info "Source file, signature, and docstring"
     **Member**
     `SessionDataExtensions.GetSessionDataByName<TInput, TOutput>(this IEnumerable<GenericSessionData<TInput, TOutput>>? sessionDataEnumerable, string sessionName)`
     
@@ -745,7 +745,7 @@ Annotated extension methods continue to appear in their regular category pages; 
     
     **Declaring Type** `SessionDataExtensions (extension type)`
     
-    **Location** `QaaS.Framework.SDK/Extensions/SessionDataExtensions.cs:20`
+    **Source File** `QaaS.Framework.SDK/Extensions/SessionDataExtensions.cs`
     
     **Signature**
     ```csharp
@@ -758,7 +758,7 @@ Annotated extension methods continue to appear in their regular category pages; 
 
 #### `GetInputByName<TInput, TOutput>`
 
-??? info "Location, signature, and docstring"
+??? info "Source file, signature, and docstring"
     **Member**
     `SessionDataExtensions.GetInputByName<TInput, TOutput>(this GenericSessionData<TInput, TOutput>? sessionData, string inputName)`
     
@@ -766,7 +766,7 @@ Annotated extension methods continue to appear in their regular category pages; 
     
     **Declaring Type** `SessionDataExtensions (extension type)`
     
-    **Location** `QaaS.Framework.SDK/Extensions/SessionDataExtensions.cs:43`
+    **Source File** `QaaS.Framework.SDK/Extensions/SessionDataExtensions.cs`
     
     **Signature**
     ```csharp
@@ -779,7 +779,7 @@ Annotated extension methods continue to appear in their regular category pages; 
 
 #### `TryGetInputByName<TInput, TOutput>`
 
-??? info "Location, signature, and docstring"
+??? info "Source file, signature, and docstring"
     **Member**
     `SessionDataExtensions.TryGetInputByName<TInput, TOutput>(this GenericSessionData<TInput, TOutput>? sessionData, string inputName, out CommunicationData<TInput>? inputValue)`
     
@@ -787,7 +787,7 @@ Annotated extension methods continue to appear in their regular category pages; 
     
     **Declaring Type** `SessionDataExtensions (extension type)`
     
-    **Location** `QaaS.Framework.SDK/Extensions/SessionDataExtensions.cs:58`
+    **Source File** `QaaS.Framework.SDK/Extensions/SessionDataExtensions.cs`
     
     **Signature**
     ```csharp
@@ -800,7 +800,7 @@ Annotated extension methods continue to appear in their regular category pages; 
 
 #### `GetOutputByName<TInput, TOutput>`
 
-??? info "Location, signature, and docstring"
+??? info "Source file, signature, and docstring"
     **Member**
     `SessionDataExtensions.GetOutputByName<TInput, TOutput>(this GenericSessionData<TInput, TOutput>? sessionData, string outputName)`
     
@@ -808,7 +808,7 @@ Annotated extension methods continue to appear in their regular category pages; 
     
     **Declaring Type** `SessionDataExtensions (extension type)`
     
-    **Location** `QaaS.Framework.SDK/Extensions/SessionDataExtensions.cs:82`
+    **Source File** `QaaS.Framework.SDK/Extensions/SessionDataExtensions.cs`
     
     **Signature**
     ```csharp
@@ -821,7 +821,7 @@ Annotated extension methods continue to appear in their regular category pages; 
 
 #### `TryGetOutputByName<TInput, TOutput>`
 
-??? info "Location, signature, and docstring"
+??? info "Source file, signature, and docstring"
     **Member**
     `SessionDataExtensions.TryGetOutputByName<TInput, TOutput>(this GenericSessionData<TInput, TOutput>? sessionData, string outputName, out CommunicationData<TOutput>? outputValue)`
     
@@ -829,7 +829,7 @@ Annotated extension methods continue to appear in their regular category pages; 
     
     **Declaring Type** `SessionDataExtensions (extension type)`
     
-    **Location** `QaaS.Framework.SDK/Extensions/SessionDataExtensions.cs:97`
+    **Source File** `QaaS.Framework.SDK/Extensions/SessionDataExtensions.cs`
     
     **Signature**
     ```csharp
@@ -846,7 +846,7 @@ Annotated extension methods continue to appear in their regular category pages; 
 
 #### `AsSingle<TItem>`
 
-??? info "Location, signature, and docstring"
+??? info "Source file, signature, and docstring"
     **Member**
     `EnumerableExtensions.AsSingle<TItem>(this IEnumerable<TItem> enumerable)`
     
@@ -854,7 +854,7 @@ Annotated extension methods continue to appear in their regular category pages; 
     
     **Declaring Type** `EnumerableExtensions (extension type)`
     
-    **Location** `QaaS.Framework.SDK/Extensions/EnumerableExtensions.cs:17`
+    **Source File** `QaaS.Framework.SDK/Extensions/EnumerableExtensions.cs`
     
     **Signature**
     ```csharp

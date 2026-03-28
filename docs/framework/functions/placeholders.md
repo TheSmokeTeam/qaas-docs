@@ -1,10 +1,11 @@
 # Placeholders
 
-Each entry uses the short function name as the table-of-contents label. Expand an entry to inspect its location, signature, and XML doc comments.
+Each entry uses the short function name as the table-of-contents label. Expand an entry to inspect its source file, signature, and XML doc comments.
+
 
 ## `AddPlaceholderResolver`
 
-??? info "Location, signature, and docstring"
+??? info "Source file, signature, and docstring"
     **Member**
     `PlaceholderConfigurationBuilderExtension.AddPlaceholderResolver(this IConfigurationBuilder configurationBuilder)`
     
@@ -12,7 +13,7 @@ Each entry uses the short function name as the table-of-contents label. Expand a
     
     **Declaring Type** `PlaceholderConfigurationBuilderExtension (extension type)`
     
-    **Location** `QaaS.Framework.Configurations/ConfigurationBuilderExtensions/PlaceholderConfigurationBuilderExtension.cs:17`
+    **Source File** `QaaS.Framework.Configurations/ConfigurationBuilderExtensions/PlaceholderConfigurationBuilderExtension.cs`
     
     **Signature**
     ```csharp

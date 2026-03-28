@@ -3,6 +3,8 @@
 Each configuration section in the `.yaml` file is used to perform a different action and has its own configurations and descriptions.
 In this part of the documentation you can read about all the possible configurations available to you within each configuration section.
 
+Use the section pages when you want the canonical reference for [MetaData](metaData/overview.md), [Links](links/overview.md), [Storages](storages/overview.md), [DataSources](dataSources/overview.md), [Sessions](sessions/overview.md), and [Assertions](assertions/overview.md).
+
 The `.yaml` configuration file is divided into the following sections:
 
 ```yaml

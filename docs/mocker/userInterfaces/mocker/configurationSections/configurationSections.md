@@ -3,6 +3,8 @@
 Each configuration section in the `mocker.qaas.yaml` file is used to perform a different action and has its own configurations and descriptions.
 In this part of the documentation you can read about all of the possible configurations available to you within each configuration section.
 
+Use the section pages when you want the canonical reference for [DataSources](dataSources/overview.md), [Stubs](stubs/overview.md), [Controller](controller/overview.md), and [Servers](server/overview.md).
+
 The `mocker.qaas.yaml` configuration file is divided into the following sections:
 
 ```yaml

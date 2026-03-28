@@ -1,6 +1,6 @@
 # Controller
 
-The `Controller` section is optional. When configured with a usable Redis connection, it enables QaaS Runner mocker commands such as changing action stubs, triggering actions, and consuming cached transactions.
+The `Controller` section is optional. When configured with a usable Redis connection, it enables [QaaS.Runner](../../../../../qaas/index.md) [Mocker Commands](../../../../../qaas/userInterfaces/runner/configurationSections/sessions/types/mockerCommands.md) such as changing action stubs, triggering actions, and consuming cached transactions.
 
 The controller is built only when:
 
