@@ -157,7 +157,8 @@ sessionBuilder.Named("NewSessionName");
 sessionBuilder.AtStage(2);
 ```
 
-> **Important**: On a session, `.AtStage(n)` also sets `RunUntilStage` to `n + 1`. Use `RunSessionUntilStage(n)` only when the session must stay active long enough to block a later stage.
+!!! warning "⚠️ Important"
+    On a session, `.AtStage(n)` also sets `RunUntilStage` to `n + 1`. Use `RunSessionUntilStage(n)` only when the session must stay active long enough to block a later stage.
 
 ---
 

@@ -77,9 +77,10 @@ DataSources:
     Lazy: true
 ```
 
-> **Note: Real-Time Generators Must Be Lazy**
-> If `Lazy: false`, the publisher waits for the consumer to finish before publishing, which defeats the purpose of real-time processing.
-> Set `Lazy: true` to enable concurrent execution.
+!!! warning "⚠️ Important"
+    Real-time generators must be lazy.
+    If `Lazy: false`, the publisher waits for the consumer to finish before publishing, which defeats the purpose of real-time processing.
+    Set `Lazy: true` to enable concurrent execution.
 
 Then use the data source in a [Publisher](../userInterfaces/runner/configurationSections/sessions/types/publishers.md):
 
@@ -114,9 +115,8 @@ Now you have:
 
 ---
 
-## Important Warning: Avoid Flakiness
-
-> **Use each live generator instance only once**
+!!! warning "⚠️ Important"
+    Use each live generator instance only once.
 
 Creating multiple publishers from the same live generator instance can lead to:
 

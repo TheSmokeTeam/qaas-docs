@@ -40,7 +40,8 @@ Actions such as [Publishers](../userInterfaces/runner/configurationSections/sess
 - **Within a stage**: all actions run **in parallel**.
 - **Between stages**: execution is **sequential and synchronized** - a later stage does not start until the earlier stage has finished.
 
-> **Important**: Actions **do not support** `RunUntilStage`. They participate only by their assigned `Stage`.
+!!! warning "⚠️ Important"
+    Actions **do not support** `RunUntilStage`. They participate only by their assigned `Stage`.
 
 ### Example: Action Stages
 
