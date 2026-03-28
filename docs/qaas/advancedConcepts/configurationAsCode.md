@@ -157,50 +157,142 @@ sessionBuilder.Named("NewSessionName");
 sessionBuilder.AtStage(2);
 ```
 
-!!! warning "⚠️ Important"
-    On a session, `.AtStage(n)` also sets `RunUntilStage` to `n + 1`. Use `RunSessionUntilStage(n)` only when the session must stay active long enough to block a later stage.
+!!! warning "Important"
+    On a session builder, `.AtStage(n)` sets `Stage = n` and `RunUntilStage = n + 1`.
+    That is the current fluent-code helper behavior.
+    In YAML, `Stage` and `RunUntilStage` are still separate fields.
 
 ---
 
-## Runner: Code-Only and Hybrid Hosts
+## Configuration Paths in Runner
 
-In practice, Configuration as Code in Runner is usually used in one of three ways:
+In practice, Runner configuration as code is usually one of three shapes:
 
-1. Load YAML through bootstrap, then mutate the loaded `ExecutionBuilder`.
-2. Use `IExecutionBuilderConfigurator` so Runner can build or extend the execution in code during the normal bootstrap flow.
-3. Let the host decide between an explicit YAML path and an explicit code path before calling bootstrap.
+1. **Strictly code-defined**: the host chooses a code-only path and lets configurators build the execution when no YAML file is present.
+2. **Hybrid**: YAML provides the base structure and code mutates the loaded builders.
+3. **Multi-execution orchestration**: one `Runner` owns several `ExecutionBuilder` instances.
 
-### `IExecutionBuilderConfigurator`
+### Strictly Code-Defined Runner Configuration
 
-Runner supports discovered configurators through `IExecutionBuilderConfigurator`:
+For Runner, a pure code-defined path still goes through bootstrap. The difference is that the host decides up front that no YAML file is part of the scenario.
+
+The supported path today is:
+
+- call `Bootstrap.New(...)` with an explicit execution mode such as `run`
+- let Runner discover one or more `IExecutionBuilderConfigurator` implementations
+- allow those configurators to populate the `ExecutionBuilder` when the configuration file is missing
 
 ```csharp
+using System.Linq;
+using QaaS.Framework.Executions;
 using QaaS.Runner;
+using QaaS.Runner.Sessions.Session.Builders;
 
 public sealed class MyExecutionConfigurator : IExecutionBuilderConfigurator
 {
     public void Configure(ExecutionBuilder executionBuilder)
     {
-        // Add or modify sessions, data sources, storages, assertions, and links here.
+        executionBuilder.WithMetadata(new MetaDataConfig
+        {
+            Team = "Docs",
+            System = "AdvancedConcepts"
+        });
+
+        if (!executionBuilder.ReadSessions().Any())
+        {
+            executionBuilder.CreateSession(
+                new SessionBuilder().Named("CodeOnlySession"));
+        }
     }
 }
+
+var runner = Bootstrap.New(["run"]);
+var exitCode = runner.RunAndGetExitCode();
 ```
 
 Runner discovers configurators from:
 
 - the entry assembly
 - already loaded assemblies
-- public types in copied output DLLs under the application base directory
+- public or nested-public configurator types in copied output DLLs under the application base directory
 
-This is the current built-in mechanism that allows a normal bootstrap path to continue even when the expected YAML file is not present.
+Two points matter here:
 
-### Choosing the Host Strategy
+- `Bootstrap.New([])` is **not** the code-only path; empty arguments still print help.
+- If the expected YAML file is missing and no configurator is discovered, Runner fails.
 
-The host should decide explicitly which startup path it wants:
+### Hybrid Configuration: YAML First, Then Code
 
-- **YAML-first host**: call `Bootstrap.New(args)` with `run <file>`, `run`, or another explicit execution mode.
-- **Code-first host**: decide that path in `Program.cs`, then either rely on discovered configurators or build the execution manually.
-- **Hybrid host**: keep both paths, but make the choice explicit so an empty argument list does not silently mean two different things.
+Hybrid configuration is the most direct replacement for the older CaC flow: load the execution from YAML, then adjust only what should be dynamic in code.
+
+```csharp
+using System.Linq;
+
+var runner = QaaS.Runner.Bootstrap.New(["run", "test.qaas.yaml"]);
+var executionBuilder = runner.ExecutionBuilders.Single();
+var sessionBuilder = executionBuilder.ReadSessions().Single();
+
+sessionBuilder.Named("RenamedSession");
+sessionBuilder.AtStage(2);
+```
+
+This is the right path when:
+
+- YAML is the reviewed baseline
+- code fills environment-specific values
+- the host wants CLI overlays and YAML structure, but not a fully static run plan
+
+### One Runner, Several Executions
+
+If one logical run should own several executions, prefer **one `Runner` with several `ExecutionBuilder` instances**.
+
+That happens in two current places:
+
+- `execute`, where Runner bootstraps one child command at a time and then flattens the child `ExecutionBuilders` into one outer runner
+- case expansion, where one command is expanded into one builder per discovered case
+
+```yaml
+Commands:
+  - Id: first
+    Command: template test.qaas.yaml
+  - Id: second
+    Command: act test.qaas.yaml
+```
+
+```csharp
+var runner = QaaS.Runner.Bootstrap.New(["execute", "executable.yaml"]);
+var builders = runner.ExecutionBuilders;
+```
+
+A few runtime details are important:
+
+- the child runners created by `execute` do **not** run independently; their builders are flattened into the outer runner
+- when the outer runner materializes executions, it pushes one shared global dictionary into every execution builder in that runner invocation
+- the runner then starts the materialized executions **sequentially**
+
+So if you need several executions that share per-run global state, use one runner with several execution builders rather than several unrelated runner objects.
+
+### Several Runner Instances in One Host
+
+A host can also create several `Runner` instances intentionally. That is a separate orchestration choice.
+
+```csharp
+using QaaS.Runner;
+
+var smokeRunner = Bootstrap.New(["run", "smoke.qaas.yaml"]);
+var regressionRunner = Bootstrap.New(["run", "regression.qaas.yaml"]);
+
+var smokeExitCode = smokeRunner.RunAndGetExitCode();
+var regressionExitCode = regressionRunner.RunAndGetExitCode();
+```
+
+The important difference is lifecycle:
+
+- each runner bootstraps and builds independently
+- each runner owns its own execution lifecycle
+- `Run()` exits the current process by default, so multi-runner hosts should use `RunAndGetExitCode()` or set `ExitProcessOnCompletion = false`
+
+Use several runner instances only when the lifecycles should stay independent. Use one runner when the executions are part of one shared run plan.
 
 ---
 
@@ -293,6 +385,7 @@ using System;
 using System.Collections.Generic;
 using Autofac;
 using Microsoft.Extensions.Logging;
+using QaaS.Framework.Executions;
 using QaaS.Runner;
 
 public class MyCustomRunner : Runner
@@ -425,4 +518,4 @@ var exitCode = runner.RunAndGetExitCode();
 Console.WriteLine($"Runner completed with exit code {exitCode}");
 ```
 
-With Configuration as Code, configuration is not just defined - it is engineered.
+With Configuration as Code, configuration is not just defined, it is engineered.

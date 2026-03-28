@@ -1,25 +1,45 @@
 # Live Action Based Generators
 
-In certain advanced scenarios, you may need to access real-time data from a currently running action within your [QaaS.Common.Generators](../../generators/index.md). This allows your generator logic to react dynamically to live processing results.
+In certain advanced scenarios, you may need to access data from a currently running action inside your [QaaS.Common.Generators](../../generators/index.md). This allows generator logic to react to live processing results instead of waiting for completed session data.
 
-This pattern is useful when a publisher or another live action must respond to data that is still being produced. It is not the normal path for completed session data; use it when you specifically need live behavior.
+This pattern is useful when a publisher, transaction, or probe must consume output that is still being produced by another running action.
 
 ---
 
-## How Generators Run in Flow
+## How Live Generators Actually Become Live
 
-When you define a generator and use it in a [DataSource](../userInterfaces/runner/configurationSections/dataSources/overview.md), the generator code executes **when the publisher starts**, not when the session begins. This means:
+The important detail is that publishers are **prepared** before the session starts running actions.
 
-- The generator runs in the context of the **current [Session](../userInterfaces/runner/configurationSections/sessions/overview.md)**.
-- To access real-time data from another action, you must make sure you are reading from the correct running session.
+That means generator timing depends on the data source's laziness:
 
-> **Key Insight**: Always verify which session your generator is running under, especially when accessing live outputs.
+- if the data source is **not lazy**, QaaS materializes the generator output during session preparation
+- if the data source **is lazy**, QaaS keeps the generator deferred and the publisher iterates it while the session is already running
+
+So a live action based generator is only truly live when the data source is lazy.
+
+!!! warning "Important"
+    Real-time generators must be lazy.
+    Use `Lazy: true` in YAML or `.IsLazy()` in code.
+    Without that, the generator is evaluated during preparation and the action is no longer live from the generator's point of view.
+
+---
+
+## Resolving the Correct Running Session
+
+The runtime stores currently running sessions in `Context.CurrentRunningSessions`.
+
+Use the lookup that matches your runtime shape:
+
+- `GetAllSessions().AsSingle()` when exactly one relevant session can be running
+- `GetSessionByName("...")` when more than one session may overlap
+
+In a multi-session execution, `GetSessionByName(...)` is the safer choice because it selects the intended running session directly.
 
 ---
 
 ## Creating a Live Action Based Generator
 
-You can create a generator that pulls real-time data from a running action such as a consumer and republishes it live.
+You can create a generator that reads a running consumer and republishes that data while the consumer is still active.
 
 ### Step 1: Define the Generator
 
@@ -36,6 +56,7 @@ namespace FromConsumerGenerators;
 
 public record FromConsumerGeneratorConfig
 {
+    [Required] public string SessionName { get; set; }
     [Required] public string ConsumerName { get; set; }
 }
 
@@ -45,22 +66,55 @@ public class FromConsumerGenerator : BaseGenerator<FromConsumerGeneratorConfig>
         IImmutableList<SessionData> sessionDataList,
         IImmutableList<DataSource> dataSourceList)
     {
-        var consumerLiveData = Context.CurrentRunningSessions.GetAllSessions().AsSingle()
-            .GetOutputByName(Configuration.ConsumerName)
-            .GetData();
+        var liveConsumer = Context.CurrentRunningSessions
+            .GetSessionByName(Configuration.SessionName)
+            .GetOutputByName(Configuration.ConsumerName);
 
-        foreach (var item in consumerLiveData)
-            yield return item;
+        foreach (var item in liveConsumer.GetData())
+        {
+            yield return new Data<object>
+            {
+                Body = item.Body,
+                MetaData = item.MetaData with { RabbitMq = null }
+            };
+        }
     }
 }
 ```
 
 ### Key Points
 
-- `Context.CurrentRunningSessions.GetAllSessions()` -> gets all active running sessions.
-- `.AsSingle()` -> selects the current session when exactly one running session is relevant.
-- `GetOutputByName(Configuration.ConsumerName)` -> retrieves the live output of the specified action.
-- `.GetData()` -> returns the live stream of data from that running action.
+- `GetSessionByName(Configuration.SessionName)` resolves the intended running session directly.
+- `GetOutputByName(Configuration.ConsumerName)` retrieves the live output channel of that action.
+- `GetData()` streams the action output as it is produced.
+- the example creates a new `Data<object>` instead of yielding the consumer item directly, so transport metadata can be adjusted safely
+
+If you are in a true single-session flow, `Context.CurrentRunningSessions.GetAllSessions().AsSingle()` is still valid.
+
+---
+
+## Republishing Through RabbitMQ
+
+When a generator republishes data that originally came from a RabbitMQ consumer, one detail matters:
+
+- the RabbitMQ sender uses the item's `MetaData.RabbitMq.RoutingKey` when it exists
+- if you yield the consumer item directly, the publisher can reuse the **source** routing key instead of its configured **target** routing key
+
+That can create a feedback loop where the original consumer receives the republished message again.
+
+That is why the example above clears the RabbitMQ metadata:
+
+```csharp
+yield return new Data<object>
+{
+    Body = item.Body,
+    MetaData = item.MetaData with { RabbitMq = null }
+};
+```
+
+If you want to preserve RabbitMQ metadata, replace it with the metadata that matches the target publisher instead of clearing it.
+
+This exact pattern was validated locally against RabbitMQ: a running consumer streamed data into a lazy generator, that generator republished the data to a different route, and a second consumer received the republished messages successfully.
 
 ---
 
@@ -73,64 +127,72 @@ DataSources:
   - Name: FromConsumerGenerator
     Generator: FromConsumerGenerator
     GeneratorConfiguration:
+      SessionName: LiveSession
       ConsumerName: Consumer
     Lazy: true
-```
 
-!!! warning "⚠️ Important"
-    Real-time generators must be lazy.
-    If `Lazy: false`, the publisher waits for the consumer to finish before publishing, which defeats the purpose of real-time processing.
-    Set `Lazy: true` to enable concurrent execution.
+Sessions:
+  - Name: LiveSession
+    SaveData: true
+    Publishers:
+      - Name: SeedPublisher
+        DataSourceNames: [ SomeDataSource ]
+        RabbitMq:
+          <<: *rabbitmq
+          ExchangeName: amq.direct
+          RoutingKey: source-route
 
-Then use the data source in a [Publisher](../userInterfaces/runner/configurationSections/sessions/types/publishers.md):
+      - Name: PublisherBasedOnConsumer
+        Stage: 1
+        DataSourceNames: [ FromConsumerGenerator ]
+        RabbitMq:
+          <<: *rabbitmq
+          ExchangeName: amq.direct
+          RoutingKey: target-route
 
-```yaml
-- Name: Session
-  SaveData: true
-  Publishers:
-    - Name: Publisher
-      DataSourceNames: [ SomeDataSource ]
-      RabbitMq:
-        <<: *rabbitmq
-        ExchangeName: test
+    Consumers:
+      - Name: Consumer
+        Stage: 0
+        TimeoutMs: 3000
+        RabbitMq:
+          <<: *rabbitmq
+          ExchangeName: amq.direct
+          RoutingKey: source-route
 
-    - Name: PublisherBasedOnConsumer
-      DataSourceNames: [ FromConsumerGenerator ]
-      RabbitMq:
-        <<: *rabbitmq
-        ExchangeName: test-live
-
-  Consumers:
-    - Name: Consumer
-      TimeoutMs: 3000
-      RabbitMq:
-        <<: *rabbitmq
-        ExchangeName: test
+      - Name: LiveConsumer
+        Stage: 2
+        TimeoutMs: 3000
+        RabbitMq:
+          <<: *rabbitmq
+          ExchangeName: amq.direct
+          RoutingKey: target-route
 ```
 
 Now you have:
 
-- A `Consumer` processing messages.
-- A `PublisherBasedOnConsumer` that **streams live data** from the consumer through the generator.
+- a `Consumer` that reads the source route
+- a lazy generator that reads that consumer's live output
+- a `PublisherBasedOnConsumer` that republishes the live data to the target route
+- a `LiveConsumer` that reads the republished data
 
 ---
 
-!!! warning "⚠️ Important"
-    Use each live generator instance only once.
+## One Live Stream, One Consumer Path
 
-Creating multiple publishers from the same live generator instance can lead to:
+The runtime backs `GetData()` with one shared live communication object for that running action.
 
-- race conditions
-- duplicate or lost data
-- unpredictable behavior
+In practice, the safest pattern is:
 
-**Best Practice**: use one generator per live data stream, and one publisher per generator.
+- one live generator per live stream
+- one publisher or transaction consuming that live generator
+
+If you fan out the same live stream to several consumers without verifying the behavior carefully, treat duplicate or missing items as a real risk.
 
 ---
 
 ## Cancelling a Running Action via Generator
 
-You can also use a generator to **cancel** a running action when a condition is met.
+You can also use a generator to cancel a running action when a condition is met.
 
 ### Example: Cancel Consumer After 50 Items
 
@@ -147,6 +209,7 @@ namespace QaaS.Runner.E2ETests.Generators.CancelConsumerGenerator;
 
 public record CancelConsumerGeneratorConfig
 {
+    [Required] public string SessionName { get; set; }
     [Required] public string ConsumerName { get; set; }
 }
 
@@ -157,7 +220,8 @@ public class CancelConsumerGenerator : BaseGenerator<CancelConsumerGeneratorConf
         IImmutableList<DataSource> dataSourceList)
     {
         var itemsPublished = 0;
-        var liveConsumer = Context.CurrentRunningSessions.GetAllSessions().AsSingle()
+        var liveConsumer = Context.CurrentRunningSessions
+            .GetSessionByName(Configuration.SessionName)
             .GetOutputByName(Configuration.ConsumerName);
 
         foreach (var item in liveConsumer.GetData())
@@ -174,7 +238,7 @@ public class CancelConsumerGenerator : BaseGenerator<CancelConsumerGeneratorConf
 
 ### Key Mechanism
 
-- `liveConsumer.DataCancellationTokenSource.Cancel()` -> signals the running action to stop processing.
-- This works because the generator runs in the same session context as the action it is reading from.
+- `liveConsumer.DataCancellationTokenSource.Cancel()` signals the running action to stop
+- this works because the generator is reading the same running communication object that the action is writing to
 
-> Useful for testing failure scenarios, rate limiting, or early termination.
+That makes live generators useful not only for republishing, but also for early termination, failure-path testing, and rate-based control flows.
