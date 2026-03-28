@@ -54,8 +54,8 @@ Regenerate and validate the reference docs locally:
 
 ```powershell
 git submodule update --init --recursive
-.\scripts\Generate-ReferenceDocs.ps1
-.\scripts\Generate-ReferenceDocs.ps1 -Check -BuildSite
+dotnet run --project .\tools\QaaS.Docs.Generator\QaaS.Docs.Tools\QaaS.Docs.Tools.csproj -- generate-reference-docs --docs-root $PWD
+dotnet run --project .\tools\QaaS.Docs.Generator\QaaS.Docs.Tools\QaaS.Docs.Tools.csproj -- generate-reference-docs --docs-root $PWD --check --build-site
 ```
 
 ## Repository Layout
@@ -65,8 +65,7 @@ qaas-docs/
 |-- docs/                         Source markdown and generated reference docs
 |-- docs/assets/                  Bundled schema download assets used by the site
 |-- mkdocs.yml                    MkDocs configuration
-|-- scripts/                      Docs generation helpers
-|-- tools/QaaS.Docs.Generator/    Generator submodule
+|-- tools/QaaS.Docs.Generator/    Generator submodule and docs orchestration CLI
 `-- .github/workflows/ci.yml      Unified docs CI, deploy, Docker publish, and overview update workflow
 ```
 
