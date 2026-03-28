@@ -114,10 +114,10 @@ Each `ExecutionBuilder` encapsulates the configuration for a single execution. I
 ### Accessing Builder Components
 
 ```csharp
-using System.Linq;
+using QaaS.Framework.SDK.Extensions;
 
 var runner = QaaS.Runner.Bootstrap.New(args);
-var executionBuilder = runner.ExecutionBuilders.Single();
+var executionBuilder = runner.ExecutionBuilders.AsSingle();
 
 var sessionBuilders = executionBuilder.ReadSessions();
 var storageBuilders = executionBuilder.ReadStorages();
@@ -147,14 +147,16 @@ QaaS provides a fluent, type-safe API for modifying configuration programmatical
 ### Example: Rename a Session and Set Its Stage
 
 ```csharp
-using System.Linq;
+using QaaS.Framework.SDK.Extensions;
 
 var runner = QaaS.Runner.Bootstrap.New(args);
-var executionBuilder = runner.ExecutionBuilders.Single();
-var sessionBuilder = executionBuilder.ReadSessions().Single();
+var executionBuilder = runner.ExecutionBuilders.AsSingle();
 
-sessionBuilder.Named("NewSessionName");
-sessionBuilder.AtStage(2);
+executionBuilder.UpdateSession(
+    "ExistingSession",
+    session => session
+        .Named("NewSessionName")
+        .AtStage(2));
 ```
 
 !!! warning "Important"
@@ -183,7 +185,6 @@ The supported path today is:
 - allow those configurators to populate the `ExecutionBuilder` when the configuration file is missing
 
 ```csharp
-using System.Linq;
 using QaaS.Framework.Executions;
 using QaaS.Runner;
 using QaaS.Runner.Sessions.Session.Builders;
@@ -198,11 +199,8 @@ public sealed class MyExecutionConfigurator : IExecutionBuilderConfigurator
             System = "AdvancedConcepts"
         });
 
-        if (!executionBuilder.ReadSessions().Any())
-        {
-            executionBuilder.CreateSession(
-                new SessionBuilder().Named("CodeOnlySession"));
-        }
+        executionBuilder.CreateSession(
+            new SessionBuilder().Named("CodeOnlySession"));
     }
 }
 
@@ -226,14 +224,16 @@ Two points matter here:
 Hybrid configuration is the most direct replacement for the older CaC flow: load the execution from YAML, then adjust only what should be dynamic in code.
 
 ```csharp
-using System.Linq;
+using QaaS.Framework.SDK.Extensions;
 
 var runner = QaaS.Runner.Bootstrap.New(["run", "test.qaas.yaml"]);
-var executionBuilder = runner.ExecutionBuilders.Single();
-var sessionBuilder = executionBuilder.ReadSessions().Single();
+var executionBuilder = runner.ExecutionBuilders.AsSingle();
 
-sessionBuilder.Named("RenamedSession");
-sessionBuilder.AtStage(2);
+executionBuilder.UpdateSession(
+    "RabbitMqExchangeWithFromFileSystemTestData",
+    session => session
+        .Named("RenamedSession")
+        .AtStage(2));
 ```
 
 This is the right path when:
@@ -308,15 +308,15 @@ The example below assumes the execution already contains:
 - a data source named `DataSource`
 
 ```csharp
-using System.Linq;
 using Confluent.Kafka;
 using QaaS.Framework.Protocols.ConfigurationObjects.Kafka;
+using QaaS.Framework.SDK.Extensions;
 using QaaS.Runner;
 using QaaS.Runner.Sessions.Actions.Publishers.Builders;
 
 var runner = Bootstrap.New(args);
-var executionBuilder = runner.ExecutionBuilders.Single();
-var sessionBuilder = executionBuilder.ReadSessions().Single();
+var executionBuilder = runner.ExecutionBuilders.AsSingle();
+var sessionBuilder = executionBuilder.ReadSessions().AsSingle();
 
 var kafkaPublisher = new PublisherBuilder()
     .Named("KafkaPublisher")
@@ -445,18 +445,17 @@ Programmatic orchestration is especially useful when execution order depends on 
 
 ```csharp
 using System.Collections.Generic;
-using System.Linq;
 
 protected override int StartExecutions(List<Execution> executions)
 {
     int? finalResult = null;
 
-    var steadyStateResult = executions.First().Start();
+    var steadyStateResult = executions[0].Start();
 
     if (steadyStateResult == 0)
     {
         executions[1].Start();
-        finalResult = executions.First().Start();
+        finalResult = executions[0].Start();
 
         if (finalResult != 0)
             executions[2].Start();
