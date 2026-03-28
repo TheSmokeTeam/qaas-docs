@@ -2,22 +2,24 @@
 
 In certain advanced scenarios, you may need to access real-time data from a currently running action within your generators. This allows your generator logic to react dynamically to live processing results.
 
+This pattern is useful when a publisher or another live action must respond to data that is still being produced. It is not the normal path for completed session data; use it when you specifically need live behavior.
+
 ---
 
 ## How Generators Run in Flow
 
-When you define a generator and use it in a `DataSource`, the generator's code executes **when the publisher starts**, not when the session begins. This means:
+When you define a generator and use it in a `DataSource`, the generator code executes **when the publisher starts**, not when the session begins. This means:
 
 - The generator runs in the context of the **current session**.
-- To access real-time data from another action (e.g., a consumer), you must ensure the correct session context is used.
+- To access real-time data from another action, you must make sure you are reading from the correct running session.
 
-> **Key Insight**: Always verify which session your generator is running under — especially when accessing live outputs.
+> **Key Insight**: Always verify which session your generator is running under, especially when accessing live outputs.
 
 ---
 
 ## Creating a Live Action Based Generator
 
-You can create a generator that pulls real-time data from a running action (like a consumer) and publishes it live.
+You can create a generator that pulls real-time data from a running action such as a consumer and republishes it live.
 
 ### Step 1: Define the Generator
 
@@ -39,29 +41,26 @@ public record FromConsumerGeneratorConfig
 
 public class FromConsumerGenerator : BaseGenerator<FromConsumerGeneratorConfig>
 {
-    /// <inheritdoc />
     public override IEnumerable<Data<object>> Generate(
         IImmutableList<SessionData> sessionDataList,
         IImmutableList<DataSource> dataSourceList)
     {
-        // Access the currently running session
         var consumerLiveData = Context.CurrentRunningSessions.GetAllSessions().AsSingle()
-            .GetOutputByName(Configuration.ConsumerName).GetData();
+            .GetOutputByName(Configuration.ConsumerName)
+            .GetData();
 
         foreach (var item in consumerLiveData)
-        {
             yield return item;
-        }
     }
 }
 ```
 
 ### Key Points
 
-- `Context.CurrentRunningSessions.GetAllSessions()` → Gets all active sessions (current + background).
-- `.AsSingle()` → Extracts the **current session** (safe for single-session contexts).
-- `GetOutputByName(Configuration.ConsumerName)` → Retrieves the live output of the specified consumer.
-- `.GetData()` → Returns the real-time stream of data from that action.
+- `Context.CurrentRunningSessions.GetAllSessions()` -> gets all active running sessions.
+- `.AsSingle()` -> selects the current session when exactly one running session is relevant.
+- `GetOutputByName(Configuration.ConsumerName)` -> retrieves the live output of the specified action.
+- `.GetData()` -> returns the live stream of data from that running action.
 
 ---
 
@@ -78,8 +77,8 @@ DataSources:
     Lazy: true
 ```
 
-> **Note: Real-Time Generators Must Be Lazy**  
-> If `Lazy: false`, the publisher waits for the consumer to finish before publishing — defeating the purpose of real-time processing.  
+> **Note: Real-Time Generators Must Be Lazy**
+> If `Lazy: false`, the publisher waits for the consumer to finish before publishing, which defeats the purpose of real-time processing.
 > Set `Lazy: true` to enable concurrent execution.
 
 Then use the data source in a publisher:
@@ -111,27 +110,27 @@ Then use the data source in a publisher:
 Now you have:
 
 - A `Consumer` processing messages.
-- A `PublisherBasedOnConsumer` that **streams live data** from the consumer via the generator.
+- A `PublisherBasedOnConsumer` that **streams live data** from the consumer through the generator.
 
 ---
 
 ## Important Warning: Avoid Flakiness
 
-> **Use Each Live Generator Instance Only Once**
+> **Use each live generator instance only once**
 
-Creating multiple publishers using the same live generator instance can lead to:
+Creating multiple publishers from the same live generator instance can lead to:
 
-- Race conditions
-- Duplicate or lost data
-- Unpredictable behavior
+- race conditions
+- duplicate or lost data
+- unpredictable behavior
 
-**Best Practice**: Use one generator per live data stream, and one publisher per generator.
+**Best Practice**: use one generator per live data stream, and one publisher per generator.
 
 ---
 
 ## Cancelling a Running Action via Generator
 
-You can also use a generator to **cancel** a running action based on conditions.
+You can also use a generator to **cancel** a running action when a condition is met.
 
 ### Example: Cancel Consumer After 50 Items
 
@@ -167,10 +166,7 @@ public class CancelConsumerGenerator : BaseGenerator<CancelConsumerGeneratorConf
             yield return item;
 
             if (itemsPublished == 50)
-            {
-                // Cancel the running consumer
                 liveConsumer.DataCancellationTokenSource.Cancel();
-            }
         }
     }
 }
@@ -178,7 +174,7 @@ public class CancelConsumerGenerator : BaseGenerator<CancelConsumerGeneratorConf
 
 ### Key Mechanism
 
-- `liveConsumer.DataCancellationTokenSource.Cancel()` → Signals the consumer to stop processing.
-- This works because the generator runs in the same session context as the consumer.
+- `liveConsumer.DataCancellationTokenSource.Cancel()` -> signals the running action to stop processing.
+- This works because the generator runs in the same session context as the action it is reading from.
 
 > Useful for testing failure scenarios, rate limiting, or early termination.
