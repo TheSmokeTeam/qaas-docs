@@ -140,7 +140,7 @@ Annotated extension methods continue to appear in their regular category pages; 
 
 ??? info "Source file, signature, and docstring"
     **Member**
-    `DateTimeExtensions.ConvertDateTimeToUtcByTimeZoneOffset(this DateTime timeToConvertToUtc, int insertionTimeTimeZoneOffsetSummerTime, bool? isDayLightSavingTime = null)`
+    `DateTimeExtensions.ConvertDateTimeToUtcByTimeZoneOffset(this DateTime timeToConvertToUtc, int insertionTimeTimeZoneOffsetSummerTime, bool? isDayLightSavingTime = null, string? timeZoneId = null)`
     
     **Kind** `function`
     
@@ -150,18 +150,20 @@ Annotated extension methods continue to appear in their regular category pages; 
     
     **Signature**
     ```csharp
-    public static DateTime ConvertDateTimeToUtcByTimeZoneOffset(this DateTime timeToConvertToUtc, int insertionTimeTimeZoneOffsetSummerTime, bool? isDayLightSavingTime = null)
+    public static DateTime ConvertDateTimeToUtcByTimeZoneOffset(this DateTime timeToConvertToUtc, int insertionTimeTimeZoneOffsetSummerTime, bool? isDayLightSavingTime = null, string? timeZoneId = null)
     ```
     
     **Docstring**
     
     Converts a local wall-clock value into UTC using a summer-time offset and optional DST override.
+    
+    When `timeZoneId` is omitted, the conversion uses `Asia/Jerusalem` as the default timezone for daylight-saving evaluation.
 
 ### `ConvertDateTimeFromUtcToTimeZoneByTimeZoneOffset`
 
 ??? info "Source file, signature, and docstring"
     **Member**
-    `DateTimeExtensions.ConvertDateTimeFromUtcToTimeZoneByTimeZoneOffset(this DateTime utcTimeToConvert, int timeZoneOffsetSummerTime, bool? isDayLightSavingTime = null)`
+    `DateTimeExtensions.ConvertDateTimeFromUtcToTimeZoneByTimeZoneOffset(this DateTime utcTimeToConvert, int timeZoneOffsetSummerTime, bool? isDayLightSavingTime = null, string? timeZoneId = null)`
     
     **Kind** `function`
     
@@ -171,12 +173,14 @@ Annotated extension methods continue to appear in their regular category pages; 
     
     **Signature**
     ```csharp
-    public static DateTime ConvertDateTimeFromUtcToTimeZoneByTimeZoneOffset(this DateTime utcTimeToConvert, int timeZoneOffsetSummerTime, bool? isDayLightSavingTime = null)
+    public static DateTime ConvertDateTimeFromUtcToTimeZoneByTimeZoneOffset(this DateTime utcTimeToConvert, int timeZoneOffsetSummerTime, bool? isDayLightSavingTime = null, string? timeZoneId = null)
     ```
     
     **Docstring**
     
     Converts a UTC value into a local wall-clock value using a summer-time offset and optional DST override.
+    
+    When `timeZoneId` is omitted, the conversion uses `Asia/Jerusalem` as the default timezone for daylight-saving evaluation.
 
 ## Detailed data
 

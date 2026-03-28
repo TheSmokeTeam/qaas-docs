@@ -11,7 +11,7 @@ This file contains the package's time-conversion helpers:
 - `ConvertDateTimeToUtcByTimeZoneOffset` converts a local time to UTC by using the supplied summer-time offset.
 - `ConvertDateTimeFromUtcToTimeZoneByTimeZoneOffset` converts a UTC timestamp back to local time by using the same offset model.
 
-The implementation also contains a private daylight-saving helper that resolves Israel timezone rules by using the platform-specific timezone id. That internal helper is part of how the public conversion methods decide whether daylight saving should affect the calculated offset.
+The implementation also contains timezone resolution support that keeps the offset-based conversion logic aligned with daylight-saving rules. When no timezone id is supplied, the helpers fall back to `Asia/Jerusalem`, and the resolver keeps that default working across platforms without exposing platform-specific timezone names in the public API.
 
 ### `FileSystemExtensions.cs`
 
@@ -25,7 +25,7 @@ This file contains the generic `IDomainBuilder<T>` contract. It is intentionally
 
 The project stays deliberately narrow:
 
-- It is the shared place for the framework's offset-based date and time conversion helpers.
+- It is the shared place for the framework's offset-based date and time conversion helpers and timezone resolution support.
 - It contains the filename sanitization helper used when other packages need a safe directory name.
 - It exposes `IDomainBuilder<T>` as a reusable contract instead of duplicating that interface in multiple packages.
 

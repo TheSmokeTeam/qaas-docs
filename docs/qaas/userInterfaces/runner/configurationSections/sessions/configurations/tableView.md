@@ -7,6 +7,7 @@
 | `Sessions[].Name` | `string` | &#10004 |  | The name of the session, used to uniquely identify it and its output |
 | `Sessions[].Category` | `string or null` | &#10006 |  | The category of the session, you can filter which categories to run using the -I flag |
 | `Sessions[].RunUntilStage` | `integer or string or null` | &#10006 |  | Optional stage number that decides when the runner waits for this session to complete. If omitted, the session becomes visible only after its own stage completes. If set, the runner defers waiting until the configured future stage is reached. |
+| `Sessions[].TimeZoneId` | `string` | &#10006 | Asia/Jerusalem | Timezone id used by session actions when offset-based date conversions need daylight-saving evaluation. |
 | `Sessions[].SaveData` | `string or true/false` | &#10006 | True | Whether or not to save the session's output, if false any data is discarded after its iterated over and the SessionData as a whole is not saved. |
 | `Sessions[].Stage` | `integer or string or null` | &#10006 |  | The stage of the session. Sessions with the same stage runs together. stage defaultly gets the index of the session in session list  |
 | `Sessions[].TimeoutAfterSessionMs` | `integer or string` | &#10006 | 0 | The time in milliseconds to wait after the session ends |

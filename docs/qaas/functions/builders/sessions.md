@@ -1107,6 +1107,29 @@ The functions on this page are grouped by responsibility so related operations s
     
     Use this method when working with the documented Runner session builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
+### `WithTimeZone`
+
+??? info "Source file, signature, and docstring"
+    **Member**
+    `SessionBuilder.WithTimeZone(string timeZoneId)`
+    
+    **Kind** `function`
+    
+    **Declaring Type** `SessionBuilder`
+    
+    **Source File** `QaaS.Runner.Sessions/Session/Builders/SessionBuilderLogic.cs`
+    
+    **Signature**
+    ```csharp
+    public SessionBuilder WithTimeZone(string timeZoneId)
+    ```
+    
+    **Docstring**
+    
+    Sets the timezone id used by the current Runner session builder instance when offset-based date conversions need daylight-saving evaluation.
+    
+    Use this method when working with the documented Runner session builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps. When omitted, the session defaults to `Asia/Jerusalem`.
+
 ## Inspection
 
 ### `ReadMockerCommands`

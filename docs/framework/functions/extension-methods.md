@@ -600,6 +600,8 @@ Annotated extension methods continue to appear in their regular category pages; 
     **Docstring**
     
     converts the given time to utc based on the timezone offset in summer time given
+    
+    When `timeZoneId` is omitted, the conversion uses `Asia/Jerusalem` as the default timezone for daylight-saving evaluation.
 
 #### `ConvertDateTimeFromUtcToTimeZoneByTimeZoneOffset`
 
@@ -621,6 +623,8 @@ Annotated extension methods continue to appear in their regular category pages; 
     **Docstring**
     
     adds a timezone offset to the given utc time based on the timezone offset in summer time given
+    
+    When `timeZoneId` is omitted, the conversion uses `Asia/Jerusalem` as the default timezone for daylight-saving evaluation.
 
 ### Running communication data
 
