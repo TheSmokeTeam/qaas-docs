@@ -6093,6 +6093,7 @@
                         "DownloadRabbitMqDefinitions",
                         "EmptyElasticIndices",
                         "EmptyMongoDbCollection",
+                        "EmptyRedisByChunks",
                         "EmptyRedisByChunks`1",
                         "EmptyS3Bucket",
                         "ExecuteRedisCommand",
@@ -6138,6 +6139,7 @@
                     "DownloadRabbitMqDefinitions",
                     "EmptyElasticIndices",
                     "EmptyMongoDbCollection",
+                    "EmptyRedisByChunks",
                     "EmptyRedisByChunks`1",
                     "EmptyS3Bucket",
                     "ExecuteRedisCommand",
@@ -7865,6 +7867,156 @@
                   }
                 },
                 {
+                  "title": "EmptyRedisByChunks",
+                  "type": [
+                    "object",
+                    "string"
+                  ],
+                  "pattern": "\\$\\{.*\\}",
+                  "required": [
+                    "Probe"
+                  ],
+                  "properties": {
+                    "Probe": {
+                      "type": "string",
+                      "description": "The name of the probe to use",
+                      "enum": [
+                        "EmptyRedisByChunks"
+                      ]
+                    },
+                    "ProbeConfiguration": {
+                      "title": "EmptyRedisByChunks",
+                      "type": [
+                        "object",
+                        "string"
+                      ],
+                      "pattern": "\\$\\{.*\\}",
+                      "required": [
+                        "HostNames"
+                      ],
+                      "properties": {
+                        "RedisDataBase": {
+                          "type": [
+                            "integer",
+                            "string"
+                          ],
+                          "description": "Redis database to perform the probe on",
+                          "format": "int32",
+                          "default": 0,
+                          "pattern": "\\$\\{.*\\}"
+                        },
+                        "HostNames": {
+                          "type": [
+                            "array",
+                            "string"
+                          ],
+                          "description": "List of the redis hostnames (each hostname should contain the port too for example: - 'host1:8080'",
+                          "pattern": "\\$\\{.*\\}",
+                          "minItems": 1,
+                          "items": {
+                            "type": "string"
+                          }
+                        },
+                        "Username": {
+                          "type": [
+                            "null",
+                            "string"
+                          ],
+                          "description": "User for the redis server"
+                        },
+                        "Password": {
+                          "type": [
+                            "null",
+                            "string"
+                          ],
+                          "description": "Password for the redis server"
+                        },
+                        "AbortOnConnectFail": {
+                          "type": [
+                            "boolean",
+                            "string"
+                          ],
+                          "description": "If true, connect will not create connection while no servers are available",
+                          "default": true,
+                          "pattern": "\\$\\{.*\\}"
+                        },
+                        "ConnectRetry": {
+                          "type": [
+                            "integer",
+                            "string"
+                          ],
+                          "description": "The number of times to repeat connect attempts during initial connect",
+                          "format": "int32",
+                          "default": 3,
+                          "pattern": "\\$\\{.*\\}"
+                        },
+                        "ClientName": {
+                          "type": [
+                            "null",
+                            "string"
+                          ],
+                          "description": "Identification for the connection within redis"
+                        },
+                        "AsyncTimeout": {
+                          "type": [
+                            "integer",
+                            "string"
+                          ],
+                          "description": "Time(ms) to allow for asynchronous operations",
+                          "format": "int32",
+                          "default": 5000,
+                          "pattern": "\\$\\{.*\\}"
+                        },
+                        "Ssl": {
+                          "type": [
+                            "boolean",
+                            "string"
+                          ],
+                          "description": "Specifies that SSL encryption should be used",
+                          "default": false,
+                          "pattern": "\\$\\{.*\\}"
+                        },
+                        "SslHost": {
+                          "type": [
+                            "null",
+                            "string"
+                          ],
+                          "description": "Enforces a preticular SSL host identity on the server's certificate"
+                        },
+                        "KeepAlive": {
+                          "type": [
+                            "integer",
+                            "string"
+                          ],
+                          "description": "Time (seconds) at which to send a message to help keep alive",
+                          "format": "int32",
+                          "default": 60,
+                          "pattern": "\\$\\{.*\\}"
+                        },
+                        "BatchSize": {
+                          "type": [
+                            "integer",
+                            "string"
+                          ],
+                          "description": "Batch Size to do the operation on",
+                          "format": "int32",
+                          "default": 100,
+                          "maximum": 2147483647.0,
+                          "minimum": 0.0,
+                          "pattern": "\\$\\{.*\\}"
+                        },
+                        "KeyRegexPattern": {
+                          "type": [
+                            "null",
+                            "string"
+                          ],
+                          "description": "Optional regex used to filter which redis keys should be deleted"
+                        }
+                      }
+                    }
+                  }
+                },
+                {
                   "title": "EmptyRedisByChunks`1",
                   "type": [
                     "object",
@@ -8224,6 +8376,13 @@
                           "items": {
                             "type": "string"
                           }
+                        },
+                        "StoreResultAs": {
+                          "type": [
+                            "null",
+                            "string"
+                          ],
+                          "description": "Optional alias used to store the command result for later redisResults placeholders"
                         }
                       }
                     }
@@ -8390,7 +8549,48 @@
                                 "items": {
                                   "type": "string"
                                 }
+                              },
+                              "StoreResultAs": {
+                                "type": [
+                                  "null",
+                                  "string"
+                                ],
+                                "description": "Optional alias used to store the command result for later redisResults placeholders"
                               }
+                            }
+                          }
+                        },
+                        "RepeatUntil": {
+                          "type": [
+                            "object",
+                            "string"
+                          ],
+                          "description": "Optional loop that repeats the command sequence until a stored redis result path matches the expected value",
+                          "pattern": "\\$\\{.*\\}",
+                          "required": [
+                            "ResultPath",
+                            "ExpectedValue"
+                          ],
+                          "properties": {
+                            "ResultPath": {
+                              "type": "string",
+                              "description": "Stored redisResults path to inspect after each command sequence iteration"
+                            },
+                            "ExpectedValue": {
+                              "type": "string",
+                              "description": "Scalar value that ends the loop when the resolved ResultPath matches it"
+                            },
+                            "MaxIterations": {
+                              "type": [
+                                "integer",
+                                "string"
+                              ],
+                              "description": "Safety cap for loop iterations",
+                              "format": "int32",
+                              "default": 100,
+                              "maximum": 2147483647.0,
+                              "minimum": 1.0,
+                              "pattern": "\\$\\{.*\\}"
                             }
                           }
                         }

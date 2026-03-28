@@ -16,7 +16,12 @@
 | `ProbeConfiguration.Commands` | `list or string` | &#10004 |  | The redis commands to execute |
 | `ProbeConfiguration.Commands[]` | `object or string` | &#10006 |  |  |
 | `ProbeConfiguration.Commands[].Command` | `string` | &#10004 |  | The redis command to execute |
+| `ProbeConfiguration.Commands[].StoreResultAs` | `string or null` | &#10006 |  | Optional alias used to store the command result for later redisResults placeholders |
 | `ProbeConfiguration.Commands[].Arguments` | `list or string or null` | &#10006 |  | Optional redis command arguments |
 | `ProbeConfiguration.Commands[].Arguments[]` | `string` | &#10006 |  |  |
 | `ProbeConfiguration.HostNames` | `list or string` | &#10004 |  | List of the redis hostnames (each hostname should contain the port too for example: - 'host1:8080' |
 | `ProbeConfiguration.HostNames[]` | `string` | &#10006 |  |  |
+| `ProbeConfiguration.RepeatUntil` | `object or string` | &#10006 |  | Optional loop that repeats the command sequence until a stored redis result path matches the expected value |
+| `ProbeConfiguration.RepeatUntil.ExpectedValue` | `string` | &#10004 |  | Scalar value that ends the loop when the resolved ResultPath matches it |
+| `ProbeConfiguration.RepeatUntil.ResultPath` | `string` | &#10004 |  | Stored redisResults path to inspect after each command sequence iteration |
+| `ProbeConfiguration.RepeatUntil.MaxIterations` | `integer or string` | &#10006 | 100 | Safety cap for loop iterations |

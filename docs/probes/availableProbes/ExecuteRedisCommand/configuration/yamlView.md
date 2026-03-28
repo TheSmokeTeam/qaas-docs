@@ -12,6 +12,7 @@ ProbeConfiguration:
   RedisDataBase:
   Ssl:
   SslHost:
+  StoreResultAs:
   Username:
   HostNames: []
   Arguments: []
