@@ -6083,6 +6083,8 @@
                         "CreateRabbitMqQueues",
                         "CreateRabbitMqUsers",
                         "CreateRabbitMqVirtualHosts",
+                        "CreateS3Bucket",
+                        "DeleteElasticIndices",
                         "DeleteRabbitMqBindings",
                         "DeleteRabbitMqExchanges",
                         "DeleteRabbitMqPermissions",
@@ -6091,6 +6093,7 @@
                         "DeleteRabbitMqVirtualHosts",
                         "DeleteS3Bucket",
                         "DownloadRabbitMqDefinitions",
+                        "DropMongoDbCollection",
                         "EmptyElasticIndices",
                         "EmptyMongoDbCollection",
                         "EmptyRedisByChunks",
@@ -6129,6 +6132,8 @@
                     "CreateRabbitMqQueues",
                     "CreateRabbitMqUsers",
                     "CreateRabbitMqVirtualHosts",
+                    "CreateS3Bucket",
+                    "DeleteElasticIndices",
                     "DeleteRabbitMqBindings",
                     "DeleteRabbitMqExchanges",
                     "DeleteRabbitMqPermissions",
@@ -6137,6 +6142,7 @@
                     "DeleteRabbitMqVirtualHosts",
                     "DeleteS3Bucket",
                     "DownloadRabbitMqDefinitions",
+                    "DropMongoDbCollection",
                     "EmptyElasticIndices",
                     "EmptyMongoDbCollection",
                     "EmptyRedisByChunks",
@@ -6919,6 +6925,132 @@
                               }
                             }
                           }
+                        }
+                      }
+                    }
+                  }
+                },
+                {
+                  "title": "CreateS3Bucket",
+                  "type": [
+                    "object",
+                    "string"
+                  ],
+                  "pattern": "\\$\\{.*\\}",
+                  "required": [
+                    "Probe"
+                  ],
+                  "properties": {
+                    "Probe": {
+                      "type": "string",
+                      "description": "The name of the probe to use",
+                      "enum": [
+                        "CreateS3Bucket"
+                      ]
+                    },
+                    "ProbeConfiguration": {
+                      "title": "CreateS3Bucket",
+                      "type": [
+                        "object",
+                        "string"
+                      ],
+                      "pattern": "\\$\\{.*\\}",
+                      "required": [
+                        "StorageBucket",
+                        "ServiceURL",
+                        "AccessKey",
+                        "SecretKey"
+                      ],
+                      "properties": {
+                        "StorageBucket": {
+                          "type": "string",
+                          "description": "Name of S3 bucket"
+                        },
+                        "ServiceURL": {
+                          "type": "string",
+                          "description": "S3 service url",
+                          "format": "uri"
+                        },
+                        "AccessKey": {
+                          "type": "string",
+                          "description": "S3 account access key"
+                        },
+                        "SecretKey": {
+                          "type": "string",
+                          "description": "S3 account secret access key"
+                        },
+                        "ForcePathStyle": {
+                          "type": [
+                            "boolean",
+                            "string"
+                          ],
+                          "description": "When true, requests will always use path style addressing",
+                          "default": true,
+                          "pattern": "\\$\\{.*\\}"
+                        }
+                      }
+                    }
+                  }
+                },
+                {
+                  "title": "DeleteElasticIndices",
+                  "type": [
+                    "object",
+                    "string"
+                  ],
+                  "pattern": "\\$\\{.*\\}",
+                  "required": [
+                    "Probe"
+                  ],
+                  "properties": {
+                    "Probe": {
+                      "type": "string",
+                      "description": "The name of the probe to use",
+                      "enum": [
+                        "DeleteElasticIndices"
+                      ]
+                    },
+                    "ProbeConfiguration": {
+                      "title": "DeleteElasticIndices",
+                      "type": [
+                        "object",
+                        "string"
+                      ],
+                      "pattern": "\\$\\{.*\\}",
+                      "required": [
+                        "IndexPattern",
+                        "Url",
+                        "Username",
+                        "Password"
+                      ],
+                      "properties": {
+                        "IndexPattern": {
+                          "type": "string",
+                          "description": "The index pattern of the relevant indices"
+                        },
+                        "Url": {
+                          "type": "string",
+                          "description": "The url of the elasticsearch",
+                          "format": "uri"
+                        },
+                        "Username": {
+                          "type": "string",
+                          "description": "The username of the elasticsearch"
+                        },
+                        "Password": {
+                          "type": "string",
+                          "description": "The password of the elasticsearch"
+                        },
+                        "RequestTimeoutMs": {
+                          "type": [
+                            "integer",
+                            "string"
+                          ],
+                          "description": "The timeout in milliseconds on the requests sent to the elastic",
+                          "default": 30000,
+                          "maximum": 4294967295.0,
+                          "minimum": 0.0,
+                          "pattern": "\\$\\{.*\\}"
                         }
                       }
                     }
@@ -7733,6 +7865,65 @@
                             "string"
                           ],
                           "description": "Optional virtual host name for vhost-scoped definitions export"
+                        }
+                      }
+                    }
+                  }
+                },
+                {
+                  "title": "DropMongoDbCollection",
+                  "type": [
+                    "object",
+                    "string"
+                  ],
+                  "pattern": "\\$\\{.*\\}",
+                  "required": [
+                    "Probe"
+                  ],
+                  "properties": {
+                    "Probe": {
+                      "type": "string",
+                      "description": "The name of the probe to use",
+                      "enum": [
+                        "DropMongoDbCollection"
+                      ]
+                    },
+                    "ProbeConfiguration": {
+                      "title": "DropMongoDbCollection",
+                      "type": [
+                        "object",
+                        "string"
+                      ],
+                      "pattern": "\\$\\{.*\\}",
+                      "required": [
+                        "ConnectionString",
+                        "DatabaseName",
+                        "CollectionName"
+                      ],
+                      "properties": {
+                        "ConnectionString": {
+                          "type": "string",
+                          "description": "Connection string to the MongoDB server"
+                        },
+                        "DatabaseName": {
+                          "type": "string",
+                          "description": "Name of the database to perform the operation on"
+                        },
+                        "CollectionName": {
+                          "type": "string",
+                          "description": "Name of the collection in the database to perform the operation on"
+                        },
+                        "ChunkSize": {
+                          "type": [
+                            "integer",
+                            "null",
+                            "string"
+                          ],
+                          "description": "Chunk size of the data to process, This represents the number of documents to process in a single operation. If not specified, all data will be processed in a single chunk.",
+                          "format": "int32",
+                          "maximum": 2147483647.0,
+                          "minimum": 1.0,
+                          "pattern": "\\$\\{.*\\}"
                         }
                       }
                     }
