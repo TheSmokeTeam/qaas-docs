@@ -182,7 +182,7 @@ function Restore-TrackedDocsPageIfSectionsMissing {
 
     $missingSections = @($RequiredSections | Where-Object {
         $section = [regex]::Escape($_)
-        $currentContent -notmatch "(?m)^## $section$"
+        $currentContent -notmatch "(?m)^#{2,3} $section$"
     })
 
     if ($missingSections.Count -eq 0) {
@@ -196,7 +196,7 @@ function Restore-TrackedDocsPageIfSectionsMissing {
 
     $trackedMissingSections = @($RequiredSections | Where-Object {
         $section = [regex]::Escape($_)
-        $trackedContent -notmatch "(?m)^## $section$"
+        $trackedContent -notmatch "(?m)^#{2,3} $section$"
     })
 
     if ($trackedMissingSections.Count -gt 0) {

@@ -5,7 +5,6 @@ Sessions:
   - Name:
     Category:
     RunUntilStage:
-    TimeZoneId:
     SaveData:
     Stage:
     TimeoutAfterSessionMs:

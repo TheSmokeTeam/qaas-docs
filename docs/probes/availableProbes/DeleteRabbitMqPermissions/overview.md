@@ -2,8 +2,6 @@
 
 Deletes RabbitMQ user permissions in one or more virtual hosts through the management API.
 
-> Logical group: RabbitMQ administration / Permissions
-
 ## What It Does
 
 Deletes RabbitMQ user permissions through the management API.

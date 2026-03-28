@@ -2,8 +2,6 @@
 
 Downloads RabbitMQ definitions from the management API so the current topology can be captured and reused.
 
-> Logical group: RabbitMQ administration / Definitions
-
 ## What It Does
 
 Downloads RabbitMQ definitions through the management API and writes them to a JSON file.

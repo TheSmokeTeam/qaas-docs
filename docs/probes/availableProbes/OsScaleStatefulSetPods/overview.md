@@ -2,8 +2,6 @@
 
 Probe that scales openshift stateful sets
 
-> Logical group: Cluster orchestration / Scaling
-
 ## What It Does
 
 Scales a stateful set to the configured replica count and waits until the stateful workload converges.

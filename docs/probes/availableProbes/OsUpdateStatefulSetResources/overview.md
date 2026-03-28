@@ -2,8 +2,6 @@
 
 Updates container resource requests and limits in a Kubernetes or OpenShift stateful set.
 
-> Logical group: Cluster orchestration / Resource tuning
-
 ## What It Does
 
 Updates CPU and memory requests and limits on a stateful set container, then waits for the stateful rollout to converge.

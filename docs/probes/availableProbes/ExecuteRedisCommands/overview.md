@@ -2,8 +2,6 @@
 
 Executes multiple Redis commands sequentially against the selected Redis database, allowing later commands to reuse earlier results through redisResults placeholders and optional looping.
 
-> Logical group: Redis maintenance / Command execution
-
 ## What It Does
 
 Runs a configured sequence of Redis commands in order against the selected database.

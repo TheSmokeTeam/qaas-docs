@@ -2,8 +2,6 @@
 
 Generates data from the enumerable of data sources it receives, presumes all items in the enumerable are serialized and can be treated as a byte array
 
-> Logical group: Existing data sources / Session data reuse
-
 ## What It Does
 
 Loads serialized session data from attached data sources, deserializes it back into session snapshots, and then emits the inputs and outputs named in the configuration.

@@ -2,8 +2,6 @@
 
 Updates the image of one container in a Kubernetes or OpenShift deployment.
 
-> Logical group: Cluster orchestration / Image rollout
-
 ## What It Does
 
 Updates the container image used by a deployment and waits until the deployment rollout reaches the desired state.

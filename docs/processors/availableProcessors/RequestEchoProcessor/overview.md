@@ -2,8 +2,6 @@
 
 Returns a JSON response that echoes the incoming request body and optional request metadata.
 
-> Logical group: Request-derived responses / Echo request
-
 ## What It Does
 
 Returns a JSON echo of the incoming request body and can optionally include the request URI, headers, and path parameters.

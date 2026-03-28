@@ -2,8 +2,6 @@
 
 Generates JSON data from a configured prototype document.
 
-> Logical group: Structured payloads / Prototype JSON
-
 ## What It Does
 
 Clones a prototype JSON document from an attached JSON data source and applies configured field replacements before emitting the result.

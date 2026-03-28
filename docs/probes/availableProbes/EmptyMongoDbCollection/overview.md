@@ -2,11 +2,9 @@
 
 Deletes all documents from the configured MongoDB collection so it starts clean for the test run.
 
-> Logical group: Document stores / MongoDB collections
-
 ## What It Does
 
-Deletes documents from one MongoDB collection in chunks until the collection is empty.
+Deletes all documents from one MongoDB collection while leaving the collection itself in place.
 
 This is useful for repeatable cleanup in environments where the collection should stay available but the data written by the previous run should be removed.
 
@@ -27,6 +25,6 @@ Sessions:
 
 ## What This Configuration Does
 
-This probe connects to the `qaas` database, deletes documents from the `orders` collection in batches of 1000, and repeats until the collection is empty.
+This probe connects to the `qaas` database and deletes the documents stored in the `orders` collection while keeping the collection itself available.
 
 The collection itself remains available for the next scenario run.

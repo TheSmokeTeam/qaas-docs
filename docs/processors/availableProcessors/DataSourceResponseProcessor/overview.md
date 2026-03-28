@@ -2,8 +2,6 @@
 
 Builds the response from generated data produced by one configured data source.
 
-> Logical group: Data-driven responses / Data source lookup
-
 ## What It Does
 
 Selects a generated item from an attached data source and returns that item as the HTTP response body.

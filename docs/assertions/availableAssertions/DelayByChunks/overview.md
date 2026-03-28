@@ -2,8 +2,6 @@
 
 Checks for delay between an input source to an output source by subtracting the timestamp of input chunks of a configured size from a timestamp of output chunks of a configured size, takes the chunks in ascending order of the input/output lists.
 
-> Logical group: Latency / Chunk latency
-
 ## What It Does
 
 Splits the named input and output streams into ordered chunks, computes one timestamp per chunk, and then checks whether each output chunk arrives within the allowed delay relative to the matching input chunk.

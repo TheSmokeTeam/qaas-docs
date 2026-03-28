@@ -2,8 +2,6 @@
 
 Runs Redis FLUSHALL against the configured server to remove keys from every database.
 
-> Logical group: Redis maintenance / Database flush
-
 ## What It Does
 
 Runs `FLUSHALL` on the targeted Redis server and removes keys from every database on that server.

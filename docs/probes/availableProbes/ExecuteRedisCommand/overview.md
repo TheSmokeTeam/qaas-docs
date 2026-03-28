@@ -2,8 +2,6 @@
 
 Executes one Redis command with optional arguments against the selected Redis database, optionally storing the result for later redisResults placeholder reuse.
 
-> Logical group: Redis maintenance / Command execution
-
 ## What It Does
 
 Runs one Redis command with the configured arguments against the selected Redis database.

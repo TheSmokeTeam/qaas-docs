@@ -2,8 +2,6 @@
 
 Skim Transaction Processor which returns empty-bodied data objects with Status Code configuration.
 
-> Logical group: Static responses / Status code only
-
 ## What It Does
 
 Returns an HTTP response whose main purpose is the configured status code and does not require a response body.

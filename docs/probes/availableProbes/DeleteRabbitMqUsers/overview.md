@@ -2,8 +2,6 @@
 
 Deletes RabbitMQ users through the management API.
 
-> Logical group: RabbitMQ administration / Users lifecycle
-
 ## What It Does
 
 Deletes RabbitMQ users through the management API.

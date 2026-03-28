@@ -2,8 +2,6 @@
 
 Probe that deletes rabbitmq queues
 
-> Logical group: RabbitMQ administration / Queues lifecycle
-
 ## What It Does
 
 Deletes RabbitMQ queues through the AMQP connection defined in the probe configuration.

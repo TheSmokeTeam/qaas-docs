@@ -1,8 +1,6 @@
 # EmptyRedisByChunks
 
-Scans the selected Redis database in batches and deletes matching keys, optionally filtering them by a regular expression.
-
-> Logical group: Other / EmptyRedisByChunks
+Concrete Redis chunk-deletion probe that uses the standard Redis batch probe configuration.
 
 ## What It Does
 

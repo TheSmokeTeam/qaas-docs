@@ -905,6 +905,26 @@ Other Redis databases on the same server are left untouched.
 '@
 
     $entries += New-ProbeEntry `
+        -Name 'CreateS3Bucket' `
+        -WhatItDoes @'
+Ensures an S3-compatible bucket exists before later steps try to write data into it.
+
+If the bucket is already present, the probe leaves it alone. If it is missing, the probe creates it so downstream uploads and reads can rely on the bucket being available.
+'@ `
+        -ProbeConfiguration @'
+          AccessKey: access-key
+          SecretKey: secret-key
+          ServiceURL: http://minio.local:9000
+          StorageBucket: qaas-docs
+          ForcePathStyle: true
+'@ `
+        -ConfigExplanation @'
+This probe connects to the S3-compatible service at `http://minio.local:9000` and ensures that the `qaas-docs` bucket exists.
+
+It is useful as an idempotent setup step before generators or the system under test start uploading files.
+'@
+
+    $entries += New-ProbeEntry `
         -Name 'DeleteS3Bucket' `
         -WhatItDoes @'
 Deletes an S3-compatible bucket after first emptying all objects from it.
@@ -946,6 +966,26 @@ That makes it useful for cleaning one run namespace without affecting the rest o
 '@
 
     $entries += New-ProbeEntry `
+        -Name 'DeleteElasticIndices' `
+        -WhatItDoes @'
+Deletes every Elasticsearch index that matches the configured pattern.
+
+Use this when a scenario creates disposable indices and the cleanest reset is to remove the indices themselves instead of deleting documents from inside them.
+'@ `
+        -ProbeConfiguration @'
+          Url: http://elastic.local:9200
+          Username: elastic
+          Password: elastic-password
+          IndexPattern: qaas-orders-*
+          RequestTimeoutMs: 15000
+'@ `
+        -ConfigExplanation @'
+This probe targets every index whose name matches `qaas-orders-*` and deletes those indices entirely.
+
+It is the index-level cleanup option for disposable Elasticsearch test data.
+'@
+
+    $entries += New-ProbeEntry `
         -Name 'EmptyElasticIndices' `
         -WhatItDoes @'
 Finds Elasticsearch indices that match the configured pattern and deletes documents from them with a delete-by-query operation.
@@ -967,9 +1007,27 @@ The indices stay in place, but the matching documents are cleared out before the
 '@
 
     $entries += New-ProbeEntry `
+        -Name 'DropMongoDbCollection' `
+        -WhatItDoes @'
+Drops one MongoDB collection completely so later setup can recreate it from scratch.
+
+This is the collection-level reset option when you do not want to preserve collection metadata or existing indexes between runs.
+'@ `
+        -ProbeConfiguration @'
+          ConnectionString: mongodb://localhost:27017
+          DatabaseName: qaas
+          CollectionName: orders
+'@ `
+        -ConfigExplanation @'
+This probe connects to the `qaas` database and drops the `orders` collection entirely.
+
+Use it when the scenario wants a full MongoDB collection reset rather than a document-only cleanup.
+'@
+
+    $entries += New-ProbeEntry `
         -Name 'EmptyMongoDbCollection' `
         -WhatItDoes @'
-Deletes documents from one MongoDB collection in chunks until the collection is empty.
+Deletes all documents from one MongoDB collection while leaving the collection itself in place.
 
 This is useful for repeatable cleanup in environments where the collection should stay available but the data written by the previous run should be removed.
 '@ `
@@ -980,7 +1038,7 @@ This is useful for repeatable cleanup in environments where the collection shoul
           ChunkSize: 1000
 '@ `
         -ConfigExplanation @'
-This probe connects to the `qaas` database, deletes documents from the `orders` collection in batches of 1000, and repeats until the collection is empty.
+This probe connects to the `qaas` database and deletes the documents stored in the `orders` collection while keeping the collection itself available.
 
 The collection itself remains available for the next scenario run.
 '@

@@ -156,8 +156,6 @@ Annotated extension methods continue to appear in their regular category pages; 
     **Docstring**
     
     Converts a local wall-clock value into UTC using a summer-time offset and optional DST override.
-    
-    When `timeZoneId` is omitted, the conversion uses `Asia/Jerusalem` as the default timezone for daylight-saving evaluation.
 
 ### `ConvertDateTimeFromUtcToTimeZoneByTimeZoneOffset`
 
@@ -179,8 +177,6 @@ Annotated extension methods continue to appear in their regular category pages; 
     **Docstring**
     
     Converts a UTC value into a local wall-clock value using a summer-time offset and optional DST override.
-    
-    When `timeZoneId` is omitted, the conversion uses `Asia/Jerusalem` as the default timezone for daylight-saving evaluation.
 
 ## Detailed data
 

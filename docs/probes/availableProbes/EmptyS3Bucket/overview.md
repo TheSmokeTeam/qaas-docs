@@ -2,8 +2,6 @@
 
 Probe to empty a s3 bucket according to a certain prefix
 
-> Logical group: Object storage / S3 cleanup
-
 ## What It Does
 
 Deletes objects from an S3-compatible bucket without deleting the bucket itself.

@@ -2,8 +2,6 @@
 
 Creates RabbitMQ users through the management API with the configured credentials and tags.
 
-> Logical group: RabbitMQ administration / Users lifecycle
-
 ## What It Does
 
 Creates RabbitMQ users through the management API.

@@ -2,8 +2,6 @@
 
 Returns the first configured response whose rule matches the incoming request metadata, or the configured default response when no rule matches.
 
-> Logical group: Data-driven responses / Conditional routing
-
 ## What It Does
 
 Evaluates the configured rules in order and returns the response from the first rule whose request-header or path-parameter condition matches the incoming request.

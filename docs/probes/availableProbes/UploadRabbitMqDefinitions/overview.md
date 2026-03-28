@@ -2,8 +2,6 @@
 
 Uploads a definitions document to the RabbitMQ management API to recreate or synchronize broker topology.
 
-> Logical group: RabbitMQ administration / Definitions
-
 ## What It Does
 
 Uploads RabbitMQ definitions through the management API from either an inline JSON payload or a JSON file.

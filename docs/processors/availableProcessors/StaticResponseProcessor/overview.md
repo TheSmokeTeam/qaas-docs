@@ -2,8 +2,6 @@
 
 Returns a fixed UTF-8 response body with the configured status code, content type, and headers.
 
-> Logical group: Static responses / Fixed body
-
 ## What It Does
 
 Returns a fixed UTF-8 response body together with the configured HTTP status code, content type, and headers.

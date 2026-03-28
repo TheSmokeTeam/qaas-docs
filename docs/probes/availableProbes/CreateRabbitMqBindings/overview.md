@@ -2,8 +2,6 @@
 
 Creates RabbitMQ bindings between exchanges and queues or between exchanges by using the configured binding definitions.
 
-> Logical group: RabbitMQ administration / Bindings lifecycle
-
 ## What It Does
 
 Creates RabbitMQ bindings through the AMQP connection defined in the probe configuration.

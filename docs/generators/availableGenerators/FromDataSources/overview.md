@@ -2,8 +2,6 @@
 
 Generates data from the enumerable of data sources it receives
 
-> Logical group: Existing data sources / Direct reuse
-
 ## What It Does
 
 Forwards the generated items produced by the attached data sources and exposes them as a new data source.

@@ -2,8 +2,6 @@
 
 Validates that each configured output item matches at least one JSON schema provided by the configured data sources.
 
-> Logical group: Contract validation / JSON schema validation
-
 ## What It Does
 
 Loads every schema document provided by the attached data sources, converts each item in the named output to JSON, and validates each output item against all of the supplied schemas until at least one schema matches.

@@ -2,8 +2,6 @@
 
 Performs a logic test on the http status of all selected outputs in a session by checking they all have the desired http status code
 
-> Logical group: Transport metadata / HTTP status
-
 ## What It Does
 
 Reads every saved item in the configured output lists of a single session and verifies that each item carries the expected HTTP status code in its metadata.

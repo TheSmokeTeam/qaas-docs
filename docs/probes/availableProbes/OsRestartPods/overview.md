@@ -2,8 +2,6 @@
 
 Probe that restarts all pods with configured labels in the configured namespace
 
-> Logical group: Cluster orchestration / Pod restarts
-
 ## What It Does
 
 Deletes pods that match the configured labels and waits until the platform brings the workload back to its desired ready state.

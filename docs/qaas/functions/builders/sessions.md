@@ -1126,9 +1126,9 @@ The functions on this page are grouped by responsibility so related operations s
     
     **Docstring**
     
-    Sets the timezone id used by the current Runner session builder instance when offset-based date conversions need daylight-saving evaluation.
+    Sets the time zone id used for daylight-saving-aware offset conversions in this session.
     
-    Use this method when working with the documented Runner session builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps. When omitted, the session defaults to `Asia/Jerusalem`.
+    Use this when session actions that rely on offset-based date conversion should resolve daylight-saving rules from a specific time zone.
 
 ## Inspection
 

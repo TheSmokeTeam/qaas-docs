@@ -2,8 +2,6 @@
 
 Reads the incoming payload as text, applies the configured text transformation, and returns the transformed response.
 
-> Logical group: Transformations / Text transformation
-
 ## What It Does
 
 Reads the incoming request body as text, optionally trims it, replaces matched text, and then adds a prefix and suffix before returning the transformed result.

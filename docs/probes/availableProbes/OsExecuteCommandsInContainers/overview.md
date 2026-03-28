@@ -2,8 +2,6 @@
 
 Probe that Executes a command passed by the `cmd` string variable on every pod and container if passed to the function
 
-> Logical group: Cluster orchestration / In-container commands
-
 ## What It Does
 
 Finds pods by label selection and executes the configured commands inside the matching containers.

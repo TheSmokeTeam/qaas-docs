@@ -2,8 +2,6 @@
 
 Probe that changes the environment variables of a statefulSet
 
-> Logical group: Cluster orchestration / Environment variables
-
 ## What It Does
 
 Updates or removes environment variables on a stateful set and then waits for the workload to converge.
