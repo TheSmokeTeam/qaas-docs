@@ -2,13 +2,13 @@
 
 While YAML offers a concise, human-readable way to define test scenarios, **Configuration as Code (CaC)** lets you harness the full power of C# for dynamic, conditional, and reusable test orchestration.
 
-This guide keeps the original Configuration as Code mental model, but updates it to match the current behavior of QaaS.Runner and QaaS.Mocker.
+This guide keeps the original Configuration as Code mental model, but updates it to match the current behavior of [QaaS.Runner](../index.md) and [QaaS.Mocker](../../mocker/index.md).
 
 ---
 
 ## Initialization: Bootstrap the Runner
 
-The entry point for a normal QaaS.Runner startup flow is the `Bootstrap` class, which initializes the framework from command-line style arguments and optional configuration files.
+The entry point for a normal [QaaS.Runner](../index.md) startup flow is the `Bootstrap` class, which initializes the runtime from command-line style arguments and optional configuration files.
 
 ```csharp
 using QaaS.Runner;
@@ -105,11 +105,11 @@ Each `ExecutionBuilder` encapsulates the configuration for a single execution. I
 
 | Component | Purpose |
 |--------|--------|
-| `Sessions` | Defines one or more `SessionBuilder` instances, each representing a sequence of actions against the system. |
-| `Storages` | Configures data persistence mechanisms such as file systems, S3, and databases. |
-| `Assertions` | Specifies validation rules and outcome checks. |
-| `DataSources` | Defines generators and reusable data inputs. |
-| `Links` | Integrates external observability systems such as Prometheus or Grafana. |
+| `Sessions` | Defines one or more [SessionBuilder](../functions/builders/sessions.md) instances, each representing a sequence of actions against the system. |
+| `Storages` | Configures [Storages](../userInterfaces/runner/configurationSections/storages/overview.md) such as file systems, S3, and databases. |
+| `Assertions` | Specifies validation rules and outcome checks through [Assertions](../userInterfaces/runner/configurationSections/assertions/overview.md). |
+| `DataSources` | Defines [DataSources](../userInterfaces/runner/configurationSections/dataSources/overview.md), generators, and reusable data inputs. |
+| `Links` | Integrates external observability systems through [Links](../userInterfaces/runner/configurationSections/links/overview.md) such as Prometheus or Grafana. |
 
 ### Accessing Builder Components
 
@@ -253,7 +253,7 @@ runner.Run();
 
 ## Mocker: Configuration as Code
 
-QaaS.Mocker supports the same general idea, but its runtime shape is simpler: one execution builder, one mocker runner, and a public execution-builder surface that can be built directly in code.
+[QaaS.Mocker](../../mocker/index.md) supports the same general idea, but its runtime shape is simpler: one execution builder, one mocker runner, and a public execution-builder surface that can be built directly in code.
 
 The current Mocker execution builder supports explicit create, read, update, and delete operations for:
 

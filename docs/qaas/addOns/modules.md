@@ -1,6 +1,6 @@
 # QaaS Module Packages
 
-`QaaS Module Packages` are bundles of folders containing YAML files, uploaded as artifacts to [Artifactory](`{{ links.artifactory }}`). In the context of `QaaS`, each such artifact is referred to as a **module**. These modules can be used interchangeably with any YAML file within the QaaS framework.
+`QaaS Module Packages` are bundles of folders containing YAML files, uploaded as artifacts to [Artifactory]({{ links.artifactory }}). In the context of `QaaS`, each such artifact is referred to as a **module**. These modules can be used interchangeably with any YAML file within [QaaS.Runner](../index.md).
 
 ## Publishing Conventions
 
@@ -13,9 +13,9 @@
 
 ```plaintext
 {{ links.artifactory }}
-└── CommonModule/
-    └── 0.1.0/
-        └── commons.yaml
+`-- CommonModule/
+    `-- 0.1.0/
+        `-- commons.yaml
 ```
 
 ## Using Modules from Artifactory

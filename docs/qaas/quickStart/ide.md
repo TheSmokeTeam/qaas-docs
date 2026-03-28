@@ -1,6 +1,6 @@
 # Runner IDE Setup
 
-QaaS.Runner can be configured in YAML or in C# (Configuration as Code). This page focuses on the YAML experience for Runner projects.
+QaaS.Runner can be configured in YAML or in C# ([Configuration as Code](../advancedConcepts/configurationAsCode.md)). This page focuses on the YAML experience for Runner projects.
 
 If your team keeps Runner definitions in `test.qaas.yaml`, configure your IDE with the Runner JSON schema so you get validation, completion, and structure-aware suggestions while editing.
 
@@ -10,8 +10,8 @@ If your team keeps Runner definitions in `test.qaas.yaml`, configure your IDE wi
 
 The Runner schema covers:
 
-- core `QaaS.Runner` configuration such as `MetaData`, `Links`, `Storages`, `DataSources`, `Sessions`, and `Assertions`
-- the packaged hook families commonly used by Runner projects, including assertions, generators, and probes
+- core `QaaS.Runner` configuration such as [MetaData](../userInterfaces/runner/configurationSections/metaData/overview.md), [Links](../userInterfaces/runner/configurationSections/links/overview.md), [Storages](../userInterfaces/runner/configurationSections/storages/overview.md), [DataSources](../userInterfaces/runner/configurationSections/dataSources/overview.md), [Sessions](../userInterfaces/runner/configurationSections/sessions/overview.md), and [Assertions](../userInterfaces/runner/configurationSections/assertions/overview.md)
+- the packaged hook families commonly used by Runner projects, including [QaaS.Common.Assertions](../../assertions/index.md), [QaaS.Common.Generators](../../generators/index.md), and [QaaS.Common.Probes](../../probes/index.md)
 
 ## What you get after mapping the schema
 

@@ -4,7 +4,7 @@ We now have a working test that has produced results. However, the test file has
 
 - The `.yaml` file is lengthy and hard to read.
 - There is no clear distinction between configuration values that are fixed and those that vary by environment.
-- Changes to common settings (e.g., RabbitMQ host) require updates in multiple locations—such as four places in the example (two publishers and two consumers).
+- Changes to common settings (e.g., RabbitMQ host) require updates in multiple locations - such as four places in the example (two publishers and two consumers).
 
 To address these issues, we can use **anchors**, **placeholders**, and **overwriting files** to improve maintainability and reduce duplication.
 
@@ -28,7 +28,7 @@ UseAnchor: *anchorName
 
 ### Example: Refactoring with Anchors
 
-We identify duplicated sections in the `Sessions` and `Assertions` sections. We create anchors for these and use the YAML merge key (`<<`) to incorporate them.
+We identify duplicated sections in the [Sessions](../userInterfaces/runner/configurationSections/sessions/overview.md) and [Assertions](../userInterfaces/runner/configurationSections/assertions/overview.md) sections. We create anchors for these and use the YAML merge key (`<<`) to incorporate them.
 
 ```yaml
 anchors:
@@ -126,7 +126,7 @@ Assertions:
 - Place all anchors under the `anchors` section to keep them separate from active configurations.
 - Use `camelCase` for anchor names.
 - Use anchors only for complex values (dictionaries or lists).
-- Anchors do not work with overwriting files—changes to an anchor are not propagated to its references in overwritten files.
+- Anchors do not work with overwriting files - changes to an anchor are not propagated to its references in overwritten files.
 
 ## Placeholders
 
@@ -223,7 +223,7 @@ This approach enables clean separation of concerns and allows the same test logi
 
 ## Cases: Handling Repetitive Test Variants
 
-When you have many similar test cases that differ only slightly (e.g., different data sources or assertions), use the `cases` feature.
+When you have many similar test cases that differ only slightly (for example, different [DataSources](../userInterfaces/runner/configurationSections/dataSources/overview.md) or [Assertions](../userInterfaces/runner/configurationSections/assertions/overview.md)), use the `cases` feature.
 
 ### Step 1: Create a Generic Template
 
@@ -317,7 +317,7 @@ Assertions:2:
 
 ### Key Features of Case Files
 
-- Use full path notation (e.g., `DataSources:0:`) to access and modify specific elements.
+- Use full path notation (for example, `DataSources:0:` in [DataSources](../userInterfaces/runner/configurationSections/dataSources/overview.md)) to access and modify specific elements.
 - Access list items by index using the index number as a key.
 - Overwrite variables using `${}` placeholders.
 - Support nested modifications without requiring indentation.
@@ -336,7 +336,7 @@ dotnet run -- run test.qaas.yaml -w Variables/local.yaml -c Cases -s
 
 ### Allure Results
 
-Allure reports will group assertions under suites named by the case file path:
+[Allure Report](../userInterfaces/runner/allureReport.md) will group [Assertions](../userInterfaces/runner/configurationSections/assertions/overview.md) under suites named by the case file path:
 
 ```plaintext
 Cases/externalData.yaml

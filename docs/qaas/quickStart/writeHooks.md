@@ -1,12 +1,12 @@
 # Writing Custom Hooks in QaaS for Advanced Testing
 
-When the built-in `QaaS` plugins do not provide sufficient functionality for testing requirements, custom hooks can be implemented in a C# project to extend the framework’s capabilities. This guide demonstrates how to create and integrate custom `Generator`, `Assertion`, and `Probe` hooks to test a specific condition:
+When the built-in [Plugins](../addOns/plugins.md) and packaged hooks do not provide sufficient functionality for your test requirements, custom hooks can be implemented in a C# project to extend [QaaS.Framework](../../framework/index.md). This guide demonstrates how to create and integrate custom [QaaS.Common.Generators](../../generators/index.md), [QaaS.Common.Assertions](../../assertions/index.md), and [QaaS.Common.Probes](../../probes/index.md) style hooks to test a specific condition:
 
 > *The application receives a JSON array as input and sends a JSON array with the same number of items as output.*
 
 ## 1. Creating a Custom Generator: `JsonArrayGenerator`
 
-A generator produces test data and implements the `IGenerator` interface from the `QaaS.Framework.SDK` package. We extend `BaseGenerator<T>` with a configuration record that includes validation and default values.
+A generator produces test data for [DataSources](../userInterfaces/runner/configurationSections/dataSources/overview.md) and implements the `IGenerator` interface from the `QaaS.Framework.SDK` package. We extend `BaseGenerator<T>` with a configuration record that includes validation and default values.
 
 ### Generator Configuration Record
 
@@ -64,21 +64,21 @@ public class JsonArrayGenerator : BaseGenerator<JsonArrayGeneratorConfiguration>
 
 ```plaintext
 DummyAppTests/
-├── DummyAppTests.csproj
-├── Program.cs
-├── JsonArrayGenerator.cs
-├── LengthAssertion.cs
-├── PrintCurrentTimeProbe.cs
-├── test.qaas.yaml
-├── Variables/
-│   ├── local.yaml
-│   └── k8s.yaml
-└── TestData/
+|-- DummyAppTests.csproj
+|-- Program.cs
+|-- JsonArrayGenerator.cs
+|-- LengthAssertion.cs
+|-- PrintCurrentTimeProbe.cs
+|-- test.qaas.yaml
+|-- Variables/
+|   |-- local.yaml
+|   `-- k8s.yaml
+`-- TestData/
 ```
 
 ## 2. Configuring the Generator in `DataSources`
 
-Define a `DataSource` in `test.qaas.yaml` that uses the custom generator with specific configuration.
+Define a [DataSource](../userInterfaces/runner/configurationSections/dataSources/overview.md) in `test.qaas.yaml` that uses the custom generator with specific configuration.
 
 ```yaml
 DataSources:
@@ -93,7 +93,7 @@ This creates 10 JSON arrays, each with 5 items.
 
 ## 3. Using the DataSource in a New Session
 
-Create a new session that uses the `10Samples` data source. Since the data is JSON, a `Serializer` must be configured.
+Create a new [Session](../userInterfaces/runner/configurationSections/sessions/overview.md) that uses the `10Samples` data source. Since the data is JSON, a `Serializer` must be configured.
 
 ```yaml
 Sessions:
@@ -129,7 +129,7 @@ Sessions:
 
 ## 4. Adding Common Assertions
 
-Apply standard assertions to the new session for hermeticity and delay.
+Apply standard [QaaS.Common.Assertions](../../assertions/index.md) to the new session for hermeticity and delay.
 
 ```yaml
 Assertions:
@@ -156,7 +156,7 @@ Assertions:
 
 ## 5. Creating a Custom Assertion: `LengthAssertion`
 
-To verify that output JSON arrays have the expected length, implement a custom `IAssertion`.
+To verify that output JSON arrays have the expected length, implement a custom assertion in the same style as [QaaS.Common.Assertions](../../assertions/index.md).
 
 ### Assertion Configuration Record
 
@@ -222,7 +222,7 @@ Assertions:
 
 ## 6. Creating a Custom Probe: `PrintCurrentTimeProbe`
 
-A probe executes custom logic during test execution. Here’s a simple probe that logs the current UTC time.
+A probe executes custom logic during test execution. Here is a simple probe that logs the current UTC time.
 
 ### Probe Implementation
 

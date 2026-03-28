@@ -1,8 +1,8 @@
 # Configuration Resolution
 
-This page describes how `QaaS.Runner` builds the effective configuration for the `run`, `act`, `assert`, and `template` commands.
+This page describes how `QaaS.Runner` builds the effective configuration for the [`run`](commands/run.md), [`act`](commands/act.md), [`assert`](commands/assert.md), and [`template`](commands/template.md) commands.
 
-The behavior below comes from `RunLoader.BuildContext(...)` in `QaaS.Runner` and `ContextBuilder.GetConfiguration()` in `QaaS.Framework.SDK`.
+The behavior below comes from `RunLoader.BuildContext(...)` in `QaaS.Runner` and `ContextBuilder.GetConfiguration()` in [QaaS.Framework.SDK](../../../framework/projects/sdk.md).
 
 ## Default Resolution Order
 
@@ -20,7 +20,7 @@ By default, Runner builds the final configuration in this order:
 6. Every `-p` / `--push-references` reference bundle.
    - Each bundle starts with a replace keyword, followed by one or more YAML files.
    - The reference files in that bundle are loaded in the order you pass them.
-   - Runner only injects references into the supported top-level list sections: `DataSources`, `Sessions`, `Storages`, `Assertions`, and `Links`.
+  - Runner only injects references into the supported top-level list sections: [DataSources](configurationSections/dataSources/overview.md), [Sessions](configurationSections/sessions/overview.md), [Storages](configurationSections/storages/overview.md), [Assertions](configurationSections/assertions/overview.md), and [Links](configurationSections/links/overview.md).
    - Injection happens only where the replace keyword appears in the target list. If the keyword does not appear in a given list, nothing is added to that list.
    - Paths that represent unique names or references receive the replace keyword as a prefix, based on Runner's built-in unique-id regex list.
 7. Environment-variable resolution, unless `--no-env` is set.

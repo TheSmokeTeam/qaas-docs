@@ -1,6 +1,6 @@
 # Write a Test (YAML)
 
-Use YAML when you want the test flow to stay declarative, easy to diff, and easy to hand to someone who does not need to read C# first. QaaS.Runner loads the YAML into an execution builder, so the YAML sections below map directly to the runtime concepts you will keep using later: metadata, data sources, sessions, and assertions.
+Use YAML when you want the test flow to stay declarative, easy to diff, and easy to hand to someone who does not need to read C# first. QaaS.Runner loads the YAML into an execution builder, so the YAML sections below map directly to the runtime concepts you will keep using later: [MetaData](../userInterfaces/runner/configurationSections/metaData/overview.md), [DataSources](../userInterfaces/runner/configurationSections/dataSources/overview.md), [Sessions](../userInterfaces/runner/configurationSections/sessions/overview.md), and [Assertions](../userInterfaces/runner/configurationSections/assertions/overview.md).
 
 This sample publishes one message to RabbitMQ's `input` exchange, waits for a response on the `output` exchange, and verifies both delivery and timing.
 
@@ -60,7 +60,7 @@ DataSources:
         Path: TestData
 ```
 
-`MetaData` makes the run easier to identify later in reports. `DataSources` says: "load the test payloads from the local `TestData` folder."
+[MetaData](../userInterfaces/runner/configurationSections/metaData/overview.md) makes the run easier to identify later in reports. [DataSources](../userInterfaces/runner/configurationSections/dataSources/overview.md) says: "load the test payloads from the local `TestData` folder."
 
 ## Add the `Sessions` Section
 
@@ -98,7 +98,7 @@ Sessions:
           Deserializer: Json
 ```
 
-The publisher sends every payload loaded by `FromFileSystemTestData` to the `input` exchange. The consumer listens on the `output` exchange, waits up to five seconds, and deserializes the received body as JSON. In a real test, your application or local quick-start environment should move the message from `input` to `output`.
+The [Publisher](../userInterfaces/runner/configurationSections/sessions/types/publishers.md) sends every payload loaded by `FromFileSystemTestData` to the `input` exchange. The [Consumer](../userInterfaces/runner/configurationSections/sessions/types/consumers.md) listens on the `output` exchange, waits up to five seconds, and deserializes the received body as JSON. In a real test, your application or local quick-start environment should move the message from `input` to `output`.
 
 ## Add the `Assertions` Section
 
@@ -128,7 +128,7 @@ Assertions:
       MaximumDelayMs: 5000
 ```
 
-`HermeticByInputOutputPercentage` checks that every input produced a matching output. `DelayByChunks` checks that the output arrives within five seconds.
+`HermeticByInputOutputPercentage` from [QaaS.Common.Assertions](../../assertions/index.md) checks that every input produced a matching output. `DelayByChunks` from [QaaS.Common.Assertions](../../assertions/index.md) checks that the output arrives within five seconds.
 
 ## Full `test.qaas.yaml`
 

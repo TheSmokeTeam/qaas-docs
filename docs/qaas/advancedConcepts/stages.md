@@ -1,6 +1,6 @@
 # Stages in QaaS: Orchestrating Sequential & Parallel Test Execution
 
-**Stages** in QaaS provide **fine-grained control over execution order**, enabling you to define **sequential dependencies between test phases** while maximizing **parallelism within stages**. This ensures complex workflows execute correctly without blocking unnecessary work.
+**Stages** in QaaS provide **fine-grained control over execution order** inside [Sessions](../userInterfaces/runner/configurationSections/sessions/overview.md), enabling you to define **sequential dependencies between test phases** while maximizing **parallelism within stages**. This ensures complex workflows execute correctly without blocking unnecessary work.
 
 ---
 
@@ -14,7 +14,7 @@
 | `RunUntilStage` | The stage that must wait for a session to finish. If a session starts in Stage 0 and `RunUntilStage` is `2`, the session can continue while Stage 1 runs, but it must finish before Stage 2 begins. |
 
 > **Default Behavior**:
-> If no `Stage` is explicitly set, a session is assigned the **index of its position** in the `Sessions` list (0-based).
+> If no `Stage` is explicitly set, a session is assigned the **index of its position** in the [Sessions](../userInterfaces/runner/configurationSections/sessions/overview.md) list (0-based).
 > Example: first session -> Stage 0, second -> Stage 1, and so on.
 >
 > When you call `.AtStage(n)` on a session builder, QaaS also sets `RunUntilStage` to `n + 1`.
@@ -35,7 +35,7 @@ This model ensures:
 
 ## Action Stages: Controlling Action Execution Order
 
-Actions such as Publishers, Consumers, MockerCommands, Probes, and Transactions can be assigned to a specific `Stage` using the `.AtStage(n)` method.
+Actions such as [Publishers](../userInterfaces/runner/configurationSections/sessions/types/publishers.md), [Consumers](../userInterfaces/runner/configurationSections/sessions/types/consumers.md), [MockerCommands](../userInterfaces/runner/configurationSections/sessions/types/mockerCommands.md), [Probes](../userInterfaces/runner/configurationSections/sessions/types/probes.md), and [Transactions](../userInterfaces/runner/configurationSections/sessions/types/transactions.md) can be assigned to a specific `Stage` using the `.AtStage(n)` method.
 
 - **Within a stage**: all actions run **in parallel**.
 - **Between stages**: execution is **sequential and synchronized** - a later stage does not start until the earlier stage has finished.

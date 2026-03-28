@@ -1,6 +1,6 @@
 # Mocker IDE Setup
 
-QaaS.Mocker can be configured in YAML or in C# (Configuration as Code). This page focuses on the YAML experience for Mocker projects.
+QaaS.Mocker can be configured in YAML or in C# ([Configuration as Code](../../qaas/advancedConcepts/configurationAsCode.md)). This page focuses on the YAML experience for Mocker projects.
 
 If your team keeps mock definitions in `mocker.qaas.yaml`, configure your IDE with the Mocker JSON schema so you get validation, completion, and structure-aware suggestions while editing.
 
@@ -10,9 +10,9 @@ If your team keeps mock definitions in `mocker.qaas.yaml`, configure your IDE wi
 
 The Mocker schema covers:
 
-- core `QaaS.Mocker` configuration such as `DataSources`, `Stubs`, `Controller`, and `Servers`
-- packaged generator configuration used by mocker projects
-- processor configuration for packaged processors and project-local processors referenced by the mock
+- core `QaaS.Mocker` configuration such as [DataSources](../userInterfaces/mocker/configurationSections/dataSources/overview.md), [Stubs](../userInterfaces/mocker/configurationSections/stubs/overview.md), [Controller](../userInterfaces/mocker/configurationSections/controller/overview.md), and [Servers](../userInterfaces/mocker/configurationSections/server/overview.md)
+- packaged generator configuration used by Mocker projects through [QaaS.Common.Generators](../../generators/index.md)
+- processor configuration for packaged [QaaS.Common.Processors](../../processors/index.md) and project-local processors referenced by [Stubs](../userInterfaces/mocker/configurationSections/stubs/overview.md)
 
 ## What you get after mapping the schema
 

@@ -1,12 +1,12 @@
 # QaaS.Framework
 
-`QaaS.Framework` is the shared runtime layer underneath `QaaS.Runner`, `QaaS.Mocker`, and custom hook packages. It is not a standalone executable. Instead, it provides the configuration engine, SDK contracts, protocol abstractions, serialization, policies, and provider infrastructure that the executable products compose at runtime.
+`QaaS.Framework` is the shared runtime layer underneath [QaaS.Runner](../qaas/index.md), [QaaS.Mocker](../mocker/index.md), and custom hook packages such as [QaaS.Common.Assertions](../assertions/index.md), [QaaS.Common.Generators](../generators/index.md), [QaaS.Common.Probes](../probes/index.md), and [QaaS.Common.Processors](../processors/index.md). It is not a standalone executable. Instead, it provides the configuration engine, SDK contracts, protocol abstractions, serialization, [Policies](./projects/policies.md), and provider infrastructure that the executable products compose at runtime.
 
 In practice, the Framework comes into play in three places:
 
-- Runner uses it to load configuration, bind YAML into runtime objects, build session actions, execute protocols, and evaluate hooks.
-- Mocker uses it to load mock definitions, resolve data sources and processors, and translate runtime objects into HTTP, gRPC, or socket behavior.
-- Custom generators, assertions, probes, and processors depend on the Framework SDK because it defines the shared object model and base classes they plug into.
+- [QaaS.Runner](../qaas/index.md) uses it to load configuration, bind YAML into runtime objects, build [session actions](../qaas/userInterfaces/runner/configurationSections/sessions/overview.md), execute protocols, and evaluate hooks.
+- [QaaS.Mocker](../mocker/index.md) uses it to load mock definitions, resolve [DataSources](../mocker/userInterfaces/mocker/configurationSections/dataSources/overview.md) and [Processors](../processors/index.md), and translate runtime objects into HTTP, gRPC, or socket behavior.
+- Custom [QaaS.Common.Generators](../generators/index.md), [QaaS.Common.Assertions](../assertions/index.md), [QaaS.Common.Probes](../probes/index.md), and [QaaS.Common.Processors](../processors/index.md) depend on [QaaS.Framework.SDK](./projects/sdk.md) because it defines the shared object model and base classes they plug into.
 
 This section documents the current contents of those projects as they exist in the solution today.
 

@@ -1,6 +1,6 @@
 # Live Action Based Generators
 
-In certain advanced scenarios, you may need to access real-time data from a currently running action within your generators. This allows your generator logic to react dynamically to live processing results.
+In certain advanced scenarios, you may need to access real-time data from a currently running action within your [QaaS.Common.Generators](../../generators/index.md). This allows your generator logic to react dynamically to live processing results.
 
 This pattern is useful when a publisher or another live action must respond to data that is still being produced. It is not the normal path for completed session data; use it when you specifically need live behavior.
 
@@ -8,9 +8,9 @@ This pattern is useful when a publisher or another live action must respond to d
 
 ## How Generators Run in Flow
 
-When you define a generator and use it in a `DataSource`, the generator code executes **when the publisher starts**, not when the session begins. This means:
+When you define a generator and use it in a [DataSource](../userInterfaces/runner/configurationSections/dataSources/overview.md), the generator code executes **when the publisher starts**, not when the session begins. This means:
 
-- The generator runs in the context of the **current session**.
+- The generator runs in the context of the **current [Session](../userInterfaces/runner/configurationSections/sessions/overview.md)**.
 - To access real-time data from another action, you must make sure you are reading from the correct running session.
 
 > **Key Insight**: Always verify which session your generator is running under, especially when accessing live outputs.
@@ -81,7 +81,7 @@ DataSources:
 > If `Lazy: false`, the publisher waits for the consumer to finish before publishing, which defeats the purpose of real-time processing.
 > Set `Lazy: true` to enable concurrent execution.
 
-Then use the data source in a publisher:
+Then use the data source in a [Publisher](../userInterfaces/runner/configurationSections/sessions/types/publishers.md):
 
 ```yaml
 - Name: Session

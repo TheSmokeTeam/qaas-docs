@@ -1,22 +1,22 @@
 # Sessions
 
-The Sessions section defines the runtime work that QaaS.Runner performs against the system under test and its supporting infrastructure. A session combines shared session-level settings with one or more action collections.
+The Sessions section defines the runtime work that [QaaS.Runner](../../../../../qaas/index.md) performs against the system under test and its supporting infrastructure. A session combines shared session-level settings with one or more action collections.
 
 At a high level, the action collections fall into two categories:
 
-- `Probe actions` are actions that affect the system or its underlying infrastructure but do not save information related to the interaction with the system.
+- [`Probe actions`](types/probes.md) are actions that affect the system or its underlying infrastructure but do not save information related to the interaction with the system.
 - `Communication actions` are actions that send or receive data from the system or its underlying infrastructure and save that data in the `SessionData`.
 
 Communication actions are further divided into these sub-categories:
 
-- `Publishers` send data.
-- `Consumers` receive data.
-- `Collectors` collect data from an endpoint within a certain time range in a single action.
-- `Transactions` send and receive data.
+- [`Publishers`](types/publishers.md) send data.
+- [`Consumers`](types/consumers.md) receive data.
+- [`Collectors`](types/collectors.md) collect data from an endpoint within a certain time range in a single action.
+- [`Transactions`](types/transactions.md) send and receive data.
 
-`MockerCommands` are separate from the communication-action group. They control `QaaS.Mocker` during a Runner session and can optionally create input and output data depending on the command.
+[`MockerCommands`](types/mockerCommands.md) are separate from the communication-action group. They control [QaaS.Mocker](../../../../../mocker/index.md) during a Runner session and can optionally create input and output data depending on the command.
 
-Shared `Policies` are not a separate action type. They are attached to supported communication actions to control pace, retries, load shape, and stopping conditions.
+Shared [Policies](types/policies.md) are not a separate action type. They are attached to supported communication actions to control pace, retries, load shape, and stopping conditions.
 
 !!! Tip "Connection Timeouts"
     The more asynchronous actions that use network resources you have in a session, the more likely you are to get connection timeouts.

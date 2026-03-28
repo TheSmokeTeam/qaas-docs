@@ -1,6 +1,6 @@
 # Probes
 
-Probes are **hooks** that manipulate infrastructure before or after sessions run. They are typically used for setup and cleanup tasks such as creating queues, flushing caches, scaling pods, truncating tables, or deleting data.
+Probes are **hooks** that manipulate infrastructure before or after [Sessions](../qaas/userInterfaces/runner/configurationSections/sessions/overview.md) run. They are typically used for setup and cleanup tasks such as creating queues, flushing caches, scaling pods, truncating tables, or deleting data.
 
 The **QaaS.Common.Probes** NuGet package ships the built-in probe library. You can author custom probes by implementing `BaseProbe<TConfig>` from [QaaS.Framework.SDK](../framework/projects/sdk.md).
 

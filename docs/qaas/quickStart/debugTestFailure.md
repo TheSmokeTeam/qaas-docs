@@ -10,8 +10,8 @@ For more information about the logger, refer to the [Logger documentation](../us
 
 QaaS provides two specialized commands to help debug test failures:
 
-- `act`: Runs only the `act` phase of the test, which includes DataSources and Sessions. The output is stored in an external storage location.
-- `assert`: Runs only the `assert` phase of the test, which includes DataSources and Assertions. It retrieves required data from the same external storage.
+- [`act`](../userInterfaces/runner/commands/act.md): Runs only the `act` phase of the test, which includes [DataSources](../userInterfaces/runner/configurationSections/dataSources/overview.md) and [Sessions](../userInterfaces/runner/configurationSections/sessions/overview.md). The output is stored in an external storage location.
+- [`assert`](../userInterfaces/runner/commands/assert.md): Runs only the `assert` phase of the test, which includes [DataSources](../userInterfaces/runner/configurationSections/dataSources/overview.md) and [Assertions](../userInterfaces/runner/configurationSections/assertions/overview.md). It retrieves required data from the same external storage.
 
 Both commands use the configuration defined in the [Storages](../userInterfaces/runner/configurationSections/storages/overview.md) section to access the external storage.
 

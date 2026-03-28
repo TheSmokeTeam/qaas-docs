@@ -23,7 +23,7 @@ Add the relevant package source to your global `NuGet.Config` file, usually `~/.
 
 ## Packages
 
-Add the packages your project needs. At minimum, you need `QaaS.Runner`; the Common libraries are optional plugins.
+Add the packages your project needs. At minimum, you need `QaaS.Runner`; the Common libraries are optional [Plugins](../addOns/plugins.md).
 
 === "`.csproj`"
 
@@ -46,7 +46,9 @@ Add the packages your project needs. At minimum, you need `QaaS.Runner`; the Com
     ```
 
 !!! tip "Version compatibility"
-    All Common packages must share the same `QaaS.Framework.SDK` version, or a compatible newer minor version, as the `QaaS.Runner` package you reference.
+    All Common packages must share the same [QaaS.Framework.SDK](../../framework/projects/sdk.md) version, or a compatible newer minor version, as the `QaaS.Runner` package you reference.
+
+[QaaS.Common.Assertions](../../assertions/index.md), [QaaS.Common.Generators](../../generators/index.md), and [QaaS.Common.Probes](../../probes/index.md) are the packaged hook libraries used most often in Runner projects.
 
 ## Project Template
 

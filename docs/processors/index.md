@@ -1,6 +1,6 @@
 # Processors
 
-Processors are **hooks** that create mock responses in **QaaS.Mocker**. They implement `BaseTransactionProcessor<TConfig>` and are referenced by class name from a stub.
+Processors are **hooks** that create mock responses in [QaaS.Mocker](../mocker/index.md). They implement `BaseTransactionProcessor<TConfig>` and are referenced by class name from a [Stub](../mocker/userInterfaces/mocker/configurationSections/stubs/overview.md).
 
 The **QaaS.Common.Processors** package is the reusable processor library for shared mock behavior. You can also author project-local processors when a mock needs behavior that is specific to one repository.
 

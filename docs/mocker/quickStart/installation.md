@@ -43,7 +43,7 @@ Add the package to your project:
     dotnet add package QaaS.Common.Processors
     ```
 
-`QaaS.Common.Generators` is optional in general, but it is used by the quick-start examples on this site. `QaaS.Common.Processors` is also optional, but install it when you want packaged reusable processors instead of only project-local processor classes.
+[QaaS.Common.Generators](../../generators/index.md) is optional in general, but it is used by the quick-start examples on this site. [QaaS.Common.Processors](../../processors/index.md) is also optional, but install it when you want packaged reusable processors instead of only project-local processor classes.
 
 ## Project Template
 
