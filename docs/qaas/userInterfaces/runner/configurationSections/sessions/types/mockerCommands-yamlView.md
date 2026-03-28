@@ -1,0 +1,50 @@
+# Mocker Commands Configurations Yaml View
+
+```yaml
+MockerCommands:
+  - Name:
+    ServerName:
+    RequestDurationMs:
+    RequestRetries:
+    Stage:
+    Command:
+      ChangeActionStub:
+        ActionName:
+        StubName:
+      Consume:
+        TimeoutMs:
+        ActionName:
+        InputDataFilter:
+          Body:
+          MetaData:
+          Timestamp:
+        InputDeserialize:
+          Deserializer:
+          SpecificType:
+            TypeFullName:
+            AssemblyName:
+        OutputDataFilter:
+          Body:
+          MetaData:
+          Timestamp:
+        OutputDeserialize:
+          Deserializer:
+          SpecificType:
+            TypeFullName:
+            AssemblyName:
+      TriggerAction:
+        ActionName:
+        TimeoutMs:
+    Redis:
+      Host:
+      AbortOnConnectFail:
+      AsyncTimeoutMs:
+      ClientName:
+      ConnectRetry:
+      KeepAliveSeconds:
+      Password:
+      RedisDataBase:
+      Ssl:
+      SslHost:
+      Username:
+```

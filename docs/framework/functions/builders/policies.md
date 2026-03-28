@@ -1,10 +1,10 @@
 # Policies
 
-Each entry uses the short function name as the table-of-contents label. Expand an entry to inspect its location, signature, and XML doc comments.
+Each entry uses the short function name as the table-of-contents label. Expand an entry to inspect its source file, signature, and XML doc comments.
 
 ## `Configure`
 
-??? info "Location, signature, and docstring"
+??? info "Source file, signature, and docstring"
     **Member**
     `PolicyBuilder.Configure(IPolicyConfig config)`
     
@@ -12,7 +12,7 @@ Each entry uses the short function name as the table-of-contents label. Expand a
     
     **Declaring Type** `PolicyBuilder`
     
-    **Location** `QaaS.Framework.Policies/PolicyBuilder.cs:38`
+    **Source File** `QaaS.Framework.Policies/PolicyBuilder.cs`
     
     **Signature**
     ```csharp
@@ -27,7 +27,7 @@ Each entry uses the short function name as the table-of-contents label. Expand a
 
 ## `Build`
 
-??? info "Location, signature, and docstring"
+??? info "Source file, signature, and docstring"
     **Member**
     `PolicyBuilder.Build()`
     
@@ -35,7 +35,7 @@ Each entry uses the short function name as the table-of-contents label. Expand a
     
     **Declaring Type** `PolicyBuilder`
     
-    **Location** `QaaS.Framework.Policies/PolicyBuilder.cs:72`
+    **Source File** `QaaS.Framework.Policies/PolicyBuilder.cs`
     
     **Signature**
     ```csharp
@@ -50,7 +50,7 @@ Each entry uses the short function name as the table-of-contents label. Expand a
 
 ## `BuildPolicies`
 
-??? info "Location, signature, and docstring"
+??? info "Source file, signature, and docstring"
     **Member**
     `PolicyBuilder.BuildPolicies(PolicyBuilder[]? policyBuilders)`
     
@@ -58,7 +58,7 @@ Each entry uses the short function name as the table-of-contents label. Expand a
     
     **Declaring Type** `PolicyBuilder`
     
-    **Location** `QaaS.Framework.Policies/PolicyBuilder.cs:109`
+    **Source File** `QaaS.Framework.Policies/PolicyBuilder.cs`
     
     **Signature**
     ```csharp

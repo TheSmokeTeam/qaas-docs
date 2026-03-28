@@ -1,10 +1,10 @@
 # Storages
 
-Each entry uses the short function name as the table-of-contents label. Expand an entry to inspect its location, signature, and XML doc comments.
+Each entry uses the short function name as the table-of-contents label. Expand an entry to inspect its source file, signature, and XML doc comments.
 
 ## `WithJsonStorageFormat`
 
-??? info "Location, signature, and docstring"
+??? info "Source file, signature, and docstring"
     **Member**
     `StorageBuilder.WithJsonStorageFormat(Formatting format)`
     
@@ -12,7 +12,7 @@ Each entry uses the short function name as the table-of-contents label. Expand a
     
     **Declaring Type** `StorageBuilder`
     
-    **Location** `QaaS.Runner.Storage/StorageBuilder.cs:42`
+    **Source File** `QaaS.Runner.Storage/StorageBuilder.cs`
     
     **Signature**
     ```csharp
@@ -27,7 +27,7 @@ Each entry uses the short function name as the table-of-contents label. Expand a
 
 ## `Create`
 
-??? info "Location, signature, and docstring"
+??? info "Source file, signature, and docstring"
     **Member**
     `StorageBuilder.Create(IStorageConfig storageConfig)`
     
@@ -35,7 +35,7 @@ Each entry uses the short function name as the table-of-contents label. Expand a
     
     **Declaring Type** `StorageBuilder`
     
-    **Location** `QaaS.Runner.Storage/StorageBuilder.cs:55`
+    **Source File** `QaaS.Runner.Storage/StorageBuilder.cs`
     
     **Signature**
     ```csharp
@@ -50,7 +50,7 @@ Each entry uses the short function name as the table-of-contents label. Expand a
 
 ## `CreateConfiguration`
 
-??? info "Location, signature, and docstring"
+??? info "Source file, signature, and docstring"
     **Member**
     `StorageBuilder.CreateConfiguration(IStorageConfig storageConfig)`
     
@@ -58,7 +58,7 @@ Each entry uses the short function name as the table-of-contents label. Expand a
     
     **Declaring Type** `StorageBuilder`
     
-    **Location** `QaaS.Runner.Storage/StorageBuilder.cs:67`
+    **Source File** `QaaS.Runner.Storage/StorageBuilder.cs`
     
     **Signature**
     ```csharp
@@ -73,7 +73,7 @@ Each entry uses the short function name as the table-of-contents label. Expand a
 
 ## `ReadConfiguration`
 
-??? info "Location, signature, and docstring"
+??? info "Source file, signature, and docstring"
     **Member**
     `StorageBuilder.ReadConfiguration()`
     
@@ -81,7 +81,7 @@ Each entry uses the short function name as the table-of-contents label. Expand a
     
     **Declaring Type** `StorageBuilder`
     
-    **Location** `QaaS.Runner.Storage/StorageBuilder.cs:79`
+    **Source File** `QaaS.Runner.Storage/StorageBuilder.cs`
     
     **Signature**
     ```csharp
@@ -96,7 +96,7 @@ Each entry uses the short function name as the table-of-contents label. Expand a
 
 ## `UpdateConfiguration`
 
-??? info "Location, signature, and docstring"
+??? info "Source file, signature, and docstring"
     **Member**
     `StorageBuilder.UpdateConfiguration(Func<IStorageConfig, IStorageConfig> update)`
     
@@ -104,7 +104,7 @@ Each entry uses the short function name as the table-of-contents label. Expand a
     
     **Declaring Type** `StorageBuilder`
     
-    **Location** `QaaS.Runner.Storage/StorageBuilder.cs:91`
+    **Source File** `QaaS.Runner.Storage/StorageBuilder.cs`
     
     **Signature**
     ```csharp
@@ -119,7 +119,7 @@ Each entry uses the short function name as the table-of-contents label. Expand a
 
 ## `UpdateConfiguration`
 
-??? info "Location, signature, and docstring"
+??? info "Source file, signature, and docstring"
     **Member**
     `StorageBuilder.UpdateConfiguration(IStorageConfig storageConfig)`
     
@@ -127,7 +127,7 @@ Each entry uses the short function name as the table-of-contents label. Expand a
     
     **Declaring Type** `StorageBuilder`
     
-    **Location** `QaaS.Runner.Storage/StorageBuilder.cs:105`
+    **Source File** `QaaS.Runner.Storage/StorageBuilder.cs`
     
     **Signature**
     ```csharp
@@ -142,7 +142,7 @@ Each entry uses the short function name as the table-of-contents label. Expand a
 
 ## `UpdateConfiguration`
 
-??? info "Location, signature, and docstring"
+??? info "Source file, signature, and docstring"
     **Member**
     `StorageBuilder.UpdateConfiguration(object configuration)`
     
@@ -150,7 +150,7 @@ Each entry uses the short function name as the table-of-contents label. Expand a
     
     **Declaring Type** `StorageBuilder`
     
-    **Location** `QaaS.Runner.Storage/StorageBuilder.cs:119`
+    **Source File** `QaaS.Runner.Storage/StorageBuilder.cs`
     
     **Signature**
     ```csharp
@@ -165,7 +165,7 @@ Each entry uses the short function name as the table-of-contents label. Expand a
 
 ## `DeleteConfiguration`
 
-??? info "Location, signature, and docstring"
+??? info "Source file, signature, and docstring"
     **Member**
     `StorageBuilder.DeleteConfiguration()`
     
@@ -173,7 +173,7 @@ Each entry uses the short function name as the table-of-contents label. Expand a
     
     **Declaring Type** `StorageBuilder`
     
-    **Location** `QaaS.Runner.Storage/StorageBuilder.cs:133`
+    **Source File** `QaaS.Runner.Storage/StorageBuilder.cs`
     
     **Signature**
     ```csharp
@@ -188,7 +188,7 @@ Each entry uses the short function name as the table-of-contents label. Expand a
 
 ## `Configure`
 
-??? info "Location, signature, and docstring"
+??? info "Source file, signature, and docstring"
     **Member**
     `StorageBuilder.Configure(IStorageConfig storageConfig)`
     
@@ -196,7 +196,7 @@ Each entry uses the short function name as the table-of-contents label. Expand a
     
     **Declaring Type** `StorageBuilder`
     
-    **Location** `QaaS.Runner.Storage/StorageBuilder.cs:145`
+    **Source File** `QaaS.Runner.Storage/StorageBuilder.cs`
     
     **Signature**
     ```csharp

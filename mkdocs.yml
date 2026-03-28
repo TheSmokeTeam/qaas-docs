@@ -1,8 +1,8 @@
 site_name: QaaS Documentation
 site_description: QA As A Service - Unified Documentation
 site_url: https://TheSmokeTeam.github.io/qaas-docs/
-repo_name: QaaS
-repo_url: https://github.com/TheSmokeTeam/qaas-docs
+repo_name: QaaS.Runner
+repo_url: https://github.com/TheSmokeTeam/QaaS.Runner
 docs_dir: docs/
 
 nav:
@@ -71,16 +71,35 @@ nav:
         - YAML View: qaas/userInterfaces/runner/configurationSections/dataSources/configurations/yamlView.md
       - Sessions:
         - Overview: qaas/userInterfaces/runner/configurationSections/sessions/overview.md
-        - Types:
-          - Probes: qaas/userInterfaces/runner/configurationSections/sessions/types/probes.md
-          - Policies: qaas/userInterfaces/runner/configurationSections/sessions/types/policies.md
-          - Publishers: qaas/userInterfaces/runner/configurationSections/sessions/types/publishers.md
-          - Consumers: qaas/userInterfaces/runner/configurationSections/sessions/types/consumers.md
-          - Collectors: qaas/userInterfaces/runner/configurationSections/sessions/types/collectors.md
-          - Transactions: qaas/userInterfaces/runner/configurationSections/sessions/types/transactions.md
-          - Mocker Commands: qaas/userInterfaces/runner/configurationSections/sessions/types/mockerCommands.md
-        - Table View: qaas/userInterfaces/runner/configurationSections/sessions/configurations/tableView.md
-        - YAML View: qaas/userInterfaces/runner/configurationSections/sessions/configurations/yamlView.md
+        - Actions:
+          - Communication Actions:
+            - Publishers:
+              - Overview: qaas/userInterfaces/runner/configurationSections/sessions/types/publishers.md
+              - Table View: qaas/userInterfaces/runner/configurationSections/sessions/types/publishers-tableView.md
+              - YAML View: qaas/userInterfaces/runner/configurationSections/sessions/types/publishers-yamlView.md
+            - Consumers:
+              - Overview: qaas/userInterfaces/runner/configurationSections/sessions/types/consumers.md
+              - Table View: qaas/userInterfaces/runner/configurationSections/sessions/types/consumers-tableView.md
+              - YAML View: qaas/userInterfaces/runner/configurationSections/sessions/types/consumers-yamlView.md
+            - Collectors:
+              - Overview: qaas/userInterfaces/runner/configurationSections/sessions/types/collectors.md
+              - Table View: qaas/userInterfaces/runner/configurationSections/sessions/types/collectors-tableView.md
+              - YAML View: qaas/userInterfaces/runner/configurationSections/sessions/types/collectors-yamlView.md
+            - Transactions:
+              - Overview: qaas/userInterfaces/runner/configurationSections/sessions/types/transactions.md
+              - Table View: qaas/userInterfaces/runner/configurationSections/sessions/types/transactions-tableView.md
+              - YAML View: qaas/userInterfaces/runner/configurationSections/sessions/types/transactions-yamlView.md
+          - Probes:
+            - Overview: qaas/userInterfaces/runner/configurationSections/sessions/types/probes.md
+            - Table View: qaas/userInterfaces/runner/configurationSections/sessions/types/probes-tableView.md
+            - YAML View: qaas/userInterfaces/runner/configurationSections/sessions/types/probes-yamlView.md
+          - Mocker Commands:
+            - Overview: qaas/userInterfaces/runner/configurationSections/sessions/types/mockerCommands.md
+            - Table View: qaas/userInterfaces/runner/configurationSections/sessions/types/mockerCommands-tableView.md
+            - YAML View: qaas/userInterfaces/runner/configurationSections/sessions/types/mockerCommands-yamlView.md
+        - Policies: qaas/userInterfaces/runner/configurationSections/sessions/types/policies.md
+        - Full Table View: qaas/userInterfaces/runner/configurationSections/sessions/configurations/tableView.md
+        - Full YAML View: qaas/userInterfaces/runner/configurationSections/sessions/configurations/yamlView.md
       - Assertions:
         - Overview: qaas/userInterfaces/runner/configurationSections/assertions/overview.md
         - Table View: qaas/userInterfaces/runner/configurationSections/assertions/configurations/tableView.md
@@ -98,6 +117,7 @@ nav:
       - Architecture: mocker/architecture.md
     - Quick Start:
       - Installation: mocker/quickStart/installation.md
+      - IDE Setup: mocker/quickStart/ide.md
       - Create a Mock (YAML): mocker/quickStart/createMock.md
       - Create a Mock (Code): mocker/quickStart/createMockCode.md
       - Deploy a Mock: mocker/quickStart/deployMock.md
@@ -547,5 +567,5 @@ extra:
     mocker_schema: ../../assets/schemas/mocker-family-schema.json
   social:
     - icon: fontawesome/brands/github
-      link: https://github.com/TheSmokeTeam/qaas-docs
+      link: https://github.com/TheSmokeTeam/QaaS.Runner
   generator: false

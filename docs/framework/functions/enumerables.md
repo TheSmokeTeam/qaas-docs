@@ -1,10 +1,10 @@
 # Enumerables
 
-Each entry uses the short function name as the table-of-contents label. Expand an entry to inspect its location, signature, and XML doc comments.
+Each entry uses the short function name as the table-of-contents label. Expand an entry to inspect its source file, signature, and XML doc comments.
 
 ## `AsSingle<TItem>`
 
-??? info "Location, signature, and docstring"
+??? info "Source file, signature, and docstring"
     **Member**
     `EnumerableExtensions.AsSingle<TItem>(this IEnumerable<TItem> enumerable)`
     
@@ -12,7 +12,7 @@ Each entry uses the short function name as the table-of-contents label. Expand a
     
     **Declaring Type** `EnumerableExtensions (extension type)`
     
-    **Location** `QaaS.Framework.SDK/Extensions/EnumerableExtensions.cs:17`
+    **Source File** `QaaS.Framework.SDK/Extensions/EnumerableExtensions.cs`
     
     **Signature**
     ```csharp
@@ -27,7 +27,7 @@ Each entry uses the short function name as the table-of-contents label. Expand a
 
 ## `GetFilteredConfigurationObjectList<TData, TPattern>`
 
-??? info "Location, signature, and docstring"
+??? info "Source file, signature, and docstring"
     **Member**
     `EnumerableExtensions.GetFilteredConfigurationObjectList<TData, TPattern>(IImmutableList<TData> dataList, IEnumerable<TPattern>? conditionFieldItemEnumerable, Func<TData, TPattern, bool> filter, string nameOfDataList)`
     
@@ -35,7 +35,7 @@ Each entry uses the short function name as the table-of-contents label. Expand a
     
     **Declaring Type** `EnumerableExtensions`
     
-    **Location** `QaaS.Framework.SDK/Extensions/EnumerableExtensions.cs:44`
+    **Source File** `QaaS.Framework.SDK/Extensions/EnumerableExtensions.cs`
     
     **Signature**
     ```csharp

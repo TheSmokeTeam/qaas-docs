@@ -1,6 +1,12 @@
 # QaaS.Framework
 
-`QaaS.Framework` is a solution of shared runtime packages used by the QaaS applications and hook implementations. It is not a single executable application. In `QaaS.Framework.sln`, the code is split into eight runtime projects and seven companion test projects so that configuration, execution flow, protocols, hook discovery, policies, and serialization can evolve independently.
+`QaaS.Framework` is the shared runtime layer underneath `QaaS.Runner`, `QaaS.Mocker`, and custom hook packages. It is not a standalone executable. Instead, it provides the configuration engine, SDK contracts, protocol abstractions, serialization, policies, and provider infrastructure that the executable products compose at runtime.
+
+In practice, the Framework comes into play in three places:
+
+- Runner uses it to load configuration, bind YAML into runtime objects, build session actions, execute protocols, and evaluate hooks.
+- Mocker uses it to load mock definitions, resolve data sources and processors, and translate runtime objects into HTTP, gRPC, or socket behavior.
+- Custom generators, assertions, probes, and processors depend on the Framework SDK because it defines the shared object model and base classes they plug into.
 
 This section documents the current contents of those projects as they exist in the solution today.
 
@@ -16,6 +22,14 @@ This section documents the current contents of those projects as they exist in t
 | [QaaS.Framework.Protocols](./projects/protocols.md) | Protocol contracts, protocol-specific configuration objects, factories, and concrete integrations for HTTP, gRPC, RabbitMQ, Kafka, Redis, S3, SFTP, SQL, Elastic, Prometheus, IBM MQ, MongoDB, and sockets. | `QaaS.Framework.Protocols.Tests` |
 | [QaaS.Framework.Providers](./projects/providers.md) | Hook discovery and instantiation layer: assembly scanning, type resolution, object creation, validation-aware loading, and Autofac registration. | `QaaS.Framework.Providers.Tests` |
 | [QaaS.Framework.Serialization](./projects/serialization.md) | Serializer and deserializer selection, format-specific implementations, factory classes, and runtime type resolution helpers. | `QaaS.Framework.Serialization.Tests` |
+
+## How to read this section
+
+Start with the package that matches the problem you are solving:
+
+- If you are trying to understand how YAML becomes a usable execution object graph, start with [Configuration](./projects/configuration.md) and [SDK](./projects/sdk.md).
+- If you are trying to understand how Runner or Mocker executes work, start with [Executions](./projects/executions.md), then read [Protocols](./projects/protocols.md) and [Policies](./projects/policies.md) as needed.
+- If you are building custom hooks or extensions, start with [SDK](./projects/sdk.md), then read [Providers](./projects/providers.md) and [Serialization](./projects/serialization.md) depending on what your hook needs.
 
 ## Companion test projects
 

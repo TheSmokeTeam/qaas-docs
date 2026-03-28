@@ -1,10 +1,10 @@
 # Data Sources
 
-Each entry uses the short function name as the table-of-contents label. Expand an entry to inspect its location, signature, and XML doc comments.
+Each entry uses the short function name as the table-of-contents label. Expand an entry to inspect its source file, signature, and XML doc comments.
 
 ## `Named`
 
-??? info "Location, signature, and docstring"
+??? info "Source file, signature, and docstring"
     **Member**
     `DataSourceBuilder.Named(string name)`
     
@@ -12,7 +12,7 @@ Each entry uses the short function name as the table-of-contents label. Expand a
     
     **Declaring Type** `DataSourceBuilder`
     
-    **Location** `QaaS.Framework.SDK/DataSourceObjects/DataSourceBuilder.cs:60`
+    **Source File** `QaaS.Framework.SDK/DataSourceObjects/DataSourceBuilder.cs`
     
     **Signature**
     ```csharp
@@ -27,7 +27,7 @@ Each entry uses the short function name as the table-of-contents label. Expand a
 
 ## `HookNamed`
 
-??? info "Location, signature, and docstring"
+??? info "Source file, signature, and docstring"
     **Member**
     `DataSourceBuilder.HookNamed(string hookName)`
     
@@ -35,7 +35,7 @@ Each entry uses the short function name as the table-of-contents label. Expand a
     
     **Declaring Type** `DataSourceBuilder`
     
-    **Location** `QaaS.Framework.SDK/DataSourceObjects/DataSourceBuilder.cs:73`
+    **Source File** `QaaS.Framework.SDK/DataSourceObjects/DataSourceBuilder.cs`
     
     **Signature**
     ```csharp
@@ -50,7 +50,7 @@ Each entry uses the short function name as the table-of-contents label. Expand a
 
 ## `AddDataSourceName`
 
-??? info "Location, signature, and docstring"
+??? info "Source file, signature, and docstring"
     **Member**
     `DataSourceBuilder.AddDataSourceName(string dataSourceName)`
     
@@ -58,7 +58,7 @@ Each entry uses the short function name as the table-of-contents label. Expand a
     
     **Declaring Type** `DataSourceBuilder`
     
-    **Location** `QaaS.Framework.SDK/DataSourceObjects/DataSourceBuilder.cs:86`
+    **Source File** `QaaS.Framework.SDK/DataSourceObjects/DataSourceBuilder.cs`
     
     **Signature**
     ```csharp
@@ -73,7 +73,7 @@ Each entry uses the short function name as the table-of-contents label. Expand a
 
 ## `AddDataSourcePattern`
 
-??? info "Location, signature, and docstring"
+??? info "Source file, signature, and docstring"
     **Member**
     `DataSourceBuilder.AddDataSourcePattern(string dataSourcePattern)`
     
@@ -81,7 +81,7 @@ Each entry uses the short function name as the table-of-contents label. Expand a
     
     **Declaring Type** `DataSourceBuilder`
     
-    **Location** `QaaS.Framework.SDK/DataSourceObjects/DataSourceBuilder.cs:99`
+    **Source File** `QaaS.Framework.SDK/DataSourceObjects/DataSourceBuilder.cs`
     
     **Signature**
     ```csharp
@@ -96,7 +96,7 @@ Each entry uses the short function name as the table-of-contents label. Expand a
 
 ## `WithSerializer`
 
-??? info "Location, signature, and docstring"
+??? info "Source file, signature, and docstring"
     **Member**
     `DataSourceBuilder.WithSerializer(SerializeConfig serializeConfig)`
     
@@ -104,7 +104,7 @@ Each entry uses the short function name as the table-of-contents label. Expand a
     
     **Declaring Type** `DataSourceBuilder`
     
-    **Location** `QaaS.Framework.SDK/DataSourceObjects/DataSourceBuilder.cs:112`
+    **Source File** `QaaS.Framework.SDK/DataSourceObjects/DataSourceBuilder.cs`
     
     **Signature**
     ```csharp
@@ -119,7 +119,7 @@ Each entry uses the short function name as the table-of-contents label. Expand a
 
 ## `WithDeserializer`
 
-??? info "Location, signature, and docstring"
+??? info "Source file, signature, and docstring"
     **Member**
     `DataSourceBuilder.WithDeserializer(DeserializeConfig deserializeConfig)`
     
@@ -127,7 +127,7 @@ Each entry uses the short function name as the table-of-contents label. Expand a
     
     **Declaring Type** `DataSourceBuilder`
     
-    **Location** `QaaS.Framework.SDK/DataSourceObjects/DataSourceBuilder.cs:125`
+    **Source File** `QaaS.Framework.SDK/DataSourceObjects/DataSourceBuilder.cs`
     
     **Signature**
     ```csharp
@@ -142,7 +142,7 @@ Each entry uses the short function name as the table-of-contents label. Expand a
 
 ## `IsLazy`
 
-??? info "Location, signature, and docstring"
+??? info "Source file, signature, and docstring"
     **Member**
     `DataSourceBuilder.IsLazy()`
     
@@ -150,7 +150,7 @@ Each entry uses the short function name as the table-of-contents label. Expand a
     
     **Declaring Type** `DataSourceBuilder`
     
-    **Location** `QaaS.Framework.SDK/DataSourceObjects/DataSourceBuilder.cs:138`
+    **Source File** `QaaS.Framework.SDK/DataSourceObjects/DataSourceBuilder.cs`
     
     **Signature**
     ```csharp
@@ -165,7 +165,7 @@ Each entry uses the short function name as the table-of-contents label. Expand a
 
 ## `Configure`
 
-??? info "Location, signature, and docstring"
+??? info "Source file, signature, and docstring"
     **Member**
     `DataSourceBuilder.Configure(object configuration)`
     
@@ -173,7 +173,7 @@ Each entry uses the short function name as the table-of-contents label. Expand a
     
     **Declaring Type** `DataSourceBuilder`
     
-    **Location** `QaaS.Framework.SDK/DataSourceObjects/DataSourceBuilder.cs:151`
+    **Source File** `QaaS.Framework.SDK/DataSourceObjects/DataSourceBuilder.cs`
     
     **Signature**
     ```csharp
@@ -188,7 +188,7 @@ Each entry uses the short function name as the table-of-contents label. Expand a
 
 ## `CreateConfiguration`
 
-??? info "Location, signature, and docstring"
+??? info "Source file, signature, and docstring"
     **Member**
     `DataSourceBuilder.CreateConfiguration(object configuration)`
     
@@ -196,7 +196,7 @@ Each entry uses the short function name as the table-of-contents label. Expand a
     
     **Declaring Type** `DataSourceBuilder`
     
-    **Location** `QaaS.Framework.SDK/DataSourceObjects/DataSourceBuilder.cs:165`
+    **Source File** `QaaS.Framework.SDK/DataSourceObjects/DataSourceBuilder.cs`
     
     **Signature**
     ```csharp
@@ -211,7 +211,7 @@ Each entry uses the short function name as the table-of-contents label. Expand a
 
 ## `Create`
 
-??? info "Location, signature, and docstring"
+??? info "Source file, signature, and docstring"
     **Member**
     `DataSourceBuilder.Create(object configuration)`
     
@@ -219,7 +219,7 @@ Each entry uses the short function name as the table-of-contents label. Expand a
     
     **Declaring Type** `DataSourceBuilder`
     
-    **Location** `QaaS.Framework.SDK/DataSourceObjects/DataSourceBuilder.cs:177`
+    **Source File** `QaaS.Framework.SDK/DataSourceObjects/DataSourceBuilder.cs`
     
     **Signature**
     ```csharp
@@ -234,7 +234,7 @@ Each entry uses the short function name as the table-of-contents label. Expand a
 
 ## `ReadConfiguration`
 
-??? info "Location, signature, and docstring"
+??? info "Source file, signature, and docstring"
     **Member**
     `DataSourceBuilder.ReadConfiguration()`
     
@@ -242,7 +242,7 @@ Each entry uses the short function name as the table-of-contents label. Expand a
     
     **Declaring Type** `DataSourceBuilder`
     
-    **Location** `QaaS.Framework.SDK/DataSourceObjects/DataSourceBuilder.cs:189`
+    **Source File** `QaaS.Framework.SDK/DataSourceObjects/DataSourceBuilder.cs`
     
     **Signature**
     ```csharp
@@ -257,7 +257,7 @@ Each entry uses the short function name as the table-of-contents label. Expand a
 
 ## `UpdateConfiguration`
 
-??? info "Location, signature, and docstring"
+??? info "Source file, signature, and docstring"
     **Member**
     `DataSourceBuilder.UpdateConfiguration(object configuration)`
     
@@ -265,7 +265,7 @@ Each entry uses the short function name as the table-of-contents label. Expand a
     
     **Declaring Type** `DataSourceBuilder`
     
-    **Location** `QaaS.Framework.SDK/DataSourceObjects/DataSourceBuilder.cs:201`
+    **Source File** `QaaS.Framework.SDK/DataSourceObjects/DataSourceBuilder.cs`
     
     **Signature**
     ```csharp
@@ -280,7 +280,7 @@ Each entry uses the short function name as the table-of-contents label. Expand a
 
 ## `UpsertConfiguration`
 
-??? info "Location, signature, and docstring"
+??? info "Source file, signature, and docstring"
     **Member**
     `DataSourceBuilder.UpsertConfiguration(object configuration)`
     
@@ -288,7 +288,7 @@ Each entry uses the short function name as the table-of-contents label. Expand a
     
     **Declaring Type** `DataSourceBuilder`
     
-    **Location** `QaaS.Framework.SDK/DataSourceObjects/DataSourceBuilder.cs:214`
+    **Source File** `QaaS.Framework.SDK/DataSourceObjects/DataSourceBuilder.cs`
     
     **Signature**
     ```csharp
@@ -303,7 +303,7 @@ Each entry uses the short function name as the table-of-contents label. Expand a
 
 ## `DeleteConfiguration`
 
-??? info "Location, signature, and docstring"
+??? info "Source file, signature, and docstring"
     **Member**
     `DataSourceBuilder.DeleteConfiguration()`
     
@@ -311,7 +311,7 @@ Each entry uses the short function name as the table-of-contents label. Expand a
     
     **Declaring Type** `DataSourceBuilder`
     
-    **Location** `QaaS.Framework.SDK/DataSourceObjects/DataSourceBuilder.cs:226`
+    **Source File** `QaaS.Framework.SDK/DataSourceObjects/DataSourceBuilder.cs`
     
     **Signature**
     ```csharp
@@ -326,7 +326,7 @@ Each entry uses the short function name as the table-of-contents label. Expand a
 
 ## `Register`
 
-??? info "Location, signature, and docstring"
+??? info "Source file, signature, and docstring"
     **Member**
     `DataSourceBuilder.Register()`
     
@@ -334,7 +334,7 @@ Each entry uses the short function name as the table-of-contents label. Expand a
     
     **Declaring Type** `DataSourceBuilder`
     
-    **Location** `QaaS.Framework.SDK/DataSourceObjects/DataSourceBuilder.cs:276`
+    **Source File** `QaaS.Framework.SDK/DataSourceObjects/DataSourceBuilder.cs`
     
     **Signature**
     ```csharp

@@ -8,7 +8,7 @@ Annotated extension methods continue to appear in their regular category pages; 
 
 ### `CloneDetailed`
 
-??? info "Location, signature, and docstring"
+??? info "Source file, signature, and docstring"
     **Member**
     `DataExtensions.CloneDetailed(this Data<object> data, DateTime? datetime = null)`
     
@@ -16,7 +16,7 @@ Annotated extension methods continue to appear in their regular category pages; 
     
     **Declaring Type** `DataExtensions (extension type)`
     
-    **Location** `QaaS.Mocker.Servers/Extensions/DataExtensions.cs:13`
+    **Source File** `QaaS.Mocker.Servers/Extensions/DataExtensions.cs`
     
     **Signature**
     ```csharp
@@ -31,7 +31,7 @@ Annotated extension methods continue to appear in their regular category pages; 
 
 ### `ToHttpMethodEnum`
 
-??? info "Location, signature, and docstring"
+??? info "Source file, signature, and docstring"
     **Member**
     `HttpExtensions.ToHttpMethodEnum(this string stringHttpMethod)`
     
@@ -39,7 +39,7 @@ Annotated extension methods continue to appear in their regular category pages; 
     
     **Declaring Type** `HttpExtensions (extension type)`
     
-    **Location** `QaaS.Mocker.Servers/Extensions/HttpExtensions.cs:19`
+    **Source File** `QaaS.Mocker.Servers/Extensions/HttpExtensions.cs`
     
     **Signature**
     ```csharp
@@ -52,7 +52,7 @@ Annotated extension methods continue to appear in their regular category pages; 
 
 ### `ConstructRequestDataAsync`
 
-??? info "Location, signature, and docstring"
+??? info "Source file, signature, and docstring"
     **Member**
     `HttpExtensions.ConstructRequestDataAsync(this Microsoft.AspNetCore.Http.HttpRequest request)`
     
@@ -60,7 +60,7 @@ Annotated extension methods continue to appear in their regular category pages; 
     
     **Declaring Type** `HttpExtensions (extension type)`
     
-    **Location** `QaaS.Mocker.Servers/Extensions/HttpExtensions.cs:39`
+    **Source File** `QaaS.Mocker.Servers/Extensions/HttpExtensions.cs`
     
     **Signature**
     ```csharp
@@ -73,7 +73,7 @@ Annotated extension methods continue to appear in their regular category pages; 
 
 ### `HandleResponseDataAndCloseAsync`
 
-??? info "Location, signature, and docstring"
+??? info "Source file, signature, and docstring"
     **Member**
     `HttpExtensions.HandleResponseDataAndCloseAsync(this Microsoft.AspNetCore.Http.HttpResponse response, Data<object> responseData, HttpMethod method)`
     
@@ -81,7 +81,7 @@ Annotated extension methods continue to appear in their regular category pages; 
     
     **Declaring Type** `HttpExtensions (extension type)`
     
-    **Location** `QaaS.Mocker.Servers/Extensions/HttpExtensions.cs:63`
+    **Source File** `QaaS.Mocker.Servers/Extensions/HttpExtensions.cs`
     
     **Signature**
     ```csharp
@@ -96,7 +96,7 @@ Annotated extension methods continue to appear in their regular category pages; 
 
 ### `GetBytesFromChannelWithinTimeout`
 
-??? info "Location, signature, and docstring"
+??? info "Source file, signature, and docstring"
     **Member**
     `SocketExtensions.GetBytesFromChannelWithinTimeout(this Socket channel, int timeout, int bufferSize, EndPoint? endpoint = null, ILogger? logger = null)`
     
@@ -104,7 +104,7 @@ Annotated extension methods continue to appear in their regular category pages; 
     
     **Declaring Type** `SocketExtensions (extension type)`
     
-    **Location** `QaaS.Mocker.Servers/Extensions/SocketExtensions.cs:44`
+    **Source File** `QaaS.Mocker.Servers/Extensions/SocketExtensions.cs`
     
     **Signature**
     ```csharp

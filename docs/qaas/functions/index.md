@@ -1,8 +1,8 @@
 # Runner Functions
 
-This overview is generated from source-level `qaas-docs` annotations and the current public extension-method surface.
+This overview indexes the current public function surface documented through source-level `qaas-docs` annotations and extension-method XML docs.
 
-Each category page keeps the table of contents focused on short function names and collapses the location, signature, and XML doc comments behind each entry.
+Each category page keeps the table of contents focused on short function names and collapses the source file, signature, and XML doc comments behind each entry.
 
 ## Builders
 

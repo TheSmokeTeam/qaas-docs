@@ -42,7 +42,7 @@ The `Session` folder contains the runtime data model that most hooks and protoco
 - `DataFilter.cs`
 - `SessionDataSerialization.cs`
 
-Important runtime types in this area include:
+Key runtime types in this area include:
 
 - `Data<T>`
 - `DetailedData<T>`

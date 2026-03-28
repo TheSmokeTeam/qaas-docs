@@ -1,10 +1,10 @@
 # Links
 
-Each entry uses the short function name as the table-of-contents label. Expand an entry to inspect its location, signature, and XML doc comments.
+Each entry uses the short function name as the table-of-contents label. Expand an entry to inspect its source file, signature, and XML doc comments.
 
 ## `Named`
 
-??? info "Location, signature, and docstring"
+??? info "Source file, signature, and docstring"
     **Member**
     `LinkBuilder.Named(string name)`
     
@@ -12,7 +12,7 @@ Each entry uses the short function name as the table-of-contents label. Expand a
     
     **Declaring Type** `LinkBuilder`
     
-    **Location** `QaaS.Runner.Assertions/ConfigurationObjects/LinkBuilder.cs:32`
+    **Source File** `QaaS.Runner.Assertions/ConfigurationObjects/LinkBuilder.cs`
     
     **Signature**
     ```csharp
@@ -27,7 +27,7 @@ Each entry uses the short function name as the table-of-contents label. Expand a
 
 ## `Create`
 
-??? info "Location, signature, and docstring"
+??? info "Source file, signature, and docstring"
     **Member**
     `LinkBuilder.Create(ILinkConfig config)`
     
@@ -35,7 +35,7 @@ Each entry uses the short function name as the table-of-contents label. Expand a
     
     **Declaring Type** `LinkBuilder`
     
-    **Location** `QaaS.Runner.Assertions/ConfigurationObjects/LinkBuilder.cs:45`
+    **Source File** `QaaS.Runner.Assertions/ConfigurationObjects/LinkBuilder.cs`
     
     **Signature**
     ```csharp
@@ -50,7 +50,7 @@ Each entry uses the short function name as the table-of-contents label. Expand a
 
 ## `CreateConfiguration`
 
-??? info "Location, signature, and docstring"
+??? info "Source file, signature, and docstring"
     **Member**
     `LinkBuilder.CreateConfiguration(ILinkConfig config)`
     
@@ -58,7 +58,7 @@ Each entry uses the short function name as the table-of-contents label. Expand a
     
     **Declaring Type** `LinkBuilder`
     
-    **Location** `QaaS.Runner.Assertions/ConfigurationObjects/LinkBuilder.cs:57`
+    **Source File** `QaaS.Runner.Assertions/ConfigurationObjects/LinkBuilder.cs`
     
     **Signature**
     ```csharp
@@ -73,7 +73,7 @@ Each entry uses the short function name as the table-of-contents label. Expand a
 
 ## `ReadConfiguration`
 
-??? info "Location, signature, and docstring"
+??? info "Source file, signature, and docstring"
     **Member**
     `LinkBuilder.ReadConfiguration()`
     
@@ -81,7 +81,7 @@ Each entry uses the short function name as the table-of-contents label. Expand a
     
     **Declaring Type** `LinkBuilder`
     
-    **Location** `QaaS.Runner.Assertions/ConfigurationObjects/LinkBuilder.cs:69`
+    **Source File** `QaaS.Runner.Assertions/ConfigurationObjects/LinkBuilder.cs`
     
     **Signature**
     ```csharp
@@ -96,7 +96,7 @@ Each entry uses the short function name as the table-of-contents label. Expand a
 
 ## `UpdateConfiguration`
 
-??? info "Location, signature, and docstring"
+??? info "Source file, signature, and docstring"
     **Member**
     `LinkBuilder.UpdateConfiguration(Func<ILinkConfig, ILinkConfig> update)`
     
@@ -104,7 +104,7 @@ Each entry uses the short function name as the table-of-contents label. Expand a
     
     **Declaring Type** `LinkBuilder`
     
-    **Location** `QaaS.Runner.Assertions/ConfigurationObjects/LinkBuilder.cs:91`
+    **Source File** `QaaS.Runner.Assertions/ConfigurationObjects/LinkBuilder.cs`
     
     **Signature**
     ```csharp
@@ -119,7 +119,7 @@ Each entry uses the short function name as the table-of-contents label. Expand a
 
 ## `UpdateConfiguration`
 
-??? info "Location, signature, and docstring"
+??? info "Source file, signature, and docstring"
     **Member**
     `LinkBuilder.UpdateConfiguration(ILinkConfig config)`
     
@@ -127,7 +127,7 @@ Each entry uses the short function name as the table-of-contents label. Expand a
     
     **Declaring Type** `LinkBuilder`
     
-    **Location** `QaaS.Runner.Assertions/ConfigurationObjects/LinkBuilder.cs:105`
+    **Source File** `QaaS.Runner.Assertions/ConfigurationObjects/LinkBuilder.cs`
     
     **Signature**
     ```csharp
@@ -142,7 +142,7 @@ Each entry uses the short function name as the table-of-contents label. Expand a
 
 ## `UpdateConfiguration`
 
-??? info "Location, signature, and docstring"
+??? info "Source file, signature, and docstring"
     **Member**
     `LinkBuilder.UpdateConfiguration(object configuration)`
     
@@ -150,7 +150,7 @@ Each entry uses the short function name as the table-of-contents label. Expand a
     
     **Declaring Type** `LinkBuilder`
     
-    **Location** `QaaS.Runner.Assertions/ConfigurationObjects/LinkBuilder.cs:119`
+    **Source File** `QaaS.Runner.Assertions/ConfigurationObjects/LinkBuilder.cs`
     
     **Signature**
     ```csharp
@@ -165,7 +165,7 @@ Each entry uses the short function name as the table-of-contents label. Expand a
 
 ## `DeleteConfiguration`
 
-??? info "Location, signature, and docstring"
+??? info "Source file, signature, and docstring"
     **Member**
     `LinkBuilder.DeleteConfiguration()`
     
@@ -173,7 +173,7 @@ Each entry uses the short function name as the table-of-contents label. Expand a
     
     **Declaring Type** `LinkBuilder`
     
-    **Location** `QaaS.Runner.Assertions/ConfigurationObjects/LinkBuilder.cs:133`
+    **Source File** `QaaS.Runner.Assertions/ConfigurationObjects/LinkBuilder.cs`
     
     **Signature**
     ```csharp
@@ -188,7 +188,7 @@ Each entry uses the short function name as the table-of-contents label. Expand a
 
 ## `Configure`
 
-??? info "Location, signature, and docstring"
+??? info "Source file, signature, and docstring"
     **Member**
     `LinkBuilder.Configure(ILinkConfig config)`
     
@@ -196,7 +196,7 @@ Each entry uses the short function name as the table-of-contents label. Expand a
     
     **Declaring Type** `LinkBuilder`
     
-    **Location** `QaaS.Runner.Assertions/ConfigurationObjects/LinkBuilder.cs:153`
+    **Source File** `QaaS.Runner.Assertions/ConfigurationObjects/LinkBuilder.cs`
     
     **Signature**
     ```csharp

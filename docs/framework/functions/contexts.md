@@ -1,10 +1,10 @@
 # Contexts
 
-Each entry uses the short function name as the table-of-contents label. Expand an entry to inspect its location, signature, and XML doc comments.
+Each entry uses the short function name as the table-of-contents label. Expand an entry to inspect its source file, signature, and XML doc comments.
 
 ## `ContextBuilder`
 
-??? info "Location, signature, and docstring"
+??? info "Source file, signature, and docstring"
     **Member**
     `ContextBuilder(string configurationFile, IList<string>? referenceResolutionPaths = null, IList<string>? uniqueIdPathRegexes = null)`
     
@@ -12,7 +12,7 @@ Each entry uses the short function name as the table-of-contents label. Expand a
     
     **Declaring Type** `ContextBuilder`
     
-    **Location** `QaaS.Framework.SDK/ContextObjects/ContextBuilder.cs:44`
+    **Source File** `QaaS.Framework.SDK/ContextObjects/ContextBuilder.cs`
     
     **Signature**
     ```csharp
@@ -27,7 +27,7 @@ Each entry uses the short function name as the table-of-contents label. Expand a
 
 ## `ContextBuilder`
 
-??? info "Location, signature, and docstring"
+??? info "Source file, signature, and docstring"
     **Member**
     `ContextBuilder(IConfigurationBuilder configurationBuilder, IList<string>? referenceResolutionPaths = null, IList<string>? uniqueIdPathRegexes = null)`
     
@@ -35,7 +35,7 @@ Each entry uses the short function name as the table-of-contents label. Expand a
     
     **Declaring Type** `ContextBuilder`
     
-    **Location** `QaaS.Framework.SDK/ContextObjects/ContextBuilder.cs:66`
+    **Source File** `QaaS.Framework.SDK/ContextObjects/ContextBuilder.cs`
     
     **Signature**
     ```csharp
@@ -50,7 +50,7 @@ Each entry uses the short function name as the table-of-contents label. Expand a
 
 ## `SetLogger`
 
-??? info "Location, signature, and docstring"
+??? info "Source file, signature, and docstring"
     **Member**
     `ContextBuilder.SetLogger(ILogger logger)`
     
@@ -58,7 +58,7 @@ Each entry uses the short function name as the table-of-contents label. Expand a
     
     **Declaring Type** `ContextBuilder`
     
-    **Location** `QaaS.Framework.SDK/ContextObjects/ContextBuilder.cs:82`
+    **Source File** `QaaS.Framework.SDK/ContextObjects/ContextBuilder.cs`
     
     **Signature**
     ```csharp
@@ -73,7 +73,7 @@ Each entry uses the short function name as the table-of-contents label. Expand a
 
 ## `SetConfigurationFile`
 
-??? info "Location, signature, and docstring"
+??? info "Source file, signature, and docstring"
     **Member**
     `ContextBuilder.SetConfigurationFile(string? configurationFile)`
     
@@ -81,7 +81,7 @@ Each entry uses the short function name as the table-of-contents label. Expand a
     
     **Declaring Type** `ContextBuilder`
     
-    **Location** `QaaS.Framework.SDK/ContextObjects/ContextBuilder.cs:95`
+    **Source File** `QaaS.Framework.SDK/ContextObjects/ContextBuilder.cs`
     
     **Signature**
     ```csharp
@@ -96,7 +96,7 @@ Each entry uses the short function name as the table-of-contents label. Expand a
 
 ## `WithOverwriteFile`
 
-??? info "Location, signature, and docstring"
+??? info "Source file, signature, and docstring"
     **Member**
     `ContextBuilder.WithOverwriteFile(string? overwriteFile)`
     
@@ -104,7 +104,7 @@ Each entry uses the short function name as the table-of-contents label. Expand a
     
     **Declaring Type** `ContextBuilder`
     
-    **Location** `QaaS.Framework.SDK/ContextObjects/ContextBuilder.cs:109`
+    **Source File** `QaaS.Framework.SDK/ContextObjects/ContextBuilder.cs`
     
     **Signature**
     ```csharp
@@ -119,7 +119,7 @@ Each entry uses the short function name as the table-of-contents label. Expand a
 
 ## `WithOverwriteFolder`
 
-??? info "Location, signature, and docstring"
+??? info "Source file, signature, and docstring"
     **Member**
     `ContextBuilder.WithOverwriteFolder(string? overwriteFolder)`
     
@@ -127,7 +127,7 @@ Each entry uses the short function name as the table-of-contents label. Expand a
     
     **Declaring Type** `ContextBuilder`
     
-    **Location** `QaaS.Framework.SDK/ContextObjects/ContextBuilder.cs:123`
+    **Source File** `QaaS.Framework.SDK/ContextObjects/ContextBuilder.cs`
     
     **Signature**
     ```csharp
@@ -142,7 +142,7 @@ Each entry uses the short function name as the table-of-contents label. Expand a
 
 ## `SetCase`
 
-??? info "Location, signature, and docstring"
+??? info "Source file, signature, and docstring"
     **Member**
     `ContextBuilder.SetCase(string? caseFile)`
     
@@ -150,7 +150,7 @@ Each entry uses the short function name as the table-of-contents label. Expand a
     
     **Declaring Type** `ContextBuilder`
     
-    **Location** `QaaS.Framework.SDK/ContextObjects/ContextBuilder.cs:137`
+    **Source File** `QaaS.Framework.SDK/ContextObjects/ContextBuilder.cs`
     
     **Signature**
     ```csharp
@@ -165,7 +165,7 @@ Each entry uses the short function name as the table-of-contents label. Expand a
 
 ## `SetExecutionId`
 
-??? info "Location, signature, and docstring"
+??? info "Source file, signature, and docstring"
     **Member**
     `ContextBuilder.SetExecutionId(string? executionId)`
     
@@ -173,7 +173,7 @@ Each entry uses the short function name as the table-of-contents label. Expand a
     
     **Declaring Type** `ContextBuilder`
     
-    **Location** `QaaS.Framework.SDK/ContextObjects/ContextBuilder.cs:153`
+    **Source File** `QaaS.Framework.SDK/ContextObjects/ContextBuilder.cs`
     
     **Signature**
     ```csharp
@@ -188,7 +188,7 @@ Each entry uses the short function name as the table-of-contents label. Expand a
 
 ## `WithOverwriteArgument`
 
-??? info "Location, signature, and docstring"
+??? info "Source file, signature, and docstring"
     **Member**
     `ContextBuilder.WithOverwriteArgument(string? argument)`
     
@@ -196,7 +196,7 @@ Each entry uses the short function name as the table-of-contents label. Expand a
     
     **Declaring Type** `ContextBuilder`
     
-    **Location** `QaaS.Framework.SDK/ContextObjects/ContextBuilder.cs:166`
+    **Source File** `QaaS.Framework.SDK/ContextObjects/ContextBuilder.cs`
     
     **Signature**
     ```csharp
@@ -211,7 +211,7 @@ Each entry uses the short function name as the table-of-contents label. Expand a
 
 ## `WithReferenceResolution`
 
-??? info "Location, signature, and docstring"
+??? info "Source file, signature, and docstring"
     **Member**
     `ContextBuilder.WithReferenceResolution(ReferenceConfig referenceConfig)`
     
@@ -219,7 +219,7 @@ Each entry uses the short function name as the table-of-contents label. Expand a
     
     **Declaring Type** `ContextBuilder`
     
-    **Location** `QaaS.Framework.SDK/ContextObjects/ContextBuilder.cs:180`
+    **Source File** `QaaS.Framework.SDK/ContextObjects/ContextBuilder.cs`
     
     **Signature**
     ```csharp
@@ -234,7 +234,7 @@ Each entry uses the short function name as the table-of-contents label. Expand a
 
 ## `ResolveCaseLast`
 
-??? info "Location, signature, and docstring"
+??? info "Source file, signature, and docstring"
     **Member**
     `ContextBuilder.ResolveCaseLast()`
     
@@ -242,7 +242,7 @@ Each entry uses the short function name as the table-of-contents label. Expand a
     
     **Declaring Type** `ContextBuilder`
     
-    **Location** `QaaS.Framework.SDK/ContextObjects/ContextBuilder.cs:193`
+    **Source File** `QaaS.Framework.SDK/ContextObjects/ContextBuilder.cs`
     
     **Signature**
     ```csharp
@@ -257,7 +257,7 @@ Each entry uses the short function name as the table-of-contents label. Expand a
 
 ## `WithEnvironmentVariableResolution`
 
-??? info "Location, signature, and docstring"
+??? info "Source file, signature, and docstring"
     **Member**
     `ContextBuilder.WithEnvironmentVariableResolution()`
     
@@ -265,7 +265,7 @@ Each entry uses the short function name as the table-of-contents label. Expand a
     
     **Declaring Type** `ContextBuilder`
     
-    **Location** `QaaS.Framework.SDK/ContextObjects/ContextBuilder.cs:206`
+    **Source File** `QaaS.Framework.SDK/ContextObjects/ContextBuilder.cs`
     
     **Signature**
     ```csharp

@@ -1,10 +1,10 @@
 # Collectors
 
-Each entry uses the short function name as the table-of-contents label. Expand an entry to inspect its location, signature, and XML doc comments.
+Each entry uses the short function name as the table-of-contents label. Expand an entry to inspect its source file, signature, and XML doc comments.
 
 ## `Named`
 
-??? info "Location, signature, and docstring"
+??? info "Source file, signature, and docstring"
     **Member**
     `CollectorBuilder.Named(string name)`
     
@@ -12,7 +12,7 @@ Each entry uses the short function name as the table-of-contents label. Expand a
     
     **Declaring Type** `CollectorBuilder`
     
-    **Location** `QaaS.Runner.Sessions/Actions/Collectors/CollectorBuilder.cs:50`
+    **Source File** `QaaS.Runner.Sessions/Actions/Collectors/CollectorBuilder.cs`
     
     **Signature**
     ```csharp
@@ -27,7 +27,7 @@ Each entry uses the short function name as the table-of-contents label. Expand a
 
 ## `FilterData`
 
-??? info "Location, signature, and docstring"
+??? info "Source file, signature, and docstring"
     **Member**
     `CollectorBuilder.FilterData(DataFilter dataFilter)`
     
@@ -35,7 +35,7 @@ Each entry uses the short function name as the table-of-contents label. Expand a
     
     **Declaring Type** `CollectorBuilder`
     
-    **Location** `QaaS.Runner.Sessions/Actions/Collectors/CollectorBuilder.cs:63`
+    **Source File** `QaaS.Runner.Sessions/Actions/Collectors/CollectorBuilder.cs`
     
     **Signature**
     ```csharp
@@ -50,7 +50,7 @@ Each entry uses the short function name as the table-of-contents label. Expand a
 
 ## `CollectInRange`
 
-??? info "Location, signature, and docstring"
+??? info "Source file, signature, and docstring"
     **Member**
     `CollectorBuilder.CollectInRange(CollectionRange collectionRange)`
     
@@ -58,7 +58,7 @@ Each entry uses the short function name as the table-of-contents label. Expand a
     
     **Declaring Type** `CollectorBuilder`
     
-    **Location** `QaaS.Runner.Sessions/Actions/Collectors/CollectorBuilder.cs:76`
+    **Source File** `QaaS.Runner.Sessions/Actions/Collectors/CollectorBuilder.cs`
     
     **Signature**
     ```csharp
@@ -73,7 +73,7 @@ Each entry uses the short function name as the table-of-contents label. Expand a
 
 ## `Create`
 
-??? info "Location, signature, and docstring"
+??? info "Source file, signature, and docstring"
     **Member**
     `CollectorBuilder.Create(IFetcherConfig config)`
     
@@ -81,7 +81,7 @@ Each entry uses the short function name as the table-of-contents label. Expand a
     
     **Declaring Type** `CollectorBuilder`
     
-    **Location** `QaaS.Runner.Sessions/Actions/Collectors/CollectorBuilder.cs:89`
+    **Source File** `QaaS.Runner.Sessions/Actions/Collectors/CollectorBuilder.cs`
     
     **Signature**
     ```csharp
@@ -96,7 +96,7 @@ Each entry uses the short function name as the table-of-contents label. Expand a
 
 ## `CreateConfiguration`
 
-??? info "Location, signature, and docstring"
+??? info "Source file, signature, and docstring"
     **Member**
     `CollectorBuilder.CreateConfiguration(IFetcherConfig config)`
     
@@ -104,7 +104,7 @@ Each entry uses the short function name as the table-of-contents label. Expand a
     
     **Declaring Type** `CollectorBuilder`
     
-    **Location** `QaaS.Runner.Sessions/Actions/Collectors/CollectorBuilder.cs:101`
+    **Source File** `QaaS.Runner.Sessions/Actions/Collectors/CollectorBuilder.cs`
     
     **Signature**
     ```csharp
@@ -119,7 +119,7 @@ Each entry uses the short function name as the table-of-contents label. Expand a
 
 ## `ReadConfiguration`
 
-??? info "Location, signature, and docstring"
+??? info "Source file, signature, and docstring"
     **Member**
     `CollectorBuilder.ReadConfiguration()`
     
@@ -127,7 +127,7 @@ Each entry uses the short function name as the table-of-contents label. Expand a
     
     **Declaring Type** `CollectorBuilder`
     
-    **Location** `QaaS.Runner.Sessions/Actions/Collectors/CollectorBuilder.cs:113`
+    **Source File** `QaaS.Runner.Sessions/Actions/Collectors/CollectorBuilder.cs`
     
     **Signature**
     ```csharp
@@ -142,7 +142,7 @@ Each entry uses the short function name as the table-of-contents label. Expand a
 
 ## `UpdateConfiguration`
 
-??? info "Location, signature, and docstring"
+??? info "Source file, signature, and docstring"
     **Member**
     `CollectorBuilder.UpdateConfiguration(Func<IFetcherConfig, IFetcherConfig> update)`
     
@@ -150,7 +150,7 @@ Each entry uses the short function name as the table-of-contents label. Expand a
     
     **Declaring Type** `CollectorBuilder`
     
-    **Location** `QaaS.Runner.Sessions/Actions/Collectors/CollectorBuilder.cs:125`
+    **Source File** `QaaS.Runner.Sessions/Actions/Collectors/CollectorBuilder.cs`
     
     **Signature**
     ```csharp
@@ -165,7 +165,7 @@ Each entry uses the short function name as the table-of-contents label. Expand a
 
 ## `UpdateConfiguration`
 
-??? info "Location, signature, and docstring"
+??? info "Source file, signature, and docstring"
     **Member**
     `CollectorBuilder.UpdateConfiguration(IFetcherConfig config)`
     
@@ -173,7 +173,7 @@ Each entry uses the short function name as the table-of-contents label. Expand a
     
     **Declaring Type** `CollectorBuilder`
     
-    **Location** `QaaS.Runner.Sessions/Actions/Collectors/CollectorBuilder.cs:139`
+    **Source File** `QaaS.Runner.Sessions/Actions/Collectors/CollectorBuilder.cs`
     
     **Signature**
     ```csharp
@@ -188,7 +188,7 @@ Each entry uses the short function name as the table-of-contents label. Expand a
 
 ## `UpdateConfiguration`
 
-??? info "Location, signature, and docstring"
+??? info "Source file, signature, and docstring"
     **Member**
     `CollectorBuilder.UpdateConfiguration(object configuration)`
     
@@ -196,7 +196,7 @@ Each entry uses the short function name as the table-of-contents label. Expand a
     
     **Declaring Type** `CollectorBuilder`
     
-    **Location** `QaaS.Runner.Sessions/Actions/Collectors/CollectorBuilder.cs:153`
+    **Source File** `QaaS.Runner.Sessions/Actions/Collectors/CollectorBuilder.cs`
     
     **Signature**
     ```csharp
@@ -211,7 +211,7 @@ Each entry uses the short function name as the table-of-contents label. Expand a
 
 ## `DeleteConfiguration`
 
-??? info "Location, signature, and docstring"
+??? info "Source file, signature, and docstring"
     **Member**
     `CollectorBuilder.DeleteConfiguration()`
     
@@ -219,7 +219,7 @@ Each entry uses the short function name as the table-of-contents label. Expand a
     
     **Declaring Type** `CollectorBuilder`
     
-    **Location** `QaaS.Runner.Sessions/Actions/Collectors/CollectorBuilder.cs:167`
+    **Source File** `QaaS.Runner.Sessions/Actions/Collectors/CollectorBuilder.cs`
     
     **Signature**
     ```csharp
@@ -234,7 +234,7 @@ Each entry uses the short function name as the table-of-contents label. Expand a
 
 ## `Configure`
 
-??? info "Location, signature, and docstring"
+??? info "Source file, signature, and docstring"
     **Member**
     `CollectorBuilder.Configure(IFetcherConfig config)`
     
@@ -242,7 +242,7 @@ Each entry uses the short function name as the table-of-contents label. Expand a
     
     **Declaring Type** `CollectorBuilder`
     
-    **Location** `QaaS.Runner.Sessions/Actions/Collectors/CollectorBuilder.cs:185`
+    **Source File** `QaaS.Runner.Sessions/Actions/Collectors/CollectorBuilder.cs`
     
     **Signature**
     ```csharp

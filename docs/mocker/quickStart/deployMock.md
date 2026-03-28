@@ -24,12 +24,17 @@ COPY --from=build /app/publish .
 ENTRYPOINT ["dotnet", "DummyAppMock.dll", "mocker.qaas.yaml"]
 ```
 
+!!! warning "⚠️ Important"
+    Build the project as part of the Docker image build, then push that finished runtime image to your registry. The deployed container should only pull the published image and start the already-built application. It should not compile the project during pod startup.
+
 Build and push the image to your registry:
 
 ```bash
 docker build -t ghcr.io/my-org/dummy-app-mock:1.0.0 .
 docker push ghcr.io/my-org/dummy-app-mock:1.0.0
 ```
+
+After the image is published, Kubernetes only needs to pull `ghcr.io/my-org/dummy-app-mock:1.0.0` and run it. Rebuilding is only needed when you publish a new image tag.
 
 ## Native Helm Chart
 

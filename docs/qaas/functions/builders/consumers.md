@@ -1,10 +1,10 @@
 # Consumers
 
-Each entry uses the short function name as the table-of-contents label. Expand an entry to inspect its location, signature, and XML doc comments.
+Each entry uses the short function name as the table-of-contents label. Expand an entry to inspect its source file, signature, and XML doc comments.
 
 ## `Named`
 
-??? info "Location, signature, and docstring"
+??? info "Source file, signature, and docstring"
     **Member**
     `ConsumerBuilder.Named(string name)`
     
@@ -12,7 +12,7 @@ Each entry uses the short function name as the table-of-contents label. Expand a
     
     **Declaring Type** `ConsumerBuilder`
     
-    **Location** `QaaS.Runner.Sessions/Actions/Consumers/Builders/ConsumerBuilderLogic.cs:34`
+    **Source File** `QaaS.Runner.Sessions/Actions/Consumers/Builders/ConsumerBuilderLogic.cs`
     
     **Signature**
     ```csharp
@@ -27,7 +27,7 @@ Each entry uses the short function name as the table-of-contents label. Expand a
 
 ## `AtStage`
 
-??? info "Location, signature, and docstring"
+??? info "Source file, signature, and docstring"
     **Member**
     `ConsumerBuilder.AtStage(int stage)`
     
@@ -35,7 +35,7 @@ Each entry uses the short function name as the table-of-contents label. Expand a
     
     **Declaring Type** `ConsumerBuilder`
     
-    **Location** `QaaS.Runner.Sessions/Actions/Consumers/Builders/ConsumerBuilderLogic.cs:47`
+    **Source File** `QaaS.Runner.Sessions/Actions/Consumers/Builders/ConsumerBuilderLogic.cs`
     
     **Signature**
     ```csharp
@@ -50,7 +50,7 @@ Each entry uses the short function name as the table-of-contents label. Expand a
 
 ## `WithTimeout`
 
-??? info "Location, signature, and docstring"
+??? info "Source file, signature, and docstring"
     **Member**
     `ConsumerBuilder.WithTimeout(int timeoutMs)`
     
@@ -58,7 +58,7 @@ Each entry uses the short function name as the table-of-contents label. Expand a
     
     **Declaring Type** `ConsumerBuilder`
     
-    **Location** `QaaS.Runner.Sessions/Actions/Consumers/Builders/ConsumerBuilderLogic.cs:60`
+    **Source File** `QaaS.Runner.Sessions/Actions/Consumers/Builders/ConsumerBuilderLogic.cs`
     
     **Signature**
     ```csharp
@@ -73,7 +73,7 @@ Each entry uses the short function name as the table-of-contents label. Expand a
 
 ## `FilterData`
 
-??? info "Location, signature, and docstring"
+??? info "Source file, signature, and docstring"
     **Member**
     `ConsumerBuilder.FilterData(DataFilter dataFilter)`
     
@@ -81,7 +81,7 @@ Each entry uses the short function name as the table-of-contents label. Expand a
     
     **Declaring Type** `ConsumerBuilder`
     
-    **Location** `QaaS.Runner.Sessions/Actions/Consumers/Builders/ConsumerBuilderLogic.cs:73`
+    **Source File** `QaaS.Runner.Sessions/Actions/Consumers/Builders/ConsumerBuilderLogic.cs`
     
     **Signature**
     ```csharp
@@ -96,7 +96,7 @@ Each entry uses the short function name as the table-of-contents label. Expand a
 
 ## `WithDeserializer`
 
-??? info "Location, signature, and docstring"
+??? info "Source file, signature, and docstring"
     **Member**
     `ConsumerBuilder.WithDeserializer(DeserializeConfig deserializeConfig)`
     
@@ -104,7 +104,7 @@ Each entry uses the short function name as the table-of-contents label. Expand a
     
     **Declaring Type** `ConsumerBuilder`
     
-    **Location** `QaaS.Runner.Sessions/Actions/Consumers/Builders/ConsumerBuilderLogic.cs:86`
+    **Source File** `QaaS.Runner.Sessions/Actions/Consumers/Builders/ConsumerBuilderLogic.cs`
     
     **Signature**
     ```csharp
@@ -119,7 +119,7 @@ Each entry uses the short function name as the table-of-contents label. Expand a
 
 ## `AddPolicy`
 
-??? info "Location, signature, and docstring"
+??? info "Source file, signature, and docstring"
     **Member**
     `ConsumerBuilder.AddPolicy(PolicyBuilder policy)`
     
@@ -127,7 +127,7 @@ Each entry uses the short function name as the table-of-contents label. Expand a
     
     **Declaring Type** `ConsumerBuilder`
     
-    **Location** `QaaS.Runner.Sessions/Actions/Consumers/Builders/ConsumerBuilderLogic.cs:99`
+    **Source File** `QaaS.Runner.Sessions/Actions/Consumers/Builders/ConsumerBuilderLogic.cs`
     
     **Signature**
     ```csharp
@@ -142,7 +142,7 @@ Each entry uses the short function name as the table-of-contents label. Expand a
 
 ## `CreatePolicy`
 
-??? info "Location, signature, and docstring"
+??? info "Source file, signature, and docstring"
     **Member**
     `ConsumerBuilder.CreatePolicy(PolicyBuilder policy)`
     
@@ -150,7 +150,7 @@ Each entry uses the short function name as the table-of-contents label. Expand a
     
     **Declaring Type** `ConsumerBuilder`
     
-    **Location** `QaaS.Runner.Sessions/Actions/Consumers/Builders/ConsumerBuilderLogic.cs:114`
+    **Source File** `QaaS.Runner.Sessions/Actions/Consumers/Builders/ConsumerBuilderLogic.cs`
     
     **Signature**
     ```csharp
@@ -165,7 +165,7 @@ Each entry uses the short function name as the table-of-contents label. Expand a
 
 ## `ReadPolicies`
 
-??? info "Location, signature, and docstring"
+??? info "Source file, signature, and docstring"
     **Member**
     `ConsumerBuilder.ReadPolicies()`
     
@@ -173,7 +173,7 @@ Each entry uses the short function name as the table-of-contents label. Expand a
     
     **Declaring Type** `ConsumerBuilder`
     
-    **Location** `QaaS.Runner.Sessions/Actions/Consumers/Builders/ConsumerBuilderLogic.cs:126`
+    **Source File** `QaaS.Runner.Sessions/Actions/Consumers/Builders/ConsumerBuilderLogic.cs`
     
     **Signature**
     ```csharp
@@ -188,7 +188,7 @@ Each entry uses the short function name as the table-of-contents label. Expand a
 
 ## `UpdatePolicyAt`
 
-??? info "Location, signature, and docstring"
+??? info "Source file, signature, and docstring"
     **Member**
     `ConsumerBuilder.UpdatePolicyAt(int index, PolicyBuilder policy)`
     
@@ -196,7 +196,7 @@ Each entry uses the short function name as the table-of-contents label. Expand a
     
     **Declaring Type** `ConsumerBuilder`
     
-    **Location** `QaaS.Runner.Sessions/Actions/Consumers/Builders/ConsumerBuilderLogic.cs:138`
+    **Source File** `QaaS.Runner.Sessions/Actions/Consumers/Builders/ConsumerBuilderLogic.cs`
     
     **Signature**
     ```csharp
@@ -211,7 +211,7 @@ Each entry uses the short function name as the table-of-contents label. Expand a
 
 ## `DeletePolicyAt`
 
-??? info "Location, signature, and docstring"
+??? info "Source file, signature, and docstring"
     **Member**
     `ConsumerBuilder.DeletePolicyAt(int index)`
     
@@ -219,7 +219,7 @@ Each entry uses the short function name as the table-of-contents label. Expand a
     
     **Declaring Type** `ConsumerBuilder`
     
-    **Location** `QaaS.Runner.Sessions/Actions/Consumers/Builders/ConsumerBuilderLogic.cs:156`
+    **Source File** `QaaS.Runner.Sessions/Actions/Consumers/Builders/ConsumerBuilderLogic.cs`
     
     **Signature**
     ```csharp
@@ -234,7 +234,7 @@ Each entry uses the short function name as the table-of-contents label. Expand a
 
 ## `CreateConfiguration`
 
-??? info "Location, signature, and docstring"
+??? info "Source file, signature, and docstring"
     **Member**
     `ConsumerBuilder.CreateConfiguration(IReaderConfig config)`
     
@@ -242,7 +242,7 @@ Each entry uses the short function name as the table-of-contents label. Expand a
     
     **Declaring Type** `ConsumerBuilder`
     
-    **Location** `QaaS.Runner.Sessions/Actions/Consumers/Builders/ConsumerBuilderLogic.cs:174`
+    **Source File** `QaaS.Runner.Sessions/Actions/Consumers/Builders/ConsumerBuilderLogic.cs`
     
     **Signature**
     ```csharp
@@ -257,7 +257,7 @@ Each entry uses the short function name as the table-of-contents label. Expand a
 
 ## `Create`
 
-??? info "Location, signature, and docstring"
+??? info "Source file, signature, and docstring"
     **Member**
     `ConsumerBuilder.Create(IReaderConfig config)`
     
@@ -265,7 +265,7 @@ Each entry uses the short function name as the table-of-contents label. Expand a
     
     **Declaring Type** `ConsumerBuilder`
     
-    **Location** `QaaS.Runner.Sessions/Actions/Consumers/Builders/ConsumerBuilderLogic.cs:186`
+    **Source File** `QaaS.Runner.Sessions/Actions/Consumers/Builders/ConsumerBuilderLogic.cs`
     
     **Signature**
     ```csharp
@@ -280,7 +280,7 @@ Each entry uses the short function name as the table-of-contents label. Expand a
 
 ## `ReadConfiguration`
 
-??? info "Location, signature, and docstring"
+??? info "Source file, signature, and docstring"
     **Member**
     `ConsumerBuilder.ReadConfiguration()`
     
@@ -288,7 +288,7 @@ Each entry uses the short function name as the table-of-contents label. Expand a
     
     **Declaring Type** `ConsumerBuilder`
     
-    **Location** `QaaS.Runner.Sessions/Actions/Consumers/Builders/ConsumerBuilderLogic.cs:198`
+    **Source File** `QaaS.Runner.Sessions/Actions/Consumers/Builders/ConsumerBuilderLogic.cs`
     
     **Signature**
     ```csharp
@@ -303,7 +303,7 @@ Each entry uses the short function name as the table-of-contents label. Expand a
 
 ## `UpdateConfiguration`
 
-??? info "Location, signature, and docstring"
+??? info "Source file, signature, and docstring"
     **Member**
     `ConsumerBuilder.UpdateConfiguration(Func<IReaderConfig, IReaderConfig> update)`
     
@@ -311,7 +311,7 @@ Each entry uses the short function name as the table-of-contents label. Expand a
     
     **Declaring Type** `ConsumerBuilder`
     
-    **Location** `QaaS.Runner.Sessions/Actions/Consumers/Builders/ConsumerBuilderLogic.cs:219`
+    **Source File** `QaaS.Runner.Sessions/Actions/Consumers/Builders/ConsumerBuilderLogic.cs`
     
     **Signature**
     ```csharp
@@ -326,7 +326,7 @@ Each entry uses the short function name as the table-of-contents label. Expand a
 
 ## `UpdateConfiguration`
 
-??? info "Location, signature, and docstring"
+??? info "Source file, signature, and docstring"
     **Member**
     `ConsumerBuilder.UpdateConfiguration(IReaderConfig config)`
     
@@ -334,7 +334,7 @@ Each entry uses the short function name as the table-of-contents label. Expand a
     
     **Declaring Type** `ConsumerBuilder`
     
-    **Location** `QaaS.Runner.Sessions/Actions/Consumers/Builders/ConsumerBuilderLogic.cs:233`
+    **Source File** `QaaS.Runner.Sessions/Actions/Consumers/Builders/ConsumerBuilderLogic.cs`
     
     **Signature**
     ```csharp
@@ -349,7 +349,7 @@ Each entry uses the short function name as the table-of-contents label. Expand a
 
 ## `UpdateConfiguration`
 
-??? info "Location, signature, and docstring"
+??? info "Source file, signature, and docstring"
     **Member**
     `ConsumerBuilder.UpdateConfiguration(object configuration)`
     
@@ -357,7 +357,7 @@ Each entry uses the short function name as the table-of-contents label. Expand a
     
     **Declaring Type** `ConsumerBuilder`
     
-    **Location** `QaaS.Runner.Sessions/Actions/Consumers/Builders/ConsumerBuilderLogic.cs:247`
+    **Source File** `QaaS.Runner.Sessions/Actions/Consumers/Builders/ConsumerBuilderLogic.cs`
     
     **Signature**
     ```csharp
@@ -372,7 +372,7 @@ Each entry uses the short function name as the table-of-contents label. Expand a
 
 ## `DeleteConfiguration`
 
-??? info "Location, signature, and docstring"
+??? info "Source file, signature, and docstring"
     **Member**
     `ConsumerBuilder.DeleteConfiguration()`
     
@@ -380,7 +380,7 @@ Each entry uses the short function name as the table-of-contents label. Expand a
     
     **Declaring Type** `ConsumerBuilder`
     
-    **Location** `QaaS.Runner.Sessions/Actions/Consumers/Builders/ConsumerBuilderLogic.cs:261`
+    **Source File** `QaaS.Runner.Sessions/Actions/Consumers/Builders/ConsumerBuilderLogic.cs`
     
     **Signature**
     ```csharp
@@ -395,7 +395,7 @@ Each entry uses the short function name as the table-of-contents label. Expand a
 
 ## `Configure`
 
-??? info "Location, signature, and docstring"
+??? info "Source file, signature, and docstring"
     **Member**
     `ConsumerBuilder.Configure(IReaderConfig config)`
     
@@ -403,7 +403,7 @@ Each entry uses the short function name as the table-of-contents label. Expand a
     
     **Declaring Type** `ConsumerBuilder`
     
-    **Location** `QaaS.Runner.Sessions/Actions/Consumers/Builders/ConsumerBuilderLogic.cs:288`
+    **Source File** `QaaS.Runner.Sessions/Actions/Consumers/Builders/ConsumerBuilderLogic.cs`
     
     **Signature**
     ```csharp

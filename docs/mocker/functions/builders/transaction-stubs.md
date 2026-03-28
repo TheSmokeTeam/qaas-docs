@@ -1,10 +1,10 @@
 # Transaction Stubs
 
-Each entry uses the short function name as the table-of-contents label. Expand an entry to inspect its location, signature, and XML doc comments.
+Each entry uses the short function name as the table-of-contents label. Expand an entry to inspect its source file, signature, and XML doc comments.
 
 ## `Named`
 
-??? info "Location, signature, and docstring"
+??? info "Source file, signature, and docstring"
     **Member**
     `TransactionStubBuilder.Named(string name)`
     
@@ -12,7 +12,7 @@ Each entry uses the short function name as the table-of-contents label. Expand a
     
     **Declaring Type** `TransactionStubBuilder`
     
-    **Location** `QaaS.Mocker.Stubs/ConfigurationObjects/TransactionStubBuilder.cs:63`
+    **Source File** `QaaS.Mocker.Stubs/ConfigurationObjects/TransactionStubBuilder.cs`
     
     **Signature**
     ```csharp
@@ -27,7 +27,7 @@ Each entry uses the short function name as the table-of-contents label. Expand a
 
 ## `HookNamed`
 
-??? info "Location, signature, and docstring"
+??? info "Source file, signature, and docstring"
     **Member**
     `TransactionStubBuilder.HookNamed(string processorName)`
     
@@ -35,7 +35,7 @@ Each entry uses the short function name as the table-of-contents label. Expand a
     
     **Declaring Type** `TransactionStubBuilder`
     
-    **Location** `QaaS.Mocker.Stubs/ConfigurationObjects/TransactionStubBuilder.cs:76`
+    **Source File** `QaaS.Mocker.Stubs/ConfigurationObjects/TransactionStubBuilder.cs`
     
     **Signature**
     ```csharp
@@ -50,7 +50,7 @@ Each entry uses the short function name as the table-of-contents label. Expand a
 
 ## `AddDataSourceName`
 
-??? info "Location, signature, and docstring"
+??? info "Source file, signature, and docstring"
     **Member**
     `TransactionStubBuilder.AddDataSourceName(string dataSourceName)`
     
@@ -58,7 +58,7 @@ Each entry uses the short function name as the table-of-contents label. Expand a
     
     **Declaring Type** `TransactionStubBuilder`
     
-    **Location** `QaaS.Mocker.Stubs/ConfigurationObjects/TransactionStubBuilder.cs:89`
+    **Source File** `QaaS.Mocker.Stubs/ConfigurationObjects/TransactionStubBuilder.cs`
     
     **Signature**
     ```csharp
@@ -73,7 +73,7 @@ Each entry uses the short function name as the table-of-contents label. Expand a
 
 ## `WithDataSourceNames`
 
-??? info "Location, signature, and docstring"
+??? info "Source file, signature, and docstring"
     **Member**
     `TransactionStubBuilder.WithDataSourceNames(IEnumerable<string> dataSourceNames)`
     
@@ -81,7 +81,7 @@ Each entry uses the short function name as the table-of-contents label. Expand a
     
     **Declaring Type** `TransactionStubBuilder`
     
-    **Location** `QaaS.Mocker.Stubs/ConfigurationObjects/TransactionStubBuilder.cs:102`
+    **Source File** `QaaS.Mocker.Stubs/ConfigurationObjects/TransactionStubBuilder.cs`
     
     **Signature**
     ```csharp
@@ -96,7 +96,7 @@ Each entry uses the short function name as the table-of-contents label. Expand a
 
 ## `ClearDataSourceNames`
 
-??? info "Location, signature, and docstring"
+??? info "Source file, signature, and docstring"
     **Member**
     `TransactionStubBuilder.ClearDataSourceNames()`
     
@@ -104,7 +104,7 @@ Each entry uses the short function name as the table-of-contents label. Expand a
     
     **Declaring Type** `TransactionStubBuilder`
     
-    **Location** `QaaS.Mocker.Stubs/ConfigurationObjects/TransactionStubBuilder.cs:115`
+    **Source File** `QaaS.Mocker.Stubs/ConfigurationObjects/TransactionStubBuilder.cs`
     
     **Signature**
     ```csharp
@@ -119,7 +119,7 @@ Each entry uses the short function name as the table-of-contents label. Expand a
 
 ## `Configure`
 
-??? info "Location, signature, and docstring"
+??? info "Source file, signature, and docstring"
     **Member**
     `TransactionStubBuilder.Configure(IConfiguration configuration)`
     
@@ -127,7 +127,7 @@ Each entry uses the short function name as the table-of-contents label. Expand a
     
     **Declaring Type** `TransactionStubBuilder`
     
-    **Location** `QaaS.Mocker.Stubs/ConfigurationObjects/TransactionStubBuilder.cs:128`
+    **Source File** `QaaS.Mocker.Stubs/ConfigurationObjects/TransactionStubBuilder.cs`
     
     **Signature**
     ```csharp
@@ -142,7 +142,7 @@ Each entry uses the short function name as the table-of-contents label. Expand a
 
 ## `CreateConfiguration`
 
-??? info "Location, signature, and docstring"
+??? info "Source file, signature, and docstring"
     **Member**
     `TransactionStubBuilder.CreateConfiguration(IConfiguration configuration)`
     
@@ -150,7 +150,7 @@ Each entry uses the short function name as the table-of-contents label. Expand a
     
     **Declaring Type** `TransactionStubBuilder`
     
-    **Location** `QaaS.Mocker.Stubs/ConfigurationObjects/TransactionStubBuilder.cs:141`
+    **Source File** `QaaS.Mocker.Stubs/ConfigurationObjects/TransactionStubBuilder.cs`
     
     **Signature**
     ```csharp
@@ -165,7 +165,7 @@ Each entry uses the short function name as the table-of-contents label. Expand a
 
 ## `Configure`
 
-??? info "Location, signature, and docstring"
+??? info "Source file, signature, and docstring"
     **Member**
     `TransactionStubBuilder.Configure(object configuration)`
     
@@ -173,7 +173,7 @@ Each entry uses the short function name as the table-of-contents label. Expand a
     
     **Declaring Type** `TransactionStubBuilder`
     
-    **Location** `QaaS.Mocker.Stubs/ConfigurationObjects/TransactionStubBuilder.cs:153`
+    **Source File** `QaaS.Mocker.Stubs/ConfigurationObjects/TransactionStubBuilder.cs`
     
     **Signature**
     ```csharp
@@ -188,7 +188,7 @@ Each entry uses the short function name as the table-of-contents label. Expand a
 
 ## `CreateConfiguration`
 
-??? info "Location, signature, and docstring"
+??? info "Source file, signature, and docstring"
     **Member**
     `TransactionStubBuilder.CreateConfiguration(object configuration)`
     
@@ -196,7 +196,7 @@ Each entry uses the short function name as the table-of-contents label. Expand a
     
     **Declaring Type** `TransactionStubBuilder`
     
-    **Location** `QaaS.Mocker.Stubs/ConfigurationObjects/TransactionStubBuilder.cs:167`
+    **Source File** `QaaS.Mocker.Stubs/ConfigurationObjects/TransactionStubBuilder.cs`
     
     **Signature**
     ```csharp
@@ -211,7 +211,7 @@ Each entry uses the short function name as the table-of-contents label. Expand a
 
 ## `Create`
 
-??? info "Location, signature, and docstring"
+??? info "Source file, signature, and docstring"
     **Member**
     `TransactionStubBuilder.Create(IConfiguration configuration)`
     
@@ -219,7 +219,7 @@ Each entry uses the short function name as the table-of-contents label. Expand a
     
     **Declaring Type** `TransactionStubBuilder`
     
-    **Location** `QaaS.Mocker.Stubs/ConfigurationObjects/TransactionStubBuilder.cs:179`
+    **Source File** `QaaS.Mocker.Stubs/ConfigurationObjects/TransactionStubBuilder.cs`
     
     **Signature**
     ```csharp
@@ -234,7 +234,7 @@ Each entry uses the short function name as the table-of-contents label. Expand a
 
 ## `Create`
 
-??? info "Location, signature, and docstring"
+??? info "Source file, signature, and docstring"
     **Member**
     `TransactionStubBuilder.Create(object configuration)`
     
@@ -242,7 +242,7 @@ Each entry uses the short function name as the table-of-contents label. Expand a
     
     **Declaring Type** `TransactionStubBuilder`
     
-    **Location** `QaaS.Mocker.Stubs/ConfigurationObjects/TransactionStubBuilder.cs:191`
+    **Source File** `QaaS.Mocker.Stubs/ConfigurationObjects/TransactionStubBuilder.cs`
     
     **Signature**
     ```csharp
@@ -257,7 +257,7 @@ Each entry uses the short function name as the table-of-contents label. Expand a
 
 ## `ReadConfiguration`
 
-??? info "Location, signature, and docstring"
+??? info "Source file, signature, and docstring"
     **Member**
     `TransactionStubBuilder.ReadConfiguration()`
     
@@ -265,7 +265,7 @@ Each entry uses the short function name as the table-of-contents label. Expand a
     
     **Declaring Type** `TransactionStubBuilder`
     
-    **Location** `QaaS.Mocker.Stubs/ConfigurationObjects/TransactionStubBuilder.cs:203`
+    **Source File** `QaaS.Mocker.Stubs/ConfigurationObjects/TransactionStubBuilder.cs`
     
     **Signature**
     ```csharp
@@ -280,7 +280,7 @@ Each entry uses the short function name as the table-of-contents label. Expand a
 
 ## `UpdateConfiguration`
 
-??? info "Location, signature, and docstring"
+??? info "Source file, signature, and docstring"
     **Member**
     `TransactionStubBuilder.UpdateConfiguration(object configuration)`
     
@@ -288,7 +288,7 @@ Each entry uses the short function name as the table-of-contents label. Expand a
     
     **Declaring Type** `TransactionStubBuilder`
     
-    **Location** `QaaS.Mocker.Stubs/ConfigurationObjects/TransactionStubBuilder.cs:225`
+    **Source File** `QaaS.Mocker.Stubs/ConfigurationObjects/TransactionStubBuilder.cs`
     
     **Signature**
     ```csharp
@@ -303,7 +303,7 @@ Each entry uses the short function name as the table-of-contents label. Expand a
 
 ## `DeleteConfiguration`
 
-??? info "Location, signature, and docstring"
+??? info "Source file, signature, and docstring"
     **Member**
     `TransactionStubBuilder.DeleteConfiguration()`
     
@@ -311,7 +311,7 @@ Each entry uses the short function name as the table-of-contents label. Expand a
     
     **Declaring Type** `TransactionStubBuilder`
     
-    **Location** `QaaS.Mocker.Stubs/ConfigurationObjects/TransactionStubBuilder.cs:238`
+    **Source File** `QaaS.Mocker.Stubs/ConfigurationObjects/TransactionStubBuilder.cs`
     
     **Signature**
     ```csharp
@@ -326,7 +326,7 @@ Each entry uses the short function name as the table-of-contents label. Expand a
 
 ## `DeserializeRequestBodyWith`
 
-??? info "Location, signature, and docstring"
+??? info "Source file, signature, and docstring"
     **Member**
     `TransactionStubBuilder.DeserializeRequestBodyWith(DeserializeConfig config)`
     
@@ -334,7 +334,7 @@ Each entry uses the short function name as the table-of-contents label. Expand a
     
     **Declaring Type** `TransactionStubBuilder`
     
-    **Location** `QaaS.Mocker.Stubs/ConfigurationObjects/TransactionStubBuilder.cs:251`
+    **Source File** `QaaS.Mocker.Stubs/ConfigurationObjects/TransactionStubBuilder.cs`
     
     **Signature**
     ```csharp
@@ -349,7 +349,7 @@ Each entry uses the short function name as the table-of-contents label. Expand a
 
 ## `SerializeResponseBodyWith`
 
-??? info "Location, signature, and docstring"
+??? info "Source file, signature, and docstring"
     **Member**
     `TransactionStubBuilder.SerializeResponseBodyWith(SerializeConfig config)`
     
@@ -357,7 +357,7 @@ Each entry uses the short function name as the table-of-contents label. Expand a
     
     **Declaring Type** `TransactionStubBuilder`
     
-    **Location** `QaaS.Mocker.Stubs/ConfigurationObjects/TransactionStubBuilder.cs:264`
+    **Source File** `QaaS.Mocker.Stubs/ConfigurationObjects/TransactionStubBuilder.cs`
     
     **Signature**
     ```csharp
@@ -372,7 +372,7 @@ Each entry uses the short function name as the table-of-contents label. Expand a
 
 ## `Build`
 
-??? info "Location, signature, and docstring"
+??? info "Source file, signature, and docstring"
     **Member**
     `TransactionStubBuilder.Build()`
     
@@ -380,7 +380,7 @@ Each entry uses the short function name as the table-of-contents label. Expand a
     
     **Declaring Type** `TransactionStubBuilder`
     
-    **Location** `QaaS.Mocker.Stubs/ConfigurationObjects/TransactionStubBuilder.cs:277`
+    **Source File** `QaaS.Mocker.Stubs/ConfigurationObjects/TransactionStubBuilder.cs`
     
     **Signature**
     ```csharp
@@ -395,7 +395,7 @@ Each entry uses the short function name as the table-of-contents label. Expand a
 
 ## `FromConfig`
 
-??? info "Location, signature, and docstring"
+??? info "Source file, signature, and docstring"
     **Member**
     `TransactionStubBuilder.FromConfig(TransactionStubConfig config)`
     
@@ -403,7 +403,7 @@ Each entry uses the short function name as the table-of-contents label. Expand a
     
     **Declaring Type** `TransactionStubBuilder`
     
-    **Location** `QaaS.Mocker.Stubs/ConfigurationObjects/TransactionStubBuilder.cs:302`
+    **Source File** `QaaS.Mocker.Stubs/ConfigurationObjects/TransactionStubBuilder.cs`
     
     **Signature**
     ```csharp

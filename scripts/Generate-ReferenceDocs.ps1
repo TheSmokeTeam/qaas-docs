@@ -274,6 +274,11 @@ Restore-TrackedDocsPageIfSectionsMissing `
     -RelativePath 'docs\mocker\functions\index.md' `
     -RequiredSections @('Builders', 'Commands')
 
+& (Join-Path $PSScriptRoot 'Update-HookOverviews.ps1') `
+    -DocsRoot $DocsRoot `
+    -Check:$Check
+if ($LASTEXITCODE -ne 0) { throw 'Hook overview enrichment failed.' }
+
 & (Join-Path $PSScriptRoot 'Sync-SchemaAssets.ps1') `
     -DocsRoot $DocsRoot `
     -MirrorRoot $MirrorRoot `

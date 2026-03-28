@@ -1,10 +1,10 @@
 # Sessions
 
-Each entry uses the short function name as the table-of-contents label. Expand an entry to inspect its location, signature, and XML doc comments.
+Each entry uses the short function name as the table-of-contents label. Expand an entry to inspect its source file, signature, and XML doc comments.
 
 ## `Named`
 
-??? info "Location, signature, and docstring"
+??? info "Source file, signature, and docstring"
     **Member**
     `SessionBuilder.Named(string name)`
     
@@ -12,7 +12,7 @@ Each entry uses the short function name as the table-of-contents label. Expand a
     
     **Declaring Type** `SessionBuilder`
     
-    **Location** `QaaS.Runner.Sessions/Session/Builders/SessionBuilderLogic.cs:25`
+    **Source File** `QaaS.Runner.Sessions/Session/Builders/SessionBuilderLogic.cs`
     
     **Signature**
     ```csharp
@@ -27,7 +27,7 @@ Each entry uses the short function name as the table-of-contents label. Expand a
 
 ## `WithTimeoutBefore`
 
-??? info "Location, signature, and docstring"
+??? info "Source file, signature, and docstring"
     **Member**
     `SessionBuilder.WithTimeoutBefore(uint timeout)`
     
@@ -35,7 +35,7 @@ Each entry uses the short function name as the table-of-contents label. Expand a
     
     **Declaring Type** `SessionBuilder`
     
-    **Location** `QaaS.Runner.Sessions/Session/Builders/SessionBuilderLogic.cs:38`
+    **Source File** `QaaS.Runner.Sessions/Session/Builders/SessionBuilderLogic.cs`
     
     **Signature**
     ```csharp
@@ -50,7 +50,7 @@ Each entry uses the short function name as the table-of-contents label. Expand a
 
 ## `WithTimeoutAfter`
 
-??? info "Location, signature, and docstring"
+??? info "Source file, signature, and docstring"
     **Member**
     `SessionBuilder.WithTimeoutAfter(uint timeout)`
     
@@ -58,7 +58,7 @@ Each entry uses the short function name as the table-of-contents label. Expand a
     
     **Declaring Type** `SessionBuilder`
     
-    **Location** `QaaS.Runner.Sessions/Session/Builders/SessionBuilderLogic.cs:51`
+    **Source File** `QaaS.Runner.Sessions/Session/Builders/SessionBuilderLogic.cs`
     
     **Signature**
     ```csharp
@@ -73,7 +73,7 @@ Each entry uses the short function name as the table-of-contents label. Expand a
 
 ## `AtStage`
 
-??? info "Location, signature, and docstring"
+??? info "Source file, signature, and docstring"
     **Member**
     `SessionBuilder.AtStage(int stage)`
     
@@ -81,7 +81,7 @@ Each entry uses the short function name as the table-of-contents label. Expand a
     
     **Declaring Type** `SessionBuilder`
     
-    **Location** `QaaS.Runner.Sessions/Session/Builders/SessionBuilderLogic.cs:64`
+    **Source File** `QaaS.Runner.Sessions/Session/Builders/SessionBuilderLogic.cs`
     
     **Signature**
     ```csharp
@@ -96,7 +96,7 @@ Each entry uses the short function name as the table-of-contents label. Expand a
 
 ## `RunSessionUntilStage`
 
-??? info "Location, signature, and docstring"
+??? info "Source file, signature, and docstring"
     **Member**
     `SessionBuilder.RunSessionUntilStage(int stage)`
     
@@ -104,7 +104,7 @@ Each entry uses the short function name as the table-of-contents label. Expand a
     
     **Declaring Type** `SessionBuilder`
     
-    **Location** `QaaS.Runner.Sessions/Session/Builders/SessionBuilderLogic.cs:78`
+    **Source File** `QaaS.Runner.Sessions/Session/Builders/SessionBuilderLogic.cs`
     
     **Signature**
     ```csharp
@@ -119,7 +119,7 @@ Each entry uses the short function name as the table-of-contents label. Expand a
 
 ## `DiscardData`
 
-??? info "Location, signature, and docstring"
+??? info "Source file, signature, and docstring"
     **Member**
     `SessionBuilder.DiscardData()`
     
@@ -127,7 +127,7 @@ Each entry uses the short function name as the table-of-contents label. Expand a
     
     **Declaring Type** `SessionBuilder`
     
-    **Location** `QaaS.Runner.Sessions/Session/Builders/SessionBuilderLogic.cs:91`
+    **Source File** `QaaS.Runner.Sessions/Session/Builders/SessionBuilderLogic.cs`
     
     **Signature**
     ```csharp
@@ -142,7 +142,7 @@ Each entry uses the short function name as the table-of-contents label. Expand a
 
 ## `WithinCategory`
 
-??? info "Location, signature, and docstring"
+??? info "Source file, signature, and docstring"
     **Member**
     `SessionBuilder.WithinCategory(string category)`
     
@@ -150,7 +150,7 @@ Each entry uses the short function name as the table-of-contents label. Expand a
     
     **Declaring Type** `SessionBuilder`
     
-    **Location** `QaaS.Runner.Sessions/Session/Builders/SessionBuilderLogic.cs:104`
+    **Source File** `QaaS.Runner.Sessions/Session/Builders/SessionBuilderLogic.cs`
     
     **Signature**
     ```csharp
@@ -165,7 +165,7 @@ Each entry uses the short function name as the table-of-contents label. Expand a
 
 ## `AddConsumer`
 
-??? info "Location, signature, and docstring"
+??? info "Source file, signature, and docstring"
     **Member**
     `SessionBuilder.AddConsumer(ConsumerBuilder consumerBuilder)`
     
@@ -173,7 +173,7 @@ Each entry uses the short function name as the table-of-contents label. Expand a
     
     **Declaring Type** `SessionBuilder`
     
-    **Location** `QaaS.Runner.Sessions/Session/Builders/SessionBuilderLogic.cs:117`
+    **Source File** `QaaS.Runner.Sessions/Session/Builders/SessionBuilderLogic.cs`
     
     **Signature**
     ```csharp
@@ -188,7 +188,7 @@ Each entry uses the short function name as the table-of-contents label. Expand a
 
 ## `CreateConsumer`
 
-??? info "Location, signature, and docstring"
+??? info "Source file, signature, and docstring"
     **Member**
     `SessionBuilder.CreateConsumer(ConsumerBuilder consumerBuilder)`
     
@@ -196,7 +196,7 @@ Each entry uses the short function name as the table-of-contents label. Expand a
     
     **Declaring Type** `SessionBuilder`
     
-    **Location** `QaaS.Runner.Sessions/Session/Builders/SessionBuilderLogic.cs:130`
+    **Source File** `QaaS.Runner.Sessions/Session/Builders/SessionBuilderLogic.cs`
     
     **Signature**
     ```csharp
@@ -211,7 +211,7 @@ Each entry uses the short function name as the table-of-contents label. Expand a
 
 ## `ReadConsumers`
 
-??? info "Location, signature, and docstring"
+??? info "Source file, signature, and docstring"
     **Member**
     `SessionBuilder.ReadConsumers()`
     
@@ -219,7 +219,7 @@ Each entry uses the short function name as the table-of-contents label. Expand a
     
     **Declaring Type** `SessionBuilder`
     
-    **Location** `QaaS.Runner.Sessions/Session/Builders/SessionBuilderLogic.cs:142`
+    **Source File** `QaaS.Runner.Sessions/Session/Builders/SessionBuilderLogic.cs`
     
     **Signature**
     ```csharp
@@ -234,7 +234,7 @@ Each entry uses the short function name as the table-of-contents label. Expand a
 
 ## `ReadConsumer`
 
-??? info "Location, signature, and docstring"
+??? info "Source file, signature, and docstring"
     **Member**
     `SessionBuilder.ReadConsumer(string name)`
     
@@ -242,7 +242,7 @@ Each entry uses the short function name as the table-of-contents label. Expand a
     
     **Declaring Type** `SessionBuilder`
     
-    **Location** `QaaS.Runner.Sessions/Session/Builders/SessionBuilderLogic.cs:154`
+    **Source File** `QaaS.Runner.Sessions/Session/Builders/SessionBuilderLogic.cs`
     
     **Signature**
     ```csharp
@@ -257,7 +257,7 @@ Each entry uses the short function name as the table-of-contents label. Expand a
 
 ## `UpdateConsumer`
 
-??? info "Location, signature, and docstring"
+??? info "Source file, signature, and docstring"
     **Member**
     `SessionBuilder.UpdateConsumer(string name, ConsumerBuilder consumerBuilder)`
     
@@ -265,7 +265,7 @@ Each entry uses the short function name as the table-of-contents label. Expand a
     
     **Declaring Type** `SessionBuilder`
     
-    **Location** `QaaS.Runner.Sessions/Session/Builders/SessionBuilderLogic.cs:166`
+    **Source File** `QaaS.Runner.Sessions/Session/Builders/SessionBuilderLogic.cs`
     
     **Signature**
     ```csharp
@@ -280,7 +280,7 @@ Each entry uses the short function name as the table-of-contents label. Expand a
 
 ## `UpdateConsumer`
 
-??? info "Location, signature, and docstring"
+??? info "Source file, signature, and docstring"
     **Member**
     `SessionBuilder.UpdateConsumer(string name, Func<ConsumerBuilder, ConsumerBuilder> update)`
     
@@ -288,7 +288,7 @@ Each entry uses the short function name as the table-of-contents label. Expand a
     
     **Declaring Type** `SessionBuilder`
     
-    **Location** `QaaS.Runner.Sessions/Session/Builders/SessionBuilderLogic.cs:179`
+    **Source File** `QaaS.Runner.Sessions/Session/Builders/SessionBuilderLogic.cs`
     
     **Signature**
     ```csharp
@@ -303,7 +303,7 @@ Each entry uses the short function name as the table-of-contents label. Expand a
 
 ## `DeleteConsumer`
 
-??? info "Location, signature, and docstring"
+??? info "Source file, signature, and docstring"
     **Member**
     `SessionBuilder.DeleteConsumer(string name)`
     
@@ -311,7 +311,7 @@ Each entry uses the short function name as the table-of-contents label. Expand a
     
     **Declaring Type** `SessionBuilder`
     
-    **Location** `QaaS.Runner.Sessions/Session/Builders/SessionBuilderLogic.cs:192`
+    **Source File** `QaaS.Runner.Sessions/Session/Builders/SessionBuilderLogic.cs`
     
     **Signature**
     ```csharp
@@ -326,7 +326,7 @@ Each entry uses the short function name as the table-of-contents label. Expand a
 
 ## `AddPublisher`
 
-??? info "Location, signature, and docstring"
+??? info "Source file, signature, and docstring"
     **Member**
     `SessionBuilder.AddPublisher(PublisherBuilder publisherBuilder)`
     
@@ -334,7 +334,7 @@ Each entry uses the short function name as the table-of-contents label. Expand a
     
     **Declaring Type** `SessionBuilder`
     
-    **Location** `QaaS.Runner.Sessions/Session/Builders/SessionBuilderLogic.cs:205`
+    **Source File** `QaaS.Runner.Sessions/Session/Builders/SessionBuilderLogic.cs`
     
     **Signature**
     ```csharp
@@ -349,7 +349,7 @@ Each entry uses the short function name as the table-of-contents label. Expand a
 
 ## `CreatePublisher`
 
-??? info "Location, signature, and docstring"
+??? info "Source file, signature, and docstring"
     **Member**
     `SessionBuilder.CreatePublisher(PublisherBuilder publisherBuilder)`
     
@@ -357,7 +357,7 @@ Each entry uses the short function name as the table-of-contents label. Expand a
     
     **Declaring Type** `SessionBuilder`
     
-    **Location** `QaaS.Runner.Sessions/Session/Builders/SessionBuilderLogic.cs:218`
+    **Source File** `QaaS.Runner.Sessions/Session/Builders/SessionBuilderLogic.cs`
     
     **Signature**
     ```csharp
@@ -372,7 +372,7 @@ Each entry uses the short function name as the table-of-contents label. Expand a
 
 ## `ReadPublishers`
 
-??? info "Location, signature, and docstring"
+??? info "Source file, signature, and docstring"
     **Member**
     `SessionBuilder.ReadPublishers()`
     
@@ -380,7 +380,7 @@ Each entry uses the short function name as the table-of-contents label. Expand a
     
     **Declaring Type** `SessionBuilder`
     
-    **Location** `QaaS.Runner.Sessions/Session/Builders/SessionBuilderLogic.cs:230`
+    **Source File** `QaaS.Runner.Sessions/Session/Builders/SessionBuilderLogic.cs`
     
     **Signature**
     ```csharp
@@ -395,7 +395,7 @@ Each entry uses the short function name as the table-of-contents label. Expand a
 
 ## `ReadPublisher`
 
-??? info "Location, signature, and docstring"
+??? info "Source file, signature, and docstring"
     **Member**
     `SessionBuilder.ReadPublisher(string name)`
     
@@ -403,7 +403,7 @@ Each entry uses the short function name as the table-of-contents label. Expand a
     
     **Declaring Type** `SessionBuilder`
     
-    **Location** `QaaS.Runner.Sessions/Session/Builders/SessionBuilderLogic.cs:242`
+    **Source File** `QaaS.Runner.Sessions/Session/Builders/SessionBuilderLogic.cs`
     
     **Signature**
     ```csharp
@@ -418,7 +418,7 @@ Each entry uses the short function name as the table-of-contents label. Expand a
 
 ## `UpdatePublisher`
 
-??? info "Location, signature, and docstring"
+??? info "Source file, signature, and docstring"
     **Member**
     `SessionBuilder.UpdatePublisher(string name, PublisherBuilder publisherBuilder)`
     
@@ -426,7 +426,7 @@ Each entry uses the short function name as the table-of-contents label. Expand a
     
     **Declaring Type** `SessionBuilder`
     
-    **Location** `QaaS.Runner.Sessions/Session/Builders/SessionBuilderLogic.cs:254`
+    **Source File** `QaaS.Runner.Sessions/Session/Builders/SessionBuilderLogic.cs`
     
     **Signature**
     ```csharp
@@ -441,7 +441,7 @@ Each entry uses the short function name as the table-of-contents label. Expand a
 
 ## `UpdatePublisher`
 
-??? info "Location, signature, and docstring"
+??? info "Source file, signature, and docstring"
     **Member**
     `SessionBuilder.UpdatePublisher(string name, Func<PublisherBuilder, PublisherBuilder> update)`
     
@@ -449,7 +449,7 @@ Each entry uses the short function name as the table-of-contents label. Expand a
     
     **Declaring Type** `SessionBuilder`
     
-    **Location** `QaaS.Runner.Sessions/Session/Builders/SessionBuilderLogic.cs:267`
+    **Source File** `QaaS.Runner.Sessions/Session/Builders/SessionBuilderLogic.cs`
     
     **Signature**
     ```csharp
@@ -464,7 +464,7 @@ Each entry uses the short function name as the table-of-contents label. Expand a
 
 ## `DeletePublisher`
 
-??? info "Location, signature, and docstring"
+??? info "Source file, signature, and docstring"
     **Member**
     `SessionBuilder.DeletePublisher(string name)`
     
@@ -472,7 +472,7 @@ Each entry uses the short function name as the table-of-contents label. Expand a
     
     **Declaring Type** `SessionBuilder`
     
-    **Location** `QaaS.Runner.Sessions/Session/Builders/SessionBuilderLogic.cs:280`
+    **Source File** `QaaS.Runner.Sessions/Session/Builders/SessionBuilderLogic.cs`
     
     **Signature**
     ```csharp
@@ -487,7 +487,7 @@ Each entry uses the short function name as the table-of-contents label. Expand a
 
 ## `AddTransaction`
 
-??? info "Location, signature, and docstring"
+??? info "Source file, signature, and docstring"
     **Member**
     `SessionBuilder.AddTransaction(TransactionBuilder transactionBuilder)`
     
@@ -495,7 +495,7 @@ Each entry uses the short function name as the table-of-contents label. Expand a
     
     **Declaring Type** `SessionBuilder`
     
-    **Location** `QaaS.Runner.Sessions/Session/Builders/SessionBuilderLogic.cs:293`
+    **Source File** `QaaS.Runner.Sessions/Session/Builders/SessionBuilderLogic.cs`
     
     **Signature**
     ```csharp
@@ -510,7 +510,7 @@ Each entry uses the short function name as the table-of-contents label. Expand a
 
 ## `CreateTransaction`
 
-??? info "Location, signature, and docstring"
+??? info "Source file, signature, and docstring"
     **Member**
     `SessionBuilder.CreateTransaction(TransactionBuilder transactionBuilder)`
     
@@ -518,7 +518,7 @@ Each entry uses the short function name as the table-of-contents label. Expand a
     
     **Declaring Type** `SessionBuilder`
     
-    **Location** `QaaS.Runner.Sessions/Session/Builders/SessionBuilderLogic.cs:306`
+    **Source File** `QaaS.Runner.Sessions/Session/Builders/SessionBuilderLogic.cs`
     
     **Signature**
     ```csharp
@@ -533,7 +533,7 @@ Each entry uses the short function name as the table-of-contents label. Expand a
 
 ## `ReadTransactions`
 
-??? info "Location, signature, and docstring"
+??? info "Source file, signature, and docstring"
     **Member**
     `SessionBuilder.ReadTransactions()`
     
@@ -541,7 +541,7 @@ Each entry uses the short function name as the table-of-contents label. Expand a
     
     **Declaring Type** `SessionBuilder`
     
-    **Location** `QaaS.Runner.Sessions/Session/Builders/SessionBuilderLogic.cs:318`
+    **Source File** `QaaS.Runner.Sessions/Session/Builders/SessionBuilderLogic.cs`
     
     **Signature**
     ```csharp
@@ -556,7 +556,7 @@ Each entry uses the short function name as the table-of-contents label. Expand a
 
 ## `ReadTransaction`
 
-??? info "Location, signature, and docstring"
+??? info "Source file, signature, and docstring"
     **Member**
     `SessionBuilder.ReadTransaction(string name)`
     
@@ -564,7 +564,7 @@ Each entry uses the short function name as the table-of-contents label. Expand a
     
     **Declaring Type** `SessionBuilder`
     
-    **Location** `QaaS.Runner.Sessions/Session/Builders/SessionBuilderLogic.cs:330`
+    **Source File** `QaaS.Runner.Sessions/Session/Builders/SessionBuilderLogic.cs`
     
     **Signature**
     ```csharp
@@ -579,7 +579,7 @@ Each entry uses the short function name as the table-of-contents label. Expand a
 
 ## `UpdateTransaction`
 
-??? info "Location, signature, and docstring"
+??? info "Source file, signature, and docstring"
     **Member**
     `SessionBuilder.UpdateTransaction(string name, TransactionBuilder transactionBuilder)`
     
@@ -587,7 +587,7 @@ Each entry uses the short function name as the table-of-contents label. Expand a
     
     **Declaring Type** `SessionBuilder`
     
-    **Location** `QaaS.Runner.Sessions/Session/Builders/SessionBuilderLogic.cs:342`
+    **Source File** `QaaS.Runner.Sessions/Session/Builders/SessionBuilderLogic.cs`
     
     **Signature**
     ```csharp
@@ -602,7 +602,7 @@ Each entry uses the short function name as the table-of-contents label. Expand a
 
 ## `UpdateTransaction`
 
-??? info "Location, signature, and docstring"
+??? info "Source file, signature, and docstring"
     **Member**
     `SessionBuilder.UpdateTransaction(string name, Func<TransactionBuilder, TransactionBuilder> update)`
     
@@ -610,7 +610,7 @@ Each entry uses the short function name as the table-of-contents label. Expand a
     
     **Declaring Type** `SessionBuilder`
     
-    **Location** `QaaS.Runner.Sessions/Session/Builders/SessionBuilderLogic.cs:355`
+    **Source File** `QaaS.Runner.Sessions/Session/Builders/SessionBuilderLogic.cs`
     
     **Signature**
     ```csharp
@@ -625,7 +625,7 @@ Each entry uses the short function name as the table-of-contents label. Expand a
 
 ## `DeleteTransaction`
 
-??? info "Location, signature, and docstring"
+??? info "Source file, signature, and docstring"
     **Member**
     `SessionBuilder.DeleteTransaction(string name)`
     
@@ -633,7 +633,7 @@ Each entry uses the short function name as the table-of-contents label. Expand a
     
     **Declaring Type** `SessionBuilder`
     
-    **Location** `QaaS.Runner.Sessions/Session/Builders/SessionBuilderLogic.cs:368`
+    **Source File** `QaaS.Runner.Sessions/Session/Builders/SessionBuilderLogic.cs`
     
     **Signature**
     ```csharp
@@ -648,7 +648,7 @@ Each entry uses the short function name as the table-of-contents label. Expand a
 
 ## `AddProbe`
 
-??? info "Location, signature, and docstring"
+??? info "Source file, signature, and docstring"
     **Member**
     `SessionBuilder.AddProbe(ProbeBuilder probeBuilder)`
     
@@ -656,7 +656,7 @@ Each entry uses the short function name as the table-of-contents label. Expand a
     
     **Declaring Type** `SessionBuilder`
     
-    **Location** `QaaS.Runner.Sessions/Session/Builders/SessionBuilderLogic.cs:381`
+    **Source File** `QaaS.Runner.Sessions/Session/Builders/SessionBuilderLogic.cs`
     
     **Signature**
     ```csharp
@@ -671,7 +671,7 @@ Each entry uses the short function name as the table-of-contents label. Expand a
 
 ## `CreateProbe`
 
-??? info "Location, signature, and docstring"
+??? info "Source file, signature, and docstring"
     **Member**
     `SessionBuilder.CreateProbe(ProbeBuilder probeBuilder)`
     
@@ -679,7 +679,7 @@ Each entry uses the short function name as the table-of-contents label. Expand a
     
     **Declaring Type** `SessionBuilder`
     
-    **Location** `QaaS.Runner.Sessions/Session/Builders/SessionBuilderLogic.cs:394`
+    **Source File** `QaaS.Runner.Sessions/Session/Builders/SessionBuilderLogic.cs`
     
     **Signature**
     ```csharp
@@ -694,7 +694,7 @@ Each entry uses the short function name as the table-of-contents label. Expand a
 
 ## `ReadProbes`
 
-??? info "Location, signature, and docstring"
+??? info "Source file, signature, and docstring"
     **Member**
     `SessionBuilder.ReadProbes()`
     
@@ -702,7 +702,7 @@ Each entry uses the short function name as the table-of-contents label. Expand a
     
     **Declaring Type** `SessionBuilder`
     
-    **Location** `QaaS.Runner.Sessions/Session/Builders/SessionBuilderLogic.cs:406`
+    **Source File** `QaaS.Runner.Sessions/Session/Builders/SessionBuilderLogic.cs`
     
     **Signature**
     ```csharp
@@ -717,7 +717,7 @@ Each entry uses the short function name as the table-of-contents label. Expand a
 
 ## `ReadProbe`
 
-??? info "Location, signature, and docstring"
+??? info "Source file, signature, and docstring"
     **Member**
     `SessionBuilder.ReadProbe(string name)`
     
@@ -725,7 +725,7 @@ Each entry uses the short function name as the table-of-contents label. Expand a
     
     **Declaring Type** `SessionBuilder`
     
-    **Location** `QaaS.Runner.Sessions/Session/Builders/SessionBuilderLogic.cs:418`
+    **Source File** `QaaS.Runner.Sessions/Session/Builders/SessionBuilderLogic.cs`
     
     **Signature**
     ```csharp
@@ -740,7 +740,7 @@ Each entry uses the short function name as the table-of-contents label. Expand a
 
 ## `UpdateProbe`
 
-??? info "Location, signature, and docstring"
+??? info "Source file, signature, and docstring"
     **Member**
     `SessionBuilder.UpdateProbe(string name, ProbeBuilder probeBuilder)`
     
@@ -748,7 +748,7 @@ Each entry uses the short function name as the table-of-contents label. Expand a
     
     **Declaring Type** `SessionBuilder`
     
-    **Location** `QaaS.Runner.Sessions/Session/Builders/SessionBuilderLogic.cs:430`
+    **Source File** `QaaS.Runner.Sessions/Session/Builders/SessionBuilderLogic.cs`
     
     **Signature**
     ```csharp
@@ -763,7 +763,7 @@ Each entry uses the short function name as the table-of-contents label. Expand a
 
 ## `UpdateProbe`
 
-??? info "Location, signature, and docstring"
+??? info "Source file, signature, and docstring"
     **Member**
     `SessionBuilder.UpdateProbe(string name, Func<ProbeBuilder, ProbeBuilder> update)`
     
@@ -771,7 +771,7 @@ Each entry uses the short function name as the table-of-contents label. Expand a
     
     **Declaring Type** `SessionBuilder`
     
-    **Location** `QaaS.Runner.Sessions/Session/Builders/SessionBuilderLogic.cs:443`
+    **Source File** `QaaS.Runner.Sessions/Session/Builders/SessionBuilderLogic.cs`
     
     **Signature**
     ```csharp
@@ -786,7 +786,7 @@ Each entry uses the short function name as the table-of-contents label. Expand a
 
 ## `DeleteProbe`
 
-??? info "Location, signature, and docstring"
+??? info "Source file, signature, and docstring"
     **Member**
     `SessionBuilder.DeleteProbe(string name)`
     
@@ -794,7 +794,7 @@ Each entry uses the short function name as the table-of-contents label. Expand a
     
     **Declaring Type** `SessionBuilder`
     
-    **Location** `QaaS.Runner.Sessions/Session/Builders/SessionBuilderLogic.cs:456`
+    **Source File** `QaaS.Runner.Sessions/Session/Builders/SessionBuilderLogic.cs`
     
     **Signature**
     ```csharp
@@ -809,7 +809,7 @@ Each entry uses the short function name as the table-of-contents label. Expand a
 
 ## `AddCollector`
 
-??? info "Location, signature, and docstring"
+??? info "Source file, signature, and docstring"
     **Member**
     `SessionBuilder.AddCollector(CollectorBuilder collectorBuilder)`
     
@@ -817,7 +817,7 @@ Each entry uses the short function name as the table-of-contents label. Expand a
     
     **Declaring Type** `SessionBuilder`
     
-    **Location** `QaaS.Runner.Sessions/Session/Builders/SessionBuilderLogic.cs:469`
+    **Source File** `QaaS.Runner.Sessions/Session/Builders/SessionBuilderLogic.cs`
     
     **Signature**
     ```csharp
@@ -832,7 +832,7 @@ Each entry uses the short function name as the table-of-contents label. Expand a
 
 ## `CreateCollector`
 
-??? info "Location, signature, and docstring"
+??? info "Source file, signature, and docstring"
     **Member**
     `SessionBuilder.CreateCollector(CollectorBuilder collectorBuilder)`
     
@@ -840,7 +840,7 @@ Each entry uses the short function name as the table-of-contents label. Expand a
     
     **Declaring Type** `SessionBuilder`
     
-    **Location** `QaaS.Runner.Sessions/Session/Builders/SessionBuilderLogic.cs:482`
+    **Source File** `QaaS.Runner.Sessions/Session/Builders/SessionBuilderLogic.cs`
     
     **Signature**
     ```csharp
@@ -855,7 +855,7 @@ Each entry uses the short function name as the table-of-contents label. Expand a
 
 ## `ReadCollectors`
 
-??? info "Location, signature, and docstring"
+??? info "Source file, signature, and docstring"
     **Member**
     `SessionBuilder.ReadCollectors()`
     
@@ -863,7 +863,7 @@ Each entry uses the short function name as the table-of-contents label. Expand a
     
     **Declaring Type** `SessionBuilder`
     
-    **Location** `QaaS.Runner.Sessions/Session/Builders/SessionBuilderLogic.cs:494`
+    **Source File** `QaaS.Runner.Sessions/Session/Builders/SessionBuilderLogic.cs`
     
     **Signature**
     ```csharp
@@ -878,7 +878,7 @@ Each entry uses the short function name as the table-of-contents label. Expand a
 
 ## `ReadCollector`
 
-??? info "Location, signature, and docstring"
+??? info "Source file, signature, and docstring"
     **Member**
     `SessionBuilder.ReadCollector(string name)`
     
@@ -886,7 +886,7 @@ Each entry uses the short function name as the table-of-contents label. Expand a
     
     **Declaring Type** `SessionBuilder`
     
-    **Location** `QaaS.Runner.Sessions/Session/Builders/SessionBuilderLogic.cs:506`
+    **Source File** `QaaS.Runner.Sessions/Session/Builders/SessionBuilderLogic.cs`
     
     **Signature**
     ```csharp
@@ -901,7 +901,7 @@ Each entry uses the short function name as the table-of-contents label. Expand a
 
 ## `UpdateCollector`
 
-??? info "Location, signature, and docstring"
+??? info "Source file, signature, and docstring"
     **Member**
     `SessionBuilder.UpdateCollector(string name, CollectorBuilder collectorBuilder)`
     
@@ -909,7 +909,7 @@ Each entry uses the short function name as the table-of-contents label. Expand a
     
     **Declaring Type** `SessionBuilder`
     
-    **Location** `QaaS.Runner.Sessions/Session/Builders/SessionBuilderLogic.cs:518`
+    **Source File** `QaaS.Runner.Sessions/Session/Builders/SessionBuilderLogic.cs`
     
     **Signature**
     ```csharp
@@ -924,7 +924,7 @@ Each entry uses the short function name as the table-of-contents label. Expand a
 
 ## `UpdateCollector`
 
-??? info "Location, signature, and docstring"
+??? info "Source file, signature, and docstring"
     **Member**
     `SessionBuilder.UpdateCollector(string name, Func<CollectorBuilder, CollectorBuilder> update)`
     
@@ -932,7 +932,7 @@ Each entry uses the short function name as the table-of-contents label. Expand a
     
     **Declaring Type** `SessionBuilder`
     
-    **Location** `QaaS.Runner.Sessions/Session/Builders/SessionBuilderLogic.cs:531`
+    **Source File** `QaaS.Runner.Sessions/Session/Builders/SessionBuilderLogic.cs`
     
     **Signature**
     ```csharp
@@ -947,7 +947,7 @@ Each entry uses the short function name as the table-of-contents label. Expand a
 
 ## `DeleteCollector`
 
-??? info "Location, signature, and docstring"
+??? info "Source file, signature, and docstring"
     **Member**
     `SessionBuilder.DeleteCollector(string name)`
     
@@ -955,7 +955,7 @@ Each entry uses the short function name as the table-of-contents label. Expand a
     
     **Declaring Type** `SessionBuilder`
     
-    **Location** `QaaS.Runner.Sessions/Session/Builders/SessionBuilderLogic.cs:544`
+    **Source File** `QaaS.Runner.Sessions/Session/Builders/SessionBuilderLogic.cs`
     
     **Signature**
     ```csharp
@@ -970,7 +970,7 @@ Each entry uses the short function name as the table-of-contents label. Expand a
 
 ## `AddMockerCommand`
 
-??? info "Location, signature, and docstring"
+??? info "Source file, signature, and docstring"
     **Member**
     `SessionBuilder.AddMockerCommand(MockerCommandBuilder mockerCommandBuilder)`
     
@@ -978,7 +978,7 @@ Each entry uses the short function name as the table-of-contents label. Expand a
     
     **Declaring Type** `SessionBuilder`
     
-    **Location** `QaaS.Runner.Sessions/Session/Builders/SessionBuilderLogic.cs:557`
+    **Source File** `QaaS.Runner.Sessions/Session/Builders/SessionBuilderLogic.cs`
     
     **Signature**
     ```csharp
@@ -993,7 +993,7 @@ Each entry uses the short function name as the table-of-contents label. Expand a
 
 ## `CreateMockerCommand`
 
-??? info "Location, signature, and docstring"
+??? info "Source file, signature, and docstring"
     **Member**
     `SessionBuilder.CreateMockerCommand(MockerCommandBuilder mockerCommandBuilder)`
     
@@ -1001,7 +1001,7 @@ Each entry uses the short function name as the table-of-contents label. Expand a
     
     **Declaring Type** `SessionBuilder`
     
-    **Location** `QaaS.Runner.Sessions/Session/Builders/SessionBuilderLogic.cs:572`
+    **Source File** `QaaS.Runner.Sessions/Session/Builders/SessionBuilderLogic.cs`
     
     **Signature**
     ```csharp
@@ -1016,7 +1016,7 @@ Each entry uses the short function name as the table-of-contents label. Expand a
 
 ## `ReadMockerCommands`
 
-??? info "Location, signature, and docstring"
+??? info "Source file, signature, and docstring"
     **Member**
     `SessionBuilder.ReadMockerCommands()`
     
@@ -1024,7 +1024,7 @@ Each entry uses the short function name as the table-of-contents label. Expand a
     
     **Declaring Type** `SessionBuilder`
     
-    **Location** `QaaS.Runner.Sessions/Session/Builders/SessionBuilderLogic.cs:584`
+    **Source File** `QaaS.Runner.Sessions/Session/Builders/SessionBuilderLogic.cs`
     
     **Signature**
     ```csharp
@@ -1039,7 +1039,7 @@ Each entry uses the short function name as the table-of-contents label. Expand a
 
 ## `ReadMockerCommand`
 
-??? info "Location, signature, and docstring"
+??? info "Source file, signature, and docstring"
     **Member**
     `SessionBuilder.ReadMockerCommand(string name)`
     
@@ -1047,7 +1047,7 @@ Each entry uses the short function name as the table-of-contents label. Expand a
     
     **Declaring Type** `SessionBuilder`
     
-    **Location** `QaaS.Runner.Sessions/Session/Builders/SessionBuilderLogic.cs:596`
+    **Source File** `QaaS.Runner.Sessions/Session/Builders/SessionBuilderLogic.cs`
     
     **Signature**
     ```csharp
@@ -1062,7 +1062,7 @@ Each entry uses the short function name as the table-of-contents label. Expand a
 
 ## `UpdateMockerCommand`
 
-??? info "Location, signature, and docstring"
+??? info "Source file, signature, and docstring"
     **Member**
     `SessionBuilder.UpdateMockerCommand(string name, MockerCommandBuilder mockerCommandBuilder)`
     
@@ -1070,7 +1070,7 @@ Each entry uses the short function name as the table-of-contents label. Expand a
     
     **Declaring Type** `SessionBuilder`
     
-    **Location** `QaaS.Runner.Sessions/Session/Builders/SessionBuilderLogic.cs:608`
+    **Source File** `QaaS.Runner.Sessions/Session/Builders/SessionBuilderLogic.cs`
     
     **Signature**
     ```csharp
@@ -1085,7 +1085,7 @@ Each entry uses the short function name as the table-of-contents label. Expand a
 
 ## `UpdateMockerCommand`
 
-??? info "Location, signature, and docstring"
+??? info "Source file, signature, and docstring"
     **Member**
     `SessionBuilder.UpdateMockerCommand(string name, Func<MockerCommandBuilder, MockerCommandBuilder> update)`
     
@@ -1093,7 +1093,7 @@ Each entry uses the short function name as the table-of-contents label. Expand a
     
     **Declaring Type** `SessionBuilder`
     
-    **Location** `QaaS.Runner.Sessions/Session/Builders/SessionBuilderLogic.cs:621`
+    **Source File** `QaaS.Runner.Sessions/Session/Builders/SessionBuilderLogic.cs`
     
     **Signature**
     ```csharp
@@ -1108,7 +1108,7 @@ Each entry uses the short function name as the table-of-contents label. Expand a
 
 ## `DeleteMockerCommand`
 
-??? info "Location, signature, and docstring"
+??? info "Source file, signature, and docstring"
     **Member**
     `SessionBuilder.DeleteMockerCommand(string name)`
     
@@ -1116,7 +1116,7 @@ Each entry uses the short function name as the table-of-contents label. Expand a
     
     **Declaring Type** `SessionBuilder`
     
-    **Location** `QaaS.Runner.Sessions/Session/Builders/SessionBuilderLogic.cs:634`
+    **Source File** `QaaS.Runner.Sessions/Session/Builders/SessionBuilderLogic.cs`
     
     **Signature**
     ```csharp
@@ -1131,7 +1131,7 @@ Each entry uses the short function name as the table-of-contents label. Expand a
 
 ## `AddStage`
 
-??? info "Location, signature, and docstring"
+??? info "Source file, signature, and docstring"
     **Member**
     `SessionBuilder.AddStage(StageConfig stage)`
     
@@ -1139,7 +1139,7 @@ Each entry uses the short function name as the table-of-contents label. Expand a
     
     **Declaring Type** `SessionBuilder`
     
-    **Location** `QaaS.Runner.Sessions/Session/Builders/SessionBuilderLogic.cs:647`
+    **Source File** `QaaS.Runner.Sessions/Session/Builders/SessionBuilderLogic.cs`
     
     **Signature**
     ```csharp
@@ -1154,7 +1154,7 @@ Each entry uses the short function name as the table-of-contents label. Expand a
 
 ## `CreateStage`
 
-??? info "Location, signature, and docstring"
+??? info "Source file, signature, and docstring"
     **Member**
     `SessionBuilder.CreateStage(StageConfig stage)`
     
@@ -1162,7 +1162,7 @@ Each entry uses the short function name as the table-of-contents label. Expand a
     
     **Declaring Type** `SessionBuilder`
     
-    **Location** `QaaS.Runner.Sessions/Session/Builders/SessionBuilderLogic.cs:660`
+    **Source File** `QaaS.Runner.Sessions/Session/Builders/SessionBuilderLogic.cs`
     
     **Signature**
     ```csharp
@@ -1177,7 +1177,7 @@ Each entry uses the short function name as the table-of-contents label. Expand a
 
 ## `ReadStages`
 
-??? info "Location, signature, and docstring"
+??? info "Source file, signature, and docstring"
     **Member**
     `SessionBuilder.ReadStages()`
     
@@ -1185,7 +1185,7 @@ Each entry uses the short function name as the table-of-contents label. Expand a
     
     **Declaring Type** `SessionBuilder`
     
-    **Location** `QaaS.Runner.Sessions/Session/Builders/SessionBuilderLogic.cs:672`
+    **Source File** `QaaS.Runner.Sessions/Session/Builders/SessionBuilderLogic.cs`
     
     **Signature**
     ```csharp
@@ -1200,7 +1200,7 @@ Each entry uses the short function name as the table-of-contents label. Expand a
 
 ## `ReadStage`
 
-??? info "Location, signature, and docstring"
+??? info "Source file, signature, and docstring"
     **Member**
     `SessionBuilder.ReadStage(int stageNumber)`
     
@@ -1208,7 +1208,7 @@ Each entry uses the short function name as the table-of-contents label. Expand a
     
     **Declaring Type** `SessionBuilder`
     
-    **Location** `QaaS.Runner.Sessions/Session/Builders/SessionBuilderLogic.cs:684`
+    **Source File** `QaaS.Runner.Sessions/Session/Builders/SessionBuilderLogic.cs`
     
     **Signature**
     ```csharp
@@ -1223,7 +1223,7 @@ Each entry uses the short function name as the table-of-contents label. Expand a
 
 ## `UpdateStage`
 
-??? info "Location, signature, and docstring"
+??? info "Source file, signature, and docstring"
     **Member**
     `SessionBuilder.UpdateStage(int stageNumber, StageConfig stage)`
     
@@ -1231,7 +1231,7 @@ Each entry uses the short function name as the table-of-contents label. Expand a
     
     **Declaring Type** `SessionBuilder`
     
-    **Location** `QaaS.Runner.Sessions/Session/Builders/SessionBuilderLogic.cs:696`
+    **Source File** `QaaS.Runner.Sessions/Session/Builders/SessionBuilderLogic.cs`
     
     **Signature**
     ```csharp
@@ -1246,7 +1246,7 @@ Each entry uses the short function name as the table-of-contents label. Expand a
 
 ## `DeleteStage`
 
-??? info "Location, signature, and docstring"
+??? info "Source file, signature, and docstring"
     **Member**
     `SessionBuilder.DeleteStage(int stageNumber)`
     
@@ -1254,7 +1254,7 @@ Each entry uses the short function name as the table-of-contents label. Expand a
     
     **Declaring Type** `SessionBuilder`
     
-    **Location** `QaaS.Runner.Sessions/Session/Builders/SessionBuilderLogic.cs:715`
+    **Source File** `QaaS.Runner.Sessions/Session/Builders/SessionBuilderLogic.cs`
     
     **Signature**
     ```csharp

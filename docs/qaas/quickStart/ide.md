@@ -1,77 +1,48 @@
-# IDE
+# Runner IDE Setup
 
-All QaaS projects can be configured using either **YAML** files or **C# code** (Configuration as Code). While YAML
-provides a declarative, human-readable format ideal for version control and collaboration, **C# offers full programmatic
-control** for dynamic, conditional, and reusable test logic.
+QaaS.Runner can be configured in YAML or in C# (Configuration as Code). This page focuses on the YAML experience for Runner projects.
 
-For teams choosing to use YAML, it is strongly recommended to use a capable IDE with real-time schema validation and
-intelligent code completion to ensure correctness, reduce errors, and improve productivity.
+If your team keeps Runner definitions in `test.qaas.yaml`, configure your IDE with the Runner JSON schema so you get validation, completion, and structure-aware suggestions while editing.
 
-## Available Schemas
+## Runner Schema
 
-To enable real-time validation, auto-completion, and contextual suggestions for QaaS YAML configurations, you must
-install the appropriate **JSON schema** in your IDE.
+- [**QaaS.Runner Schema**]({{ links.runner_schema }})
 
-- [**QaaS.Runner Schema**]({{ links.runner_schema }}) - Covers all core configuration fields for the QaaS Runner.
-- [**QaaS.Mocker Schema**]({{ links.mocker_schema }}) - Cover all hook configuration fields for the QaaS Mocker.
+The Runner schema covers:
 
-| Schema file         | Covers                                                                                                                                                                                                                         |
-|---------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| `runnerSchema.json` | <ul><li>Core `QaaS.Runner` configuration (DataSources, Sessions, Assertions, Storage, Links, MetaData)</li><li>All its hooks configuration (`QaaS.Common.Assertions`, `QaaS.Common.Generatos`, `QaaS.Common.Probes`)</li></ul> |
-| `mockerSchema.json` | <ul><li>Core `QaaS.Mocker` configuration (DataSources, Stubs, Servers, Controller)</li><li>Generator hook configuration from `QaaS.Common.Generators` and the built-in framework status hook</li><li>Processor-specific sections for local custom processors referenced by your project</li></ul> |
+- core `QaaS.Runner` configuration such as `MetaData`, `Links`, `Storages`, `DataSources`, `Sessions`, and `Assertions`
+- the packaged hook families commonly used by Runner projects, including assertions, generators, and probes
 
-!!! note
-    Each schema corresponds to a specific component of the QaaS ecosystem. Use the correct schema based on your
-    configuration file's content.
-    Moreover, each schema covers all its relevant hooks even if their nuggets are not installed in the project.
+## What you get after mapping the schema
 
-### Using the Schema
+After you attach the schema to your Runner YAML files, your IDE can provide:
 
-After installing the schema in your IDE:
-
-Open any `.yaml` file and you will receive real-time:
-
-- Syntax highlighting
-- Auto-completion
-- Validation errors (e.g., missing required fields, invalid values)
-- Contextual suggestions based on the current configuration structure
+- syntax highlighting
+- auto-completion
+- validation errors for invalid values or missing required fields
+- contextual suggestions based on the current configuration section
 
 !!! tip
-    To trigger suggestions, use `Ctrl + Space`.
+    To trigger suggestions manually, use `Ctrl + Space`.
 
-## IDE Recommendations & Setup
+## VS Code
 
-=== "VS Code"
+Open `settings.json` and add a YAML schema mapping for your Runner files:
 
-    #### Setting Up Schema in VS Code
+```json
+"yaml.schemas": {
+  "{{ links.runner_schema }}": "test.qaas.yaml"
+}
+```
 
-    1. Download the desired schema file (e.g., `qaasSchema.json`).
-    2. Open VS Code → `File` → `Preferences` → `Settings`.
-    3. Search for `yaml: schemas`.
-    4. Click **"Edit in settings.json"**.
-    5. Add the schema mapping under the `yaml.schemas` object:
+If your project uses a different file name or a folder pattern, change the right-hand side to match your own YAML files.
 
-        ```json
-        "yaml.schemas": {
-        "/path/to/qaasSchema.json": "*.yaml"
-        }
-        ```
+## Rider
 
-        > Replace `/path/to/qaasSchema.json` with the actual local path to your downloaded schema file.
+1. Open `File` -> `Settings` -> `Languages & Frameworks` -> `Schemas and DTDs` -> `JSON Schema Mappings`.
+2. Click the **+** button to add a new mapping.
+3. Select the Runner schema file or URL.
+4. Map it to `test.qaas.yaml` or to the YAML pattern your Runner project uses.
 
-    6. Save the file and **restart VS Code**.
-    7. Open any `.yaml` file — schema validation and auto-completion will now be active.
-
-=== "Rider"
-
-    #### Setting Up Schema in Rider
-
-    1. Download the schema file (e.g., `qaasSchema.json`).
-    2. Go to: `File` → `Settings` → `Languages & Frameworks` → `Schemas and DTDs` → `JSON Schema Mappings`.
-    3. Click the **+** button to add a new mapping:
-        - **Schema file**: Select your downloaded `qaasSchema.json`.
-        - **Pattern**: Enter `*.yaml` (or a more specific pattern if needed).
-    4. Click **Save**.
-
-    !!! warning "Important"
-        This configuration is project-specific. You must repeat this setup for each new QaaS project.
+!!! warning "⚠️ Important"
+    Rider stores schema mappings per project. Repeat this setup for each Runner repository you create.
