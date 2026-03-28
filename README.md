@@ -144,13 +144,19 @@ docker build -t qaas-docs .
 docker run -p 8000:8000 qaas-docs
 ```
 
-The container builds the docs site at startup, so `QAAS_DOCS_LINK_*` environment overrides are applied without rebuilding the image.
+The container now serves the prebuilt static site that was baked into the image during `docker build`. It does not rebuild the docs on container startup.
 
-Override links at container runtime with normal Docker environment variables:
+If you need different docs URLs or repository links in the image, pass the overrides at build time:
 
 ```bash
-docker run -p 8000:8000 \
-  -e QAAS_DOCS_SITE_URL=https://docs.example.com/qaas/ \
-  -e QAAS_DOCS_LINK_REPOSITORY_RUNNER=https://github.com/example/QaaS.Runner \
-  qaas-docs
+docker build -t qaas-docs \
+  --build-arg QAAS_DOCS_SITE_URL=https://docs.example.com/qaas/ \
+  --build-arg QAAS_DOCS_LINK_REPOSITORY_RUNNER=https://github.com/example/QaaS.Runner \
+  .
+```
+
+After that, deploy or run the image normally:
+
+```bash
+docker run -p 8000:8000 qaas-docs
 ```
