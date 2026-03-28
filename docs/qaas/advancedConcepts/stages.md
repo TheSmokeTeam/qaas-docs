@@ -56,9 +56,9 @@ What happens at runtime is:
 ### Example: Assign Action Stages on Existing Builders
 
 ```csharp
-using System.Linq;
+using QaaS.Framework.SDK.Extensions;
 
-var sessionBuilder = executionBuilder.ReadSessions().Single();
+var sessionBuilder = executionBuilder.ReadSessions().AsSingle();
 
 sessionBuilder
     .UpdateProbe("StartService", probe => probe.AtStage(0))
@@ -113,17 +113,17 @@ At runtime:
 ### Example: Two Sessions with an Intermediate Overlap
 
 ```csharp
-using System.Linq;
+executionBuilder.UpdateSession(
+    "SessionA",
+    session => session
+        .AtStage(0)
+        .RunSessionUntilStage(2));
 
-var sessions = executionBuilder.ReadSessions();
-
-sessions.Single(session => session.Name == "SessionA")
-    .AtStage(0)
-    .RunSessionUntilStage(2);
-
-sessions.Single(session => session.Name == "SessionB")
-    .AtStage(1)
-    .RunSessionUntilStage(3);
+executionBuilder.UpdateSession(
+    "SessionB",
+    session => session
+        .AtStage(1)
+        .RunSessionUntilStage(3));
 ```
 
 ### Exact Execution Flow
