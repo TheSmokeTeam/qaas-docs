@@ -2,6 +2,10 @@
 
 Updates the image of one container in a Kubernetes or OpenShift stateful set.
 
+> Logical group: Cluster orchestration / Image rollout
+
+> Logical group: Cluster orchestration / Image rollout
+
 ## What It Does
 
 Updates the container image used by a stateful set and waits for the stateful rollout to converge.

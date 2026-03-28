@@ -2,7 +2,11 @@
 
 Each entry uses the short function name as the table-of-contents label. Expand an entry to inspect its source file, signature, and XML doc comments.
 
-## `Named`
+The functions on this page are grouped by responsibility so related operations stay together.
+
+## Identity and hook selection
+
+### `Named`
 
 ??? info "Source file, signature, and docstring"
     **Member**
@@ -25,7 +29,9 @@ Each entry uses the short function name as the table-of-contents label. Expand a
     
     Use this method when working with the documented Runner publisher builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
-## `AtStage`
+## Execution order
+
+### `AtStage`
 
 ??? info "Source file, signature, and docstring"
     **Member**
@@ -48,76 +54,9 @@ Each entry uses the short function name as the table-of-contents label. Expand a
     
     Use this method when working with the documented Runner publisher builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
-## `FilterData`
+## Data source selection
 
-??? info "Source file, signature, and docstring"
-    **Member**
-    `PublisherBuilder.FilterData(DataFilter dataFilter)`
-    
-    **Kind** `function`
-    
-    **Declaring Type** `PublisherBuilder`
-    
-    **Source File** `QaaS.Runner.Sessions/Actions/Publishers/Builders/PublisherBuilderLogic.cs`
-    
-    **Signature**
-    ```csharp
-    public PublisherBuilder FilterData(DataFilter dataFilter)
-    ```
-    
-    **Docstring**
-    
-    Sets the data filter used by the current Runner publisher builder instance.
-    
-    Use this method when working with the documented Runner publisher builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
-
-## `WithSerializer`
-
-??? info "Source file, signature, and docstring"
-    **Member**
-    `PublisherBuilder.WithSerializer(SerializeConfig serializeConfig)`
-    
-    **Kind** `function`
-    
-    **Declaring Type** `PublisherBuilder`
-    
-    **Source File** `QaaS.Runner.Sessions/Actions/Publishers/Builders/PublisherBuilderLogic.cs`
-    
-    **Signature**
-    ```csharp
-    public PublisherBuilder WithSerializer(SerializeConfig serializeConfig)
-    ```
-    
-    **Docstring**
-    
-    Sets the serializer configuration used by the current Runner publisher builder instance.
-    
-    Use this method when working with the documented Runner publisher builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
-
-## `WithIterations`
-
-??? info "Source file, signature, and docstring"
-    **Member**
-    `PublisherBuilder.WithIterations(int iterations)`
-    
-    **Kind** `function`
-    
-    **Declaring Type** `PublisherBuilder`
-    
-    **Source File** `QaaS.Runner.Sessions/Actions/Publishers/Builders/PublisherBuilderLogic.cs`
-    
-    **Signature**
-    ```csharp
-    public PublisherBuilder WithIterations(int iterations)
-    ```
-    
-    **Docstring**
-    
-    Sets how many iterations the transaction should execute.
-    
-    Use this method when working with the documented Runner publisher builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
-
-## `AddDataSource`
+### `AddDataSource`
 
 ??? info "Source file, signature, and docstring"
     **Member**
@@ -140,7 +79,7 @@ Each entry uses the short function name as the table-of-contents label. Expand a
     
     Use this method when working with the documented Runner publisher builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
-## `CreateDataSource`
+### `CreateDataSource`
 
 ??? info "Source file, signature, and docstring"
     **Member**
@@ -163,7 +102,7 @@ Each entry uses the short function name as the table-of-contents label. Expand a
     
     Use this method when working with the documented Runner publisher builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
-## `ReadDataSources`
+### `ReadDataSources`
 
 ??? info "Source file, signature, and docstring"
     **Member**
@@ -186,7 +125,7 @@ Each entry uses the short function name as the table-of-contents label. Expand a
     
     Use this method when working with the documented Runner publisher builder API surface in code. Use it to inspect the current configured state without rebuilding the surrounding collection or runtime object graph.
 
-## `UpdateDataSource`
+### `UpdateDataSource`
 
 ??? info "Source file, signature, and docstring"
     **Member**
@@ -209,7 +148,7 @@ Each entry uses the short function name as the table-of-contents label. Expand a
     
     Use this method when working with the documented Runner publisher builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
-## `DeleteDataSource`
+### `DeleteDataSource`
 
 ??? info "Source file, signature, and docstring"
     **Member**
@@ -232,7 +171,7 @@ Each entry uses the short function name as the table-of-contents label. Expand a
     
     Use this method when working with the documented Runner publisher builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
-## `AddDataSourcePattern`
+### `AddDataSourcePattern`
 
 ??? info "Source file, signature, and docstring"
     **Member**
@@ -255,7 +194,7 @@ Each entry uses the short function name as the table-of-contents label. Expand a
     
     Use this method when working with the documented Runner publisher builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
-## `CreateDataSourcePattern`
+### `CreateDataSourcePattern`
 
 ??? info "Source file, signature, and docstring"
     **Member**
@@ -278,7 +217,7 @@ Each entry uses the short function name as the table-of-contents label. Expand a
     
     Use this method when working with the documented Runner publisher builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
-## `ReadDataSourcePatterns`
+### `ReadDataSourcePatterns`
 
 ??? info "Source file, signature, and docstring"
     **Member**
@@ -301,7 +240,7 @@ Each entry uses the short function name as the table-of-contents label. Expand a
     
     Use this method when working with the documented Runner publisher builder API surface in code. Use it to inspect the current configured state without rebuilding the surrounding collection or runtime object graph.
 
-## `UpdateDataSourcePattern`
+### `UpdateDataSourcePattern`
 
 ??? info "Source file, signature, and docstring"
     **Member**
@@ -324,7 +263,7 @@ Each entry uses the short function name as the table-of-contents label. Expand a
     
     Use this method when working with the documented Runner publisher builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
-## `DeleteDataSourcePattern`
+### `DeleteDataSourcePattern`
 
 ??? info "Source file, signature, and docstring"
     **Member**
@@ -347,76 +286,9 @@ Each entry uses the short function name as the table-of-contents label. Expand a
     
     Use this method when working with the documented Runner publisher builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
-## `InLoops`
+## Policies
 
-??? info "Source file, signature, and docstring"
-    **Member**
-    `PublisherBuilder.InLoops()`
-    
-    **Kind** `function`
-    
-    **Declaring Type** `PublisherBuilder`
-    
-    **Source File** `QaaS.Runner.Sessions/Actions/Publishers/Builders/PublisherBuilderLogic.cs`
-    
-    **Signature**
-    ```csharp
-    public PublisherBuilder InLoops()
-    ```
-    
-    **Docstring**
-    
-    Marks the transaction to execute continuously in loop mode.
-    
-    Use this method when working with the documented Runner publisher builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
-
-## `WithSleep`
-
-??? info "Source file, signature, and docstring"
-    **Member**
-    `PublisherBuilder.WithSleep(ulong sleepTimeMs)`
-    
-    **Kind** `function`
-    
-    **Declaring Type** `PublisherBuilder`
-    
-    **Source File** `QaaS.Runner.Sessions/Actions/Publishers/Builders/PublisherBuilderLogic.cs`
-    
-    **Signature**
-    ```csharp
-    public PublisherBuilder WithSleep(ulong sleepTimeMs)
-    ```
-    
-    **Docstring**
-    
-    Sets the delay applied between transaction iterations.
-    
-    Use this method when working with the documented Runner publisher builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
-
-## `WithChunks`
-
-??? info "Source file, signature, and docstring"
-    **Member**
-    `PublisherBuilder.WithChunks(Chunks chunks)`
-    
-    **Kind** `function`
-    
-    **Declaring Type** `PublisherBuilder`
-    
-    **Source File** `QaaS.Runner.Sessions/Actions/Publishers/Builders/PublisherBuilderLogic.cs`
-    
-    **Signature**
-    ```csharp
-    public PublisherBuilder WithChunks(Chunks chunks)
-    ```
-    
-    **Docstring**
-    
-    Configures chunks on the current Runner publisher builder instance.
-    
-    Use this method when working with the documented Runner publisher builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
-
-## `AddPolicy`
+### `AddPolicy`
 
 ??? info "Source file, signature, and docstring"
     **Member**
@@ -439,7 +311,7 @@ Each entry uses the short function name as the table-of-contents label. Expand a
     
     Use this method when working with the documented Runner publisher builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
-## `CreatePolicy`
+### `CreatePolicy`
 
 ??? info "Source file, signature, and docstring"
     **Member**
@@ -462,30 +334,7 @@ Each entry uses the short function name as the table-of-contents label. Expand a
     
     Use this method when working with the documented Runner publisher builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
-## `ReadPolicies`
-
-??? info "Source file, signature, and docstring"
-    **Member**
-    `PublisherBuilder.ReadPolicies()`
-    
-    **Kind** `function`
-    
-    **Declaring Type** `PublisherBuilder`
-    
-    **Source File** `QaaS.Runner.Sessions/Actions/Publishers/Builders/PublisherBuilderLogic.cs`
-    
-    **Signature**
-    ```csharp
-    public IReadOnlyList<PolicyBuilder> ReadPolicies()
-    ```
-    
-    **Docstring**
-    
-    Returns the configured policies currently stored on the Runner publisher builder instance.
-    
-    Use this method when working with the documented Runner publisher builder API surface in code. Use it to inspect the current configured state without rebuilding the surrounding collection or runtime object graph.
-
-## `UpdatePolicyAt`
+### `UpdatePolicyAt`
 
 ??? info "Source file, signature, and docstring"
     **Member**
@@ -508,7 +357,7 @@ Each entry uses the short function name as the table-of-contents label. Expand a
     
     Use this method when working with the documented Runner publisher builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
-## `DeletePolicyAt`
+### `DeletePolicyAt`
 
 ??? info "Source file, signature, and docstring"
     **Member**
@@ -531,7 +380,101 @@ Each entry uses the short function name as the table-of-contents label. Expand a
     
     Use this method when working with the documented Runner publisher builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
-## `WithParallelism`
+## Configuration
+
+### `WithSerializer`
+
+??? info "Source file, signature, and docstring"
+    **Member**
+    `PublisherBuilder.WithSerializer(SerializeConfig serializeConfig)`
+    
+    **Kind** `function`
+    
+    **Declaring Type** `PublisherBuilder`
+    
+    **Source File** `QaaS.Runner.Sessions/Actions/Publishers/Builders/PublisherBuilderLogic.cs`
+    
+    **Signature**
+    ```csharp
+    public PublisherBuilder WithSerializer(SerializeConfig serializeConfig)
+    ```
+    
+    **Docstring**
+    
+    Sets the serializer configuration used by the current Runner publisher builder instance.
+    
+    Use this method when working with the documented Runner publisher builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
+
+### `WithIterations`
+
+??? info "Source file, signature, and docstring"
+    **Member**
+    `PublisherBuilder.WithIterations(int iterations)`
+    
+    **Kind** `function`
+    
+    **Declaring Type** `PublisherBuilder`
+    
+    **Source File** `QaaS.Runner.Sessions/Actions/Publishers/Builders/PublisherBuilderLogic.cs`
+    
+    **Signature**
+    ```csharp
+    public PublisherBuilder WithIterations(int iterations)
+    ```
+    
+    **Docstring**
+    
+    Sets how many iterations the transaction should execute.
+    
+    Use this method when working with the documented Runner publisher builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
+
+### `WithSleep`
+
+??? info "Source file, signature, and docstring"
+    **Member**
+    `PublisherBuilder.WithSleep(ulong sleepTimeMs)`
+    
+    **Kind** `function`
+    
+    **Declaring Type** `PublisherBuilder`
+    
+    **Source File** `QaaS.Runner.Sessions/Actions/Publishers/Builders/PublisherBuilderLogic.cs`
+    
+    **Signature**
+    ```csharp
+    public PublisherBuilder WithSleep(ulong sleepTimeMs)
+    ```
+    
+    **Docstring**
+    
+    Sets the delay applied between transaction iterations.
+    
+    Use this method when working with the documented Runner publisher builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
+
+### `WithChunks`
+
+??? info "Source file, signature, and docstring"
+    **Member**
+    `PublisherBuilder.WithChunks(Chunks chunks)`
+    
+    **Kind** `function`
+    
+    **Declaring Type** `PublisherBuilder`
+    
+    **Source File** `QaaS.Runner.Sessions/Actions/Publishers/Builders/PublisherBuilderLogic.cs`
+    
+    **Signature**
+    ```csharp
+    public PublisherBuilder WithChunks(Chunks chunks)
+    ```
+    
+    **Docstring**
+    
+    Configures chunks on the current Runner publisher builder instance.
+    
+    Use this method when working with the documented Runner publisher builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
+
+### `WithParallelism`
 
 ??? info "Source file, signature, and docstring"
     **Member**
@@ -554,11 +497,13 @@ Each entry uses the short function name as the table-of-contents label. Expand a
     
     Use this method when working with the documented Runner publisher builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
-## `CreateConfiguration`
+## Inspection
+
+### `ReadPolicies`
 
 ??? info "Source file, signature, and docstring"
     **Member**
-    `PublisherBuilder.CreateConfiguration(ISenderConfig config)`
+    `PublisherBuilder.ReadPolicies()`
     
     **Kind** `function`
     
@@ -568,39 +513,16 @@ Each entry uses the short function name as the table-of-contents label. Expand a
     
     **Signature**
     ```csharp
-    public PublisherBuilder CreateConfiguration(ISenderConfig config)
+    public IReadOnlyList<PolicyBuilder> ReadPolicies()
     ```
     
     **Docstring**
     
-    Sets the configuration currently stored on the Runner publisher builder instance.
+    Returns the configured policies currently stored on the Runner publisher builder instance.
     
-    Use this method when working with the documented Runner publisher builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
+    Use this method when working with the documented Runner publisher builder API surface in code. Use it to inspect the current configured state without rebuilding the surrounding collection or runtime object graph.
 
-## `Create`
-
-??? info "Source file, signature, and docstring"
-    **Member**
-    `PublisherBuilder.Create(ISenderConfig config)`
-    
-    **Kind** `function`
-    
-    **Declaring Type** `PublisherBuilder`
-    
-    **Source File** `QaaS.Runner.Sessions/Actions/Publishers/Builders/PublisherBuilderLogic.cs`
-    
-    **Signature**
-    ```csharp
-    public PublisherBuilder Create(ISenderConfig config)
-    ```
-    
-    **Docstring**
-    
-    Sets the configuration currently stored on the Runner publisher builder instance.
-    
-    Use this method when working with the documented Runner publisher builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
-
-## `ReadConfiguration`
+### `ReadConfiguration`
 
 ??? info "Source file, signature, and docstring"
     **Member**
@@ -623,7 +545,55 @@ Each entry uses the short function name as the table-of-contents label. Expand a
     
     Use this method when working with the documented Runner publisher builder API surface in code. Use it to inspect the current configured state without rebuilding the surrounding collection or runtime object graph.
 
-## `UpdateConfiguration`
+## Collection helpers
+
+### `CreateConfiguration`
+
+??? info "Source file, signature, and docstring"
+    **Member**
+    `PublisherBuilder.CreateConfiguration(ISenderConfig config)`
+    
+    **Kind** `function`
+    
+    **Declaring Type** `PublisherBuilder`
+    
+    **Source File** `QaaS.Runner.Sessions/Actions/Publishers/Builders/PublisherBuilderLogic.cs`
+    
+    **Signature**
+    ```csharp
+    public PublisherBuilder CreateConfiguration(ISenderConfig config)
+    ```
+    
+    **Docstring**
+    
+    Sets the configuration currently stored on the Runner publisher builder instance.
+    
+    Use this method when working with the documented Runner publisher builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
+
+### `Create`
+
+??? info "Source file, signature, and docstring"
+    **Member**
+    `PublisherBuilder.Create(ISenderConfig config)`
+    
+    **Kind** `function`
+    
+    **Declaring Type** `PublisherBuilder`
+    
+    **Source File** `QaaS.Runner.Sessions/Actions/Publishers/Builders/PublisherBuilderLogic.cs`
+    
+    **Signature**
+    ```csharp
+    public PublisherBuilder Create(ISenderConfig config)
+    ```
+    
+    **Docstring**
+    
+    Sets the configuration currently stored on the Runner publisher builder instance.
+    
+    Use this method when working with the documented Runner publisher builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
+
+### `UpdateConfiguration`
 
 ??? info "Source file, signature, and docstring"
     **Member**
@@ -646,7 +616,7 @@ Each entry uses the short function name as the table-of-contents label. Expand a
     
     Use this method when working with the documented Runner publisher builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
-## `UpdateConfiguration`
+### `UpdateConfiguration`
 
 ??? info "Source file, signature, and docstring"
     **Member**
@@ -669,7 +639,7 @@ Each entry uses the short function name as the table-of-contents label. Expand a
     
     Use this method when working with the documented Runner publisher builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
-## `UpdateConfiguration`
+### `UpdateConfiguration`
 
 ??? info "Source file, signature, and docstring"
     **Member**
@@ -692,7 +662,7 @@ Each entry uses the short function name as the table-of-contents label. Expand a
     
     Use this method when working with the documented Runner publisher builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
-## `DeleteConfiguration`
+### `DeleteConfiguration`
 
 ??? info "Source file, signature, and docstring"
     **Member**
@@ -715,7 +685,55 @@ Each entry uses the short function name as the table-of-contents label. Expand a
     
     Use this method when working with the documented Runner publisher builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
-## `Configure`
+## General
+
+### `FilterData`
+
+??? info "Source file, signature, and docstring"
+    **Member**
+    `PublisherBuilder.FilterData(DataFilter dataFilter)`
+    
+    **Kind** `function`
+    
+    **Declaring Type** `PublisherBuilder`
+    
+    **Source File** `QaaS.Runner.Sessions/Actions/Publishers/Builders/PublisherBuilderLogic.cs`
+    
+    **Signature**
+    ```csharp
+    public PublisherBuilder FilterData(DataFilter dataFilter)
+    ```
+    
+    **Docstring**
+    
+    Sets the data filter used by the current Runner publisher builder instance.
+    
+    Use this method when working with the documented Runner publisher builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
+
+### `InLoops`
+
+??? info "Source file, signature, and docstring"
+    **Member**
+    `PublisherBuilder.InLoops()`
+    
+    **Kind** `function`
+    
+    **Declaring Type** `PublisherBuilder`
+    
+    **Source File** `QaaS.Runner.Sessions/Actions/Publishers/Builders/PublisherBuilderLogic.cs`
+    
+    **Signature**
+    ```csharp
+    public PublisherBuilder InLoops()
+    ```
+    
+    **Docstring**
+    
+    Marks the transaction to execute continuously in loop mode.
+    
+    Use this method when working with the documented Runner publisher builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
+
+### `Configure`
 
 ??? info "Source file, signature, and docstring"
     **Member**

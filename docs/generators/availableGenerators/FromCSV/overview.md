@@ -2,6 +2,10 @@
 
 Reads CSV files from the configured file-system path and turns each row into generated data items.
 
+> Logical group: External sources / CSV files
+
+> Logical group: External sources / CSV files
+
 ## What It Does
 
 Reads rows from one or more CSV files in a local directory and emits one generated item per row.

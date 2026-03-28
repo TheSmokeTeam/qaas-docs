@@ -2,6 +2,10 @@
 
 Truncates the configured Oracle tables in the order they are listed.
 
+> Logical group: SQL maintenance / Oracle SQL tables
+
+> Logical group: SQL maintenance / Oracle SQL tables
+
 ## What It Does
 
 Truncates the configured Oracle tables in the order they are listed.

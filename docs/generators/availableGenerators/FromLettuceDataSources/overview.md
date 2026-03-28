@@ -2,6 +2,10 @@
 
 Generates data from the enumerable of data sources it receives that is in `Lettuce` file format, presumes all items in the enumerable are deserialized into Json
 
+> Logical group: Existing data sources / Lettuce reuse
+
+> Logical group: Existing data sources / Lettuce reuse
+
 ## What It Does
 
 Consumes attached data sources whose bodies are lettuce-style JSON envelopes, base64-decodes the `Body`, and emits the decoded payload as the generated item.

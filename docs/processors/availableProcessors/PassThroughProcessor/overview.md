@@ -2,6 +2,10 @@
 
 Returns the incoming request payload unchanged while applying the configured response metadata.
 
+> Logical group: Request-derived responses / Pass-through payload
+
+> Logical group: Request-derived responses / Pass-through payload
+
 ## What It Does
 
 Returns the incoming request body unchanged and optionally preserves the request metadata from the original data item.

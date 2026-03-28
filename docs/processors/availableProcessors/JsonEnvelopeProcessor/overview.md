@@ -2,6 +2,10 @@
 
 Wraps the incoming request payload and optional request metadata in a JSON envelope response.
 
+> Logical group: Transformations / JSON envelope
+
+> Logical group: Transformations / JSON envelope
+
 ## What It Does
 
 Wraps the incoming request into a JSON object under a configurable body-property name and can optionally add request metadata such as headers, path parameters, URI, and the original body type.

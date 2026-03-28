@@ -2,7 +2,11 @@
 
 Each entry uses the short function name as the table-of-contents label. Expand an entry to inspect its source file, signature, and XML doc comments.
 
-## `Named`
+The functions on this page are grouped by responsibility so related operations stay together.
+
+## Identity and hook selection
+
+### `Named`
 
 ??? info "Source file, signature, and docstring"
     **Member**
@@ -25,7 +29,7 @@ Each entry uses the short function name as the table-of-contents label. Expand a
     
     Use this method when working with the documented Framework data source builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
-## `HookNamed`
+### `HookNamed`
 
 ??? info "Source file, signature, and docstring"
     **Member**
@@ -48,7 +52,9 @@ Each entry uses the short function name as the table-of-contents label. Expand a
     
     Use this method when working with the documented Framework data source builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
-## `AddDataSourceName`
+## Data source selection
+
+### `AddDataSourceName`
 
 ??? info "Source file, signature, and docstring"
     **Member**
@@ -71,7 +77,7 @@ Each entry uses the short function name as the table-of-contents label. Expand a
     
     Use this method when working with the documented Framework data source builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
-## `AddDataSourcePattern`
+### `AddDataSourcePattern`
 
 ??? info "Source file, signature, and docstring"
     **Member**
@@ -94,7 +100,9 @@ Each entry uses the short function name as the table-of-contents label. Expand a
     
     Use this method when working with the documented Framework data source builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
-## `WithSerializer`
+## Configuration
+
+### `WithSerializer`
 
 ??? info "Source file, signature, and docstring"
     **Member**
@@ -117,7 +125,7 @@ Each entry uses the short function name as the table-of-contents label. Expand a
     
     Use this method when working with the documented Framework data source builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
-## `WithDeserializer`
+### `WithDeserializer`
 
 ??? info "Source file, signature, and docstring"
     **Member**
@@ -140,99 +148,9 @@ Each entry uses the short function name as the table-of-contents label. Expand a
     
     Use this method when working with the documented Framework data source builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
-## `IsLazy`
+## Inspection
 
-??? info "Source file, signature, and docstring"
-    **Member**
-    `DataSourceBuilder.IsLazy()`
-    
-    **Kind** `function`
-    
-    **Declaring Type** `DataSourceBuilder`
-    
-    **Source File** `QaaS.Framework.SDK/DataSourceObjects/DataSourceBuilder.cs`
-    
-    **Signature**
-    ```csharp
-    public DataSourceBuilder IsLazy()
-    ```
-    
-    **Docstring**
-    
-    Marks the data source for lazy resolution.
-    
-    Use this method when working with the documented Framework data source builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
-
-## `Configure`
-
-??? info "Source file, signature, and docstring"
-    **Member**
-    `DataSourceBuilder.Configure(object configuration)`
-    
-    **Kind** `function`
-    
-    **Declaring Type** `DataSourceBuilder`
-    
-    **Source File** `QaaS.Framework.SDK/DataSourceObjects/DataSourceBuilder.cs`
-    
-    **Signature**
-    ```csharp
-    public DataSourceBuilder Configure(object configuration)
-    ```
-    
-    **Docstring**
-    
-    Replaces the generator configuration with the supplied object.
-    
-    The supplied object is serialized to JSON and loaded into the builder as the new generator configuration.
-
-## `CreateConfiguration`
-
-??? info "Source file, signature, and docstring"
-    **Member**
-    `DataSourceBuilder.CreateConfiguration(object configuration)`
-    
-    **Kind** `function`
-    
-    **Declaring Type** `DataSourceBuilder`
-    
-    **Source File** `QaaS.Framework.SDK/DataSourceObjects/DataSourceBuilder.cs`
-    
-    **Signature**
-    ```csharp
-    public DataSourceBuilder CreateConfiguration(object configuration)
-    ```
-    
-    **Docstring**
-    
-    Creates the generator configuration from the supplied object.
-    
-    This is an alias for Configure and replaces any existing generator configuration.
-
-## `Create`
-
-??? info "Source file, signature, and docstring"
-    **Member**
-    `DataSourceBuilder.Create(object configuration)`
-    
-    **Kind** `function`
-    
-    **Declaring Type** `DataSourceBuilder`
-    
-    **Source File** `QaaS.Framework.SDK/DataSourceObjects/DataSourceBuilder.cs`
-    
-    **Signature**
-    ```csharp
-    public DataSourceBuilder Create(object configuration)
-    ```
-    
-    **Docstring**
-    
-    Creates the generator configuration from the supplied object.
-    
-    This is a shorthand alias for CreateConfiguration.
-
-## `ReadConfiguration`
+### `ReadConfiguration`
 
 ??? info "Source file, signature, and docstring"
     **Member**
@@ -255,7 +173,55 @@ Each entry uses the short function name as the table-of-contents label. Expand a
     
     Use this method when working with the documented Framework data source builder API surface in code. Use it to inspect the current configured state without rebuilding the surrounding collection or runtime object graph.
 
-## `UpdateConfiguration`
+## Collection helpers
+
+### `CreateConfiguration`
+
+??? info "Source file, signature, and docstring"
+    **Member**
+    `DataSourceBuilder.CreateConfiguration(object configuration)`
+    
+    **Kind** `function`
+    
+    **Declaring Type** `DataSourceBuilder`
+    
+    **Source File** `QaaS.Framework.SDK/DataSourceObjects/DataSourceBuilder.cs`
+    
+    **Signature**
+    ```csharp
+    public DataSourceBuilder CreateConfiguration(object configuration)
+    ```
+    
+    **Docstring**
+    
+    Creates the generator configuration from the supplied object.
+    
+    This is an alias for Configure and replaces any existing generator configuration.
+
+### `Create`
+
+??? info "Source file, signature, and docstring"
+    **Member**
+    `DataSourceBuilder.Create(object configuration)`
+    
+    **Kind** `function`
+    
+    **Declaring Type** `DataSourceBuilder`
+    
+    **Source File** `QaaS.Framework.SDK/DataSourceObjects/DataSourceBuilder.cs`
+    
+    **Signature**
+    ```csharp
+    public DataSourceBuilder Create(object configuration)
+    ```
+    
+    **Docstring**
+    
+    Creates the generator configuration from the supplied object.
+    
+    This is a shorthand alias for CreateConfiguration.
+
+### `UpdateConfiguration`
 
 ??? info "Source file, signature, and docstring"
     **Member**
@@ -278,30 +244,7 @@ Each entry uses the short function name as the table-of-contents label. Expand a
     
     Use this when only part of the generator configuration should change and existing values should be preserved where possible.
 
-## `UpsertConfiguration`
-
-??? info "Source file, signature, and docstring"
-    **Member**
-    `DataSourceBuilder.UpsertConfiguration(object configuration)`
-    
-    **Kind** `function`
-    
-    **Declaring Type** `DataSourceBuilder`
-    
-    **Source File** `QaaS.Framework.SDK/DataSourceObjects/DataSourceBuilder.cs`
-    
-    **Signature**
-    ```csharp
-    public DataSourceBuilder UpsertConfiguration(object configuration)
-    ```
-    
-    **Docstring**
-    
-    Updates or creates the generator configuration from the supplied object.
-    
-    This is an alias for UpdateConfiguration.
-
-## `DeleteConfiguration`
+### `DeleteConfiguration`
 
 ??? info "Source file, signature, and docstring"
     **Member**
@@ -324,7 +267,78 @@ Each entry uses the short function name as the table-of-contents label. Expand a
     
     After this call, the builder holds an empty configuration until a new one is supplied.
 
-## `Register`
+## General
+
+### `IsLazy`
+
+??? info "Source file, signature, and docstring"
+    **Member**
+    `DataSourceBuilder.IsLazy()`
+    
+    **Kind** `function`
+    
+    **Declaring Type** `DataSourceBuilder`
+    
+    **Source File** `QaaS.Framework.SDK/DataSourceObjects/DataSourceBuilder.cs`
+    
+    **Signature**
+    ```csharp
+    public DataSourceBuilder IsLazy()
+    ```
+    
+    **Docstring**
+    
+    Marks the data source for lazy resolution.
+    
+    Use this method when working with the documented Framework data source builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
+
+### `Configure`
+
+??? info "Source file, signature, and docstring"
+    **Member**
+    `DataSourceBuilder.Configure(object configuration)`
+    
+    **Kind** `function`
+    
+    **Declaring Type** `DataSourceBuilder`
+    
+    **Source File** `QaaS.Framework.SDK/DataSourceObjects/DataSourceBuilder.cs`
+    
+    **Signature**
+    ```csharp
+    public DataSourceBuilder Configure(object configuration)
+    ```
+    
+    **Docstring**
+    
+    Replaces the generator configuration with the supplied object.
+    
+    The supplied object is serialized to JSON and loaded into the builder as the new generator configuration.
+
+### `UpsertConfiguration`
+
+??? info "Source file, signature, and docstring"
+    **Member**
+    `DataSourceBuilder.UpsertConfiguration(object configuration)`
+    
+    **Kind** `function`
+    
+    **Declaring Type** `DataSourceBuilder`
+    
+    **Source File** `QaaS.Framework.SDK/DataSourceObjects/DataSourceBuilder.cs`
+    
+    **Signature**
+    ```csharp
+    public DataSourceBuilder UpsertConfiguration(object configuration)
+    ```
+    
+    **Docstring**
+    
+    Updates or creates the generator configuration from the supplied object.
+    
+    This is an alias for UpdateConfiguration.
+
+### `Register`
 
 ??? info "Source file, signature, and docstring"
     **Member**

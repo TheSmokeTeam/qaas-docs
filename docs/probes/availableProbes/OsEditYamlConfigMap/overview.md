@@ -2,6 +2,10 @@
 
 Probe that edits yaml config maps
 
+> Logical group: Cluster orchestration / Config maps
+
+> Logical group: Cluster orchestration / Config maps
+
 ## What It Does
 
 Loads a YAML document from a config map, edits the configured paths, and writes the updated document back to the config map.

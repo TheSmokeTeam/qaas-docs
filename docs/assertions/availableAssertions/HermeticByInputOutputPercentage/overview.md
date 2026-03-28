@@ -2,6 +2,10 @@
 
 Performs a hermetic test by comparing the the count of a specified input with multiplied by given percentage modifier to the count of a specified output
 
+> Logical group: Hermeticity / Exact input/output percentage
+
+> Logical group: Hermeticity / Exact input/output percentage
+
 ## What It Does
 
 Sums the configured input counts and output counts, converts the relationship into a percentage, and then checks whether the output total equals the rounded expected percentage of the input total.

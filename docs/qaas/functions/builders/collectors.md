@@ -2,7 +2,11 @@
 
 Each entry uses the short function name as the table-of-contents label. Expand an entry to inspect its source file, signature, and XML doc comments.
 
-## `Named`
+The functions on this page are grouped by responsibility so related operations stay together.
+
+## Identity and hook selection
+
+### `Named`
 
 ??? info "Source file, signature, and docstring"
     **Member**
@@ -25,99 +29,9 @@ Each entry uses the short function name as the table-of-contents label. Expand a
     
     Use this method when working with the documented Runner collector builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
-## `FilterData`
+## Inspection
 
-??? info "Source file, signature, and docstring"
-    **Member**
-    `CollectorBuilder.FilterData(DataFilter dataFilter)`
-    
-    **Kind** `function`
-    
-    **Declaring Type** `CollectorBuilder`
-    
-    **Source File** `QaaS.Runner.Sessions/Actions/Collectors/CollectorBuilder.cs`
-    
-    **Signature**
-    ```csharp
-    public CollectorBuilder FilterData(DataFilter dataFilter)
-    ```
-    
-    **Docstring**
-    
-    Sets the data filter used by the current Runner collector builder instance.
-    
-    Use this method when working with the documented Runner collector builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
-
-## `CollectInRange`
-
-??? info "Source file, signature, and docstring"
-    **Member**
-    `CollectorBuilder.CollectInRange(CollectionRange collectionRange)`
-    
-    **Kind** `function`
-    
-    **Declaring Type** `CollectorBuilder`
-    
-    **Source File** `QaaS.Runner.Sessions/Actions/Collectors/CollectorBuilder.cs`
-    
-    **Signature**
-    ```csharp
-    public CollectorBuilder CollectInRange(CollectionRange collectionRange)
-    ```
-    
-    **Docstring**
-    
-    Configures collect in range on the current Runner collector builder instance.
-    
-    Use this method when working with the documented Runner collector builder API surface in code. The behavior exposed here is part of the public surface that the generated function documentation groups under 'Configuration as Code / Collectors'.
-
-## `Create`
-
-??? info "Source file, signature, and docstring"
-    **Member**
-    `CollectorBuilder.Create(IFetcherConfig config)`
-    
-    **Kind** `function`
-    
-    **Declaring Type** `CollectorBuilder`
-    
-    **Source File** `QaaS.Runner.Sessions/Actions/Collectors/CollectorBuilder.cs`
-    
-    **Signature**
-    ```csharp
-    public CollectorBuilder Create(IFetcherConfig config)
-    ```
-    
-    **Docstring**
-    
-    Sets the configuration currently stored on the Runner collector builder instance.
-    
-    Use this method when working with the documented Runner collector builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
-
-## `CreateConfiguration`
-
-??? info "Source file, signature, and docstring"
-    **Member**
-    `CollectorBuilder.CreateConfiguration(IFetcherConfig config)`
-    
-    **Kind** `function`
-    
-    **Declaring Type** `CollectorBuilder`
-    
-    **Source File** `QaaS.Runner.Sessions/Actions/Collectors/CollectorBuilder.cs`
-    
-    **Signature**
-    ```csharp
-    public CollectorBuilder CreateConfiguration(IFetcherConfig config)
-    ```
-    
-    **Docstring**
-    
-    Sets the configuration currently stored on the Runner collector builder instance.
-    
-    Use this method when working with the documented Runner collector builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
-
-## `ReadConfiguration`
+### `ReadConfiguration`
 
 ??? info "Source file, signature, and docstring"
     **Member**
@@ -140,7 +54,55 @@ Each entry uses the short function name as the table-of-contents label. Expand a
     
     Use this method when working with the documented Runner collector builder API surface in code. Use it to inspect the current configured state without rebuilding the surrounding collection or runtime object graph.
 
-## `UpdateConfiguration`
+## Collection helpers
+
+### `Create`
+
+??? info "Source file, signature, and docstring"
+    **Member**
+    `CollectorBuilder.Create(IFetcherConfig config)`
+    
+    **Kind** `function`
+    
+    **Declaring Type** `CollectorBuilder`
+    
+    **Source File** `QaaS.Runner.Sessions/Actions/Collectors/CollectorBuilder.cs`
+    
+    **Signature**
+    ```csharp
+    public CollectorBuilder Create(IFetcherConfig config)
+    ```
+    
+    **Docstring**
+    
+    Sets the configuration currently stored on the Runner collector builder instance.
+    
+    Use this method when working with the documented Runner collector builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
+
+### `CreateConfiguration`
+
+??? info "Source file, signature, and docstring"
+    **Member**
+    `CollectorBuilder.CreateConfiguration(IFetcherConfig config)`
+    
+    **Kind** `function`
+    
+    **Declaring Type** `CollectorBuilder`
+    
+    **Source File** `QaaS.Runner.Sessions/Actions/Collectors/CollectorBuilder.cs`
+    
+    **Signature**
+    ```csharp
+    public CollectorBuilder CreateConfiguration(IFetcherConfig config)
+    ```
+    
+    **Docstring**
+    
+    Sets the configuration currently stored on the Runner collector builder instance.
+    
+    Use this method when working with the documented Runner collector builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
+
+### `UpdateConfiguration`
 
 ??? info "Source file, signature, and docstring"
     **Member**
@@ -163,7 +125,7 @@ Each entry uses the short function name as the table-of-contents label. Expand a
     
     Use this method when working with the documented Runner collector builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
-## `UpdateConfiguration`
+### `UpdateConfiguration`
 
 ??? info "Source file, signature, and docstring"
     **Member**
@@ -186,7 +148,7 @@ Each entry uses the short function name as the table-of-contents label. Expand a
     
     Use this method when working with the documented Runner collector builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
-## `UpdateConfiguration`
+### `UpdateConfiguration`
 
 ??? info "Source file, signature, and docstring"
     **Member**
@@ -209,7 +171,7 @@ Each entry uses the short function name as the table-of-contents label. Expand a
     
     Use this method when working with the documented Runner collector builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
-## `DeleteConfiguration`
+### `DeleteConfiguration`
 
 ??? info "Source file, signature, and docstring"
     **Member**
@@ -232,7 +194,55 @@ Each entry uses the short function name as the table-of-contents label. Expand a
     
     Use this method when working with the documented Runner collector builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
-## `Configure`
+## General
+
+### `FilterData`
+
+??? info "Source file, signature, and docstring"
+    **Member**
+    `CollectorBuilder.FilterData(DataFilter dataFilter)`
+    
+    **Kind** `function`
+    
+    **Declaring Type** `CollectorBuilder`
+    
+    **Source File** `QaaS.Runner.Sessions/Actions/Collectors/CollectorBuilder.cs`
+    
+    **Signature**
+    ```csharp
+    public CollectorBuilder FilterData(DataFilter dataFilter)
+    ```
+    
+    **Docstring**
+    
+    Sets the data filter used by the current Runner collector builder instance.
+    
+    Use this method when working with the documented Runner collector builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
+
+### `CollectInRange`
+
+??? info "Source file, signature, and docstring"
+    **Member**
+    `CollectorBuilder.CollectInRange(CollectionRange collectionRange)`
+    
+    **Kind** `function`
+    
+    **Declaring Type** `CollectorBuilder`
+    
+    **Source File** `QaaS.Runner.Sessions/Actions/Collectors/CollectorBuilder.cs`
+    
+    **Signature**
+    ```csharp
+    public CollectorBuilder CollectInRange(CollectionRange collectionRange)
+    ```
+    
+    **Docstring**
+    
+    Configures collect in range on the current Runner collector builder instance.
+    
+    Use this method when working with the documented Runner collector builder API surface in code. The behavior exposed here is part of the public surface that the generated function documentation groups under 'Configuration as Code / Collectors'.
+
+### `Configure`
 
 ??? info "Source file, signature, and docstring"
     **Member**

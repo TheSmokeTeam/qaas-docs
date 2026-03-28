@@ -2,7 +2,11 @@
 
 Each entry uses the short function name as the table-of-contents label. Expand an entry to inspect its source file, signature, and XML doc comments.
 
-## `Named`
+The functions on this page are grouped by responsibility so related operations stay together.
+
+## Identity and hook selection
+
+### `Named`
 
 ??? info "Source file, signature, and docstring"
     **Member**
@@ -25,7 +29,9 @@ Each entry uses the short function name as the table-of-contents label. Expand a
     
     Use this method when working with the documented Runner transaction builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
-## `AtStage`
+## Execution order
+
+### `AtStage`
 
 ??? info "Source file, signature, and docstring"
     **Member**
@@ -48,145 +54,9 @@ Each entry uses the short function name as the table-of-contents label. Expand a
     
     Use this method when working with the documented Runner transaction builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
-## `WithTimeout`
+## Data source selection
 
-??? info "Source file, signature, and docstring"
-    **Member**
-    `TransactionBuilder.WithTimeout(int timeoutMs)`
-    
-    **Kind** `function`
-    
-    **Declaring Type** `TransactionBuilder`
-    
-    **Source File** `QaaS.Runner.Sessions/Actions/Transactions/Builders/TransactionBuilder.cs`
-    
-    **Signature**
-    ```csharp
-    public TransactionBuilder WithTimeout(int timeoutMs)
-    ```
-    
-    **Docstring**
-    
-    Configures timeout on the current Runner transaction builder instance.
-    
-    Use this method when working with the documented Runner transaction builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
-
-## `FilterInputData`
-
-??? info "Source file, signature, and docstring"
-    **Member**
-    `TransactionBuilder.FilterInputData(DataFilter dataFilter)`
-    
-    **Kind** `function`
-    
-    **Declaring Type** `TransactionBuilder`
-    
-    **Source File** `QaaS.Runner.Sessions/Actions/Transactions/Builders/TransactionBuilder.cs`
-    
-    **Signature**
-    ```csharp
-    public TransactionBuilder FilterInputData(DataFilter dataFilter)
-    ```
-    
-    **Docstring**
-    
-    Sets the input data filter used by the transaction.
-    
-    Use this method when working with the documented Runner transaction builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
-
-## `FilterOutputData`
-
-??? info "Source file, signature, and docstring"
-    **Member**
-    `TransactionBuilder.FilterOutputData(DataFilter dataFilter)`
-    
-    **Kind** `function`
-    
-    **Declaring Type** `TransactionBuilder`
-    
-    **Source File** `QaaS.Runner.Sessions/Actions/Transactions/Builders/TransactionBuilder.cs`
-    
-    **Signature**
-    ```csharp
-    public TransactionBuilder FilterOutputData(DataFilter dataFilter)
-    ```
-    
-    **Docstring**
-    
-    Sets the output data filter used by the transaction.
-    
-    Use this method when working with the documented Runner transaction builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
-
-## `WithDeserializer`
-
-??? info "Source file, signature, and docstring"
-    **Member**
-    `TransactionBuilder.WithDeserializer(DeserializeConfig deserializeConfig)`
-    
-    **Kind** `function`
-    
-    **Declaring Type** `TransactionBuilder`
-    
-    **Source File** `QaaS.Runner.Sessions/Actions/Transactions/Builders/TransactionBuilder.cs`
-    
-    **Signature**
-    ```csharp
-    public TransactionBuilder WithDeserializer(DeserializeConfig deserializeConfig)
-    ```
-    
-    **Docstring**
-    
-    Sets the deserializer configuration used by the current Runner transaction builder instance.
-    
-    Use this method when working with the documented Runner transaction builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
-
-## `WithSerializer`
-
-??? info "Source file, signature, and docstring"
-    **Member**
-    `TransactionBuilder.WithSerializer(SerializeConfig serializeConfig)`
-    
-    **Kind** `function`
-    
-    **Declaring Type** `TransactionBuilder`
-    
-    **Source File** `QaaS.Runner.Sessions/Actions/Transactions/Builders/TransactionBuilder.cs`
-    
-    **Signature**
-    ```csharp
-    public TransactionBuilder WithSerializer(SerializeConfig serializeConfig)
-    ```
-    
-    **Docstring**
-    
-    Sets the serializer configuration used by the current Runner transaction builder instance.
-    
-    Use this method when working with the documented Runner transaction builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
-
-## `WithIterations`
-
-??? info "Source file, signature, and docstring"
-    **Member**
-    `TransactionBuilder.WithIterations(int iterations)`
-    
-    **Kind** `function`
-    
-    **Declaring Type** `TransactionBuilder`
-    
-    **Source File** `QaaS.Runner.Sessions/Actions/Transactions/Builders/TransactionBuilder.cs`
-    
-    **Signature**
-    ```csharp
-    public TransactionBuilder WithIterations(int iterations)
-    ```
-    
-    **Docstring**
-    
-    Sets how many iterations the transaction should execute.
-    
-    Use this method when working with the documented Runner transaction builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
-
-## `AddDataSource`
+### `AddDataSource`
 
 ??? info "Source file, signature, and docstring"
     **Member**
@@ -209,7 +79,7 @@ Each entry uses the short function name as the table-of-contents label. Expand a
     
     Use this method when working with the documented Runner transaction builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
-## `CreateDataSource`
+### `CreateDataSource`
 
 ??? info "Source file, signature, and docstring"
     **Member**
@@ -232,7 +102,7 @@ Each entry uses the short function name as the table-of-contents label. Expand a
     
     Use this method when working with the documented Runner transaction builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
-## `AddDataSourcePattern`
+### `AddDataSourcePattern`
 
 ??? info "Source file, signature, and docstring"
     **Member**
@@ -255,7 +125,7 @@ Each entry uses the short function name as the table-of-contents label. Expand a
     
     Use this method when working with the documented Runner transaction builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
-## `CreateDataSourcePattern`
+### `CreateDataSourcePattern`
 
 ??? info "Source file, signature, and docstring"
     **Member**
@@ -278,168 +148,7 @@ Each entry uses the short function name as the table-of-contents label. Expand a
     
     Use this method when working with the documented Runner transaction builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
-## `InLoops`
-
-??? info "Source file, signature, and docstring"
-    **Member**
-    `TransactionBuilder.InLoops()`
-    
-    **Kind** `function`
-    
-    **Declaring Type** `TransactionBuilder`
-    
-    **Source File** `QaaS.Runner.Sessions/Actions/Transactions/Builders/TransactionBuilder.cs`
-    
-    **Signature**
-    ```csharp
-    public TransactionBuilder InLoops()
-    ```
-    
-    **Docstring**
-    
-    Marks the transaction to execute continuously in loop mode.
-    
-    Use this method when working with the documented Runner transaction builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
-
-## `WithSleep`
-
-??? info "Source file, signature, and docstring"
-    **Member**
-    `TransactionBuilder.WithSleep(ulong sleepTimeMs)`
-    
-    **Kind** `function`
-    
-    **Declaring Type** `TransactionBuilder`
-    
-    **Source File** `QaaS.Runner.Sessions/Actions/Transactions/Builders/TransactionBuilder.cs`
-    
-    **Signature**
-    ```csharp
-    public TransactionBuilder WithSleep(ulong sleepTimeMs)
-    ```
-    
-    **Docstring**
-    
-    Sets the delay applied between transaction iterations.
-    
-    Use this method when working with the documented Runner transaction builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
-
-## `AddPolicy`
-
-??? info "Source file, signature, and docstring"
-    **Member**
-    `TransactionBuilder.AddPolicy(PolicyBuilder policy)`
-    
-    **Kind** `function`
-    
-    **Declaring Type** `TransactionBuilder`
-    
-    **Source File** `QaaS.Runner.Sessions/Actions/Transactions/Builders/TransactionBuilder.cs`
-    
-    **Signature**
-    ```csharp
-    public TransactionBuilder AddPolicy(PolicyBuilder policy)
-    ```
-    
-    **Docstring**
-    
-    Adds the supplied policy to the current Runner transaction builder instance.
-    
-    Use this method when working with the documented Runner transaction builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
-
-## `CreatePolicy`
-
-??? info "Source file, signature, and docstring"
-    **Member**
-    `TransactionBuilder.CreatePolicy(PolicyBuilder policy)`
-    
-    **Kind** `function`
-    
-    **Declaring Type** `TransactionBuilder`
-    
-    **Source File** `QaaS.Runner.Sessions/Actions/Transactions/Builders/TransactionBuilder.cs`
-    
-    **Signature**
-    ```csharp
-    public TransactionBuilder CreatePolicy(PolicyBuilder policy)
-    ```
-    
-    **Docstring**
-    
-    Creates or adds the configured policy entry on the current Runner transaction builder instance.
-    
-    Use this method when working with the documented Runner transaction builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
-
-## `ReadPolicies`
-
-??? info "Source file, signature, and docstring"
-    **Member**
-    `TransactionBuilder.ReadPolicies()`
-    
-    **Kind** `function`
-    
-    **Declaring Type** `TransactionBuilder`
-    
-    **Source File** `QaaS.Runner.Sessions/Actions/Transactions/Builders/TransactionBuilder.cs`
-    
-    **Signature**
-    ```csharp
-    public IReadOnlyList<PolicyBuilder> ReadPolicies()
-    ```
-    
-    **Docstring**
-    
-    Returns the configured policies currently stored on the Runner transaction builder instance.
-    
-    Use this method when working with the documented Runner transaction builder API surface in code. Use it to inspect the current configured state without rebuilding the surrounding collection or runtime object graph.
-
-## `UpdatePolicyAt`
-
-??? info "Source file, signature, and docstring"
-    **Member**
-    `TransactionBuilder.UpdatePolicyAt(int index, PolicyBuilder policy)`
-    
-    **Kind** `function`
-    
-    **Declaring Type** `TransactionBuilder`
-    
-    **Source File** `QaaS.Runner.Sessions/Actions/Transactions/Builders/TransactionBuilder.cs`
-    
-    **Signature**
-    ```csharp
-    public TransactionBuilder UpdatePolicyAt(int index, PolicyBuilder policy)
-    ```
-    
-    **Docstring**
-    
-    Updates the configured policy at the specified index on the current Runner transaction builder instance.
-    
-    Use this method when working with the documented Runner transaction builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
-
-## `DeletePolicyAt`
-
-??? info "Source file, signature, and docstring"
-    **Member**
-    `TransactionBuilder.DeletePolicyAt(int index)`
-    
-    **Kind** `function`
-    
-    **Declaring Type** `TransactionBuilder`
-    
-    **Source File** `QaaS.Runner.Sessions/Actions/Transactions/Builders/TransactionBuilder.cs`
-    
-    **Signature**
-    ```csharp
-    public TransactionBuilder DeletePolicyAt(int index)
-    ```
-    
-    **Docstring**
-    
-    Removes the configured policy at the specified index from the current Runner transaction builder instance.
-    
-    Use this method when working with the documented Runner transaction builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
-
-## `ReadDataSources`
+### `ReadDataSources`
 
 ??? info "Source file, signature, and docstring"
     **Member**
@@ -462,7 +171,7 @@ Each entry uses the short function name as the table-of-contents label. Expand a
     
     Use this method when working with the documented Runner transaction builder API surface in code. Use it to inspect the current configured state without rebuilding the surrounding collection or runtime object graph.
 
-## `UpdateDataSource`
+### `UpdateDataSource`
 
 ??? info "Source file, signature, and docstring"
     **Member**
@@ -485,7 +194,7 @@ Each entry uses the short function name as the table-of-contents label. Expand a
     
     Use this method when working with the documented Runner transaction builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
-## `DeleteDataSource`
+### `DeleteDataSource`
 
 ??? info "Source file, signature, and docstring"
     **Member**
@@ -508,7 +217,7 @@ Each entry uses the short function name as the table-of-contents label. Expand a
     
     Use this method when working with the documented Runner transaction builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
-## `ReadDataSourcePatterns`
+### `ReadDataSourcePatterns`
 
 ??? info "Source file, signature, and docstring"
     **Member**
@@ -531,7 +240,7 @@ Each entry uses the short function name as the table-of-contents label. Expand a
     
     Use this method when working with the documented Runner transaction builder API surface in code. Use it to inspect the current configured state without rebuilding the surrounding collection or runtime object graph.
 
-## `UpdateDataSourcePattern`
+### `UpdateDataSourcePattern`
 
 ??? info "Source file, signature, and docstring"
     **Member**
@@ -554,7 +263,7 @@ Each entry uses the short function name as the table-of-contents label. Expand a
     
     Use this method when working with the documented Runner transaction builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
-## `DeleteDataSourcePattern`
+### `DeleteDataSourcePattern`
 
 ??? info "Source file, signature, and docstring"
     **Member**
@@ -577,11 +286,13 @@ Each entry uses the short function name as the table-of-contents label. Expand a
     
     Use this method when working with the documented Runner transaction builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
-## `CreateConfiguration`
+## Input selection
+
+### `FilterInputData`
 
 ??? info "Source file, signature, and docstring"
     **Member**
-    `TransactionBuilder.CreateConfiguration(ITransactorConfig config)`
+    `TransactionBuilder.FilterInputData(DataFilter dataFilter)`
     
     **Kind** `function`
     
@@ -591,20 +302,22 @@ Each entry uses the short function name as the table-of-contents label. Expand a
     
     **Signature**
     ```csharp
-    public TransactionBuilder CreateConfiguration(ITransactorConfig config)
+    public TransactionBuilder FilterInputData(DataFilter dataFilter)
     ```
     
     **Docstring**
     
-    Sets the configuration currently stored on the Runner transaction builder instance.
+    Sets the input data filter used by the transaction.
     
     Use this method when working with the documented Runner transaction builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
-## `Create`
+## Output selection
+
+### `FilterOutputData`
 
 ??? info "Source file, signature, and docstring"
     **Member**
-    `TransactionBuilder.Create(ITransactorConfig config)`
+    `TransactionBuilder.FilterOutputData(DataFilter dataFilter)`
     
     **Kind** `function`
     
@@ -614,16 +327,252 @@ Each entry uses the short function name as the table-of-contents label. Expand a
     
     **Signature**
     ```csharp
-    public TransactionBuilder Create(ITransactorConfig config)
+    public TransactionBuilder FilterOutputData(DataFilter dataFilter)
     ```
     
     **Docstring**
     
-    Sets the configuration currently stored on the Runner transaction builder instance.
+    Sets the output data filter used by the transaction.
     
     Use this method when working with the documented Runner transaction builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
-## `ReadConfiguration`
+## Policies
+
+### `AddPolicy`
+
+??? info "Source file, signature, and docstring"
+    **Member**
+    `TransactionBuilder.AddPolicy(PolicyBuilder policy)`
+    
+    **Kind** `function`
+    
+    **Declaring Type** `TransactionBuilder`
+    
+    **Source File** `QaaS.Runner.Sessions/Actions/Transactions/Builders/TransactionBuilder.cs`
+    
+    **Signature**
+    ```csharp
+    public TransactionBuilder AddPolicy(PolicyBuilder policy)
+    ```
+    
+    **Docstring**
+    
+    Adds the supplied policy to the current Runner transaction builder instance.
+    
+    Use this method when working with the documented Runner transaction builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
+
+### `CreatePolicy`
+
+??? info "Source file, signature, and docstring"
+    **Member**
+    `TransactionBuilder.CreatePolicy(PolicyBuilder policy)`
+    
+    **Kind** `function`
+    
+    **Declaring Type** `TransactionBuilder`
+    
+    **Source File** `QaaS.Runner.Sessions/Actions/Transactions/Builders/TransactionBuilder.cs`
+    
+    **Signature**
+    ```csharp
+    public TransactionBuilder CreatePolicy(PolicyBuilder policy)
+    ```
+    
+    **Docstring**
+    
+    Creates or adds the configured policy entry on the current Runner transaction builder instance.
+    
+    Use this method when working with the documented Runner transaction builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
+
+### `UpdatePolicyAt`
+
+??? info "Source file, signature, and docstring"
+    **Member**
+    `TransactionBuilder.UpdatePolicyAt(int index, PolicyBuilder policy)`
+    
+    **Kind** `function`
+    
+    **Declaring Type** `TransactionBuilder`
+    
+    **Source File** `QaaS.Runner.Sessions/Actions/Transactions/Builders/TransactionBuilder.cs`
+    
+    **Signature**
+    ```csharp
+    public TransactionBuilder UpdatePolicyAt(int index, PolicyBuilder policy)
+    ```
+    
+    **Docstring**
+    
+    Updates the configured policy at the specified index on the current Runner transaction builder instance.
+    
+    Use this method when working with the documented Runner transaction builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
+
+### `DeletePolicyAt`
+
+??? info "Source file, signature, and docstring"
+    **Member**
+    `TransactionBuilder.DeletePolicyAt(int index)`
+    
+    **Kind** `function`
+    
+    **Declaring Type** `TransactionBuilder`
+    
+    **Source File** `QaaS.Runner.Sessions/Actions/Transactions/Builders/TransactionBuilder.cs`
+    
+    **Signature**
+    ```csharp
+    public TransactionBuilder DeletePolicyAt(int index)
+    ```
+    
+    **Docstring**
+    
+    Removes the configured policy at the specified index from the current Runner transaction builder instance.
+    
+    Use this method when working with the documented Runner transaction builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
+
+## Configuration
+
+### `WithTimeout`
+
+??? info "Source file, signature, and docstring"
+    **Member**
+    `TransactionBuilder.WithTimeout(int timeoutMs)`
+    
+    **Kind** `function`
+    
+    **Declaring Type** `TransactionBuilder`
+    
+    **Source File** `QaaS.Runner.Sessions/Actions/Transactions/Builders/TransactionBuilder.cs`
+    
+    **Signature**
+    ```csharp
+    public TransactionBuilder WithTimeout(int timeoutMs)
+    ```
+    
+    **Docstring**
+    
+    Configures timeout on the current Runner transaction builder instance.
+    
+    Use this method when working with the documented Runner transaction builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
+
+### `WithDeserializer`
+
+??? info "Source file, signature, and docstring"
+    **Member**
+    `TransactionBuilder.WithDeserializer(DeserializeConfig deserializeConfig)`
+    
+    **Kind** `function`
+    
+    **Declaring Type** `TransactionBuilder`
+    
+    **Source File** `QaaS.Runner.Sessions/Actions/Transactions/Builders/TransactionBuilder.cs`
+    
+    **Signature**
+    ```csharp
+    public TransactionBuilder WithDeserializer(DeserializeConfig deserializeConfig)
+    ```
+    
+    **Docstring**
+    
+    Sets the deserializer configuration used by the current Runner transaction builder instance.
+    
+    Use this method when working with the documented Runner transaction builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
+
+### `WithSerializer`
+
+??? info "Source file, signature, and docstring"
+    **Member**
+    `TransactionBuilder.WithSerializer(SerializeConfig serializeConfig)`
+    
+    **Kind** `function`
+    
+    **Declaring Type** `TransactionBuilder`
+    
+    **Source File** `QaaS.Runner.Sessions/Actions/Transactions/Builders/TransactionBuilder.cs`
+    
+    **Signature**
+    ```csharp
+    public TransactionBuilder WithSerializer(SerializeConfig serializeConfig)
+    ```
+    
+    **Docstring**
+    
+    Sets the serializer configuration used by the current Runner transaction builder instance.
+    
+    Use this method when working with the documented Runner transaction builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
+
+### `WithIterations`
+
+??? info "Source file, signature, and docstring"
+    **Member**
+    `TransactionBuilder.WithIterations(int iterations)`
+    
+    **Kind** `function`
+    
+    **Declaring Type** `TransactionBuilder`
+    
+    **Source File** `QaaS.Runner.Sessions/Actions/Transactions/Builders/TransactionBuilder.cs`
+    
+    **Signature**
+    ```csharp
+    public TransactionBuilder WithIterations(int iterations)
+    ```
+    
+    **Docstring**
+    
+    Sets how many iterations the transaction should execute.
+    
+    Use this method when working with the documented Runner transaction builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
+
+### `WithSleep`
+
+??? info "Source file, signature, and docstring"
+    **Member**
+    `TransactionBuilder.WithSleep(ulong sleepTimeMs)`
+    
+    **Kind** `function`
+    
+    **Declaring Type** `TransactionBuilder`
+    
+    **Source File** `QaaS.Runner.Sessions/Actions/Transactions/Builders/TransactionBuilder.cs`
+    
+    **Signature**
+    ```csharp
+    public TransactionBuilder WithSleep(ulong sleepTimeMs)
+    ```
+    
+    **Docstring**
+    
+    Sets the delay applied between transaction iterations.
+    
+    Use this method when working with the documented Runner transaction builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
+
+## Inspection
+
+### `ReadPolicies`
+
+??? info "Source file, signature, and docstring"
+    **Member**
+    `TransactionBuilder.ReadPolicies()`
+    
+    **Kind** `function`
+    
+    **Declaring Type** `TransactionBuilder`
+    
+    **Source File** `QaaS.Runner.Sessions/Actions/Transactions/Builders/TransactionBuilder.cs`
+    
+    **Signature**
+    ```csharp
+    public IReadOnlyList<PolicyBuilder> ReadPolicies()
+    ```
+    
+    **Docstring**
+    
+    Returns the configured policies currently stored on the Runner transaction builder instance.
+    
+    Use this method when working with the documented Runner transaction builder API surface in code. Use it to inspect the current configured state without rebuilding the surrounding collection or runtime object graph.
+
+### `ReadConfiguration`
 
 ??? info "Source file, signature, and docstring"
     **Member**
@@ -646,7 +595,55 @@ Each entry uses the short function name as the table-of-contents label. Expand a
     
     Use this method when working with the documented Runner transaction builder API surface in code. Use it to inspect the current configured state without rebuilding the surrounding collection or runtime object graph.
 
-## `UpdateConfiguration`
+## Collection helpers
+
+### `CreateConfiguration`
+
+??? info "Source file, signature, and docstring"
+    **Member**
+    `TransactionBuilder.CreateConfiguration(ITransactorConfig config)`
+    
+    **Kind** `function`
+    
+    **Declaring Type** `TransactionBuilder`
+    
+    **Source File** `QaaS.Runner.Sessions/Actions/Transactions/Builders/TransactionBuilder.cs`
+    
+    **Signature**
+    ```csharp
+    public TransactionBuilder CreateConfiguration(ITransactorConfig config)
+    ```
+    
+    **Docstring**
+    
+    Sets the configuration currently stored on the Runner transaction builder instance.
+    
+    Use this method when working with the documented Runner transaction builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
+
+### `Create`
+
+??? info "Source file, signature, and docstring"
+    **Member**
+    `TransactionBuilder.Create(ITransactorConfig config)`
+    
+    **Kind** `function`
+    
+    **Declaring Type** `TransactionBuilder`
+    
+    **Source File** `QaaS.Runner.Sessions/Actions/Transactions/Builders/TransactionBuilder.cs`
+    
+    **Signature**
+    ```csharp
+    public TransactionBuilder Create(ITransactorConfig config)
+    ```
+    
+    **Docstring**
+    
+    Sets the configuration currently stored on the Runner transaction builder instance.
+    
+    Use this method when working with the documented Runner transaction builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
+
+### `UpdateConfiguration`
 
 ??? info "Source file, signature, and docstring"
     **Member**
@@ -669,7 +666,7 @@ Each entry uses the short function name as the table-of-contents label. Expand a
     
     Use this method when working with the documented Runner transaction builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
-## `UpdateConfiguration`
+### `UpdateConfiguration`
 
 ??? info "Source file, signature, and docstring"
     **Member**
@@ -692,7 +689,7 @@ Each entry uses the short function name as the table-of-contents label. Expand a
     
     Use this method when working with the documented Runner transaction builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
-## `UpdateConfiguration`
+### `UpdateConfiguration`
 
 ??? info "Source file, signature, and docstring"
     **Member**
@@ -715,7 +712,7 @@ Each entry uses the short function name as the table-of-contents label. Expand a
     
     Use this method when working with the documented Runner transaction builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
-## `DeleteConfiguration`
+### `DeleteConfiguration`
 
 ??? info "Source file, signature, and docstring"
     **Member**
@@ -738,7 +735,32 @@ Each entry uses the short function name as the table-of-contents label. Expand a
     
     Use this method when working with the documented Runner transaction builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
-## `Configure`
+## General
+
+### `InLoops`
+
+??? info "Source file, signature, and docstring"
+    **Member**
+    `TransactionBuilder.InLoops()`
+    
+    **Kind** `function`
+    
+    **Declaring Type** `TransactionBuilder`
+    
+    **Source File** `QaaS.Runner.Sessions/Actions/Transactions/Builders/TransactionBuilder.cs`
+    
+    **Signature**
+    ```csharp
+    public TransactionBuilder InLoops()
+    ```
+    
+    **Docstring**
+    
+    Marks the transaction to execute continuously in loop mode.
+    
+    Use this method when working with the documented Runner transaction builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
+
+### `Configure`
 
 ??? info "Source file, signature, and docstring"
     **Member**

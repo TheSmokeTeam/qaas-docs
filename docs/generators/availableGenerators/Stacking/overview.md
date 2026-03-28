@@ -2,6 +2,10 @@
 
 Combines multiple data sources by taking a configured number of items from each source in turn.
 
+> Logical group: Existing data sources / Stacking
+
+> Logical group: Existing data sources / Stacking
+
 ## What It Does
 
 Combines multiple attached data sources by taking a configured number of items from each source in sequence and repeating that pattern until the sources are exhausted or a count limit is reached.

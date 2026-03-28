@@ -2,145 +2,11 @@
 
 Each entry uses the short function name as the table-of-contents label. Expand an entry to inspect its source file, signature, and XML doc comments.
 
-## `ExecutionBuilder`
+The functions on this page are grouped by responsibility so related operations stay together.
 
-??? info "Source file, signature, and docstring"
-    **Member**
-    `ExecutionBuilder()`
-    
-    **Kind** `constructor`
-    
-    **Declaring Type** `ExecutionBuilder`
-    
-    **Source File** `QaaS.Mocker/ExecutionBuilder.cs`
-    
-    **Signature**
-    ```csharp
-    public ExecutionBuilder()
-    ```
-    
-    **Docstring**
-    
-    Creates a new Mocker execution builder with an empty default context.
-    
-    Use this constructor when bootstrapping a mocker execution entirely in code before any configuration or runtime services have been attached.
+## Data source selection
 
-## `WithLogger`
-
-??? info "Source file, signature, and docstring"
-    **Member**
-    `ExecutionBuilder.WithLogger(ILogger logger)`
-    
-    **Kind** `function`
-    
-    **Declaring Type** `ExecutionBuilder`
-    
-    **Source File** `QaaS.Mocker/ExecutionBuilder.cs`
-    
-    **Signature**
-    ```csharp
-    public ExecutionBuilder WithLogger(ILogger logger)
-    ```
-    
-    **Docstring**
-    
-    Replaces the logger stored on the current Mocker execution builder instance.
-    
-    Use this method when working with the documented Mocker execution builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
-
-## `WithRootConfiguration`
-
-??? info "Source file, signature, and docstring"
-    **Member**
-    `ExecutionBuilder.WithRootConfiguration(IConfiguration configuration)`
-    
-    **Kind** `function`
-    
-    **Declaring Type** `ExecutionBuilder`
-    
-    **Source File** `QaaS.Mocker/ExecutionBuilder.cs`
-    
-    **Signature**
-    ```csharp
-    public ExecutionBuilder WithRootConfiguration(IConfiguration configuration)
-    ```
-    
-    **Docstring**
-    
-    Replaces the root configuration stored on the current execution context.
-    
-    Use this method when working with the documented Mocker execution builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
-
-## `WithExecutionMode`
-
-??? info "Source file, signature, and docstring"
-    **Member**
-    `ExecutionBuilder.WithExecutionMode(ExecutionMode executionMode)`
-    
-    **Kind** `function`
-    
-    **Declaring Type** `ExecutionBuilder`
-    
-    **Source File** `QaaS.Mocker/ExecutionBuilder.cs`
-    
-    **Signature**
-    ```csharp
-    public ExecutionBuilder WithExecutionMode(ExecutionMode executionMode)
-    ```
-    
-    **Docstring**
-    
-    Sets the execution mode used by the resulting mocker runtime.
-    
-    Use this method when working with the documented Mocker execution builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
-
-## `RunLocally`
-
-??? info "Source file, signature, and docstring"
-    **Member**
-    `ExecutionBuilder.RunLocally(bool runLocally = true)`
-    
-    **Kind** `function`
-    
-    **Declaring Type** `ExecutionBuilder`
-    
-    **Source File** `QaaS.Mocker/ExecutionBuilder.cs`
-    
-    **Signature**
-    ```csharp
-    public ExecutionBuilder RunLocally(bool runLocally = true)
-    ```
-    
-    **Docstring**
-    
-    Configures whether the mocker waits for an interactive local shutdown signal.
-    
-    Use this method when working with the documented Mocker execution builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
-
-## `WithTemplateOutputFolder`
-
-??? info "Source file, signature, and docstring"
-    **Member**
-    `ExecutionBuilder.WithTemplateOutputFolder(string? templateOutputFolder)`
-    
-    **Kind** `function`
-    
-    **Declaring Type** `ExecutionBuilder`
-    
-    **Source File** `QaaS.Mocker/ExecutionBuilder.cs`
-    
-    **Signature**
-    ```csharp
-    public ExecutionBuilder WithTemplateOutputFolder(string? templateOutputFolder)
-    ```
-    
-    **Docstring**
-    
-    Sets the template output folder used by template mode.
-    
-    Use this method when working with the documented Mocker execution builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
-
-## `CreateDataSource`
+### `CreateDataSource`
 
 ??? info "Source file, signature, and docstring"
     **Member**
@@ -163,7 +29,7 @@ Each entry uses the short function name as the table-of-contents label. Expand a
     
     Use this method when working with the documented Mocker execution builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
-## `ReadDataSource`
+### `ReadDataSource`
 
 ??? info "Source file, signature, and docstring"
     **Member**
@@ -186,7 +52,7 @@ Each entry uses the short function name as the table-of-contents label. Expand a
     
     Use this method when working with the documented Mocker execution builder API surface in code. Use it to inspect the current configured state without rebuilding the surrounding collection or runtime object graph.
 
-## `UpdateDataSource`
+### `UpdateDataSource`
 
 ??? info "Source file, signature, and docstring"
     **Member**
@@ -209,7 +75,7 @@ Each entry uses the short function name as the table-of-contents label. Expand a
     
     Use this method when working with the documented Mocker execution builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
-## `DeleteDataSource`
+### `DeleteDataSource`
 
 ??? info "Source file, signature, and docstring"
     **Member**
@@ -232,11 +98,13 @@ Each entry uses the short function name as the table-of-contents label. Expand a
     
     Use this method when working with the documented Mocker execution builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
-## `CreateStub`
+## Output selection
+
+### `WithTemplateOutputFolder`
 
 ??? info "Source file, signature, and docstring"
     **Member**
-    `ExecutionBuilder.CreateStub(TransactionStubBuilder stubBuilder)`
+    `ExecutionBuilder.WithTemplateOutputFolder(string? templateOutputFolder)`
     
     **Kind** `function`
     
@@ -246,154 +114,18 @@ Each entry uses the short function name as the table-of-contents label. Expand a
     
     **Signature**
     ```csharp
-    public ExecutionBuilder CreateStub(TransactionStubBuilder stubBuilder)
+    public ExecutionBuilder WithTemplateOutputFolder(string? templateOutputFolder)
     ```
     
     **Docstring**
     
-    Creates or adds the configured stub entry on the current Mocker execution builder instance.
+    Sets the template output folder used by template mode.
     
     Use this method when working with the documented Mocker execution builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
-## `CreateStub`
+## Servers
 
-??? info "Source file, signature, and docstring"
-    **Member**
-    `ExecutionBuilder.CreateStub(TransactionStubConfig stubConfig)`
-    
-    **Kind** `function`
-    
-    **Declaring Type** `ExecutionBuilder`
-    
-    **Source File** `QaaS.Mocker/ExecutionBuilder.cs`
-    
-    **Signature**
-    ```csharp
-    public ExecutionBuilder CreateStub(TransactionStubConfig stubConfig)
-    ```
-    
-    **Docstring**
-    
-    Creates or adds the configured stub entry on the current Mocker execution builder instance.
-    
-    Use this method when working with the documented Mocker execution builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
-
-## `ReadStub`
-
-??? info "Source file, signature, and docstring"
-    **Member**
-    `ExecutionBuilder.ReadStub(string stubName)`
-    
-    **Kind** `function`
-    
-    **Declaring Type** `ExecutionBuilder`
-    
-    **Source File** `QaaS.Mocker/ExecutionBuilder.cs`
-    
-    **Signature**
-    ```csharp
-    public TransactionStubConfig? ReadStub(string stubName)
-    ```
-    
-    **Docstring**
-    
-    Returns the configured stub currently stored on the Mocker execution builder instance.
-    
-    Use this method when working with the documented Mocker execution builder API surface in code. Use it to inspect the current configured state without rebuilding the surrounding collection or runtime object graph.
-
-## `UpdateStub`
-
-??? info "Source file, signature, and docstring"
-    **Member**
-    `ExecutionBuilder.UpdateStub(string stubName, Action<TransactionStubBuilder> configureAction)`
-    
-    **Kind** `function`
-    
-    **Declaring Type** `ExecutionBuilder`
-    
-    **Source File** `QaaS.Mocker/ExecutionBuilder.cs`
-    
-    **Signature**
-    ```csharp
-    public ExecutionBuilder UpdateStub(string stubName, Action<TransactionStubBuilder> configureAction)
-    ```
-    
-    **Docstring**
-    
-    Updates the configured stub stored on the current Mocker execution builder instance.
-    
-    Use this method when working with the documented Mocker execution builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
-
-## `UpdateStub`
-
-??? info "Source file, signature, and docstring"
-    **Member**
-    `ExecutionBuilder.UpdateStub(string stubName, TransactionStubBuilder stubBuilder)`
-    
-    **Kind** `function`
-    
-    **Declaring Type** `ExecutionBuilder`
-    
-    **Source File** `QaaS.Mocker/ExecutionBuilder.cs`
-    
-    **Signature**
-    ```csharp
-    public ExecutionBuilder UpdateStub(string stubName, TransactionStubBuilder stubBuilder)
-    ```
-    
-    **Docstring**
-    
-    Updates the configured stub stored on the current Mocker execution builder instance.
-    
-    Use this method when working with the documented Mocker execution builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
-
-## `UpdateStub`
-
-??? info "Source file, signature, and docstring"
-    **Member**
-    `ExecutionBuilder.UpdateStub(string stubName, TransactionStubConfig stubConfig)`
-    
-    **Kind** `function`
-    
-    **Declaring Type** `ExecutionBuilder`
-    
-    **Source File** `QaaS.Mocker/ExecutionBuilder.cs`
-    
-    **Signature**
-    ```csharp
-    public ExecutionBuilder UpdateStub(string stubName, TransactionStubConfig stubConfig)
-    ```
-    
-    **Docstring**
-    
-    Updates the configured stub stored on the current Mocker execution builder instance.
-    
-    Use this method when working with the documented Mocker execution builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
-
-## `DeleteStub`
-
-??? info "Source file, signature, and docstring"
-    **Member**
-    `ExecutionBuilder.DeleteStub(string stubName)`
-    
-    **Kind** `function`
-    
-    **Declaring Type** `ExecutionBuilder`
-    
-    **Source File** `QaaS.Mocker/ExecutionBuilder.cs`
-    
-    **Signature**
-    ```csharp
-    public ExecutionBuilder DeleteStub(string stubName)
-    ```
-    
-    **Docstring**
-    
-    Removes the configured stub from the current Mocker execution builder instance.
-    
-    Use this method when working with the documented Mocker execution builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
-
-## `ReadServer`
+### `ReadServer`
 
 ??? info "Source file, signature, and docstring"
     **Member**
@@ -416,7 +148,7 @@ Each entry uses the short function name as the table-of-contents label. Expand a
     
     Use this method when working with the documented Mocker execution builder API surface in code. Use it to inspect the current configured state without rebuilding the surrounding collection or runtime object graph.
 
-## `ReadServers`
+### `ReadServers`
 
 ??? info "Source file, signature, and docstring"
     **Member**
@@ -439,7 +171,7 @@ Each entry uses the short function name as the table-of-contents label. Expand a
     
     Use this method when working with the documented Mocker execution builder API surface in code. Use it to inspect the current configured state without rebuilding the surrounding collection or runtime object graph.
 
-## `CreateServer`
+### `CreateServer`
 
 ??? info "Source file, signature, and docstring"
     **Member**
@@ -462,7 +194,7 @@ Each entry uses the short function name as the table-of-contents label. Expand a
     
     Use this method when working with the documented Mocker execution builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
-## `ReplaceServer`
+### `ReplaceServer`
 
 ??? info "Source file, signature, and docstring"
     **Member**
@@ -485,7 +217,7 @@ Each entry uses the short function name as the table-of-contents label. Expand a
     
     Use this method when working with the documented Mocker execution builder API surface in code. The behavior exposed here is part of the public surface that the generated function documentation groups under 'Configuration as Code / Executions'.
 
-## `AddServer`
+### `AddServer`
 
 ??? info "Source file, signature, and docstring"
     **Member**
@@ -508,7 +240,7 @@ Each entry uses the short function name as the table-of-contents label. Expand a
     
     Use this method when working with the documented Mocker execution builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
-## `ReplaceServers`
+### `ReplaceServers`
 
 ??? info "Source file, signature, and docstring"
     **Member**
@@ -531,7 +263,7 @@ Each entry uses the short function name as the table-of-contents label. Expand a
     
     Use this method when working with the documented Mocker execution builder API surface in code. The behavior exposed here is part of the public surface that the generated function documentation groups under 'Configuration as Code / Executions'.
 
-## `UpdateServer`
+### `UpdateServer`
 
 ??? info "Source file, signature, and docstring"
     **Member**
@@ -554,7 +286,270 @@ Each entry uses the short function name as the table-of-contents label. Expand a
     
     Use this method when working with the documented Mocker execution builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
-## `ReadController`
+## Transaction stubs
+
+### `CreateStub`
+
+??? info "Source file, signature, and docstring"
+    **Member**
+    `ExecutionBuilder.CreateStub(TransactionStubBuilder stubBuilder)`
+    
+    **Kind** `function`
+    
+    **Declaring Type** `ExecutionBuilder`
+    
+    **Source File** `QaaS.Mocker/ExecutionBuilder.cs`
+    
+    **Signature**
+    ```csharp
+    public ExecutionBuilder CreateStub(TransactionStubBuilder stubBuilder)
+    ```
+    
+    **Docstring**
+    
+    Creates or adds the configured stub entry on the current Mocker execution builder instance.
+    
+    Use this method when working with the documented Mocker execution builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
+
+### `CreateStub`
+
+??? info "Source file, signature, and docstring"
+    **Member**
+    `ExecutionBuilder.CreateStub(TransactionStubConfig stubConfig)`
+    
+    **Kind** `function`
+    
+    **Declaring Type** `ExecutionBuilder`
+    
+    **Source File** `QaaS.Mocker/ExecutionBuilder.cs`
+    
+    **Signature**
+    ```csharp
+    public ExecutionBuilder CreateStub(TransactionStubConfig stubConfig)
+    ```
+    
+    **Docstring**
+    
+    Creates or adds the configured stub entry on the current Mocker execution builder instance.
+    
+    Use this method when working with the documented Mocker execution builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
+
+### `ReadStub`
+
+??? info "Source file, signature, and docstring"
+    **Member**
+    `ExecutionBuilder.ReadStub(string stubName)`
+    
+    **Kind** `function`
+    
+    **Declaring Type** `ExecutionBuilder`
+    
+    **Source File** `QaaS.Mocker/ExecutionBuilder.cs`
+    
+    **Signature**
+    ```csharp
+    public TransactionStubConfig? ReadStub(string stubName)
+    ```
+    
+    **Docstring**
+    
+    Returns the configured stub currently stored on the Mocker execution builder instance.
+    
+    Use this method when working with the documented Mocker execution builder API surface in code. Use it to inspect the current configured state without rebuilding the surrounding collection or runtime object graph.
+
+### `UpdateStub`
+
+??? info "Source file, signature, and docstring"
+    **Member**
+    `ExecutionBuilder.UpdateStub(string stubName, Action<TransactionStubBuilder> configureAction)`
+    
+    **Kind** `function`
+    
+    **Declaring Type** `ExecutionBuilder`
+    
+    **Source File** `QaaS.Mocker/ExecutionBuilder.cs`
+    
+    **Signature**
+    ```csharp
+    public ExecutionBuilder UpdateStub(string stubName, Action<TransactionStubBuilder> configureAction)
+    ```
+    
+    **Docstring**
+    
+    Updates the configured stub stored on the current Mocker execution builder instance.
+    
+    Use this method when working with the documented Mocker execution builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
+
+### `UpdateStub`
+
+??? info "Source file, signature, and docstring"
+    **Member**
+    `ExecutionBuilder.UpdateStub(string stubName, TransactionStubBuilder stubBuilder)`
+    
+    **Kind** `function`
+    
+    **Declaring Type** `ExecutionBuilder`
+    
+    **Source File** `QaaS.Mocker/ExecutionBuilder.cs`
+    
+    **Signature**
+    ```csharp
+    public ExecutionBuilder UpdateStub(string stubName, TransactionStubBuilder stubBuilder)
+    ```
+    
+    **Docstring**
+    
+    Updates the configured stub stored on the current Mocker execution builder instance.
+    
+    Use this method when working with the documented Mocker execution builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
+
+### `UpdateStub`
+
+??? info "Source file, signature, and docstring"
+    **Member**
+    `ExecutionBuilder.UpdateStub(string stubName, TransactionStubConfig stubConfig)`
+    
+    **Kind** `function`
+    
+    **Declaring Type** `ExecutionBuilder`
+    
+    **Source File** `QaaS.Mocker/ExecutionBuilder.cs`
+    
+    **Signature**
+    ```csharp
+    public ExecutionBuilder UpdateStub(string stubName, TransactionStubConfig stubConfig)
+    ```
+    
+    **Docstring**
+    
+    Updates the configured stub stored on the current Mocker execution builder instance.
+    
+    Use this method when working with the documented Mocker execution builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
+
+### `DeleteStub`
+
+??? info "Source file, signature, and docstring"
+    **Member**
+    `ExecutionBuilder.DeleteStub(string stubName)`
+    
+    **Kind** `function`
+    
+    **Declaring Type** `ExecutionBuilder`
+    
+    **Source File** `QaaS.Mocker/ExecutionBuilder.cs`
+    
+    **Signature**
+    ```csharp
+    public ExecutionBuilder DeleteStub(string stubName)
+    ```
+    
+    **Docstring**
+    
+    Removes the configured stub from the current Mocker execution builder instance.
+    
+    Use this method when working with the documented Mocker execution builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
+
+## Executions
+
+### `ExecutionBuilder`
+
+??? info "Source file, signature, and docstring"
+    **Member**
+    `ExecutionBuilder()`
+    
+    **Kind** `constructor`
+    
+    **Declaring Type** `ExecutionBuilder`
+    
+    **Source File** `QaaS.Mocker/ExecutionBuilder.cs`
+    
+    **Signature**
+    ```csharp
+    public ExecutionBuilder()
+    ```
+    
+    **Docstring**
+    
+    Creates a new Mocker execution builder with an empty default context.
+    
+    Use this constructor when bootstrapping a mocker execution entirely in code before any configuration or runtime services have been attached.
+
+### `WithExecutionMode`
+
+??? info "Source file, signature, and docstring"
+    **Member**
+    `ExecutionBuilder.WithExecutionMode(ExecutionMode executionMode)`
+    
+    **Kind** `function`
+    
+    **Declaring Type** `ExecutionBuilder`
+    
+    **Source File** `QaaS.Mocker/ExecutionBuilder.cs`
+    
+    **Signature**
+    ```csharp
+    public ExecutionBuilder WithExecutionMode(ExecutionMode executionMode)
+    ```
+    
+    **Docstring**
+    
+    Sets the execution mode used by the resulting mocker runtime.
+    
+    Use this method when working with the documented Mocker execution builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
+
+## Configuration
+
+### `WithRootConfiguration`
+
+??? info "Source file, signature, and docstring"
+    **Member**
+    `ExecutionBuilder.WithRootConfiguration(IConfiguration configuration)`
+    
+    **Kind** `function`
+    
+    **Declaring Type** `ExecutionBuilder`
+    
+    **Source File** `QaaS.Mocker/ExecutionBuilder.cs`
+    
+    **Signature**
+    ```csharp
+    public ExecutionBuilder WithRootConfiguration(IConfiguration configuration)
+    ```
+    
+    **Docstring**
+    
+    Replaces the root configuration stored on the current execution context.
+    
+    Use this method when working with the documented Mocker execution builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
+
+## Reporting and artifacts
+
+### `WithLogger`
+
+??? info "Source file, signature, and docstring"
+    **Member**
+    `ExecutionBuilder.WithLogger(ILogger logger)`
+    
+    **Kind** `function`
+    
+    **Declaring Type** `ExecutionBuilder`
+    
+    **Source File** `QaaS.Mocker/ExecutionBuilder.cs`
+    
+    **Signature**
+    ```csharp
+    public ExecutionBuilder WithLogger(ILogger logger)
+    ```
+    
+    **Docstring**
+    
+    Replaces the logger stored on the current Mocker execution builder instance.
+    
+    Use this method when working with the documented Mocker execution builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
+
+## Inspection
+
+### `ReadController`
 
 ??? info "Source file, signature, and docstring"
     **Member**
@@ -577,7 +572,9 @@ Each entry uses the short function name as the table-of-contents label. Expand a
     
     Use this method when working with the documented Mocker execution builder API surface in code. Use it to inspect the current configured state without rebuilding the surrounding collection or runtime object graph.
 
-## `CreateController`
+## Collection helpers
+
+### `CreateController`
 
 ??? info "Source file, signature, and docstring"
     **Member**
@@ -600,30 +597,7 @@ Each entry uses the short function name as the table-of-contents label. Expand a
     
     Use this method when working with the documented Mocker execution builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
-## `ReplaceController`
-
-??? info "Source file, signature, and docstring"
-    **Member**
-    `ExecutionBuilder.ReplaceController(ControllerConfig? controllerConfig)`
-    
-    **Kind** `function`
-    
-    **Declaring Type** `ExecutionBuilder`
-    
-    **Source File** `QaaS.Mocker/ExecutionBuilder.cs`
-    
-    **Signature**
-    ```csharp
-    public ExecutionBuilder ReplaceController(ControllerConfig? controllerConfig)
-    ```
-    
-    **Docstring**
-    
-    Replaces the configured controller on the current Mocker execution builder instance.
-    
-    Use this method when working with the documented Mocker execution builder API surface in code. The behavior exposed here is part of the public surface that the generated function documentation groups under 'Configuration as Code / Executions'.
-
-## `UpdateController`
+### `UpdateController`
 
 ??? info "Source file, signature, and docstring"
     **Member**
@@ -646,7 +620,7 @@ Each entry uses the short function name as the table-of-contents label. Expand a
     
     Use this method when working with the documented Mocker execution builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
-## `DeleteController`
+### `DeleteController`
 
 ??? info "Source file, signature, and docstring"
     **Member**
@@ -669,7 +643,55 @@ Each entry uses the short function name as the table-of-contents label. Expand a
     
     Use this method when working with the documented Mocker execution builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
-## `Build`
+## General
+
+### `RunLocally`
+
+??? info "Source file, signature, and docstring"
+    **Member**
+    `ExecutionBuilder.RunLocally(bool runLocally = true)`
+    
+    **Kind** `function`
+    
+    **Declaring Type** `ExecutionBuilder`
+    
+    **Source File** `QaaS.Mocker/ExecutionBuilder.cs`
+    
+    **Signature**
+    ```csharp
+    public ExecutionBuilder RunLocally(bool runLocally = true)
+    ```
+    
+    **Docstring**
+    
+    Configures whether the mocker waits for an interactive local shutdown signal.
+    
+    Use this method when working with the documented Mocker execution builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
+
+### `ReplaceController`
+
+??? info "Source file, signature, and docstring"
+    **Member**
+    `ExecutionBuilder.ReplaceController(ControllerConfig? controllerConfig)`
+    
+    **Kind** `function`
+    
+    **Declaring Type** `ExecutionBuilder`
+    
+    **Source File** `QaaS.Mocker/ExecutionBuilder.cs`
+    
+    **Signature**
+    ```csharp
+    public ExecutionBuilder ReplaceController(ControllerConfig? controllerConfig)
+    ```
+    
+    **Docstring**
+    
+    Replaces the configured controller on the current Mocker execution builder instance.
+    
+    Use this method when working with the documented Mocker execution builder API surface in code. The behavior exposed here is part of the public surface that the generated function documentation groups under 'Configuration as Code / Executions'.
+
+### `Build`
 
 ??? info "Source file, signature, and docstring"
     **Member**
@@ -692,7 +714,7 @@ Each entry uses the short function name as the table-of-contents label. Expand a
     
     Call this after the fluent configuration is complete. The method validates the accumulated state and materializes the runtime or immutable configuration object represented by the builder.
 
-## `Validate`
+### `Validate`
 
 ??? info "Source file, signature, and docstring"
     **Member**

@@ -2,168 +2,11 @@
 
 Each entry uses the short function name as the table-of-contents label. Expand an entry to inspect its source file, signature, and XML doc comments.
 
-## `ContextBuilder`
+The functions on this page are grouped by responsibility so related operations stay together.
 
-??? info "Source file, signature, and docstring"
-    **Member**
-    `ContextBuilder(string configurationFile, IList<string>? referenceResolutionPaths = null, IList<string>? uniqueIdPathRegexes = null)`
-    
-    **Kind** `constructor`
-    
-    **Declaring Type** `ContextBuilder`
-    
-    **Source File** `QaaS.Framework.SDK/ContextObjects/ContextBuilder.cs`
-    
-    **Signature**
-    ```csharp
-    public ContextBuilder(string configurationFile, IList<string>? referenceResolutionPaths = null, IList<string>? uniqueIdPathRegexes = null)
-    ```
-    
-    **Docstring**
-    
-    Creates a context builder that starts from a base QaaS configuration file.
-    
-    Use this constructor when the context should load its initial configuration from a file path before overwrite sources and reference resolution are applied.
+## Executions
 
-## `ContextBuilder`
-
-??? info "Source file, signature, and docstring"
-    **Member**
-    `ContextBuilder(IConfigurationBuilder configurationBuilder, IList<string>? referenceResolutionPaths = null, IList<string>? uniqueIdPathRegexes = null)`
-    
-    **Kind** `constructor`
-    
-    **Declaring Type** `ContextBuilder`
-    
-    **Source File** `QaaS.Framework.SDK/ContextObjects/ContextBuilder.cs`
-    
-    **Signature**
-    ```csharp
-    public ContextBuilder(IConfigurationBuilder configurationBuilder, IList<string>? referenceResolutionPaths = null, IList<string>? uniqueIdPathRegexes = null)
-    ```
-    
-    **Docstring**
-    
-    Creates a context builder that starts from an existing configuration builder pipeline.
-    
-    Use this constructor when configuration sources are assembled externally and should be handed to the QaaS context pipeline as-is.
-
-## `SetLogger`
-
-??? info "Source file, signature, and docstring"
-    **Member**
-    `ContextBuilder.SetLogger(ILogger logger)`
-    
-    **Kind** `function`
-    
-    **Declaring Type** `ContextBuilder`
-    
-    **Source File** `QaaS.Framework.SDK/ContextObjects/ContextBuilder.cs`
-    
-    **Signature**
-    ```csharp
-    public IContextBuilder SetLogger(ILogger logger)
-    ```
-    
-    **Docstring**
-    
-    Sets the logger stored on the built context.
-    
-    The configured logger becomes the logger used by the context itself and by runtime components resolved from that context.
-
-## `SetConfigurationFile`
-
-??? info "Source file, signature, and docstring"
-    **Member**
-    `ContextBuilder.SetConfigurationFile(string? configurationFile)`
-    
-    **Kind** `function`
-    
-    **Declaring Type** `ContextBuilder`
-    
-    **Source File** `QaaS.Framework.SDK/ContextObjects/ContextBuilder.cs`
-    
-    **Signature**
-    ```csharp
-    public IContextBuilder SetConfigurationFile(string? configurationFile)
-    ```
-    
-    **Docstring**
-    
-    Sets the base configuration file used by the context builder.
-    
-    Use this when the base configuration file should be selected or replaced after the builder has been created.
-
-## `WithOverwriteFile`
-
-??? info "Source file, signature, and docstring"
-    **Member**
-    `ContextBuilder.WithOverwriteFile(string? overwriteFile)`
-    
-    **Kind** `function`
-    
-    **Declaring Type** `ContextBuilder`
-    
-    **Source File** `QaaS.Framework.SDK/ContextObjects/ContextBuilder.cs`
-    
-    **Signature**
-    ```csharp
-    public IContextBuilder WithOverwriteFile(string? overwriteFile)
-    ```
-    
-    **Docstring**
-    
-    Adds an overwrite file that should be applied during context construction.
-    
-    Overwrite files are applied after the base configuration and before the final configuration is built.
-
-## `WithOverwriteFolder`
-
-??? info "Source file, signature, and docstring"
-    **Member**
-    `ContextBuilder.WithOverwriteFolder(string? overwriteFolder)`
-    
-    **Kind** `function`
-    
-    **Declaring Type** `ContextBuilder`
-    
-    **Source File** `QaaS.Framework.SDK/ContextObjects/ContextBuilder.cs`
-    
-    **Signature**
-    ```csharp
-    public IContextBuilder WithOverwriteFolder(string? overwriteFolder)
-    ```
-    
-    **Docstring**
-    
-    Adds an overwrite folder whose YAML files should be applied during context construction.
-    
-    Every YAML file discovered in the folder is applied as an overwrite source in the order returned by the file-system enumeration.
-
-## `SetCase`
-
-??? info "Source file, signature, and docstring"
-    **Member**
-    `ContextBuilder.SetCase(string? caseFile)`
-    
-    **Kind** `function`
-    
-    **Declaring Type** `ContextBuilder`
-    
-    **Source File** `QaaS.Framework.SDK/ContextObjects/ContextBuilder.cs`
-    
-    **Signature**
-    ```csharp
-    public IContextBuilder SetCase(string? caseFile)
-    ```
-    
-    **Docstring**
-    
-    Sets the case file used during context construction.
-    
-    The supplied value is also stored as the case name on the built context.
-
-## `SetExecutionId`
+### `SetExecutionId`
 
 ??? info "Source file, signature, and docstring"
     **Member**
@@ -186,7 +29,149 @@ Each entry uses the short function name as the table-of-contents label. Expand a
     
     The execution identifier flows into the built context and can later be used by logging, reports, and storage integrations.
 
-## `WithOverwriteArgument`
+## Contexts
+
+### `ContextBuilder`
+
+??? info "Source file, signature, and docstring"
+    **Member**
+    `ContextBuilder(string configurationFile, IList<string>? referenceResolutionPaths = null, IList<string>? uniqueIdPathRegexes = null)`
+    
+    **Kind** `constructor`
+    
+    **Declaring Type** `ContextBuilder`
+    
+    **Source File** `QaaS.Framework.SDK/ContextObjects/ContextBuilder.cs`
+    
+    **Signature**
+    ```csharp
+    public ContextBuilder(string configurationFile, IList<string>? referenceResolutionPaths = null, IList<string>? uniqueIdPathRegexes = null)
+    ```
+    
+    **Docstring**
+    
+    Creates a context builder that starts from a base QaaS configuration file.
+    
+    Use this constructor when the context should load its initial configuration from a file path before overwrite sources and reference resolution are applied.
+
+### `ContextBuilder`
+
+??? info "Source file, signature, and docstring"
+    **Member**
+    `ContextBuilder(IConfigurationBuilder configurationBuilder, IList<string>? referenceResolutionPaths = null, IList<string>? uniqueIdPathRegexes = null)`
+    
+    **Kind** `constructor`
+    
+    **Declaring Type** `ContextBuilder`
+    
+    **Source File** `QaaS.Framework.SDK/ContextObjects/ContextBuilder.cs`
+    
+    **Signature**
+    ```csharp
+    public ContextBuilder(IConfigurationBuilder configurationBuilder, IList<string>? referenceResolutionPaths = null, IList<string>? uniqueIdPathRegexes = null)
+    ```
+    
+    **Docstring**
+    
+    Creates a context builder that starts from an existing configuration builder pipeline.
+    
+    Use this constructor when configuration sources are assembled externally and should be handed to the QaaS context pipeline as-is.
+
+## Configuration
+
+### `SetConfigurationFile`
+
+??? info "Source file, signature, and docstring"
+    **Member**
+    `ContextBuilder.SetConfigurationFile(string? configurationFile)`
+    
+    **Kind** `function`
+    
+    **Declaring Type** `ContextBuilder`
+    
+    **Source File** `QaaS.Framework.SDK/ContextObjects/ContextBuilder.cs`
+    
+    **Signature**
+    ```csharp
+    public IContextBuilder SetConfigurationFile(string? configurationFile)
+    ```
+    
+    **Docstring**
+    
+    Sets the base configuration file used by the context builder.
+    
+    Use this when the base configuration file should be selected or replaced after the builder has been created.
+
+### `WithOverwriteFile`
+
+??? info "Source file, signature, and docstring"
+    **Member**
+    `ContextBuilder.WithOverwriteFile(string? overwriteFile)`
+    
+    **Kind** `function`
+    
+    **Declaring Type** `ContextBuilder`
+    
+    **Source File** `QaaS.Framework.SDK/ContextObjects/ContextBuilder.cs`
+    
+    **Signature**
+    ```csharp
+    public IContextBuilder WithOverwriteFile(string? overwriteFile)
+    ```
+    
+    **Docstring**
+    
+    Adds an overwrite file that should be applied during context construction.
+    
+    Overwrite files are applied after the base configuration and before the final configuration is built.
+
+### `WithOverwriteFolder`
+
+??? info "Source file, signature, and docstring"
+    **Member**
+    `ContextBuilder.WithOverwriteFolder(string? overwriteFolder)`
+    
+    **Kind** `function`
+    
+    **Declaring Type** `ContextBuilder`
+    
+    **Source File** `QaaS.Framework.SDK/ContextObjects/ContextBuilder.cs`
+    
+    **Signature**
+    ```csharp
+    public IContextBuilder WithOverwriteFolder(string? overwriteFolder)
+    ```
+    
+    **Docstring**
+    
+    Adds an overwrite folder whose YAML files should be applied during context construction.
+    
+    Every YAML file discovered in the folder is applied as an overwrite source in the order returned by the file-system enumeration.
+
+### `SetCase`
+
+??? info "Source file, signature, and docstring"
+    **Member**
+    `ContextBuilder.SetCase(string? caseFile)`
+    
+    **Kind** `function`
+    
+    **Declaring Type** `ContextBuilder`
+    
+    **Source File** `QaaS.Framework.SDK/ContextObjects/ContextBuilder.cs`
+    
+    **Signature**
+    ```csharp
+    public IContextBuilder SetCase(string? caseFile)
+    ```
+    
+    **Docstring**
+    
+    Sets the case file used during context construction.
+    
+    The supplied value is also stored as the case name on the built context.
+
+### `WithOverwriteArgument`
 
 ??? info "Source file, signature, and docstring"
     **Member**
@@ -209,7 +194,7 @@ Each entry uses the short function name as the table-of-contents label. Expand a
     
     Use this when command-line style overrides should participate in the same configuration pipeline as YAML sources.
 
-## `WithReferenceResolution`
+### `WithReferenceResolution`
 
 ??? info "Source file, signature, and docstring"
     **Member**
@@ -232,30 +217,7 @@ Each entry uses the short function name as the table-of-contents label. Expand a
     
     Reference-resolution rules are applied while building the final configuration so linked configuration values can be expanded consistently.
 
-## `ResolveCaseLast`
-
-??? info "Source file, signature, and docstring"
-    **Member**
-    `ContextBuilder.ResolveCaseLast()`
-    
-    **Kind** `function`
-    
-    **Declaring Type** `ContextBuilder`
-    
-    **Source File** `QaaS.Framework.SDK/ContextObjects/ContextBuilder.cs`
-    
-    **Signature**
-    ```csharp
-    public IContextBuilder ResolveCaseLast()
-    ```
-    
-    **Docstring**
-    
-    Delays case-file application until after reference resolution has completed.
-    
-    This changes resolution order so the case overlay is applied after references are expanded from the base configuration and overwrites.
-
-## `WithEnvironmentVariableResolution`
+### `WithEnvironmentVariableResolution`
 
 ??? info "Source file, signature, and docstring"
     **Member**
@@ -277,3 +239,53 @@ Each entry uses the short function name as the table-of-contents label. Expand a
     Enables environment-variable expansion while the context is being built.
     
     Enable this when configuration values should resolve environment variables while the context is being built.
+
+## Reporting and artifacts
+
+### `SetLogger`
+
+??? info "Source file, signature, and docstring"
+    **Member**
+    `ContextBuilder.SetLogger(ILogger logger)`
+    
+    **Kind** `function`
+    
+    **Declaring Type** `ContextBuilder`
+    
+    **Source File** `QaaS.Framework.SDK/ContextObjects/ContextBuilder.cs`
+    
+    **Signature**
+    ```csharp
+    public IContextBuilder SetLogger(ILogger logger)
+    ```
+    
+    **Docstring**
+    
+    Sets the logger stored on the built context.
+    
+    The configured logger becomes the logger used by the context itself and by runtime components resolved from that context.
+
+## General
+
+### `ResolveCaseLast`
+
+??? info "Source file, signature, and docstring"
+    **Member**
+    `ContextBuilder.ResolveCaseLast()`
+    
+    **Kind** `function`
+    
+    **Declaring Type** `ContextBuilder`
+    
+    **Source File** `QaaS.Framework.SDK/ContextObjects/ContextBuilder.cs`
+    
+    **Signature**
+    ```csharp
+    public IContextBuilder ResolveCaseLast()
+    ```
+    
+    **Docstring**
+    
+    Delays case-file application until after reference resolution has completed.
+    
+    This changes resolution order so the case overlay is applied after references are expanded from the base configuration and overwrites.

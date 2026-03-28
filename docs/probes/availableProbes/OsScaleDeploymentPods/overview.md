@@ -2,6 +2,10 @@
 
 Probe that scales openshift deployments
 
+> Logical group: Cluster orchestration / Scaling
+
+> Logical group: Cluster orchestration / Scaling
+
 ## What It Does
 
 Scales a deployment to the configured replica count and waits until the desired state is reached.

@@ -2,191 +2,11 @@
 
 Each entry uses the short function name as the table-of-contents label. Expand an entry to inspect its source file, signature, and XML doc comments.
 
-## `ReportOnlyStatuses`
+The functions on this page are grouped by responsibility so related operations stay together.
 
-??? info "Source file, signature, and docstring"
-    **Member**
-    `AssertionBuilder.ReportOnlyStatuses(IList<AssertionStatus> statusesToReport)`
-    
-    **Kind** `function`
-    
-    **Declaring Type** `AssertionBuilder`
-    
-    **Source File** `QaaS.Runner.Assertions/ConfigurationObjects/AssertionBuilder.cs`
-    
-    **Signature**
-    ```csharp
-    public AssertionBuilder ReportOnlyStatuses(IList<AssertionStatus> statusesToReport)
-    ```
-    
-    **Docstring**
-    
-    Sets which assertion statuses should be included in reports.
-    
-    Use this method when working with the documented Runner assertion builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
+## Identity and hook selection
 
-## `WithCategory`
-
-??? info "Source file, signature, and docstring"
-    **Member**
-    `AssertionBuilder.WithCategory(string category)`
-    
-    **Kind** `function`
-    
-    **Declaring Type** `AssertionBuilder`
-    
-    **Source File** `QaaS.Runner.Assertions/ConfigurationObjects/AssertionBuilder.cs`
-    
-    **Signature**
-    ```csharp
-    public AssertionBuilder WithCategory(string category)
-    ```
-    
-    **Docstring**
-    
-    Configures category on the current Runner assertion builder instance.
-    
-    Use this method when working with the documented Runner assertion builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
-
-## `WeatherToSaveSessionData`
-
-??? info "Source file, signature, and docstring"
-    **Member**
-    `AssertionBuilder.WeatherToSaveSessionData(bool weatherToSaveSessionData)`
-    
-    **Kind** `function`
-    
-    **Declaring Type** `AssertionBuilder`
-    
-    **Source File** `QaaS.Runner.Assertions/ConfigurationObjects/AssertionBuilder.cs`
-    
-    **Signature**
-    ```csharp
-    public AssertionBuilder WeatherToSaveSessionData(bool weatherToSaveSessionData)
-    ```
-    
-    **Docstring**
-    
-    Configures whether session data is saved with the assertion result.
-    
-    Use this method when working with the documented Runner assertion builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
-
-## `WeatherToSaveLogs`
-
-??? info "Source file, signature, and docstring"
-    **Member**
-    `AssertionBuilder.WeatherToSaveLogs(bool weatherToSaveLogs)`
-    
-    **Kind** `function`
-    
-    **Declaring Type** `AssertionBuilder`
-    
-    **Source File** `QaaS.Runner.Assertions/ConfigurationObjects/AssertionBuilder.cs`
-    
-    **Signature**
-    ```csharp
-    public AssertionBuilder WeatherToSaveLogs(bool weatherToSaveLogs)
-    ```
-    
-    **Docstring**
-    
-    Configures whether logs are saved with the assertion result.
-    
-    Use this method when working with the documented Runner assertion builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
-
-## `WeatherToSaveConfigurationTemplate`
-
-??? info "Source file, signature, and docstring"
-    **Member**
-    `AssertionBuilder.WeatherToSaveConfigurationTemplate(bool weatherToSaveConfigurationTemplate)`
-    
-    **Kind** `function`
-    
-    **Declaring Type** `AssertionBuilder`
-    
-    **Source File** `QaaS.Runner.Assertions/ConfigurationObjects/AssertionBuilder.cs`
-    
-    **Signature**
-    ```csharp
-    public AssertionBuilder WeatherToSaveConfigurationTemplate(bool weatherToSaveConfigurationTemplate)
-    ```
-    
-    **Docstring**
-    
-    Configures whether the rendered configuration template is saved with the assertion result.
-    
-    Use this method when working with the documented Runner assertion builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
-
-## `WithSeverity`
-
-??? info "Source file, signature, and docstring"
-    **Member**
-    `AssertionBuilder.WithSeverity(AssertionSeverity severity)`
-    
-    **Kind** `function`
-    
-    **Declaring Type** `AssertionBuilder`
-    
-    **Source File** `QaaS.Runner.Assertions/ConfigurationObjects/AssertionBuilder.cs`
-    
-    **Signature**
-    ```csharp
-    public AssertionBuilder WithSeverity(AssertionSeverity severity)
-    ```
-    
-    **Docstring**
-    
-    Sets the severity associated with the assertion result.
-    
-    Use this method when working with the documented Runner assertion builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
-
-## `WeatherToSaveAttachments`
-
-??? info "Source file, signature, and docstring"
-    **Member**
-    `AssertionBuilder.WeatherToSaveAttachments(bool weatherToSaveAttachments)`
-    
-    **Kind** `function`
-    
-    **Declaring Type** `AssertionBuilder`
-    
-    **Source File** `QaaS.Runner.Assertions/ConfigurationObjects/AssertionBuilder.cs`
-    
-    **Signature**
-    ```csharp
-    public AssertionBuilder WeatherToSaveAttachments(bool weatherToSaveAttachments)
-    ```
-    
-    **Docstring**
-    
-    Configures whether attachments are saved with the assertion result.
-    
-    Use this method when working with the documented Runner assertion builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
-
-## `WeatherToDisplayTrace`
-
-??? info "Source file, signature, and docstring"
-    **Member**
-    `AssertionBuilder.WeatherToDisplayTrace(bool weatherToDisplayTrace)`
-    
-    **Kind** `function`
-    
-    **Declaring Type** `AssertionBuilder`
-    
-    **Source File** `QaaS.Runner.Assertions/ConfigurationObjects/AssertionBuilder.cs`
-    
-    **Signature**
-    ```csharp
-    public AssertionBuilder WeatherToDisplayTrace(bool weatherToDisplayTrace)
-    ```
-    
-    **Docstring**
-    
-    Configures whether the assertion trace is displayed with the result.
-    
-    Use this method when working with the documented Runner assertion builder API surface in code. The behavior exposed here is part of the public surface that the generated function documentation groups under 'Configuration as Code / Assertions'.
-
-## `Named`
+### `Named`
 
 ??? info "Source file, signature, and docstring"
     **Member**
@@ -209,7 +29,7 @@ Each entry uses the short function name as the table-of-contents label. Expand a
     
     Use this method when working with the documented Runner assertion builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
-## `HookNamed`
+### `HookNamed`
 
 ??? info "Source file, signature, and docstring"
     **Member**
@@ -232,7 +52,57 @@ Each entry uses the short function name as the table-of-contents label. Expand a
     
     Use this method when working with the documented Runner assertion builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
-## `AddDataSourceName`
+## Classification
+
+### `WithCategory`
+
+??? info "Source file, signature, and docstring"
+    **Member**
+    `AssertionBuilder.WithCategory(string category)`
+    
+    **Kind** `function`
+    
+    **Declaring Type** `AssertionBuilder`
+    
+    **Source File** `QaaS.Runner.Assertions/ConfigurationObjects/AssertionBuilder.cs`
+    
+    **Signature**
+    ```csharp
+    public AssertionBuilder WithCategory(string category)
+    ```
+    
+    **Docstring**
+    
+    Configures category on the current Runner assertion builder instance.
+    
+    Use this method when working with the documented Runner assertion builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
+
+### `WithSeverity`
+
+??? info "Source file, signature, and docstring"
+    **Member**
+    `AssertionBuilder.WithSeverity(AssertionSeverity severity)`
+    
+    **Kind** `function`
+    
+    **Declaring Type** `AssertionBuilder`
+    
+    **Source File** `QaaS.Runner.Assertions/ConfigurationObjects/AssertionBuilder.cs`
+    
+    **Signature**
+    ```csharp
+    public AssertionBuilder WithSeverity(AssertionSeverity severity)
+    ```
+    
+    **Docstring**
+    
+    Sets the severity associated with the assertion result.
+    
+    Use this method when working with the documented Runner assertion builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
+
+## Data source selection
+
+### `AddDataSourceName`
 
 ??? info "Source file, signature, and docstring"
     **Member**
@@ -255,7 +125,7 @@ Each entry uses the short function name as the table-of-contents label. Expand a
     
     Use this method when working with the documented Runner assertion builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
-## `CreateDataSourceName`
+### `CreateDataSourceName`
 
 ??? info "Source file, signature, and docstring"
     **Member**
@@ -278,7 +148,7 @@ Each entry uses the short function name as the table-of-contents label. Expand a
     
     Use this method when working with the documented Runner assertion builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
-## `ReadDataSourceNames`
+### `ReadDataSourceNames`
 
 ??? info "Source file, signature, and docstring"
     **Member**
@@ -301,7 +171,7 @@ Each entry uses the short function name as the table-of-contents label. Expand a
     
     Use this method when working with the documented Runner assertion builder API surface in code. Use it to inspect the current configured state without rebuilding the surrounding collection or runtime object graph.
 
-## `UpdateDataSourceName`
+### `UpdateDataSourceName`
 
 ??? info "Source file, signature, and docstring"
     **Member**
@@ -324,7 +194,7 @@ Each entry uses the short function name as the table-of-contents label. Expand a
     
     Use this method when working with the documented Runner assertion builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
-## `DeleteDataSourceName`
+### `DeleteDataSourceName`
 
 ??? info "Source file, signature, and docstring"
     **Member**
@@ -347,7 +217,7 @@ Each entry uses the short function name as the table-of-contents label. Expand a
     
     Use this method when working with the documented Runner assertion builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
-## `AddDataSourcePattern`
+### `AddDataSourcePattern`
 
 ??? info "Source file, signature, and docstring"
     **Member**
@@ -370,7 +240,7 @@ Each entry uses the short function name as the table-of-contents label. Expand a
     
     Use this method when working with the documented Runner assertion builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
-## `CreateDataSourcePattern`
+### `CreateDataSourcePattern`
 
 ??? info "Source file, signature, and docstring"
     **Member**
@@ -393,7 +263,7 @@ Each entry uses the short function name as the table-of-contents label. Expand a
     
     Use this method when working with the documented Runner assertion builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
-## `ReadDataSourcePatterns`
+### `ReadDataSourcePatterns`
 
 ??? info "Source file, signature, and docstring"
     **Member**
@@ -416,7 +286,7 @@ Each entry uses the short function name as the table-of-contents label. Expand a
     
     Use this method when working with the documented Runner assertion builder API surface in code. Use it to inspect the current configured state without rebuilding the surrounding collection or runtime object graph.
 
-## `UpdateDataSourcePattern`
+### `UpdateDataSourcePattern`
 
 ??? info "Source file, signature, and docstring"
     **Member**
@@ -439,7 +309,7 @@ Each entry uses the short function name as the table-of-contents label. Expand a
     
     Use this method when working with the documented Runner assertion builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
-## `DeleteDataSourcePattern`
+### `DeleteDataSourcePattern`
 
 ??? info "Source file, signature, and docstring"
     **Member**
@@ -462,7 +332,9 @@ Each entry uses the short function name as the table-of-contents label. Expand a
     
     Use this method when working with the documented Runner assertion builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
-## `AddSessionName`
+## Session selection
+
+### `AddSessionName`
 
 ??? info "Source file, signature, and docstring"
     **Member**
@@ -485,7 +357,7 @@ Each entry uses the short function name as the table-of-contents label. Expand a
     
     Use this method when working with the documented Runner assertion builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
-## `CreateSessionName`
+### `CreateSessionName`
 
 ??? info "Source file, signature, and docstring"
     **Member**
@@ -508,7 +380,7 @@ Each entry uses the short function name as the table-of-contents label. Expand a
     
     Use this method when working with the documented Runner assertion builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
-## `ReadSessionNames`
+### `ReadSessionNames`
 
 ??? info "Source file, signature, and docstring"
     **Member**
@@ -531,7 +403,7 @@ Each entry uses the short function name as the table-of-contents label. Expand a
     
     Use this method when working with the documented Runner assertion builder API surface in code. Use it to inspect the current configured state without rebuilding the surrounding collection or runtime object graph.
 
-## `UpdateSessionName`
+### `UpdateSessionName`
 
 ??? info "Source file, signature, and docstring"
     **Member**
@@ -554,7 +426,7 @@ Each entry uses the short function name as the table-of-contents label. Expand a
     
     Use this method when working with the documented Runner assertion builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
-## `DeleteSessionName`
+### `DeleteSessionName`
 
 ??? info "Source file, signature, and docstring"
     **Member**
@@ -577,7 +449,7 @@ Each entry uses the short function name as the table-of-contents label. Expand a
     
     Use this method when working with the documented Runner assertion builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
-## `AddSessionPattern`
+### `AddSessionPattern`
 
 ??? info "Source file, signature, and docstring"
     **Member**
@@ -600,7 +472,7 @@ Each entry uses the short function name as the table-of-contents label. Expand a
     
     Use this method when working with the documented Runner assertion builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
-## `CreateSessionPattern`
+### `CreateSessionPattern`
 
 ??? info "Source file, signature, and docstring"
     **Member**
@@ -623,7 +495,7 @@ Each entry uses the short function name as the table-of-contents label. Expand a
     
     Use this method when working with the documented Runner assertion builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
-## `ReadSessionPatterns`
+### `ReadSessionPatterns`
 
 ??? info "Source file, signature, and docstring"
     **Member**
@@ -646,7 +518,7 @@ Each entry uses the short function name as the table-of-contents label. Expand a
     
     Use this method when working with the documented Runner assertion builder API surface in code. Use it to inspect the current configured state without rebuilding the surrounding collection or runtime object graph.
 
-## `UpdateSessionPattern`
+### `UpdateSessionPattern`
 
 ??? info "Source file, signature, and docstring"
     **Member**
@@ -669,7 +541,7 @@ Each entry uses the short function name as the table-of-contents label. Expand a
     
     Use this method when working with the documented Runner assertion builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
-## `DeleteSessionPattern`
+### `DeleteSessionPattern`
 
 ??? info "Source file, signature, and docstring"
     **Member**
@@ -692,7 +564,9 @@ Each entry uses the short function name as the table-of-contents label. Expand a
     
     Use this method when working with the documented Runner assertion builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
-## `AddLink`
+## Links
+
+### `AddLink`
 
 ??? info "Source file, signature, and docstring"
     **Member**
@@ -715,7 +589,7 @@ Each entry uses the short function name as the table-of-contents label. Expand a
     
     Use this method when working with the documented Runner assertion builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
-## `CreateLink`
+### `CreateLink`
 
 ??? info "Source file, signature, and docstring"
     **Member**
@@ -738,7 +612,7 @@ Each entry uses the short function name as the table-of-contents label. Expand a
     
     Use this method when working with the documented Runner assertion builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
-## `ReadLinks`
+### `ReadLinks`
 
 ??? info "Source file, signature, and docstring"
     **Member**
@@ -761,7 +635,7 @@ Each entry uses the short function name as the table-of-contents label. Expand a
     
     Use this method when working with the documented Runner assertion builder API surface in code. Use it to inspect the current configured state without rebuilding the surrounding collection or runtime object graph.
 
-## `UpdateLink`
+### `UpdateLink`
 
 ??? info "Source file, signature, and docstring"
     **Member**
@@ -784,7 +658,7 @@ Each entry uses the short function name as the table-of-contents label. Expand a
     
     Use this method when working with the documented Runner assertion builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
-## `DeleteLink`
+### `DeleteLink`
 
 ??? info "Source file, signature, and docstring"
     **Member**
@@ -807,11 +681,13 @@ Each entry uses the short function name as the table-of-contents label. Expand a
     
     Use this method when working with the documented Runner assertion builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
-## `Configure`
+## Reporting and artifacts
+
+### `ReportOnlyStatuses`
 
 ??? info "Source file, signature, and docstring"
     **Member**
-    `AssertionBuilder.Configure(object configuration)`
+    `AssertionBuilder.ReportOnlyStatuses(IList<AssertionStatus> statusesToReport)`
     
     **Kind** `function`
     
@@ -821,20 +697,20 @@ Each entry uses the short function name as the table-of-contents label. Expand a
     
     **Signature**
     ```csharp
-    public AssertionBuilder Configure(object configuration)
+    public AssertionBuilder ReportOnlyStatuses(IList<AssertionStatus> statusesToReport)
     ```
     
     **Docstring**
     
-    Sets the configuration currently stored on the Runner assertion builder instance.
+    Sets which assertion statuses should be included in reports.
     
     Use this method when working with the documented Runner assertion builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
-## `CreateConfiguration`
+### `WeatherToSaveSessionData`
 
 ??? info "Source file, signature, and docstring"
     **Member**
-    `AssertionBuilder.CreateConfiguration(object configuration)`
+    `AssertionBuilder.WeatherToSaveSessionData(bool weatherToSaveSessionData)`
     
     **Kind** `function`
     
@@ -844,20 +720,20 @@ Each entry uses the short function name as the table-of-contents label. Expand a
     
     **Signature**
     ```csharp
-    public AssertionBuilder CreateConfiguration(object configuration)
+    public AssertionBuilder WeatherToSaveSessionData(bool weatherToSaveSessionData)
     ```
     
     **Docstring**
     
-    Sets the configuration currently stored on the Runner assertion builder instance.
+    Configures whether session data is saved with the assertion result.
     
     Use this method when working with the documented Runner assertion builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
-## `Create`
+### `WeatherToSaveLogs`
 
 ??? info "Source file, signature, and docstring"
     **Member**
-    `AssertionBuilder.Create(object configuration)`
+    `AssertionBuilder.WeatherToSaveLogs(bool weatherToSaveLogs)`
     
     **Kind** `function`
     
@@ -867,16 +743,87 @@ Each entry uses the short function name as the table-of-contents label. Expand a
     
     **Signature**
     ```csharp
-    public AssertionBuilder Create(object configuration)
+    public AssertionBuilder WeatherToSaveLogs(bool weatherToSaveLogs)
     ```
     
     **Docstring**
     
-    Sets the configuration currently stored on the Runner assertion builder instance.
+    Configures whether logs are saved with the assertion result.
     
     Use this method when working with the documented Runner assertion builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
-## `ReadConfiguration`
+### `WeatherToSaveConfigurationTemplate`
+
+??? info "Source file, signature, and docstring"
+    **Member**
+    `AssertionBuilder.WeatherToSaveConfigurationTemplate(bool weatherToSaveConfigurationTemplate)`
+    
+    **Kind** `function`
+    
+    **Declaring Type** `AssertionBuilder`
+    
+    **Source File** `QaaS.Runner.Assertions/ConfigurationObjects/AssertionBuilder.cs`
+    
+    **Signature**
+    ```csharp
+    public AssertionBuilder WeatherToSaveConfigurationTemplate(bool weatherToSaveConfigurationTemplate)
+    ```
+    
+    **Docstring**
+    
+    Configures whether the rendered configuration template is saved with the assertion result.
+    
+    Use this method when working with the documented Runner assertion builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
+
+### `WeatherToSaveAttachments`
+
+??? info "Source file, signature, and docstring"
+    **Member**
+    `AssertionBuilder.WeatherToSaveAttachments(bool weatherToSaveAttachments)`
+    
+    **Kind** `function`
+    
+    **Declaring Type** `AssertionBuilder`
+    
+    **Source File** `QaaS.Runner.Assertions/ConfigurationObjects/AssertionBuilder.cs`
+    
+    **Signature**
+    ```csharp
+    public AssertionBuilder WeatherToSaveAttachments(bool weatherToSaveAttachments)
+    ```
+    
+    **Docstring**
+    
+    Configures whether attachments are saved with the assertion result.
+    
+    Use this method when working with the documented Runner assertion builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
+
+### `WeatherToDisplayTrace`
+
+??? info "Source file, signature, and docstring"
+    **Member**
+    `AssertionBuilder.WeatherToDisplayTrace(bool weatherToDisplayTrace)`
+    
+    **Kind** `function`
+    
+    **Declaring Type** `AssertionBuilder`
+    
+    **Source File** `QaaS.Runner.Assertions/ConfigurationObjects/AssertionBuilder.cs`
+    
+    **Signature**
+    ```csharp
+    public AssertionBuilder WeatherToDisplayTrace(bool weatherToDisplayTrace)
+    ```
+    
+    **Docstring**
+    
+    Configures whether the assertion trace is displayed with the result.
+    
+    Use this method when working with the documented Runner assertion builder API surface in code. The behavior exposed here is part of the public surface that the generated function documentation groups under 'Configuration as Code / Assertions'.
+
+## Inspection
+
+### `ReadConfiguration`
 
 ??? info "Source file, signature, and docstring"
     **Member**
@@ -899,7 +846,55 @@ Each entry uses the short function name as the table-of-contents label. Expand a
     
     Use this method when working with the documented Runner assertion builder API surface in code. Use it to inspect the current configured state without rebuilding the surrounding collection or runtime object graph.
 
-## `UpdateConfiguration`
+## Collection helpers
+
+### `CreateConfiguration`
+
+??? info "Source file, signature, and docstring"
+    **Member**
+    `AssertionBuilder.CreateConfiguration(object configuration)`
+    
+    **Kind** `function`
+    
+    **Declaring Type** `AssertionBuilder`
+    
+    **Source File** `QaaS.Runner.Assertions/ConfigurationObjects/AssertionBuilder.cs`
+    
+    **Signature**
+    ```csharp
+    public AssertionBuilder CreateConfiguration(object configuration)
+    ```
+    
+    **Docstring**
+    
+    Sets the configuration currently stored on the Runner assertion builder instance.
+    
+    Use this method when working with the documented Runner assertion builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
+
+### `Create`
+
+??? info "Source file, signature, and docstring"
+    **Member**
+    `AssertionBuilder.Create(object configuration)`
+    
+    **Kind** `function`
+    
+    **Declaring Type** `AssertionBuilder`
+    
+    **Source File** `QaaS.Runner.Assertions/ConfigurationObjects/AssertionBuilder.cs`
+    
+    **Signature**
+    ```csharp
+    public AssertionBuilder Create(object configuration)
+    ```
+    
+    **Docstring**
+    
+    Sets the configuration currently stored on the Runner assertion builder instance.
+    
+    Use this method when working with the documented Runner assertion builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
+
+### `UpdateConfiguration`
 
 ??? info "Source file, signature, and docstring"
     **Member**
@@ -922,7 +917,7 @@ Each entry uses the short function name as the table-of-contents label. Expand a
     
     Use this method when working with the documented Runner assertion builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
-## `DeleteConfiguration`
+### `DeleteConfiguration`
 
 ??? info "Source file, signature, and docstring"
     **Member**
@@ -942,5 +937,30 @@ Each entry uses the short function name as the table-of-contents label. Expand a
     **Docstring**
     
     Clears the configuration currently stored on the Runner assertion builder instance.
+    
+    Use this method when working with the documented Runner assertion builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
+
+## General
+
+### `Configure`
+
+??? info "Source file, signature, and docstring"
+    **Member**
+    `AssertionBuilder.Configure(object configuration)`
+    
+    **Kind** `function`
+    
+    **Declaring Type** `AssertionBuilder`
+    
+    **Source File** `QaaS.Runner.Assertions/ConfigurationObjects/AssertionBuilder.cs`
+    
+    **Signature**
+    ```csharp
+    public AssertionBuilder Configure(object configuration)
+    ```
+    
+    **Docstring**
+    
+    Sets the configuration currently stored on the Runner assertion builder instance.
     
     Use this method when working with the documented Runner assertion builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.

@@ -2,6 +2,10 @@
 
 Truncates the configured Microsoft SQL Server tables in the order they are listed.
 
+> Logical group: SQL maintenance / Microsoft SQL tables
+
+> Logical group: SQL maintenance / Microsoft SQL tables
+
 ## What It Does
 
 Truncates the configured SQL Server tables in the order they are listed.

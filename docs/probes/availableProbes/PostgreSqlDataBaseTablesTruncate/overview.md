@@ -2,6 +2,10 @@
 
 Truncates the configured PostgreSQL tables in the order they are listed.
 
+> Logical group: SQL maintenance / PostgreSQL tables
+
+> Logical group: SQL maintenance / PostgreSQL tables
+
 ## What It Does
 
 Truncates the configured PostgreSQL tables in the order they are listed.

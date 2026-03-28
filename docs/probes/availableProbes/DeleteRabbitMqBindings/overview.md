@@ -2,6 +2,10 @@
 
 Deletes RabbitMQ bindings using the configured source, destination, routing key, and binding type.
 
+> Logical group: RabbitMQ administration / Bindings lifecycle
+
+> Logical group: RabbitMQ administration / Bindings lifecycle
+
 ## What It Does
 
 Deletes RabbitMQ bindings through the AMQP connection defined in the probe configuration.

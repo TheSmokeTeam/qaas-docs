@@ -2,6 +2,10 @@
 
 Creates or updates RabbitMQ permissions for users in one or more virtual hosts through the management API.
 
+> Logical group: RabbitMQ administration / Permissions
+
+> Logical group: RabbitMQ administration / Permissions
+
 ## What It Does
 
 Creates or updates RabbitMQ user permissions through the management API.

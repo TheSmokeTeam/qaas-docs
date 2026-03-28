@@ -2,6 +2,10 @@
 
 Checks that the configured output content matches the expected values loaded from a CSV results file.
 
+> Logical group: Content validation / CSV-driven field validation
+
+> Logical group: Content validation / CSV-driven field validation
+
 ## What It Does
 
 Loads expected results from a CSV data source, converts each output item to JSON, and validates configured fields by mapping CSV columns to JSON paths.
