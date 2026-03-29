@@ -143,7 +143,9 @@ docker build -t qaas-docs .
 docker run -p 8000:8000 qaas-docs
 ```
 
-The container now serves the prebuilt static site that was baked into the image during `docker build`. It does not rebuild the docs on container startup.
+The image still prebuilds the static site during `docker build`.
+
+If you run the container without any `QAAS_DOCS_*` runtime overrides, it serves that baked site as-is.
 
 If you need different docs URLs or repository links in the image, pass the overrides at build time:
 
@@ -158,4 +160,13 @@ After that, deploy or run the image normally:
 
 ```bash
 docker run -p 8000:8000 qaas-docs
+```
+
+If you need `docker run -e QAAS_DOCS_*` to change the rendered links, pass non-empty runtime env values and the container will rebuild the site on startup before serving it:
+
+```bash
+docker run -p 8000:8000 \
+  -e QAAS_DOCS_SITE_URL=https://docs.example.com/qaas/ \
+  -e QAAS_DOCS_LINK_REPOSITORY_RUNNER=https://github.com/example/QaaS.Runner \
+  qaas-docs
 ```

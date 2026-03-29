@@ -40,7 +40,7 @@ def define_env(env):
     for key in list(links.keys()):
         env_var = f"{ENV_PREFIX}{key.upper()}"
         env_value = os.environ.get(env_var)
-        if env_value is not None:
+        if env_value:
             links[key] = env_value
 
     env.conf["extra"]["links"] = links

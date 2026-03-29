@@ -10,6 +10,7 @@ RUN pip install --no-cache-dir -r requirements.txt
 COPY mkdocs.yml .
 COPY main.py .
 COPY docs/ docs/
+COPY docker-entrypoint.sh /usr/local/bin/docker-entrypoint.sh
 
 # Build-time overrides for site metadata and external links.
 ARG QAAS_DOCS_SITE_URL
@@ -70,12 +71,21 @@ ENV QAAS_DOCS_SITE_URL=${QAAS_DOCS_SITE_URL} \
 
 RUN mkdocs build --clean
 
-FROM python:3.11-alpine AS runtime
+FROM squidfunk/mkdocs-material:9.5 AS runtime
 
-WORKDIR /site
+WORKDIR /docs
 
+COPY requirements.txt .
+RUN pip install --no-cache-dir -r requirements.txt
+
+COPY mkdocs.yml .
+COPY main.py .
+COPY docs/ docs/
+COPY docker-entrypoint.sh /usr/local/bin/docker-entrypoint.sh
 COPY --from=build /docs/site /site
+
+RUN chmod +x /usr/local/bin/docker-entrypoint.sh
 
 EXPOSE 8000
 
-CMD ["sh", "-c", "python -m http.server \"${PORT:-8000}\" --bind 0.0.0.0 --directory /site"]
+ENTRYPOINT ["/usr/local/bin/docker-entrypoint.sh"]
