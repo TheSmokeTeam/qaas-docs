@@ -10,8 +10,6 @@ RUN pip install --no-cache-dir -r requirements.txt
 COPY mkdocs.yml .
 COPY main.py .
 COPY docs/ docs/
-COPY docker-entrypoint.sh /usr/local/bin/docker-entrypoint.sh
-
 # Build-time overrides for site metadata and external links.
 ARG QAAS_DOCS_SITE_URL
 ARG QAAS_DOCS_REPO_NAME
@@ -80,12 +78,10 @@ RUN pip install --no-cache-dir -r requirements.txt
 
 COPY mkdocs.yml .
 COPY main.py .
+COPY serve_docs.py .
 COPY docs/ docs/
-COPY docker-entrypoint.sh /usr/local/bin/docker-entrypoint.sh
 COPY --from=build /docs/site /site
-
-RUN chmod +x /usr/local/bin/docker-entrypoint.sh
 
 EXPOSE 8000
 
-ENTRYPOINT ["/usr/local/bin/docker-entrypoint.sh"]
+ENTRYPOINT ["python", "/docs/serve_docs.py"]

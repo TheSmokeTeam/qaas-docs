@@ -162,7 +162,7 @@ After that, deploy or run the image normally:
 docker run -p 8000:8000 qaas-docs
 ```
 
-If you need `docker run -e QAAS_DOCS_*` to change the rendered links, pass non-empty runtime env values and the container will rebuild the site on startup before serving it:
+If you need `docker run -e QAAS_DOCS_*` to change the rendered links, pass non-empty runtime env values and the container will rebuild the site on startup through the Python entrypoint before serving it:
 
 ```bash
 docker run -p 8000:8000 \
