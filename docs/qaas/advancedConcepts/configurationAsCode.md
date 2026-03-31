@@ -128,7 +128,7 @@ Each `ExecutionBuilder` encapsulates the configuration for a single execution. I
 | `Sessions` | Defines one or more [SessionBuilder](../functions/builders/sessions.md) instances, each representing a sequence of actions against the system. |
 | `Storages` | Configures [Storages](../userInterfaces/runner/configurationSections/storages/overview.md) such as file systems, S3, and databases. |
 | `Assertions` | Specifies validation rules and outcome checks through [Assertions](../userInterfaces/runner/configurationSections/assertions/overview.md). |
-| `DataSources` | Defines [DataSources](../userInterfaces/runner/configurationSections/dataSources/overview.md), generators, and reusable data inputs. |
+| `DataSources` | Defines [DataSources](../userInterfaces/runner/configurationSections/dataSources/overview.md), [Generators](../../generators/index.md), and reusable data inputs. |
 | `Links` | Integrates external observability systems through [Links](../userInterfaces/runner/configurationSections/links/overview.md) such as Prometheus or Grafana. |
 
 ### Accessing Builder Components

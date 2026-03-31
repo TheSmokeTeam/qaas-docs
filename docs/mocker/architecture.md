@@ -47,7 +47,7 @@ They return a `Data<object>` with body and metadata that Mocker translates into 
 
 ### Controller
 
-The controller is optional. When enabled, it adds a Redis-backed coordination surface that [QaaS.Runner](../qaas/index.md) sessions or other automation can use to switch stubs, trigger runtime actions, or consume cached runtime data. Local quick starts can ignore it, but deployment scenarios often enable it.
+The controller is optional. When enabled, it adds a Redis-backed coordination surface that [QaaS.Runner](../qaas/index.md) [Sessions](../qaas/userInterfaces/runner/configurationSections/sessions/overview.md) or other automation can use to switch stubs, trigger runtime actions, or consume cached runtime data. Local quick starts can ignore it, but deployment scenarios often enable it.
 
 ## Why The Model Scales
 

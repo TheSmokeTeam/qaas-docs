@@ -1,19 +1,19 @@
 # Live Action Based Generators
 
-In certain advanced scenarios, you may need to access data from a currently running action inside your [QaaS.Common.Generators](../../generators/index.md). This allows generator logic to react to live processing results instead of waiting for completed session data.
+In certain advanced scenarios, you may need to access data from a currently running action inside your [QaaS.Common.Generators](../../generators/index.md). This allows generator logic to react to live processing results instead of waiting for completed [session data](../userInterfaces/runner/configurationSections/sessions/overview.md).
 
-This pattern is useful when a publisher, transaction, or probe must consume output that is still being produced by another running action.
+This pattern is useful when a [Publisher](../userInterfaces/runner/configurationSections/sessions/types/publishers.md), [Transaction](../userInterfaces/runner/configurationSections/sessions/types/transactions.md), or [Probe](../userInterfaces/runner/configurationSections/sessions/types/probes.md) must consume output that is still being produced by another running action.
 
 ---
 
 ## How Live Generators Actually Become Live
 
-The important detail is that publishers are **prepared** before the session starts running actions.
+The important detail is that [Publishers](../userInterfaces/runner/configurationSections/sessions/types/publishers.md) are **prepared** before the [Session](../userInterfaces/runner/configurationSections/sessions/overview.md) starts running actions.
 
-That means generator timing depends on the data source's laziness:
+That means generator timing depends on the [DataSource](../userInterfaces/runner/configurationSections/dataSources/overview.md)'s laziness:
 
-- if the data source is **not lazy**, QaaS materializes the generator output during session preparation
-- if the data source **is lazy**, QaaS keeps the generator deferred and the publisher iterates it while the session is already running
+- if the [DataSource](../userInterfaces/runner/configurationSections/dataSources/overview.md) is **not lazy**, QaaS materializes the generator output during session preparation
+- if the [DataSource](../userInterfaces/runner/configurationSections/dataSources/overview.md) **is lazy**, QaaS keeps the generator deferred and the [Publisher](../userInterfaces/runner/configurationSections/sessions/types/publishers.md) iterates it while the [Session](../userInterfaces/runner/configurationSections/sessions/overview.md) is already running
 
 So a live action based generator is only truly live when the data source is lazy.
 
@@ -39,7 +39,7 @@ In a multi-session execution, `GetSessionByName(...)` is the safer choice becaus
 
 ## Creating a Live Action Based Generator
 
-You can create a generator that reads a running consumer and republishes that data while the consumer is still active.
+You can create a generator that reads a running [Consumer](../userInterfaces/runner/configurationSections/sessions/types/consumers.md) and republishes that data while the [Consumer](../userInterfaces/runner/configurationSections/sessions/types/consumers.md) is still active.
 
 ### Step 1: Define the Generator
 
@@ -170,10 +170,10 @@ Sessions:
 
 Now you have:
 
-- a `Consumer` that reads the source route
+- a [`Consumer`](../userInterfaces/runner/configurationSections/sessions/types/consumers.md) that reads the source route
 - a lazy generator that reads that consumer's live output
-- a `PublisherBasedOnConsumer` that republishes the live data to the target route
-- a `LiveConsumer` that reads the republished data
+- a [`Publisher`](../userInterfaces/runner/configurationSections/sessions/types/publishers.md) named `PublisherBasedOnConsumer` that republishes the live data to the target route
+- a [`Consumer`](../userInterfaces/runner/configurationSections/sessions/types/consumers.md) named `LiveConsumer` that reads the republished data
 
 ---
 
@@ -184,7 +184,7 @@ The runtime backs `GetData()` with one shared live communication object for that
 In practice, the safest pattern is:
 
 - one live generator per live stream
-- one publisher or transaction consuming that live generator
+- one [Publisher](../userInterfaces/runner/configurationSections/sessions/types/publishers.md) or [Transaction](../userInterfaces/runner/configurationSections/sessions/types/transactions.md) consuming that live generator
 
 If you fan out the same live stream to several consumers without verifying the behavior carefully, treat duplicate or missing items as a real risk.
 
