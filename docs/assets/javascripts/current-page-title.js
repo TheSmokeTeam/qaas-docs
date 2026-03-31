@@ -15,7 +15,13 @@ function updateHeaderTitle() {
     return;
   }
 
+  const siteTitle = document.documentElement.dataset.qaasSiteTitle
+    || document.title.split(' - ').pop().trim()
+    || siteTopic.textContent.trim();
+
+  document.documentElement.dataset.qaasSiteTitle = siteTitle;
   siteTopic.textContent = pageTitle;
+  document.title = pageTitle === siteTitle ? siteTitle : `${pageTitle} - ${siteTitle}`;
 }
 
 if (typeof document$ !== 'undefined' && document$.subscribe) {

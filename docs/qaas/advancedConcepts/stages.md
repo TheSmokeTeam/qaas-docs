@@ -2,8 +2,8 @@
 
 **Stages** in QaaS provide **fine-grained control over execution order**, but the word **stage** is used in two different places:
 
-- **session stages**, which coordinate whole sessions against each other
-- **action stages**, which coordinate publishers, consumers, probes, transactions, and mocker commands inside one session
+- **session stages**, which coordinate whole [Sessions](../userInterfaces/runner/configurationSections/sessions/overview.md) against each other
+- **action stages**, which coordinate [Publishers](../userInterfaces/runner/configurationSections/sessions/types/publishers.md), [Consumers](../userInterfaces/runner/configurationSections/sessions/types/consumers.md), [Probes](../userInterfaces/runner/configurationSections/sessions/types/probes.md), [Transactions](../userInterfaces/runner/configurationSections/sessions/types/transactions.md), and [Mocker Commands](../userInterfaces/runner/configurationSections/sessions/types/mockerCommands.md) inside one session
 
 Those two systems are related, but they do **not** behave the same way.
 
@@ -74,7 +74,7 @@ sessionBuilder
 | Actions in the same action stage | They start in parallel. |
 | Actions in different action stages | The later stage is launched later, but it can overlap still-running actions from earlier stages. |
 | `StageConfig.TimeoutBefore` / `TimeoutAfter` | They delay launch timing around that stage number only. |
-| Need a hard barrier between phases | Use separate sessions and coordinate them with **session stages**, not action stages. |
+| Need a hard barrier between phases | Use separate [Sessions](../userInterfaces/runner/configurationSections/sessions/overview.md) and coordinate them with **session stages**, not action stages. |
 
 So for the example above, the safe reading is:
 
@@ -185,4 +185,4 @@ That means:
 | **Sessions** | YAML `Stage` / fluent `.AtStage(n)` | &#10004 | Start order across sessions, plus which future session stage must wait |
 
 If you need **overlapping work inside one session**, use action stages.
-If you need **hard phase boundaries**, use separate sessions and coordinate them with session stages and `RunUntilStage`.
+If you need **hard phase boundaries**, use separate [Sessions](../userInterfaces/runner/configurationSections/sessions/overview.md) and coordinate them with session stages and `RunUntilStage`.

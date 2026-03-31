@@ -6,38 +6,38 @@ WORKDIR /docs
 COPY requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
 
-# Copy docs source and macros hook.
+# Copy docs source.
 COPY mkdocs.yml .
-COPY main.py .
 COPY docs/ docs/
-# Build-time overrides for site metadata and external links.
-ARG QAAS_DOCS_SITE_URL
-ARG QAAS_DOCS_REPO_NAME
-ARG QAAS_DOCS_REPO_URL
-ARG QAAS_DOCS_SOCIAL_GITHUB_URL
-ARG QAAS_DOCS_LINK_DOCS_SITE
-ARG QAAS_DOCS_LINK_REPOSITORY_DOCS
-ARG QAAS_DOCS_LINK_REPOSITORY_RUNNER
-ARG QAAS_DOCS_LINK_REPOSITORY_MOCKER
-ARG QAAS_DOCS_LINK_REPOSITORY_MOCKER_COMMUNICATION_OBJECTS
-ARG QAAS_DOCS_LINK_REPOSITORY_FRAMEWORK
-ARG QAAS_DOCS_LINK_REPOSITORY_ASSERTIONS
-ARG QAAS_DOCS_LINK_REPOSITORY_GENERATORS
-ARG QAAS_DOCS_LINK_REPOSITORY_PROBES
-ARG QAAS_DOCS_LINK_REPOSITORY_PROCESSORS
-ARG QAAS_DOCS_LINK_REPOSITORY_RUNNER_TEMPLATE
-ARG QAAS_DOCS_LINK_REPOSITORY_MOCKER_TEMPLATE
-ARG QAAS_DOCS_LINK_REPOSITORY_RUNNER_QUICKSTART_CODE
-ARG QAAS_DOCS_LINK_REPOSITORY_RUNNER_QUICKSTART_YAML
-ARG QAAS_DOCS_LINK_REPOSITORY_MOCKER_QUICKSTART_CODE
-ARG QAAS_DOCS_LINK_REPOSITORY_MOCKER_QUICKSTART_YAML
-ARG QAAS_DOCS_LINK_ALLURE_INSTALLATION_GUIDE
-ARG QAAS_DOCS_LINK_DOTNET_SDK
-ARG QAAS_DOCS_LINK_QAAS_COMMUNITY
-ARG QAAS_DOCS_LINK_NUGET_FEED
-ARG QAAS_DOCS_LINK_ARTIFACTORY
-ARG QAAS_DOCS_LINK_RUNNER_SCHEMA
-ARG QAAS_DOCS_LINK_MOCKER_SCHEMA
+# Build-time overrides for site metadata and external links. Defaults mirror
+# mkdocs.yml so omitted build args preserve the documented docker build behavior.
+ARG QAAS_DOCS_SITE_URL=https://TheSmokeTeam.github.io/qaas-docs/
+ARG QAAS_DOCS_REPO_NAME=QaaS.Runner
+ARG QAAS_DOCS_REPO_URL=https://github.com/TheSmokeTeam/QaaS.Runner
+ARG QAAS_DOCS_SOCIAL_GITHUB_URL=https://github.com/TheSmokeTeam/QaaS.Runner
+ARG QAAS_DOCS_LINK_DOCS_SITE=https://TheSmokeTeam.github.io/qaas-docs/
+ARG QAAS_DOCS_LINK_REPOSITORY_DOCS=https://github.com/TheSmokeTeam/qaas-docs
+ARG QAAS_DOCS_LINK_REPOSITORY_RUNNER=https://github.com/TheSmokeTeam/QaaS.Runner
+ARG QAAS_DOCS_LINK_REPOSITORY_MOCKER=https://github.com/TheSmokeTeam/QaaS.Mocker
+ARG QAAS_DOCS_LINK_REPOSITORY_MOCKER_COMMUNICATION_OBJECTS=https://github.com/TheSmokeTeam/Qaas.Mocker.CommunicationObjects
+ARG QAAS_DOCS_LINK_REPOSITORY_FRAMEWORK=https://github.com/TheSmokeTeam/QaaS.Framework
+ARG QAAS_DOCS_LINK_REPOSITORY_ASSERTIONS=https://github.com/TheSmokeTeam/QaaS.Common.Assertions
+ARG QAAS_DOCS_LINK_REPOSITORY_GENERATORS=https://github.com/TheSmokeTeam/QaaS.Common.Generators
+ARG QAAS_DOCS_LINK_REPOSITORY_PROBES=https://github.com/TheSmokeTeam/QaaS.Common.Probes
+ARG QAAS_DOCS_LINK_REPOSITORY_PROCESSORS=https://github.com/TheSmokeTeam/QaaS.Common.Processors
+ARG QAAS_DOCS_LINK_REPOSITORY_RUNNER_TEMPLATE=https://github.com/TheSmokeTeam/QaaS.Runner.Template
+ARG QAAS_DOCS_LINK_REPOSITORY_MOCKER_TEMPLATE=https://github.com/TheSmokeTeam/QaaS.Mocker.Template
+ARG QAAS_DOCS_LINK_REPOSITORY_RUNNER_QUICKSTART_CODE=https://github.com/TheSmokeTeam/DummyAppTests/tree/code_configuration
+ARG QAAS_DOCS_LINK_REPOSITORY_RUNNER_QUICKSTART_YAML=https://github.com/TheSmokeTeam/DummyAppTests/tree/yaml_configuration
+ARG QAAS_DOCS_LINK_REPOSITORY_MOCKER_QUICKSTART_CODE=https://github.com/TheSmokeTeam/DummyAppMock/tree/code_configuration
+ARG QAAS_DOCS_LINK_REPOSITORY_MOCKER_QUICKSTART_YAML=https://github.com/TheSmokeTeam/DummyAppMock/tree/yaml_configuration
+ARG QAAS_DOCS_LINK_ALLURE_INSTALLATION_GUIDE=https://docs.qameta.io/allure/#_installing_a_commandline
+ARG QAAS_DOCS_LINK_DOTNET_SDK=https://dotnet.microsoft.com/download
+ARG QAAS_DOCS_LINK_QAAS_COMMUNITY=https://discord.gg/rg2NYT4Mea
+ARG QAAS_DOCS_LINK_NUGET_FEED=https://api.nuget.org/v3/index.json
+ARG QAAS_DOCS_LINK_ARTIFACTORY=https://jfrog.com/artifactory
+ARG QAAS_DOCS_LINK_RUNNER_SCHEMA=../../assets/schemas/runner-family-schema.json
+ARG QAAS_DOCS_LINK_MOCKER_SCHEMA=../../assets/schemas/mocker-family-schema.json
 
 ENV QAAS_DOCS_SITE_URL=${QAAS_DOCS_SITE_URL} \
     QAAS_DOCS_REPO_NAME=${QAAS_DOCS_REPO_NAME} \
@@ -69,19 +69,11 @@ ENV QAAS_DOCS_SITE_URL=${QAAS_DOCS_SITE_URL} \
 
 RUN mkdocs build --clean
 
-FROM squidfunk/mkdocs-material:9.5 AS runtime
+FROM nginx:1.27-alpine AS runtime
 
-WORKDIR /docs
-
-COPY requirements.txt .
-RUN pip install --no-cache-dir -r requirements.txt
-
-COPY mkdocs.yml .
-COPY main.py .
-COPY serve_docs.py .
-COPY docs/ docs/
-COPY --from=build /docs/site /site
+COPY tools/nginx.conf /etc/nginx/conf.d/default.conf
+COPY --from=build /docs/site /usr/share/nginx/html
 
 EXPOSE 8000
 
-ENTRYPOINT ["python", "/docs/serve_docs.py"]
+CMD ["nginx", "-g", "daemon off;"]
