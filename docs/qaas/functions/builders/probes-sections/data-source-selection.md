@@ -2,29 +2,6 @@
 
 This page mirrors the `Data source selection` section from [Probes](../probes.md).
 
-## `AddDataSourceName`
-
-??? info "Source file, signature, and docstring"
-    **Member**
-    `ProbeBuilder.AddDataSourceName(string dataSourceName)`
-    
-    **Kind** `function`
-    
-    **Declaring Type** `ProbeBuilder`
-    
-    **Source File** `QaaS.Runner.Sessions/Actions/Probes/ProbeBuilder.cs`
-    
-    **Signature**
-    ```csharp
-    public ProbeBuilder AddDataSourceName(string dataSourceName)
-    ```
-    
-    **Docstring**
-    
-    Adds the supplied data source name to the current Runner probe builder instance.
-    
-    Use this method when working with the documented Runner probe builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
-
 ## `CreateDataSourceName`
 
 ??? info "Source file, signature, and docstring"
@@ -114,52 +91,6 @@ This page mirrors the `Data source selection` section from [Probes](../probes.md
     **Docstring**
     
     Removes the configured data source name from the current Runner probe builder instance.
-    
-    Use this method when working with the documented Runner probe builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
-
-## `RemoveDataSourceName`
-
-??? info "Source file, signature, and docstring"
-    **Member**
-    `ProbeBuilder.RemoveDataSourceName(string dataSourceName)`
-    
-    **Kind** `function`
-    
-    **Declaring Type** `ProbeBuilder`
-    
-    **Source File** `QaaS.Runner.Sessions/Actions/Probes/ProbeBuilder.cs`
-    
-    **Signature**
-    ```csharp
-    public ProbeBuilder RemoveDataSourceName(string dataSourceName)
-    ```
-    
-    **Docstring**
-    
-    Configures remove data source name on the current Runner probe builder instance.
-    
-    Use this method when working with the documented Runner probe builder API surface in code. The behavior exposed here is part of the public surface that the generated function documentation groups under 'Configuration as Code / Probes'.
-
-## `AddDataSourcePattern`
-
-??? info "Source file, signature, and docstring"
-    **Member**
-    `ProbeBuilder.AddDataSourcePattern(string dataSourcePattern)`
-    
-    **Kind** `function`
-    
-    **Declaring Type** `ProbeBuilder`
-    
-    **Source File** `QaaS.Runner.Sessions/Actions/Probes/ProbeBuilder.cs`
-    
-    **Signature**
-    ```csharp
-    public ProbeBuilder AddDataSourcePattern(string dataSourcePattern)
-    ```
-    
-    **Docstring**
-    
-    Adds the supplied data source pattern to the current Runner probe builder instance.
     
     Use this method when working with the documented Runner probe builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
@@ -254,26 +185,3 @@ This page mirrors the `Data source selection` section from [Probes](../probes.md
     Removes the configured data source pattern from the current Runner probe builder instance.
     
     Use this method when working with the documented Runner probe builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
-
-## `RemoveDataSourcePattern`
-
-??? info "Source file, signature, and docstring"
-    **Member**
-    `ProbeBuilder.RemoveDataSourcePattern(string dataSourcePattern)`
-    
-    **Kind** `function`
-    
-    **Declaring Type** `ProbeBuilder`
-    
-    **Source File** `QaaS.Runner.Sessions/Actions/Probes/ProbeBuilder.cs`
-    
-    **Signature**
-    ```csharp
-    public ProbeBuilder RemoveDataSourcePattern(string dataSourcePattern)
-    ```
-    
-    **Docstring**
-    
-    Configures remove data source pattern on the current Runner probe builder instance.
-    
-    Use this method when working with the documented Runner probe builder API surface in code. The behavior exposed here is part of the public surface that the generated function documentation groups under 'Configuration as Code / Probes'.

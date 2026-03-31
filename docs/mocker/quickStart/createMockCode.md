@@ -74,7 +74,7 @@ Next connect the incoming request flow to the local processor. The stub says "wh
 var stub = new TransactionStubBuilder()
     .Named("ServerDataStub")
     .HookNamed(nameof(ServerDataProcessor))
-    .AddDataSourceName("ServerData");
+    .CreateDataSourceName("ServerData");
 ```
 
 ### Create the Server
@@ -110,13 +110,13 @@ var server = new ServerConfig
 
 ### Assemble the Mocker Execution
 
-Finally attach each piece to the current execution builder. `AddServer(...)` appends the server to the builder's current server list, which is the code-first API to use when you want to grow the `Servers` collection.
+Finally attach each piece to the current execution builder. `CreateServer(...)` appends the server to the builder's current server list, which is the documented code-first API to use when you want to grow the `Servers` collection.
 
 ```csharp
 var executionBuilder = new ExecutionBuilder()
     .CreateDataSource(dataSource)
     .CreateStub(stub)
-    .AddServer(server);
+    .CreateServer(server);
 
 new MockerRunner(executionBuilder).Run();
 ```
@@ -153,7 +153,7 @@ var dataSource = new DataSourceBuilder()
 var stub = new TransactionStubBuilder()
     .Named("ServerDataStub")
     .HookNamed(nameof(ServerDataProcessor))
-    .AddDataSourceName("ServerData");
+    .CreateDataSourceName("ServerData");
 
 var server = new ServerConfig
 {
@@ -183,7 +183,7 @@ var server = new ServerConfig
 var executionBuilder = new ExecutionBuilder()
     .CreateDataSource(dataSource)
     .CreateStub(stub)
-    .AddServer(server);
+    .CreateServer(server);
 
 new MockerRunner(executionBuilder).Run();
 ```

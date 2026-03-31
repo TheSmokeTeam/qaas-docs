@@ -1,12 +1,12 @@
-# Transaction Stubs: Collection helpers
+# Transaction Stubs: Configuration
 
-This page mirrors the `Collection helpers` section from [Transaction Stubs](../transaction-stubs.md).
+This page mirrors the `Configuration` section from [Transaction Stubs](../transaction-stubs.md).
 
-## `UpdateConfiguration`
+## `WithRequestBodyDeserialization`
 
 ??? info "Source file, signature, and docstring"
     **Member**
-    `TransactionStubBuilder.UpdateConfiguration(object configuration)`
+    `TransactionStubBuilder.WithRequestBodyDeserialization(DeserializeConfig config)`
     
     **Kind** `function`
     
@@ -16,20 +16,20 @@ This page mirrors the `Collection helpers` section from [Transaction Stubs](../t
     
     **Signature**
     ```csharp
-    public TransactionStubBuilder UpdateConfiguration(object configuration)
+    public TransactionStubBuilder WithRequestBodyDeserialization(DeserializeConfig config)
     ```
     
     **Docstring**
     
-    Updates the configuration currently stored on the Mocker transaction stub builder instance.
+    Sets how request bodies are deserialized before the stub processor runs.
     
     Use this method when working with the documented Mocker transaction stub builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
-## `DeleteConfiguration`
+## `WithResponseBodySerialization`
 
 ??? info "Source file, signature, and docstring"
     **Member**
-    `TransactionStubBuilder.DeleteConfiguration()`
+    `TransactionStubBuilder.WithResponseBodySerialization(SerializeConfig config)`
     
     **Kind** `function`
     
@@ -39,11 +39,11 @@ This page mirrors the `Collection helpers` section from [Transaction Stubs](../t
     
     **Signature**
     ```csharp
-    public TransactionStubBuilder DeleteConfiguration()
+    public TransactionStubBuilder WithResponseBodySerialization(SerializeConfig config)
     ```
     
     **Docstring**
     
-    Clears the configuration currently stored on the Mocker transaction stub builder instance.
+    Sets how response bodies are serialized after the stub processor runs.
     
     Use this method when working with the documented Mocker transaction stub builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.

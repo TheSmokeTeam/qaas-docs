@@ -2,52 +2,6 @@
 
 This page mirrors the `Collection helpers` section from [Consumers](../consumers.md).
 
-## `CreateConfiguration`
-
-??? info "Source file, signature, and docstring"
-    **Member**
-    `ConsumerBuilder.CreateConfiguration(IReaderConfig config)`
-    
-    **Kind** `function`
-    
-    **Declaring Type** `ConsumerBuilder`
-    
-    **Source File** `QaaS.Runner.Sessions/Actions/Consumers/Builders/ConsumerBuilderLogic.cs`
-    
-    **Signature**
-    ```csharp
-    public ConsumerBuilder CreateConfiguration(IReaderConfig config)
-    ```
-    
-    **Docstring**
-    
-    Sets the configuration currently stored on the Runner consumer builder instance.
-    
-    Use this method when working with the documented Runner consumer builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
-
-## `Create`
-
-??? info "Source file, signature, and docstring"
-    **Member**
-    `ConsumerBuilder.Create(IReaderConfig config)`
-    
-    **Kind** `function`
-    
-    **Declaring Type** `ConsumerBuilder`
-    
-    **Source File** `QaaS.Runner.Sessions/Actions/Consumers/Builders/ConsumerBuilderLogic.cs`
-    
-    **Signature**
-    ```csharp
-    public ConsumerBuilder Create(IReaderConfig config)
-    ```
-    
-    **Docstring**
-    
-    Sets the configuration currently stored on the Runner consumer builder instance.
-    
-    Use this method when working with the documented Runner consumer builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
-
 ## `UpdateConfiguration`
 
 ??? info "Source file, signature, and docstring"

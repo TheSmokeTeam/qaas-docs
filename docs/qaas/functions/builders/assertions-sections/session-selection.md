@@ -2,29 +2,6 @@
 
 This page mirrors the `Session selection` section from [Assertions](../assertions.md).
 
-## `AddSessionName`
-
-??? info "Source file, signature, and docstring"
-    **Member**
-    `AssertionBuilder.AddSessionName(string sessionName)`
-    
-    **Kind** `function`
-    
-    **Declaring Type** `AssertionBuilder`
-    
-    **Source File** `QaaS.Runner.Assertions/ConfigurationObjects/AssertionBuilder.cs`
-    
-    **Signature**
-    ```csharp
-    public AssertionBuilder AddSessionName(string sessionName)
-    ```
-    
-    **Docstring**
-    
-    Adds the supplied session name to the current Runner assertion builder instance.
-    
-    Use this method when working with the documented Runner assertion builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
-
 ## `CreateSessionName`
 
 ??? info "Source file, signature, and docstring"
@@ -114,29 +91,6 @@ This page mirrors the `Session selection` section from [Assertions](../assertion
     **Docstring**
     
     Removes the configured session name from the current Runner assertion builder instance.
-    
-    Use this method when working with the documented Runner assertion builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
-
-## `AddSessionPattern`
-
-??? info "Source file, signature, and docstring"
-    **Member**
-    `AssertionBuilder.AddSessionPattern(string sessionPattern)`
-    
-    **Kind** `function`
-    
-    **Declaring Type** `AssertionBuilder`
-    
-    **Source File** `QaaS.Runner.Assertions/ConfigurationObjects/AssertionBuilder.cs`
-    
-    **Signature**
-    ```csharp
-    public AssertionBuilder AddSessionPattern(string sessionPattern)
-    ```
-    
-    **Docstring**
-    
-    Adds the supplied session pattern to the current Runner assertion builder instance.
     
     Use this method when working with the documented Runner assertion builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 

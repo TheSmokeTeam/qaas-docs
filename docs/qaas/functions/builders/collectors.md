@@ -56,52 +56,6 @@ The functions on this page are grouped by responsibility so related operations s
 
 ## Collection helpers
 
-### `Create`
-
-??? info "Source file, signature, and docstring"
-    **Member**
-    `CollectorBuilder.Create(IFetcherConfig config)`
-    
-    **Kind** `function`
-    
-    **Declaring Type** `CollectorBuilder`
-    
-    **Source File** `QaaS.Runner.Sessions/Actions/Collectors/CollectorBuilder.cs`
-    
-    **Signature**
-    ```csharp
-    public CollectorBuilder Create(IFetcherConfig config)
-    ```
-    
-    **Docstring**
-    
-    Sets the configuration currently stored on the Runner collector builder instance.
-    
-    Use this method when working with the documented Runner collector builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
-
-### `CreateConfiguration`
-
-??? info "Source file, signature, and docstring"
-    **Member**
-    `CollectorBuilder.CreateConfiguration(IFetcherConfig config)`
-    
-    **Kind** `function`
-    
-    **Declaring Type** `CollectorBuilder`
-    
-    **Source File** `QaaS.Runner.Sessions/Actions/Collectors/CollectorBuilder.cs`
-    
-    **Signature**
-    ```csharp
-    public CollectorBuilder CreateConfiguration(IFetcherConfig config)
-    ```
-    
-    **Docstring**
-    
-    Sets the configuration currently stored on the Runner collector builder instance.
-    
-    Use this method when working with the documented Runner collector builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
-
 ### `UpdateConfiguration`
 
 ??? info "Source file, signature, and docstring"
@@ -121,7 +75,7 @@ The functions on this page are grouped by responsibility so related operations s
     
     **Docstring**
     
-    Updates the configuration currently stored on the Runner collector builder instance.
+    Sets the configuration currently stored on the Runner collector builder instance.
     
     Use this method when working with the documented Runner collector builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 

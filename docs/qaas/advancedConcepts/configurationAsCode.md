@@ -138,6 +138,8 @@ The current public Runner execution builder surface supports explicit create, re
 
 That makes Configuration as Code practical not only for "build from scratch" scenarios, but also for "load from YAML, then modify precisely" scenarios.
 
+When the runtime data you want to share belongs in the execution's mutable state rather than in the immutable YAML tree, use the [Global Dictionary](globalDictionary.md) pattern alongside these builder operations.
+
 ---
 
 ## Modifying Builders: Fluent Configuration via Code
@@ -329,9 +331,9 @@ var kafkaPublisher = new PublisherBuilder()
         SaslMechanism = SaslMechanism.ScramSha256,
         SecurityProtocol = SecurityProtocol.SaslPlaintext
     })
-    .AddDataSource("DataSource");
+    .CreateDataSource("DataSource");
 
-sessionBuilder.AddPublisher(kafkaPublisher);
+sessionBuilder.CreatePublisher(kafkaPublisher);
 
 runner.Run();
 ```
