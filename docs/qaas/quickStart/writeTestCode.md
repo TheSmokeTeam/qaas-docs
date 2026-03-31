@@ -112,8 +112,8 @@ The publisher takes data from `FromFileSystemTestData`, applies a simple load-ba
 ```csharp
 var publisher = new PublisherBuilder()
     .Named("Publisher")
-    .AddDataSource("FromFileSystemTestData")
-    .AddPolicy(new PolicyBuilder().Configure(new LoadBalancePolicyConfig
+    .CreateDataSource("FromFileSystemTestData")
+    .CreatePolicy(new PolicyBuilder().Configure(new LoadBalancePolicyConfig
     {
         Rate = 50
     }))
@@ -158,8 +158,8 @@ The session groups the publisher and consumer into one execution flow so Runner 
 ```csharp
 var session = new SessionBuilder()
     .Named("RabbitMqExchangeWithFromFileSystemTestData")
-    .AddPublisher(publisher)
-    .AddConsumer(consumer);
+    .CreatePublisher(publisher)
+    .CreateConsumer(consumer);
 ```
 
 ### Create the Assertions
@@ -174,7 +174,7 @@ var hermeticAssertion = new AssertionBuilder
     }
     .Named("HermeticByInputOutputPercentage")
     .HookNamed(nameof(HermeticByInputOutputPercentage))
-    .AddSessionName(session.Name!)
+    .CreateSessionName(session.Name!)
     .Configure(new HermeticByInputOutputPercentageConfiguration
     {
         OutputNames = [consumer.Name!],
@@ -189,7 +189,7 @@ var delayAssertion = new AssertionBuilder
     }
     .Named("DelayByChunks")
     .HookNamed(nameof(DelayByChunks))
-    .AddSessionName(session.Name!)
+    .CreateSessionName(session.Name!)
     .Configure(new DelayByChunksConfiguration
     {
         Output = new Chunk
@@ -217,10 +217,10 @@ executionBuilder
         Team = "Smoke",
         System = "DummyApp"
     })
-    .AddDataSource(dataSource)
-    .AddSession(session)
-    .AddAssertion(hermeticAssertion)
-    .AddAssertion(delayAssertion);
+    .CreateDataSource(dataSource)
+    .CreateSession(session)
+    .CreateAssertion(hermeticAssertion)
+    .CreateAssertion(delayAssertion);
 
 runner.Run();
 ```
@@ -280,8 +280,8 @@ var rabbitMqConfiguration = new BaseRabbitMqConfig
 
 var publisher = new PublisherBuilder()
     .Named("Publisher")
-    .AddDataSource("FromFileSystemTestData")
-    .AddPolicy(new PolicyBuilder().Configure(new LoadBalancePolicyConfig
+    .CreateDataSource("FromFileSystemTestData")
+    .CreatePolicy(new PolicyBuilder().Configure(new LoadBalancePolicyConfig
     {
         Rate = 50
     }))
@@ -314,8 +314,8 @@ var consumer = new ConsumerBuilder()
 
 var session = new SessionBuilder()
     .Named("RabbitMqExchangeWithFromFileSystemTestData")
-    .AddPublisher(publisher)
-    .AddConsumer(consumer);
+    .CreatePublisher(publisher)
+    .CreateConsumer(consumer);
 
 var hermeticAssertion = new AssertionBuilder
     {
@@ -324,7 +324,7 @@ var hermeticAssertion = new AssertionBuilder
     }
     .Named("HermeticByInputOutputPercentage")
     .HookNamed(nameof(HermeticByInputOutputPercentage))
-    .AddSessionName(session.Name!)
+    .CreateSessionName(session.Name!)
     .Configure(new HermeticByInputOutputPercentageConfiguration
     {
         OutputNames = [consumer.Name!],
@@ -339,7 +339,7 @@ var delayAssertion = new AssertionBuilder
     }
     .Named("DelayByChunks")
     .HookNamed(nameof(DelayByChunks))
-    .AddSessionName(session.Name!)
+    .CreateSessionName(session.Name!)
     .Configure(new DelayByChunksConfiguration
     {
         Output = new Chunk
@@ -361,10 +361,10 @@ executionBuilder
         Team = "Smoke",
         System = "DummyApp"
     })
-    .AddDataSource(dataSource)
-    .AddSession(session)
-    .AddAssertion(hermeticAssertion)
-    .AddAssertion(delayAssertion);
+    .CreateDataSource(dataSource)
+    .CreateSession(session)
+    .CreateAssertion(hermeticAssertion)
+    .CreateAssertion(delayAssertion);
 
 runner.Run();
 ```

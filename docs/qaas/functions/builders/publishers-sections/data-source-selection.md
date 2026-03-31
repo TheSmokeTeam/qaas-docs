@@ -2,29 +2,6 @@
 
 This page mirrors the `Data source selection` section from [Publishers](../publishers.md).
 
-## `AddDataSource`
-
-??? info "Source file, signature, and docstring"
-    **Member**
-    `PublisherBuilder.AddDataSource(string dataSourceName)`
-    
-    **Kind** `function`
-    
-    **Declaring Type** `PublisherBuilder`
-    
-    **Source File** `QaaS.Runner.Sessions/Actions/Publishers/Builders/PublisherBuilderLogic.cs`
-    
-    **Signature**
-    ```csharp
-    public PublisherBuilder AddDataSource(string dataSourceName)
-    ```
-    
-    **Docstring**
-    
-    Adds the supplied data source to the current Runner publisher builder instance.
-    
-    Use this method when working with the documented Runner publisher builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
-
 ## `CreateDataSource`
 
 ??? info "Source file, signature, and docstring"
@@ -114,29 +91,6 @@ This page mirrors the `Data source selection` section from [Publishers](../publi
     **Docstring**
     
     Removes the configured data source from the current Runner publisher builder instance.
-    
-    Use this method when working with the documented Runner publisher builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
-
-## `AddDataSourcePattern`
-
-??? info "Source file, signature, and docstring"
-    **Member**
-    `PublisherBuilder.AddDataSourcePattern(string dataSourcePattern)`
-    
-    **Kind** `function`
-    
-    **Declaring Type** `PublisherBuilder`
-    
-    **Source File** `QaaS.Runner.Sessions/Actions/Publishers/Builders/PublisherBuilderLogic.cs`
-    
-    **Signature**
-    ```csharp
-    public PublisherBuilder AddDataSourcePattern(string dataSourcePattern)
-    ```
-    
-    **Docstring**
-    
-    Adds the supplied data source pattern to the current Runner publisher builder instance.
     
     Use this method when working with the documented Runner publisher builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 

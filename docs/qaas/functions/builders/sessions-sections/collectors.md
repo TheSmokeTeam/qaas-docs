@@ -2,29 +2,6 @@
 
 This page mirrors the `Collectors` section from [Sessions](../sessions.md).
 
-## `AddCollector`
-
-??? info "Source file, signature, and docstring"
-    **Member**
-    `SessionBuilder.AddCollector(CollectorBuilder collectorBuilder)`
-    
-    **Kind** `function`
-    
-    **Declaring Type** `SessionBuilder`
-    
-    **Source File** `QaaS.Runner.Sessions/Session/Builders/SessionBuilderLogic.cs`
-    
-    **Signature**
-    ```csharp
-    public SessionBuilder AddCollector(CollectorBuilder collectorBuilder)
-    ```
-    
-    **Docstring**
-    
-    Adds the supplied collector to the current Runner session builder instance.
-    
-    Use this method when working with the documented Runner session builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
-
 ## `CreateCollector`
 
 ??? info "Source file, signature, and docstring"

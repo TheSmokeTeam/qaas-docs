@@ -2,29 +2,6 @@
 
 This page mirrors the `Session selection` section from [Executions](../executions.md).
 
-## `AddSession`
-
-??? info "Source file, signature, and docstring"
-    **Member**
-    `ExecutionBuilder.AddSession(SessionBuilder sessionBuilder)`
-    
-    **Kind** `function`
-    
-    **Declaring Type** `ExecutionBuilder`
-    
-    **Source File** `QaaS.Runner/ExecutionBuilder.cs`
-    
-    **Signature**
-    ```csharp
-    public ExecutionBuilder AddSession(SessionBuilder sessionBuilder)
-    ```
-    
-    **Docstring**
-    
-    Adds the supplied session to the current Runner execution builder instance.
-    
-    Use this method when working with the documented Runner execution builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
-
 ## `CreateSession`
 
 ??? info "Source file, signature, and docstring"
@@ -68,6 +45,29 @@ This page mirrors the `Session selection` section from [Executions](../execution
     **Docstring**
     
     Returns the configured sessions currently stored on the Runner execution builder instance.
+    
+    Use this method when working with the documented Runner execution builder API surface in code. Use it to inspect the current configured state without rebuilding the surrounding collection or runtime object graph.
+
+## `ReadSession`
+
+??? info "Source file, signature, and docstring"
+    **Member**
+    `ExecutionBuilder.ReadSession(string sessionName)`
+    
+    **Kind** `function`
+    
+    **Declaring Type** `ExecutionBuilder`
+    
+    **Source File** `QaaS.Runner/ExecutionBuilder.cs`
+    
+    **Signature**
+    ```csharp
+    public SessionBuilder? ReadSession(string sessionName)
+    ```
+    
+    **Docstring**
+    
+    Returns the configured session currently stored on the Runner execution builder instance.
     
     Use this method when working with the documented Runner execution builder API surface in code. Use it to inspect the current configured state without rebuilding the surrounding collection or runtime object graph.
 

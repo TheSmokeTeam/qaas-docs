@@ -1,10 +1,63 @@
-<!-- generated hash:2dc813cfaf0f sources:Mocker, template, cli-command -->
-
 # template
 
 Render the effective merged configuration after file, folder, argument, and environment overrides.
 
-## Help Output
+## Invocation
+
+```bash
+dotnet run <dotnet-parameters> -- template <config-file> [flags]
+```
+
+## Use When
+
+- You want to inspect the final server, controller, and stub configuration before starting the runtime.
+- You need to confirm how overwrite files, folders, arguments, and environment variables combine.
+
+## Positional Arguments
+
+| Position | Property | Source Type | Inherited | Required | Default | Value Type | Description |
+| -------- | -------- | ----------- | --------- | -------- | ------- | ---------- | ----------- |
+| `0` | `ConfigurationFile` | `Mocker options` | Yes | Yes | mocker.qaas.yaml | `string` | Path to a mocker yaml configuration file to use with the command. |
+
+## Flags
+
+| Category | Flag | Inherited | Required | Default | Value Type | Description |
+| -------- | ---- | --------- | -------- | ------- | ---------- | ----------- |
+| Logging | `--disable-elastic-defaults` | Yes | No | False | `bool` | Disables Elastic defaults registered through the runtime defaults provider for this run. |
+| Logging | `--elastic-password` | Yes | No |  | `string` | Optional Elasticsearch password for the logger sink. |
+| Logging | `--elastic-uri` | Yes | No |  | `string` | Elasticsearch URI used by the logger sink when send-logs is enabled. |
+| Logging | `--elastic-username` | Yes | No |  | `string` | Optional Elasticsearch username for the logger sink. |
+| Logging | `-g`, `--logger-configuration-file` | Yes | No |  | `string` | Path to a logger's configuration file, will override the default logger's configuration. Its level can be overridden by the logger-level flag. |
+| Logging | `-l`, `--logger-level` | Yes | No |  | `LogEventLevel (optional)` | The logger's level, overrides both the default logger's level (Information) and the level of any logger's configuration given.<br />All available options (not case sensitive) are: Verbose, Debug,<br />Information, Warning, Error, Fatal. |
+| Configuration | `--no-env` | Yes | No | False | `bool` | When this flag is used environment variables will not override loaded configurations. |
+| Output | `-o`, `--output-folder` | Yes | No |  | `string` | Path to a folder to write the generated templates in. |
+| Configuration | `-r`, `--overwrite-arguments` | Yes | No | [] | `string list` | List of arguments to overwrite the mocker configuration with, The first argument overwrites the<br />mocker configuration and then the one after it overwrites the result and so on...<br />For example: `Path:To:Variable:To:Overwrite=NewVariableValue` |
+| Configuration | `-w`, `--overwrite-files` | Yes | No | [] | `string list` | List of files to overwrite the mocker configuration with, The first file overwrites the mocker<br />configuration file and then the one after it overwrite the result and so on... |
+| Configuration | `-f`, `--overwrite-folders` | Yes | No | [] | `string list` | List of folders whose yaml files overwrite the mocker configuration in alphabetical order,<br />after overwrite files and in the order the folders are given. |
+| Runtime | `--run-locally` | Yes | No | False | `bool` | Runs the project locally and enables exit by any key press. |
+| Logging | `--send-logs` | Yes | No | False | `bool` | Whether to send logs to the configured Elasticsearch sink. |
+
+## Flag Notes
+
+### `-o`, `--output-folder`
+
+Use an output folder when you want the rendered configuration written to disk for review or diffing.
+
+## Examples
+
+### Print the resolved mocker configuration
+
+```bash
+dotnet run -- template mocker.qaas.yaml
+```
+
+### Render the merged config into an output folder
+
+```bash
+dotnet run -- template mocker.qaas.yaml -w local-overrides.yaml -o rendered
+```
+
+## Raw CLI Help
 
 ```text
 Usage:
@@ -55,28 +108,8 @@ Usage:
 
   value pos. 0                       (Default: mocker.qaas.yaml) Path to a mocker yaml configuration file to use with
                                      the command.
+
+No-args guidance:
+  Empty arguments only work for code-only hosts that choose a no-args path in Program.cs.
+  If a YAML file is part of the scenario, pass it explicitly: dotnet run -- run <config-file>.
 ```
-
-## Positional Arguments
-
-| Position | Property | Source Type | Inherited | Required | Default | Value Type | Description |
-| -------- | -------- | ----------- | --------- | -------- | ------- | ---------- | ----------- |
-| `0` | `ConfigurationFile` | `Mocker options` | Yes | Yes | mocker.qaas.yaml | `string` | Path to a mocker yaml configuration file to use with the command. |
-
-## Flags
-
-| Flag | Inherited | Required | Default | Value Type | Description |
-| ---- | --------- | -------- | ------- | ---------- | ----------- |
-| `--disable-elastic-defaults` | Yes | No | False | `bool` | Disables Elastic defaults registered through the runtime defaults provider for this run. |
-| `--elastic-password` | Yes | No |  | `string` | Optional Elasticsearch password for the logger sink. |
-| `--elastic-uri` | Yes | No |  | `string` | Elasticsearch URI used by the logger sink when send-logs is enabled. |
-| `--elastic-username` | Yes | No |  | `string` | Optional Elasticsearch username for the logger sink. |
-| `-g`, `--logger-configuration-file` | Yes | No |  | `string` | Path to a logger's configuration file, will override the default logger's configuration. Its level can be overridden by the logger-level flag. |
-| `-l`, `--logger-level` | Yes | No |  | `LogEventLevel (optional)` | The logger's level, overrides both the default logger's level (Information) and the level of any logger's configuration given.<br />All available options (not case sensitive) are: Verbose, Debug,<br />Information, Warning, Error, Fatal. |
-| `--no-env` | Yes | No | False | `bool` | When this flag is used environment variables will not override loaded configurations. |
-| `-o`, `--output-folder` | Yes | No |  | `string` | Path to a folder to write the generated templates in. |
-| `-r`, `--overwrite-arguments` | Yes | No | [] | `string list` | List of arguments to overwrite the mocker configuration with, The first argument overwrites the<br />mocker configuration and then the one after it overwrites the result and so on...<br />For example: `Path:To:Variable:To:Overwrite=NewVariableValue` |
-| `-w`, `--overwrite-files` | Yes | No | [] | `string list` | List of files to overwrite the mocker configuration with, The first file overwrites the mocker<br />configuration file and then the one after it overwrite the result and so on... |
-| `-f`, `--overwrite-folders` | Yes | No | [] | `string list` | List of folders whose yaml files overwrite the mocker configuration in alphabetical order,<br />after overwrite files and in the order the folders are given. |
-| `--run-locally` | Yes | No | False | `bool` | Runs the project locally and enables exit by any key press. |
-| `--send-logs` | Yes | No | False | `bool` | Whether to send logs to the configured Elasticsearch sink. |

@@ -2,29 +2,6 @@
 
 This page mirrors the `Policies` section from [Consumers](../consumers.md).
 
-## `AddPolicy`
-
-??? info "Source file, signature, and docstring"
-    **Member**
-    `ConsumerBuilder.AddPolicy(PolicyBuilder policy)`
-    
-    **Kind** `function`
-    
-    **Declaring Type** `ConsumerBuilder`
-    
-    **Source File** `QaaS.Runner.Sessions/Actions/Consumers/Builders/ConsumerBuilderLogic.cs`
-    
-    **Signature**
-    ```csharp
-    public ConsumerBuilder AddPolicy(PolicyBuilder policy)
-    ```
-    
-    **Docstring**
-    
-    Adds the supplied policy to the current Runner consumer builder instance.
-    
-    Use this method when working with the documented Runner consumer builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
-
 ## `CreatePolicy`
 
 ??? info "Source file, signature, and docstring"

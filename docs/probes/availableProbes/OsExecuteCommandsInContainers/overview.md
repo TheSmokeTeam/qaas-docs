@@ -35,3 +35,9 @@ Sessions:
 This probe finds pods labeled `app=orders-api`, enters the `api` container in each matching pod, and runs `printenv` followed by `ls /tmp`.
 
 It is useful for inspection or lightweight maintenance commands inside the running workload.
+
+### Global Dictionary Behavior
+
+This probe is intentionally left out of the probe-global-dictionary fallback feature in this first pass. There is no meaningful reusable recovery payload for it, so there is no `UseGlobalDict` option and no family alias involved.
+
+That means the behavior is unchanged for every run: the probe uses only the values supplied directly in local YAML or code configuration.

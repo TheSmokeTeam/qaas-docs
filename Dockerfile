@@ -10,7 +10,6 @@ RUN pip install --no-cache-dir -r requirements.txt
 COPY mkdocs.yml .
 COPY main.py .
 COPY docs/ docs/
-
 # Build-time overrides for site metadata and external links.
 ARG QAAS_DOCS_SITE_URL
 ARG QAAS_DOCS_REPO_NAME
@@ -70,12 +69,19 @@ ENV QAAS_DOCS_SITE_URL=${QAAS_DOCS_SITE_URL} \
 
 RUN mkdocs build --clean
 
-FROM python:3.11-alpine AS runtime
+FROM squidfunk/mkdocs-material:9.5 AS runtime
 
-WORKDIR /site
+WORKDIR /docs
 
+COPY requirements.txt .
+RUN pip install --no-cache-dir -r requirements.txt
+
+COPY mkdocs.yml .
+COPY main.py .
+COPY serve_docs.py .
+COPY docs/ docs/
 COPY --from=build /docs/site /site
 
 EXPOSE 8000
 
-CMD ["sh", "-c", "python -m http.server \"${PORT:-8000}\" --bind 0.0.0.0 --directory /site"]
+ENTRYPOINT ["python", "/docs/serve_docs.py"]

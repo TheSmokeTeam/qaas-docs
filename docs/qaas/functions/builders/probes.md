@@ -79,29 +79,6 @@ The functions on this page are grouped by responsibility so related operations s
 
 ## Data source selection
 
-### `AddDataSourceName`
-
-??? info "Source file, signature, and docstring"
-    **Member**
-    `ProbeBuilder.AddDataSourceName(string dataSourceName)`
-    
-    **Kind** `function`
-    
-    **Declaring Type** `ProbeBuilder`
-    
-    **Source File** `QaaS.Runner.Sessions/Actions/Probes/ProbeBuilder.cs`
-    
-    **Signature**
-    ```csharp
-    public ProbeBuilder AddDataSourceName(string dataSourceName)
-    ```
-    
-    **Docstring**
-    
-    Adds the supplied data source name to the current Runner probe builder instance.
-    
-    Use this method when working with the documented Runner probe builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
-
 ### `CreateDataSourceName`
 
 ??? info "Source file, signature, and docstring"
@@ -191,52 +168,6 @@ The functions on this page are grouped by responsibility so related operations s
     **Docstring**
     
     Removes the configured data source name from the current Runner probe builder instance.
-    
-    Use this method when working with the documented Runner probe builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
-
-### `RemoveDataSourceName`
-
-??? info "Source file, signature, and docstring"
-    **Member**
-    `ProbeBuilder.RemoveDataSourceName(string dataSourceName)`
-    
-    **Kind** `function`
-    
-    **Declaring Type** `ProbeBuilder`
-    
-    **Source File** `QaaS.Runner.Sessions/Actions/Probes/ProbeBuilder.cs`
-    
-    **Signature**
-    ```csharp
-    public ProbeBuilder RemoveDataSourceName(string dataSourceName)
-    ```
-    
-    **Docstring**
-    
-    Configures remove data source name on the current Runner probe builder instance.
-    
-    Use this method when working with the documented Runner probe builder API surface in code. The behavior exposed here is part of the public surface that the generated function documentation groups under 'Configuration as Code / Probes'.
-
-### `AddDataSourcePattern`
-
-??? info "Source file, signature, and docstring"
-    **Member**
-    `ProbeBuilder.AddDataSourcePattern(string dataSourcePattern)`
-    
-    **Kind** `function`
-    
-    **Declaring Type** `ProbeBuilder`
-    
-    **Source File** `QaaS.Runner.Sessions/Actions/Probes/ProbeBuilder.cs`
-    
-    **Signature**
-    ```csharp
-    public ProbeBuilder AddDataSourcePattern(string dataSourcePattern)
-    ```
-    
-    **Docstring**
-    
-    Adds the supplied data source pattern to the current Runner probe builder instance.
     
     Use this method when working with the documented Runner probe builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
@@ -332,29 +263,6 @@ The functions on this page are grouped by responsibility so related operations s
     
     Use this method when working with the documented Runner probe builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
-### `RemoveDataSourcePattern`
-
-??? info "Source file, signature, and docstring"
-    **Member**
-    `ProbeBuilder.RemoveDataSourcePattern(string dataSourcePattern)`
-    
-    **Kind** `function`
-    
-    **Declaring Type** `ProbeBuilder`
-    
-    **Source File** `QaaS.Runner.Sessions/Actions/Probes/ProbeBuilder.cs`
-    
-    **Signature**
-    ```csharp
-    public ProbeBuilder RemoveDataSourcePattern(string dataSourcePattern)
-    ```
-    
-    **Docstring**
-    
-    Configures remove data source pattern on the current Runner probe builder instance.
-    
-    Use this method when working with the documented Runner probe builder API surface in code. The behavior exposed here is part of the public surface that the generated function documentation groups under 'Configuration as Code / Probes'.
-
 ## Inspection
 
 ### `ReadConfiguration`
@@ -381,52 +289,6 @@ The functions on this page are grouped by responsibility so related operations s
     Use this method when working with the documented Runner probe builder API surface in code. Use it to inspect the current configured state without rebuilding the surrounding collection or runtime object graph.
 
 ## Collection helpers
-
-### `CreateConfiguration`
-
-??? info "Source file, signature, and docstring"
-    **Member**
-    `ProbeBuilder.CreateConfiguration(object configuration)`
-    
-    **Kind** `function`
-    
-    **Declaring Type** `ProbeBuilder`
-    
-    **Source File** `QaaS.Runner.Sessions/Actions/Probes/ProbeBuilder.cs`
-    
-    **Signature**
-    ```csharp
-    public ProbeBuilder CreateConfiguration(object configuration)
-    ```
-    
-    **Docstring**
-    
-    Sets the configuration currently stored on the Runner probe builder instance.
-    
-    Use this method when working with the documented Runner probe builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
-
-### `Create`
-
-??? info "Source file, signature, and docstring"
-    **Member**
-    `ProbeBuilder.Create(object configuration)`
-    
-    **Kind** `function`
-    
-    **Declaring Type** `ProbeBuilder`
-    
-    **Source File** `QaaS.Runner.Sessions/Actions/Probes/ProbeBuilder.cs`
-    
-    **Signature**
-    ```csharp
-    public ProbeBuilder Create(object configuration)
-    ```
-    
-    **Docstring**
-    
-    Sets the configuration currently stored on the Runner probe builder instance.
-    
-    Use this method when working with the documented Runner probe builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
 ### `UpdateConfiguration`
 

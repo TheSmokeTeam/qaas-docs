@@ -17,6 +17,7 @@ Sessions:
       - Name: FlushAllRedisProbe
         Probe: FlushAllRedis
         ProbeConfiguration:
+          UseGlobalDict: true
           HostNames:
             - localhost:6379
 ```
@@ -26,3 +27,13 @@ Sessions:
 This configuration performs a full Redis server flush against `localhost:6379`.
 
 After the probe runs, all Redis databases on that server are emptied.
+
+### Global Dictionary Behavior
+
+With `UseGlobalDict: true`, missing server connection fields can be resolved from the session-scoped `Redis/Defaults` alias when those keys do not appear in the local probe configuration. The probe still binds and validates after the merge, and any key that is present locally keeps priority over the shared default.
+
+That makes the probe useful when a maintenance step should reuse the same Redis server definition without repeating it.
+
+No recovery alias is involved for this probe.
+
+When `UseGlobalDict` is `false`, the probe behaves exactly as before and uses only local YAML or code configuration.

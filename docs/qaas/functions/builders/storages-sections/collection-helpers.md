@@ -2,52 +2,6 @@
 
 This page mirrors the `Collection helpers` section from [Storages](../storages.md).
 
-## `Create`
-
-??? info "Source file, signature, and docstring"
-    **Member**
-    `StorageBuilder.Create(IStorageConfig storageConfig)`
-    
-    **Kind** `function`
-    
-    **Declaring Type** `StorageBuilder`
-    
-    **Source File** `QaaS.Runner.Storage/StorageBuilder.cs`
-    
-    **Signature**
-    ```csharp
-    public StorageBuilder Create(IStorageConfig storageConfig)
-    ```
-    
-    **Docstring**
-    
-    Sets the configuration currently stored on the Runner storage builder instance.
-    
-    Use this method when working with the documented Runner storage builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
-
-## `CreateConfiguration`
-
-??? info "Source file, signature, and docstring"
-    **Member**
-    `StorageBuilder.CreateConfiguration(IStorageConfig storageConfig)`
-    
-    **Kind** `function`
-    
-    **Declaring Type** `StorageBuilder`
-    
-    **Source File** `QaaS.Runner.Storage/StorageBuilder.cs`
-    
-    **Signature**
-    ```csharp
-    public StorageBuilder CreateConfiguration(IStorageConfig storageConfig)
-    ```
-    
-    **Docstring**
-    
-    Sets the configuration currently stored on the Runner storage builder instance.
-    
-    Use this method when working with the documented Runner storage builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
-
 ## `UpdateConfiguration`
 
 ??? info "Source file, signature, and docstring"
@@ -67,7 +21,7 @@ This page mirrors the `Collection helpers` section from [Storages](../storages.m
     
     **Docstring**
     
-    Updates the configuration currently stored on the Runner storage builder instance.
+    Sets the configuration currently stored on the Runner storage builder instance.
     
     Use this method when working with the documented Runner storage builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 

@@ -17,6 +17,7 @@ Sessions:
       - Name: PurgeRabbitMqQueuesProbe
         Probe: PurgeRabbitMqQueues
         ProbeConfiguration:
+          UseGlobalDict: true
           Host: rabbitmq.local
           Port: 5672
           Username: guest
@@ -31,3 +32,9 @@ Sessions:
 This configuration purges every message from `orders.queue` without deleting the queue itself.
 
 It is a targeted cleanup step that resets queue contents while preserving the existing topology.
+
+### Global Dictionary Behavior
+
+With `UseGlobalDict: true`, missing broker connection fields and `QueueNames` can be resolved from the session-scoped `RabbitMq/AmqpDefaults` alias when those keys are missing locally. This probe does not use a recovery alias in v1; it only consumes shared RabbitMQ defaults.
+
+That is useful when several RabbitMQ maintenance probes share one broker definition without repeating it in every YAML block. When `UseGlobalDict` is `false`, the probe behaves exactly as before and uses only its local configuration.

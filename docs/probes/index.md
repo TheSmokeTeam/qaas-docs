@@ -31,7 +31,7 @@ The built-in hooks below are grouped by usage area so it is easier to shortlist 
 - [CreateRabbitMqBindings](availableProbes/CreateRabbitMqBindings/overview.md): Creates RabbitMQ bindings between exchanges and queues or between exchanges by using the configured binding definitions.
 - [DeleteRabbitMqBindings](availableProbes/DeleteRabbitMqBindings/overview.md): Deletes RabbitMQ bindings using the configured source, destination, routing key, and binding type.
 - [DownloadRabbitMqDefinitions](availableProbes/DownloadRabbitMqDefinitions/overview.md): Downloads RabbitMQ definitions from the management API so the current topology can be captured and reused.
-- [UploadRabbitMqDefinitions](availableProbes/UploadRabbitMqDefinitions/overview.md): Uploads a definitions document to the RabbitMQ management API to recreate or synchronize broker topology.
+- [UploadRabbitMqDefinitions](availableProbes/UploadRabbitMqDefinitions/overview.md): Uploads a previously captured RabbitMQ definitions file back into the broker through the management API.
 - [CreateRabbitMqExchanges](availableProbes/CreateRabbitMqExchanges/overview.md): Creates one or more RabbitMQ exchanges with the configured durability, auto-delete, and arguments.
 - [DeleteRabbitMqExchanges](availableProbes/DeleteRabbitMqExchanges/overview.md): Probe that deletes rabbitmq exchanges
 - [DeleteRabbitMqPermissions](availableProbes/DeleteRabbitMqPermissions/overview.md): Deletes RabbitMQ user permissions in one or more virtual hosts through the management API.
@@ -80,6 +80,6 @@ The built-in hooks below are grouped by usage area so it is easier to shortlist 
 - [OsUpdateDeploymentResources](availableProbes/OsUpdateDeploymentResources/overview.md): Updates container resource requests and limits in a Kubernetes or OpenShift deployment.
 - [OsUpdateStatefulSetResources](availableProbes/OsUpdateStatefulSetResources/overview.md): Updates container resource requests and limits in a Kubernetes or OpenShift stateful set.
 - [OsScaleDeploymentPods](availableProbes/OsScaleDeploymentPods/overview.md): Probe that scales openshift deployments
-- [OsScaleStatefulSetPods](availableProbes/OsScaleStatefulSetPods/overview.md): Probe that scales openshift stateful sets
+- [OsScaleStatefulSetPods](availableProbes/OsScaleStatefulSetPods/overview.md): Probe that scales openshift statefulsets
 
 <!-- generated hook catalog end -->

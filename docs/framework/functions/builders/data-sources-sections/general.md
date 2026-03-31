@@ -48,29 +48,6 @@ This page mirrors the `General` section from [Data Sources](../data-sources.md).
     
     The supplied object is serialized to JSON and loaded into the builder as the new generator configuration.
 
-## `UpsertConfiguration`
-
-??? info "Source file, signature, and docstring"
-    **Member**
-    `DataSourceBuilder.UpsertConfiguration(object configuration)`
-    
-    **Kind** `function`
-    
-    **Declaring Type** `DataSourceBuilder`
-    
-    **Source File** `QaaS.Framework.SDK/DataSourceObjects/DataSourceBuilder.cs`
-    
-    **Signature**
-    ```csharp
-    public DataSourceBuilder UpsertConfiguration(object configuration)
-    ```
-    
-    **Docstring**
-    
-    Updates or creates the generator configuration from the supplied object.
-    
-    This is an alias for UpdateConfiguration.
-
 ## `Register`
 
 ??? info "Source file, signature, and docstring"

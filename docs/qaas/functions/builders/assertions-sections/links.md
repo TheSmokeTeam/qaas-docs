@@ -2,29 +2,6 @@
 
 This page mirrors the `Links` section from [Assertions](../assertions.md).
 
-## `AddLink`
-
-??? info "Source file, signature, and docstring"
-    **Member**
-    `AssertionBuilder.AddLink(LinkBuilder linkBuilder)`
-    
-    **Kind** `function`
-    
-    **Declaring Type** `AssertionBuilder`
-    
-    **Source File** `QaaS.Runner.Assertions/ConfigurationObjects/AssertionBuilder.cs`
-    
-    **Signature**
-    ```csharp
-    public AssertionBuilder AddLink(LinkBuilder linkBuilder)
-    ```
-    
-    **Docstring**
-    
-    Adds the supplied link to the current Runner assertion builder instance.
-    
-    Use this method when working with the documented Runner assertion builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
-
 ## `CreateLink`
 
 ??? info "Source file, signature, and docstring"
