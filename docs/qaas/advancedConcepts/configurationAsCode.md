@@ -85,6 +85,7 @@ For more detail about executions, see [QaaS.Framework.Executions](../../framewor
 | Property | Description |
 |--------|-------------|
 | `ExecutionBuilders` | A list of `ExecutionBuilder` instances, each representing a separate execution context. |
+| `LoadVariablesIntoGlobalDict` | Controls whether Runner copies the root YAML `variables` section into the shared runtime global dictionary under `Variables` while building executions. Defaults to `true`. |
 
 ### Accessing the Runner
 
@@ -96,6 +97,13 @@ var executionBuilders = runner.ExecutionBuilders;
 ```
 
 > **Note**: At this stage, no execution has occurred. The `Runner` is configured and ready for programmatic modification.
+
+If you do not want YAML `variables` copied into runtime state, disable that before the executions are built:
+
+```csharp
+var runner = Bootstrap.New(args);
+runner.LoadVariablesIntoGlobalDict = false;
+```
 
 ---
 
@@ -138,7 +146,7 @@ The current public Runner execution builder surface supports explicit create, re
 
 That makes Configuration as Code practical not only for "build from scratch" scenarios, but also for "load from YAML, then modify precisely" scenarios.
 
-When the runtime data you want to share belongs in the execution's mutable state rather than in the immutable YAML tree, use the [Global Dictionary](globalDictionary.md) pattern alongside these builder operations.
+When the runtime data you want to share belongs in the execution's mutable state rather than in the immutable YAML tree, use the [Global Dictionary](globalDictionary.md) pattern alongside these builder operations. Runner now bridges those two worlds by default for the root `variables` section, storing it at `["Variables", ...]` in the shared global dictionary.
 
 ---
 

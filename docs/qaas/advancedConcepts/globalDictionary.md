@@ -4,6 +4,8 @@ The Runner global dictionary is the shared mutable state that lives alongside th
 
 This is the recommended replacement for the old Framework-specific Variables runtime helper. YAML `variables` still remain a valid configuration section for placeholders, but if you want those values inside runtime code, project that section into the global dictionary.
 
+Runner now does that projection automatically by default. When a built execution has a root `variables` section, Runner copies it into the shared global dictionary under `Variables`.
+
 ## What It Is For
 
 Use the global dictionary when you need to:
@@ -22,9 +24,47 @@ These two concepts are related but not the same:
 - the YAML `variables` section is part of configuration and is mainly used by placeholder resolution such as `${variables:rabbitmq:host}`
 - the global dictionary is mutable runtime state stored on the execution context
 
-If you want the same `variables` values to be available inside your code, load that configuration section into the global dictionary explicitly.
+By default, Runner also loads that configuration section into runtime state under `Variables`, so runtime code can read the same values without relying on a separate Variables feature.
 
-## Load the `variables` Section Into the Global Dictionary
+## Runner Default: Auto-Load `variables` Into `Variables`
+
+If the loaded configuration contains:
+
+```yaml
+variables:
+  rabbitmq:
+    host: localhost
+    port: 5672
+```
+
+Runner builds each execution with:
+
+```csharp
+var host = context.GetValueFromGlobalDictionary(["Variables", "rabbitmq", "host"]);
+var port = context.GetValueFromGlobalDictionary(["Variables", "rabbitmq", "port"]);
+```
+
+The default is controlled by `Runner.LoadVariablesIntoGlobalDict`, which starts as `true`.
+
+```csharp
+using QaaS.Runner;
+
+var runner = Bootstrap.New(args);
+runner.LoadVariablesIntoGlobalDict = false;
+```
+
+Custom runner types can also override that property:
+
+```csharp
+public sealed class MyRunner : Runner
+{
+    public override bool LoadVariablesIntoGlobalDict { get; set; } = false;
+}
+```
+
+Turn it off only if you want to keep `variables` available for placeholder resolution but do not want those values copied into mutable runtime state.
+
+## Load the `variables` Section Into the Global Dictionary Manually
 
 Inside a hook or any place where you already have access to the current context:
 
@@ -49,6 +89,12 @@ into a runtime path that can be read as:
 var host = context.GetValueFromGlobalDictionary(["variables", "rabbitmq", "host"]);
 var port = context.GetValueFromGlobalDictionary(["variables", "rabbitmq", "port"]);
 ```
+
+Use the manual form when:
+
+- you disabled `Runner.LoadVariablesIntoGlobalDict`
+- you want to load the section later in the runtime flow instead of during build
+- you want the runtime path to stay lowercase `variables` for compatibility with older hook code
 
 ## Load a Section Into a Different Runtime Path
 
@@ -125,7 +171,7 @@ If the path does not exist, QaaS throws a `KeyNotFoundException`. That is usuall
 If your project already uses overwrite files such as `Variables/local.yaml` and `Variables/k8s.yaml`, keep doing that for placeholder resolution. When runtime code also needs those values:
 
 1. load the YAML or overwrite files through the normal Runner bootstrap path
-2. call `context.LoadConfigurationSectionIntoGlobalDictionary("variables")` once near the start of the runtime flow
+2. rely on the default Runner auto-load into `["Variables", ...]`, or call `context.LoadConfigurationSectionIntoGlobalDictionary("variables")` yourself if you disabled that default
 3. read the values from the global dictionary in later hooks
 
 This keeps one source of truth for environment-specific values while removing the need for a dedicated Variables runtime object.
@@ -147,9 +193,7 @@ executionBuilder.WithGlobalDict(new Dictionary<string, object?>
     }
 });
 
-// Later, inside a hook that has access to the current context:
-context.LoadConfigurationSectionIntoGlobalDictionary("variables");
-var rabbitMqHost = context.GetValueFromGlobalDictionary(["variables", "rabbitmq", "host"]);
+var rabbitMqHost = context.GetValueFromGlobalDictionary(["Variables", "rabbitmq", "host"]);
 ```
 
 This gives you both:
