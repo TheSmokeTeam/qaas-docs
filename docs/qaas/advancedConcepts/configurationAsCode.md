@@ -85,7 +85,9 @@ For more detail about executions, see [QaaS.Framework.Executions](../../framewor
 | Property | Description |
 |--------|-------------|
 | `ExecutionBuilders` | A list of `ExecutionBuilder` instances, each representing a separate execution context. |
+| `ExitProcessOnCompletion` | Controls whether `Runner.Run()` terminates the current process after the run completes. Defaults to `true`. Set it to `false` when the host wants Runner to set the process exit code without calling `Environment.Exit`. |
 | `LoadVariablesIntoGlobalDict` | Controls whether Runner copies the root YAML `variables` section into the shared runtime global dictionary under `Variables` while building executions. Defaults to `true`. |
+| `LastExitCode` | Stores the exit code produced by the most recent successful runner execution. This is useful when the host calls `Run()` or `RunAndGetExitCode()` and wants to inspect the last completed result afterward. |
 
 ### Accessing the Runner
 
@@ -97,6 +99,16 @@ var executionBuilders = runner.ExecutionBuilders;
 ```
 
 > **Note**: At this stage, no execution has occurred. The `Runner` is configured and ready for programmatic modification.
+
+If the host should keep control of process termination, disable the default exit behavior before calling `Run()`:
+
+```csharp
+var runner = Bootstrap.New(args);
+runner.ExitProcessOnCompletion = false;
+
+runner.Run();
+var exitCode = runner.LastExitCode;
+```
 
 If you do not want YAML `variables` copied into runtime state, disable that before the executions are built:
 
