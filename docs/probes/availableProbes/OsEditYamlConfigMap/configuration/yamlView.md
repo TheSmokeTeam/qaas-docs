@@ -4,6 +4,7 @@
 ProbeConfiguration:
   ConfigMapName:
   ConfigMapYamlFileName:
+  UseGlobalDict:
   ValuesToEdit:
   Openshift:
     Cluster:

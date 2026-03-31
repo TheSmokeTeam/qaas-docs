@@ -47,4 +47,32 @@ MockerCommands:
       Ssl:
       SslHost:
       Username:
+    Configuration:
+      ChangeActionStub:
+        ActionName:
+        StubName:
+      Consume:
+        TimeoutMs:
+        ActionName:
+        InputDataFilter:
+          Body:
+          MetaData:
+          Timestamp:
+        InputDeserialize:
+          Deserializer:
+          SpecificType:
+            TypeFullName:
+            AssemblyName:
+        OutputDataFilter:
+          Body:
+          MetaData:
+          Timestamp:
+        OutputDeserialize:
+          Deserializer:
+          SpecificType:
+            TypeFullName:
+            AssemblyName:
+      TriggerAction:
+        ActionName:
+        TimeoutMs:
 ```

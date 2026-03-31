@@ -10,6 +10,7 @@ ProbeConfiguration:
   Password:
   Ssl:
   SslHost:
+  UseGlobalDict:
   Username:
   HostNames: []
 ```

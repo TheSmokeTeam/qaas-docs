@@ -8,6 +8,7 @@
 | `Assertions[].Name` | `string` | &#10004 |  | The name of the test as presented in the test report with this assertion's result, if none is given creates a name as the type of the assertion and guid |
 | `Assertions[].AssertionConfiguration` | `object or string or null` | &#10006 |  | Implementation configuration for the assertion, the configuration given here is loaded into the provided assertion dynamically. |
 | `Assertions[].Category` | `string or null` | &#10006 |  | The category of the assersion. Can filter which categories to run using the -A flag |
+| `Assertions[].Configuration` | `object or string` | &#10006 |  |  |
 | `Assertions[].DisplayTrace` | `string or true/false` | &#10006 | True | Whether to display the assertion's message trace in the assertion results or not. Should be set to false when the assertion trace is massive and displaying it can cause performance issues |
 | `Assertions[].SaveAttachments` | `string or true/false` | &#10006 | True | Whether to save the attachments of the assertion in the test report (true) or not (false) |
 | `Assertions[].SaveLogs` | `string or true/false` | &#10006 | True | Whether to save the session logs belonging to this assertion in the test report |
@@ -20,6 +21,7 @@
 | `Assertions[].DataSourcePatterns[]` | `string` | &#10006 |  |  |
 | `Assertions[].Links` | `list or string` | &#10006 |  | The assertion's specific links. Will be added with the general links. |
 | `Assertions[].Links[]` | `object or string` | &#10006 |  |  |
+| `Assertions[].Links[].Configuration` | `object or string` | &#10006 |  |  |
 | `Assertions[].Links[].Name` | `string or null` | &#10006 |  | The display name of the link in the test results, if none is given uses the `Type` as the name |
 | `Assertions[].Links[].Grafana` | `object or string` | &#10006 |  | Links the grafana dashboard filtered for the test's session times to each test result. |
 | `Assertions[].Links[].Grafana.DashboardId` | `string` | &#10004 |  | The Id of the desired dashboard to view |

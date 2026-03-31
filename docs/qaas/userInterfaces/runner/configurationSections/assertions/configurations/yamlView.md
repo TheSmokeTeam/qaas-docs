@@ -6,6 +6,7 @@ Assertions:
     Name:
     AssertionConfiguration:
     Category:
+    Configuration:
     DisplayTrace:
     SaveAttachments:
     SaveLogs:
@@ -15,7 +16,8 @@ Assertions:
     DataSourceNames: []
     DataSourcePatterns: []
     Links:
-      - Name:
+      - Configuration:
+        Name:
         Grafana:
           DashboardId:
           Url:

@@ -9,3 +9,4 @@
 | `ProbeConfiguration.StorageBucket` | `string` | &#10004 |  | Name of S3 bucket |
 | `ProbeConfiguration.ForcePathStyle` | `string or true/false` | &#10006 | True | When true, requests will always use path style addressing |
 | `ProbeConfiguration.Prefix` | `string` | &#10006 |  | Prefix of all objects to delete from s3 bucket |
+| `ProbeConfiguration.UseGlobalDict` | `string or true/false` | &#10006 | False | When true, missing S3 probe configuration keys can be resolved from the shared global dictionary before local values are applied. |

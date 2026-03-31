@@ -21,9 +21,9 @@ This page mirrors the `Collection helpers` section from [Consumers](../consumers
     
     **Docstring**
     
-    Updates the configuration currently stored on the Runner consumer builder instance.
+    Returns the configuration currently stored on the Runner consumer builder instance.
     
-    Use this method when working with the documented Runner consumer builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
+    Use this method when working with the documented Runner consumer builder API surface in code. Use it to inspect the current configured state without rebuilding the surrounding collection or runtime object graph.
 
 ## `UpdateConfiguration`
 

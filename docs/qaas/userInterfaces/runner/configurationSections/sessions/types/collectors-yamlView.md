@@ -3,6 +3,7 @@
 ```yaml
 Collectors:
   - Name:
+    Configuration:
     EndTimeReachedCheckIntervalMs:
     CollectionRange:
       EndTimeMs:

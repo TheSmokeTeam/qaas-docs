@@ -105,13 +105,11 @@ nav:
           - Session selection: qaas/functions/builders/assertions-sections/session-selection.md
           - Links: qaas/functions/builders/assertions-sections/links.md
           - Reporting and artifacts: qaas/functions/builders/assertions-sections/reporting-and-artifacts.md
-          - Inspection: qaas/functions/builders/assertions-sections/inspection.md
           - Collection helpers: qaas/functions/builders/assertions-sections/collection-helpers.md
           - General: qaas/functions/builders/assertions-sections/general.md
         - Collectors:
           - Overview: qaas/functions/builders/collectors.md
           - Identity and hook selection: qaas/functions/builders/collectors-sections/identity-and-hook-selection.md
-          - Inspection: qaas/functions/builders/collectors-sections/inspection.md
           - Collection helpers: qaas/functions/builders/collectors-sections/collection-helpers.md
           - General: qaas/functions/builders/collectors-sections/general.md
         - Consumers:
@@ -137,7 +135,6 @@ nav:
         - Links:
           - Overview: qaas/functions/builders/links.md
           - Identity and hook selection: qaas/functions/builders/links-sections/identity-and-hook-selection.md
-          - Inspection: qaas/functions/builders/links-sections/inspection.md
           - Collection helpers: qaas/functions/builders/links-sections/collection-helpers.md
           - General: qaas/functions/builders/links-sections/general.md
         - Mocker Commands:
@@ -146,7 +143,6 @@ nav:
           - Execution order: qaas/functions/builders/mocker-commands-sections/execution-order.md
           - Servers: qaas/functions/builders/mocker-commands-sections/servers.md
           - Configuration: qaas/functions/builders/mocker-commands-sections/configuration.md
-          - Inspection: qaas/functions/builders/mocker-commands-sections/inspection.md
           - Collection helpers: qaas/functions/builders/mocker-commands-sections/collection-helpers.md
           - General: qaas/functions/builders/mocker-commands-sections/general.md
         - Probes:
@@ -154,7 +150,6 @@ nav:
           - Identity and hook selection: qaas/functions/builders/probes-sections/identity-and-hook-selection.md
           - Execution order: qaas/functions/builders/probes-sections/execution-order.md
           - Data source selection: qaas/functions/builders/probes-sections/data-source-selection.md
-          - Inspection: qaas/functions/builders/probes-sections/inspection.md
           - Collection helpers: qaas/functions/builders/probes-sections/collection-helpers.md
           - General: qaas/functions/builders/probes-sections/general.md
         - Publishers:
@@ -186,7 +181,6 @@ nav:
         - Storages:
           - Overview: qaas/functions/builders/storages.md
           - Storages: qaas/functions/builders/storages-sections/storages.md
-          - Inspection: qaas/functions/builders/storages-sections/inspection.md
           - Collection helpers: qaas/functions/builders/storages-sections/collection-helpers.md
           - General: qaas/functions/builders/storages-sections/general.md
         - Transactions:
@@ -267,7 +261,6 @@ nav:
           - Identity and hook selection: mocker/functions/builders/transaction-stubs-sections/identity-and-hook-selection.md
           - Data source selection: mocker/functions/builders/transaction-stubs-sections/data-source-selection.md
           - Configuration: mocker/functions/builders/transaction-stubs-sections/configuration.md
-          - Inspection: mocker/functions/builders/transaction-stubs-sections/inspection.md
           - Collection helpers: mocker/functions/builders/transaction-stubs-sections/collection-helpers.md
           - General: mocker/functions/builders/transaction-stubs-sections/general.md
       - Commands:
@@ -617,7 +610,6 @@ nav:
           - Identity and hook selection: framework/functions/builders/data-sources-sections/identity-and-hook-selection.md
           - Data source selection: framework/functions/builders/data-sources-sections/data-source-selection.md
           - Configuration: framework/functions/builders/data-sources-sections/configuration.md
-          - Inspection: framework/functions/builders/data-sources-sections/inspection.md
           - Collection helpers: framework/functions/builders/data-sources-sections/collection-helpers.md
           - General: framework/functions/builders/data-sources-sections/general.md
         - Policies: framework/functions/builders/policies.md

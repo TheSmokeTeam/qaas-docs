@@ -109,6 +109,13 @@
             "description": "Implementation configuration for the generator, the configuration given here is loaded into the provided generator dynamically.",
             "pattern": "\\$\\{.*\\}"
           },
+          "Configuration": {
+            "type": [
+              "object",
+              "string"
+            ],
+            "pattern": "\\$\\{.*\\}"
+          },
           "Serialize": {
             "type": [
               "object",
@@ -228,7 +235,6 @@
                 "pattern": "\\$\\{.*\\}",
                 "required": [
                   "FileSystem",
-                  "DataArrangeOrder",
                   "Delimiter"
                 ],
                 "properties": {
@@ -501,7 +507,6 @@
                 "description": "Retrieves data from a configured path to a directory in the file system. `DataSources`: Not used. `SessionData`: Not used.",
                 "pattern": "\\$\\{.*\\}",
                 "required": [
-                  "DataArrangeOrder",
                   "FileSystem"
                 ],
                 "properties": {
@@ -654,7 +659,6 @@
                 "description": "Retrieves data from a configured S3 bucket. `DataSources`: Not used. `SessionData`: Not used.",
                 "pattern": "\\$\\{.*\\}",
                 "required": [
-                  "DataArrangeOrder",
                   "S3"
                 ],
                 "properties": {
@@ -2009,8 +2013,7 @@
                 "description": "Retrieves lettuce data from a configured path to a directory in the file system. `DataSources`: Not used. `SessionData`: Not used.",
                 "pattern": "\\$\\{.*\\}",
                 "required": [
-                  "FileSystem",
-                  "DataArrangeOrder"
+                  "FileSystem"
                 ],
                 "properties": {
                   "FileSystem": {
@@ -2251,6 +2254,11 @@
             "default": true,
             "pattern": "\\$\\{.*\\}"
           },
+          "TimeZoneId": {
+            "type": "string",
+            "description": "The time zone id used when offset-based date conversions need daylight-saving rules. Defaults to Asia/Jerusalem.",
+            "default": "Asia/Jerusalem"
+          },
           "TimeoutBeforeSessionMs": {
             "type": [
               "integer",
@@ -2292,6 +2300,13 @@
                 "TimeoutMs"
               ],
               "properties": {
+                "Configuration": {
+                  "type": [
+                    "object",
+                    "string"
+                  ],
+                  "pattern": "\\$\\{.*\\}"
+                },
                 "Name": {
                   "type": "string",
                   "description": "The name of the consumer"
@@ -3799,6 +3814,13 @@
                 "Name"
               ],
               "properties": {
+                "Configuration": {
+                  "type": [
+                    "object",
+                    "string"
+                  ],
+                  "pattern": "\\$\\{.*\\}"
+                },
                 "Name": {
                   "type": "string",
                   "description": "The name of the publisher"
@@ -6044,6 +6066,13 @@
                       "description": "The name of the rpc to invoke"
                     }
                   }
+                },
+                "Configuration": {
+                  "type": [
+                    "object",
+                    "string"
+                  ],
+                  "pattern": "\\$\\{.*\\}"
                 }
               }
             }
@@ -6211,6 +6240,13 @@
                   ],
                   "description": "Implementation configuration for the probe, the configuration given here is loaded into the provided probe dynamically.",
                   "pattern": "\\$\\{.*\\}"
+                },
+                "Configuration": {
+                  "type": [
+                    "object",
+                    "string"
+                  ],
+                  "pattern": "\\$\\{.*\\}"
                 }
               },
               "anyOf": [
@@ -6244,6 +6280,15 @@
                         "Bindings"
                       ],
                       "properties": {
+                        "UseGlobalDict": {
+                          "type": [
+                            "boolean",
+                            "string"
+                          ],
+                          "description": "When true, missing probe configuration keys may be resolved from the shared global dictionary before local YAML/code values are applied.",
+                          "default": false,
+                          "pattern": "\\$\\{.*\\}"
+                        },
                         "Host": {
                           "type": "string",
                           "description": "Rabbitmq hostname"
@@ -6365,6 +6410,15 @@
                         "Exchanges"
                       ],
                       "properties": {
+                        "UseGlobalDict": {
+                          "type": [
+                            "boolean",
+                            "string"
+                          ],
+                          "description": "When true, missing probe configuration keys may be resolved from the shared global dictionary before local YAML/code values are applied.",
+                          "default": false,
+                          "pattern": "\\$\\{.*\\}"
+                        },
                         "Host": {
                           "type": "string",
                           "description": "Rabbitmq hostname"
@@ -6500,6 +6554,15 @@
                         "Queues"
                       ],
                       "properties": {
+                        "UseGlobalDict": {
+                          "type": [
+                            "boolean",
+                            "string"
+                          ],
+                          "description": "When true, missing probe configuration keys may be resolved from the shared global dictionary before local YAML/code values are applied.",
+                          "default": false,
+                          "pattern": "\\$\\{.*\\}"
+                        },
                         "Host": {
                           "type": "string",
                           "description": "Rabbitmq hostname"
@@ -6665,6 +6728,15 @@
                           "minimum": 1.0,
                           "pattern": "\\$\\{.*\\}"
                         },
+                        "UseGlobalDict": {
+                          "type": [
+                            "boolean",
+                            "string"
+                          ],
+                          "description": "When true, missing probe configuration keys may be resolved from the shared global dictionary before local YAML/code values are applied.",
+                          "default": false,
+                          "pattern": "\\$\\{.*\\}"
+                        },
                         "Host": {
                           "type": "string",
                           "description": "Rabbitmq hostname"
@@ -6824,6 +6896,15 @@
                           "default": 30000,
                           "maximum": 2147483647.0,
                           "minimum": 1.0,
+                          "pattern": "\\$\\{.*\\}"
+                        },
+                        "UseGlobalDict": {
+                          "type": [
+                            "boolean",
+                            "string"
+                          ],
+                          "description": "When true, missing probe configuration keys may be resolved from the shared global dictionary before local YAML/code values are applied.",
+                          "default": false,
                           "pattern": "\\$\\{.*\\}"
                         },
                         "Host": {
@@ -6987,6 +7068,15 @@
                           "description": "When true, requests will always use path style addressing",
                           "default": true,
                           "pattern": "\\$\\{.*\\}"
+                        },
+                        "UseGlobalDict": {
+                          "type": [
+                            "boolean",
+                            "string"
+                          ],
+                          "description": "When true, missing S3 probe configuration keys can be resolved from the shared global dictionary before local values are applied.",
+                          "default": false,
+                          "pattern": "\\$\\{.*\\}"
                         }
                       }
                     }
@@ -7051,6 +7141,15 @@
                           "maximum": 4294967295.0,
                           "minimum": 0.0,
                           "pattern": "\\$\\{.*\\}"
+                        },
+                        "UseGlobalDict": {
+                          "type": [
+                            "boolean",
+                            "string"
+                          ],
+                          "description": "When true, missing Elasticsearch probe configuration keys can be resolved from the shared global dictionary before local values are applied.",
+                          "default": false,
+                          "pattern": "\\$\\{.*\\}"
                         }
                       }
                     }
@@ -7086,6 +7185,15 @@
                         "Bindings"
                       ],
                       "properties": {
+                        "UseGlobalDict": {
+                          "type": [
+                            "boolean",
+                            "string"
+                          ],
+                          "description": "When true, missing probe configuration keys may be resolved from the shared global dictionary before local YAML/code values are applied.",
+                          "default": false,
+                          "pattern": "\\$\\{.*\\}"
+                        },
                         "Host": {
                           "type": "string",
                           "description": "Rabbitmq hostname"
@@ -7207,6 +7315,15 @@
                         "ExchangeNames"
                       ],
                       "properties": {
+                        "UseGlobalDict": {
+                          "type": [
+                            "boolean",
+                            "string"
+                          ],
+                          "description": "When true, missing probe configuration keys may be resolved from the shared global dictionary before local YAML/code values are applied.",
+                          "default": false,
+                          "pattern": "\\$\\{.*\\}"
+                        },
                         "Host": {
                           "type": "string",
                           "description": "Rabbitmq hostname"
@@ -7322,6 +7439,15 @@
                           "minimum": 1.0,
                           "pattern": "\\$\\{.*\\}"
                         },
+                        "UseGlobalDict": {
+                          "type": [
+                            "boolean",
+                            "string"
+                          ],
+                          "description": "When true, missing probe configuration keys may be resolved from the shared global dictionary before local YAML/code values are applied.",
+                          "default": false,
+                          "pattern": "\\$\\{.*\\}"
+                        },
                         "Host": {
                           "type": "string",
                           "description": "Rabbitmq hostname"
@@ -7417,6 +7543,15 @@
                         "QueueNames"
                       ],
                       "properties": {
+                        "UseGlobalDict": {
+                          "type": [
+                            "boolean",
+                            "string"
+                          ],
+                          "description": "When true, missing probe configuration keys may be resolved from the shared global dictionary before local YAML/code values are applied.",
+                          "default": false,
+                          "pattern": "\\$\\{.*\\}"
+                        },
                         "Host": {
                           "type": "string",
                           "description": "Rabbitmq hostname"
@@ -7530,6 +7665,15 @@
                           "default": 30000,
                           "maximum": 2147483647.0,
                           "minimum": 1.0,
+                          "pattern": "\\$\\{.*\\}"
+                        },
+                        "UseGlobalDict": {
+                          "type": [
+                            "boolean",
+                            "string"
+                          ],
+                          "description": "When true, missing probe configuration keys may be resolved from the shared global dictionary before local YAML/code values are applied.",
+                          "default": false,
                           "pattern": "\\$\\{.*\\}"
                         },
                         "Host": {
@@ -7647,6 +7791,15 @@
                           "minimum": 1.0,
                           "pattern": "\\$\\{.*\\}"
                         },
+                        "UseGlobalDict": {
+                          "type": [
+                            "boolean",
+                            "string"
+                          ],
+                          "description": "When true, missing probe configuration keys may be resolved from the shared global dictionary before local YAML/code values are applied.",
+                          "default": false,
+                          "pattern": "\\$\\{.*\\}"
+                        },
                         "Host": {
                           "type": "string",
                           "description": "Rabbitmq hostname"
@@ -7751,6 +7904,15 @@
                           "description": "When true, requests will always use path style addressing",
                           "default": true,
                           "pattern": "\\$\\{.*\\}"
+                        },
+                        "UseGlobalDict": {
+                          "type": [
+                            "boolean",
+                            "string"
+                          ],
+                          "description": "When true, missing S3 probe configuration keys can be resolved from the shared global dictionary before local values are applied.",
+                          "default": false,
+                          "pattern": "\\$\\{.*\\}"
                         }
                       }
                     }
@@ -7822,6 +7984,15 @@
                           "default": 30000,
                           "maximum": 2147483647.0,
                           "minimum": 1.0,
+                          "pattern": "\\$\\{.*\\}"
+                        },
+                        "UseGlobalDict": {
+                          "type": [
+                            "boolean",
+                            "string"
+                          ],
+                          "description": "When true, missing probe configuration keys may be resolved from the shared global dictionary before local YAML/code values are applied.",
+                          "default": false,
                           "pattern": "\\$\\{.*\\}"
                         },
                         "Host": {
@@ -7924,6 +8095,15 @@
                           "maximum": 2147483647.0,
                           "minimum": 1.0,
                           "pattern": "\\$\\{.*\\}"
+                        },
+                        "UseGlobalDict": {
+                          "type": [
+                            "boolean",
+                            "string"
+                          ],
+                          "description": "When true, missing MongoDB probe configuration keys can be resolved from the shared global dictionary before local values are applied.",
+                          "default": false,
+                          "pattern": "\\$\\{.*\\}"
                         }
                       }
                     }
@@ -7993,6 +8173,15 @@
                           "maximum": 4294967295.0,
                           "minimum": 0.0,
                           "pattern": "\\$\\{.*\\}"
+                        },
+                        "UseGlobalDict": {
+                          "type": [
+                            "boolean",
+                            "string"
+                          ],
+                          "description": "When true, missing Elasticsearch probe configuration keys can be resolved from the shared global dictionary before local values are applied.",
+                          "default": false,
+                          "pattern": "\\$\\{.*\\}"
                         }
                       }
                     }
@@ -8052,6 +8241,15 @@
                           "maximum": 2147483647.0,
                           "minimum": 1.0,
                           "pattern": "\\$\\{.*\\}"
+                        },
+                        "UseGlobalDict": {
+                          "type": [
+                            "boolean",
+                            "string"
+                          ],
+                          "description": "When true, missing MongoDB probe configuration keys can be resolved from the shared global dictionary before local values are applied.",
+                          "default": false,
+                          "pattern": "\\$\\{.*\\}"
                         }
                       }
                     }
@@ -8086,6 +8284,15 @@
                         "HostNames"
                       ],
                       "properties": {
+                        "UseGlobalDict": {
+                          "type": [
+                            "boolean",
+                            "string"
+                          ],
+                          "description": "When true, missing probe configuration keys may be resolved from the shared global dictionary before local YAML/code values are applied.",
+                          "default": false,
+                          "pattern": "\\$\\{.*\\}"
+                        },
                         "RedisDataBase": {
                           "type": [
                             "integer",
@@ -8255,6 +8462,15 @@
                           ],
                           "description": "Optional regex used to filter which redis keys should be deleted"
                         },
+                        "UseGlobalDict": {
+                          "type": [
+                            "boolean",
+                            "string"
+                          ],
+                          "description": "When true, missing probe configuration keys may be resolved from the shared global dictionary before local YAML/code values are applied.",
+                          "default": false,
+                          "pattern": "\\$\\{.*\\}"
+                        },
                         "RedisDataBase": {
                           "type": [
                             "integer",
@@ -8415,6 +8631,15 @@
                           "default": true,
                           "pattern": "\\$\\{.*\\}"
                         },
+                        "UseGlobalDict": {
+                          "type": [
+                            "boolean",
+                            "string"
+                          ],
+                          "description": "When true, missing S3 probe configuration keys can be resolved from the shared global dictionary before local values are applied.",
+                          "default": false,
+                          "pattern": "\\$\\{.*\\}"
+                        },
                         "Prefix": {
                           "type": "string",
                           "description": "Prefix of all objects to delete from s3 bucket",
@@ -8454,6 +8679,15 @@
                         "Command"
                       ],
                       "properties": {
+                        "UseGlobalDict": {
+                          "type": [
+                            "boolean",
+                            "string"
+                          ],
+                          "description": "When true, missing probe configuration keys may be resolved from the shared global dictionary before local YAML/code values are applied.",
+                          "default": false,
+                          "pattern": "\\$\\{.*\\}"
+                        },
                         "RedisDataBase": {
                           "type": [
                             "integer",
@@ -8609,6 +8843,15 @@
                         "Commands"
                       ],
                       "properties": {
+                        "UseGlobalDict": {
+                          "type": [
+                            "boolean",
+                            "string"
+                          ],
+                          "description": "When true, missing probe configuration keys may be resolved from the shared global dictionary before local YAML/code values are applied.",
+                          "default": false,
+                          "pattern": "\\$\\{.*\\}"
+                        },
                         "RedisDataBase": {
                           "type": [
                             "integer",
@@ -8905,6 +9148,15 @@
                           "format": "int32",
                           "default": 60,
                           "pattern": "\\$\\{.*\\}"
+                        },
+                        "UseGlobalDict": {
+                          "type": [
+                            "boolean",
+                            "string"
+                          ],
+                          "description": "When true, missing Redis probe configuration keys can be resolved from the shared global dictionary before local values are applied.",
+                          "default": false,
+                          "pattern": "\\$\\{.*\\}"
                         }
                       }
                     }
@@ -9027,6 +9279,15 @@
                           "default": 60,
                           "pattern": "\\$\\{.*\\}"
                         },
+                        "UseGlobalDict": {
+                          "type": [
+                            "boolean",
+                            "string"
+                          ],
+                          "description": "When true, missing Redis probe configuration keys can be resolved from the shared global dictionary before local values are applied.",
+                          "default": false,
+                          "pattern": "\\$\\{.*\\}"
+                        },
                         "RedisDataBase": {
                           "type": [
                             "integer",
@@ -9071,6 +9332,15 @@
                         "TableNames"
                       ],
                       "properties": {
+                        "UseGlobalDict": {
+                          "type": [
+                            "boolean",
+                            "string"
+                          ],
+                          "description": "When true, missing SQL probe configuration keys can be resolved from the shared global dictionary before local values are applied.",
+                          "default": false,
+                          "pattern": "\\$\\{.*\\}"
+                        },
                         "ConnectionString": {
                           "type": "string",
                           "description": "The connection string to the database"
@@ -9132,6 +9402,15 @@
                         "TableNames"
                       ],
                       "properties": {
+                        "UseGlobalDict": {
+                          "type": [
+                            "boolean",
+                            "string"
+                          ],
+                          "description": "When true, missing SQL probe configuration keys can be resolved from the shared global dictionary before local values are applied.",
+                          "default": false,
+                          "pattern": "\\$\\{.*\\}"
+                        },
                         "ConnectionString": {
                           "type": "string",
                           "description": "The connection string to the database"
@@ -9219,6 +9498,15 @@
                           "default": 300,
                           "maximum": 2147483647.0,
                           "minimum": 0.0,
+                          "pattern": "\\$\\{.*\\}"
+                        },
+                        "UseGlobalDict": {
+                          "type": [
+                            "boolean",
+                            "string"
+                          ],
+                          "description": "When true, missing probe configuration keys may be resolved from the shared global dictionary before local YAML/code values are applied.",
+                          "default": false,
                           "pattern": "\\$\\{.*\\}"
                         },
                         "Openshift": {
@@ -9341,6 +9629,15 @@
                           "minimum": 0.0,
                           "pattern": "\\$\\{.*\\}"
                         },
+                        "UseGlobalDict": {
+                          "type": [
+                            "boolean",
+                            "string"
+                          ],
+                          "description": "When true, missing probe configuration keys may be resolved from the shared global dictionary before local YAML/code values are applied.",
+                          "default": false,
+                          "pattern": "\\$\\{.*\\}"
+                        },
                         "Openshift": {
                           "type": [
                             "object",
@@ -9433,6 +9730,15 @@
                         "ConfigMapName"
                       ],
                       "properties": {
+                        "UseGlobalDict": {
+                          "type": [
+                            "boolean",
+                            "string"
+                          ],
+                          "description": "When true, missing probe configuration keys may be resolved from the shared global dictionary before local YAML/code values are applied.",
+                          "default": false,
+                          "pattern": "\\$\\{.*\\}"
+                        },
                         "Openshift": {
                           "type": [
                             "object",
@@ -9517,6 +9823,15 @@
                         "Commands"
                       ],
                       "properties": {
+                        "UseGlobalDict": {
+                          "type": [
+                            "boolean",
+                            "string"
+                          ],
+                          "description": "When true, missing probe configuration keys may be resolved from the shared global dictionary before local YAML/code values are applied.",
+                          "default": false,
+                          "pattern": "\\$\\{.*\\}"
+                        },
                         "Openshift": {
                           "type": [
                             "object",
@@ -9612,6 +9927,15 @@
                         "ApplicationLabels"
                       ],
                       "properties": {
+                        "UseGlobalDict": {
+                          "type": [
+                            "boolean",
+                            "string"
+                          ],
+                          "description": "When true, missing probe configuration keys may be resolved from the shared global dictionary before local YAML/code values are applied.",
+                          "default": false,
+                          "pattern": "\\$\\{.*\\}"
+                        },
                         "Openshift": {
                           "type": [
                             "object",
@@ -9742,6 +10066,15 @@
                           "minimum": 0.0,
                           "pattern": "\\$\\{.*\\}"
                         },
+                        "UseGlobalDict": {
+                          "type": [
+                            "boolean",
+                            "string"
+                          ],
+                          "description": "When true, missing probe configuration keys may be resolved from the shared global dictionary before local YAML/code values are applied.",
+                          "default": false,
+                          "pattern": "\\$\\{.*\\}"
+                        },
                         "Openshift": {
                           "type": [
                             "object",
@@ -9844,6 +10177,15 @@
                           "default": 300,
                           "maximum": 2147483647.0,
                           "minimum": 0.0,
+                          "pattern": "\\$\\{.*\\}"
+                        },
+                        "UseGlobalDict": {
+                          "type": [
+                            "boolean",
+                            "string"
+                          ],
+                          "description": "When true, missing probe configuration keys may be resolved from the shared global dictionary before local YAML/code values are applied.",
+                          "default": false,
                           "pattern": "\\$\\{.*\\}"
                         },
                         "Openshift": {
@@ -9955,6 +10297,15 @@
                           "minimum": 0.0,
                           "pattern": "\\$\\{.*\\}"
                         },
+                        "UseGlobalDict": {
+                          "type": [
+                            "boolean",
+                            "string"
+                          ],
+                          "description": "When true, missing probe configuration keys may be resolved from the shared global dictionary before local YAML/code values are applied.",
+                          "default": false,
+                          "pattern": "\\$\\{.*\\}"
+                        },
                         "Openshift": {
                           "type": [
                             "object",
@@ -10056,6 +10407,15 @@
                           "default": 300,
                           "maximum": 2147483647.0,
                           "minimum": 0.0,
+                          "pattern": "\\$\\{.*\\}"
+                        },
+                        "UseGlobalDict": {
+                          "type": [
+                            "boolean",
+                            "string"
+                          ],
+                          "description": "When true, missing probe configuration keys may be resolved from the shared global dictionary before local YAML/code values are applied.",
+                          "default": false,
                           "pattern": "\\$\\{.*\\}"
                         },
                         "Openshift": {
@@ -10216,6 +10576,15 @@
                           "minimum": 0.0,
                           "pattern": "\\$\\{.*\\}"
                         },
+                        "UseGlobalDict": {
+                          "type": [
+                            "boolean",
+                            "string"
+                          ],
+                          "description": "When true, missing probe configuration keys may be resolved from the shared global dictionary before local YAML/code values are applied.",
+                          "default": false,
+                          "pattern": "\\$\\{.*\\}"
+                        },
                         "Openshift": {
                           "type": [
                             "object",
@@ -10317,6 +10686,15 @@
                           "default": 300,
                           "maximum": 2147483647.0,
                           "minimum": 0.0,
+                          "pattern": "\\$\\{.*\\}"
+                        },
+                        "UseGlobalDict": {
+                          "type": [
+                            "boolean",
+                            "string"
+                          ],
+                          "description": "When true, missing probe configuration keys may be resolved from the shared global dictionary before local YAML/code values are applied.",
+                          "default": false,
                           "pattern": "\\$\\{.*\\}"
                         },
                         "Openshift": {
@@ -10443,6 +10821,15 @@
                         "TableNames"
                       ],
                       "properties": {
+                        "UseGlobalDict": {
+                          "type": [
+                            "boolean",
+                            "string"
+                          ],
+                          "description": "When true, missing SQL probe configuration keys can be resolved from the shared global dictionary before local values are applied.",
+                          "default": false,
+                          "pattern": "\\$\\{.*\\}"
+                        },
                         "ConnectionString": {
                           "type": "string",
                           "description": "The connection string to the database"
@@ -10504,6 +10891,15 @@
                         "QueueNames"
                       ],
                       "properties": {
+                        "UseGlobalDict": {
+                          "type": [
+                            "boolean",
+                            "string"
+                          ],
+                          "description": "When true, missing probe configuration keys may be resolved from the shared global dictionary before local YAML/code values are applied.",
+                          "default": false,
+                          "pattern": "\\$\\{.*\\}"
+                        },
                         "Host": {
                           "type": "string",
                           "description": "Rabbitmq hostname"
@@ -10616,6 +11012,15 @@
                           "default": 30000,
                           "maximum": 2147483647.0,
                           "minimum": 1.0,
+                          "pattern": "\\$\\{.*\\}"
+                        },
+                        "UseGlobalDict": {
+                          "type": [
+                            "boolean",
+                            "string"
+                          ],
+                          "description": "When true, missing probe configuration keys may be resolved from the shared global dictionary before local YAML/code values are applied.",
+                          "default": false,
                           "pattern": "\\$\\{.*\\}"
                         },
                         "Host": {
@@ -10740,6 +11145,15 @@
                           "default": 30000,
                           "maximum": 2147483647.0,
                           "minimum": 1.0,
+                          "pattern": "\\$\\{.*\\}"
+                        },
+                        "UseGlobalDict": {
+                          "type": [
+                            "boolean",
+                            "string"
+                          ],
+                          "description": "When true, missing probe configuration keys may be resolved from the shared global dictionary before local YAML/code values are applied.",
+                          "default": false,
                           "pattern": "\\$\\{.*\\}"
                         },
                         "Host": {
@@ -11006,6 +11420,13 @@
                       "description": "The api key for interacting with prometheus"
                     }
                   }
+                },
+                "Configuration": {
+                  "type": [
+                    "object",
+                    "string"
+                  ],
+                  "pattern": "\\$\\{.*\\}"
                 }
               }
             }
@@ -11158,6 +11579,281 @@
                     "string"
                   ],
                   "description": "The command action to commit",
+                  "pattern": "\\$\\{.*\\}",
+                  "properties": {
+                    "ChangeActionStub": {
+                      "type": [
+                        "object",
+                        "string"
+                      ],
+                      "description": "Mocker 'ChangeActionStub' command properties",
+                      "pattern": "\\$\\{.*\\}",
+                      "required": [
+                        "ActionName",
+                        "StubName"
+                      ],
+                      "properties": {
+                        "ActionName": {
+                          "type": "string",
+                          "description": "The Action's name that is being changed"
+                        },
+                        "StubName": {
+                          "type": "string",
+                          "description": "The Stub's Name attached to the action"
+                        }
+                      }
+                    },
+                    "TriggerAction": {
+                      "type": [
+                        "object",
+                        "string"
+                      ],
+                      "description": "Mocker 'TriggerAction' command properties",
+                      "pattern": "\\$\\{.*\\}",
+                      "required": [
+                        "ActionName"
+                      ],
+                      "properties": {
+                        "ActionName": {
+                          "type": "string",
+                          "description": "The Action's name that is being triggered"
+                        },
+                        "TimeoutMs": {
+                          "type": [
+                            "integer",
+                            "string"
+                          ],
+                          "description": "The time to enable the action for in milliseconds",
+                          "format": "int32",
+                          "default": 0,
+                          "pattern": "\\$\\{.*\\}"
+                        }
+                      }
+                    },
+                    "Consume": {
+                      "type": [
+                        "object",
+                        "string"
+                      ],
+                      "description": "Mocker 'Consume' command properties",
+                      "pattern": "\\$\\{.*\\}",
+                      "required": [
+                        "TimeoutMs"
+                      ],
+                      "properties": {
+                        "TimeoutMs": {
+                          "type": [
+                            "integer",
+                            "string"
+                          ],
+                          "description": "The Timeout (ms) while consuming data from Mock Servers",
+                          "format": "int32",
+                          "maximum": 2147483647.0,
+                          "minimum": 0.0,
+                          "pattern": "\\$\\{.*\\}"
+                        },
+                        "ActionName": {
+                          "type": [
+                            "null",
+                            "string"
+                          ],
+                          "description": "The Action name to consume, if not given consumes all action"
+                        },
+                        "InputDataFilter": {
+                          "type": [
+                            "object",
+                            "string"
+                          ],
+                          "description": "How to filter the properties of each returned Mocker Input data",
+                          "pattern": "\\$\\{.*\\}",
+                          "properties": {
+                            "Body": {
+                              "type": [
+                                "boolean",
+                                "string"
+                              ],
+                              "description": "Whether to keep the `Body` in the data (true) or filter it (false)",
+                              "default": true,
+                              "pattern": "\\$\\{.*\\}"
+                            },
+                            "Timestamp": {
+                              "type": [
+                                "boolean",
+                                "string"
+                              ],
+                              "description": "Whether to keep the `Timestamp` in the data (true) or filter it (false)",
+                              "default": true,
+                              "pattern": "\\$\\{.*\\}"
+                            },
+                            "MetaData": {
+                              "type": [
+                                "boolean",
+                                "string"
+                              ],
+                              "description": "Whether to keep the `MetaData` in the data (true) or filter it (false)",
+                              "default": true,
+                              "pattern": "\\$\\{.*\\}"
+                            }
+                          }
+                        },
+                        "OutputDataFilter": {
+                          "type": [
+                            "object",
+                            "string"
+                          ],
+                          "description": "How to filter the properties of each returned Mocker Output data",
+                          "pattern": "\\$\\{.*\\}",
+                          "properties": {
+                            "Body": {
+                              "type": [
+                                "boolean",
+                                "string"
+                              ],
+                              "description": "Whether to keep the `Body` in the data (true) or filter it (false)",
+                              "default": true,
+                              "pattern": "\\$\\{.*\\}"
+                            },
+                            "Timestamp": {
+                              "type": [
+                                "boolean",
+                                "string"
+                              ],
+                              "description": "Whether to keep the `Timestamp` in the data (true) or filter it (false)",
+                              "default": true,
+                              "pattern": "\\$\\{.*\\}"
+                            },
+                            "MetaData": {
+                              "type": [
+                                "boolean",
+                                "string"
+                              ],
+                              "description": "Whether to keep the `MetaData` in the data (true) or filter it (false)",
+                              "default": true,
+                              "pattern": "\\$\\{.*\\}"
+                            }
+                          }
+                        },
+                        "InputDeserialize": {
+                          "type": [
+                            "object",
+                            "string"
+                          ],
+                          "description": "The deserializer to use to deserialize the consumed input data received by the mocker",
+                          "pattern": "\\$\\{.*\\}",
+                          "properties": {
+                            "Deserializer": {
+                              "type": "string",
+                              "description": "The deserializer type to use for deserializing. Null means no deserialization will happen. Options are all available `QaaS.Framework.Serialization` deserializers",
+                              "x-enumNames": [
+                                "Binary",
+                                "Json",
+                                "MessagePack",
+                                "Xml",
+                                "Yaml",
+                                "ProtobufMessage",
+                                "XmlElement"
+                              ],
+                              "enum": [
+                                "Binary",
+                                "Json",
+                                "MessagePack",
+                                "Xml",
+                                "Yaml",
+                                "ProtobufMessage",
+                                "XmlElement"
+                              ]
+                            },
+                            "SpecificType": {
+                              "type": [
+                                "object",
+                                "string"
+                              ],
+                              "description": "Configuration for making deserializer deserialize into a specific C# object, if set to null will deserialize to default deserilizer's C# object",
+                              "pattern": "\\$\\{.*\\}",
+                              "required": [
+                                "TypeFullName"
+                              ],
+                              "properties": {
+                                "AssemblyName": {
+                                  "type": [
+                                    "null",
+                                    "string"
+                                  ],
+                                  "description": "The name of the assembly the type is located in, If no value is given by default tries to take the entry assembly"
+                                },
+                                "TypeFullName": {
+                                  "type": "string",
+                                  "description": "The full name (including path) of the type"
+                                }
+                              }
+                            }
+                          }
+                        },
+                        "OutputDeserialize": {
+                          "type": [
+                            "object",
+                            "string"
+                          ],
+                          "description": "The deserializer to use to deserialize the consumed output data published by the mocker",
+                          "pattern": "\\$\\{.*\\}",
+                          "properties": {
+                            "Deserializer": {
+                              "type": "string",
+                              "description": "The deserializer type to use for deserializing. Null means no deserialization will happen. Options are all available `QaaS.Framework.Serialization` deserializers",
+                              "x-enumNames": [
+                                "Binary",
+                                "Json",
+                                "MessagePack",
+                                "Xml",
+                                "Yaml",
+                                "ProtobufMessage",
+                                "XmlElement"
+                              ],
+                              "enum": [
+                                "Binary",
+                                "Json",
+                                "MessagePack",
+                                "Xml",
+                                "Yaml",
+                                "ProtobufMessage",
+                                "XmlElement"
+                              ]
+                            },
+                            "SpecificType": {
+                              "type": [
+                                "object",
+                                "string"
+                              ],
+                              "description": "Configuration for making deserializer deserialize into a specific C# object, if set to null will deserialize to default deserilizer's C# object",
+                              "pattern": "\\$\\{.*\\}",
+                              "required": [
+                                "TypeFullName"
+                              ],
+                              "properties": {
+                                "AssemblyName": {
+                                  "type": [
+                                    "null",
+                                    "string"
+                                  ],
+                                  "description": "The name of the assembly the type is located in, If no value is given by default tries to take the entry assembly"
+                                },
+                                "TypeFullName": {
+                                  "type": "string",
+                                  "description": "The full name (including path) of the type"
+                                }
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                },
+                "Configuration": {
+                  "type": [
+                    "object",
+                    "string"
+                  ],
                   "pattern": "\\$\\{.*\\}",
                   "properties": {
                     "ChangeActionStub": {
@@ -11619,6 +12315,13 @@
                 "pattern": "\\$\\{.*\\}"
               }
             }
+          },
+          "Configuration": {
+            "type": [
+              "object",
+              "string"
+            ],
+            "pattern": "\\$\\{.*\\}"
           }
         }
       }
@@ -11809,6 +12512,13 @@
             "description": "Implementation configuration for the assertion, the configuration given here is loaded into the provided assertion dynamically.",
             "pattern": "\\$\\{.*\\}"
           },
+          "Configuration": {
+            "type": [
+              "object",
+              "string"
+            ],
+            "pattern": "\\$\\{.*\\}"
+          },
           "Links": {
             "type": [
               "array",
@@ -11943,6 +12653,13 @@
                       }
                     }
                   }
+                },
+                "Configuration": {
+                  "type": [
+                    "object",
+                    "string"
+                  ],
+                  "pattern": "\\$\\{.*\\}"
                 }
               }
             }
@@ -13112,6 +13829,13 @@
                 }
               }
             }
+          },
+          "Configuration": {
+            "type": [
+              "object",
+              "string"
+            ],
+            "pattern": "\\$\\{.*\\}"
           }
         }
       }

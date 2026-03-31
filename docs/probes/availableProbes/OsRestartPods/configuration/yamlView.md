@@ -4,6 +4,7 @@
 ProbeConfiguration:
   IntervalBetweenDesiredStateChecksMs:
   TimeoutWaitForDesiredStateSeconds:
+  UseGlobalDict:
   ApplicationLabels: []
   Openshift:
     Cluster:

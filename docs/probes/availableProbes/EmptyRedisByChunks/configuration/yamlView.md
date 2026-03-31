@@ -13,6 +13,7 @@ ProbeConfiguration:
   RedisDataBase:
   Ssl:
   SslHost:
+  UseGlobalDict:
   Username:
   HostNames: []
 ```

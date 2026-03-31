@@ -9,11 +9,13 @@
 | `Sessions[].RunUntilStage` | `integer or string or null` | &#10006 |  | Optional stage number that decides when the runner waits for this session to complete. If omitted, the session becomes visible only after its own stage completes. If set, the runner defers waiting until the configured future stage is reached. |
 | `Sessions[].SaveData` | `string or true/false` | &#10006 | True | Whether or not to save the session's output, if false any data is discarded after its iterated over and the SessionData as a whole is not saved. |
 | `Sessions[].Stage` | `integer or string or null` | &#10006 |  | The stage of the session. Sessions with the same stage runs together. stage defaultly gets the index of the session in session list  |
+| `Sessions[].TimeZoneId` | `string` | &#10006 | Asia/Jerusalem | The time zone id used when offset-based date conversions need daylight-saving rules. Defaults to Asia/Jerusalem. |
 | `Sessions[].TimeoutAfterSessionMs` | `integer or string` | &#10006 | 0 | The time in milliseconds to wait after the session ends |
 | `Sessions[].TimeoutBeforeSessionMs` | `integer or string` | &#10006 | 0 | The time in milliseconds to wait before the session starts |
 | `Sessions[].Collectors` | `list or string or null` | &#10006 |  | List of all collectors to build and run for this session. Collectors fetch information about the application from 3rd party apis on the sessions runtime |
 | `Sessions[].Collectors[]` | `object or string` | &#10006 |  |  |
 | `Sessions[].Collectors[].Name` | `string` | &#10004 |  | The name of the collector |
+| `Sessions[].Collectors[].Configuration` | `object or string` | &#10006 |  |  |
 | `Sessions[].Collectors[].EndTimeReachedCheckIntervalMs` | `integer or string` | &#10006 | 1000 | The check interval in milliseconds of the check that the current UTC time is past the collection end time, so the collection action can happen. |
 | `Sessions[].Collectors[].CollectionRange` | `object or string` | &#10006 |  | The collection range of the collector's action contains parameters for the start and end times of the collection range in relation to the start and end time of the collector's session. |
 | `Sessions[].Collectors[].CollectionRange.EndTimeMs` | `integer or string` | &#10006 | 0 | The end time of the collection range in relation to the session end time, given in milliseconds, is added to the session's start time as is to determine the collection end time. |
@@ -32,6 +34,7 @@
 | `Sessions[].Consumers[]` | `object or string` | &#10006 |  |  |
 | `Sessions[].Consumers[].Name` | `string` | &#10004 |  | The name of the consumer |
 | `Sessions[].Consumers[].TimeoutMs` | `integer or string` | &#10004 |  | The consumption timeout in milliseconds (timeout is the time since last message was read by the consumer) |
+| `Sessions[].Consumers[].Configuration` | `object or string` | &#10006 |  |  |
 | `Sessions[].Consumers[].Stage` | `integer or string` | &#10006 | 0 | The stage in which the Consumer runs at |
 | `Sessions[].Consumers[].Policies` | `list or string` | &#10006 |  | List of policies to use when communicating with this action's protocol |
 | `Sessions[].Consumers[].Policies[]` | `object or string` | &#10006 |  |  |
@@ -231,10 +234,39 @@
 | `Sessions[].MockerCommands[].Redis.Ssl` | `string or true/false` | &#10006 | False | Specifies whether SSL encryption should be used |
 | `Sessions[].MockerCommands[].Redis.SslHost` | `string or null` | &#10006 |  | Enforces a preticular SSL host identity on the server's certificate |
 | `Sessions[].MockerCommands[].Redis.Username` | `string or null` | &#10006 |  | User for the redis server |
+| `Sessions[].MockerCommands[].Configuration` | `object or string` | &#10006 |  |  |
+| `Sessions[].MockerCommands[].Configuration.ChangeActionStub` | `object or string` | &#10006 |  | Mocker 'ChangeActionStub' command properties |
+| `Sessions[].MockerCommands[].Configuration.ChangeActionStub.ActionName` | `string` | &#10004 |  | The Action's name that is being changed |
+| `Sessions[].MockerCommands[].Configuration.ChangeActionStub.StubName` | `string` | &#10004 |  | The Stub's Name attached to the action |
+| `Sessions[].MockerCommands[].Configuration.Consume` | `object or string` | &#10006 |  | Mocker 'Consume' command properties |
+| `Sessions[].MockerCommands[].Configuration.Consume.TimeoutMs` | `integer or string` | &#10004 |  | The Timeout (ms) while consuming data from Mock Servers |
+| `Sessions[].MockerCommands[].Configuration.Consume.ActionName` | `string or null` | &#10006 |  | The Action name to consume, if not given consumes all action |
+| `Sessions[].MockerCommands[].Configuration.Consume.InputDataFilter` | `object or string` | &#10006 |  | How to filter the properties of each returned Mocker Input data |
+| `Sessions[].MockerCommands[].Configuration.Consume.InputDataFilter.Body` | `string or true/false` | &#10006 | True | Whether to keep the `Body` in the data (true) or filter it (false) |
+| `Sessions[].MockerCommands[].Configuration.Consume.InputDataFilter.MetaData` | `string or true/false` | &#10006 | True | Whether to keep the `MetaData` in the data (true) or filter it (false) |
+| `Sessions[].MockerCommands[].Configuration.Consume.InputDataFilter.Timestamp` | `string or true/false` | &#10006 | True | Whether to keep the `Timestamp` in the data (true) or filter it (false) |
+| `Sessions[].MockerCommands[].Configuration.Consume.InputDeserialize` | `object or string` | &#10006 |  | The deserializer to use to deserialize the consumed input data received by the mocker |
+| `Sessions[].MockerCommands[].Configuration.Consume.InputDeserialize.Deserializer` | `one of [Binary / Json / MessagePack / Xml / Yaml / ProtobufMessage / XmlElement]` | &#10006 |  | The deserializer type to use for deserializing. Null means no deserialization will happen. Options are all available `QaaS.Framework.Serialization` deserializers |
+| `Sessions[].MockerCommands[].Configuration.Consume.InputDeserialize.SpecificType` | `object or string` | &#10006 |  | Configuration for making deserializer deserialize into a specific C# object, if set to null will deserialize to default deserilizer's C# object |
+| `Sessions[].MockerCommands[].Configuration.Consume.InputDeserialize.SpecificType.TypeFullName` | `string` | &#10004 |  | The full name (including path) of the type |
+| `Sessions[].MockerCommands[].Configuration.Consume.InputDeserialize.SpecificType.AssemblyName` | `string or null` | &#10006 |  | The name of the assembly the type is located in, If no value is given by default tries to take the entry assembly |
+| `Sessions[].MockerCommands[].Configuration.Consume.OutputDataFilter` | `object or string` | &#10006 |  | How to filter the properties of each returned Mocker Output data |
+| `Sessions[].MockerCommands[].Configuration.Consume.OutputDataFilter.Body` | `string or true/false` | &#10006 | True | Whether to keep the `Body` in the data (true) or filter it (false) |
+| `Sessions[].MockerCommands[].Configuration.Consume.OutputDataFilter.MetaData` | `string or true/false` | &#10006 | True | Whether to keep the `MetaData` in the data (true) or filter it (false) |
+| `Sessions[].MockerCommands[].Configuration.Consume.OutputDataFilter.Timestamp` | `string or true/false` | &#10006 | True | Whether to keep the `Timestamp` in the data (true) or filter it (false) |
+| `Sessions[].MockerCommands[].Configuration.Consume.OutputDeserialize` | `object or string` | &#10006 |  | The deserializer to use to deserialize the consumed output data published by the mocker |
+| `Sessions[].MockerCommands[].Configuration.Consume.OutputDeserialize.Deserializer` | `one of [Binary / Json / MessagePack / Xml / Yaml / ProtobufMessage / XmlElement]` | &#10006 |  | The deserializer type to use for deserializing. Null means no deserialization will happen. Options are all available `QaaS.Framework.Serialization` deserializers |
+| `Sessions[].MockerCommands[].Configuration.Consume.OutputDeserialize.SpecificType` | `object or string` | &#10006 |  | Configuration for making deserializer deserialize into a specific C# object, if set to null will deserialize to default deserilizer's C# object |
+| `Sessions[].MockerCommands[].Configuration.Consume.OutputDeserialize.SpecificType.TypeFullName` | `string` | &#10004 |  | The full name (including path) of the type |
+| `Sessions[].MockerCommands[].Configuration.Consume.OutputDeserialize.SpecificType.AssemblyName` | `string or null` | &#10006 |  | The name of the assembly the type is located in, If no value is given by default tries to take the entry assembly |
+| `Sessions[].MockerCommands[].Configuration.TriggerAction` | `object or string` | &#10006 |  | Mocker 'TriggerAction' command properties |
+| `Sessions[].MockerCommands[].Configuration.TriggerAction.ActionName` | `string` | &#10004 |  | The Action's name that is being triggered |
+| `Sessions[].MockerCommands[].Configuration.TriggerAction.TimeoutMs` | `integer or string` | &#10006 | 0 | The time to enable the action for in milliseconds |
 | `Sessions[].Probes` | `list or string or null` | &#10006 |  | List of all probes to build and run for this session. Probes are hook methods that do not return data, and can be integrated inside session run |
 | `Sessions[].Probes[]` | `object or string` | &#10006 |  |  |
 | `Sessions[].Probes[].Name` | `string` | &#10004 |  | The name of the probe |
 | `Sessions[].Probes[].Probe` | `string` | &#10004 |  | The name of the probe to use |
+| `Sessions[].Probes[].Configuration` | `object or string` | &#10006 |  |  |
 | `Sessions[].Probes[].ProbeConfiguration` | `object or string or null` | &#10006 |  | Implementation configuration for the probe, the configuration given here is loaded into the provided probe dynamically. |
 | `Sessions[].Probes[].Stage` | `integer or string` | &#10006 | 3 | The stage in which the Probe runs at |
 | `Sessions[].Probes[].DataSourceNames` | `list or string` | &#10006 |  | Names of the pre defined data sources to pass to the probe |
@@ -244,6 +276,7 @@
 | `Sessions[].Publishers` | `list or string or null` | &#10006 |  | List of all publishers to build and run for this session. Publishers iterate over data and use protocols to send it to the application |
 | `Sessions[].Publishers[]` | `object or string` | &#10006 |  |  |
 | `Sessions[].Publishers[].Name` | `string` | &#10004 |  | The name of the publisher |
+| `Sessions[].Publishers[].Configuration` | `object or string` | &#10006 |  |  |
 | `Sessions[].Publishers[].Iterations` | `integer or string` | &#10006 | 1 | How much iterations of the publishing action to execute |
 | `Sessions[].Publishers[].Loop` | `string or true/false` | &#10006 | False | Whether to publish in loop |
 | `Sessions[].Publishers[].SleepTimeMs` | `integer or string` | &#10006 | 0 | The time to sleep in milliseconds in between iterations |
@@ -400,6 +433,7 @@
 | `Sessions[].Transactions[]` | `object or string` | &#10006 |  |  |
 | `Sessions[].Transactions[].Name` | `string` | &#10004 |  | The communication action's name which acts as a unique identifier, used as the name of the communication action's produced input/output |
 | `Sessions[].Transactions[].TimeoutMs` | `integer or string` | &#10004 |  | the consumption timeout in milliseconds (timeout is the time to wait for a response after sending a request) |
+| `Sessions[].Transactions[].Configuration` | `object or string` | &#10006 |  |  |
 | `Sessions[].Transactions[].Iterations` | `integer or string` | &#10006 | 1 | How much iterations of the publishing action to execute |
 | `Sessions[].Transactions[].Loop` | `string or true/false` | &#10006 | False | Whether to publish in loop |
 | `Sessions[].Transactions[].SleepTimeMs` | `integer or string` | &#10006 | 0 | The time to sleep in milliseconds in between iterations |

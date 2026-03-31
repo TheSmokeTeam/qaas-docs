@@ -3,6 +3,7 @@
 ```yaml
 ProbeConfiguration:
   ContainerName:
+  UseGlobalDict:
   ApplicationLabels: []
   Commands: []
   Openshift:

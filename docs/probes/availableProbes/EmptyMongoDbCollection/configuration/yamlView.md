@@ -6,4 +6,5 @@ ProbeConfiguration:
   ConnectionString:
   DatabaseName:
   ChunkSize:
+  UseGlobalDict:
 ```

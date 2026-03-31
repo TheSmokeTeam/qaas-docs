@@ -4,6 +4,7 @@
 Probes:
   - Name:
     Probe:
+    Configuration:
     ProbeConfiguration:
     Stage:
     DataSourceNames: []

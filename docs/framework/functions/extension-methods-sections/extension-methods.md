@@ -528,7 +528,7 @@ This page mirrors the `Extension Methods` section from [Extension Methods](../ex
 
 ??? info "Source file, signature, and docstring"
     **Member**
-    `DateTimeExtensions.ConvertDateTimeToUtcByTimeZoneOffset(this DateTime timeToConvertToUtc, int insertionTimeTimeZoneOffsetSummerTime, bool? isDayLightSavingTime = null)`
+    `DateTimeExtensions.ConvertDateTimeToUtcByTimeZoneOffset(this DateTime timeToConvertToUtc, int insertionTimeTimeZoneOffsetSummerTime, bool? isDayLightSavingTime = null, string? timeZoneId = null)`
     
     **Kind** `function`
     
@@ -538,7 +538,7 @@ This page mirrors the `Extension Methods` section from [Extension Methods](../ex
     
     **Signature**
     ```csharp
-    public static DateTime ConvertDateTimeToUtcByTimeZoneOffset(this DateTime timeToConvertToUtc, int insertionTimeTimeZoneOffsetSummerTime, bool? isDayLightSavingTime = null)
+    public static DateTime ConvertDateTimeToUtcByTimeZoneOffset(this DateTime timeToConvertToUtc, int insertionTimeTimeZoneOffsetSummerTime, bool? isDayLightSavingTime = null, string? timeZoneId = null)
     ```
     
     **Docstring**
@@ -549,7 +549,7 @@ This page mirrors the `Extension Methods` section from [Extension Methods](../ex
 
 ??? info "Source file, signature, and docstring"
     **Member**
-    `DateTimeExtensions.ConvertDateTimeFromUtcToTimeZoneByTimeZoneOffset(this DateTime utcTimeToConvert, int timeZoneOffsetSummerTime, bool? isDayLightSavingTime = null)`
+    `DateTimeExtensions.ConvertDateTimeFromUtcToTimeZoneByTimeZoneOffset(this DateTime utcTimeToConvert, int timeZoneOffsetSummerTime, bool? isDayLightSavingTime = null, string? timeZoneId = null)`
     
     **Kind** `function`
     
@@ -559,7 +559,7 @@ This page mirrors the `Extension Methods` section from [Extension Methods](../ex
     
     **Signature**
     ```csharp
-    public static DateTime ConvertDateTimeFromUtcToTimeZoneByTimeZoneOffset(this DateTime utcTimeToConvert, int timeZoneOffsetSummerTime, bool? isDayLightSavingTime = null)
+    public static DateTime ConvertDateTimeFromUtcToTimeZoneByTimeZoneOffset(this DateTime utcTimeToConvert, int timeZoneOffsetSummerTime, bool? isDayLightSavingTime = null, string? timeZoneId = null)
     ```
     
     **Docstring**
