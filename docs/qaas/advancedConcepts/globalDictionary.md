@@ -14,6 +14,100 @@ Use the global dictionary when you need to:
 - keep runtime state separate from the immutable YAML shape
 - preload configuration sections such as `variables` into code-visible state
 - seed values before execution starts
+- let selected probes persist recovery state and shared defaults between related probe steps in the same execution and session
+
+## Probe Global Dictionary Fallback
+
+Selected probes in `QaaS.Common.Probes` can now opt into global-dictionary-backed configuration fallback through:
+
+```yaml
+ProbeConfiguration:
+  UseGlobalDict: true
+```
+
+When `UseGlobalDict` is `true`, the probe merges configuration in this order:
+
+1. probe-global-dictionary defaults and recovery payloads
+2. local YAML or code configuration
+3. normal bind and validation
+
+This merge is based on raw key presence, not typed defaults. That means an omitted key can come from the global dictionary, but an explicit local value such as `false`, `0`, `""`, or an empty collection still wins and keeps current behavior.
+
+When `UseGlobalDict` is `false`, the current behavior remains unchanged: the probe reads only its local configuration and does not use probe-global-dictionary state.
+
+## Probe Storage Paths
+
+Probe-global-dictionary writes are scoped uniquely per execution, session, and probe:
+
+```text
+__ProbeGlobalDict/Scoped/<execution-scope>/<session-name>/<probe-name>
+```
+
+`<execution-scope>` follows the Runner artifact convention:
+
+- `ExecutionId::CaseName` when those values exist
+- `context::<hash>` only as a fallback for direct in-memory usage outside the normal Runner execution flow
+
+Family aliases then point to those canonical entries:
+
+```text
+__ProbeGlobalDict/Aliases/<execution-scope>/<session-name>/...
+```
+
+The alias is what later probes read. The canonical scoped path is what keeps every probe execution isolated, even when several probes in the same session use the same family alias.
+
+## Recovery Example: Delete Then Recreate RabbitMQ Exchanges
+
+One intended use case is recovery testing:
+
+1. `DeleteRabbitMqExchanges` runs with `UseGlobalDict: true`
+2. it writes the resolved broker defaults under the session-scoped `RabbitMq/AmqpDefaults` alias
+3. it writes the deleted exchange list under `RabbitMq/Recovery/Exchanges`
+4. `CreateRabbitMqExchanges` later runs in the same execution and session with `UseGlobalDict: true`
+5. if local `Host`, `Port`, `Username`, `Password`, `VirtualHost`, or `Exchanges` keys are missing, the create probe restores them from those aliases
+
+Example:
+
+```yaml
+Sessions:
+  - Name: RecoverySession
+    Probes:
+      - Name: DeleteExchanges
+        Probe: DeleteRabbitMqExchanges
+        ProbeConfiguration:
+          UseGlobalDict: true
+          Host: rabbitmq.local
+          Username: guest
+          Password: guest
+          Port: 5672
+          VirtualHost: /
+          ExchangeNames:
+            - orders.exchange
+
+      - Name: RecreateExchanges
+        Probe: CreateRabbitMqExchanges
+        ProbeConfiguration:
+          UseGlobalDict: true
+```
+
+The second probe can omit the exchange list because the first probe already captured it in the scoped probe global dictionary for that execution and session.
+
+## Which Probes Use It
+
+The first pass enables probe-global-dictionary fallback for:
+
+- RabbitMQ lifecycle and definitions probes
+- OpenShift deployment and stateful-set mutation probes, plus config-map editing
+- Redis maintenance and command probes
+- Elasticsearch cleanup probes
+- MongoDB cleanup probes
+- S3 bucket maintenance probes
+- SQL truncate probes
+
+Two OpenShift probes are intentionally excluded in this first pass because they do not have a meaningful reusable recovery payload:
+
+- `OsRestartPods`
+- `OsExecuteCommandsInContainers`
 
 For the exact Framework API surface, see [Context global dictionary](../../framework/functions/extension-methods-sections/extension-methods/context-global-dictionary.md) and [ExecutionBuilder configuration helpers](../functions/builders/executions-sections/configuration.md).
 
