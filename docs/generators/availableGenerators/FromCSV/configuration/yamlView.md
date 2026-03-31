@@ -2,9 +2,9 @@
 
 ```yaml
 GeneratorConfiguration:
-  DataArrangeOrder:
   Delimiter:
   Count:
+  DataArrangeOrder:
   DataUuidRegexExpression:
   HasHeaderRecord:
   SkipEmptyRows:

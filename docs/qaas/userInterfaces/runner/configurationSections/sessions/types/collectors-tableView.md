@@ -5,6 +5,7 @@
 | `Sessions[].Collectors` | `list or string or null` | &#10006 |  | List of all collectors to build and run for this session. Collectors fetch information about the application from 3rd party apis on the sessions runtime |
 | `Sessions[].Collectors[]` | `object or string` | &#10006 |  |  |
 | `Sessions[].Collectors[].Name` | `string` | &#10004 |  | The name of the collector |
+| `Sessions[].Collectors[].Configuration` | `object or string` | &#10006 |  |  |
 | `Sessions[].Collectors[].EndTimeReachedCheckIntervalMs` | `integer or string` | &#10006 | 1000 | The check interval in milliseconds of the check that the current UTC time is past the collection end time, so the collection action can happen. |
 | `Sessions[].Collectors[].CollectionRange` | `object or string` | &#10006 |  | The collection range of the collector's action contains parameters for the start and end times of the collection range in relation to the start and end time of the collector's session. |
 | `Sessions[].Collectors[].CollectionRange.EndTimeMs` | `integer or string` | &#10006 | 0 | The end time of the collection range in relation to the session end time, given in milliseconds, is added to the session's start time as is to determine the collection end time. |

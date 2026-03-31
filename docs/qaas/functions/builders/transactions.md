@@ -503,29 +503,6 @@ The functions on this page are grouped by responsibility so related operations s
     
     Use this method when working with the documented Runner transaction builder API surface in code. Use it to inspect the current configured state without rebuilding the surrounding collection or runtime object graph.
 
-### `ReadConfiguration`
-
-??? info "Source file, signature, and docstring"
-    **Member**
-    `TransactionBuilder.ReadConfiguration()`
-    
-    **Kind** `function`
-    
-    **Declaring Type** `TransactionBuilder`
-    
-    **Source File** `QaaS.Runner.Sessions/Actions/Transactions/Builders/TransactionBuilder.cs`
-    
-    **Signature**
-    ```csharp
-    public ITransactorConfig? ReadConfiguration()
-    ```
-    
-    **Docstring**
-    
-    Returns the configuration currently stored on the Runner transaction builder instance.
-    
-    Use this method when working with the documented Runner transaction builder API surface in code. Use it to inspect the current configured state without rebuilding the surrounding collection or runtime object graph.
-
 ## Collection helpers
 
 ### `UpdateConfiguration`

@@ -4,6 +4,7 @@
 | ------------- | ---- | -------- | ------- | ----------- |
 | `ProbeConfiguration` | `object or string` | &#10006 |  |  |
 | `ProbeConfiguration.ContainerName` | `string or null` | &#10006 |  | The name of the container to run the commands in in all the found pods, if no name is given runs the command in all pod containers |
+| `ProbeConfiguration.UseGlobalDict` | `string or true/false` | &#10006 | False | When true, missing probe configuration keys may be resolved from the shared global dictionary before local YAML/code values are applied. |
 | `ProbeConfiguration.ApplicationLabels` | `list or string` | &#10004 |  | A list of the k8s labels of the pods to execute the command in, for example: app=test |
 | `ProbeConfiguration.ApplicationLabels[]` | `string` | &#10006 |  |  |
 | `ProbeConfiguration.Commands` | `list or string` | &#10004 |  | A list of the commands to execute in the chosen containers |

@@ -4,6 +4,7 @@
 Transactions:
   - Name:
     TimeoutMs:
+    Configuration:
     Iterations:
     Loop:
     SleepTimeMs:

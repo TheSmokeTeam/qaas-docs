@@ -4,6 +4,7 @@
 DataSources:
   - Generator:
     Name:
+    Configuration:
     GeneratorConfiguration:
     Lazy:
     DataSourceNames: []

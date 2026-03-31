@@ -7,10 +7,12 @@ Sessions:
     RunUntilStage:
     SaveData:
     Stage:
+    TimeZoneId:
     TimeoutAfterSessionMs:
     TimeoutBeforeSessionMs:
     Collectors:
       - Name:
+        Configuration:
         EndTimeReachedCheckIntervalMs:
         CollectionRange:
           EndTimeMs:
@@ -28,6 +30,7 @@ Sessions:
     Consumers:
       - Name:
         TimeoutMs:
+        Configuration:
         Stage:
         Policies:
           - AdvancedLoadBalance:
@@ -219,15 +222,45 @@ Sessions:
           Ssl:
           SslHost:
           Username:
+        Configuration:
+          ChangeActionStub:
+            ActionName:
+            StubName:
+          Consume:
+            TimeoutMs:
+            ActionName:
+            InputDataFilter:
+              Body:
+              MetaData:
+              Timestamp:
+            InputDeserialize:
+              Deserializer:
+              SpecificType:
+                TypeFullName:
+                AssemblyName:
+            OutputDataFilter:
+              Body:
+              MetaData:
+              Timestamp:
+            OutputDeserialize:
+              Deserializer:
+              SpecificType:
+                TypeFullName:
+                AssemblyName:
+          TriggerAction:
+            ActionName:
+            TimeoutMs:
     Probes:
       - Name:
         Probe:
+        Configuration:
         ProbeConfiguration:
         Stage:
         DataSourceNames: []
         DataSourcePatterns: []
     Publishers:
       - Name:
+        Configuration:
         Iterations:
         Loop:
         SleepTimeMs:
@@ -376,6 +409,7 @@ Sessions:
     Transactions:
       - Name:
         TimeoutMs:
+        Configuration:
         Iterations:
         Loop:
         SleepTimeMs:

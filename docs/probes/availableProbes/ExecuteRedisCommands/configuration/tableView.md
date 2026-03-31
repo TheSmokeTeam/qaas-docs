@@ -12,6 +12,7 @@
 | `ProbeConfiguration.RedisDataBase` | `integer or string` | &#10006 | 0 | Redis database to perform the probe on |
 | `ProbeConfiguration.Ssl` | `string or true/false` | &#10006 | False | Specifies that SSL encryption should be used |
 | `ProbeConfiguration.SslHost` | `string or null` | &#10006 |  | Enforces a preticular SSL host identity on the server's certificate |
+| `ProbeConfiguration.UseGlobalDict` | `string or true/false` | &#10006 | False | When true, missing probe configuration keys may be resolved from the shared global dictionary before local YAML/code values are applied. |
 | `ProbeConfiguration.Username` | `string or null` | &#10006 |  | User for the redis server |
 | `ProbeConfiguration.Commands` | `list or string` | &#10004 |  | The redis commands to execute |
 | `ProbeConfiguration.Commands[]` | `object or string` | &#10006 |  |  |

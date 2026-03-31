@@ -4,6 +4,7 @@
 | ------------- | ---- | -------- | ------- | ----------- |
 | `Links` | `list or string or null` | &#10006 |  | The links generated on test results, used to view observability data outputted by the tested application. These links are generated per test result to be relevant specifically to that test and the time it ran at |
 | `Links[]` | `object or string` | &#10006 |  |  |
+| `Links[].Configuration` | `object or string` | &#10006 |  |  |
 | `Links[].Name` | `string or null` | &#10006 |  | The display name of the link in the test results, if none is given uses the `Type` as the name |
 | `Links[].Grafana` | `object or string` | &#10006 |  | Links the grafana dashboard filtered for the test's session times to each test result. |
 | `Links[].Grafana.DashboardId` | `string` | &#10004 |  | The Id of the desired dashboard to view |

@@ -4,6 +4,7 @@
 | ------------- | ---- | -------- | ------- | ----------- |
 | `Storages` | `list or string or null` | &#10006 |  | External storages qaas inner objects can be stored in or retrieved from when using the `qaas act` (to create and store) or `qaas assert` (to retrieve and use) commands |
 | `Storages[]` | `object or string` | &#10006 |  |  |
+| `Storages[].Configuration` | `object or string` | &#10006 |  |  |
 | `Storages[].JsonStorageFormat` | `one of [Indented / None]` | &#10006 |  | The storage format used when storing jsons. Options: [`Indented` - Formats the json with indents, more readable but less memory efficient /`None` - Formats the json without indents, less readable but more memory efficient ] |
 | `Storages[].FileSystem` | `object or string` | &#10006 |  | Supports storage as a file system directory |
 | `Storages[].FileSystem.Path` | `string` | &#10004 |  | The path of the directory containing the relevant files |

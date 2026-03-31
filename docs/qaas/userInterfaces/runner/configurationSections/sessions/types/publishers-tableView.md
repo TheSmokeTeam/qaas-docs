@@ -5,6 +5,7 @@
 | `Sessions[].Publishers` | `list or string or null` | &#10006 |  | List of all publishers to build and run for this session. Publishers iterate over data and use protocols to send it to the application |
 | `Sessions[].Publishers[]` | `object or string` | &#10006 |  |  |
 | `Sessions[].Publishers[].Name` | `string` | &#10004 |  | The name of the publisher |
+| `Sessions[].Publishers[].Configuration` | `object or string` | &#10006 |  |  |
 | `Sessions[].Publishers[].Iterations` | `integer or string` | &#10006 | 1 | How much iterations of the publishing action to execute |
 | `Sessions[].Publishers[].Loop` | `string or true/false` | &#10006 | False | Whether to publish in loop |
 | `Sessions[].Publishers[].SleepTimeMs` | `integer or string` | &#10006 | 0 | The time to sleep in milliseconds in between iterations |

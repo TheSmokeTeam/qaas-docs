@@ -4,6 +4,7 @@
 Consumers:
   - Name:
     TimeoutMs:
+    Configuration:
     Stage:
     Policies:
       - AdvancedLoadBalance:

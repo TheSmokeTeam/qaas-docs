@@ -44,6 +44,6 @@ This page mirrors the `Collection helpers` section from [Data Sources](../data-s
     
     **Docstring**
     
-    Merges the supplied object into the current generator configuration.
+    Returns the configuration currently stored on the Framework data source builder instance.
     
-    Use this when only part of the generator configuration should change and existing values should be preserved where possible.
+    Use this method when working with the documented Framework data source builder API surface in code. Use it to inspect the current configured state without rebuilding the surrounding collection or runtime object graph.

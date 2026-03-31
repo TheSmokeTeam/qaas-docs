@@ -8,4 +8,5 @@ ProbeConfiguration:
   StorageBucket:
   ForcePathStyle:
   Prefix:
+  UseGlobalDict:
 ```

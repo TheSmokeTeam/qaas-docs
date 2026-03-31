@@ -11,6 +11,7 @@
 | `ProbeConfiguration.Password` | `string or null` | &#10006 |  | Password for the redis server |
 | `ProbeConfiguration.Ssl` | `string or true/false` | &#10006 | False | Specifies that SSL encryption should be used |
 | `ProbeConfiguration.SslHost` | `string or null` | &#10006 |  | Enforces a preticular SSL host identity on the server's certificate |
+| `ProbeConfiguration.UseGlobalDict` | `string or true/false` | &#10006 | False | When true, missing Redis probe configuration keys can be resolved from the shared global dictionary before local values are applied. |
 | `ProbeConfiguration.Username` | `string or null` | &#10006 |  | User for the redis server |
 | `ProbeConfiguration.HostNames` | `list or string` | &#10004 |  | List of the redis hostnames (each hostname should contain the port too for example: - 'host1:8080' |
 | `ProbeConfiguration.HostNames[]` | `string` | &#10006 |  |  |

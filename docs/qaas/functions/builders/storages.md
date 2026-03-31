@@ -29,31 +29,6 @@ The functions on this page are grouped by responsibility so related operations s
     
     Use this method when working with the documented Runner storage builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
-## Inspection
-
-### `ReadConfiguration`
-
-??? info "Source file, signature, and docstring"
-    **Member**
-    `StorageBuilder.ReadConfiguration()`
-    
-    **Kind** `function`
-    
-    **Declaring Type** `StorageBuilder`
-    
-    **Source File** `QaaS.Runner.Storage/StorageBuilder.cs`
-    
-    **Signature**
-    ```csharp
-    public IStorageConfig? ReadConfiguration()
-    ```
-    
-    **Docstring**
-    
-    Returns the configuration currently stored on the Runner storage builder instance.
-    
-    Use this method when working with the documented Runner storage builder API surface in code. Use it to inspect the current configured state without rebuilding the surrounding collection or runtime object graph.
-
 ## Collection helpers
 
 ### `UpdateConfiguration`

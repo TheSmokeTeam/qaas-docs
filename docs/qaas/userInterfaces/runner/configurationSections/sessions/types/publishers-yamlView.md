@@ -3,6 +3,7 @@
 ```yaml
 Publishers:
   - Name:
+    Configuration:
     Iterations:
     Loop:
     SleepTimeMs:

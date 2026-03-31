@@ -7,4 +7,5 @@ ProbeConfiguration:
   Url:
   Username:
   RequestTimeoutMs:
+  UseGlobalDict:
 ```

@@ -6,6 +6,7 @@ ProbeConfiguration:
   ReplicaSetName:
   IntervalBetweenDesiredStateChecksMs:
   TimeoutWaitForDesiredStateSeconds:
+  UseGlobalDict:
   Openshift:
     Cluster:
     Namespace:

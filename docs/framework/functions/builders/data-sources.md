@@ -286,31 +286,6 @@ The functions on this page are grouped by responsibility so related operations s
     
     Use this method when working with the documented Framework data source builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
-## Inspection
-
-### `ReadConfiguration`
-
-??? info "Source file, signature, and docstring"
-    **Member**
-    `DataSourceBuilder.ReadConfiguration()`
-    
-    **Kind** `function`
-    
-    **Declaring Type** `DataSourceBuilder`
-    
-    **Source File** `QaaS.Framework.SDK/DataSourceObjects/DataSourceBuilder.cs`
-    
-    **Signature**
-    ```csharp
-    public IConfiguration ReadConfiguration()
-    ```
-    
-    **Docstring**
-    
-    Returns the configuration currently stored on the Framework data source builder instance.
-    
-    Use this method when working with the documented Framework data source builder API surface in code. Use it to inspect the current configured state without rebuilding the surrounding collection or runtime object graph.
-
 ## Collection helpers
 
 ### `DeleteConfiguration`
@@ -355,9 +330,9 @@ The functions on this page are grouped by responsibility so related operations s
     
     **Docstring**
     
-    Merges the supplied object into the current generator configuration.
+    Returns the configuration currently stored on the Framework data source builder instance.
     
-    Use this when only part of the generator configuration should change and existing values should be preserved where possible.
+    Use this method when working with the documented Framework data source builder API surface in code. Use it to inspect the current configured state without rebuilding the surrounding collection or runtime object graph.
 
 ## General
 

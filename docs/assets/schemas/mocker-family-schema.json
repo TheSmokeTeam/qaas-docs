@@ -109,6 +109,13 @@
             "description": "Implementation configuration for the generator, the configuration given here is loaded into the provided generator dynamically.",
             "pattern": "\\$\\{.*\\}"
           },
+          "Configuration": {
+            "type": [
+              "object",
+              "string"
+            ],
+            "pattern": "\\$\\{.*\\}"
+          },
           "Serialize": {
             "type": [
               "object",
@@ -228,7 +235,6 @@
                 "pattern": "\\$\\{.*\\}",
                 "required": [
                   "FileSystem",
-                  "DataArrangeOrder",
                   "Delimiter"
                 ],
                 "properties": {
@@ -501,7 +507,6 @@
                 "description": "Retrieves data from a configured path to a directory in the file system. `DataSources`: Not used. `SessionData`: Not used.",
                 "pattern": "\\$\\{.*\\}",
                 "required": [
-                  "DataArrangeOrder",
                   "FileSystem"
                 ],
                 "properties": {
@@ -654,7 +659,6 @@
                 "description": "Retrieves data from a configured S3 bucket. `DataSources`: Not used. `SessionData`: Not used.",
                 "pattern": "\\$\\{.*\\}",
                 "required": [
-                  "DataArrangeOrder",
                   "S3"
                 ],
                 "properties": {
@@ -2009,8 +2013,7 @@
                 "description": "Retrieves lettuce data from a configured path to a directory in the file system. `DataSources`: Not used. `SessionData`: Not used.",
                 "pattern": "\\$\\{.*\\}",
                 "required": [
-                  "FileSystem",
-                  "DataArrangeOrder"
+                  "FileSystem"
                 ],
                 "properties": {
                   "FileSystem": {

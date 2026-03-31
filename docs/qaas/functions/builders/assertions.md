@@ -706,31 +706,6 @@ The functions on this page are grouped by responsibility so related operations s
     
     Use this method when working with the documented Runner assertion builder API surface in code. The behavior exposed here is part of the public surface that the generated function documentation groups under 'Configuration as Code / Assertions'.
 
-## Inspection
-
-### `ReadConfiguration`
-
-??? info "Source file, signature, and docstring"
-    **Member**
-    `AssertionBuilder.ReadConfiguration()`
-    
-    **Kind** `function`
-    
-    **Declaring Type** `AssertionBuilder`
-    
-    **Source File** `QaaS.Runner.Assertions/ConfigurationObjects/AssertionBuilder.cs`
-    
-    **Signature**
-    ```csharp
-    public IConfiguration ReadConfiguration()
-    ```
-    
-    **Docstring**
-    
-    Returns the configuration currently stored on the Runner assertion builder instance.
-    
-    Use this method when working with the documented Runner assertion builder API surface in code. Use it to inspect the current configured state without rebuilding the surrounding collection or runtime object graph.
-
 ## Collection helpers
 
 ### `UpdateConfiguration`
