@@ -6,9 +6,8 @@ WORKDIR /docs
 COPY requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
 
-# Copy docs source and macros hook.
+# Copy docs source.
 COPY mkdocs.yml .
-COPY main.py .
 COPY docs/ docs/
 # Build-time overrides for site metadata and external links.
 ARG QAAS_DOCS_SITE_URL
@@ -69,19 +68,11 @@ ENV QAAS_DOCS_SITE_URL=${QAAS_DOCS_SITE_URL} \
 
 RUN mkdocs build --clean
 
-FROM squidfunk/mkdocs-material:9.5 AS runtime
+FROM nginx:1.27-alpine AS runtime
 
-WORKDIR /docs
-
-COPY requirements.txt .
-RUN pip install --no-cache-dir -r requirements.txt
-
-COPY mkdocs.yml .
-COPY main.py .
-COPY serve_docs.py .
-COPY docs/ docs/
-COPY --from=build /docs/site /site
+COPY tools/nginx.conf /etc/nginx/conf.d/default.conf
+COPY --from=build /docs/site /usr/share/nginx/html
 
 EXPOSE 8000
 
-ENTRYPOINT ["python", "/docs/serve_docs.py"]
+CMD ["nginx", "-g", "daemon off;"]

@@ -1,8 +1,8 @@
 site_name: QaaS Documentation
 site_description: QA As A Service - Unified Documentation
-site_url: https://TheSmokeTeam.github.io/qaas-docs/
-repo_name: QaaS.Runner
-repo_url: https://github.com/TheSmokeTeam/QaaS.Runner
+site_url: !ENV [QAAS_DOCS_SITE_URL, "https://TheSmokeTeam.github.io/qaas-docs/"]
+repo_name: !ENV [QAAS_DOCS_REPO_NAME, "QaaS.Runner"]
+repo_url: !ENV [QAAS_DOCS_REPO_URL, "https://github.com/TheSmokeTeam/QaaS.Runner"]
 docs_dir: docs/
 
 nav:
@@ -736,30 +736,30 @@ markdown_extensions:
 
 extra:
   links:
-    docs_site: https://TheSmokeTeam.github.io/qaas-docs/
-    repository_docs: https://github.com/TheSmokeTeam/qaas-docs
-    repository_runner: https://github.com/TheSmokeTeam/QaaS.Runner
-    repository_mocker: https://github.com/TheSmokeTeam/QaaS.Mocker
-    repository_mocker_communication_objects: https://github.com/TheSmokeTeam/Qaas.Mocker.CommunicationObjects
-    repository_framework: https://github.com/TheSmokeTeam/QaaS.Framework
-    repository_assertions: https://github.com/TheSmokeTeam/QaaS.Common.Assertions
-    repository_generators: https://github.com/TheSmokeTeam/QaaS.Common.Generators
-    repository_probes: https://github.com/TheSmokeTeam/QaaS.Common.Probes
-    repository_processors: https://github.com/TheSmokeTeam/QaaS.Common.Processors
-    repository_runner_template: https://github.com/TheSmokeTeam/QaaS.Runner.Template
-    repository_mocker_template: https://github.com/TheSmokeTeam/QaaS.Mocker.Template
-    repository_runner_quickstart_code: https://github.com/TheSmokeTeam/DummyAppTests/tree/code_configuration
-    repository_runner_quickstart_yaml: https://github.com/TheSmokeTeam/DummyAppTests/tree/yaml_configuration
-    repository_mocker_quickstart_code: https://github.com/TheSmokeTeam/DummyAppMock/tree/code_configuration
-    repository_mocker_quickstart_yaml: https://github.com/TheSmokeTeam/DummyAppMock/tree/yaml_configuration
-    allure_installation_guide: https://docs.qameta.io/allure/#_installing_a_commandline
-    dotnet_sdk: https://dotnet.microsoft.com/download
-    qaas_community: https://discord.gg/rg2NYT4Mea
-    nuget_feed: https://api.nuget.org/v3/index.json
-    artifactory: https://jfrog.com/artifactory
-    runner_schema: ../../assets/schemas/runner-family-schema.json
-    mocker_schema: ../../assets/schemas/mocker-family-schema.json
+    docs_site: !ENV [QAAS_DOCS_LINK_DOCS_SITE, "https://TheSmokeTeam.github.io/qaas-docs/"]
+    repository_docs: !ENV [QAAS_DOCS_LINK_REPOSITORY_DOCS, "https://github.com/TheSmokeTeam/qaas-docs"]
+    repository_runner: !ENV [QAAS_DOCS_LINK_REPOSITORY_RUNNER, "https://github.com/TheSmokeTeam/QaaS.Runner"]
+    repository_mocker: !ENV [QAAS_DOCS_LINK_REPOSITORY_MOCKER, "https://github.com/TheSmokeTeam/QaaS.Mocker"]
+    repository_mocker_communication_objects: !ENV [QAAS_DOCS_LINK_REPOSITORY_MOCKER_COMMUNICATION_OBJECTS, "https://github.com/TheSmokeTeam/Qaas.Mocker.CommunicationObjects"]
+    repository_framework: !ENV [QAAS_DOCS_LINK_REPOSITORY_FRAMEWORK, "https://github.com/TheSmokeTeam/QaaS.Framework"]
+    repository_assertions: !ENV [QAAS_DOCS_LINK_REPOSITORY_ASSERTIONS, "https://github.com/TheSmokeTeam/QaaS.Common.Assertions"]
+    repository_generators: !ENV [QAAS_DOCS_LINK_REPOSITORY_GENERATORS, "https://github.com/TheSmokeTeam/QaaS.Common.Generators"]
+    repository_probes: !ENV [QAAS_DOCS_LINK_REPOSITORY_PROBES, "https://github.com/TheSmokeTeam/QaaS.Common.Probes"]
+    repository_processors: !ENV [QAAS_DOCS_LINK_REPOSITORY_PROCESSORS, "https://github.com/TheSmokeTeam/QaaS.Common.Processors"]
+    repository_runner_template: !ENV [QAAS_DOCS_LINK_REPOSITORY_RUNNER_TEMPLATE, "https://github.com/TheSmokeTeam/QaaS.Runner.Template"]
+    repository_mocker_template: !ENV [QAAS_DOCS_LINK_REPOSITORY_MOCKER_TEMPLATE, "https://github.com/TheSmokeTeam/QaaS.Mocker.Template"]
+    repository_runner_quickstart_code: !ENV [QAAS_DOCS_LINK_REPOSITORY_RUNNER_QUICKSTART_CODE, "https://github.com/TheSmokeTeam/DummyAppTests/tree/code_configuration"]
+    repository_runner_quickstart_yaml: !ENV [QAAS_DOCS_LINK_REPOSITORY_RUNNER_QUICKSTART_YAML, "https://github.com/TheSmokeTeam/DummyAppTests/tree/yaml_configuration"]
+    repository_mocker_quickstart_code: !ENV [QAAS_DOCS_LINK_REPOSITORY_MOCKER_QUICKSTART_CODE, "https://github.com/TheSmokeTeam/DummyAppMock/tree/code_configuration"]
+    repository_mocker_quickstart_yaml: !ENV [QAAS_DOCS_LINK_REPOSITORY_MOCKER_QUICKSTART_YAML, "https://github.com/TheSmokeTeam/DummyAppMock/tree/yaml_configuration"]
+    allure_installation_guide: !ENV [QAAS_DOCS_LINK_ALLURE_INSTALLATION_GUIDE, "https://docs.qameta.io/allure/#_installing_a_commandline"]
+    dotnet_sdk: !ENV [QAAS_DOCS_LINK_DOTNET_SDK, "https://dotnet.microsoft.com/download"]
+    qaas_community: !ENV [QAAS_DOCS_LINK_QAAS_COMMUNITY, "https://discord.gg/rg2NYT4Mea"]
+    nuget_feed: !ENV [QAAS_DOCS_LINK_NUGET_FEED, "https://api.nuget.org/v3/index.json"]
+    artifactory: !ENV [QAAS_DOCS_LINK_ARTIFACTORY, "https://jfrog.com/artifactory"]
+    runner_schema: !ENV [QAAS_DOCS_LINK_RUNNER_SCHEMA, "../../assets/schemas/runner-family-schema.json"]
+    mocker_schema: !ENV [QAAS_DOCS_LINK_MOCKER_SCHEMA, "../../assets/schemas/mocker-family-schema.json"]
   social:
     - icon: fontawesome/brands/github
-      link: https://github.com/TheSmokeTeam/QaaS.Runner
+      link: !ENV [QAAS_DOCS_SOCIAL_GITHUB_URL, "https://github.com/TheSmokeTeam/QaaS.Runner"]
   generator: false

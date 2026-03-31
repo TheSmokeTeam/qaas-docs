@@ -93,7 +93,7 @@ Repository overview sync uses:
 
 This token must be able to update repository metadata for `TheSmokeTeam/qaas-docs`.
 
-Docs URLs are defined with defaults in `mkdocs.yml` and can be overridden during build or CI via environment variables.
+Docs URLs are defined with defaults in `mkdocs.yml` and can be overridden during build or CI via environment variables. If you want the header repo label to include a version, pass the exact display value through `QAAS_DOCS_REPO_NAME` during the build.
 
 Core site settings:
 
@@ -143,9 +143,7 @@ docker build -t qaas-docs .
 docker run -p 8000:8000 qaas-docs
 ```
 
-The image still prebuilds the static site during `docker build`.
-
-If you run the container without any `QAAS_DOCS_*` runtime overrides, it serves that baked site as-is.
+The image prebuilds the static site during `docker build` and the runtime image only serves the generated files through Nginx on port `8000`.
 
 If you need different docs URLs or repository links in the image, pass the overrides at build time:
 
@@ -156,17 +154,10 @@ docker build -t qaas-docs \
   .
 ```
 
-After that, deploy or run the image normally:
+After that, run the image normally:
 
 ```bash
 docker run -p 8000:8000 qaas-docs
 ```
 
-If you need `docker run -e QAAS_DOCS_*` to change the rendered links, pass non-empty runtime env values and the container will rebuild the site on startup through the Python entrypoint before serving it:
-
-```bash
-docker run -p 8000:8000 \
-  -e QAAS_DOCS_SITE_URL=https://docs.example.com/qaas/ \
-  -e QAAS_DOCS_LINK_REPOSITORY_RUNNER=https://github.com/example/QaaS.Runner \
-  qaas-docs
-```
+Runtime `QAAS_DOCS_*` variables are no longer used to rebuild the site. If the rendered links or metadata need to change, rebuild the image with updated `--build-arg` values.
