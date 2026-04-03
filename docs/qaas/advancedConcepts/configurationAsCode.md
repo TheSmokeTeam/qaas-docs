@@ -153,7 +153,7 @@ The current public Runner execution builder surface supports explicit create, re
 - sessions: `CreateSession`, `ReadSessions`, `UpdateSession`, `DeleteSession`
 - assertions: `CreateAssertion`, `ReadAssertions`, `UpdateAssertion`, `DeleteAssertion`
 - storages: `CreateStorage`, `ReadStorages`, `UpdateStorageAt`, `DeleteStorageAt`
-- data sources: `CreateDataSource`, `ReadDataSources`, `UpdateDataSource`, `DeleteDataSource`
+- data sources: `CreateDataSource`, `ReadDataSources`, `UpdateDataSource`, `RemoveDataSource`
 - links: `CreateLink`, `ReadLinks`, `UpdateLinkAt`, `DeleteLinkAt`
 
 That makes Configuration as Code practical not only for "build from scratch" scenarios, but also for "load from YAML, then modify precisely" scenarios.

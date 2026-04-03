@@ -140,11 +140,11 @@ This page mirrors the `Transaction stubs` section from [Executions](../execution
     
     Use this method when working with the documented Mocker execution builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
-## `DeleteStub`
+## `RemoveStub`
 
 ??? info "Source file, signature, and docstring"
     **Member**
-    `ExecutionBuilder.DeleteStub(string stubName)`
+    `ExecutionBuilder.RemoveStub(string stubName)`
     
     **Kind** `function`
     
@@ -154,7 +154,7 @@ This page mirrors the `Transaction stubs` section from [Executions](../execution
     
     **Signature**
     ```csharp
-    public ExecutionBuilder DeleteStub(string stubName)
+    public ExecutionBuilder RemoveStub(string stubName)
     ```
     
     **Docstring**

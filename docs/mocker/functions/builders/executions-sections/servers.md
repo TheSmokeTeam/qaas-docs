@@ -186,11 +186,11 @@ This page mirrors the `Servers` section from [Executions](../executions.md).
     
     Use this method when working with the documented Mocker execution builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
-## `DeleteServer`
+## `RemoveServer`
 
 ??? info "Source file, signature, and docstring"
     **Member**
-    `ExecutionBuilder.DeleteServer()`
+    `ExecutionBuilder.RemoveServer()`
     
     **Kind** `function`
     
@@ -200,7 +200,7 @@ This page mirrors the `Servers` section from [Executions](../executions.md).
     
     **Signature**
     ```csharp
-    public ExecutionBuilder DeleteServer()
+    public ExecutionBuilder RemoveServer()
     ```
     
     **Docstring**
@@ -209,11 +209,11 @@ This page mirrors the `Servers` section from [Executions](../executions.md).
     
     Use this method when working with the documented Mocker execution builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
-## `DeleteServerAt`
+## `RemoveServerAt`
 
 ??? info "Source file, signature, and docstring"
     **Member**
-    `ExecutionBuilder.DeleteServerAt(int index)`
+    `ExecutionBuilder.RemoveServerAt(int index)`
     
     **Kind** `function`
     
@@ -223,7 +223,7 @@ This page mirrors the `Servers` section from [Executions](../executions.md).
     
     **Signature**
     ```csharp
-    public ExecutionBuilder DeleteServerAt(int index)
+    public ExecutionBuilder RemoveServerAt(int index)
     ```
     
     **Docstring**

@@ -75,7 +75,7 @@ This page mirrors the `Collection helpers` section from [Storages](../storages.m
 
 ??? info "Source file, signature, and docstring"
     **Member**
-    `StorageBuilder.DeleteConfiguration()`
+    `StorageBuilder.UpdateConfiguration(...)`
     
     **Kind** `function`
     
@@ -85,7 +85,7 @@ This page mirrors the `Collection helpers` section from [Storages](../storages.m
     
     **Signature**
     ```csharp
-    public StorageBuilder DeleteConfiguration()
+    public StorageBuilder UpdateConfiguration(...)
     ```
     
     **Docstring**

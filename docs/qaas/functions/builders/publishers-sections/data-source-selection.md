@@ -71,11 +71,11 @@ This page mirrors the `Data source selection` section from [Publishers](../publi
     
     Use this method when working with the documented Runner publisher builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
-## `DeleteDataSource`
+## `RemoveDataSource`
 
 ??? info "Source file, signature, and docstring"
     **Member**
-    `PublisherBuilder.DeleteDataSource(string dataSourceName)`
+    `PublisherBuilder.RemoveDataSource(string dataSourceName)`
     
     **Kind** `function`
     
@@ -85,7 +85,7 @@ This page mirrors the `Data source selection` section from [Publishers](../publi
     
     **Signature**
     ```csharp
-    public PublisherBuilder DeleteDataSource(string dataSourceName)
+    public PublisherBuilder RemoveDataSource(string dataSourceName)
     ```
     
     **Docstring**
@@ -163,11 +163,11 @@ This page mirrors the `Data source selection` section from [Publishers](../publi
     
     Use this method when working with the documented Runner publisher builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
-## `DeleteDataSourcePattern`
+## `RemoveDataSourcePattern`
 
 ??? info "Source file, signature, and docstring"
     **Member**
-    `PublisherBuilder.DeleteDataSourcePattern(string dataSourcePattern)`
+    `PublisherBuilder.RemoveDataSourcePattern(string dataSourcePattern)`
     
     **Kind** `function`
     
@@ -177,7 +177,7 @@ This page mirrors the `Data source selection` section from [Publishers](../publi
     
     **Signature**
     ```csharp
-    public PublisherBuilder DeleteDataSourcePattern(string dataSourcePattern)
+    public PublisherBuilder RemoveDataSourcePattern(string dataSourcePattern)
     ```
     
     **Docstring**

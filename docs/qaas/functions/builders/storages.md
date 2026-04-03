@@ -104,7 +104,7 @@ The functions on this page are grouped by responsibility so related operations s
 
 ??? info "Source file, signature, and docstring"
     **Member**
-    `StorageBuilder.DeleteConfiguration()`
+    `StorageBuilder.UpdateConfiguration(...)`
     
     **Kind** `function`
     
@@ -114,7 +114,7 @@ The functions on this page are grouped by responsibility so related operations s
     
     **Signature**
     ```csharp
-    public StorageBuilder DeleteConfiguration()
+    public StorageBuilder UpdateConfiguration(...)
     ```
     
     **Docstring**

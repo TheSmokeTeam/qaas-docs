@@ -71,11 +71,11 @@ This page mirrors the `Data source selection` section from [Executions](../execu
     
     Use this method when working with the documented Mocker execution builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
-## `DeleteDataSource`
+## `RemoveDataSource`
 
 ??? info "Source file, signature, and docstring"
     **Member**
-    `ExecutionBuilder.DeleteDataSource(string dataSourceName)`
+    `ExecutionBuilder.RemoveDataSource(string dataSourceName)`
     
     **Kind** `function`
     
@@ -85,7 +85,7 @@ This page mirrors the `Data source selection` section from [Executions](../execu
     
     **Signature**
     ```csharp
-    public ExecutionBuilder DeleteDataSource(string dataSourceName)
+    public ExecutionBuilder RemoveDataSource(string dataSourceName)
     ```
     
     **Docstring**

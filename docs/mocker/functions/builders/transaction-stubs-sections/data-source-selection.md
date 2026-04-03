@@ -71,11 +71,11 @@ This page mirrors the `Data source selection` section from [Transaction Stubs](.
     
     Use this method when working with the documented Mocker transaction stub builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
-## `DeleteDataSourceName`
+## `RemoveDataSourceName`
 
 ??? info "Source file, signature, and docstring"
     **Member**
-    `TransactionStubBuilder.DeleteDataSourceName(string dataSourceName)`
+    `TransactionStubBuilder.RemoveDataSourceName(string dataSourceName)`
     
     **Kind** `function`
     
@@ -85,7 +85,7 @@ This page mirrors the `Data source selection` section from [Transaction Stubs](.
     
     **Signature**
     ```csharp
-    public TransactionStubBuilder DeleteDataSourceName(string dataSourceName)
+    public TransactionStubBuilder RemoveDataSourceName(string dataSourceName)
     ```
     
     **Docstring**

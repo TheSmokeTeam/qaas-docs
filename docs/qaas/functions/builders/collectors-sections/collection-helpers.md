@@ -75,7 +75,7 @@ This page mirrors the `Collection helpers` section from [Collectors](../collecto
 
 ??? info "Source file, signature, and docstring"
     **Member**
-    `CollectorBuilder.DeleteConfiguration()`
+    `CollectorBuilder.UpdateConfiguration(...)`
     
     **Kind** `function`
     
@@ -85,7 +85,7 @@ This page mirrors the `Collection helpers` section from [Collectors](../collecto
     
     **Signature**
     ```csharp
-    public CollectorBuilder DeleteConfiguration()
+    public CollectorBuilder UpdateConfiguration(...)
     ```
     
     **Docstring**

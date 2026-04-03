@@ -123,11 +123,11 @@ The functions on this page are grouped by responsibility so related operations s
     
     Use this method when working with the documented Framework data source builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
-### `DeleteDataSourceName`
+### `RemoveDataSourceName`
 
 ??? info "Source file, signature, and docstring"
     **Member**
-    `DataSourceBuilder.DeleteDataSourceName(string dataSourceName)`
+    `DataSourceBuilder.RemoveDataSourceName(string dataSourceName)`
     
     **Kind** `function`
     
@@ -137,7 +137,7 @@ The functions on this page are grouped by responsibility so related operations s
     
     **Signature**
     ```csharp
-    public DataSourceBuilder DeleteDataSourceName(string dataSourceName)
+    public DataSourceBuilder RemoveDataSourceName(string dataSourceName)
     ```
     
     **Docstring**
@@ -215,11 +215,11 @@ The functions on this page are grouped by responsibility so related operations s
     
     Use this method when working with the documented Framework data source builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
-### `DeleteDataSourcePattern`
+### `RemoveDataSourcePattern`
 
 ??? info "Source file, signature, and docstring"
     **Member**
-    `DataSourceBuilder.DeleteDataSourcePattern(string dataSourcePattern)`
+    `DataSourceBuilder.RemoveDataSourcePattern(string dataSourcePattern)`
     
     **Kind** `function`
     
@@ -229,7 +229,7 @@ The functions on this page are grouped by responsibility so related operations s
     
     **Signature**
     ```csharp
-    public DataSourceBuilder DeleteDataSourcePattern(string dataSourcePattern)
+    public DataSourceBuilder RemoveDataSourcePattern(string dataSourcePattern)
     ```
     
     **Docstring**
@@ -292,7 +292,7 @@ The functions on this page are grouped by responsibility so related operations s
 
 ??? info "Source file, signature, and docstring"
     **Member**
-    `DataSourceBuilder.DeleteConfiguration()`
+    `DataSourceBuilder.UpdateConfiguration(...)`
     
     **Kind** `function`
     
@@ -302,7 +302,7 @@ The functions on this page are grouped by responsibility so related operations s
     
     **Signature**
     ```csharp
-    public DataSourceBuilder DeleteConfiguration()
+    public DataSourceBuilder UpdateConfiguration(...)
     ```
     
     **Docstring**

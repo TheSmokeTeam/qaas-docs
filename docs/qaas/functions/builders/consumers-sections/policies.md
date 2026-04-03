@@ -48,11 +48,11 @@ This page mirrors the `Policies` section from [Consumers](../consumers.md).
     
     Use this method when working with the documented Runner consumer builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
-## `DeletePolicyAt`
+## `RemovePolicyAt`
 
 ??? info "Source file, signature, and docstring"
     **Member**
-    `ConsumerBuilder.DeletePolicyAt(int index)`
+    `ConsumerBuilder.RemovePolicyAt(int index)`
     
     **Kind** `function`
     
@@ -62,7 +62,7 @@ This page mirrors the `Policies` section from [Consumers](../consumers.md).
     
     **Signature**
     ```csharp
-    public ConsumerBuilder DeletePolicyAt(int index)
+    public ConsumerBuilder RemovePolicyAt(int index)
     ```
     
     **Docstring**

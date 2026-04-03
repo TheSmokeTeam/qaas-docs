@@ -48,11 +48,11 @@ This page mirrors the `Policies` section from [Transactions](../transactions.md)
     
     Use this method when working with the documented Runner transaction builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
-## `DeletePolicyAt`
+## `RemovePolicyAt`
 
 ??? info "Source file, signature, and docstring"
     **Member**
-    `TransactionBuilder.DeletePolicyAt(int index)`
+    `TransactionBuilder.RemovePolicyAt(int index)`
     
     **Kind** `function`
     
@@ -62,7 +62,7 @@ This page mirrors the `Policies` section from [Transactions](../transactions.md)
     
     **Signature**
     ```csharp
-    public TransactionBuilder DeletePolicyAt(int index)
+    public TransactionBuilder RemovePolicyAt(int index)
     ```
     
     **Docstring**

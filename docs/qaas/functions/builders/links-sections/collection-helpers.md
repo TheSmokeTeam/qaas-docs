@@ -75,7 +75,7 @@ This page mirrors the `Collection helpers` section from [Links](../links.md).
 
 ??? info "Source file, signature, and docstring"
     **Member**
-    `LinkBuilder.DeleteConfiguration()`
+    `LinkBuilder.UpdateConfiguration(...)`
     
     **Kind** `function`
     
@@ -85,7 +85,7 @@ This page mirrors the `Collection helpers` section from [Links](../links.md).
     
     **Signature**
     ```csharp
-    public LinkBuilder DeleteConfiguration()
+    public LinkBuilder UpdateConfiguration(...)
     ```
     
     **Docstring**
