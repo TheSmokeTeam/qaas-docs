@@ -94,11 +94,11 @@ This page mirrors the `Data source selection` section from [Transactions](../tra
     
     Use this method when working with the documented Runner transaction builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
-## `DeleteDataSource`
+## `RemoveDataSource`
 
 ??? info "Source file, signature, and docstring"
     **Member**
-    `TransactionBuilder.DeleteDataSource(string dataSourceName)`
+    `TransactionBuilder.RemoveDataSource(string dataSourceName)`
     
     **Kind** `function`
     
@@ -108,7 +108,7 @@ This page mirrors the `Data source selection` section from [Transactions](../tra
     
     **Signature**
     ```csharp
-    public TransactionBuilder DeleteDataSource(string dataSourceName)
+    public TransactionBuilder RemoveDataSource(string dataSourceName)
     ```
     
     **Docstring**
@@ -163,11 +163,11 @@ This page mirrors the `Data source selection` section from [Transactions](../tra
     
     Use this method when working with the documented Runner transaction builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
-## `DeleteDataSourcePattern`
+## `RemoveDataSourcePattern`
 
 ??? info "Source file, signature, and docstring"
     **Member**
-    `TransactionBuilder.DeleteDataSourcePattern(string dataSourcePattern)`
+    `TransactionBuilder.RemoveDataSourcePattern(string dataSourcePattern)`
     
     **Kind** `function`
     
@@ -177,7 +177,7 @@ This page mirrors the `Data source selection` section from [Transactions](../tra
     
     **Signature**
     ```csharp
-    public TransactionBuilder DeleteDataSourcePattern(string dataSourcePattern)
+    public TransactionBuilder RemoveDataSourcePattern(string dataSourcePattern)
     ```
     
     **Docstring**

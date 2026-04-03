@@ -6,7 +6,7 @@ This page mirrors the `Collection helpers` section from [Data Sources](../data-s
 
 ??? info "Source file, signature, and docstring"
     **Member**
-    `DataSourceBuilder.DeleteConfiguration()`
+    `DataSourceBuilder.UpdateConfiguration(...)`
     
     **Kind** `function`
     
@@ -16,7 +16,7 @@ This page mirrors the `Collection helpers` section from [Data Sources](../data-s
     
     **Signature**
     ```csharp
-    public DataSourceBuilder DeleteConfiguration()
+    public DataSourceBuilder UpdateConfiguration(...)
     ```
     
     **Docstring**

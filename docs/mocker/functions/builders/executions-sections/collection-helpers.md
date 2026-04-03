@@ -71,11 +71,11 @@ This page mirrors the `Collection helpers` section from [Executions](../executio
     
     Use this method when working with the documented Mocker execution builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
-## `DeleteController`
+## `RemoveController`
 
 ??? info "Source file, signature, and docstring"
     **Member**
-    `ExecutionBuilder.DeleteController()`
+    `ExecutionBuilder.RemoveController()`
     
     **Kind** `function`
     
@@ -85,7 +85,7 @@ This page mirrors the `Collection helpers` section from [Executions](../executio
     
     **Signature**
     ```csharp
-    public ExecutionBuilder DeleteController()
+    public ExecutionBuilder RemoveController()
     ```
     
     **Docstring**

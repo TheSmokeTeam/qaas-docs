@@ -225,7 +225,7 @@ The functions on this page are grouped by responsibility so related operations s
 
 ??? info "Source file, signature, and docstring"
     **Member**
-    `MockerCommandBuilder.DeleteConfiguration()`
+    `MockerCommandBuilder.UpdateConfiguration(...)`
     
     **Kind** `function`
     
@@ -235,7 +235,7 @@ The functions on this page are grouped by responsibility so related operations s
     
     **Signature**
     ```csharp
-    public MockerCommandBuilder DeleteConfiguration()
+    public MockerCommandBuilder UpdateConfiguration(...)
     ```
     
     **Docstring**

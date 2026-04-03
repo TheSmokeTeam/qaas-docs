@@ -29,7 +29,7 @@ This page mirrors the `Collection helpers` section from [Probes](../probes.md).
 
 ??? info "Source file, signature, and docstring"
     **Member**
-    `ProbeBuilder.DeleteConfiguration()`
+    `ProbeBuilder.UpdateConfiguration(...)`
     
     **Kind** `function`
     
@@ -39,7 +39,7 @@ This page mirrors the `Collection helpers` section from [Probes](../probes.md).
     
     **Signature**
     ```csharp
-    public ProbeBuilder DeleteConfiguration()
+    public ProbeBuilder UpdateConfiguration(...)
     ```
     
     **Docstring**
