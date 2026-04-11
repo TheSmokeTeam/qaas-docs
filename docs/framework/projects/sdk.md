@@ -74,6 +74,15 @@ The current hook families are:
 - `IProcessor`
 - `ITransactionProcessor` and `BaseTransactionProcessor<TConfiguration>`
 
+`IHook` is the common base contract for all hook families. It exposes the runtime `Context` injected by the provider layer and `LoadAndValidateConfiguration(...)`, which each hook uses to bind and validate its configured section. The typed base classes bind into their `Configuration` property and use strict binder options by default so unknown configuration keys fail validation instead of being ignored.
+
+Assertions add reporting fields on top of that shared hook contract:
+
+- `AssertionMessage` is the user-facing result message.
+- `AssertionTrace` is the detailed result trace shown when the assertion's `DisplayTrace` setting is enabled.
+- `AssertionAttachments` is the list of custom files to persist with the assertion result.
+- `AssertionStatus` can override the boolean returned from `Assert(...)`; unset means the normal `true` to `Passed` and `false` to `Failed` mapping is used.
+
 The transaction-processor path is important. The current SDK does not expose the old `BaseProcessor<TConfiguration>` shape that some stale docs referenced. The built-in `StatusCodeTransactionProcessor` is also part of the package and provides a ready-made processor for status-code-oriented responses.
 
 ### Filters and extensions
