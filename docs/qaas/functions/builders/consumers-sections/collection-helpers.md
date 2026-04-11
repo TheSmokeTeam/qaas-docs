@@ -75,7 +75,7 @@ This page mirrors the `Collection helpers` section from [Consumers](../consumers
 
 ??? info "Source file, signature, and docstring"
     **Member**
-    `ConsumerBuilder.DeleteConfiguration()`
+    `ConsumerBuilder.UpdateConfiguration(...)`
     
     **Kind** `function`
     
@@ -85,7 +85,7 @@ This page mirrors the `Collection helpers` section from [Consumers](../consumers
     
     **Signature**
     ```csharp
-    public ConsumerBuilder DeleteConfiguration()
+    public ConsumerBuilder UpdateConfiguration(...)
     ```
     
     **Docstring**

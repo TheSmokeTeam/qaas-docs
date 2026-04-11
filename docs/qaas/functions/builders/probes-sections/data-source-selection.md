@@ -71,11 +71,11 @@ This page mirrors the `Data source selection` section from [Probes](../probes.md
     
     Use this method when working with the documented Runner probe builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
-## `DeleteDataSourceName`
+## `RemoveDataSourceName`
 
 ??? info "Source file, signature, and docstring"
     **Member**
-    `ProbeBuilder.DeleteDataSourceName(string dataSourceName)`
+    `ProbeBuilder.RemoveDataSourceName(string dataSourceName)`
     
     **Kind** `function`
     
@@ -85,7 +85,7 @@ This page mirrors the `Data source selection` section from [Probes](../probes.md
     
     **Signature**
     ```csharp
-    public ProbeBuilder DeleteDataSourceName(string dataSourceName)
+    public ProbeBuilder RemoveDataSourceName(string dataSourceName)
     ```
     
     **Docstring**
@@ -163,11 +163,11 @@ This page mirrors the `Data source selection` section from [Probes](../probes.md
     
     Use this method when working with the documented Runner probe builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
-## `DeleteDataSourcePattern`
+## `RemoveDataSourcePattern`
 
 ??? info "Source file, signature, and docstring"
     **Member**
-    `ProbeBuilder.DeleteDataSourcePattern(string dataSourcePattern)`
+    `ProbeBuilder.RemoveDataSourcePattern(string dataSourcePattern)`
     
     **Kind** `function`
     
@@ -177,7 +177,7 @@ This page mirrors the `Data source selection` section from [Probes](../probes.md
     
     **Signature**
     ```csharp
-    public ProbeBuilder DeleteDataSourcePattern(string dataSourcePattern)
+    public ProbeBuilder RemoveDataSourcePattern(string dataSourcePattern)
     ```
     
     **Docstring**

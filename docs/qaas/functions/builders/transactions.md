@@ -148,11 +148,11 @@ The functions on this page are grouped by responsibility so related operations s
     
     Use this method when working with the documented Runner transaction builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
-### `DeleteDataSource`
+### `RemoveDataSource`
 
 ??? info "Source file, signature, and docstring"
     **Member**
-    `TransactionBuilder.DeleteDataSource(string dataSourceName)`
+    `TransactionBuilder.RemoveDataSource(string dataSourceName)`
     
     **Kind** `function`
     
@@ -162,7 +162,7 @@ The functions on this page are grouped by responsibility so related operations s
     
     **Signature**
     ```csharp
-    public TransactionBuilder DeleteDataSource(string dataSourceName)
+    public TransactionBuilder RemoveDataSource(string dataSourceName)
     ```
     
     **Docstring**
@@ -217,11 +217,11 @@ The functions on this page are grouped by responsibility so related operations s
     
     Use this method when working with the documented Runner transaction builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
-### `DeleteDataSourcePattern`
+### `RemoveDataSourcePattern`
 
 ??? info "Source file, signature, and docstring"
     **Member**
-    `TransactionBuilder.DeleteDataSourcePattern(string dataSourcePattern)`
+    `TransactionBuilder.RemoveDataSourcePattern(string dataSourcePattern)`
     
     **Kind** `function`
     
@@ -231,7 +231,7 @@ The functions on this page are grouped by responsibility so related operations s
     
     **Signature**
     ```csharp
-    public TransactionBuilder DeleteDataSourcePattern(string dataSourcePattern)
+    public TransactionBuilder RemoveDataSourcePattern(string dataSourcePattern)
     ```
     
     **Docstring**
@@ -338,11 +338,11 @@ The functions on this page are grouped by responsibility so related operations s
     
     Use this method when working with the documented Runner transaction builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
-### `DeletePolicyAt`
+### `RemovePolicyAt`
 
 ??? info "Source file, signature, and docstring"
     **Member**
-    `TransactionBuilder.DeletePolicyAt(int index)`
+    `TransactionBuilder.RemovePolicyAt(int index)`
     
     **Kind** `function`
     
@@ -352,7 +352,7 @@ The functions on this page are grouped by responsibility so related operations s
     
     **Signature**
     ```csharp
-    public TransactionBuilder DeletePolicyAt(int index)
+    public TransactionBuilder RemovePolicyAt(int index)
     ```
     
     **Docstring**
@@ -578,7 +578,7 @@ The functions on this page are grouped by responsibility so related operations s
 
 ??? info "Source file, signature, and docstring"
     **Member**
-    `TransactionBuilder.DeleteConfiguration()`
+    `TransactionBuilder.UpdateConfiguration(...)`
     
     **Kind** `function`
     
@@ -588,7 +588,7 @@ The functions on this page are grouped by responsibility so related operations s
     
     **Signature**
     ```csharp
-    public TransactionBuilder DeleteConfiguration()
+    public TransactionBuilder UpdateConfiguration(...)
     ```
     
     **Docstring**

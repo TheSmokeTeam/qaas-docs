@@ -171,11 +171,11 @@ The functions on this page are grouped by responsibility so related operations s
     
     Use this method when working with the documented Runner assertion builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
-### `DeleteDataSourceName`
+### `RemoveDataSourceName`
 
 ??? info "Source file, signature, and docstring"
     **Member**
-    `AssertionBuilder.DeleteDataSourceName(string dataSourceName)`
+    `AssertionBuilder.RemoveDataSourceName(string dataSourceName)`
     
     **Kind** `function`
     
@@ -185,7 +185,7 @@ The functions on this page are grouped by responsibility so related operations s
     
     **Signature**
     ```csharp
-    public AssertionBuilder DeleteDataSourceName(string dataSourceName)
+    public AssertionBuilder RemoveDataSourceName(string dataSourceName)
     ```
     
     **Docstring**
@@ -263,11 +263,11 @@ The functions on this page are grouped by responsibility so related operations s
     
     Use this method when working with the documented Runner assertion builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
-### `DeleteDataSourcePattern`
+### `RemoveDataSourcePattern`
 
 ??? info "Source file, signature, and docstring"
     **Member**
-    `AssertionBuilder.DeleteDataSourcePattern(string dataSourcePattern)`
+    `AssertionBuilder.RemoveDataSourcePattern(string dataSourcePattern)`
     
     **Kind** `function`
     
@@ -277,7 +277,7 @@ The functions on this page are grouped by responsibility so related operations s
     
     **Signature**
     ```csharp
-    public AssertionBuilder DeleteDataSourcePattern(string dataSourcePattern)
+    public AssertionBuilder RemoveDataSourcePattern(string dataSourcePattern)
     ```
     
     **Docstring**
@@ -735,7 +735,7 @@ The functions on this page are grouped by responsibility so related operations s
 
 ??? info "Source file, signature, and docstring"
     **Member**
-    `AssertionBuilder.DeleteConfiguration()`
+    `AssertionBuilder.UpdateConfiguration(...)`
     
     **Kind** `function`
     
@@ -745,7 +745,7 @@ The functions on this page are grouped by responsibility so related operations s
     
     **Signature**
     ```csharp
-    public AssertionBuilder DeleteConfiguration()
+    public AssertionBuilder UpdateConfiguration(...)
     ```
     
     **Docstring**

@@ -75,7 +75,7 @@ This page mirrors the `Collection helpers` section from [Publishers](../publishe
 
 ??? info "Source file, signature, and docstring"
     **Member**
-    `PublisherBuilder.DeleteConfiguration()`
+    `PublisherBuilder.UpdateConfiguration(...)`
     
     **Kind** `function`
     
@@ -85,7 +85,7 @@ This page mirrors the `Collection helpers` section from [Publishers](../publishe
     
     **Signature**
     ```csharp
-    public PublisherBuilder DeleteConfiguration()
+    public PublisherBuilder UpdateConfiguration(...)
     ```
     
     **Docstring**

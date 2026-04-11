@@ -29,7 +29,7 @@ This page mirrors the `Collection helpers` section from [Transaction Stubs](../t
 
 ??? info "Source file, signature, and docstring"
     **Member**
-    `TransactionStubBuilder.DeleteConfiguration()`
+    `TransactionStubBuilder.UpdateConfiguration(...)`
     
     **Kind** `function`
     
@@ -39,7 +39,7 @@ This page mirrors the `Collection helpers` section from [Transaction Stubs](../t
     
     **Signature**
     ```csharp
-    public TransactionStubBuilder DeleteConfiguration()
+    public TransactionStubBuilder UpdateConfiguration(...)
     ```
     
     **Docstring**

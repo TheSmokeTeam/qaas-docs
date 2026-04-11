@@ -9,8 +9,8 @@ The completed sample is available at [DummyAppMock (Code)]({{ links.repository_m
 ```bash
 dotnet new qaas-mocker -n DummyAppMock
 cd DummyAppMock
-dotnet add DummyAppMock/DummyAppMock.csproj package QaaS.Mocker --version 2.0.5
-dotnet add DummyAppMock/DummyAppMock.csproj package QaaS.Common.Generators --version 3.1.2
+dotnet add DummyAppMock/DummyAppMock.csproj package QaaS.Mocker --version 2.2.0
+dotnet add DummyAppMock/DummyAppMock.csproj package QaaS.Common.Generators --version 3.3.0
 ```
 
 ## Add the Response File
@@ -74,7 +74,7 @@ Next connect the incoming request flow to the local processor. The stub says "wh
 var stub = new TransactionStubBuilder()
     .Named("ServerDataStub")
     .HookNamed(nameof(ServerDataProcessor))
-    .CreateDataSourceName("ServerData");
+     .CreateDataSourceName("ServerData");
 ```
 
 ### Create the Server
@@ -116,7 +116,7 @@ Finally attach each piece to the current execution builder. `CreateServer(...)` 
 var executionBuilder = new ExecutionBuilder()
     .CreateDataSource(dataSource)
     .CreateStub(stub)
-    .CreateServer(server);
+        .CreateServer(server);
 
 new MockerRunner(executionBuilder).Run();
 ```
@@ -153,7 +153,7 @@ var dataSource = new DataSourceBuilder()
 var stub = new TransactionStubBuilder()
     .Named("ServerDataStub")
     .HookNamed(nameof(ServerDataProcessor))
-    .CreateDataSourceName("ServerData");
+     .CreateDataSourceName("ServerData");
 
 var server = new ServerConfig
 {
@@ -183,7 +183,7 @@ var server = new ServerConfig
 var executionBuilder = new ExecutionBuilder()
     .CreateDataSource(dataSource)
     .CreateStub(stub)
-    .CreateServer(server);
+        .CreateServer(server);
 
 new MockerRunner(executionBuilder).Run();
 ```

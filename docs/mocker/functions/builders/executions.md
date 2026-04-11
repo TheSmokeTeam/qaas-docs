@@ -75,11 +75,11 @@ The functions on this page are grouped by responsibility so related operations s
     
     Use this method when working with the documented Mocker execution builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
-### `DeleteDataSource`
+### `RemoveDataSource`
 
 ??? info "Source file, signature, and docstring"
     **Member**
-    `ExecutionBuilder.DeleteDataSource(string dataSourceName)`
+    `ExecutionBuilder.RemoveDataSource(string dataSourceName)`
     
     **Kind** `function`
     
@@ -89,7 +89,7 @@ The functions on this page are grouped by responsibility so related operations s
     
     **Signature**
     ```csharp
-    public ExecutionBuilder DeleteDataSource(string dataSourceName)
+    public ExecutionBuilder RemoveDataSource(string dataSourceName)
     ```
     
     **Docstring**
@@ -309,11 +309,11 @@ The functions on this page are grouped by responsibility so related operations s
     
     Use this method when working with the documented Mocker execution builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
-### `DeleteServer`
+### `RemoveServer`
 
 ??? info "Source file, signature, and docstring"
     **Member**
-    `ExecutionBuilder.DeleteServer()`
+    `ExecutionBuilder.RemoveServer()`
     
     **Kind** `function`
     
@@ -323,7 +323,7 @@ The functions on this page are grouped by responsibility so related operations s
     
     **Signature**
     ```csharp
-    public ExecutionBuilder DeleteServer()
+    public ExecutionBuilder RemoveServer()
     ```
     
     **Docstring**
@@ -332,11 +332,11 @@ The functions on this page are grouped by responsibility so related operations s
     
     Use this method when working with the documented Mocker execution builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
-### `DeleteServerAt`
+### `RemoveServerAt`
 
 ??? info "Source file, signature, and docstring"
     **Member**
-    `ExecutionBuilder.DeleteServerAt(int index)`
+    `ExecutionBuilder.RemoveServerAt(int index)`
     
     **Kind** `function`
     
@@ -346,7 +346,7 @@ The functions on this page are grouped by responsibility so related operations s
     
     **Signature**
     ```csharp
-    public ExecutionBuilder DeleteServerAt(int index)
+    public ExecutionBuilder RemoveServerAt(int index)
     ```
     
     **Docstring**
@@ -495,11 +495,11 @@ The functions on this page are grouped by responsibility so related operations s
     
     Use this method when working with the documented Mocker execution builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
-### `DeleteStub`
+### `RemoveStub`
 
 ??? info "Source file, signature, and docstring"
     **Member**
-    `ExecutionBuilder.DeleteStub(string stubName)`
+    `ExecutionBuilder.RemoveStub(string stubName)`
     
     **Kind** `function`
     
@@ -509,7 +509,7 @@ The functions on this page are grouped by responsibility so related operations s
     
     **Signature**
     ```csharp
-    public ExecutionBuilder DeleteStub(string stubName)
+    public ExecutionBuilder RemoveStub(string stubName)
     ```
     
     **Docstring**
@@ -712,11 +712,11 @@ The functions on this page are grouped by responsibility so related operations s
     
     Use this method when working with the documented Mocker execution builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
-### `DeleteController`
+### `RemoveController`
 
 ??? info "Source file, signature, and docstring"
     **Member**
-    `ExecutionBuilder.DeleteController()`
+    `ExecutionBuilder.RemoveController()`
     
     **Kind** `function`
     
@@ -726,7 +726,7 @@ The functions on this page are grouped by responsibility so related operations s
     
     **Signature**
     ```csharp
-    public ExecutionBuilder DeleteController()
+    public ExecutionBuilder RemoveController()
     ```
     
     **Docstring**

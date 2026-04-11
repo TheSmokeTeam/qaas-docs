@@ -75,7 +75,7 @@ This page mirrors the `Collection helpers` section from [Transactions](../transa
 
 ??? info "Source file, signature, and docstring"
     **Member**
-    `TransactionBuilder.DeleteConfiguration()`
+    `TransactionBuilder.UpdateConfiguration(...)`
     
     **Kind** `function`
     
@@ -85,7 +85,7 @@ This page mirrors the `Collection helpers` section from [Transactions](../transa
     
     **Signature**
     ```csharp
-    public TransactionBuilder DeleteConfiguration()
+    public TransactionBuilder UpdateConfiguration(...)
     ```
     
     **Docstring**

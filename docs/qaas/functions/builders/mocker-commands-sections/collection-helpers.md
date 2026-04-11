@@ -75,7 +75,7 @@ This page mirrors the `Collection helpers` section from [Mocker Commands](../moc
 
 ??? info "Source file, signature, and docstring"
     **Member**
-    `MockerCommandBuilder.DeleteConfiguration()`
+    `MockerCommandBuilder.UpdateConfiguration(...)`
     
     **Kind** `function`
     
@@ -85,7 +85,7 @@ This page mirrors the `Collection helpers` section from [Mocker Commands](../moc
     
     **Signature**
     ```csharp
-    public MockerCommandBuilder DeleteConfiguration()
+    public MockerCommandBuilder UpdateConfiguration(...)
     ```
     
     **Docstring**

@@ -20,7 +20,7 @@ By default, Runner builds the final configuration in this order:
 6. Every `-p` / `--push-references` reference bundle.
    - Each bundle starts with a replace keyword, followed by one or more YAML files.
    - The reference files in that bundle are loaded in the order you pass them.
-  - Runner only injects references into the supported top-level list sections: [DataSources](configurationSections/dataSources/overview.md), [Sessions](configurationSections/sessions/overview.md), [Storages](configurationSections/storages/overview.md), [Assertions](configurationSections/assertions/overview.md), and [Links](configurationSections/links/overview.md).
+   - Runner only injects references into the supported top-level list sections: [DataSources](configurationSections/dataSources/overview.md), [Sessions](configurationSections/sessions/overview.md), [Storages](configurationSections/storages/overview.md), [Assertions](configurationSections/assertions/overview.md), and [Links](configurationSections/links/overview.md).
    - Injection happens only where the replace keyword appears in the target list. If the keyword does not appear in a given list, nothing is added to that list.
    - Paths that represent unique names or references receive the replace keyword as a prefix, based on Runner's built-in unique-id regex list.
 7. Environment-variable resolution, unless `--no-env` is set.
@@ -29,6 +29,33 @@ By default, Runner builds the final configuration in this order:
    - Placeholder resolution is recursive and can replace either scalar values or whole objects.
 9. `<<` collapse resolution.
    - After placeholders are resolved, QaaS flattens nested `<<` merge structures into the final configuration tree.
+
+## Supported Reference Keys
+
+Runner currently supports pushed-reference injection into these top-level lists:
+
+| List | Injection Supported |
+| ---- | ------------------- |
+| `DataSources` | Yes |
+| `Sessions` | Yes |
+| `Storages` | Yes |
+| `Assertions` | Yes |
+| `Links` | Yes |
+
+The replace keyword is also prefixed onto specific name and reference paths so injected items do not collide with existing items. These are the currently rewritten paths:
+
+| Path | Why It Is Rewritten |
+| ---- | ------------------- |
+| `DataSources[].Name` | Keeps injected data source names unique. |
+| `DataSources[].DataSourceNames[]` | Updates data source dependencies that point at injected data sources. |
+| `Sessions[].Name` | Keeps injected session names unique. |
+| `Sessions[].Publishers[].DataSourceNames[]` | Updates publisher data source references. |
+| `Sessions[].Transactions[].DataSourceNames[]` | Updates transaction data source references. |
+| `Assertions[].Name` | Keeps injected assertion names unique. |
+| `Assertions[].SessionNames[]` | Updates assertion session references. |
+| `Assertions[].DataSourceNames[]` | Updates assertion data source references. |
+
+Other values inside an injected reference are left as written unless they match one of the paths above.
 
 ## What `--resolve-cases-last` Changes
 

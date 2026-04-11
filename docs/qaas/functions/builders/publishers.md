@@ -125,11 +125,11 @@ The functions on this page are grouped by responsibility so related operations s
     
     Use this method when working with the documented Runner publisher builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
-### `DeleteDataSource`
+### `RemoveDataSource`
 
 ??? info "Source file, signature, and docstring"
     **Member**
-    `PublisherBuilder.DeleteDataSource(string dataSourceName)`
+    `PublisherBuilder.RemoveDataSource(string dataSourceName)`
     
     **Kind** `function`
     
@@ -139,7 +139,7 @@ The functions on this page are grouped by responsibility so related operations s
     
     **Signature**
     ```csharp
-    public PublisherBuilder DeleteDataSource(string dataSourceName)
+    public PublisherBuilder RemoveDataSource(string dataSourceName)
     ```
     
     **Docstring**
@@ -217,11 +217,11 @@ The functions on this page are grouped by responsibility so related operations s
     
     Use this method when working with the documented Runner publisher builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
-### `DeleteDataSourcePattern`
+### `RemoveDataSourcePattern`
 
 ??? info "Source file, signature, and docstring"
     **Member**
-    `PublisherBuilder.DeleteDataSourcePattern(string dataSourcePattern)`
+    `PublisherBuilder.RemoveDataSourcePattern(string dataSourcePattern)`
     
     **Kind** `function`
     
@@ -231,7 +231,7 @@ The functions on this page are grouped by responsibility so related operations s
     
     **Signature**
     ```csharp
-    public PublisherBuilder DeleteDataSourcePattern(string dataSourcePattern)
+    public PublisherBuilder RemoveDataSourcePattern(string dataSourcePattern)
     ```
     
     **Docstring**
@@ -288,11 +288,11 @@ The functions on this page are grouped by responsibility so related operations s
     
     Use this method when working with the documented Runner publisher builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
-### `DeletePolicyAt`
+### `RemovePolicyAt`
 
 ??? info "Source file, signature, and docstring"
     **Member**
-    `PublisherBuilder.DeletePolicyAt(int index)`
+    `PublisherBuilder.RemovePolicyAt(int index)`
     
     **Kind** `function`
     
@@ -302,7 +302,7 @@ The functions on this page are grouped by responsibility so related operations s
     
     **Signature**
     ```csharp
-    public PublisherBuilder DeletePolicyAt(int index)
+    public PublisherBuilder RemovePolicyAt(int index)
     ```
     
     **Docstring**
@@ -528,7 +528,7 @@ The functions on this page are grouped by responsibility so related operations s
 
 ??? info "Source file, signature, and docstring"
     **Member**
-    `PublisherBuilder.DeleteConfiguration()`
+    `PublisherBuilder.UpdateConfiguration(...)`
     
     **Kind** `function`
     
@@ -538,7 +538,7 @@ The functions on this page are grouped by responsibility so related operations s
     
     **Signature**
     ```csharp
-    public PublisherBuilder DeleteConfiguration()
+    public PublisherBuilder UpdateConfiguration(...)
     ```
     
     **Docstring**

@@ -29,7 +29,7 @@ This page mirrors the `Collection helpers` section from [Assertions](../assertio
 
 ??? info "Source file, signature, and docstring"
     **Member**
-    `AssertionBuilder.DeleteConfiguration()`
+    `AssertionBuilder.UpdateConfiguration(...)`
     
     **Kind** `function`
     
@@ -39,7 +39,7 @@ This page mirrors the `Collection helpers` section from [Assertions](../assertio
     
     **Signature**
     ```csharp
-    public AssertionBuilder DeleteConfiguration()
+    public AssertionBuilder UpdateConfiguration(...)
     ```
     
     **Docstring**
