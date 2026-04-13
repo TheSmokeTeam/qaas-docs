@@ -12,6 +12,7 @@ ProbeConfiguration:
     Namespace:
     Password:
     Username:
+    AllowInvalidServerCertificates:
   DesiredResources:
     Limits:
       Cpu:

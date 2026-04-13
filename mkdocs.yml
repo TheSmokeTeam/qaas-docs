@@ -118,7 +118,6 @@ nav:
           - Execution order: qaas/functions/builders/consumers-sections/execution-order.md
           - Policies: qaas/functions/builders/consumers-sections/policies.md
           - Configuration: qaas/functions/builders/consumers-sections/configuration.md
-          - Inspection: qaas/functions/builders/consumers-sections/inspection.md
           - Collection helpers: qaas/functions/builders/consumers-sections/collection-helpers.md
           - General: qaas/functions/builders/consumers-sections/general.md
         - Executions:
@@ -130,7 +129,6 @@ nav:
           - Assertions: qaas/functions/builders/executions-sections/assertions.md
           - Executions: qaas/functions/builders/executions-sections/executions.md
           - Configuration: qaas/functions/builders/executions-sections/configuration.md
-          - Inspection: qaas/functions/builders/executions-sections/inspection.md
           - General: qaas/functions/builders/executions-sections/general.md
         - Links:
           - Overview: qaas/functions/builders/links.md
@@ -159,7 +157,6 @@ nav:
           - Data source selection: qaas/functions/builders/publishers-sections/data-source-selection.md
           - Policies: qaas/functions/builders/publishers-sections/policies.md
           - Configuration: qaas/functions/builders/publishers-sections/configuration.md
-          - Inspection: qaas/functions/builders/publishers-sections/inspection.md
           - Collection helpers: qaas/functions/builders/publishers-sections/collection-helpers.md
           - General: qaas/functions/builders/publishers-sections/general.md
         - Sessions:
@@ -175,7 +172,6 @@ nav:
           - Collectors: qaas/functions/builders/sessions-sections/collectors.md
           - Stages: qaas/functions/builders/sessions-sections/stages.md
           - Configuration: qaas/functions/builders/sessions-sections/configuration.md
-          - Inspection: qaas/functions/builders/sessions-sections/inspection.md
           - Collection helpers: qaas/functions/builders/sessions-sections/collection-helpers.md
           - General: qaas/functions/builders/sessions-sections/general.md
         - Storages:
@@ -192,7 +188,6 @@ nav:
           - Output selection: qaas/functions/builders/transactions-sections/output-selection.md
           - Policies: qaas/functions/builders/transactions-sections/policies.md
           - Configuration: qaas/functions/builders/transactions-sections/configuration.md
-          - Inspection: qaas/functions/builders/transactions-sections/inspection.md
           - Collection helpers: qaas/functions/builders/transactions-sections/collection-helpers.md
           - General: qaas/functions/builders/transactions-sections/general.md
       - Commands:
@@ -201,7 +196,6 @@ nav:
       - Extension Methods:
         - Extension Methods:
           - Overview: qaas/functions/extension-methods.md
-          - Configuration mutation: qaas/functions/extension-methods-sections/configuration-mutation.md
           - Context artifact: qaas/functions/extension-methods-sections/context-artifact.md
           - Date time: qaas/functions/extension-methods-sections/date-time.md
           - Detailed data: qaas/functions/extension-methods-sections/detailed-data.md
@@ -253,7 +247,6 @@ nav:
           - Executions: mocker/functions/builders/executions-sections/executions.md
           - Configuration: mocker/functions/builders/executions-sections/configuration.md
           - Reporting and artifacts: mocker/functions/builders/executions-sections/reporting-and-artifacts.md
-          - Inspection: mocker/functions/builders/executions-sections/inspection.md
           - Collection helpers: mocker/functions/builders/executions-sections/collection-helpers.md
           - General: mocker/functions/builders/executions-sections/general.md
         - Transaction Stubs:
@@ -612,7 +605,11 @@ nav:
           - Configuration: framework/functions/builders/data-sources-sections/configuration.md
           - Collection helpers: framework/functions/builders/data-sources-sections/collection-helpers.md
           - General: framework/functions/builders/data-sources-sections/general.md
-        - Policies: framework/functions/builders/policies.md
+        - Policies:
+          - Overview: framework/functions/builders/policies.md
+          - Configuration: framework/functions/builders/policies-sections/configuration.md
+          - Collection helpers: framework/functions/builders/policies-sections/collection-helpers.md
+          - General: framework/functions/builders/policies-sections/general.md
       - Functions:
         - Contexts:
           - Overview: framework/functions/contexts.md
@@ -623,6 +620,7 @@ nav:
           - General: framework/functions/contexts-sections/general.md
         - Enumerables: framework/functions/enumerables.md
         - Placeholders: framework/functions/placeholders.md
+        - Updates: framework/functions/updates.md
         - YAML: framework/functions/yaml.md
       - Extension Methods:
         - Extension Methods:
@@ -630,13 +628,13 @@ nav:
           - Configuration:
             - Overview: framework/functions/extension-methods-sections/configuration.md
             - Placeholders: framework/functions/extension-methods-sections/configuration/placeholders.md
+            - Updates: framework/functions/extension-methods-sections/configuration/updates.md
             - YAML: framework/functions/extension-methods-sections/configuration/yaml.md
           - Extension Methods:
             - Overview: framework/functions/extension-methods-sections/extension-methods.md
             - Communication data: framework/functions/extension-methods-sections/extension-methods/communication-data.md
             - Configuration merge utilities: framework/functions/extension-methods-sections/extension-methods/configuration-merge-utilities.md
             - Configuration references parser: framework/functions/extension-methods-sections/extension-methods/configuration-references-parser.md
-            - Configuration update: framework/functions/extension-methods-sections/extension-methods/configuration-update.md
             - Configuration utilities: framework/functions/extension-methods-sections/extension-methods/configuration-utilities.md
             - Context global dictionary: framework/functions/extension-methods-sections/extension-methods/context-global-dictionary.md
             - Data: framework/functions/extension-methods-sections/extension-methods/data.md

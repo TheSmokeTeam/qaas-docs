@@ -2,11 +2,11 @@
 
 This page mirrors the `Data source selection` section from [Probes](../probes.md).
 
-## `CreateDataSourceName`
+## `AddDataSourceName`
 
 ??? info "Source file, signature, and docstring"
     **Member**
-    `ProbeBuilder.CreateDataSourceName(string dataSourceName)`
+    `ProbeBuilder.AddDataSourceName(string dataSourceName)`
     
     **Kind** `function`
     
@@ -16,58 +16,12 @@ This page mirrors the `Data source selection` section from [Probes](../probes.md
     
     **Signature**
     ```csharp
-    public ProbeBuilder CreateDataSourceName(string dataSourceName)
+    public ProbeBuilder AddDataSourceName(string dataSourceName)
     ```
     
     **Docstring**
     
-    Creates or adds the configured data source name entry on the current Runner probe builder instance.
-    
-    Use this method when working with the documented Runner probe builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
-
-## `ReadDataSourceNames`
-
-??? info "Source file, signature, and docstring"
-    **Member**
-    `ProbeBuilder.ReadDataSourceNames()`
-    
-    **Kind** `function`
-    
-    **Declaring Type** `ProbeBuilder`
-    
-    **Source File** `QaaS.Runner.Sessions/Actions/Probes/ProbeBuilder.cs`
-    
-    **Signature**
-    ```csharp
-    public IReadOnlyList<string> ReadDataSourceNames()
-    ```
-    
-    **Docstring**
-    
-    Returns the configured data source names currently stored on the Runner probe builder instance.
-    
-    Use this method when working with the documented Runner probe builder API surface in code. Use it to inspect the current configured state without rebuilding the surrounding collection or runtime object graph.
-
-## `UpdateDataSourceName`
-
-??? info "Source file, signature, and docstring"
-    **Member**
-    `ProbeBuilder.UpdateDataSourceName(string existingValue, string newValue)`
-    
-    **Kind** `function`
-    
-    **Declaring Type** `ProbeBuilder`
-    
-    **Source File** `QaaS.Runner.Sessions/Actions/Probes/ProbeBuilder.cs`
-    
-    **Signature**
-    ```csharp
-    public ProbeBuilder UpdateDataSourceName(string existingValue, string newValue)
-    ```
-    
-    **Docstring**
-    
-    Updates the configured data source name stored on the current Runner probe builder instance.
+    Adds the supplied data source name to the current Runner probe builder instance.
     
     Use this method when working with the documented Runner probe builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
@@ -94,11 +48,11 @@ This page mirrors the `Data source selection` section from [Probes](../probes.md
     
     Use this method when working with the documented Runner probe builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
-## `CreateDataSourcePattern`
+## `RemoveDataSourceNameAt`
 
 ??? info "Source file, signature, and docstring"
     **Member**
-    `ProbeBuilder.CreateDataSourcePattern(string dataSourcePattern)`
+    `ProbeBuilder.RemoveDataSourceNameAt(int index)`
     
     **Kind** `function`
     
@@ -108,20 +62,20 @@ This page mirrors the `Data source selection` section from [Probes](../probes.md
     
     **Signature**
     ```csharp
-    public ProbeBuilder CreateDataSourcePattern(string dataSourcePattern)
+    public ProbeBuilder RemoveDataSourceNameAt(int index)
     ```
     
     **Docstring**
     
-    Creates or adds the configured data source pattern entry on the current Runner probe builder instance.
+    Removes the configured data source name at the specified index from the current Runner probe builder instance.
     
     Use this method when working with the documented Runner probe builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
-## `ReadDataSourcePatterns`
+## `AddDataSourcePattern`
 
 ??? info "Source file, signature, and docstring"
     **Member**
-    `ProbeBuilder.ReadDataSourcePatterns()`
+    `ProbeBuilder.AddDataSourcePattern(string dataSourcePattern)`
     
     **Kind** `function`
     
@@ -131,35 +85,12 @@ This page mirrors the `Data source selection` section from [Probes](../probes.md
     
     **Signature**
     ```csharp
-    public IReadOnlyList<string> ReadDataSourcePatterns()
+    public ProbeBuilder AddDataSourcePattern(string dataSourcePattern)
     ```
     
     **Docstring**
     
-    Returns the configured data source patterns currently stored on the Runner probe builder instance.
-    
-    Use this method when working with the documented Runner probe builder API surface in code. Use it to inspect the current configured state without rebuilding the surrounding collection or runtime object graph.
-
-## `UpdateDataSourcePattern`
-
-??? info "Source file, signature, and docstring"
-    **Member**
-    `ProbeBuilder.UpdateDataSourcePattern(string existingValue, string newValue)`
-    
-    **Kind** `function`
-    
-    **Declaring Type** `ProbeBuilder`
-    
-    **Source File** `QaaS.Runner.Sessions/Actions/Probes/ProbeBuilder.cs`
-    
-    **Signature**
-    ```csharp
-    public ProbeBuilder UpdateDataSourcePattern(string existingValue, string newValue)
-    ```
-    
-    **Docstring**
-    
-    Updates the configured data source pattern stored on the current Runner probe builder instance.
+    Adds the supplied data source pattern to the current Runner probe builder instance.
     
     Use this method when working with the documented Runner probe builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
@@ -183,5 +114,28 @@ This page mirrors the `Data source selection` section from [Probes](../probes.md
     **Docstring**
     
     Removes the configured data source pattern from the current Runner probe builder instance.
+    
+    Use this method when working with the documented Runner probe builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
+
+## `RemoveDataSourcePatternAt`
+
+??? info "Source file, signature, and docstring"
+    **Member**
+    `ProbeBuilder.RemoveDataSourcePatternAt(int index)`
+    
+    **Kind** `function`
+    
+    **Declaring Type** `ProbeBuilder`
+    
+    **Source File** `QaaS.Runner.Sessions/Actions/Probes/ProbeBuilder.cs`
+    
+    **Signature**
+    ```csharp
+    public ProbeBuilder RemoveDataSourcePatternAt(int index)
+    ```
+    
+    **Docstring**
+    
+    Removes the configured data source pattern at the specified index from the current Runner probe builder instance.
     
     Use this method when working with the documented Runner probe builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.

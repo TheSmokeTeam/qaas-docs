@@ -2,11 +2,11 @@
 
 This page mirrors the `Policies` section from [Consumers](../consumers.md).
 
-## `CreatePolicy`
+## `AddPolicy`
 
 ??? info "Source file, signature, and docstring"
     **Member**
-    `ConsumerBuilder.CreatePolicy(PolicyBuilder policy)`
+    `ConsumerBuilder.AddPolicy(PolicyBuilder policy)`
     
     **Kind** `function`
     
@@ -16,12 +16,12 @@ This page mirrors the `Policies` section from [Consumers](../consumers.md).
     
     **Signature**
     ```csharp
-    public ConsumerBuilder CreatePolicy(PolicyBuilder policy)
+    public ConsumerBuilder AddPolicy(PolicyBuilder policy)
     ```
     
     **Docstring**
     
-    Creates or adds the configured policy entry on the current Runner consumer builder instance.
+    Adds the supplied policy to the current Runner consumer builder instance.
     
     Use this method when working with the documented Runner consumer builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 

@@ -6,6 +6,7 @@ ProbeConfiguration:
   Password:
   Url:
   Username:
+  AllowInvalidServerCertificates:
   RequestTimeoutMs:
   UseGlobalDict:
 ```

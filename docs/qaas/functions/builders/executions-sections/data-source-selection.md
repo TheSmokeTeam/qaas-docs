@@ -2,11 +2,11 @@
 
 This page mirrors the `Data source selection` section from [Executions](../executions.md).
 
-## `CreateDataSource`
+## `AddDataSource`
 
 ??? info "Source file, signature, and docstring"
     **Member**
-    `ExecutionBuilder.CreateDataSource(DataSourceBuilder dataSourceBuilder)`
+    `ExecutionBuilder.AddDataSource(DataSourceBuilder dataSourceBuilder)`
     
     **Kind** `function`
     
@@ -16,60 +16,14 @@ This page mirrors the `Data source selection` section from [Executions](../execu
     
     **Signature**
     ```csharp
-    public ExecutionBuilder CreateDataSource(DataSourceBuilder dataSourceBuilder)
+    public ExecutionBuilder AddDataSource(DataSourceBuilder dataSourceBuilder)
     ```
     
     **Docstring**
     
-    Creates or adds the configured data source entry on the current Runner execution builder instance.
+    Adds the supplied data source to the current Runner execution builder instance.
     
     Use this method when working with the documented Runner execution builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
-
-## `ReadDataSources`
-
-??? info "Source file, signature, and docstring"
-    **Member**
-    `ExecutionBuilder.ReadDataSources()`
-    
-    **Kind** `function`
-    
-    **Declaring Type** `ExecutionBuilder`
-    
-    **Source File** `QaaS.Runner/ExecutionBuilder.cs`
-    
-    **Signature**
-    ```csharp
-    public IReadOnlyList<DataSourceBuilder> ReadDataSources()
-    ```
-    
-    **Docstring**
-    
-    Returns the configured data sources currently stored on the Runner execution builder instance.
-    
-    Use this method when working with the documented Runner execution builder API surface in code. Use it to inspect the current configured state without rebuilding the surrounding collection or runtime object graph.
-
-## `ReadDataSource`
-
-??? info "Source file, signature, and docstring"
-    **Member**
-    `ExecutionBuilder.ReadDataSource(string dataSourceName)`
-    
-    **Kind** `function`
-    
-    **Declaring Type** `ExecutionBuilder`
-    
-    **Source File** `QaaS.Runner/ExecutionBuilder.cs`
-    
-    **Signature**
-    ```csharp
-    public DataSourceBuilder? ReadDataSource(string dataSourceName)
-    ```
-    
-    **Docstring**
-    
-    Returns the configured data source currently stored on the Runner execution builder instance.
-    
-    Use this method when working with the documented Runner execution builder API surface in code. Use it to inspect the current configured state without rebuilding the surrounding collection or runtime object graph.
 
 ## `UpdateDataSource`
 
@@ -114,5 +68,28 @@ This page mirrors the `Data source selection` section from [Executions](../execu
     **Docstring**
     
     Removes the configured data source from the current Runner execution builder instance.
+    
+    Use this method when working with the documented Runner execution builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
+
+## `RemoveDataSourceAt`
+
+??? info "Source file, signature, and docstring"
+    **Member**
+    `ExecutionBuilder.RemoveDataSourceAt(int index)`
+    
+    **Kind** `function`
+    
+    **Declaring Type** `ExecutionBuilder`
+    
+    **Source File** `QaaS.Runner/ExecutionBuilder.cs`
+    
+    **Signature**
+    ```csharp
+    public ExecutionBuilder RemoveDataSourceAt(int index)
+    ```
+    
+    **Docstring**
+    
+    Removes the configured data source at the specified index from the current Runner execution builder instance.
     
     Use this method when working with the documented Runner execution builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.

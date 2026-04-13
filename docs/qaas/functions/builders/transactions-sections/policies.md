@@ -2,11 +2,11 @@
 
 This page mirrors the `Policies` section from [Transactions](../transactions.md).
 
-## `CreatePolicy`
+## `AddPolicy`
 
 ??? info "Source file, signature, and docstring"
     **Member**
-    `TransactionBuilder.CreatePolicy(PolicyBuilder policy)`
+    `TransactionBuilder.AddPolicy(PolicyBuilder policy)`
     
     **Kind** `function`
     
@@ -16,12 +16,12 @@ This page mirrors the `Policies` section from [Transactions](../transactions.md)
     
     **Signature**
     ```csharp
-    public TransactionBuilder CreatePolicy(PolicyBuilder policy)
+    public TransactionBuilder AddPolicy(PolicyBuilder policy)
     ```
     
     **Docstring**
     
-    Creates or adds the configured policy entry on the current Runner transaction builder instance.
+    Adds the supplied policy to the current Runner transaction builder instance.
     
     Use this method when working with the documented Runner transaction builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 

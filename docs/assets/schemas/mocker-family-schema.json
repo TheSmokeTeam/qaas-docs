@@ -109,13 +109,6 @@
             "description": "Implementation configuration for the generator, the configuration given here is loaded into the provided generator dynamically.",
             "pattern": "\\$\\{.*\\}"
           },
-          "Configuration": {
-            "type": [
-              "object",
-              "string"
-            ],
-            "pattern": "\\$\\{.*\\}"
-          },
           "Serialize": {
             "type": [
               "object",

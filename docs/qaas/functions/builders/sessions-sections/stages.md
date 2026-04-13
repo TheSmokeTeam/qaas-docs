@@ -2,11 +2,11 @@
 
 This page mirrors the `Stages` section from [Sessions](../sessions.md).
 
-## `CreateStage`
+## `AddStage`
 
 ??? info "Source file, signature, and docstring"
     **Member**
-    `SessionBuilder.CreateStage(StageConfig stage)`
+    `SessionBuilder.AddStage(StageConfig stage)`
     
     **Kind** `function`
     
@@ -16,60 +16,14 @@ This page mirrors the `Stages` section from [Sessions](../sessions.md).
     
     **Signature**
     ```csharp
-    public SessionBuilder CreateStage(StageConfig stage)
+    public SessionBuilder AddStage(StageConfig stage)
     ```
     
     **Docstring**
     
-    Creates or adds the configured stage entry on the current Runner session builder instance.
+    Adds the supplied stage to the current Runner session builder instance.
     
     Use this method when working with the documented Runner session builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
-
-## `ReadStages`
-
-??? info "Source file, signature, and docstring"
-    **Member**
-    `SessionBuilder.ReadStages()`
-    
-    **Kind** `function`
-    
-    **Declaring Type** `SessionBuilder`
-    
-    **Source File** `QaaS.Runner.Sessions/Session/Builders/SessionBuilderLogic.cs`
-    
-    **Signature**
-    ```csharp
-    public IReadOnlyList<StageConfig> ReadStages()
-    ```
-    
-    **Docstring**
-    
-    Returns the configured stages currently stored on the Runner session builder instance.
-    
-    Use this method when working with the documented Runner session builder API surface in code. Use it to inspect the current configured state without rebuilding the surrounding collection or runtime object graph.
-
-## `ReadStage`
-
-??? info "Source file, signature, and docstring"
-    **Member**
-    `SessionBuilder.ReadStage(int stageNumber)`
-    
-    **Kind** `function`
-    
-    **Declaring Type** `SessionBuilder`
-    
-    **Source File** `QaaS.Runner.Sessions/Session/Builders/SessionBuilderLogic.cs`
-    
-    **Signature**
-    ```csharp
-    public StageConfig? ReadStage(int stageNumber)
-    ```
-    
-    **Docstring**
-    
-    Returns the configured stage currently stored on the Runner session builder instance.
-    
-    Use this method when working with the documented Runner session builder API surface in code. Use it to inspect the current configured state without rebuilding the surrounding collection or runtime object graph.
 
 ## `UpdateStage`
 
@@ -94,11 +48,11 @@ This page mirrors the `Stages` section from [Sessions](../sessions.md).
     
     Use this method when working with the documented Runner session builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
-## `DeleteStage`
+## `RemoveStage`
 
 ??? info "Source file, signature, and docstring"
     **Member**
-    `SessionBuilder.DeleteStage(int stageNumber)`
+    `SessionBuilder.RemoveStage(int stageNumber)`
     
     **Kind** `function`
     
@@ -108,11 +62,34 @@ This page mirrors the `Stages` section from [Sessions](../sessions.md).
     
     **Signature**
     ```csharp
-    public SessionBuilder DeleteStage(int stageNumber)
+    public SessionBuilder RemoveStage(int stageNumber)
     ```
     
     **Docstring**
     
     Removes the configured stage from the current Runner session builder instance.
+    
+    Use this method when working with the documented Runner session builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
+
+## `RemoveStageAt`
+
+??? info "Source file, signature, and docstring"
+    **Member**
+    `SessionBuilder.RemoveStageAt(int index)`
+    
+    **Kind** `function`
+    
+    **Declaring Type** `SessionBuilder`
+    
+    **Source File** `QaaS.Runner.Sessions/Session/Builders/SessionBuilderLogic.cs`
+    
+    **Signature**
+    ```csharp
+    public SessionBuilder RemoveStageAt(int index)
+    ```
+    
+    **Docstring**
+    
+    Removes the configured stage at the specified index from the current Runner session builder instance.
     
     Use this method when working with the documented Runner session builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.

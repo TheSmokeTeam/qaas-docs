@@ -2,11 +2,11 @@
 
 This page mirrors the `Collection helpers` section from [Data Sources](../data-sources.md).
 
-## `DeleteConfiguration`
+## `RemoveConfiguration`
 
 ??? info "Source file, signature, and docstring"
     **Member**
-    `DataSourceBuilder.UpdateConfiguration(...)`
+    `DataSourceBuilder.RemoveConfiguration()`
     
     **Kind** `function`
     
@@ -16,7 +16,7 @@ This page mirrors the `Collection helpers` section from [Data Sources](../data-s
     
     **Signature**
     ```csharp
-    public DataSourceBuilder UpdateConfiguration(...)
+    public DataSourceBuilder RemoveConfiguration()
     ```
     
     **Docstring**
@@ -44,6 +44,6 @@ This page mirrors the `Collection helpers` section from [Data Sources](../data-s
     
     **Docstring**
     
-    Returns the configuration currently stored on the Framework data source builder instance.
+    Merges the supplied patch into the generator configuration stored on the current Framework data source builder instance.
     
-    Use this method when working with the documented Framework data source builder API surface in code. Use it to inspect the current configured state without rebuilding the surrounding collection or runtime object graph.
+    Use this method when only part of the generator configuration should change. Fields omitted from the patch are preserved from the current GeneratorConfiguration tree.

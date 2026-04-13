@@ -2,11 +2,11 @@
 
 This page mirrors the `Publishers` section from [Sessions](../sessions.md).
 
-## `CreatePublisher`
+## `AddPublisher`
 
 ??? info "Source file, signature, and docstring"
     **Member**
-    `SessionBuilder.CreatePublisher(PublisherBuilder publisherBuilder)`
+    `SessionBuilder.AddPublisher(PublisherBuilder publisherBuilder)`
     
     **Kind** `function`
     
@@ -16,60 +16,14 @@ This page mirrors the `Publishers` section from [Sessions](../sessions.md).
     
     **Signature**
     ```csharp
-    public SessionBuilder CreatePublisher(PublisherBuilder publisherBuilder)
+    public SessionBuilder AddPublisher(PublisherBuilder publisherBuilder)
     ```
     
     **Docstring**
     
-    Creates or adds the configured publisher entry on the current Runner session builder instance.
+    Adds the supplied publisher to the current Runner session builder instance.
     
     Use this method when working with the documented Runner session builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
-
-## `ReadPublishers`
-
-??? info "Source file, signature, and docstring"
-    **Member**
-    `SessionBuilder.ReadPublishers()`
-    
-    **Kind** `function`
-    
-    **Declaring Type** `SessionBuilder`
-    
-    **Source File** `QaaS.Runner.Sessions/Session/Builders/SessionBuilderLogic.cs`
-    
-    **Signature**
-    ```csharp
-    public IReadOnlyList<PublisherBuilder> ReadPublishers()
-    ```
-    
-    **Docstring**
-    
-    Returns the configured publishers currently stored on the Runner session builder instance.
-    
-    Use this method when working with the documented Runner session builder API surface in code. Use it to inspect the current configured state without rebuilding the surrounding collection or runtime object graph.
-
-## `ReadPublisher`
-
-??? info "Source file, signature, and docstring"
-    **Member**
-    `SessionBuilder.ReadPublisher(string name)`
-    
-    **Kind** `function`
-    
-    **Declaring Type** `SessionBuilder`
-    
-    **Source File** `QaaS.Runner.Sessions/Session/Builders/SessionBuilderLogic.cs`
-    
-    **Signature**
-    ```csharp
-    public PublisherBuilder? ReadPublisher(string name)
-    ```
-    
-    **Docstring**
-    
-    Returns the configured publisher currently stored on the Runner session builder instance.
-    
-    Use this method when working with the documented Runner session builder API surface in code. Use it to inspect the current configured state without rebuilding the surrounding collection or runtime object graph.
 
 ## `UpdatePublisher`
 
@@ -94,11 +48,11 @@ This page mirrors the `Publishers` section from [Sessions](../sessions.md).
     
     Use this method when working with the documented Runner session builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
-## `UpdatePublisher`
+## `RemovePublisher`
 
 ??? info "Source file, signature, and docstring"
     **Member**
-    `SessionBuilder.UpdatePublisher(string name, Func<PublisherBuilder, PublisherBuilder> update)`
+    `SessionBuilder.RemovePublisher(string name)`
     
     **Kind** `function`
     
@@ -108,34 +62,34 @@ This page mirrors the `Publishers` section from [Sessions](../sessions.md).
     
     **Signature**
     ```csharp
-    public SessionBuilder UpdatePublisher(string name, Func<PublisherBuilder, PublisherBuilder> update)
-    ```
-    
-    **Docstring**
-    
-    Updates the configured publisher stored on the current Runner session builder instance.
-    
-    Use this method when working with the documented Runner session builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
-
-## `DeletePublisher`
-
-??? info "Source file, signature, and docstring"
-    **Member**
-    `SessionBuilder.DeletePublisher(string name)`
-    
-    **Kind** `function`
-    
-    **Declaring Type** `SessionBuilder`
-    
-    **Source File** `QaaS.Runner.Sessions/Session/Builders/SessionBuilderLogic.cs`
-    
-    **Signature**
-    ```csharp
-    public SessionBuilder DeletePublisher(string name)
+    public SessionBuilder RemovePublisher(string name)
     ```
     
     **Docstring**
     
     Removes the configured publisher from the current Runner session builder instance.
+    
+    Use this method when working with the documented Runner session builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
+
+## `RemovePublisherAt`
+
+??? info "Source file, signature, and docstring"
+    **Member**
+    `SessionBuilder.RemovePublisherAt(int index)`
+    
+    **Kind** `function`
+    
+    **Declaring Type** `SessionBuilder`
+    
+    **Source File** `QaaS.Runner.Sessions/Session/Builders/SessionBuilderLogic.cs`
+    
+    **Signature**
+    ```csharp
+    public SessionBuilder RemovePublisherAt(int index)
+    ```
+    
+    **Docstring**
+    
+    Removes the configured publisher at the specified index from the current Runner session builder instance.
     
     Use this method when working with the documented Runner session builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.

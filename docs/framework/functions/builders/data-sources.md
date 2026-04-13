@@ -54,11 +54,11 @@ The functions on this page are grouped by responsibility so related operations s
 
 ## Data source selection
 
-### `CreateDataSourceName`
+### `AddDataSourceName`
 
 ??? info "Source file, signature, and docstring"
     **Member**
-    `DataSourceBuilder.CreateDataSourceName(string dataSourceName)`
+    `DataSourceBuilder.AddDataSourceName(string dataSourceName)`
     
     **Kind** `function`
     
@@ -68,58 +68,12 @@ The functions on this page are grouped by responsibility so related operations s
     
     **Signature**
     ```csharp
-    public DataSourceBuilder CreateDataSourceName(string dataSourceName)
+    public DataSourceBuilder AddDataSourceName(string dataSourceName)
     ```
     
     **Docstring**
     
-    Creates or adds the configured data source name entry on the current Framework data source builder instance.
-    
-    Use this method when working with the documented Framework data source builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
-
-### `ReadDataSourceNames`
-
-??? info "Source file, signature, and docstring"
-    **Member**
-    `DataSourceBuilder.ReadDataSourceNames()`
-    
-    **Kind** `function`
-    
-    **Declaring Type** `DataSourceBuilder`
-    
-    **Source File** `QaaS.Framework.SDK/DataSourceObjects/DataSourceBuilder.cs`
-    
-    **Signature**
-    ```csharp
-    public IReadOnlyList<string> ReadDataSourceNames()
-    ```
-    
-    **Docstring**
-    
-    Returns the configured data source names currently stored on the Framework data source builder instance.
-    
-    Use this method when working with the documented Framework data source builder API surface in code. Use it to inspect the current configured state without rebuilding the surrounding collection or runtime object graph.
-
-### `UpdateDataSourceName`
-
-??? info "Source file, signature, and docstring"
-    **Member**
-    `DataSourceBuilder.UpdateDataSourceName(string existingValue, string newValue)`
-    
-    **Kind** `function`
-    
-    **Declaring Type** `DataSourceBuilder`
-    
-    **Source File** `QaaS.Framework.SDK/DataSourceObjects/DataSourceBuilder.cs`
-    
-    **Signature**
-    ```csharp
-    public DataSourceBuilder UpdateDataSourceName(string existingValue, string newValue)
-    ```
-    
-    **Docstring**
-    
-    Updates the configured data source name stored on the current Framework data source builder instance.
+    Adds the supplied data source name to the current Framework data source builder instance.
     
     Use this method when working with the documented Framework data source builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
@@ -146,11 +100,11 @@ The functions on this page are grouped by responsibility so related operations s
     
     Use this method when working with the documented Framework data source builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
-### `CreateDataSourcePattern`
+### `RemoveDataSourceNameAt`
 
 ??? info "Source file, signature, and docstring"
     **Member**
-    `DataSourceBuilder.CreateDataSourcePattern(string dataSourcePattern)`
+    `DataSourceBuilder.RemoveDataSourceNameAt(int index)`
     
     **Kind** `function`
     
@@ -160,20 +114,20 @@ The functions on this page are grouped by responsibility so related operations s
     
     **Signature**
     ```csharp
-    public DataSourceBuilder CreateDataSourcePattern(string dataSourcePattern)
+    public DataSourceBuilder RemoveDataSourceNameAt(int index)
     ```
     
     **Docstring**
     
-    Creates or adds the configured data source pattern entry on the current Framework data source builder instance.
+    Removes the configured data source name at the specified index from the current Framework data source builder instance.
     
     Use this method when working with the documented Framework data source builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
-### `ReadDataSourcePatterns`
+### `AddDataSourcePattern`
 
 ??? info "Source file, signature, and docstring"
     **Member**
-    `DataSourceBuilder.ReadDataSourcePatterns()`
+    `DataSourceBuilder.AddDataSourcePattern(string dataSourcePattern)`
     
     **Kind** `function`
     
@@ -183,35 +137,12 @@ The functions on this page are grouped by responsibility so related operations s
     
     **Signature**
     ```csharp
-    public IReadOnlyList<string> ReadDataSourcePatterns()
+    public DataSourceBuilder AddDataSourcePattern(string dataSourcePattern)
     ```
     
     **Docstring**
     
-    Returns the configured data source patterns currently stored on the Framework data source builder instance.
-    
-    Use this method when working with the documented Framework data source builder API surface in code. Use it to inspect the current configured state without rebuilding the surrounding collection or runtime object graph.
-
-### `UpdateDataSourcePattern`
-
-??? info "Source file, signature, and docstring"
-    **Member**
-    `DataSourceBuilder.UpdateDataSourcePattern(string existingValue, string newValue)`
-    
-    **Kind** `function`
-    
-    **Declaring Type** `DataSourceBuilder`
-    
-    **Source File** `QaaS.Framework.SDK/DataSourceObjects/DataSourceBuilder.cs`
-    
-    **Signature**
-    ```csharp
-    public DataSourceBuilder UpdateDataSourcePattern(string existingValue, string newValue)
-    ```
-    
-    **Docstring**
-    
-    Updates the configured data source pattern stored on the current Framework data source builder instance.
+    Adds the supplied data source pattern to the current Framework data source builder instance.
     
     Use this method when working with the documented Framework data source builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
@@ -235,6 +166,29 @@ The functions on this page are grouped by responsibility so related operations s
     **Docstring**
     
     Removes the configured data source pattern from the current Framework data source builder instance.
+    
+    Use this method when working with the documented Framework data source builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
+
+### `RemoveDataSourcePatternAt`
+
+??? info "Source file, signature, and docstring"
+    **Member**
+    `DataSourceBuilder.RemoveDataSourcePatternAt(int index)`
+    
+    **Kind** `function`
+    
+    **Declaring Type** `DataSourceBuilder`
+    
+    **Source File** `QaaS.Framework.SDK/DataSourceObjects/DataSourceBuilder.cs`
+    
+    **Signature**
+    ```csharp
+    public DataSourceBuilder RemoveDataSourcePatternAt(int index)
+    ```
+    
+    **Docstring**
+    
+    Removes the configured data source pattern at the specified index from the current Framework data source builder instance.
     
     Use this method when working with the documented Framework data source builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
@@ -288,11 +242,11 @@ The functions on this page are grouped by responsibility so related operations s
 
 ## Collection helpers
 
-### `DeleteConfiguration`
+### `RemoveConfiguration`
 
 ??? info "Source file, signature, and docstring"
     **Member**
-    `DataSourceBuilder.UpdateConfiguration(...)`
+    `DataSourceBuilder.RemoveConfiguration()`
     
     **Kind** `function`
     
@@ -302,7 +256,7 @@ The functions on this page are grouped by responsibility so related operations s
     
     **Signature**
     ```csharp
-    public DataSourceBuilder UpdateConfiguration(...)
+    public DataSourceBuilder RemoveConfiguration()
     ```
     
     **Docstring**
@@ -330,9 +284,9 @@ The functions on this page are grouped by responsibility so related operations s
     
     **Docstring**
     
-    Returns the configuration currently stored on the Framework data source builder instance.
+    Merges the supplied patch into the generator configuration stored on the current Framework data source builder instance.
     
-    Use this method when working with the documented Framework data source builder API surface in code. Use it to inspect the current configured state without rebuilding the surrounding collection or runtime object graph.
+    Use this method when only part of the generator configuration should change. Fields omitted from the patch are preserved from the current GeneratorConfiguration tree.
 
 ## General
 

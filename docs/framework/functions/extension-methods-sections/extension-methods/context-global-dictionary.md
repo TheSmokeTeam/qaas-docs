@@ -21,19 +21,4 @@ This page mirrors the `Extension Methods / Context global dictionary` section fr
     
     **Docstring**
     
-    Loads the requested configuration section into the context global dictionary. Use "variables" as the section path to project the root variables section into runtime state without relying on a dedicated Variables API.
-
-When the loaded section contains YAML lists, numeric children are normalized to `List<object?>` values instead of dictionaries with `"0"`, `"1"`, and similar string keys. This keeps the global-dictionary shape aligned with the logical configuration shape.
-
-Example:
-
-```yaml
-variables:
-  connections:
-    - name: primary
-      host: localhost
-    - name: secondary
-      host: remote
-```
-
-After loading `variables`, the `connections` entry in the global dictionary is a list with two objects, not a dictionary keyed by `"0"` and `"1"`.
+    Loads the requested configuration section into the context global dictionary. Use "variables" as the section path to project the root variables section into runtime state without relying on a dedicated Variables API. Numeric child sections are normalized to lists so YAML list sections do not appear as dictionaries with stringified indexes such as "0" and "1" .
