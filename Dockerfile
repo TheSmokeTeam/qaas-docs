@@ -74,10 +74,10 @@ RUN python tools/write_runtime_link_defaults.py docs/assets/javascripts/qaas-doc
 FROM nginx:1.27-alpine AS runtime
 
 COPY tools/nginx.conf /etc/nginx/conf.d/default.conf
-COPY tools/docker-entrypoint.d/40-qaas-docs-runtime-overrides.sh /docker-entrypoint.d/40-qaas-docs-runtime-overrides.sh
+COPY tools/docker-entrypoint.d/qaas-docs-runtime-overrides.sh /docker-entrypoint.d/qaas-docs-runtime-overrides.sh
 COPY --from=build /docs/site /usr/share/nginx/html
 
-RUN chmod +x /docker-entrypoint.d/40-qaas-docs-runtime-overrides.sh
+RUN chmod +x /docker-entrypoint.d/qaas-docs-runtime-overrides.sh
 
 EXPOSE 8000
 
