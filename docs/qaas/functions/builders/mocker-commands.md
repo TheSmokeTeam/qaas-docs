@@ -156,52 +156,6 @@ The functions on this page are grouped by responsibility so related operations s
 
 ??? info "Source file, signature, and docstring"
     **Member**
-    `MockerCommandBuilder.UpdateConfiguration(Func<MockerCommandConfig, MockerCommandConfig> update)`
-    
-    **Kind** `function`
-    
-    **Declaring Type** `MockerCommandBuilder`
-    
-    **Source File** `QaaS.Runner.Sessions/Actions/MockerCommands/MockerCommandBuilder.cs`
-    
-    **Signature**
-    ```csharp
-    public MockerCommandBuilder UpdateConfiguration(Func<MockerCommandConfig, MockerCommandConfig> update)
-    ```
-    
-    **Docstring**
-    
-    Updates the configuration currently stored on the Runner mocker command builder instance.
-    
-    Use this method when working with the documented Runner mocker command builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
-
-### `UpdateConfiguration`
-
-??? info "Source file, signature, and docstring"
-    **Member**
-    `MockerCommandBuilder.UpdateConfiguration(MockerCommandConfig command)`
-    
-    **Kind** `function`
-    
-    **Declaring Type** `MockerCommandBuilder`
-    
-    **Source File** `QaaS.Runner.Sessions/Actions/MockerCommands/MockerCommandBuilder.cs`
-    
-    **Signature**
-    ```csharp
-    public MockerCommandBuilder UpdateConfiguration(MockerCommandConfig command)
-    ```
-    
-    **Docstring**
-    
-    Updates the configuration currently stored on the Runner mocker command builder instance.
-    
-    Use this method when working with the documented Runner mocker command builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
-
-### `UpdateConfiguration`
-
-??? info "Source file, signature, and docstring"
-    **Member**
     `MockerCommandBuilder.UpdateConfiguration(object configuration)`
     
     **Kind** `function`
@@ -218,29 +172,6 @@ The functions on this page are grouped by responsibility so related operations s
     **Docstring**
     
     Updates the configuration currently stored on the Runner mocker command builder instance.
-    
-    Use this method when working with the documented Runner mocker command builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
-
-### `DeleteConfiguration`
-
-??? info "Source file, signature, and docstring"
-    **Member**
-    `MockerCommandBuilder.DeleteConfiguration()`
-    
-    **Kind** `function`
-    
-    **Declaring Type** `MockerCommandBuilder`
-    
-    **Source File** `QaaS.Runner.Sessions/Actions/MockerCommands/MockerCommandBuilder.cs`
-    
-    **Signature**
-    ```csharp
-    public MockerCommandBuilder DeleteConfiguration()
-    ```
-    
-    **Docstring**
-    
-    Clears the configuration currently stored on the Runner mocker command builder instance.
     
     Use this method when working with the documented Runner mocker command builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 

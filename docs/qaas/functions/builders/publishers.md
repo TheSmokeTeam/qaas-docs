@@ -56,11 +56,11 @@ The functions on this page are grouped by responsibility so related operations s
 
 ## Data source selection
 
-### `CreateDataSource`
+### `AddDataSource`
 
 ??? info "Source file, signature, and docstring"
     **Member**
-    `PublisherBuilder.CreateDataSource(string dataSourceName)`
+    `PublisherBuilder.AddDataSource(string dataSourceName)`
     
     **Kind** `function`
     
@@ -70,37 +70,14 @@ The functions on this page are grouped by responsibility so related operations s
     
     **Signature**
     ```csharp
-    public PublisherBuilder CreateDataSource(string dataSourceName)
+    public PublisherBuilder AddDataSource(string dataSourceName)
     ```
     
     **Docstring**
     
-    Creates or adds the configured data source entry on the current Runner publisher builder instance.
+    Adds the supplied data source to the current Runner publisher builder instance.
     
     Use this method when working with the documented Runner publisher builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
-
-### `ReadDataSources`
-
-??? info "Source file, signature, and docstring"
-    **Member**
-    `PublisherBuilder.ReadDataSources()`
-    
-    **Kind** `function`
-    
-    **Declaring Type** `PublisherBuilder`
-    
-    **Source File** `QaaS.Runner.Sessions/Actions/Publishers/Builders/PublisherBuilderLogic.cs`
-    
-    **Signature**
-    ```csharp
-    public IReadOnlyList<string> ReadDataSources()
-    ```
-    
-    **Docstring**
-    
-    Returns the configured data sources currently stored on the Runner publisher builder instance.
-    
-    Use this method when working with the documented Runner publisher builder API surface in code. Use it to inspect the current configured state without rebuilding the surrounding collection or runtime object graph.
 
 ### `UpdateDataSource`
 
@@ -125,11 +102,11 @@ The functions on this page are grouped by responsibility so related operations s
     
     Use this method when working with the documented Runner publisher builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
-### `DeleteDataSource`
+### `RemoveDataSource`
 
 ??? info "Source file, signature, and docstring"
     **Member**
-    `PublisherBuilder.DeleteDataSource(string dataSourceName)`
+    `PublisherBuilder.RemoveDataSource(string dataSourceName)`
     
     **Kind** `function`
     
@@ -139,7 +116,7 @@ The functions on this page are grouped by responsibility so related operations s
     
     **Signature**
     ```csharp
-    public PublisherBuilder DeleteDataSource(string dataSourceName)
+    public PublisherBuilder RemoveDataSource(string dataSourceName)
     ```
     
     **Docstring**
@@ -148,11 +125,11 @@ The functions on this page are grouped by responsibility so related operations s
     
     Use this method when working with the documented Runner publisher builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
-### `CreateDataSourcePattern`
+### `RemoveDataSourceAt`
 
 ??? info "Source file, signature, and docstring"
     **Member**
-    `PublisherBuilder.CreateDataSourcePattern(string dataSourcePattern)`
+    `PublisherBuilder.RemoveDataSourceAt(int index)`
     
     **Kind** `function`
     
@@ -162,20 +139,20 @@ The functions on this page are grouped by responsibility so related operations s
     
     **Signature**
     ```csharp
-    public PublisherBuilder CreateDataSourcePattern(string dataSourcePattern)
+    public PublisherBuilder RemoveDataSourceAt(int index)
     ```
     
     **Docstring**
     
-    Creates or adds the configured data source pattern entry on the current Runner publisher builder instance.
+    Removes the configured data source at the specified index from the current Runner publisher builder instance.
     
     Use this method when working with the documented Runner publisher builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
-### `ReadDataSourcePatterns`
+### `AddDataSourcePattern`
 
 ??? info "Source file, signature, and docstring"
     **Member**
-    `PublisherBuilder.ReadDataSourcePatterns()`
+    `PublisherBuilder.AddDataSourcePattern(string dataSourcePattern)`
     
     **Kind** `function`
     
@@ -185,14 +162,14 @@ The functions on this page are grouped by responsibility so related operations s
     
     **Signature**
     ```csharp
-    public IReadOnlyList<string> ReadDataSourcePatterns()
+    public PublisherBuilder AddDataSourcePattern(string dataSourcePattern)
     ```
     
     **Docstring**
     
-    Returns the configured data source patterns currently stored on the Runner publisher builder instance.
+    Adds the supplied data source pattern to the current Runner publisher builder instance.
     
-    Use this method when working with the documented Runner publisher builder API surface in code. Use it to inspect the current configured state without rebuilding the surrounding collection or runtime object graph.
+    Use this method when working with the documented Runner publisher builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
 ### `UpdateDataSourcePattern`
 
@@ -217,11 +194,11 @@ The functions on this page are grouped by responsibility so related operations s
     
     Use this method when working with the documented Runner publisher builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
-### `DeleteDataSourcePattern`
+### `RemoveDataSourcePattern`
 
 ??? info "Source file, signature, and docstring"
     **Member**
-    `PublisherBuilder.DeleteDataSourcePattern(string dataSourcePattern)`
+    `PublisherBuilder.RemoveDataSourcePattern(string dataSourcePattern)`
     
     **Kind** `function`
     
@@ -231,7 +208,7 @@ The functions on this page are grouped by responsibility so related operations s
     
     **Signature**
     ```csharp
-    public PublisherBuilder DeleteDataSourcePattern(string dataSourcePattern)
+    public PublisherBuilder RemoveDataSourcePattern(string dataSourcePattern)
     ```
     
     **Docstring**
@@ -240,13 +217,11 @@ The functions on this page are grouped by responsibility so related operations s
     
     Use this method when working with the documented Runner publisher builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
-## Policies
-
-### `CreatePolicy`
+### `RemoveDataSourcePatternAt`
 
 ??? info "Source file, signature, and docstring"
     **Member**
-    `PublisherBuilder.CreatePolicy(PolicyBuilder policy)`
+    `PublisherBuilder.RemoveDataSourcePatternAt(int index)`
     
     **Kind** `function`
     
@@ -256,12 +231,37 @@ The functions on this page are grouped by responsibility so related operations s
     
     **Signature**
     ```csharp
-    public PublisherBuilder CreatePolicy(PolicyBuilder policy)
+    public PublisherBuilder RemoveDataSourcePatternAt(int index)
     ```
     
     **Docstring**
     
-    Creates or adds the configured policy entry on the current Runner publisher builder instance.
+    Removes the configured data source pattern at the specified index from the current Runner publisher builder instance.
+    
+    Use this method when working with the documented Runner publisher builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
+
+## Policies
+
+### `AddPolicy`
+
+??? info "Source file, signature, and docstring"
+    **Member**
+    `PublisherBuilder.AddPolicy(PolicyBuilder policy)`
+    
+    **Kind** `function`
+    
+    **Declaring Type** `PublisherBuilder`
+    
+    **Source File** `QaaS.Runner.Sessions/Actions/Publishers/Builders/PublisherBuilderLogic.cs`
+    
+    **Signature**
+    ```csharp
+    public PublisherBuilder AddPolicy(PolicyBuilder policy)
+    ```
+    
+    **Docstring**
+    
+    Adds the supplied policy to the current Runner publisher builder instance.
     
     Use this method when working with the documented Runner publisher builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
@@ -288,11 +288,11 @@ The functions on this page are grouped by responsibility so related operations s
     
     Use this method when working with the documented Runner publisher builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
-### `DeletePolicyAt`
+### `RemovePolicyAt`
 
 ??? info "Source file, signature, and docstring"
     **Member**
-    `PublisherBuilder.DeletePolicyAt(int index)`
+    `PublisherBuilder.RemovePolicyAt(int index)`
     
     **Kind** `function`
     
@@ -302,7 +302,7 @@ The functions on this page are grouped by responsibility so related operations s
     
     **Signature**
     ```csharp
-    public PublisherBuilder DeletePolicyAt(int index)
+    public PublisherBuilder RemovePolicyAt(int index)
     ```
     
     **Docstring**
@@ -428,78 +428,7 @@ The functions on this page are grouped by responsibility so related operations s
     
     Use this method when working with the documented Runner publisher builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
-## Inspection
-
-### `ReadPolicies`
-
-??? info "Source file, signature, and docstring"
-    **Member**
-    `PublisherBuilder.ReadPolicies()`
-    
-    **Kind** `function`
-    
-    **Declaring Type** `PublisherBuilder`
-    
-    **Source File** `QaaS.Runner.Sessions/Actions/Publishers/Builders/PublisherBuilderLogic.cs`
-    
-    **Signature**
-    ```csharp
-    public IReadOnlyList<PolicyBuilder> ReadPolicies()
-    ```
-    
-    **Docstring**
-    
-    Returns the configured policies currently stored on the Runner publisher builder instance.
-    
-    Use this method when working with the documented Runner publisher builder API surface in code. Use it to inspect the current configured state without rebuilding the surrounding collection or runtime object graph.
-
 ## Collection helpers
-
-### `UpdateConfiguration`
-
-??? info "Source file, signature, and docstring"
-    **Member**
-    `PublisherBuilder.UpdateConfiguration(Func<ISenderConfig, ISenderConfig> update)`
-    
-    **Kind** `function`
-    
-    **Declaring Type** `PublisherBuilder`
-    
-    **Source File** `QaaS.Runner.Sessions/Actions/Publishers/Builders/PublisherBuilderLogic.cs`
-    
-    **Signature**
-    ```csharp
-    public PublisherBuilder UpdateConfiguration(Func<ISenderConfig, ISenderConfig> update)
-    ```
-    
-    **Docstring**
-    
-    Updates the configuration currently stored on the Runner publisher builder instance.
-    
-    Use this method when working with the documented Runner publisher builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
-
-### `UpdateConfiguration`
-
-??? info "Source file, signature, and docstring"
-    **Member**
-    `PublisherBuilder.UpdateConfiguration(ISenderConfig config)`
-    
-    **Kind** `function`
-    
-    **Declaring Type** `PublisherBuilder`
-    
-    **Source File** `QaaS.Runner.Sessions/Actions/Publishers/Builders/PublisherBuilderLogic.cs`
-    
-    **Signature**
-    ```csharp
-    public PublisherBuilder UpdateConfiguration(ISenderConfig config)
-    ```
-    
-    **Docstring**
-    
-    Updates the configuration currently stored on the Runner publisher builder instance.
-    
-    Use this method when working with the documented Runner publisher builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
 ### `UpdateConfiguration`
 
@@ -521,29 +450,6 @@ The functions on this page are grouped by responsibility so related operations s
     **Docstring**
     
     Updates the configuration currently stored on the Runner publisher builder instance.
-    
-    Use this method when working with the documented Runner publisher builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
-
-### `DeleteConfiguration`
-
-??? info "Source file, signature, and docstring"
-    **Member**
-    `PublisherBuilder.DeleteConfiguration()`
-    
-    **Kind** `function`
-    
-    **Declaring Type** `PublisherBuilder`
-    
-    **Source File** `QaaS.Runner.Sessions/Actions/Publishers/Builders/PublisherBuilderLogic.cs`
-    
-    **Signature**
-    ```csharp
-    public PublisherBuilder DeleteConfiguration()
-    ```
-    
-    **Docstring**
-    
-    Clears the configuration currently stored on the Runner publisher builder instance.
     
     Use this method when working with the documented Runner publisher builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 

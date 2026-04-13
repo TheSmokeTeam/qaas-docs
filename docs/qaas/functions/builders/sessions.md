@@ -106,11 +106,11 @@ The functions on this page are grouped by responsibility so related operations s
 
 ## Probes
 
-### `CreateProbe`
+### `AddProbe`
 
 ??? info "Source file, signature, and docstring"
     **Member**
-    `SessionBuilder.CreateProbe(ProbeBuilder probeBuilder)`
+    `SessionBuilder.AddProbe(ProbeBuilder probeBuilder)`
     
     **Kind** `function`
     
@@ -120,60 +120,14 @@ The functions on this page are grouped by responsibility so related operations s
     
     **Signature**
     ```csharp
-    public SessionBuilder CreateProbe(ProbeBuilder probeBuilder)
+    public SessionBuilder AddProbe(ProbeBuilder probeBuilder)
     ```
     
     **Docstring**
     
-    Creates or adds the configured probe entry on the current Runner session builder instance.
+    Adds the supplied probe to the current Runner session builder instance.
     
     Use this method when working with the documented Runner session builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
-
-### `ReadProbes`
-
-??? info "Source file, signature, and docstring"
-    **Member**
-    `SessionBuilder.ReadProbes()`
-    
-    **Kind** `function`
-    
-    **Declaring Type** `SessionBuilder`
-    
-    **Source File** `QaaS.Runner.Sessions/Session/Builders/SessionBuilderLogic.cs`
-    
-    **Signature**
-    ```csharp
-    public IReadOnlyList<ProbeBuilder> ReadProbes()
-    ```
-    
-    **Docstring**
-    
-    Returns the configured probes currently stored on the Runner session builder instance.
-    
-    Use this method when working with the documented Runner session builder API surface in code. Use it to inspect the current configured state without rebuilding the surrounding collection or runtime object graph.
-
-### `ReadProbe`
-
-??? info "Source file, signature, and docstring"
-    **Member**
-    `SessionBuilder.ReadProbe(string name)`
-    
-    **Kind** `function`
-    
-    **Declaring Type** `SessionBuilder`
-    
-    **Source File** `QaaS.Runner.Sessions/Session/Builders/SessionBuilderLogic.cs`
-    
-    **Signature**
-    ```csharp
-    public ProbeBuilder? ReadProbe(string name)
-    ```
-    
-    **Docstring**
-    
-    Returns the configured probe currently stored on the Runner session builder instance.
-    
-    Use this method when working with the documented Runner session builder API surface in code. Use it to inspect the current configured state without rebuilding the surrounding collection or runtime object graph.
 
 ### `UpdateProbe`
 
@@ -198,11 +152,11 @@ The functions on this page are grouped by responsibility so related operations s
     
     Use this method when working with the documented Runner session builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
-### `UpdateProbe`
+### `RemoveProbe`
 
 ??? info "Source file, signature, and docstring"
     **Member**
-    `SessionBuilder.UpdateProbe(string name, Func<ProbeBuilder, ProbeBuilder> update)`
+    `SessionBuilder.RemoveProbe(string name)`
     
     **Kind** `function`
     
@@ -212,30 +166,7 @@ The functions on this page are grouped by responsibility so related operations s
     
     **Signature**
     ```csharp
-    public SessionBuilder UpdateProbe(string name, Func<ProbeBuilder, ProbeBuilder> update)
-    ```
-    
-    **Docstring**
-    
-    Updates the configured probe stored on the current Runner session builder instance.
-    
-    Use this method when working with the documented Runner session builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
-
-### `DeleteProbe`
-
-??? info "Source file, signature, and docstring"
-    **Member**
-    `SessionBuilder.DeleteProbe(string name)`
-    
-    **Kind** `function`
-    
-    **Declaring Type** `SessionBuilder`
-    
-    **Source File** `QaaS.Runner.Sessions/Session/Builders/SessionBuilderLogic.cs`
-    
-    **Signature**
-    ```csharp
-    public SessionBuilder DeleteProbe(string name)
+    public SessionBuilder RemoveProbe(string name)
     ```
     
     **Docstring**
@@ -244,13 +175,11 @@ The functions on this page are grouped by responsibility so related operations s
     
     Use this method when working with the documented Runner session builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
-## Publishers
-
-### `CreatePublisher`
+### `RemoveProbeAt`
 
 ??? info "Source file, signature, and docstring"
     **Member**
-    `SessionBuilder.CreatePublisher(PublisherBuilder publisherBuilder)`
+    `SessionBuilder.RemoveProbeAt(int index)`
     
     **Kind** `function`
     
@@ -260,20 +189,22 @@ The functions on this page are grouped by responsibility so related operations s
     
     **Signature**
     ```csharp
-    public SessionBuilder CreatePublisher(PublisherBuilder publisherBuilder)
+    public SessionBuilder RemoveProbeAt(int index)
     ```
     
     **Docstring**
     
-    Creates or adds the configured publisher entry on the current Runner session builder instance.
+    Removes the configured probe at the specified index from the current Runner session builder instance.
     
     Use this method when working with the documented Runner session builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
-### `ReadPublishers`
+## Publishers
+
+### `AddPublisher`
 
 ??? info "Source file, signature, and docstring"
     **Member**
-    `SessionBuilder.ReadPublishers()`
+    `SessionBuilder.AddPublisher(PublisherBuilder publisherBuilder)`
     
     **Kind** `function`
     
@@ -283,37 +214,14 @@ The functions on this page are grouped by responsibility so related operations s
     
     **Signature**
     ```csharp
-    public IReadOnlyList<PublisherBuilder> ReadPublishers()
+    public SessionBuilder AddPublisher(PublisherBuilder publisherBuilder)
     ```
     
     **Docstring**
     
-    Returns the configured publishers currently stored on the Runner session builder instance.
+    Adds the supplied publisher to the current Runner session builder instance.
     
-    Use this method when working with the documented Runner session builder API surface in code. Use it to inspect the current configured state without rebuilding the surrounding collection or runtime object graph.
-
-### `ReadPublisher`
-
-??? info "Source file, signature, and docstring"
-    **Member**
-    `SessionBuilder.ReadPublisher(string name)`
-    
-    **Kind** `function`
-    
-    **Declaring Type** `SessionBuilder`
-    
-    **Source File** `QaaS.Runner.Sessions/Session/Builders/SessionBuilderLogic.cs`
-    
-    **Signature**
-    ```csharp
-    public PublisherBuilder? ReadPublisher(string name)
-    ```
-    
-    **Docstring**
-    
-    Returns the configured publisher currently stored on the Runner session builder instance.
-    
-    Use this method when working with the documented Runner session builder API surface in code. Use it to inspect the current configured state without rebuilding the surrounding collection or runtime object graph.
+    Use this method when working with the documented Runner session builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
 ### `UpdatePublisher`
 
@@ -338,11 +246,11 @@ The functions on this page are grouped by responsibility so related operations s
     
     Use this method when working with the documented Runner session builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
-### `UpdatePublisher`
+### `RemovePublisher`
 
 ??? info "Source file, signature, and docstring"
     **Member**
-    `SessionBuilder.UpdatePublisher(string name, Func<PublisherBuilder, PublisherBuilder> update)`
+    `SessionBuilder.RemovePublisher(string name)`
     
     **Kind** `function`
     
@@ -352,30 +260,7 @@ The functions on this page are grouped by responsibility so related operations s
     
     **Signature**
     ```csharp
-    public SessionBuilder UpdatePublisher(string name, Func<PublisherBuilder, PublisherBuilder> update)
-    ```
-    
-    **Docstring**
-    
-    Updates the configured publisher stored on the current Runner session builder instance.
-    
-    Use this method when working with the documented Runner session builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
-
-### `DeletePublisher`
-
-??? info "Source file, signature, and docstring"
-    **Member**
-    `SessionBuilder.DeletePublisher(string name)`
-    
-    **Kind** `function`
-    
-    **Declaring Type** `SessionBuilder`
-    
-    **Source File** `QaaS.Runner.Sessions/Session/Builders/SessionBuilderLogic.cs`
-    
-    **Signature**
-    ```csharp
-    public SessionBuilder DeletePublisher(string name)
+    public SessionBuilder RemovePublisher(string name)
     ```
     
     **Docstring**
@@ -384,13 +269,11 @@ The functions on this page are grouped by responsibility so related operations s
     
     Use this method when working with the documented Runner session builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
-## Consumers
-
-### `CreateConsumer`
+### `RemovePublisherAt`
 
 ??? info "Source file, signature, and docstring"
     **Member**
-    `SessionBuilder.CreateConsumer(ConsumerBuilder consumerBuilder)`
+    `SessionBuilder.RemovePublisherAt(int index)`
     
     **Kind** `function`
     
@@ -400,20 +283,22 @@ The functions on this page are grouped by responsibility so related operations s
     
     **Signature**
     ```csharp
-    public SessionBuilder CreateConsumer(ConsumerBuilder consumerBuilder)
+    public SessionBuilder RemovePublisherAt(int index)
     ```
     
     **Docstring**
     
-    Creates or adds the configured consumer entry on the current Runner session builder instance.
+    Removes the configured publisher at the specified index from the current Runner session builder instance.
     
     Use this method when working with the documented Runner session builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
-### `ReadConsumers`
+## Consumers
+
+### `AddConsumer`
 
 ??? info "Source file, signature, and docstring"
     **Member**
-    `SessionBuilder.ReadConsumers()`
+    `SessionBuilder.AddConsumer(ConsumerBuilder consumerBuilder)`
     
     **Kind** `function`
     
@@ -423,37 +308,14 @@ The functions on this page are grouped by responsibility so related operations s
     
     **Signature**
     ```csharp
-    public IReadOnlyList<ConsumerBuilder> ReadConsumers()
+    public SessionBuilder AddConsumer(ConsumerBuilder consumerBuilder)
     ```
     
     **Docstring**
     
-    Returns the configured consumers currently stored on the Runner session builder instance.
+    Adds the supplied consumer to the current Runner session builder instance.
     
-    Use this method when working with the documented Runner session builder API surface in code. Use it to inspect the current configured state without rebuilding the surrounding collection or runtime object graph.
-
-### `ReadConsumer`
-
-??? info "Source file, signature, and docstring"
-    **Member**
-    `SessionBuilder.ReadConsumer(string name)`
-    
-    **Kind** `function`
-    
-    **Declaring Type** `SessionBuilder`
-    
-    **Source File** `QaaS.Runner.Sessions/Session/Builders/SessionBuilderLogic.cs`
-    
-    **Signature**
-    ```csharp
-    public ConsumerBuilder? ReadConsumer(string name)
-    ```
-    
-    **Docstring**
-    
-    Returns the configured consumer currently stored on the Runner session builder instance.
-    
-    Use this method when working with the documented Runner session builder API surface in code. Use it to inspect the current configured state without rebuilding the surrounding collection or runtime object graph.
+    Use this method when working with the documented Runner session builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
 ### `UpdateConsumer`
 
@@ -478,11 +340,11 @@ The functions on this page are grouped by responsibility so related operations s
     
     Use this method when working with the documented Runner session builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
-### `UpdateConsumer`
+### `RemoveConsumer`
 
 ??? info "Source file, signature, and docstring"
     **Member**
-    `SessionBuilder.UpdateConsumer(string name, Func<ConsumerBuilder, ConsumerBuilder> update)`
+    `SessionBuilder.RemoveConsumer(string name)`
     
     **Kind** `function`
     
@@ -492,30 +354,7 @@ The functions on this page are grouped by responsibility so related operations s
     
     **Signature**
     ```csharp
-    public SessionBuilder UpdateConsumer(string name, Func<ConsumerBuilder, ConsumerBuilder> update)
-    ```
-    
-    **Docstring**
-    
-    Updates the configured consumer stored on the current Runner session builder instance.
-    
-    Use this method when working with the documented Runner session builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
-
-### `DeleteConsumer`
-
-??? info "Source file, signature, and docstring"
-    **Member**
-    `SessionBuilder.DeleteConsumer(string name)`
-    
-    **Kind** `function`
-    
-    **Declaring Type** `SessionBuilder`
-    
-    **Source File** `QaaS.Runner.Sessions/Session/Builders/SessionBuilderLogic.cs`
-    
-    **Signature**
-    ```csharp
-    public SessionBuilder DeleteConsumer(string name)
+    public SessionBuilder RemoveConsumer(string name)
     ```
     
     **Docstring**
@@ -524,13 +363,11 @@ The functions on this page are grouped by responsibility so related operations s
     
     Use this method when working with the documented Runner session builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
-## Transactions
-
-### `CreateTransaction`
+### `RemoveConsumerAt`
 
 ??? info "Source file, signature, and docstring"
     **Member**
-    `SessionBuilder.CreateTransaction(TransactionBuilder transactionBuilder)`
+    `SessionBuilder.RemoveConsumerAt(int index)`
     
     **Kind** `function`
     
@@ -540,20 +377,22 @@ The functions on this page are grouped by responsibility so related operations s
     
     **Signature**
     ```csharp
-    public SessionBuilder CreateTransaction(TransactionBuilder transactionBuilder)
+    public SessionBuilder RemoveConsumerAt(int index)
     ```
     
     **Docstring**
     
-    Creates or adds the configured transaction entry on the current Runner session builder instance.
+    Removes the configured consumer at the specified index from the current Runner session builder instance.
     
     Use this method when working with the documented Runner session builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
-### `ReadTransactions`
+## Transactions
+
+### `AddTransaction`
 
 ??? info "Source file, signature, and docstring"
     **Member**
-    `SessionBuilder.ReadTransactions()`
+    `SessionBuilder.AddTransaction(TransactionBuilder transactionBuilder)`
     
     **Kind** `function`
     
@@ -563,37 +402,14 @@ The functions on this page are grouped by responsibility so related operations s
     
     **Signature**
     ```csharp
-    public IReadOnlyList<TransactionBuilder> ReadTransactions()
+    public SessionBuilder AddTransaction(TransactionBuilder transactionBuilder)
     ```
     
     **Docstring**
     
-    Returns the configured transactions currently stored on the Runner session builder instance.
+    Adds the supplied transaction to the current Runner session builder instance.
     
-    Use this method when working with the documented Runner session builder API surface in code. Use it to inspect the current configured state without rebuilding the surrounding collection or runtime object graph.
-
-### `ReadTransaction`
-
-??? info "Source file, signature, and docstring"
-    **Member**
-    `SessionBuilder.ReadTransaction(string name)`
-    
-    **Kind** `function`
-    
-    **Declaring Type** `SessionBuilder`
-    
-    **Source File** `QaaS.Runner.Sessions/Session/Builders/SessionBuilderLogic.cs`
-    
-    **Signature**
-    ```csharp
-    public TransactionBuilder? ReadTransaction(string name)
-    ```
-    
-    **Docstring**
-    
-    Returns the configured transaction currently stored on the Runner session builder instance.
-    
-    Use this method when working with the documented Runner session builder API surface in code. Use it to inspect the current configured state without rebuilding the surrounding collection or runtime object graph.
+    Use this method when working with the documented Runner session builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
 ### `UpdateTransaction`
 
@@ -618,11 +434,11 @@ The functions on this page are grouped by responsibility so related operations s
     
     Use this method when working with the documented Runner session builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
-### `UpdateTransaction`
+### `RemoveTransaction`
 
 ??? info "Source file, signature, and docstring"
     **Member**
-    `SessionBuilder.UpdateTransaction(string name, Func<TransactionBuilder, TransactionBuilder> update)`
+    `SessionBuilder.RemoveTransaction(string name)`
     
     **Kind** `function`
     
@@ -632,30 +448,7 @@ The functions on this page are grouped by responsibility so related operations s
     
     **Signature**
     ```csharp
-    public SessionBuilder UpdateTransaction(string name, Func<TransactionBuilder, TransactionBuilder> update)
-    ```
-    
-    **Docstring**
-    
-    Updates the configured transaction stored on the current Runner session builder instance.
-    
-    Use this method when working with the documented Runner session builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
-
-### `DeleteTransaction`
-
-??? info "Source file, signature, and docstring"
-    **Member**
-    `SessionBuilder.DeleteTransaction(string name)`
-    
-    **Kind** `function`
-    
-    **Declaring Type** `SessionBuilder`
-    
-    **Source File** `QaaS.Runner.Sessions/Session/Builders/SessionBuilderLogic.cs`
-    
-    **Signature**
-    ```csharp
-    public SessionBuilder DeleteTransaction(string name)
+    public SessionBuilder RemoveTransaction(string name)
     ```
     
     **Docstring**
@@ -664,13 +457,11 @@ The functions on this page are grouped by responsibility so related operations s
     
     Use this method when working with the documented Runner session builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
-## Collectors
-
-### `CreateCollector`
+### `RemoveTransactionAt`
 
 ??? info "Source file, signature, and docstring"
     **Member**
-    `SessionBuilder.CreateCollector(CollectorBuilder collectorBuilder)`
+    `SessionBuilder.RemoveTransactionAt(int index)`
     
     **Kind** `function`
     
@@ -680,20 +471,22 @@ The functions on this page are grouped by responsibility so related operations s
     
     **Signature**
     ```csharp
-    public SessionBuilder CreateCollector(CollectorBuilder collectorBuilder)
+    public SessionBuilder RemoveTransactionAt(int index)
     ```
     
     **Docstring**
     
-    Creates or adds the configured collector entry on the current Runner session builder instance.
+    Removes the configured transaction at the specified index from the current Runner session builder instance.
     
     Use this method when working with the documented Runner session builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
-### `ReadCollectors`
+## Collectors
+
+### `AddCollector`
 
 ??? info "Source file, signature, and docstring"
     **Member**
-    `SessionBuilder.ReadCollectors()`
+    `SessionBuilder.AddCollector(CollectorBuilder collectorBuilder)`
     
     **Kind** `function`
     
@@ -703,37 +496,14 @@ The functions on this page are grouped by responsibility so related operations s
     
     **Signature**
     ```csharp
-    public IReadOnlyList<CollectorBuilder> ReadCollectors()
+    public SessionBuilder AddCollector(CollectorBuilder collectorBuilder)
     ```
     
     **Docstring**
     
-    Returns the configured collectors currently stored on the Runner session builder instance.
+    Adds the supplied collector to the current Runner session builder instance.
     
-    Use this method when working with the documented Runner session builder API surface in code. Use it to inspect the current configured state without rebuilding the surrounding collection or runtime object graph.
-
-### `ReadCollector`
-
-??? info "Source file, signature, and docstring"
-    **Member**
-    `SessionBuilder.ReadCollector(string name)`
-    
-    **Kind** `function`
-    
-    **Declaring Type** `SessionBuilder`
-    
-    **Source File** `QaaS.Runner.Sessions/Session/Builders/SessionBuilderLogic.cs`
-    
-    **Signature**
-    ```csharp
-    public CollectorBuilder? ReadCollector(string name)
-    ```
-    
-    **Docstring**
-    
-    Returns the configured collector currently stored on the Runner session builder instance.
-    
-    Use this method when working with the documented Runner session builder API surface in code. Use it to inspect the current configured state without rebuilding the surrounding collection or runtime object graph.
+    Use this method when working with the documented Runner session builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
 ### `UpdateCollector`
 
@@ -758,11 +528,11 @@ The functions on this page are grouped by responsibility so related operations s
     
     Use this method when working with the documented Runner session builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
-### `UpdateCollector`
+### `RemoveCollector`
 
 ??? info "Source file, signature, and docstring"
     **Member**
-    `SessionBuilder.UpdateCollector(string name, Func<CollectorBuilder, CollectorBuilder> update)`
+    `SessionBuilder.RemoveCollector(string name)`
     
     **Kind** `function`
     
@@ -772,30 +542,7 @@ The functions on this page are grouped by responsibility so related operations s
     
     **Signature**
     ```csharp
-    public SessionBuilder UpdateCollector(string name, Func<CollectorBuilder, CollectorBuilder> update)
-    ```
-    
-    **Docstring**
-    
-    Updates the configured collector stored on the current Runner session builder instance.
-    
-    Use this method when working with the documented Runner session builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
-
-### `DeleteCollector`
-
-??? info "Source file, signature, and docstring"
-    **Member**
-    `SessionBuilder.DeleteCollector(string name)`
-    
-    **Kind** `function`
-    
-    **Declaring Type** `SessionBuilder`
-    
-    **Source File** `QaaS.Runner.Sessions/Session/Builders/SessionBuilderLogic.cs`
-    
-    **Signature**
-    ```csharp
-    public SessionBuilder DeleteCollector(string name)
+    public SessionBuilder RemoveCollector(string name)
     ```
     
     **Docstring**
@@ -804,13 +551,11 @@ The functions on this page are grouped by responsibility so related operations s
     
     Use this method when working with the documented Runner session builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
-## Stages
-
-### `CreateStage`
+### `RemoveCollectorAt`
 
 ??? info "Source file, signature, and docstring"
     **Member**
-    `SessionBuilder.CreateStage(StageConfig stage)`
+    `SessionBuilder.RemoveCollectorAt(int index)`
     
     **Kind** `function`
     
@@ -820,20 +565,22 @@ The functions on this page are grouped by responsibility so related operations s
     
     **Signature**
     ```csharp
-    public SessionBuilder CreateStage(StageConfig stage)
+    public SessionBuilder RemoveCollectorAt(int index)
     ```
     
     **Docstring**
     
-    Creates or adds the configured stage entry on the current Runner session builder instance.
+    Removes the configured collector at the specified index from the current Runner session builder instance.
     
     Use this method when working with the documented Runner session builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
-### `ReadStages`
+## Stages
+
+### `AddStage`
 
 ??? info "Source file, signature, and docstring"
     **Member**
-    `SessionBuilder.ReadStages()`
+    `SessionBuilder.AddStage(StageConfig stage)`
     
     **Kind** `function`
     
@@ -843,37 +590,14 @@ The functions on this page are grouped by responsibility so related operations s
     
     **Signature**
     ```csharp
-    public IReadOnlyList<StageConfig> ReadStages()
+    public SessionBuilder AddStage(StageConfig stage)
     ```
     
     **Docstring**
     
-    Returns the configured stages currently stored on the Runner session builder instance.
+    Adds the supplied stage to the current Runner session builder instance.
     
-    Use this method when working with the documented Runner session builder API surface in code. Use it to inspect the current configured state without rebuilding the surrounding collection or runtime object graph.
-
-### `ReadStage`
-
-??? info "Source file, signature, and docstring"
-    **Member**
-    `SessionBuilder.ReadStage(int stageNumber)`
-    
-    **Kind** `function`
-    
-    **Declaring Type** `SessionBuilder`
-    
-    **Source File** `QaaS.Runner.Sessions/Session/Builders/SessionBuilderLogic.cs`
-    
-    **Signature**
-    ```csharp
-    public StageConfig? ReadStage(int stageNumber)
-    ```
-    
-    **Docstring**
-    
-    Returns the configured stage currently stored on the Runner session builder instance.
-    
-    Use this method when working with the documented Runner session builder API surface in code. Use it to inspect the current configured state without rebuilding the surrounding collection or runtime object graph.
+    Use this method when working with the documented Runner session builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
 ### `UpdateStage`
 
@@ -898,11 +622,11 @@ The functions on this page are grouped by responsibility so related operations s
     
     Use this method when working with the documented Runner session builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
-### `DeleteStage`
+### `RemoveStage`
 
 ??? info "Source file, signature, and docstring"
     **Member**
-    `SessionBuilder.DeleteStage(int stageNumber)`
+    `SessionBuilder.RemoveStage(int stageNumber)`
     
     **Kind** `function`
     
@@ -912,12 +636,35 @@ The functions on this page are grouped by responsibility so related operations s
     
     **Signature**
     ```csharp
-    public SessionBuilder DeleteStage(int stageNumber)
+    public SessionBuilder RemoveStage(int stageNumber)
     ```
     
     **Docstring**
     
     Removes the configured stage from the current Runner session builder instance.
+    
+    Use this method when working with the documented Runner session builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
+
+### `RemoveStageAt`
+
+??? info "Source file, signature, and docstring"
+    **Member**
+    `SessionBuilder.RemoveStageAt(int index)`
+    
+    **Kind** `function`
+    
+    **Declaring Type** `SessionBuilder`
+    
+    **Source File** `QaaS.Runner.Sessions/Session/Builders/SessionBuilderLogic.cs`
+    
+    **Signature**
+    ```csharp
+    public SessionBuilder RemoveStageAt(int index)
+    ```
+    
+    **Docstring**
+    
+    Removes the configured stage at the specified index from the current Runner session builder instance.
     
     Use this method when working with the documented Runner session builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
@@ -992,61 +739,13 @@ The functions on this page are grouped by responsibility so related operations s
     
     Use this when session actions that rely on offset-based date conversion should resolve daylight-saving rules from a specific time zone.
 
-## Inspection
-
-### `ReadMockerCommands`
-
-??? info "Source file, signature, and docstring"
-    **Member**
-    `SessionBuilder.ReadMockerCommands()`
-    
-    **Kind** `function`
-    
-    **Declaring Type** `SessionBuilder`
-    
-    **Source File** `QaaS.Runner.Sessions/Session/Builders/SessionBuilderLogic.cs`
-    
-    **Signature**
-    ```csharp
-    public IReadOnlyList<MockerCommandBuilder> ReadMockerCommands()
-    ```
-    
-    **Docstring**
-    
-    Returns the configured mocker commands currently stored on the Runner session builder instance.
-    
-    Use this method when working with the documented Runner session builder API surface in code. Use it to inspect the current configured state without rebuilding the surrounding collection or runtime object graph.
-
-### `ReadMockerCommand`
-
-??? info "Source file, signature, and docstring"
-    **Member**
-    `SessionBuilder.ReadMockerCommand(string name)`
-    
-    **Kind** `function`
-    
-    **Declaring Type** `SessionBuilder`
-    
-    **Source File** `QaaS.Runner.Sessions/Session/Builders/SessionBuilderLogic.cs`
-    
-    **Signature**
-    ```csharp
-    public MockerCommandBuilder? ReadMockerCommand(string name)
-    ```
-    
-    **Docstring**
-    
-    Returns the configured mocker command currently stored on the Runner session builder instance.
-    
-    Use this method when working with the documented Runner session builder API surface in code. Use it to inspect the current configured state without rebuilding the surrounding collection or runtime object graph.
-
 ## Collection helpers
 
-### `CreateMockerCommand`
+### `AddMockerCommand`
 
 ??? info "Source file, signature, and docstring"
     **Member**
-    `SessionBuilder.CreateMockerCommand(MockerCommandBuilder mockerCommandBuilder)`
+    `SessionBuilder.AddMockerCommand(MockerCommandBuilder mockerCommandBuilder)`
     
     **Kind** `function`
     
@@ -1056,12 +755,12 @@ The functions on this page are grouped by responsibility so related operations s
     
     **Signature**
     ```csharp
-    public SessionBuilder CreateMockerCommand(MockerCommandBuilder mockerCommandBuilder)
+    public SessionBuilder AddMockerCommand(MockerCommandBuilder mockerCommandBuilder)
     ```
     
     **Docstring**
     
-    Creates or adds the configured mocker command entry on the current Runner session builder instance.
+    Adds the supplied mocker command to the current Runner session builder instance.
     
     Use this method when working with the documented Runner session builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
@@ -1088,11 +787,11 @@ The functions on this page are grouped by responsibility so related operations s
     
     Use this method when working with the documented Runner session builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
-### `UpdateMockerCommand`
+### `RemoveMockerCommand`
 
 ??? info "Source file, signature, and docstring"
     **Member**
-    `SessionBuilder.UpdateMockerCommand(string name, Func<MockerCommandBuilder, MockerCommandBuilder> update)`
+    `SessionBuilder.RemoveMockerCommand(string name)`
     
     **Kind** `function`
     
@@ -1102,35 +801,35 @@ The functions on this page are grouped by responsibility so related operations s
     
     **Signature**
     ```csharp
-    public SessionBuilder UpdateMockerCommand(string name, Func<MockerCommandBuilder, MockerCommandBuilder> update)
-    ```
-    
-    **Docstring**
-    
-    Updates the configured mocker command stored on the current Runner session builder instance.
-    
-    Use this method when working with the documented Runner session builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
-
-### `DeleteMockerCommand`
-
-??? info "Source file, signature, and docstring"
-    **Member**
-    `SessionBuilder.DeleteMockerCommand(string name)`
-    
-    **Kind** `function`
-    
-    **Declaring Type** `SessionBuilder`
-    
-    **Source File** `QaaS.Runner.Sessions/Session/Builders/SessionBuilderLogic.cs`
-    
-    **Signature**
-    ```csharp
-    public SessionBuilder DeleteMockerCommand(string name)
+    public SessionBuilder RemoveMockerCommand(string name)
     ```
     
     **Docstring**
     
     Removes the configured mocker command from the current Runner session builder instance.
+    
+    Use this method when working with the documented Runner session builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
+
+### `RemoveMockerCommandAt`
+
+??? info "Source file, signature, and docstring"
+    **Member**
+    `SessionBuilder.RemoveMockerCommandAt(int index)`
+    
+    **Kind** `function`
+    
+    **Declaring Type** `SessionBuilder`
+    
+    **Source File** `QaaS.Runner.Sessions/Session/Builders/SessionBuilderLogic.cs`
+    
+    **Signature**
+    ```csharp
+    public SessionBuilder RemoveMockerCommandAt(int index)
+    ```
+    
+    **Docstring**
+    
+    Removes the configured mocker command at the specified index from the current Runner session builder instance.
     
     Use this method when working with the documented Runner session builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 

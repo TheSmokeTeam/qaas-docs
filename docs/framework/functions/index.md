@@ -16,6 +16,7 @@ Each category page keeps the table of contents focused on short function names a
 - [Contexts](contexts.md)
 - [Enumerables](enumerables.md)
 - [Placeholders](placeholders.md)
+- [Updates](updates.md)
 - [YAML](yaml.md)
 
 ### Extension Methods

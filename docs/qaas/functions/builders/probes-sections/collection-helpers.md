@@ -21,15 +21,15 @@ This page mirrors the `Collection helpers` section from [Probes](../probes.md).
     
     **Docstring**
     
-    Updates the configuration currently stored on the Runner probe builder instance.
+    Sets the configuration currently stored on the Runner probe builder instance.
     
     Use this method when working with the documented Runner probe builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
-## `DeleteConfiguration`
+## `RemoveConfiguration`
 
 ??? info "Source file, signature, and docstring"
     **Member**
-    `ProbeBuilder.DeleteConfiguration()`
+    `ProbeBuilder.RemoveConfiguration()`
     
     **Kind** `function`
     
@@ -39,7 +39,7 @@ This page mirrors the `Collection helpers` section from [Probes](../probes.md).
     
     **Signature**
     ```csharp
-    public ProbeBuilder DeleteConfiguration()
+    public ProbeBuilder RemoveConfiguration()
     ```
     
     **Docstring**
