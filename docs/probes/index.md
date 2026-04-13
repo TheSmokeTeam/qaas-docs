@@ -59,8 +59,8 @@ The built-in hooks below are grouped by usage area so it is easier to shortlist 
 - [DropMongoDbCollection](availableProbes/DropMongoDbCollection/overview.md): Drops the configured MongoDB collection so a later run can recreate it from scratch.
 - [EmptyMongoDbCollection](availableProbes/EmptyMongoDbCollection/overview.md): Deletes all documents from the configured MongoDB collection so it starts clean for the test run.
 - [CreateS3Bucket](availableProbes/CreateS3Bucket/overview.md): Ensures the configured S3 bucket exists by creating it when it is missing.
-- [DeleteS3Bucket](availableProbes/DeleteS3Bucket/overview.md): Probe to delete a s3 bucket
-- [EmptyS3Bucket](availableProbes/EmptyS3Bucket/overview.md): Probe to empty a s3 bucket according to a certain prefix
+- [DeleteS3Bucket](availableProbes/DeleteS3Bucket/overview.md): Empties the configured S3 bucket and deletes it, treating a missing bucket as an already-satisfied state.
+- [EmptyS3Bucket](availableProbes/EmptyS3Bucket/overview.md): Deletes objects from the configured S3 bucket, optionally constrained to a prefix, while treating a missing bucket as a no-op.
 
 ### SQL maintenance
 

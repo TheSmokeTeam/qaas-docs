@@ -1,6 +1,6 @@
 # DeleteS3Bucket
 
-Probe to delete a s3 bucket
+Empties the configured S3 bucket and deletes it, treating a missing bucket as an already-satisfied state.
 
 ## What It Does
 
