@@ -4,50 +4,6 @@ This page collects public `Runner` extension methods that have XML documentation
 
 Annotated extension methods continue to appear in their regular category pages; this page gives the extension surface a dedicated view.
 
-## Configuration mutation
-
-### `UpdateConfiguration<TConfiguration>`
-
-??? info "Source file, signature, and docstring"
-    **Member**
-    `ConfigurationMutationExtensions.UpdateConfiguration<TConfiguration>(this TConfiguration? currentConfiguration, TConfiguration incomingConfiguration)`
-    
-    **Kind** `function`
-    
-    **Declaring Type** `ConfigurationMutationExtensions (extension type)`
-    
-    **Source File** `QaaS.Runner.Infrastructure/ConfigurationMutationExtensions.cs`
-    
-    **Signature**
-    ```csharp
-    public static TConfiguration UpdateConfiguration<TConfiguration>(this TConfiguration? currentConfiguration, TConfiguration incomingConfiguration) where TConfiguration : class
-    ```
-    
-    **Docstring**
-    
-    Forwards typed configuration updates to ConfigurationUpdateExtensions .
-
-### `UpdateConfiguration`
-
-??? info "Source file, signature, and docstring"
-    **Member**
-    `ConfigurationMutationExtensions.UpdateConfiguration(this IConfiguration? currentConfiguration, object incomingConfiguration)`
-    
-    **Kind** `function`
-    
-    **Declaring Type** `ConfigurationMutationExtensions (extension type)`
-    
-    **Source File** `QaaS.Runner.Infrastructure/ConfigurationMutationExtensions.cs`
-    
-    **Signature**
-    ```csharp
-    public static IConfiguration UpdateConfiguration(this IConfiguration? currentConfiguration, object incomingConfiguration)
-    ```
-    
-    **Docstring**
-    
-    Forwards raw IConfiguration updates to ConfigurationUpdateExtensions .
-
 ## Context artifact
 
 ### `SetRenderedConfigurationTemplate`

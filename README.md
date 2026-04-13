@@ -69,6 +69,17 @@ qaas-docs/
 `-- .github/workflows/ci.yml      Unified docs CI, deploy, Docker publish, and overview update workflow
 ```
 
+## Tools Folder
+
+The top-level `tools/` folder holds the build and runtime helpers that sit around the docs site itself:
+
+- `tools/nginx.conf`: the minimal Nginx site config used by the runtime image. It serves the prebuilt MkDocs site from `/usr/share/nginx/html` on port `8000`.
+- `tools/write_runtime_link_defaults.py`: a build-time helper that snapshots the effective `QAAS_DOCS_*` values into `docs/assets/javascripts/qaas-docs-build-defaults.js` before `mkdocs build`, so the browser knows what the image was built with.
+- `tools/docker-entrypoint.d/qaas-docs-runtime-overrides.sh`: a runtime helper executed by the stock Nginx entrypoint. It materializes deployment-time `QAAS_DOCS_*` overrides into `qaas-docs-runtime-overrides.js` without rebuilding the static site.
+- `tools/QaaS.Docs.Generator/`: the git submodule that owns deterministic reference-doc generation. It contains the generator library, the `QaaS.Docs.Tools` CLI, schema and navigation renderers, committed CLI snapshots, and its own README.
+
+You may also see `tools/QaaS.Docs.Generator.Tests/` locally after .NET test runs. That path is build output, not authored docs source.
+
 ## Automation
 
 The docs repository uses a single workflow: [`.github/workflows/ci.yml`](.github/workflows/ci.yml)
@@ -145,7 +156,7 @@ docker run -p 8000:8000 qaas-docs
 
 The image prebuilds the static site during `docker build` and the runtime image only serves the generated files through Nginx on port `8000`.
 
-If you need different docs URLs or repository links in the image, pass the overrides at build time:
+If you need different docs URLs or repository links baked into the image, pass the overrides at build time:
 
 ```bash
 docker build -t qaas-docs \
@@ -154,10 +165,14 @@ docker build -t qaas-docs \
   .
 ```
 
-After that, run the image normally:
+You can also override the same `QAAS_DOCS_*` URLs at container startup. The runtime image keeps the stock Nginx entrypoint and writes a small runtime override file from `/docker-entrypoint.d`, so no custom Dockerfile `ENTRYPOINT` is required:
 
 ```bash
-docker run -p 8000:8000 qaas-docs
+docker run \
+  -p 8000:8000 \
+  -e QAAS_DOCS_LINK_REPOSITORY_RUNNER=https://github.com/example/QaaS.Runner \
+  -e QAAS_DOCS_LINK_QAAS_COMMUNITY=https://discord.gg/example \
+  qaas-docs
 ```
 
-Runtime `QAAS_DOCS_*` variables are no longer used to rebuild the site. If the rendered links or metadata need to change, rebuild the image with updated `--build-arg` values.
+Runtime `QAAS_DOCS_*` variables do not rebuild the static site. They only replace the configured outbound URLs in the served HTML, so the same image can be reused across environments while preserving the default values when no runtime overrides are provided.

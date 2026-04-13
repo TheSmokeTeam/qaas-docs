@@ -13,4 +13,5 @@ ProbeConfiguration:
     Namespace:
     Password:
     Username:
+    AllowInvalidServerCertificates:
 ```

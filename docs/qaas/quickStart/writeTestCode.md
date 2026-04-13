@@ -9,9 +9,9 @@ The completed sample is available at [DummyAppTests (Code)]({{ links.repository_
 ```bash
 dotnet new qaas-runner -n DummyAppTests
 cd DummyAppTests
-dotnet add DummyAppTests/DummyAppTests.csproj package QaaS.Runner --version 4.2.0
-dotnet add DummyAppTests/DummyAppTests.csproj package QaaS.Common.Assertions --version 3.1.3
-dotnet add DummyAppTests/DummyAppTests.csproj package QaaS.Common.Generators --version 3.1.3
+dotnet add DummyAppTests/DummyAppTests.csproj package QaaS.Runner --version 4.3.0
+dotnet add DummyAppTests/DummyAppTests.csproj package QaaS.Common.Assertions --version 3.3.0
+dotnet add DummyAppTests/DummyAppTests.csproj package QaaS.Common.Generators --version 3.3.0
 ```
 
 ## Keep an Empty Bootstrap File
@@ -112,8 +112,8 @@ The publisher takes data from `FromFileSystemTestData`, applies a simple load-ba
 ```csharp
 var publisher = new PublisherBuilder()
     .Named("Publisher")
-    .CreateDataSource("FromFileSystemTestData")
-    .CreatePolicy(new PolicyBuilder().Configure(new LoadBalancePolicyConfig
+    .AddDataSource("FromFileSystemTestData")
+    .AddPolicy(new PolicyBuilder().Configure(new LoadBalancePolicyConfig
     {
         Rate = 50
     }))
@@ -158,8 +158,8 @@ The session groups the publisher and consumer into one execution flow so Runner 
 ```csharp
 var session = new SessionBuilder()
     .Named("RabbitMqExchangeWithFromFileSystemTestData")
-    .CreatePublisher(publisher)
-    .CreateConsumer(consumer);
+    .AddPublisher(publisher)
+    .AddConsumer(consumer);
 ```
 
 ### Create the Assertions
@@ -174,7 +174,7 @@ var hermeticAssertion = new AssertionBuilder
     }
     .Named("HermeticByInputOutputPercentage")
     .HookNamed(nameof(HermeticByInputOutputPercentage))
-    .CreateSessionName(session.Name!)
+    .AddSessionName(session.Name!)
     .Configure(new HermeticByInputOutputPercentageConfiguration
     {
         OutputNames = [consumer.Name!],
@@ -189,7 +189,7 @@ var delayAssertion = new AssertionBuilder
     }
     .Named("DelayByChunks")
     .HookNamed(nameof(DelayByChunks))
-    .CreateSessionName(session.Name!)
+    .AddSessionName(session.Name!)
     .Configure(new DelayByChunksConfiguration
     {
         Output = new Chunk
@@ -217,10 +217,10 @@ executionBuilder
         Team = "Smoke",
         System = "DummyApp"
     })
-    .CreateDataSource(dataSource)
-    .CreateSession(session)
-    .CreateAssertion(hermeticAssertion)
-    .CreateAssertion(delayAssertion);
+    .AddDataSource(dataSource)
+    .AddSession(session)
+    .AddAssertion(hermeticAssertion)
+    .AddAssertion(delayAssertion);
 
 runner.Run();
 ```
@@ -280,8 +280,8 @@ var rabbitMqConfiguration = new BaseRabbitMqConfig
 
 var publisher = new PublisherBuilder()
     .Named("Publisher")
-    .CreateDataSource("FromFileSystemTestData")
-    .CreatePolicy(new PolicyBuilder().Configure(new LoadBalancePolicyConfig
+    .AddDataSource("FromFileSystemTestData")
+    .AddPolicy(new PolicyBuilder().Configure(new LoadBalancePolicyConfig
     {
         Rate = 50
     }))
@@ -314,8 +314,8 @@ var consumer = new ConsumerBuilder()
 
 var session = new SessionBuilder()
     .Named("RabbitMqExchangeWithFromFileSystemTestData")
-    .CreatePublisher(publisher)
-    .CreateConsumer(consumer);
+    .AddPublisher(publisher)
+    .AddConsumer(consumer);
 
 var hermeticAssertion = new AssertionBuilder
     {
@@ -324,7 +324,7 @@ var hermeticAssertion = new AssertionBuilder
     }
     .Named("HermeticByInputOutputPercentage")
     .HookNamed(nameof(HermeticByInputOutputPercentage))
-    .CreateSessionName(session.Name!)
+    .AddSessionName(session.Name!)
     .Configure(new HermeticByInputOutputPercentageConfiguration
     {
         OutputNames = [consumer.Name!],
@@ -339,7 +339,7 @@ var delayAssertion = new AssertionBuilder
     }
     .Named("DelayByChunks")
     .HookNamed(nameof(DelayByChunks))
-    .CreateSessionName(session.Name!)
+    .AddSessionName(session.Name!)
     .Configure(new DelayByChunksConfiguration
     {
         Output = new Chunk
@@ -361,10 +361,10 @@ executionBuilder
         Team = "Smoke",
         System = "DummyApp"
     })
-    .CreateDataSource(dataSource)
-    .CreateSession(session)
-    .CreateAssertion(hermeticAssertion)
-    .CreateAssertion(delayAssertion);
+    .AddDataSource(dataSource)
+    .AddSession(session)
+    .AddAssertion(hermeticAssertion)
+    .AddAssertion(delayAssertion);
 
 runner.Run();
 ```

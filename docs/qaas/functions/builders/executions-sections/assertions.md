@@ -2,11 +2,11 @@
 
 This page mirrors the `Assertions` section from [Executions](../executions.md).
 
-## `CreateAssertion`
+## `AddAssertion`
 
 ??? info "Source file, signature, and docstring"
     **Member**
-    `ExecutionBuilder.CreateAssertion(AssertionBuilder assertionBuilder)`
+    `ExecutionBuilder.AddAssertion(AssertionBuilder assertionBuilder)`
     
     **Kind** `function`
     
@@ -16,60 +16,14 @@ This page mirrors the `Assertions` section from [Executions](../executions.md).
     
     **Signature**
     ```csharp
-    public ExecutionBuilder CreateAssertion(AssertionBuilder assertionBuilder)
+    public ExecutionBuilder AddAssertion(AssertionBuilder assertionBuilder)
     ```
     
     **Docstring**
     
-    Creates or adds the configured assertion entry on the current Runner execution builder instance.
+    Adds the supplied assertion to the current Runner execution builder instance.
     
     Use this method when working with the documented Runner execution builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
-
-## `ReadAssertions`
-
-??? info "Source file, signature, and docstring"
-    **Member**
-    `ExecutionBuilder.ReadAssertions()`
-    
-    **Kind** `function`
-    
-    **Declaring Type** `ExecutionBuilder`
-    
-    **Source File** `QaaS.Runner/ExecutionBuilder.cs`
-    
-    **Signature**
-    ```csharp
-    public IReadOnlyList<AssertionBuilder> ReadAssertions()
-    ```
-    
-    **Docstring**
-    
-    Returns the configured assertions currently stored on the Runner execution builder instance.
-    
-    Use this method when working with the documented Runner execution builder API surface in code. Use it to inspect the current configured state without rebuilding the surrounding collection or runtime object graph.
-
-## `ReadAssertion`
-
-??? info "Source file, signature, and docstring"
-    **Member**
-    `ExecutionBuilder.ReadAssertion(string assertionName)`
-    
-    **Kind** `function`
-    
-    **Declaring Type** `ExecutionBuilder`
-    
-    **Source File** `QaaS.Runner/ExecutionBuilder.cs`
-    
-    **Signature**
-    ```csharp
-    public AssertionBuilder? ReadAssertion(string assertionName)
-    ```
-    
-    **Docstring**
-    
-    Returns the configured assertion currently stored on the Runner execution builder instance.
-    
-    Use this method when working with the documented Runner execution builder API surface in code. Use it to inspect the current configured state without rebuilding the surrounding collection or runtime object graph.
 
 ## `UpdateAssertion`
 
@@ -94,11 +48,11 @@ This page mirrors the `Assertions` section from [Executions](../executions.md).
     
     Use this method when working with the documented Runner execution builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
-## `DeleteAssertion`
+## `RemoveAssertion`
 
 ??? info "Source file, signature, and docstring"
     **Member**
-    `ExecutionBuilder.DeleteAssertion(string assertionName)`
+    `ExecutionBuilder.RemoveAssertion(string assertionName)`
     
     **Kind** `function`
     
@@ -108,11 +62,34 @@ This page mirrors the `Assertions` section from [Executions](../executions.md).
     
     **Signature**
     ```csharp
-    public ExecutionBuilder DeleteAssertion(string assertionName)
+    public ExecutionBuilder RemoveAssertion(string assertionName)
     ```
     
     **Docstring**
     
     Removes the configured assertion from the current Runner execution builder instance.
+    
+    Use this method when working with the documented Runner execution builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
+
+## `RemoveAssertionAt`
+
+??? info "Source file, signature, and docstring"
+    **Member**
+    `ExecutionBuilder.RemoveAssertionAt(int index)`
+    
+    **Kind** `function`
+    
+    **Declaring Type** `ExecutionBuilder`
+    
+    **Source File** `QaaS.Runner/ExecutionBuilder.cs`
+    
+    **Signature**
+    ```csharp
+    public ExecutionBuilder RemoveAssertionAt(int index)
+    ```
+    
+    **Docstring**
+    
+    Removes the configured assertion at the specified index from the current Runner execution builder instance.
     
     Use this method when working with the documented Runner execution builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.

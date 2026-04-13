@@ -2,11 +2,11 @@
 
 This page mirrors the `Data source selection` section from [Transactions](../transactions.md).
 
-## `CreateDataSource`
+## `AddDataSource`
 
 ??? info "Source file, signature, and docstring"
     **Member**
-    `TransactionBuilder.CreateDataSource(string dataSourceName)`
+    `TransactionBuilder.AddDataSource(string dataSourceName)`
     
     **Kind** `function`
     
@@ -16,20 +16,20 @@ This page mirrors the `Data source selection` section from [Transactions](../tra
     
     **Signature**
     ```csharp
-    public TransactionBuilder CreateDataSource(string dataSourceName)
+    public TransactionBuilder AddDataSource(string dataSourceName)
     ```
     
     **Docstring**
     
-    Creates or adds the configured data source entry on the current Runner transaction builder instance.
+    Adds the supplied data source to the current Runner transaction builder instance.
     
     Use this method when working with the documented Runner transaction builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
-## `CreateDataSourcePattern`
+## `AddDataSourcePattern`
 
 ??? info "Source file, signature, and docstring"
     **Member**
-    `TransactionBuilder.CreateDataSourcePattern(string dataSourcePattern)`
+    `TransactionBuilder.AddDataSourcePattern(string dataSourcePattern)`
     
     **Kind** `function`
     
@@ -39,37 +39,14 @@ This page mirrors the `Data source selection` section from [Transactions](../tra
     
     **Signature**
     ```csharp
-    public TransactionBuilder CreateDataSourcePattern(string dataSourcePattern)
+    public TransactionBuilder AddDataSourcePattern(string dataSourcePattern)
     ```
     
     **Docstring**
     
-    Creates or adds the configured data source pattern entry on the current Runner transaction builder instance.
+    Adds the supplied data source pattern to the current Runner transaction builder instance.
     
     Use this method when working with the documented Runner transaction builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
-
-## `ReadDataSources`
-
-??? info "Source file, signature, and docstring"
-    **Member**
-    `TransactionBuilder.ReadDataSources()`
-    
-    **Kind** `function`
-    
-    **Declaring Type** `TransactionBuilder`
-    
-    **Source File** `QaaS.Runner.Sessions/Actions/Transactions/Builders/TransactionBuilder.cs`
-    
-    **Signature**
-    ```csharp
-    public IReadOnlyList<string> ReadDataSources()
-    ```
-    
-    **Docstring**
-    
-    Returns the configured data sources currently stored on the Runner transaction builder instance.
-    
-    Use this method when working with the documented Runner transaction builder API surface in code. Use it to inspect the current configured state without rebuilding the surrounding collection or runtime object graph.
 
 ## `UpdateDataSource`
 
@@ -94,11 +71,11 @@ This page mirrors the `Data source selection` section from [Transactions](../tra
     
     Use this method when working with the documented Runner transaction builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
-## `DeleteDataSource`
+## `RemoveDataSource`
 
 ??? info "Source file, signature, and docstring"
     **Member**
-    `TransactionBuilder.DeleteDataSource(string dataSourceName)`
+    `TransactionBuilder.RemoveDataSource(string dataSourceName)`
     
     **Kind** `function`
     
@@ -108,7 +85,7 @@ This page mirrors the `Data source selection` section from [Transactions](../tra
     
     **Signature**
     ```csharp
-    public TransactionBuilder DeleteDataSource(string dataSourceName)
+    public TransactionBuilder RemoveDataSource(string dataSourceName)
     ```
     
     **Docstring**
@@ -117,11 +94,11 @@ This page mirrors the `Data source selection` section from [Transactions](../tra
     
     Use this method when working with the documented Runner transaction builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
-## `ReadDataSourcePatterns`
+## `RemoveDataSourceAt`
 
 ??? info "Source file, signature, and docstring"
     **Member**
-    `TransactionBuilder.ReadDataSourcePatterns()`
+    `TransactionBuilder.RemoveDataSourceAt(int index)`
     
     **Kind** `function`
     
@@ -131,14 +108,14 @@ This page mirrors the `Data source selection` section from [Transactions](../tra
     
     **Signature**
     ```csharp
-    public IReadOnlyList<string> ReadDataSourcePatterns()
+    public TransactionBuilder RemoveDataSourceAt(int index)
     ```
     
     **Docstring**
     
-    Returns the configured data source patterns currently stored on the Runner transaction builder instance.
+    Removes the configured data source at the specified index from the current Runner transaction builder instance.
     
-    Use this method when working with the documented Runner transaction builder API surface in code. Use it to inspect the current configured state without rebuilding the surrounding collection or runtime object graph.
+    Use this method when working with the documented Runner transaction builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
 ## `UpdateDataSourcePattern`
 
@@ -163,11 +140,11 @@ This page mirrors the `Data source selection` section from [Transactions](../tra
     
     Use this method when working with the documented Runner transaction builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
-## `DeleteDataSourcePattern`
+## `RemoveDataSourcePattern`
 
 ??? info "Source file, signature, and docstring"
     **Member**
-    `TransactionBuilder.DeleteDataSourcePattern(string dataSourcePattern)`
+    `TransactionBuilder.RemoveDataSourcePattern(string dataSourcePattern)`
     
     **Kind** `function`
     
@@ -177,11 +154,34 @@ This page mirrors the `Data source selection` section from [Transactions](../tra
     
     **Signature**
     ```csharp
-    public TransactionBuilder DeleteDataSourcePattern(string dataSourcePattern)
+    public TransactionBuilder RemoveDataSourcePattern(string dataSourcePattern)
     ```
     
     **Docstring**
     
     Removes the configured data source pattern from the current Runner transaction builder instance.
+    
+    Use this method when working with the documented Runner transaction builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
+
+## `RemoveDataSourcePatternAt`
+
+??? info "Source file, signature, and docstring"
+    **Member**
+    `TransactionBuilder.RemoveDataSourcePatternAt(int index)`
+    
+    **Kind** `function`
+    
+    **Declaring Type** `TransactionBuilder`
+    
+    **Source File** `QaaS.Runner.Sessions/Actions/Transactions/Builders/TransactionBuilder.cs`
+    
+    **Signature**
+    ```csharp
+    public TransactionBuilder RemoveDataSourcePatternAt(int index)
+    ```
+    
+    **Docstring**
+    
+    Removes the configured data source pattern at the specified index from the current Runner transaction builder instance.
     
     Use this method when working with the documented Runner transaction builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.

@@ -32,6 +32,26 @@ The results of a single assertion
 
 Each assertion status can have one of the following statuses: `Passed`/`Failed`/`Broken`
 
+#### Status details
+
+For passed, failed, skipped, and unknown assertion results, Allure status details use the assertion hook's `AssertionMessage` and, when `DisplayTrace` is true, `AssertionTrace`.
+
+For broken assertion results, Allure status details use the thrown exception message and trace. When `DisplayTrace` is false, Runner writes a short placeholder instead of the assertion trace or exception trace.
+
+#### Attachments
+
+Runner can add several attachment types to a test result:
+
+| Attachment | Controlled By | Notes |
+| ---------- | ------------- | ----- |
+| Session data JSON | `SaveSessionData` | Attached to each session step and also kept under `allure-results/SessionsData/` for raw file-system consumers. |
+| Session logs | `SaveLogs` | Attached when the session has stored log text. |
+| Rendered configuration template | `SaveTemplate` | Saved as `template.yaml`. |
+| Custom assertion attachments | `SaveAttachments` | Built from the assertion hook's `AssertionAttachments` list and kept under `allure-results/AssertionsAttachments/`. |
+| Coverage files | Always collected when matching files exist | Collected from `allure-results/Coverages/` for the assertion's execution, case, and session names. |
+
+Custom assertion attachments must use relative paths that include a file name. Runner normalizes paths and rejects duplicates in the same assertion result. The `SerializationType` on each attachment controls serialization and report MIME type; with no serialization type, the data is treated as raw bytes.
+
 #### Flaky
 
 A Passed test can be marked as `Flaky`, which means the test has passed, but cannot be trusted due to one or more failed actions (publisher/consumer/transaction/collector/probe) in the current run that do not directly affect the assertion.

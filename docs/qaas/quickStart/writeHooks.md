@@ -164,6 +164,7 @@ To verify that output JSON arrays have the expected length, implement a custom a
 using System.Collections.Immutable;
 using System.ComponentModel.DataAnnotations;
 using System.Text.Json.Nodes;
+using QaaS.Framework.Serialization;
 using QaaS.Framework.SDK.DataSourceObjects;
 using QaaS.Framework.SDK.Extensions;
 using QaaS.Framework.SDK.Hooks.Assertion;
@@ -200,13 +201,41 @@ public class LengthAssertion : BaseAssertion<LengthAssertionConfiguration>
             .GetOutputByName(Configuration.OutputName!)
             .CastCommunicationData<JsonArray>();
 
-        var countOfOutputsNotTheCorrectLength = output.Data.Count(item => item.Body?.Count != Configuration.ExpectedLength);
+        var invalidOutputs = output.Data
+            .Select((item, index) => new { Index = index, ActualLength = item.Body?.Count })
+            .Where(item => item.ActualLength != Configuration.ExpectedLength)
+            .ToArray();
 
-        AssertionMessage = $"Number of outputs that were not the expected length is {countOfOutputsNotTheCorrectLength}";
-        return countOfOutputsNotTheCorrectLength == 0;
+        AssertionMessage = $"Number of outputs that were not the expected length is {invalidOutputs.Length}";
+        AssertionTrace = invalidOutputs.Length == 0
+            ? "All outputs matched the expected length."
+            : string.Join(Environment.NewLine, invalidOutputs.Select(item =>
+                $"Output #{item.Index} had length {item.ActualLength?.ToString() ?? "null"}."));
+        AssertionAttachments.Add(new AssertionAttachment
+        {
+            Path = "length-assertion/summary.json",
+            Data = new
+            {
+                ExpectedLength = Configuration.ExpectedLength,
+                InvalidOutputCount = invalidOutputs.Length,
+                InvalidOutputs = invalidOutputs
+            },
+            SerializationType = SerializationType.Json
+        });
+
+        return invalidOutputs.Length == 0;
     }
 }
 ```
+
+### Assertion Result Fields
+
+`BaseAssertion<TConfiguration>` gives custom assertions a few result fields that are picked up by Runner reporting:
+
+- `AssertionMessage` becomes the Allure status message for passed, failed, skipped, and unknown assertion results.
+- `AssertionTrace` becomes the Allure status trace when the assertion's `DisplayTrace` configuration is true. Set `DisplayTrace: false` when the trace is very large or sensitive.
+- `AssertionAttachments` stores extra files with the assertion result. Each `AssertionAttachment` needs a relative `Path`, the `Data` to persist, and an optional `SerializationType`. If `SerializationType` is null, the data is treated as raw bytes.
+- `AssertionStatus` can explicitly override the boolean returned from `Assert(...)`. Leave it unset for the usual `true` to `Passed` and `false` to `Failed` mapping. Any exception thrown from `Assert(...)` is reported as `Broken`.
 
 ### Assertion YAML Usage
 
