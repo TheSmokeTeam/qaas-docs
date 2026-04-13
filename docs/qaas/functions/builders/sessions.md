@@ -106,6 +106,29 @@ The functions on this page are grouped by responsibility so related operations s
 
 ## Probes
 
+### `AddProbe`
+
+??? info "Source file, signature, and docstring"
+    **Member**
+    `SessionBuilder.AddProbe(ProbeBuilder probeBuilder)`
+    
+    **Kind** `function`
+    
+    **Declaring Type** `SessionBuilder`
+    
+    **Source File** `QaaS.Runner.Sessions/Session/Builders/SessionBuilderLogic.cs`
+    
+    **Signature**
+    ```csharp
+    public SessionBuilder AddProbe(ProbeBuilder probeBuilder)
+    ```
+    
+    **Docstring**
+    
+    Adds the supplied probe to the current Runner session builder instance.
+    
+    Use this method when working with the documented Runner session builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
+
 ### `CreateProbe`
 
 ??? info "Source file, signature, and docstring"
@@ -245,6 +268,29 @@ The functions on this page are grouped by responsibility so related operations s
     Use this method when working with the documented Runner session builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
 ## Publishers
+
+### `AddPublisher`
+
+??? info "Source file, signature, and docstring"
+    **Member**
+    `SessionBuilder.AddPublisher(PublisherBuilder publisherBuilder)`
+    
+    **Kind** `function`
+    
+    **Declaring Type** `SessionBuilder`
+    
+    **Source File** `QaaS.Runner.Sessions/Session/Builders/SessionBuilderLogic.cs`
+    
+    **Signature**
+    ```csharp
+    public SessionBuilder AddPublisher(PublisherBuilder publisherBuilder)
+    ```
+    
+    **Docstring**
+    
+    Adds the supplied publisher to the current Runner session builder instance.
+    
+    Use this method when working with the documented Runner session builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
 ### `CreatePublisher`
 
@@ -386,6 +432,29 @@ The functions on this page are grouped by responsibility so related operations s
 
 ## Consumers
 
+### `AddConsumer`
+
+??? info "Source file, signature, and docstring"
+    **Member**
+    `SessionBuilder.AddConsumer(ConsumerBuilder consumerBuilder)`
+    
+    **Kind** `function`
+    
+    **Declaring Type** `SessionBuilder`
+    
+    **Source File** `QaaS.Runner.Sessions/Session/Builders/SessionBuilderLogic.cs`
+    
+    **Signature**
+    ```csharp
+    public SessionBuilder AddConsumer(ConsumerBuilder consumerBuilder)
+    ```
+    
+    **Docstring**
+    
+    Adds the supplied consumer to the current Runner session builder instance.
+    
+    Use this method when working with the documented Runner session builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
+
 ### `CreateConsumer`
 
 ??? info "Source file, signature, and docstring"
@@ -525,6 +594,29 @@ The functions on this page are grouped by responsibility so related operations s
     Use this method when working with the documented Runner session builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
 ## Transactions
+
+### `AddTransaction`
+
+??? info "Source file, signature, and docstring"
+    **Member**
+    `SessionBuilder.AddTransaction(TransactionBuilder transactionBuilder)`
+    
+    **Kind** `function`
+    
+    **Declaring Type** `SessionBuilder`
+    
+    **Source File** `QaaS.Runner.Sessions/Session/Builders/SessionBuilderLogic.cs`
+    
+    **Signature**
+    ```csharp
+    public SessionBuilder AddTransaction(TransactionBuilder transactionBuilder)
+    ```
+    
+    **Docstring**
+    
+    Adds the supplied transaction to the current Runner session builder instance.
+    
+    Use this method when working with the documented Runner session builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
 ### `CreateTransaction`
 
@@ -666,6 +758,29 @@ The functions on this page are grouped by responsibility so related operations s
 
 ## Collectors
 
+### `AddCollector`
+
+??? info "Source file, signature, and docstring"
+    **Member**
+    `SessionBuilder.AddCollector(CollectorBuilder collectorBuilder)`
+    
+    **Kind** `function`
+    
+    **Declaring Type** `SessionBuilder`
+    
+    **Source File** `QaaS.Runner.Sessions/Session/Builders/SessionBuilderLogic.cs`
+    
+    **Signature**
+    ```csharp
+    public SessionBuilder AddCollector(CollectorBuilder collectorBuilder)
+    ```
+    
+    **Docstring**
+    
+    Adds the supplied collector to the current Runner session builder instance.
+    
+    Use this method when working with the documented Runner session builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
+
 ### `CreateCollector`
 
 ??? info "Source file, signature, and docstring"
@@ -805,6 +920,29 @@ The functions on this page are grouped by responsibility so related operations s
     Use this method when working with the documented Runner session builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
 ## Stages
+
+### `AddStage`
+
+??? info "Source file, signature, and docstring"
+    **Member**
+    `SessionBuilder.AddStage(StageConfig stage)`
+    
+    **Kind** `function`
+    
+    **Declaring Type** `SessionBuilder`
+    
+    **Source File** `QaaS.Runner.Sessions/Session/Builders/SessionBuilderLogic.cs`
+    
+    **Signature**
+    ```csharp
+    public SessionBuilder AddStage(StageConfig stage)
+    ```
+    
+    **Docstring**
+    
+    Adds the supplied stage to the current Runner session builder instance.
+    
+    Use this method when working with the documented Runner session builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
 ### `CreateStage`
 
@@ -969,29 +1107,6 @@ The functions on this page are grouped by responsibility so related operations s
     
     Use this method when working with the documented Runner session builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
-### `WithTimeZone`
-
-??? info "Source file, signature, and docstring"
-    **Member**
-    `SessionBuilder.WithTimeZone(string timeZoneId)`
-    
-    **Kind** `function`
-    
-    **Declaring Type** `SessionBuilder`
-    
-    **Source File** `QaaS.Runner.Sessions/Session/Builders/SessionBuilderLogic.cs`
-    
-    **Signature**
-    ```csharp
-    public SessionBuilder WithTimeZone(string timeZoneId)
-    ```
-    
-    **Docstring**
-    
-    Sets the time zone id used for daylight-saving-aware offset conversions in this session.
-    
-    Use this when session actions that rely on offset-based date conversion should resolve daylight-saving rules from a specific time zone.
-
 ## Inspection
 
 ### `ReadMockerCommands`
@@ -1041,6 +1156,29 @@ The functions on this page are grouped by responsibility so related operations s
     Use this method when working with the documented Runner session builder API surface in code. Use it to inspect the current configured state without rebuilding the surrounding collection or runtime object graph.
 
 ## Collection helpers
+
+### `AddMockerCommand`
+
+??? info "Source file, signature, and docstring"
+    **Member**
+    `SessionBuilder.AddMockerCommand(MockerCommandBuilder mockerCommandBuilder)`
+    
+    **Kind** `function`
+    
+    **Declaring Type** `SessionBuilder`
+    
+    **Source File** `QaaS.Runner.Sessions/Session/Builders/SessionBuilderLogic.cs`
+    
+    **Signature**
+    ```csharp
+    public SessionBuilder AddMockerCommand(MockerCommandBuilder mockerCommandBuilder)
+    ```
+    
+    **Docstring**
+    
+    Adds the supplied mocker command to the current Runner session builder instance.
+    
+    Use this method when working with the documented Runner session builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
 ### `CreateMockerCommand`
 

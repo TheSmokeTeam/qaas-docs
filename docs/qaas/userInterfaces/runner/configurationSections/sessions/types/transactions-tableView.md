@@ -6,7 +6,6 @@
 | `Sessions[].Transactions[]` | `object or string` | &#10006 |  |  |
 | `Sessions[].Transactions[].Name` | `string` | &#10004 |  | The communication action's name which acts as a unique identifier, used as the name of the communication action's produced input/output |
 | `Sessions[].Transactions[].TimeoutMs` | `integer or string` | &#10004 |  | the consumption timeout in milliseconds (timeout is the time to wait for a response after sending a request) |
-| `Sessions[].Transactions[].Configuration` | `object or string` | &#10006 |  |  |
 | `Sessions[].Transactions[].Iterations` | `integer or string` | &#10006 | 1 | How much iterations of the publishing action to execute |
 | `Sessions[].Transactions[].Loop` | `string or true/false` | &#10006 | False | Whether to publish in loop |
 | `Sessions[].Transactions[].SleepTimeMs` | `integer or string` | &#10006 | 0 | The time to sleep in milliseconds in between iterations |

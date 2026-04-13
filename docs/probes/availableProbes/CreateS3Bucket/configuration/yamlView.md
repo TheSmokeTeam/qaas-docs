@@ -7,5 +7,4 @@ ProbeConfiguration:
   ServiceURL:
   StorageBucket:
   ForcePathStyle:
-  UseGlobalDict:
 ```

@@ -5,7 +5,6 @@ ProbeConfiguration:
   Host:
   Password:
   Port:
-  UseGlobalDict:
   Username:
   VirtualHost:
   Queues:

@@ -8,5 +8,4 @@ ProbeConfiguration:
   Username:
   MatchQueryString:
   RequestTimeoutMs:
-  UseGlobalDict:
 ```

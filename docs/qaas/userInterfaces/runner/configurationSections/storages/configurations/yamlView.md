@@ -2,8 +2,7 @@
 
 ```yaml
 Storages:
-  - Configuration:
-    JsonStorageFormat:
+  - JsonStorageFormat:
     FileSystem:
       Path:
       SearchPattern:

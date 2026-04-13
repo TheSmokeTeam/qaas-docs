@@ -56,6 +56,29 @@ The functions on this page are grouped by responsibility so related operations s
 
 ## Policies
 
+### `AddPolicy`
+
+??? info "Source file, signature, and docstring"
+    **Member**
+    `ConsumerBuilder.AddPolicy(PolicyBuilder policy)`
+    
+    **Kind** `function`
+    
+    **Declaring Type** `ConsumerBuilder`
+    
+    **Source File** `QaaS.Runner.Sessions/Actions/Consumers/Builders/ConsumerBuilderLogic.cs`
+    
+    **Signature**
+    ```csharp
+    public ConsumerBuilder AddPolicy(PolicyBuilder policy)
+    ```
+    
+    **Docstring**
+    
+    Adds the supplied policy to the current Runner consumer builder instance.
+    
+    Use this method when working with the documented Runner consumer builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
+
 ### `CreatePolicy`
 
 ??? info "Source file, signature, and docstring"
@@ -198,7 +221,76 @@ The functions on this page are grouped by responsibility so related operations s
     
     Use this method when working with the documented Runner consumer builder API surface in code. Use it to inspect the current configured state without rebuilding the surrounding collection or runtime object graph.
 
+### `ReadConfiguration`
+
+??? info "Source file, signature, and docstring"
+    **Member**
+    `ConsumerBuilder.ReadConfiguration()`
+    
+    **Kind** `function`
+    
+    **Declaring Type** `ConsumerBuilder`
+    
+    **Source File** `QaaS.Runner.Sessions/Actions/Consumers/Builders/ConsumerBuilderLogic.cs`
+    
+    **Signature**
+    ```csharp
+    public IReaderConfig? ReadConfiguration()
+    ```
+    
+    **Docstring**
+    
+    Returns the configuration currently stored on the Runner consumer builder instance.
+    
+    Use this method when working with the documented Runner consumer builder API surface in code. Use it to inspect the current configured state without rebuilding the surrounding collection or runtime object graph.
+
 ## Collection helpers
+
+### `CreateConfiguration`
+
+??? info "Source file, signature, and docstring"
+    **Member**
+    `ConsumerBuilder.CreateConfiguration(IReaderConfig config)`
+    
+    **Kind** `function`
+    
+    **Declaring Type** `ConsumerBuilder`
+    
+    **Source File** `QaaS.Runner.Sessions/Actions/Consumers/Builders/ConsumerBuilderLogic.cs`
+    
+    **Signature**
+    ```csharp
+    public ConsumerBuilder CreateConfiguration(IReaderConfig config)
+    ```
+    
+    **Docstring**
+    
+    Sets the configuration currently stored on the Runner consumer builder instance.
+    
+    Use this method when working with the documented Runner consumer builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
+
+### `Create`
+
+??? info "Source file, signature, and docstring"
+    **Member**
+    `ConsumerBuilder.Create(IReaderConfig config)`
+    
+    **Kind** `function`
+    
+    **Declaring Type** `ConsumerBuilder`
+    
+    **Source File** `QaaS.Runner.Sessions/Actions/Consumers/Builders/ConsumerBuilderLogic.cs`
+    
+    **Signature**
+    ```csharp
+    public ConsumerBuilder Create(IReaderConfig config)
+    ```
+    
+    **Docstring**
+    
+    Sets the configuration currently stored on the Runner consumer builder instance.
+    
+    Use this method when working with the documented Runner consumer builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
 ### `UpdateConfiguration`
 
@@ -219,9 +311,9 @@ The functions on this page are grouped by responsibility so related operations s
     
     **Docstring**
     
-    Returns the configuration currently stored on the Runner consumer builder instance.
+    Updates the configuration currently stored on the Runner consumer builder instance.
     
-    Use this method when working with the documented Runner consumer builder API surface in code. Use it to inspect the current configured state without rebuilding the surrounding collection or runtime object graph.
+    Use this method when working with the documented Runner consumer builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
 ### `UpdateConfiguration`
 

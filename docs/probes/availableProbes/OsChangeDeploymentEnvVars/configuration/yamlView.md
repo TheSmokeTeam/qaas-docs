@@ -7,7 +7,6 @@ ProbeConfiguration:
   EnvVarsToUpdate:
   IntervalBetweenDesiredStateChecksMs:
   TimeoutWaitForDesiredStateSeconds:
-  UseGlobalDict:
   EnvVarsToRemove: []
   Openshift:
     Cluster:

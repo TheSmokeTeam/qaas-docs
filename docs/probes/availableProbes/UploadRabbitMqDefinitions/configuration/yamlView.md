@@ -11,7 +11,6 @@ ProbeConfiguration:
   Password:
   Port:
   RequestTimeoutMs:
-  UseGlobalDict:
   Username:
   VirtualHost:
   VirtualHostName:

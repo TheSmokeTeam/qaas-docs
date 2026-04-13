@@ -70,3 +70,26 @@ This page mirrors the `Configuration` section from [Mocker Commands](../mocker-c
     Configures request retries on the current Runner mocker command builder instance.
     
     Use this method when working with the documented Runner mocker command builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
+
+## `WithCommand`
+
+??? info "Source file, signature, and docstring"
+    **Member**
+    `MockerCommandBuilder.WithCommand(MockerCommandConfig command)`
+    
+    **Kind** `function`
+    
+    **Declaring Type** `MockerCommandBuilder`
+    
+    **Source File** `QaaS.Runner.Sessions/Actions/MockerCommands/MockerCommandBuilder.cs`
+    
+    **Signature**
+    ```csharp
+    public MockerCommandBuilder WithCommand(MockerCommandConfig command)
+    ```
+    
+    **Docstring**
+    
+    Configures command on the current Runner mocker command builder instance.
+    
+    Use this method when working with the documented Runner mocker command builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.

@@ -4,6 +4,5 @@
 ProbeConfiguration:
   ConnectionString:
   CommandTimeoutSeconds:
-  UseGlobalDict:
   TableNames: []
 ```

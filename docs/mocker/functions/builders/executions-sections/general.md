@@ -25,6 +25,29 @@ This page mirrors the `General` section from [Executions](../executions.md).
     
     Use this method when working with the documented Mocker execution builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
+## `ReplaceController`
+
+??? info "Source file, signature, and docstring"
+    **Member**
+    `ExecutionBuilder.ReplaceController(ControllerConfig? controllerConfig)`
+    
+    **Kind** `function`
+    
+    **Declaring Type** `ExecutionBuilder`
+    
+    **Source File** `QaaS.Mocker/ExecutionBuilder.cs`
+    
+    **Signature**
+    ```csharp
+    public ExecutionBuilder ReplaceController(ControllerConfig? controllerConfig)
+    ```
+    
+    **Docstring**
+    
+    Replaces the configured controller on the current Mocker execution builder instance.
+    
+    Use this method when working with the documented Mocker execution builder API surface in code. The behavior exposed here is part of the public surface that the generated function documentation groups under 'Configuration as Code / Executions'.
+
 ## `Build`
 
 ??? info "Source file, signature, and docstring"

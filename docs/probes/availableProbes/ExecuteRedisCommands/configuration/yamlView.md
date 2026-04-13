@@ -11,7 +11,6 @@ ProbeConfiguration:
   RedisDataBase:
   Ssl:
   SslHost:
-  UseGlobalDict:
   Username:
   Commands:
     - Command:

@@ -171,29 +171,6 @@ The functions on this page are grouped by responsibility so related operations s
     
     Use this method when working with the documented Mocker execution builder API surface in code. Use it to inspect the current configured state without rebuilding the surrounding collection or runtime object graph.
 
-### `ReadServerAt`
-
-??? info "Source file, signature, and docstring"
-    **Member**
-    `ExecutionBuilder.ReadServerAt(int index)`
-    
-    **Kind** `function`
-    
-    **Declaring Type** `ExecutionBuilder`
-    
-    **Source File** `QaaS.Mocker/ExecutionBuilder.cs`
-    
-    **Signature**
-    ```csharp
-    public ServerConfig? ReadServerAt(int index)
-    ```
-    
-    **Docstring**
-    
-    Returns the configured server currently stored at the specified index on the Mocker execution builder instance.
-    
-    Use this method when working with the documented Mocker execution builder API surface in code. Use it to inspect the current configured state without rebuilding the surrounding collection or runtime object graph.
-
 ### `CreateServer`
 
 ??? info "Source file, signature, and docstring"
@@ -217,11 +194,11 @@ The functions on this page are grouped by responsibility so related operations s
     
     Use this method when working with the documented Mocker execution builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
-### `CreateServers`
+### `ReplaceServer`
 
 ??? info "Source file, signature, and docstring"
     **Member**
-    `ExecutionBuilder.CreateServers(params ServerConfig[] serverConfigs)`
+    `ExecutionBuilder.ReplaceServer(ServerConfig serverConfig)`
     
     **Kind** `function`
     
@@ -231,20 +208,20 @@ The functions on this page are grouped by responsibility so related operations s
     
     **Signature**
     ```csharp
-    public ExecutionBuilder CreateServers(params ServerConfig[] serverConfigs)
+    public ExecutionBuilder ReplaceServer(ServerConfig serverConfig)
     ```
     
     **Docstring**
     
-    Creates the configured server list on the current Mocker execution builder instance.
+    Replaces the configured single-server definition on the current Mocker execution builder instance.
     
-    Use this method when working with the documented Mocker execution builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
+    Use this method when working with the documented Mocker execution builder API surface in code. The behavior exposed here is part of the public surface that the generated function documentation groups under 'Configuration as Code / Executions'.
 
-### `UpdateServer`
+### `AddServer`
 
 ??? info "Source file, signature, and docstring"
     **Member**
-    `ExecutionBuilder.UpdateServer(ServerConfig serverConfig)`
+    `ExecutionBuilder.AddServer(ServerConfig serverConfig)`
     
     **Kind** `function`
     
@@ -254,20 +231,20 @@ The functions on this page are grouped by responsibility so related operations s
     
     **Signature**
     ```csharp
-    public ExecutionBuilder UpdateServer(ServerConfig serverConfig)
+    public ExecutionBuilder AddServer(ServerConfig serverConfig)
     ```
     
     **Docstring**
     
-    Updates the configured single-server definition on the current Mocker execution builder instance.
+    Adds the supplied server to the current Mocker execution builder instance.
     
     Use this method when working with the documented Mocker execution builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
-### `UpdateServerAt`
+### `ReplaceServers`
 
 ??? info "Source file, signature, and docstring"
     **Member**
-    `ExecutionBuilder.UpdateServerAt(int index, ServerConfig serverConfig)`
+    `ExecutionBuilder.ReplaceServers(params ServerConfig[] serverConfigs)`
     
     **Kind** `function`
     
@@ -277,14 +254,14 @@ The functions on this page are grouped by responsibility so related operations s
     
     **Signature**
     ```csharp
-    public ExecutionBuilder UpdateServerAt(int index, ServerConfig serverConfig)
+    public ExecutionBuilder ReplaceServers(params ServerConfig[] serverConfigs)
     ```
     
     **Docstring**
     
-    Updates the configured server stored at the specified index on the current Mocker execution builder instance.
+    Replaces the configured multi-server definitions on the current Mocker execution builder instance.
     
-    Use this method when working with the documented Mocker execution builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
+    Use this method when working with the documented Mocker execution builder API surface in code. The behavior exposed here is part of the public surface that the generated function documentation groups under 'Configuration as Code / Executions'.
 
 ### `UpdateServer`
 
@@ -306,52 +283,6 @@ The functions on this page are grouped by responsibility so related operations s
     **Docstring**
     
     Updates the configured server stored on the current Mocker execution builder instance.
-    
-    Use this method when working with the documented Mocker execution builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
-
-### `DeleteServer`
-
-??? info "Source file, signature, and docstring"
-    **Member**
-    `ExecutionBuilder.DeleteServer()`
-    
-    **Kind** `function`
-    
-    **Declaring Type** `ExecutionBuilder`
-    
-    **Source File** `QaaS.Mocker/ExecutionBuilder.cs`
-    
-    **Signature**
-    ```csharp
-    public ExecutionBuilder DeleteServer()
-    ```
-    
-    **Docstring**
-    
-    Removes the configured single-server definition from the current Mocker execution builder instance.
-    
-    Use this method when working with the documented Mocker execution builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
-
-### `DeleteServerAt`
-
-??? info "Source file, signature, and docstring"
-    **Member**
-    `ExecutionBuilder.DeleteServerAt(int index)`
-    
-    **Kind** `function`
-    
-    **Declaring Type** `ExecutionBuilder`
-    
-    **Source File** `QaaS.Mocker/ExecutionBuilder.cs`
-    
-    **Signature**
-    ```csharp
-    public ExecutionBuilder DeleteServerAt(int index)
-    ```
-    
-    **Docstring**
-    
-    Removes the configured server stored at the specified index from the current Mocker execution builder instance.
     
     Use this method when working with the documented Mocker execution builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
@@ -670,29 +601,6 @@ The functions on this page are grouped by responsibility so related operations s
 
 ??? info "Source file, signature, and docstring"
     **Member**
-    `ExecutionBuilder.UpdateController(ControllerConfig controllerConfig)`
-    
-    **Kind** `function`
-    
-    **Declaring Type** `ExecutionBuilder`
-    
-    **Source File** `QaaS.Mocker/ExecutionBuilder.cs`
-    
-    **Signature**
-    ```csharp
-    public ExecutionBuilder UpdateController(ControllerConfig controllerConfig)
-    ```
-    
-    **Docstring**
-    
-    Updates the configured controller stored on the current Mocker execution builder instance.
-    
-    Use this method when working with the documented Mocker execution builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
-
-### `UpdateController`
-
-??? info "Source file, signature, and docstring"
-    **Member**
     `ExecutionBuilder.UpdateController(Action<ControllerConfig> configureAction)`
     
     **Kind** `function`
@@ -759,6 +667,29 @@ The functions on this page are grouped by responsibility so related operations s
     Configures whether the mocker waits for an interactive local shutdown signal.
     
     Use this method when working with the documented Mocker execution builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
+
+### `ReplaceController`
+
+??? info "Source file, signature, and docstring"
+    **Member**
+    `ExecutionBuilder.ReplaceController(ControllerConfig? controllerConfig)`
+    
+    **Kind** `function`
+    
+    **Declaring Type** `ExecutionBuilder`
+    
+    **Source File** `QaaS.Mocker/ExecutionBuilder.cs`
+    
+    **Signature**
+    ```csharp
+    public ExecutionBuilder ReplaceController(ControllerConfig? controllerConfig)
+    ```
+    
+    **Docstring**
+    
+    Replaces the configured controller on the current Mocker execution builder instance.
+    
+    Use this method when working with the documented Mocker execution builder API surface in code. The behavior exposed here is part of the public surface that the generated function documentation groups under 'Configuration as Code / Executions'.
 
 ### `Build`
 

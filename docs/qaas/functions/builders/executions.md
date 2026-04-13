@@ -6,6 +6,29 @@ The functions on this page are grouped by responsibility so related operations s
 
 ## Data source selection
 
+### `AddDataSource`
+
+??? info "Source file, signature, and docstring"
+    **Member**
+    `ExecutionBuilder.AddDataSource(DataSourceBuilder dataSourceBuilder)`
+    
+    **Kind** `function`
+    
+    **Declaring Type** `ExecutionBuilder`
+    
+    **Source File** `QaaS.Runner/ExecutionBuilder.cs`
+    
+    **Signature**
+    ```csharp
+    public ExecutionBuilder AddDataSource(DataSourceBuilder dataSourceBuilder)
+    ```
+    
+    **Docstring**
+    
+    Adds the supplied data source to the current Runner execution builder instance.
+    
+    Use this method when working with the documented Runner execution builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
+
 ### `CreateDataSource`
 
 ??? info "Source file, signature, and docstring"
@@ -49,29 +72,6 @@ The functions on this page are grouped by responsibility so related operations s
     **Docstring**
     
     Returns the configured data sources currently stored on the Runner execution builder instance.
-    
-    Use this method when working with the documented Runner execution builder API surface in code. Use it to inspect the current configured state without rebuilding the surrounding collection or runtime object graph.
-
-### `ReadDataSource`
-
-??? info "Source file, signature, and docstring"
-    **Member**
-    `ExecutionBuilder.ReadDataSource(string dataSourceName)`
-    
-    **Kind** `function`
-    
-    **Declaring Type** `ExecutionBuilder`
-    
-    **Source File** `QaaS.Runner/ExecutionBuilder.cs`
-    
-    **Signature**
-    ```csharp
-    public DataSourceBuilder? ReadDataSource(string dataSourceName)
-    ```
-    
-    **Docstring**
-    
-    Returns the configured data source currently stored on the Runner execution builder instance.
     
     Use this method when working with the documented Runner execution builder API surface in code. Use it to inspect the current configured state without rebuilding the surrounding collection or runtime object graph.
 
@@ -123,6 +123,29 @@ The functions on this page are grouped by responsibility so related operations s
 
 ## Session selection
 
+### `AddSession`
+
+??? info "Source file, signature, and docstring"
+    **Member**
+    `ExecutionBuilder.AddSession(SessionBuilder sessionBuilder)`
+    
+    **Kind** `function`
+    
+    **Declaring Type** `ExecutionBuilder`
+    
+    **Source File** `QaaS.Runner/ExecutionBuilder.cs`
+    
+    **Signature**
+    ```csharp
+    public ExecutionBuilder AddSession(SessionBuilder sessionBuilder)
+    ```
+    
+    **Docstring**
+    
+    Adds the supplied session to the current Runner execution builder instance.
+    
+    Use this method when working with the documented Runner execution builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
+
 ### `CreateSession`
 
 ??? info "Source file, signature, and docstring"
@@ -166,29 +189,6 @@ The functions on this page are grouped by responsibility so related operations s
     **Docstring**
     
     Returns the configured sessions currently stored on the Runner execution builder instance.
-    
-    Use this method when working with the documented Runner execution builder API surface in code. Use it to inspect the current configured state without rebuilding the surrounding collection or runtime object graph.
-
-### `ReadSession`
-
-??? info "Source file, signature, and docstring"
-    **Member**
-    `ExecutionBuilder.ReadSession(string sessionName)`
-    
-    **Kind** `function`
-    
-    **Declaring Type** `ExecutionBuilder`
-    
-    **Source File** `QaaS.Runner/ExecutionBuilder.cs`
-    
-    **Signature**
-    ```csharp
-    public SessionBuilder? ReadSession(string sessionName)
-    ```
-    
-    **Docstring**
-    
-    Returns the configured session currently stored on the Runner execution builder instance.
     
     Use this method when working with the documented Runner execution builder API surface in code. Use it to inspect the current configured state without rebuilding the surrounding collection or runtime object graph.
 
@@ -240,6 +240,29 @@ The functions on this page are grouped by responsibility so related operations s
 
 ## Links
 
+### `AddLink`
+
+??? info "Source file, signature, and docstring"
+    **Member**
+    `ExecutionBuilder.AddLink(LinkBuilder linkBuilder)`
+    
+    **Kind** `function`
+    
+    **Declaring Type** `ExecutionBuilder`
+    
+    **Source File** `QaaS.Runner/ExecutionBuilder.cs`
+    
+    **Signature**
+    ```csharp
+    public ExecutionBuilder AddLink(LinkBuilder linkBuilder)
+    ```
+    
+    **Docstring**
+    
+    Adds the supplied link to the current Runner execution builder instance.
+    
+    Use this method when working with the documented Runner execution builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
+
 ### `CreateLink`
 
 ??? info "Source file, signature, and docstring"
@@ -283,29 +306,6 @@ The functions on this page are grouped by responsibility so related operations s
     **Docstring**
     
     Returns the configured links currently stored on the Runner execution builder instance.
-    
-    Use this method when working with the documented Runner execution builder API surface in code. Use it to inspect the current configured state without rebuilding the surrounding collection or runtime object graph.
-
-### `ReadLinkAt`
-
-??? info "Source file, signature, and docstring"
-    **Member**
-    `ExecutionBuilder.ReadLinkAt(int index)`
-    
-    **Kind** `function`
-    
-    **Declaring Type** `ExecutionBuilder`
-    
-    **Source File** `QaaS.Runner/ExecutionBuilder.cs`
-    
-    **Signature**
-    ```csharp
-    public LinkBuilder? ReadLinkAt(int index)
-    ```
-    
-    **Docstring**
-    
-    Returns the configured link currently stored at the specified index on the Runner execution builder instance.
     
     Use this method when working with the documented Runner execution builder API surface in code. Use it to inspect the current configured state without rebuilding the surrounding collection or runtime object graph.
 
@@ -357,6 +357,29 @@ The functions on this page are grouped by responsibility so related operations s
 
 ## Storages
 
+### `AddStorage`
+
+??? info "Source file, signature, and docstring"
+    **Member**
+    `ExecutionBuilder.AddStorage(StorageBuilder storageBuilder)`
+    
+    **Kind** `function`
+    
+    **Declaring Type** `ExecutionBuilder`
+    
+    **Source File** `QaaS.Runner/ExecutionBuilder.cs`
+    
+    **Signature**
+    ```csharp
+    public ExecutionBuilder AddStorage(StorageBuilder storageBuilder)
+    ```
+    
+    **Docstring**
+    
+    Adds the supplied storage to the current Runner execution builder instance.
+    
+    Use this method when working with the documented Runner execution builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
+
 ### `CreateStorage`
 
 ??? info "Source file, signature, and docstring"
@@ -400,29 +423,6 @@ The functions on this page are grouped by responsibility so related operations s
     **Docstring**
     
     Returns the configured storages currently stored on the Runner execution builder instance.
-    
-    Use this method when working with the documented Runner execution builder API surface in code. Use it to inspect the current configured state without rebuilding the surrounding collection or runtime object graph.
-
-### `ReadStorageAt`
-
-??? info "Source file, signature, and docstring"
-    **Member**
-    `ExecutionBuilder.ReadStorageAt(int index)`
-    
-    **Kind** `function`
-    
-    **Declaring Type** `ExecutionBuilder`
-    
-    **Source File** `QaaS.Runner/ExecutionBuilder.cs`
-    
-    **Signature**
-    ```csharp
-    public StorageBuilder? ReadStorageAt(int index)
-    ```
-    
-    **Docstring**
-    
-    Returns the configured storage currently stored at the specified index on the Runner execution builder instance.
     
     Use this method when working with the documented Runner execution builder API surface in code. Use it to inspect the current configured state without rebuilding the surrounding collection or runtime object graph.
 
@@ -474,6 +474,29 @@ The functions on this page are grouped by responsibility so related operations s
 
 ## Assertions
 
+### `AddAssertion`
+
+??? info "Source file, signature, and docstring"
+    **Member**
+    `ExecutionBuilder.AddAssertion(AssertionBuilder assertionBuilder)`
+    
+    **Kind** `function`
+    
+    **Declaring Type** `ExecutionBuilder`
+    
+    **Source File** `QaaS.Runner/ExecutionBuilder.cs`
+    
+    **Signature**
+    ```csharp
+    public ExecutionBuilder AddAssertion(AssertionBuilder assertionBuilder)
+    ```
+    
+    **Docstring**
+    
+    Adds the supplied assertion to the current Runner execution builder instance.
+    
+    Use this method when working with the documented Runner execution builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
+
 ### `CreateAssertion`
 
 ??? info "Source file, signature, and docstring"
@@ -517,29 +540,6 @@ The functions on this page are grouped by responsibility so related operations s
     **Docstring**
     
     Returns the configured assertions currently stored on the Runner execution builder instance.
-    
-    Use this method when working with the documented Runner execution builder API surface in code. Use it to inspect the current configured state without rebuilding the surrounding collection or runtime object graph.
-
-### `ReadAssertion`
-
-??? info "Source file, signature, and docstring"
-    **Member**
-    `ExecutionBuilder.ReadAssertion(string assertionName)`
-    
-    **Kind** `function`
-    
-    **Declaring Type** `ExecutionBuilder`
-    
-    **Source File** `QaaS.Runner/ExecutionBuilder.cs`
-    
-    **Signature**
-    ```csharp
-    public AssertionBuilder? ReadAssertion(string assertionName)
-    ```
-    
-    **Docstring**
-    
-    Returns the configured assertion currently stored on the Runner execution builder instance.
     
     Use this method when working with the documented Runner execution builder API surface in code. Use it to inspect the current configured state without rebuilding the surrounding collection or runtime object graph.
 

@@ -25,11 +25,11 @@ This page mirrors the `Reporting and artifacts` section from [Assertions](../ass
     
     Use this method when working with the documented Runner assertion builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
-## `ShouldSaveSessionData`
+## `WeatherToSaveSessionData`
 
 ??? info "Source file, signature, and docstring"
     **Member**
-    `AssertionBuilder.ShouldSaveSessionData(bool shouldSaveSessionData)`
+    `AssertionBuilder.WeatherToSaveSessionData(bool weatherToSaveSessionData)`
     
     **Kind** `function`
     
@@ -39,7 +39,7 @@ This page mirrors the `Reporting and artifacts` section from [Assertions](../ass
     
     **Signature**
     ```csharp
-    public AssertionBuilder ShouldSaveSessionData(bool shouldSaveSessionData)
+    public AssertionBuilder WeatherToSaveSessionData(bool weatherToSaveSessionData)
     ```
     
     **Docstring**
@@ -48,11 +48,11 @@ This page mirrors the `Reporting and artifacts` section from [Assertions](../ass
     
     Use this method when working with the documented Runner assertion builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
-## `ShouldSaveLogs`
+## `WeatherToSaveLogs`
 
 ??? info "Source file, signature, and docstring"
     **Member**
-    `AssertionBuilder.ShouldSaveLogs(bool shouldSaveLogs)`
+    `AssertionBuilder.WeatherToSaveLogs(bool weatherToSaveLogs)`
     
     **Kind** `function`
     
@@ -62,7 +62,7 @@ This page mirrors the `Reporting and artifacts` section from [Assertions](../ass
     
     **Signature**
     ```csharp
-    public AssertionBuilder ShouldSaveLogs(bool shouldSaveLogs)
+    public AssertionBuilder WeatherToSaveLogs(bool weatherToSaveLogs)
     ```
     
     **Docstring**
@@ -71,11 +71,11 @@ This page mirrors the `Reporting and artifacts` section from [Assertions](../ass
     
     Use this method when working with the documented Runner assertion builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
-## `ShouldSaveConfigurationTemplate`
+## `WeatherToSaveConfigurationTemplate`
 
 ??? info "Source file, signature, and docstring"
     **Member**
-    `AssertionBuilder.ShouldSaveConfigurationTemplate(bool shouldSaveConfigurationTemplate)`
+    `AssertionBuilder.WeatherToSaveConfigurationTemplate(bool weatherToSaveConfigurationTemplate)`
     
     **Kind** `function`
     
@@ -85,7 +85,7 @@ This page mirrors the `Reporting and artifacts` section from [Assertions](../ass
     
     **Signature**
     ```csharp
-    public AssertionBuilder ShouldSaveConfigurationTemplate(bool shouldSaveConfigurationTemplate)
+    public AssertionBuilder WeatherToSaveConfigurationTemplate(bool weatherToSaveConfigurationTemplate)
     ```
     
     **Docstring**
@@ -94,11 +94,11 @@ This page mirrors the `Reporting and artifacts` section from [Assertions](../ass
     
     Use this method when working with the documented Runner assertion builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
-## `ShouldSaveAttachments`
+## `WeatherToSaveAttachments`
 
 ??? info "Source file, signature, and docstring"
     **Member**
-    `AssertionBuilder.ShouldSaveAttachments(bool shouldSaveAttachments)`
+    `AssertionBuilder.WeatherToSaveAttachments(bool weatherToSaveAttachments)`
     
     **Kind** `function`
     
@@ -108,7 +108,7 @@ This page mirrors the `Reporting and artifacts` section from [Assertions](../ass
     
     **Signature**
     ```csharp
-    public AssertionBuilder ShouldSaveAttachments(bool shouldSaveAttachments)
+    public AssertionBuilder WeatherToSaveAttachments(bool weatherToSaveAttachments)
     ```
     
     **Docstring**
@@ -117,11 +117,11 @@ This page mirrors the `Reporting and artifacts` section from [Assertions](../ass
     
     Use this method when working with the documented Runner assertion builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
-## `ShouldDisplayTrace`
+## `WeatherToDisplayTrace`
 
 ??? info "Source file, signature, and docstring"
     **Member**
-    `AssertionBuilder.ShouldDisplayTrace(bool shouldDisplayTrace)`
+    `AssertionBuilder.WeatherToDisplayTrace(bool weatherToDisplayTrace)`
     
     **Kind** `function`
     
@@ -131,7 +131,7 @@ This page mirrors the `Reporting and artifacts` section from [Assertions](../ass
     
     **Signature**
     ```csharp
-    public AssertionBuilder ShouldDisplayTrace(bool shouldDisplayTrace)
+    public AssertionBuilder WeatherToDisplayTrace(bool weatherToDisplayTrace)
     ```
     
     **Docstring**

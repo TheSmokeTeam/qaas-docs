@@ -29,7 +29,78 @@ The functions on this page are grouped by responsibility so related operations s
     
     Use this method when working with the documented Runner link builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
+## Inspection
+
+### `ReadConfiguration`
+
+??? info "Source file, signature, and docstring"
+    **Member**
+    `LinkBuilder.ReadConfiguration()`
+    
+    **Kind** `function`
+    
+    **Declaring Type** `LinkBuilder`
+    
+    **Source File** `QaaS.Runner.Assertions/ConfigurationObjects/LinkBuilder.cs`
+    
+    **Signature**
+    ```csharp
+    public ILinkConfig? ReadConfiguration()
+    ```
+    
+    **Docstring**
+    
+    Returns the configuration currently stored on the Runner link builder instance.
+    
+    Use this method when working with the documented Runner link builder API surface in code. Use it to inspect the current configured state without rebuilding the surrounding collection or runtime object graph.
+
 ## Collection helpers
+
+### `Create`
+
+??? info "Source file, signature, and docstring"
+    **Member**
+    `LinkBuilder.Create(ILinkConfig config)`
+    
+    **Kind** `function`
+    
+    **Declaring Type** `LinkBuilder`
+    
+    **Source File** `QaaS.Runner.Assertions/ConfigurationObjects/LinkBuilder.cs`
+    
+    **Signature**
+    ```csharp
+    public LinkBuilder Create(ILinkConfig config)
+    ```
+    
+    **Docstring**
+    
+    Sets the configuration currently stored on the Runner link builder instance.
+    
+    Use this method when working with the documented Runner link builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
+
+### `CreateConfiguration`
+
+??? info "Source file, signature, and docstring"
+    **Member**
+    `LinkBuilder.CreateConfiguration(ILinkConfig config)`
+    
+    **Kind** `function`
+    
+    **Declaring Type** `LinkBuilder`
+    
+    **Source File** `QaaS.Runner.Assertions/ConfigurationObjects/LinkBuilder.cs`
+    
+    **Signature**
+    ```csharp
+    public LinkBuilder CreateConfiguration(ILinkConfig config)
+    ```
+    
+    **Docstring**
+    
+    Sets the configuration currently stored on the Runner link builder instance.
+    
+    Use this method when working with the documented Runner link builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
 ### `UpdateConfiguration`
 
@@ -50,7 +121,7 @@ The functions on this page are grouped by responsibility so related operations s
     
     **Docstring**
     
-    Sets the configuration currently stored on the Runner link builder instance.
+    Updates the configuration currently stored on the Runner link builder instance.
     
     Use this method when working with the documented Runner link builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 

@@ -2,6 +2,52 @@
 
 This page mirrors the `Collection helpers` section from [Probes](../probes.md).
 
+## `CreateConfiguration`
+
+??? info "Source file, signature, and docstring"
+    **Member**
+    `ProbeBuilder.CreateConfiguration(object configuration)`
+    
+    **Kind** `function`
+    
+    **Declaring Type** `ProbeBuilder`
+    
+    **Source File** `QaaS.Runner.Sessions/Actions/Probes/ProbeBuilder.cs`
+    
+    **Signature**
+    ```csharp
+    public ProbeBuilder CreateConfiguration(object configuration)
+    ```
+    
+    **Docstring**
+    
+    Sets the configuration currently stored on the Runner probe builder instance.
+    
+    Use this method when working with the documented Runner probe builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
+
+## `Create`
+
+??? info "Source file, signature, and docstring"
+    **Member**
+    `ProbeBuilder.Create(object configuration)`
+    
+    **Kind** `function`
+    
+    **Declaring Type** `ProbeBuilder`
+    
+    **Source File** `QaaS.Runner.Sessions/Actions/Probes/ProbeBuilder.cs`
+    
+    **Signature**
+    ```csharp
+    public ProbeBuilder Create(object configuration)
+    ```
+    
+    **Docstring**
+    
+    Sets the configuration currently stored on the Runner probe builder instance.
+    
+    Use this method when working with the documented Runner probe builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
+
 ## `UpdateConfiguration`
 
 ??? info "Source file, signature, and docstring"

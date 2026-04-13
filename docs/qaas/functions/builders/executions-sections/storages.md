@@ -2,6 +2,29 @@
 
 This page mirrors the `Storages` section from [Executions](../executions.md).
 
+## `AddStorage`
+
+??? info "Source file, signature, and docstring"
+    **Member**
+    `ExecutionBuilder.AddStorage(StorageBuilder storageBuilder)`
+    
+    **Kind** `function`
+    
+    **Declaring Type** `ExecutionBuilder`
+    
+    **Source File** `QaaS.Runner/ExecutionBuilder.cs`
+    
+    **Signature**
+    ```csharp
+    public ExecutionBuilder AddStorage(StorageBuilder storageBuilder)
+    ```
+    
+    **Docstring**
+    
+    Adds the supplied storage to the current Runner execution builder instance.
+    
+    Use this method when working with the documented Runner execution builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
+
 ## `CreateStorage`
 
 ??? info "Source file, signature, and docstring"
@@ -45,29 +68,6 @@ This page mirrors the `Storages` section from [Executions](../executions.md).
     **Docstring**
     
     Returns the configured storages currently stored on the Runner execution builder instance.
-    
-    Use this method when working with the documented Runner execution builder API surface in code. Use it to inspect the current configured state without rebuilding the surrounding collection or runtime object graph.
-
-## `ReadStorageAt`
-
-??? info "Source file, signature, and docstring"
-    **Member**
-    `ExecutionBuilder.ReadStorageAt(int index)`
-    
-    **Kind** `function`
-    
-    **Declaring Type** `ExecutionBuilder`
-    
-    **Source File** `QaaS.Runner/ExecutionBuilder.cs`
-    
-    **Signature**
-    ```csharp
-    public StorageBuilder? ReadStorageAt(int index)
-    ```
-    
-    **Docstring**
-    
-    Returns the configured storage currently stored at the specified index on the Runner execution builder instance.
     
     Use this method when working with the documented Runner execution builder API surface in code. Use it to inspect the current configured state without rebuilding the surrounding collection or runtime object graph.
 

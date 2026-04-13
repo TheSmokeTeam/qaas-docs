@@ -2,6 +2,29 @@
 
 This page mirrors the `Assertions` section from [Executions](../executions.md).
 
+## `AddAssertion`
+
+??? info "Source file, signature, and docstring"
+    **Member**
+    `ExecutionBuilder.AddAssertion(AssertionBuilder assertionBuilder)`
+    
+    **Kind** `function`
+    
+    **Declaring Type** `ExecutionBuilder`
+    
+    **Source File** `QaaS.Runner/ExecutionBuilder.cs`
+    
+    **Signature**
+    ```csharp
+    public ExecutionBuilder AddAssertion(AssertionBuilder assertionBuilder)
+    ```
+    
+    **Docstring**
+    
+    Adds the supplied assertion to the current Runner execution builder instance.
+    
+    Use this method when working with the documented Runner execution builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
+
 ## `CreateAssertion`
 
 ??? info "Source file, signature, and docstring"
@@ -45,29 +68,6 @@ This page mirrors the `Assertions` section from [Executions](../executions.md).
     **Docstring**
     
     Returns the configured assertions currently stored on the Runner execution builder instance.
-    
-    Use this method when working with the documented Runner execution builder API surface in code. Use it to inspect the current configured state without rebuilding the surrounding collection or runtime object graph.
-
-## `ReadAssertion`
-
-??? info "Source file, signature, and docstring"
-    **Member**
-    `ExecutionBuilder.ReadAssertion(string assertionName)`
-    
-    **Kind** `function`
-    
-    **Declaring Type** `ExecutionBuilder`
-    
-    **Source File** `QaaS.Runner/ExecutionBuilder.cs`
-    
-    **Signature**
-    ```csharp
-    public AssertionBuilder? ReadAssertion(string assertionName)
-    ```
-    
-    **Docstring**
-    
-    Returns the configured assertion currently stored on the Runner execution builder instance.
     
     Use this method when working with the documented Runner execution builder API surface in code. Use it to inspect the current configured state without rebuilding the surrounding collection or runtime object graph.
 

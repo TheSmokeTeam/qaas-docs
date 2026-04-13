@@ -2,8 +2,8 @@
 
 ```yaml
 GeneratorConfiguration:
-  Count:
   DataArrangeOrder:
+  Count:
   DataUuidRegexExpression:
   LoadMetadataFirst:
   StorageMetaData:

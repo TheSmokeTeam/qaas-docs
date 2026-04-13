@@ -427,29 +427,6 @@ Annotated extension methods continue to appear in their regular category pages; 
     
     Converts IConfiguration to an object of the given runtime type.
 
-### Context global dictionary
-
-#### `LoadConfigurationSectionIntoGlobalDictionary<TExecutionData>`
-
-??? info "Source file, signature, and docstring"
-    **Member**
-    `ContextGlobalDictionaryExtensions.LoadConfigurationSectionIntoGlobalDictionary<TExecutionData>(this BaseContext<TExecutionData> context, string configurationSectionPath, List<string>? destinationPath = null)`
-    
-    **Kind** `function`
-    
-    **Declaring Type** `ContextGlobalDictionaryExtensions (extension type)`
-    
-    **Source File** `QaaS.Framework.SDK/Extensions/ContextGlobalDictionaryExtensions.cs`
-    
-    **Signature**
-    ```csharp
-    public static void LoadConfigurationSectionIntoGlobalDictionary<TExecutionData>(this BaseContext<TExecutionData> context, string configurationSectionPath, List<string>? destinationPath = null) where TExecutionData : class, IExecutionData, new()
-    ```
-    
-    **Docstring**
-    
-    Loads the requested configuration section into the context global dictionary. Use "variables" as the section path to project the root variables section into runtime state without relying on a dedicated Variables API.
-
 ### Data
 
 #### `CastObjectData<TCasted>`
@@ -607,7 +584,7 @@ Annotated extension methods continue to appear in their regular category pages; 
 
 ??? info "Source file, signature, and docstring"
     **Member**
-    `DateTimeExtensions.ConvertDateTimeToUtcByTimeZoneOffset(this DateTime timeToConvertToUtc, int insertionTimeTimeZoneOffsetSummerTime, bool? isDayLightSavingTime = null, string? timeZoneId = null)`
+    `DateTimeExtensions.ConvertDateTimeToUtcByTimeZoneOffset(this DateTime timeToConvertToUtc, int insertionTimeTimeZoneOffsetSummerTime, bool? isDayLightSavingTime = null)`
     
     **Kind** `function`
     
@@ -617,7 +594,7 @@ Annotated extension methods continue to appear in their regular category pages; 
     
     **Signature**
     ```csharp
-    public static DateTime ConvertDateTimeToUtcByTimeZoneOffset(this DateTime timeToConvertToUtc, int insertionTimeTimeZoneOffsetSummerTime, bool? isDayLightSavingTime = null, string? timeZoneId = null)
+    public static DateTime ConvertDateTimeToUtcByTimeZoneOffset(this DateTime timeToConvertToUtc, int insertionTimeTimeZoneOffsetSummerTime, bool? isDayLightSavingTime = null)
     ```
     
     **Docstring**
@@ -628,7 +605,7 @@ Annotated extension methods continue to appear in their regular category pages; 
 
 ??? info "Source file, signature, and docstring"
     **Member**
-    `DateTimeExtensions.ConvertDateTimeFromUtcToTimeZoneByTimeZoneOffset(this DateTime utcTimeToConvert, int timeZoneOffsetSummerTime, bool? isDayLightSavingTime = null, string? timeZoneId = null)`
+    `DateTimeExtensions.ConvertDateTimeFromUtcToTimeZoneByTimeZoneOffset(this DateTime utcTimeToConvert, int timeZoneOffsetSummerTime, bool? isDayLightSavingTime = null)`
     
     **Kind** `function`
     
@@ -638,7 +615,7 @@ Annotated extension methods continue to appear in their regular category pages; 
     
     **Signature**
     ```csharp
-    public static DateTime ConvertDateTimeFromUtcToTimeZoneByTimeZoneOffset(this DateTime utcTimeToConvert, int timeZoneOffsetSummerTime, bool? isDayLightSavingTime = null, string? timeZoneId = null)
+    public static DateTime ConvertDateTimeFromUtcToTimeZoneByTimeZoneOffset(this DateTime utcTimeToConvert, int timeZoneOffsetSummerTime, bool? isDayLightSavingTime = null)
     ```
     
     **Docstring**

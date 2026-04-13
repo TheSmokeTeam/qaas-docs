@@ -13,7 +13,6 @@ ProbeConfiguration:
   Ssl:
   SslHost:
   StoreResultAs:
-  UseGlobalDict:
   Username:
   HostNames: []
   Arguments: []

@@ -2,6 +2,29 @@
 
 This page mirrors the `Data source selection` section from [Executions](../executions.md).
 
+## `AddDataSource`
+
+??? info "Source file, signature, and docstring"
+    **Member**
+    `ExecutionBuilder.AddDataSource(DataSourceBuilder dataSourceBuilder)`
+    
+    **Kind** `function`
+    
+    **Declaring Type** `ExecutionBuilder`
+    
+    **Source File** `QaaS.Runner/ExecutionBuilder.cs`
+    
+    **Signature**
+    ```csharp
+    public ExecutionBuilder AddDataSource(DataSourceBuilder dataSourceBuilder)
+    ```
+    
+    **Docstring**
+    
+    Adds the supplied data source to the current Runner execution builder instance.
+    
+    Use this method when working with the documented Runner execution builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
+
 ## `CreateDataSource`
 
 ??? info "Source file, signature, and docstring"
@@ -45,29 +68,6 @@ This page mirrors the `Data source selection` section from [Executions](../execu
     **Docstring**
     
     Returns the configured data sources currently stored on the Runner execution builder instance.
-    
-    Use this method when working with the documented Runner execution builder API surface in code. Use it to inspect the current configured state without rebuilding the surrounding collection or runtime object graph.
-
-## `ReadDataSource`
-
-??? info "Source file, signature, and docstring"
-    **Member**
-    `ExecutionBuilder.ReadDataSource(string dataSourceName)`
-    
-    **Kind** `function`
-    
-    **Declaring Type** `ExecutionBuilder`
-    
-    **Source File** `QaaS.Runner/ExecutionBuilder.cs`
-    
-    **Signature**
-    ```csharp
-    public DataSourceBuilder? ReadDataSource(string dataSourceName)
-    ```
-    
-    **Docstring**
-    
-    Returns the configured data source currently stored on the Runner execution builder instance.
     
     Use this method when working with the documented Runner execution builder API surface in code. Use it to inspect the current configured state without rebuilding the surrounding collection or runtime object graph.
 

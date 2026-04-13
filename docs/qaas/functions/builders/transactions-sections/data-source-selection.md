@@ -2,6 +2,29 @@
 
 This page mirrors the `Data source selection` section from [Transactions](../transactions.md).
 
+## `AddDataSource`
+
+??? info "Source file, signature, and docstring"
+    **Member**
+    `TransactionBuilder.AddDataSource(string dataSourceName)`
+    
+    **Kind** `function`
+    
+    **Declaring Type** `TransactionBuilder`
+    
+    **Source File** `QaaS.Runner.Sessions/Actions/Transactions/Builders/TransactionBuilder.cs`
+    
+    **Signature**
+    ```csharp
+    public TransactionBuilder AddDataSource(string dataSourceName)
+    ```
+    
+    **Docstring**
+    
+    Adds the supplied data source to the current Runner transaction builder instance.
+    
+    Use this method when working with the documented Runner transaction builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
+
 ## `CreateDataSource`
 
 ??? info "Source file, signature, and docstring"
@@ -22,6 +45,29 @@ This page mirrors the `Data source selection` section from [Transactions](../tra
     **Docstring**
     
     Creates or adds the configured data source entry on the current Runner transaction builder instance.
+    
+    Use this method when working with the documented Runner transaction builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
+
+## `AddDataSourcePattern`
+
+??? info "Source file, signature, and docstring"
+    **Member**
+    `TransactionBuilder.AddDataSourcePattern(string dataSourcePattern)`
+    
+    **Kind** `function`
+    
+    **Declaring Type** `TransactionBuilder`
+    
+    **Source File** `QaaS.Runner.Sessions/Actions/Transactions/Builders/TransactionBuilder.cs`
+    
+    **Signature**
+    ```csharp
+    public TransactionBuilder AddDataSourcePattern(string dataSourcePattern)
+    ```
+    
+    **Docstring**
+    
+    Adds the supplied data source pattern to the current Runner transaction builder instance.
     
     Use this method when working with the documented Runner transaction builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 

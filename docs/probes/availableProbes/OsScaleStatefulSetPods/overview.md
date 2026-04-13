@@ -1,6 +1,6 @@
 # OsScaleStatefulSetPods
 
-Probe that scales openshift statefulsets
+Probe that scales openshift stateful sets
 
 ## What It Does
 

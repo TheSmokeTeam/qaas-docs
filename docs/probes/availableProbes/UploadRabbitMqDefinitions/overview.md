@@ -1,6 +1,6 @@
 # UploadRabbitMqDefinitions
 
-Uploads a previously captured RabbitMQ definitions file back into the broker through the management API.
+Uploads a definitions document to the RabbitMQ management API to recreate or synchronize broker topology.
 
 ## What It Does
 

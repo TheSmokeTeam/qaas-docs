@@ -2,8 +2,7 @@
 
 ```yaml
 Links:
-  - Configuration:
-    Name:
+  - Name:
     Grafana:
       DashboardId:
       Url:
