@@ -9,6 +9,7 @@ RUN pip install --no-cache-dir -r requirements.txt
 # Copy docs source.
 COPY mkdocs.yml .
 COPY docs/ docs/
+COPY tools/write_runtime_link_defaults.py tools/write_runtime_link_defaults.py
 # Build-time overrides for site metadata and external links. Defaults mirror
 # mkdocs.yml so omitted build args preserve the documented docker build behavior.
 ARG QAAS_DOCS_SITE_URL=https://TheSmokeTeam.github.io/qaas-docs/
@@ -67,12 +68,16 @@ ENV QAAS_DOCS_SITE_URL=${QAAS_DOCS_SITE_URL} \
     QAAS_DOCS_LINK_RUNNER_SCHEMA=${QAAS_DOCS_LINK_RUNNER_SCHEMA} \
     QAAS_DOCS_LINK_MOCKER_SCHEMA=${QAAS_DOCS_LINK_MOCKER_SCHEMA}
 
-RUN mkdocs build --clean
+RUN python tools/write_runtime_link_defaults.py docs/assets/javascripts/qaas-docs-build-defaults.js \
+ && mkdocs build --clean
 
 FROM nginx:1.27-alpine AS runtime
 
 COPY tools/nginx.conf /etc/nginx/conf.d/default.conf
+COPY tools/docker-entrypoint.d/40-qaas-docs-runtime-overrides.sh /docker-entrypoint.d/40-qaas-docs-runtime-overrides.sh
 COPY --from=build /docs/site /usr/share/nginx/html
+
+RUN chmod +x /docker-entrypoint.d/40-qaas-docs-runtime-overrides.sh
 
 EXPOSE 8000
 

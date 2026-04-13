@@ -145,7 +145,7 @@ docker run -p 8000:8000 qaas-docs
 
 The image prebuilds the static site during `docker build` and the runtime image only serves the generated files through Nginx on port `8000`.
 
-If you need different docs URLs or repository links in the image, pass the overrides at build time:
+If you need different docs URLs or repository links baked into the image, pass the overrides at build time:
 
 ```bash
 docker build -t qaas-docs \
@@ -154,10 +154,14 @@ docker build -t qaas-docs \
   .
 ```
 
-After that, run the image normally:
+You can also override the same `QAAS_DOCS_*` URLs at container startup. The runtime image keeps the stock Nginx entrypoint and writes a small runtime override file from `/docker-entrypoint.d`, so no custom Dockerfile `ENTRYPOINT` is required:
 
 ```bash
-docker run -p 8000:8000 qaas-docs
+docker run \
+  -p 8000:8000 \
+  -e QAAS_DOCS_LINK_REPOSITORY_RUNNER=https://github.com/example/QaaS.Runner \
+  -e QAAS_DOCS_LINK_QAAS_COMMUNITY=https://discord.gg/example \
+  qaas-docs
 ```
 
-Runtime `QAAS_DOCS_*` variables are no longer used to rebuild the site. If the rendered links or metadata need to change, rebuild the image with updated `--build-arg` values.
+Runtime `QAAS_DOCS_*` variables do not rebuild the static site. They only replace the configured outbound URLs in the served HTML, so the same image can be reused across environments while preserving the default values when no runtime overrides are provided.

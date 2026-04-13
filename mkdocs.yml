@@ -700,6 +700,9 @@ plugins:
   - macros
 
 extra_javascript:
+  - assets/javascripts/qaas-docs-build-defaults.js
+  - assets/javascripts/qaas-docs-runtime-overrides.js
+  - assets/javascripts/runtime-link-overrides.js
   - assets/javascripts/current-page-title.js
 
 extra_css:
