@@ -51,25 +51,13 @@ dotnet run <dotnet-parameters> -- act <config-file> [flags]
 
 ### `-r`, `--overwrite-arguments`
 
-List of arguments to overwrite the qaas configuration with. The first argument overwrites the loaded qaas configuration, then each following argument overwrites the result of the previous one.
-
-Example:
-
 ```text
 -r MetaData:Environment=qa
 ```
 
 ### `-p`, `--push-references`
 
-References to push onto the qaas configuration. References are configurations that are pushed into the completed test case's root-level list configurations instead of a certain keyword to replace.
-
-If such a keyword is not found for a certain list nothing will be added to it. The items added to the configuration list will have a prefix of the given keyword to replace added to their unique name field.
-
-Example:
-
-```text
--p ReplaceKeyWord reference.yaml reference.overrides.yaml
-```
+Use pushed references when a list placeholder in the loaded configuration should be expanded from another YAML file.
 
 ## Examples
 

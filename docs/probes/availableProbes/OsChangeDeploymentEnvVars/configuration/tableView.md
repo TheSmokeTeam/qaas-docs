@@ -4,6 +4,7 @@
 | ------------- | ---- | -------- | ------- | ----------- |
 | `ProbeConfiguration` | `object or string` | &#10006 |  |  |
 | `ProbeConfiguration.ReplicaSetName` | `string` | &#10004 |  | The name of the replicaset to scale the pods of |
+| `ProbeConfiguration.ContainerEnvVarsToUpdate` | `object or string or null` | &#10006 |  | Optional exact environment snapshot keyed by container name. When present, the probe restores each listed container to the provided environment instead of applying the broad update/remove rules. |
 | `ProbeConfiguration.ContainerName` | `string or null` | &#10006 |  | The name of the container we would like to update, if not given - the probe will update all of the pod's containers |
 | `ProbeConfiguration.EnvVarsToUpdate` | `object or string` | &#10006 |  | The environment variables to update/add |
 | `ProbeConfiguration.IntervalBetweenDesiredStateChecksMs` | `integer or string` | &#10006 | 1000 | The interval in milliseconds between every check of the replica set's state (if it reached the desired number of pods yet) |
@@ -16,3 +17,4 @@
 | `ProbeConfiguration.Openshift.Namespace` | `string` | &#10004 |  | The openshift namespace the application is at |
 | `ProbeConfiguration.Openshift.Password` | `string` | &#10004 |  | Password of the username with access to the openshift namespace and application |
 | `ProbeConfiguration.Openshift.Username` | `string` | &#10004 |  | Username with access to the openshift namespace and application |
+| `ProbeConfiguration.Openshift.AllowInvalidServerCertificates` | `string or true/false` | &#10006 | False | Allow invalid TLS certificates when connecting to the OpenShift API. |

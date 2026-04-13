@@ -2,11 +2,11 @@
 
 This page mirrors the `Collection helpers` section from [Sessions](../sessions.md).
 
-## `CreateMockerCommand`
+## `AddMockerCommand`
 
 ??? info "Source file, signature, and docstring"
     **Member**
-    `SessionBuilder.CreateMockerCommand(MockerCommandBuilder mockerCommandBuilder)`
+    `SessionBuilder.AddMockerCommand(MockerCommandBuilder mockerCommandBuilder)`
     
     **Kind** `function`
     
@@ -16,12 +16,12 @@ This page mirrors the `Collection helpers` section from [Sessions](../sessions.m
     
     **Signature**
     ```csharp
-    public SessionBuilder CreateMockerCommand(MockerCommandBuilder mockerCommandBuilder)
+    public SessionBuilder AddMockerCommand(MockerCommandBuilder mockerCommandBuilder)
     ```
     
     **Docstring**
     
-    Creates or adds the configured mocker command entry on the current Runner session builder instance.
+    Adds the supplied mocker command to the current Runner session builder instance.
     
     Use this method when working with the documented Runner session builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
@@ -48,11 +48,11 @@ This page mirrors the `Collection helpers` section from [Sessions](../sessions.m
     
     Use this method when working with the documented Runner session builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
-## `UpdateMockerCommand`
+## `RemoveMockerCommand`
 
 ??? info "Source file, signature, and docstring"
     **Member**
-    `SessionBuilder.UpdateMockerCommand(string name, Func<MockerCommandBuilder, MockerCommandBuilder> update)`
+    `SessionBuilder.RemoveMockerCommand(string name)`
     
     **Kind** `function`
     
@@ -62,34 +62,34 @@ This page mirrors the `Collection helpers` section from [Sessions](../sessions.m
     
     **Signature**
     ```csharp
-    public SessionBuilder UpdateMockerCommand(string name, Func<MockerCommandBuilder, MockerCommandBuilder> update)
-    ```
-    
-    **Docstring**
-    
-    Updates the configured mocker command stored on the current Runner session builder instance.
-    
-    Use this method when working with the documented Runner session builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
-
-## `DeleteMockerCommand`
-
-??? info "Source file, signature, and docstring"
-    **Member**
-    `SessionBuilder.DeleteMockerCommand(string name)`
-    
-    **Kind** `function`
-    
-    **Declaring Type** `SessionBuilder`
-    
-    **Source File** `QaaS.Runner.Sessions/Session/Builders/SessionBuilderLogic.cs`
-    
-    **Signature**
-    ```csharp
-    public SessionBuilder DeleteMockerCommand(string name)
+    public SessionBuilder RemoveMockerCommand(string name)
     ```
     
     **Docstring**
     
     Removes the configured mocker command from the current Runner session builder instance.
+    
+    Use this method when working with the documented Runner session builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
+
+## `RemoveMockerCommandAt`
+
+??? info "Source file, signature, and docstring"
+    **Member**
+    `SessionBuilder.RemoveMockerCommandAt(int index)`
+    
+    **Kind** `function`
+    
+    **Declaring Type** `SessionBuilder`
+    
+    **Source File** `QaaS.Runner.Sessions/Session/Builders/SessionBuilderLogic.cs`
+    
+    **Signature**
+    ```csharp
+    public SessionBuilder RemoveMockerCommandAt(int index)
+    ```
+    
+    **Docstring**
+    
+    Removes the configured mocker command at the specified index from the current Runner session builder instance.
     
     Use this method when working with the documented Runner session builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.

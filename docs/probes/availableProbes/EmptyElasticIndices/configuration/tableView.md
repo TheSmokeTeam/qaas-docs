@@ -7,6 +7,7 @@
 | `ProbeConfiguration.Password` | `string` | &#10004 |  | The password of the elasticsearch |
 | `ProbeConfiguration.Url` | `string` | &#10004 |  | The url of the elasticsearch |
 | `ProbeConfiguration.Username` | `string` | &#10004 |  | The username of the elasticsearch |
+| `ProbeConfiguration.AllowInvalidServerCertificates` | `string or true/false` | &#10006 | False | Allow invalid TLS certificates when connecting to Elasticsearch over HTTPS. |
 | `ProbeConfiguration.MatchQueryString` | `string` | &#10006 | * | The match query string for the documents from the relevant indices |
 | `ProbeConfiguration.RequestTimeoutMs` | `integer or string` | &#10006 | 30000 | The timeout in milliseconds on the requests sent to the elastic |
 | `ProbeConfiguration.UseGlobalDict` | `string or true/false` | &#10006 | False | When true, missing Elasticsearch probe configuration keys can be resolved from the shared global dictionary before local values are applied. |

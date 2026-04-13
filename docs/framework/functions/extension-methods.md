@@ -31,6 +31,77 @@ Annotated extension methods continue to appear in their regular category pages; 
     
     Call this extension before building IConfiguration when placeholder expansion should be applied as part of the configuration pipeline.
 
+### Updates
+
+#### `UpdateConfiguration<TConfiguration>`
+
+??? info "Source file, signature, and docstring"
+    **Member**
+    `ConfigurationUpdateExtensions.UpdateConfiguration<TConfiguration>(this TConfiguration? currentConfiguration, TConfiguration incomingConfiguration)`
+    
+    **Kind** `function`
+    
+    **Declaring Type** `ConfigurationUpdateExtensions (extension type)`
+    
+    **Source File** `QaaS.Framework.Configurations/ConfigurationUpdateExtensions.cs`
+    
+    **Signature**
+    ```csharp
+    public static TConfiguration UpdateConfiguration<TConfiguration>(this TConfiguration? currentConfiguration, TConfiguration incomingConfiguration) where TConfiguration : class
+    ```
+    
+    **Docstring**
+    
+    Merges a typed configuration patch into the current configuration. When both configurations share the same runtime type, omitted fields are preserved from the current value. When the runtime type changes, the incoming configuration replaces the current one.
+    
+    Use this helper when a partially populated typed configuration object should override only the supplied fields while preserving the rest of the existing configuration state.
+
+#### `UpdateConfiguration<TConfiguration>`
+
+??? info "Source file, signature, and docstring"
+    **Member**
+    `ConfigurationUpdateExtensions.UpdateConfiguration<TConfiguration>(this TConfiguration? currentConfiguration, object incomingConfiguration)`
+    
+    **Kind** `function`
+    
+    **Declaring Type** `ConfigurationUpdateExtensions (extension type)`
+    
+    **Source File** `QaaS.Framework.Configurations/ConfigurationUpdateExtensions.cs`
+    
+    **Signature**
+    ```csharp
+    public static TConfiguration UpdateConfiguration<TConfiguration>(this TConfiguration? currentConfiguration, object incomingConfiguration) where TConfiguration : class
+    ```
+    
+    **Docstring**
+    
+    Merges an object-shaped configuration patch into the current typed configuration. Fields omitted from incomingConfiguration are preserved from the current configuration. Fields explicitly set to null in the patch clear the existing value. When the current configuration is missing, the incoming object is bound to when possible.
+    
+    Use this overload when the patch comes from an anonymous object, JSON-like payload, or any other object whose shape matches part of the target configuration contract.
+
+#### `UpdateConfiguration`
+
+??? info "Source file, signature, and docstring"
+    **Member**
+    `ConfigurationUpdateExtensions.UpdateConfiguration(this IConfiguration? currentConfiguration, object incomingConfiguration)`
+    
+    **Kind** `function`
+    
+    **Declaring Type** `ConfigurationUpdateExtensions (extension type)`
+    
+    **Source File** `QaaS.Framework.Configurations/ConfigurationUpdateExtensions.cs`
+    
+    **Signature**
+    ```csharp
+    public static IConfiguration UpdateConfiguration(this IConfiguration? currentConfiguration, object incomingConfiguration)
+    ```
+    
+    **Docstring**
+    
+    Merges an object-shaped configuration patch into the current IConfiguration tree. Fields omitted from incomingConfiguration are preserved from the current configuration. Fields explicitly set to null in the patch clear the existing value.
+    
+    Use this overload when configuration is already represented as an IConfiguration tree and should be updated without first binding it to a typed configuration object.
+
 ### YAML
 
 #### `AddYamlFromHttpGet`
@@ -213,71 +284,6 @@ Annotated extension methods continue to appear in their regular category pages; 
     
     Resolves all references in configuration according to loaded reference configs and given referenceResolutionPaths
 
-### Configuration update
-
-#### `UpdateConfiguration<TConfiguration>`
-
-??? info "Source file, signature, and docstring"
-    **Member**
-    `ConfigurationUpdateExtensions.UpdateConfiguration<TConfiguration>(this TConfiguration? currentConfiguration, TConfiguration incomingConfiguration)`
-    
-    **Kind** `function`
-    
-    **Declaring Type** `ConfigurationUpdateExtensions (extension type)`
-    
-    **Source File** `QaaS.Framework.Configurations/ConfigurationUpdateExtensions.cs`
-    
-    **Signature**
-    ```csharp
-    public static TConfiguration UpdateConfiguration<TConfiguration>(this TConfiguration? currentConfiguration, TConfiguration incomingConfiguration) where TConfiguration : class
-    ```
-    
-    **Docstring**
-    
-    Merges a typed configuration patch into the current configuration. When both configurations share the same runtime type, omitted fields are preserved from the current value. When the runtime type changes, the incoming configuration replaces the current one.
-
-#### `UpdateConfiguration<TConfiguration>`
-
-??? info "Source file, signature, and docstring"
-    **Member**
-    `ConfigurationUpdateExtensions.UpdateConfiguration<TConfiguration>(this TConfiguration? currentConfiguration, object incomingConfiguration)`
-    
-    **Kind** `function`
-    
-    **Declaring Type** `ConfigurationUpdateExtensions (extension type)`
-    
-    **Source File** `QaaS.Framework.Configurations/ConfigurationUpdateExtensions.cs`
-    
-    **Signature**
-    ```csharp
-    public static TConfiguration UpdateConfiguration<TConfiguration>(this TConfiguration? currentConfiguration, object incomingConfiguration) where TConfiguration : class
-    ```
-    
-    **Docstring**
-    
-    Merges an object-shaped configuration patch into the current typed configuration. Fields omitted from incomingConfiguration are preserved from the current configuration. When the current configuration is missing, the incoming object is bound to when possible.
-
-#### `UpdateConfiguration`
-
-??? info "Source file, signature, and docstring"
-    **Member**
-    `ConfigurationUpdateExtensions.UpdateConfiguration(this IConfiguration? currentConfiguration, object incomingConfiguration)`
-    
-    **Kind** `function`
-    
-    **Declaring Type** `ConfigurationUpdateExtensions (extension type)`
-    
-    **Source File** `QaaS.Framework.Configurations/ConfigurationUpdateExtensions.cs`
-    
-    **Signature**
-    ```csharp
-    public static IConfiguration UpdateConfiguration(this IConfiguration? currentConfiguration, object incomingConfiguration)
-    ```
-    
-    **Docstring**
-    
-    Merges an object-shaped configuration patch into the current IConfiguration tree. Fields omitted from incomingConfiguration are preserved from the current configuration.
-
 ### Configuration utilities
 
 #### `BindConfigurationObjectToIConfiguration`
@@ -448,7 +454,7 @@ Annotated extension methods continue to appear in their regular category pages; 
     
     **Docstring**
     
-    Loads the requested configuration section into the context global dictionary. Use "variables" as the section path to project the root variables section into runtime state without relying on a dedicated Variables API.
+    Loads the requested configuration section into the context global dictionary. Use "variables" as the section path to project the root variables section into runtime state without relying on a dedicated Variables API. Numeric child sections are normalized to lists so YAML list sections do not appear as dictionaries with stringified indexes such as "0" and "1" .
 
 ### Data
 

@@ -2,11 +2,11 @@
 
 This page mirrors the `Session selection` section from [Assertions](../assertions.md).
 
-## `CreateSessionName`
+## `AddSessionName`
 
 ??? info "Source file, signature, and docstring"
     **Member**
-    `AssertionBuilder.CreateSessionName(string sessionName)`
+    `AssertionBuilder.AddSessionName(string sessionName)`
     
     **Kind** `function`
     
@@ -16,20 +16,20 @@ This page mirrors the `Session selection` section from [Assertions](../assertion
     
     **Signature**
     ```csharp
-    public AssertionBuilder CreateSessionName(string sessionName)
+    public AssertionBuilder AddSessionName(string sessionName)
     ```
     
     **Docstring**
     
-    Creates or adds the configured session name entry on the current Runner assertion builder instance.
+    Adds the supplied session name to the current Runner assertion builder instance.
     
     Use this method when working with the documented Runner assertion builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
-## `ReadSessionNames`
+## `RemoveSessionName`
 
 ??? info "Source file, signature, and docstring"
     **Member**
-    `AssertionBuilder.ReadSessionNames()`
+    `AssertionBuilder.RemoveSessionName(string sessionName)`
     
     **Kind** `function`
     
@@ -39,53 +39,7 @@ This page mirrors the `Session selection` section from [Assertions](../assertion
     
     **Signature**
     ```csharp
-    public IReadOnlyList<string> ReadSessionNames()
-    ```
-    
-    **Docstring**
-    
-    Returns the configured session names currently stored on the Runner assertion builder instance.
-    
-    Use this method when working with the documented Runner assertion builder API surface in code. Use it to inspect the current configured state without rebuilding the surrounding collection or runtime object graph.
-
-## `UpdateSessionName`
-
-??? info "Source file, signature, and docstring"
-    **Member**
-    `AssertionBuilder.UpdateSessionName(string existingValue, string newValue)`
-    
-    **Kind** `function`
-    
-    **Declaring Type** `AssertionBuilder`
-    
-    **Source File** `QaaS.Runner.Assertions/ConfigurationObjects/AssertionBuilder.cs`
-    
-    **Signature**
-    ```csharp
-    public AssertionBuilder UpdateSessionName(string existingValue, string newValue)
-    ```
-    
-    **Docstring**
-    
-    Updates the configured session name stored on the current Runner assertion builder instance.
-    
-    Use this method when working with the documented Runner assertion builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
-
-## `DeleteSessionName`
-
-??? info "Source file, signature, and docstring"
-    **Member**
-    `AssertionBuilder.DeleteSessionName(string sessionName)`
-    
-    **Kind** `function`
-    
-    **Declaring Type** `AssertionBuilder`
-    
-    **Source File** `QaaS.Runner.Assertions/ConfigurationObjects/AssertionBuilder.cs`
-    
-    **Signature**
-    ```csharp
-    public AssertionBuilder DeleteSessionName(string sessionName)
+    public AssertionBuilder RemoveSessionName(string sessionName)
     ```
     
     **Docstring**
@@ -94,11 +48,11 @@ This page mirrors the `Session selection` section from [Assertions](../assertion
     
     Use this method when working with the documented Runner assertion builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
-## `CreateSessionPattern`
+## `RemoveSessionNameAt`
 
 ??? info "Source file, signature, and docstring"
     **Member**
-    `AssertionBuilder.CreateSessionPattern(string sessionPattern)`
+    `AssertionBuilder.RemoveSessionNameAt(int index)`
     
     **Kind** `function`
     
@@ -108,20 +62,20 @@ This page mirrors the `Session selection` section from [Assertions](../assertion
     
     **Signature**
     ```csharp
-    public AssertionBuilder CreateSessionPattern(string sessionPattern)
+    public AssertionBuilder RemoveSessionNameAt(int index)
     ```
     
     **Docstring**
     
-    Creates or adds the configured session pattern entry on the current Runner assertion builder instance.
+    Removes the configured session name at the specified index from the current Runner assertion builder instance.
     
     Use this method when working with the documented Runner assertion builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
-## `ReadSessionPatterns`
+## `AddSessionPattern`
 
 ??? info "Source file, signature, and docstring"
     **Member**
-    `AssertionBuilder.ReadSessionPatterns()`
+    `AssertionBuilder.AddSessionPattern(string sessionPattern)`
     
     **Kind** `function`
     
@@ -131,43 +85,20 @@ This page mirrors the `Session selection` section from [Assertions](../assertion
     
     **Signature**
     ```csharp
-    public IReadOnlyList<string> ReadSessionPatterns()
+    public AssertionBuilder AddSessionPattern(string sessionPattern)
     ```
     
     **Docstring**
     
-    Returns the configured session patterns currently stored on the Runner assertion builder instance.
-    
-    Use this method when working with the documented Runner assertion builder API surface in code. Use it to inspect the current configured state without rebuilding the surrounding collection or runtime object graph.
-
-## `UpdateSessionPattern`
-
-??? info "Source file, signature, and docstring"
-    **Member**
-    `AssertionBuilder.UpdateSessionPattern(string existingValue, string newValue)`
-    
-    **Kind** `function`
-    
-    **Declaring Type** `AssertionBuilder`
-    
-    **Source File** `QaaS.Runner.Assertions/ConfigurationObjects/AssertionBuilder.cs`
-    
-    **Signature**
-    ```csharp
-    public AssertionBuilder UpdateSessionPattern(string existingValue, string newValue)
-    ```
-    
-    **Docstring**
-    
-    Updates the configured session pattern stored on the current Runner assertion builder instance.
+    Adds the supplied session pattern to the current Runner assertion builder instance.
     
     Use this method when working with the documented Runner assertion builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
-## `DeleteSessionPattern`
+## `RemoveSessionPattern`
 
 ??? info "Source file, signature, and docstring"
     **Member**
-    `AssertionBuilder.DeleteSessionPattern(string sessionPattern)`
+    `AssertionBuilder.RemoveSessionPattern(string sessionPattern)`
     
     **Kind** `function`
     
@@ -177,11 +108,34 @@ This page mirrors the `Session selection` section from [Assertions](../assertion
     
     **Signature**
     ```csharp
-    public AssertionBuilder DeleteSessionPattern(string sessionPattern)
+    public AssertionBuilder RemoveSessionPattern(string sessionPattern)
     ```
     
     **Docstring**
     
     Removes the configured session pattern from the current Runner assertion builder instance.
+    
+    Use this method when working with the documented Runner assertion builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
+
+## `RemoveSessionPatternAt`
+
+??? info "Source file, signature, and docstring"
+    **Member**
+    `AssertionBuilder.RemoveSessionPatternAt(int index)`
+    
+    **Kind** `function`
+    
+    **Declaring Type** `AssertionBuilder`
+    
+    **Source File** `QaaS.Runner.Assertions/ConfigurationObjects/AssertionBuilder.cs`
+    
+    **Signature**
+    ```csharp
+    public AssertionBuilder RemoveSessionPatternAt(int index)
+    ```
+    
+    **Docstring**
+    
+    Removes the configured session pattern at the specified index from the current Runner assertion builder instance.
     
     Use this method when working with the documented Runner assertion builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.

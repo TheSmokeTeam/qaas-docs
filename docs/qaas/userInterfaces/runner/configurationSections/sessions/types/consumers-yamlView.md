@@ -5,6 +5,7 @@ Consumers:
   - Name:
     TimeoutMs:
     Configuration:
+    InitialTimeoutMs:
     Stage:
     Policies:
       - AdvancedLoadBalance:

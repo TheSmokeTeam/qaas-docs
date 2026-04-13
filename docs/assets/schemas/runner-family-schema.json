@@ -109,13 +109,6 @@
             "description": "Implementation configuration for the generator, the configuration given here is loaded into the provided generator dynamically.",
             "pattern": "\\$\\{.*\\}"
           },
-          "Configuration": {
-            "type": [
-              "object",
-              "string"
-            ],
-            "pattern": "\\$\\{.*\\}"
-          },
           "Serialize": {
             "type": [
               "object",
@@ -2317,6 +2310,16 @@
                     "string"
                   ],
                   "description": "The consumption timeout in milliseconds (timeout is the time since last message was read by the consumer)",
+                  "format": "int32",
+                  "pattern": "\\$\\{.*\\}"
+                },
+                "InitialTimeoutMs": {
+                  "type": [
+                    "integer",
+                    "null",
+                    "string"
+                  ],
+                  "description": "The initial consumption timeout in milliseconds (timeout is the time before any message has been read by the consumer)",
                   "format": "int32",
                   "pattern": "\\$\\{.*\\}"
                 },
@@ -7150,6 +7153,15 @@
                           "description": "When true, missing Elasticsearch probe configuration keys can be resolved from the shared global dictionary before local values are applied.",
                           "default": false,
                           "pattern": "\\$\\{.*\\}"
+                        },
+                        "AllowInvalidServerCertificates": {
+                          "type": [
+                            "boolean",
+                            "string"
+                          ],
+                          "description": "Allow invalid TLS certificates when connecting to Elasticsearch over HTTPS.",
+                          "default": false,
+                          "pattern": "\\$\\{.*\\}"
                         }
                       }
                     }
@@ -8182,6 +8194,15 @@
                           "description": "When true, missing Elasticsearch probe configuration keys can be resolved from the shared global dictionary before local values are applied.",
                           "default": false,
                           "pattern": "\\$\\{.*\\}"
+                        },
+                        "AllowInvalidServerCertificates": {
+                          "type": [
+                            "boolean",
+                            "string"
+                          ],
+                          "description": "Allow invalid TLS certificates when connecting to Elasticsearch over HTTPS.",
+                          "default": false,
+                          "pattern": "\\$\\{.*\\}"
                         }
                       }
                     }
@@ -8400,7 +8421,7 @@
                           "format": "int32",
                           "default": 100,
                           "maximum": 2147483647.0,
-                          "minimum": 0.0,
+                          "minimum": 1.0,
                           "pattern": "\\$\\{.*\\}"
                         },
                         "KeyRegexPattern": {
@@ -8452,7 +8473,7 @@
                           "format": "int32",
                           "default": 100,
                           "maximum": 2147483647.0,
-                          "minimum": 0.0,
+                          "minimum": 1.0,
                           "pattern": "\\$\\{.*\\}"
                         },
                         "KeyRegexPattern": {
@@ -9538,6 +9559,15 @@
                             "Namespace": {
                               "type": "string",
                               "description": "The openshift namespace the application is at"
+                            },
+                            "AllowInvalidServerCertificates": {
+                              "type": [
+                                "boolean",
+                                "string"
+                              ],
+                              "description": "Allow invalid TLS certificates when connecting to the OpenShift API.",
+                              "default": false,
+                              "pattern": "\\$\\{.*\\}"
                             }
                           }
                         },
@@ -9566,6 +9596,15 @@
                           "items": {
                             "type": "string"
                           }
+                        },
+                        "ContainerEnvVarsToUpdate": {
+                          "type": [
+                            "null",
+                            "object",
+                            "string"
+                          ],
+                          "description": "Optional exact environment snapshot keyed by container name. When present, the probe restores each listed container to the provided environment instead of applying the broad update/remove rules.",
+                          "pattern": "\\$\\{.*\\}"
                         }
                       }
                     }
@@ -9667,6 +9706,15 @@
                             "Namespace": {
                               "type": "string",
                               "description": "The openshift namespace the application is at"
+                            },
+                            "AllowInvalidServerCertificates": {
+                              "type": [
+                                "boolean",
+                                "string"
+                              ],
+                              "description": "Allow invalid TLS certificates when connecting to the OpenShift API.",
+                              "default": false,
+                              "pattern": "\\$\\{.*\\}"
                             }
                           }
                         },
@@ -9695,6 +9743,15 @@
                           "items": {
                             "type": "string"
                           }
+                        },
+                        "ContainerEnvVarsToUpdate": {
+                          "type": [
+                            "null",
+                            "object",
+                            "string"
+                          ],
+                          "description": "Optional exact environment snapshot keyed by container name. When present, the probe restores each listed container to the provided environment instead of applying the broad update/remove rules.",
+                          "pattern": "\\$\\{.*\\}"
                         }
                       }
                     }
@@ -9768,6 +9825,15 @@
                             "Namespace": {
                               "type": "string",
                               "description": "The openshift namespace the application is at"
+                            },
+                            "AllowInvalidServerCertificates": {
+                              "type": [
+                                "boolean",
+                                "string"
+                              ],
+                              "description": "Allow invalid TLS certificates when connecting to the OpenShift API.",
+                              "default": false,
+                              "pattern": "\\$\\{.*\\}"
                             }
                           }
                         },
@@ -9861,6 +9927,15 @@
                             "Namespace": {
                               "type": "string",
                               "description": "The openshift namespace the application is at"
+                            },
+                            "AllowInvalidServerCertificates": {
+                              "type": [
+                                "boolean",
+                                "string"
+                              ],
+                              "description": "Allow invalid TLS certificates when connecting to the OpenShift API.",
+                              "default": false,
+                              "pattern": "\\$\\{.*\\}"
                             }
                           }
                         },
@@ -9965,6 +10040,15 @@
                             "Namespace": {
                               "type": "string",
                               "description": "The openshift namespace the application is at"
+                            },
+                            "AllowInvalidServerCertificates": {
+                              "type": [
+                                "boolean",
+                                "string"
+                              ],
+                              "description": "Allow invalid TLS certificates when connecting to the OpenShift API.",
+                              "default": false,
+                              "pattern": "\\$\\{.*\\}"
                             }
                           }
                         },
@@ -10104,6 +10188,15 @@
                             "Namespace": {
                               "type": "string",
                               "description": "The openshift namespace the application is at"
+                            },
+                            "AllowInvalidServerCertificates": {
+                              "type": [
+                                "boolean",
+                                "string"
+                              ],
+                              "description": "Allow invalid TLS certificates when connecting to the OpenShift API.",
+                              "default": false,
+                              "pattern": "\\$\\{.*\\}"
                             }
                           }
                         },
@@ -10217,6 +10310,15 @@
                             "Namespace": {
                               "type": "string",
                               "description": "The openshift namespace the application is at"
+                            },
+                            "AllowInvalidServerCertificates": {
+                              "type": [
+                                "boolean",
+                                "string"
+                              ],
+                              "description": "Allow invalid TLS certificates when connecting to the OpenShift API.",
+                              "default": false,
+                              "pattern": "\\$\\{.*\\}"
                             }
                           }
                         },
@@ -10335,6 +10437,15 @@
                             "Namespace": {
                               "type": "string",
                               "description": "The openshift namespace the application is at"
+                            },
+                            "AllowInvalidServerCertificates": {
+                              "type": [
+                                "boolean",
+                                "string"
+                              ],
+                              "description": "Allow invalid TLS certificates when connecting to the OpenShift API.",
+                              "default": false,
+                              "pattern": "\\$\\{.*\\}"
                             }
                           }
                         },
@@ -10447,6 +10558,15 @@
                             "Namespace": {
                               "type": "string",
                               "description": "The openshift namespace the application is at"
+                            },
+                            "AllowInvalidServerCertificates": {
+                              "type": [
+                                "boolean",
+                                "string"
+                              ],
+                              "description": "Allow invalid TLS certificates when connecting to the OpenShift API.",
+                              "default": false,
+                              "pattern": "\\$\\{.*\\}"
                             }
                           }
                         },
@@ -10614,6 +10734,15 @@
                             "Namespace": {
                               "type": "string",
                               "description": "The openshift namespace the application is at"
+                            },
+                            "AllowInvalidServerCertificates": {
+                              "type": [
+                                "boolean",
+                                "string"
+                              ],
+                              "description": "Allow invalid TLS certificates when connecting to the OpenShift API.",
+                              "default": false,
+                              "pattern": "\\$\\{.*\\}"
                             }
                           }
                         },
@@ -10726,6 +10855,15 @@
                             "Namespace": {
                               "type": "string",
                               "description": "The openshift namespace the application is at"
+                            },
+                            "AllowInvalidServerCertificates": {
+                              "type": [
+                                "boolean",
+                                "string"
+                              ],
+                              "description": "Allow invalid TLS certificates when connecting to the OpenShift API.",
+                              "default": false,
+                              "pattern": "\\$\\{.*\\}"
                             }
                           }
                         },

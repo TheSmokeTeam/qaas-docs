@@ -21,15 +21,15 @@ This page mirrors the `Collection helpers` section from [Assertions](../assertio
     
     **Docstring**
     
-    Updates the configuration currently stored on the Runner assertion builder instance.
+    Sets the configuration currently stored on the Runner assertion builder instance.
     
     Use this method when working with the documented Runner assertion builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
-## `DeleteConfiguration`
+## `RemoveConfiguration`
 
 ??? info "Source file, signature, and docstring"
     **Member**
-    `AssertionBuilder.DeleteConfiguration()`
+    `AssertionBuilder.RemoveConfiguration()`
     
     **Kind** `function`
     
@@ -39,7 +39,7 @@ This page mirrors the `Collection helpers` section from [Assertions](../assertio
     
     **Signature**
     ```csharp
-    public AssertionBuilder DeleteConfiguration()
+    public AssertionBuilder RemoveConfiguration()
     ```
     
     **Docstring**

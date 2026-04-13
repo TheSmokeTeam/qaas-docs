@@ -3,6 +3,7 @@
 ```yaml
 ProbeConfiguration:
   ReplicaSetName:
+  ContainerEnvVarsToUpdate:
   ContainerName:
   EnvVarsToUpdate:
   IntervalBetweenDesiredStateChecksMs:
@@ -14,4 +15,5 @@ ProbeConfiguration:
     Namespace:
     Password:
     Username:
+    AllowInvalidServerCertificates:
 ```

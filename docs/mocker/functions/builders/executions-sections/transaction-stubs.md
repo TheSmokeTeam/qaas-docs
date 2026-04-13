@@ -2,11 +2,11 @@
 
 This page mirrors the `Transaction stubs` section from [Executions](../executions.md).
 
-## `CreateStub`
+## `AddStub`
 
 ??? info "Source file, signature, and docstring"
     **Member**
-    `ExecutionBuilder.CreateStub(TransactionStubBuilder stubBuilder)`
+    `ExecutionBuilder.AddStub(TransactionStubBuilder stubBuilder)`
     
     **Kind** `function`
     
@@ -16,20 +16,20 @@ This page mirrors the `Transaction stubs` section from [Executions](../execution
     
     **Signature**
     ```csharp
-    public ExecutionBuilder CreateStub(TransactionStubBuilder stubBuilder)
+    public ExecutionBuilder AddStub(TransactionStubBuilder stubBuilder)
     ```
     
     **Docstring**
     
-    Creates or adds the configured stub entry on the current Mocker execution builder instance.
+    Adds the supplied stub to the current Mocker execution builder instance.
     
     Use this method when working with the documented Mocker execution builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
-## `CreateStub`
+## `AddStub`
 
 ??? info "Source file, signature, and docstring"
     **Member**
-    `ExecutionBuilder.CreateStub(TransactionStubConfig stubConfig)`
+    `ExecutionBuilder.AddStub(TransactionStubConfig stubConfig)`
     
     **Kind** `function`
     
@@ -39,58 +39,12 @@ This page mirrors the `Transaction stubs` section from [Executions](../execution
     
     **Signature**
     ```csharp
-    public ExecutionBuilder CreateStub(TransactionStubConfig stubConfig)
+    public ExecutionBuilder AddStub(TransactionStubConfig stubConfig)
     ```
     
     **Docstring**
     
-    Creates or adds the configured stub entry on the current Mocker execution builder instance.
-    
-    Use this method when working with the documented Mocker execution builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
-
-## `ReadStub`
-
-??? info "Source file, signature, and docstring"
-    **Member**
-    `ExecutionBuilder.ReadStub(string stubName)`
-    
-    **Kind** `function`
-    
-    **Declaring Type** `ExecutionBuilder`
-    
-    **Source File** `QaaS.Mocker/ExecutionBuilder.cs`
-    
-    **Signature**
-    ```csharp
-    public TransactionStubConfig? ReadStub(string stubName)
-    ```
-    
-    **Docstring**
-    
-    Returns the configured stub currently stored on the Mocker execution builder instance.
-    
-    Use this method when working with the documented Mocker execution builder API surface in code. Use it to inspect the current configured state without rebuilding the surrounding collection or runtime object graph.
-
-## `UpdateStub`
-
-??? info "Source file, signature, and docstring"
-    **Member**
-    `ExecutionBuilder.UpdateStub(string stubName, Action<TransactionStubBuilder> configureAction)`
-    
-    **Kind** `function`
-    
-    **Declaring Type** `ExecutionBuilder`
-    
-    **Source File** `QaaS.Mocker/ExecutionBuilder.cs`
-    
-    **Signature**
-    ```csharp
-    public ExecutionBuilder UpdateStub(string stubName, Action<TransactionStubBuilder> configureAction)
-    ```
-    
-    **Docstring**
-    
-    Updates the configured stub stored on the current Mocker execution builder instance.
+    Adds the supplied stub to the current Mocker execution builder instance.
     
     Use this method when working with the documented Mocker execution builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
@@ -140,11 +94,11 @@ This page mirrors the `Transaction stubs` section from [Executions](../execution
     
     Use this method when working with the documented Mocker execution builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
-## `DeleteStub`
+## `RemoveStubAt`
 
 ??? info "Source file, signature, and docstring"
     **Member**
-    `ExecutionBuilder.DeleteStub(string stubName)`
+    `ExecutionBuilder.RemoveStubAt(int index)`
     
     **Kind** `function`
     
@@ -154,7 +108,30 @@ This page mirrors the `Transaction stubs` section from [Executions](../execution
     
     **Signature**
     ```csharp
-    public ExecutionBuilder DeleteStub(string stubName)
+    public ExecutionBuilder RemoveStubAt(int index)
+    ```
+    
+    **Docstring**
+    
+    Removes the configured stub at the specified index from the current Mocker execution builder instance.
+    
+    Use this method when working with the documented Mocker execution builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
+
+## `RemoveStub`
+
+??? info "Source file, signature, and docstring"
+    **Member**
+    `ExecutionBuilder.RemoveStub(string stubName)`
+    
+    **Kind** `function`
+    
+    **Declaring Type** `ExecutionBuilder`
+    
+    **Source File** `QaaS.Mocker/ExecutionBuilder.cs`
+    
+    **Signature**
+    ```csharp
+    public ExecutionBuilder RemoveStub(string stubName)
     ```
     
     **Docstring**

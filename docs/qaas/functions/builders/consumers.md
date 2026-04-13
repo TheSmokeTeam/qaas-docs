@@ -56,11 +56,11 @@ The functions on this page are grouped by responsibility so related operations s
 
 ## Policies
 
-### `CreatePolicy`
+### `AddPolicy`
 
 ??? info "Source file, signature, and docstring"
     **Member**
-    `ConsumerBuilder.CreatePolicy(PolicyBuilder policy)`
+    `ConsumerBuilder.AddPolicy(PolicyBuilder policy)`
     
     **Kind** `function`
     
@@ -70,12 +70,12 @@ The functions on this page are grouped by responsibility so related operations s
     
     **Signature**
     ```csharp
-    public ConsumerBuilder CreatePolicy(PolicyBuilder policy)
+    public ConsumerBuilder AddPolicy(PolicyBuilder policy)
     ```
     
     **Docstring**
     
-    Creates or adds the configured policy entry on the current Runner consumer builder instance.
+    Adds the supplied policy to the current Runner consumer builder instance.
     
     Use this method when working with the documented Runner consumer builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
@@ -102,11 +102,11 @@ The functions on this page are grouped by responsibility so related operations s
     
     Use this method when working with the documented Runner consumer builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
-### `DeletePolicyAt`
+### `RemovePolicyAt`
 
 ??? info "Source file, signature, and docstring"
     **Member**
-    `ConsumerBuilder.DeletePolicyAt(int index)`
+    `ConsumerBuilder.RemovePolicyAt(int index)`
     
     **Kind** `function`
     
@@ -116,7 +116,7 @@ The functions on this page are grouped by responsibility so related operations s
     
     **Signature**
     ```csharp
-    public ConsumerBuilder DeletePolicyAt(int index)
+    public ConsumerBuilder RemovePolicyAt(int index)
     ```
     
     **Docstring**
@@ -150,6 +150,29 @@ The functions on this page are grouped by responsibility so related operations s
     
     Use this method when working with the documented Runner consumer builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
+### `WithInitialTimeout`
+
+??? info "Source file, signature, and docstring"
+    **Member**
+    `ConsumerBuilder.WithInitialTimeout(int? initialTimeoutMs)`
+    
+    **Kind** `function`
+    
+    **Declaring Type** `ConsumerBuilder`
+    
+    **Source File** `QaaS.Runner.Sessions/Actions/Consumers/Builders/ConsumerBuilderLogic.cs`
+    
+    **Signature**
+    ```csharp
+    public ConsumerBuilder WithInitialTimeout(int? initialTimeoutMs)
+    ```
+    
+    **Docstring**
+    
+    Configures timeout on the current Runner consumer builder instance.
+    
+    Use this method when working with the documented Runner consumer builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
+
 ### `WithDeserializer`
 
 ??? info "Source file, signature, and docstring"
@@ -173,78 +196,7 @@ The functions on this page are grouped by responsibility so related operations s
     
     Use this method when working with the documented Runner consumer builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
-## Inspection
-
-### `ReadPolicies`
-
-??? info "Source file, signature, and docstring"
-    **Member**
-    `ConsumerBuilder.ReadPolicies()`
-    
-    **Kind** `function`
-    
-    **Declaring Type** `ConsumerBuilder`
-    
-    **Source File** `QaaS.Runner.Sessions/Actions/Consumers/Builders/ConsumerBuilderLogic.cs`
-    
-    **Signature**
-    ```csharp
-    public IReadOnlyList<PolicyBuilder> ReadPolicies()
-    ```
-    
-    **Docstring**
-    
-    Returns the configured policies currently stored on the Runner consumer builder instance.
-    
-    Use this method when working with the documented Runner consumer builder API surface in code. Use it to inspect the current configured state without rebuilding the surrounding collection or runtime object graph.
-
 ## Collection helpers
-
-### `UpdateConfiguration`
-
-??? info "Source file, signature, and docstring"
-    **Member**
-    `ConsumerBuilder.UpdateConfiguration(Func<IReaderConfig, IReaderConfig> update)`
-    
-    **Kind** `function`
-    
-    **Declaring Type** `ConsumerBuilder`
-    
-    **Source File** `QaaS.Runner.Sessions/Actions/Consumers/Builders/ConsumerBuilderLogic.cs`
-    
-    **Signature**
-    ```csharp
-    public ConsumerBuilder UpdateConfiguration(Func<IReaderConfig, IReaderConfig> update)
-    ```
-    
-    **Docstring**
-    
-    Returns the configuration currently stored on the Runner consumer builder instance.
-    
-    Use this method when working with the documented Runner consumer builder API surface in code. Use it to inspect the current configured state without rebuilding the surrounding collection or runtime object graph.
-
-### `UpdateConfiguration`
-
-??? info "Source file, signature, and docstring"
-    **Member**
-    `ConsumerBuilder.UpdateConfiguration(IReaderConfig config)`
-    
-    **Kind** `function`
-    
-    **Declaring Type** `ConsumerBuilder`
-    
-    **Source File** `QaaS.Runner.Sessions/Actions/Consumers/Builders/ConsumerBuilderLogic.cs`
-    
-    **Signature**
-    ```csharp
-    public ConsumerBuilder UpdateConfiguration(IReaderConfig config)
-    ```
-    
-    **Docstring**
-    
-    Updates the configuration currently stored on the Runner consumer builder instance.
-    
-    Use this method when working with the documented Runner consumer builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
 ### `UpdateConfiguration`
 
@@ -266,29 +218,6 @@ The functions on this page are grouped by responsibility so related operations s
     **Docstring**
     
     Updates the configuration currently stored on the Runner consumer builder instance.
-    
-    Use this method when working with the documented Runner consumer builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
-
-### `DeleteConfiguration`
-
-??? info "Source file, signature, and docstring"
-    **Member**
-    `ConsumerBuilder.DeleteConfiguration()`
-    
-    **Kind** `function`
-    
-    **Declaring Type** `ConsumerBuilder`
-    
-    **Source File** `QaaS.Runner.Sessions/Actions/Consumers/Builders/ConsumerBuilderLogic.cs`
-    
-    **Signature**
-    ```csharp
-    public ConsumerBuilder DeleteConfiguration()
-    ```
-    
-    **Docstring**
-    
-    Clears the configuration currently stored on the Runner consumer builder instance.
     
     Use this method when working with the documented Runner consumer builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 

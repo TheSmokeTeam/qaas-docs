@@ -54,11 +54,11 @@ The functions on this page are grouped by responsibility so related operations s
 
 ## Data source selection
 
-### `CreateDataSourceName`
+### `AddDataSourceName`
 
 ??? info "Source file, signature, and docstring"
     **Member**
-    `TransactionStubBuilder.CreateDataSourceName(string dataSourceName)`
+    `TransactionStubBuilder.AddDataSourceName(string dataSourceName)`
     
     **Kind** `function`
     
@@ -68,37 +68,14 @@ The functions on this page are grouped by responsibility so related operations s
     
     **Signature**
     ```csharp
-    public TransactionStubBuilder CreateDataSourceName(string dataSourceName)
+    public TransactionStubBuilder AddDataSourceName(string dataSourceName)
     ```
     
     **Docstring**
     
-    Configures data source names on the current Mocker transaction stub builder instance.
+    Adds the supplied data source name to the current Mocker transaction stub builder instance.
     
     Use this method when working with the documented Mocker transaction stub builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
-
-### `ReadDataSourceNames`
-
-??? info "Source file, signature, and docstring"
-    **Member**
-    `TransactionStubBuilder.ReadDataSourceNames()`
-    
-    **Kind** `function`
-    
-    **Declaring Type** `TransactionStubBuilder`
-    
-    **Source File** `QaaS.Mocker.Stubs/ConfigurationObjects/TransactionStubBuilder.cs`
-    
-    **Signature**
-    ```csharp
-    public IReadOnlyList<string> ReadDataSourceNames()
-    ```
-    
-    **Docstring**
-    
-    Returns the configured data source names currently stored on the Mocker transaction stub builder instance.
-    
-    Use this method when working with the documented Mocker transaction stub builder API surface in code. Use it to inspect the current configured state without rebuilding the surrounding collection or runtime object graph.
 
 ### `UpdateDataSourceName`
 
@@ -123,11 +100,11 @@ The functions on this page are grouped by responsibility so related operations s
     
     Use this method when working with the documented Mocker transaction stub builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
-### `DeleteDataSourceName`
+### `RemoveDataSourceName`
 
 ??? info "Source file, signature, and docstring"
     **Member**
-    `TransactionStubBuilder.DeleteDataSourceName(string dataSourceName)`
+    `TransactionStubBuilder.RemoveDataSourceName(string dataSourceName)`
     
     **Kind** `function`
     
@@ -137,12 +114,35 @@ The functions on this page are grouped by responsibility so related operations s
     
     **Signature**
     ```csharp
-    public TransactionStubBuilder DeleteDataSourceName(string dataSourceName)
+    public TransactionStubBuilder RemoveDataSourceName(string dataSourceName)
     ```
     
     **Docstring**
     
     Removes the configured data source name from the current Mocker transaction stub builder instance.
+    
+    Use this method when working with the documented Mocker transaction stub builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
+
+### `RemoveDataSourceNameAt`
+
+??? info "Source file, signature, and docstring"
+    **Member**
+    `TransactionStubBuilder.RemoveDataSourceNameAt(int index)`
+    
+    **Kind** `function`
+    
+    **Declaring Type** `TransactionStubBuilder`
+    
+    **Source File** `QaaS.Mocker.Stubs/ConfigurationObjects/TransactionStubBuilder.cs`
+    
+    **Signature**
+    ```csharp
+    public TransactionStubBuilder RemoveDataSourceNameAt(int index)
+    ```
+    
+    **Docstring**
+    
+    Removes the configured data source name at the specified index from the current Mocker transaction stub builder instance.
     
     Use this method when working with the documented Mocker transaction stub builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
@@ -216,29 +216,6 @@ The functions on this page are grouped by responsibility so related operations s
     **Docstring**
     
     Updates the configuration currently stored on the Mocker transaction stub builder instance.
-    
-    Use this method when working with the documented Mocker transaction stub builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
-
-### `DeleteConfiguration`
-
-??? info "Source file, signature, and docstring"
-    **Member**
-    `TransactionStubBuilder.DeleteConfiguration()`
-    
-    **Kind** `function`
-    
-    **Declaring Type** `TransactionStubBuilder`
-    
-    **Source File** `QaaS.Mocker.Stubs/ConfigurationObjects/TransactionStubBuilder.cs`
-    
-    **Signature**
-    ```csharp
-    public TransactionStubBuilder DeleteConfiguration()
-    ```
-    
-    **Docstring**
-    
-    Clears the configuration currently stored on the Mocker transaction stub builder instance.
     
     Use this method when working with the documented Mocker transaction stub builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 

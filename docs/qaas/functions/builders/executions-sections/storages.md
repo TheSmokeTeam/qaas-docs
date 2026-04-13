@@ -2,11 +2,11 @@
 
 This page mirrors the `Storages` section from [Executions](../executions.md).
 
-## `CreateStorage`
+## `AddStorage`
 
 ??? info "Source file, signature, and docstring"
     **Member**
-    `ExecutionBuilder.CreateStorage(StorageBuilder storageBuilder)`
+    `ExecutionBuilder.AddStorage(StorageBuilder storageBuilder)`
     
     **Kind** `function`
     
@@ -16,60 +16,14 @@ This page mirrors the `Storages` section from [Executions](../executions.md).
     
     **Signature**
     ```csharp
-    public ExecutionBuilder CreateStorage(StorageBuilder storageBuilder)
+    public ExecutionBuilder AddStorage(StorageBuilder storageBuilder)
     ```
     
     **Docstring**
     
-    Creates or adds the configured storage entry on the current Runner execution builder instance.
+    Adds the supplied storage to the current Runner execution builder instance.
     
     Use this method when working with the documented Runner execution builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
-
-## `ReadStorages`
-
-??? info "Source file, signature, and docstring"
-    **Member**
-    `ExecutionBuilder.ReadStorages()`
-    
-    **Kind** `function`
-    
-    **Declaring Type** `ExecutionBuilder`
-    
-    **Source File** `QaaS.Runner/ExecutionBuilder.cs`
-    
-    **Signature**
-    ```csharp
-    public IReadOnlyList<StorageBuilder> ReadStorages()
-    ```
-    
-    **Docstring**
-    
-    Returns the configured storages currently stored on the Runner execution builder instance.
-    
-    Use this method when working with the documented Runner execution builder API surface in code. Use it to inspect the current configured state without rebuilding the surrounding collection or runtime object graph.
-
-## `ReadStorageAt`
-
-??? info "Source file, signature, and docstring"
-    **Member**
-    `ExecutionBuilder.ReadStorageAt(int index)`
-    
-    **Kind** `function`
-    
-    **Declaring Type** `ExecutionBuilder`
-    
-    **Source File** `QaaS.Runner/ExecutionBuilder.cs`
-    
-    **Signature**
-    ```csharp
-    public StorageBuilder? ReadStorageAt(int index)
-    ```
-    
-    **Docstring**
-    
-    Returns the configured storage currently stored at the specified index on the Runner execution builder instance.
-    
-    Use this method when working with the documented Runner execution builder API surface in code. Use it to inspect the current configured state without rebuilding the surrounding collection or runtime object graph.
 
 ## `UpdateStorageAt`
 
@@ -94,11 +48,11 @@ This page mirrors the `Storages` section from [Executions](../executions.md).
     
     Use this method when working with the documented Runner execution builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
-## `DeleteStorageAt`
+## `RemoveStorageAt`
 
 ??? info "Source file, signature, and docstring"
     **Member**
-    `ExecutionBuilder.DeleteStorageAt(int index)`
+    `ExecutionBuilder.RemoveStorageAt(int index)`
     
     **Kind** `function`
     
@@ -108,7 +62,7 @@ This page mirrors the `Storages` section from [Executions](../executions.md).
     
     **Signature**
     ```csharp
-    public ExecutionBuilder DeleteStorageAt(int index)
+    public ExecutionBuilder RemoveStorageAt(int index)
     ```
     
     **Docstring**

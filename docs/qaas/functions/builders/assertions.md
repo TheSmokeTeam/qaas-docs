@@ -102,11 +102,11 @@ The functions on this page are grouped by responsibility so related operations s
 
 ## Data source selection
 
-### `CreateDataSourceName`
+### `AddDataSourceName`
 
 ??? info "Source file, signature, and docstring"
     **Member**
-    `AssertionBuilder.CreateDataSourceName(string dataSourceName)`
+    `AssertionBuilder.AddDataSourceName(string dataSourceName)`
     
     **Kind** `function`
     
@@ -116,20 +116,20 @@ The functions on this page are grouped by responsibility so related operations s
     
     **Signature**
     ```csharp
-    public AssertionBuilder CreateDataSourceName(string dataSourceName)
+    public AssertionBuilder AddDataSourceName(string dataSourceName)
     ```
     
     **Docstring**
     
-    Creates or adds the configured data source name entry on the current Runner assertion builder instance.
+    Adds the supplied data source name to the current Runner assertion builder instance.
     
     Use this method when working with the documented Runner assertion builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
-### `ReadDataSourceNames`
+### `RemoveDataSourceName`
 
 ??? info "Source file, signature, and docstring"
     **Member**
-    `AssertionBuilder.ReadDataSourceNames()`
+    `AssertionBuilder.RemoveDataSourceName(string dataSourceName)`
     
     **Kind** `function`
     
@@ -139,53 +139,7 @@ The functions on this page are grouped by responsibility so related operations s
     
     **Signature**
     ```csharp
-    public IReadOnlyList<string> ReadDataSourceNames()
-    ```
-    
-    **Docstring**
-    
-    Returns the configured data source names currently stored on the Runner assertion builder instance.
-    
-    Use this method when working with the documented Runner assertion builder API surface in code. Use it to inspect the current configured state without rebuilding the surrounding collection or runtime object graph.
-
-### `UpdateDataSourceName`
-
-??? info "Source file, signature, and docstring"
-    **Member**
-    `AssertionBuilder.UpdateDataSourceName(string existingValue, string newValue)`
-    
-    **Kind** `function`
-    
-    **Declaring Type** `AssertionBuilder`
-    
-    **Source File** `QaaS.Runner.Assertions/ConfigurationObjects/AssertionBuilder.cs`
-    
-    **Signature**
-    ```csharp
-    public AssertionBuilder UpdateDataSourceName(string existingValue, string newValue)
-    ```
-    
-    **Docstring**
-    
-    Updates the configured data source name stored on the current Runner assertion builder instance.
-    
-    Use this method when working with the documented Runner assertion builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
-
-### `DeleteDataSourceName`
-
-??? info "Source file, signature, and docstring"
-    **Member**
-    `AssertionBuilder.DeleteDataSourceName(string dataSourceName)`
-    
-    **Kind** `function`
-    
-    **Declaring Type** `AssertionBuilder`
-    
-    **Source File** `QaaS.Runner.Assertions/ConfigurationObjects/AssertionBuilder.cs`
-    
-    **Signature**
-    ```csharp
-    public AssertionBuilder DeleteDataSourceName(string dataSourceName)
+    public AssertionBuilder RemoveDataSourceName(string dataSourceName)
     ```
     
     **Docstring**
@@ -194,11 +148,11 @@ The functions on this page are grouped by responsibility so related operations s
     
     Use this method when working with the documented Runner assertion builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
-### `CreateDataSourcePattern`
+### `RemoveDataSourceNameAt`
 
 ??? info "Source file, signature, and docstring"
     **Member**
-    `AssertionBuilder.CreateDataSourcePattern(string dataSourcePattern)`
+    `AssertionBuilder.RemoveDataSourceNameAt(int index)`
     
     **Kind** `function`
     
@@ -208,20 +162,20 @@ The functions on this page are grouped by responsibility so related operations s
     
     **Signature**
     ```csharp
-    public AssertionBuilder CreateDataSourcePattern(string dataSourcePattern)
+    public AssertionBuilder RemoveDataSourceNameAt(int index)
     ```
     
     **Docstring**
     
-    Creates or adds the configured data source pattern entry on the current Runner assertion builder instance.
+    Removes the configured data source name at the specified index from the current Runner assertion builder instance.
     
     Use this method when working with the documented Runner assertion builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
-### `ReadDataSourcePatterns`
+### `AddDataSourcePattern`
 
 ??? info "Source file, signature, and docstring"
     **Member**
-    `AssertionBuilder.ReadDataSourcePatterns()`
+    `AssertionBuilder.AddDataSourcePattern(string dataSourcePattern)`
     
     **Kind** `function`
     
@@ -231,43 +185,20 @@ The functions on this page are grouped by responsibility so related operations s
     
     **Signature**
     ```csharp
-    public IReadOnlyList<string> ReadDataSourcePatterns()
+    public AssertionBuilder AddDataSourcePattern(string dataSourcePattern)
     ```
     
     **Docstring**
     
-    Returns the configured data source patterns currently stored on the Runner assertion builder instance.
-    
-    Use this method when working with the documented Runner assertion builder API surface in code. Use it to inspect the current configured state without rebuilding the surrounding collection or runtime object graph.
-
-### `UpdateDataSourcePattern`
-
-??? info "Source file, signature, and docstring"
-    **Member**
-    `AssertionBuilder.UpdateDataSourcePattern(string existingValue, string newValue)`
-    
-    **Kind** `function`
-    
-    **Declaring Type** `AssertionBuilder`
-    
-    **Source File** `QaaS.Runner.Assertions/ConfigurationObjects/AssertionBuilder.cs`
-    
-    **Signature**
-    ```csharp
-    public AssertionBuilder UpdateDataSourcePattern(string existingValue, string newValue)
-    ```
-    
-    **Docstring**
-    
-    Updates the configured data source pattern stored on the current Runner assertion builder instance.
+    Adds the supplied data source pattern to the current Runner assertion builder instance.
     
     Use this method when working with the documented Runner assertion builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
-### `DeleteDataSourcePattern`
+### `RemoveDataSourcePattern`
 
 ??? info "Source file, signature, and docstring"
     **Member**
-    `AssertionBuilder.DeleteDataSourcePattern(string dataSourcePattern)`
+    `AssertionBuilder.RemoveDataSourcePattern(string dataSourcePattern)`
     
     **Kind** `function`
     
@@ -277,7 +208,7 @@ The functions on this page are grouped by responsibility so related operations s
     
     **Signature**
     ```csharp
-    public AssertionBuilder DeleteDataSourcePattern(string dataSourcePattern)
+    public AssertionBuilder RemoveDataSourcePattern(string dataSourcePattern)
     ```
     
     **Docstring**
@@ -286,13 +217,36 @@ The functions on this page are grouped by responsibility so related operations s
     
     Use this method when working with the documented Runner assertion builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
+### `RemoveDataSourcePatternAt`
+
+??? info "Source file, signature, and docstring"
+    **Member**
+    `AssertionBuilder.RemoveDataSourcePatternAt(int index)`
+    
+    **Kind** `function`
+    
+    **Declaring Type** `AssertionBuilder`
+    
+    **Source File** `QaaS.Runner.Assertions/ConfigurationObjects/AssertionBuilder.cs`
+    
+    **Signature**
+    ```csharp
+    public AssertionBuilder RemoveDataSourcePatternAt(int index)
+    ```
+    
+    **Docstring**
+    
+    Removes the configured data source pattern at the specified index from the current Runner assertion builder instance.
+    
+    Use this method when working with the documented Runner assertion builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
+
 ## Session selection
 
-### `CreateSessionName`
+### `AddSessionName`
 
 ??? info "Source file, signature, and docstring"
     **Member**
-    `AssertionBuilder.CreateSessionName(string sessionName)`
+    `AssertionBuilder.AddSessionName(string sessionName)`
     
     **Kind** `function`
     
@@ -302,20 +256,20 @@ The functions on this page are grouped by responsibility so related operations s
     
     **Signature**
     ```csharp
-    public AssertionBuilder CreateSessionName(string sessionName)
+    public AssertionBuilder AddSessionName(string sessionName)
     ```
     
     **Docstring**
     
-    Creates or adds the configured session name entry on the current Runner assertion builder instance.
+    Adds the supplied session name to the current Runner assertion builder instance.
     
     Use this method when working with the documented Runner assertion builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
-### `ReadSessionNames`
+### `RemoveSessionName`
 
 ??? info "Source file, signature, and docstring"
     **Member**
-    `AssertionBuilder.ReadSessionNames()`
+    `AssertionBuilder.RemoveSessionName(string sessionName)`
     
     **Kind** `function`
     
@@ -325,53 +279,7 @@ The functions on this page are grouped by responsibility so related operations s
     
     **Signature**
     ```csharp
-    public IReadOnlyList<string> ReadSessionNames()
-    ```
-    
-    **Docstring**
-    
-    Returns the configured session names currently stored on the Runner assertion builder instance.
-    
-    Use this method when working with the documented Runner assertion builder API surface in code. Use it to inspect the current configured state without rebuilding the surrounding collection or runtime object graph.
-
-### `UpdateSessionName`
-
-??? info "Source file, signature, and docstring"
-    **Member**
-    `AssertionBuilder.UpdateSessionName(string existingValue, string newValue)`
-    
-    **Kind** `function`
-    
-    **Declaring Type** `AssertionBuilder`
-    
-    **Source File** `QaaS.Runner.Assertions/ConfigurationObjects/AssertionBuilder.cs`
-    
-    **Signature**
-    ```csharp
-    public AssertionBuilder UpdateSessionName(string existingValue, string newValue)
-    ```
-    
-    **Docstring**
-    
-    Updates the configured session name stored on the current Runner assertion builder instance.
-    
-    Use this method when working with the documented Runner assertion builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
-
-### `DeleteSessionName`
-
-??? info "Source file, signature, and docstring"
-    **Member**
-    `AssertionBuilder.DeleteSessionName(string sessionName)`
-    
-    **Kind** `function`
-    
-    **Declaring Type** `AssertionBuilder`
-    
-    **Source File** `QaaS.Runner.Assertions/ConfigurationObjects/AssertionBuilder.cs`
-    
-    **Signature**
-    ```csharp
-    public AssertionBuilder DeleteSessionName(string sessionName)
+    public AssertionBuilder RemoveSessionName(string sessionName)
     ```
     
     **Docstring**
@@ -380,11 +288,11 @@ The functions on this page are grouped by responsibility so related operations s
     
     Use this method when working with the documented Runner assertion builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
-### `CreateSessionPattern`
+### `RemoveSessionNameAt`
 
 ??? info "Source file, signature, and docstring"
     **Member**
-    `AssertionBuilder.CreateSessionPattern(string sessionPattern)`
+    `AssertionBuilder.RemoveSessionNameAt(int index)`
     
     **Kind** `function`
     
@@ -394,20 +302,20 @@ The functions on this page are grouped by responsibility so related operations s
     
     **Signature**
     ```csharp
-    public AssertionBuilder CreateSessionPattern(string sessionPattern)
+    public AssertionBuilder RemoveSessionNameAt(int index)
     ```
     
     **Docstring**
     
-    Creates or adds the configured session pattern entry on the current Runner assertion builder instance.
+    Removes the configured session name at the specified index from the current Runner assertion builder instance.
     
     Use this method when working with the documented Runner assertion builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
-### `ReadSessionPatterns`
+### `AddSessionPattern`
 
 ??? info "Source file, signature, and docstring"
     **Member**
-    `AssertionBuilder.ReadSessionPatterns()`
+    `AssertionBuilder.AddSessionPattern(string sessionPattern)`
     
     **Kind** `function`
     
@@ -417,43 +325,20 @@ The functions on this page are grouped by responsibility so related operations s
     
     **Signature**
     ```csharp
-    public IReadOnlyList<string> ReadSessionPatterns()
+    public AssertionBuilder AddSessionPattern(string sessionPattern)
     ```
     
     **Docstring**
     
-    Returns the configured session patterns currently stored on the Runner assertion builder instance.
-    
-    Use this method when working with the documented Runner assertion builder API surface in code. Use it to inspect the current configured state without rebuilding the surrounding collection or runtime object graph.
-
-### `UpdateSessionPattern`
-
-??? info "Source file, signature, and docstring"
-    **Member**
-    `AssertionBuilder.UpdateSessionPattern(string existingValue, string newValue)`
-    
-    **Kind** `function`
-    
-    **Declaring Type** `AssertionBuilder`
-    
-    **Source File** `QaaS.Runner.Assertions/ConfigurationObjects/AssertionBuilder.cs`
-    
-    **Signature**
-    ```csharp
-    public AssertionBuilder UpdateSessionPattern(string existingValue, string newValue)
-    ```
-    
-    **Docstring**
-    
-    Updates the configured session pattern stored on the current Runner assertion builder instance.
+    Adds the supplied session pattern to the current Runner assertion builder instance.
     
     Use this method when working with the documented Runner assertion builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
-### `DeleteSessionPattern`
+### `RemoveSessionPattern`
 
 ??? info "Source file, signature, and docstring"
     **Member**
-    `AssertionBuilder.DeleteSessionPattern(string sessionPattern)`
+    `AssertionBuilder.RemoveSessionPattern(string sessionPattern)`
     
     **Kind** `function`
     
@@ -463,7 +348,7 @@ The functions on this page are grouped by responsibility so related operations s
     
     **Signature**
     ```csharp
-    public AssertionBuilder DeleteSessionPattern(string sessionPattern)
+    public AssertionBuilder RemoveSessionPattern(string sessionPattern)
     ```
     
     **Docstring**
@@ -472,13 +357,36 @@ The functions on this page are grouped by responsibility so related operations s
     
     Use this method when working with the documented Runner assertion builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
+### `RemoveSessionPatternAt`
+
+??? info "Source file, signature, and docstring"
+    **Member**
+    `AssertionBuilder.RemoveSessionPatternAt(int index)`
+    
+    **Kind** `function`
+    
+    **Declaring Type** `AssertionBuilder`
+    
+    **Source File** `QaaS.Runner.Assertions/ConfigurationObjects/AssertionBuilder.cs`
+    
+    **Signature**
+    ```csharp
+    public AssertionBuilder RemoveSessionPatternAt(int index)
+    ```
+    
+    **Docstring**
+    
+    Removes the configured session pattern at the specified index from the current Runner assertion builder instance.
+    
+    Use this method when working with the documented Runner assertion builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
+
 ## Links
 
-### `CreateLink`
+### `AddLink`
 
 ??? info "Source file, signature, and docstring"
     **Member**
-    `AssertionBuilder.CreateLink(LinkBuilder linkBuilder)`
+    `AssertionBuilder.AddLink(LinkBuilder linkBuilder)`
     
     **Kind** `function`
     
@@ -488,20 +396,20 @@ The functions on this page are grouped by responsibility so related operations s
     
     **Signature**
     ```csharp
-    public AssertionBuilder CreateLink(LinkBuilder linkBuilder)
+    public AssertionBuilder AddLink(LinkBuilder linkBuilder)
     ```
     
     **Docstring**
     
-    Creates or adds the configured link entry on the current Runner assertion builder instance.
+    Adds the supplied link to the current Runner assertion builder instance.
     
     Use this method when working with the documented Runner assertion builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
-### `ReadLinks`
+### `RemoveLink`
 
 ??? info "Source file, signature, and docstring"
     **Member**
-    `AssertionBuilder.ReadLinks()`
+    `AssertionBuilder.RemoveLink(string name)`
     
     **Kind** `function`
     
@@ -511,58 +419,35 @@ The functions on this page are grouped by responsibility so related operations s
     
     **Signature**
     ```csharp
-    public IReadOnlyList<LinkBuilder> ReadLinks()
-    ```
-    
-    **Docstring**
-    
-    Returns the configured links currently stored on the Runner assertion builder instance.
-    
-    Use this method when working with the documented Runner assertion builder API surface in code. Use it to inspect the current configured state without rebuilding the surrounding collection or runtime object graph.
-
-### `UpdateLink`
-
-??? info "Source file, signature, and docstring"
-    **Member**
-    `AssertionBuilder.UpdateLink(string name, LinkBuilder linkBuilder)`
-    
-    **Kind** `function`
-    
-    **Declaring Type** `AssertionBuilder`
-    
-    **Source File** `QaaS.Runner.Assertions/ConfigurationObjects/AssertionBuilder.cs`
-    
-    **Signature**
-    ```csharp
-    public AssertionBuilder UpdateLink(string name, LinkBuilder linkBuilder)
-    ```
-    
-    **Docstring**
-    
-    Updates the configured link stored on the current Runner assertion builder instance.
-    
-    Use this method when working with the documented Runner assertion builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
-
-### `DeleteLink`
-
-??? info "Source file, signature, and docstring"
-    **Member**
-    `AssertionBuilder.DeleteLink(string name)`
-    
-    **Kind** `function`
-    
-    **Declaring Type** `AssertionBuilder`
-    
-    **Source File** `QaaS.Runner.Assertions/ConfigurationObjects/AssertionBuilder.cs`
-    
-    **Signature**
-    ```csharp
-    public AssertionBuilder DeleteLink(string name)
+    public AssertionBuilder RemoveLink(string name)
     ```
     
     **Docstring**
     
     Removes the configured link from the current Runner assertion builder instance.
+    
+    Use this method when working with the documented Runner assertion builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
+
+### `RemoveLinkAt`
+
+??? info "Source file, signature, and docstring"
+    **Member**
+    `AssertionBuilder.RemoveLinkAt(int index)`
+    
+    **Kind** `function`
+    
+    **Declaring Type** `AssertionBuilder`
+    
+    **Source File** `QaaS.Runner.Assertions/ConfigurationObjects/AssertionBuilder.cs`
+    
+    **Signature**
+    ```csharp
+    public AssertionBuilder RemoveLinkAt(int index)
+    ```
+    
+    **Docstring**
+    
+    Removes the configured link at the specified index from the current Runner assertion builder instance.
     
     Use this method when working with the documented Runner assertion builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
@@ -727,15 +612,15 @@ The functions on this page are grouped by responsibility so related operations s
     
     **Docstring**
     
-    Updates the configuration currently stored on the Runner assertion builder instance.
+    Sets the configuration currently stored on the Runner assertion builder instance.
     
     Use this method when working with the documented Runner assertion builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
-### `DeleteConfiguration`
+### `RemoveConfiguration`
 
 ??? info "Source file, signature, and docstring"
     **Member**
-    `AssertionBuilder.DeleteConfiguration()`
+    `AssertionBuilder.RemoveConfiguration()`
     
     **Kind** `function`
     
@@ -745,7 +630,7 @@ The functions on this page are grouped by responsibility so related operations s
     
     **Signature**
     ```csharp
-    public AssertionBuilder DeleteConfiguration()
+    public AssertionBuilder RemoveConfiguration()
     ```
     
     **Docstring**
