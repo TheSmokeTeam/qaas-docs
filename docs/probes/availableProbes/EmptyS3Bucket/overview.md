@@ -1,6 +1,6 @@
 # EmptyS3Bucket
 
-Probe to empty a s3 bucket according to a certain prefix
+Deletes objects from the configured S3 bucket, optionally constrained to a prefix, while treating a missing bucket as a no-op.
 
 ## What It Does
 
