@@ -1,6 +1,6 @@
 # Create a Mock (Code)
 
-This sample builds the same mock as the YAML quick start, but assembles it directly in `Program.cs`.
+This sample builds the same mock as the YAML quick start, but assembles the mock configuration in `Program.cs`.
 
 The completed sample is available at [DummyAppMock (Code)]({{ links.repository_mocker_quickstart_code }}).
 
@@ -9,8 +9,8 @@ The completed sample is available at [DummyAppMock (Code)]({{ links.repository_m
 ```bash
 dotnet new qaas-mocker -n DummyAppMock
 cd DummyAppMock
-dotnet add DummyAppMock/DummyAppMock.csproj package QaaS.Mocker --version 2.2.0
-dotnet add DummyAppMock/DummyAppMock.csproj package QaaS.Common.Generators --version 3.3.0
+dotnet add DummyAppMock/DummyAppMock.csproj package QaaS.Mocker
+dotnet add DummyAppMock/DummyAppMock.csproj package QaaS.Common.Generators
 ```
 
 ## Add the Response File
@@ -34,18 +34,27 @@ Use the same `ServerDataProcessor` shown in the YAML quick start. The code-first
 
 ### Start with the Imports
 
-These are the only namespaces the sample needs: the local processor, the `FromFileSystem` generator, the Mocker builder surface, and the HTTP server configuration types.
-
 ```csharp
 using DummyAppMock.Processors;
 using QaaS.Common.Generators.ConfigurationObjects.FromExternalSourceConfigurations;
 using QaaS.Common.Generators.FromExternalSourceGenerators;
 using QaaS.Framework.SDK.DataSourceObjects;
+using QaaS.Framework.SDK.Extensions;
 using QaaS.Mocker;
 using QaaS.Mocker.Servers.ConfigurationObjects;
 using QaaS.Mocker.Servers.ConfigurationObjects.HttpServerConfigs;
 using QaaS.Mocker.Stubs.ConfigurationObjects;
 using HttpMethod = QaaS.Mocker.Servers.ConfigurationObjects.HttpServerConfigs.HttpMethod;
+```
+
+### Start from the Standard Bootstrap Host
+
+The sample now starts with the normal Mocker bootstrap flow, then pulls out the single execution builder that the host created. When you run without arguments it defaults to `run mocker.qaas.yaml`, so the app keeps the same startup contract as the YAML sample while still adding the mock structure in code.
+
+```csharp
+var bootstrapArguments = args.Length > 0 ? args : ["run", "mocker.qaas.yaml"];
+var runner = Bootstrap.New(bootstrapArguments);
+var executionBuilder = runner.ExecutionBuilders.AsSingle();
 ```
 
 ### Create the Data Source
@@ -74,7 +83,7 @@ Next connect the incoming request flow to the local processor. The stub says "wh
 var stub = new TransactionStubBuilder()
     .Named("ServerDataStub")
     .HookNamed(nameof(ServerDataProcessor))
-     .CreateDataSourceName("ServerData");
+    .AddDataSourceName("ServerData");
 ```
 
 ### Create the Server
@@ -108,17 +117,17 @@ var server = new ServerConfig
 };
 ```
 
-### Assemble the Mocker Execution
+### Add Everything to the Bootstrapped Execution
 
-Finally attach each piece to the current execution builder. `CreateServer(...)` appends the server to the builder's current server list, which is the documented code-first API to use when you want to grow the `Servers` collection.
+Finally attach each piece to the bootstrapped `ExecutionBuilder`, then run the host.
 
 ```csharp
-var executionBuilder = new ExecutionBuilder()
-    .CreateDataSource(dataSource)
-    .CreateStub(stub)
-        .CreateServer(server);
+executionBuilder
+    .AddDataSource(dataSource)
+    .AddStub(stub)
+    .AddServer(server);
 
-new MockerRunner(executionBuilder).Run();
+runner.Run();
 ```
 
 ## Full `Program.cs`
@@ -132,11 +141,16 @@ using DummyAppMock.Processors;
 using QaaS.Common.Generators.ConfigurationObjects.FromExternalSourceConfigurations;
 using QaaS.Common.Generators.FromExternalSourceGenerators;
 using QaaS.Framework.SDK.DataSourceObjects;
+using QaaS.Framework.SDK.Extensions;
 using QaaS.Mocker;
 using QaaS.Mocker.Servers.ConfigurationObjects;
 using QaaS.Mocker.Servers.ConfigurationObjects.HttpServerConfigs;
 using QaaS.Mocker.Stubs.ConfigurationObjects;
 using HttpMethod = QaaS.Mocker.Servers.ConfigurationObjects.HttpServerConfigs.HttpMethod;
+
+var bootstrapArguments = args.Length > 0 ? args : ["run", "mocker.qaas.yaml"];
+var runner = Bootstrap.New(bootstrapArguments);
+var executionBuilder = runner.ExecutionBuilders.AsSingle();
 
 var dataSource = new DataSourceBuilder()
     .Named("ServerData")
@@ -153,7 +167,7 @@ var dataSource = new DataSourceBuilder()
 var stub = new TransactionStubBuilder()
     .Named("ServerDataStub")
     .HookNamed(nameof(ServerDataProcessor))
-     .CreateDataSourceName("ServerData");
+    .AddDataSourceName("ServerData");
 
 var server = new ServerConfig
 {
@@ -180,15 +194,15 @@ var server = new ServerConfig
     }
 };
 
-var executionBuilder = new ExecutionBuilder()
-    .CreateDataSource(dataSource)
-    .CreateStub(stub)
-        .CreateServer(server);
+executionBuilder
+    .AddDataSource(dataSource)
+    .AddStub(stub)
+    .AddServer(server);
 
-new MockerRunner(executionBuilder).Run();
+runner.Run();
 ```
 
-This `Program.cs` maps directly to the YAML quick start: one `FromFileSystem` data source, one stub, and one HTTP server endpoint.
+This `Program.cs` still maps directly to the YAML quick start: one `FromFileSystem` data source, one stub, and one HTTP server endpoint. The difference is only where that configuration is defined.
 
 ## Run the Code Path
 

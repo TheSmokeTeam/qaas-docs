@@ -9,9 +9,9 @@ The completed sample is available at [DummyAppTests (Code)]({{ links.repository_
 ```bash
 dotnet new qaas-runner -n DummyAppTests
 cd DummyAppTests
-dotnet add DummyAppTests/DummyAppTests.csproj package QaaS.Runner --version 4.3.0
-dotnet add DummyAppTests/DummyAppTests.csproj package QaaS.Common.Assertions --version 3.3.0
-dotnet add DummyAppTests/DummyAppTests.csproj package QaaS.Common.Generators --version 3.3.0
+dotnet add DummyAppTests/DummyAppTests.csproj package QaaS.Runner
+dotnet add DummyAppTests/DummyAppTests.csproj package QaaS.Common.Assertions
+dotnet add DummyAppTests/DummyAppTests.csproj package QaaS.Common.Generators
 ```
 
 ## Keep an Empty Bootstrap File
