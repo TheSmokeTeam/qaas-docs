@@ -2,7 +2,7 @@
 
 Use YAML when you want the test flow to stay declarative, easy to diff, and easy to hand to someone who does not need to read C# first. QaaS.Runner loads the YAML into an execution builder, so the YAML sections below map directly to the runtime concepts you will keep using later: [MetaData](../userInterfaces/runner/configurationSections/metaData/overview.md), [DataSources](../userInterfaces/runner/configurationSections/dataSources/overview.md), [Sessions](../userInterfaces/runner/configurationSections/sessions/overview.md), and [Assertions](../userInterfaces/runner/configurationSections/assertions/overview.md).
 
-This sample publishes one message to RabbitMQ's `input` exchange, waits for a response on the `output` exchange, and verifies both delivery and timing.
+This sample publishes one message to RabbitMQ's `dummy-app-tests-input` exchange, waits for a response on the `dummy-app-tests-output` exchange, and verifies both delivery and timing.
 
 The completed sample is available at [DummyAppTests (YAML)]({{ links.repository_runner_quickstart_yaml }}).
 
@@ -38,7 +38,7 @@ The host stays small because the entire test definition will live in `test.qaas.
 ]
 ```
 
-The sample publishes this payload to RabbitMQ and then checks that it comes back through the expected `input` to `output` flow.
+The sample publishes this payload to RabbitMQ and then checks that it comes back through the expected `dummy-app-tests-input` to `dummy-app-tests-output` flow.
 
 ## Start with `MetaData` and `DataSources`
 
@@ -64,7 +64,7 @@ DataSources:
 
 ## Add the `Sessions` Section
 
-Next add the session that performs the real work. A session groups the actions that exercise the system under test. In this sample the publisher writes to RabbitMQ's `input` exchange and the consumer listens on the `output` exchange, which matches the older DummyApp contract from the previous docs.
+Next add the session that performs the real work. A session groups the actions that exercise the system under test. In this sample the publisher writes to RabbitMQ's `dummy-app-tests-input` exchange and the consumer listens on the `dummy-app-tests-output` exchange.
 
 Append this section to `test.qaas.yaml`:
 
@@ -82,7 +82,7 @@ Sessions:
           Username: admin
           Password: admin
           Port: 5672
-          ExchangeName: input
+          ExchangeName: dummy-app-tests-input
           RoutingKey: /
     Consumers:
       - Name: Consumer
@@ -92,13 +92,13 @@ Sessions:
           Username: admin
           Password: admin
           Port: 5672
-          ExchangeName: output
+          ExchangeName: dummy-app-tests-output
           RoutingKey: /
         Deserialize:
           Deserializer: Json
 ```
 
-The [Publisher](../userInterfaces/runner/configurationSections/sessions/types/publishers.md) sends every payload loaded by `FromFileSystemTestData` to the `input` exchange. The [Consumer](../userInterfaces/runner/configurationSections/sessions/types/consumers.md) listens on the `output` exchange, waits up to five seconds, and deserializes the received body as JSON. In a real test, your application or local quick-start environment should move the message from `input` to `output`.
+The [Publisher](../userInterfaces/runner/configurationSections/sessions/types/publishers.md) sends every payload loaded by `FromFileSystemTestData` to the `dummy-app-tests-input` exchange. The [Consumer](../userInterfaces/runner/configurationSections/sessions/types/consumers.md) listens on the `dummy-app-tests-output` exchange, waits up to five seconds, and deserializes the received body as JSON. In a real test, your application or local quick-start environment should move the message from `dummy-app-tests-input` to `dummy-app-tests-output`.
 
 ## Add the `Assertions` Section
 
@@ -125,10 +125,10 @@ Assertions:
       Input:
         Name: Publisher
         ChunkSize: 1
-      MaximumDelayMs: 5000
+      MaximumDelayMs: 10000
 ```
 
-`HermeticByInputOutputPercentage` from [QaaS.Common.Assertions](../../assertions/index.md) checks that every input produced a matching output. `DelayByChunks` from [QaaS.Common.Assertions](../../assertions/index.md) checks that the output arrives within five seconds.
+`HermeticByInputOutputPercentage` from [QaaS.Common.Assertions](../../assertions/index.md) checks that every input produced a matching output. `DelayByChunks` from [QaaS.Common.Assertions](../../assertions/index.md) checks that the output arrives within ten seconds.
 
 ## Full `test.qaas.yaml`
 
@@ -160,7 +160,7 @@ Sessions:
           Username: admin
           Password: admin
           Port: 5672
-          ExchangeName: input
+          ExchangeName: dummy-app-tests-input
           RoutingKey: /
     Consumers:
       - Name: Consumer
@@ -170,7 +170,7 @@ Sessions:
           Username: admin
           Password: admin
           Port: 5672
-          ExchangeName: output
+          ExchangeName: dummy-app-tests-output
           RoutingKey: /
         Deserialize:
           Deserializer: Json
@@ -193,7 +193,7 @@ Assertions:
       Input:
         Name: Publisher
         ChunkSize: 1
-      MaximumDelayMs: 5000
+      MaximumDelayMs: 10000
 ```
 
 ## Run
@@ -206,4 +206,4 @@ dotnet run -- run test.qaas.yaml
 
 ## Result
 
-Runner publishes the JSON payload from `TestData/input.json` to `input`, then waits for the corresponding response on `output`. The consumer verifies both 100% hermeticity and a maximum end-to-end delay of 5000 ms. Once you connect a real application, that application should be the component that consumes from `input` and publishes to `output`.
+Runner publishes the JSON payload from `TestData/input.json` to `dummy-app-tests-input`, then waits for the corresponding response on `dummy-app-tests-output`. The consumer verifies both 100% hermeticity and a maximum end-to-end delay of 10000 ms. Once you connect a real application, that application should be the component that consumes from `dummy-app-tests-input` and publishes to `dummy-app-tests-output`.
