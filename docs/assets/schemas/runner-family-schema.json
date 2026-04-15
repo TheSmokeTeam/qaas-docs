@@ -9565,8 +9565,8 @@
                                 "boolean",
                                 "string"
                               ],
-                              "description": "Allow invalid TLS certificates when connecting to the OpenShift API.",
-                              "default": false,
+                              "description": "Allow invalid TLS certificates when connecting to the OpenShift API. Defaults to true to preserve the historical OpenShift probe behavior for local and self-signed clusters unless callers explicitly opt into strict validation.",
+                              "default": true,
                               "pattern": "\\$\\{.*\\}"
                             }
                           }
@@ -9712,8 +9712,8 @@
                                 "boolean",
                                 "string"
                               ],
-                              "description": "Allow invalid TLS certificates when connecting to the OpenShift API.",
-                              "default": false,
+                              "description": "Allow invalid TLS certificates when connecting to the OpenShift API. Defaults to true to preserve the historical OpenShift probe behavior for local and self-signed clusters unless callers explicitly opt into strict validation.",
+                              "default": true,
                               "pattern": "\\$\\{.*\\}"
                             }
                           }
@@ -9831,8 +9831,8 @@
                                 "boolean",
                                 "string"
                               ],
-                              "description": "Allow invalid TLS certificates when connecting to the OpenShift API.",
-                              "default": false,
+                              "description": "Allow invalid TLS certificates when connecting to the OpenShift API. Defaults to true to preserve the historical OpenShift probe behavior for local and self-signed clusters unless callers explicitly opt into strict validation.",
+                              "default": true,
                               "pattern": "\\$\\{.*\\}"
                             }
                           }
@@ -9933,8 +9933,8 @@
                                 "boolean",
                                 "string"
                               ],
-                              "description": "Allow invalid TLS certificates when connecting to the OpenShift API.",
-                              "default": false,
+                              "description": "Allow invalid TLS certificates when connecting to the OpenShift API. Defaults to true to preserve the historical OpenShift probe behavior for local and self-signed clusters unless callers explicitly opt into strict validation.",
+                              "default": true,
                               "pattern": "\\$\\{.*\\}"
                             }
                           }
@@ -10046,8 +10046,8 @@
                                 "boolean",
                                 "string"
                               ],
-                              "description": "Allow invalid TLS certificates when connecting to the OpenShift API.",
-                              "default": false,
+                              "description": "Allow invalid TLS certificates when connecting to the OpenShift API. Defaults to true to preserve the historical OpenShift probe behavior for local and self-signed clusters unless callers explicitly opt into strict validation.",
+                              "default": true,
                               "pattern": "\\$\\{.*\\}"
                             }
                           }
@@ -10194,8 +10194,8 @@
                                 "boolean",
                                 "string"
                               ],
-                              "description": "Allow invalid TLS certificates when connecting to the OpenShift API.",
-                              "default": false,
+                              "description": "Allow invalid TLS certificates when connecting to the OpenShift API. Defaults to true to preserve the historical OpenShift probe behavior for local and self-signed clusters unless callers explicitly opt into strict validation.",
+                              "default": true,
                               "pattern": "\\$\\{.*\\}"
                             }
                           }
@@ -10316,8 +10316,8 @@
                                 "boolean",
                                 "string"
                               ],
-                              "description": "Allow invalid TLS certificates when connecting to the OpenShift API.",
-                              "default": false,
+                              "description": "Allow invalid TLS certificates when connecting to the OpenShift API. Defaults to true to preserve the historical OpenShift probe behavior for local and self-signed clusters unless callers explicitly opt into strict validation.",
+                              "default": true,
                               "pattern": "\\$\\{.*\\}"
                             }
                           }
@@ -10443,8 +10443,8 @@
                                 "boolean",
                                 "string"
                               ],
-                              "description": "Allow invalid TLS certificates when connecting to the OpenShift API.",
-                              "default": false,
+                              "description": "Allow invalid TLS certificates when connecting to the OpenShift API. Defaults to true to preserve the historical OpenShift probe behavior for local and self-signed clusters unless callers explicitly opt into strict validation.",
+                              "default": true,
                               "pattern": "\\$\\{.*\\}"
                             }
                           }
@@ -10564,8 +10564,8 @@
                                 "boolean",
                                 "string"
                               ],
-                              "description": "Allow invalid TLS certificates when connecting to the OpenShift API.",
-                              "default": false,
+                              "description": "Allow invalid TLS certificates when connecting to the OpenShift API. Defaults to true to preserve the historical OpenShift probe behavior for local and self-signed clusters unless callers explicitly opt into strict validation.",
+                              "default": true,
                               "pattern": "\\$\\{.*\\}"
                             }
                           }
@@ -10740,8 +10740,8 @@
                                 "boolean",
                                 "string"
                               ],
-                              "description": "Allow invalid TLS certificates when connecting to the OpenShift API.",
-                              "default": false,
+                              "description": "Allow invalid TLS certificates when connecting to the OpenShift API. Defaults to true to preserve the historical OpenShift probe behavior for local and self-signed clusters unless callers explicitly opt into strict validation.",
+                              "default": true,
                               "pattern": "\\$\\{.*\\}"
                             }
                           }
@@ -10861,8 +10861,8 @@
                                 "boolean",
                                 "string"
                               ],
-                              "description": "Allow invalid TLS certificates when connecting to the OpenShift API.",
-                              "default": false,
+                              "description": "Allow invalid TLS certificates when connecting to the OpenShift API. Defaults to true to preserve the historical OpenShift probe behavior for local and self-signed clusters unless callers explicitly opt into strict validation.",
+                              "default": true,
                               "pattern": "\\$\\{.*\\}"
                             }
                           }
