@@ -13,7 +13,7 @@
 | `ProbeConfiguration.Openshift.Namespace` | `string` | &#10004 |  | The openshift namespace the application is at |
 | `ProbeConfiguration.Openshift.Password` | `string` | &#10004 |  | Password of the username with access to the openshift namespace and application |
 | `ProbeConfiguration.Openshift.Username` | `string` | &#10004 |  | Username with access to the openshift namespace and application |
-| `ProbeConfiguration.Openshift.AllowInvalidServerCertificates` | `string or true/false` | &#10006 | False | Allow invalid TLS certificates when connecting to the OpenShift API. |
+| `ProbeConfiguration.Openshift.AllowInvalidServerCertificates` | `string or true/false` | &#10006 | True | Allow invalid TLS certificates when connecting to the OpenShift API. Defaults to true to preserve the historical OpenShift probe behavior for local and self-signed clusters unless callers explicitly opt into strict validation. |
 | `ProbeConfiguration.DesiredResources` | `object or string` | &#10006 |  | The resources to update the replicaset with. Overrides the current replicaset's resources. |
 | `ProbeConfiguration.DesiredResources.Limits` | `object or string` | &#10006 |  | The limits resources to update the replicaset with |
 | `ProbeConfiguration.DesiredResources.Limits.Cpu` | `string or null` | &#10006 |  | The amount of cpu to update the replicaset with |
