@@ -188,6 +188,23 @@ executionBuilder.UpdateSession(
 
 ---
 
+## Cloning Builders
+
+Every Runner builder implements `ICloneable<T>` from `QaaS.Framework.Infrastructure` and exposes a typed `Clone()` method that returns an independent deep copy. Use it when one base configuration should be reused as the starting point for several variants without mutations on a copy leaking back into the original.
+
+`Clone()` is available on `ExecutionBuilder`, `SessionBuilder`, `ConsumerBuilder`, `PublisherBuilder`, `ProbeBuilder`, `TransactionBuilder`, `CollectorBuilder`, `MockerCommandBuilder`, `AssertionBuilder`, `LinkBuilder`, `StorageBuilder`, `DataSourceBuilder`, `ContextBuilder`, and `PolicyBuilder`.
+
+```csharp
+var baseSession = new SessionBuilder().Named("Base").AtStage(1);
+
+var smokeSession = baseSession.Clone().Named("Smoke");
+var regressionSession = baseSession.Clone().Named("Regression").AtStage(2);
+```
+
+The clone is a **deep** copy: nested builders, configuration objects, arrays, lists, dictionaries, and other reference-type state are recursively duplicated, so mutating `smokeSession` (or any of its nested configuration objects) cannot affect `baseSession` or `regressionSession`.
+
+---
+
 ## Configuration Paths in Runner
 
 In practice, Runner configuration as code is usually one of three shapes:
@@ -383,6 +400,19 @@ That makes two Mocker styles valid today:
 - **direct builder path**: create `new QaaS.Mocker.ExecutionBuilder()`, configure it in code, then run it through `new MockerRunner(executionBuilder).Run()`
 
 Use the bootstrap path when you want CLI normalization, overlay handling, and environment-variable behavior. Use the direct builder path when the host already knows it wants a pure code-defined mock runtime.
+
+Mocker builders also implement `ICloneable<T>`. `ExecutionBuilder.Clone()` and `TransactionStubBuilder.Clone()` return independent deep copies of the configuration state, so a single base mock can be branched into per-environment or per-scenario variants without cross-contamination:
+
+```csharp
+var baseStub = new TransactionStubBuilder()
+    .Named("BaseStub")
+    .HookNamed("StaticResponseProcessor")
+    .Configure(new { Body = "{}" });
+
+var notFoundStub = baseStub.Clone()
+    .Named("NotFoundStub")
+    .Configure(new { Body = "{\"error\":\"not found\"}" });
+```
 
 ---
 
