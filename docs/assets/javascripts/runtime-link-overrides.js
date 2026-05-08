@@ -50,6 +50,22 @@
         }
       });
     }
+
+    if (document.title) {
+      replacements.forEach(function (nextValue, currentValue) {
+        if (document.title.includes(currentValue)) {
+          document.title = document.title.replace(currentValue, nextValue);
+        }
+      });
+    }
+
+    document.querySelectorAll(".md-header__topic").forEach(function (node) {
+      replacements.forEach(function (nextValue, currentValue) {
+        if (node.textContent.includes(currentValue)) {
+          node.textContent = node.textContent.replace(currentValue, nextValue);
+        }
+      });
+    });
   }
 
   if (document.readyState === "loading") {
