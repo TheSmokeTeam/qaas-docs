@@ -8,7 +8,7 @@ Publishers are responsible for retrieving data from data sources and pushing the
 
 ## RabbitMq
 
-Publishes messages to a RabbitMQ exchange or queue. The core logic involves establishing an AMQP connection and intelligently routing data based on the provided configuration. The publisher can either directly target a specific queue or route messages through an exchange, relying on routing keys to determine the message's final destination. Furthermore, the publisher evaluates each individual data item for embedded metadata—such as content types, expiration times, and custom headers. By reading these properties from the item's input metadata, the publisher dynamically adapts its message properties on a per-message basis, allowing for a highly flexible and varied message stream without altering the static connection parameters.
+Publishes messages to a RabbitMQ exchange or queue. The core logic involves establishing an AMQP connection and intelligently routing data based on the provided configuration. The publisher can either directly target a specific queue or route messages through an exchange, relying on routing keys to determine the message's final destination. Furthermore, the publisher evaluates each individual data item for embedded metadata—such as content types, expiration times, and custom headers. By reading these properties from the item's `MetaData`, the publisher dynamically adapts its message properties on a per-message basis, allowing for a highly flexible and varied message stream without altering the static connection parameters.
 
 **Table Property Path** - `Sessions[].Publishers[].RabbitMq`
 
