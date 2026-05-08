@@ -42,6 +42,14 @@
         }
       });
     });
+    var repoTitleElement = document.querySelector(".md-source__repository");
+    if (repoTitleElement) {
+      replacements.forEach(function (nextValue, currentValue) {
+        if (repoTitleElement.textContent.includes(currentValue)) {
+          repoTitleElement.textContent = repoTitleElement.textContent.replace(currentValue, nextValue);
+        }
+      });
+    }
   }
 
   if (document.readyState === "loading") {
