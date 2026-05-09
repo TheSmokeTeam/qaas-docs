@@ -3,7 +3,7 @@
 | Property Path | Type | Required | Default | Description |
 | ------------- | ---- | -------- | ------- | ----------- |
 | `ProbeConfiguration` | `object or string` | &#10006 |  |  |
-| `ProbeConfiguration.ReplicaSetName` | `string` | &#10004 |  | The name of the replicaset to scale the pods of |
+| `ProbeConfiguration.ReplicaSetName` | `string` | &#10004 |  | The name of the replicaset whose pods this probe targets |
 | `ProbeConfiguration.ContainerEnvVarsToUpdate` | `object or string or null` | &#10006 |  | Optional exact environment snapshot keyed by container name. When present, the probe restores each listed container to the provided environment instead of applying the broad update/remove rules. |
 | `ProbeConfiguration.ContainerName` | `string or null` | &#10006 |  | The name of the container we would like to update, if not given - the probe will update all of the pod's containers |
 | `ProbeConfiguration.EnvVarsToUpdate` | `object or string` | &#10006 |  | The environment variables to update/add |
