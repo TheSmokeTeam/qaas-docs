@@ -42,6 +42,30 @@
         }
       });
     });
+    var repoTitleElement = document.querySelector(".md-source__repository");
+    if (repoTitleElement) {
+      replacements.forEach(function (nextValue, currentValue) {
+        if (repoTitleElement.textContent.includes(currentValue)) {
+          repoTitleElement.textContent = repoTitleElement.textContent.replace(currentValue, nextValue);
+        }
+      });
+    }
+
+    if (document.title) {
+      replacements.forEach(function (nextValue, currentValue) {
+        if (document.title.includes(currentValue)) {
+          document.title = document.title.replace(currentValue, nextValue);
+        }
+      });
+    }
+
+    document.querySelectorAll(".md-header__topic").forEach(function (node) {
+      replacements.forEach(function (nextValue, currentValue) {
+        if (node.textContent.includes(currentValue)) {
+          node.textContent = node.textContent.replace(currentValue, nextValue);
+        }
+      });
+    });
   }
 
   if (document.readyState === "loading") {

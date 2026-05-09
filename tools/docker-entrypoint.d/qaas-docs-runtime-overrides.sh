@@ -46,6 +46,7 @@ END {
 }
 ' > "$target" <<'EOF'
 site_url QAAS_DOCS_SITE_URL
+repo_name QAAS_DOCS_REPO_NAME
 repo_url QAAS_DOCS_REPO_URL
 social_github_url QAAS_DOCS_SOCIAL_GITHUB_URL
 docs_site QAAS_DOCS_LINK_DOCS_SITE
