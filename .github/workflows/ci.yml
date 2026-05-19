@@ -45,6 +45,8 @@ env:
   QAAS_DOCS_LINK_ARTIFACTORY: ${{ vars.QAAS_DOCS_LINK_ARTIFACTORY || 'https://jfrog.com/artifactory' }}
   QAAS_DOCS_LINK_RUNNER_SCHEMA: ${{ vars.QAAS_DOCS_LINK_RUNNER_SCHEMA || '../../assets/schemas/runner-family-schema.json' }}
   QAAS_DOCS_LINK_MOCKER_SCHEMA: ${{ vars.QAAS_DOCS_LINK_MOCKER_SCHEMA || '../../assets/schemas/mocker-family-schema.json' }}
+  QAAS_DOCS_MKDOCS_MATERIAL_IMAGE: ${{ vars.QAAS_DOCS_MKDOCS_MATERIAL_IMAGE || 'squidfunk/mkdocs-material:9.5' }}
+  QAAS_DOCS_NGINX_IMAGE: ${{ vars.QAAS_DOCS_NGINX_IMAGE || 'nginx:1.27-alpine' }}
 
 jobs:
   build-site:
@@ -154,6 +156,8 @@ jobs:
           push: true
           tags: ${{ steps.docker-tags.outputs.value }}
           build-args: |
+            MKDOCS_MATERIAL_IMAGE=${{ env.QAAS_DOCS_MKDOCS_MATERIAL_IMAGE }}
+            NGINX_IMAGE=${{ env.QAAS_DOCS_NGINX_IMAGE }}
             QAAS_DOCS_SITE_URL=${{ env.QAAS_DOCS_SITE_URL }}
             QAAS_DOCS_REPO_NAME=${{ env.QAAS_DOCS_REPO_NAME }}
             QAAS_DOCS_REPO_URL=${{ env.QAAS_DOCS_REPO_URL }}

@@ -2,13 +2,15 @@
 
 Publishers are communication actions that send data to the system. Every publisher creates an `Input` in `SessionData` with its own name.
 
-Publishers are responsible for retrieving data from data sources and pushing them to target systems. The core logic of a publisher involves iterating over its assigned data sources, transforming or filtering the data as required, and executing the communication protocol to transmit the data. Publishers operate within the broader context of a session, meaning they can be configured to execute at specific stages, run sequentially or in parallel, and even operate continuously in loops. Additionally, they are governed by policies that can dictate the rate of publication, apply backpressure, or manage connection retries, ensuring the system remains stable even under high loads or when target endpoints are unstable.
+At runtime a publisher resolves the configured data source names and patterns, serializes each generated data item when a serializer is configured, sends the payload through the selected protocol, and records the original item as session `Input`. Publishers can run in a fixed number of iterations or loop mode, sleep between iterations, run supported sends in parallel, and stop early when the policy chain returns false.
+
+Use this page for behavior and YAML shape. The same action can be built in C# with the [PublisherBuilder API](../../../../../../qaas/functions/builders/publishers.md); that page is the function reference for the code-first surface.
 
 **Table Property Path** - `Sessions[].Publishers[]`
 
 ## RabbitMq
 
-Publishes messages to a RabbitMQ exchange or queue. The core logic involves establishing an AMQP connection and intelligently routing data based on the provided configuration. The publisher can either directly target a specific queue or route messages through an exchange, relying on routing keys to determine the message's final destination. Furthermore, the publisher evaluates each individual data item for embedded metadata—such as content types, expiration times, and custom headers. By reading these properties from the item's `MetaData`, the publisher dynamically adapts its message properties on a per-message basis, allowing for a highly flexible and varied message stream without altering the static connection parameters.
+Publishes byte payloads to RabbitMQ through an AMQP channel. When `QueueName` is configured the publisher uses RabbitMQ's default exchange and the queue name as the routing key; otherwise it publishes to the configured exchange and routing key. Per-item `MetaData.RabbitMq` can override the routing key, headers, expiration, content type, and message type for that item.
 
 **Table Property Path** - `Sessions[].Publishers[].RabbitMq`
 
@@ -18,7 +20,7 @@ RabbitMq: {}
 
 ## KafkaTopic
 
-Publishes messages to a Kafka topic. The underlying mechanism focuses on high-throughput, sequential message appending. The publisher manages Kafka connections, partitions, and producer queues, optimizing data transmission through configurable batching and compression algorithms. It evaluates each data item's metadata to determine if a specific key should be used for partitioning, enabling strict ordering guarantees for messages belonging to the same key. The logic also incorporates retry mechanisms to gracefully handle temporary broker unavailability or network partitions.
+Publishes byte payloads to a Kafka topic with the configured producer options. The topic, message key, and headers can come from `MetaData.Kafka` on each item or from the publisher configuration. The configured partition is used for sends, producer queue and compression settings are passed to the Kafka client, and `MessageSendMaxRetries` controls retry attempts around `Produce`.
 
 **Table Property Path** - `Sessions[].Publishers[].KafkaTopic`
 
@@ -28,7 +30,7 @@ KafkaTopic: {}
 
 ## Redis
 
-Publishes messages to a Redis cache or datastore. Unlike message brokers that simply route or store streams of data, the Redis publisher interacts with specific data structures in the Redis ecosystem. Depending on the configured data type, the publisher's logic translates the provided data items into appropriate Redis commands, such as adding elements to a set, pushing items to a list, or setting string keys. It inherently supports batch operations to reduce network round trips and can be tuned with various command flags to optimize performance, such as preferring master nodes or operating in a fire-and-forget manner.
+Publishes chunks of byte payloads to Redis by creating a Redis transaction and adding one Redis command per item. The configured `RedisDataType` selects the command: string set, list left or right push, set add, hash set, sorted set add, or geo add. Item metadata supplies the key and any required hash field, sorted-set score, or geo coordinates.
 
 **Table Property Path** - `Sessions[].Publishers[].Redis`
 
@@ -41,7 +43,7 @@ Redis: {}
 
 ## OracleSqlTable
 
-Publishes messages to an Oracle SQL database table. The core logic entails translating structured or semi-structured data items into relational database inserts. The publisher manages the lifecycle of the database connection, constructs the necessary SQL commands, and handles the execution against the Oracle instance. It is built to accommodate database-specific constraints and timeouts, ensuring that large data volumes or complex insertion operations do not indefinitely block the execution pipeline.
+Publishes chunks of structured data to an Oracle SQL table. Each item body is converted to a row-shaped object, the protocol opens an Oracle connection, and the configured command timeout applies to insert execution.
 
 **Table Property Path** - `Sessions[].Publishers[].OracleSqlTable`
 
@@ -51,7 +53,7 @@ OracleSqlTable: {}
 
 ## MsSqlTable
 
-Publishes messages to a Microsoft SQL Server database table. The publisher functions by converting incoming data streams into relational records and performing insertions against the target table. Its internal logic is optimized to handle standard data types and can also manage complex User-Defined Types (UDT) if required by the schema. By leveraging connection pooling and configurable command timeouts, it provides a resilient pathway for moving large datasets into MS SQL environments while maintaining transactional integrity.
+Publishes chunks of structured data to a Microsoft SQL Server table. Item bodies are converted into rows and inserted into the configured table with the SQL command timeout from the sender configuration. Values that look like SQL user-defined type literals are passed through instead of quoted as plain strings.
 
 **Table Property Path** - `Sessions[].Publishers[].MsSqlTable`
 
@@ -61,7 +63,7 @@ MsSqlTable: {}
 
 ## PostgreSqlTable
 
-Publishes messages to a PostgreSQL database table. The publisher's logic centers around mapping JSON-like structures or objects directly into PostgreSQL's relational schema. It maintains the database connection and efficiently executes insert operations. It is designed to work seamlessly with PostgreSQL's data types, ensuring that fields in the source data accurately populate the corresponding columns in the target table, while also gracefully handling connection timeouts during high-load scenarios.
+Publishes chunks of structured data to a PostgreSQL table. Item bodies are converted into row data and inserted into the configured table using the PostgreSQL sender configuration and command timeout.
 
 **Table Property Path** - `Sessions[].Publishers[].PostgreSqlTable`
 
@@ -71,7 +73,7 @@ PostgreSqlTable: {}
 
 ## MongoDbCollection
 
-Publishes documents to a MongoDB collection. The core logic involves taking structured data items and seamlessly mapping them into BSON documents, which are the native format for MongoDB. The publisher handles the complexities of connecting to the MongoDB cluster, selecting the appropriate database and collection, and executing the insertion commands. Because MongoDB is a NoSQL store, this publisher is particularly adept at handling varying data structures and complex nested objects without the need for strict schema definitions.
+Publishes chunks of documents to a MongoDB collection. Each item body is serialized to JSON, parsed as a BSON document, and inserted with `InsertMany` into the configured database and collection.
 
 **Table Property Path** - `Sessions[].Publishers[].MongoDbCollection`
 
@@ -81,7 +83,7 @@ MongoDbCollection: {}
 
 ## S3Bucket
 
-Publishes messages to an Amazon S3 bucket. The underlying mechanism focuses on object storage rather than streaming messages or relational records. The publisher groups data or takes individual files and streams them securely into the configured S3 bucket. It manages the complexities of S3 addressing, region endpoints, and authentication. A key aspect of its logic is handling object naming—either through sequential numerical series or random GUIDs—and selecting the appropriate storage class to balance availability requirements with cost considerations.
+Publishes byte payloads as objects in an S3-compatible bucket. The object key comes from `MetaData.Storage.Key` when present; otherwise the configured object-name generator and prefix are used. Uploads use the configured storage class and retry mechanism.
 
 **Table Property Path** - `Sessions[].Publishers[].S3Bucket`
 
@@ -91,7 +93,7 @@ S3Bucket: {}
 
 ## ElasticIndex
 
-Publishes documents to an Elasticsearch index. The publisher's logic is specifically tailored for high-speed document ingestion and indexing. It automatically formats the data items into the required JSON structure and typically leverages Elasticsearch's Bulk API to group multiple document updates into single network requests, drastically improving ingestion rates. The publisher also handles the complexities of index targeting, automatically creating indices if they do not exist, and managing the HTTP connections to the Elasticsearch cluster.
+Publishes chunks of documents to the configured Elasticsearch index with the Bulk API. The protocol sends item bodies as the indexed documents and fails the action if Elasticsearch reports bulk errors or an unsuccessful API call.
 
 **Table Property Path** - `Sessions[].Publishers[].ElasticIndex`
 
@@ -104,7 +106,7 @@ ElasticIndex: {}
 
 ## Socket
 
-Publishes messages directly over a TCP or UDP socket to a remote host. The core logic bypasses higher-level application protocols (like HTTP or AMQP) and works directly with the transport layer. The publisher serializes data into raw byte payloads and transmits them over the established socket connection. This provides maximum flexibility and lowest possible latency, giving the user direct control over network-level behaviors such as buffer sizes, the Nagle algorithm (for TCP), and socket lingering behavior.
+Publishes byte payloads directly through a socket connection to the configured host and port. The sender applies the configured socket family, type, protocol, send buffer size, timeout, Nagle setting, and linger setting before sending each payload.
 
 **Table Property Path** - `Sessions[].Publishers[].Socket`
 
@@ -114,7 +116,7 @@ Socket: {}
 
 ## Sftp
 
-Publishes files to a remote server using the SFTP protocol. The publisher's logic involves establishing a secure, encrypted SSH connection to the target machine and navigating to the specified directory path. It then treats the incoming data as file content, securely transferring it over the network and creating new files on the remote filesystem. The publisher automates the file naming process, using configurable prefixes and generators (like numerical series or GUIDs) to ensure each uploaded file has a unique identity.
+Publishes byte payloads as files over SFTP. The target file path is the configured remote path plus `MetaData.Storage.Key` when present, or a generated object name when no key is provided.
 
 **Table Property Path** - `Sessions[].Publishers[].Sftp`
 

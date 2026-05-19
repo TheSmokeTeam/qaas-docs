@@ -40,7 +40,9 @@ Sessions:
 
 This probe updates the `api` container in the `orders-api` deployment so that it requests `250m` CPU and `256Mi` memory, with limits of `1000m` CPU and `1Gi` memory.
 
-The deployment is then allowed to roll out and settle before the scenario continues.
+`ReplicaSetName` is a legacy property name in the configuration model; for this probe it is the Deployment name. The deployment is then allowed to roll out and settle before the scenario continues, and the probe throws `TimeoutException` if the configured timeout expires.
+
+Resource updates only rebuild the `cpu` and `memory` request/limit keys. If the existing Kubernetes resource block contains other resource keys, they are not preserved by this update path.
 
 ### Global Dictionary Behavior
 

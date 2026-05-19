@@ -61,7 +61,7 @@ The generated repo includes:
 - a minimal `/health` mock under `Servers`
 - `Dockerfile` and generated GitHub Actions CI
 
-If you use Artifactory or another private feed, update the generated `NuGet.config` before the first restore.
+If you use Artifactory or another private feed, keep the feed URL configurable rather than baking one environment into the project. Update the generated `NuGet.config` for local restores, and pass the same feed into Docker builds with the template's NuGet source build argument before `dotnet restore`.
 
 ## IDE Setup
 

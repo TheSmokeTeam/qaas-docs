@@ -3,12 +3,12 @@
 | Property Path | Type | Required | Default | Description |
 | ------------- | ---- | -------- | ------- | ----------- |
 | `ProbeConfiguration` | `object or string` | &#10006 |  |  |
-| `ProbeConfiguration.ReplicaSetName` | `string` | &#10004 |  | The name of the replicaset whose pods this probe targets |
+| `ProbeConfiguration.ReplicaSetName` | `string` | &#10004 |  | Legacy property name; for this deployment probe, supply the Deployment name. |
 | `ProbeConfiguration.ContainerEnvVarsToUpdate` | `object or string or null` | &#10006 |  | Optional exact environment snapshot keyed by container name. When present, the probe restores each listed container to the provided environment instead of applying the broad update/remove rules. |
 | `ProbeConfiguration.ContainerName` | `string or null` | &#10006 |  | The name of the container we would like to update, if not given - the probe will update all of the pod's containers |
 | `ProbeConfiguration.EnvVarsToUpdate` | `object or string` | &#10006 |  | The environment variables to update/add |
-| `ProbeConfiguration.IntervalBetweenDesiredStateChecksMs` | `integer or string` | &#10006 | 1000 | The interval in milliseconds between every check of the replica set's state (if it reached the desired number of pods yet) |
-| `ProbeConfiguration.TimeoutWaitForDesiredStateSeconds` | `integer or string` | &#10006 | 300 | The timeout in seconds for waiting for the replicaset to scale to the given number of pods, when timeout is reached an error log is raised and the code continues to run |
+| `ProbeConfiguration.IntervalBetweenDesiredStateChecksMs` | `integer or string` | &#10006 | 1000 | Interval in milliseconds between desired-state checks. |
+| `ProbeConfiguration.TimeoutWaitForDesiredStateSeconds` | `integer or string` | &#10006 | 300 | Timeout in seconds for waiting for the workload to reach the desired state; when reached, the probe throws `TimeoutException`. |
 | `ProbeConfiguration.UseGlobalDict` | `string or true/false` | &#10006 | False | When true, missing probe configuration keys may be resolved from the shared global dictionary before local YAML/code values are applied. |
 | `ProbeConfiguration.EnvVarsToRemove` | `list or string` | &#10006 |  | The environment variables to remove |
 | `ProbeConfiguration.EnvVarsToRemove[]` | `string` | &#10006 |  |  |

@@ -38,6 +38,6 @@ It is useful for inspection or lightweight maintenance commands inside the runni
 
 ### Global Dictionary Behavior
 
-This probe is intentionally left out of the probe-global-dictionary fallback feature in this first pass. There is no meaningful reusable recovery payload for it, so there is no `UseGlobalDict` option and no family alias involved.
+This probe derives from the shared OpenShift configuration shape, so `UseGlobalDict` can appear in generated YAML and table views. The current implementation derives from the plain OpenShift probe base and does not read or write probe-global-dictionary aliases for this action.
 
-That means the behavior is unchanged for every run: the probe uses only the values supplied directly in local YAML or code configuration.
+That means the behavior is unchanged for every run: the probe uses only the values supplied directly in local YAML or code configuration, even if `UseGlobalDict` is set.

@@ -145,6 +145,13 @@ External page links used by docs content:
 
 If `DOCKERHUB_REPOSITORY` is not set, CI uses `${DOCKER_USERNAME}/${repo-name}`.
 
+Docker build image inputs:
+
+| Variable | Dockerfile Argument | Description |
+|----------|---------------------|-------------|
+| `QAAS_DOCS_MKDOCS_MATERIAL_IMAGE` | `MKDOCS_MATERIAL_IMAGE` | Build-stage MkDocs Material image |
+| `QAAS_DOCS_NGINX_IMAGE` | `NGINX_IMAGE` | Runtime Nginx image |
+
 ## Docker
 
 Build locally:
@@ -160,10 +167,15 @@ If you need different docs URLs or repository links baked into the image, pass t
 
 ```bash
 docker build -t qaas-docs \
+  --build-arg MKDOCS_MATERIAL_IMAGE=squidfunk/mkdocs-material:9.5 \
+  --build-arg NGINX_IMAGE=nginx:1.27-alpine \
   --build-arg QAAS_DOCS_SITE_URL=https://docs.example.com/qaas/ \
+  --build-arg QAAS_DOCS_LINK_NUGET_FEED=https://nuget.example.com/v3/index.json \
   --build-arg QAAS_DOCS_LINK_REPOSITORY_RUNNER=https://github.com/example/QaaS.Runner \
   .
 ```
+
+`QAAS_DOCS_LINK_NUGET_FEED` controls the NuGet feed URL shown in generated examples and installation snippets. It does not rewrite product repository `NuGet.config` files at runtime; templates and sample Dockerfiles should pass their own NuGet source as a build input before `dotnet restore`.
 
 You can also override the same `QAAS_DOCS_*` URLs at container startup. The runtime image keeps the stock Nginx entrypoint and writes a small runtime override file from `/docker-entrypoint.d`, so no custom Dockerfile `ENTRYPOINT` is required:
 

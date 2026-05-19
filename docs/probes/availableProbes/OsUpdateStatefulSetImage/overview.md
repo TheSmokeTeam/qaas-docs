@@ -34,7 +34,7 @@ Sessions:
 
 This configuration changes the `worker` container in the `orders-worker` stateful set to use `registry.local/orders-worker:2.1.0`.
 
-The probe waits for the stateful set rollout to complete before the rest of the scenario runs.
+`ReplicaSetName` is a legacy property name in the configuration model; for this probe it is the StatefulSet name. The probe waits for the observed generation to become available and throws `TimeoutException` if the configured timeout expires.
 
 ### Global Dictionary Behavior
 

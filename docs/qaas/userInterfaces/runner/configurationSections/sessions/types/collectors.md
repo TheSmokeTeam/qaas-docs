@@ -2,15 +2,17 @@
 
 Collectors are communication actions that collect data from an endpoint within a range of time in a single action. Every collector will create an `Output` by its name in the `SessionData`.
 
-Unlike Consumers, which actively poll or subscribe to message queues for real-time events as they occur, Collectors are engineered to execute bulk queries against historical metrics or logging endpoints. The core logic of a Collector involves specifying a discrete time window and submitting a single, comprehensive query to an external data aggregation system. The Collector waits for the system to process the historical query and return a large, aggregated dataset. This mechanism is crucial for validating that an application's performance characteristics—such as CPU usage, error rates, or memory consumption—stayed within acceptable limits over the entire duration of a complex test scenario. By pulling this data retroactively, the Runner can perform holistic assertions on the system's overall operational health rather than validating single, discrete events.
+Collectors run after the session has a known start and end time. At runtime the collector applies the configured start and end offsets, waits until the effective end time has passed, calls the selected fetcher for that time range, filters the returned data, and stores the results as session `Output`. If the configured start is after the configured end, the action fails before calling the fetcher.
+
+Use this page for behavior and YAML shape. The same action can be built in C# with the [CollectorBuilder API](../../../../../../qaas/functions/builders/collectors.md); that page is the function reference for the code-first surface.
 
 **Table Property Path** - `Sessions[].Collectors[]`
 
 ## Prometheus
 
-Collects messages from the Prometheus `query_range` API and saves each of them as an item of a vector result's array. A vector is a fundamental result type in Prometheus that represents a set of time-series data. Every item of its result array represents a single metric value at a certain discrete timestamp.
+Collects samples from the Prometheus `query_range` API and saves each returned sample as an output item. The Prometheus response type must be `matrix`; unsupported result types fail the action.
 
-The Prometheus collector's logic relies on connecting to a target Prometheus server and translating the test's time boundaries into a structured PromQL (Prometheus Query Language) request. It submits this query to the server's `query_range` endpoint, requesting data points at specific sampling intervals. The collector then parses the JSON response returned by Prometheus, extracting the metric labels and the array of time-value pairs. It organizes this complex, multidimensional time-series data into a structured Output item. This allows the Runner to execute assertions that analyze trends, calculate averages, or check for spikes in telemetry data that was recorded while the system under test was actively processing load.
+The fetcher builds a `query_range` URL from `Url`, `Expression`, collection start, collection end, `SampleIntervalMs`, and `TimeoutMs`. It adds the configured API key header when present, fails on unsuccessful HTTP status or non-`success` Prometheus status, and returns JSON output with the metric labels and sample value for each timestamp.
 
 A vector's result array item which is a single item in a Prometheus output is structured like so:
 

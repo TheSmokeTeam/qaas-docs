@@ -66,7 +66,7 @@ The generated repo includes:
 - a minimal valid `test.qaas.yaml`
 - a Rider launch profile for `run test.qaas.yaml`
 
-If you use Artifactory or another private feed, update the generated `NuGet.config` before the first restore.
+If you use Artifactory or another private feed, keep the feed URL configurable rather than baking one environment into the project. Update the generated `NuGet.config` for local restores, and pass the same feed into Docker builds or CI restore steps through a build variable before `dotnet restore`.
 
 ## Allure CLI
 

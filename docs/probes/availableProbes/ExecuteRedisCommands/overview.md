@@ -36,7 +36,9 @@ Sessions:
 
 This probe first sets `qaas:mode` to `docs`, then pushes `first-job` into the `qaas:jobs` list.
 
-Because the commands are executed in sequence, the Redis state is prepared deterministically before the next scenario step runs.
+Because the commands are executed in sequence, the Redis state is prepared deterministically before the next scenario step runs. If a command sets `StoreResultAs`, the Redis result is saved under `__RedisResults/<alias>` in the probe context and can be reused by later commands in the same probe execution with `${redisResults:<alias>}`.
+
+Placeholders can navigate nested result values with colon-separated path parts, such as `${redisResults:scanResult:1}`. A full-argument placeholder that resolves to a collection expands into multiple Redis arguments; a placeholder embedded inside a larger string must resolve to a scalar. `${redisResults:<path>??<default>}` supplies a default only when the stored path is missing.
 
 ### Global Dictionary Behavior
 

@@ -29,7 +29,7 @@ Sessions:
 
 This probe connects to SQL Server, then truncates `dbo.Outbox` and `dbo.Orders` with a 30-second command timeout.
 
-The listed order is preserved, which is helpful when cleanup should happen in a known sequence.
+The listed order is preserved, which is helpful when cleanup should happen in a known sequence. Each configured table name is split into identifier segments, each segment is validated with the shared safe-identifier regex, and SQL Server segments are emitted with square brackets before the `TRUNCATE TABLE` command is executed.
 
 ### Global Dictionary Behavior
 

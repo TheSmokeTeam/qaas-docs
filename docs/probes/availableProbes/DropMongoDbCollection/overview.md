@@ -27,7 +27,7 @@ Sessions:
 
 This probe connects to the `qaas` database and drops the `orders` collection entirely.
 
-Use it when the scenario wants a full MongoDB collection reset rather than a document-only cleanup.
+Use it when the scenario wants a full MongoDB collection reset rather than a document-only cleanup. Although the shared MongoDB configuration exposes `ChunkSize`, this probe drops the collection in one operation and does not use that value.
 
 ### Global Dictionary Behavior
 

@@ -28,7 +28,7 @@ Sessions:
 
 This probe connects to the `qaas` database and deletes the documents stored in the `orders` collection while keeping the collection itself available.
 
-The collection itself remains available for the next scenario run.
+The collection itself remains available for the next scenario run. Although the shared MongoDB configuration exposes `ChunkSize`, this probe currently calls `DeleteMany` once for the whole collection and does not chunk the delete operation.
 
 ### Global Dictionary Behavior
 

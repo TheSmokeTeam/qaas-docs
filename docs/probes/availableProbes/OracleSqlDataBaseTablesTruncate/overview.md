@@ -29,7 +29,7 @@ Sessions:
 
 This configuration connects to Oracle and truncates `QAAS_OUTBOX` followed by `QAAS_ORDERS`.
 
-It is a database reset step that clears the table contents while keeping the table definitions in place.
+It is a database reset step that clears the table contents while keeping the table definitions in place. Each configured table name is split into identifier segments, each segment is validated with the shared safe-identifier regex, and Oracle segments are emitted with double quotes before the `TRUNCATE TABLE` command is executed.
 
 ### Global Dictionary Behavior
 

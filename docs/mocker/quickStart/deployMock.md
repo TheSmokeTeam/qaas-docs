@@ -12,26 +12,46 @@ The finished chart lives alongside the sample project:
 The project template already contains a Dockerfile. For a project named `DummyAppMock`, the final image can look like this:
 
 ```dockerfile
-FROM mcr.microsoft.com/dotnet/sdk:10.0 AS build
+ARG DOTNET_SDK_IMAGE=mcr.microsoft.com/dotnet/sdk:10.0
+ARG DOTNET_RUNTIME_IMAGE=mcr.microsoft.com/dotnet/runtime:10.0
+
+FROM ${DOTNET_SDK_IMAGE} AS build
 WORKDIR /src
 COPY . .
+ARG QAAS_NUGET_SOURCE_NAME=nuget_feed
+ARG QAAS_NUGET_SOURCE_URL=https://api.nuget.org/v3/index.json
+RUN dotnet nuget remove source "${QAAS_NUGET_SOURCE_NAME}" --configfile NuGet.config || true \
+ && dotnet nuget add source "${QAAS_NUGET_SOURCE_URL}" --name "${QAAS_NUGET_SOURCE_NAME}" --configfile NuGet.config
 RUN dotnet restore DummyAppMock.sln --configfile NuGet.config
 RUN dotnet publish DummyAppMock/DummyAppMock.csproj -c Release -o /app/publish --no-restore
 
-FROM mcr.microsoft.com/dotnet/runtime:10.0
+FROM ${DOTNET_RUNTIME_IMAGE}
 WORKDIR /app
 COPY --from=build /app/publish .
-ENTRYPOINT ["dotnet", "DummyAppMock.dll", "mocker.qaas.yaml"]
+ENV QAAS_MOCKER_CONFIG=mocker.qaas.yaml
+ENTRYPOINT ["sh", "-c", "exec dotnet DummyAppMock.dll \"$QAAS_MOCKER_CONFIG\""]
 ```
 
 !!! warning "⚠️ Important"
     Build the project as part of the Docker image build, then push that finished runtime image to your registry. The deployed container should only pull the published image and start the already-built application. It should not compile the project during pod startup.
+
+The Dockerfile keeps the SDK image, runtime image, NuGet source name, NuGet source URL, and mocker configuration file configurable. Use build arguments for values needed before `dotnet restore`, and use the `QAAS_MOCKER_CONFIG` environment variable when the same image should start a different mocker YAML file.
 
 Build and push the image to your registry:
 
 ```bash
 docker build -t ghcr.io/my-org/dummy-app-mock:1.0.0 .
 docker push ghcr.io/my-org/dummy-app-mock:1.0.0
+```
+
+For a private feed or a custom image mirror:
+
+```bash
+docker build -t ghcr.io/my-org/dummy-app-mock:1.0.0 \
+  --build-arg DOTNET_SDK_IMAGE=registry.example.com/dotnet/sdk:10.0 \
+  --build-arg DOTNET_RUNTIME_IMAGE=registry.example.com/dotnet/runtime:10.0 \
+  --build-arg QAAS_NUGET_SOURCE_URL=https://nuget.example.com/v3/index.json \
+  .
 ```
 
 After the image is published, Kubernetes only needs to pull `ghcr.io/my-org/dummy-app-mock:1.0.0` and run it. Rebuilding is only needed when you publish a new image tag.
@@ -69,6 +89,7 @@ mocker:
     port: 80
   controller:
     serverName: DummyAppMock
+  configFile: mocker.qaas.yaml
 
 redis:
   image:
@@ -105,6 +126,8 @@ spec:
           ports:
             - containerPort: {{ .Values.mocker.service.port }}
           env:
+            - name: QAAS_MOCKER_CONFIG
+              value: {{ .Values.mocker.configFile | quote }}
             - name: Controller__ServerName
               value: {{ .Values.mocker.controller.serverName | quote }}
             - name: Controller__Redis__Host

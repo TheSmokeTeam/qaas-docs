@@ -1,4 +1,5 @@
-FROM squidfunk/mkdocs-material:9.5 AS build
+ARG MKDOCS_MATERIAL_IMAGE=squidfunk/mkdocs-material:9.5
+FROM ${MKDOCS_MATERIAL_IMAGE} AS build
 
 WORKDIR /docs
 
@@ -71,7 +72,8 @@ ENV QAAS_DOCS_SITE_URL=${QAAS_DOCS_SITE_URL} \
 RUN python tools/write_runtime_link_defaults.py docs/assets/javascripts/qaas-docs-build-defaults.js \
  && mkdocs build --clean
 
-FROM nginx:1.27-alpine AS runtime
+ARG NGINX_IMAGE=nginx:1.27-alpine
+FROM ${NGINX_IMAGE} AS runtime
 
 COPY tools/nginx.conf /etc/nginx/conf.d/default.conf
 COPY tools/docker-entrypoint.d/qaas-docs-runtime-overrides.sh /docker-entrypoint.d/qaas-docs-runtime-overrides.sh

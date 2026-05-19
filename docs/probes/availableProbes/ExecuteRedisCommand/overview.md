@@ -31,7 +31,9 @@ Sessions:
 
 This example runs `SET qaas:last-template ready` against Redis database `0`.
 
-It is a simple probe step that can prepare a key before the rest of the scenario begins.
+It is a simple probe step that can prepare a key before the rest of the scenario begins. If `StoreResultAs` is set, the Redis result is saved under `__RedisResults/<alias>` in the probe context and can be reused later in the same probe execution with `${redisResults:<alias>}`.
+
+Placeholders can navigate nested result values with colon-separated path parts, such as `${redisResults:scanResult:1}`. A full-argument placeholder that resolves to a collection expands into multiple Redis arguments; a placeholder embedded inside a larger string must resolve to a scalar. `${redisResults:<path>??<default>}` supplies a default only when the stored path is missing.
 
 ### Global Dictionary Behavior
 

@@ -40,7 +40,9 @@ Sessions:
 
 This probe updates the `worker` container in the `orders-worker` stateful set so that it requests `500m` CPU and `512Mi` memory, with limits of `1500m` CPU and `2Gi` memory.
 
-After the patch is applied, the probe waits for the stateful set to finish rolling out.
+`ReplicaSetName` is a legacy property name in the configuration model; for this probe it is the StatefulSet name. After the patch is applied, the probe waits for the stateful set to finish rolling out and throws `TimeoutException` if the configured timeout expires.
+
+Resource updates only rebuild the `cpu` and `memory` request/limit keys. If the existing Kubernetes resource block contains other resource keys, they are not preserved by this update path.
 
 ### Global Dictionary Behavior
 

@@ -34,7 +34,7 @@ Sessions:
 
 This probe changes the `api` container in the `orders-api` deployment to use `registry.local/orders-api:2.1.0`.
 
-After patching the deployment, it waits for the rollout to finish before the scenario proceeds.
+`ReplicaSetName` is a legacy property name in the configuration model; for this probe it is the Deployment name. After patching the deployment, it waits for the observed generation to become available and throws `TimeoutException` if the configured timeout expires.
 
 ### Global Dictionary Behavior
 

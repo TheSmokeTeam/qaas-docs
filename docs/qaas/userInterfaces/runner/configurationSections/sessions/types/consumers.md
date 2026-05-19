@@ -2,13 +2,15 @@
 
 Consumers are communication actions that receive data from the system. Every consumer creates an `Output` in `SessionData` with its own name.
 
-Consumers are responsible for actively monitoring, polling, or subscribing to target systems in order to pull data back into the Runner for subsequent processing, validation, or storage. The core logic of a consumer is to establish a connection to an external endpoint, continuously or periodically check for new data, and convert that incoming data stream into structured `Output` items. Consumers are often utilized in asynchronous testing scenarios where the Runner must wait for a system under test to process an event and emit a corresponding message or database row. They handle the complexities of connection management, message acknowledgment, and data deserialization seamlessly.
+At runtime a consumer connects to the selected reader, reads data into session `Output`, applies optional deserialization and data filtering, and exports running output data for other actions in the same session. Single-item readers keep reading until the configured timeout returns no data or a policy stops the action. Chunk readers wait for their inactivity window and then return the chunk once.
+
+Use this page for behavior and YAML shape. The same action can be built in C# with the [ConsumerBuilder API](../../../../../../qaas/functions/builders/consumers.md); that page is the function reference for the code-first surface.
 
 **Table Property Path** - `Sessions[].Consumers[]`
 
 ## RabbitMq
 
-Consumes messages from a RabbitMQ exchange or queue. The underlying mechanism involves establishing a persistent connection to the RabbitMQ broker using the AMQP protocol. The consumer logic subscribes to a specific queue and waits for the broker to push messages to it. Upon receiving a message, the consumer extracts the raw payload along with all associated AMQP headers, routing keys, and metadata properties. It then acknowledges the message (if configured to do so) and translates the entire package into a structured `Output` item in the session data, making the metadata fully accessible for assertions.
+Consumes byte payloads from RabbitMQ with `BasicGet` until no message arrives before the timeout. If no queue is configured, the reader creates a temporary queue, binds it to the configured exchange and routing key, and deletes it on disconnect. Consumed output includes the payload plus RabbitMQ routing key, headers, expiration, content type, and message type metadata.
 
 **Table Property Path** - `Sessions[].Consumers[].RabbitMq`
 
@@ -18,7 +20,7 @@ RabbitMq: {}
 
 ## KafkaTopic
 
-Consumes messages from a Kafka topic. The core logic relies on the Kafka consumer protocol to connect to a cluster of brokers, join a consumer group, and subscribe to one or more topics. The consumer continuously polls the brokers for new message batches. It leverages the consumer group's `AutoOffsetReset` configuration to determine where to begin reading—either from the earliest available message or only new messages arriving after the connection is established. It handles the intricacies of partition assignment and offset management under the hood, ensuring that messages are reliably fetched and transformed into session outputs.
+Consumes byte payloads from a Kafka topic with the configured consumer group and consumer options. Each successful consume is committed, and the output metadata includes the Kafka message key and headers.
 
 **Table Property Path** - `Sessions[].Consumers[].KafkaTopic`
 
@@ -31,7 +33,7 @@ KafkaTopic: {}
 
 ## OracleSqlTable
 
-Consumes data from an Oracle SQL database table. The consumer's logic focuses on retrieving relational data through executing queries against the specified table. Instead of subscribing to an event stream, it establishes a database connection and pulls existing rows matching the configuration. This is particularly useful for verifying that an application has successfully persisted the correct state into the database. The consumer handles translating the relational row sets into distinct data objects that the Runner can analyze.
+Reads rows from an Oracle SQL table. The reader waits until the configured inactivity timeout has passed since the latest table change, then queries rows from the configured table, optional `WhereStatement`, and optional insertion-time filter, returning each row as JSON output.
 
 **Table Property Path** - `Sessions[].Consumers[].OracleSqlTable`
 
@@ -41,7 +43,7 @@ OracleSqlTable: {}
 
 ## MsSqlTable
 
-Consumes rows from a Microsoft SQL Server database table. The underlying logic involves connecting to the SQL Server using native drivers, issuing query commands, and streaming the result sets back to the Runner. The consumer abstracts away the complexities of dealing with database cursors and data type conversions, reading the queried rows and representing them as structured outputs. This allows tests to easily assert against the final state of the database after a workflow has completed.
+Reads rows from a Microsoft SQL Server table. The reader waits for the table-change inactivity window, executes the configured query shape, omits configured columns, and returns each row as JSON output.
 
 **Table Property Path** - `Sessions[].Consumers[].MsSqlTable`
 
@@ -51,7 +53,7 @@ MsSqlTable: {}
 
 ## PostgreSqlTable
 
-Consumes data from a PostgreSQL database table. The core logic centers on executing read operations against a PostgreSQL instance. The consumer manages the connection lifecycle, sends the query request, and iteratively processes the returned records. It ensures that PostgreSQL-specific data types are accurately mapped into the Runner's internal format, allowing for precise validation of the data that an application has written to the database.
+Reads rows from a PostgreSQL table. The reader uses the same SQL chunk-reader flow as the other SQL consumers: wait for inactivity, query rows with the configured filters, and return each row as JSON output.
 
 **Table Property Path** - `Sessions[].Consumers[].PostgreSqlTable`
 
@@ -61,7 +63,7 @@ PostgreSqlTable: {}
 
 ## TrinoSqlTable
 
-Consumes data using the Trino distributed SQL query engine. Rather than connecting to a single, monolithic database, this consumer's logic interacts with the Trino coordinator. It allows the Runner to execute federated queries across multiple underlying data sources (like Hive, Cassandra, or relational databases) as if they were a single system. The consumer submits the query, waits for Trino's distributed workers to gather the data, and accumulates the unified result set into session outputs.
+Reads rows through a Trino coordinator. The reader builds a Trino connection from the configured host, catalog, schema, tag, and authentication values, waits for the inactivity window, and returns matching rows as JSON output.
 
 **Table Property Path** - `Sessions[].Consumers[].TrinoSqlTable`
 
@@ -71,7 +73,7 @@ TrinoSqlTable: {}
 
 ## S3Bucket
 
-Consumes messages and files from an Amazon S3 bucket. The underlying mechanism interacts with object storage APIs rather than streaming protocols. The consumer logic queries the specified S3 bucket for objects matching a certain prefix or pattern. Once identified, it retrieves the objects, downloading their payloads directly into the Runner. This is vital for testing workflows that culminate in file generation, allowing the Runner to ingest the generated files and assert on their contents or metadata.
+Consumes objects from an S3-compatible bucket. The reader waits until the bucket has been inactive for the configured timeout, lists objects by prefix and delimiter, optionally skips empty objects, and returns object bytes plus `MetaData.Storage.Key`. If the data filter excludes bodies, object contents are not downloaded.
 
 **Table Property Path** - `Sessions[].Consumers[].S3Bucket`
 
@@ -81,7 +83,7 @@ S3Bucket: {}
 
 ## ElasticIndices
 
-Consumes documents from Elasticsearch indices using an index pattern. The core logic relies on the Elasticsearch Search API to scan and retrieve JSON documents from the cluster. The consumer connects to the Elasticsearch nodes and executes queries based on specific matches or keyword searches. It handles pagination and scrolling under the hood if large datasets are returned, converting the retrieved Elasticsearch hits into standard output documents for the session.
+Consumes documents from Elasticsearch indices using an index pattern. The reader waits until no matching document has been inserted within the timeout window, then uses the Elasticsearch scroll API with the configured query string, timestamp field, batch size, and scroll expiration. Returned outputs contain serialized JSON documents and timestamps derived from the configured timestamp field.
 
 **Table Property Path** - `Sessions[].Consumers[].ElasticIndices`
 
@@ -97,7 +99,7 @@ ElasticIndices: {}
 
 ## Socket
 
-Consumes messages using a raw TCP or UDP socket from a remote host. The consumer's logic operates at the network transport layer, binding to a local port or connecting to a remote endpoint and continuously listening for incoming byte streams. It does not impose any application-level framing (like HTTP or AMQP) on the data. Instead, it reads raw chunks of bytes as they arrive on the socket and converts them into output items. This is ideal for testing custom protocols or capturing low-level network emissions from the system under test.
+Consumes byte payloads from a socket. The reader opens the configured socket, waits until bytes are available or the timeout expires, and returns the received buffer as output.
 
 **Table Property Path** - `Sessions[].Consumers[].Socket`
 
@@ -107,7 +109,7 @@ Socket: {}
 
 ## IbmMqQueue
 
-Consumes messages from an IBM MQ queue. The underlying logic handles the specialized authentication and connection requirements of IBM MQ servers. The consumer connects to the queue manager, opens the target queue, and continuously polls or waits for new messages to arrive. It retrieves the message payload along with IBM MQ specific headers and properties, making them available in the session data for rigorous validation of legacy or enterprise messaging architectures.
+Consumes byte payloads from an IBM MQ queue. The reader opens the configured queue manager and queue, waits with the configured timeout, returns the message body when one is available, and treats `MQRC_NO_MSG_AVAILABLE` as a timeout with no output.
 
 **Table Property Path** - `Sessions[].Consumers[].IbmMqQueue`
 

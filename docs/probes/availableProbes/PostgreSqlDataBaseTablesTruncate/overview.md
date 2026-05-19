@@ -29,7 +29,7 @@ Sessions:
 
 This probe connects to PostgreSQL and truncates `public.outbox` and `public.orders` with a 30-second timeout.
 
-It clears the table data while leaving the schema intact for the next run.
+It clears the table data while leaving the schema intact for the next run. Each configured table name is split into identifier segments, each segment is validated with the shared safe-identifier regex, and PostgreSQL segments are emitted with double quotes. The command uses `TRUNCATE TABLE ... RESTART IDENTITY CASCADE`, so identity sequences are reset and dependent tables are handled through PostgreSQL cascade behavior.
 
 ### Global Dictionary Behavior
 

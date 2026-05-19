@@ -34,7 +34,9 @@ Sessions:
 
 This probe opens `application.yaml` inside the `orders-config` config map, changes `service.retries` to `5`, and changes `logging.level.default` to `Warning`.
 
-It is a targeted way to adjust structured YAML configuration without replacing the whole config map by hand.
+It is a targeted way to adjust structured YAML configuration without replacing the whole config map by hand. The configured paths are evaluated as JSONPath expressions after the YAML is converted to JSON; a missing path is logged as a warning and skipped. A missing ConfigMap or missing YAML key inside the ConfigMap throws an `ArgumentException`.
+
+The edited document is serialized back from the object model, so YAML comments and original formatting are not preserved.
 
 ### Global Dictionary Behavior
 

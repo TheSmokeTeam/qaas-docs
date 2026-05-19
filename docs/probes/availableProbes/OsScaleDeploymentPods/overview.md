@@ -33,7 +33,7 @@ Sessions:
 
 This probe scales the `orders-api` deployment to three pods and waits until the deployment reports that desired state.
 
-It is a controlled capacity-management step inside the scenario flow.
+`ReplicaSetName` is a legacy property name in the configuration model; for this probe it is the Deployment name. `DesiredNumberOfPods` is assigned directly to `spec.replicas`; set it explicitly and avoid negative values because the probe does not perform local range validation before calling Kubernetes.
 
 ### Global Dictionary Behavior
 

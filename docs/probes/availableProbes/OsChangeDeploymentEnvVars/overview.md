@@ -38,7 +38,7 @@ Sessions:
 
 This probe updates the `api` container in the `orders-api` deployment so that `FEATURE_FLAG_X` and `DOWNSTREAM_BASE_URL` are set, while `LEGACY_MODE` is removed.
 
-After patching the deployment, it waits until the workload reaches the desired state again before the scenario continues.
+`ReplicaSetName` is a legacy property name in the configuration model; for this probe it is the Deployment name. After patching the deployment, the probe touches the pod template with the `qaas.smoketeam.io/last-mutation-id` annotation so the workload rolls out, waits until the desired generation is available, and throws `TimeoutException` if the timeout expires.
 
 ### Global Dictionary Behavior
 
@@ -46,6 +46,6 @@ With `UseGlobalDict: true`, missing shared cluster settings can be resolved from
 
 The probe writes its pre-change snapshot to the unique canonical scoped path for the current probe execution and then updates the recovery alias so a later rollback probe can reuse it. This is useful when you want to inject temporary environment variables and then restore the original environment.
 
-A recovery payload is written only when the probe resolves exactly one target container, because that is the only time the original environment can be captured unambiguously.
+When `ContainerName` is omitted, the mutation applies to every container in the pod template. If multiple containers are found, the recovery payload is written as `ContainerEnvVarsToUpdate`, keyed by container name, so a later rollback can restore each container's full environment snapshot.
 
 When `UseGlobalDict` is `false`, the probe keeps the current behavior: it uses only local YAML or code configuration and does not read or write probe-global-dictionary state.

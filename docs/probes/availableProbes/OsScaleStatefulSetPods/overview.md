@@ -33,7 +33,7 @@ Sessions:
 
 This configuration scales the `orders-worker` stateful set to two pods and waits until the rollout is ready.
 
-It is the stateful-set equivalent of the deployment scale probe.
+`ReplicaSetName` is a legacy property name in the configuration model; for this probe it is the StatefulSet name. `DesiredNumberOfPods` is assigned directly to `spec.replicas`; set it explicitly and avoid negative values because the probe does not perform local range validation before calling Kubernetes.
 
 ### Global Dictionary Behavior
 
