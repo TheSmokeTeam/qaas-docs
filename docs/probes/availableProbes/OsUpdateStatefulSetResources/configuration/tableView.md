@@ -4,9 +4,9 @@
 | ------------- | ---- | -------- | ------- | ----------- |
 | `ProbeConfiguration` | `object or string` | &#10006 |  |  |
 | `ProbeConfiguration.ContainerName` | `string` | &#10004 |  | The name of the container to update |
-| `ProbeConfiguration.ReplicaSetName` | `string` | &#10004 |  | Legacy property name; for this probe, supply the StatefulSet name. |
-| `ProbeConfiguration.IntervalBetweenDesiredStateChecksMs` | `integer or string` | &#10006 | 1000 | Interval in milliseconds between desired-state checks. |
-| `ProbeConfiguration.TimeoutWaitForDesiredStateSeconds` | `integer or string` | &#10006 | 300 | Timeout in seconds for waiting for the workload to reach the desired state; when reached, the probe throws `TimeoutException`. |
+| `ProbeConfiguration.ReplicaSetName` | `string` | &#10004 |  | The name of the replicaset to scale the pods of |
+| `ProbeConfiguration.IntervalBetweenDesiredStateChecksMs` | `integer or string` | &#10006 | 1000 | The interval in milliseconds between every check of the replica set's state (if it reached the desired number of pods yet) |
+| `ProbeConfiguration.TimeoutWaitForDesiredStateSeconds` | `integer or string` | &#10006 | 300 | The timeout in seconds for waiting for the replicaset to scale to the given number of pods, when timeout is reached an error log is raised and the code continues to run |
 | `ProbeConfiguration.UseGlobalDict` | `string or true/false` | &#10006 | False | When true, missing probe configuration keys may be resolved from the shared global dictionary before local YAML/code values are applied. |
 | `ProbeConfiguration.Openshift` | `object or string` | &#10004 |  | The openshift environment to perform action in |
 | `ProbeConfiguration.Openshift.Cluster` | `string` | &#10004 |  | The openshift cluster api |
@@ -14,10 +14,10 @@
 | `ProbeConfiguration.Openshift.Password` | `string` | &#10004 |  | Password of the username with access to the openshift namespace and application |
 | `ProbeConfiguration.Openshift.Username` | `string` | &#10004 |  | Username with access to the openshift namespace and application |
 | `ProbeConfiguration.Openshift.AllowInvalidServerCertificates` | `string or true/false` | &#10006 | True | Allow invalid TLS certificates when connecting to the OpenShift API. Defaults to true to preserve the historical OpenShift probe behavior for local and self-signed clusters unless callers explicitly opt into strict validation. |
-| `ProbeConfiguration.DesiredResources` | `object or string` | &#10006 |  | Desired StatefulSet container requests and limits. Only `cpu` and `memory` are rebuilt by the implementation. |
-| `ProbeConfiguration.DesiredResources.Limits` | `object or string` | &#10006 |  | Desired CPU and memory limits. |
-| `ProbeConfiguration.DesiredResources.Limits.Cpu` | `string or null` | &#10006 |  | Desired CPU limit. |
-| `ProbeConfiguration.DesiredResources.Limits.Memory` | `string or null` | &#10006 |  | Desired memory limit. |
-| `ProbeConfiguration.DesiredResources.Requests` | `object or string` | &#10006 |  | Desired CPU and memory requests. |
-| `ProbeConfiguration.DesiredResources.Requests.Cpu` | `string or null` | &#10006 |  | Desired CPU request. |
-| `ProbeConfiguration.DesiredResources.Requests.Memory` | `string or null` | &#10006 |  | Desired memory request. |
+| `ProbeConfiguration.DesiredResources` | `object or string` | &#10006 |  | The resources to update the replicaset with. Overrides the current replicaset's resources. |
+| `ProbeConfiguration.DesiredResources.Limits` | `object or string` | &#10006 |  | The limits resources to update the replicaset with |
+| `ProbeConfiguration.DesiredResources.Limits.Cpu` | `string or null` | &#10006 |  | The amount of cpu to update the replicaset with |
+| `ProbeConfiguration.DesiredResources.Limits.Memory` | `string or null` | &#10006 |  | The amount of memory to update the replicaset with |
+| `ProbeConfiguration.DesiredResources.Requests` | `object or string` | &#10006 |  | The requests resources to update the replicaset with |
+| `ProbeConfiguration.DesiredResources.Requests.Cpu` | `string or null` | &#10006 |  | The amount of cpu to update the replicaset with |
+| `ProbeConfiguration.DesiredResources.Requests.Memory` | `string or null` | &#10006 |  | The amount of memory to update the replicaset with |

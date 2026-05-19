@@ -47,6 +47,10 @@ env:
   QAAS_DOCS_LINK_MOCKER_SCHEMA: ${{ vars.QAAS_DOCS_LINK_MOCKER_SCHEMA || '../../assets/schemas/mocker-family-schema.json' }}
   QAAS_DOCS_MKDOCS_MATERIAL_IMAGE: ${{ vars.QAAS_DOCS_MKDOCS_MATERIAL_IMAGE || 'squidfunk/mkdocs-material:9.5' }}
   QAAS_DOCS_NGINX_IMAGE: ${{ vars.QAAS_DOCS_NGINX_IMAGE || 'nginx:1.27-alpine' }}
+  QAAS_DOCS_IMAGE_DOTNET_SDK: ${{ vars.QAAS_DOCS_IMAGE_DOTNET_SDK || 'mcr.microsoft.com/dotnet/sdk:10.0' }}
+  QAAS_DOCS_IMAGE_DOTNET_RUNTIME: ${{ vars.QAAS_DOCS_IMAGE_DOTNET_RUNTIME || 'mcr.microsoft.com/dotnet/runtime:10.0' }}
+  QAAS_DOCS_IMAGE_REDIS_REPOSITORY: ${{ vars.QAAS_DOCS_IMAGE_REDIS_REPOSITORY || 'redis' }}
+  QAAS_DOCS_IMAGE_REDIS_TAG: ${{ vars.QAAS_DOCS_IMAGE_REDIS_TAG || '7-alpine' }}
 
 jobs:
   build-site:
@@ -74,7 +78,9 @@ jobs:
         run: pip install -r requirements.txt
 
       - name: Build site
-        run: mkdocs build
+        run: |
+          python tools/write_runtime_link_defaults.py docs/assets/javascripts/qaas-docs-build-defaults.js
+          mkdocs build
 
       - name: Upload Pages artifact
         if: github.event_name == 'push' && (github.ref == 'refs/heads/master' || github.ref == 'refs/heads/fix/improve_docs' || github.ref == 'refs/heads/fix/docs_errors')
@@ -185,6 +191,10 @@ jobs:
             QAAS_DOCS_LINK_ARTIFACTORY=${{ env.QAAS_DOCS_LINK_ARTIFACTORY }}
             QAAS_DOCS_LINK_RUNNER_SCHEMA=${{ env.QAAS_DOCS_LINK_RUNNER_SCHEMA }}
             QAAS_DOCS_LINK_MOCKER_SCHEMA=${{ env.QAAS_DOCS_LINK_MOCKER_SCHEMA }}
+            QAAS_DOCS_IMAGE_DOTNET_SDK=${{ env.QAAS_DOCS_IMAGE_DOTNET_SDK }}
+            QAAS_DOCS_IMAGE_DOTNET_RUNTIME=${{ env.QAAS_DOCS_IMAGE_DOTNET_RUNTIME }}
+            QAAS_DOCS_IMAGE_REDIS_REPOSITORY=${{ env.QAAS_DOCS_IMAGE_REDIS_REPOSITORY }}
+            QAAS_DOCS_IMAGE_REDIS_TAG=${{ env.QAAS_DOCS_IMAGE_REDIS_TAG }}
           cache-from: type=gha
           cache-to: type=gha,mode=max
 

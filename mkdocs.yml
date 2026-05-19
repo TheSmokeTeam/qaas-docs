@@ -760,6 +760,11 @@ extra:
     artifactory: !ENV [QAAS_DOCS_LINK_ARTIFACTORY, "https://jfrog.com/artifactory"]
     runner_schema: !ENV [QAAS_DOCS_LINK_RUNNER_SCHEMA, "../../assets/schemas/runner-family-schema.json"]
     mocker_schema: !ENV [QAAS_DOCS_LINK_MOCKER_SCHEMA, "../../assets/schemas/mocker-family-schema.json"]
+  images:
+    dotnet_sdk: !ENV [QAAS_DOCS_IMAGE_DOTNET_SDK, "mcr.microsoft.com/dotnet/sdk:10.0"]
+    dotnet_runtime: !ENV [QAAS_DOCS_IMAGE_DOTNET_RUNTIME, "mcr.microsoft.com/dotnet/runtime:10.0"]
+    redis_repository: !ENV [QAAS_DOCS_IMAGE_REDIS_REPOSITORY, "redis"]
+    redis_tag: !ENV [QAAS_DOCS_IMAGE_REDIS_TAG, "7-alpine"]
   social:
     - icon: fontawesome/brands/github
       link: !ENV [QAAS_DOCS_SOCIAL_GITHUB_URL, "https://github.com/TheSmokeTeam/QaaS.Runner"]

@@ -8102,7 +8102,7 @@
                             "null",
                             "string"
                           ],
-                          "description": "Accepted from the shared MongoDB configuration shape; EmptyMongoDbCollection and DropMongoDbCollection currently execute one operation and do not use this value.",
+                          "description": "Chunk size of the data to process, This represents the number of documents to process in a single operation. If not specified, all data will be processed in a single chunk.",
                           "format": "int32",
                           "maximum": 2147483647.0,
                           "minimum": 1.0,
@@ -8257,7 +8257,7 @@
                             "null",
                             "string"
                           ],
-                          "description": "Accepted from the shared MongoDB configuration shape; EmptyMongoDbCollection and DropMongoDbCollection currently execute one operation and do not use this value.",
+                          "description": "Chunk size of the data to process, This represents the number of documents to process in a single operation. If not specified, all data will be processed in a single chunk.",
                           "format": "int32",
                           "maximum": 2147483647.0,
                           "minimum": 1.0,
@@ -9495,14 +9495,14 @@
                       "properties": {
                         "ReplicaSetName": {
                           "type": "string",
-                          "description": "Legacy property name; supply the target Deployment or StatefulSet name for OpenShift update probes."
+                          "description": "The name of the replicaset to scale the pods of"
                         },
                         "IntervalBetweenDesiredStateChecksMs": {
                           "type": [
                             "integer",
                             "string"
                           ],
-                          "description": "Interval in milliseconds between desired-state checks.",
+                          "description": "The interval in milliseconds between every check of the replica set's state (if it reached the desired number of pods yet)",
                           "format": "int32",
                           "default": 1000,
                           "maximum": 2147483647.0,
@@ -9514,7 +9514,7 @@
                             "integer",
                             "string"
                           ],
-                          "description": "Timeout in seconds for waiting for the workload to reach the desired state; when reached, the probe throws TimeoutException.",
+                          "description": "The timeout in seconds for waiting for the replicaset to scale to the given number of pods, when timeout is reached an error log is raised and the code continues to run",
                           "format": "int32",
                           "default": 300,
                           "maximum": 2147483647.0,
@@ -9642,14 +9642,14 @@
                       "properties": {
                         "ReplicaSetName": {
                           "type": "string",
-                          "description": "Legacy property name; supply the target Deployment or StatefulSet name for OpenShift update probes."
+                          "description": "The name of the replicaset to scale the pods of"
                         },
                         "IntervalBetweenDesiredStateChecksMs": {
                           "type": [
                             "integer",
                             "string"
                           ],
-                          "description": "Interval in milliseconds between desired-state checks.",
+                          "description": "The interval in milliseconds between every check of the replica set's state (if it reached the desired number of pods yet)",
                           "format": "int32",
                           "default": 1000,
                           "maximum": 2147483647.0,
@@ -9661,7 +9661,7 @@
                             "integer",
                             "string"
                           ],
-                          "description": "Timeout in seconds for waiting for the workload to reach the desired state; when reached, the probe throws TimeoutException.",
+                          "description": "The timeout in seconds for waiting for the replicaset to scale to the given number of pods, when timeout is reached an error log is raised and the code continues to run",
                           "format": "int32",
                           "default": 300,
                           "maximum": 2147483647.0,
@@ -10080,7 +10080,7 @@
                             "integer",
                             "string"
                           ],
-                          "description": "Timeout in seconds for waiting for replacement pods to become ready; when reached, the probe throws TimeoutException.",
+                          "description": "The timeout in seconds for waiting for the pods to stop restarting, when timeout is reached an error log is raised and the code continues to run",
                           "format": "int32",
                           "default": 300,
                           "maximum": 2147483647.0,
@@ -10124,14 +10124,14 @@
                       "properties": {
                         "ReplicaSetName": {
                           "type": "string",
-                          "description": "Legacy property name; supply the target Deployment or StatefulSet name for OpenShift update probes."
+                          "description": "The name of the replicaset to scale the pods of"
                         },
                         "IntervalBetweenDesiredStateChecksMs": {
                           "type": [
                             "integer",
                             "string"
                           ],
-                          "description": "Interval in milliseconds between desired-state checks.",
+                          "description": "The interval in milliseconds between every check of the replica set's state (if it reached the desired number of pods yet)",
                           "format": "int32",
                           "default": 1000,
                           "maximum": 2147483647.0,
@@ -10143,7 +10143,7 @@
                             "integer",
                             "string"
                           ],
-                          "description": "Timeout in seconds for waiting for the workload to reach the desired state; when reached, the probe throws TimeoutException.",
+                          "description": "The timeout in seconds for waiting for the replicaset to scale to the given number of pods, when timeout is reached an error log is raised and the code continues to run",
                           "format": "int32",
                           "default": 300,
                           "maximum": 2147483647.0,
@@ -10205,7 +10205,7 @@
                             "integer",
                             "string"
                           ],
-                          "description": "Number of replicas to set on the target Deployment or StatefulSet. Set it explicitly; there is no local range validation.",
+                          "description": "The number of pods to scale the replica set to",
                           "format": "int32",
                           "pattern": "\\$\\{.*\\}"
                         }
@@ -10246,14 +10246,14 @@
                       "properties": {
                         "ReplicaSetName": {
                           "type": "string",
-                          "description": "Legacy property name; supply the target Deployment or StatefulSet name for OpenShift update probes."
+                          "description": "The name of the replicaset to scale the pods of"
                         },
                         "IntervalBetweenDesiredStateChecksMs": {
                           "type": [
                             "integer",
                             "string"
                           ],
-                          "description": "Interval in milliseconds between desired-state checks.",
+                          "description": "The interval in milliseconds between every check of the replica set's state (if it reached the desired number of pods yet)",
                           "format": "int32",
                           "default": 1000,
                           "maximum": 2147483647.0,
@@ -10265,7 +10265,7 @@
                             "integer",
                             "string"
                           ],
-                          "description": "Timeout in seconds for waiting for the workload to reach the desired state; when reached, the probe throws TimeoutException.",
+                          "description": "The timeout in seconds for waiting for the replicaset to scale to the given number of pods, when timeout is reached an error log is raised and the code continues to run",
                           "format": "int32",
                           "default": 300,
                           "maximum": 2147483647.0,
@@ -10327,7 +10327,7 @@
                             "integer",
                             "string"
                           ],
-                          "description": "Number of replicas to set on the target Deployment or StatefulSet. Set it explicitly; there is no local range validation.",
+                          "description": "The number of pods to scale the replica set to",
                           "format": "int32",
                           "pattern": "\\$\\{.*\\}"
                         }
@@ -10373,14 +10373,14 @@
                         },
                         "ReplicaSetName": {
                           "type": "string",
-                          "description": "Legacy property name; supply the target Deployment or StatefulSet name for OpenShift update probes."
+                          "description": "The name of the replicaset to scale the pods of"
                         },
                         "IntervalBetweenDesiredStateChecksMs": {
                           "type": [
                             "integer",
                             "string"
                           ],
-                          "description": "Interval in milliseconds between desired-state checks.",
+                          "description": "The interval in milliseconds between every check of the replica set's state (if it reached the desired number of pods yet)",
                           "format": "int32",
                           "default": 1000,
                           "maximum": 2147483647.0,
@@ -10392,7 +10392,7 @@
                             "integer",
                             "string"
                           ],
-                          "description": "Timeout in seconds for waiting for the workload to reach the desired state; when reached, the probe throws TimeoutException.",
+                          "description": "The timeout in seconds for waiting for the replicaset to scale to the given number of pods, when timeout is reached an error log is raised and the code continues to run",
                           "format": "int32",
                           "default": 300,
                           "maximum": 2147483647.0,
@@ -10494,14 +10494,14 @@
                         },
                         "ReplicaSetName": {
                           "type": "string",
-                          "description": "Legacy property name; supply the target Deployment or StatefulSet name for OpenShift update probes."
+                          "description": "The name of the replicaset to scale the pods of"
                         },
                         "IntervalBetweenDesiredStateChecksMs": {
                           "type": [
                             "integer",
                             "string"
                           ],
-                          "description": "Interval in milliseconds between desired-state checks.",
+                          "description": "The interval in milliseconds between every check of the replica set's state (if it reached the desired number of pods yet)",
                           "format": "int32",
                           "default": 1000,
                           "maximum": 2147483647.0,
@@ -10513,7 +10513,7 @@
                             "integer",
                             "string"
                           ],
-                          "description": "Timeout in seconds for waiting for the workload to reach the desired state; when reached, the probe throws TimeoutException.",
+                          "description": "The timeout in seconds for waiting for the replicaset to scale to the given number of pods, when timeout is reached an error log is raised and the code continues to run",
                           "format": "int32",
                           "default": 300,
                           "maximum": 2147483647.0,
@@ -10575,7 +10575,7 @@
                             "object",
                             "string"
                           ],
-                          "description": "Desired target workload container requests and limits. Only cpu and memory are rebuilt by the implementation.",
+                          "description": "The resources to update the replicaset with. Overrides the current replicaset's resources.",
                           "pattern": "\\$\\{.*\\}",
                           "properties": {
                             "Requests": {
@@ -10583,7 +10583,7 @@
                                 "object",
                                 "string"
                               ],
-                              "description": "Desired CPU and memory requests.",
+                              "description": "The requests resources to update the replicaset with",
                               "pattern": "\\$\\{.*\\}",
                               "properties": {
                                 "Cpu": {
@@ -10591,14 +10591,14 @@
                                     "null",
                                     "string"
                                   ],
-                                  "description": "Desired CPU value."
+                                  "description": "The amount of cpu to update the replicaset with"
                                 },
                                 "Memory": {
                                   "type": [
                                     "null",
                                     "string"
                                   ],
-                                  "description": "Desired memory value."
+                                  "description": "The amount of memory to update the replicaset with"
                                 }
                               }
                             },
@@ -10607,7 +10607,7 @@
                                 "object",
                                 "string"
                               ],
-                              "description": "Desired CPU and memory limits.",
+                              "description": "The limits resources to update the replicaset with",
                               "pattern": "\\$\\{.*\\}",
                               "properties": {
                                 "Cpu": {
@@ -10615,14 +10615,14 @@
                                     "null",
                                     "string"
                                   ],
-                                  "description": "Desired CPU value."
+                                  "description": "The amount of cpu to update the replicaset with"
                                 },
                                 "Memory": {
                                   "type": [
                                     "null",
                                     "string"
                                   ],
-                                  "description": "Desired memory value."
+                                  "description": "The amount of memory to update the replicaset with"
                                 }
                               }
                             }
@@ -10670,14 +10670,14 @@
                         },
                         "ReplicaSetName": {
                           "type": "string",
-                          "description": "Legacy property name; supply the target Deployment or StatefulSet name for OpenShift update probes."
+                          "description": "The name of the replicaset to scale the pods of"
                         },
                         "IntervalBetweenDesiredStateChecksMs": {
                           "type": [
                             "integer",
                             "string"
                           ],
-                          "description": "Interval in milliseconds between desired-state checks.",
+                          "description": "The interval in milliseconds between every check of the replica set's state (if it reached the desired number of pods yet)",
                           "format": "int32",
                           "default": 1000,
                           "maximum": 2147483647.0,
@@ -10689,7 +10689,7 @@
                             "integer",
                             "string"
                           ],
-                          "description": "Timeout in seconds for waiting for the workload to reach the desired state; when reached, the probe throws TimeoutException.",
+                          "description": "The timeout in seconds for waiting for the replicaset to scale to the given number of pods, when timeout is reached an error log is raised and the code continues to run",
                           "format": "int32",
                           "default": 300,
                           "maximum": 2147483647.0,
@@ -10791,14 +10791,14 @@
                         },
                         "ReplicaSetName": {
                           "type": "string",
-                          "description": "Legacy property name; supply the target Deployment or StatefulSet name for OpenShift update probes."
+                          "description": "The name of the replicaset to scale the pods of"
                         },
                         "IntervalBetweenDesiredStateChecksMs": {
                           "type": [
                             "integer",
                             "string"
                           ],
-                          "description": "Interval in milliseconds between desired-state checks.",
+                          "description": "The interval in milliseconds between every check of the replica set's state (if it reached the desired number of pods yet)",
                           "format": "int32",
                           "default": 1000,
                           "maximum": 2147483647.0,
@@ -10810,7 +10810,7 @@
                             "integer",
                             "string"
                           ],
-                          "description": "Timeout in seconds for waiting for the workload to reach the desired state; when reached, the probe throws TimeoutException.",
+                          "description": "The timeout in seconds for waiting for the replicaset to scale to the given number of pods, when timeout is reached an error log is raised and the code continues to run",
                           "format": "int32",
                           "default": 300,
                           "maximum": 2147483647.0,
@@ -10872,7 +10872,7 @@
                             "object",
                             "string"
                           ],
-                          "description": "Desired target workload container requests and limits. Only cpu and memory are rebuilt by the implementation.",
+                          "description": "The resources to update the replicaset with. Overrides the current replicaset's resources.",
                           "pattern": "\\$\\{.*\\}",
                           "properties": {
                             "Requests": {
@@ -10880,7 +10880,7 @@
                                 "object",
                                 "string"
                               ],
-                              "description": "Desired CPU and memory requests.",
+                              "description": "The requests resources to update the replicaset with",
                               "pattern": "\\$\\{.*\\}",
                               "properties": {
                                 "Cpu": {
@@ -10888,14 +10888,14 @@
                                     "null",
                                     "string"
                                   ],
-                                  "description": "Desired CPU value."
+                                  "description": "The amount of cpu to update the replicaset with"
                                 },
                                 "Memory": {
                                   "type": [
                                     "null",
                                     "string"
                                   ],
-                                  "description": "Desired memory value."
+                                  "description": "The amount of memory to update the replicaset with"
                                 }
                               }
                             },
@@ -10904,7 +10904,7 @@
                                 "object",
                                 "string"
                               ],
-                              "description": "Desired CPU and memory limits.",
+                              "description": "The limits resources to update the replicaset with",
                               "pattern": "\\$\\{.*\\}",
                               "properties": {
                                 "Cpu": {
@@ -10912,14 +10912,14 @@
                                     "null",
                                     "string"
                                   ],
-                                  "description": "Desired CPU value."
+                                  "description": "The amount of cpu to update the replicaset with"
                                 },
                                 "Memory": {
                                   "type": [
                                     "null",
                                     "string"
                                   ],
-                                  "description": "Desired memory value."
+                                  "description": "The amount of memory to update the replicaset with"
                                 }
                               }
                             }

@@ -12,14 +12,14 @@ The finished chart lives alongside the sample project:
 The project template already contains a Dockerfile. For a project named `DummyAppMock`, the final image can look like this:
 
 ```dockerfile
-ARG DOTNET_SDK_IMAGE=mcr.microsoft.com/dotnet/sdk:10.0
-ARG DOTNET_RUNTIME_IMAGE=mcr.microsoft.com/dotnet/runtime:10.0
+ARG DOTNET_SDK_IMAGE={{ images.dotnet_sdk }}
+ARG DOTNET_RUNTIME_IMAGE={{ images.dotnet_runtime }}
 
 FROM ${DOTNET_SDK_IMAGE} AS build
 WORKDIR /src
 COPY . .
 ARG QAAS_NUGET_SOURCE_NAME=nuget_feed
-ARG QAAS_NUGET_SOURCE_URL=https://api.nuget.org/v3/index.json
+ARG QAAS_NUGET_SOURCE_URL={{ links.nuget_feed }}
 RUN dotnet nuget remove source "${QAAS_NUGET_SOURCE_NAME}" --configfile NuGet.config || true \
  && dotnet nuget add source "${QAAS_NUGET_SOURCE_URL}" --name "${QAAS_NUGET_SOURCE_NAME}" --configfile NuGet.config
 RUN dotnet restore DummyAppMock.sln --configfile NuGet.config
@@ -47,10 +47,14 @@ docker push ghcr.io/my-org/dummy-app-mock:1.0.0
 For a private feed or a custom image mirror:
 
 ```bash
+DOTNET_SDK_IMAGE=registry.example.com/dotnet/sdk:10.0
+DOTNET_RUNTIME_IMAGE=registry.example.com/dotnet/runtime:10.0
+QAAS_NUGET_SOURCE_URL=https://nuget.example.com/v3/index.json
+
 docker build -t ghcr.io/my-org/dummy-app-mock:1.0.0 \
-  --build-arg DOTNET_SDK_IMAGE=registry.example.com/dotnet/sdk:10.0 \
-  --build-arg DOTNET_RUNTIME_IMAGE=registry.example.com/dotnet/runtime:10.0 \
-  --build-arg QAAS_NUGET_SOURCE_URL=https://nuget.example.com/v3/index.json \
+  --build-arg DOTNET_SDK_IMAGE="${DOTNET_SDK_IMAGE}" \
+  --build-arg DOTNET_RUNTIME_IMAGE="${DOTNET_RUNTIME_IMAGE}" \
+  --build-arg QAAS_NUGET_SOURCE_URL="${QAAS_NUGET_SOURCE_URL}" \
   .
 ```
 
@@ -93,8 +97,8 @@ mocker:
 
 redis:
   image:
-    repository: redis
-    tag: 7-alpine
+    repository: {{ images.redis_repository }}
+    tag: {{ images.redis_tag }}
     pullPolicy: IfNotPresent
   service:
     type: ClusterIP

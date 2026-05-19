@@ -44,7 +44,7 @@ This page mirrors the `Configuration` section from [Publishers](../publishers.md
     
     **Docstring**
     
-    Sets how many iterations the publisher should execute.
+    Sets how many iterations the transaction should execute.
     
     Use this method when working with the documented Runner publisher builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
