@@ -69,4 +69,6 @@ Transactions:
       SpecificType:
         TypeFullName:
         AssemblyName:
+    Parallel:
+      Parallelism:
 ```

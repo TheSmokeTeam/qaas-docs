@@ -100,6 +100,7 @@ Sessions:
         MsSqlTable:
           ConnectionString:
           TableName:
+          AllowNoInsertionTimeField:
           CommandTimeoutSeconds:
           FilterSecondsBeforeRunStartTime:
           InsertionTimeField:
@@ -110,6 +111,7 @@ Sessions:
         OracleSqlTable:
           ConnectionString:
           TableName:
+          AllowNoInsertionTimeField:
           CommandTimeoutSeconds:
           FilterSecondsBeforeRunStartTime:
           InsertionTimeField:
@@ -120,6 +122,7 @@ Sessions:
         PostgreSqlTable:
           ConnectionString:
           TableName:
+          AllowNoInsertionTimeField:
           CommandTimeoutSeconds:
           FilterSecondsBeforeRunStartTime:
           InsertionTimeField:
@@ -170,6 +173,7 @@ Sessions:
           Schema:
           TableName:
           Username:
+          AllowNoInsertionTimeField:
           CommandTimeoutSeconds:
           FilterSecondsBeforeRunStartTime:
           InsertionTimeField:
@@ -475,4 +479,6 @@ Sessions:
           SpecificType:
             TypeFullName:
             AssemblyName:
+        Parallel:
+          Parallelism:
 ```

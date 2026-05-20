@@ -455,6 +455,29 @@ The functions on this page are grouped by responsibility so related operations s
     
     Use this method when working with the documented Runner transaction builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
+### `WithParallelism`
+
+??? info "Source file, signature, and docstring"
+    **Member**
+    `TransactionBuilder.WithParallelism(int parallelism)`
+    
+    **Kind** `function`
+    
+    **Declaring Type** `TransactionBuilder`
+    
+    **Source File** `QaaS.Runner.Sessions/Actions/Transactions/Builders/TransactionBuilder.cs`
+    
+    **Signature**
+    ```csharp
+    public TransactionBuilder WithParallelism(int parallelism)
+    ```
+    
+    **Docstring**
+    
+    Configures the transaction to run with the supplied parallelism.
+    
+    Use this method when working with the documented Runner transaction builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
+
 ### `WithSleep`
 
 ??? info "Source file, signature, and docstring"

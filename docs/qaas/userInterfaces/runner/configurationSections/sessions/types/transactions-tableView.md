@@ -75,3 +75,5 @@
 | `Sessions[].Transactions[].OutputDeserialize.SpecificType` | `object or string` | &#10006 |  | Configuration for making deserializer deserialize into a specific C# object, if set to null will deserialize to default deserilizer's C# object |
 | `Sessions[].Transactions[].OutputDeserialize.SpecificType.TypeFullName` | `string` | &#10004 |  | The full name (including path) of the type |
 | `Sessions[].Transactions[].OutputDeserialize.SpecificType.AssemblyName` | `string or null` | &#10006 |  | The name of the assembly the type is located in, If no value is given by default tries to take the entry assembly |
+| `Sessions[].Transactions[].Parallel` | `object or string` | &#10006 |  | Whether to run the transaction in a specified parallelism |
+| `Sessions[].Transactions[].Parallel.Parallelism` | `integer or string` | &#10004 |  | The amount of parallel tasks to execute at once |

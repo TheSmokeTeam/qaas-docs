@@ -74,6 +74,7 @@ Consumers:
     MsSqlTable:
       ConnectionString:
       TableName:
+      AllowNoInsertionTimeField:
       CommandTimeoutSeconds:
       FilterSecondsBeforeRunStartTime:
       InsertionTimeField:
@@ -84,6 +85,7 @@ Consumers:
     OracleSqlTable:
       ConnectionString:
       TableName:
+      AllowNoInsertionTimeField:
       CommandTimeoutSeconds:
       FilterSecondsBeforeRunStartTime:
       InsertionTimeField:
@@ -94,6 +96,7 @@ Consumers:
     PostgreSqlTable:
       ConnectionString:
       TableName:
+      AllowNoInsertionTimeField:
       CommandTimeoutSeconds:
       FilterSecondsBeforeRunStartTime:
       InsertionTimeField:
@@ -144,6 +147,7 @@ Consumers:
       Schema:
       TableName:
       Username:
+      AllowNoInsertionTimeField:
       CommandTimeoutSeconds:
       FilterSecondsBeforeRunStartTime:
       InsertionTimeField:
