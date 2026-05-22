@@ -1,58 +1,32 @@
-# JsonSchemaDraft4 Configurations Yaml View
+---
+id: generators.available.jsonschemadraft4.configuration.yamlview
+slug: yamlview
+type: reference
+status: stable
+since: 2.0.0
+last_verified: 2026-05-22
+applies_to: [generators]
+prerequisites: [generators/availableGenerators/JsonSchemaDraft4/overview.md]
+code_langs: [yaml]
+keywords: [generators, JsonSchemaDraft4, yaml, scaffold]
+ai_summary: "Minimal YAML scaffold for JsonSchemaDraft4 GeneratorConfiguration — copy, fill the blanks, drop into a Session step."
+tags: [generators]
+canonical_url: /generators/availableGenerators/JsonSchemaDraft4/configuration/yamlView/
+# Verified-against: QaaS.JsonSchemaExtensions/generated-schemas/generators.schema.json
+---
+
+# JsonSchemaDraft4 — Configuration (YAML scaffold)
+
+Drop this into the `GeneratorConfiguration` block of a Session step. Field meanings are in [tableView](tableView.md).
 
 ```yaml
 GeneratorConfiguration:
   Count:
-  JsonDataSourceName:
+  JsonFieldReplacements: []
   OutputObjectType:
-  Seed:
-  JsonFieldReplacements:
-    - Path:
-      ValueType:
-      Boolean:
-        Value:
-      ByteArray:
-        Value:
-      DateTime:
-        Day:
-        DayOffset:
-        Format:
-        Hour:
-        HourOffset:
-        Millisecond:
-        MillisecondOffset:
-        Minute:
-        MinuteOffset:
-        Month:
-        Second:
-        SecondOffset:
-        TimeZone:
-        Year:
-      Double:
-        Value:
-      FromDataSource:
-        Name:
-        OutOfRangePolicy:
-      Integer:
-        Value:
-      String:
-        Value:
-      UnixEpochTime:
-        Day:
-        DayOffset:
-        Hour:
-        HourOffset:
-        Millisecond:
-        MillisecondOffset:
-        Minute:
-        MinuteOffset:
-        Month:
-        Second:
-        SecondOffset:
-        UnixEpochObjectType:
-        UnixEpochScaleType:
-        Year:
   OutputObjectTypeConfiguration:
-    TypeFullName:
     AssemblyName:
+    TypeFullName:
+  JsonDataSourceName:
+  Seed:
 ```

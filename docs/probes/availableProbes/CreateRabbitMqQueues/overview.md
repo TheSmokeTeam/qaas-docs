@@ -1,43 +1,56 @@
+---
+id: probes.available.createrabbitmqqueues.overview
+slug: createrabbitmqqueues
+type: reference
+status: stable
+since: 2.0.0
+last_verified: 2026-05-22
+applies_to: [probes]
+prerequisites: []
+code_langs: [yaml, csharp]
+keywords: [probes, CreateRabbitMqQueues, ProbeConfiguration]
+ai_summary: "Creates one or more RabbitMQ queues with the configured queue arguments."
+tags: [probes]
+canonical_url: /probes/availableProbes/CreateRabbitMqQueues/overview/
+# Verified-against: QaaS.Common.Probes\QaaS.Common.Probes\RabbitMqProbes\CreateRabbitMqQueues.cs
+---
+
 # CreateRabbitMqQueues
 
 Creates one or more RabbitMQ queues with the configured queue arguments.
 
-## What It Does
+## What it does
 
-Creates RabbitMQ queues through the AMQP connection defined in the probe configuration.
+Creates one or more RabbitMQ queues with the configured queue arguments. See [Configuration ▸ tableView](configuration/tableView.md) for the full field reference and [Configuration ▸ yamlView](configuration/yamlView.md) for a minimal scaffold.
 
-This is useful for provisioning the queue side of a topology before bindings or message flow start.
-
-## YAML Example
+## YAML example
 
 ```yaml
 Sessions:
-  - Name: ProbeSession
+  - Name: CreateRabbitMqQueuesSession
     Probes:
-      - Name: CreateRabbitMqQueuesProbe
+      - Name: CreateRabbitMqQueuesStep
         Probe: CreateRabbitMqQueues
         ProbeConfiguration:
-          UseGlobalDict: true
-          Host: rabbitmq.local
-          Port: 5672
-          Username: guest
-          Password: guest
-          VirtualHost: /
-          Queues:
-            - Name: orders.queue
-              Durable: true
-              Exclusive: false
-              AutoDelete: false
+        Host:
+        Username:
+        Password:
+        Port:
+        VirtualHost:
+        Queues: []
 ```
 
-## What This Configuration Does
 
-This probe creates a durable queue named `orders.queue` in the `/` virtual host.
+## Where it lives
 
-The queue is shared (`Exclusive: false`) and is not removed automatically when consumers disconnect.
+| | |
+|--|--|
+| **Plugin family** | probes |
+| **YAML key** | `CreateRabbitMqQueues` |
+| **Schema** | [`probes.schema.json`](../../../_generated/schemas/probes.md) |
+| **Source** | `QaaS.Common.Probes\QaaS.Common.Probes\RabbitMqProbes\CreateRabbitMqQueues.cs` |
 
-### Global Dictionary Behavior
+## See also
 
-With `UseGlobalDict: true`, missing broker connection fields are first resolved from `RabbitMq/AmqpDefaults`, and missing `Queues` can then be resolved from `RabbitMq/Recovery/Queues` when a paired delete probe saved recovery state earlier in the same execution and session.
-
-Any key that is present locally still wins, even when the local value is `false`, `0`, an empty string, or an empty collection. This makes the probe useful when you want to recreate queues after a cleanup step. When `UseGlobalDict` is `false`, the probe ignores both aliases and keeps the current local-only behavior.
+- [probes index](../../index.md)
+- [Custom probe authoring guide](../../custom-authoring-guide.md)

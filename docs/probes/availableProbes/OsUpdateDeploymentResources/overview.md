@@ -1,55 +1,66 @@
+---
+id: probes.available.osupdatedeploymentresources.overview
+slug: osupdatedeploymentresources
+type: reference
+status: stable
+since: 2.0.0
+last_verified: 2026-05-22
+applies_to: [probes]
+prerequisites: []
+code_langs: [yaml, csharp]
+keywords: [probes, OsUpdateDeploymentResources, ProbeConfiguration]
+ai_summary: "Updates container resource requests and limits in a Kubernetes or OpenShift deployment."
+tags: [probes]
+canonical_url: /probes/availableProbes/OsUpdateDeploymentResources/overview/
+# Verified-against: QaaS.Common.Probes\QaaS.Common.Probes\OsProbes\OsUpdateDeploymentResources.cs
+---
+
 # OsUpdateDeploymentResources
 
 Updates container resource requests and limits in a Kubernetes or OpenShift deployment.
 
-## What It Does
+## What it does
 
-Updates CPU and memory requests and limits on a deployment container, then waits for the deployment to converge.
+Updates container resource requests and limits in a Kubernetes or OpenShift deployment. See [Configuration ▸ tableView](configuration/tableView.md) for the full field reference and [Configuration ▸ yamlView](configuration/yamlView.md) for a minimal scaffold.
 
-This is useful when a scenario needs a temporary resource profile, for example to test scaling thresholds or resource-constrained behavior.
-
-## YAML Example
+## YAML example
 
 ```yaml
 Sessions:
-  - Name: ProbeSession
+  - Name: OsUpdateDeploymentResourcesSession
     Probes:
-      - Name: OsUpdateDeploymentResourcesProbe
+      - Name: OsUpdateDeploymentResourcesStep
         Probe: OsUpdateDeploymentResources
         ProbeConfiguration:
-          UseGlobalDict: true
-          ReplicaSetName: orders-api
-          ContainerName: api
-          IntervalBetweenDesiredStateChecksMs: 1000
-          TimeoutWaitForDesiredStateSeconds: 300
-          Openshift:
-            Cluster: https://api.cluster.local:6443
-            Namespace: docs
-            Username: docs-user
-            Password: docs-password
-          DesiredResources:
-            Limits:
-              Cpu: 1000m
-              Memory: 1Gi
-            Requests:
-              Cpu: 250m
-              Memory: 256Mi
+        ContainerName:
+        ReplicaSetName:
+        IntervalBetweenDesiredStateChecksMs:
+        TimeoutWaitForDesiredStateSeconds:
+        Openshift:
+          Cluster:
+          Username:
+          Password:
+          Namespace:
+        DesiredResources:
+          Requests:
+            Cpu:
+            Memory:
+          Limits:
+            Cpu:
+            Memory:
 ```
 
-## What This Configuration Does
 
-This probe updates the `api` container in the `orders-api` deployment so that it requests `250m` CPU and `256Mi` memory, with limits of `1000m` CPU and `1Gi` memory.
+## Where it lives
 
-`ReplicaSetName` is a legacy property name in the configuration model; for this probe it is the Deployment name. The deployment is then allowed to roll out and settle before the scenario continues, and the probe throws `TimeoutException` if the configured timeout expires.
+| | |
+|--|--|
+| **Plugin family** | probes |
+| **YAML key** | `OsUpdateDeploymentResources` |
+| **Schema** | [`probes.schema.json`](../../../_generated/schemas/probes.md) |
+| **Source** | `QaaS.Common.Probes\QaaS.Common.Probes\OsProbes\OsUpdateDeploymentResources.cs` |
 
-Resource updates only rebuild the `cpu` and `memory` request/limit keys. If the existing Kubernetes resource block contains other resource keys, they are not preserved by this update path.
+## See also
 
-### Global Dictionary Behavior
-
-With `UseGlobalDict: true`, missing shared cluster settings can be resolved from `Os/Defaults`, and missing `DesiredResources` can be restored from `Os/Recovery/Resources/Deployment/<ReplicaSetName>/<ContainerName>` after an earlier probe in the same execution and session captured the pre-change state.
-
-The probe writes its pre-change snapshot to the unique canonical scoped path for the current probe execution and then updates the recovery alias so a later rollback probe can reuse it. This is useful when you want to test a temporary CPU or memory profile and then restore the original requests and limits.
-
-No additional per-probe recovery caveat applies beyond the execution and session scoping rules.
-
-When `UseGlobalDict` is `false`, the probe keeps the current behavior: it uses only local YAML or code configuration and does not read or write probe-global-dictionary state.
+- [probes index](../../index.md)
+- [Custom probe authoring guide](../../custom-authoring-guide.md)

@@ -1,44 +1,60 @@
+---
+id: probes.available.createrabbitmqusers.overview
+slug: createrabbitmqusers
+type: reference
+status: stable
+since: 2.0.0
+last_verified: 2026-05-22
+applies_to: [probes]
+prerequisites: []
+code_langs: [yaml, csharp]
+keywords: [probes, CreateRabbitMqUsers, ProbeConfiguration]
+ai_summary: "Creates RabbitMQ users through the management API with the configured credentials and tags."
+tags: [probes]
+canonical_url: /probes/availableProbes/CreateRabbitMqUsers/overview/
+# Verified-against: QaaS.Common.Probes\QaaS.Common.Probes\RabbitMqProbes\CreateRabbitMqUsers.cs
+---
+
 # CreateRabbitMqUsers
 
 Creates RabbitMQ users through the management API with the configured credentials and tags.
 
-## What It Does
+## What it does
 
-Creates RabbitMQ users through the management API.
+Creates RabbitMQ users through the management API with the configured credentials and tags. See [Configuration ▸ tableView](configuration/tableView.md) for the full field reference and [Configuration ▸ yamlView](configuration/yamlView.md) for a minimal scaffold.
 
-This is useful when a scenario provisions or resets its own RabbitMQ credentials as part of environment setup.
-
-## YAML Example
+## YAML example
 
 ```yaml
 Sessions:
-  - Name: ProbeSession
+  - Name: CreateRabbitMqUsersSession
     Probes:
-      - Name: CreateRabbitMqUsersProbe
+      - Name: CreateRabbitMqUsersStep
         Probe: CreateRabbitMqUsers
         ProbeConfiguration:
-          UseGlobalDict: true
-          Host: rabbitmq.local
-          ManagementScheme: http
-          ManagementPort: 15672
-          Username: guest
-          Password: guest
-          VirtualHost: /
-          Users:
-            - Username: orders-user
-              Password: orders-password
-              Tags:
-                - administrator
+        ManagementScheme:
+        ManagementPort:
+        AllowInvalidServerCertificates:
+        RequestTimeoutMs:
+        Host:
+        Username:
+        Password:
+        Port:
+        VirtualHost:
+        Users: []
 ```
 
-## What This Configuration Does
 
-This configuration connects to the RabbitMQ management API and creates a user named `orders-user` with the password `orders-password`.
+## Where it lives
 
-The user is tagged as `administrator`, so it receives the matching management capabilities in RabbitMQ.
+| | |
+|--|--|
+| **Plugin family** | probes |
+| **YAML key** | `CreateRabbitMqUsers` |
+| **Schema** | [`probes.schema.json`](../../../_generated/schemas/probes.md) |
+| **Source** | `QaaS.Common.Probes\QaaS.Common.Probes\RabbitMqProbes\CreateRabbitMqUsers.cs` |
 
-### Global Dictionary Behavior
+## See also
 
-With `UseGlobalDict: true`, missing broker connection fields are first resolved from `RabbitMq/AmqpDefaults`, and missing `Users` can then be resolved from `RabbitMq/Recovery/Users` when a paired delete probe saved recovery state earlier in the same execution and session.
-
-Any key that is present locally still wins, even when the local value is `false`, `0`, an empty string, or an empty collection. This makes the probe useful when you want to restore users that were deleted during a test. When `UseGlobalDict` is `false`, the probe ignores both aliases and keeps the current local-only behavior.
+- [probes index](../../index.md)
+- [Custom probe authoring guide](../../custom-authoring-guide.md)

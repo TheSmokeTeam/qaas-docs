@@ -1,6 +1,27 @@
-# ObjectOutputJsonSchema Configurations Table View
+---
+id: assertions.available.objectoutputjsonschema.configuration.tableview
+slug: tableview
+type: reference
+status: stable
+since: 2.0.0
+last_verified: 2026-05-22
+applies_to: [assertions]
+prerequisites: [assertions/availableAssertions/ObjectOutputJsonSchema/overview.md]
+code_langs: [yaml]
+keywords: [assertions, ObjectOutputJsonSchema, configuration, reference]
+ai_summary: "Field-by-field reference for ObjectOutputJsonSchema AssertionConfiguration keys, types, defaults and descriptions, generated from assertions.schema.json."
+tags: [assertions]
+canonical_url: /assertions/availableAssertions/ObjectOutputJsonSchema/configuration/tableView/
+# Verified-against: QaaS.JsonSchemaExtensions/generated-schemas/assertions.schema.json
+---
+
+# ObjectOutputJsonSchema — Configuration (table view)
+
+Generated from `assertions.schema.json`. Every field below is verified against the JSON schema at `QaaS.JsonSchemaExtensions/generated-schemas/assertions.schema.json`.
 
 | Property Path | Type | Required | Default | Description |
 | ------------- | ---- | -------- | ------- | ----------- |
-| `AssertionConfiguration` | `object or string` | &#10006 |  | Checks that all items in a configured output are valid according to atleast one of the json schemas provided from the configured DataSources. Expects the output items to be deserialized to any type of C# object that can be converted to Json. `DataSources`: Used for loading json schemas, all data sources are loaded as json schemas, expects to receive their items serialized. `Session Support`: Only supports a single session assertion. `Supported Json Drafts`: [ `"$schema": "http://json-schema.org/draft-06/schema#"` / `"$schema": "http://json-schema.org/draft-07/schema#"` / `"$schema": "https://json-schema.org/draft/2019-09/schema"` / `"$schema": "https://json-schema.org/draft/2020-12/schema"` / `"$schema": "https://json-schema.org/draft/next/schema"` ] |
+| `AssertionConfiguration` | `object or string` | &#10006 |  |  |
 | `AssertionConfiguration.OutputName` | `string` | &#10004 |  | The names of the output who'se items should all be valid according to atleast one of the json schemas provided |
+
+See [yamlView](yamlView.md) for a minimal scaffold and [overview](../overview.md) for a runnable example.

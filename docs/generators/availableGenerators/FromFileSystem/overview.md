@@ -1,29 +1,57 @@
+---
+id: generators.available.fromfilesystem.overview
+slug: fromfilesystem
+type: reference
+status: stable
+since: 2.0.0
+last_verified: 2026-05-22
+applies_to: [generators]
+prerequisites: []
+code_langs: [yaml, csharp]
+keywords: [generators, FromFileSystem, GeneratorConfiguration]
+ai_summary: "Retrieves data from files under a configured path in the local file system."
+tags: [generators]
+canonical_url: /generators/availableGenerators/FromFileSystem/overview/
+# Verified-against: QaaS.Common.Generators\QaaS.Common.Generators\FromExternalSourceGenerators\FromFileSystem.cs
+---
+
 # FromFileSystem
 
 Retrieves data from files under a configured path in the local file system.
 
-## What It Does
+## What it does
 
-Reads files from a local directory and emits each matched file as one generated item.
+Retrieves data from files under a configured path in the local file system. See [Configuration ▸ tableView](configuration/tableView.md) for the full field reference and [Configuration ▸ yamlView](configuration/yamlView.md) for a minimal scaffold.
 
-It can order the file list deterministically, filter by a UUID-like pattern, stop after a fixed count, and attach storage metadata that identifies the source file or path.
-
-## YAML Example
+## YAML example
 
 ```yaml
-DataSources:
-  - Name: PayloadFiles
-    Generator: FromFileSystem
-    GeneratorConfiguration:
-      DataArrangeOrder: AsciiAsc
-      FileSystem:
-        Path: sample-data/payloads
-        SearchPattern: '*.json'
-      StorageMetaData: ItemName
+Sessions:
+  - Name: FromFileSystemSession
+    Generators:
+      - Name: FromFileSystemStep
+        DataSource: FromFileSystem
+        GeneratorConfiguration:
+        DataArrangeOrder:
+        Count:
+        DataUuidRegexExpression:
+        StorageMetaData:
+        FileSystem:
+          Path:
+          SearchPattern:
 ```
 
-## What This Configuration Does
 
-This example loads every `*.json` file under `sample-data/payloads` and exposes each file as one generated item.
+## Where it lives
 
-Because the order is `AsciiAsc`, runs see the same file order every time, and `StorageMetaData: ItemName` preserves the file name for downstream logic that needs to know which file produced each payload.
+| | |
+|--|--|
+| **Plugin family** | generators |
+| **YAML key** | `FromFileSystem` |
+| **Schema** | [`generators.schema.json`](../../../_generated/schemas/generators.md) |
+| **Source** | `QaaS.Common.Generators\QaaS.Common.Generators\FromExternalSourceGenerators\FromFileSystem.cs` |
+
+## See also
+
+- [generators index](../../index.md)
+- [Custom generator authoring guide](../../custom-authoring-guide.md)

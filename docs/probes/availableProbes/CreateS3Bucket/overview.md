@@ -1,42 +1,55 @@
+---
+id: probes.available.creates3bucket.overview
+slug: creates3bucket
+type: reference
+status: stable
+since: 2.0.0
+last_verified: 2026-05-22
+applies_to: [probes]
+prerequisites: []
+code_langs: [yaml, csharp]
+keywords: [probes, CreateS3Bucket, ProbeConfiguration]
+ai_summary: "Ensures the configured S3 bucket exists by creating it when it is missing."
+tags: [probes]
+canonical_url: /probes/availableProbes/CreateS3Bucket/overview/
+# Verified-against: QaaS.Common.Probes\QaaS.Common.Probes\S3Probes\CreateS3Bucket.cs
+---
+
 # CreateS3Bucket
 
 Ensures the configured S3 bucket exists by creating it when it is missing.
 
-## What It Does
+## What it does
 
-Ensures an S3-compatible bucket exists before later steps try to write data into it.
+Ensures the configured S3 bucket exists by creating it when it is missing. See [Configuration ▸ tableView](configuration/tableView.md) for the full field reference and [Configuration ▸ yamlView](configuration/yamlView.md) for a minimal scaffold.
 
-If the bucket is already present, the probe leaves it alone. If it is missing, the probe creates it so downstream uploads and reads can rely on the bucket being available.
-
-## YAML Example
+## YAML example
 
 ```yaml
 Sessions:
-  - Name: ProbeSession
+  - Name: CreateS3BucketSession
     Probes:
-      - Name: CreateS3BucketProbe
+      - Name: CreateS3BucketStep
         Probe: CreateS3Bucket
         ProbeConfiguration:
-          UseGlobalDict: true
-          AccessKey: access-key
-          SecretKey: secret-key
-          ServiceURL: http://minio.local:9000
-          StorageBucket: qaas-docs
-          ForcePathStyle: true
+        StorageBucket:
+        ServiceURL:
+        AccessKey:
+        SecretKey:
+        ForcePathStyle:
 ```
 
-## What This Configuration Does
 
-This probe connects to the S3-compatible service at `http://minio.local:9000` and ensures that the `qaas-docs` bucket exists.
+## Where it lives
 
-It is useful as an idempotent setup step before generators or the system under test start uploading files.
+| | |
+|--|--|
+| **Plugin family** | probes |
+| **YAML key** | `CreateS3Bucket` |
+| **Schema** | [`probes.schema.json`](../../../_generated/schemas/probes.md) |
+| **Source** | `QaaS.Common.Probes\QaaS.Common.Probes\S3Probes\CreateS3Bucket.cs` |
 
-### Global Dictionary Behavior
+## See also
 
-With `UseGlobalDict: true`, missing bucket connection fields such as `ServiceURL`, `AccessKey`, `SecretKey`, and `StorageBucket` can be resolved from the session-scoped `S3/Defaults` alias when those keys do not appear in the local probe configuration. The probe still binds and validates after the merge, and any key that is present locally keeps priority over the shared default.
-
-That makes the probe useful when bucket administration probes share one S3-compatible endpoint definition.
-
-No recovery alias is written for S3 in this first pass.
-
-When `UseGlobalDict` is `false`, the probe behaves exactly as before and uses only local YAML or code configuration.
+- [probes index](../../index.md)
+- [Custom probe authoring guide](../../custom-authoring-guide.md)

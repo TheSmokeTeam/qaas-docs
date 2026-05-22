@@ -1,40 +1,56 @@
+---
+id: probes.available.purgerabbitmqqueues.overview
+slug: purgerabbitmqqueues
+type: reference
+status: stable
+since: 2.0.0
+last_verified: 2026-05-22
+applies_to: [probes]
+prerequisites: []
+code_langs: [yaml, csharp]
+keywords: [probes, PurgeRabbitMqQueues, ProbeConfiguration]
+ai_summary: "Probe that purges rabbitmq queues"
+tags: [probes]
+canonical_url: /probes/availableProbes/PurgeRabbitMqQueues/overview/
+# Verified-against: QaaS.Common.Probes\QaaS.Common.Probes\RabbitMqProbes\PurgeRabbitMqQueues.cs
+---
+
 # PurgeRabbitMqQueues
 
 Probe that purges rabbitmq queues
 
-## What It Does
+## What it does
 
-Purges all messages from the configured RabbitMQ queues through the AMQP connection, while keeping the queues themselves.
+Probe that purges rabbitmq queues See [Configuration ▸ tableView](configuration/tableView.md) for the full field reference and [Configuration ▸ yamlView](configuration/yamlView.md) for a minimal scaffold.
 
-This is useful when the topology should stay in place but leftover messages from a previous run must be removed.
-
-## YAML Example
+## YAML example
 
 ```yaml
 Sessions:
-  - Name: ProbeSession
+  - Name: PurgeRabbitMqQueuesSession
     Probes:
-      - Name: PurgeRabbitMqQueuesProbe
+      - Name: PurgeRabbitMqQueuesStep
         Probe: PurgeRabbitMqQueues
         ProbeConfiguration:
-          UseGlobalDict: true
-          Host: rabbitmq.local
-          Port: 5672
-          Username: guest
-          Password: guest
-          VirtualHost: /
-          QueueNames:
-            - orders.queue
+        Host:
+        Username:
+        Password:
+        Port:
+        VirtualHost:
+        QueueNames: []
 ```
 
-## What This Configuration Does
 
-This configuration purges every message from `orders.queue` without deleting the queue itself.
+## Where it lives
 
-It is a targeted cleanup step that resets queue contents while preserving the existing topology.
+| | |
+|--|--|
+| **Plugin family** | probes |
+| **YAML key** | `PurgeRabbitMqQueues` |
+| **Schema** | [`probes.schema.json`](../../../_generated/schemas/probes.md) |
+| **Source** | `QaaS.Common.Probes\QaaS.Common.Probes\RabbitMqProbes\PurgeRabbitMqQueues.cs` |
 
-### Global Dictionary Behavior
+## See also
 
-With `UseGlobalDict: true`, missing broker connection fields and `QueueNames` can be resolved from the session-scoped `RabbitMq/AmqpDefaults` alias when those keys are missing locally. This probe does not use a recovery alias in v1; it only consumes shared RabbitMQ defaults.
-
-That is useful when several RabbitMQ maintenance probes share one broker definition without repeating it in every YAML block. When `UseGlobalDict` is `false`, the probe behaves exactly as before and uses only its local configuration.
+- [probes index](../../index.md)
+- [Custom probe authoring guide](../../custom-authoring-guide.md)

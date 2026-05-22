@@ -1,20 +1,39 @@
-# EmptyRedisByChunks Configurations Table View
+---
+id: probes.available.emptyredisbychunks.configuration.tableview
+slug: tableview
+type: reference
+status: stable
+since: 2.0.0
+last_verified: 2026-05-22
+applies_to: [probes]
+prerequisites: [probes/availableProbes/EmptyRedisByChunks/overview.md]
+code_langs: [yaml]
+keywords: [probes, EmptyRedisByChunks, configuration, reference]
+ai_summary: "Field-by-field reference for EmptyRedisByChunks ProbeConfiguration keys, types, defaults and descriptions, generated from probes.schema.json."
+tags: [probes]
+canonical_url: /probes/availableProbes/EmptyRedisByChunks/configuration/tableView/
+# Verified-against: QaaS.JsonSchemaExtensions/generated-schemas/probes.schema.json
+---
+
+# EmptyRedisByChunks — Configuration (table view)
+
+Generated from `probes.schema.json`. Every field below is verified against the JSON schema at `QaaS.JsonSchemaExtensions/generated-schemas/probes.schema.json`.
 
 | Property Path | Type | Required | Default | Description |
 | ------------- | ---- | -------- | ------- | ----------- |
 | `ProbeConfiguration` | `object or string` | &#10006 |  |  |
-| `ProbeConfiguration.AbortOnConnectFail` | `string or true/false` | &#10006 | True | If true, connect will not create connection while no servers are available |
-| `ProbeConfiguration.AsyncTimeout` | `integer or string` | &#10006 | 5000 | Time(ms) to allow for asynchronous operations |
-| `ProbeConfiguration.BatchSize` | `integer or string` | &#10006 | 100 | Batch Size to do the operation on |
-| `ProbeConfiguration.ClientName` | `string or null` | &#10006 |  | Identification for the connection within redis |
-| `ProbeConfiguration.ConnectRetry` | `integer or string` | &#10006 | 3 | The number of times to repeat connect attempts during initial connect |
-| `ProbeConfiguration.KeepAlive` | `integer or string` | &#10006 | 60 | Time (seconds) at which to send a message to help keep alive |
-| `ProbeConfiguration.KeyRegexPattern` | `string or null` | &#10006 |  | Optional regex used to filter which redis keys should be deleted |
-| `ProbeConfiguration.Password` | `string or null` | &#10006 |  | Password for the redis server |
 | `ProbeConfiguration.RedisDataBase` | `integer or string` | &#10006 | 0 | Redis database to perform the probe on |
-| `ProbeConfiguration.Ssl` | `string or true/false` | &#10006 | False | Specifies that SSL encryption should be used |
-| `ProbeConfiguration.SslHost` | `string or null` | &#10006 |  | Enforces a preticular SSL host identity on the server's certificate |
-| `ProbeConfiguration.UseGlobalDict` | `string or true/false` | &#10006 | False | When true, missing probe configuration keys may be resolved from the shared global dictionary before local YAML/code values are applied. |
-| `ProbeConfiguration.Username` | `string or null` | &#10006 |  | User for the redis server |
-| `ProbeConfiguration.HostNames` | `list or string` | &#10004 |  | List of the redis hostnames (each hostname should contain the port too for example: - 'host1:8080' |
-| `ProbeConfiguration.HostNames[]` | `string` | &#10006 |  |  |
+| `ProbeConfiguration.HostNames` | `array or string` | &#10004 |  | List of the redis hostnames (each hostname should contain the port too for example: - 'host1:8080' |
+| `ProbeConfiguration.Username` | `null or string` | &#10006 |  | User for the redis server |
+| `ProbeConfiguration.Password` | `null or string` | &#10006 |  | Password for the redis server |
+| `ProbeConfiguration.AbortOnConnectFail` | `boolean or string` | &#10006 | true | If true, connect will not create connection while no servers are available |
+| `ProbeConfiguration.ConnectRetry` | `integer or string` | &#10006 | 3 | The number of times to repeat connect attempts during initial connect |
+| `ProbeConfiguration.ClientName` | `null or string` | &#10006 |  | Identification for the connection within redis |
+| `ProbeConfiguration.AsyncTimeout` | `integer or string` | &#10006 | 5000 | Time(ms) to allow for asynchronous operations |
+| `ProbeConfiguration.Ssl` | `boolean or string` | &#10006 | false | Specifies that SSL encryption should be used |
+| `ProbeConfiguration.SslHost` | `null or string` | &#10006 |  | Enforces a preticular SSL host identity on the server's certificate |
+| `ProbeConfiguration.KeepAlive` | `integer or string` | &#10006 | 60 | Time (seconds) at which to send a message to help keep alive |
+| `ProbeConfiguration.BatchSize` | `integer or string` | &#10006 | 100 | Batch Size to do the operation on |
+| `ProbeConfiguration.KeyRegexPattern` | `null or string` | &#10006 |  | Optional regex used to filter which redis keys should be deleted |
+
+See [yamlView](yamlView.md) for a minimal scaffold and [overview](../overview.md) for a runnable example.

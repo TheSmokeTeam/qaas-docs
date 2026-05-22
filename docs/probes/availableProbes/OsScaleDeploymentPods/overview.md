@@ -1,46 +1,59 @@
+---
+id: probes.available.osscaledeploymentpods.overview
+slug: osscaledeploymentpods
+type: reference
+status: stable
+since: 2.0.0
+last_verified: 2026-05-22
+applies_to: [probes]
+prerequisites: []
+code_langs: [yaml, csharp]
+keywords: [probes, OsScaleDeploymentPods, ProbeConfiguration]
+ai_summary: "Probe that scales openshift deployments"
+tags: [probes]
+canonical_url: /probes/availableProbes/OsScaleDeploymentPods/overview/
+# Verified-against: QaaS.Common.Probes\QaaS.Common.Probes\OsProbes\OsScaleDeploymentPods.cs
+---
+
 # OsScaleDeploymentPods
 
 Probe that scales openshift deployments
 
-## What It Does
+## What it does
 
-Scales a deployment to the configured replica count and waits until the desired state is reached.
+Probe that scales openshift deployments See [Configuration ▸ tableView](configuration/tableView.md) for the full field reference and [Configuration ▸ yamlView](configuration/yamlView.md) for a minimal scaffold.
 
-This is useful when a scenario needs to increase or decrease deployment capacity as part of the setup.
-
-## YAML Example
+## YAML example
 
 ```yaml
 Sessions:
-  - Name: ProbeSession
+  - Name: OsScaleDeploymentPodsSession
     Probes:
-      - Name: OsScaleDeploymentPodsProbe
+      - Name: OsScaleDeploymentPodsStep
         Probe: OsScaleDeploymentPods
         ProbeConfiguration:
-          UseGlobalDict: true
-          ReplicaSetName: orders-api
-          DesiredNumberOfPods: 3
-          IntervalBetweenDesiredStateChecksMs: 1000
-          TimeoutWaitForDesiredStateSeconds: 300
-          Openshift:
-            Cluster: https://api.cluster.local:6443
-            Namespace: docs
-            Username: docs-user
-            Password: docs-password
+        ReplicaSetName:
+        IntervalBetweenDesiredStateChecksMs:
+        TimeoutWaitForDesiredStateSeconds:
+        Openshift:
+          Cluster:
+          Username:
+          Password:
+          Namespace:
+        DesiredNumberOfPods:
 ```
 
-## What This Configuration Does
 
-This probe scales the `orders-api` deployment to three pods and waits until the deployment reports that desired state.
+## Where it lives
 
-`ReplicaSetName` is a legacy property name in the configuration model; for this probe it is the Deployment name. `DesiredNumberOfPods` is assigned directly to `spec.replicas`; set it explicitly and avoid negative values because the probe does not perform local range validation before calling Kubernetes.
+| | |
+|--|--|
+| **Plugin family** | probes |
+| **YAML key** | `OsScaleDeploymentPods` |
+| **Schema** | [`probes.schema.json`](../../../_generated/schemas/probes.md) |
+| **Source** | `QaaS.Common.Probes\QaaS.Common.Probes\OsProbes\OsScaleDeploymentPods.cs` |
 
-### Global Dictionary Behavior
+## See also
 
-With `UseGlobalDict: true`, missing shared cluster settings can be resolved from `Os/Defaults`, and missing `DesiredNumberOfPods` can be restored from `Os/Recovery/Scale/Deployment/<ReplicaSetName>` after an earlier probe in the same execution and session captured the pre-change state.
-
-The probe writes its pre-change snapshot to the unique canonical scoped path for the current probe execution and then updates the recovery alias so a later rollback probe can reuse it. This is useful when you want to scale a deployment down and then restore its previous replica count later in the same session.
-
-No additional per-probe recovery caveat applies beyond the execution and session scoping rules.
-
-When `UseGlobalDict` is `false`, the probe keeps the current behavior: it uses only local YAML or code configuration and does not read or write probe-global-dictionary state.
+- [probes index](../../index.md)
+- [Custom probe authoring guide](../../custom-authoring-guide.md)

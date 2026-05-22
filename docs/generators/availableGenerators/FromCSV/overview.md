@@ -1,36 +1,62 @@
+---
+id: generators.available.fromcsv.overview
+slug: fromcsv
+type: reference
+status: stable
+since: 2.0.0
+last_verified: 2026-05-22
+applies_to: [generators]
+prerequisites: []
+code_langs: [yaml, csharp]
+keywords: [generators, FromCSV, GeneratorConfiguration]
+ai_summary: "Reads CSV files from the configured file-system path and turns each row into generated data items."
+tags: [generators]
+canonical_url: /generators/availableGenerators/FromCSV/overview/
+# Verified-against: QaaS.Common.Generators\QaaS.Common.Generators\FromExternalSourceGenerators\FromCSV.cs
+---
+
 # FromCSV
 
 Reads CSV files from the configured file-system path and turns each row into generated data items.
 
-## What It Does
+## What it does
 
-Reads rows from one or more CSV files in a local directory and emits one generated item per row.
+Reads CSV files from the configured file-system path and turns each row into generated data items. See [Configuration ▸ tableView](configuration/tableView.md) for the full field reference and [Configuration ▸ yamlView](configuration/yamlView.md) for a minimal scaffold.
 
-It can use the file header row, or configured column names when the files are headerless. Empty rows can be skipped, surrounding whitespace can be trimmed, and the generator can stop after a fixed number of rows. When storage metadata is enabled, each generated item keeps track of where it came from in the file set.
-
-## YAML Example
+## YAML example
 
 ```yaml
-DataSources:
-  - Name: OrdersCsvRows
-    Generator: FromCSV
-    GeneratorConfiguration:
-      DataArrangeOrder: AsciiAsc
-      Delimiter: ','
-      HasHeaderRecord: false
-      SkipEmptyRows: true
-      TrimWhiteSpace: true
-      ColumnNames:
-        - orderId
-        - total
-      FileSystem:
-        Path: sample-data/csv
-        SearchPattern: '*.csv'
-      StorageMetaData: ItemName
+Sessions:
+  - Name: FromCSVSession
+    Generators:
+      - Name: FromCSVStep
+        DataSource: FromCSV
+        GeneratorConfiguration:
+        FileSystem:
+          Path:
+          SearchPattern:
+        DataArrangeOrder:
+        Count:
+        DataUuidRegexExpression:
+        StorageMetaData:
+        Delimiter:
+        HasHeaderRecord:
+        ColumnNames: []
+        SkipEmptyRows:
+        TrimWhiteSpace:
 ```
 
-## What This Configuration Does
 
-This example reads every `*.csv` file under `sample-data/csv`, orders the files alphabetically, treats each line as a two-column record, and emits one generated item per row.
+## Where it lives
 
-Because `HasHeaderRecord` is `false`, the first and second columns are exposed as `orderId` and `total`. Empty rows are ignored, whitespace is trimmed, and each emitted item keeps the source file name in its storage metadata.
+| | |
+|--|--|
+| **Plugin family** | generators |
+| **YAML key** | `FromCSV` |
+| **Schema** | [`generators.schema.json`](../../../_generated/schemas/generators.md) |
+| **Source** | `QaaS.Common.Generators\QaaS.Common.Generators\FromExternalSourceGenerators\FromCSV.cs` |
+
+## See also
+
+- [generators index](../../index.md)
+- [Custom generator authoring guide](../../custom-authoring-guide.md)

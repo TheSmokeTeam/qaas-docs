@@ -1,40 +1,56 @@
+---
+id: probes.available.deleterabbitmqexchanges.overview
+slug: deleterabbitmqexchanges
+type: reference
+status: stable
+since: 2.0.0
+last_verified: 2026-05-22
+applies_to: [probes]
+prerequisites: []
+code_langs: [yaml, csharp]
+keywords: [probes, DeleteRabbitMqExchanges, ProbeConfiguration]
+ai_summary: "Probe that deletes rabbitmq exchanges"
+tags: [probes]
+canonical_url: /probes/availableProbes/DeleteRabbitMqExchanges/overview/
+# Verified-against: QaaS.Common.Probes\QaaS.Common.Probes\RabbitMqProbes\DeleteRabbitMqExchanges.cs
+---
+
 # DeleteRabbitMqExchanges
 
 Probe that deletes rabbitmq exchanges
 
-## What It Does
+## What it does
 
-Deletes RabbitMQ exchanges through the AMQP connection defined in the probe configuration.
+Probe that deletes rabbitmq exchanges See [Configuration ▸ tableView](configuration/tableView.md) for the full field reference and [Configuration ▸ yamlView](configuration/yamlView.md) for a minimal scaffold.
 
-This is useful when an exchange was created for a temporary scenario and should be removed cleanly afterward.
-
-## YAML Example
+## YAML example
 
 ```yaml
 Sessions:
-  - Name: ProbeSession
+  - Name: DeleteRabbitMqExchangesSession
     Probes:
-      - Name: DeleteRabbitMqExchangesProbe
+      - Name: DeleteRabbitMqExchangesStep
         Probe: DeleteRabbitMqExchanges
         ProbeConfiguration:
-          UseGlobalDict: true
-          Host: rabbitmq.local
-          Port: 5672
-          Username: guest
-          Password: guest
-          VirtualHost: /
-          ExchangeNames:
-            - orders.exchange
+        Host:
+        Username:
+        Password:
+        Port:
+        VirtualHost:
+        ExchangeNames: []
 ```
 
-## What This Configuration Does
 
-This configuration deletes the `orders.exchange` exchange from the `/` virtual host.
+## Where it lives
 
-It is a topology cleanup step that removes the exchange but leaves other RabbitMQ objects untouched.
+| | |
+|--|--|
+| **Plugin family** | probes |
+| **YAML key** | `DeleteRabbitMqExchanges` |
+| **Schema** | [`probes.schema.json`](../../../_generated/schemas/probes.md) |
+| **Source** | `QaaS.Common.Probes\QaaS.Common.Probes\RabbitMqProbes\DeleteRabbitMqExchanges.cs` |
 
-### Global Dictionary Behavior
+## See also
 
-With `UseGlobalDict: true`, the resolved broker settings are saved under the session-scoped `RabbitMq/AmqpDefaults` alias, and this probe also writes the deleted exchange names as `RabbitMqExchangeConfig[]` to `RabbitMq/Recovery/Exchanges`. The canonical payload still lives under `__ProbeGlobalDict/Scoped/<execution-scope>/<session-name>/<probe-name>`, so every probe execution keeps its own isolated write path.
-
-That makes the probe useful in recovery or rollback scenarios where `CreateRabbitMqExchanges` runs later in the same execution and session and restores the deleted topology from the saved alias instead of hard-coding it twice. When `UseGlobalDict` is `false`, current behavior stays unchanged: only local YAML or code configuration is used, and nothing is written to the probe global dictionary.
+- [probes index](../../index.md)
+- [Custom probe authoring guide](../../custom-authoring-guide.md)

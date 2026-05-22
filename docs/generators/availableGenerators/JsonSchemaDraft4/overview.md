@@ -1,45 +1,58 @@
+---
+id: generators.available.jsonschemadraft4.overview
+slug: jsonschemadraft4
+type: reference
+status: stable
+since: 2.0.0
+last_verified: 2026-05-22
+applies_to: [generators]
+prerequisites: []
+code_langs: [yaml, csharp]
+keywords: [generators, JsonSchemaDraft4, GeneratorConfiguration]
+ai_summary: "Generates JSON data that conforms to a configured JSON Schema Draft 4 document."
+tags: [generators]
+canonical_url: /generators/availableGenerators/JsonSchemaDraft4/overview/
+# Verified-against: QaaS.Common.Generators\QaaS.Common.Generators\JsonGenerators\JsonSchemaDraft4.cs
+---
+
 # JsonSchemaDraft4
 
 Generates JSON data that conforms to a configured JSON Schema Draft 4 document.
 
-## What It Does
+## What it does
 
-Generates JSON documents from a Draft 4 JSON schema and then applies the same field-replacement system used by the regular `Json` generator.
+Generates JSON data that conforms to a configured JSON Schema Draft 4 document. See [Configuration ▸ tableView](configuration/tableView.md) for the full field reference and [Configuration ▸ yamlView](configuration/yamlView.md) for a minimal scaffold.
 
-This is useful when you want structurally valid random test data but still need certain fields pinned to known values. An optional seed makes the random generation repeatable across runs.
-
-## YAML Example
+## YAML example
 
 ```yaml
-DataSources:
-  - Name: OrderSchema
-    Generator: FromFileSystem
-    Deserialize:
-      Deserializer: Json
-    GeneratorConfiguration:
-      DataArrangeOrder: AsciiAsc
-      FileSystem:
-        Path: sample-data/json-schema
-        SearchPattern: 'order-schema.json'
-      StorageMetaData: ItemName
-
-  - Name: GeneratedSchemaOrders
-    Generator: JsonSchemaDraft4
-    DataSourceNames:
-      - OrderSchema
-    GeneratorConfiguration:
-      JsonDataSourceName: OrderSchema
-      Count: 3
-      Seed: 42
-      JsonFieldReplacements:
-        - Path: $.priority
-          ValueType: String
-          String:
-            Value: high
+Sessions:
+  - Name: JsonSchemaDraft4Session
+    Generators:
+      - Name: JsonSchemaDraft4Step
+        DataSource: JsonSchemaDraft4
+        GeneratorConfiguration:
+        Count:
+        JsonFieldReplacements: []
+        OutputObjectType:
+        OutputObjectTypeConfiguration:
+          AssemblyName:
+          TypeFullName:
+        JsonDataSourceName:
+        Seed:
 ```
 
-## What This Configuration Does
 
-This example reads a Draft 4 schema from `order-schema.json`, generates three schema-valid JSON documents from it, and then forces the `priority` field in each document to `high`.
+## Where it lives
 
-Because the seed is fixed to `42`, the random parts of the generated payloads stay repeatable between runs.
+| | |
+|--|--|
+| **Plugin family** | generators |
+| **YAML key** | `JsonSchemaDraft4` |
+| **Schema** | [`generators.schema.json`](../../../_generated/schemas/generators.md) |
+| **Source** | `QaaS.Common.Generators\QaaS.Common.Generators\JsonGenerators\JsonSchemaDraft4.cs` |
+
+## See also
+
+- [generators index](../../index.md)
+- [Custom generator authoring guide](../../custom-authoring-guide.md)

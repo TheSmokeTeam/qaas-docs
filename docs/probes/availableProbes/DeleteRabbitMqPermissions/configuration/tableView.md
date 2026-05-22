@@ -1,19 +1,36 @@
-# DeleteRabbitMqPermissions Configurations Table View
+---
+id: probes.available.deleterabbitmqpermissions.configuration.tableview
+slug: tableview
+type: reference
+status: stable
+since: 2.0.0
+last_verified: 2026-05-22
+applies_to: [probes]
+prerequisites: [probes/availableProbes/DeleteRabbitMqPermissions/overview.md]
+code_langs: [yaml]
+keywords: [probes, DeleteRabbitMqPermissions, configuration, reference]
+ai_summary: "Field-by-field reference for DeleteRabbitMqPermissions ProbeConfiguration keys, types, defaults and descriptions, generated from probes.schema.json."
+tags: [probes]
+canonical_url: /probes/availableProbes/DeleteRabbitMqPermissions/configuration/tableView/
+# Verified-against: QaaS.JsonSchemaExtensions/generated-schemas/probes.schema.json
+---
+
+# DeleteRabbitMqPermissions — Configuration (table view)
+
+Generated from `probes.schema.json`. Every field below is verified against the JSON schema at `QaaS.JsonSchemaExtensions/generated-schemas/probes.schema.json`.
 
 | Property Path | Type | Required | Default | Description |
 | ------------- | ---- | -------- | ------- | ----------- |
 | `ProbeConfiguration` | `object or string` | &#10006 |  |  |
-| `ProbeConfiguration.Host` | `string` | &#10004 |  | Rabbitmq hostname |
-| `ProbeConfiguration.AllowInvalidServerCertificates` | `string or true/false` | &#10006 | False | Allow invalid TLS certificates when using HTTPS |
-| `ProbeConfiguration.ManagementPort` | `integer or string` | &#10006 | 15672 | Rabbitmq management API port |
 | `ProbeConfiguration.ManagementScheme` | `string` | &#10006 | http | Rabbitmq management API scheme |
+| `ProbeConfiguration.ManagementPort` | `integer or string` | &#10006 | 15672 | Rabbitmq management API port |
+| `ProbeConfiguration.AllowInvalidServerCertificates` | `boolean or string` | &#10006 | false | Allow invalid TLS certificates when using HTTPS |
+| `ProbeConfiguration.RequestTimeoutMs` | `integer or string` | &#10006 | 30000 | Rabbitmq management API request timeout in milliseconds |
+| `ProbeConfiguration.Host` | `string` | &#10004 |  | Rabbitmq hostname |
+| `ProbeConfiguration.Username` | `string` | &#10006 | admin | Rabbitmq username |
 | `ProbeConfiguration.Password` | `string` | &#10006 | admin | Rabbitmq password |
 | `ProbeConfiguration.Port` | `integer or string` | &#10006 | 5672 | Rabbitmq Amqp port |
-| `ProbeConfiguration.RequestTimeoutMs` | `integer or string` | &#10006 | 30000 | Rabbitmq management API request timeout in milliseconds |
-| `ProbeConfiguration.UseGlobalDict` | `string or true/false` | &#10006 | False | When true, missing probe configuration keys may be resolved from the shared global dictionary before local YAML/code values are applied. |
-| `ProbeConfiguration.Username` | `string` | &#10006 | admin | Rabbitmq username |
 | `ProbeConfiguration.VirtualHost` | `string` | &#10006 | / | Rabbitmq virtual host to access during this connection |
-| `ProbeConfiguration.Permissions` | `list or string` | &#10004 |  | The rabbitmq permission targets to delete |
-| `ProbeConfiguration.Permissions[]` | `object or string` | &#10006 |  |  |
-| `ProbeConfiguration.Permissions[].Username` | `string` | &#10004 |  | The rabbitmq user name |
-| `ProbeConfiguration.Permissions[].VirtualHostName` | `string` | &#10004 |  | The rabbitmq virtual host name |
+| `ProbeConfiguration.Permissions` | `array or string` | &#10004 |  | The rabbitmq permission targets to delete |
+
+See [yamlView](yamlView.md) for a minimal scaffold and [overview](../overview.md) for a runnable example.

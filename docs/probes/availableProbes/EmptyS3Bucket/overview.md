@@ -1,43 +1,56 @@
+---
+id: probes.available.emptys3bucket.overview
+slug: emptys3bucket
+type: reference
+status: stable
+since: 2.0.0
+last_verified: 2026-05-22
+applies_to: [probes]
+prerequisites: []
+code_langs: [yaml, csharp]
+keywords: [probes, EmptyS3Bucket, ProbeConfiguration]
+ai_summary: "Deletes objects from the configured S3 bucket, optionally constrained to a prefix, while treating a missing bucket as a no-op."
+tags: [probes]
+canonical_url: /probes/availableProbes/EmptyS3Bucket/overview/
+# Verified-against: QaaS.Common.Probes\QaaS.Common.Probes\S3Probes\EmptyS3Bucket.cs
+---
+
 # EmptyS3Bucket
 
 Deletes objects from the configured S3 bucket, optionally constrained to a prefix, while treating a missing bucket as a no-op.
 
-## What It Does
+## What it does
 
-Deletes objects from an S3-compatible bucket without deleting the bucket itself.
+Deletes objects from the configured S3 bucket, optionally constrained to a prefix, while treating a missing bucket as a no-op. See [Configuration ▸ tableView](configuration/tableView.md) for the full field reference and [Configuration ▸ yamlView](configuration/yamlView.md) for a minimal scaffold.
 
-An optional prefix limits the cleanup to one logical folder, which is useful when multiple scenarios share the same bucket but write to different prefixes.
-
-## YAML Example
+## YAML example
 
 ```yaml
 Sessions:
-  - Name: ProbeSession
+  - Name: EmptyS3BucketSession
     Probes:
-      - Name: EmptyS3BucketProbe
+      - Name: EmptyS3BucketStep
         Probe: EmptyS3Bucket
         ProbeConfiguration:
-          UseGlobalDict: true
-          AccessKey: access-key
-          SecretKey: secret-key
-          ServiceURL: http://minio.local:9000
-          StorageBucket: qaas-docs
-          ForcePathStyle: true
-          Prefix: runs/2026-03-28/
+        StorageBucket:
+        ServiceURL:
+        AccessKey:
+        SecretKey:
+        ForcePathStyle:
+        Prefix:
 ```
 
-## What This Configuration Does
 
-This configuration removes every object under the `runs/2026-03-28/` prefix from the `qaas-docs` bucket and keeps the bucket itself intact.
+## Where it lives
 
-That makes it useful for cleaning one run namespace without affecting the rest of the bucket.
+| | |
+|--|--|
+| **Plugin family** | probes |
+| **YAML key** | `EmptyS3Bucket` |
+| **Schema** | [`probes.schema.json`](../../../_generated/schemas/probes.md) |
+| **Source** | `QaaS.Common.Probes\QaaS.Common.Probes\S3Probes\EmptyS3Bucket.cs` |
 
-### Global Dictionary Behavior
+## See also
 
-With `UseGlobalDict: true`, missing bucket connection fields can be resolved from the session-scoped `S3/Defaults` alias when those keys do not appear in the local probe configuration. The probe still binds and validates after the merge, and any key that is present locally keeps priority over the shared default.
-
-That makes the probe useful when object cleanup should reuse the same S3 bucket definition while keeping the `Prefix` local.
-
-No recovery alias is written for S3 in this first pass.
-
-When `UseGlobalDict` is `false`, the probe behaves exactly as before and uses only local YAML or code configuration.
+- [probes index](../../index.md)
+- [Custom probe authoring guide](../../custom-authoring-guide.md)

@@ -1,43 +1,58 @@
+---
+id: processors.available.jsonenvelopeprocessor.overview
+slug: jsonenvelopeprocessor
+type: reference
+status: stable
+since: 2.0.0
+last_verified: 2026-05-22
+applies_to: [processors]
+prerequisites: []
+code_langs: [yaml, csharp]
+keywords: [processors, JsonEnvelopeProcessor, ProcessorConfiguration]
+ai_summary: "Wraps the incoming request payload and optional request metadata in a JSON envelope response."
+tags: [processors]
+canonical_url: /processors/availableProcessors/JsonEnvelopeProcessor/overview/
+# Verified-against: QaaS.Common.Processors\QaaS.Common.Processors\JsonEnvelopeProcessor.cs
+---
+
 # JsonEnvelopeProcessor
 
 Wraps the incoming request payload and optional request metadata in a JSON envelope response.
 
-## What It Does
+## What it does
 
-Wraps the incoming request into a JSON object under a configurable body-property name and can optionally add request metadata such as headers, path parameters, URI, and the original body type.
+Wraps the incoming request payload and optional request metadata in a JSON envelope response. See [Configuration ▸ tableView](configuration/tableView.md) for the full field reference and [Configuration ▸ yamlView](configuration/yamlView.md) for a minimal scaffold.
 
-This is useful when a downstream system expects a structured JSON envelope but the incoming request may be raw text, bytes, or another object type.
-
-## YAML Example
+## YAML example
 
 ```yaml
-Stubs:
-  - Name: JsonEnvelopeProcessorStub
-    Processor: JsonEnvelopeProcessor
-
-    ProcessorConfiguration:
-      BodyPropertyName: request
-      ContentType: application/json
-      StatusCode: 200
-      IncludeBodyType: true
-      IncludePathParameters: true
-      IncludeRequestHeaders: true
-      IncludeUri: true
-
-Servers:
-  - Http:
-      Port: 8080
-      IsLocalhost: true
-      Endpoints:
-        - Path: /health
-          Actions:
-            - Name: HealthAction
-              Method: Get
-              TransactionStubName: JsonEnvelopeProcessorStub
+Sessions:
+  - Name: JsonEnvelopeProcessorSession
+    Processors:
+      - Name: JsonEnvelopeProcessorStep
+        Processor: JsonEnvelopeProcessor
+        ProcessorConfiguration:
+        StatusCode:
+        ContentType:
+        BodyPropertyName:
+        IncludeBodyType:
+        IncludeUri:
+        IncludeRequestHeaders:
+        IncludePathParameters:
+        ResponseHeaders:
 ```
 
-## What This Configuration Does
 
-This stub returns a JSON document that places the incoming request body under the `request` property and also includes the request URI, headers, path parameters, and original body-type information.
+## Where it lives
 
-The response comes back as HTTP `200` with `application/json`.
+| | |
+|--|--|
+| **Plugin family** | processors |
+| **YAML key** | `JsonEnvelopeProcessor` |
+| **Schema** | [`processors.schema.json`](../../../_generated/schemas/processors.md) |
+| **Source** | `QaaS.Common.Processors\QaaS.Common.Processors\JsonEnvelopeProcessor.cs` |
+
+## See also
+
+- [processors index](../../index.md)
+- [Custom processor authoring guide](../../custom-authoring-guide.md)

@@ -1,42 +1,53 @@
+---
+id: probes.available.postgresqldatabasetablestruncate.overview
+slug: postgresqldatabasetablestruncate
+type: reference
+status: stable
+since: 2.0.0
+last_verified: 2026-05-22
+applies_to: [probes]
+prerequisites: []
+code_langs: [yaml, csharp]
+keywords: [probes, PostgreSqlDataBaseTablesTruncate, ProbeConfiguration]
+ai_summary: "Truncates the configured PostgreSQL tables in the order they are listed."
+tags: [probes]
+canonical_url: /probes/availableProbes/PostgreSqlDataBaseTablesTruncate/overview/
+# Verified-against: QaaS.Common.Probes\QaaS.Common.Probes\SqlProbes\PostgreSqlDataBaseTablesTruncate.cs
+---
+
 # PostgreSqlDataBaseTablesTruncate
 
 Truncates the configured PostgreSQL tables in the order they are listed.
 
-## What It Does
+## What it does
 
-Truncates the configured PostgreSQL tables in the order they are listed.
+Truncates the configured PostgreSQL tables in the order they are listed. See [Configuration ▸ tableView](configuration/tableView.md) for the full field reference and [Configuration ▸ yamlView](configuration/yamlView.md) for a minimal scaffold.
 
-This is useful when scenario state is stored in PostgreSQL and a fast table reset is needed between runs.
-
-## YAML Example
+## YAML example
 
 ```yaml
 Sessions:
-  - Name: ProbeSession
+  - Name: PostgreSqlDataBaseTablesTruncateSession
     Probes:
-      - Name: PostgreSqlDataBaseTablesTruncateProbe
+      - Name: PostgreSqlDataBaseTablesTruncateStep
         Probe: PostgreSqlDataBaseTablesTruncate
         ProbeConfiguration:
-          UseGlobalDict: true
-          ConnectionString: Host=localhost;Port=5432;Database=qaas;Username=postgres;Password=postgres;
-          CommandTimeoutSeconds: 30
-          TableNames:
-            - public.outbox
-            - public.orders
+        ConnectionString:
+        TableNames: []
+        CommandTimeoutSeconds:
 ```
 
-## What This Configuration Does
 
-This probe connects to PostgreSQL and truncates `public.outbox` and `public.orders` with a 30-second timeout.
+## Where it lives
 
-It clears the table data while leaving the schema intact for the next run. Each configured table name is split into identifier segments, each segment is validated with the shared safe-identifier regex, and PostgreSQL segments are emitted with double quotes. The command uses `TRUNCATE TABLE ... RESTART IDENTITY CASCADE`, so identity sequences are reset and dependent tables are handled through PostgreSQL cascade behavior.
+| | |
+|--|--|
+| **Plugin family** | probes |
+| **YAML key** | `PostgreSqlDataBaseTablesTruncate` |
+| **Schema** | [`probes.schema.json`](../../../_generated/schemas/probes.md) |
+| **Source** | `QaaS.Common.Probes\QaaS.Common.Probes\SqlProbes\PostgreSqlDataBaseTablesTruncate.cs` |
 
-### Global Dictionary Behavior
+## See also
 
-With `UseGlobalDict: true`, missing `ConnectionString` and other shared SQL settings can be resolved from the session-scoped `Sql/Defaults` alias when those keys do not appear in the local probe configuration. The probe still binds and validates after the merge, and any key that is present locally keeps priority over the shared default.
-
-That makes the probe useful when PostgreSQL cleanup probes should reuse the same SQL connection definition while each probe keeps its own table list.
-
-No recovery alias is written for SQL truncation in this first pass.
-
-When `UseGlobalDict` is `false`, the probe behaves exactly as before and uses only local YAML or code configuration.
+- [probes index](../../index.md)
+- [Custom probe authoring guide](../../custom-authoring-guide.md)

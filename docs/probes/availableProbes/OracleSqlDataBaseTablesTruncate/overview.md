@@ -1,42 +1,53 @@
+---
+id: probes.available.oraclesqldatabasetablestruncate.overview
+slug: oraclesqldatabasetablestruncate
+type: reference
+status: stable
+since: 2.0.0
+last_verified: 2026-05-22
+applies_to: [probes]
+prerequisites: []
+code_langs: [yaml, csharp]
+keywords: [probes, OracleSqlDataBaseTablesTruncate, ProbeConfiguration]
+ai_summary: "Truncates the configured Oracle tables in the order they are listed."
+tags: [probes]
+canonical_url: /probes/availableProbes/OracleSqlDataBaseTablesTruncate/overview/
+# Verified-against: QaaS.Common.Probes\QaaS.Common.Probes\SqlProbes\OracleSqlDataBaseTablesTruncate.cs
+---
+
 # OracleSqlDataBaseTablesTruncate
 
 Truncates the configured Oracle tables in the order they are listed.
 
-## What It Does
+## What it does
 
-Truncates the configured Oracle tables in the order they are listed.
+Truncates the configured Oracle tables in the order they are listed. See [Configuration ▸ tableView](configuration/tableView.md) for the full field reference and [Configuration ▸ yamlView](configuration/yamlView.md) for a minimal scaffold.
 
-It serves the same purpose as the other SQL truncate probes, but uses the Oracle provider and connection details.
-
-## YAML Example
+## YAML example
 
 ```yaml
 Sessions:
-  - Name: ProbeSession
+  - Name: OracleSqlDataBaseTablesTruncateSession
     Probes:
-      - Name: OracleSqlDataBaseTablesTruncateProbe
+      - Name: OracleSqlDataBaseTablesTruncateStep
         Probe: OracleSqlDataBaseTablesTruncate
         ProbeConfiguration:
-          UseGlobalDict: true
-          ConnectionString: User Id=qaas;Password=qaas-password;Data Source=oracle.local:1521/XEPDB1;
-          CommandTimeoutSeconds: 30
-          TableNames:
-            - QAAS_OUTBOX
-            - QAAS_ORDERS
+        ConnectionString:
+        TableNames: []
+        CommandTimeoutSeconds:
 ```
 
-## What This Configuration Does
 
-This configuration connects to Oracle and truncates `QAAS_OUTBOX` followed by `QAAS_ORDERS`.
+## Where it lives
 
-It is a database reset step that clears the table contents while keeping the table definitions in place. Each configured table name is split into identifier segments, each segment is validated with the shared safe-identifier regex, and Oracle segments are emitted with double quotes before the `TRUNCATE TABLE` command is executed.
+| | |
+|--|--|
+| **Plugin family** | probes |
+| **YAML key** | `OracleSqlDataBaseTablesTruncate` |
+| **Schema** | [`probes.schema.json`](../../../_generated/schemas/probes.md) |
+| **Source** | `QaaS.Common.Probes\QaaS.Common.Probes\SqlProbes\OracleSqlDataBaseTablesTruncate.cs` |
 
-### Global Dictionary Behavior
+## See also
 
-With `UseGlobalDict: true`, missing `ConnectionString` and other shared SQL settings can be resolved from the session-scoped `Sql/Defaults` alias when those keys do not appear in the local probe configuration. The probe still binds and validates after the merge, and any key that is present locally keeps priority over the shared default.
-
-That makes the probe useful when Oracle cleanup probes should reuse the same SQL connection definition while each probe keeps its own table list.
-
-No recovery alias is written for SQL truncation in this first pass.
-
-When `UseGlobalDict` is `false`, the probe behaves exactly as before and uses only local YAML or code configuration.
+- [probes index](../../index.md)
+- [Custom probe authoring guide](../../custom-authoring-guide.md)

@@ -1,43 +1,56 @@
+---
+id: probes.available.createrabbitmqexchanges.overview
+slug: createrabbitmqexchanges
+type: reference
+status: stable
+since: 2.0.0
+last_verified: 2026-05-22
+applies_to: [probes]
+prerequisites: []
+code_langs: [yaml, csharp]
+keywords: [probes, CreateRabbitMqExchanges, ProbeConfiguration]
+ai_summary: "Creates one or more RabbitMQ exchanges with the configured durability, auto-delete, and arguments."
+tags: [probes]
+canonical_url: /probes/availableProbes/CreateRabbitMqExchanges/overview/
+# Verified-against: QaaS.Common.Probes\QaaS.Common.Probes\RabbitMqProbes\CreateRabbitMqExchanges.cs
+---
+
 # CreateRabbitMqExchanges
 
 Creates one or more RabbitMQ exchanges with the configured durability, auto-delete, and arguments.
 
-## What It Does
+## What it does
 
-Creates RabbitMQ exchanges through the AMQP connection defined in the probe configuration.
+Creates one or more RabbitMQ exchanges with the configured durability, auto-delete, and arguments. See [Configuration ▸ tableView](configuration/tableView.md) for the full field reference and [Configuration ▸ yamlView](configuration/yamlView.md) for a minimal scaffold.
 
-It is a setup probe for scenarios that need the messaging topology to exist before publishers or consumers start.
-
-## YAML Example
+## YAML example
 
 ```yaml
 Sessions:
-  - Name: ProbeSession
+  - Name: CreateRabbitMqExchangesSession
     Probes:
-      - Name: CreateRabbitMqExchangesProbe
+      - Name: CreateRabbitMqExchangesStep
         Probe: CreateRabbitMqExchanges
         ProbeConfiguration:
-          UseGlobalDict: true
-          Host: rabbitmq.local
-          Port: 5672
-          Username: guest
-          Password: guest
-          VirtualHost: /
-          Exchanges:
-            - Name: orders.exchange
-              Type: Direct
-              Durable: true
-              AutoDelete: false
+        Host:
+        Username:
+        Password:
+        Port:
+        VirtualHost:
+        Exchanges: []
 ```
 
-## What This Configuration Does
 
-This configuration creates a durable direct exchange named `orders.exchange` in the `/` virtual host.
+## Where it lives
 
-Because `AutoDelete` is `false`, the exchange remains in place until it is deleted explicitly.
+| | |
+|--|--|
+| **Plugin family** | probes |
+| **YAML key** | `CreateRabbitMqExchanges` |
+| **Schema** | [`probes.schema.json`](../../../_generated/schemas/probes.md) |
+| **Source** | `QaaS.Common.Probes\QaaS.Common.Probes\RabbitMqProbes\CreateRabbitMqExchanges.cs` |
 
-### Global Dictionary Behavior
+## See also
 
-With `UseGlobalDict: true`, missing broker connection fields are first resolved from `RabbitMq/AmqpDefaults`, and missing `Exchanges` can then be resolved from `RabbitMq/Recovery/Exchanges` when a paired delete probe saved recovery state earlier in the same execution and session.
-
-Any key that is present locally still wins, even when the local value is `false`, `0`, an empty string, or an empty collection. This makes the probe useful when you want to recreate exchanges that were deleted earlier in the same recovery flow. When `UseGlobalDict` is `false`, the probe ignores both aliases and keeps the current local-only behavior.
+- [probes index](../../index.md)
+- [Custom probe authoring guide](../../custom-authoring-guide.md)

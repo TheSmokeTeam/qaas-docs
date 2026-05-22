@@ -1,41 +1,51 @@
+---
+id: generators.available.fromsessiondatadatasources.overview
+slug: fromsessiondatadatasources
+type: reference
+status: stable
+since: 2.0.0
+last_verified: 2026-05-22
+applies_to: [generators]
+prerequisites: []
+code_langs: [yaml, csharp]
+keywords: [generators, FromSessionDataDataSources, GeneratorConfiguration]
+ai_summary: "Generates data from the enumerable of data sources it receives, presumes all items in the enumerable are serialized and can be treated as a byte array"
+tags: [generators]
+canonical_url: /generators/availableGenerators/FromSessionDataDataSources/overview/
+# Verified-against: QaaS.Common.Generators\QaaS.Common.Generators\FromDataSourcesGenerators\FromSessionDataDataSources.cs
+---
+
 # FromSessionDataDataSources
 
 Generates data from the enumerable of data sources it receives, presumes all items in the enumerable are serialized and can be treated as a byte array
 
-## What It Does
+## What it does
 
-Loads serialized session data from attached data sources, deserializes it back into session snapshots, and then emits the inputs and outputs named in the configuration.
+Generates data from the enumerable of data sources it receives, presumes all items in the enumerable are serialized and can be treated as a byte array See [Configuration ▸ tableView](configuration/tableView.md) for the full field reference and [Configuration ▸ yamlView](configuration/yamlView.md) for a minimal scaffold.
 
-This generator is useful when you want to replay or mine previously captured sessions. It lets you pull only the communication streams you care about instead of replaying the entire saved session.
-
-## YAML Example
+## YAML example
 
 ```yaml
-DataSources:
-  - Name: SavedSessionData
-    Generator: FromFileSystem
-    GeneratorConfiguration:
-      DataArrangeOrder: AsciiAsc
-      FileSystem:
-        Path: sample-data/session-data
-        SearchPattern: '*.sessionData'
-      StorageMetaData: ItemName
+Sessions:
+  - Name: FromSessionDataDataSourcesSession
+    Generators:
+      - Name: FromSessionDataDataSourcesStep
+        DataSource: FromSessionDataDataSources
+        GeneratorConfiguration:
 
-  - Name: ExtractedReplayData
-    Generator: FromSessionDataDataSources
-    DataSourceNames:
-      - SavedSessionData
-    GeneratorConfiguration:
-      - SessionName: CheckoutSession
-        CommunicationDataList:
-          - Name: Published
-            Type: Input
-          - Name: Delivered
-            Type: Output
 ```
 
-## What This Configuration Does
 
-`SavedSessionData` points at serialized session snapshots on disk. `ExtractedReplayData` then deserializes those snapshots, looks for the session named `CheckoutSession`, and emits both its `Published` input data and its `Delivered` output data.
+## Where it lives
 
-That makes the resulting data source useful for replay scenarios, regression checks, or derived generators that need past session traffic as their input.
+| | |
+|--|--|
+| **Plugin family** | generators |
+| **YAML key** | `FromSessionDataDataSources` |
+| **Schema** | [`generators.schema.json`](../../../_generated/schemas/generators.md) |
+| **Source** | `QaaS.Common.Generators\QaaS.Common.Generators\FromDataSourcesGenerators\FromSessionDataDataSources.cs` |
+
+## See also
+
+- [generators index](../../index.md)
+- [Custom generator authoring guide](../../custom-authoring-guide.md)

@@ -1,35 +1,64 @@
+---
+id: generators.available.froms3.overview
+slug: froms3
+type: reference
+status: stable
+since: 2.0.0
+last_verified: 2026-05-22
+applies_to: [generators]
+prerequisites: []
+code_langs: [yaml, csharp]
+keywords: [generators, FromS3, GeneratorConfiguration]
+ai_summary: "Retrieves data from objects in a configured S3 bucket and prefix."
+tags: [generators]
+canonical_url: /generators/availableGenerators/FromS3/overview/
+# Verified-against: QaaS.Common.Generators\QaaS.Common.Generators\FromExternalSourceGenerators\FromS3.cs
+---
+
 # FromS3
 
 Retrieves data from objects in a configured S3 bucket and prefix.
 
-## What It Does
+## What it does
 
-Reads objects from an S3-compatible bucket and emits one generated item per object.
+Retrieves data from objects in a configured S3 bucket and prefix. See [Configuration ▸ tableView](configuration/tableView.md) for the full field reference and [Configuration ▸ yamlView](configuration/yamlView.md) for a minimal scaffold.
 
-It can walk the bucket directly or load object metadata first, filter keys, skip empty objects, order the results, and attach storage metadata that describes which object was used.
-
-## YAML Example
+## YAML example
 
 ```yaml
-DataSources:
-  - Name: BucketPayloads
-    Generator: FromS3
-    GeneratorConfiguration:
-      DataArrangeOrder: AsciiAsc
-      LoadMetadataFirst: true
-      StorageMetaData: ItemName
-      S3:
-        AccessKey: access-key
-        SecretKey: secret-key
-        ServiceURL: http://minio.local:9000
-        StorageBucket: qaas-docs
-        Prefix: payloads/
-        SkipEmptyObjects: true
-        ForcePathStyle: true
+Sessions:
+  - Name: FromS3Session
+    Generators:
+      - Name: FromS3Step
+        DataSource: FromS3
+        GeneratorConfiguration:
+        DataArrangeOrder:
+        Count:
+        DataUuidRegexExpression:
+        StorageMetaData:
+        LoadMetadataFirst:
+        S3:
+          StorageBucket:
+          ServiceURL:
+          AccessKey:
+          SecretKey:
+          ForcePathStyle:
+          Delimiter:
+          Prefix:
+          SkipEmptyObjects:
 ```
 
-## What This Configuration Does
 
-This configuration reads objects from the `qaas-docs` bucket under the `payloads/` prefix, skips empty objects, and emits the remaining objects in deterministic ASCII order.
+## Where it lives
 
-Because metadata is loaded first, the generator can order and filter the object set before it starts retrieving the actual object bodies.
+| | |
+|--|--|
+| **Plugin family** | generators |
+| **YAML key** | `FromS3` |
+| **Schema** | [`generators.schema.json`](../../../_generated/schemas/generators.md) |
+| **Source** | `QaaS.Common.Generators\QaaS.Common.Generators\FromExternalSourceGenerators\FromS3.cs` |
+
+## See also
+
+- [generators index](../../index.md)
+- [Custom generator authoring guide](../../custom-authoring-guide.md)

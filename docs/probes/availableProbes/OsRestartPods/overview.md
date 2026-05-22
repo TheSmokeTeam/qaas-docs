@@ -1,41 +1,58 @@
+---
+id: probes.available.osrestartpods.overview
+slug: osrestartpods
+type: reference
+status: stable
+since: 2.0.0
+last_verified: 2026-05-22
+applies_to: [probes]
+prerequisites: []
+code_langs: [yaml, csharp]
+keywords: [probes, OsRestartPods, ProbeConfiguration]
+ai_summary: "Probe that restarts all pods with configured labels in the configured namespace"
+tags: [probes]
+canonical_url: /probes/availableProbes/OsRestartPods/overview/
+# Verified-against: QaaS.Common.Probes\QaaS.Common.Probes\OsProbes\OsRestartPods.cs
+---
+
 # OsRestartPods
 
 Probe that restarts all pods with configured labels in the configured namespace
 
-## What It Does
+## What it does
 
-Deletes pods that match the configured labels and waits until the platform brings the workload back to its desired ready state.
+Probe that restarts all pods with configured labels in the configured namespace See [Configuration ▸ tableView](configuration/tableView.md) for the full field reference and [Configuration ▸ yamlView](configuration/yamlView.md) for a minimal scaffold.
 
-This is useful when a scenario needs a clean restart of an application after changing config maps, secrets, or environment settings.
-
-## YAML Example
+## YAML example
 
 ```yaml
 Sessions:
-  - Name: ProbeSession
+  - Name: OsRestartPodsSession
     Probes:
-      - Name: OsRestartPodsProbe
+      - Name: OsRestartPodsStep
         Probe: OsRestartPods
         ProbeConfiguration:
-          ApplicationLabels:
-            - app=orders-api
-          IntervalBetweenDesiredStateChecksMs: 1000
-          TimeoutWaitForDesiredStateSeconds: 300
-          Openshift:
-            Cluster: https://api.cluster.local:6443
-            Namespace: docs
-            Username: docs-user
-            Password: docs-password
+        Openshift:
+          Cluster:
+          Username:
+          Password:
+          Namespace:
+        ApplicationLabels: []
+        IntervalBetweenDesiredStateChecksMs:
+        TimeoutWaitForDesiredStateSeconds:
 ```
 
-## What This Configuration Does
 
-This probe deletes the pods labeled `app=orders-api` and waits until the replacement pods are ready again.
+## Where it lives
 
-It gives the scenario a controlled application restart without manually deleting pods outside the flow.
+| | |
+|--|--|
+| **Plugin family** | probes |
+| **YAML key** | `OsRestartPods` |
+| **Schema** | [`probes.schema.json`](../../../_generated/schemas/probes.md) |
+| **Source** | `QaaS.Common.Probes\QaaS.Common.Probes\OsProbes\OsRestartPods.cs` |
 
-### Global Dictionary Behavior
+## See also
 
-This probe derives from the shared OpenShift configuration shape, so `UseGlobalDict` can appear in generated YAML and table views. The current implementation derives from the plain OpenShift probe base and does not read or write probe-global-dictionary aliases for this action.
-
-That means the behavior is unchanged for every run: the probe uses only the values supplied directly in local YAML or code configuration, even if `UseGlobalDict` is set.
+- [probes index](../../index.md)
+- [Custom probe authoring guide](../../custom-authoring-guide.md)

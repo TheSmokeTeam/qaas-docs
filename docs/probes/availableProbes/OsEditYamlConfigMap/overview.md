@@ -1,49 +1,61 @@
+---
+id: probes.available.osedityamlconfigmap.overview
+slug: osedityamlconfigmap
+type: reference
+status: stable
+since: 2.0.0
+last_verified: 2026-05-22
+applies_to: [probes]
+prerequisites: []
+code_langs: [yaml, csharp]
+keywords: [probes, OsEditYamlConfigMap, ProbeConfiguration]
+ai_summary: "OsEditYamlConfigMap probe plugin (auto-generated reference)."
+tags: [probes]
+canonical_url: /probes/availableProbes/OsEditYamlConfigMap/overview/
+# Verified-against: QaaS.Common.Probes\QaaS.Common.Probes\ConfigurationObjects\Os\OsEditYamlConfigMapConfig.cs
+---
+
 # OsEditYamlConfigMap
 
-Probe that edits yaml config maps
+!!! warning "Missing XMLDoc"
+    Source class has no `<summary>` comment. Tracked in [docs/_meta/xmldoc-gaps.md](../../../_meta/xmldoc-gaps.md).
 
-## What It Does
+No summary available yet — see [docs/_meta/xmldoc-gaps.md](../../../_meta/xmldoc-gaps.md).
 
-Loads a YAML document from a config map, edits the configured paths, and writes the updated document back to the config map.
+## What it does
 
-This is useful when an application reads structured configuration from a config map and only a few settings need to change for a particular scenario.
+Behavior not yet documented in source XMLDoc. See [Configuration ▸ tableView](configuration/tableView.md) for the full field reference and [Configuration ▸ yamlView](configuration/yamlView.md) for a minimal scaffold.
 
-## YAML Example
+## YAML example
 
 ```yaml
 Sessions:
-  - Name: ProbeSession
+  - Name: OsEditYamlConfigMapSession
     Probes:
-      - Name: OsEditYamlConfigMapProbe
+      - Name: OsEditYamlConfigMapStep
         Probe: OsEditYamlConfigMap
         ProbeConfiguration:
-          UseGlobalDict: true
-          ConfigMapName: orders-config
-          ConfigMapYamlFileName: application.yaml
-          ValuesToEdit:
-            service.retries: 5
-            logging.level.default: Warning
-          Openshift:
-            Cluster: https://api.cluster.local:6443
-            Namespace: docs
-            Username: docs-user
-            Password: docs-password
+        Openshift:
+          Cluster:
+          Username:
+          Password:
+          Namespace:
+        ConfigMapName:
+        ConfigMapYamlFileName:
+        ValuesToEdit:
 ```
 
-## What This Configuration Does
 
-This probe opens `application.yaml` inside the `orders-config` config map, changes `service.retries` to `5`, and changes `logging.level.default` to `Warning`.
+## Where it lives
 
-It is a targeted way to adjust structured YAML configuration without replacing the whole config map by hand. The configured paths are evaluated as JSONPath expressions after the YAML is converted to JSON; a missing path is logged as a warning and skipped. A missing ConfigMap or missing YAML key inside the ConfigMap throws an `ArgumentException`.
+| | |
+|--|--|
+| **Plugin family** | probes |
+| **YAML key** | `OsEditYamlConfigMap` |
+| **Schema** | [`probes.schema.json`](../../../_generated/schemas/probes.md) |
+| **Source** | `QaaS.Common.Probes\QaaS.Common.Probes\ConfigurationObjects\Os\OsEditYamlConfigMapConfig.cs` |
 
-The edited document is serialized back from the object model, so YAML comments and original formatting are not preserved.
+## See also
 
-### Global Dictionary Behavior
-
-With `UseGlobalDict: true`, missing shared cluster settings can be resolved from `Os/Defaults`, and missing `ValuesToEdit` can be restored from `Os/Recovery/ConfigMap/<ConfigMapName>` after an earlier probe in the same execution and session captured the pre-change state.
-
-The probe writes its pre-change snapshot to the unique canonical scoped path for the current probe execution and then updates the recovery alias so a later rollback probe can reuse it. This is useful when you want to patch YAML values during setup and then restore the original values by replaying the saved JSON-path map.
-
-No additional per-probe recovery caveat applies beyond the execution and session scoping rules.
-
-When `UseGlobalDict` is `false`, the probe keeps the current behavior: it uses only local YAML or code configuration and does not read or write probe-global-dictionary state.
+- [probes index](../../index.md)
+- [Custom probe authoring guide](../../custom-authoring-guide.md)

@@ -1,51 +1,57 @@
+---
+id: processors.available.datasourceresponseprocessor.overview
+slug: datasourceresponseprocessor
+type: reference
+status: stable
+since: 2.0.0
+last_verified: 2026-05-22
+applies_to: [processors]
+prerequisites: []
+code_langs: [yaml, csharp]
+keywords: [processors, DataSourceResponseProcessor, ProcessorConfiguration]
+ai_summary: "Builds the response from generated data produced by one configured data source."
+tags: [processors]
+canonical_url: /processors/availableProcessors/DataSourceResponseProcessor/overview/
+# Verified-against: QaaS.Common.Processors\QaaS.Common.Processors\DataSourceResponseProcessor.cs
+---
+
 # DataSourceResponseProcessor
 
 Builds the response from generated data produced by one configured data source.
 
-## What It Does
+## What it does
 
-Selects a generated item from an attached data source and returns that item as the HTTP response body.
+Builds the response from generated data produced by one configured data source. See [Configuration ▸ tableView](configuration/tableView.md) for the full field reference and [Configuration ▸ yamlView](configuration/yamlView.md) for a minimal scaffold.
 
-It can choose the first item, the last item, or a zero-based index. When no item can be selected, it can return a fallback body instead of throwing. This is useful when responses should come from prepared files or generated fixtures.
-
-## YAML Example
+## YAML example
 
 ```yaml
-DataSources:
-  - Name: PreparedResponses
-    Generator: FromFileSystem
-    GeneratorConfiguration:
-      DataArrangeOrder: AsciiAsc
-      FileSystem:
-        Path: sample-data/responses
-        SearchPattern: '*.json'
-      StorageMetaData: ItemName
-
-Stubs:
-  - Name: DataSourceResponseProcessorStub
-    Processor: DataSourceResponseProcessor
-    DataSourceNames:
-      - PreparedResponses
-    ProcessorConfiguration:
-      DataSourceName: PreparedResponses
-      SelectionMode: First
-      StatusCode: 202
-      ContentType: application/json
-
-Servers:
-  - Http:
-      Port: 8080
-      IsLocalhost: true
-      Endpoints:
-        - Path: /health
-          Actions:
-            - Name: HealthAction
-              Method: Get
-              TransactionStubName: DataSourceResponseProcessorStub
+Sessions:
+  - Name: DataSourceResponseProcessorSession
+    Processors:
+      - Name: DataSourceResponseProcessorStep
+        Processor: DataSourceResponseProcessor
+        ProcessorConfiguration:
+        DataSourceName:
+        SelectionMode:
+        Index:
+        StatusCode:
+        ContentType:
+        FallbackBody:
+        ResponseHeaders:
 ```
 
-## What This Configuration Does
 
-This configuration attaches the `PreparedResponses` data source to the stub and tells the processor to return the first generated response body from that source.
+## Where it lives
 
-The body is returned as an HTTP `202` response with `application/json`.
+| | |
+|--|--|
+| **Plugin family** | processors |
+| **YAML key** | `DataSourceResponseProcessor` |
+| **Schema** | [`processors.schema.json`](../../../_generated/schemas/processors.md) |
+| **Source** | `QaaS.Common.Processors\QaaS.Common.Processors\DataSourceResponseProcessor.cs` |
+
+## See also
+
+- [processors index](../../index.md)
+- [Custom processor authoring guide](../../custom-authoring-guide.md)

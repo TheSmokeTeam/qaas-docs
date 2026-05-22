@@ -1,16 +1,37 @@
-# DelayByChunks Configurations Table View
+---
+id: assertions.available.delaybychunks.configuration.tableview
+slug: tableview
+type: reference
+status: stable
+since: 2.0.0
+last_verified: 2026-05-22
+applies_to: [assertions]
+prerequisites: [assertions/availableAssertions/DelayByChunks/overview.md]
+code_langs: [yaml]
+keywords: [assertions, DelayByChunks, configuration, reference]
+ai_summary: "Field-by-field reference for DelayByChunks AssertionConfiguration keys, types, defaults and descriptions, generated from assertions.schema.json."
+tags: [assertions]
+canonical_url: /assertions/availableAssertions/DelayByChunks/configuration/tableView/
+# Verified-against: QaaS.JsonSchemaExtensions/generated-schemas/assertions.schema.json
+---
+
+# DelayByChunks — Configuration (table view)
+
+Generated from `assertions.schema.json`. Every field below is verified against the JSON schema at `QaaS.JsonSchemaExtensions/generated-schemas/assertions.schema.json`.
 
 | Property Path | Type | Required | Default | Description |
 | ------------- | ---- | -------- | ------- | ----------- |
-| `AssertionConfiguration` | `object or string` | &#10006 |  | Delay checks the time interval between the inputs and outputs is not bigger than a configured number by subtracting the timestamp of input chunks of a configured size from a timestamp of output chunks of a configured size, The timestamp of the chunks is calculated differently depending on the configuration. takes the chunks in ascending order (which will be the send/arrival order) from the configured input/output. `Warning`: This delay test only works on synchronous applications! `DataSources`: Not used. `Session Support`: Only supports a single session assertion |
-| `AssertionConfiguration.MaximumDelayMs` | `integer or string` | &#10004 |  | maximum delay in milliseconds allowed for a chunk's delay for the chunk to be considered as arrived on time |
-| `AssertionConfiguration.InputsAreOutputs` | `string or true/false` | &#10006 | False | Whether the given input in Input is actually another outputs list |
-| `AssertionConfiguration.MaximumNegativeDelayBufferMs` | `integer or string or null` | &#10006 | 100 | maximum negative delay buffer of a chunk's delay in milliseconds, if value falls within the buffer it is still compared to maximum allowed delay |
-| `AssertionConfiguration.Input` | `object or string` | &#10004 |  | The information about the input required for the assertion |
-| `AssertionConfiguration.Input.ChunkSize` | `integer or string` | &#10004 |  | The end point items chunk size |
-| `AssertionConfiguration.Input.Name` | `string` | &#10004 |  | Name of the end point the chunk belongs to |
-| `AssertionConfiguration.Input.ChunkTimeOption` | `one of [Average / First / Last]` | &#10006 |  | How to calculate the time of a chunk. Options: [ `Average` - Calculates the chunks time by taking the average of all times in the chunk / `First` - Calculates the chunks time by taking the time of the first item in the chunk / `Last` - Calculates the chunks time by taking the time of the last item in the chunk ] |
-| `AssertionConfiguration.Output` | `object or string` | &#10004 |  | The information about the output required for the assertion  |
-| `AssertionConfiguration.Output.ChunkSize` | `integer or string` | &#10004 |  | The end point items chunk size |
+| `AssertionConfiguration` | `object or string` | &#10006 |  |  |
+| `AssertionConfiguration.Output` | `object or string` | &#10004 |  | The information about the output required for the assertion |
 | `AssertionConfiguration.Output.Name` | `string` | &#10004 |  | Name of the end point the chunk belongs to |
-| `AssertionConfiguration.Output.ChunkTimeOption` | `one of [Average / First / Last]` | &#10006 |  | How to calculate the time of a chunk. Options: [ `Average` - Calculates the chunks time by taking the average of all times in the chunk / `First` - Calculates the chunks time by taking the time of the first item in the chunk / `Last` - Calculates the chunks time by taking the time of the last item in the chunk ] |
+| `AssertionConfiguration.Output.ChunkSize` | `integer or string` | &#10004 |  | The end point items chunk size |
+| `AssertionConfiguration.Output.ChunkTimeOption` | `integer or string` | &#10006 | Average | How to calculate the time of a chunk. Options: [ `Average` - Calculates the chunks time by taking the average of all times in the chunk / `First` - Calculates the chunks time by taking the time of the first item in the chunk / `Last` - Calculates the chunks time by taking the time of the last item in the chunk ] |
+| `AssertionConfiguration.Input` | `object or string` | &#10004 |  | The information about the input required for the assertion |
+| `AssertionConfiguration.Input.Name` | `string` | &#10004 |  | Name of the end point the chunk belongs to |
+| `AssertionConfiguration.Input.ChunkSize` | `integer or string` | &#10004 |  | The end point items chunk size |
+| `AssertionConfiguration.Input.ChunkTimeOption` | `integer or string` | &#10006 | Average | How to calculate the time of a chunk. Options: [ `Average` - Calculates the chunks time by taking the average of all times in the chunk / `First` - Calculates the chunks time by taking the time of the first item in the chunk / `Last` - Calculates the chunks time by taking the time of the last item in the chunk ] |
+| `AssertionConfiguration.InputsAreOutputs` | `boolean or string` | &#10006 | false | Whether the given input in Input is actually another outputs list |
+| `AssertionConfiguration.MaximumDelayMs` | `integer or string` | &#10004 |  | maximum delay in milliseconds allowed for a chunk's delay for the chunk to be considered as arrived on time |
+| `AssertionConfiguration.MaximumNegativeDelayBufferMs` | `integer or null or string` | &#10006 | 100 | maximum negative delay buffer of a chunk's delay in milliseconds, if value falls within the buffer it is still compared to maximum allowed delay |
+
+See [yamlView](yamlView.md) for a minimal scaffold and [overview](../overview.md) for a runnable example.

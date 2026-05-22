@@ -1,47 +1,60 @@
+---
+id: probes.available.osupdatedeploymentimage.overview
+slug: osupdatedeploymentimage
+type: reference
+status: stable
+since: 2.0.0
+last_verified: 2026-05-22
+applies_to: [probes]
+prerequisites: []
+code_langs: [yaml, csharp]
+keywords: [probes, OsUpdateDeploymentImage, ProbeConfiguration]
+ai_summary: "Updates the image of one container in a Kubernetes or OpenShift deployment."
+tags: [probes]
+canonical_url: /probes/availableProbes/OsUpdateDeploymentImage/overview/
+# Verified-against: QaaS.Common.Probes\QaaS.Common.Probes\OsProbes\OsUpdateDeploymentImage.cs
+---
+
 # OsUpdateDeploymentImage
 
 Updates the image of one container in a Kubernetes or OpenShift deployment.
 
-## What It Does
+## What it does
 
-Updates the container image used by a deployment and waits until the deployment rollout reaches the desired state.
+Updates the image of one container in a Kubernetes or OpenShift deployment. See [Configuration ▸ tableView](configuration/tableView.md) for the full field reference and [Configuration ▸ yamlView](configuration/yamlView.md) for a minimal scaffold.
 
-This is useful when a scenario needs to switch a deployment to a prebuilt image version as part of setup.
-
-## YAML Example
+## YAML example
 
 ```yaml
 Sessions:
-  - Name: ProbeSession
+  - Name: OsUpdateDeploymentImageSession
     Probes:
-      - Name: OsUpdateDeploymentImageProbe
+      - Name: OsUpdateDeploymentImageStep
         Probe: OsUpdateDeploymentImage
         ProbeConfiguration:
-          UseGlobalDict: true
-          ReplicaSetName: orders-api
-          ContainerName: api
-          DesiredImage: registry.local/orders-api:2.1.0
-          IntervalBetweenDesiredStateChecksMs: 1000
-          TimeoutWaitForDesiredStateSeconds: 300
-          Openshift:
-            Cluster: https://api.cluster.local:6443
-            Namespace: docs
-            Username: docs-user
-            Password: docs-password
+        ContainerName:
+        ReplicaSetName:
+        IntervalBetweenDesiredStateChecksMs:
+        TimeoutWaitForDesiredStateSeconds:
+        Openshift:
+          Cluster:
+          Username:
+          Password:
+          Namespace:
+        DesiredImage:
 ```
 
-## What This Configuration Does
 
-This probe changes the `api` container in the `orders-api` deployment to use `registry.local/orders-api:2.1.0`.
+## Where it lives
 
-`ReplicaSetName` is a legacy property name in the configuration model; for this probe it is the Deployment name. After patching the deployment, it waits for the observed generation to become available and throws `TimeoutException` if the configured timeout expires.
+| | |
+|--|--|
+| **Plugin family** | probes |
+| **YAML key** | `OsUpdateDeploymentImage` |
+| **Schema** | [`probes.schema.json`](../../../_generated/schemas/probes.md) |
+| **Source** | `QaaS.Common.Probes\QaaS.Common.Probes\OsProbes\OsUpdateDeploymentImage.cs` |
 
-### Global Dictionary Behavior
+## See also
 
-With `UseGlobalDict: true`, missing shared cluster settings can be resolved from `Os/Defaults`, and missing `DesiredImage` can be restored from `Os/Recovery/Image/Deployment/<ReplicaSetName>/<ContainerName>` after an earlier probe in the same execution and session captured the pre-change state.
-
-The probe writes its pre-change snapshot to the unique canonical scoped path for the current probe execution and then updates the recovery alias so a later rollback probe can reuse it. This is useful when you want to swap to a test image and then revert to the original image without hard-coding it twice.
-
-No additional per-probe recovery caveat applies beyond the execution and session scoping rules.
-
-When `UseGlobalDict` is `false`, the probe keeps the current behavior: it uses only local YAML or code configuration and does not read or write probe-global-dictionary state.
+- [probes index](../../index.md)
+- [Custom probe authoring guide](../../custom-authoring-guide.md)

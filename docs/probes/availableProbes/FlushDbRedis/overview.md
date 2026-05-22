@@ -1,40 +1,61 @@
+---
+id: probes.available.flushdbredis.overview
+slug: flushdbredis
+type: reference
+status: stable
+since: 2.0.0
+last_verified: 2026-05-22
+applies_to: [probes]
+prerequisites: []
+code_langs: [yaml, csharp]
+keywords: [probes, FlushDbRedis, ProbeConfiguration]
+ai_summary: "Runs Redis FLUSHDB against the selected Redis database."
+tags: [probes]
+canonical_url: /probes/availableProbes/FlushDbRedis/overview/
+# Verified-against: QaaS.Common.Probes\QaaS.Common.Probes\RedisProbes\FlushDbRedis.cs
+---
+
 # FlushDbRedis
 
 Runs Redis FLUSHDB against the selected Redis database.
 
-## What It Does
+## What it does
 
-Runs `FLUSHDB` on one selected Redis database and removes every key from that database only.
+Runs Redis FLUSHDB against the selected Redis database. See [Configuration ▸ tableView](configuration/tableView.md) for the full field reference and [Configuration ▸ yamlView](configuration/yamlView.md) for a minimal scaffold.
 
-This is safer than `FlushAllRedis` when the Redis server hosts multiple databases and only one of them belongs to the scenario.
-
-## YAML Example
+## YAML example
 
 ```yaml
 Sessions:
-  - Name: ProbeSession
+  - Name: FlushDbRedisSession
     Probes:
-      - Name: FlushDbRedisProbe
+      - Name: FlushDbRedisStep
         Probe: FlushDbRedis
         ProbeConfiguration:
-          UseGlobalDict: true
-          HostNames:
-            - localhost:6379
-          RedisDataBase: 5
+        HostNames: []
+        Username:
+        Password:
+        AbortOnConnectFail:
+        ConnectRetry:
+        ClientName:
+        AsyncTimeout:
+        Ssl:
+        SslHost:
+        KeepAlive:
+        RedisDataBase:
 ```
 
-## What This Configuration Does
 
-This probe connects to database `5` on `localhost:6379` and removes all keys from that database.
+## Where it lives
 
-Other Redis databases on the same server are left untouched.
+| | |
+|--|--|
+| **Plugin family** | probes |
+| **YAML key** | `FlushDbRedis` |
+| **Schema** | [`probes.schema.json`](../../../_generated/schemas/probes.md) |
+| **Source** | `QaaS.Common.Probes\QaaS.Common.Probes\RedisProbes\FlushDbRedis.cs` |
 
-### Global Dictionary Behavior
+## See also
 
-With `UseGlobalDict: true`, missing server connection fields and `RedisDataBase` can be resolved from the session-scoped `Redis/Defaults` alias when those keys do not appear in the local probe configuration. The probe still binds and validates after the merge, and any key that is present locally keeps priority over the shared default.
-
-That makes the probe useful when a database-scoped flush should reuse Redis connection defaults from an earlier probe.
-
-No recovery alias is involved for this probe.
-
-When `UseGlobalDict` is `false`, the probe behaves exactly as before and uses only local YAML or code configuration.
+- [probes index](../../index.md)
+- [Custom probe authoring guide](../../custom-authoring-guide.md)

@@ -1,11 +1,27 @@
-# FromSessionDataDataSources Configurations Table View
+---
+id: generators.available.fromsessiondatadatasources.configuration.tableview
+slug: tableview
+type: reference
+status: stable
+since: 2.0.0
+last_verified: 2026-05-22
+applies_to: [generators]
+prerequisites: [generators/availableGenerators/FromSessionDataDataSources/overview.md]
+code_langs: [yaml]
+keywords: [generators, FromSessionDataDataSources, configuration, reference]
+ai_summary: "Field-by-field reference for FromSessionDataDataSources GeneratorConfiguration keys, types, defaults and descriptions, generated from generators.schema.json."
+tags: [generators]
+canonical_url: /generators/availableGenerators/FromSessionDataDataSources/configuration/tableView/
+# Verified-against: QaaS.JsonSchemaExtensions/generated-schemas/generators.schema.json
+---
+
+# FromSessionDataDataSources — Configuration (table view)
+
+Generated from `generators.schema.json`. Every field below is verified against the JSON schema at `QaaS.JsonSchemaExtensions/generated-schemas/generators.schema.json`.
 
 | Property Path | Type | Required | Default | Description |
 | ------------- | ---- | -------- | ------- | ----------- |
-| `GeneratorConfiguration` | `list or string or null` | &#10006 |  |  |
-| `GeneratorConfiguration[]` | `object or string` | &#10006 |  | Supports generating data from multiple DataSources that contain SessionData files. `DataSources`: All Used. Must all be serialized (`byte[]`) `SessionData` items. `SessionData`: Passed to used DataSources. |
-| `GeneratorConfiguration[].SessionName` | `string` | &#10004 |  | name of the session to load the outputs/inputs of as part of the generated data |
-| `GeneratorConfiguration[].CommunicationDataList` | `list or string` | &#10004 |  | All of the communnication data items in the given session data to load as part of the generated data by the order listed here |
-| `GeneratorConfiguration[].CommunicationDataList[]` | `object or string` | &#10006 |  |  |
-| `GeneratorConfiguration[].CommunicationDataList[].Name` | `string` | &#10004 |  | The name of the communication data in the session data to generate |
-| `GeneratorConfiguration[].CommunicationDataList[].Type` | `one of [Input / Output]` | &#10004 |  | The type of the communication data to generate. Options: [ `Input` -  an input communication data from the Inputs list in the SessionData structure / `Output` - an output communication data from the Outputs list in the SessionData structure ] |
+| `GeneratorConfiguration` | `object or string` | &#10006 |  |  |
+
+
+See [yamlView](yamlView.md) for a minimal scaffold and [overview](../overview.md) for a runnable example.

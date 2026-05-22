@@ -1,46 +1,64 @@
+---
+id: probes.available.executerediscommand.overview
+slug: executerediscommand
+type: reference
+status: stable
+since: 2.0.0
+last_verified: 2026-05-22
+applies_to: [probes]
+prerequisites: []
+code_langs: [yaml, csharp]
+keywords: [probes, ExecuteRedisCommand, ProbeConfiguration]
+ai_summary: "Executes one Redis command with optional arguments against the selected Redis database, optionally storing the result for later redisResults placeholder reuse."
+tags: [probes]
+canonical_url: /probes/availableProbes/ExecuteRedisCommand/overview/
+# Verified-against: QaaS.Common.Probes\QaaS.Common.Probes\RedisProbes\ExecuteRedisCommand.cs
+---
+
 # ExecuteRedisCommand
 
 Executes one Redis command with optional arguments against the selected Redis database, optionally storing the result for later redisResults placeholder reuse.
 
-## What It Does
+## What it does
 
-Runs one Redis command with the configured arguments against the selected Redis database.
+Executes one Redis command with optional arguments against the selected Redis database, optionally storing the result for later redisResults placeholder reuse. See [Configuration ▸ tableView](configuration/tableView.md) for the full field reference and [Configuration ▸ yamlView](configuration/yamlView.md) for a minimal scaffold.
 
-This is useful for one-off setup or cleanup operations such as setting flags, creating keys, or issuing simple maintenance commands inside a scenario flow.
-
-## YAML Example
+## YAML example
 
 ```yaml
 Sessions:
-  - Name: ProbeSession
+  - Name: ExecuteRedisCommandSession
     Probes:
-      - Name: ExecuteRedisCommandProbe
+      - Name: ExecuteRedisCommandStep
         Probe: ExecuteRedisCommand
         ProbeConfiguration:
-          UseGlobalDict: true
-          HostNames:
-            - localhost:6379
-          RedisDataBase: 0
-          Command: SET
-          Arguments:
-            - qaas:last-template
-            - ready
+        RedisDataBase:
+        HostNames: []
+        Username:
+        Password:
+        AbortOnConnectFail:
+        ConnectRetry:
+        ClientName:
+        AsyncTimeout:
+        Ssl:
+        SslHost:
+        KeepAlive:
+        Command:
+        Arguments: []
+        StoreResultAs:
 ```
 
-## What This Configuration Does
 
-This example runs `SET qaas:last-template ready` against Redis database `0`.
+## Where it lives
 
-It is a simple probe step that can prepare a key before the rest of the scenario begins. If `StoreResultAs` is set, the Redis result is saved under `__RedisResults/<alias>` in the probe context and can be reused later in the same probe execution with `${redisResults:<alias>}`.
+| | |
+|--|--|
+| **Plugin family** | probes |
+| **YAML key** | `ExecuteRedisCommand` |
+| **Schema** | [`probes.schema.json`](../../../_generated/schemas/probes.md) |
+| **Source** | `QaaS.Common.Probes\QaaS.Common.Probes\RedisProbes\ExecuteRedisCommand.cs` |
 
-Placeholders can navigate nested result values with colon-separated path parts, such as `${redisResults:scanResult:1}`. A full-argument placeholder that resolves to a collection expands into multiple Redis arguments; a placeholder embedded inside a larger string must resolve to a scalar. `${redisResults:<path>??<default>}` supplies a default only when the stored path is missing.
+## See also
 
-### Global Dictionary Behavior
-
-With `UseGlobalDict: true`, missing `HostNames`, authentication fields, and `RedisDataBase` can be resolved from the session-scoped `Redis/Defaults` alias when those keys do not appear in the local probe configuration. The probe still binds and validates after the merge, and any key that is present locally keeps priority over the shared default.
-
-That makes the probe useful when a command should reuse Redis connection defaults while still keeping `Command`, `Arguments`, and `StoreResultAs` local to the probe.
-
-The existing `redisResults` placeholder behavior is unchanged; global-dictionary fallback only affects configuration loading.
-
-When `UseGlobalDict` is `false`, the probe behaves exactly as before and uses only local YAML or code configuration.
+- [probes index](../../index.md)
+- [Custom probe authoring guide](../../custom-authoring-guide.md)

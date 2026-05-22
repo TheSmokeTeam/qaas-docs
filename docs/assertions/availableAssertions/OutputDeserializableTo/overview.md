@@ -1,33 +1,56 @@
+---
+id: assertions.available.outputdeserializableto.overview
+slug: outputdeserializableto
+type: reference
+status: stable
+since: 2.0.0
+last_verified: 2026-05-22
+applies_to: [assertions]
+prerequisites: []
+code_langs: [yaml, csharp]
+keywords: [assertions, OutputDeserializableTo, AssertionConfiguration]
+ai_summary: "Performs a logic test that checks if the items of a configured output can all be deserialized using a configured deserializer"
+tags: [assertions]
+canonical_url: /assertions/availableAssertions/OutputDeserializableTo/overview/
+# Verified-against: QaaS.Common.Assertions\QaaS.Common.Assertions\DeserializationLogic\OutputDeserializableTo.cs
+---
+
 # OutputDeserializableTo
 
 Performs a logic test that checks if the items of a configured output can all be deserialized using a configured deserializer
 
-## What It Does
+## What it does
 
-Takes every item from one output, treats the body as serialized bytes, and tries to deserialize each item with the configured deserializer.
+Performs a logic test that checks if the items of a configured output can all be deserialized using a configured deserializer See [Configuration ▸ tableView](configuration/tableView.md) for the full field reference and [Configuration ▸ yamlView](configuration/yamlView.md) for a minimal scaffold.
 
-The assertion passes only when every item can be deserialized successfully. It records the index and exception for each failure in the trace, which makes it useful as a fast safety check that a response stream really matches the serialization format you expect.
-
-## YAML Example
+## YAML example
 
 ```yaml
 Sessions:
-  - Name: SampleSession
-
-Assertions:
-  - Name: OutputDeserializableToAssertion
-    Assertion: OutputDeserializableTo
-    SessionNames:
-      - SampleSession
-
-    AssertionConfiguration:
-      OutputName: Reply
-      Deserialize:
-        Deserializer: Json
+  - Name: OutputDeserializableToSession
+    Assertions:
+      - Name: OutputDeserializableToStep
+        Assertion: OutputDeserializableTo
+        AssertionConfiguration:
+        OutputName:
+        Deserialize:
+          Deserializer:
+          SpecificType:
+            AssemblyName:
+            TypeFullName:
 ```
 
-## What This Configuration Does
 
-This configuration checks the `Reply` output of `SampleSession` and attempts to deserialize every saved body with the JSON deserializer.
+## Where it lives
 
-If every item is valid JSON bytes, the assertion passes. If any item is malformed, the assertion fails and the trace shows which item index could not be deserialized.
+| | |
+|--|--|
+| **Plugin family** | assertions |
+| **YAML key** | `OutputDeserializableTo` |
+| **Schema** | [`assertions.schema.json`](../../../_generated/schemas/assertions.md) |
+| **Source** | `QaaS.Common.Assertions\QaaS.Common.Assertions\DeserializationLogic\OutputDeserializableTo.cs` |
+
+## See also
+
+- [assertions index](../../index.md)
+- [Custom assertion authoring guide](../../custom-authoring-guide.md)
