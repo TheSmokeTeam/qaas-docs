@@ -231,6 +231,25 @@ Servers:
               TransactionStubName: FixedKb
 ```
 
+## Registration and discovery {#registration}
+
+Custom assertions are discovered by short type name. The runner scans referenced assemblies for types deriving from `BaseAssertion<>`. To wire one in:
+
+1. Place the class in any namespace inside an assembly the runner loads (your test project, or a referenced library).
+2. Reference the assembly from the project that hosts the YAML — a project reference or a NuGet package both work.
+3. In YAML, set `Assertion:` to the **simple type name** (e.g. `HasMinimumPayloadSize`), not the fully-qualified name.
+
+```yaml
+Assertions:
+  - Name: PayloadSize
+    Assertion: HasMinimumPayloadSize      # simple type name
+    SessionNames: [HttpSession]
+```
+
+Two assertions with the same simple name across assemblies will collide; rename one. The runner only discovers types whose assembly is already loaded in its `AppDomain` — a transitive dependency that nothing references will not be visible. Custom data annotations on `TConfiguration` (`[Required]`, `[Range]`, `[Url]`) are validated before `Assert` runs.
+
+After adding or renaming a custom assertion, regenerate the YAML schema so editors pick up the new enum value. See [Schema extensions](../qaas/userInterfaces/runner/schema-extensions.md) for the regeneration command and the `bin/` cache flush.
+
 ## Edge cases {#edge-cases}
 
 - `Configuration` is null before `LoadAndValidateConfiguration` runs. Do not read it in a constructor.

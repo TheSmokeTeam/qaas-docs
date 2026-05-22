@@ -201,6 +201,24 @@ is rewritten to
 { "id": 42, "email": "***", "phone": "***", "profile": { "ssn": "***", "nickname": "ali" } }
 ```
 
+## Registration and discovery {#registration}
+
+Custom processors are discovered by short type name. The mocker scans referenced assemblies for types deriving from `BaseProcessor<>`. To wire one in:
+
+1. Place the class in any namespace inside an assembly the mocker host loads (your mocker project, or a referenced library).
+2. Reference the assembly from the project that hosts the mocker YAML — a project reference or a NuGet package both work.
+3. In YAML, set `Processor:` to the **simple type name** (e.g. `PiiRedactingEcho`), not the fully-qualified name.
+
+```yaml
+Stubs:
+  - Name: SanitisedEcho
+    Processor: PiiRedactingEcho      # simple type name
+```
+
+Two processors with the same simple name across assemblies will collide; rename one. The mocker only discovers types whose assembly is already loaded in its `AppDomain` — a transitive dependency that nothing references will not be visible. Data annotations on `TConfiguration` (`[Required]`, `[Range]`) are validated before `Process` runs.
+
+After adding or renaming a custom processor, regenerate the mocker schema so editors pick up the new enum value. See [Schema extensions](../qaas/userInterfaces/runner/schema-extensions.md) for the regeneration command and the `bin/` cache flush.
+
 ## Edge cases {#edge-cases}
 
 - Non-JSON payloads raise on `JsonNode.Parse`. Wrap in `try/catch` and return the body unchanged if you need a tolerant variant.

@@ -192,6 +192,24 @@ DataSources:
       ItemsPerSource: 100
 ```
 
+## Registration and discovery {#registration}
+
+Custom generators are discovered by short type name. The runner scans referenced assemblies for types deriving from `BaseGenerator<>`. To wire one in:
+
+1. Place the class in any namespace inside an assembly the runner loads (your test project, or a referenced library).
+2. Reference the assembly from the project that hosts the YAML — a project reference or a NuGet package both work.
+3. In YAML, set `Generator:` to the **simple type name** (e.g. `TypedCsv`), not the fully-qualified name.
+
+```yaml
+DataSources:
+  - Name: Users
+    Generator: TypedCsv        # simple type name
+```
+
+Two generators with the same simple name across assemblies will collide; rename one. The runner only discovers types whose assembly is already loaded in its `AppDomain` — a transitive dependency that nothing references will not be visible. Data annotations on `TConfiguration` (`[Required]`, `[Range]`) are validated before `Generate` is called.
+
+After adding or renaming a custom generator, regenerate the YAML schema so editors pick up the new enum value. See [Schema extensions](../qaas/userInterfaces/runner/schema-extensions.md) for the regeneration command and the `bin/` cache flush.
+
 ## Edge cases {#edge-cases}
 
 - `Generate` returns `IEnumerable`, not `IAsyncEnumerable`. Do not call `.ToList()` before yielding — large CSVs would balloon memory.
