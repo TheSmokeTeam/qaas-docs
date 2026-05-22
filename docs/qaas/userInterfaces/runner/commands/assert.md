@@ -91,9 +91,10 @@ dotnet run -- assert test.qaas.yaml -s allure-results
 Usage:
  dotnet run [Dotnet Parameters] -- [Command] [Values] [Flags]
 
-  -s, --serve-results                (Default: false)
-                                     If flag is enabled will automatically serve the test results in a human readable
-                                     manner after performing the assertions.
+  -s, --serve-results=folder         Serves Allure output after performing the assertions. If the flag is
+                                     provided without a value it serves the default raw results folder
+                                     'allure-results'. Provide a folder name such as 'allure-report' to open
+                                     a generated report directory, which is useful for Allure 3 flows.
 
   -e, --empty-results-directory      (Default: false) If flag is enabled will automatically empty the results directory
                                      before running.

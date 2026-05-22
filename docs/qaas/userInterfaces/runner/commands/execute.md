@@ -96,13 +96,14 @@ dotnet run -- execute executable.yaml -s allure-report
 Usage:
  dotnet run [Dotnet Parameters] -- [Command] [Values] [Flags]
 
-  -s, --serve-results                (Default: false)
-                                     If flag is enabled will automatically serve the test results in a human readable
-                                     manner using allure after executing all commands.
-                                     when any of the commands written in the executable configuration file use this flag
-                                     it will not do anything, this is the deciding flag.
-                                     Uses a locally installed allure CLI tool, if allure CLI is not installed and added
-                                     to path the serve will fail.
+  -s, --serve-results=folder         Serves Allure output after performing the assertions. If the flag is
+                                     provided without a value it serves the default raw results folder
+                                     'allure-results'. Provide a folder name such as 'allure-report' to open
+                                     a generated report directory, which is useful for Allure 3 flows.
+                                     When any of the commands written in the executable configuration file
+                                     use this flag it will not do anything; this is the deciding flag.
+                                     Uses a locally installed allure CLI tool. If the allure CLI is not
+                                     installed and added to PATH the serve will fail.
 
 
   -e, --empty-allure-directory       (Default: false) If flag is enabled will automatically empty the allure results
