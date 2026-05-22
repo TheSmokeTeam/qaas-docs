@@ -1,0 +1,7 @@
+DirectoryPath: "site"
+IgnoreURLs:
+  - "^https?://localhost"
+  - "^https?://127\\."
+CheckExternal: false
+EnforceHTML5: false
+LogLevel: 1
