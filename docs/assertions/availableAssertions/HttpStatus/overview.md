@@ -1,43 +1,47 @@
 ---
-id: assertions.availableassertions.httpstatus.overview
-type: explanation
+id: assertions.available.httpstatus.overview
+type: reference
 status: stable
 since: 2.0.0
 last_verified: 2026-05-22
 applies_to: [assertions]
-keywords: [assertions, availableassertions, httpstatus, overview]
+keywords: [assertions, HttpStatus, AssertionConfiguration]
 summary: "Performs a logic test on the http status of all selected outputs in a session by checking they all have the desired http status code"
 ---
+<!-- Verified-against: QaaS.Common.Assertions\QaaS.Common.Assertions\HttpMetaDataLogic\HttpStatus.cs -->
+
 # HttpStatus
 
 Performs a logic test on the http status of all selected outputs in a session by checking they all have the desired http status code
 
-## What It Does
+## What it does
 
-Reads every saved item in the configured output lists of a single session and verifies that each item carries the expected HTTP status code in its metadata.
+Performs a logic test on the http status of all selected outputs in a session by checking they all have the desired http status code See [Configuration ▸ tableView](configuration/tableView.md) for the full field reference and [Configuration ▸ yamlView](configuration/yamlView.md) for a minimal scaffold.
 
-If any output item is missing HTTP status metadata entirely, the assertion throws instead of silently ignoring it. When status codes are present but some do not match, the assertion fails and records both the unexpected status codes and the outputs where they appeared.
-
-## YAML Example
+## YAML example
 
 ```yaml
 Sessions:
-  - Name: SampleSession
-
-Assertions:
-  - Name: HttpStatusAssertion
-    Assertion: HttpStatus
-    SessionNames:
-      - SampleSession
-
-    AssertionConfiguration:
-      StatusCode: 200
-      OutputNames:
-        - Reply
+  - Name: HttpStatusSession
+    Assertions:
+      - Name: HttpStatusStep
+        Assertion: HttpStatus
+        AssertionConfiguration:
+        StatusCode:
+        OutputNames: []
 ```
 
-## What This Configuration Does
 
-This assertion checks the `Reply` output of `SampleSession` and expects every saved item to have HTTP status `200`.
+## Where it lives
 
-If all items report `200`, the assertion passes. If any item reports a different status it fails with a detailed trace, and if any item has no HTTP status metadata at all it fails by exception because the status check cannot be trusted.
+| | |
+|--|--|
+| **Plugin family** | assertions |
+| **YAML key** | `HttpStatus` |
+| **Schema** | [`assertions.schema.json`](../../../_generated/schemas/assertions.md) |
+| **Source** | `QaaS.Common.Assertions\QaaS.Common.Assertions\HttpMetaDataLogic\HttpStatus.cs` |
+
+## See also
+
+- [assertions index](../../index.md)
+- [Custom assertion authoring guide](../../custom-authoring-guide.md)

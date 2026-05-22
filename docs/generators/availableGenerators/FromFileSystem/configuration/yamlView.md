@@ -1,19 +1,23 @@
 ---
-id: generators.availablegenerators.fromfilesystem.configuration.yamlview
+id: generators.available.fromfilesystem.configuration.yamlview
 type: reference
 status: stable
 since: 2.0.0
 last_verified: 2026-05-22
 applies_to: [generators]
-keywords: [generators, availablegenerators, fromfilesystem, configuration, yamlview]
-summary: "GeneratorConfiguration:"
+keywords: [generators, FromFileSystem, yaml, scaffold]
+summary: "Minimal YAML scaffold for FromFileSystem GeneratorConfiguration — copy, fill the blanks, drop into a Session step."
 ---
-# FromFileSystem Configurations Yaml View
+<!-- Verified-against: QaaS.JsonSchemaExtensions/generated-schemas/generators.schema.json -->
+
+# FromFileSystem — Configuration (YAML scaffold)
+
+Drop this into the `GeneratorConfiguration` block of a Session step. Field meanings are in [tableView](tableView.md).
 
 ```yaml
 GeneratorConfiguration:
-  Count:
   DataArrangeOrder:
+  Count:
   DataUuidRegexExpression:
   StorageMetaData:
   FileSystem:

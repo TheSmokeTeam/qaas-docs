@@ -1,53 +1,51 @@
 ---
-id: probes.availableprobes.emptyelasticindices.overview
-type: explanation
+id: probes.available.emptyelasticindices.overview
+type: reference
 status: stable
 since: 2.0.0
 last_verified: 2026-05-22
 applies_to: [probes]
-keywords: [probes, availableprobes, emptyelasticindices, overview]
+keywords: [probes, EmptyElasticIndices, ProbeConfiguration]
 summary: "Empties elastic indices by their index pattern"
 ---
+<!-- Verified-against: QaaS.Common.Probes\QaaS.Common.Probes\ElasticProbes\EmptyElasticIndices.cs -->
+
 # EmptyElasticIndices
 
 Empties elastic indices by their index pattern
 
-## What It Does
+## What it does
 
-Finds Elasticsearch indices that match the configured pattern and deletes documents from them with a delete-by-query operation.
+Empties elastic indices by their index pattern See [Configuration ▸ tableView](configuration/tableView.md) for the full field reference and [Configuration ▸ yamlView](configuration/yamlView.md) for a minimal scaffold.
 
-This is useful when you want to clear scenario-generated documents from one family of indices without dropping the indices themselves.
-
-## YAML Example
+## YAML example
 
 ```yaml
 Sessions:
-  - Name: ProbeSession
+  - Name: EmptyElasticIndicesSession
     Probes:
-      - Name: EmptyElasticIndicesProbe
+      - Name: EmptyElasticIndicesStep
         Probe: EmptyElasticIndices
         ProbeConfiguration:
-          UseGlobalDict: true
-          Url: http://elastic.local:9200
-          Username: elastic
-          Password: elastic-password
-          IndexPattern: qaas-orders-*
-          MatchQueryString: event.dataset:orders
-          RequestTimeoutMs: 15000
+        MatchQueryString:
+        IndexPattern:
+        Url:
+        Username:
+        Password:
+        RequestTimeoutMs:
 ```
 
-## What This Configuration Does
 
-This probe targets indices whose names match `qaas-orders-*` and removes documents that match the query string `event.dataset:orders`.
+## Where it lives
 
-The indices stay in place, but the matching documents are cleared out before the next run.
+| | |
+|--|--|
+| **Plugin family** | probes |
+| **YAML key** | `EmptyElasticIndices` |
+| **Schema** | [`probes.schema.json`](../../../_generated/schemas/probes.md) |
+| **Source** | `QaaS.Common.Probes\QaaS.Common.Probes\ElasticProbes\EmptyElasticIndices.cs` |
 
-### Global Dictionary Behavior
+## See also
 
-With `UseGlobalDict: true`, missing cluster connection fields can be resolved from the session-scoped `Elastic/Defaults` alias when those keys do not appear in the local probe configuration. The probe still binds and validates after the merge, and any key that is present locally keeps priority over the shared default.
-
-That makes the probe useful when an index-emptying step should reuse the same Elasticsearch connection details.
-
-No recovery alias is written for Elasticsearch in this first pass.
-
-When `UseGlobalDict` is `false`, the probe behaves exactly as before and uses only local YAML or code configuration.
+- [probes index](../../index.md)
+- [Custom probe authoring guide](../../custom-authoring-guide.md)

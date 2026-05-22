@@ -1,67 +1,26 @@
 ---
-id: generators.availablegenerators.json.configuration.yamlview
+id: generators.available.json.configuration.yamlview
 type: reference
 status: stable
 since: 2.0.0
 last_verified: 2026-05-22
 applies_to: [generators]
-keywords: [generators, availablegenerators, json, configuration, yamlview]
-summary: "GeneratorConfiguration:"
+keywords: [generators, Json, yaml, scaffold]
+summary: "Minimal YAML scaffold for Json GeneratorConfiguration — copy, fill the blanks, drop into a Session step."
 ---
-# Json Configurations Yaml View
+<!-- Verified-against: QaaS.JsonSchemaExtensions/generated-schemas/generators.schema.json -->
+
+# Json — Configuration (YAML scaffold)
+
+Drop this into the `GeneratorConfiguration` block of a Session step. Field meanings are in [tableView](tableView.md).
 
 ```yaml
 GeneratorConfiguration:
   Count:
-  JsonDataSourceName:
+  JsonFieldReplacements: []
   OutputObjectType:
-  JsonFieldReplacements:
-    - Path:
-      ValueType:
-      Boolean:
-        Value:
-      ByteArray:
-        Value:
-      DateTime:
-        Day:
-        DayOffset:
-        Format:
-        Hour:
-        HourOffset:
-        Millisecond:
-        MillisecondOffset:
-        Minute:
-        MinuteOffset:
-        Month:
-        Second:
-        SecondOffset:
-        TimeZone:
-        Year:
-      Double:
-        Value:
-      FromDataSource:
-        Name:
-        OutOfRangePolicy:
-      Integer:
-        Value:
-      String:
-        Value:
-      UnixEpochTime:
-        Day:
-        DayOffset:
-        Hour:
-        HourOffset:
-        Millisecond:
-        MillisecondOffset:
-        Minute:
-        MinuteOffset:
-        Month:
-        Second:
-        SecondOffset:
-        UnixEpochObjectType:
-        UnixEpochScaleType:
-        Year:
   OutputObjectTypeConfiguration:
-    TypeFullName:
     AssemblyName:
+    TypeFullName:
+  JsonDataSourceName:
 ```

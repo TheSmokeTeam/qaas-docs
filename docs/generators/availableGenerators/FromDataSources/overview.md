@@ -1,46 +1,46 @@
 ---
-id: generators.availablegenerators.fromdatasources.overview
-type: explanation
+id: generators.available.fromdatasources.overview
+type: reference
 status: stable
 since: 2.0.0
 last_verified: 2026-05-22
 applies_to: [generators]
-keywords: [generators, availablegenerators, fromdatasources, overview]
+keywords: [generators, FromDataSources, GeneratorConfiguration]
 summary: "Generates data from the enumerable of data sources it receives"
 ---
+<!-- Verified-against: QaaS.Common.Generators\QaaS.Common.Generators\FromDataSourcesGenerators\FromDataSources.cs -->
+
 # FromDataSources
 
 Generates data from the enumerable of data sources it receives
 
-## What It Does
+## What it does
 
-Forwards the generated items produced by the attached data sources and exposes them as a new data source.
+Generates data from the enumerable of data sources it receives See [Configuration ▸ tableView](configuration/tableView.md) for the full field reference and [Configuration ▸ yamlView](configuration/yamlView.md) for a minimal scaffold.
 
-It does not transform the payloads. It is mainly a way to cap, regroup, or re-export existing generated data under a new name so the same base source can be reused in multiple places.
-
-## YAML Example
+## YAML example
 
 ```yaml
-DataSources:
-  - Name: RawPayloads
-    Generator: FromFileSystem
-    GeneratorConfiguration:
-      DataArrangeOrder: AsciiAsc
-      FileSystem:
-        Path: sample-data/payloads
-        SearchPattern: '*.json'
-      StorageMetaData: ItemName
-
-  - Name: ForwardedPayloads
-    Generator: FromDataSources
-    DataSourceNames:
-      - RawPayloads
-    GeneratorConfiguration:
-      Count: 2
+Sessions:
+  - Name: FromDataSourcesSession
+    Generators:
+      - Name: FromDataSourcesStep
+        DataSource: FromDataSources
+        GeneratorConfiguration:
+        Count:
 ```
 
-## What This Configuration Does
 
-`RawPayloads` loads every matching file from disk, and `ForwardedPayloads` then re-emits only the first two generated items from that source.
+## Where it lives
 
-This is useful when you want to reuse an existing data source but limit how many items a particular session or stub should see.
+| | |
+|--|--|
+| **Plugin family** | generators |
+| **YAML key** | `FromDataSources` |
+| **Schema** | [`generators.schema.json`](../../../_generated/schemas/generators.md) |
+| **Source** | `QaaS.Common.Generators\QaaS.Common.Generators\FromDataSourcesGenerators\FromDataSources.cs` |
+
+## See also
+
+- [generators index](../../index.md)
+- [Custom generator authoring guide](../../custom-authoring-guide.md)

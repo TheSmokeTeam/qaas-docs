@@ -1,51 +1,49 @@
 ---
-id: probes.availableprobes.emptymongodbcollection.overview
-type: explanation
+id: probes.available.emptymongodbcollection.overview
+type: reference
 status: stable
 since: 2.0.0
 last_verified: 2026-05-22
 applies_to: [probes]
-keywords: [probes, availableprobes, emptymongodbcollection, overview]
+keywords: [probes, EmptyMongoDbCollection, ProbeConfiguration]
 summary: "Deletes all documents from the configured MongoDB collection so it starts clean for the test run."
 ---
+<!-- Verified-against: QaaS.Common.Probes\QaaS.Common.Probes\MongoDbProbes\EmptyMongoDbCollection.cs -->
+
 # EmptyMongoDbCollection
 
 Deletes all documents from the configured MongoDB collection so it starts clean for the test run.
 
-## What It Does
+## What it does
 
-Deletes all documents from one MongoDB collection while leaving the collection itself in place.
+Deletes all documents from the configured MongoDB collection so it starts clean for the test run. See [Configuration ▸ tableView](configuration/tableView.md) for the full field reference and [Configuration ▸ yamlView](configuration/yamlView.md) for a minimal scaffold.
 
-This is useful for repeatable cleanup in environments where the collection should stay available but the data written by the previous run should be removed.
-
-## YAML Example
+## YAML example
 
 ```yaml
 Sessions:
-  - Name: ProbeSession
+  - Name: EmptyMongoDbCollectionSession
     Probes:
-      - Name: EmptyMongoDbCollectionProbe
+      - Name: EmptyMongoDbCollectionStep
         Probe: EmptyMongoDbCollection
         ProbeConfiguration:
-          UseGlobalDict: true
-          ConnectionString: mongodb://localhost:27017
-          DatabaseName: qaas
-          CollectionName: orders
-          ChunkSize: 1000
+        ConnectionString:
+        DatabaseName:
+        CollectionName:
+        ChunkSize:
 ```
 
-## What This Configuration Does
 
-This probe connects to the `qaas` database and deletes the documents stored in the `orders` collection while keeping the collection itself available.
+## Where it lives
 
-The collection itself remains available for the next scenario run. Although the shared MongoDB configuration exposes `ChunkSize`, this probe currently calls `DeleteMany` once for the whole collection and does not chunk the delete operation.
+| | |
+|--|--|
+| **Plugin family** | probes |
+| **YAML key** | `EmptyMongoDbCollection` |
+| **Schema** | [`probes.schema.json`](../../../_generated/schemas/probes.md) |
+| **Source** | `QaaS.Common.Probes\QaaS.Common.Probes\MongoDbProbes\EmptyMongoDbCollection.cs` |
 
-### Global Dictionary Behavior
+## See also
 
-With `UseGlobalDict: true`, missing `ConnectionString`, `DatabaseName`, and `CollectionName` can be resolved from the session-scoped `MongoDb/Defaults` alias when those keys do not appear in the local probe configuration. The probe still binds and validates after the merge, and any key that is present locally keeps priority over the shared default.
-
-That makes the probe useful when cleanup probes should reuse the same MongoDB collection target from a previous step.
-
-No recovery alias is written for MongoDB in this first pass.
-
-When `UseGlobalDict` is `false`, the probe behaves exactly as before and uses only local YAML or code configuration.
+- [probes index](../../index.md)
+- [Custom probe authoring guide](../../custom-authoring-guide.md)

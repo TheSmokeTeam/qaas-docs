@@ -1,49 +1,49 @@
 ---
-id: processors.availableprocessors.staticresponseprocessor.overview
-type: explanation
+id: processors.available.staticresponseprocessor.overview
+type: reference
 status: stable
 since: 2.0.0
 last_verified: 2026-05-22
 applies_to: [processors]
-keywords: [processors, availableprocessors, staticresponseprocessor, overview]
+keywords: [processors, StaticResponseProcessor, ProcessorConfiguration]
 summary: "Returns a fixed UTF-8 response body with the configured status code, content type, and headers."
 ---
+<!-- Verified-against: QaaS.Common.Processors\QaaS.Common.Processors\StaticResponseProcessor.cs -->
+
 # StaticResponseProcessor
 
 Returns a fixed UTF-8 response body with the configured status code, content type, and headers.
 
-## What It Does
+## What it does
 
-Returns a fixed UTF-8 response body together with the configured HTTP status code, content type, and headers.
+Returns a fixed UTF-8 response body with the configured status code, content type, and headers. See [Configuration ▸ tableView](configuration/tableView.md) for the full field reference and [Configuration ▸ yamlView](configuration/yamlView.md) for a minimal scaffold.
 
-This is the simplest processor for serving a known canned response from a stubbed endpoint.
-
-## YAML Example
+## YAML example
 
 ```yaml
-Stubs:
-  - Name: StaticResponseProcessorStub
-    Processor: StaticResponseProcessor
-
-    ProcessorConfiguration:
-      Body: stub is healthy
-      StatusCode: 200
-      ContentType: text/plain; charset=utf-8
-
-Servers:
-  - Http:
-      Port: 8080
-      IsLocalhost: true
-      Endpoints:
-        - Path: /health
-          Actions:
-            - Name: HealthAction
-              Method: Get
-              TransactionStubName: StaticResponseProcessorStub
+Sessions:
+  - Name: StaticResponseProcessorSession
+    Processors:
+      - Name: StaticResponseProcessorStep
+        Processor: StaticResponseProcessor
+        ProcessorConfiguration:
+        Body:
+        StatusCode:
+        ContentType:
+        ResponseHeaders:
 ```
 
-## What This Configuration Does
 
-This configuration makes the endpoint always return the text `stub is healthy` as a UTF-8 body.
+## Where it lives
 
-The response status is `200` and the content type is `text/plain; charset=utf-8`.
+| | |
+|--|--|
+| **Plugin family** | processors |
+| **YAML key** | `StaticResponseProcessor` |
+| **Schema** | [`processors.schema.json`](../../../_generated/schemas/processors.md) |
+| **Source** | `QaaS.Common.Processors\QaaS.Common.Processors\StaticResponseProcessor.cs` |
+
+## See also
+
+- [processors index](../../index.md)
+- [Custom processor authoring guide](../../custom-authoring-guide.md)

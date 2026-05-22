@@ -1,49 +1,49 @@
 ---
-id: processors.availableprocessors.passthroughprocessor.overview
-type: explanation
+id: processors.available.passthroughprocessor.overview
+type: reference
 status: stable
 since: 2.0.0
 last_verified: 2026-05-22
 applies_to: [processors]
-keywords: [processors, availableprocessors, passthroughprocessor, overview]
+keywords: [processors, PassThroughProcessor, ProcessorConfiguration]
 summary: "Returns the incoming request payload unchanged while applying the configured response metadata."
 ---
+<!-- Verified-against: QaaS.Common.Processors\QaaS.Common.Processors\PassThroughProcessor.cs -->
+
 # PassThroughProcessor
 
 Returns the incoming request payload unchanged while applying the configured response metadata.
 
-## What It Does
+## What it does
 
-Returns the incoming request body unchanged and optionally preserves the request metadata from the original data item.
+Returns the incoming request payload unchanged while applying the configured response metadata. See [Configuration ▸ tableView](configuration/tableView.md) for the full field reference and [Configuration ▸ yamlView](configuration/yamlView.md) for a minimal scaffold.
 
-It is the simplest processor for echoing raw request content back to the caller while still letting you control response status, content type, and extra headers.
-
-## YAML Example
+## YAML example
 
 ```yaml
-Stubs:
-  - Name: PassThroughProcessorStub
-    Processor: PassThroughProcessor
-
-    ProcessorConfiguration:
-      StatusCode: 202
-      ContentType: application/octet-stream
-      PreserveMetaData: true
-
-Servers:
-  - Http:
-      Port: 8080
-      IsLocalhost: true
-      Endpoints:
-        - Path: /health
-          Actions:
-            - Name: HealthAction
-              Method: Get
-              TransactionStubName: PassThroughProcessorStub
+Sessions:
+  - Name: PassThroughProcessorSession
+    Processors:
+      - Name: PassThroughProcessorStep
+        Processor: PassThroughProcessor
+        ProcessorConfiguration:
+        StatusCode:
+        ContentType:
+        ResponseHeaders:
+        PreserveMetaData:
 ```
 
-## What This Configuration Does
 
-This configuration returns the request body exactly as it arrived and marks the response as `202`.
+## Where it lives
 
-Because `PreserveMetaData` is enabled, request metadata already attached to the incoming item is preserved instead of being discarded.
+| | |
+|--|--|
+| **Plugin family** | processors |
+| **YAML key** | `PassThroughProcessor` |
+| **Schema** | [`processors.schema.json`](../../../_generated/schemas/processors.md) |
+| **Source** | `QaaS.Common.Processors\QaaS.Common.Processors\PassThroughProcessor.cs` |
+
+## See also
+
+- [processors index](../../index.md)
+- [Custom processor authoring guide](../../custom-authoring-guide.md)

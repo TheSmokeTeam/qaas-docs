@@ -1,53 +1,51 @@
 ---
-id: probes.availableprobes.createrabbitmqbindings.overview
-type: explanation
+id: probes.available.createrabbitmqbindings.overview
+type: reference
 status: stable
 since: 2.0.0
 last_verified: 2026-05-22
 applies_to: [probes]
-keywords: [probes, availableprobes, createrabbitmqbindings, overview]
+keywords: [probes, CreateRabbitMqBindings, ProbeConfiguration]
 summary: "Creates RabbitMQ bindings between exchanges and queues or between exchanges by using the configured binding definitions."
 ---
+<!-- Verified-against: QaaS.Common.Probes\QaaS.Common.Probes\RabbitMqProbes\CreateRabbitMqBindings.cs -->
+
 # CreateRabbitMqBindings
 
 Creates RabbitMQ bindings between exchanges and queues or between exchanges by using the configured binding definitions.
 
-## What It Does
+## What it does
 
-Creates RabbitMQ bindings through the AMQP connection defined in the probe configuration.
+Creates RabbitMQ bindings between exchanges and queues or between exchanges by using the configured binding definitions. See [Configuration ▸ tableView](configuration/tableView.md) for the full field reference and [Configuration ▸ yamlView](configuration/yamlView.md) for a minimal scaffold.
 
-This is useful when the scenario needs to wire exchanges to queues or exchanges before traffic starts flowing.
-
-## YAML Example
+## YAML example
 
 ```yaml
 Sessions:
-  - Name: ProbeSession
+  - Name: CreateRabbitMqBindingsSession
     Probes:
-      - Name: CreateRabbitMqBindingsProbe
+      - Name: CreateRabbitMqBindingsStep
         Probe: CreateRabbitMqBindings
         ProbeConfiguration:
-          UseGlobalDict: true
-          Host: rabbitmq.local
-          Port: 5672
-          Username: guest
-          Password: guest
-          VirtualHost: /
-          Bindings:
-            - SourceName: orders.exchange
-              DestinationName: orders.queue
-              BindingType: ExchangeToQueue
-              RoutingKey: orders.created
+        Host:
+        Username:
+        Password:
+        Port:
+        VirtualHost:
+        Bindings: []
 ```
 
-## What This Configuration Does
 
-This probe creates one binding from `orders.exchange` to `orders.queue` using the routing key `orders.created`.
+## Where it lives
 
-After it runs, messages published to the exchange with that routing key can be routed into the queue.
+| | |
+|--|--|
+| **Plugin family** | probes |
+| **YAML key** | `CreateRabbitMqBindings` |
+| **Schema** | [`probes.schema.json`](../../../_generated/schemas/probes.md) |
+| **Source** | `QaaS.Common.Probes\QaaS.Common.Probes\RabbitMqProbes\CreateRabbitMqBindings.cs` |
 
-### Global Dictionary Behavior
+## See also
 
-With `UseGlobalDict: true`, missing broker connection fields are first resolved from `RabbitMq/AmqpDefaults`, and missing `Bindings` can then be resolved from `RabbitMq/Recovery/Bindings` when a paired delete probe saved recovery state earlier in the same execution and session.
-
-Any key that is present locally still wins, even when the local value is `false`, `0`, an empty string, or an empty collection. This makes the probe useful when you want to recreate bindings after deleting and later restoring a topology slice. When `UseGlobalDict` is `false`, the probe ignores both aliases and keeps the current local-only behavior.
+- [probes index](../../index.md)
+- [Custom probe authoring guide](../../custom-authoring-guide.md)

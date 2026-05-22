@@ -1,19 +1,20 @@
 ---
-id: generators.availablegenerators.fromsessiondatadatasources.configuration.yamlview
+id: generators.available.fromsessiondatadatasources.configuration.yamlview
 type: reference
 status: stable
 since: 2.0.0
 last_verified: 2026-05-22
 applies_to: [generators]
-keywords: [generators, availablegenerators, fromsessiondatadatasources, configuration, yamlview]
-summary: "GeneratorConfiguration:"
+keywords: [generators, FromSessionDataDataSources, yaml, scaffold]
+summary: "Minimal YAML scaffold for FromSessionDataDataSources GeneratorConfiguration — copy, fill the blanks, drop into a Session step."
 ---
-# FromSessionDataDataSources Configurations Yaml View
+<!-- Verified-against: QaaS.JsonSchemaExtensions/generated-schemas/generators.schema.json -->
+
+# FromSessionDataDataSources — Configuration (YAML scaffold)
+
+Drop this into the `GeneratorConfiguration` block of a Session step. Field meanings are in [tableView](tableView.md).
 
 ```yaml
 GeneratorConfiguration:
-  - SessionName:
-    CommunicationDataList:
-      - Name:
-        Type:
+
 ```

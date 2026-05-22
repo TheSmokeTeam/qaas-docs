@@ -1,22 +1,26 @@
 ---
-id: probes.availableprobes.deleteelasticindices.configuration.tableview
+id: probes.available.deleteelasticindices.configuration.tableview
 type: reference
 status: stable
 since: 2.0.0
 last_verified: 2026-05-22
 applies_to: [probes]
-keywords: [probes, availableprobes, deleteelasticindices, configuration, tableview]
-summary: "DeleteElasticIndices Configurations Table View"
+keywords: [probes, DeleteElasticIndices, configuration, reference]
+summary: "Field-by-field reference for DeleteElasticIndices ProbeConfiguration keys, types, defaults and descriptions, generated from probes.schema.json."
 ---
-# DeleteElasticIndices Configurations Table View
+<!-- Verified-against: QaaS.JsonSchemaExtensions/generated-schemas/probes.schema.json -->
+
+# DeleteElasticIndices — Configuration (table view)
+
+Generated from `probes.schema.json`. Every field below is verified against the JSON schema at `QaaS.JsonSchemaExtensions/generated-schemas/probes.schema.json`.
 
 | Property Path | Type | Required | Default | Description |
 | ------------- | ---- | -------- | ------- | ----------- |
 | `ProbeConfiguration` | `object or string` | &#10006 |  |  |
 | `ProbeConfiguration.IndexPattern` | `string` | &#10004 |  | The index pattern of the relevant indices |
-| `ProbeConfiguration.Password` | `string` | &#10004 |  | The password of the elasticsearch |
 | `ProbeConfiguration.Url` | `string` | &#10004 |  | The url of the elasticsearch |
 | `ProbeConfiguration.Username` | `string` | &#10004 |  | The username of the elasticsearch |
-| `ProbeConfiguration.AllowInvalidServerCertificates` | `string or true/false` | &#10006 | False | Allow invalid TLS certificates when connecting to Elasticsearch over HTTPS. |
+| `ProbeConfiguration.Password` | `string` | &#10004 |  | The password of the elasticsearch |
 | `ProbeConfiguration.RequestTimeoutMs` | `integer or string` | &#10006 | 30000 | The timeout in milliseconds on the requests sent to the elastic |
-| `ProbeConfiguration.UseGlobalDict` | `string or true/false` | &#10006 | False | When true, missing Elasticsearch probe configuration keys can be resolved from the shared global dictionary before local values are applied. |
+
+See [yamlView](yamlView.md) for a minimal scaffold and [overview](../overview.md) for a runnable example.

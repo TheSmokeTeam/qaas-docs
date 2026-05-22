@@ -1,20 +1,24 @@
 ---
-id: assertions.availableassertions.delaybyaverage.configuration.yamlview
+id: assertions.available.delaybyaverage.configuration.yamlview
 type: reference
 status: stable
 since: 2.0.0
 last_verified: 2026-05-22
 applies_to: [assertions]
-keywords: [assertions, availableassertions, delaybyaverage, configuration, yamlview]
-summary: "AssertionConfiguration:"
+keywords: [assertions, DelayByAverage, yaml, scaffold]
+summary: "Minimal YAML scaffold for DelayByAverage AssertionConfiguration — copy, fill the blanks, drop into a Session step."
 ---
-# DelayByAverage Configurations Yaml View
+<!-- Verified-against: QaaS.JsonSchemaExtensions/generated-schemas/assertions.schema.json -->
+
+# DelayByAverage — Configuration (YAML scaffold)
+
+Drop this into the `AssertionConfiguration` block of a Session step. Field meanings are in [tableView](tableView.md).
 
 ```yaml
 AssertionConfiguration:
-  InputName:
-  MaximumDelayMs:
   OutputName:
+  InputName:
   InputsAreOutputs:
+  MaximumDelayMs:
   MaximumNegativeDelayBufferMs:
 ```

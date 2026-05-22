@@ -1,39 +1,52 @@
 ---
-id: generators.availablegenerators.lettucefromfilesystem.overview
-type: explanation
+id: generators.available.lettucefromfilesystem.overview
+type: reference
 status: stable
 since: 2.0.0
 last_verified: 2026-05-22
 applies_to: [generators]
-keywords: [generators, availablegenerators, lettucefromfilesystem, overview]
+keywords: [generators, LettuceFromFileSystem, GeneratorConfiguration]
 summary: "Retrieves lettuce-formatted files from the configured file-system path and exposes them as generated messages with their routing key metadata."
 ---
+<!-- Verified-against: QaaS.Common.Generators\QaaS.Common.Generators\FromExternalSourceGenerators\LettuceFromFileSystem.cs -->
+
 # LettuceFromFileSystem
 
 Retrieves lettuce-formatted files from the configured file-system path and exposes them as generated messages with their routing key metadata.
 
-## What It Does
+## What it does
 
-Reads lettuce envelope files directly from the local file system, decodes the base64 `Body`, and emits the decoded payload bytes.
+Retrieves lettuce-formatted files from the configured file-system path and exposes them as generated messages with their routing key metadata. See [Configuration ▸ tableView](configuration/tableView.md) for the full field reference and [Configuration ▸ yamlView](configuration/yamlView.md) for a minimal scaffold.
 
-If the envelope contains a RabbitMQ routing key, that routing key is copied into the generated item metadata so it can be reused when publishing or asserting later in the flow.
-
-## YAML Example
+## YAML example
 
 ```yaml
-DataSources:
-  - Name: LettuceFiles
-    Generator: LettuceFromFileSystem
-    GeneratorConfiguration:
-      DataArrangeOrder: AsciiAsc
-      FileSystem:
-        Path: sample-data/lettuce
-        SearchPattern: '*.json'
-      StorageMetaData: ItemName
+Sessions:
+  - Name: LettuceFromFileSystemSession
+    Generators:
+      - Name: LettuceFromFileSystemStep
+        DataSource: LettuceFromFileSystem
+        GeneratorConfiguration:
+        FileSystem:
+          Path:
+          SearchPattern:
+        DataArrangeOrder:
+        Count:
+        DataUuidRegexExpression:
+        StorageMetaData:
 ```
 
-## What This Configuration Does
 
-This configuration scans `sample-data/lettuce` for lettuce envelope files, processes them in deterministic order, and exposes the decoded payload from each file as a generated item.
+## Where it lives
 
-Any routing key carried by the envelope is preserved in metadata, which makes the generated data ready for RabbitMQ-based flows.
+| | |
+|--|--|
+| **Plugin family** | generators |
+| **YAML key** | `LettuceFromFileSystem` |
+| **Schema** | [`generators.schema.json`](../../../_generated/schemas/generators.md) |
+| **Source** | `QaaS.Common.Generators\QaaS.Common.Generators\FromExternalSourceGenerators\LettuceFromFileSystem.cs` |
+
+## See also
+
+- [generators index](../../index.md)
+- [Custom generator authoring guide](../../custom-authoring-guide.md)

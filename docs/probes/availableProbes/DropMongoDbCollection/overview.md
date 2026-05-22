@@ -1,50 +1,49 @@
 ---
-id: probes.availableprobes.dropmongodbcollection.overview
-type: explanation
+id: probes.available.dropmongodbcollection.overview
+type: reference
 status: stable
 since: 2.0.0
 last_verified: 2026-05-22
 applies_to: [probes]
-keywords: [probes, availableprobes, dropmongodbcollection, overview]
+keywords: [probes, DropMongoDbCollection, ProbeConfiguration]
 summary: "Drops the configured MongoDB collection so a later run can recreate it from scratch."
 ---
+<!-- Verified-against: QaaS.Common.Probes\QaaS.Common.Probes\MongoDbProbes\DropMongoDbCollection.cs -->
+
 # DropMongoDbCollection
 
 Drops the configured MongoDB collection so a later run can recreate it from scratch.
 
-## What It Does
+## What it does
 
-Drops one MongoDB collection completely so later setup can recreate it from scratch.
+Drops the configured MongoDB collection so a later run can recreate it from scratch. See [Configuration ▸ tableView](configuration/tableView.md) for the full field reference and [Configuration ▸ yamlView](configuration/yamlView.md) for a minimal scaffold.
 
-This is the collection-level reset option when you do not want to preserve collection metadata or existing indexes between runs.
-
-## YAML Example
+## YAML example
 
 ```yaml
 Sessions:
-  - Name: ProbeSession
+  - Name: DropMongoDbCollectionSession
     Probes:
-      - Name: DropMongoDbCollectionProbe
+      - Name: DropMongoDbCollectionStep
         Probe: DropMongoDbCollection
         ProbeConfiguration:
-          UseGlobalDict: true
-          ConnectionString: mongodb://localhost:27017
-          DatabaseName: qaas
-          CollectionName: orders
+        ConnectionString:
+        DatabaseName:
+        CollectionName:
+        ChunkSize:
 ```
 
-## What This Configuration Does
 
-This probe connects to the `qaas` database and drops the `orders` collection entirely.
+## Where it lives
 
-Use it when the scenario wants a full MongoDB collection reset rather than a document-only cleanup. Although the shared MongoDB configuration exposes `ChunkSize`, this probe drops the collection in one operation and does not use that value.
+| | |
+|--|--|
+| **Plugin family** | probes |
+| **YAML key** | `DropMongoDbCollection` |
+| **Schema** | [`probes.schema.json`](../../../_generated/schemas/probes.md) |
+| **Source** | `QaaS.Common.Probes\QaaS.Common.Probes\MongoDbProbes\DropMongoDbCollection.cs` |
 
-### Global Dictionary Behavior
+## See also
 
-With `UseGlobalDict: true`, missing `ConnectionString`, `DatabaseName`, and `CollectionName` can be resolved from the session-scoped `MongoDb/Defaults` alias when those keys do not appear in the local probe configuration. The probe still binds and validates after the merge, and any key that is present locally keeps priority over the shared default.
-
-That makes the probe useful when collection maintenance probes should reuse the same MongoDB target definition.
-
-No recovery alias is written for MongoDB in this first pass.
-
-When `UseGlobalDict` is `false`, the probe behaves exactly as before and uses only local YAML or code configuration.
+- [probes index](../../index.md)
+- [Custom probe authoring guide](../../custom-authoring-guide.md)

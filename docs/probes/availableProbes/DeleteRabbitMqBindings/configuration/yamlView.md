@@ -1,27 +1,25 @@
 ---
-id: probes.availableprobes.deleterabbitmqbindings.configuration.yamlview
+id: probes.available.deleterabbitmqbindings.configuration.yamlview
 type: reference
 status: stable
 since: 2.0.0
 last_verified: 2026-05-22
 applies_to: [probes]
-keywords: [probes, availableprobes, deleterabbitmqbindings, configuration, yamlview]
-summary: "ProbeConfiguration:"
+keywords: [probes, DeleteRabbitMqBindings, yaml, scaffold]
+summary: "Minimal YAML scaffold for DeleteRabbitMqBindings ProbeConfiguration — copy, fill the blanks, drop into a Session step."
 ---
-# DeleteRabbitMqBindings Configurations Yaml View
+<!-- Verified-against: QaaS.JsonSchemaExtensions/generated-schemas/probes.schema.json -->
+
+# DeleteRabbitMqBindings — Configuration (YAML scaffold)
+
+Drop this into the `ProbeConfiguration` block of a Session step. Field meanings are in [tableView](tableView.md).
 
 ```yaml
 ProbeConfiguration:
   Host:
+  Username:
   Password:
   Port:
-  UseGlobalDict:
-  Username:
   VirtualHost:
-  Bindings:
-    - DestinationName:
-      SourceName:
-      Arguments:
-      BindingType:
-      RoutingKey:
+  Bindings: []
 ```

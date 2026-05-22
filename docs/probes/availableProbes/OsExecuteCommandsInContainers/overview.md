@@ -1,53 +1,53 @@
 ---
-id: probes.availableprobes.osexecutecommandsincontainers.overview
-type: explanation
+id: probes.available.osexecutecommandsincontainers.overview
+type: reference
 status: stable
 since: 2.0.0
 last_verified: 2026-05-22
 applies_to: [probes]
-keywords: [probes, availableprobes, osexecutecommandsincontainers, overview]
-summary: "Probe that Executes a command passed by the cmd string variable on every pod and container if passed to the function"
+keywords: [probes, OsExecuteCommandsInContainers, ProbeConfiguration]
+summary: "Probe that Executes a command passed by the `cmd` string variable on every pod and container if passed to the function"
 ---
+<!-- Verified-against: QaaS.Common.Probes\QaaS.Common.Probes\OsProbes\OsExecuteCommandsInContainers.cs -->
+
 # OsExecuteCommandsInContainers
 
 Probe that Executes a command passed by the `cmd` string variable on every pod and container if passed to the function
 
-## What It Does
+## What it does
 
-Finds pods by label selection and executes the configured commands inside the matching containers.
+Probe that Executes a command passed by the `cmd` string variable on every pod and container if passed to the function See [Configuration ▸ tableView](configuration/tableView.md) for the full field reference and [Configuration ▸ yamlView](configuration/yamlView.md) for a minimal scaffold.
 
-This is useful for ad hoc maintenance steps such as inspecting environment state, clearing temporary files, or triggering in-container admin commands before or after a scenario.
-
-## YAML Example
+## YAML example
 
 ```yaml
 Sessions:
-  - Name: ProbeSession
+  - Name: OsExecuteCommandsInContainersSession
     Probes:
-      - Name: OsExecuteCommandsInContainersProbe
+      - Name: OsExecuteCommandsInContainersStep
         Probe: OsExecuteCommandsInContainers
         ProbeConfiguration:
-          ContainerName: api
-          ApplicationLabels:
-            - app=orders-api
-          Commands:
-            - printenv
-            - ls /tmp
-          Openshift:
-            Cluster: https://api.cluster.local:6443
-            Namespace: docs
-            Username: docs-user
-            Password: docs-password
+        Openshift:
+          Cluster:
+          Username:
+          Password:
+          Namespace:
+        ApplicationLabels: []
+        Commands: []
+        ContainerName:
 ```
 
-## What This Configuration Does
 
-This probe finds pods labeled `app=orders-api`, enters the `api` container in each matching pod, and runs `printenv` followed by `ls /tmp`.
+## Where it lives
 
-It is useful for inspection or lightweight maintenance commands inside the running workload.
+| | |
+|--|--|
+| **Plugin family** | probes |
+| **YAML key** | `OsExecuteCommandsInContainers` |
+| **Schema** | [`probes.schema.json`](../../../_generated/schemas/probes.md) |
+| **Source** | `QaaS.Common.Probes\QaaS.Common.Probes\OsProbes\OsExecuteCommandsInContainers.cs` |
 
-### Global Dictionary Behavior
+## See also
 
-This probe derives from the shared OpenShift configuration shape, so `UseGlobalDict` can appear in generated YAML and table views. The current implementation derives from the plain OpenShift probe base and does not read or write probe-global-dictionary aliases for this action.
-
-That means the behavior is unchanged for every run: the probe uses only the values supplied directly in local YAML or code configuration, even if `UseGlobalDict` is set.
+- [probes index](../../index.md)
+- [Custom probe authoring guide](../../custom-authoring-guide.md)

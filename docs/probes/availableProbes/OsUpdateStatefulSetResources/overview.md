@@ -1,65 +1,61 @@
 ---
-id: probes.availableprobes.osupdatestatefulsetresources.overview
-type: explanation
+id: probes.available.osupdatestatefulsetresources.overview
+type: reference
 status: stable
 since: 2.0.0
 last_verified: 2026-05-22
 applies_to: [probes]
-keywords: [probes, availableprobes, osupdatestatefulsetresources, overview]
+keywords: [probes, OsUpdateStatefulSetResources, ProbeConfiguration]
 summary: "Updates container resource requests and limits in a Kubernetes or OpenShift stateful set."
 ---
+<!-- Verified-against: QaaS.Common.Probes\QaaS.Common.Probes\OsProbes\OsUpdateStatefulSetResources.cs -->
+
 # OsUpdateStatefulSetResources
 
 Updates container resource requests and limits in a Kubernetes or OpenShift stateful set.
 
-## What It Does
+## What it does
 
-Updates CPU and memory requests and limits on a stateful set container, then waits for the stateful rollout to converge.
+Updates container resource requests and limits in a Kubernetes or OpenShift stateful set. See [Configuration ▸ tableView](configuration/tableView.md) for the full field reference and [Configuration ▸ yamlView](configuration/yamlView.md) for a minimal scaffold.
 
-This is useful when a scenario needs to change the resource profile of a stateful component without rebuilding or redeploying the whole environment manually.
-
-## YAML Example
+## YAML example
 
 ```yaml
 Sessions:
-  - Name: ProbeSession
+  - Name: OsUpdateStatefulSetResourcesSession
     Probes:
-      - Name: OsUpdateStatefulSetResourcesProbe
+      - Name: OsUpdateStatefulSetResourcesStep
         Probe: OsUpdateStatefulSetResources
         ProbeConfiguration:
-          UseGlobalDict: true
-          ReplicaSetName: orders-worker
-          ContainerName: worker
-          IntervalBetweenDesiredStateChecksMs: 1000
-          TimeoutWaitForDesiredStateSeconds: 300
-          Openshift:
-            Cluster: https://api.cluster.local:6443
-            Namespace: docs
-            Username: docs-user
-            Password: docs-password
-          DesiredResources:
-            Limits:
-              Cpu: 1500m
-              Memory: 2Gi
-            Requests:
-              Cpu: 500m
-              Memory: 512Mi
+        ContainerName:
+        ReplicaSetName:
+        IntervalBetweenDesiredStateChecksMs:
+        TimeoutWaitForDesiredStateSeconds:
+        Openshift:
+          Cluster:
+          Username:
+          Password:
+          Namespace:
+        DesiredResources:
+          Requests:
+            Cpu:
+            Memory:
+          Limits:
+            Cpu:
+            Memory:
 ```
 
-## What This Configuration Does
 
-This probe updates the `worker` container in the `orders-worker` stateful set so that it requests `500m` CPU and `512Mi` memory, with limits of `1500m` CPU and `2Gi` memory.
+## Where it lives
 
-`ReplicaSetName` is a legacy property name in the configuration model; for this probe it is the StatefulSet name. After the patch is applied, the probe waits for the stateful set to finish rolling out and throws `TimeoutException` if the configured timeout expires.
+| | |
+|--|--|
+| **Plugin family** | probes |
+| **YAML key** | `OsUpdateStatefulSetResources` |
+| **Schema** | [`probes.schema.json`](../../../_generated/schemas/probes.md) |
+| **Source** | `QaaS.Common.Probes\QaaS.Common.Probes\OsProbes\OsUpdateStatefulSetResources.cs` |
 
-Resource updates only rebuild the `cpu` and `memory` request/limit keys. If the existing Kubernetes resource block contains other resource keys, they are not preserved by this update path.
+## See also
 
-### Global Dictionary Behavior
-
-With `UseGlobalDict: true`, missing shared cluster settings can be resolved from `Os/Defaults`, and missing `DesiredResources` can be restored from `Os/Recovery/Resources/StatefulSet/<ReplicaSetName>/<ContainerName>` after an earlier probe in the same execution and session captured the pre-change state.
-
-The probe writes its pre-change snapshot to the unique canonical scoped path for the current probe execution and then updates the recovery alias so a later rollback probe can reuse it. This is useful when you want to apply a temporary resource profile to a stateful workload and then restore it.
-
-No additional per-probe recovery caveat applies beyond the execution and session scoping rules.
-
-When `UseGlobalDict` is `false`, the probe keeps the current behavior: it uses only local YAML or code configuration and does not read or write probe-global-dictionary state.
+- [probes index](../../index.md)
+- [Custom probe authoring guide](../../custom-authoring-guide.md)

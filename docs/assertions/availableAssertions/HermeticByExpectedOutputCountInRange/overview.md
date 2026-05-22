@@ -1,44 +1,48 @@
 ---
-id: assertions.availableassertions.hermeticbyexpectedoutputcountinrange.overview
-type: explanation
+id: assertions.available.hermeticbyexpectedoutputcountinrange.overview
+type: reference
 status: stable
 since: 2.0.0
 last_verified: 2026-05-22
 applies_to: [assertions]
-keywords: [assertions, availableassertions, hermeticbyexpectedoutputcountinrange, overview]
+keywords: [assertions, HermeticByExpectedOutputCountInRange, AssertionConfiguration]
 summary: "Performs a hermetic test by comparing the count of a given output in a session to a given expected minimum and maximum"
 ---
+<!-- Verified-against: QaaS.Common.Assertions\QaaS.Common.Assertions\Hermetic\HermeticByExpectedOutputCountInRange.cs -->
+
 # HermeticByExpectedOutputCountInRange
 
 Performs a hermetic test by comparing the count of a given output in a session to a given expected minimum and maximum
 
-## What It Does
+## What it does
 
-Adds up the number of items in the configured output names across the selected sessions and checks whether the total falls between a minimum and a maximum inclusive boundary.
+Performs a hermetic test by comparing the count of a given output in a session to a given expected minimum and maximum See [Configuration ▸ tableView](configuration/tableView.md) for the full field reference and [Configuration ▸ yamlView](configuration/yamlView.md) for a minimal scaffold.
 
-This is the range-based form of the exact-count hermetic check. It is useful when a flow is allowed to produce some controlled variation but still must stay inside a defined envelope.
-
-## YAML Example
+## YAML example
 
 ```yaml
 Sessions:
-  - Name: SampleSession
-
-Assertions:
-  - Name: HermeticByExpectedOutputCountInRangeAssertion
-    Assertion: HermeticByExpectedOutputCountInRange
-    SessionNames:
-      - SampleSession
-
-    AssertionConfiguration:
-      OutputNames:
-        - Reply
-      ExpectedMinimumCount: 2
-      ExpectedMaximumCount: 4
+  - Name: HermeticByExpectedOutputCountInRangeSession
+    Assertions:
+      - Name: HermeticByExpectedOutputCountInRangeStep
+        Assertion: HermeticByExpectedOutputCountInRange
+        AssertionConfiguration:
+        OutputNames: []
+        ExpectedMinimumCount:
+        ExpectedMaximumCount:
 ```
 
-## What This Configuration Does
 
-This snippet counts how many items were saved under `Reply` for `SampleSession`.
+## Where it lives
 
-The assertion passes when the count is between 2 and 4 inclusive. Counts below 2 or above 4 fail the assertion.
+| | |
+|--|--|
+| **Plugin family** | assertions |
+| **YAML key** | `HermeticByExpectedOutputCountInRange` |
+| **Schema** | [`assertions.schema.json`](../../../_generated/schemas/assertions.md) |
+| **Source** | `QaaS.Common.Assertions\QaaS.Common.Assertions\Hermetic\HermeticByExpectedOutputCountInRange.cs` |
+
+## See also
+
+- [assertions index](../../index.md)
+- [Custom assertion authoring guide](../../custom-authoring-guide.md)

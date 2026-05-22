@@ -1,57 +1,55 @@
 ---
-id: probes.availableprobes.osupdatestatefulsetimage.overview
-type: explanation
+id: probes.available.osupdatestatefulsetimage.overview
+type: reference
 status: stable
 since: 2.0.0
 last_verified: 2026-05-22
 applies_to: [probes]
-keywords: [probes, availableprobes, osupdatestatefulsetimage, overview]
+keywords: [probes, OsUpdateStatefulSetImage, ProbeConfiguration]
 summary: "Updates the image of one container in a Kubernetes or OpenShift stateful set."
 ---
+<!-- Verified-against: QaaS.Common.Probes\QaaS.Common.Probes\OsProbes\OsUpdateStatefulSetImage.cs -->
+
 # OsUpdateStatefulSetImage
 
 Updates the image of one container in a Kubernetes or OpenShift stateful set.
 
-## What It Does
+## What it does
 
-Updates the container image used by a stateful set and waits for the stateful rollout to converge.
+Updates the image of one container in a Kubernetes or OpenShift stateful set. See [Configuration ▸ tableView](configuration/tableView.md) for the full field reference and [Configuration ▸ yamlView](configuration/yamlView.md) for a minimal scaffold.
 
-This is useful when a scenario needs a stateful component to run from a different prebuilt image version.
-
-## YAML Example
+## YAML example
 
 ```yaml
 Sessions:
-  - Name: ProbeSession
+  - Name: OsUpdateStatefulSetImageSession
     Probes:
-      - Name: OsUpdateStatefulSetImageProbe
+      - Name: OsUpdateStatefulSetImageStep
         Probe: OsUpdateStatefulSetImage
         ProbeConfiguration:
-          UseGlobalDict: true
-          ReplicaSetName: orders-worker
-          ContainerName: worker
-          DesiredImage: registry.local/orders-worker:2.1.0
-          IntervalBetweenDesiredStateChecksMs: 1000
-          TimeoutWaitForDesiredStateSeconds: 300
-          Openshift:
-            Cluster: https://api.cluster.local:6443
-            Namespace: docs
-            Username: docs-user
-            Password: docs-password
+        ContainerName:
+        ReplicaSetName:
+        IntervalBetweenDesiredStateChecksMs:
+        TimeoutWaitForDesiredStateSeconds:
+        Openshift:
+          Cluster:
+          Username:
+          Password:
+          Namespace:
+        DesiredImage:
 ```
 
-## What This Configuration Does
 
-This configuration changes the `worker` container in the `orders-worker` stateful set to use `registry.local/orders-worker:2.1.0`.
+## Where it lives
 
-`ReplicaSetName` is a legacy property name in the configuration model; for this probe it is the StatefulSet name. The probe waits for the observed generation to become available and throws `TimeoutException` if the configured timeout expires.
+| | |
+|--|--|
+| **Plugin family** | probes |
+| **YAML key** | `OsUpdateStatefulSetImage` |
+| **Schema** | [`probes.schema.json`](../../../_generated/schemas/probes.md) |
+| **Source** | `QaaS.Common.Probes\QaaS.Common.Probes\OsProbes\OsUpdateStatefulSetImage.cs` |
 
-### Global Dictionary Behavior
+## See also
 
-With `UseGlobalDict: true`, missing shared cluster settings can be resolved from `Os/Defaults`, and missing `DesiredImage` can be restored from `Os/Recovery/Image/StatefulSet/<ReplicaSetName>/<ContainerName>` after an earlier probe in the same execution and session captured the pre-change state.
-
-The probe writes its pre-change snapshot to the unique canonical scoped path for the current probe execution and then updates the recovery alias so a later rollback probe can reuse it. This is useful when you want to roll a stateful component to a temporary image and later roll it back.
-
-No additional per-probe recovery caveat applies beyond the execution and session scoping rules.
-
-When `UseGlobalDict` is `false`, the probe keeps the current behavior: it uses only local YAML or code configuration and does not read or write probe-global-dictionary state.
+- [probes index](../../index.md)
+- [Custom probe authoring guide](../../custom-authoring-guide.md)

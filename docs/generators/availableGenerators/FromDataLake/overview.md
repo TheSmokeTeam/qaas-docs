@@ -1,42 +1,52 @@
 ---
-id: generators.availablegenerators.fromdatalake.overview
-type: explanation
+id: generators.available.fromdatalake.overview
+type: reference
 status: stable
 since: 2.0.0
 last_verified: 2026-05-22
 applies_to: [generators]
-keywords: [generators, availablegenerators, fromdatalake, overview]
+keywords: [generators, FromDataLake, GeneratorConfiguration]
 summary: "Retrieves rows from the configured data lake query and exposes each row as a generated JSON object."
 ---
+<!-- Verified-against: QaaS.Common.Generators\QaaS.Common.Generators\FromDataLakeGenerator\FromDataLake.cs -->
+
 # FromDataLake
 
 Retrieves rows from the configured data lake query and exposes each row as a generated JSON object.
 
-## What It Does
+## What it does
 
-Runs a Trino query and emits the returned rows as generated JSON-like objects.
+Retrieves rows from the configured data lake query and exposes each row as a generated JSON object. See [Configuration ▸ tableView](configuration/tableView.md) for the full field reference and [Configuration ▸ yamlView](configuration/yamlView.md) for a minimal scaffold.
 
-This generator is useful when test data already lives in a lakehouse or analytics system and you want the scenario to read it directly instead of exporting it first. Optional ignored columns let you drop fields that are not relevant for the rest of the flow.
-
-## YAML Example
+## YAML example
 
 ```yaml
-DataSources:
-  - Name: OrdersFromDataLake
-    Generator: FromDataLake
-    GeneratorConfiguration:
-      TrinoServerUri: http://trino.local:8080
-      Catalog: lakehouse
-      Query: SELECT order_id, customer_id, debug_flag FROM qaas.orders
-      Username: docs
-      Password: docs-password
-      ClientTag: qaas-docs
-      ColumnsToIgnore:
-        - debug_flag
+Sessions:
+  - Name: FromDataLakeSession
+    Generators:
+      - Name: FromDataLakeStep
+        DataSource: FromDataLake
+        GeneratorConfiguration:
+        TrinoServerUri:
+        Username:
+        Password:
+        ClientTag:
+        Catalog:
+        Query:
+        ColumnsToIgnore: []
 ```
 
-## What This Configuration Does
 
-This configuration connects to Trino, runs the provided query, and turns each result row into one generated item.
+## Where it lives
 
-The `debug_flag` column is removed before the items are exposed to the rest of the configuration, so downstream consumers only see `order_id` and `customer_id`.
+| | |
+|--|--|
+| **Plugin family** | generators |
+| **YAML key** | `FromDataLake` |
+| **Schema** | [`generators.schema.json`](../../../_generated/schemas/generators.md) |
+| **Source** | `QaaS.Common.Generators\QaaS.Common.Generators\FromDataLakeGenerator\FromDataLake.cs` |
+
+## See also
+
+- [generators index](../../index.md)
+- [Custom generator authoring guide](../../custom-authoring-guide.md)

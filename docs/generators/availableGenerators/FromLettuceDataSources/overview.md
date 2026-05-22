@@ -1,48 +1,46 @@
 ---
-id: generators.availablegenerators.fromlettucedatasources.overview
-type: explanation
+id: generators.available.fromlettucedatasources.overview
+type: reference
 status: stable
 since: 2.0.0
 last_verified: 2026-05-22
 applies_to: [generators]
-keywords: [generators, availablegenerators, fromlettucedatasources, overview]
-summary: "Generates data from the enumerable of data sources it receives that is in Lettuce file format, presumes all items in the enumerable are deserialized into Json"
+keywords: [generators, FromLettuceDataSources, GeneratorConfiguration]
+summary: "Generates data from the enumerable of data sources it receives that is in `Lettuce` file format, presumes all items in the enumerable are deserialized into <see cref=\"SerializationType.Json\"/>"
 ---
+<!-- Verified-against: QaaS.Common.Generators\QaaS.Common.Generators\FromDataSourcesGenerators\FromLettuceDataSources.cs -->
+
 # FromLettuceDataSources
 
-Generates data from the enumerable of data sources it receives that is in `Lettuce` file format, presumes all items in the enumerable are deserialized into Json
+Generates data from the enumerable of data sources it receives that is in `Lettuce` file format, presumes all items in the enumerable are deserialized into <see cref="SerializationType.Json"/>
 
-## What It Does
+## What it does
 
-Consumes attached data sources whose bodies are lettuce-style JSON envelopes, base64-decodes the `Body`, and emits the decoded payload as the generated item.
+Generates data from the enumerable of data sources it receives that is in `Lettuce` file format, presumes all items in the enumerable are deserialized into <see cref="SerializationType.Json"/> See [Configuration ▸ tableView](configuration/tableView.md) for the full field reference and [Configuration ▸ yamlView](configuration/yamlView.md) for a minimal scaffold.
 
-When the lettuce envelope contains a RabbitMQ routing key, that routing key is copied into the generated item metadata so publisher or consumer flows can reuse it naturally.
-
-## YAML Example
+## YAML example
 
 ```yaml
-DataSources:
-  - Name: LettuceEvents
-    Generator: FromFileSystem
-    Deserialize:
-      Deserializer: Json
-    GeneratorConfiguration:
-      DataArrangeOrder: AsciiAsc
-      FileSystem:
-        Path: sample-data/lettuce
-        SearchPattern: '*.json'
-      StorageMetaData: ItemName
-
-  - Name: DecodedEvents
-    Generator: FromLettuceDataSources
-    DataSourceNames:
-      - LettuceEvents
-    GeneratorConfiguration:
-      Count: 5
+Sessions:
+  - Name: FromLettuceDataSourcesSession
+    Generators:
+      - Name: FromLettuceDataSourcesStep
+        DataSource: FromLettuceDataSources
+        GeneratorConfiguration:
+        Count:
 ```
 
-## What This Configuration Does
 
-`LettuceEvents` loads JSON envelope files, and `DecodedEvents` converts those envelopes into raw payload bytes.
+## Where it lives
 
-With this setup, the first five decoded messages become available to the rest of the configuration, and any routing key carried inside each lettuce envelope is preserved in RabbitMQ metadata.
+| | |
+|--|--|
+| **Plugin family** | generators |
+| **YAML key** | `FromLettuceDataSources` |
+| **Schema** | [`generators.schema.json`](../../../_generated/schemas/generators.md) |
+| **Source** | `QaaS.Common.Generators\QaaS.Common.Generators\FromDataSourcesGenerators\FromLettuceDataSources.cs` |
+
+## See also
+
+- [generators index](../../index.md)
+- [Custom generator authoring guide](../../custom-authoring-guide.md)

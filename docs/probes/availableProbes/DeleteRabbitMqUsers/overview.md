@@ -1,51 +1,55 @@
 ---
-id: probes.availableprobes.deleterabbitmqusers.overview
-type: explanation
+id: probes.available.deleterabbitmqusers.overview
+type: reference
 status: stable
 since: 2.0.0
 last_verified: 2026-05-22
 applies_to: [probes]
-keywords: [probes, availableprobes, deleterabbitmqusers, overview]
+keywords: [probes, DeleteRabbitMqUsers, ProbeConfiguration]
 summary: "Deletes RabbitMQ users through the management API."
 ---
+<!-- Verified-against: QaaS.Common.Probes\QaaS.Common.Probes\RabbitMqProbes\DeleteRabbitMqUsers.cs -->
+
 # DeleteRabbitMqUsers
 
 Deletes RabbitMQ users through the management API.
 
-## What It Does
+## What it does
 
-Deletes RabbitMQ users through the management API.
+Deletes RabbitMQ users through the management API. See [Configuration ▸ tableView](configuration/tableView.md) for the full field reference and [Configuration ▸ yamlView](configuration/yamlView.md) for a minimal scaffold.
 
-This is useful for cleaning up temporary credentials that were created for a scenario or test environment.
-
-## YAML Example
+## YAML example
 
 ```yaml
 Sessions:
-  - Name: ProbeSession
+  - Name: DeleteRabbitMqUsersSession
     Probes:
-      - Name: DeleteRabbitMqUsersProbe
+      - Name: DeleteRabbitMqUsersStep
         Probe: DeleteRabbitMqUsers
         ProbeConfiguration:
-          UseGlobalDict: true
-          Host: rabbitmq.local
-          ManagementScheme: http
-          ManagementPort: 15672
-          Username: guest
-          Password: guest
-          VirtualHost: /
-          Usernames:
-            - orders-user
+        ManagementScheme:
+        ManagementPort:
+        AllowInvalidServerCertificates:
+        RequestTimeoutMs:
+        Host:
+        Username:
+        Password:
+        Port:
+        VirtualHost:
+        Usernames: []
 ```
 
-## What This Configuration Does
 
-This configuration removes the RabbitMQ user named `orders-user`.
+## Where it lives
 
-It is a credential cleanup step for environments that create dedicated users per run or per tenant.
+| | |
+|--|--|
+| **Plugin family** | probes |
+| **YAML key** | `DeleteRabbitMqUsers` |
+| **Schema** | [`probes.schema.json`](../../../_generated/schemas/probes.md) |
+| **Source** | `QaaS.Common.Probes\QaaS.Common.Probes\RabbitMqProbes\DeleteRabbitMqUsers.cs` |
 
-### Global Dictionary Behavior
+## See also
 
-With `UseGlobalDict: true`, the resolved broker settings are saved under the session-scoped `RabbitMq/AmqpDefaults` alias, and this probe also writes the deleted user names as `RabbitMqUserConfig[]` to `RabbitMq/Recovery/Users`. The canonical payload still lives under `__ProbeGlobalDict/Scoped/<execution-scope>/<session-name>/<probe-name>`, so every probe execution keeps its own isolated write path.
-
-That makes the probe useful in recovery or rollback scenarios where `CreateRabbitMqUsers` runs later in the same execution and session and restores the deleted topology from the saved alias instead of hard-coding it twice. When `UseGlobalDict` is `false`, current behavior stays unchanged: only local YAML or code configuration is used, and nothing is written to the probe global dictionary.
+- [probes index](../../index.md)
+- [Custom probe authoring guide](../../custom-authoring-guide.md)

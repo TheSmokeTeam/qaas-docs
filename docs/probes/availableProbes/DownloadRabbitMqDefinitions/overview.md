@@ -1,51 +1,56 @@
 ---
-id: probes.availableprobes.downloadrabbitmqdefinitions.overview
-type: explanation
+id: probes.available.downloadrabbitmqdefinitions.overview
+type: reference
 status: stable
 since: 2.0.0
 last_verified: 2026-05-22
 applies_to: [probes]
-keywords: [probes, availableprobes, downloadrabbitmqdefinitions, overview]
+keywords: [probes, DownloadRabbitMqDefinitions, ProbeConfiguration]
 summary: "Downloads RabbitMQ definitions from the management API so the current topology can be captured and reused."
 ---
+<!-- Verified-against: QaaS.Common.Probes\QaaS.Common.Probes\RabbitMqProbes\DownloadRabbitMqDefinitions.cs -->
+
 # DownloadRabbitMqDefinitions
 
 Downloads RabbitMQ definitions from the management API so the current topology can be captured and reused.
 
-## What It Does
+## What it does
 
-Downloads RabbitMQ definitions through the management API and writes them to a JSON file.
+Downloads RabbitMQ definitions from the management API so the current topology can be captured and reused. See [Configuration ▸ tableView](configuration/tableView.md) for the full field reference and [Configuration ▸ yamlView](configuration/yamlView.md) for a minimal scaffold.
 
-This is useful for snapshotting an existing RabbitMQ topology before a run changes it, or for exporting a topology that should later be restored elsewhere.
-
-## YAML Example
+## YAML example
 
 ```yaml
 Sessions:
-  - Name: ProbeSession
+  - Name: DownloadRabbitMqDefinitionsSession
     Probes:
-      - Name: DownloadRabbitMqDefinitionsProbe
+      - Name: DownloadRabbitMqDefinitionsStep
         Probe: DownloadRabbitMqDefinitions
         ProbeConfiguration:
-          UseGlobalDict: true
-          Host: rabbitmq.local
-          ManagementScheme: http
-          ManagementPort: 15672
-          Username: guest
-          Password: guest
-          VirtualHost: /
-          VirtualHostName: orders-vhost
-          DefinitionsFilePath: artifacts/rabbitmq/orders-definitions.json
+        ManagementScheme:
+        ManagementPort:
+        AllowInvalidServerCertificates:
+        RequestTimeoutMs:
+        Host:
+        Username:
+        Password:
+        Port:
+        VirtualHost:
+        DefinitionsFilePath:
+        VirtualHostName:
 ```
 
-## What This Configuration Does
 
-This probe connects to the RabbitMQ management API and saves the definitions for `orders-vhost` into `artifacts/rabbitmq/orders-definitions.json`.
+## Where it lives
 
-The resulting file can be used as an environment snapshot or as input for a later upload step.
+| | |
+|--|--|
+| **Plugin family** | probes |
+| **YAML key** | `DownloadRabbitMqDefinitions` |
+| **Schema** | [`probes.schema.json`](../../../_generated/schemas/probes.md) |
+| **Source** | `QaaS.Common.Probes\QaaS.Common.Probes\RabbitMqProbes\DownloadRabbitMqDefinitions.cs` |
 
-### Global Dictionary Behavior
+## See also
 
-With `UseGlobalDict: true`, missing management connection fields can be resolved from the session-scoped `RabbitMq/ManagementDefaults` alias when those keys are missing locally. This probe does not use a recovery alias in v1; it only consumes shared RabbitMQ defaults.
-
-That is useful when a backup step should reuse the same broker credentials that were already resolved by an earlier RabbitMQ management probe. When `UseGlobalDict` is `false`, the probe behaves exactly as before and uses only its local configuration.
+- [probes index](../../index.md)
+- [Custom probe authoring guide](../../custom-authoring-guide.md)

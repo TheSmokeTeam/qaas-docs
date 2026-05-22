@@ -1,52 +1,46 @@
 ---
-id: assertions.availableassertions.objectoutputjsonschema.overview
-type: explanation
+id: assertions.available.objectoutputjsonschema.overview
+type: reference
 status: stable
 since: 2.0.0
 last_verified: 2026-05-22
 applies_to: [assertions]
-keywords: [assertions, availableassertions, objectoutputjsonschema, overview]
+keywords: [assertions, ObjectOutputJsonSchema, AssertionConfiguration]
 summary: "Validates that each configured output item matches at least one JSON schema provided by the configured data sources."
 ---
+<!-- Verified-against: QaaS.Common.Assertions\QaaS.Common.Assertions\SchemaLogic\ObjectOutputJsonSchema.cs -->
+
 # ObjectOutputJsonSchema
 
 Validates that each configured output item matches at least one JSON schema provided by the configured data sources.
 
-## What It Does
+## What it does
 
-Loads every schema document provided by the attached data sources, converts each item in the named output to JSON, and validates each output item against all of the supplied schemas until at least one schema matches.
+Validates that each configured output item matches at least one JSON schema provided by the configured data sources. See [Configuration ▸ tableView](configuration/tableView.md) for the full field reference and [Configuration ▸ yamlView](configuration/yamlView.md) for a minimal scaffold.
 
-The assertion produces a detailed summary: whether all outputs passed, all failed, or the result was mixed, plus per-item validation details in the trace. It throws when schema documents are missing or malformed, or when an output item cannot be converted to JSON at all.
-
-## YAML Example
+## YAML example
 
 ```yaml
-DataSources:
-  - Name: OrderSchemas
-    Generator: FromFileSystem
-    GeneratorConfiguration:
-      DataArrangeOrder: AsciiAsc
-      FileSystem:
-        Path: schemas
-        SearchPattern: '*.json'
-      StorageMetaData: ItemName
-
 Sessions:
-  - Name: SampleSession
-
-Assertions:
-  - Name: ObjectOutputJsonSchemaAssertion
-    Assertion: ObjectOutputJsonSchema
-    SessionNames:
-      - SampleSession
-    DataSourceNames:
-      - OrderSchemas
-    AssertionConfiguration:
-      OutputName: Reply
+  - Name: ObjectOutputJsonSchemaSession
+    Assertions:
+      - Name: ObjectOutputJsonSchemaStep
+        Assertion: ObjectOutputJsonSchema
+        AssertionConfiguration:
+        OutputName:
 ```
 
-## What This Configuration Does
 
-This snippet attaches a schema source called `OrderSchemas` and then validates every item captured under the `Reply` output of `SampleSession` against the schemas loaded from that data source.
+## Where it lives
 
-An output item passes when it matches at least one provided schema. If a reply matches none of them, the assertion fails and records the first failing item plus the schema-validation errors in the trace.
+| | |
+|--|--|
+| **Plugin family** | assertions |
+| **YAML key** | `ObjectOutputJsonSchema` |
+| **Schema** | [`assertions.schema.json`](../../../_generated/schemas/assertions.md) |
+| **Source** | `QaaS.Common.Assertions\QaaS.Common.Assertions\SchemaLogic\ObjectOutputJsonSchema.cs` |
+
+## See also
+
+- [assertions index](../../index.md)
+- [Custom assertion authoring guide](../../custom-authoring-guide.md)

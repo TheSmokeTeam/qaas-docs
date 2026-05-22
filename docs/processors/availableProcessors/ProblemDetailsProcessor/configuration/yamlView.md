@@ -1,24 +1,28 @@
 ---
-id: processors.availableprocessors.problemdetailsprocessor.configuration.yamlview
+id: processors.available.problemdetailsprocessor.configuration.yamlview
 type: reference
 status: stable
 since: 2.0.0
 last_verified: 2026-05-22
 applies_to: [processors]
-keywords: [processors, availableprocessors, problemdetailsprocessor, configuration, yamlview]
-summary: "ProcessorConfiguration:"
+keywords: [processors, ProblemDetailsProcessor, yaml, scaffold]
+summary: "Minimal YAML scaffold for ProblemDetailsProcessor ProcessorConfiguration — copy, fill the blanks, drop into a Session step."
 ---
-# ProblemDetailsProcessor Configurations Yaml View
+<!-- Verified-against: QaaS.JsonSchemaExtensions/generated-schemas/processors.schema.json -->
+
+# ProblemDetailsProcessor — Configuration (YAML scaffold)
+
+Drop this into the `ProcessorConfiguration` block of a Session step. Field meanings are in [tableView](tableView.md).
 
 ```yaml
 ProcessorConfiguration:
-  ContentType:
   StatusCode:
   Title:
-  Type:
   Detail:
-  Extensions:
+  Type:
   Instance:
-  ResponseHeaders:
   UseRequestUriAsInstance:
+  ContentType:
+  Extensions:
+  ResponseHeaders:
 ```

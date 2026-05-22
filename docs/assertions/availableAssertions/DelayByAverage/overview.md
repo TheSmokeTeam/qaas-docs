@@ -1,44 +1,50 @@
 ---
-id: assertions.availableassertions.delaybyaverage.overview
-type: explanation
+id: assertions.available.delaybyaverage.overview
+type: reference
 status: stable
 since: 2.0.0
 last_verified: 2026-05-22
 applies_to: [assertions]
-keywords: [assertions, availableassertions, delaybyaverage, overview]
+keywords: [assertions, DelayByAverage, AssertionConfiguration]
 summary: "Checks for delay between an input source to an output source by subtracting the average timestamp of all inputs from the average timestamp of all the outputs."
 ---
+<!-- Verified-against: QaaS.Common.Assertions\QaaS.Common.Assertions\Delay\DelayByAverage.cs -->
+
 # DelayByAverage
 
 Checks for delay between an input source to an output source by subtracting the average timestamp of all inputs from the average timestamp of all the outputs.
 
-## What It Does
+## What it does
 
-Measures latency by taking every timestamp in the named input list, every timestamp in the named output list, calculating the average time for each side, and comparing the difference against `MaximumDelayMs`.
+Checks for delay between an input source to an output source by subtracting the average timestamp of all inputs from the average timestamp of all the outputs. See [Configuration ▸ tableView](configuration/tableView.md) for the full field reference and [Configuration ▸ yamlView](configuration/yamlView.md) for a minimal scaffold.
 
-If the output list is empty it passes immediately because there is no observed delay to measure. If the input list is empty, or any required timestamp is missing, the assertion raises an error because the delay calculation is no longer meaningful. A small negative result can be tolerated through `MaximumNegativeDelayBufferMs`; anything more negative is treated as bad timing data and throws.
-
-## YAML Example
+## YAML example
 
 ```yaml
 Sessions:
-  - Name: SampleSession
-
-Assertions:
-  - Name: DelayByAverageAssertion
-    Assertion: DelayByAverage
-    SessionNames:
-      - SampleSession
-
-    AssertionConfiguration:
-      InputName: PublishedMessages
-      OutputName: ConsumedMessages
-      MaximumDelayMs: 250
-      MaximumNegativeDelayBufferMs: 25
+  - Name: DelayByAverageSession
+    Assertions:
+      - Name: DelayByAverageStep
+        Assertion: DelayByAverage
+        AssertionConfiguration:
+        OutputName:
+        InputName:
+        InputsAreOutputs:
+        MaximumDelayMs:
+        MaximumNegativeDelayBufferMs:
 ```
 
-## What This Configuration Does
 
-This snippet compares the average timestamp of `PublishedMessages` with the average timestamp of `ConsumedMessages` for `SampleSession`.
+## Where it lives
 
-The assertion passes when the average output delay is 250 ms or less. If the calculated delay is slightly negative but still inside the 25 ms buffer, it is treated as clock jitter and effectively clamped to zero; a larger negative value is treated as invalid timing data and fails by exception.
+| | |
+|--|--|
+| **Plugin family** | assertions |
+| **YAML key** | `DelayByAverage` |
+| **Schema** | [`assertions.schema.json`](../../../_generated/schemas/assertions.md) |
+| **Source** | `QaaS.Common.Assertions\QaaS.Common.Assertions\Delay\DelayByAverage.cs` |
+
+## See also
+
+- [assertions index](../../index.md)
+- [Custom assertion authoring guide](../../custom-authoring-guide.md)

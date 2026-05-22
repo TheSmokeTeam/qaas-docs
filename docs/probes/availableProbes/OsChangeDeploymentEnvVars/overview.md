@@ -1,61 +1,56 @@
 ---
-id: probes.availableprobes.oschangedeploymentenvvars.overview
-type: explanation
+id: probes.available.oschangedeploymentenvvars.overview
+type: reference
 status: stable
 since: 2.0.0
 last_verified: 2026-05-22
 applies_to: [probes]
-keywords: [probes, availableprobes, oschangedeploymentenvvars, overview]
+keywords: [probes, OsChangeDeploymentEnvVars, ProbeConfiguration]
 summary: "Probe that changes the environment variables of a deployment"
 ---
+<!-- Verified-against: QaaS.Common.Probes\QaaS.Common.Probes\OsProbes\OsChangeDeploymentEnvVars.cs -->
+
 # OsChangeDeploymentEnvVars
 
 Probe that changes the environment variables of a deployment
 
-## What It Does
+## What it does
 
-Updates or removes environment variables on a deployment and then waits for the deployment to converge to its desired state.
+Probe that changes the environment variables of a deployment See [Configuration ▸ tableView](configuration/tableView.md) for the full field reference and [Configuration ▸ yamlView](configuration/yamlView.md) for a minimal scaffold.
 
-This is useful when a scenario needs to switch feature flags, endpoint URLs, or other container environment settings before traffic starts.
-
-## YAML Example
+## YAML example
 
 ```yaml
 Sessions:
-  - Name: ProbeSession
+  - Name: OsChangeDeploymentEnvVarsSession
     Probes:
-      - Name: OsChangeDeploymentEnvVarsProbe
+      - Name: OsChangeDeploymentEnvVarsStep
         Probe: OsChangeDeploymentEnvVars
         ProbeConfiguration:
-          UseGlobalDict: true
-          ReplicaSetName: orders-api
-          ContainerName: api
-          EnvVarsToUpdate:
-            FEATURE_FLAG_X: enabled
-            DOWNSTREAM_BASE_URL: http://mocker:8080
-          EnvVarsToRemove:
-            - LEGACY_MODE
-          IntervalBetweenDesiredStateChecksMs: 1000
-          TimeoutWaitForDesiredStateSeconds: 300
-          Openshift:
-            Cluster: https://api.cluster.local:6443
-            Namespace: docs
-            Username: docs-user
-            Password: docs-password
+        ReplicaSetName:
+        IntervalBetweenDesiredStateChecksMs:
+        TimeoutWaitForDesiredStateSeconds:
+        Openshift:
+          Cluster:
+          Username:
+          Password:
+          Namespace:
+        ContainerName:
+        EnvVarsToUpdate:
+        EnvVarsToRemove: []
 ```
 
-## What This Configuration Does
 
-This probe updates the `api` container in the `orders-api` deployment so that `FEATURE_FLAG_X` and `DOWNSTREAM_BASE_URL` are set, while `LEGACY_MODE` is removed.
+## Where it lives
 
-`ReplicaSetName` is a legacy property name in the configuration model; for this probe it is the Deployment name. After patching the deployment, the probe touches the pod template with the `qaas.smoketeam.io/last-mutation-id` annotation so the workload rolls out, waits until the desired generation is available, and throws `TimeoutException` if the timeout expires.
+| | |
+|--|--|
+| **Plugin family** | probes |
+| **YAML key** | `OsChangeDeploymentEnvVars` |
+| **Schema** | [`probes.schema.json`](../../../_generated/schemas/probes.md) |
+| **Source** | `QaaS.Common.Probes\QaaS.Common.Probes\OsProbes\OsChangeDeploymentEnvVars.cs` |
 
-### Global Dictionary Behavior
+## See also
 
-With `UseGlobalDict: true`, missing shared cluster settings can be resolved from `Os/Defaults`, and missing `EnvVarsToUpdate` and `EnvVarsToRemove` can be restored from `Os/Recovery/EnvVars/Deployment/<ReplicaSetName>/<ContainerName-or-__all__>` after an earlier probe in the same execution and session captured the pre-change state.
-
-The probe writes its pre-change snapshot to the unique canonical scoped path for the current probe execution and then updates the recovery alias so a later rollback probe can reuse it. This is useful when you want to inject temporary environment variables and then restore the original environment.
-
-When `ContainerName` is omitted, the mutation applies to every container in the pod template. If multiple containers are found, the recovery payload is written as `ContainerEnvVarsToUpdate`, keyed by container name, so a later rollback can restore each container's full environment snapshot.
-
-When `UseGlobalDict` is `false`, the probe keeps the current behavior: it uses only local YAML or code configuration and does not read or write probe-global-dictionary state.
+- [probes index](../../index.md)
+- [Custom probe authoring guide](../../custom-authoring-guide.md)

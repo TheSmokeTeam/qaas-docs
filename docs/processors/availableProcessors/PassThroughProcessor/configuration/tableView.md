@@ -1,19 +1,25 @@
 ---
-id: processors.availableprocessors.passthroughprocessor.configuration.tableview
+id: processors.available.passthroughprocessor.configuration.tableview
 type: reference
 status: stable
 since: 2.0.0
 last_verified: 2026-05-22
 applies_to: [processors]
-keywords: [processors, availableprocessors, passthroughprocessor, configuration, tableview]
-summary: "PassThroughProcessor Configurations Table View"
+keywords: [processors, PassThroughProcessor, configuration, reference]
+summary: "Field-by-field reference for PassThroughProcessor ProcessorConfiguration keys, types, defaults and descriptions, generated from processors.schema.json."
 ---
-# PassThroughProcessor Configurations Table View
+<!-- Verified-against: QaaS.JsonSchemaExtensions/generated-schemas/processors.schema.json -->
+
+# PassThroughProcessor — Configuration (table view)
+
+Generated from `processors.schema.json`. Every field below is verified against the JSON schema at `QaaS.JsonSchemaExtensions/generated-schemas/processors.schema.json`.
 
 | Property Path | Type | Required | Default | Description |
 | ------------- | ---- | -------- | ------- | ----------- |
 | `ProcessorConfiguration` | `object or string` | &#10006 |  |  |
 | `ProcessorConfiguration.StatusCode` | `integer or string` | &#10004 |  | Response Status Code |
-| `ProcessorConfiguration.ContentType` | `string or null` | &#10006 |  | Optional response Content-Type header |
-| `ProcessorConfiguration.PreserveMetaData` | `string or true/false` | &#10006 |  | Preserve request metadata and only replace the HTTP response metadata |
-| `ProcessorConfiguration.ResponseHeaders` | `object or string or null` | &#10006 |  | Additional response headers |
+| `ProcessorConfiguration.ContentType` | `null or string` | &#10006 |  | Optional response Content-Type header |
+| `ProcessorConfiguration.ResponseHeaders` | `null or object or string` | &#10006 |  | Additional response headers |
+| `ProcessorConfiguration.PreserveMetaData` | `boolean or string` | &#10006 |  | Preserve request metadata and only replace the HTTP response metadata |
+
+See [yamlView](yamlView.md) for a minimal scaffold and [overview](../overview.md) for a runnable example.

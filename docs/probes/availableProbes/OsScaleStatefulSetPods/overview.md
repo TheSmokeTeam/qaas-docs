@@ -1,56 +1,54 @@
 ---
-id: probes.availableprobes.osscalestatefulsetpods.overview
-type: explanation
+id: probes.available.osscalestatefulsetpods.overview
+type: reference
 status: stable
 since: 2.0.0
 last_verified: 2026-05-22
 applies_to: [probes]
-keywords: [probes, availableprobes, osscalestatefulsetpods, overview]
+keywords: [probes, OsScaleStatefulSetPods, ProbeConfiguration]
 summary: "Probe that scales openshift statefulsets"
 ---
+<!-- Verified-against: QaaS.Common.Probes\QaaS.Common.Probes\OsProbes\OsScaleStatefulSetPods.cs -->
+
 # OsScaleStatefulSetPods
 
 Probe that scales openshift statefulsets
 
-## What It Does
+## What it does
 
-Scales a stateful set to the configured replica count and waits until the stateful workload converges.
+Probe that scales openshift statefulsets See [Configuration ▸ tableView](configuration/tableView.md) for the full field reference and [Configuration ▸ yamlView](configuration/yamlView.md) for a minimal scaffold.
 
-This is useful when a scenario needs to grow or shrink a stateful component before traffic starts.
-
-## YAML Example
+## YAML example
 
 ```yaml
 Sessions:
-  - Name: ProbeSession
+  - Name: OsScaleStatefulSetPodsSession
     Probes:
-      - Name: OsScaleStatefulSetPodsProbe
+      - Name: OsScaleStatefulSetPodsStep
         Probe: OsScaleStatefulSetPods
         ProbeConfiguration:
-          UseGlobalDict: true
-          ReplicaSetName: orders-worker
-          DesiredNumberOfPods: 2
-          IntervalBetweenDesiredStateChecksMs: 1000
-          TimeoutWaitForDesiredStateSeconds: 300
-          Openshift:
-            Cluster: https://api.cluster.local:6443
-            Namespace: docs
-            Username: docs-user
-            Password: docs-password
+        ReplicaSetName:
+        IntervalBetweenDesiredStateChecksMs:
+        TimeoutWaitForDesiredStateSeconds:
+        Openshift:
+          Cluster:
+          Username:
+          Password:
+          Namespace:
+        DesiredNumberOfPods:
 ```
 
-## What This Configuration Does
 
-This configuration scales the `orders-worker` stateful set to two pods and waits until the rollout is ready.
+## Where it lives
 
-`ReplicaSetName` is a legacy property name in the configuration model; for this probe it is the StatefulSet name. `DesiredNumberOfPods` is assigned directly to `spec.replicas`; set it explicitly and avoid negative values because the probe does not perform local range validation before calling Kubernetes.
+| | |
+|--|--|
+| **Plugin family** | probes |
+| **YAML key** | `OsScaleStatefulSetPods` |
+| **Schema** | [`probes.schema.json`](../../../_generated/schemas/probes.md) |
+| **Source** | `QaaS.Common.Probes\QaaS.Common.Probes\OsProbes\OsScaleStatefulSetPods.cs` |
 
-### Global Dictionary Behavior
+## See also
 
-With `UseGlobalDict: true`, missing shared cluster settings can be resolved from `Os/Defaults`, and missing `DesiredNumberOfPods` can be restored from `Os/Recovery/Scale/StatefulSet/<ReplicaSetName>` after an earlier probe in the same execution and session captured the pre-change state.
-
-The probe writes its pre-change snapshot to the unique canonical scoped path for the current probe execution and then updates the recovery alias so a later rollback probe can reuse it. This is useful when you want to temporarily shrink or grow a stateful workload and then restore its original size.
-
-No additional per-probe recovery caveat applies beyond the execution and session scoping rules.
-
-When `UseGlobalDict` is `false`, the probe keeps the current behavior: it uses only local YAML or code configuration and does not read or write probe-global-dictionary state.
+- [probes index](../../index.md)
+- [Custom probe authoring guide](../../custom-authoring-guide.md)

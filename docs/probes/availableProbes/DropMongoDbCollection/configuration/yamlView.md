@@ -1,20 +1,23 @@
 ---
-id: probes.availableprobes.dropmongodbcollection.configuration.yamlview
+id: probes.available.dropmongodbcollection.configuration.yamlview
 type: reference
 status: stable
 since: 2.0.0
 last_verified: 2026-05-22
 applies_to: [probes]
-keywords: [probes, availableprobes, dropmongodbcollection, configuration, yamlview]
-summary: "ProbeConfiguration:"
+keywords: [probes, DropMongoDbCollection, yaml, scaffold]
+summary: "Minimal YAML scaffold for DropMongoDbCollection ProbeConfiguration — copy, fill the blanks, drop into a Session step."
 ---
-# DropMongoDbCollection Configurations Yaml View
+<!-- Verified-against: QaaS.JsonSchemaExtensions/generated-schemas/probes.schema.json -->
+
+# DropMongoDbCollection — Configuration (YAML scaffold)
+
+Drop this into the `ProbeConfiguration` block of a Session step. Field meanings are in [tableView](tableView.md).
 
 ```yaml
 ProbeConfiguration:
-  CollectionName:
   ConnectionString:
   DatabaseName:
+  CollectionName:
   ChunkSize:
-  UseGlobalDict:
 ```

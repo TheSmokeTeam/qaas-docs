@@ -1,46 +1,50 @@
 ---
-id: assertions.availableassertions.hermeticbyinputoutputpercentage.overview
-type: explanation
+id: assertions.available.hermeticbyinputoutputpercentage.overview
+type: reference
 status: stable
 since: 2.0.0
 last_verified: 2026-05-22
 applies_to: [assertions]
-keywords: [assertions, availableassertions, hermeticbyinputoutputpercentage, overview]
+keywords: [assertions, HermeticByInputOutputPercentage, AssertionConfiguration]
 summary: "Performs a hermetic test by comparing the the count of a specified input with multiplied by given percentage modifier to the count of a specified output"
 ---
+<!-- Verified-against: QaaS.Common.Assertions\QaaS.Common.Assertions\Hermetic\HermeticByInputOutputPercentage.cs -->
+
 # HermeticByInputOutputPercentage
 
 Performs a hermetic test by comparing the the count of a specified input with multiplied by given percentage modifier to the count of a specified output
 
-## What It Does
+## What it does
 
-Sums the configured input counts and output counts, converts the relationship into a percentage, and then checks whether the output total equals the rounded expected percentage of the input total.
+Performs a hermetic test by comparing the the count of a specified input with multiplied by given percentage modifier to the count of a specified output See [Configuration ▸ tableView](configuration/tableView.md) for the full field reference and [Configuration ▸ yamlView](configuration/yamlView.md) for a minimal scaffold.
 
-The calculation supports multiple input names and multiple output names. When there are zero inputs and zero outputs the effective percentage is treated as zero; when there are zero inputs but some outputs, the comparison fails instead of dividing by zero. `InputsAreOutputs` lets you compare one output stream against another when the "input" side is itself stored as output data.
-
-## YAML Example
+## YAML example
 
 ```yaml
 Sessions:
-  - Name: SampleSession
-
-Assertions:
-  - Name: HermeticByInputOutputPercentageAssertion
-    Assertion: HermeticByInputOutputPercentage
-    SessionNames:
-      - SampleSession
-
-    AssertionConfiguration:
-      InputNames:
-        - Published
-      OutputNames:
-        - Delivered
-      ExpectedPercentage: 50
-      MidpointRounding: AwayFromZero
+  - Name: HermeticByInputOutputPercentageSession
+    Assertions:
+      - Name: HermeticByInputOutputPercentageStep
+        Assertion: HermeticByInputOutputPercentage
+        AssertionConfiguration:
+        OutputNames: []
+        InputNames: []
+        ExpectedPercentage:
+        InputsAreOutputs:
+        MidpointRounding:
 ```
 
-## What This Configuration Does
 
-This configuration says that `Delivered` should contain exactly half as many items as `Published` in `SampleSession`.
+## Where it lives
 
-The assertion computes the expected output count as 50 percent of the total input count, rounds it with `AwayFromZero`, and passes only if the real output count matches that rounded number exactly.
+| | |
+|--|--|
+| **Plugin family** | assertions |
+| **YAML key** | `HermeticByInputOutputPercentage` |
+| **Schema** | [`assertions.schema.json`](../../../_generated/schemas/assertions.md) |
+| **Source** | `QaaS.Common.Assertions\QaaS.Common.Assertions\Hermetic\HermeticByInputOutputPercentage.cs` |
+
+## See also
+
+- [assertions index](../../index.md)
+- [Custom assertion authoring guide](../../custom-authoring-guide.md)

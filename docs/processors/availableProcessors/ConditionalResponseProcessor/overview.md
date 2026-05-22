@@ -1,55 +1,50 @@
 ---
-id: processors.availableprocessors.conditionalresponseprocessor.overview
-type: explanation
+id: processors.available.conditionalresponseprocessor.overview
+type: reference
 status: stable
 since: 2.0.0
 last_verified: 2026-05-22
 applies_to: [processors]
-keywords: [processors, availableprocessors, conditionalresponseprocessor, overview]
+keywords: [processors, ConditionalResponseProcessor, ProcessorConfiguration]
 summary: "Returns the first configured response whose rule matches the incoming request metadata, or the configured default response when no rule matches."
 ---
+<!-- Verified-against: QaaS.Common.Processors\QaaS.Common.Processors\ConditionalResponseProcessor.cs -->
+
 # ConditionalResponseProcessor
 
 Returns the first configured response whose rule matches the incoming request metadata, or the configured default response when no rule matches.
 
-## What It Does
+## What it does
 
-Evaluates the configured rules in order and returns the response from the first rule whose request-header or path-parameter condition matches the incoming request.
+Returns the first configured response whose rule matches the incoming request metadata, or the configured default response when no rule matches. See [Configuration ▸ tableView](configuration/tableView.md) for the full field reference and [Configuration ▸ yamlView](configuration/yamlView.md) for a minimal scaffold.
 
-If no rule matches, it falls back to the configured default response. This makes it useful for lightweight branching behavior without writing custom processor code.
-
-## YAML Example
+## YAML example
 
 ```yaml
-Stubs:
-  - Name: ConditionalResponseProcessorStub
-    Processor: ConditionalResponseProcessor
-
-    ProcessorConfiguration:
-      DefaultContentType: text/plain; charset=utf-8
-      DefaultStatusCode: 404
-      DefaultBody: route not found
-      Rules:
-        - RequestHeaderName: X-Mode
-          ExpectedValue: advanced
-          ContentType: text/plain; charset=utf-8
-          StatusCode: 202
-          ResponseBody: advanced mode enabled
-
-Servers:
-  - Http:
-      Port: 8080
-      IsLocalhost: true
-      Endpoints:
-        - Path: /health
-          Actions:
-            - Name: HealthAction
-              Method: Get
-              TransactionStubName: ConditionalResponseProcessorStub
+Sessions:
+  - Name: ConditionalResponseProcessorSession
+    Processors:
+      - Name: ConditionalResponseProcessorStep
+        Processor: ConditionalResponseProcessor
+        ProcessorConfiguration:
+        Rules: []
+        DefaultBody:
+        DefaultStatusCode:
+        DefaultContentType:
+        DefaultResponseHeaders:
 ```
 
-## What This Configuration Does
 
-This stub checks the incoming `X-Mode` request header first. If the header value is `advanced`, it returns `202` and the text body `advanced mode enabled`.
+## Where it lives
 
-If the header is missing or has a different value, the rule does not match and the processor falls back to the default `404` response with the body `route not found`.
+| | |
+|--|--|
+| **Plugin family** | processors |
+| **YAML key** | `ConditionalResponseProcessor` |
+| **Schema** | [`processors.schema.json`](../../../_generated/schemas/processors.md) |
+| **Source** | `QaaS.Common.Processors\QaaS.Common.Processors\ConditionalResponseProcessor.cs` |
+
+## See also
+
+- [processors index](../../index.md)
+- [Custom processor authoring guide](../../custom-authoring-guide.md)

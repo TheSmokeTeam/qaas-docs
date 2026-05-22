@@ -1,21 +1,25 @@
 ---
-id: assertions.availableassertions.hermeticbyinputoutputpercentageinrange.configuration.yamlview
+id: assertions.available.hermeticbyinputoutputpercentageinrange.configuration.yamlview
 type: reference
 status: stable
 since: 2.0.0
 last_verified: 2026-05-22
 applies_to: [assertions]
-keywords: [assertions, availableassertions, hermeticbyinputoutputpercentageinrange, configuration, yamlview]
-summary: "AssertionConfiguration:"
+keywords: [assertions, HermeticByInputOutputPercentageInRange, yaml, scaffold]
+summary: "Minimal YAML scaffold for HermeticByInputOutputPercentageInRange AssertionConfiguration — copy, fill the blanks, drop into a Session step."
 ---
-# HermeticByInputOutputPercentageInRange Configurations Yaml View
+<!-- Verified-against: QaaS.JsonSchemaExtensions/generated-schemas/assertions.schema.json -->
+
+# HermeticByInputOutputPercentageInRange — Configuration (YAML scaffold)
+
+Drop this into the `AssertionConfiguration` block of a Session step. Field meanings are in [tableView](tableView.md).
 
 ```yaml
 AssertionConfiguration:
-  ExpectedMaximumPercentage:
+  OutputNames: []
+  InputNames: []
   ExpectedMinimumPercentage:
+  ExpectedMaximumPercentage:
   InputsAreOutputs:
   MidpointRounding:
-  InputNames: []
-  OutputNames: []
 ```

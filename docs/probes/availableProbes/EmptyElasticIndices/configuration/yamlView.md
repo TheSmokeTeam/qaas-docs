@@ -1,23 +1,25 @@
 ---
-id: probes.availableprobes.emptyelasticindices.configuration.yamlview
+id: probes.available.emptyelasticindices.configuration.yamlview
 type: reference
 status: stable
 since: 2.0.0
 last_verified: 2026-05-22
 applies_to: [probes]
-keywords: [probes, availableprobes, emptyelasticindices, configuration, yamlview]
-summary: "ProbeConfiguration:"
+keywords: [probes, EmptyElasticIndices, yaml, scaffold]
+summary: "Minimal YAML scaffold for EmptyElasticIndices ProbeConfiguration — copy, fill the blanks, drop into a Session step."
 ---
-# EmptyElasticIndices Configurations Yaml View
+<!-- Verified-against: QaaS.JsonSchemaExtensions/generated-schemas/probes.schema.json -->
+
+# EmptyElasticIndices — Configuration (YAML scaffold)
+
+Drop this into the `ProbeConfiguration` block of a Session step. Field meanings are in [tableView](tableView.md).
 
 ```yaml
 ProbeConfiguration:
+  MatchQueryString:
   IndexPattern:
-  Password:
   Url:
   Username:
-  AllowInvalidServerCertificates:
-  MatchQueryString:
+  Password:
   RequestTimeoutMs:
-  UseGlobalDict:
 ```

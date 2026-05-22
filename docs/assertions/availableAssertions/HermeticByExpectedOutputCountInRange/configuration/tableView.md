@@ -1,19 +1,24 @@
 ---
-id: assertions.availableassertions.hermeticbyexpectedoutputcountinrange.configuration.tableview
+id: assertions.available.hermeticbyexpectedoutputcountinrange.configuration.tableview
 type: reference
 status: stable
 since: 2.0.0
 last_verified: 2026-05-22
 applies_to: [assertions]
-keywords: [assertions, availableassertions, hermeticbyexpectedoutputcountinrange, configuration, tableview]
-summary: "HermeticByExpectedOutputCountInRange Configurations Table View"
+keywords: [assertions, HermeticByExpectedOutputCountInRange, configuration, reference]
+summary: "Field-by-field reference for HermeticByExpectedOutputCountInRange AssertionConfiguration keys, types, defaults and descriptions, generated from assertions.schema.json."
 ---
-# HermeticByExpectedOutputCountInRange Configurations Table View
+<!-- Verified-against: QaaS.JsonSchemaExtensions/generated-schemas/assertions.schema.json -->
+
+# HermeticByExpectedOutputCountInRange — Configuration (table view)
+
+Generated from `assertions.schema.json`. Every field below is verified against the JSON schema at `QaaS.JsonSchemaExtensions/generated-schemas/assertions.schema.json`.
 
 | Property Path | Type | Required | Default | Description |
 | ------------- | ---- | -------- | ------- | ----------- |
-| `AssertionConfiguration` | `object or string` | &#10006 |  | Checks for IO hermetics by comparing the count of multiple outputs in a given session with certain names to be between a given expected maximum limit and minimum limit. `DataSources`: Not used. `Session Support`: Supports multiple sessions assertion. CommunicationData objects with same names will be referenced both by InputNames or OutputNames |
-| `AssertionConfiguration.ExpectedMaximumCount` | `integer or string` | &#10004 |  | The expected maximum count of the items in the given output names in the given session |
+| `AssertionConfiguration` | `object or string` | &#10006 |  |  |
+| `AssertionConfiguration.OutputNames` | `array or string` | &#10004 |  | The names of the outputs to sum the counts of and then compare them to the expected count field in the given session |
 | `AssertionConfiguration.ExpectedMinimumCount` | `integer or string` | &#10004 |  | The expected minimum count of the items in the given output names in the given session |
-| `AssertionConfiguration.OutputNames` | `list or string` | &#10004 |  | The names of the outputs to sum the counts of and then compare them to the expected count field in the given session |
-| `AssertionConfiguration.OutputNames[]` | `string` | &#10006 |  |  |
+| `AssertionConfiguration.ExpectedMaximumCount` | `integer or string` | &#10004 |  | The expected maximum count of the items in the given output names in the given session |
+
+See [yamlView](yamlView.md) for a minimal scaffold and [overview](../overview.md) for a runnable example.
