@@ -10,7 +10,7 @@ summary: "QaaS.Framework.Protocols is the Framework solution's integration packa
 ---
 # QaaS.Framework.Protocols
 
-`QaaS.Framework.Protocols` is the Framework solution's integration package for external I/O. It combines protocol contracts, protocol-specific configuration objects, concrete implementations, factories, and supporting utilities. The project consumes the shared session and data model from [QaaS.Framework.SDK](./sdk.md) and turns those objects into real reads, sends, fetches, and request-response interactions.
+`QaaS.Framework.Protocols` is the Framework solution's integration package for external I/O. It combines protocol contracts, protocol-specific configuration objects, concrete implementations, factories, and supporting utilities. The project consumes the shared session and data surface from [QaaS.Framework.SDK](./sdk.md) and turns those objects into real reads, sends, fetches, and request-response interactions.
 
 ## What this project contains
 

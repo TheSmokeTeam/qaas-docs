@@ -16,7 +16,7 @@ In practice, the Framework comes into play in three places:
 
 - [QaaS.Runner](../qaas/index.md) uses it to load configuration, bind YAML into runtime objects, build [session actions](../qaas/userInterfaces/runner/configurationSections/sessions/overview.md), execute protocols, and evaluate hooks.
 - [QaaS.Mocker](../mocker/index.md) uses it to load mock definitions, resolve [DataSources](../mocker/userInterfaces/mocker/configurationSections/dataSources/overview.md) and [Processors](../processors/index.md), and translate runtime objects into HTTP, gRPC, or socket behavior.
-- Custom [QaaS.Common.Generators](../generators/index.md), [QaaS.Common.Assertions](../assertions/index.md), [QaaS.Common.Probes](../probes/index.md), and [QaaS.Common.Processors](../processors/index.md) depend on [QaaS.Framework.SDK](./projects/sdk.md) because it defines the shared object model and base classes they plug into.
+- Custom [QaaS.Common.Generators](../generators/index.md), [QaaS.Common.Assertions](../assertions/index.md), [QaaS.Common.Probes](../probes/index.md), and [QaaS.Common.Processors](../processors/index.md) depend on [QaaS.Framework.SDK](./projects/sdk.md) because it defines the shared object surface and base classes they plug into.
 
 This section documents the current contents of those projects as they exist in the solution today.
 
@@ -24,7 +24,7 @@ This section documents the current contents of those projects as they exist in t
 
 | Project | What it contains | Companion test project |
 | --- | --- | --- |
-| [QaaS.Framework.SDK](./projects/sdk.md) | Core runtime contracts and object model: contexts, execution data, session and communication objects, data sources, hook interfaces and base classes, metadata, filters, and helper extensions. | `QaaS.Framework.SDK.Tests` |
+| [QaaS.Framework.SDK](./projects/sdk.md) | Core runtime contracts and object surface: contexts, execution data, session and communication objects, data sources, hook interfaces and base classes, metadata, filters, and helper extensions. | `QaaS.Framework.SDK.Tests` |
 | [QaaS.Framework.Configurations](./projects/configuration.md) | Configuration loading pipeline: YAML ingestion, HTTP YAML sources, placeholder resolution, `<<` collapse handling, reference expansion, recursive binding, recursive validation, and partial-update helpers. | `QaaS.Framework.Configurations.Tests` |
 | [QaaS.Framework.Executions](./projects/executions.md) | Shared execution infrastructure: `IRunner`, `BaseExecution`, `BaseExecutionBuilder`, loader and logging support, CLI parser builders, and help-text generation. | `QaaS.Framework.Executions.Tests` |
 | [QaaS.Framework.Infrastructure](./projects/infrastructure.md) | Small shared utility package containing date and time helpers, filesystem-safe naming, and `IDomainBuilder<T>`. | No dedicated test project in the solution |

@@ -19,7 +19,7 @@ summary: "QaaS.Framework.Infrastructure is the smallest runtime package in the F
 This file contains the package's time-conversion helpers:
 
 - `ConvertDateTimeToUtcByTimeZoneOffset` converts a local time to UTC by using the supplied summer-time offset.
-- `ConvertDateTimeFromUtcToTimeZoneByTimeZoneOffset` converts a UTC timestamp back to local time by using the same offset model.
+- `ConvertDateTimeFromUtcToTimeZoneByTimeZoneOffset` converts a UTC timestamp back to local time by using the same offset basis.
 
 The implementation also contains timezone resolution support that keeps the offset-based conversion logic aligned with daylight-saving rules. When no timezone id is supplied, the helpers fall back to `Asia/Jerusalem`, and the resolver keeps that default working across platforms without exposing platform-specific timezone names in the public API.
 

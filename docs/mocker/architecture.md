@@ -38,7 +38,7 @@ Multiple endpoints can reuse the same stub, which keeps response logic centraliz
 
 ### Servers
 
-The preferred runtime model is `Servers`, a list where each item can host one protocol configuration. In practice that means one mocker process can expose several HTTP servers, several gRPC servers, or a mixture of protocols at the same time.
+The preferred runtime shape is `Servers`, a list where each item can host one protocol configuration. In practice that means one mocker process can expose several HTTP servers, several gRPC servers, or a mixture of protocols at the same time.
 
 For HTTP, the path is:
 

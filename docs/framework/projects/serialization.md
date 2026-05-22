@@ -85,7 +85,7 @@ The current implementation includes several format-specific behaviors that are w
 - several deserializers return `null` for `null` payloads instead of throwing
 - YAML deserialization contains a special case for empty payloads when the requested type is `string`
 
-This package is used heavily by the SDK for session and communication serialization, but it remains a separate package because the serialization layer is intentionally reusable outside of the SDK's higher-level object model.
+This package is used heavily by the SDK for session and communication serialization, but it remains a separate package because the serialization layer is intentionally reusable outside of the SDK's higher-level object surface.
 
 ## Main source areas
 

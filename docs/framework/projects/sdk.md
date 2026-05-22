@@ -6,11 +6,11 @@ since: 2.0.0
 last_verified: 2026-05-22
 applies_to: [framework]
 keywords: [framework, projects, sdk]
-summary: "QaaS.Framework.SDK is the main runtime-contract package in the Framework solution. It defines the object model that the rest of QaaS works with: contexts, execution data, sessions, communications, ..."
+summary: "QaaS.Framework.SDK is the main runtime-contract package. It defines the object surface QaaS works with: contexts, execution data, sessions, communications."
 ---
 # QaaS.Framework.SDK
 
-`QaaS.Framework.SDK` is the main runtime-contract package in the Framework solution. It defines the object model that the rest of QaaS works with: contexts, execution data, sessions, communications, data sources, hook contracts, hook base classes, metadata, and helper extensions. Any hook package that integrates with the Framework depends on this package because it is the shared vocabulary for the runtime.
+`QaaS.Framework.SDK` is the main runtime-contract package in the Framework solution. It defines the object surface that the rest of QaaS works with: contexts, execution data, sessions, communications, data sources, hook contracts, hook base classes, metadata, and helper extensions. Any hook package that integrates with the Framework depends on this package because it is the shared vocabulary for the runtime.
 
 ## What this project contains
 
@@ -41,9 +41,9 @@ The `DataSourceObjects` folder contains:
 
 `DataSource` is the runtime object used when the framework needs to retrieve or reuse data. `DataSourceBuilder` is the configuration and fluent-builder shape for constructing those sources. It supports serializer and deserializer metadata, dependency selection by name or regex, and YAML-friendly configuration output.
 
-### Session, communication, and metadata model
+### Session, communication, and metadata surface
 
-The `Session` folder contains the runtime data model that most hooks and protocols work with:
+The `Session` folder contains the runtime data surface that most hooks and protocols work with:
 
 - `DataObjects/`
 - `CommunicationDataObjects/`
@@ -117,7 +117,7 @@ The current implementation provides the following runtime behavior:
 - `DataSource` supports cached and lazy retrieval behavior depending on how it is configured.
 - The hook base classes load their configuration from the root configuration and validate it through the shared configuration package.
 - `SessionDataSerialization` serializes and deserializes session and communication payloads by using the Serialization package's factories and `SpecificTypeConfig`.
-- The extension methods cover casting, filtering, lookup, metadata-path access, and logging enrichment across the runtime data model.
+- The extension methods cover casting, filtering, lookup, metadata-path access, and logging enrichment across the runtime data surface.
 
 ## Main source areas
 

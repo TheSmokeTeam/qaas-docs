@@ -16,7 +16,7 @@ summary: "QaaS.Framework.Policies contains the Framework solution's policy-chain
 
 ### Core policy chain
 
-The chain model is implemented in:
+The chain shape is implemented in:
 
 - `Policy.cs`
 - `PolicyBuilder.cs`
@@ -46,7 +46,7 @@ This part of the project handles multi-stage and ramping load behavior. It is wh
 
 ### Configuration objects
 
-The `ConfigurationObjects` folder contains the public configuration model used by the builder:
+The `ConfigurationObjects` folder contains the public configuration surface used by the builder:
 
 - `CountPolicyConfig.cs`
 - `TimeoutPolicyConfig.cs`
@@ -55,7 +55,7 @@ The `ConfigurationObjects` folder contains the public configuration model used b
 - `AdvancedLoadBalancePolicyConfig.cs`
 - `IPolicyConfig.cs`
 
-`AdvancedLoadBalancePolicyConfig` also defines `StageConfig`, which is the package's stage model. Each stage can define a `Rate`, `Amount`, `TimeoutMs`, and `TimeIntervalMs`.
+`AdvancedLoadBalancePolicyConfig` also defines `StageConfig`, which is the package's stage shape. Each stage can define a `Rate`, `Amount`, `TimeoutMs`, and `TimeIntervalMs`.
 
 ### Exceptions and timing abstraction
 
