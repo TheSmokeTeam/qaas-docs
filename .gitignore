@@ -4,6 +4,9 @@ site/
 # Knowledge graph artifacts (local only)
 graphify-out/
 
+# Planning agent scratch (local only)
+planning/.tmp-*
+
 # Python
 __pycache__/
 *.py[cod]
