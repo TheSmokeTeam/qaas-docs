@@ -1,19 +1,14 @@
 ---
 id: probes.available.osrestartpods.overview
-slug: osrestartpods
 type: reference
 status: stable
 since: 2.0.0
 last_verified: 2026-05-22
 applies_to: [probes]
-prerequisites: []
-code_langs: [yaml, csharp]
 keywords: [probes, OsRestartPods, ProbeConfiguration]
-ai_summary: "Probe that restarts all pods with configured labels in the configured namespace"
-tags: [probes]
-canonical_url: /probes/availableProbes/OsRestartPods/overview/
-# Verified-against: QaaS.Common.Probes\QaaS.Common.Probes\OsProbes\OsRestartPods.cs
+summary: "Probe that restarts all pods with configured labels in the configured namespace"
 ---
+<!-- Verified-against: QaaS.Common.Probes\QaaS.Common.Probes\OsProbes\OsRestartPods.cs -->
 
 # OsRestartPods
 

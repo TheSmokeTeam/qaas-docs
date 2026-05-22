@@ -1,19 +1,14 @@
 ---
 id: probes.available.deleterabbitmqexchanges.overview
-slug: deleterabbitmqexchanges
 type: reference
 status: stable
 since: 2.0.0
 last_verified: 2026-05-22
 applies_to: [probes]
-prerequisites: []
-code_langs: [yaml, csharp]
 keywords: [probes, DeleteRabbitMqExchanges, ProbeConfiguration]
-ai_summary: "Probe that deletes rabbitmq exchanges"
-tags: [probes]
-canonical_url: /probes/availableProbes/DeleteRabbitMqExchanges/overview/
-# Verified-against: QaaS.Common.Probes\QaaS.Common.Probes\RabbitMqProbes\DeleteRabbitMqExchanges.cs
+summary: "Probe that deletes rabbitmq exchanges"
 ---
+<!-- Verified-against: QaaS.Common.Probes\QaaS.Common.Probes\RabbitMqProbes\DeleteRabbitMqExchanges.cs -->
 
 # DeleteRabbitMqExchanges
 

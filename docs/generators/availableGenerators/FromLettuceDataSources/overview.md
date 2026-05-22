@@ -1,19 +1,14 @@
 ---
 id: generators.available.fromlettucedatasources.overview
-slug: fromlettucedatasources
 type: reference
 status: stable
 since: 2.0.0
 last_verified: 2026-05-22
 applies_to: [generators]
-prerequisites: []
-code_langs: [yaml, csharp]
 keywords: [generators, FromLettuceDataSources, GeneratorConfiguration]
-ai_summary: "Generates data from the enumerable of data sources it receives that is in `Lettuce` file format, presumes all items in the enumerable are deserialized into <see cref=\"SerializationType.Json\"/>"
-tags: [generators]
-canonical_url: /generators/availableGenerators/FromLettuceDataSources/overview/
-# Verified-against: QaaS.Common.Generators\QaaS.Common.Generators\FromDataSourcesGenerators\FromLettuceDataSources.cs
+summary: "Generates data from the enumerable of data sources it receives that is in `Lettuce` file format, presumes all items in the enumerable are deserialized into <see cref=\"SerializationType.Json\"/>"
 ---
+<!-- Verified-against: QaaS.Common.Generators\QaaS.Common.Generators\FromDataSourcesGenerators\FromLettuceDataSources.cs -->
 
 # FromLettuceDataSources
 

@@ -1,19 +1,14 @@
 ---
 id: probes.available.emptyelasticindices.overview
-slug: emptyelasticindices
 type: reference
 status: stable
 since: 2.0.0
 last_verified: 2026-05-22
 applies_to: [probes]
-prerequisites: []
-code_langs: [yaml, csharp]
 keywords: [probes, EmptyElasticIndices, ProbeConfiguration]
-ai_summary: "Empties elastic indices by their index pattern"
-tags: [probes]
-canonical_url: /probes/availableProbes/EmptyElasticIndices/overview/
-# Verified-against: QaaS.Common.Probes\QaaS.Common.Probes\ElasticProbes\EmptyElasticIndices.cs
+summary: "Empties elastic indices by their index pattern"
 ---
+<!-- Verified-against: QaaS.Common.Probes\QaaS.Common.Probes\ElasticProbes\EmptyElasticIndices.cs -->
 
 # EmptyElasticIndices
 

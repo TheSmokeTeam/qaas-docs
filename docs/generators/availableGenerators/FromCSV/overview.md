@@ -1,19 +1,14 @@
 ---
 id: generators.available.fromcsv.overview
-slug: fromcsv
 type: reference
 status: stable
 since: 2.0.0
 last_verified: 2026-05-22
 applies_to: [generators]
-prerequisites: []
-code_langs: [yaml, csharp]
 keywords: [generators, FromCSV, GeneratorConfiguration]
-ai_summary: "Reads CSV files from the configured file-system path and turns each row into generated data items."
-tags: [generators]
-canonical_url: /generators/availableGenerators/FromCSV/overview/
-# Verified-against: QaaS.Common.Generators\QaaS.Common.Generators\FromExternalSourceGenerators\FromCSV.cs
+summary: "Reads CSV files from the configured file-system path and turns each row into generated data items."
 ---
+<!-- Verified-against: QaaS.Common.Generators\QaaS.Common.Generators\FromExternalSourceGenerators\FromCSV.cs -->
 
 # FromCSV
 

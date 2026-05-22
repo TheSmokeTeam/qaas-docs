@@ -1,19 +1,14 @@
 ---
 id: processors.available.conditionalresponseprocessor.overview
-slug: conditionalresponseprocessor
 type: reference
 status: stable
 since: 2.0.0
 last_verified: 2026-05-22
 applies_to: [processors]
-prerequisites: []
-code_langs: [yaml, csharp]
 keywords: [processors, ConditionalResponseProcessor, ProcessorConfiguration]
-ai_summary: "Returns the first configured response whose rule matches the incoming request metadata, or the configured default response when no rule matches."
-tags: [processors]
-canonical_url: /processors/availableProcessors/ConditionalResponseProcessor/overview/
-# Verified-against: QaaS.Common.Processors\QaaS.Common.Processors\ConditionalResponseProcessor.cs
+summary: "Returns the first configured response whose rule matches the incoming request metadata, or the configured default response when no rule matches."
 ---
+<!-- Verified-against: QaaS.Common.Processors\QaaS.Common.Processors\ConditionalResponseProcessor.cs -->
 
 # ConditionalResponseProcessor
 

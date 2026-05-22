@@ -1,19 +1,14 @@
 ---
 id: probes.available.osscaledeploymentpods.overview
-slug: osscaledeploymentpods
 type: reference
 status: stable
 since: 2.0.0
 last_verified: 2026-05-22
 applies_to: [probes]
-prerequisites: []
-code_langs: [yaml, csharp]
 keywords: [probes, OsScaleDeploymentPods, ProbeConfiguration]
-ai_summary: "Probe that scales openshift deployments"
-tags: [probes]
-canonical_url: /probes/availableProbes/OsScaleDeploymentPods/overview/
-# Verified-against: QaaS.Common.Probes\QaaS.Common.Probes\OsProbes\OsScaleDeploymentPods.cs
+summary: "Probe that scales openshift deployments"
 ---
+<!-- Verified-against: QaaS.Common.Probes\QaaS.Common.Probes\OsProbes\OsScaleDeploymentPods.cs -->
 
 # OsScaleDeploymentPods
 

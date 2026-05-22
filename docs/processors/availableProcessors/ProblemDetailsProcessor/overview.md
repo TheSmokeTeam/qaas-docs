@@ -1,19 +1,14 @@
 ---
 id: processors.available.problemdetailsprocessor.overview
-slug: problemdetailsprocessor
 type: reference
 status: stable
 since: 2.0.0
 last_verified: 2026-05-22
 applies_to: [processors]
-prerequisites: []
-code_langs: [yaml, csharp]
 keywords: [processors, ProblemDetailsProcessor, ProcessorConfiguration]
-ai_summary: "Returns an RFC 7807 style problem-details JSON response using the configured status and fields."
-tags: [processors]
-canonical_url: /processors/availableProcessors/ProblemDetailsProcessor/overview/
-# Verified-against: QaaS.Common.Processors\QaaS.Common.Processors\ProblemDetailsProcessor.cs
+summary: "Returns an RFC 7807 style problem-details JSON response using the configured status and fields."
 ---
+<!-- Verified-against: QaaS.Common.Processors\QaaS.Common.Processors\ProblemDetailsProcessor.cs -->
 
 # ProblemDetailsProcessor
 

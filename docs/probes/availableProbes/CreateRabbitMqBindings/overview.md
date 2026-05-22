@@ -1,19 +1,14 @@
 ---
 id: probes.available.createrabbitmqbindings.overview
-slug: createrabbitmqbindings
 type: reference
 status: stable
 since: 2.0.0
 last_verified: 2026-05-22
 applies_to: [probes]
-prerequisites: []
-code_langs: [yaml, csharp]
 keywords: [probes, CreateRabbitMqBindings, ProbeConfiguration]
-ai_summary: "Creates RabbitMQ bindings between exchanges and queues or between exchanges by using the configured binding definitions."
-tags: [probes]
-canonical_url: /probes/availableProbes/CreateRabbitMqBindings/overview/
-# Verified-against: QaaS.Common.Probes\QaaS.Common.Probes\RabbitMqProbes\CreateRabbitMqBindings.cs
+summary: "Creates RabbitMQ bindings between exchanges and queues or between exchanges by using the configured binding definitions."
 ---
+<!-- Verified-against: QaaS.Common.Probes\QaaS.Common.Probes\RabbitMqProbes\CreateRabbitMqBindings.cs -->
 
 # CreateRabbitMqBindings
 

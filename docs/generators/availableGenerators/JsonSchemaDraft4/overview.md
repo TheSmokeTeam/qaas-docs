@@ -1,19 +1,14 @@
 ---
 id: generators.available.jsonschemadraft4.overview
-slug: jsonschemadraft4
 type: reference
 status: stable
 since: 2.0.0
 last_verified: 2026-05-22
 applies_to: [generators]
-prerequisites: []
-code_langs: [yaml, csharp]
 keywords: [generators, JsonSchemaDraft4, GeneratorConfiguration]
-ai_summary: "Generates JSON data that conforms to a configured JSON Schema Draft 4 document."
-tags: [generators]
-canonical_url: /generators/availableGenerators/JsonSchemaDraft4/overview/
-# Verified-against: QaaS.Common.Generators\QaaS.Common.Generators\JsonGenerators\JsonSchemaDraft4.cs
+summary: "Generates JSON data that conforms to a configured JSON Schema Draft 4 document."
 ---
+<!-- Verified-against: QaaS.Common.Generators\QaaS.Common.Generators\JsonGenerators\JsonSchemaDraft4.cs -->
 
 # JsonSchemaDraft4
 

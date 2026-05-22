@@ -1,19 +1,14 @@
 ---
 id: assertions.available.hermeticbyexpectedoutputcount.configuration.tableview
-slug: tableview
 type: reference
 status: stable
 since: 2.0.0
 last_verified: 2026-05-22
 applies_to: [assertions]
-prerequisites: [assertions/availableAssertions/HermeticByExpectedOutputCount/overview.md]
-code_langs: [yaml]
 keywords: [assertions, HermeticByExpectedOutputCount, configuration, reference]
-ai_summary: "Field-by-field reference for HermeticByExpectedOutputCount AssertionConfiguration keys, types, defaults and descriptions, generated from assertions.schema.json."
-tags: [assertions]
-canonical_url: /assertions/availableAssertions/HermeticByExpectedOutputCount/configuration/tableView/
-# Verified-against: QaaS.JsonSchemaExtensions/generated-schemas/assertions.schema.json
+summary: "Field-by-field reference for HermeticByExpectedOutputCount AssertionConfiguration keys, types, defaults and descriptions, generated from assertions.schema.json."
 ---
+<!-- Verified-against: QaaS.JsonSchemaExtensions/generated-schemas/assertions.schema.json -->
 
 # HermeticByExpectedOutputCount — Configuration (table view)
 

@@ -1,19 +1,14 @@
 ---
 id: probes.available.osrestartpods.configuration.tableview
-slug: tableview
 type: reference
 status: stable
 since: 2.0.0
 last_verified: 2026-05-22
 applies_to: [probes]
-prerequisites: [probes/availableProbes/OsRestartPods/overview.md]
-code_langs: [yaml]
 keywords: [probes, OsRestartPods, configuration, reference]
-ai_summary: "Field-by-field reference for OsRestartPods ProbeConfiguration keys, types, defaults and descriptions, generated from probes.schema.json."
-tags: [probes]
-canonical_url: /probes/availableProbes/OsRestartPods/configuration/tableView/
-# Verified-against: QaaS.JsonSchemaExtensions/generated-schemas/probes.schema.json
+summary: "Field-by-field reference for OsRestartPods ProbeConfiguration keys, types, defaults and descriptions, generated from probes.schema.json."
 ---
+<!-- Verified-against: QaaS.JsonSchemaExtensions/generated-schemas/probes.schema.json -->
 
 # OsRestartPods — Configuration (table view)
 

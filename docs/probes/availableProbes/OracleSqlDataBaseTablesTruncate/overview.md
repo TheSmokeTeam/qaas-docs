@@ -1,19 +1,14 @@
 ---
 id: probes.available.oraclesqldatabasetablestruncate.overview
-slug: oraclesqldatabasetablestruncate
 type: reference
 status: stable
 since: 2.0.0
 last_verified: 2026-05-22
 applies_to: [probes]
-prerequisites: []
-code_langs: [yaml, csharp]
 keywords: [probes, OracleSqlDataBaseTablesTruncate, ProbeConfiguration]
-ai_summary: "Truncates the configured Oracle tables in the order they are listed."
-tags: [probes]
-canonical_url: /probes/availableProbes/OracleSqlDataBaseTablesTruncate/overview/
-# Verified-against: QaaS.Common.Probes\QaaS.Common.Probes\SqlProbes\OracleSqlDataBaseTablesTruncate.cs
+summary: "Truncates the configured Oracle tables in the order they are listed."
 ---
+<!-- Verified-against: QaaS.Common.Probes\QaaS.Common.Probes\SqlProbes\OracleSqlDataBaseTablesTruncate.cs -->
 
 # OracleSqlDataBaseTablesTruncate
 

@@ -1,19 +1,14 @@
 ---
 id: probes.available.createrabbitmqvirtualhosts.overview
-slug: createrabbitmqvirtualhosts
 type: reference
 status: stable
 since: 2.0.0
 last_verified: 2026-05-22
 applies_to: [probes]
-prerequisites: []
-code_langs: [yaml, csharp]
 keywords: [probes, CreateRabbitMqVirtualHosts, ProbeConfiguration]
-ai_summary: "Creates RabbitMQ virtual hosts through the management API so later probes and sessions can use them."
-tags: [probes]
-canonical_url: /probes/availableProbes/CreateRabbitMqVirtualHosts/overview/
-# Verified-against: QaaS.Common.Probes\QaaS.Common.Probes\RabbitMqProbes\CreateRabbitMqVirtualHosts.cs
+summary: "Creates RabbitMQ virtual hosts through the management API so later probes and sessions can use them."
 ---
+<!-- Verified-against: QaaS.Common.Probes\QaaS.Common.Probes\RabbitMqProbes\CreateRabbitMqVirtualHosts.cs -->
 
 # CreateRabbitMqVirtualHosts
 

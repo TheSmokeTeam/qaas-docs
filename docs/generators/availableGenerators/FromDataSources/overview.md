@@ -1,19 +1,14 @@
 ---
 id: generators.available.fromdatasources.overview
-slug: fromdatasources
 type: reference
 status: stable
 since: 2.0.0
 last_verified: 2026-05-22
 applies_to: [generators]
-prerequisites: []
-code_langs: [yaml, csharp]
 keywords: [generators, FromDataSources, GeneratorConfiguration]
-ai_summary: "Generates data from the enumerable of data sources it receives"
-tags: [generators]
-canonical_url: /generators/availableGenerators/FromDataSources/overview/
-# Verified-against: QaaS.Common.Generators\QaaS.Common.Generators\FromDataSourcesGenerators\FromDataSources.cs
+summary: "Generates data from the enumerable of data sources it receives"
 ---
+<!-- Verified-against: QaaS.Common.Generators\QaaS.Common.Generators\FromDataSourcesGenerators\FromDataSources.cs -->
 
 # FromDataSources
 

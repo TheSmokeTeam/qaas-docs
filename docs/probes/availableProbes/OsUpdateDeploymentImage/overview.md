@@ -1,19 +1,14 @@
 ---
 id: probes.available.osupdatedeploymentimage.overview
-slug: osupdatedeploymentimage
 type: reference
 status: stable
 since: 2.0.0
 last_verified: 2026-05-22
 applies_to: [probes]
-prerequisites: []
-code_langs: [yaml, csharp]
 keywords: [probes, OsUpdateDeploymentImage, ProbeConfiguration]
-ai_summary: "Updates the image of one container in a Kubernetes or OpenShift deployment."
-tags: [probes]
-canonical_url: /probes/availableProbes/OsUpdateDeploymentImage/overview/
-# Verified-against: QaaS.Common.Probes\QaaS.Common.Probes\OsProbes\OsUpdateDeploymentImage.cs
+summary: "Updates the image of one container in a Kubernetes or OpenShift deployment."
 ---
+<!-- Verified-against: QaaS.Common.Probes\QaaS.Common.Probes\OsProbes\OsUpdateDeploymentImage.cs -->
 
 # OsUpdateDeploymentImage
 

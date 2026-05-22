@@ -1,19 +1,14 @@
 ---
 id: probes.available.deleteelasticindices.configuration.tableview
-slug: tableview
 type: reference
 status: stable
 since: 2.0.0
 last_verified: 2026-05-22
 applies_to: [probes]
-prerequisites: [probes/availableProbes/DeleteElasticIndices/overview.md]
-code_langs: [yaml]
 keywords: [probes, DeleteElasticIndices, configuration, reference]
-ai_summary: "Field-by-field reference for DeleteElasticIndices ProbeConfiguration keys, types, defaults and descriptions, generated from probes.schema.json."
-tags: [probes]
-canonical_url: /probes/availableProbes/DeleteElasticIndices/configuration/tableView/
-# Verified-against: QaaS.JsonSchemaExtensions/generated-schemas/probes.schema.json
+summary: "Field-by-field reference for DeleteElasticIndices ProbeConfiguration keys, types, defaults and descriptions, generated from probes.schema.json."
 ---
+<!-- Verified-against: QaaS.JsonSchemaExtensions/generated-schemas/probes.schema.json -->
 
 # DeleteElasticIndices — Configuration (table view)
 

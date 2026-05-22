@@ -1,19 +1,14 @@
 ---
 id: probes.available.osedityamlconfigmap.overview
-slug: osedityamlconfigmap
 type: reference
 status: stable
 since: 2.0.0
 last_verified: 2026-05-22
 applies_to: [probes]
-prerequisites: []
-code_langs: [yaml, csharp]
 keywords: [probes, OsEditYamlConfigMap, ProbeConfiguration]
-ai_summary: "OsEditYamlConfigMap probe plugin (auto-generated reference)."
-tags: [probes]
-canonical_url: /probes/availableProbes/OsEditYamlConfigMap/overview/
-# Verified-against: QaaS.Common.Probes\QaaS.Common.Probes\ConfigurationObjects\Os\OsEditYamlConfigMapConfig.cs
+summary: "OsEditYamlConfigMap probe plugin (auto-generated reference)."
 ---
+<!-- Verified-against: QaaS.Common.Probes\QaaS.Common.Probes\ConfigurationObjects\Os\OsEditYamlConfigMapConfig.cs -->
 
 # OsEditYamlConfigMap
 

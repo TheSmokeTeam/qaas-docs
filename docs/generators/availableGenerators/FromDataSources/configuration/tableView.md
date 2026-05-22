@@ -1,19 +1,14 @@
 ---
 id: generators.available.fromdatasources.configuration.tableview
-slug: tableview
 type: reference
 status: stable
 since: 2.0.0
 last_verified: 2026-05-22
 applies_to: [generators]
-prerequisites: [generators/availableGenerators/FromDataSources/overview.md]
-code_langs: [yaml]
 keywords: [generators, FromDataSources, configuration, reference]
-ai_summary: "Field-by-field reference for FromDataSources GeneratorConfiguration keys, types, defaults and descriptions, generated from generators.schema.json."
-tags: [generators]
-canonical_url: /generators/availableGenerators/FromDataSources/configuration/tableView/
-# Verified-against: QaaS.JsonSchemaExtensions/generated-schemas/generators.schema.json
+summary: "Field-by-field reference for FromDataSources GeneratorConfiguration keys, types, defaults and descriptions, generated from generators.schema.json."
 ---
+<!-- Verified-against: QaaS.JsonSchemaExtensions/generated-schemas/generators.schema.json -->
 
 # FromDataSources — Configuration (table view)
 

@@ -1,19 +1,14 @@
 ---
 id: probes.available.deleterabbitmqpermissions.overview
-slug: deleterabbitmqpermissions
 type: reference
 status: stable
 since: 2.0.0
 last_verified: 2026-05-22
 applies_to: [probes]
-prerequisites: []
-code_langs: [yaml, csharp]
 keywords: [probes, DeleteRabbitMqPermissions, ProbeConfiguration]
-ai_summary: "Deletes RabbitMQ user permissions in one or more virtual hosts through the management API."
-tags: [probes]
-canonical_url: /probes/availableProbes/DeleteRabbitMqPermissions/overview/
-# Verified-against: QaaS.Common.Probes\QaaS.Common.Probes\RabbitMqProbes\DeleteRabbitMqPermissions.cs
+summary: "Deletes RabbitMQ user permissions in one or more virtual hosts through the management API."
 ---
+<!-- Verified-against: QaaS.Common.Probes\QaaS.Common.Probes\RabbitMqProbes\DeleteRabbitMqPermissions.cs -->
 
 # DeleteRabbitMqPermissions
 

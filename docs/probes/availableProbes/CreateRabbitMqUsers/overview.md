@@ -1,19 +1,14 @@
 ---
 id: probes.available.createrabbitmqusers.overview
-slug: createrabbitmqusers
 type: reference
 status: stable
 since: 2.0.0
 last_verified: 2026-05-22
 applies_to: [probes]
-prerequisites: []
-code_langs: [yaml, csharp]
 keywords: [probes, CreateRabbitMqUsers, ProbeConfiguration]
-ai_summary: "Creates RabbitMQ users through the management API with the configured credentials and tags."
-tags: [probes]
-canonical_url: /probes/availableProbes/CreateRabbitMqUsers/overview/
-# Verified-against: QaaS.Common.Probes\QaaS.Common.Probes\RabbitMqProbes\CreateRabbitMqUsers.cs
+summary: "Creates RabbitMQ users through the management API with the configured credentials and tags."
 ---
+<!-- Verified-against: QaaS.Common.Probes\QaaS.Common.Probes\RabbitMqProbes\CreateRabbitMqUsers.cs -->
 
 # CreateRabbitMqUsers
 

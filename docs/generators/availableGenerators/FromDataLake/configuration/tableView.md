@@ -1,19 +1,14 @@
 ---
 id: generators.available.fromdatalake.configuration.tableview
-slug: tableview
 type: reference
 status: stable
 since: 2.0.0
 last_verified: 2026-05-22
 applies_to: [generators]
-prerequisites: [generators/availableGenerators/FromDataLake/overview.md]
-code_langs: [yaml]
 keywords: [generators, FromDataLake, configuration, reference]
-ai_summary: "Field-by-field reference for FromDataLake GeneratorConfiguration keys, types, defaults and descriptions, generated from generators.schema.json."
-tags: [generators]
-canonical_url: /generators/availableGenerators/FromDataLake/configuration/tableView/
-# Verified-against: QaaS.JsonSchemaExtensions/generated-schemas/generators.schema.json
+summary: "Field-by-field reference for FromDataLake GeneratorConfiguration keys, types, defaults and descriptions, generated from generators.schema.json."
 ---
+<!-- Verified-against: QaaS.JsonSchemaExtensions/generated-schemas/generators.schema.json -->
 
 # FromDataLake — Configuration (table view)
 

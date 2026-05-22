@@ -1,19 +1,14 @@
 ---
 id: probes.available.flushallredis.configuration.tableview
-slug: tableview
 type: reference
 status: stable
 since: 2.0.0
 last_verified: 2026-05-22
 applies_to: [probes]
-prerequisites: [probes/availableProbes/FlushAllRedis/overview.md]
-code_langs: [yaml]
 keywords: [probes, FlushAllRedis, configuration, reference]
-ai_summary: "Field-by-field reference for FlushAllRedis ProbeConfiguration keys, types, defaults and descriptions, generated from probes.schema.json."
-tags: [probes]
-canonical_url: /probes/availableProbes/FlushAllRedis/configuration/tableView/
-# Verified-against: QaaS.JsonSchemaExtensions/generated-schemas/probes.schema.json
+summary: "Field-by-field reference for FlushAllRedis ProbeConfiguration keys, types, defaults and descriptions, generated from probes.schema.json."
 ---
+<!-- Verified-against: QaaS.JsonSchemaExtensions/generated-schemas/probes.schema.json -->
 
 # FlushAllRedis — Configuration (table view)
 

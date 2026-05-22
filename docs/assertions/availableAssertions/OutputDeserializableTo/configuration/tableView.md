@@ -1,19 +1,14 @@
 ---
 id: assertions.available.outputdeserializableto.configuration.tableview
-slug: tableview
 type: reference
 status: stable
 since: 2.0.0
 last_verified: 2026-05-22
 applies_to: [assertions]
-prerequisites: [assertions/availableAssertions/OutputDeserializableTo/overview.md]
-code_langs: [yaml]
 keywords: [assertions, OutputDeserializableTo, configuration, reference]
-ai_summary: "Field-by-field reference for OutputDeserializableTo AssertionConfiguration keys, types, defaults and descriptions, generated from assertions.schema.json."
-tags: [assertions]
-canonical_url: /assertions/availableAssertions/OutputDeserializableTo/configuration/tableView/
-# Verified-against: QaaS.JsonSchemaExtensions/generated-schemas/assertions.schema.json
+summary: "Field-by-field reference for OutputDeserializableTo AssertionConfiguration keys, types, defaults and descriptions, generated from assertions.schema.json."
 ---
+<!-- Verified-against: QaaS.JsonSchemaExtensions/generated-schemas/assertions.schema.json -->
 
 # OutputDeserializableTo — Configuration (table view)
 

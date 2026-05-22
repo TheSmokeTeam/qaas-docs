@@ -1,19 +1,14 @@
 ---
 id: probes.available.oschangedeploymentenvvars.overview
-slug: oschangedeploymentenvvars
 type: reference
 status: stable
 since: 2.0.0
 last_verified: 2026-05-22
 applies_to: [probes]
-prerequisites: []
-code_langs: [yaml, csharp]
 keywords: [probes, OsChangeDeploymentEnvVars, ProbeConfiguration]
-ai_summary: "Probe that changes the environment variables of a deployment"
-tags: [probes]
-canonical_url: /probes/availableProbes/OsChangeDeploymentEnvVars/overview/
-# Verified-against: QaaS.Common.Probes\QaaS.Common.Probes\OsProbes\OsChangeDeploymentEnvVars.cs
+summary: "Probe that changes the environment variables of a deployment"
 ---
+<!-- Verified-against: QaaS.Common.Probes\QaaS.Common.Probes\OsProbes\OsChangeDeploymentEnvVars.cs -->
 
 # OsChangeDeploymentEnvVars
 

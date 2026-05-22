@@ -1,19 +1,14 @@
 ---
 id: probes.available.createrabbitmqqueues.overview
-slug: createrabbitmqqueues
 type: reference
 status: stable
 since: 2.0.0
 last_verified: 2026-05-22
 applies_to: [probes]
-prerequisites: []
-code_langs: [yaml, csharp]
 keywords: [probes, CreateRabbitMqQueues, ProbeConfiguration]
-ai_summary: "Creates one or more RabbitMQ queues with the configured queue arguments."
-tags: [probes]
-canonical_url: /probes/availableProbes/CreateRabbitMqQueues/overview/
-# Verified-against: QaaS.Common.Probes\QaaS.Common.Probes\RabbitMqProbes\CreateRabbitMqQueues.cs
+summary: "Creates one or more RabbitMQ queues with the configured queue arguments."
 ---
+<!-- Verified-against: QaaS.Common.Probes\QaaS.Common.Probes\RabbitMqProbes\CreateRabbitMqQueues.cs -->
 
 # CreateRabbitMqQueues
 

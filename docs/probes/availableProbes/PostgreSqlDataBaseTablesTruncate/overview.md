@@ -1,19 +1,14 @@
 ---
 id: probes.available.postgresqldatabasetablestruncate.overview
-slug: postgresqldatabasetablestruncate
 type: reference
 status: stable
 since: 2.0.0
 last_verified: 2026-05-22
 applies_to: [probes]
-prerequisites: []
-code_langs: [yaml, csharp]
 keywords: [probes, PostgreSqlDataBaseTablesTruncate, ProbeConfiguration]
-ai_summary: "Truncates the configured PostgreSQL tables in the order they are listed."
-tags: [probes]
-canonical_url: /probes/availableProbes/PostgreSqlDataBaseTablesTruncate/overview/
-# Verified-against: QaaS.Common.Probes\QaaS.Common.Probes\SqlProbes\PostgreSqlDataBaseTablesTruncate.cs
+summary: "Truncates the configured PostgreSQL tables in the order they are listed."
 ---
+<!-- Verified-against: QaaS.Common.Probes\QaaS.Common.Probes\SqlProbes\PostgreSqlDataBaseTablesTruncate.cs -->
 
 # PostgreSqlDataBaseTablesTruncate
 

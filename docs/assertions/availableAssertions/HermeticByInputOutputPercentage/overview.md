@@ -1,19 +1,14 @@
 ---
 id: assertions.available.hermeticbyinputoutputpercentage.overview
-slug: hermeticbyinputoutputpercentage
 type: reference
 status: stable
 since: 2.0.0
 last_verified: 2026-05-22
 applies_to: [assertions]
-prerequisites: []
-code_langs: [yaml, csharp]
 keywords: [assertions, HermeticByInputOutputPercentage, AssertionConfiguration]
-ai_summary: "Performs a hermetic test by comparing the the count of a specified input with multiplied by given percentage modifier to the count of a specified output"
-tags: [assertions]
-canonical_url: /assertions/availableAssertions/HermeticByInputOutputPercentage/overview/
-# Verified-against: QaaS.Common.Assertions\QaaS.Common.Assertions\Hermetic\HermeticByInputOutputPercentage.cs
+summary: "Performs a hermetic test by comparing the the count of a specified input with multiplied by given percentage modifier to the count of a specified output"
 ---
+<!-- Verified-against: QaaS.Common.Assertions\QaaS.Common.Assertions\Hermetic\HermeticByInputOutputPercentage.cs -->
 
 # HermeticByInputOutputPercentage
 

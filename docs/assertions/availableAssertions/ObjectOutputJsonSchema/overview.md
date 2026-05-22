@@ -1,19 +1,14 @@
 ---
 id: assertions.available.objectoutputjsonschema.overview
-slug: objectoutputjsonschema
 type: reference
 status: stable
 since: 2.0.0
 last_verified: 2026-05-22
 applies_to: [assertions]
-prerequisites: []
-code_langs: [yaml, csharp]
 keywords: [assertions, ObjectOutputJsonSchema, AssertionConfiguration]
-ai_summary: "Validates that each configured output item matches at least one JSON schema provided by the configured data sources."
-tags: [assertions]
-canonical_url: /assertions/availableAssertions/ObjectOutputJsonSchema/overview/
-# Verified-against: QaaS.Common.Assertions\QaaS.Common.Assertions\SchemaLogic\ObjectOutputJsonSchema.cs
+summary: "Validates that each configured output item matches at least one JSON schema provided by the configured data sources."
 ---
+<!-- Verified-against: QaaS.Common.Assertions\QaaS.Common.Assertions\SchemaLogic\ObjectOutputJsonSchema.cs -->
 
 # ObjectOutputJsonSchema
 

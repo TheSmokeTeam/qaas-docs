@@ -1,19 +1,14 @@
 ---
 id: probes.available.emptyredisbychunks.overview
-slug: emptyredisbychunks
 type: reference
 status: stable
 since: 2.0.0
 last_verified: 2026-05-22
 applies_to: [probes]
-prerequisites: []
-code_langs: [yaml, csharp]
 keywords: [probes, EmptyRedisByChunks, ProbeConfiguration]
-ai_summary: "Scans the selected Redis database in batches and deletes matching keys, optionally filtering them by a regular expression."
-tags: [probes]
-canonical_url: /probes/availableProbes/EmptyRedisByChunks/overview/
-# Verified-against: QaaS.Common.Probes\QaaS.Common.Probes\RedisProbes\EmptyRedisByChunks.cs
+summary: "Scans the selected Redis database in batches and deletes matching keys, optionally filtering them by a regular expression."
 ---
+<!-- Verified-against: QaaS.Common.Probes\QaaS.Common.Probes\RedisProbes\EmptyRedisByChunks.cs -->
 
 # EmptyRedisByChunks
 

@@ -1,19 +1,14 @@
 ---
 id: probes.available.executerediscommands.overview
-slug: executerediscommands
 type: reference
 status: stable
 since: 2.0.0
 last_verified: 2026-05-22
 applies_to: [probes]
-prerequisites: []
-code_langs: [yaml, csharp]
 keywords: [probes, ExecuteRedisCommands, ProbeConfiguration]
-ai_summary: "Executes multiple Redis commands sequentially against the selected Redis database, allowing later commands to reuse earlier results through redisResults placeholders and optional looping."
-tags: [probes]
-canonical_url: /probes/availableProbes/ExecuteRedisCommands/overview/
-# Verified-against: QaaS.Common.Probes\QaaS.Common.Probes\RedisProbes\ExecuteRedisCommands.cs
+summary: "Executes multiple Redis commands sequentially against the selected Redis database, allowing later commands to reuse earlier results through redisResults placeholders and optional looping."
 ---
+<!-- Verified-against: QaaS.Common.Probes\QaaS.Common.Probes\RedisProbes\ExecuteRedisCommands.cs -->
 
 # ExecuteRedisCommands
 

@@ -1,19 +1,14 @@
 ---
 id: generators.available.stacking.overview
-slug: stacking
 type: reference
 status: stable
 since: 2.0.0
 last_verified: 2026-05-22
 applies_to: [generators]
-prerequisites: []
-code_langs: [yaml, csharp]
 keywords: [generators, Stacking, GeneratorConfiguration]
-ai_summary: "Combines multiple data sources by taking a configured number of items from each source in turn."
-tags: [generators]
-canonical_url: /generators/availableGenerators/Stacking/overview/
-# Verified-against: QaaS.Common.Generators\QaaS.Common.Generators\FromDataSourcesGenerators\Stacking.cs
+summary: "Combines multiple data sources by taking a configured number of items from each source in turn."
 ---
+<!-- Verified-against: QaaS.Common.Generators\QaaS.Common.Generators\FromDataSourcesGenerators\Stacking.cs -->
 
 # Stacking
 

@@ -1,19 +1,14 @@
 ---
 id: probes.available.flushdbredis.overview
-slug: flushdbredis
 type: reference
 status: stable
 since: 2.0.0
 last_verified: 2026-05-22
 applies_to: [probes]
-prerequisites: []
-code_langs: [yaml, csharp]
 keywords: [probes, FlushDbRedis, ProbeConfiguration]
-ai_summary: "Runs Redis FLUSHDB against the selected Redis database."
-tags: [probes]
-canonical_url: /probes/availableProbes/FlushDbRedis/overview/
-# Verified-against: QaaS.Common.Probes\QaaS.Common.Probes\RedisProbes\FlushDbRedis.cs
+summary: "Runs Redis FLUSHDB against the selected Redis database."
 ---
+<!-- Verified-against: QaaS.Common.Probes\QaaS.Common.Probes\RedisProbes\FlushDbRedis.cs -->
 
 # FlushDbRedis
 

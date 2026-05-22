@@ -1,19 +1,14 @@
 ---
 id: probes.available.createrabbitmqexchanges.configuration.tableview
-slug: tableview
 type: reference
 status: stable
 since: 2.0.0
 last_verified: 2026-05-22
 applies_to: [probes]
-prerequisites: [probes/availableProbes/CreateRabbitMqExchanges/overview.md]
-code_langs: [yaml]
 keywords: [probes, CreateRabbitMqExchanges, configuration, reference]
-ai_summary: "Field-by-field reference for CreateRabbitMqExchanges ProbeConfiguration keys, types, defaults and descriptions, generated from probes.schema.json."
-tags: [probes]
-canonical_url: /probes/availableProbes/CreateRabbitMqExchanges/configuration/tableView/
-# Verified-against: QaaS.JsonSchemaExtensions/generated-schemas/probes.schema.json
+summary: "Field-by-field reference for CreateRabbitMqExchanges ProbeConfiguration keys, types, defaults and descriptions, generated from probes.schema.json."
 ---
+<!-- Verified-against: QaaS.JsonSchemaExtensions/generated-schemas/probes.schema.json -->
 
 # CreateRabbitMqExchanges — Configuration (table view)
 

@@ -1,19 +1,14 @@
 ---
 id: processors.available.texttransformprocessor.configuration.tableview
-slug: tableview
 type: reference
 status: stable
 since: 2.0.0
 last_verified: 2026-05-22
 applies_to: [processors]
-prerequisites: [processors/availableProcessors/TextTransformProcessor/overview.md]
-code_langs: [yaml]
 keywords: [processors, TextTransformProcessor, configuration, reference]
-ai_summary: "Field-by-field reference for TextTransformProcessor ProcessorConfiguration keys, types, defaults and descriptions, generated from processors.schema.json."
-tags: [processors]
-canonical_url: /processors/availableProcessors/TextTransformProcessor/configuration/tableView/
-# Verified-against: QaaS.JsonSchemaExtensions/generated-schemas/processors.schema.json
+summary: "Field-by-field reference for TextTransformProcessor ProcessorConfiguration keys, types, defaults and descriptions, generated from processors.schema.json."
 ---
+<!-- Verified-against: QaaS.JsonSchemaExtensions/generated-schemas/processors.schema.json -->
 
 # TextTransformProcessor — Configuration (table view)
 

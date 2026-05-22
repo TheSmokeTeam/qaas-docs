@@ -1,19 +1,14 @@
 ---
 id: probes.available.upsertrabbitmqpermissions.configuration.tableview
-slug: tableview
 type: reference
 status: stable
 since: 2.0.0
 last_verified: 2026-05-22
 applies_to: [probes]
-prerequisites: [probes/availableProbes/UpsertRabbitMqPermissions/overview.md]
-code_langs: [yaml]
 keywords: [probes, UpsertRabbitMqPermissions, configuration, reference]
-ai_summary: "Field-by-field reference for UpsertRabbitMqPermissions ProbeConfiguration keys, types, defaults and descriptions, generated from probes.schema.json."
-tags: [probes]
-canonical_url: /probes/availableProbes/UpsertRabbitMqPermissions/configuration/tableView/
-# Verified-against: QaaS.JsonSchemaExtensions/generated-schemas/probes.schema.json
+summary: "Field-by-field reference for UpsertRabbitMqPermissions ProbeConfiguration keys, types, defaults and descriptions, generated from probes.schema.json."
 ---
+<!-- Verified-against: QaaS.JsonSchemaExtensions/generated-schemas/probes.schema.json -->
 
 # UpsertRabbitMqPermissions — Configuration (table view)
 

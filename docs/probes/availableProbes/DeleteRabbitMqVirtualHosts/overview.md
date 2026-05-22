@@ -1,19 +1,14 @@
 ---
 id: probes.available.deleterabbitmqvirtualhosts.overview
-slug: deleterabbitmqvirtualhosts
 type: reference
 status: stable
 since: 2.0.0
 last_verified: 2026-05-22
 applies_to: [probes]
-prerequisites: []
-code_langs: [yaml, csharp]
 keywords: [probes, DeleteRabbitMqVirtualHosts, ProbeConfiguration]
-ai_summary: "Deletes RabbitMQ virtual hosts through the management API."
-tags: [probes]
-canonical_url: /probes/availableProbes/DeleteRabbitMqVirtualHosts/overview/
-# Verified-against: QaaS.Common.Probes\QaaS.Common.Probes\RabbitMqProbes\DeleteRabbitMqVirtualHosts.cs
+summary: "Deletes RabbitMQ virtual hosts through the management API."
 ---
+<!-- Verified-against: QaaS.Common.Probes\QaaS.Common.Probes\RabbitMqProbes\DeleteRabbitMqVirtualHosts.cs -->
 
 # DeleteRabbitMqVirtualHosts
 

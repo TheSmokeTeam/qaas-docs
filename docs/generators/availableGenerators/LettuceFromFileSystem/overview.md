@@ -1,19 +1,14 @@
 ---
 id: generators.available.lettucefromfilesystem.overview
-slug: lettucefromfilesystem
 type: reference
 status: stable
 since: 2.0.0
 last_verified: 2026-05-22
 applies_to: [generators]
-prerequisites: []
-code_langs: [yaml, csharp]
 keywords: [generators, LettuceFromFileSystem, GeneratorConfiguration]
-ai_summary: "Retrieves lettuce-formatted files from the configured file-system path and exposes them as generated messages with their routing key metadata."
-tags: [generators]
-canonical_url: /generators/availableGenerators/LettuceFromFileSystem/overview/
-# Verified-against: QaaS.Common.Generators\QaaS.Common.Generators\FromExternalSourceGenerators\LettuceFromFileSystem.cs
+summary: "Retrieves lettuce-formatted files from the configured file-system path and exposes them as generated messages with their routing key metadata."
 ---
+<!-- Verified-against: QaaS.Common.Generators\QaaS.Common.Generators\FromExternalSourceGenerators\LettuceFromFileSystem.cs -->
 
 # LettuceFromFileSystem
 

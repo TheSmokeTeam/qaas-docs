@@ -1,19 +1,14 @@
 ---
 id: probes.available.flushallredis.overview
-slug: flushallredis
 type: reference
 status: stable
 since: 2.0.0
 last_verified: 2026-05-22
 applies_to: [probes]
-prerequisites: []
-code_langs: [yaml, csharp]
 keywords: [probes, FlushAllRedis, ProbeConfiguration]
-ai_summary: "Runs Redis FLUSHALL against the configured server to remove keys from every database."
-tags: [probes]
-canonical_url: /probes/availableProbes/FlushAllRedis/overview/
-# Verified-against: QaaS.Common.Probes\QaaS.Common.Probes\RedisProbes\FlushAllRedis.cs
+summary: "Runs Redis FLUSHALL against the configured server to remove keys from every database."
 ---
+<!-- Verified-against: QaaS.Common.Probes\QaaS.Common.Probes\RedisProbes\FlushAllRedis.cs -->
 
 # FlushAllRedis
 

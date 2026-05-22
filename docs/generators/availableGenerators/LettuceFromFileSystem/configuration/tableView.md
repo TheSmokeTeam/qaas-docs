@@ -1,19 +1,14 @@
 ---
 id: generators.available.lettucefromfilesystem.configuration.tableview
-slug: tableview
 type: reference
 status: stable
 since: 2.0.0
 last_verified: 2026-05-22
 applies_to: [generators]
-prerequisites: [generators/availableGenerators/LettuceFromFileSystem/overview.md]
-code_langs: [yaml]
 keywords: [generators, LettuceFromFileSystem, configuration, reference]
-ai_summary: "Field-by-field reference for LettuceFromFileSystem GeneratorConfiguration keys, types, defaults and descriptions, generated from generators.schema.json."
-tags: [generators]
-canonical_url: /generators/availableGenerators/LettuceFromFileSystem/configuration/tableView/
-# Verified-against: QaaS.JsonSchemaExtensions/generated-schemas/generators.schema.json
+summary: "Field-by-field reference for LettuceFromFileSystem GeneratorConfiguration keys, types, defaults and descriptions, generated from generators.schema.json."
 ---
+<!-- Verified-against: QaaS.JsonSchemaExtensions/generated-schemas/generators.schema.json -->
 
 # LettuceFromFileSystem — Configuration (table view)
 

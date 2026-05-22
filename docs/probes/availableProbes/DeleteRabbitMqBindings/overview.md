@@ -1,19 +1,14 @@
 ---
 id: probes.available.deleterabbitmqbindings.overview
-slug: deleterabbitmqbindings
 type: reference
 status: stable
 since: 2.0.0
 last_verified: 2026-05-22
 applies_to: [probes]
-prerequisites: []
-code_langs: [yaml, csharp]
 keywords: [probes, DeleteRabbitMqBindings, ProbeConfiguration]
-ai_summary: "Deletes RabbitMQ bindings using the configured source, destination, routing key, and binding type."
-tags: [probes]
-canonical_url: /probes/availableProbes/DeleteRabbitMqBindings/overview/
-# Verified-against: QaaS.Common.Probes\QaaS.Common.Probes\RabbitMqProbes\DeleteRabbitMqBindings.cs
+summary: "Deletes RabbitMQ bindings using the configured source, destination, routing key, and binding type."
 ---
+<!-- Verified-against: QaaS.Common.Probes\QaaS.Common.Probes\RabbitMqProbes\DeleteRabbitMqBindings.cs -->
 
 # DeleteRabbitMqBindings
 

@@ -1,19 +1,14 @@
 ---
 id: processors.available.jsonenvelopeprocessor.overview
-slug: jsonenvelopeprocessor
 type: reference
 status: stable
 since: 2.0.0
 last_verified: 2026-05-22
 applies_to: [processors]
-prerequisites: []
-code_langs: [yaml, csharp]
 keywords: [processors, JsonEnvelopeProcessor, ProcessorConfiguration]
-ai_summary: "Wraps the incoming request payload and optional request metadata in a JSON envelope response."
-tags: [processors]
-canonical_url: /processors/availableProcessors/JsonEnvelopeProcessor/overview/
-# Verified-against: QaaS.Common.Processors\QaaS.Common.Processors\JsonEnvelopeProcessor.cs
+summary: "Wraps the incoming request payload and optional request metadata in a JSON envelope response."
 ---
+<!-- Verified-against: QaaS.Common.Processors\QaaS.Common.Processors\JsonEnvelopeProcessor.cs -->
 
 # JsonEnvelopeProcessor
 

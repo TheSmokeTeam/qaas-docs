@@ -1,19 +1,14 @@
 ---
 id: assertions.available.hermeticbyinputoutputpercentageinrange.overview
-slug: hermeticbyinputoutputpercentageinrange
 type: reference
 status: stable
 since: 2.0.0
 last_verified: 2026-05-22
 applies_to: [assertions]
-prerequisites: []
-code_langs: [yaml, csharp]
 keywords: [assertions, HermeticByInputOutputPercentageInRange, AssertionConfiguration]
-ai_summary: "Checks whether the percentage between configured inputs and outputs stays within the expected minimum and maximum range."
-tags: [assertions]
-canonical_url: /assertions/availableAssertions/HermeticByInputOutputPercentageInRange/overview/
-# Verified-against: QaaS.Common.Assertions\QaaS.Common.Assertions\Hermetic\HermeticByInputOutputPercentageInRange.cs
+summary: "Checks whether the percentage between configured inputs and outputs stays within the expected minimum and maximum range."
 ---
+<!-- Verified-against: QaaS.Common.Assertions\QaaS.Common.Assertions\Hermetic\HermeticByInputOutputPercentageInRange.cs -->
 
 # HermeticByInputOutputPercentageInRange
 

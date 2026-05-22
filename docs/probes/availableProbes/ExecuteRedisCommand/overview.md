@@ -1,19 +1,14 @@
 ---
 id: probes.available.executerediscommand.overview
-slug: executerediscommand
 type: reference
 status: stable
 since: 2.0.0
 last_verified: 2026-05-22
 applies_to: [probes]
-prerequisites: []
-code_langs: [yaml, csharp]
 keywords: [probes, ExecuteRedisCommand, ProbeConfiguration]
-ai_summary: "Executes one Redis command with optional arguments against the selected Redis database, optionally storing the result for later redisResults placeholder reuse."
-tags: [probes]
-canonical_url: /probes/availableProbes/ExecuteRedisCommand/overview/
-# Verified-against: QaaS.Common.Probes\QaaS.Common.Probes\RedisProbes\ExecuteRedisCommand.cs
+summary: "Executes one Redis command with optional arguments against the selected Redis database, optionally storing the result for later redisResults placeholder reuse."
 ---
+<!-- Verified-against: QaaS.Common.Probes\QaaS.Common.Probes\RedisProbes\ExecuteRedisCommand.cs -->
 
 # ExecuteRedisCommand
 

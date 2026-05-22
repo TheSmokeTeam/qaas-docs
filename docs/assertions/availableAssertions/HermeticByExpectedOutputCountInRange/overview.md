@@ -1,19 +1,14 @@
 ---
 id: assertions.available.hermeticbyexpectedoutputcountinrange.overview
-slug: hermeticbyexpectedoutputcountinrange
 type: reference
 status: stable
 since: 2.0.0
 last_verified: 2026-05-22
 applies_to: [assertions]
-prerequisites: []
-code_langs: [yaml, csharp]
 keywords: [assertions, HermeticByExpectedOutputCountInRange, AssertionConfiguration]
-ai_summary: "Performs a hermetic test by comparing the count of a given output in a session to a given expected minimum and maximum"
-tags: [assertions]
-canonical_url: /assertions/availableAssertions/HermeticByExpectedOutputCountInRange/overview/
-# Verified-against: QaaS.Common.Assertions\QaaS.Common.Assertions\Hermetic\HermeticByExpectedOutputCountInRange.cs
+summary: "Performs a hermetic test by comparing the count of a given output in a session to a given expected minimum and maximum"
 ---
+<!-- Verified-against: QaaS.Common.Assertions\QaaS.Common.Assertions\Hermetic\HermeticByExpectedOutputCountInRange.cs -->
 
 # HermeticByExpectedOutputCountInRange
 

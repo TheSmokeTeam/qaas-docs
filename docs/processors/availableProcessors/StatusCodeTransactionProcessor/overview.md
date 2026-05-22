@@ -1,19 +1,14 @@
 ---
 id: processors.available.statuscodetransactionprocessor.overview
-slug: statuscodetransactionprocessor
 type: reference
 status: stable
 since: 2.0.0
 last_verified: 2026-05-22
 applies_to: [processors]
-prerequisites: []
-code_langs: [yaml, csharp]
 keywords: [processors, StatusCodeTransactionProcessor, ProcessorConfiguration]
-ai_summary: "Skim Transaction Processor which returns empty-bodied data objects with Status Code configuration."
-tags: [processors]
-canonical_url: /processors/availableProcessors/StatusCodeTransactionProcessor/overview/
-# Verified-against: QaaS.Common.Processors\QaaS.Common.Processors\StatusCodeTransactionProcessor.cs
+summary: "Skim Transaction Processor which returns empty-bodied data objects with Status Code configuration."
 ---
+<!-- Verified-against: QaaS.Common.Processors\QaaS.Common.Processors\StatusCodeTransactionProcessor.cs -->
 
 # StatusCodeTransactionProcessor
 

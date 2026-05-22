@@ -1,19 +1,14 @@
 ---
 id: assertions.available.httpstatus.overview
-slug: httpstatus
 type: reference
 status: stable
 since: 2.0.0
 last_verified: 2026-05-22
 applies_to: [assertions]
-prerequisites: []
-code_langs: [yaml, csharp]
 keywords: [assertions, HttpStatus, AssertionConfiguration]
-ai_summary: "Performs a logic test on the http status of all selected outputs in a session by checking they all have the desired http status code"
-tags: [assertions]
-canonical_url: /assertions/availableAssertions/HttpStatus/overview/
-# Verified-against: QaaS.Common.Assertions\QaaS.Common.Assertions\HttpMetaDataLogic\HttpStatus.cs
+summary: "Performs a logic test on the http status of all selected outputs in a session by checking they all have the desired http status code"
 ---
+<!-- Verified-against: QaaS.Common.Assertions\QaaS.Common.Assertions\HttpMetaDataLogic\HttpStatus.cs -->
 
 # HttpStatus
 

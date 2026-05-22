@@ -1,19 +1,14 @@
 ---
 id: assertions.available.hermeticbyexpectedoutputcount.overview
-slug: hermeticbyexpectedoutputcount
 type: reference
 status: stable
 since: 2.0.0
 last_verified: 2026-05-22
 applies_to: [assertions]
-prerequisites: []
-code_langs: [yaml, csharp]
 keywords: [assertions, HermeticByExpectedOutputCount, AssertionConfiguration]
-ai_summary: "Performs a hermetic test by comparing the count of a given output in a session to a given expected count"
-tags: [assertions]
-canonical_url: /assertions/availableAssertions/HermeticByExpectedOutputCount/overview/
-# Verified-against: QaaS.Common.Assertions\QaaS.Common.Assertions\Hermetic\HermeticByExpectedOutputCount.cs
+summary: "Performs a hermetic test by comparing the count of a given output in a session to a given expected count"
 ---
+<!-- Verified-against: QaaS.Common.Assertions\QaaS.Common.Assertions\Hermetic\HermeticByExpectedOutputCount.cs -->
 
 # HermeticByExpectedOutputCount
 

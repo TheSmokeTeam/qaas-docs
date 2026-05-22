@@ -1,19 +1,14 @@
 ---
 id: probes.available.creates3bucket.overview
-slug: creates3bucket
 type: reference
 status: stable
 since: 2.0.0
 last_verified: 2026-05-22
 applies_to: [probes]
-prerequisites: []
-code_langs: [yaml, csharp]
 keywords: [probes, CreateS3Bucket, ProbeConfiguration]
-ai_summary: "Ensures the configured S3 bucket exists by creating it when it is missing."
-tags: [probes]
-canonical_url: /probes/availableProbes/CreateS3Bucket/overview/
-# Verified-against: QaaS.Common.Probes\QaaS.Common.Probes\S3Probes\CreateS3Bucket.cs
+summary: "Ensures the configured S3 bucket exists by creating it when it is missing."
 ---
+<!-- Verified-against: QaaS.Common.Probes\QaaS.Common.Probes\S3Probes\CreateS3Bucket.cs -->
 
 # CreateS3Bucket
 

@@ -1,19 +1,14 @@
 ---
 id: generators.available.fromdatalake.overview
-slug: fromdatalake
 type: reference
 status: stable
 since: 2.0.0
 last_verified: 2026-05-22
 applies_to: [generators]
-prerequisites: []
-code_langs: [yaml, csharp]
 keywords: [generators, FromDataLake, GeneratorConfiguration]
-ai_summary: "Retrieves rows from the configured data lake query and exposes each row as a generated JSON object."
-tags: [generators]
-canonical_url: /generators/availableGenerators/FromDataLake/overview/
-# Verified-against: QaaS.Common.Generators\QaaS.Common.Generators\FromDataLakeGenerator\FromDataLake.cs
+summary: "Retrieves rows from the configured data lake query and exposes each row as a generated JSON object."
 ---
+<!-- Verified-against: QaaS.Common.Generators\QaaS.Common.Generators\FromDataLakeGenerator\FromDataLake.cs -->
 
 # FromDataLake
 

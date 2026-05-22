@@ -1,19 +1,14 @@
 ---
 id: generators.available.fromsessiondatadatasources.overview
-slug: fromsessiondatadatasources
 type: reference
 status: stable
 since: 2.0.0
 last_verified: 2026-05-22
 applies_to: [generators]
-prerequisites: []
-code_langs: [yaml, csharp]
 keywords: [generators, FromSessionDataDataSources, GeneratorConfiguration]
-ai_summary: "Generates data from the enumerable of data sources it receives, presumes all items in the enumerable are serialized and can be treated as a byte array"
-tags: [generators]
-canonical_url: /generators/availableGenerators/FromSessionDataDataSources/overview/
-# Verified-against: QaaS.Common.Generators\QaaS.Common.Generators\FromDataSourcesGenerators\FromSessionDataDataSources.cs
+summary: "Generates data from the enumerable of data sources it receives, presumes all items in the enumerable are serialized and can be treated as a byte array"
 ---
+<!-- Verified-against: QaaS.Common.Generators\QaaS.Common.Generators\FromDataSourcesGenerators\FromSessionDataDataSources.cs -->
 
 # FromSessionDataDataSources
 

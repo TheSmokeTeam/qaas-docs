@@ -1,19 +1,14 @@
 ---
 id: probes.available.deletes3bucket.overview
-slug: deletes3bucket
 type: reference
 status: stable
 since: 2.0.0
 last_verified: 2026-05-22
 applies_to: [probes]
-prerequisites: []
-code_langs: [yaml, csharp]
 keywords: [probes, DeleteS3Bucket, ProbeConfiguration]
-ai_summary: "Empties the configured S3 bucket and deletes it, treating a missing bucket as an already-satisfied state."
-tags: [probes]
-canonical_url: /probes/availableProbes/DeleteS3Bucket/overview/
-# Verified-against: QaaS.Common.Probes\QaaS.Common.Probes\S3Probes\DeleteS3Bucket.cs
+summary: "Empties the configured S3 bucket and deletes it, treating a missing bucket as an already-satisfied state."
 ---
+<!-- Verified-against: QaaS.Common.Probes\QaaS.Common.Probes\S3Probes\DeleteS3Bucket.cs -->
 
 # DeleteS3Bucket
 

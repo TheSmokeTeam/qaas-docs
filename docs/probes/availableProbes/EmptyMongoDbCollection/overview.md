@@ -1,19 +1,14 @@
 ---
 id: probes.available.emptymongodbcollection.overview
-slug: emptymongodbcollection
 type: reference
 status: stable
 since: 2.0.0
 last_verified: 2026-05-22
 applies_to: [probes]
-prerequisites: []
-code_langs: [yaml, csharp]
 keywords: [probes, EmptyMongoDbCollection, ProbeConfiguration]
-ai_summary: "Deletes all documents from the configured MongoDB collection so it starts clean for the test run."
-tags: [probes]
-canonical_url: /probes/availableProbes/EmptyMongoDbCollection/overview/
-# Verified-against: QaaS.Common.Probes\QaaS.Common.Probes\MongoDbProbes\EmptyMongoDbCollection.cs
+summary: "Deletes all documents from the configured MongoDB collection so it starts clean for the test run."
 ---
+<!-- Verified-against: QaaS.Common.Probes\QaaS.Common.Probes\MongoDbProbes\EmptyMongoDbCollection.cs -->
 
 # EmptyMongoDbCollection
 

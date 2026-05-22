@@ -1,19 +1,14 @@
 ---
 id: probes.available.deleterabbitmqqueues.overview
-slug: deleterabbitmqqueues
 type: reference
 status: stable
 since: 2.0.0
 last_verified: 2026-05-22
 applies_to: [probes]
-prerequisites: []
-code_langs: [yaml, csharp]
 keywords: [probes, DeleteRabbitMqQueues, ProbeConfiguration]
-ai_summary: "Probe that deletes rabbitmq queues"
-tags: [probes]
-canonical_url: /probes/availableProbes/DeleteRabbitMqQueues/overview/
-# Verified-against: QaaS.Common.Probes\QaaS.Common.Probes\RabbitMqProbes\DeleteRabbitMqQueues.cs
+summary: "Probe that deletes rabbitmq queues"
 ---
+<!-- Verified-against: QaaS.Common.Probes\QaaS.Common.Probes\RabbitMqProbes\DeleteRabbitMqQueues.cs -->
 
 # DeleteRabbitMqQueues
 

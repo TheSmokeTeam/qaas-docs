@@ -1,19 +1,14 @@
 ---
 id: processors.available.datasourceresponseprocessor.overview
-slug: datasourceresponseprocessor
 type: reference
 status: stable
 since: 2.0.0
 last_verified: 2026-05-22
 applies_to: [processors]
-prerequisites: []
-code_langs: [yaml, csharp]
 keywords: [processors, DataSourceResponseProcessor, ProcessorConfiguration]
-ai_summary: "Builds the response from generated data produced by one configured data source."
-tags: [processors]
-canonical_url: /processors/availableProcessors/DataSourceResponseProcessor/overview/
-# Verified-against: QaaS.Common.Processors\QaaS.Common.Processors\DataSourceResponseProcessor.cs
+summary: "Builds the response from generated data produced by one configured data source."
 ---
+<!-- Verified-against: QaaS.Common.Processors\QaaS.Common.Processors\DataSourceResponseProcessor.cs -->
 
 # DataSourceResponseProcessor
 

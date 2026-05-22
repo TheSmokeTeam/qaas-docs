@@ -1,19 +1,14 @@
 ---
 id: probes.available.osexecutecommandsincontainers.overview
-slug: osexecutecommandsincontainers
 type: reference
 status: stable
 since: 2.0.0
 last_verified: 2026-05-22
 applies_to: [probes]
-prerequisites: []
-code_langs: [yaml, csharp]
 keywords: [probes, OsExecuteCommandsInContainers, ProbeConfiguration]
-ai_summary: "Probe that Executes a command passed by the `cmd` string variable on every pod and container if passed to the function"
-tags: [probes]
-canonical_url: /probes/availableProbes/OsExecuteCommandsInContainers/overview/
-# Verified-against: QaaS.Common.Probes\QaaS.Common.Probes\OsProbes\OsExecuteCommandsInContainers.cs
+summary: "Probe that Executes a command passed by the `cmd` string variable on every pod and container if passed to the function"
 ---
+<!-- Verified-against: QaaS.Common.Probes\QaaS.Common.Probes\OsProbes\OsExecuteCommandsInContainers.cs -->
 
 # OsExecuteCommandsInContainers
 

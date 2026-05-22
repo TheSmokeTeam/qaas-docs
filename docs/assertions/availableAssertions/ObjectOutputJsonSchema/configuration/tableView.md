@@ -1,19 +1,14 @@
 ---
 id: assertions.available.objectoutputjsonschema.configuration.tableview
-slug: tableview
 type: reference
 status: stable
 since: 2.0.0
 last_verified: 2026-05-22
 applies_to: [assertions]
-prerequisites: [assertions/availableAssertions/ObjectOutputJsonSchema/overview.md]
-code_langs: [yaml]
 keywords: [assertions, ObjectOutputJsonSchema, configuration, reference]
-ai_summary: "Field-by-field reference for ObjectOutputJsonSchema AssertionConfiguration keys, types, defaults and descriptions, generated from assertions.schema.json."
-tags: [assertions]
-canonical_url: /assertions/availableAssertions/ObjectOutputJsonSchema/configuration/tableView/
-# Verified-against: QaaS.JsonSchemaExtensions/generated-schemas/assertions.schema.json
+summary: "Field-by-field reference for ObjectOutputJsonSchema AssertionConfiguration keys, types, defaults and descriptions, generated from assertions.schema.json."
 ---
+<!-- Verified-against: QaaS.JsonSchemaExtensions/generated-schemas/assertions.schema.json -->
 
 # ObjectOutputJsonSchema — Configuration (table view)
 

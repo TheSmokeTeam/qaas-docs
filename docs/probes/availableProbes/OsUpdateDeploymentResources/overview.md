@@ -1,19 +1,14 @@
 ---
 id: probes.available.osupdatedeploymentresources.overview
-slug: osupdatedeploymentresources
 type: reference
 status: stable
 since: 2.0.0
 last_verified: 2026-05-22
 applies_to: [probes]
-prerequisites: []
-code_langs: [yaml, csharp]
 keywords: [probes, OsUpdateDeploymentResources, ProbeConfiguration]
-ai_summary: "Updates container resource requests and limits in a Kubernetes or OpenShift deployment."
-tags: [probes]
-canonical_url: /probes/availableProbes/OsUpdateDeploymentResources/overview/
-# Verified-against: QaaS.Common.Probes\QaaS.Common.Probes\OsProbes\OsUpdateDeploymentResources.cs
+summary: "Updates container resource requests and limits in a Kubernetes or OpenShift deployment."
 ---
+<!-- Verified-against: QaaS.Common.Probes\QaaS.Common.Probes\OsProbes\OsUpdateDeploymentResources.cs -->
 
 # OsUpdateDeploymentResources
 

@@ -1,19 +1,14 @@
 ---
 id: probes.available.osupdatestatefulsetimage.overview
-slug: osupdatestatefulsetimage
 type: reference
 status: stable
 since: 2.0.0
 last_verified: 2026-05-22
 applies_to: [probes]
-prerequisites: []
-code_langs: [yaml, csharp]
 keywords: [probes, OsUpdateStatefulSetImage, ProbeConfiguration]
-ai_summary: "Updates the image of one container in a Kubernetes or OpenShift stateful set."
-tags: [probes]
-canonical_url: /probes/availableProbes/OsUpdateStatefulSetImage/overview/
-# Verified-against: QaaS.Common.Probes\QaaS.Common.Probes\OsProbes\OsUpdateStatefulSetImage.cs
+summary: "Updates the image of one container in a Kubernetes or OpenShift stateful set."
 ---
+<!-- Verified-against: QaaS.Common.Probes\QaaS.Common.Probes\OsProbes\OsUpdateStatefulSetImage.cs -->
 
 # OsUpdateStatefulSetImage
 

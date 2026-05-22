@@ -1,19 +1,14 @@
 ---
 id: processors.available.passthroughprocessor.overview
-slug: passthroughprocessor
 type: reference
 status: stable
 since: 2.0.0
 last_verified: 2026-05-22
 applies_to: [processors]
-prerequisites: []
-code_langs: [yaml, csharp]
 keywords: [processors, PassThroughProcessor, ProcessorConfiguration]
-ai_summary: "Returns the incoming request payload unchanged while applying the configured response metadata."
-tags: [processors]
-canonical_url: /processors/availableProcessors/PassThroughProcessor/overview/
-# Verified-against: QaaS.Common.Processors\QaaS.Common.Processors\PassThroughProcessor.cs
+summary: "Returns the incoming request payload unchanged while applying the configured response metadata."
 ---
+<!-- Verified-against: QaaS.Common.Processors\QaaS.Common.Processors\PassThroughProcessor.cs -->
 
 # PassThroughProcessor
 

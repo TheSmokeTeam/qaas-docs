@@ -1,19 +1,14 @@
 ---
 id: probes.available.deleteelasticindices.overview
-slug: deleteelasticindices
 type: reference
 status: stable
 since: 2.0.0
 last_verified: 2026-05-22
 applies_to: [probes]
-prerequisites: []
-code_langs: [yaml, csharp]
 keywords: [probes, DeleteElasticIndices, ProbeConfiguration]
-ai_summary: "Deletes every Elasticsearch index that matches the configured index pattern."
-tags: [probes]
-canonical_url: /probes/availableProbes/DeleteElasticIndices/overview/
-# Verified-against: QaaS.Common.Probes\QaaS.Common.Probes\ElasticProbes\DeleteElasticIndices.cs
+summary: "Deletes every Elasticsearch index that matches the configured index pattern."
 ---
+<!-- Verified-against: QaaS.Common.Probes\QaaS.Common.Probes\ElasticProbes\DeleteElasticIndices.cs -->
 
 # DeleteElasticIndices
 

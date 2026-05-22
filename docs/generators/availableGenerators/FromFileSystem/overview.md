@@ -1,19 +1,14 @@
 ---
 id: generators.available.fromfilesystem.overview
-slug: fromfilesystem
 type: reference
 status: stable
 since: 2.0.0
 last_verified: 2026-05-22
 applies_to: [generators]
-prerequisites: []
-code_langs: [yaml, csharp]
 keywords: [generators, FromFileSystem, GeneratorConfiguration]
-ai_summary: "Retrieves data from files under a configured path in the local file system."
-tags: [generators]
-canonical_url: /generators/availableGenerators/FromFileSystem/overview/
-# Verified-against: QaaS.Common.Generators\QaaS.Common.Generators\FromExternalSourceGenerators\FromFileSystem.cs
+summary: "Retrieves data from files under a configured path in the local file system."
 ---
+<!-- Verified-against: QaaS.Common.Generators\QaaS.Common.Generators\FromExternalSourceGenerators\FromFileSystem.cs -->
 
 # FromFileSystem
 

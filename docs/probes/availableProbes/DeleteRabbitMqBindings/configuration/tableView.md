@@ -1,19 +1,14 @@
 ---
 id: probes.available.deleterabbitmqbindings.configuration.tableview
-slug: tableview
 type: reference
 status: stable
 since: 2.0.0
 last_verified: 2026-05-22
 applies_to: [probes]
-prerequisites: [probes/availableProbes/DeleteRabbitMqBindings/overview.md]
-code_langs: [yaml]
 keywords: [probes, DeleteRabbitMqBindings, configuration, reference]
-ai_summary: "Field-by-field reference for DeleteRabbitMqBindings ProbeConfiguration keys, types, defaults and descriptions, generated from probes.schema.json."
-tags: [probes]
-canonical_url: /probes/availableProbes/DeleteRabbitMqBindings/configuration/tableView/
-# Verified-against: QaaS.JsonSchemaExtensions/generated-schemas/probes.schema.json
+summary: "Field-by-field reference for DeleteRabbitMqBindings ProbeConfiguration keys, types, defaults and descriptions, generated from probes.schema.json."
 ---
+<!-- Verified-against: QaaS.JsonSchemaExtensions/generated-schemas/probes.schema.json -->
 
 # DeleteRabbitMqBindings — Configuration (table view)
 

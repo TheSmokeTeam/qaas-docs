@@ -1,19 +1,14 @@
 ---
 id: probes.available.emptys3bucket.overview
-slug: emptys3bucket
 type: reference
 status: stable
 since: 2.0.0
 last_verified: 2026-05-22
 applies_to: [probes]
-prerequisites: []
-code_langs: [yaml, csharp]
 keywords: [probes, EmptyS3Bucket, ProbeConfiguration]
-ai_summary: "Deletes objects from the configured S3 bucket, optionally constrained to a prefix, while treating a missing bucket as a no-op."
-tags: [probes]
-canonical_url: /probes/availableProbes/EmptyS3Bucket/overview/
-# Verified-against: QaaS.Common.Probes\QaaS.Common.Probes\S3Probes\EmptyS3Bucket.cs
+summary: "Deletes objects from the configured S3 bucket, optionally constrained to a prefix, while treating a missing bucket as a no-op."
 ---
+<!-- Verified-against: QaaS.Common.Probes\QaaS.Common.Probes\S3Probes\EmptyS3Bucket.cs -->
 
 # EmptyS3Bucket
 

@@ -1,19 +1,14 @@
 ---
 id: probes.available.oschangedeploymentenvvars.configuration.tableview
-slug: tableview
 type: reference
 status: stable
 since: 2.0.0
 last_verified: 2026-05-22
 applies_to: [probes]
-prerequisites: [probes/availableProbes/OsChangeDeploymentEnvVars/overview.md]
-code_langs: [yaml]
 keywords: [probes, OsChangeDeploymentEnvVars, configuration, reference]
-ai_summary: "Field-by-field reference for OsChangeDeploymentEnvVars ProbeConfiguration keys, types, defaults and descriptions, generated from probes.schema.json."
-tags: [probes]
-canonical_url: /probes/availableProbes/OsChangeDeploymentEnvVars/configuration/tableView/
-# Verified-against: QaaS.JsonSchemaExtensions/generated-schemas/probes.schema.json
+summary: "Field-by-field reference for OsChangeDeploymentEnvVars ProbeConfiguration keys, types, defaults and descriptions, generated from probes.schema.json."
 ---
+<!-- Verified-against: QaaS.JsonSchemaExtensions/generated-schemas/probes.schema.json -->
 
 # OsChangeDeploymentEnvVars — Configuration (table view)
 

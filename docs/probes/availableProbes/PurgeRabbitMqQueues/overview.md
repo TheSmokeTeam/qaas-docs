@@ -1,19 +1,14 @@
 ---
 id: probes.available.purgerabbitmqqueues.overview
-slug: purgerabbitmqqueues
 type: reference
 status: stable
 since: 2.0.0
 last_verified: 2026-05-22
 applies_to: [probes]
-prerequisites: []
-code_langs: [yaml, csharp]
 keywords: [probes, PurgeRabbitMqQueues, ProbeConfiguration]
-ai_summary: "Probe that purges rabbitmq queues"
-tags: [probes]
-canonical_url: /probes/availableProbes/PurgeRabbitMqQueues/overview/
-# Verified-against: QaaS.Common.Probes\QaaS.Common.Probes\RabbitMqProbes\PurgeRabbitMqQueues.cs
+summary: "Probe that purges rabbitmq queues"
 ---
+<!-- Verified-against: QaaS.Common.Probes\QaaS.Common.Probes\RabbitMqProbes\PurgeRabbitMqQueues.cs -->
 
 # PurgeRabbitMqQueues
 

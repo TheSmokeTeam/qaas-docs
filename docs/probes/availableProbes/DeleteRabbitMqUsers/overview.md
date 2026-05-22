@@ -1,19 +1,14 @@
 ---
 id: probes.available.deleterabbitmqusers.overview
-slug: deleterabbitmqusers
 type: reference
 status: stable
 since: 2.0.0
 last_verified: 2026-05-22
 applies_to: [probes]
-prerequisites: []
-code_langs: [yaml, csharp]
 keywords: [probes, DeleteRabbitMqUsers, ProbeConfiguration]
-ai_summary: "Deletes RabbitMQ users through the management API."
-tags: [probes]
-canonical_url: /probes/availableProbes/DeleteRabbitMqUsers/overview/
-# Verified-against: QaaS.Common.Probes\QaaS.Common.Probes\RabbitMqProbes\DeleteRabbitMqUsers.cs
+summary: "Deletes RabbitMQ users through the management API."
 ---
+<!-- Verified-against: QaaS.Common.Probes\QaaS.Common.Probes\RabbitMqProbes\DeleteRabbitMqUsers.cs -->
 
 # DeleteRabbitMqUsers
 

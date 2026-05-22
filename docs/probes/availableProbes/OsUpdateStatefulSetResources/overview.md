@@ -1,19 +1,14 @@
 ---
 id: probes.available.osupdatestatefulsetresources.overview
-slug: osupdatestatefulsetresources
 type: reference
 status: stable
 since: 2.0.0
 last_verified: 2026-05-22
 applies_to: [probes]
-prerequisites: []
-code_langs: [yaml, csharp]
 keywords: [probes, OsUpdateStatefulSetResources, ProbeConfiguration]
-ai_summary: "Updates container resource requests and limits in a Kubernetes or OpenShift stateful set."
-tags: [probes]
-canonical_url: /probes/availableProbes/OsUpdateStatefulSetResources/overview/
-# Verified-against: QaaS.Common.Probes\QaaS.Common.Probes\OsProbes\OsUpdateStatefulSetResources.cs
+summary: "Updates container resource requests and limits in a Kubernetes or OpenShift stateful set."
 ---
+<!-- Verified-against: QaaS.Common.Probes\QaaS.Common.Probes\OsProbes\OsUpdateStatefulSetResources.cs -->
 
 # OsUpdateStatefulSetResources
 

@@ -1,19 +1,14 @@
 ---
 id: generators.available.froms3.overview
-slug: froms3
 type: reference
 status: stable
 since: 2.0.0
 last_verified: 2026-05-22
 applies_to: [generators]
-prerequisites: []
-code_langs: [yaml, csharp]
 keywords: [generators, FromS3, GeneratorConfiguration]
-ai_summary: "Retrieves data from objects in a configured S3 bucket and prefix."
-tags: [generators]
-canonical_url: /generators/availableGenerators/FromS3/overview/
-# Verified-against: QaaS.Common.Generators\QaaS.Common.Generators\FromExternalSourceGenerators\FromS3.cs
+summary: "Retrieves data from objects in a configured S3 bucket and prefix."
 ---
+<!-- Verified-against: QaaS.Common.Generators\QaaS.Common.Generators\FromExternalSourceGenerators\FromS3.cs -->
 
 # FromS3
 

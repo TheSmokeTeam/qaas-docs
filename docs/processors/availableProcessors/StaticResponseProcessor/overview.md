@@ -1,19 +1,14 @@
 ---
 id: processors.available.staticresponseprocessor.overview
-slug: staticresponseprocessor
 type: reference
 status: stable
 since: 2.0.0
 last_verified: 2026-05-22
 applies_to: [processors]
-prerequisites: []
-code_langs: [yaml, csharp]
 keywords: [processors, StaticResponseProcessor, ProcessorConfiguration]
-ai_summary: "Returns a fixed UTF-8 response body with the configured status code, content type, and headers."
-tags: [processors]
-canonical_url: /processors/availableProcessors/StaticResponseProcessor/overview/
-# Verified-against: QaaS.Common.Processors\QaaS.Common.Processors\StaticResponseProcessor.cs
+summary: "Returns a fixed UTF-8 response body with the configured status code, content type, and headers."
 ---
+<!-- Verified-against: QaaS.Common.Processors\QaaS.Common.Processors\StaticResponseProcessor.cs -->
 
 # StaticResponseProcessor
 

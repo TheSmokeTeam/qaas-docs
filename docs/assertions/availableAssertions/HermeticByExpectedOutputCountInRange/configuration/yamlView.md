@@ -1,19 +1,14 @@
 ---
 id: assertions.available.hermeticbyexpectedoutputcountinrange.configuration.yamlview
-slug: yamlview
 type: reference
 status: stable
 since: 2.0.0
 last_verified: 2026-05-22
 applies_to: [assertions]
-prerequisites: [assertions/availableAssertions/HermeticByExpectedOutputCountInRange/overview.md]
-code_langs: [yaml]
 keywords: [assertions, HermeticByExpectedOutputCountInRange, yaml, scaffold]
-ai_summary: "Minimal YAML scaffold for HermeticByExpectedOutputCountInRange AssertionConfiguration — copy, fill the blanks, drop into a Session step."
-tags: [assertions]
-canonical_url: /assertions/availableAssertions/HermeticByExpectedOutputCountInRange/configuration/yamlView/
-# Verified-against: QaaS.JsonSchemaExtensions/generated-schemas/assertions.schema.json
+summary: "Minimal YAML scaffold for HermeticByExpectedOutputCountInRange AssertionConfiguration — copy, fill the blanks, drop into a Session step."
 ---
+<!-- Verified-against: QaaS.JsonSchemaExtensions/generated-schemas/assertions.schema.json -->
 
 # HermeticByExpectedOutputCountInRange — Configuration (YAML scaffold)
 

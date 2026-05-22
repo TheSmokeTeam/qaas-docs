@@ -1,19 +1,14 @@
 ---
 id: probes.available.dropmongodbcollection.overview
-slug: dropmongodbcollection
 type: reference
 status: stable
 since: 2.0.0
 last_verified: 2026-05-22
 applies_to: [probes]
-prerequisites: []
-code_langs: [yaml, csharp]
 keywords: [probes, DropMongoDbCollection, ProbeConfiguration]
-ai_summary: "Drops the configured MongoDB collection so a later run can recreate it from scratch."
-tags: [probes]
-canonical_url: /probes/availableProbes/DropMongoDbCollection/overview/
-# Verified-against: QaaS.Common.Probes\QaaS.Common.Probes\MongoDbProbes\DropMongoDbCollection.cs
+summary: "Drops the configured MongoDB collection so a later run can recreate it from scratch."
 ---
+<!-- Verified-against: QaaS.Common.Probes\QaaS.Common.Probes\MongoDbProbes\DropMongoDbCollection.cs -->
 
 # DropMongoDbCollection
 

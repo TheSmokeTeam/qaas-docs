@@ -1,19 +1,14 @@
 ---
 id: probes.available.deletes3bucket.configuration.tableview
-slug: tableview
 type: reference
 status: stable
 since: 2.0.0
 last_verified: 2026-05-22
 applies_to: [probes]
-prerequisites: [probes/availableProbes/DeleteS3Bucket/overview.md]
-code_langs: [yaml]
 keywords: [probes, DeleteS3Bucket, configuration, reference]
-ai_summary: "Field-by-field reference for DeleteS3Bucket ProbeConfiguration keys, types, defaults and descriptions, generated from probes.schema.json."
-tags: [probes]
-canonical_url: /probes/availableProbes/DeleteS3Bucket/configuration/tableView/
-# Verified-against: QaaS.JsonSchemaExtensions/generated-schemas/probes.schema.json
+summary: "Field-by-field reference for DeleteS3Bucket ProbeConfiguration keys, types, defaults and descriptions, generated from probes.schema.json."
 ---
+<!-- Verified-against: QaaS.JsonSchemaExtensions/generated-schemas/probes.schema.json -->
 
 # DeleteS3Bucket — Configuration (table view)
 

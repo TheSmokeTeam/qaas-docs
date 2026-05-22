@@ -1,19 +1,14 @@
 ---
 id: probes.available.downloadrabbitmqdefinitions.overview
-slug: downloadrabbitmqdefinitions
 type: reference
 status: stable
 since: 2.0.0
 last_verified: 2026-05-22
 applies_to: [probes]
-prerequisites: []
-code_langs: [yaml, csharp]
 keywords: [probes, DownloadRabbitMqDefinitions, ProbeConfiguration]
-ai_summary: "Downloads RabbitMQ definitions from the management API so the current topology can be captured and reused."
-tags: [probes]
-canonical_url: /probes/availableProbes/DownloadRabbitMqDefinitions/overview/
-# Verified-against: QaaS.Common.Probes\QaaS.Common.Probes\RabbitMqProbes\DownloadRabbitMqDefinitions.cs
+summary: "Downloads RabbitMQ definitions from the management API so the current topology can be captured and reused."
 ---
+<!-- Verified-against: QaaS.Common.Probes\QaaS.Common.Probes\RabbitMqProbes\DownloadRabbitMqDefinitions.cs -->
 
 # DownloadRabbitMqDefinitions
 

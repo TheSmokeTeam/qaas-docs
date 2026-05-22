@@ -1,19 +1,14 @@
 ---
 id: processors.available.requestechoprocessor.overview
-slug: requestechoprocessor
 type: reference
 status: stable
 since: 2.0.0
 last_verified: 2026-05-22
 applies_to: [processors]
-prerequisites: []
-code_langs: [yaml, csharp]
 keywords: [processors, RequestEchoProcessor, ProcessorConfiguration]
-ai_summary: "Returns a JSON response that echoes the incoming request body and optional request metadata."
-tags: [processors]
-canonical_url: /processors/availableProcessors/RequestEchoProcessor/overview/
-# Verified-against: QaaS.Common.Processors\QaaS.Common.Processors\RequestEchoProcessor.cs
+summary: "Returns a JSON response that echoes the incoming request body and optional request metadata."
 ---
+<!-- Verified-against: QaaS.Common.Processors\QaaS.Common.Processors\RequestEchoProcessor.cs -->
 
 # RequestEchoProcessor
 

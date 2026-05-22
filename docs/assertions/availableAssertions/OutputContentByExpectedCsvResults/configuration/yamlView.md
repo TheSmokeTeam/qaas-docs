@@ -1,19 +1,14 @@
 ---
 id: assertions.available.outputcontentbyexpectedcsvresults.configuration.yamlview
-slug: yamlview
 type: reference
 status: stable
 since: 2.0.0
 last_verified: 2026-05-22
 applies_to: [assertions]
-prerequisites: [assertions/availableAssertions/OutputContentByExpectedCsvResults/overview.md]
-code_langs: [yaml]
 keywords: [assertions, OutputContentByExpectedCsvResults, yaml, scaffold]
-ai_summary: "Minimal YAML scaffold for OutputContentByExpectedCsvResults AssertionConfiguration — copy, fill the blanks, drop into a Session step."
-tags: [assertions]
-canonical_url: /assertions/availableAssertions/OutputContentByExpectedCsvResults/configuration/yamlView/
-# Verified-against: QaaS.JsonSchemaExtensions/generated-schemas/assertions.schema.json
+summary: "Minimal YAML scaffold for OutputContentByExpectedCsvResults AssertionConfiguration — copy, fill the blanks, drop into a Session step."
 ---
+<!-- Verified-against: QaaS.JsonSchemaExtensions/generated-schemas/assertions.schema.json -->
 
 # OutputContentByExpectedCsvResults — Configuration (YAML scaffold)
 

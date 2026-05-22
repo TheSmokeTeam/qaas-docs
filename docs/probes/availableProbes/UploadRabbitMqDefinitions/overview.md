@@ -1,19 +1,14 @@
 ---
 id: probes.available.uploadrabbitmqdefinitions.overview
-slug: uploadrabbitmqdefinitions
 type: reference
 status: stable
 since: 2.0.0
 last_verified: 2026-05-22
 applies_to: [probes]
-prerequisites: []
-code_langs: [yaml, csharp]
 keywords: [probes, UploadRabbitMqDefinitions, ProbeConfiguration]
-ai_summary: "Uploads a previously captured RabbitMQ definitions file back into the broker through the management API."
-tags: [probes]
-canonical_url: /probes/availableProbes/UploadRabbitMqDefinitions/overview/
-# Verified-against: QaaS.Common.Probes\QaaS.Common.Probes\RabbitMqProbes\UploadRabbitMqDefinitions.cs
+summary: "Uploads a previously captured RabbitMQ definitions file back into the broker through the management API."
 ---
+<!-- Verified-against: QaaS.Common.Probes\QaaS.Common.Probes\RabbitMqProbes\UploadRabbitMqDefinitions.cs -->
 
 # UploadRabbitMqDefinitions
 

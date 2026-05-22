@@ -1,19 +1,14 @@
 ---
 id: probes.available.createrabbitmqexchanges.overview
-slug: createrabbitmqexchanges
 type: reference
 status: stable
 since: 2.0.0
 last_verified: 2026-05-22
 applies_to: [probes]
-prerequisites: []
-code_langs: [yaml, csharp]
 keywords: [probes, CreateRabbitMqExchanges, ProbeConfiguration]
-ai_summary: "Creates one or more RabbitMQ exchanges with the configured durability, auto-delete, and arguments."
-tags: [probes]
-canonical_url: /probes/availableProbes/CreateRabbitMqExchanges/overview/
-# Verified-against: QaaS.Common.Probes\QaaS.Common.Probes\RabbitMqProbes\CreateRabbitMqExchanges.cs
+summary: "Creates one or more RabbitMQ exchanges with the configured durability, auto-delete, and arguments."
 ---
+<!-- Verified-against: QaaS.Common.Probes\QaaS.Common.Probes\RabbitMqProbes\CreateRabbitMqExchanges.cs -->
 
 # CreateRabbitMqExchanges
 

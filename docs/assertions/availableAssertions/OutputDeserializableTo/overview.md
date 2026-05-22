@@ -1,19 +1,14 @@
 ---
 id: assertions.available.outputdeserializableto.overview
-slug: outputdeserializableto
 type: reference
 status: stable
 since: 2.0.0
 last_verified: 2026-05-22
 applies_to: [assertions]
-prerequisites: []
-code_langs: [yaml, csharp]
 keywords: [assertions, OutputDeserializableTo, AssertionConfiguration]
-ai_summary: "Performs a logic test that checks if the items of a configured output can all be deserialized using a configured deserializer"
-tags: [assertions]
-canonical_url: /assertions/availableAssertions/OutputDeserializableTo/overview/
-# Verified-against: QaaS.Common.Assertions\QaaS.Common.Assertions\DeserializationLogic\OutputDeserializableTo.cs
+summary: "Performs a logic test that checks if the items of a configured output can all be deserialized using a configured deserializer"
 ---
+<!-- Verified-against: QaaS.Common.Assertions\QaaS.Common.Assertions\DeserializationLogic\OutputDeserializableTo.cs -->
 
 # OutputDeserializableTo
 

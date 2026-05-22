@@ -1,19 +1,14 @@
 ---
 id: processors.available.texttransformprocessor.overview
-slug: texttransformprocessor
 type: reference
 status: stable
 since: 2.0.0
 last_verified: 2026-05-22
 applies_to: [processors]
-prerequisites: []
-code_langs: [yaml, csharp]
 keywords: [processors, TextTransformProcessor, ProcessorConfiguration]
-ai_summary: "Reads the incoming payload as text, applies the configured text transformation, and returns the transformed response."
-tags: [processors]
-canonical_url: /processors/availableProcessors/TextTransformProcessor/overview/
-# Verified-against: QaaS.Common.Processors\QaaS.Common.Processors\TextTransformProcessor.cs
+summary: "Reads the incoming payload as text, applies the configured text transformation, and returns the transformed response."
 ---
+<!-- Verified-against: QaaS.Common.Processors\QaaS.Common.Processors\TextTransformProcessor.cs -->
 
 # TextTransformProcessor
 

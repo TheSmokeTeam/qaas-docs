@@ -1,19 +1,14 @@
 ---
 id: generators.available.json.overview
-slug: json
 type: reference
 status: stable
 since: 2.0.0
 last_verified: 2026-05-22
 applies_to: [generators]
-prerequisites: []
-code_langs: [yaml, csharp]
 keywords: [generators, Json, GeneratorConfiguration]
-ai_summary: "Generates JSON data from a configured prototype document."
-tags: [generators]
-canonical_url: /generators/availableGenerators/Json/overview/
-# Verified-against: QaaS.Common.Generators\QaaS.Common.Generators\JsonGenerators\Json.cs
+summary: "Generates JSON data from a configured prototype document."
 ---
+<!-- Verified-against: QaaS.Common.Generators\QaaS.Common.Generators\JsonGenerators\Json.cs -->
 
 # Json
 

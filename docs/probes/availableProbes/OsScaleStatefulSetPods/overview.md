@@ -1,19 +1,14 @@
 ---
 id: probes.available.osscalestatefulsetpods.overview
-slug: osscalestatefulsetpods
 type: reference
 status: stable
 since: 2.0.0
 last_verified: 2026-05-22
 applies_to: [probes]
-prerequisites: []
-code_langs: [yaml, csharp]
 keywords: [probes, OsScaleStatefulSetPods, ProbeConfiguration]
-ai_summary: "Probe that scales openshift statefulsets"
-tags: [probes]
-canonical_url: /probes/availableProbes/OsScaleStatefulSetPods/overview/
-# Verified-against: QaaS.Common.Probes\QaaS.Common.Probes\OsProbes\OsScaleStatefulSetPods.cs
+summary: "Probe that scales openshift statefulsets"
 ---
+<!-- Verified-against: QaaS.Common.Probes\QaaS.Common.Probes\OsProbes\OsScaleStatefulSetPods.cs -->
 
 # OsScaleStatefulSetPods
 

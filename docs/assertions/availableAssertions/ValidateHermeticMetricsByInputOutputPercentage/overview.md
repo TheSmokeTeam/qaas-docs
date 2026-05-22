@@ -1,19 +1,14 @@
 ---
 id: assertions.available.validatehermeticmetricsbyinputoutputpercentage.overview
-slug: validatehermeticmetricsbyinputoutputpercentage
 type: reference
 status: stable
 since: 2.0.0
 last_verified: 2026-05-22
 applies_to: [assertions]
-prerequisites: []
-code_langs: [yaml, csharp]
 keywords: [assertions, ValidateHermeticMetricsByInputOutputPercentage, AssertionConfiguration]
-ai_summary: "Compares the hermetic percentage calculated from configured inputs and outputs with the hermetic percentage reported by the metrics output."
-tags: [assertions]
-canonical_url: /assertions/availableAssertions/ValidateHermeticMetricsByInputOutputPercentage/overview/
-# Verified-against: QaaS.Common.Assertions\QaaS.Common.Assertions\Hermetic\ValidateHermeticMetricsByInputOutputPercentage.cs
+summary: "Compares the hermetic percentage calculated from configured inputs and outputs with the hermetic percentage reported by the metrics output."
 ---
+<!-- Verified-against: QaaS.Common.Assertions\QaaS.Common.Assertions\Hermetic\ValidateHermeticMetricsByInputOutputPercentage.cs -->
 
 # ValidateHermeticMetricsByInputOutputPercentage
 
