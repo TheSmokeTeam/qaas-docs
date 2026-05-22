@@ -196,3 +196,76 @@ That means:
 
 If you need **overlapping work inside one session**, use action stages.
 If you need **hard phase boundaries**, use separate [Sessions](../userInterfaces/runner/configurationSections/sessions/overview.md) and coordinate them with session stages and `RunUntilStage`.
+
+---
+
+## Canonical Recipes
+
+### Recipe A: Single-session launch ordering with action stages
+
+Use this when one session needs to start a service, send data into it, then validate — in that launch order — but actions are allowed to overlap.
+
+```yaml
+Sessions:
+  - Name: HttpSmoke
+    Probes:
+      - Name: StartService
+        Probe: StartHttpServer
+        StageConfig:
+          Stage: 0
+      - Name: WarmupPing
+        Probe: PingProbe
+        StageConfig:
+          Stage: 1
+    Publishers:
+      - Name: SendInitialData
+        Publisher: HttpPublisher
+        StageConfig:
+          Stage: 0
+    Consumers:
+      - Name: ValidateProcessing
+        Consumer: HttpConsumer
+        StageConfig:
+          Stage: 1
+```
+
+Behavior:
+
+- Stage `0` launches `StartService` and `SendInitialData` together.
+- Stage `1` launches `WarmupPing` and `ValidateProcessing` next, **even if** stage `0` actions are still running.
+- Session completion waits for every action task; the order above is launch order, not completion order.
+
+### Recipe B: Hard two-phase flow with two sessions and `RunUntilStage`
+
+Use this when phase 2 must **not** start until phase 1 has fully finished — a real barrier, not a launch ordering.
+
+```yaml
+Sessions:
+  - Name: Seed
+    Stage: 0
+    RunUntilStage: 1
+    Publishers:
+      - Name: SeedDatabase
+        Publisher: SqlPublisher
+
+  - Name: Verify
+    Stage: 1
+    Consumers:
+      - Name: ReadBack
+        Consumer: SqlConsumer
+    Assertions:
+      - Name: SeededRowsExist
+        Assertion: HasMinimumRowCount
+        SessionNames: [Verify]
+        AssertionConfiguration:
+          OutputName: SqlConsumer
+          MinimumRows: 1
+```
+
+Behavior:
+
+- `Seed` runs in stage `0` and blocks stage `1` (`RunUntilStage: 1`).
+- `Verify` is scheduled for stage `1` but cannot start until `Seed` has completed.
+- `Verify`'s consumer therefore sees a database that was fully seeded by the previous phase, with no overlap.
+
+Pick Recipe A when overlap is acceptable. Pick Recipe B when phase isolation is a correctness requirement.

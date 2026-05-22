@@ -547,6 +547,24 @@ For Runner and Mocker alike:
 
 This is especially useful in hybrid projects that keep both a checked-in YAML definition and a code-defined variant of the same scenario.
 
+### Copy this: YAML ↔ CAC parity workflow
+
+A reproducible loop for porting a YAML test to Configuration as Code (or the other way) without drifting:
+
+```bash
+# 1. Render the YAML the runner actually sees (post-overwrites, post-references).
+dotnet run --project Runner -- template test.qaas.yaml > out/from-yaml.yaml
+
+# 2. Render the CAC host's effective configuration to the same shape.
+dotnet run --project Runner -- template > out/from-code.yaml
+
+# 3. Diff the two. Anything non-empty is a real divergence.
+diff -u out/from-yaml.yaml out/from-code.yaml | tee out/parity.diff
+test ! -s out/parity.diff
+```
+
+Wire the same three lines into CI to fail when the YAML baseline and the code-defined variant drift apart. `template` exits non-zero when validation fails, so the build also catches schema regressions without running a single session.
+
 ---
 
 ## Keep the Host Process Alive After `Run()`
