@@ -5,7 +5,8 @@
 # code_langs, keywords, ai_summary, canonical_url.
 set -euo pipefail
 
-REQUIRED=(id slug type status since last_verified applies_to code_langs keywords ai_summary canonical_url)
+REQUIRED=(id type status since last_verified applies_to keywords summary)
+FORBIDDEN_WORDS="\bAI\b|\bagent\b|\bLLM\b|\bClaude\b|\bChatGPT\b|\bai_summary\b"
 FAIL=0
 
 while IFS= read -r f; do
@@ -25,10 +26,16 @@ while IFS= read -r f; do
       FAIL=1
     fi
   done
-  # ai_summary length check (<=280 chars)
-  ai=$(echo "$fm" | sed -n 's/^[[:space:]]*ai_summary:[[:space:]]*//p' | tr -d '"')
-  if [ "${#ai}" -gt 280 ]; then
-    echo "::error file=$f::ai_summary exceeds 280 chars (${#ai})"
+  # summary length check (<=200 chars)
+  s=$(echo "$fm" | sed -n 's/^[[:space:]]*summary:[[:space:]]*//p' | tr -d '"')
+  if [ "${#s}" -gt 200 ]; then
+    echo "::error file=$f::summary exceeds 200 chars (${#s})"
+    FAIL=1
+  fi
+  # forbidden words in page body
+  body=$(awk '/^---$/{c++; next} c>=2{print}' "$f")
+  if echo "$body" | grep -qiE "$FORBIDDEN_WORDS"; then
+    echo "::error file=$f::contains forbidden word/phrase (AI/agent/LLM/Claude/ChatGPT)"
     FAIL=1
   fi
 done < <(find docs -name "*.md" -type f)

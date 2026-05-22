@@ -1,6 +1,9 @@
 # Build output
 site/
 
+# Knowledge graph artifacts (local only)
+graphify-out/
+
 # Python
 __pycache__/
 *.py[cod]
