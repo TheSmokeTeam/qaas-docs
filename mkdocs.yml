@@ -84,6 +84,7 @@ nav:
       - assert: qaas/userInterfaces/runner/commands/assert.md
       - execute: qaas/userInterfaces/runner/commands/execute.md
       - template: qaas/userInterfaces/runner/commands/template.md
+      - Schema Extensions: qaas/userInterfaces/runner/schema-extensions.md
     - Extensibility:
       - Plugins: qaas/addOns/plugins.md
       - Modules: qaas/addOns/modules.md
@@ -234,6 +235,8 @@ nav:
       - Overview: mocker/userInterfaces/mocker/commands/commands.md
       - run: mocker/userInterfaces/mocker/commands/run.md
       - template: mocker/userInterfaces/mocker/commands/template.md
+    - Authoring Guide:
+      - Multi-Server Routing: mocker/authoring-guide/multi-server-routing.md
     - Functions:
       - Overview: mocker/functions/index.md
       # qaas-docs-generator start: mocker-functions
@@ -657,6 +660,9 @@ nav:
       - Protocols: framework/projects/protocols.md
       - Providers: framework/projects/providers.md
       - Serialization: framework/projects/serialization.md
+  - Integrations:
+    - CI Pipeline (GitHub Actions): integrations/ci-pipeline.md
+    - Kiwix MCP (Offline Docs): integrations/kiwix-mcp.md
 
 theme:
   name: material
