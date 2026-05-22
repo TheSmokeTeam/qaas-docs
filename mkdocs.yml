@@ -238,6 +238,7 @@ nav:
       - template: mocker/userInterfaces/mocker/commands/template.md
     - Authoring Guide:
       - Multi-Server Routing: mocker/authoring-guide/multi-server-routing.md
+      - Controller Recipe (Redis): mocker/authoring-guide/controller-recipe-redis.md
     - Functions:
       - Overview: mocker/functions/index.md
       # qaas-docs-generator start: mocker-functions
