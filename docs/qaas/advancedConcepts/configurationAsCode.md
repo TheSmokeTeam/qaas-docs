@@ -12,7 +12,7 @@ summary: "While YAML offers a concise, human-readable way to define test scenari
 
 While YAML offers a concise, human-readable way to define test scenarios, **Configuration as Code (CaC)** lets you harness the full power of C# for dynamic, conditional, and reusable test orchestration.
 
-This guide keeps the original Configuration as Code mental model, but updates it to match the current behavior of [QaaS.Runner](../index.md) and [QaaS.Mocker](../../mocker/index.md).
+This guide keeps the original Configuration as Code mental shape, but updates it to match the current behavior of [QaaS.Runner](../index.md) and [QaaS.Mocker](../../mocker/index.md).
 
 ---
 
@@ -579,4 +579,4 @@ var exitCode = runner.RunAndGetExitCode();
 Console.WriteLine($"Runner completed with exit code {exitCode}");
 ```
 
-With Configuration as Code, configuration is not just defined, it is engineered.
+With Configuration as Code, configuration is engineered, not declared.

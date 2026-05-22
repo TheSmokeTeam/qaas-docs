@@ -12,7 +12,7 @@ summary: "Transactions are communication actions that both send and receive data
 
 Transactions are communication actions that both send and receive data from the system. Every transaction creates both an `Input` and an `Output` in `SessionData` with its own name.
 
-Transactions model request/response actions. At runtime a transaction resolves configured data sources, serializes each input item when needed, calls the selected transactor, records the sent item as session `Input`, and records a response as session `Output` when the transactor returns one. Input and output items receive matching indexes so assertions can correlate a request with its response. Transactions can run in fixed iterations or loop mode, sleep between iterations, and stop early when the policy chain returns false.
+Transactions represent request/response actions. At runtime a transaction resolves configured data sources, serializes each input item when needed, calls the selected transactor, records the sent item as session `Input`, and records a response as session `Output` when the transactor returns one. Input and output items receive matching indexes so assertions can correlate a request with its response. Transactions can run in fixed iterations or loop mode, sleep between iterations, and stop early when the policy chain returns false.
 
 Use this page for behavior and YAML shape. The same action can be built in C# with the [TransactionBuilder API](../../../../../../qaas/functions/builders/transactions.md); that page is the function reference for the code-first surface.
 

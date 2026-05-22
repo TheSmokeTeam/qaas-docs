@@ -43,7 +43,7 @@ dotnet run <dotnet-parameters> -- execute <executable-file> [flags]
 | Logging | `-l`, `--logger-level` | Yes | No |  | `LogEventLevel (optional)` | The logger's level, overrides both the default logger's level (Information) and the level of any logger's configuration given.<br />All available options (not case sensitive) are: Verbose, Debug,<br />Information, Warning, Error, Fatal. |
 | Runtime | `--no-process-exit` | No | No | False | `bool` | When this flag is used the runner will not terminate the current process after it completes. Useful when embedding QaaS.Runner and orchestrating multiple runners in a single host process. |
 | Logging | `--send-logs` | Yes | No | False | `bool` | Whether to send logs to the configured Elasticsearch sink. |
-| Results | `-s`, `--serve-results` | No | No | False | `bool` | If flag is enabled will automatically serve the test results in a human readable manner using allure after executing all commands.<br />when any of the commands written in the executable configuration file use this flag it will not do anything, this is the deciding flag.<br />Uses a locally installed allure CLI tool, if allure CLI is not installed and added to path the serve will fail. |
+| Results | `-s`, `--serve-results` | No | No | _empty_ | `string` | Serves Allure output after performing the assertions. Without a value the flag serves the default raw results folder `allure-results`. Provide a folder name such as `allure-report` to open a generated report directory, which is useful for Allure 3 flows. |
 
 ## Executable File Format
 

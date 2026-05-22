@@ -171,7 +171,7 @@ anchors:
     RoutingKey: /
 ```
 
-This allows the same configuration to be reused across environments by simply changing the values in the variables file.
+This allows the same configuration to be reused across environments by changing the values in the variables file.
 
 ### Best Practices
 

@@ -12,7 +12,7 @@ summary: "This page describes how QaaS.Runner builds the effective configuration
 
 This page describes how `QaaS.Runner` builds the effective configuration for the [`run`](commands/run.md), [`act`](commands/act.md), [`assert`](commands/assert.md), and [`template`](commands/template.md) commands.
 
-The behavior below comes from `RunLoader.BuildContext(...)` in `QaaS.Runner` and `ContextBuilder.GetConfiguration()` in [QaaS.Framework.SDK](../../../framework/projects/sdk.md).
+The Runner builds the effective configuration by layering the inputs below.
 
 ## Default Resolution Order
 

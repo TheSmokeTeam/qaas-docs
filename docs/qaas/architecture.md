@@ -6,11 +6,11 @@ since: 2.0.0
 last_verified: 2026-05-22
 applies_to: [runner]
 keywords: [qaas, architecture]
-summary: "The QaaS.Framework runtime is built around a Plugins model that lets you extend and customize QaaS by integrating user-provided packages. This modular design allows for flexible, extensible, and ma..."
+summary: "QaaS.Framework runtime is built around a Plugins architecture that extends and customizes QaaS by integrating user-provided packages."
 ---
 # Architecture
 
-The [QaaS.Framework](../framework/index.md) runtime is built around a [Plugins](addOns/plugins.md) model that lets you extend and customize QaaS by integrating user-provided packages. This modular design allows for flexible, extensible, and maintainable test automation solutions, where components can be dynamically loaded and orchestrated based on configuration.
+The [QaaS.Framework](../framework/index.md) runtime is built around a [Plugins](addOns/plugins.md) architecture that lets you extend and customize QaaS by integrating user-provided packages. This modular shape allows for flexible, extensible, and maintainable test automation solutions, where components can be dynamically loaded and orchestrated based on configuration.
 
 ---
 
