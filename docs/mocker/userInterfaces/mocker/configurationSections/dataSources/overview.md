@@ -1,3 +1,13 @@
+---
+id: mocker.userinterfaces.mocker.configurationsections.datasources.overview
+type: explanation
+status: stable
+since: 2.0.0
+last_verified: 2026-05-22
+applies_to: [mocker]
+keywords: [mocker, userinterfaces, configurationsections, datasources, overview]
+summary: "The list of the data sources that contain enumerables of data to be generated and iterated later in several places."
+---
 # DataSources
 
 The list of the data sources that contain enumerables of data to be generated and iterated later in several places.

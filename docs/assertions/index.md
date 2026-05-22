@@ -1,3 +1,13 @@
+---
+id: assertions.index
+type: explanation
+status: stable
+since: 2.0.0
+last_verified: 2026-05-22
+applies_to: [assertions]
+keywords: [assertions, index]
+summary: "Assertions are hooks that validate QaaS.Runner session data after the Runner act phase completes. Each assertion receives the stored session data (inputs, outputs, metadata) and returns a Pass or F..."
+---
 # Assertions
 
 Assertions are **hooks** that validate [QaaS.Runner](../qaas/index.md) [session data](../qaas/userInterfaces/runner/configurationSections/sessions/overview.md) after the Runner [`act`](../qaas/userInterfaces/runner/commands/act.md) phase completes. Each assertion receives the stored session data (inputs, outputs, metadata) and returns a `Pass` or `Fail` status that is written to the [Allure Report](../qaas/userInterfaces/runner/allureReport.md).

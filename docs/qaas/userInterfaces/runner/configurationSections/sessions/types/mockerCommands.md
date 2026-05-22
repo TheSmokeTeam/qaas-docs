@@ -1,3 +1,13 @@
+---
+id: qaas.userinterfaces.runner.configurationsections.sessions.types.mockercommands
+type: reference
+status: stable
+since: 2.0.0
+last_verified: 2026-05-22
+applies_to: [runner]
+keywords: [qaas, userinterfaces, runner, configurationsections, sessions, types]
+summary: "Mocker commands connect QaaS.Runner tests to QaaS.Mocker servers through the Redis-backed Mocker controller. They let a test dynamically change mock behavior, trigger mock-side actions, or consume ..."
+---
 # Mocker Commands
 
 Mocker commands connect [QaaS.Runner](../../../../../../qaas/index.md) tests to [QaaS.Mocker](../../../../../../mocker/index.md) servers through the Redis-backed Mocker controller. They let a test dynamically change mock behavior, trigger mock-side actions, or consume mock activity during the execution of a test session.

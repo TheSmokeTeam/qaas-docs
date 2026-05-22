@@ -1,3 +1,13 @@
+---
+id: probes.availableprobes.emptyredisbychunks.overview
+type: explanation
+status: stable
+since: 2.0.0
+last_verified: 2026-05-22
+applies_to: [probes]
+keywords: [probes, availableprobes, emptyredisbychunks, overview]
+summary: "Concrete Redis chunk-deletion probe that uses the standard Redis batch probe configuration."
+---
 # EmptyRedisByChunks
 
 Concrete Redis chunk-deletion probe that uses the standard Redis batch probe configuration.

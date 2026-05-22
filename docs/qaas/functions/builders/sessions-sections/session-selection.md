@@ -1,3 +1,13 @@
+---
+id: qaas.functions.builders.sessions-sections.session-selection
+type: reference
+status: stable
+since: 2.0.0
+last_verified: 2026-05-22
+applies_to: [runner]
+keywords: [qaas, functions, builders, sessions, sections, session]
+summary: "This page mirrors the Session selection section from Sessions."
+---
 # Sessions: Session selection
 
 This page mirrors the `Session selection` section from [Sessions](../sessions.md).

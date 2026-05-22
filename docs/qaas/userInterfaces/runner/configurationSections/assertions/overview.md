@@ -1,3 +1,13 @@
+---
+id: qaas.userinterfaces.runner.configurationsections.assertions.overview
+type: explanation
+status: stable
+since: 2.0.0
+last_verified: 2026-05-22
+applies_to: [runner]
+keywords: [qaas, userinterfaces, runner, configurationsections, assertions, overview]
+summary: "The Assertions section contains a list of QaaS.Common.Assertions or project-local assertions, which are logical calculations performed on the Sessions results in order to decide the test's status (..."
+---
 # Assertions
 
 The Assertions section contains a list of [QaaS.Common.Assertions](../../../../../assertions/index.md) or project-local assertions, which are logical calculations performed on the [Sessions](../sessions/overview.md) results in order to decide the test's status (`Passed` / `Failed` / `Broken`). Each assertion produces a different test result.

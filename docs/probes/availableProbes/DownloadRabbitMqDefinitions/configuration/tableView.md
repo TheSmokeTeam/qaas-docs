@@ -1,3 +1,13 @@
+---
+id: probes.availableprobes.downloadrabbitmqdefinitions.configuration.tableview
+type: reference
+status: stable
+since: 2.0.0
+last_verified: 2026-05-22
+applies_to: [probes]
+keywords: [probes, availableprobes, downloadrabbitmqdefinitions, configuration, tableview]
+summary: "DownloadRabbitMqDefinitions Configurations Table View"
+---
 # DownloadRabbitMqDefinitions Configurations Table View
 
 | Property Path | Type | Required | Default | Description |

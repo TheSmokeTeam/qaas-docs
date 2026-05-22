@@ -1,3 +1,13 @@
+---
+id: framework.functions.builders.data-sources-sections.identity-and-hook-selection
+type: reference
+status: stable
+since: 2.0.0
+last_verified: 2026-05-22
+applies_to: [framework]
+keywords: [framework, functions, builders, data, sources, sections]
+summary: "This page mirrors the Identity and hook selection section from Data Sources."
+---
 # Data Sources: Identity and hook selection
 
 This page mirrors the `Identity and hook selection` section from [Data Sources](../data-sources.md).

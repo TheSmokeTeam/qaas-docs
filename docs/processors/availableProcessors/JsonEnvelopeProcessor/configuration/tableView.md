@@ -1,3 +1,13 @@
+---
+id: processors.availableprocessors.jsonenvelopeprocessor.configuration.tableview
+type: reference
+status: stable
+since: 2.0.0
+last_verified: 2026-05-22
+applies_to: [processors]
+keywords: [processors, availableprocessors, jsonenvelopeprocessor, configuration, tableview]
+summary: "JsonEnvelopeProcessor Configurations Table View"
+---
 # JsonEnvelopeProcessor Configurations Table View
 
 | Property Path | Type | Required | Default | Description |

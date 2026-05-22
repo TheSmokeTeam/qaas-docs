@@ -1,3 +1,13 @@
+---
+id: probes.availableprobes.flushallredis.overview
+type: explanation
+status: stable
+since: 2.0.0
+last_verified: 2026-05-22
+applies_to: [probes]
+keywords: [probes, availableprobes, flushallredis, overview]
+summary: "Runs Redis FLUSHALL against the configured server to remove keys from every database."
+---
 # FlushAllRedis
 
 Runs Redis FLUSHALL against the configured server to remove keys from every database.

@@ -1,3 +1,13 @@
+---
+id: qaas.functions.builders.assertions-sections.reporting-and-artifacts
+type: reference
+status: stable
+since: 2.0.0
+last_verified: 2026-05-22
+applies_to: [runner]
+keywords: [qaas, functions, builders, assertions, sections, reporting]
+summary: "This page mirrors the Reporting and artifacts section from Assertions."
+---
 # Assertions: Reporting and artifacts
 
 This page mirrors the `Reporting and artifacts` section from [Assertions](../assertions.md).

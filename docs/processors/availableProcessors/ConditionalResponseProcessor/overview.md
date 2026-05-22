@@ -1,3 +1,13 @@
+---
+id: processors.availableprocessors.conditionalresponseprocessor.overview
+type: explanation
+status: stable
+since: 2.0.0
+last_verified: 2026-05-22
+applies_to: [processors]
+keywords: [processors, availableprocessors, conditionalresponseprocessor, overview]
+summary: "Returns the first configured response whose rule matches the incoming request metadata, or the configured default response when no rule matches."
+---
 # ConditionalResponseProcessor
 
 Returns the first configured response whose rule matches the incoming request metadata, or the configured default response when no rule matches.

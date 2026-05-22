@@ -1,3 +1,13 @@
+---
+id: mocker.userinterfaces.mocker.configurationsections.server.configurations.yamlview
+type: reference
+status: stable
+since: 2.0.0
+last_verified: 2026-05-22
+applies_to: [mocker]
+keywords: [mocker, userinterfaces, configurationsections, server, configurations, yamlview]
+summary: "CertificatePassword:"
+---
 # Servers Configurations Yaml View
 
 ```yaml

@@ -1,3 +1,13 @@
+---
+id: generators.availablegenerators.fromsessiondatadatasources.overview
+type: explanation
+status: stable
+since: 2.0.0
+last_verified: 2026-05-22
+applies_to: [generators]
+keywords: [generators, availablegenerators, fromsessiondatadatasources, overview]
+summary: "Generates data from the enumerable of data sources it receives, presumes all items in the enumerable are serialized and can be treated as a byte array"
+---
 # FromSessionDataDataSources
 
 Generates data from the enumerable of data sources it receives, presumes all items in the enumerable are serialized and can be treated as a byte array

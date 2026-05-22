@@ -1,3 +1,13 @@
+---
+id: qaas.functions.builders.transactions-sections.policies
+type: reference
+status: stable
+since: 2.0.0
+last_verified: 2026-05-22
+applies_to: [runner]
+keywords: [qaas, functions, builders, transactions, sections, policies]
+summary: "This page mirrors the Policies section from Transactions."
+---
 # Transactions: Policies
 
 This page mirrors the `Policies` section from [Transactions](../transactions.md).

@@ -1,3 +1,13 @@
+---
+id: qaas.functions.builders.mocker-commands-sections.configuration
+type: reference
+status: stable
+since: 2.0.0
+last_verified: 2026-05-22
+applies_to: [runner]
+keywords: [qaas, functions, builders, mocker, commands, sections]
+summary: "This page mirrors the Configuration section from Mocker Commands."
+---
 # Mocker Commands: Configuration
 
 This page mirrors the `Configuration` section from [Mocker Commands](../mocker-commands.md).

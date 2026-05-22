@@ -1,3 +1,13 @@
+---
+id: qaas.functions.builders.sessions-sections.collectors
+type: reference
+status: stable
+since: 2.0.0
+last_verified: 2026-05-22
+applies_to: [runner]
+keywords: [qaas, functions, builders, sessions, sections, collectors]
+summary: "This page mirrors the Collectors section from Sessions."
+---
 # Sessions: Collectors
 
 This page mirrors the `Collectors` section from [Sessions](../sessions.md).

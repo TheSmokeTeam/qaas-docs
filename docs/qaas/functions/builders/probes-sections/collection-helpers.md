@@ -1,3 +1,13 @@
+---
+id: qaas.functions.builders.probes-sections.collection-helpers
+type: reference
+status: stable
+since: 2.0.0
+last_verified: 2026-05-22
+applies_to: [runner]
+keywords: [qaas, functions, builders, probes, sections, collection]
+summary: "This page mirrors the Collection helpers section from Probes."
+---
 # Probes: Collection helpers
 
 This page mirrors the `Collection helpers` section from [Probes](../probes.md).

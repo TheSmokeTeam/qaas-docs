@@ -1,3 +1,13 @@
+---
+id: assertions.availableassertions.hermeticbyinputoutputpercentage.configuration.tableview
+type: reference
+status: stable
+since: 2.0.0
+last_verified: 2026-05-22
+applies_to: [assertions]
+keywords: [assertions, availableassertions, hermeticbyinputoutputpercentage, configuration, tableview]
+summary: "HermeticByInputOutputPercentage Configurations Table View"
+---
 # HermeticByInputOutputPercentage Configurations Table View
 
 | Property Path | Type | Required | Default | Description |

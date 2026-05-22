@@ -1,3 +1,13 @@
+---
+id: framework.projects.configuration
+type: reference
+status: stable
+since: 2.0.0
+last_verified: 2026-05-22
+applies_to: [framework]
+keywords: [framework, projects, configuration]
+summary: "QaaS.Framework.Configurations is the Framework solution's configuration engine. It is a standalone package that other QaaS packages reference, including QaaS.Framework.SDK. Its responsibility is br..."
+---
 # QaaS.Framework.Configurations
 
 `QaaS.Framework.Configurations` is the Framework solution's configuration engine. It is a standalone package that other QaaS packages reference, including [QaaS.Framework.SDK](./sdk.md). Its responsibility is broader than loading YAML into C# objects. It owns the full flow of building configuration, preprocessing it, binding it, validating it, and updating it.

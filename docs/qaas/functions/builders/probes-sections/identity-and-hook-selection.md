@@ -1,3 +1,13 @@
+---
+id: qaas.functions.builders.probes-sections.identity-and-hook-selection
+type: reference
+status: stable
+since: 2.0.0
+last_verified: 2026-05-22
+applies_to: [runner]
+keywords: [qaas, functions, builders, probes, sections, identity]
+summary: "This page mirrors the Identity and hook selection section from Probes."
+---
 # Probes: Identity and hook selection
 
 This page mirrors the `Identity and hook selection` section from [Probes](../probes.md).

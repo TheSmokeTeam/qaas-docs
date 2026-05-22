@@ -1,3 +1,13 @@
+---
+id: generators.availablegenerators.stacking.overview
+type: explanation
+status: stable
+since: 2.0.0
+last_verified: 2026-05-22
+applies_to: [generators]
+keywords: [generators, availablegenerators, stacking, overview]
+summary: "Combines multiple data sources by taking a configured number of items from each source in turn."
+---
 # Stacking
 
 Combines multiple data sources by taking a configured number of items from each source in turn.

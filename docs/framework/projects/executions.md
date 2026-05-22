@@ -1,3 +1,13 @@
+---
+id: framework.projects.executions
+type: reference
+status: stable
+since: 2.0.0
+last_verified: 2026-05-22
+applies_to: [framework]
+keywords: [framework, projects, executions]
+summary: "QaaS.Framework.Executions is the shared execution-infrastructure package in the Framework solution. It is not the full application layer for Runner or Mocker. Instead, it provides the common runtim..."
+---
 # QaaS.Framework.Executions
 
 `QaaS.Framework.Executions` is the shared execution-infrastructure package in the Framework solution. It is not the full application layer for Runner or Mocker. Instead, it provides the common runtime base classes, loader behavior, CLI helpers, and logging setup that those higher-level applications build on.

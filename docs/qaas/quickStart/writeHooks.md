@@ -1,3 +1,13 @@
+---
+id: qaas.quickstart.writehooks
+type: tutorial
+status: stable
+since: 2.0.0
+last_verified: 2026-05-22
+applies_to: [runner]
+keywords: [qaas, quickstart, writehooks]
+summary: "When the built-in Plugins and packaged hooks do not provide sufficient functionality for your test requirements, custom hooks can be implemented in a C# project to extend QaaS.Framework. This guide..."
+---
 # Writing Custom Hooks in QaaS for Advanced Testing
 
 When the built-in [Plugins](../addOns/plugins.md) and packaged hooks do not provide sufficient functionality for your test requirements, custom hooks can be implemented in a C# project to extend [QaaS.Framework](../../framework/index.md). This guide demonstrates how to create and integrate custom [QaaS.Common.Generators](../../generators/index.md), [QaaS.Common.Assertions](../../assertions/index.md), and [QaaS.Common.Probes](../../probes/index.md) style hooks to test a specific condition:

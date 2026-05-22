@@ -1,3 +1,13 @@
+---
+id: assertions.availableassertions.hermeticbyexpectedoutputcount.overview
+type: explanation
+status: stable
+since: 2.0.0
+last_verified: 2026-05-22
+applies_to: [assertions]
+keywords: [assertions, availableassertions, hermeticbyexpectedoutputcount, overview]
+summary: "Performs a hermetic test by comparing the count of a given output in a session to a given expected count"
+---
 # HermeticByExpectedOutputCount
 
 Performs a hermetic test by comparing the count of a given output in a session to a given expected count

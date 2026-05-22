@@ -1,3 +1,13 @@
+---
+id: probes.availableprobes.createrabbitmqqueues.overview
+type: explanation
+status: stable
+since: 2.0.0
+last_verified: 2026-05-22
+applies_to: [probes]
+keywords: [probes, availableprobes, createrabbitmqqueues, overview]
+summary: "Creates one or more RabbitMQ queues with the configured queue arguments."
+---
 # CreateRabbitMqQueues
 
 Creates one or more RabbitMQ queues with the configured queue arguments.

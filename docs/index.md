@@ -1,3 +1,13 @@
+---
+id: index
+type: explanation
+status: stable
+since: 2.0.0
+last_verified: 2026-05-22
+applies_to: [runner]
+keywords: [index]
+summary: "QaaS (QA As A Service) is a .NET 10 ecosystem for integration and end-to-end testing of backend applications. Define tests in YAML, extend behavior with C# hooks, and validate results with minimal ..."
+---
 # QaaS Documentation
 
 **QaaS (QA As A Service)** is a .NET 10 ecosystem for integration and end-to-end testing of backend applications. Define tests in YAML, extend behavior with C# hooks, and validate results with minimal boilerplate.

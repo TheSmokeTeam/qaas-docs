@@ -1,3 +1,13 @@
+---
+id: qaas.functions.builders.transactions-sections.output-selection
+type: reference
+status: stable
+since: 2.0.0
+last_verified: 2026-05-22
+applies_to: [runner]
+keywords: [qaas, functions, builders, transactions, sections, output]
+summary: "This page mirrors the Output selection section from Transactions."
+---
 # Transactions: Output selection
 
 This page mirrors the `Output selection` section from [Transactions](../transactions.md).

@@ -1,3 +1,13 @@
+---
+id: qaas.quickstart.ide
+type: tutorial
+status: stable
+since: 2.0.0
+last_verified: 2026-05-22
+applies_to: [runner]
+keywords: [qaas, quickstart, ide]
+summary: "QaaS.Runner can be configured in YAML or in C# (Configuration as Code). This page focuses on the YAML experience for Runner projects."
+---
 # Runner IDE Setup
 
 QaaS.Runner can be configured in YAML or in C# ([Configuration as Code](../advancedConcepts/configurationAsCode.md)). This page focuses on the YAML experience for Runner projects.

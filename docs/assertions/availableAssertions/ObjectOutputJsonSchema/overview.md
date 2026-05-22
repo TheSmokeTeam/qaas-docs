@@ -1,3 +1,13 @@
+---
+id: assertions.availableassertions.objectoutputjsonschema.overview
+type: explanation
+status: stable
+since: 2.0.0
+last_verified: 2026-05-22
+applies_to: [assertions]
+keywords: [assertions, availableassertions, objectoutputjsonschema, overview]
+summary: "Validates that each configured output item matches at least one JSON schema provided by the configured data sources."
+---
 # ObjectOutputJsonSchema
 
 Validates that each configured output item matches at least one JSON schema provided by the configured data sources.

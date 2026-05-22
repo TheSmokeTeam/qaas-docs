@@ -1,3 +1,13 @@
+---
+id: qaas.functions.builders.sessions-sections.inspection
+type: reference
+status: stable
+since: 2.0.0
+last_verified: 2026-05-22
+applies_to: [runner]
+keywords: [qaas, functions, builders, sessions, sections, inspection]
+summary: "This page mirrors the Inspection section from Sessions."
+---
 # Sessions: Inspection
 
 This page mirrors the `Inspection` section from [Sessions](../sessions.md).

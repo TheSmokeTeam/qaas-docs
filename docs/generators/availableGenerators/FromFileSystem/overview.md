@@ -1,3 +1,13 @@
+---
+id: generators.availablegenerators.fromfilesystem.overview
+type: explanation
+status: stable
+since: 2.0.0
+last_verified: 2026-05-22
+applies_to: [generators]
+keywords: [generators, availablegenerators, fromfilesystem, overview]
+summary: "Retrieves data from files under a configured path in the local file system."
+---
 # FromFileSystem
 
 Retrieves data from files under a configured path in the local file system.

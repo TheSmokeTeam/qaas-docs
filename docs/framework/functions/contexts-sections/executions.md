@@ -1,3 +1,13 @@
+---
+id: framework.functions.contexts-sections.executions
+type: reference
+status: stable
+since: 2.0.0
+last_verified: 2026-05-22
+applies_to: [framework]
+keywords: [framework, functions, contexts, sections, executions]
+summary: "This page mirrors the Executions section from Contexts."
+---
 # Contexts: Executions
 
 This page mirrors the `Executions` section from [Contexts](../contexts.md).

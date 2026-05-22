@@ -1,3 +1,13 @@
+---
+id: qaas.quickstart.maketestmoremaintainable
+type: tutorial
+status: stable
+since: 2.0.0
+last_verified: 2026-05-22
+applies_to: [runner]
+keywords: [qaas, quickstart, maketestmoremaintainable]
+summary: "We now have a working test that has produced results. However, the test file has several issues:"
+---
 # Maintainable Test
 
 We now have a working test that has produced results. However, the test file has several issues:

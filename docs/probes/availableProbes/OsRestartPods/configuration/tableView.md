@@ -1,3 +1,13 @@
+---
+id: probes.availableprobes.osrestartpods.configuration.tableview
+type: reference
+status: stable
+since: 2.0.0
+last_verified: 2026-05-22
+applies_to: [probes]
+keywords: [probes, availableprobes, osrestartpods, configuration, tableview]
+summary: "OsRestartPods Configurations Table View"
+---
 # OsRestartPods Configurations Table View
 
 | Property Path | Type | Required | Default | Description |

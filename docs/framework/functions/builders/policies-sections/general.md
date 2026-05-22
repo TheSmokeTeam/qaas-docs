@@ -1,3 +1,13 @@
+---
+id: framework.functions.builders.policies-sections.general
+type: reference
+status: stable
+since: 2.0.0
+last_verified: 2026-05-22
+applies_to: [framework]
+keywords: [framework, functions, builders, policies, sections, general]
+summary: "This page mirrors the General section from Policies."
+---
 # Policies: General
 
 This page mirrors the `General` section from [Policies](../policies.md).

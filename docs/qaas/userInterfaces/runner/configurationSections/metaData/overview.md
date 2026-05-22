@@ -1,3 +1,13 @@
+---
+id: qaas.userinterfaces.runner.configurationsections.metadata.overview
+type: explanation
+status: stable
+since: 2.0.0
+last_verified: 2026-05-22
+applies_to: [runner]
+keywords: [qaas, userinterfaces, runner, configurationsections, metadata, overview]
+summary: "The MetaData section is used to define additional information about tests, enhancing traceability and observability. It includes the following standard fields:"
+---
 # MetaData
 
 The `MetaData` section is used to define additional information about tests, enhancing traceability and observability. It includes the following standard fields:

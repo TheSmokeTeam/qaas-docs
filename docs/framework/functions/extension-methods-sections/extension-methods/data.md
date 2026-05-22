@@ -1,3 +1,13 @@
+---
+id: framework.functions.extension-methods-sections.extension-methods.data
+type: reference
+status: stable
+since: 2.0.0
+last_verified: 2026-05-22
+applies_to: [framework]
+keywords: [framework, functions, extension, methods, sections, data]
+summary: "This page mirrors the Extension Methods / Data section from Extension Methods."
+---
 # Extension Methods: Extension Methods / Data
 
 This page mirrors the `Extension Methods / Data` section from [Extension Methods](../../extension-methods.md).

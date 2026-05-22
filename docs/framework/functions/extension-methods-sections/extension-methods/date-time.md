@@ -1,3 +1,13 @@
+---
+id: framework.functions.extension-methods-sections.extension-methods.date-time
+type: reference
+status: stable
+since: 2.0.0
+last_verified: 2026-05-22
+applies_to: [framework]
+keywords: [framework, functions, extension, methods, sections, date]
+summary: "This page mirrors the Extension Methods / Date time section from Extension Methods."
+---
 # Extension Methods: Extension Methods / Date time
 
 This page mirrors the `Extension Methods / Date time` section from [Extension Methods](../../extension-methods.md).

@@ -1,3 +1,13 @@
+---
+id: assertions.availableassertions.httpstatus.overview
+type: explanation
+status: stable
+since: 2.0.0
+last_verified: 2026-05-22
+applies_to: [assertions]
+keywords: [assertions, availableassertions, httpstatus, overview]
+summary: "Performs a logic test on the http status of all selected outputs in a session by checking they all have the desired http status code"
+---
 # HttpStatus
 
 Performs a logic test on the http status of all selected outputs in a session by checking they all have the desired http status code

@@ -1,3 +1,13 @@
+---
+id: mocker.userinterfaces.mocker.configurationsections.controller.configurations.tableview
+type: reference
+status: stable
+since: 2.0.0
+last_verified: 2026-05-22
+applies_to: [mocker]
+keywords: [mocker, userinterfaces, configurationsections, controller, configurations, tableview]
+summary: "Controller Configurations Table View"
+---
 # Controller Configurations Table View
 
 | Property Path | Type | Required | Default | Description |

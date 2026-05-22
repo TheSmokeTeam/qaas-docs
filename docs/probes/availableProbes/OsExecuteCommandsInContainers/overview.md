@@ -1,3 +1,13 @@
+---
+id: probes.availableprobes.osexecutecommandsincontainers.overview
+type: explanation
+status: stable
+since: 2.0.0
+last_verified: 2026-05-22
+applies_to: [probes]
+keywords: [probes, availableprobes, osexecutecommandsincontainers, overview]
+summary: "Probe that Executes a command passed by the cmd string variable on every pod and container if passed to the function"
+---
 # OsExecuteCommandsInContainers
 
 Probe that Executes a command passed by the `cmd` string variable on every pod and container if passed to the function

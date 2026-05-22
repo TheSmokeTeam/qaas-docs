@@ -1,3 +1,13 @@
+---
+id: assertions.availableassertions.outputcontentbyexpectedcsvresults.overview
+type: explanation
+status: stable
+since: 2.0.0
+last_verified: 2026-05-22
+applies_to: [assertions]
+keywords: [assertions, availableassertions, outputcontentbyexpectedcsvresults, overview]
+summary: "Checks that the configured output content matches the expected values loaded from a CSV results file."
+---
 # OutputContentByExpectedCsvResults
 
 Checks that the configured output content matches the expected values loaded from a CSV results file.

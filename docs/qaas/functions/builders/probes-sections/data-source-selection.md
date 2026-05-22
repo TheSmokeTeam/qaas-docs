@@ -1,3 +1,13 @@
+---
+id: qaas.functions.builders.probes-sections.data-source-selection
+type: reference
+status: stable
+since: 2.0.0
+last_verified: 2026-05-22
+applies_to: [runner]
+keywords: [qaas, functions, builders, probes, sections, data]
+summary: "This page mirrors the Data source selection section from Probes."
+---
 # Probes: Data source selection
 
 This page mirrors the `Data source selection` section from [Probes](../probes.md).

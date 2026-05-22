@@ -1,3 +1,13 @@
+---
+id: probes.availableprobes.emptys3bucket.overview
+type: explanation
+status: stable
+since: 2.0.0
+last_verified: 2026-05-22
+applies_to: [probes]
+keywords: [probes, availableprobes, emptys3bucket, overview]
+summary: "Deletes objects from the configured S3 bucket, optionally constrained to a prefix, while treating a missing bucket as a no-op."
+---
 # EmptyS3Bucket
 
 Deletes objects from the configured S3 bucket, optionally constrained to a prefix, while treating a missing bucket as a no-op.

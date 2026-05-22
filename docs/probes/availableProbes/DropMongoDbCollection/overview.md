@@ -1,3 +1,13 @@
+---
+id: probes.availableprobes.dropmongodbcollection.overview
+type: explanation
+status: stable
+since: 2.0.0
+last_verified: 2026-05-22
+applies_to: [probes]
+keywords: [probes, availableprobes, dropmongodbcollection, overview]
+summary: "Drops the configured MongoDB collection so a later run can recreate it from scratch."
+---
 # DropMongoDbCollection
 
 Drops the configured MongoDB collection so a later run can recreate it from scratch.

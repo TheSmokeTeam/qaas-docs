@@ -1,3 +1,13 @@
+---
+id: probes.availableprobes.osupdatedeploymentresources.overview
+type: explanation
+status: stable
+since: 2.0.0
+last_verified: 2026-05-22
+applies_to: [probes]
+keywords: [probes, availableprobes, osupdatedeploymentresources, overview]
+summary: "Updates container resource requests and limits in a Kubernetes or OpenShift deployment."
+---
 # OsUpdateDeploymentResources
 
 Updates container resource requests and limits in a Kubernetes or OpenShift deployment.

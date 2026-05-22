@@ -1,3 +1,13 @@
+---
+id: qaas.userinterfaces.runner.configurationsections.sessions.configurations.tableview
+type: reference
+status: stable
+since: 2.0.0
+last_verified: 2026-05-22
+applies_to: [runner]
+keywords: [qaas, userinterfaces, runner, configurationsections, sessions, configurations]
+summary: "Sessions Configurations Table View"
+---
 # Sessions Configurations Table View
 
 | Property Path | Type | Required | Default | Description |

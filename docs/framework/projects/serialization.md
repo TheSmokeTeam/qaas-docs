@@ -1,3 +1,13 @@
+---
+id: framework.projects.serialization
+type: reference
+status: stable
+since: 2.0.0
+last_verified: 2026-05-22
+applies_to: [framework]
+keywords: [framework, projects, serialization]
+summary: "QaaS.Framework.Serialization is the Framework solution's serializer and deserializer package. It is a standalone package that other QaaS packages reference, including QaaS.Framework.SDK. The packag..."
+---
 # QaaS.Framework.Serialization
 
 `QaaS.Framework.Serialization` is the Framework solution's serializer and deserializer package. It is a standalone package that other QaaS packages reference, including [QaaS.Framework.SDK](./sdk.md). The package contains the configuration objects that choose a format, the factories that create the right runtime implementation, and the concrete serializers and deserializers for each supported format.

@@ -1,3 +1,13 @@
+---
+id: framework.projects.policies
+type: reference
+status: stable
+since: 2.0.0
+last_verified: 2026-05-22
+applies_to: [framework]
+keywords: [framework, projects, policies]
+summary: "QaaS.Framework.Policies contains the Framework solution's policy-chain implementation for repeated communication actions. The package is responsible for turning policy configuration objects into ru..."
+---
 # QaaS.Framework.Policies
 
 `QaaS.Framework.Policies` contains the Framework solution's policy-chain implementation for repeated communication actions. The package is responsible for turning policy configuration objects into runtime policy instances and then executing those policies in a stable order.

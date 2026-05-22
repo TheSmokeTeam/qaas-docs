@@ -1,3 +1,13 @@
+---
+id: mocker.quickstart.createmockcode
+type: tutorial
+status: stable
+since: 2.0.0
+last_verified: 2026-05-22
+applies_to: [mocker]
+keywords: [mocker, quickstart, createmockcode]
+summary: "This sample builds the same mock as the YAML quick start, but assembles the mock configuration in Program.cs."
+---
 # Create a Mock (Code)
 
 This sample builds the same mock as the YAML quick start, but assembles the mock configuration in `Program.cs`.

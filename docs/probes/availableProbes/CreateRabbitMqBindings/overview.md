@@ -1,3 +1,13 @@
+---
+id: probes.availableprobes.createrabbitmqbindings.overview
+type: explanation
+status: stable
+since: 2.0.0
+last_verified: 2026-05-22
+applies_to: [probes]
+keywords: [probes, availableprobes, createrabbitmqbindings, overview]
+summary: "Creates RabbitMQ bindings between exchanges and queues or between exchanges by using the configured binding definitions."
+---
 # CreateRabbitMqBindings
 
 Creates RabbitMQ bindings between exchanges and queues or between exchanges by using the configured binding definitions.

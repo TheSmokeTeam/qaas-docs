@@ -1,3 +1,13 @@
+---
+id: assertions.availableassertions.outputdeserializableto.overview
+type: explanation
+status: stable
+since: 2.0.0
+last_verified: 2026-05-22
+applies_to: [assertions]
+keywords: [assertions, availableassertions, outputdeserializableto, overview]
+summary: "Performs a logic test that checks if the items of a configured output can all be deserialized using a configured deserializer"
+---
 # OutputDeserializableTo
 
 Performs a logic test that checks if the items of a configured output can all be deserialized using a configured deserializer

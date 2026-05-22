@@ -1,3 +1,13 @@
+---
+id: assertions.availableassertions.delaybyaverage.overview
+type: explanation
+status: stable
+since: 2.0.0
+last_verified: 2026-05-22
+applies_to: [assertions]
+keywords: [assertions, availableassertions, delaybyaverage, overview]
+summary: "Checks for delay between an input source to an output source by subtracting the average timestamp of all inputs from the average timestamp of all the outputs."
+---
 # DelayByAverage
 
 Checks for delay between an input source to an output source by subtracting the average timestamp of all inputs from the average timestamp of all the outputs.

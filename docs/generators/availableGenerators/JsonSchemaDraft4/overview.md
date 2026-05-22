@@ -1,3 +1,13 @@
+---
+id: generators.availablegenerators.jsonschemadraft4.overview
+type: explanation
+status: stable
+since: 2.0.0
+last_verified: 2026-05-22
+applies_to: [generators]
+keywords: [generators, availablegenerators, jsonschemadraft4, overview]
+summary: "Generates JSON data that conforms to a configured JSON Schema Draft 4 document."
+---
 # JsonSchemaDraft4
 
 Generates JSON data that conforms to a configured JSON Schema Draft 4 document.

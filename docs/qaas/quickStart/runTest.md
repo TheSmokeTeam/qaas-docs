@@ -1,3 +1,13 @@
+---
+id: qaas.quickstart.runtest
+type: tutorial
+status: stable
+since: 2.0.0
+last_verified: 2026-05-22
+applies_to: [runner]
+keywords: [qaas, quickstart, runtest]
+summary: "Once the local quick-start environment is ready, run the sample from the project directory."
+---
 # Run Test
 
 Once the local quick-start environment is ready, run the sample from the project directory.

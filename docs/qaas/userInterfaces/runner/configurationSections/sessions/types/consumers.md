@@ -1,3 +1,13 @@
+---
+id: qaas.userinterfaces.runner.configurationsections.sessions.types.consumers
+type: reference
+status: stable
+since: 2.0.0
+last_verified: 2026-05-22
+applies_to: [runner]
+keywords: [qaas, userinterfaces, runner, configurationsections, sessions, types]
+summary: "Consumers are communication actions that receive data from the system. Every consumer creates an Output in SessionData with its own name."
+---
 # Consumers
 
 Consumers are communication actions that receive data from the system. Every consumer creates an `Output` in `SessionData` with its own name.

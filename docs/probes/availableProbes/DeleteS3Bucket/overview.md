@@ -1,3 +1,13 @@
+---
+id: probes.availableprobes.deletes3bucket.overview
+type: explanation
+status: stable
+since: 2.0.0
+last_verified: 2026-05-22
+applies_to: [probes]
+keywords: [probes, availableprobes, deletes3bucket, overview]
+summary: "Empties the configured S3 bucket and deletes it, treating a missing bucket as an already-satisfied state."
+---
 # DeleteS3Bucket
 
 Empties the configured S3 bucket and deletes it, treating a missing bucket as an already-satisfied state.

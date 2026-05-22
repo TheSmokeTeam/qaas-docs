@@ -1,3 +1,13 @@
+---
+id: qaas.functions.builders.executions-sections.executions
+type: reference
+status: stable
+since: 2.0.0
+last_verified: 2026-05-22
+applies_to: [runner]
+keywords: [qaas, functions, builders, executions, sections]
+summary: "This page mirrors the Executions section from Executions."
+---
 # Executions: Executions
 
 This page mirrors the `Executions` section from [Executions](../executions.md).

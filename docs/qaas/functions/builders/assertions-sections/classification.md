@@ -1,3 +1,13 @@
+---
+id: qaas.functions.builders.assertions-sections.classification
+type: reference
+status: stable
+since: 2.0.0
+last_verified: 2026-05-22
+applies_to: [runner]
+keywords: [qaas, functions, builders, assertions, sections, classification]
+summary: "This page mirrors the Classification section from Assertions."
+---
 # Assertions: Classification
 
 This page mirrors the `Classification` section from [Assertions](../assertions.md).

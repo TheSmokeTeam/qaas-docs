@@ -1,3 +1,13 @@
+---
+id: probes.availableprobes.executerediscommand.overview
+type: explanation
+status: stable
+since: 2.0.0
+last_verified: 2026-05-22
+applies_to: [probes]
+keywords: [probes, availableprobes, executerediscommand, overview]
+summary: "Executes one Redis command with optional arguments against the selected Redis database, optionally storing the result for later redisResults placeholder reuse."
+---
 # ExecuteRedisCommand
 
 Executes one Redis command with optional arguments against the selected Redis database, optionally storing the result for later redisResults placeholder reuse.

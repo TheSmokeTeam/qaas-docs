@@ -1,3 +1,13 @@
+---
+id: mocker.quickstart.createmock
+type: tutorial
+status: stable
+since: 2.0.0
+last_verified: 2026-05-22
+applies_to: [mocker]
+keywords: [mocker, quickstart, createmock]
+summary: "Use YAML when the mock shape is mostly declarative and you want the runtime definition to stay easy to scan: where the DataSources come from, which Stub processes them, and which Server endpoint ex..."
+---
 # Create a Mock (YAML)
 
 Use YAML when the mock shape is mostly declarative and you want the runtime definition to stay easy to scan: where the [DataSources](../userInterfaces/mocker/configurationSections/dataSources/overview.md) come from, which [Stub](../userInterfaces/mocker/configurationSections/stubs/overview.md) processes them, and which [Server](../userInterfaces/mocker/configurationSections/server/overview.md) endpoint exposes them. QaaS.Mocker reads those sections into the same execution builder concepts you will use in larger mocks later.

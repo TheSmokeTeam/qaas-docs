@@ -1,3 +1,13 @@
+---
+id: assertions.availableassertions.hermeticbyinputoutputpercentageinrange.overview
+type: explanation
+status: stable
+since: 2.0.0
+last_verified: 2026-05-22
+applies_to: [assertions]
+keywords: [assertions, availableassertions, hermeticbyinputoutputpercentageinrange, overview]
+summary: "Checks whether the percentage between configured inputs and outputs stays within the expected minimum and maximum range."
+---
 # HermeticByInputOutputPercentageInRange
 
 Checks whether the percentage between configured inputs and outputs stays within the expected minimum and maximum range.

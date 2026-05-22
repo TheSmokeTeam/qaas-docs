@@ -1,3 +1,13 @@
+---
+id: qaas.userinterfaces.logger
+type: reference
+status: stable
+since: 2.0.0
+last_verified: 2026-05-22
+applies_to: [runner]
+keywords: [qaas, userinterfaces, logger]
+summary: "QaaS uses Serilog for its logging needs."
+---
 # Logger
 
 QaaS uses `Serilog` for its logging needs.

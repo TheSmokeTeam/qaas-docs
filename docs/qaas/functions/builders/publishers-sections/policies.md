@@ -1,3 +1,13 @@
+---
+id: qaas.functions.builders.publishers-sections.policies
+type: reference
+status: stable
+since: 2.0.0
+last_verified: 2026-05-22
+applies_to: [runner]
+keywords: [qaas, functions, builders, publishers, sections, policies]
+summary: "This page mirrors the Policies section from Publishers."
+---
 # Publishers: Policies
 
 This page mirrors the `Policies` section from [Publishers](../publishers.md).

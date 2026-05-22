@@ -1,3 +1,13 @@
+---
+id: qaas.functions.extension-methods-sections.configuration-mutation
+type: reference
+status: stable
+since: 2.0.0
+last_verified: 2026-05-22
+applies_to: [runner]
+keywords: [qaas, functions, extension, methods, sections, configuration]
+summary: "This page mirrors the Configuration mutation section from Extension Methods."
+---
 # Extension Methods: Configuration mutation
 
 This page mirrors the `Configuration mutation` section from [Extension Methods](../extension-methods.md).

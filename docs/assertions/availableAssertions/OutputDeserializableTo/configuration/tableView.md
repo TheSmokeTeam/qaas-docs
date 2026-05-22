@@ -1,3 +1,13 @@
+---
+id: assertions.availableassertions.outputdeserializableto.configuration.tableview
+type: reference
+status: stable
+since: 2.0.0
+last_verified: 2026-05-22
+applies_to: [assertions]
+keywords: [assertions, availableassertions, outputdeserializableto, configuration, tableview]
+summary: "OutputDeserializableTo Configurations Table View"
+---
 # OutputDeserializableTo Configurations Table View
 
 | Property Path | Type | Required | Default | Description |

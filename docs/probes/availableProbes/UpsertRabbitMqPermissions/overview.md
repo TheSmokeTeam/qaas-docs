@@ -1,3 +1,13 @@
+---
+id: probes.availableprobes.upsertrabbitmqpermissions.overview
+type: explanation
+status: stable
+since: 2.0.0
+last_verified: 2026-05-22
+applies_to: [probes]
+keywords: [probes, availableprobes, upsertrabbitmqpermissions, overview]
+summary: "Creates or updates RabbitMQ permissions for users in one or more virtual hosts through the management API."
+---
 # UpsertRabbitMqPermissions
 
 Creates or updates RabbitMQ permissions for users in one or more virtual hosts through the management API.

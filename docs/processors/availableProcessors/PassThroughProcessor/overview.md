@@ -1,3 +1,13 @@
+---
+id: processors.availableprocessors.passthroughprocessor.overview
+type: explanation
+status: stable
+since: 2.0.0
+last_verified: 2026-05-22
+applies_to: [processors]
+keywords: [processors, availableprocessors, passthroughprocessor, overview]
+summary: "Returns the incoming request payload unchanged while applying the configured response metadata."
+---
 # PassThroughProcessor
 
 Returns the incoming request payload unchanged while applying the configured response metadata.

@@ -1,3 +1,13 @@
+---
+id: assertions.availableassertions.outputcontentbyexpectedcsvresults.configuration.tableview
+type: reference
+status: stable
+since: 2.0.0
+last_verified: 2026-05-22
+applies_to: [assertions]
+keywords: [assertions, availableassertions, outputcontentbyexpectedcsvresults, configuration, tableview]
+summary: "OutputContentByExpectedCsvResults Configurations Table View"
+---
 # OutputContentByExpectedCsvResults Configurations Table View
 
 | Property Path | Type | Required | Default | Description |

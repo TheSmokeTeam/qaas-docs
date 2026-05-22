@@ -1,3 +1,13 @@
+---
+id: probes.availableprobes.deleterabbitmqbindings.overview
+type: explanation
+status: stable
+since: 2.0.0
+last_verified: 2026-05-22
+applies_to: [probes]
+keywords: [probes, availableprobes, deleterabbitmqbindings, overview]
+summary: "Deletes RabbitMQ bindings using the configured source, destination, routing key, and binding type."
+---
 # DeleteRabbitMqBindings
 
 Deletes RabbitMQ bindings using the configured source, destination, routing key, and binding type.

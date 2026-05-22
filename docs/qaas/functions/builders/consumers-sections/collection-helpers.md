@@ -1,3 +1,13 @@
+---
+id: qaas.functions.builders.consumers-sections.collection-helpers
+type: reference
+status: stable
+since: 2.0.0
+last_verified: 2026-05-22
+applies_to: [runner]
+keywords: [qaas, functions, builders, consumers, sections, collection]
+summary: "This page mirrors the Collection helpers section from Consumers."
+---
 # Consumers: Collection helpers
 
 This page mirrors the `Collection helpers` section from [Consumers](../consumers.md).

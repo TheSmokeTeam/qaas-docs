@@ -1,3 +1,13 @@
+---
+id: mocker.functions.builders.transaction-stubs-sections.identity-and-hook-selection
+type: reference
+status: stable
+since: 2.0.0
+last_verified: 2026-05-22
+applies_to: [mocker]
+keywords: [mocker, functions, builders, transaction, stubs, sections]
+summary: "This page mirrors the Identity and hook selection section from Transaction Stubs."
+---
 # Transaction Stubs: Identity and hook selection
 
 This page mirrors the `Identity and hook selection` section from [Transaction Stubs](../transaction-stubs.md).

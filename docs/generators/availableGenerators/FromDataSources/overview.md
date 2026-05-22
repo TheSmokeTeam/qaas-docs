@@ -1,3 +1,13 @@
+---
+id: generators.availablegenerators.fromdatasources.overview
+type: explanation
+status: stable
+since: 2.0.0
+last_verified: 2026-05-22
+applies_to: [generators]
+keywords: [generators, availablegenerators, fromdatasources, overview]
+summary: "Generates data from the enumerable of data sources it receives"
+---
 # FromDataSources
 
 Generates data from the enumerable of data sources it receives

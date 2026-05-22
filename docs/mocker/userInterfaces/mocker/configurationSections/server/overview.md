@@ -1,3 +1,13 @@
+---
+id: mocker.userinterfaces.mocker.configurationsections.server.overview
+type: explanation
+status: stable
+since: 2.0.0
+last_verified: 2026-05-22
+applies_to: [mocker]
+keywords: [mocker, userinterfaces, configurationsections, server, overview]
+summary: "Servers defines the runtime endpoints that QaaS.Mocker starts for a mock execution. Each item represents one server instance, and each instance can expose one protocol configuration such as Http, G..."
+---
 # Servers
 
 `Servers` defines the runtime endpoints that [QaaS.Mocker](../../../../../mocker/index.md) starts for a mock execution. Each item represents one server instance, and each instance can expose one protocol configuration such as `Http`, `Grpc`, or `Socket`.

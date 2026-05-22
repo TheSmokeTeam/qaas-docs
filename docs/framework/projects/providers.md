@@ -1,3 +1,13 @@
+---
+id: framework.projects.providers
+type: reference
+status: stable
+since: 2.0.0
+last_verified: 2026-05-22
+applies_to: [framework]
+keywords: [framework, projects, providers]
+summary: "QaaS.Framework.Providers is the Framework solution's hook-discovery and hook-loading package. It is responsible for finding hook implementations in the current process, resolving the configured hoo..."
+---
 # QaaS.Framework.Providers
 
 `QaaS.Framework.Providers` is the Framework solution's hook-discovery and hook-loading package. It is responsible for finding hook implementations in the current process, resolving the configured hook type, creating the hook instance, injecting `Context`, validating configuration, and registering the final hook collection into Autofac.

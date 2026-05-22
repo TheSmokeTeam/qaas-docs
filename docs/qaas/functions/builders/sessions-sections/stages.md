@@ -1,3 +1,13 @@
+---
+id: qaas.functions.builders.sessions-sections.stages
+type: reference
+status: stable
+since: 2.0.0
+last_verified: 2026-05-22
+applies_to: [runner]
+keywords: [qaas, functions, builders, sessions, sections, stages]
+summary: "This page mirrors the Stages section from Sessions."
+---
 # Sessions: Stages
 
 This page mirrors the `Stages` section from [Sessions](../sessions.md).

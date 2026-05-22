@@ -1,3 +1,13 @@
+---
+id: qaas.functions.builders.assertions-sections.collection-helpers
+type: reference
+status: stable
+since: 2.0.0
+last_verified: 2026-05-22
+applies_to: [runner]
+keywords: [qaas, functions, builders, assertions, sections, collection]
+summary: "This page mirrors the Collection helpers section from Assertions."
+---
 # Assertions: Collection helpers
 
 This page mirrors the `Collection helpers` section from [Assertions](../assertions.md).

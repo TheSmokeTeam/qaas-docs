@@ -1,3 +1,13 @@
+---
+id: qaas.index
+type: explanation
+status: stable
+since: 2.0.0
+last_verified: 2026-05-22
+applies_to: [runner]
+keywords: [qaas, index]
+summary: "QaaS.Runner is the execution engine of the QaaS ecosystem. It loads YAML or code-based test configuration, runs setup and cleanup hooks, drives protocol Sessions against the system under test, stor..."
+---
 # QaaS Runner
 
 **QaaS.Runner** is the execution engine of the QaaS ecosystem. It loads YAML or code-based test configuration, runs setup and cleanup hooks, drives protocol [Sessions](userInterfaces/runner/configurationSections/sessions/overview.md) against the system under test, stores the resulting session data, evaluates [Assertions](userInterfaces/runner/configurationSections/assertions/overview.md), and writes [Allure Report](userInterfaces/runner/allureReport.md) results.

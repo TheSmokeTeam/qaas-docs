@@ -1,3 +1,13 @@
+---
+id: probes.index
+type: explanation
+status: stable
+since: 2.0.0
+last_verified: 2026-05-22
+applies_to: [probes]
+keywords: [probes, index]
+summary: "Probes are hooks that manipulate infrastructure before or after Sessions run. They are typically used for setup and cleanup tasks such as creating queues, flushing caches, scaling pods, truncating ..."
+---
 # Probes
 
 Probes are **hooks** that manipulate infrastructure before or after [Sessions](../qaas/userInterfaces/runner/configurationSections/sessions/overview.md) run. They are typically used for setup and cleanup tasks such as creating queues, flushing caches, scaling pods, truncating tables, or deleting data.

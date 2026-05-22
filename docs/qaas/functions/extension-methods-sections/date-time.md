@@ -1,3 +1,13 @@
+---
+id: qaas.functions.extension-methods-sections.date-time
+type: reference
+status: stable
+since: 2.0.0
+last_verified: 2026-05-22
+applies_to: [runner]
+keywords: [qaas, functions, extension, methods, sections, date]
+summary: "This page mirrors the Date time section from Extension Methods."
+---
 # Extension Methods: Date time
 
 This page mirrors the `Date time` section from [Extension Methods](../extension-methods.md).

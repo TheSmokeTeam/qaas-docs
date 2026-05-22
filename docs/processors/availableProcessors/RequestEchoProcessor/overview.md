@@ -1,3 +1,13 @@
+---
+id: processors.availableprocessors.requestechoprocessor.overview
+type: explanation
+status: stable
+since: 2.0.0
+last_verified: 2026-05-22
+applies_to: [processors]
+keywords: [processors, availableprocessors, requestechoprocessor, overview]
+summary: "Returns a JSON response that echoes the incoming request body and optional request metadata."
+---
 # RequestEchoProcessor
 
 Returns a JSON response that echoes the incoming request body and optional request metadata.

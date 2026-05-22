@@ -1,3 +1,13 @@
+---
+id: generators.index
+type: explanation
+status: stable
+since: 2.0.0
+last_verified: 2026-05-22
+applies_to: [generators]
+keywords: [generators, index]
+summary: "Generators are hooks that produce input data for QaaS.Runner Sessions. Before the act phase begins, the Runner calls each configured generator to populate the DataSources that sessions consume duri..."
+---
 # Generators
 
 Generators are **hooks** that produce input data for [QaaS.Runner](../qaas/index.md) [Sessions](../qaas/userInterfaces/runner/configurationSections/sessions/overview.md). Before the act phase begins, the Runner calls each configured generator to populate the [DataSources](../qaas/userInterfaces/runner/configurationSections/dataSources/overview.md) that sessions consume during [Publishers](../qaas/userInterfaces/runner/configurationSections/sessions/types/publishers.md) and [Transactions](../qaas/userInterfaces/runner/configurationSections/sessions/types/transactions.md).

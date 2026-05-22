@@ -1,3 +1,13 @@
+---
+id: generators.availablegenerators.lettucefromfilesystem.overview
+type: explanation
+status: stable
+since: 2.0.0
+last_verified: 2026-05-22
+applies_to: [generators]
+keywords: [generators, availablegenerators, lettucefromfilesystem, overview]
+summary: "Retrieves lettuce-formatted files from the configured file-system path and exposes them as generated messages with their routing key metadata."
+---
 # LettuceFromFileSystem
 
 Retrieves lettuce-formatted files from the configured file-system path and exposes them as generated messages with their routing key metadata.

@@ -1,3 +1,13 @@
+---
+id: qaas.userinterfaces.runner.configurationsections.sessions.types.collectors
+type: reference
+status: stable
+since: 2.0.0
+last_verified: 2026-05-22
+applies_to: [runner]
+keywords: [qaas, userinterfaces, runner, configurationsections, sessions, types]
+summary: "Collectors are communication actions that collect data from an endpoint within a range of time in a single action. Every collector will create an Output by its name in the SessionData."
+---
 # Collectors
 
 Collectors are communication actions that collect data from an endpoint within a range of time in a single action. Every collector will create an `Output` by its name in the `SessionData`.

@@ -1,3 +1,13 @@
+---
+id: framework.functions.contexts-sections.contexts
+type: reference
+status: stable
+since: 2.0.0
+last_verified: 2026-05-22
+applies_to: [framework]
+keywords: [framework, functions, contexts, sections]
+summary: "This page mirrors the Contexts section from Contexts."
+---
 # Contexts: Contexts
 
 This page mirrors the `Contexts` section from [Contexts](../contexts.md).

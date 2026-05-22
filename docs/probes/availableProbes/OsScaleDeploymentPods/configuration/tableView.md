@@ -1,3 +1,13 @@
+---
+id: probes.availableprobes.osscaledeploymentpods.configuration.tableview
+type: reference
+status: stable
+since: 2.0.0
+last_verified: 2026-05-22
+applies_to: [probes]
+keywords: [probes, availableprobes, osscaledeploymentpods, configuration, tableview]
+summary: "OsScaleDeploymentPods Configurations Table View"
+---
 # OsScaleDeploymentPods Configurations Table View
 
 | Property Path | Type | Required | Default | Description |

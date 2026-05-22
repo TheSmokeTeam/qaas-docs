@@ -1,3 +1,13 @@
+---
+id: probes.availableprobes.executerediscommand.configuration.tableview
+type: reference
+status: stable
+since: 2.0.0
+last_verified: 2026-05-22
+applies_to: [probes]
+keywords: [probes, availableprobes, executerediscommand, configuration, tableview]
+summary: "ExecuteRedisCommand Configurations Table View"
+---
 # ExecuteRedisCommand Configurations Table View
 
 | Property Path | Type | Required | Default | Description |

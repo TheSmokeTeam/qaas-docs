@@ -1,3 +1,13 @@
+---
+id: framework.projects.infrastructure
+type: reference
+status: stable
+since: 2.0.0
+last_verified: 2026-05-22
+applies_to: [framework]
+keywords: [framework, projects, infrastructure]
+summary: "QaaS.Framework.Infrastructure is the smallest runtime package in the Framework solution. It does not define a large subsystem on its own. Instead, it provides a few shared primitives that other pac..."
+---
 # QaaS.Framework.Infrastructure
 
 `QaaS.Framework.Infrastructure` is the smallest runtime package in the Framework solution. It does not define a large subsystem on its own. Instead, it provides a few shared primitives that other packages reuse when they need consistent time conversion, filesystem-safe names, or a simple domain-builder contract.

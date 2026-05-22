@@ -1,3 +1,13 @@
+---
+id: mocker.userinterfaces.mocker.configurationsections.server.configurations.tableview
+type: reference
+status: stable
+since: 2.0.0
+last_verified: 2026-05-22
+applies_to: [mocker]
+keywords: [mocker, userinterfaces, configurationsections, server, configurations, tableview]
+summary: "Servers Configurations Table View"
+---
 # Servers Configurations Table View
 
 | Property Path | Type | Required | Default | Description |

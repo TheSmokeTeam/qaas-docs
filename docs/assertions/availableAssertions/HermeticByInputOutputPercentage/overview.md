@@ -1,3 +1,13 @@
+---
+id: assertions.availableassertions.hermeticbyinputoutputpercentage.overview
+type: explanation
+status: stable
+since: 2.0.0
+last_verified: 2026-05-22
+applies_to: [assertions]
+keywords: [assertions, availableassertions, hermeticbyinputoutputpercentage, overview]
+summary: "Performs a hermetic test by comparing the the count of a specified input with multiplied by given percentage modifier to the count of a specified output"
+---
 # HermeticByInputOutputPercentage
 
 Performs a hermetic test by comparing the the count of a specified input with multiplied by given percentage modifier to the count of a specified output

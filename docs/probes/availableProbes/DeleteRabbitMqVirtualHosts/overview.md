@@ -1,3 +1,13 @@
+---
+id: probes.availableprobes.deleterabbitmqvirtualhosts.overview
+type: explanation
+status: stable
+since: 2.0.0
+last_verified: 2026-05-22
+applies_to: [probes]
+keywords: [probes, availableprobes, deleterabbitmqvirtualhosts, overview]
+summary: "Deletes RabbitMQ virtual hosts through the management API."
+---
 # DeleteRabbitMqVirtualHosts
 
 Deletes RabbitMQ virtual hosts through the management API.

@@ -1,3 +1,13 @@
+---
+id: qaas.advancedconcepts.livesessiondata
+type: reference
+status: stable
+since: 2.0.0
+last_verified: 2026-05-22
+applies_to: [runner]
+keywords: [qaas, advancedconcepts, livesessiondata]
+summary: "In certain advanced scenarios, you may need to access data from a currently running action inside your QaaS.Common.Generators. This allows generator logic to react to live processing results instea..."
+---
 # Live Action Based Generators
 
 In certain advanced scenarios, you may need to access data from a currently running action inside your [QaaS.Common.Generators](../../generators/index.md). This allows generator logic to react to live processing results instead of waiting for completed [session data](../userInterfaces/runner/configurationSections/sessions/overview.md).

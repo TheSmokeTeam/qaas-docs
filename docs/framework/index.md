@@ -1,3 +1,13 @@
+---
+id: framework.index
+type: explanation
+status: stable
+since: 2.0.0
+last_verified: 2026-05-22
+applies_to: [framework]
+keywords: [framework, index]
+summary: "QaaS.Framework is the shared runtime layer underneath QaaS.Runner, QaaS.Mocker, and custom hook packages such as QaaS.Common.Assertions, QaaS.Common.Generators, QaaS.Common.Probes, and QaaS.Common...."
+---
 # QaaS.Framework
 
 `QaaS.Framework` is the shared runtime layer underneath [QaaS.Runner](../qaas/index.md), [QaaS.Mocker](../mocker/index.md), and custom hook packages such as [QaaS.Common.Assertions](../assertions/index.md), [QaaS.Common.Generators](../generators/index.md), [QaaS.Common.Probes](../probes/index.md), and [QaaS.Common.Processors](../processors/index.md). It is not a standalone executable. Instead, it provides the configuration engine, SDK contracts, protocol abstractions, serialization, [Policies](./projects/policies.md), and provider infrastructure that the executable products compose at runtime.

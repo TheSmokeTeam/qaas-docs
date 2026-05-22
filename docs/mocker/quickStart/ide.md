@@ -1,3 +1,13 @@
+---
+id: mocker.quickstart.ide
+type: tutorial
+status: stable
+since: 2.0.0
+last_verified: 2026-05-22
+applies_to: [mocker]
+keywords: [mocker, quickstart, ide]
+summary: "QaaS.Mocker can be configured in YAML or in C# (Configuration as Code). This page focuses on the YAML experience for Mocker projects."
+---
 # Mocker IDE Setup
 
 QaaS.Mocker can be configured in YAML or in C# ([Configuration as Code](../../qaas/advancedConcepts/configurationAsCode.md)). This page focuses on the YAML experience for Mocker projects.

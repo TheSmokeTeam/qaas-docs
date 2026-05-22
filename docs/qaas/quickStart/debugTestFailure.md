@@ -1,3 +1,13 @@
+---
+id: qaas.quickstart.debugtestfailure
+type: tutorial
+status: stable
+since: 2.0.0
+last_verified: 2026-05-22
+applies_to: [runner]
+keywords: [qaas, quickstart, debugtestfailure]
+summary: "QaaS includes a configurable logger that can output logs to the console or to a file. The log level can be adjusted using the -l flag, or the entire logging configuration can be overridden using th..."
+---
 # Debug Test Failure
 
 ## QaaS Logs

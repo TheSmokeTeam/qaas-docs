@@ -1,3 +1,13 @@
+---
+id: mocker.quickstart.integratewithtests
+type: tutorial
+status: stable
+since: 2.0.0
+last_verified: 2026-05-22
+applies_to: [mocker]
+keywords: [mocker, quickstart, integratewithtests]
+summary: "For end-to-end integration between QaaS.Runner tests and a mock server, configure the Controller section in mocker.qaas.yaml."
+---
 # Integrate with Tests
 
 For end-to-end integration between [QaaS.Runner](../../qaas/index.md) tests and a mock server, configure the [Controller](../userInterfaces/mocker/configurationSections/controller/overview.md) section in `mocker.qaas.yaml`.

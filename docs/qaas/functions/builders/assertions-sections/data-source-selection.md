@@ -1,3 +1,13 @@
+---
+id: qaas.functions.builders.assertions-sections.data-source-selection
+type: reference
+status: stable
+since: 2.0.0
+last_verified: 2026-05-22
+applies_to: [runner]
+keywords: [qaas, functions, builders, assertions, sections, data]
+summary: "This page mirrors the Data source selection section from Assertions."
+---
 # Assertions: Data source selection
 
 This page mirrors the `Data source selection` section from [Assertions](../assertions.md).

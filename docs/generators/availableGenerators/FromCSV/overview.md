@@ -1,3 +1,13 @@
+---
+id: generators.availablegenerators.fromcsv.overview
+type: explanation
+status: stable
+since: 2.0.0
+last_verified: 2026-05-22
+applies_to: [generators]
+keywords: [generators, availablegenerators, fromcsv, overview]
+summary: "Reads CSV files from the configured file-system path and turns each row into generated data items."
+---
 # FromCSV
 
 Reads CSV files from the configured file-system path and turns each row into generated data items.

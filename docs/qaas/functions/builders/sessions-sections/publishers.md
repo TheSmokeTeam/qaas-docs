@@ -1,3 +1,13 @@
+---
+id: qaas.functions.builders.sessions-sections.publishers
+type: reference
+status: stable
+since: 2.0.0
+last_verified: 2026-05-22
+applies_to: [runner]
+keywords: [qaas, functions, builders, sessions, sections, publishers]
+summary: "This page mirrors the Publishers section from Sessions."
+---
 # Sessions: Publishers
 
 This page mirrors the `Publishers` section from [Sessions](../sessions.md).

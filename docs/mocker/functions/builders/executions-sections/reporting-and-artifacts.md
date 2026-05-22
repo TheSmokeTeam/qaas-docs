@@ -1,3 +1,13 @@
+---
+id: mocker.functions.builders.executions-sections.reporting-and-artifacts
+type: reference
+status: stable
+since: 2.0.0
+last_verified: 2026-05-22
+applies_to: [mocker]
+keywords: [mocker, functions, builders, executions, sections, reporting]
+summary: "This page mirrors the Reporting and artifacts section from Executions."
+---
 # Executions: Reporting and artifacts
 
 This page mirrors the `Reporting and artifacts` section from [Executions](../executions.md).

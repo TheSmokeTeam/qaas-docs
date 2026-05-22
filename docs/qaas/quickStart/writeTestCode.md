@@ -1,3 +1,13 @@
+---
+id: qaas.quickstart.writetestcode
+type: tutorial
+status: stable
+since: 2.0.0
+last_verified: 2026-05-22
+applies_to: [runner]
+keywords: [qaas, quickstart, writetestcode]
+summary: "This sample builds the same Runner configuration shape as the YAML quick start, but does it directly in Program.cs and gives the delay assertion a 10-second window so the documented smoke flow stay..."
+---
 # Write a Test (Code)
 
 This sample builds the same Runner configuration shape as the YAML quick start, but does it directly in `Program.cs` and gives the delay assertion a 10-second window so the documented smoke flow stays stable.

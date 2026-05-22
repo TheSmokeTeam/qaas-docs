@@ -1,3 +1,13 @@
+---
+id: framework.functions.builders.data-sources-sections.configuration
+type: reference
+status: stable
+since: 2.0.0
+last_verified: 2026-05-22
+applies_to: [framework]
+keywords: [framework, functions, builders, data, sources, sections]
+summary: "This page mirrors the Configuration section from Data Sources."
+---
 # Data Sources: Configuration
 
 This page mirrors the `Configuration` section from [Data Sources](../data-sources.md).

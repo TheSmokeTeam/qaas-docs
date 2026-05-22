@@ -1,3 +1,13 @@
+---
+id: probes.availableprobes.createrabbitmqqueues.configuration.tableview
+type: reference
+status: stable
+since: 2.0.0
+last_verified: 2026-05-22
+applies_to: [probes]
+keywords: [probes, availableprobes, createrabbitmqqueues, configuration, tableview]
+summary: "CreateRabbitMqQueues Configurations Table View"
+---
 # CreateRabbitMqQueues Configurations Table View
 
 | Property Path | Type | Required | Default | Description |

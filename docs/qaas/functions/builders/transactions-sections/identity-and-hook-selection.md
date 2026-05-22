@@ -1,3 +1,13 @@
+---
+id: qaas.functions.builders.transactions-sections.identity-and-hook-selection
+type: reference
+status: stable
+since: 2.0.0
+last_verified: 2026-05-22
+applies_to: [runner]
+keywords: [qaas, functions, builders, transactions, sections, identity]
+summary: "This page mirrors the Identity and hook selection section from Transactions."
+---
 # Transactions: Identity and hook selection
 
 This page mirrors the `Identity and hook selection` section from [Transactions](../transactions.md).

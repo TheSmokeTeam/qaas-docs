@@ -1,3 +1,13 @@
+---
+id: mocker.architecture
+type: explanation
+status: stable
+since: 2.0.0
+last_verified: 2026-05-22
+applies_to: [mocker]
+keywords: [mocker, architecture]
+summary: "QaaS.Mocker has a small runtime surface, but the execution path is structured. Configuration is loaded first, then converted into a runtime graph of DataSources, Stubs, Servers, and the optional Co..."
+---
 # Architecture
 
 [QaaS.Mocker](index.md) has a small runtime surface, but the execution path is structured. Configuration is loaded first, then converted into a runtime graph of [DataSources](userInterfaces/mocker/configurationSections/dataSources/overview.md), [Stubs](userInterfaces/mocker/configurationSections/stubs/overview.md), [Servers](userInterfaces/mocker/configurationSections/server/overview.md), and the optional [Controller](userInterfaces/mocker/configurationSections/controller/overview.md).

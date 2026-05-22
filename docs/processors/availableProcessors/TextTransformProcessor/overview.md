@@ -1,3 +1,13 @@
+---
+id: processors.availableprocessors.texttransformprocessor.overview
+type: explanation
+status: stable
+since: 2.0.0
+last_verified: 2026-05-22
+applies_to: [processors]
+keywords: [processors, availableprocessors, texttransformprocessor, overview]
+summary: "Reads the incoming payload as text, applies the configured text transformation, and returns the transformed response."
+---
 # TextTransformProcessor
 
 Reads the incoming payload as text, applies the configured text transformation, and returns the transformed response.

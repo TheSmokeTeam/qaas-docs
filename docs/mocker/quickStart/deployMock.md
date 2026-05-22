@@ -1,3 +1,13 @@
+---
+id: mocker.quickstart.deploymock
+type: tutorial
+status: stable
+since: 2.0.0
+last_verified: 2026-05-22
+applies_to: [mocker]
+keywords: [mocker, quickstart, deploymock]
+summary: "Once the mock works locally, package it as a container image and deploy it with a native Helm chart."
+---
 # Deploy a Mock
 
 Once the mock works locally, package it as a container image and deploy it with a native Helm chart.

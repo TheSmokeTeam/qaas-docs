@@ -1,3 +1,13 @@
+---
+id: generators.availablegenerators.fromdatalake.overview
+type: explanation
+status: stable
+since: 2.0.0
+last_verified: 2026-05-22
+applies_to: [generators]
+keywords: [generators, availablegenerators, fromdatalake, overview]
+summary: "Retrieves rows from the configured data lake query and exposes each row as a generated JSON object."
+---
 # FromDataLake
 
 Retrieves rows from the configured data lake query and exposes each row as a generated JSON object.

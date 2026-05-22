@@ -1,3 +1,13 @@
+---
+id: qaas.userinterfaces.runner.commands.act
+type: reference
+status: stable
+since: 2.0.0
+last_verified: 2026-05-22
+applies_to: [runner]
+keywords: [qaas, userinterfaces, runner, commands, act]
+summary: "Run a qaas test without the assertions and save all sessionData."
+---
 # act
 
 Run a qaas test without the assertions and save all sessionData.

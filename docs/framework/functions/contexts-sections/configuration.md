@@ -1,3 +1,13 @@
+---
+id: framework.functions.contexts-sections.configuration
+type: reference
+status: stable
+since: 2.0.0
+last_verified: 2026-05-22
+applies_to: [framework]
+keywords: [framework, functions, contexts, sections, configuration]
+summary: "This page mirrors the Configuration section from Contexts."
+---
 # Contexts: Configuration
 
 This page mirrors the `Configuration` section from [Contexts](../contexts.md).

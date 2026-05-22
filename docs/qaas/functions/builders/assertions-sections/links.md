@@ -1,3 +1,13 @@
+---
+id: qaas.functions.builders.assertions-sections.links
+type: reference
+status: stable
+since: 2.0.0
+last_verified: 2026-05-22
+applies_to: [runner]
+keywords: [qaas, functions, builders, assertions, sections, links]
+summary: "This page mirrors the Links section from Assertions."
+---
 # Assertions: Links
 
 This page mirrors the `Links` section from [Assertions](../assertions.md).

@@ -1,3 +1,13 @@
+---
+id: qaas.advancedconcepts.globaldictionary
+type: reference
+status: stable
+since: 2.0.0
+last_verified: 2026-05-22
+applies_to: [runner]
+keywords: [qaas, advancedconcepts, globaldictionary]
+summary: "The Runner global dictionary is the shared mutable state that lives alongside the built execution. Use it when values must be available at runtime across hooks, Sessions, Assertions, and other exec..."
+---
 # Global Dictionary
 
 The Runner global dictionary is the shared mutable state that lives alongside the built execution. Use it when values must be available at runtime across hooks, [Sessions](../userInterfaces/runner/configurationSections/sessions/overview.md), [Assertions](../userInterfaces/runner/configurationSections/assertions/overview.md), and other execution components.

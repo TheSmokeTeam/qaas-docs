@@ -1,3 +1,13 @@
+---
+id: qaas.advancedconcepts.stages
+type: reference
+status: stable
+since: 2.0.0
+last_verified: 2026-05-22
+applies_to: [runner]
+keywords: [qaas, advancedconcepts, stages]
+summary: "Stages in QaaS provide fine-grained control over execution order, but the word stage is used in two different places:"
+---
 # Stages in QaaS: Orchestrating Session and Action Execution
 
 **Stages** in QaaS provide **fine-grained control over execution order**, but the word **stage** is used in two different places:

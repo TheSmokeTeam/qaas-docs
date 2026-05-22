@@ -1,3 +1,13 @@
+---
+id: qaas.addons.modules
+type: reference
+status: stable
+since: 2.0.0
+last_verified: 2026-05-22
+applies_to: [runner]
+keywords: [qaas, addons, modules]
+summary: "QaaS Module Packages are bundles of folders containing YAML files, uploaded as artifacts to Artifactory. In the context of QaaS, each such artifact is referred to as a module. These modules can be ..."
+---
 # QaaS Module Packages
 
 `QaaS Module Packages` are bundles of folders containing YAML files, uploaded as artifacts to [Artifactory]({{ links.artifactory }}). In the context of `QaaS`, each such artifact is referred to as a **module**. These modules can be used interchangeably with any YAML file within [QaaS.Runner](../index.md).

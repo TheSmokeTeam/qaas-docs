@@ -1,3 +1,13 @@
+---
+id: qaas.functions.builders.storages-sections.storages
+type: reference
+status: stable
+since: 2.0.0
+last_verified: 2026-05-22
+applies_to: [runner]
+keywords: [qaas, functions, builders, storages, sections]
+summary: "This page mirrors the Storages section from Storages."
+---
 # Storages: Storages
 
 This page mirrors the `Storages` section from [Storages](../storages.md).

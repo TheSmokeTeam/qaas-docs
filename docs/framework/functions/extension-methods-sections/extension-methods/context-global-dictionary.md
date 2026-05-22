@@ -1,3 +1,13 @@
+---
+id: framework.functions.extension-methods-sections.extension-methods.context-global-dictionary
+type: reference
+status: stable
+since: 2.0.0
+last_verified: 2026-05-22
+applies_to: [framework]
+keywords: [framework, functions, extension, methods, sections, context]
+summary: "This page mirrors the Extension Methods / Context global dictionary section from Extension Methods."
+---
 # Extension Methods: Extension Methods / Context global dictionary
 
 This page mirrors the `Extension Methods / Context global dictionary` section from [Extension Methods](../../extension-methods.md).

@@ -1,3 +1,13 @@
+---
+id: probes.availableprobes.creates3bucket.overview
+type: explanation
+status: stable
+since: 2.0.0
+last_verified: 2026-05-22
+applies_to: [probes]
+keywords: [probes, availableprobes, creates3bucket, overview]
+summary: "Ensures the configured S3 bucket exists by creating it when it is missing."
+---
 # CreateS3Bucket
 
 Ensures the configured S3 bucket exists by creating it when it is missing.

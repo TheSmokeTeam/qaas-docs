@@ -1,3 +1,13 @@
+---
+id: probes.availableprobes.flushdbredis.overview
+type: explanation
+status: stable
+since: 2.0.0
+last_verified: 2026-05-22
+applies_to: [probes]
+keywords: [probes, availableprobes, flushdbredis, overview]
+summary: "Runs Redis FLUSHDB against the selected Redis database."
+---
 # FlushDbRedis
 
 Runs Redis FLUSHDB against the selected Redis database.

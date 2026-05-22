@@ -1,3 +1,13 @@
+---
+id: probes.availableprobes.deleterabbitmqexchanges.overview
+type: explanation
+status: stable
+since: 2.0.0
+last_verified: 2026-05-22
+applies_to: [probes]
+keywords: [probes, availableprobes, deleterabbitmqexchanges, overview]
+summary: "Probe that deletes rabbitmq exchanges"
+---
 # DeleteRabbitMqExchanges
 
 Probe that deletes rabbitmq exchanges

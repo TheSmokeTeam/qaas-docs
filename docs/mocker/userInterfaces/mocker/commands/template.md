@@ -1,3 +1,13 @@
+---
+id: mocker.userinterfaces.mocker.commands.template
+type: reference
+status: stable
+since: 2.0.0
+last_verified: 2026-05-22
+applies_to: [mocker]
+keywords: [mocker, userinterfaces, commands, template]
+summary: "Render the effective merged configuration after file, folder, argument, and environment overrides."
+---
 # template
 
 Render the effective merged configuration after file, folder, argument, and environment overrides.

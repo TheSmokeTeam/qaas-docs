@@ -1,3 +1,13 @@
+---
+id: framework.projects.sdk
+type: reference
+status: stable
+since: 2.0.0
+last_verified: 2026-05-22
+applies_to: [framework]
+keywords: [framework, projects, sdk]
+summary: "QaaS.Framework.SDK is the main runtime-contract package in the Framework solution. It defines the object model that the rest of QaaS works with: contexts, execution data, sessions, communications, ..."
+---
 # QaaS.Framework.SDK
 
 `QaaS.Framework.SDK` is the main runtime-contract package in the Framework solution. It defines the object model that the rest of QaaS works with: contexts, execution data, sessions, communications, data sources, hook contracts, hook base classes, metadata, and helper extensions. Any hook package that integrates with the Framework depends on this package because it is the shared vocabulary for the runtime.

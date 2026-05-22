@@ -1,3 +1,13 @@
+---
+id: probes.availableprobes.osupdatedeploymentresources.configuration.tableview
+type: reference
+status: stable
+since: 2.0.0
+last_verified: 2026-05-22
+applies_to: [probes]
+keywords: [probes, availableprobes, osupdatedeploymentresources, configuration, tableview]
+summary: "OsUpdateDeploymentResources Configurations Table View"
+---
 # OsUpdateDeploymentResources Configurations Table View
 
 | Property Path | Type | Required | Default | Description |

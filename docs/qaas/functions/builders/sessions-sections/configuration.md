@@ -1,3 +1,13 @@
+---
+id: qaas.functions.builders.sessions-sections.configuration
+type: reference
+status: stable
+since: 2.0.0
+last_verified: 2026-05-22
+applies_to: [runner]
+keywords: [qaas, functions, builders, sessions, sections, configuration]
+summary: "This page mirrors the Configuration section from Sessions."
+---
 # Sessions: Configuration
 
 This page mirrors the `Configuration` section from [Sessions](../sessions.md).

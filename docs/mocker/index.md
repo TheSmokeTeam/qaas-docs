@@ -1,3 +1,13 @@
+---
+id: mocker.index
+type: explanation
+status: stable
+since: 2.0.0
+last_verified: 2026-05-22
+applies_to: [mocker]
+keywords: [mocker, index]
+summary: "QaaS.Mocker is the mock-server runtime in the QaaS ecosystem. It runs HTTP, gRPC, and socket mocks from YAML or from code, routes incoming traffic to named Stubs, and lets each stub shape its respo..."
+---
 # QaaS Mocker
 
 **QaaS.Mocker** is the mock-server runtime in the QaaS ecosystem. It runs HTTP, gRPC, and socket mocks from YAML or from code, routes incoming traffic to named [Stubs](userInterfaces/mocker/configurationSections/stubs/overview.md), and lets each stub shape its response through reusable or project-local [Processors](../processors/index.md).

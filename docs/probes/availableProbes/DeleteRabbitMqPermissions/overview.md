@@ -1,3 +1,13 @@
+---
+id: probes.availableprobes.deleterabbitmqpermissions.overview
+type: explanation
+status: stable
+since: 2.0.0
+last_verified: 2026-05-22
+applies_to: [probes]
+keywords: [probes, availableprobes, deleterabbitmqpermissions, overview]
+summary: "Deletes RabbitMQ user permissions in one or more virtual hosts through the management API."
+---
 # DeleteRabbitMqPermissions
 
 Deletes RabbitMQ user permissions in one or more virtual hosts through the management API.

@@ -1,3 +1,13 @@
+---
+id: qaas.functions.builders.sessions-sections.general
+type: reference
+status: stable
+since: 2.0.0
+last_verified: 2026-05-22
+applies_to: [runner]
+keywords: [qaas, functions, builders, sessions, sections, general]
+summary: "This page mirrors the General section from Sessions."
+---
 # Sessions: General
 
 This page mirrors the `General` section from [Sessions](../sessions.md).

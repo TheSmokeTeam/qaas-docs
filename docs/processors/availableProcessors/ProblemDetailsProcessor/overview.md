@@ -1,3 +1,13 @@
+---
+id: processors.availableprocessors.problemdetailsprocessor.overview
+type: explanation
+status: stable
+since: 2.0.0
+last_verified: 2026-05-22
+applies_to: [processors]
+keywords: [processors, availableprocessors, problemdetailsprocessor, overview]
+summary: "Returns an RFC 7807 style problem-details JSON response using the configured status and fields."
+---
 # ProblemDetailsProcessor
 
 Returns an RFC 7807 style problem-details JSON response using the configured status and fields.

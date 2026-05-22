@@ -1,3 +1,13 @@
+---
+id: qaas.userinterfaces.runner.configurationsections.sessions.types.mockercommands-tableview
+type: reference
+status: stable
+since: 2.0.0
+last_verified: 2026-05-22
+applies_to: [runner]
+keywords: [qaas, userinterfaces, runner, configurationsections, sessions, types]
+summary: "Mocker Commands Configurations Table View"
+---
 # Mocker Commands Configurations Table View
 
 | Property Path | Type | Required | Default | Description |

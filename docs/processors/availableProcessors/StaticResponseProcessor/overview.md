@@ -1,3 +1,13 @@
+---
+id: processors.availableprocessors.staticresponseprocessor.overview
+type: explanation
+status: stable
+since: 2.0.0
+last_verified: 2026-05-22
+applies_to: [processors]
+keywords: [processors, availableprocessors, staticresponseprocessor, overview]
+summary: "Returns a fixed UTF-8 response body with the configured status code, content type, and headers."
+---
 # StaticResponseProcessor
 
 Returns a fixed UTF-8 response body with the configured status code, content type, and headers.

@@ -1,3 +1,13 @@
+---
+id: generators.availablegenerators.froms3.overview
+type: explanation
+status: stable
+since: 2.0.0
+last_verified: 2026-05-22
+applies_to: [generators]
+keywords: [generators, availablegenerators, froms3, overview]
+summary: "Retrieves data from objects in a configured S3 bucket and prefix."
+---
 # FromS3
 
 Retrieves data from objects in a configured S3 bucket and prefix.

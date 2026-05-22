@@ -1,3 +1,13 @@
+---
+id: probes.availableprobes.createrabbitmqusers.overview
+type: explanation
+status: stable
+since: 2.0.0
+last_verified: 2026-05-22
+applies_to: [probes]
+keywords: [probes, availableprobes, createrabbitmqusers, overview]
+summary: "Creates RabbitMQ users through the management API with the configured credentials and tags."
+---
 # CreateRabbitMqUsers
 
 Creates RabbitMQ users through the management API with the configured credentials and tags.

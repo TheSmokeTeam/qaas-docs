@@ -1,3 +1,13 @@
+---
+id: mocker.functions.builders.executions-sections.output-selection
+type: reference
+status: stable
+since: 2.0.0
+last_verified: 2026-05-22
+applies_to: [mocker]
+keywords: [mocker, functions, builders, executions, sections, output]
+summary: "This page mirrors the Output selection section from Executions."
+---
 # Executions: Output selection
 
 This page mirrors the `Output selection` section from [Executions](../executions.md).

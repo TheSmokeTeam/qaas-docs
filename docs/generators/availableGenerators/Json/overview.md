@@ -1,3 +1,13 @@
+---
+id: generators.availablegenerators.json.overview
+type: explanation
+status: stable
+since: 2.0.0
+last_verified: 2026-05-22
+applies_to: [generators]
+keywords: [generators, availablegenerators, json, overview]
+summary: "Generates JSON data from a configured prototype document."
+---
 # Json
 
 Generates JSON data from a configured prototype document.

@@ -1,3 +1,13 @@
+---
+id: qaas.functions.builders.sessions-sections.classification
+type: reference
+status: stable
+since: 2.0.0
+last_verified: 2026-05-22
+applies_to: [runner]
+keywords: [qaas, functions, builders, sessions, sections, classification]
+summary: "This page mirrors the Classification section from Sessions."
+---
 # Sessions: Classification
 
 This page mirrors the `Classification` section from [Sessions](../sessions.md).

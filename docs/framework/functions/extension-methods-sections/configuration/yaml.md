@@ -1,3 +1,13 @@
+---
+id: framework.functions.extension-methods-sections.configuration.yaml
+type: reference
+status: stable
+since: 2.0.0
+last_verified: 2026-05-22
+applies_to: [framework]
+keywords: [framework, functions, extension, methods, sections, configuration]
+summary: "This page mirrors the Configuration / YAML section from Extension Methods."
+---
 # Extension Methods: Configuration / YAML
 
 This page mirrors the `Configuration / YAML` section from [Extension Methods](../../extension-methods.md).

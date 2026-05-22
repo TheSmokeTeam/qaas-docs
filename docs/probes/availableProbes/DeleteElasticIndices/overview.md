@@ -1,3 +1,13 @@
+---
+id: probes.availableprobes.deleteelasticindices.overview
+type: explanation
+status: stable
+since: 2.0.0
+last_verified: 2026-05-22
+applies_to: [probes]
+keywords: [probes, availableprobes, deleteelasticindices, overview]
+summary: "Deletes every Elasticsearch index that matches the configured index pattern."
+---
 # DeleteElasticIndices
 
 Deletes every Elasticsearch index that matches the configured index pattern.

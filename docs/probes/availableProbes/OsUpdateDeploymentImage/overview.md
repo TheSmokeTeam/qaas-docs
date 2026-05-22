@@ -1,3 +1,13 @@
+---
+id: probes.availableprobes.osupdatedeploymentimage.overview
+type: explanation
+status: stable
+since: 2.0.0
+last_verified: 2026-05-22
+applies_to: [probes]
+keywords: [probes, availableprobes, osupdatedeploymentimage, overview]
+summary: "Updates the image of one container in a Kubernetes or OpenShift deployment."
+---
 # OsUpdateDeploymentImage
 
 Updates the image of one container in a Kubernetes or OpenShift deployment.

@@ -1,3 +1,13 @@
+---
+id: probes.availableprobes.downloadrabbitmqdefinitions.overview
+type: explanation
+status: stable
+since: 2.0.0
+last_verified: 2026-05-22
+applies_to: [probes]
+keywords: [probes, availableprobes, downloadrabbitmqdefinitions, overview]
+summary: "Downloads RabbitMQ definitions from the management API so the current topology can be captured and reused."
+---
 # DownloadRabbitMqDefinitions
 
 Downloads RabbitMQ definitions from the management API so the current topology can be captured and reused.

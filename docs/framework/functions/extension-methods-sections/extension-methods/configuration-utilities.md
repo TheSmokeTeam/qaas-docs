@@ -1,3 +1,13 @@
+---
+id: framework.functions.extension-methods-sections.extension-methods.configuration-utilities
+type: reference
+status: stable
+since: 2.0.0
+last_verified: 2026-05-22
+applies_to: [framework]
+keywords: [framework, functions, extension, methods, sections, configuration]
+summary: "This page mirrors the Extension Methods / Configuration utilities section from Extension Methods."
+---
 # Extension Methods: Extension Methods / Configuration utilities
 
 This page mirrors the `Extension Methods / Configuration utilities` section from [Extension Methods](../../extension-methods.md).

@@ -1,3 +1,13 @@
+---
+id: qaas.functions.builders.sessions-sections.consumers
+type: reference
+status: stable
+since: 2.0.0
+last_verified: 2026-05-22
+applies_to: [runner]
+keywords: [qaas, functions, builders, sessions, sections, consumers]
+summary: "This page mirrors the Consumers section from Sessions."
+---
 # Sessions: Consumers
 
 This page mirrors the `Consumers` section from [Sessions](../sessions.md).

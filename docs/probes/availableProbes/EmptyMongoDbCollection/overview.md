@@ -1,3 +1,13 @@
+---
+id: probes.availableprobes.emptymongodbcollection.overview
+type: explanation
+status: stable
+since: 2.0.0
+last_verified: 2026-05-22
+applies_to: [probes]
+keywords: [probes, availableprobes, emptymongodbcollection, overview]
+summary: "Deletes all documents from the configured MongoDB collection so it starts clean for the test run."
+---
 # EmptyMongoDbCollection
 
 Deletes all documents from the configured MongoDB collection so it starts clean for the test run.

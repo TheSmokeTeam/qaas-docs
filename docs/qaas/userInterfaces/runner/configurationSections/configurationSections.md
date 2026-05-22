@@ -1,3 +1,13 @@
+---
+id: qaas.userinterfaces.runner.configurationsections.configurationsections
+type: reference
+status: stable
+since: 2.0.0
+last_verified: 2026-05-22
+applies_to: [runner]
+keywords: [qaas, userinterfaces, runner, configurationsections]
+summary: "Each configuration section in the .yaml file is used to perform a different action and has its own configurations and descriptions."
+---
 # Configuration Sections
 
 Each configuration section in the `.yaml` file is used to perform a different action and has its own configurations and descriptions.

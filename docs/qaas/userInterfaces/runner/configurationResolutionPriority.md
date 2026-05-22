@@ -1,3 +1,13 @@
+---
+id: qaas.userinterfaces.runner.configurationresolutionpriority
+type: reference
+status: stable
+since: 2.0.0
+last_verified: 2026-05-22
+applies_to: [runner]
+keywords: [qaas, userinterfaces, runner, configurationresolutionpriority]
+summary: "This page describes how QaaS.Runner builds the effective configuration for the run, act, assert, and template commands."
+---
 # Configuration Resolution
 
 This page describes how `QaaS.Runner` builds the effective configuration for the [`run`](commands/run.md), [`act`](commands/act.md), [`assert`](commands/assert.md), and [`template`](commands/template.md) commands.

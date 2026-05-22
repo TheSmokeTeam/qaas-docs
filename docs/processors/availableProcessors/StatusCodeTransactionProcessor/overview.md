@@ -1,3 +1,13 @@
+---
+id: processors.availableprocessors.statuscodetransactionprocessor.overview
+type: explanation
+status: stable
+since: 2.0.0
+last_verified: 2026-05-22
+applies_to: [processors]
+keywords: [processors, availableprocessors, statuscodetransactionprocessor, overview]
+summary: "Skim Transaction Processor which returns empty-bodied data objects with Status Code configuration."
+---
 # StatusCodeTransactionProcessor
 
 Skim Transaction Processor which returns empty-bodied data objects with Status Code configuration.

@@ -1,3 +1,13 @@
+---
+id: qaas.functions.index
+type: explanation
+status: stable
+since: 2.0.0
+last_verified: 2026-05-22
+applies_to: [runner]
+keywords: [qaas, functions, index]
+summary: "This overview indexes the current public function surface documented through source-level qaas-docs annotations and extension-method XML docs."
+---
 # Runner Functions
 
 This overview indexes the current public function surface documented through source-level `qaas-docs` annotations and extension-method XML docs.

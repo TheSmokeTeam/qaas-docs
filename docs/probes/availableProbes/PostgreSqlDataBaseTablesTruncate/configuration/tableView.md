@@ -1,3 +1,13 @@
+---
+id: probes.availableprobes.postgresqldatabasetablestruncate.configuration.tableview
+type: reference
+status: stable
+since: 2.0.0
+last_verified: 2026-05-22
+applies_to: [probes]
+keywords: [probes, availableprobes, postgresqldatabasetablestruncate, configuration, tableview]
+summary: "PostgreSqlDataBaseTablesTruncate Configurations Table View"
+---
 # PostgreSqlDataBaseTablesTruncate Configurations Table View
 
 | Property Path | Type | Required | Default | Description |

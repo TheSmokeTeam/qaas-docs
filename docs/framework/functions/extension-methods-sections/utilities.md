@@ -1,3 +1,13 @@
+---
+id: framework.functions.extension-methods-sections.utilities
+type: reference
+status: stable
+since: 2.0.0
+last_verified: 2026-05-22
+applies_to: [framework]
+keywords: [framework, functions, extension, methods, sections, utilities]
+summary: "This page mirrors the Utilities section from Extension Methods."
+---
 # Extension Methods: Utilities
 
 This page mirrors the `Utilities` section from [Extension Methods](../extension-methods.md).

@@ -1,3 +1,13 @@
+---
+id: qaas.userinterfaces.runner.configurationsections.sessions.types.probes
+type: reference
+status: stable
+since: 2.0.0
+last_verified: 2026-05-22
+applies_to: [runner]
+keywords: [qaas, userinterfaces, runner, configurationsections, sessions, types]
+summary: "Probes are based on the IProbe hook contract and are actions that affect the system or its underlying infrastructure without saving interaction data, which means they do not modify the SessionData ..."
+---
 # Probes
 
 Probes are based on the `IProbe` hook contract and are actions that affect the system or its underlying infrastructure without saving interaction data, which means they do not modify the `SessionData` object at all.

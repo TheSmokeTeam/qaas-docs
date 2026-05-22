@@ -1,3 +1,13 @@
+---
+id: framework.functions.extension-methods-sections.configuration.updates
+type: reference
+status: stable
+since: 2.0.0
+last_verified: 2026-05-22
+applies_to: [framework]
+keywords: [framework, functions, extension, methods, sections, configuration]
+summary: "This page mirrors the Configuration / Updates section from Extension Methods."
+---
 # Extension Methods: Configuration / Updates
 
 This page mirrors the `Configuration / Updates` section from [Extension Methods](../../extension-methods.md).

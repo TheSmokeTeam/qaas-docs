@@ -1,3 +1,13 @@
+---
+id: qaas.advancedconcepts.configurationascode
+type: reference
+status: stable
+since: 2.0.0
+last_verified: 2026-05-22
+applies_to: [runner]
+keywords: [qaas, advancedconcepts, configurationascode]
+summary: "While YAML offers a concise, human-readable way to define test scenarios, Configuration as Code (CaC) lets you harness the full power of C# for dynamic, conditional, and reusable test orchestration."
+---
 # Configuration as Code
 
 While YAML offers a concise, human-readable way to define test scenarios, **Configuration as Code (CaC)** lets you harness the full power of C# for dynamic, conditional, and reusable test orchestration.

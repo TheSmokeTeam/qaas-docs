@@ -1,3 +1,13 @@
+---
+id: mocker.userinterfaces.mocker.commands.commands
+type: reference
+status: stable
+since: 2.0.0
+last_verified: 2026-05-22
+applies_to: [mocker]
+keywords: [mocker, userinterfaces, commands]
+summary: "QaaS Mocker exposes a compact command surface: one command to start the runtime and one command to render the effective configuration without starting it."
+---
 # Commands
 
 QaaS Mocker exposes a compact command surface: one command to start the runtime and one command to render the effective configuration without starting it.

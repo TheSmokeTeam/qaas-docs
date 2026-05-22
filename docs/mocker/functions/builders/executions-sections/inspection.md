@@ -1,3 +1,13 @@
+---
+id: mocker.functions.builders.executions-sections.inspection
+type: reference
+status: stable
+since: 2.0.0
+last_verified: 2026-05-22
+applies_to: [mocker]
+keywords: [mocker, functions, builders, executions, sections, inspection]
+summary: "This page mirrors the Inspection section from Executions."
+---
 # Executions: Inspection
 
 This page mirrors the `Inspection` section from [Executions](../executions.md).

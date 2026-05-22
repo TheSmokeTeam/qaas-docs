@@ -1,3 +1,13 @@
+---
+id: mocker.functions.builders.transaction-stubs-sections.configuration
+type: reference
+status: stable
+since: 2.0.0
+last_verified: 2026-05-22
+applies_to: [mocker]
+keywords: [mocker, functions, builders, transaction, stubs, sections]
+summary: "This page mirrors the Configuration section from Transaction Stubs."
+---
 # Transaction Stubs: Configuration
 
 This page mirrors the `Configuration` section from [Transaction Stubs](../transaction-stubs.md).

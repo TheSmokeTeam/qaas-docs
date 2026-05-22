@@ -1,3 +1,13 @@
+---
+id: mocker.functions.extension-methods-sections.socket
+type: reference
+status: stable
+since: 2.0.0
+last_verified: 2026-05-22
+applies_to: [mocker]
+keywords: [mocker, functions, extension, methods, sections, socket]
+summary: "This page mirrors the Socket section from Extension Methods."
+---
 # Extension Methods: Socket
 
 This page mirrors the `Socket` section from [Extension Methods](../extension-methods.md).

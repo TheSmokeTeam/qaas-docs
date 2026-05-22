@@ -1,3 +1,13 @@
+---
+id: probes.availableprobes.osupdatestatefulsetresources.overview
+type: explanation
+status: stable
+since: 2.0.0
+last_verified: 2026-05-22
+applies_to: [probes]
+keywords: [probes, availableprobes, osupdatestatefulsetresources, overview]
+summary: "Updates container resource requests and limits in a Kubernetes or OpenShift stateful set."
+---
 # OsUpdateStatefulSetResources
 
 Updates container resource requests and limits in a Kubernetes or OpenShift stateful set.

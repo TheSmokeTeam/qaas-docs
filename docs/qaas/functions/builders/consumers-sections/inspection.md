@@ -1,3 +1,13 @@
+---
+id: qaas.functions.builders.consumers-sections.inspection
+type: reference
+status: stable
+since: 2.0.0
+last_verified: 2026-05-22
+applies_to: [runner]
+keywords: [qaas, functions, builders, consumers, sections, inspection]
+summary: "This page mirrors the Inspection section from Consumers."
+---
 # Consumers: Inspection
 
 This page mirrors the `Inspection` section from [Consumers](../consumers.md).

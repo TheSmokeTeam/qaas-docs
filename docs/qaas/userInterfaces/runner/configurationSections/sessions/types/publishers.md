@@ -1,3 +1,13 @@
+---
+id: qaas.userinterfaces.runner.configurationsections.sessions.types.publishers
+type: reference
+status: stable
+since: 2.0.0
+last_verified: 2026-05-22
+applies_to: [runner]
+keywords: [qaas, userinterfaces, runner, configurationsections, sessions, types]
+summary: "Publishers are communication actions that send data to the system. Every publisher creates an Input in SessionData with its own name."
+---
 # Publishers
 
 Publishers are communication actions that send data to the system. Every publisher creates an `Input` in `SessionData` with its own name.

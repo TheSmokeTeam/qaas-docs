@@ -1,3 +1,13 @@
+---
+id: mocker.functions.builders.executions-sections.collection-helpers
+type: reference
+status: stable
+since: 2.0.0
+last_verified: 2026-05-22
+applies_to: [mocker]
+keywords: [mocker, functions, builders, executions, sections, collection]
+summary: "This page mirrors the Collection helpers section from Executions."
+---
 # Executions: Collection helpers
 
 This page mirrors the `Collection helpers` section from [Executions](../executions.md).
