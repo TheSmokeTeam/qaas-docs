@@ -44,8 +44,10 @@ After you attach the schema to your Mocker YAML files, your IDE can provide:
 Open `settings.json` and add a YAML schema mapping for your Mocker files:
 
 ```json
-"yaml.schemas": {
-  "{{ links.mocker_schema }}": "mocker.qaas.yaml"
+{
+  "yaml.schemas": {
+    "{{ links.mocker_schema }}": "mocker.qaas.yaml"
+  }
 }
 ```
 

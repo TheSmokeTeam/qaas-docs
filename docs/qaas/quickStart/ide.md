@@ -43,8 +43,10 @@ After you attach the schema to your Runner YAML files, your IDE can provide:
 Open `settings.json` and add a YAML schema mapping for your Runner files:
 
 ```json
-"yaml.schemas": {
-  "{{ links.runner_schema }}": "test.qaas.yaml"
+{
+  "yaml.schemas": {
+    "{{ links.runner_schema }}": "test.qaas.yaml"
+  }
 }
 ```
 

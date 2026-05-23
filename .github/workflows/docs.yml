@@ -108,6 +108,9 @@ jobs:
       - name: Validate YAML examples (parse)
         run: python tools/validate_yaml_examples.py
 
+      - name: Validate all snippets (yaml/json/bash/dockerfile/powershell)
+        run: python tools/validate_snippets.py
+
       - name: Validate C# snippets (structural)
         run: python tools/validate_csharp_snippets.py
 

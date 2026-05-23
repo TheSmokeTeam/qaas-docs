@@ -28,9 +28,9 @@ The fetcher builds a `query_range` URL from `Url`, `Expression`, collection star
 
 A vector's result array item which is a single item in a Prometheus output is structured like so:
 
-```json
+```jsonc
 {
-  "metric": {  
+  "metric": {
     "__name__": "the_metric's_name",
     "label": "label_value"
    }, // Vector's metric labels
