@@ -10,13 +10,15 @@ summary: "While YAML offers a concise, human-readable way to define test scenari
 ---
 # Configuration as Code
 
+> TL;DR — While YAML offers a concise, human-readable way to define test scenarios, Configuration as Code (CaC) lets you harness the full power of C# for dynamic, conditional, and reusable test orchestration.
+
 While YAML offers a concise, human-readable way to define test scenarios, **Configuration as Code (CaC)** lets you harness the full power of C# for dynamic, conditional, and reusable test orchestration.
 
 This guide keeps the original Configuration as Code mental shape, but updates it to match the current behavior of [QaaS.Runner](../index.md) and [QaaS.Mocker](../../mocker/index.md).
 
 ---
 
-## Initialization: Bootstrap the Runner
+## Initialization: Bootstrap the Runner {: #initialization-bootstrap-the-runner}
 
 The entry point for a normal [QaaS.Runner](../index.md) startup flow is the `Bootstrap` class, which initializes the runtime from command-line style arguments and optional configuration files.
 
@@ -26,7 +28,7 @@ using QaaS.Runner;
 var runner = Bootstrap.New(args);
 ```
 
-### Key Responsibilities of `Bootstrap.New(args)`
+### Key Responsibilities of `Bootstrap.New(args)` {: #key-responsibilities-of-bootstrapnewargs}
 
 - Parses command-line arguments (`args`) with support for overrides.
 - Normalizes obvious configuration-path inputs to `run <config-file>`.
@@ -38,14 +40,14 @@ var runner = Bootstrap.New(args);
 
 ---
 
-## Current Bootstrap Resolution Rules
+## Current Bootstrap Resolution Rules {: #current-bootstrap-resolution-rules}
 
 The important point today is to separate two questions:
 
 1. How QaaS resolves configuration when you stay on the normal bootstrap path.
 2. How your host chooses between a YAML-defined path and a code-defined path before it calls that bootstrap path.
 
-### Runner
+### Runner {: #runner}
 
 When you use `QaaS.Runner.Bootstrap.New(args)`:
 
@@ -63,7 +65,7 @@ Runner recognizes these execution modes:
 - `template`
 - `execute`
 
-### Mocker
+### Mocker {: #mocker}
 
 When you use `QaaS.Mocker.Bootstrap.New(args)`:
 
@@ -82,7 +84,7 @@ In other words, empty arguments no longer mean "guess the default YAML file". Th
 
 ---
 
-## The `Runner`: Central Orchestrator of Test Executions
+## The `Runner`: Central Orchestrator of Test Executions {: #the-runner-central-orchestrator-of-test-executions}
 
 The `Runner` class represents the core execution context. It manages one or more `ExecutionBuilder` instances, each representing one logical execution.
 
@@ -90,7 +92,7 @@ A normal `run`, `act`, `assert`, or `template` command usually produces a single
 
 For more detail about executions, see [QaaS.Framework.Executions](../../framework/projects/executions.md).
 
-### Core Properties
+### Core Properties {: #core-properties}
 
 | Property | Description |
 |--------|-------------|
@@ -99,7 +101,7 @@ For more detail about executions, see [QaaS.Framework.Executions](../../framewor
 | `LoadVariablesIntoGlobalDict` | Controls whether Runner copies the root YAML `variables` section into the shared runtime global dictionary under `Variables` while building executions. Defaults to `true`. |
 | `LastExitCode` | Stores the exit code produced by the most recent successful runner execution. This is useful when the host calls `Run()` or `RunAndGetExitCode()` and wants to inspect the last completed result afterward. |
 
-### Accessing the Runner
+### Accessing the Runner {: #accessing-the-runner}
 
 ```csharp
 using QaaS.Runner;
@@ -129,7 +131,7 @@ runner.LoadVariablesIntoGlobalDict = false;
 
 ---
 
-## ExecutionBuilder: Define a Logical Test Execution
+## ExecutionBuilder: Define a Logical Test Execution {: #executionbuilder-define-a-logical-test-execution}
 
 Each `ExecutionBuilder` encapsulates the configuration for a single execution. It composes multiple components that define behavior, data flow, and validation.
 
@@ -141,7 +143,7 @@ Each `ExecutionBuilder` encapsulates the configuration for a single execution. I
 | `DataSources` | Defines [DataSources](../userInterfaces/runner/configurationSections/dataSources/overview.md), [Generators](../../generators/index.md), and reusable data inputs. |
 | `Links` | Integrates external observability systems through [Links](../userInterfaces/runner/configurationSections/links/overview.md) such as Prometheus or Grafana. |
 
-### Accessing Builder Components
+### Accessing Builder Components {: #accessing-builder-components}
 
 ```csharp
 using QaaS.Framework.SDK.Extensions;
@@ -149,22 +151,22 @@ using QaaS.Framework.SDK.Extensions;
 var runner = QaaS.Runner.Bootstrap.New(args);
 var executionBuilder = runner.ExecutionBuilders.AsSingle();
 
-var sessionBuilders = executionBuilder.ReadSessions();
-var storageBuilders = executionBuilder.ReadStorages();
-var assertionBuilders = executionBuilder.ReadAssertions();
-var linkBuilders = executionBuilder.ReadLinks();
-var dataSourceBuilders = executionBuilder.ReadDataSources();
+var sessionBuilders = executionBuilder.Sessions ?? [];
+var storageBuilders = executionBuilder.Storages ?? [];
+var assertionBuilders = executionBuilder.Assertions ?? [];
+var linkBuilders = executionBuilder.Links ?? [];
+var dataSourceBuilders = executionBuilder.DataSources ?? [];
 ```
 
-### Reading and Updating Builder State
+### Reading and Updating Builder State {: #reading-and-updating-builder-state}
 
-The current public Runner execution builder surface supports explicit create, read, update, and delete operations:
+The current public Runner execution builder surface supports explicit add, read-by-property, update, and remove operations:
 
-- sessions: `CreateSession`, `ReadSessions`, `UpdateSession`, `DeleteSession`
-- assertions: `CreateAssertion`, `ReadAssertions`, `UpdateAssertion`, `DeleteAssertion`
-- storages: `CreateStorage`, `ReadStorages`, `UpdateStorageAt`, `DeleteStorageAt`
-- data sources: `CreateDataSource`, `ReadDataSources`, `UpdateDataSource`, `RemoveDataSource`
-- links: `CreateLink`, `ReadLinks`, `UpdateLinkAt`, `DeleteLinkAt`
+- sessions: `AddSession`, `Sessions`, `UpdateSession`, `RemoveSession`
+- assertions: `AddAssertion`, `Assertions`, `UpdateAssertion`, `RemoveAssertion`
+- storages: `AddStorage`, `Storages`, `UpdateStorageAt`, `RemoveStorageAt`
+- data sources: `AddDataSource`, `DataSources`, `UpdateDataSource`, `RemoveDataSource`
+- links: `AddLink`, `Links`, `UpdateLinkAt`, `RemoveLink`
 
 That makes Configuration as Code practical not only for "build from scratch" scenarios, but also for "load from YAML, then modify precisely" scenarios.
 
@@ -172,11 +174,11 @@ When the runtime data you want to share belongs in the execution's mutable state
 
 ---
 
-## Modifying Builders: Fluent Configuration via Code
+## Modifying Builders: Fluent Configuration via Code {: #modifying-builders-fluent-configuration-via-code}
 
 QaaS provides a fluent, type-safe API for modifying configuration programmatically.
 
-### Example: Rename a Session and Set Its Stage
+### Example: Rename a Session and Set Its Stage {: #example-rename-a-session-and-set-its-stage}
 
 ```csharp
 using QaaS.Framework.SDK.Extensions;
@@ -184,11 +186,13 @@ using QaaS.Framework.SDK.Extensions;
 var runner = QaaS.Runner.Bootstrap.New(args);
 var executionBuilder = runner.ExecutionBuilders.AsSingle();
 
-executionBuilder.UpdateSession(
-    "ExistingSession",
-    session => session
-        .Named("NewSessionName")
-        .AtStage(2));
+var renamedSession = executionBuilder.Sessions!
+    .Single(session => session.Name == "ExistingSession")
+    .Clone()
+    .Named("NewSessionName")
+    .AtStage(2);
+
+executionBuilder.UpdateSession("ExistingSession", renamedSession);
 ```
 
 !!! warning "Important"
@@ -198,13 +202,15 @@ executionBuilder.UpdateSession(
 
 ---
 
-## Cloning Builders
+## Cloning Builders {: #cloning-builders}
 
 Every Runner builder implements `ICloneable<T>` from `QaaS.Framework.Infrastructure` and exposes a typed `Clone()` method that returns an independent deep copy. Use it when one base configuration should be reused as the starting point for several variants without mutations on a copy leaking back into the original.
 
 `Clone()` is available on `ExecutionBuilder`, `SessionBuilder`, `ConsumerBuilder`, `PublisherBuilder`, `ProbeBuilder`, `TransactionBuilder`, `CollectorBuilder`, `MockerCommandBuilder`, `AssertionBuilder`, `LinkBuilder`, `StorageBuilder`, `DataSourceBuilder`, `ContextBuilder`, and `PolicyBuilder`.
 
 ```csharp
+using QaaS.Runner.Sessions.Session.Builders;
+
 var baseSession = new SessionBuilder().Named("Base").AtStage(1);
 
 var smokeSession = baseSession.Clone().Named("Smoke");
@@ -215,7 +221,7 @@ The clone is a **deep** copy: nested builders, configuration objects, arrays, li
 
 ---
 
-## Configuration Paths in Runner
+## Configuration Paths in Runner {: #configuration-paths-in-runner}
 
 In practice, Runner configuration as code is usually one of three shapes:
 
@@ -223,7 +229,7 @@ In practice, Runner configuration as code is usually one of three shapes:
 2. **Hybrid**: YAML provides the base structure and code mutates the loaded builders.
 3. **Multi-execution orchestration**: one `Runner` owns several `ExecutionBuilder` instances.
 
-### Strictly Code-Defined Runner Configuration
+### Strictly Code-Defined Runner Configuration {: #strictly-code-defined-runner-configuration}
 
 For Runner, a pure code-defined path still goes through bootstrap. The difference is that the host decides up front that no YAML file is part of the scenario.
 
@@ -248,7 +254,7 @@ public sealed class MyExecutionConfigurator : IExecutionBuilderConfigurator
             System = "AdvancedConcepts"
         });
 
-        executionBuilder.CreateSession(
+        executionBuilder.AddSession(
             new SessionBuilder().Named("CodeOnlySession"));
     }
 }
@@ -268,7 +274,7 @@ Two points matter here:
 - `Bootstrap.New([])` is **not** the code-only path; empty arguments still print help.
 - If the expected YAML file is missing and no configurator is discovered, Runner fails.
 
-### Hybrid Configuration: YAML First, Then Code
+### Hybrid Configuration: YAML First, Then Code {: #hybrid-configuration-yaml-first-then-code}
 
 Hybrid configuration is the most direct replacement for the older CaC flow: load the execution from YAML, then adjust only what should be dynamic in code.
 
@@ -278,11 +284,13 @@ using QaaS.Framework.SDK.Extensions;
 var runner = QaaS.Runner.Bootstrap.New(["run", "test.qaas.yaml"]);
 var executionBuilder = runner.ExecutionBuilders.AsSingle();
 
-executionBuilder.UpdateSession(
-    "RabbitMqExchangeWithFromFileSystemTestData",
-    session => session
-        .Named("RenamedSession")
-        .AtStage(2));
+var renamedSession = executionBuilder.Sessions!
+    .Single(session => session.Name == "RabbitMqExchangeWithFromFileSystemTestData")
+    .Clone()
+    .Named("RenamedSession")
+    .AtStage(2);
+
+executionBuilder.UpdateSession("RabbitMqExchangeWithFromFileSystemTestData", renamedSession);
 ```
 
 This is the right path when:
@@ -291,7 +299,7 @@ This is the right path when:
 - code fills environment-specific values
 - the host wants CLI overlays and YAML structure, but not a fully static run plan
 
-### One Runner, Several Executions
+### One Runner, Several Executions {: #one-runner-several-executions}
 
 If one logical run should own several executions, prefer **one `Runner` with several `ExecutionBuilder` instances**.
 
@@ -321,7 +329,7 @@ A few runtime details are important:
 
 So if you need several executions that share per-run global state, use one runner with several execution builders rather than several unrelated runner objects.
 
-### Several Runner Instances in One Host
+### Several Runner Instances in One Host {: #several-runner-instances-in-one-host}
 
 A host can also create several `Runner` instances intentionally. That is a separate orchestration choice.
 
@@ -345,11 +353,11 @@ Use several runner instances only when the lifecycles should stay independent. U
 
 ---
 
-## Advanced Integration
+## Advanced Integration {: #advanced-integration}
 
 For more complex integrations, QaaS exposes builder patterns that accept configuration objects directly.
 
-### Example: Add a Kafka Topic Publisher
+### Example: Add a Kafka Topic Publisher {: #example-add-a-kafka-topic-publisher}
 
 The example below assumes the execution already contains:
 
@@ -365,7 +373,7 @@ using QaaS.Runner.Sessions.Actions.Publishers.Builders;
 
 var runner = Bootstrap.New(args);
 var executionBuilder = runner.ExecutionBuilders.AsSingle();
-var sessionBuilder = executionBuilder.ReadSessions().AsSingle();
+var sessionBuilder = (executionBuilder.Sessions ?? []).AsSingle();
 
 var kafkaPublisher = new PublisherBuilder()
     .Named("KafkaPublisher")
@@ -378,9 +386,9 @@ var kafkaPublisher = new PublisherBuilder()
         SaslMechanism = SaslMechanism.ScramSha256,
         SecurityProtocol = SecurityProtocol.SaslPlaintext
     })
-    .CreateDataSource("DataSource");
+    .AddDataSource("DataSource");
 
-sessionBuilder.CreatePublisher(kafkaPublisher);
+sessionBuilder.AddPublisher(kafkaPublisher);
 
 runner.Run();
 ```
@@ -393,7 +401,7 @@ runner.Run();
 
 ---
 
-## Mocker: Configuration as Code
+## Mocker: Configuration as Code {: #mocker-configuration-as-code}
 
 [QaaS.Mocker](../../mocker/index.md) supports the same general idea, but its runtime shape is simpler: one execution builder, one mocker runner, and a public execution-builder surface that can be built directly in code.
 
@@ -414,6 +422,8 @@ Use the bootstrap path when you want CLI normalization, overlay handling, and en
 Mocker builders also implement `ICloneable<T>`. `ExecutionBuilder.Clone()` and `TransactionStubBuilder.Clone()` return independent deep copies of the configuration state, so a single base mock can be branched into per-environment or per-scenario variants without cross-contamination:
 
 ```csharp
+using QaaS.Mocker.Stubs.ConfigurationObjects;
+
 var baseStub = new TransactionStubBuilder()
     .Named("BaseStub")
     .HookNamed("StaticResponseProcessor")
@@ -426,11 +436,11 @@ var notFoundStub = baseStub.Clone()
 
 ---
 
-## Custom Runner: Extend and Override Core Behavior
+## Custom Runner: Extend and Override Core Behavior {: #custom-runner-extend-and-override-core-behavior}
 
 When default behavior is insufficient, QaaS allows you to extend the `Runner` class and override lifecycle methods to implement custom orchestration logic.
 
-### `Runner.Run()` Logic
+### `Runner.Run()` Logic {: #runnerrun-logic}
 
 `Run()` is a lifecycle wrapper around setup, execution building, execution start, teardown, and completion handling. It is responsible for things such as:
 
@@ -440,7 +450,7 @@ When default behavior is insufficient, QaaS allows you to extend the `Runner` cl
 - teardown and optional results serving
 - process-exit or exit-code handling
 
-### Inherit from `Runner`
+### Inherit from `Runner` {: #inherit-from-runner}
 
 ```csharp
 using System;
@@ -487,7 +497,7 @@ public class MyCustomRunner : Runner
 
 ---
 
-## Using the Custom Runner
+## Using the Custom Runner {: #using-the-custom-runner}
 
 To activate your custom runner, use the generic `Bootstrap.New<TRunner>` overload:
 
@@ -499,31 +509,45 @@ QaaS.Mocker exposes the same pattern through `QaaS.Mocker.Bootstrap.New<TRunner>
 
 ---
 
-## Advanced Use Case: Conditional Test Orchestration
+## Advanced Use Case: Conditional Test Orchestration {: #advanced-use-case-conditional-test-orchestration}
 
 Programmatic orchestration is especially useful when execution order depends on runtime outcome.
 
-### Example: Chaos Engineering Workflow
+### Example: Chaos Engineering Workflow {: #example-chaos-engineering-workflow}
 
 ```csharp
+using Autofac;
 using System.Collections.Generic;
+using QaaS.Runner;
 
-protected override int StartExecutions(List<Execution> executions)
+public sealed class ChaosRunner : Runner
 {
-    int? finalResult = null;
-
-    var steadyStateResult = executions[0].Start();
-
-    if (steadyStateResult == 0)
+    public ChaosRunner(
+        ILifetimeScope scope,
+        List<ExecutionBuilder> executionBuilders,
+        Microsoft.Extensions.Logging.ILogger logger,
+        Serilog.ILogger serilogLogger)
+        : base(scope, executionBuilders, logger, serilogLogger)
     {
-        executions[1].Start();
-        finalResult = executions[0].Start();
-
-        if (finalResult != 0)
-            executions[2].Start();
     }
 
-    return finalResult ?? steadyStateResult;
+    protected override int StartExecutions(List<Execution> executions)
+    {
+        int? finalResult = null;
+
+        var steadyStateResult = executions[0].Start();
+
+        if (steadyStateResult == 0)
+        {
+            executions[1].Start();
+            finalResult = executions[0].Start();
+
+            if (finalResult != 0)
+                executions[2].Start();
+        }
+
+        return finalResult ?? steadyStateResult;
+    }
 }
 ```
 
@@ -535,7 +559,7 @@ protected override int StartExecutions(List<Execution> executions)
 
 ---
 
-## Template Validation
+## Template Validation {: #template-validation}
 
 The `template` command is the simplest parity check between YAML and code-defined configuration.
 
@@ -547,7 +571,7 @@ For Runner and Mocker alike:
 
 This is especially useful in hybrid projects that keep both a checked-in YAML definition and a code-defined variant of the same scenario.
 
-### Copy this: YAML ↔ CAC parity workflow
+### Copy this: YAML ↔ CAC parity workflow {: #copy-this-yaml-cac-parity-workflow}
 
 A reproducible loop for porting a YAML test to Configuration as Code (or the other way) without drifting:
 
@@ -567,7 +591,7 @@ Wire the same three lines into CI to fail when the YAML baseline and the code-de
 
 ---
 
-## Keep the Host Process Alive After `Run()`
+## Keep the Host Process Alive After `Run()` {: #keep-the-host-process-alive-after-run}
 
 `Runner.Run()` exits the current process by default when execution completes. In `Runner`, this behavior is controlled by `ExitProcessOnCompletion`, which defaults to `true`.
 
@@ -598,3 +622,7 @@ Console.WriteLine($"Runner completed with exit code {exitCode}");
 ```
 
 With Configuration as Code, configuration is engineered, not declared.
+
+## See also {: #see-also}
+
+- [QaaS Runner](../index.md)

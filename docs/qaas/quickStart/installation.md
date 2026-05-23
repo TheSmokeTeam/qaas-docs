@@ -3,14 +3,17 @@ id: qaas.quickstart.installation
 type: tutorial
 status: stable
 since: 2.0.0
-last_verified: 2026-05-22
+last_verified: 2026-05-23
 applies_to: [runner]
 keywords: [qaas, quickstart, installation]
 summary: "Add the relevant package source to your global NuGet.Config file, usually ~/.nuget/NuGet/NuGet.Config."
+render_macros: true
 ---
 # Installation
 
-## Prerequisites
+> TL;DR — Add the QaaS package source, create a Runner project, and restore the required NuGet packages.
+
+## Prerequisites {: #prerequisites}
 
 | Requirement                                         | Details                                                             |
 |-----------------------------------------------------|---------------------------------------------------------------------|
@@ -18,7 +21,7 @@ summary: "Add the relevant package source to your global NuGet.Config file, usua
 | NuGet feed                                          | A global `NuGet.Config` file configured with the correct nuget feed |
 | [Allure CLI]({{ links.allure_installation_guide }}) | Optional, for viewing reports locally                               |
 
-## Global NuGet.Config
+## Global NuGet.Config {: #global-nugetconfig}
 
 Add the relevant package source to your global `NuGet.Config` file, usually `~/.nuget/NuGet/NuGet.Config`.
 
@@ -31,7 +34,7 @@ Add the relevant package source to your global `NuGet.Config` file, usually `~/.
 </configuration>
 ```
 
-## Packages
+## Packages {: #packages}
 
 Add the packages your project needs. At minimum, you need `QaaS.Runner`; the Common libraries are optional [Plugins](../addOns/plugins.md).
 
@@ -60,7 +63,7 @@ Add the packages your project needs. At minimum, you need `QaaS.Runner`; the Com
 
 [QaaS.Common.Assertions](../../assertions/index.md), [QaaS.Common.Generators](../../generators/index.md), and [QaaS.Common.Probes](../../probes/index.md) are the packaged hook libraries used most often in Runner projects.
 
-## Project Template
+## Project Template {: #project-template}
 
 Use [QaaS.Runner.Template]({{ links.repository_runner_template }}) when you want a ready-to-run runner repo instead of wiring packages by hand.
 
@@ -78,6 +81,13 @@ The generated repo includes:
 
 If you use Artifactory or another private feed, keep the feed URL configurable rather than baking one environment into the project. Update the generated `NuGet.config` for local restores, and pass the same feed into Docker builds or CI restore steps through a build variable before `dotnet restore`.
 
-## Allure CLI
+## Allure CLI {: #allure-cli}
 
 The Allure CLI installation instructions are available [Here]({{ links.allure_installation_guide }}).
+
+## See also {: #see-also}
+
+- [Runner IDE setup](ide.md)
+- [Write a test in YAML](writeTestYaml.md)
+- [Run test](runTest.md)
+- [Mocker installation](../../mocker/quickStart/installation.md)

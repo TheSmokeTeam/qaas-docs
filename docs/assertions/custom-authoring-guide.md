@@ -13,13 +13,13 @@ summary: "Derive a custom assertion from BaseAssertion<TConfig> in QaaS.Framewor
 
 > TL;DR — An assertion is an `IAssertion` hook that inspects accumulated `SessionData`, sets `AssertionTrace` / `AssertionMessage`, and returns `bool`. Derive `BaseAssertion<TConfiguration>` and reference it from an `Assertions[]` entry.
 
-## When to use {#when-to-use}
+## When to use {: #when-to-use}
 
 - The built-in assertion catalog (see [Available Assertions](index.md)) does not cover your invariant.
 - You need a domain-specific check (size bounds, structural rules, business rules) over collected interactions.
 - You need to publish custom traces or attachments into the reporter pipeline.
 
-## YAML configuration {#yaml}
+## YAML configuration {: #yaml}
 
 ```yaml
 Assertions:
@@ -31,7 +31,7 @@ Assertions:
       MinimumBytes: 512
 ```
 
-## C# (CAC) usage {#csharp}
+## C# (CAC) usage {: #csharp}
 
 Derive `BaseAssertion<TConfiguration>` from `QaaS.Framework.SDK.Hooks.Assertion`. Override `Assert(IImmutableList<SessionData>, IImmutableList<DataSource>)`. Use `AssertionMessage` to describe the failure; the runner converts it into a red Allure step.
 
@@ -40,6 +40,8 @@ using System.Collections.Immutable;
 using QaaS.Framework.SDK.DataSourceObjects;
 using QaaS.Framework.SDK.Hooks.Assertion;
 using QaaS.Framework.SDK.Session.SessionDataObjects;
+
+public sealed record MyConfig;
 
 public sealed class MyAssertion : BaseAssertion<MyConfig>
 {
@@ -53,7 +55,7 @@ public sealed class MyAssertion : BaseAssertion<MyConfig>
 }
 ```
 
-## Minimal example {#example-minimal}
+## Minimal example {: #example-minimal}
 
 ```csharp
 public record NonEmptyConfig { public string OutputName { get; set; } = default!; }
@@ -71,7 +73,7 @@ public sealed class NonEmpty : BaseAssertion<NonEmptyConfig>
 }
 ```
 
-## Realistic example {#example-realistic}
+## Realistic example {: #example-realistic}
 
 A payload-size assertion paired with a mocker stub that returns fixed-size responses. The runner asserts every observed payload meets a minimum byte threshold; the mocker generates payloads of a configurable size.
 
@@ -114,7 +116,7 @@ public sealed class HasMinimumPayloadSize : BaseAssertion<HasMinimumPayloadSizeC
             return false;
         }
 
-        var smallest = observed.Min(d => d.Body?.Length ?? 0);
+        var smallest = observed.Min(d => d.Body is byte[] body ? body.Length : 0);
         AssertionTrace = $"Observed {observed.Count} payloads; smallest={smallest}B; threshold={Configuration.MinimumBytes}B.";
 
         if (smallest < Configuration.MinimumBytes)
@@ -231,7 +233,7 @@ Servers:
               TransactionStubName: FixedKb
 ```
 
-## Registration and discovery {#registration}
+## Registration and discovery {: #registration}
 
 Custom assertions are discovered by short type name. The runner scans referenced assemblies for types deriving from `BaseAssertion<>`. To wire one in:
 
@@ -250,7 +252,7 @@ Two assertions with the same simple name across assemblies will collide; rename 
 
 After adding or renaming a custom assertion, regenerate the YAML schema so editors pick up the new enum value. See [Schema extensions](../qaas/userInterfaces/runner/schema-extensions.md) for the regeneration command and the `bin/` cache flush.
 
-## Edge cases {#edge-cases}
+## Edge cases {: #edge-cases}
 
 - `Configuration` is null before `LoadAndValidateConfiguration` runs. Do not read it in a constructor.
 - `Assert` returns `bool`; do not throw to signal a failure. Set `AssertionMessage` and return `false`.
@@ -258,7 +260,7 @@ After adding or renaming a custom assertion, regenerate the YAML schema so edito
 - The mocker stub must have a unique `Name`; the runner references it via `TransactionStubName`.
 - Runner and mocker must restore packages from the same feed so schema validation accepts both sides.
 
-## See also {#see-also}
+## See also {: #see-also}
 
 - [Assertions — Introduction](index.md)
 - [Sessions — Assertions reference](../qaas/userInterfaces/runner/configurationSections/assertions/overview.md)

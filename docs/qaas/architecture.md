@@ -3,18 +3,20 @@ id: qaas.architecture
 type: explanation
 status: stable
 since: 2.0.0
-last_verified: 2026-05-22
+last_verified: 2026-05-23
 applies_to: [runner]
 keywords: [qaas, architecture]
 summary: "QaaS.Framework runtime is built around a Plugins architecture that extends and customizes QaaS by integrating user-provided packages."
 ---
 # Architecture
 
+> TL;DR — QaaS.Runner combines YAML or C# configuration with plugins, hooks, sessions, data sources, assertions, and reports.
+
 The [QaaS.Framework](../framework/index.md) runtime is built around a [Plugins](addOns/plugins.md) architecture that lets you extend and customize QaaS by integrating user-provided packages. This modular shape allows for flexible, extensible, and maintainable test automation solutions, where components can be dynamically loaded and orchestrated based on configuration.
 
 ---
 
-## QaaS Project Structure
+## QaaS Project Structure {: #qaas-project-structure}
 
 The foundation of any QaaS project is its configuration file, typically a YAML file, which defines the structure, components, and execution flow of the test. This file serves as the entry point for the runtime, orchestrating the initialization and execution of core components in a defined sequence.
 
@@ -28,9 +30,9 @@ This declarative approach enables rapid setup and configuration, while still sup
 
 ---
 
-## Types of QaaS Projects
+## Types of QaaS Projects {: #types-of-qaas-projects}
 
-### QaaS.Runner Project
+### QaaS.Runner Project {: #qaasrunner-project}
 
 A [QaaS.Runner](index.md) project is a C#-based project that depends on the `QaaS.Runner` NuGet package. Its primary purpose is to serve as a test execution environment for backend or end-to-end (e2e) applications. These projects are driven by either:
 
@@ -49,7 +51,7 @@ The framework components that can be configured are:
 
 ---
 
-## Configuration as Code
+## Configuration as Code {: #configuration-as-code}
 
 QaaS supports full programmatic configuration through C# code, enabling dynamic, conditional, and reusable test workflows. Instead of relying solely on static YAML files, teams can define and modify test configurations at runtime using the full power of C#.
 
@@ -61,3 +63,11 @@ This approach allows for:
 - Integration with external systems using full .NET capabilities
 
 For detailed guidance on implementing Configuration as Code, including custom runners, fluent builder patterns, and advanced orchestration, refer to the [Configuration as Code](advancedConcepts/configurationAsCode.md) documentation.
+
+## See also {: #see-also}
+
+- [QaaS Runner](index.md)
+- [Configuration sections](userInterfaces/runner/configurationSections/configurationSections.md)
+- [Sessions](userInterfaces/runner/configurationSections/sessions/overview.md)
+- [Assertions](userInterfaces/runner/configurationSections/assertions/overview.md)
+- [Framework](../framework/index.md)

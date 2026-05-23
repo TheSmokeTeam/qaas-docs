@@ -3,22 +3,24 @@ id: qaas.quickstart.writehooks
 type: tutorial
 status: stable
 since: 2.0.0
-last_verified: 2026-05-22
+last_verified: 2026-05-23
 applies_to: [runner]
 keywords: [qaas, quickstart, writehooks]
-summary: "When the built-in Plugins and packaged hooks do not provide sufficient functionality for your test requirements, custom hooks can be implemented in a C# project to extend QaaS.Framework. This guide..."
+summary: "Implement custom generators, processors, probes, or assertions when packaged hooks do not cover the required behavior."
 ---
 # Writing Custom Hooks in QaaS for Advanced Testing
+
+> TL;DR — Implement custom generators, processors, probes, or assertions when packaged hooks do not cover the required behavior.
 
 When the built-in [Plugins](../addOns/plugins.md) and packaged hooks do not provide sufficient functionality for your test requirements, custom hooks can be implemented in a C# project to extend [QaaS.Framework](../../framework/index.md). This guide demonstrates how to create and integrate custom [QaaS.Common.Generators](../../generators/index.md), [QaaS.Common.Assertions](../../assertions/index.md), and [QaaS.Common.Probes](../../probes/index.md) style hooks to test a specific condition:
 
 > *The application receives a JSON array as input and sends a JSON array with the same number of items as output.*
 
-## 1. Creating a Custom Generator: `JsonArrayGenerator`
+## 1. Creating a Custom Generator: `JsonArrayGenerator` {: #1-creating-a-custom-generator-jsonarraygenerator}
 
 A generator produces test data for [DataSources](../userInterfaces/runner/configurationSections/dataSources/overview.md) and implements the `IGenerator` interface from the `QaaS.Framework.SDK` package. We extend `BaseGenerator<T>` with a configuration record that includes validation and default values.
 
-### Generator Configuration Record
+### Generator Configuration Record {: #generator-configuration-record}
 
 ```csharp
 using System.Collections.Immutable;
@@ -43,9 +45,30 @@ public record JsonArrayGeneratorConfiguration
 }
 ```
 
-### Generator Implementation
+### Generator Implementation {: #generator-implementation}
 
 ```csharp
+using System.Collections.Immutable;
+using System.ComponentModel.DataAnnotations;
+using System.Text.Json.Nodes;
+using QaaS.Framework.SDK.DataSourceObjects;
+using QaaS.Framework.SDK.Hooks.Generator;
+using QaaS.Framework.SDK.Session.DataObjects;
+using QaaS.Framework.SDK.Session.SessionDataObjects;
+
+namespace DummyAppTests;
+
+/// <summary>
+/// Configuration for JsonArrayGenerator with required and optional settings.
+/// </summary>
+public record JsonArrayGeneratorConfiguration
+{
+    [Required]
+    public uint? Count { get; set; }
+
+    public uint NumberOfItemsPerArray { get; set; } = 5;
+}
+
 /// <summary>
 /// Generates a specified number of JSON arrays, each containing a configurable number of items.
 /// </summary>
@@ -70,7 +93,7 @@ public class JsonArrayGenerator : BaseGenerator<JsonArrayGeneratorConfiguration>
 }
 ```
 
-### File System Structure After Addition
+### File System Structure After Addition {: #file-system-structure-after-addition}
 
 ```plaintext
 DummyAppTests/
@@ -86,7 +109,7 @@ DummyAppTests/
 `-- TestData/
 ```
 
-## 2. Configuring the Generator in `DataSources`
+## 2. Configuring the Generator in `DataSources` {: #2-configuring-the-generator-in-datasources}
 
 Define a [DataSource](../userInterfaces/runner/configurationSections/dataSources/overview.md) in `test.qaas.yaml` that uses the custom generator with specific configuration.
 
@@ -101,7 +124,7 @@ DataSources:
 
 This creates 10 JSON arrays, each with 5 items.
 
-## 3. Using the DataSource in a New Session
+## 3. Using the DataSource in a New Session {: #3-using-the-datasource-in-a-new-session}
 
 Create a new [Session](../userInterfaces/runner/configurationSections/sessions/overview.md) that uses the `10Samples` data source. Since the data is JSON, a `Serializer` must be configured.
 
@@ -137,7 +160,7 @@ Sessions:
           Deserializer: Json
 ```
 
-## 4. Adding Common Assertions
+## 4. Adding Common Assertions {: #4-adding-common-assertions}
 
 Apply standard [QaaS.Common.Assertions](../../assertions/index.md) to the new session for hermeticity and delay.
 
@@ -164,11 +187,11 @@ Assertions:
       MaximumDelayMs: 5000
 ```
 
-## 5. Creating a Custom Assertion: `LengthAssertion`
+## 5. Creating a Custom Assertion: `LengthAssertion` {: #5-creating-a-custom-assertion-lengthassertion}
 
 To verify that output JSON arrays have the expected length, implement a custom assertion in the same style as [QaaS.Common.Assertions](../../assertions/index.md).
 
-### Assertion Configuration Record
+### Assertion Configuration Record {: #assertion-configuration-record}
 
 ```csharp
 using System.Collections.Immutable;
@@ -195,9 +218,32 @@ public record LengthAssertionConfiguration
 }
 ```
 
-### Assertion Implementation
+### Assertion Implementation {: #assertion-implementation}
 
 ```csharp
+using System.Collections.Immutable;
+using System.ComponentModel.DataAnnotations;
+using System.Text.Json.Nodes;
+using QaaS.Framework.Serialization;
+using QaaS.Framework.SDK.DataSourceObjects;
+using QaaS.Framework.SDK.Extensions;
+using QaaS.Framework.SDK.Hooks.Assertion;
+using QaaS.Framework.SDK.Session.SessionDataObjects;
+
+namespace DummyAppTests;
+
+/// <summary>
+/// Configuration for LengthAssertion to validate output array length.
+/// </summary>
+public record LengthAssertionConfiguration
+{
+    [Required]
+    public uint? ExpectedLength { get; set; }
+
+    [Required]
+    public string? OutputName { get; set; }
+}
+
 /// <summary>
 /// Asserts that all output JSON arrays have the expected number of items.
 /// </summary>
@@ -238,7 +284,7 @@ public class LengthAssertion : BaseAssertion<LengthAssertionConfiguration>
 }
 ```
 
-### Assertion Result Fields
+### Assertion Result Fields {: #assertion-result-fields}
 
 `BaseAssertion<TConfiguration>` gives custom assertions a few result fields that are picked up by Runner reporting:
 
@@ -247,7 +293,7 @@ public class LengthAssertion : BaseAssertion<LengthAssertionConfiguration>
 - `AssertionAttachments` stores extra files with the assertion result. Each `AssertionAttachment` needs a relative `Path`, the `Data` to persist, and an optional `SerializationType`. If `SerializationType` is null, the data is treated as raw bytes.
 - `AssertionStatus` can explicitly override the boolean returned from `Assert(...)`. Leave it unset for the usual `true` to `Passed` and `false` to `Failed` mapping. Any exception thrown from `Assert(...)` is reported as `Broken`.
 
-### Assertion YAML Usage
+### Assertion YAML Usage {: #assertion-yaml-usage}
 
 ```yaml
 Assertions:
@@ -259,11 +305,19 @@ Assertions:
       ExpectedLength: 5
 ```
 
-## 6. Creating a Custom Probe: `PrintCurrentTimeProbe`
+## See also {: #see-also}
+
+- [Assertions authoring guide](../../assertions/custom-authoring-guide.md)
+- [Generators authoring guide](../../generators/custom-authoring-guide.md)
+- [Probes authoring guide](../../probes/custom-authoring-guide.md)
+- [Processors authoring guide](../../processors/custom-authoring-guide.md)
+- [Framework SDK](../../framework/projects/sdk.md)
+
+## 6. Creating a Custom Probe: `PrintCurrentTimeProbe` {: #6-creating-a-custom-probe-printcurrenttimeprobe}
 
 A probe executes custom logic during test execution. Here is a simple probe that logs the current UTC time.
 
-### Probe Implementation
+### Probe Implementation {: #probe-implementation}
 
 ```csharp
 using System.Collections.Immutable;
@@ -289,7 +343,7 @@ public class PrintCurrentTimeProbe : BaseProbe<object>
 }
 ```
 
-### Probe YAML Usage
+### Probe YAML Usage {: #probe-yaml-usage}
 
 ```yaml
 Sessions:
@@ -297,11 +351,9 @@ Sessions:
     Probes:
       - Probe: PrintCurrentTimeProbe
         Name: GetCurrentTime
-
----
 ```
 
-## Final `test.qaas.yaml` Overview
+## Final `test.qaas.yaml` Overview {: #final-testqaasyaml-overview}
 
 ```yaml
 MetaData:

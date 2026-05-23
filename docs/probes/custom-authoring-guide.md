@@ -13,13 +13,13 @@ summary: "Derive a custom probe from BaseProbe<TConfig> in QaaS.Framework.SDK an
 
 > TL;DR — A probe is an `IProbe` hook that runs inside a session, can read `SessionData` and `DataSources`, and produces no output payload. Derive `BaseProbe<TConfiguration>` and declare it in YAML under `Sessions[].Probes`.
 
-## When to use {#when-to-use}
+## When to use {: #when-to-use}
 
 - The built-in probe catalog (see [Available Probes](index.md)) does not cover the side effect you need.
 - You want to poll an external endpoint, mutate environment state, or perform a sanity check inside the session lifecycle.
 - You need to express a side effect that does not record interaction data.
 
-## YAML configuration {#yaml}
+## YAML configuration {: #yaml}
 
 A probe slot lives inside a session and references the configured probe by name:
 
@@ -40,7 +40,7 @@ Sessions:
 
 The fields `Name`, `Probe`, `ProbeConfiguration`, `Stage`, `DataSourceNames`, and `DataSourcePatterns` are documented in the [Probes section reference](../qaas/userInterfaces/runner/configurationSections/sessions/types/probes.md).
 
-## C# (CAC) usage {#csharp}
+## C# (CAC) usage {: #csharp}
 
 Derive `BaseProbe<TConfiguration>` from `QaaS.Framework.SDK.Hooks.Probe`. Override `Run(IImmutableList<SessionData>, IImmutableList<DataSource>)`. Use `Context.Logger` for diagnostics; throw on unrecoverable failure.
 
@@ -49,6 +49,8 @@ using System.Collections.Immutable;
 using QaaS.Framework.SDK.DataSourceObjects;
 using QaaS.Framework.SDK.Hooks.Probe;
 using QaaS.Framework.SDK.Session.SessionDataObjects;
+
+public sealed record WaitForHttpReadyConfig;
 
 public sealed class WaitForHttpReady : BaseProbe<WaitForHttpReadyConfig>
 {
@@ -61,7 +63,7 @@ public sealed class WaitForHttpReady : BaseProbe<WaitForHttpReadyConfig>
 }
 ```
 
-## Minimal example {#example-minimal}
+## Minimal example {: #example-minimal}
 
 ```csharp
 public record PingConfig
@@ -89,7 +91,7 @@ Sessions:
         ProbeConfiguration: { Url: http://127.0.0.1:8080/ }
 ```
 
-## Realistic example {#example-realistic}
+## Realistic example {: #example-realistic}
 
 Polling an HTTP endpoint that reports `503` while warming up and `200` when ready. The probe retries with a fixed interval until the deadline, then throws.
 
@@ -216,18 +218,29 @@ Assertions:
       ExpectedPercentage: 100
 ```
 
-## Logging {#logging}
+## Logging {: #logging}
 
 `Context.Logger` is a `Microsoft.Extensions.Logging.ILogger`. Use the standard structured-logging methods — `LogInformation`, `LogWarning`, `LogError`, `LogDebug` — with named placeholders. Source probes in `QaaS.Common.Probes` (`BaseOsUpdatePodsProbe`, `BaseRabbitMqManagementProbe`) follow this pattern.
 
 ```csharp
-Context.Logger.LogInformation("Probing {Url}", Configuration.Url);
-Context.Logger.LogWarning(ex, "Transient failure on attempt {Attempt}", attempt);
+public sealed class LoggingProbe : BaseProbe<PingConfig>
+{
+    public override void Run(
+        IImmutableList<SessionData> sessionDataList,
+        IImmutableList<DataSource> dataSourceList)
+    {
+        var attempt = 1;
+        var ex = new HttpRequestException("Connection refused.");
+
+        Context.Logger.LogInformation("Probing {Url}", Configuration.Url);
+        Context.Logger.LogWarning(ex, "Transient failure on attempt {Attempt}", attempt);
+    }
+}
 ```
 
 Do not call Serilog-style methods such as `Information(...)` or `Warning(...)`; they do not exist on `ILogger`.
 
-## Registration and discovery {#registration}
+## Registration and discovery {: #registration}
 
 Custom probes are discovered by short type name. The runner scans referenced assemblies for types deriving from `BaseProbe<>`. To wire a probe in:
 
@@ -246,7 +259,7 @@ Sessions:
 
 Two types with the same simple name across assemblies will collide; rename one. Configuration validation (`[Required]`, `[Range]`, `[Url]`) runs before `Run` is invoked.
 
-## Retry and long-running probes {#retry}
+## Retry and long-running probes {: #retry}
 
 Probes that loop with backoff are common (health checks, queue drains, eventual-consistency waits). Pattern:
 
@@ -257,7 +270,7 @@ Probes that loop with backoff are common (health checks, queue drains, eventual-
 
 The `WaitForHttpReady` example above is the canonical retry skeleton. For a stricter variant that distinguishes retry-budget exhaustion from total-time exhaustion, add a `MaxRetries` config field and check `attempt > MaxRetries || DateTime.UtcNow >= deadline` before sleeping.
 
-## Edge cases {#edge-cases}
+## Edge cases {: #edge-cases}
 
 - `IProbe.Run` is synchronous. Do not wrap it in `Task.Run` — the runner's iteration scheduler controls concurrency.
 - Reuse `HttpClient` statically. Creating one per `Run` call leaks sockets under load.
@@ -265,7 +278,7 @@ The `WaitForHttpReady` example above is the canonical retry skeleton. For a stri
 - The `[Url]` data annotation rejects bare `localhost` at config-load time; provide a scheme.
 - Configuration is null before `LoadAndValidateConfiguration` runs. Never read `Configuration` in a constructor.
 
-## See also {#see-also}
+## See also {: #see-also}
 
 - [Probes — Introduction](index.md)
 - [Probes — Available probes](availableProbes/UploadRabbitMqDefinitions/overview.md)

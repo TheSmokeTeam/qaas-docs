@@ -3,12 +3,14 @@ id: qaas.quickstart.maketestmoremaintainable
 type: tutorial
 status: stable
 since: 2.0.0
-last_verified: 2026-05-22
+last_verified: 2026-05-23
 applies_to: [runner]
 keywords: [qaas, quickstart, maketestmoremaintainable]
-summary: "We now have a working test that has produced results. However, the test file has several issues:"
+summary: "Use anchors, placeholders, overwrite files, and cases to keep Runner YAML reusable across environments and variants."
 ---
 # Maintainable Test
+
+> TL;DR — Use anchors, placeholders, overwrite files, and cases to keep Runner YAML reusable across environments and variants.
 
 We now have a working test that has produced results. However, the test file has several issues:
 
@@ -18,11 +20,11 @@ We now have a working test that has produced results. However, the test file has
 
 To address these issues, we can use **anchors**, **placeholders**, and **overwriting files** to improve maintainability and reduce duplication.
 
-## Anchors
+## Anchors {: #anchors}
 
 Anchors allow us to define reusable configuration blocks that are expanded when the YAML is rendered. They help eliminate duplication by creating "macros" for repeated structures.
 
-### Anchors Syntax
+### Anchors Syntax {: #anchors-syntax}
 
 Define an anchor:
 
@@ -33,10 +35,11 @@ anchor: &anchorName anchorValue
 Use an anchor:
 
 ```yaml
+anchorName: &anchorName anchorValue
 UseAnchor: *anchorName
 ```
 
-### Example: Refactoring with Anchors
+### Example: Refactoring with Anchors {: #example-refactoring-with-anchors}
 
 We identify duplicated sections in the [Sessions](../userInterfaces/runner/configurationSections/sessions/overview.md) and [Assertions](../userInterfaces/runner/configurationSections/assertions/overview.md) sections. We create anchors for these and use the YAML merge key (`<<`) to incorporate them.
 
@@ -131,18 +134,18 @@ Assertions:
       ExpectedLength: 5
 ```
 
-### Best Practices for Anchors
+### Best Practices for Anchors {: #best-practices-for-anchors}
 
 - Place all anchors under the `anchors` section to keep them separate from active configurations.
 - Use `camelCase` for anchor names.
 - Use anchors only for complex values (dictionaries or lists).
 - Anchors do not work with overwriting files - changes to an anchor are not propagated to its references in overwritten files.
 
-## Placeholders
+## Placeholders {: #placeholders}
 
 Placeholders allow dynamic value substitution within YAML configurations. They are especially useful for environment-specific settings.
 
-### Placeholders Syntax
+### Placeholders Syntax {: #placeholders-syntax}
 
 ```yaml
 ${variables:rabbitmq:host}
@@ -153,7 +156,7 @@ Supports:
 - Default values: `${variables:rabbitmq:host??localhost}`
 - Partial value inclusion: `${variables:rabbitmq:host}-prod`
 
-### Example: Using Placeholders
+### Example: Using Placeholders {: #example-using-placeholders}
 
 Move environment-specific values into the `variables` section:
 
@@ -165,7 +168,8 @@ variables:
 
 anchors:
   rabbitMqExchangeAnchor: &rabbitMqExchangeAnchor
-    <<: ${variables:rabbitmq}
+    Host: ${variables:rabbitmq:host}
+    Port: ${variables:rabbitmq:port}
     Username: admin
     Password: admin
     RoutingKey: /
@@ -173,17 +177,17 @@ anchors:
 
 This allows the same configuration to be reused across environments by changing the values in the variables file.
 
-### Best Practices
+### Best Practices {: #best-practices}
 
 - Place placeholder values under the `variables` section.
 - Use `camelCase` for variable keys.
 - Use placeholders for non-logical, environment-dependent values.
 
-## Overwriting Files
+## Overwriting Files {: #overwriting-files}
 
 QaaS supports merging multiple YAML files, allowing you to separate configuration from logic. This is ideal for managing environment-specific settings.
 
-### File Structure
+### File Structure {: #file-structure}
 
 ```plaintext
 DummyAppTests/
@@ -195,7 +199,7 @@ DummyAppTests/
 |-- TestData/...
 ```
 
-### Environment-Specific Variables
+### Environment-Specific Variables {: #environment-specific-variables}
 
 #### **Variables/local.yaml**
 
@@ -215,7 +219,7 @@ variables:
     port: 5672
 ```
 
-### Running the Test
+### Running the Test {: #running-the-test}
 
 To run the test with a specific environment:
 
@@ -231,24 +235,30 @@ This approach enables clean separation of concerns and allows the same test logi
 
 > Note: Variable files use the `.yaml` extension because they contain only configuration data, not QaaS-specific structures.
 
-## Cases: Handling Repetitive Test Variants
+## Cases: Handling Repetitive Test Variants {: #cases-handling-repetitive-test-variants}
 
 When you have many similar test cases that differ only slightly (for example, different [DataSources](../userInterfaces/runner/configurationSections/dataSources/overview.md) or [Assertions](../userInterfaces/runner/configurationSections/assertions/overview.md)), use the `cases` feature.
 
-### Step 1: Create a Generic Template
+### Step 1: Create a Generic Template {: #step-1-create-a-generic-template}
 
 Refactor `test.qaas.yaml` to be generic, using placeholders and minimal configuration:
 
 ```yaml
 anchors:
   rabbitMqExchangeAnchor: &rabbitMqExchangeAnchor
-    <<: ${variables:rabbitmq}
+    Host: ${variables:rabbitmq:host}
+    Port: ${variables:rabbitmq:port}
     Username: admin
     Password: admin
     RoutingKey: /
 
 DataSources:
   - Name: DataSource
+    Generator: FromFileSystem
+    GeneratorConfiguration:
+      StorageName: LocalFiles
+      StorageMetaData: ItemName
+      Order: AsciiAsc
 
 Sessions:
   - Name: Session
@@ -291,7 +301,7 @@ Assertions:
       MaximumDelayMs: 5000
 ```
 
-### Step 2: Define Case Files
+### Step 2: Define Case Files {: #step-2-define-case-files}
 
 Create a `Cases` directory with individual case files:
 
@@ -325,26 +335,25 @@ Assertions:2:
     ExpectedLength: 5
 ```
 
-### Key Features of Case Files
+### Key Features of Case Files {: #key-features-of-case-files}
 
 - Use full path notation (for example, `DataSources:0:` in [DataSources](../userInterfaces/runner/configurationSections/dataSources/overview.md)) to access and modify specific elements.
 - Access list items by index using the index number as a key.
 - Overwrite variables using `${}` placeholders.
 - Support nested modifications without requiring indentation.
 
-### Running with Cases
+### Running with Cases {: #running-with-cases}
 
 Use the `-c` flag to specify the cases directory:
 
 ```bash
-dotnet run -- run test.qaas.yaml -w Variables/local.yaml -c Cases -s
+dotnet run -- run test.qaas.yaml -w Variables/local.yaml -c Cases
 ```
 
 - `-c Cases`: Loads all case files from the `Cases` directory.
-- `-s`: Runs cases in ASCII order by filename.
 - Each case generates a separate test run.
 
-### Allure Results
+### Allure Results {: #allure-results}
 
 [Allure Report](../userInterfaces/runner/allureReport.md) will group [Assertions](../userInterfaces/runner/configurationSections/assertions/overview.md) under suites named by the case file path:
 
@@ -354,3 +363,11 @@ Cases/jsonArrayGenerator.yaml
 ```
 
 This provides clear traceability and reporting for each test variant.
+
+## See also {: #see-also}
+
+- [Write a test in YAML](writeTestYaml.md)
+- [Configuration resolution](../userInterfaces/runner/configurationResolutionPriority.md)
+- [DataSources](../userInterfaces/runner/configurationSections/dataSources/overview.md)
+- [Sessions](../userInterfaces/runner/configurationSections/sessions/overview.md)
+- [Assertions](../userInterfaces/runner/configurationSections/assertions/overview.md)

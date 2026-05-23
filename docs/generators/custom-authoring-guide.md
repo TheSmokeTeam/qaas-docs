@@ -13,13 +13,13 @@ summary: "Derive a custom generator from BaseGenerator<TConfig> in QaaS.Framewor
 
 > TL;DR — A generator is an `IGenerator` hook that produces `IEnumerable<Data<object>>` from a configured source. Derive `BaseGenerator<TConfiguration>` and reference it from a `DataSources[]` entry.
 
-## When to use {#when-to-use}
+## When to use {: #when-to-use}
 
 - The built-in generator catalog (see [Available Generators](index.md)) does not parse the fixture shape you need.
 - You want lazy projection (yield one record at a time) over a large fixture without buffering it in memory.
 - You need typed coercion (`int`, `bool`, `decimal`) in the generator rather than the system-under-test.
 
-## YAML configuration {#yaml}
+## YAML configuration {: #yaml}
 
 ```yaml
 DataSources:
@@ -33,7 +33,7 @@ DataSources:
 
 `DataSources[].Name` and `DataSources[].Generator` are the only required fields; everything inside `GeneratorConfiguration` is your record shape.
 
-## C# (CAC) usage {#csharp}
+## C# (CAC) usage {: #csharp}
 
 Derive `BaseGenerator<TConfiguration>` from `QaaS.Framework.SDK.Hooks.Generator`. Override `Generate(IImmutableList<SessionData>, IImmutableList<DataSource>)` and `yield return` lazily.
 
@@ -44,6 +44,8 @@ using QaaS.Framework.SDK.Hooks.Generator;
 using QaaS.Framework.SDK.Session.DataObjects;
 using QaaS.Framework.SDK.Session.SessionDataObjects;
 
+public sealed record MyConfig;
+
 public sealed class MyGenerator : BaseGenerator<MyConfig>
 {
     public override IEnumerable<Data<object>> Generate(
@@ -51,11 +53,12 @@ public sealed class MyGenerator : BaseGenerator<MyConfig>
         IImmutableList<DataSource> dataSourceList)
     {
         // yield return Data<object> per record
+        yield break;
     }
 }
 ```
 
-## Minimal example {#example-minimal}
+## Minimal example {: #example-minimal}
 
 ```csharp
 public record ConstantConfig
@@ -76,7 +79,7 @@ public sealed class Constant : BaseGenerator<ConstantConfig>
 }
 ```
 
-## Realistic example {#example-realistic}
+## Realistic example {: #example-realistic}
 
 Typed CSV generator that parses each row according to a `name:type` column schema and yields one JSON-encoded `Data<object>` per row.
 
@@ -192,7 +195,7 @@ DataSources:
       ItemsPerSource: 100
 ```
 
-## Registration and discovery {#registration}
+## Registration and discovery {: #registration}
 
 Custom generators are discovered by short type name. The runner scans referenced assemblies for types deriving from `BaseGenerator<>`. To wire one in:
 
@@ -210,7 +213,7 @@ Two generators with the same simple name across assemblies will collide; rename 
 
 After adding or renaming a custom generator, regenerate the YAML schema so editors pick up the new enum value. See [Schema extensions](../qaas/userInterfaces/runner/schema-extensions.md) for the regeneration command and the `bin/` cache flush.
 
-## Edge cases {#edge-cases}
+## Edge cases {: #edge-cases}
 
 - `Generate` returns `IEnumerable`, not `IAsyncEnumerable`. Do not call `.ToList()` before yielding — large CSVs would balloon memory.
 - `File.ReadLines` is lazy and pairs naturally with `yield return`.
@@ -218,7 +221,7 @@ After adding or renaming a custom generator, regenerate the YAML schema so edito
 - Empty cells become `null`, not the type's default. Downstream consumers must handle nullable JSON.
 - CSVs with embedded commas or quotes are not handled by `String.Split`. Use a real CSV reader for those fixtures.
 
-## See also {#see-also}
+## See also {: #see-also}
 
 - [Generators — Introduction](index.md)
 - [Generators — FromCSV (built-in)](availableGenerators/FromCSV/overview.md)

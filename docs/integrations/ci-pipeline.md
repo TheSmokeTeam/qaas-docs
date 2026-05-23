@@ -13,13 +13,13 @@ summary: "Wire a GitHub Actions workflow that restores QaaS NuGets from PackageM
 
 > TL;DR — One workflow that combines PackageMirror, ElasticBootstrap, a mocker sidecar, the runner, and Allure artifact upload into a reproducible CI job.
 
-## When to use {#when-to-use}
+## When to use {: #when-to-use}
 
 - You are moving a runner repo from "works on my laptop" to CI and want a known-good starting point.
 - You need to combine PackageMirror (offline NuGets), ElasticBootstrap (provisioned ES indices/templates), a mocker sidecar, and Allure reporting in one job.
 - You want an example that fails loudly when the runner exits non-zero and still uploads diagnostics on failure.
 
-## YAML configuration {#yaml}
+## YAML configuration {: #yaml}
 
 ```yaml
 # .github/workflows/qaas.yml
@@ -136,7 +136,7 @@ jobs:
         run: docker rm -f mocker || true
 ```
 
-## C# (CAC) usage {#csharp}
+## C# (CAC) usage {: #csharp}
 
 No additional C# is required:
 
@@ -145,7 +145,7 @@ QaaS.Runner.Bootstrap.New(args).Run();   // MyTests/Program.cs
 QaaS.Mocker.Bootstrap.New(args).Run();   // baked into MOCKER_IMAGE
 ```
 
-## Minimal example {#example-minimal}
+## Minimal example {: #example-minimal}
 
 Stripped to RabbitMQ + runner only:
 
@@ -173,7 +173,7 @@ jobs:
           dotnet MyTests.dll run test.qaas.yaml
 ```
 
-## Realistic example {#example-realistic}
+## Realistic example {: #example-realistic}
 
 Matrix over runner version so PRs prove compatibility with both the previous and the current release:
 
@@ -222,7 +222,7 @@ docker rm -f mocker
 docker compose -f infra/local.compose.yml down
 ```
 
-## Edge cases {#edge-cases}
+## Edge cases {: #edge-cases}
 
 - `services:` containers and the job both see `localhost`, but only host-network containers do. If you cannot use `--network host`, expose the mocker via `docker run -p 8081:8081` and point the runner at `127.0.0.1:8081`.
 - The runner's exit code is the job's exit code. Do not wrap it in `|| true`. Use `if: always()` on artifact steps to still upload on failure.
@@ -231,7 +231,7 @@ docker compose -f infra/local.compose.yml down
 - The mocker container needs a readiness loop; `docker run -d` returns before the listener binds.
 - Allure CLI is not installed in the workflow — only the runner's JSON output is collected. Render the report in a downstream job.
 
-## See also {#see-also}
+## See also {: #see-also}
 
 - [Integrations — Kiwix MCP](kiwix-mcp.md)
 - [Runner — run command](../qaas/userInterfaces/runner/commands/run.md)

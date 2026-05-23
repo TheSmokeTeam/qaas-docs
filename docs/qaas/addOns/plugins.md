@@ -10,11 +10,13 @@ summary: "QaaS Plugins are C# NuGet packages that contain QaaS hooks, extensibil
 ---
 # Plugins
 
+> TL;DR — QaaS Plugins are C# NuGet packages that contain QaaS hooks, extensibility points that integrate with QaaS.Framework. To qualify as a QaaS Plugin, a package must use QaaS.Framework.SDK.
+
 QaaS Plugins are C# NuGet packages that contain QaaS hooks, extensibility points that integrate with [QaaS.Framework](../../framework/index.md). To qualify as a QaaS Plugin, a package must use [QaaS.Framework.SDK](../../framework/projects/sdk.md).
 
 ---
 
-## Built-in Plugins
+## Built-in Plugins {: #built-in-plugins}
 
 Examples of built-in QaaS Plugins include:
 
@@ -22,3 +24,7 @@ Examples of built-in QaaS Plugins include:
 - [QaaS.Common.Assertions](../../assertions/index.md)
 - [QaaS.Common.Probes](../../probes/index.md)
 - [QaaS.Common.Processors](../../processors/index.md)
+
+## See also {: #see-also}
+
+- [QaaS Runner](../index.md)

@@ -13,13 +13,13 @@ summary: "Derive a custom transaction processor from BaseTransactionProcessor<TC
 
 > TL;DR — A processor inspects an inbound request and produces the response payload. Derive `BaseTransactionProcessor<TConfiguration>`, override `Process`, and reference it from a mocker `Stubs[].Processor` entry.
 
-## When to use {#when-to-use}
+## When to use {: #when-to-use}
 
 - The built-in processor catalog (see [Available Processors](index.md)) does not cover your transformation.
 - You need to mutate request bodies (redact, enrich, project) before the response is computed.
 - You need to read multiple data sources to assemble a response.
 
-## YAML configuration {#yaml}
+## YAML configuration {: #yaml}
 
 A processor binding lives inside a mocker stub:
 
@@ -43,7 +43,7 @@ Servers:
               TransactionStubName: SanitisedEcho
 ```
 
-## C# (CAC) usage {#csharp}
+## C# (CAC) usage {: #csharp}
 
 Derive `BaseTransactionProcessor<TConfiguration>` from `QaaS.Framework.SDK.Hooks.Processor`. Override `Process(IImmutableList<DataSource>, Data<object>)`, return a new `Data<object>` whose `Body` is the bytes you want to send back.
 
@@ -52,6 +52,8 @@ using System.Collections.Immutable;
 using QaaS.Framework.SDK.DataSourceObjects;
 using QaaS.Framework.SDK.Hooks.Processor;
 using QaaS.Framework.SDK.Session.DataObjects;
+
+public sealed record MyConfig;
 
 public sealed class MyProcessor : BaseTransactionProcessor<MyConfig>
 {
@@ -65,7 +67,7 @@ public sealed class MyProcessor : BaseTransactionProcessor<MyConfig>
 }
 ```
 
-## Minimal example {#example-minimal}
+## Minimal example {: #example-minimal}
 
 ```csharp
 public record EchoConfig { public int StatusCode { get; set; } = 200; }
@@ -78,7 +80,7 @@ public sealed class Echo : BaseTransactionProcessor<EchoConfig>
 }
 ```
 
-## Realistic example {#example-realistic}
+## Realistic example {: #example-realistic}
 
 A processor that walks the request JSON, redacts configured property names (case-insensitive), and returns the sanitised body. The same configuration drives every endpoint that references the stub.
 
@@ -115,7 +117,7 @@ public class PiiRedactingEcho : BaseTransactionProcessor<PiiRedactingEchoConfig>
         IImmutableList<DataSource> dataSourceList,
         Data<object> requestData)
     {
-        var raw = requestData.Body ?? Array.Empty<byte>();
+        var raw = requestData.Body as byte[] ?? Array.Empty<byte>();
         var json = raw.Length == 0 ? new JsonObject() : JsonNode.Parse(raw) ?? new JsonObject();
 
         var fields = Configuration.RedactedFields
@@ -201,7 +203,7 @@ is rewritten to
 { "id": 42, "email": "***", "phone": "***", "profile": { "ssn": "***", "nickname": "ali" } }
 ```
 
-## Registration and discovery {#registration}
+## Registration and discovery {: #registration}
 
 Custom processors are discovered by short type name. The mocker scans referenced assemblies for types deriving from `BaseProcessor<>`. To wire one in:
 
@@ -219,7 +221,7 @@ Two processors with the same simple name across assemblies will collide; rename 
 
 After adding or renaming a custom processor, regenerate the mocker schema so editors pick up the new enum value. See [Schema extensions](../qaas/userInterfaces/runner/schema-extensions.md) for the regeneration command and the `bin/` cache flush.
 
-## Edge cases {#edge-cases}
+## Edge cases {: #edge-cases}
 
 - Non-JSON payloads raise on `JsonNode.Parse`. Wrap in `try/catch` and return the body unchanged if you need a tolerant variant.
 - Field matching is case-insensitive on the property name; recursion handles nested paths automatically.
@@ -227,7 +229,7 @@ After adding or renaming a custom processor, regenerate the mocker schema so edi
 - The processor instance is shared across in-flight requests. Do not hold per-request state in fields.
 - Custom response headers belong in `MetaData.Http.ResponseHeaders`; the mocker emits them verbatim.
 
-## See also {#see-also}
+## See also {: #see-also}
 
 - [Processors — Introduction](index.md)
 - [Mocker — Stubs reference](../mocker/userInterfaces/mocker/configurationSections/stubs/overview.md)

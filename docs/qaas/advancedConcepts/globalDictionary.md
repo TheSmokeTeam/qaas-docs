@@ -6,9 +6,11 @@ since: 2.0.0
 last_verified: 2026-05-22
 applies_to: [runner]
 keywords: [qaas, advancedconcepts, globaldictionary]
-summary: "The Runner global dictionary is the shared mutable state that lives alongside the built execution. Use it when values must be available at runtime across hooks, Sessions, Assertions, and other exec..."
+summary: "The Runner global dictionary shares mutable runtime values across hooks, Sessions, Assertions, and execution code."
 ---
 # Global Dictionary
+
+> TL;DR — The Runner global dictionary shares mutable runtime values across hooks, Sessions, Assertions, and execution code.
 
 The Runner global dictionary is the shared mutable state that lives alongside the built execution. Use it when values must be available at runtime across hooks, [Sessions](../userInterfaces/runner/configurationSections/sessions/overview.md), [Assertions](../userInterfaces/runner/configurationSections/assertions/overview.md), and other execution components.
 
@@ -16,7 +18,7 @@ This is the recommended replacement for the old Framework-specific Variables run
 
 Runner now does that projection automatically by default. When a built execution has a root `variables` section, Runner copies it into the shared global dictionary under `Variables`.
 
-## What It Is For
+## What It Is For {: #what-it-is-for}
 
 Use the global dictionary when you need to:
 
@@ -26,7 +28,7 @@ Use the global dictionary when you need to:
 - seed values before execution starts
 - let custom hooks and related runtime steps persist recovery state and shared defaults between earlier and later phases of the same execution
 
-## Hook Usage
+## Hook Usage {: #hook-usage}
 
 The global dictionary is meant for runtime coordination between hooks and other execution steps in the same run.
 
@@ -40,7 +42,7 @@ Hook-specific keys, fallback rules, and recovery behavior belong to the hook doc
 
 For the exact Framework API surface, see [Context global dictionary](../../framework/functions/extension-methods-sections/extension-methods/context-global-dictionary.md) and [ExecutionBuilder configuration helpers](../functions/builders/executions-sections/configuration.md).
 
-## Placeholder Values vs Runtime State
+## Placeholder Values vs Runtime State {: #placeholder-values-vs-runtime-state}
 
 These two concepts are related but not the same:
 
@@ -49,7 +51,7 @@ These two concepts are related but not the same:
 
 By default, Runner also loads that configuration section into runtime state under `Variables`, so runtime code can read the same values without relying on a separate Variables feature.
 
-## Runner Default: Auto-Load `variables` Into `Variables`
+## Runner Default: Auto-Load `variables` Into `Variables` {: #runner-default-auto-load-variables-into-variables}
 
 If the loaded configuration contains:
 
@@ -63,6 +65,11 @@ variables:
 Runner builds each execution with:
 
 ```csharp
+using QaaS.Framework.SDK.ContextObjects;
+using QaaS.Framework.SDK.Extensions;
+
+var context = new Context();
+
 var host = context.GetValueFromGlobalDictionary(["Variables", "rabbitmq", "host"]);
 var port = context.GetValueFromGlobalDictionary(["Variables", "rabbitmq", "port"]);
 ```
@@ -72,22 +79,35 @@ The default is controlled by `Runner.LoadVariablesIntoGlobalDict`, which starts 
 ```csharp
 using QaaS.Runner;
 
-var runner = Bootstrap.New(args);
-runner.LoadVariablesIntoGlobalDict = false;
+var runnerWithoutVariables = Bootstrap.New(args);
+runnerWithoutVariables.LoadVariablesIntoGlobalDict = false;
 ```
 
 Custom runner types can also override that property:
 
 ```csharp
+using Autofac;
+using System.Collections.Generic;
+using QaaS.Runner;
+
 public sealed class MyRunner : Runner
 {
+    public MyRunner(
+        ILifetimeScope scope,
+        List<ExecutionBuilder> executionBuilders,
+        Microsoft.Extensions.Logging.ILogger logger,
+        Serilog.ILogger serilogLogger)
+        : base(scope, executionBuilders, logger, serilogLogger)
+    {
+    }
+
     public override bool LoadVariablesIntoGlobalDict { get; set; } = false;
 }
 ```
 
 Turn it off only if you want to keep `variables` available for placeholder resolution but do not want those values copied into mutable runtime state.
 
-## Load the `variables` Section Into the Global Dictionary Manually
+## Load the `variables` Section Into the Global Dictionary Manually {: #load-the-variables-section-into-the-global-dictionary-manually}
 
 Inside a hook or any place where you already have access to the current context:
 
@@ -119,7 +139,7 @@ Use the manual form when:
 - you want to load the section later in the runtime flow instead of during build
 - you want the runtime path to stay lowercase `variables` for compatibility with older hook code
 
-## Load a Section Into a Different Runtime Path
+## Load a Section Into a Different Runtime Path {: #load-a-section-into-a-different-runtime-path}
 
 You are not limited to reusing the configuration path as-is. You can project a section into any destination path:
 
@@ -143,17 +163,17 @@ Use this when:
 - a hook wants a shorter or more domain-specific path
 - you want to keep the original configuration path separate from the runtime path
 
-## Seed Values Before Execution Starts
+## Seed Values Before Execution Starts {: #seed-values-before-execution-starts}
 
 If you already know runtime values before the execution is built, preload them through the execution builder:
 
 ```csharp
 using QaaS.Runner;
 
-var runner = Bootstrap.New(args);
-var executionBuilder = runner.ExecutionBuilders.AsSingle();
+var seededRunner = Bootstrap.New(args);
+var seededExecutionBuilder = seededRunner.ExecutionBuilders.AsSingle();
 
-executionBuilder.WithGlobalDict(new Dictionary<string, object?>
+seededExecutionBuilder.WithGlobalDict(new Dictionary<string, object?>
 {
     ["environment"] = new Dictionary<string, object?>
     {
@@ -164,11 +184,13 @@ executionBuilder.WithGlobalDict(new Dictionary<string, object?>
 
 Runner pushes one shared global dictionary into the execution builders that belong to the same runner invocation, so this is the right place for per-run state that should already exist before hooks start.
 
-## Add or Update Runtime Values During Execution
+## Add or Update Runtime Values During Execution {: #add-or-update-runtime-values-during-execution}
 
 You can create or overwrite paths at any time:
 
 ```csharp
+var accessToken = "eyJhbGciOi...";
+
 context.InsertValueIntoGlobalDictionary(
     ["runtime", "tokens", "accessToken"],
     accessToken);
@@ -180,7 +202,7 @@ This is useful for:
 - IDs returned from [Publishers](../userInterfaces/runner/configurationSections/sessions/types/publishers.md), [Consumers](../userInterfaces/runner/configurationSections/sessions/types/consumers.md), or [Probes](../userInterfaces/runner/configurationSections/sessions/types/probes.md)
 - data that later [Assertions](../userInterfaces/runner/configurationSections/assertions/overview.md) or cleanup hooks need
 
-## Read Runtime Values Safely
+## Read Runtime Values Safely {: #read-runtime-values-safely}
 
 ```csharp
 var correlationId = context.GetValueFromGlobalDictionary(
@@ -189,7 +211,7 @@ var correlationId = context.GetValueFromGlobalDictionary(
 
 If the path does not exist, QaaS throws a `KeyNotFoundException`. That is usually preferable to silently continuing with the wrong runtime state.
 
-## Recommended Pattern for Variables Files
+## Recommended Pattern for Variables Files {: #recommended-pattern-for-variables-files}
 
 If your project already uses overwrite files such as `Variables/local.yaml` and `Variables/k8s.yaml`, keep doing that for placeholder resolution. When runtime code also needs those values:
 
@@ -199,16 +221,16 @@ If your project already uses overwrite files such as `Variables/local.yaml` and 
 
 This keeps one source of truth for environment-specific values while removing the need for a dedicated Variables runtime object.
 
-## Example
+## Example {: #example}
 
 ```csharp
 using QaaS.Framework.SDK.Extensions;
 using QaaS.Runner;
 
-var runner = Bootstrap.New(["run", "test.qaas.yaml"]);
-var executionBuilder = runner.ExecutionBuilders.AsSingle();
+var exampleRunner = Bootstrap.New(["run", "test.qaas.yaml"]);
+var exampleExecutionBuilder = exampleRunner.ExecutionBuilders.AsSingle();
 
-executionBuilder.WithGlobalDict(new Dictionary<string, object?>
+exampleExecutionBuilder.WithGlobalDict(new Dictionary<string, object?>
 {
     ["runtime"] = new Dictionary<string, object?>
     {
@@ -223,3 +245,7 @@ This gives you both:
 
 - immutable configuration values coming from YAML and overwrite files
 - mutable runtime values stored in one shared global dictionary
+
+## See also {: #see-also}
+
+- [QaaS Runner](../index.md)

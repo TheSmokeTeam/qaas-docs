@@ -3,12 +3,14 @@ id: qaas.advancedconcepts.stages
 type: reference
 status: stable
 since: 2.0.0
-last_verified: 2026-05-22
+last_verified: 2026-05-23
 applies_to: [runner]
 keywords: [qaas, advancedconcepts, stages]
-summary: "Stages in QaaS provide fine-grained control over execution order, but the word stage is used in two different places:"
+summary: "Stages coordinate session ordering and action launch ordering, which are related but do not behave the same way."
 ---
 # Stages in QaaS: Orchestrating Session and Action Execution
+
+> TL;DR — Stages coordinate session ordering and action launch ordering, which are related but do not behave the same way.
 
 **Stages** in QaaS provide **fine-grained control over execution order**, but the word **stage** is used in two different places:
 
@@ -19,7 +21,7 @@ Those two systems are related, but they do **not** behave the same way.
 
 ---
 
-## Key Concepts
+## Key Concepts {: #key-concepts}
 
 | Term | Meaning |
 |------|---------|
@@ -37,7 +39,7 @@ Those two systems are related, but they do **not** behave the same way.
 
 ---
 
-## Two Different Stage Systems
+## Two Different Stage Systems {: #two-different-stage-systems}
 
 The most important distinction is this:
 
@@ -48,7 +50,7 @@ If you keep that distinction in mind, the rest of the behavior becomes predictab
 
 ---
 
-## Action Stages: Inside a Single Session
+## Action Stages: Inside a Single Session {: #action-stages-inside-a-single-session}
 
 Actions such as [Publishers](../userInterfaces/runner/configurationSections/sessions/types/publishers.md), [Consumers](../userInterfaces/runner/configurationSections/sessions/types/consumers.md), [MockerCommands](../userInterfaces/runner/configurationSections/sessions/types/mockerCommands.md), [Probes](../userInterfaces/runner/configurationSections/sessions/types/probes.md), and [Transactions](../userInterfaces/runner/configurationSections/sessions/types/transactions.md) can be assigned to an action stage with `.AtStage(n)`.
 
@@ -63,21 +65,44 @@ What happens at runtime is:
     Actions do **not** support `RunUntilStage`.
     `StageConfig.TimeoutBefore` and `StageConfig.TimeoutAfter` add timing around a stage launch, but they do not turn action stages into hard completion barriers.
 
-### Example: Assign Action Stages on Existing Builders
+### Example: Assign Action Stages on Existing Builders {: #example-assign-action-stages-on-existing-builders}
 
 ```csharp
 using QaaS.Framework.SDK.Extensions;
+using QaaS.Runner;
+using QaaS.Runner.Sessions.Actions.Consumers.Builders;
+using QaaS.Runner.Sessions.Actions.Probes;
+using QaaS.Runner.Sessions.Actions.Publishers.Builders;
 
-var sessionBuilder = executionBuilder.ReadSessions().AsSingle();
+var runner = Bootstrap.New(args);
+var executionBuilder = runner.ExecutionBuilders.AsSingle();
+var sessionBuilder = (executionBuilder.Sessions ?? []).AsSingle();
+
+var startService = (sessionBuilder.Probes ?? [])
+    .Single(probe => probe.Name == "StartService")
+    .Clone()
+    .AtStage(0);
+var sendInitialData = (sessionBuilder.Publishers ?? [])
+    .Single(publisher => publisher.Name == "SendInitialData")
+    .Clone()
+    .AtStage(0);
+var validateProcessing = (sessionBuilder.Consumers ?? [])
+    .Single(consumer => consumer.Name == "ValidateProcessing")
+    .Clone()
+    .AtStage(1);
+var cleanup = (sessionBuilder.Probes ?? [])
+    .Single(probe => probe.Name == "Cleanup")
+    .Clone()
+    .AtStage(2);
 
 sessionBuilder
-    .UpdateProbe("StartService", probe => probe.AtStage(0))
-    .UpdatePublisher("SendInitialData", publisher => publisher.AtStage(0))
-    .UpdateConsumer("ValidateProcessing", consumer => consumer.AtStage(1))
-    .UpdateProbe("Cleanup", probe => probe.AtStage(2));
+    .UpdateProbe("StartService", startService)
+    .UpdatePublisher("SendInitialData", sendInitialData)
+    .UpdateConsumer("ValidateProcessing", validateProcessing)
+    .UpdateProbe("Cleanup", cleanup);
 ```
 
-### What Actually Happens with Action Stages
+### What Actually Happens with Action Stages {: #what-actually-happens-with-action-stages}
 
 | Scenario | Actual behavior |
 |----------|-----------------|
@@ -98,7 +123,7 @@ That is why action stages are useful for ordering launches inside one session, b
 
 ---
 
-## Session Stages: Across Sessions
+## Session Stages: Across Sessions {: #session-stages-across-sessions}
 
 Session stages are the outer scheduling mechanism. This is where QaaS enforces the strict stage-to-stage orchestration.
 
@@ -110,7 +135,7 @@ At runtime:
 - sessions without `RunUntilStage` are materialized at the end of their own stage
 - deferred sessions keep running and are materialized only when their target stage is reached
 
-### What Happens in Each Session-Stage Scenario
+### What Happens in Each Session-Stage Scenario {: #what-happens-in-each-session-stage-scenario}
 
 | Scenario | Actual behavior |
 |----------|-----------------|
@@ -120,23 +145,27 @@ At runtime:
 | A session blocks a later stage with `RunUntilStage` | Intermediate stages may run while that session is still active, but the target stage waits. |
 | `RunUntilStage` points to a stage that never appears | QaaS drains that deferred session at the end of the run instead of dropping its data. |
 
-### Example: Two Sessions with an Intermediate Overlap
+### Example: Two Sessions with an Intermediate Overlap {: #example-two-sessions-with-an-intermediate-overlap}
 
 ```csharp
-executionBuilder.UpdateSession(
-    "SessionA",
-    session => session
-        .AtStage(0)
-        .RunSessionUntilStage(2));
+var sessionA = (executionBuilder.Sessions ?? [])
+    .Single(session => session.Name == "SessionA")
+    .Clone()
+    .AtStage(0)
+    .RunSessionUntilStage(2);
 
-executionBuilder.UpdateSession(
-    "SessionB",
-    session => session
-        .AtStage(1)
-        .RunSessionUntilStage(3));
+var sessionB = (executionBuilder.Sessions ?? [])
+    .Single(session => session.Name == "SessionB")
+    .Clone()
+    .AtStage(1)
+    .RunSessionUntilStage(3);
+
+executionBuilder
+    .UpdateSession("SessionA", sessionA)
+    .UpdateSession("SessionB", sessionB);
 ```
 
-### Exact Execution Flow
+### Exact Execution Flow {: #exact-execution-flow}
 
 1. `SessionA` starts in session stage `0`.
 2. `SessionB` starts in session stage `1`.
@@ -149,7 +178,7 @@ The critical point is:
 `RunUntilStage` does **not** mean "the session runs inside every stage up to that number".
 It means "that future stage cannot begin until this session has finished".
 
-### Sessions in the Same Stage
+### Sessions in the Same Stage {: #sessions-in-the-same-stage}
 
 When two sessions share the same session stage:
 
@@ -157,7 +186,7 @@ When two sessions share the same session stage:
 - if neither is deferred, both results are materialized before the next stage begins
 - if one of them is deferred to a later stage, only the non-deferred result is materialized at the end of the current stage, while the deferred session keeps running
 
-### Sessions in Different Stages
+### Sessions in Different Stages {: #sessions-in-different-stages}
 
 When two sessions are assigned different session stages:
 
@@ -165,7 +194,7 @@ When two sessions are assigned different session stages:
 - the later stage sees only the session results that have been materialized so far
 - deferred sessions can still be running in the background while the intermediate stage starts
 
-### Blocking a Later Stage with `RunUntilStage`
+### Blocking a Later Stage with `RunUntilStage` {: #blocking-a-later-stage-with-rununtilstage}
 
 This is the main use of `RunUntilStage`.
 
@@ -175,7 +204,7 @@ If a session starts in stage `0` and has `RunUntilStage = 2`:
 - stage `2` cannot start until that session has completed
 - when stage `2` begins, the deferred session result is materialized into `ExecutionData.SessionDatas`
 
-### Missing Target Stage
+### Missing Target Stage {: #missing-target-stage}
 
 If `RunUntilStage` points to a stage that never appears in the execution plan, QaaS still finalizes that session at the end of the run.
 
@@ -187,7 +216,7 @@ That means:
 
 ---
 
-## Action Stages Versus Session Stages
+## Action Stages Versus Session Stages {: #action-stages-versus-session-stages}
 
 | Component | Stage Assignment | `RunUntilStage` Support | What the stage controls |
 |-----------|------------------|-------------------------|-------------------------|
@@ -199,9 +228,9 @@ If you need **hard phase boundaries**, use separate [Sessions](../userInterfaces
 
 ---
 
-## Canonical Recipes
+## Canonical Recipes {: #canonical-recipes}
 
-### Recipe A: Single-session launch ordering with action stages
+### Recipe A: Single-session launch ordering with action stages {: #recipe-a-single-session-launch-ordering-with-action-stages}
 
 Use this when one session needs to start a service, send data into it, then validate — in that launch order — but actions are allowed to overlap.
 
@@ -211,22 +240,19 @@ Sessions:
     Probes:
       - Name: StartService
         Probe: StartHttpServer
-        StageConfig:
-          Stage: 0
+        Stage: 0
       - Name: WarmupPing
         Probe: PingProbe
-        StageConfig:
-          Stage: 1
+        Stage: 1
     Publishers:
       - Name: SendInitialData
         Publisher: HttpPublisher
-        StageConfig:
-          Stage: 0
+        Stage: 0
     Consumers:
       - Name: ValidateProcessing
         Consumer: HttpConsumer
-        StageConfig:
-          Stage: 1
+        TimeoutMs: 5000
+        Stage: 1
 ```
 
 Behavior:
@@ -235,7 +261,7 @@ Behavior:
 - Stage `1` launches `WarmupPing` and `ValidateProcessing` next, **even if** stage `0` actions are still running.
 - Session completion waits for every action task; the order above is launch order, not completion order.
 
-### Recipe B: Hard two-phase flow with two sessions and `RunUntilStage`
+### Recipe B: Hard two-phase flow with two sessions and `RunUntilStage` {: #recipe-b-hard-two-phase-flow-with-two-sessions-and-rununtilstage}
 
 Use this when phase 2 must **not** start until phase 1 has fully finished — a real barrier, not a launch ordering.
 
@@ -253,6 +279,7 @@ Sessions:
     Consumers:
       - Name: ReadBack
         Consumer: SqlConsumer
+        TimeoutMs: 5000
     Assertions:
       - Name: SeededRowsExist
         Assertion: HasMinimumRowCount
@@ -269,3 +296,7 @@ Behavior:
 - `Verify`'s consumer therefore sees a database that was fully seeded by the previous phase, with no overlap.
 
 Pick Recipe A when overlap is acceptable. Pick Recipe B when phase isolation is a correctness requirement.
+
+## See also {: #see-also}
+
+- [QaaS Runner](../index.md)

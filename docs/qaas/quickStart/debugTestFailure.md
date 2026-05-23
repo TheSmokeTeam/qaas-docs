@@ -3,20 +3,22 @@ id: qaas.quickstart.debugtestfailure
 type: tutorial
 status: stable
 since: 2.0.0
-last_verified: 2026-05-22
+last_verified: 2026-05-23
 applies_to: [runner]
 keywords: [qaas, quickstart, debugtestfailure]
-summary: "QaaS includes a configurable logger that can output logs to the console or to a file. The log level can be adjusted using the -l flag, or the entire logging configuration can be overridden using th..."
+summary: "Use split Runner phases, focused logging, and saved report artifacts to debug failed tests."
 ---
 # Debug Test Failure
 
-## QaaS Logs
+> TL;DR — Use split Runner phases, focused logging, and saved report artifacts to debug failed tests.
+
+## QaaS Logs {: #qaas-logs}
 
 QaaS includes a configurable logger that can output logs to the console or to a file. The log level can be adjusted using the `-l` flag, or the entire logging configuration can be overridden using the `-g` flag.
 
 For more information about the logger, refer to the [Logger documentation](../userInterfaces/logger.md).
 
-## QaaS Act/Assert Commands
+## QaaS Act/Assert Commands {: #qaas-actassert-commands}
 
 QaaS provides two specialized commands to help debug test failures:
 
@@ -30,7 +32,7 @@ These commands are particularly useful for:
 - Debugging assertion configurations
 - Using QaaS solely as a data injector for testing or validation
 
-### Usage Examples
+### Usage Examples {: #usage-examples}
 
 To run only the `act` phase and store output in a specified directory:
 
@@ -46,7 +48,7 @@ dotnet run -- assert test.qaas.yaml -w Variables/...
 
 This workflow allows you to isolate and inspect each phase of the test independently, making it easier to identify and resolve issues.
 
-## Triage protocol
+## Triage protocol {: #triage-protocol}
 
 When `qaas-runner run` exits non-zero, do not re-run blindly. Walk these steps:
 
@@ -56,7 +58,7 @@ When `qaas-runner run` exits non-zero, do not re-run blindly. Walk these steps:
 4. **Confirm the assertion ran.** If it did not, configuration validation failed; check `AssertionTrace`.
 5. **Classify the failure.** A real failure points to a defect in the system-under-test. A spurious failure points to a wrong test or assertion — split with `act` + `assert`.
 
-## Split with act + assert
+## Split with act + assert {: #split-with-act-assert}
 
 Capture once, replay assertions repeatedly:
 
@@ -74,7 +76,7 @@ Interpretation:
 - `act` succeeded but `assert` failed -> the assertion or its configuration is wrong.
 - Both succeed but `run` fails -> an order-of-operation bug (e.g. a probe between act and assert).
 
-## High-yield triage commands
+## High-yield triage commands {: #high-yield-triage-commands}
 
 ```bash
 # A. Dump the resolved YAML (post-placeholder substitution).
@@ -91,7 +93,7 @@ qaas-runner run test.qaas.yaml -s allure-results -e
 qaas-runner assert test.qaas.yaml
 ```
 
-## Reporter wiring for triage
+## Reporter wiring for triage {: #reporter-wiring-for-triage}
 
 Two reporter knobs matter most. Leave them on in dev and CI:
 
@@ -114,7 +116,7 @@ With `SaveAttachments: true`, each assertion step in the Allure HTML carries:
 
 Open these first when an assertion is red.
 
-## Common gotchas
+## Common gotchas {: #common-gotchas}
 
 1. **`CopyToOutputDirectory` missing on `*.qaas.yaml`** -> runner errors with "config file not found" because it is reading from `bin/Release/net10.0`, not your source tree. Fix the csproj.
 2. **Schema cache stale** -> "unknown enum value" right after you added a custom plugin. Re-run the schema generator and clean `bin/`.
@@ -124,7 +126,7 @@ Open these first when an assertion is red.
 6. **Custom hook not loaded** -> `Processor: MyThing` rejected as unknown. The runner only discovers types its `AppDomain` already references.
 7. **Reporter not writing** -> check `SaveSessionData` / `SaveAttachments` / `DisplayTrace`; defaults are false in some templates.
 
-## Environment differences (laptop vs CI)
+## Environment differences (laptop vs CI) {: #environment-differences-laptop-vs-ci}
 
 | Symptom | Likely cause |
 |---|---|
@@ -133,3 +135,11 @@ Open these first when an assertion is red.
 | Hangs forever | `TimeoutMs` only bounds per-message waits. Add an outer timeout on the runner invocation. |
 | Different assertion result | Non-deterministic test data order. Set `DataArrangeOrder: AsciiAsc` and use named fixtures. |
 | Mocker unreachable | Container networking. Use `--network host` or publish ports + `127.0.0.1` mapping. |
+
+## See also {: #see-also}
+
+- [Run test](runTest.md)
+- [`run` command](../userInterfaces/runner/commands/run.md)
+- [`act` command](../userInterfaces/runner/commands/act.md)
+- [`assert` command](../userInterfaces/runner/commands/assert.md)
+- [Allure Report](../userInterfaces/runner/allureReport.md)

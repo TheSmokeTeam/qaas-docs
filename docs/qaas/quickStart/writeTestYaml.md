@@ -3,12 +3,15 @@ id: qaas.quickstart.writetestyaml
 type: tutorial
 status: stable
 since: 2.0.0
-last_verified: 2026-05-22
+last_verified: 2026-05-23
 applies_to: [runner]
 keywords: [qaas, quickstart, writetestyaml]
-summary: "Use YAML when you want the test flow to stay declarative, easy to diff, and easy to hand to someone who does not need to read C# first. QaaS.Runner loads the YAML into an execution builder, so the ..."
+summary: "Define DataSources, Sessions, and Assertions in YAML when the test flow should stay declarative."
+render_macros: true
 ---
 # Write a Test (YAML)
+
+> TL;DR — Define DataSources, Sessions, and Assertions in YAML when the test flow should stay declarative.
 
 Use YAML when you want the test flow to stay declarative, easy to diff, and easy to hand to someone who does not need to read C# first. QaaS.Runner loads the YAML into an execution builder, so the YAML sections below map directly to the runtime concepts you will keep using later: [MetaData](../userInterfaces/runner/configurationSections/metaData/overview.md), [DataSources](../userInterfaces/runner/configurationSections/dataSources/overview.md), [Sessions](../userInterfaces/runner/configurationSections/sessions/overview.md), and [Assertions](../userInterfaces/runner/configurationSections/assertions/overview.md).
 
@@ -16,7 +19,7 @@ This sample publishes one message to RabbitMQ's `dummy-app-tests-input` exchange
 
 The completed sample is available at [DummyAppTests (YAML)]({{ links.repository_runner_quickstart_yaml }}).
 
-## Create the Project
+## Create the Project {: #create-the-project}
 
 ```bash
 dotnet new qaas-runner -n DummyAppTests
@@ -25,7 +28,7 @@ dotnet add DummyAppTests/DummyAppTests.csproj package QaaS.Common.Assertions
 dotnet add DummyAppTests/DummyAppTests.csproj package QaaS.Common.Generators
 ```
 
-## Keep `Program.cs` Minimal
+## Keep `Program.cs` Minimal {: #keep-programcs-minimal}
 
 `DummyAppTests/Program.cs`
 
@@ -35,7 +38,7 @@ QaaS.Runner.Bootstrap.New(args).Run();
 
 The host stays small because the entire test definition will live in `test.qaas.yaml`. With this YAML-only host, empty program arguments now show help text, so the run command must pass `run test.qaas.yaml` explicitly.
 
-## Add the Test Data
+## Add the Test Data {: #add-the-test-data}
 
 `DummyAppTests/TestData/input.json`
 
@@ -50,7 +53,7 @@ The host stays small because the entire test definition will live in `test.qaas.
 
 The sample publishes this payload to RabbitMQ and then checks that it comes back through the expected `dummy-app-tests-input` to `dummy-app-tests-output` flow.
 
-## Start with `MetaData` and `DataSources`
+## Start with `MetaData` and `DataSources` {: #start-with-metadata-and-datasources}
 
 Start the file with the parts that describe the test at a high level and tell Runner where the input data comes from.
 
@@ -72,7 +75,7 @@ DataSources:
 
 [MetaData](../userInterfaces/runner/configurationSections/metaData/overview.md) makes the run easier to identify later in reports. [DataSources](../userInterfaces/runner/configurationSections/dataSources/overview.md) says: "load the test payloads from the local `TestData` folder."
 
-## Add the `Sessions` Section
+## Add the `Sessions` Section {: #add-the-sessions-section}
 
 Next add the session that performs the real work. A session groups the actions that exercise the system under test. In this sample the publisher writes to RabbitMQ's `dummy-app-tests-input` exchange and the consumer listens on the `dummy-app-tests-output` exchange.
 
@@ -110,7 +113,7 @@ Sessions:
 
 The [Publisher](../userInterfaces/runner/configurationSections/sessions/types/publishers.md) sends every payload loaded by `FromFileSystemTestData` to the `dummy-app-tests-input` exchange. The [Consumer](../userInterfaces/runner/configurationSections/sessions/types/consumers.md) listens on the `dummy-app-tests-output` exchange, waits up to five seconds, and deserializes the received body as JSON. In a real test, your application or local quick-start environment should move the message from `dummy-app-tests-input` to `dummy-app-tests-output`.
 
-## Add the `Assertions` Section
+## Add the `Assertions` Section {: #add-the-assertions-section}
 
 Finally add the assertions that decide whether the test passed.
 
@@ -140,7 +143,7 @@ Assertions:
 
 `HermeticByInputOutputPercentage` from [QaaS.Common.Assertions](../../assertions/index.md) checks that every input produced a matching output. `DelayByChunks` from [QaaS.Common.Assertions](../../assertions/index.md) checks that the output arrives within ten seconds.
 
-## Full `test.qaas.yaml`
+## Full `test.qaas.yaml` {: #full-testqaasyaml}
 
 This is the complete authored configuration after all three sections are combined:
 
@@ -206,7 +209,7 @@ Assertions:
       MaximumDelayMs: 10000
 ```
 
-## Run
+## Run {: #run}
 
 From `DummyAppTests/DummyAppTests`:
 
@@ -214,6 +217,14 @@ From `DummyAppTests/DummyAppTests`:
 dotnet run -- run test.qaas.yaml
 ```
 
-## Result
+## Result {: #result}
 
 Runner publishes the JSON payload from `TestData/input.json` to `dummy-app-tests-input`, then waits for the corresponding response on `dummy-app-tests-output`. The consumer verifies both 100% hermeticity and a maximum end-to-end delay of 10000 ms. Once you connect a real application, that application should be the component that consumes from `dummy-app-tests-input` and publishes to `dummy-app-tests-output`.
+
+## See also {: #see-also}
+
+- [Write a test in code](writeTestCode.md)
+- [Run test](runTest.md)
+- [DataSources](../userInterfaces/runner/configurationSections/dataSources/overview.md)
+- [Sessions](../userInterfaces/runner/configurationSections/sessions/overview.md)
+- [Assertions](../userInterfaces/runner/configurationSections/assertions/overview.md)
