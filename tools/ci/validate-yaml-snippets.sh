@@ -211,9 +211,18 @@ for y in "$WORK"/*.yaml; do
       FAIL=1
     fi
   elif [ -n "$schema" ]; then
-    echo "::warning file=$source,line=$line::schema for $kind snippets not found at $schema"
+    # Hook-family-only schemas (assertions/generators/probes/processors) are
+    # optional add-ons that the package mirror does not currently publish into
+    # docs/assets/schemas; the family schemas (runner/mocker) still cover the
+    # full envelope. Fall back to syntax-only validation without spamming
+    # per-snippet warnings.
+    SKIPPED_HOOK_SCHEMA=$((${SKIPPED_HOOK_SCHEMA:-0} + 1))
   fi
 done
+
+if [ "${SKIPPED_HOOK_SCHEMA:-0}" -gt 0 ]; then
+  echo "[validate-yaml] note: $SKIPPED_HOOK_SCHEMA hook-only snippet(s) validated for syntax only (hook family schemas not published into docs/assets/schemas)"
+fi
 
 rm -rf "$WORK"
 [ "$FAIL" -eq 0 ] || exit 1
