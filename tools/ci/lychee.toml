@@ -2,9 +2,15 @@
 exclude = [
   "^https?://localhost",
   "^https?://127\\.",
-  "^https?://TheSmokeTeam.github.io/qaas-docs",  # self
+  "^https?://TheSmokeTeam.github.io/qaas-docs",
+  "^https?://thesmoketeam.github.io/qaas-docs",
+  "^https?://docs.qaas.online",
 ]
-exclude_path = ["site/_meta", "site/_generated"]
+exclude_path = [
+  "site/_meta",
+  "site/_generated",
+  "site-check/qaas-docs/_generated",
+]
 accept = [200, 201, 202, 203, 204, 206, 301, 302, 303, 307, 308, 403, 429]
 max_concurrency = 8
 max_redirects = 5

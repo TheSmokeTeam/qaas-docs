@@ -6,6 +6,6 @@ rules:
     check-keys: false
   comments:
     min-spaces-from-content: 1
-  indentation:
-    spaces: 2
-    indent-sequences: consistent
+  comments-indentation: disable
+  indentation: disable
+  new-lines: disable

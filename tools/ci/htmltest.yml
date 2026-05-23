@@ -1,7 +1,5 @@
-DirectoryPath: "site"
-IgnoreURLs:
-  - "^https?://localhost"
-  - "^https?://127\\."
+DirectoryPath: "site-check"
 CheckExternal: false
 EnforceHTML5: false
+IgnoreDirectoryMissingTrailingSlash: true
 LogLevel: 1

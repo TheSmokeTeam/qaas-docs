@@ -80,7 +80,7 @@ jobs:
       - name: Build site
         run: |
           python tools/write_runtime_link_defaults.py docs/assets/javascripts/qaas-docs-build-defaults.js
-          mkdocs build
+          mkdocs build --strict --site-dir site
 
       - name: Upload Pages artifact
         if: github.event_name == 'push' && (github.ref == 'refs/heads/master' || github.ref == 'refs/heads/fix/improve_docs' || github.ref == 'refs/heads/fix/docs_errors')

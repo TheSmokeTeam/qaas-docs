@@ -1,5 +1,9 @@
 # Build output
 site/
+site-check/
+site-zim/
+tmp/
+.lycheecache
 
 # Knowledge graph artifacts (local only)
 graphify-out/

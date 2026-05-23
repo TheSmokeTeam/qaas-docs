@@ -40,6 +40,15 @@ Run a local preview:
 mkdocs serve
 ```
 
+Install the tracked pre-commit hook:
+
+```bash
+git config core.hooksPath .githooks
+```
+
+The hook runs `markdownlint-cli2`, strict MkDocs build, `llms.txt` validation,
+and offline `lychee` against the rendered site check root.
+
 ## Deterministic Reference Docs
 
 Runner, Mocker, and Framework reference pages are generated deterministically.
