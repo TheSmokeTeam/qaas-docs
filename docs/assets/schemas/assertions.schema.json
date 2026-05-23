@@ -1,0 +1,822 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "title": "assertions 0.0.0",
+  "type": [
+    "object",
+    "string"
+  ],
+  "description": "Json schema representing the assertions configuration fields and values",
+  "pattern": "\\$\\{.*\\}",
+  "properties": {
+    "Assertions": {
+      "type": [
+        "array",
+        "string"
+      ],
+      "pattern": "\\$\\{.*\\}",
+      "items": [
+        {
+          "type": [
+            "object",
+            "string"
+          ],
+          "pattern": "\\$\\{.*\\}",
+          "properties": {
+            "Assertion": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "enum": [
+                    "DelayByAverage",
+                    "DelayByChunks",
+                    "HermeticByExpectedOutputCount",
+                    "HermeticByExpectedOutputCountInRange",
+                    "HermeticByInputOutputPercentage",
+                    "HermeticByInputOutputPercentageInRange",
+                    "HttpStatus",
+                    "ObjectOutputJsonSchema",
+                    "OutputContentByExpectedCsvResults",
+                    "OutputDeserializableTo",
+                    "ValidateHermeticMetricsByInputOutputPercentage"
+                  ]
+                },
+                {}
+              ]
+            },
+            "AssertionConfiguration": {
+              "type": [
+                "object",
+                "string"
+              ],
+              "pattern": "\\$\\{.*\\}",
+              "anyOf": [
+                {},
+                {
+                  "title": "DelayByAverage",
+                  "type": [
+                    "null",
+                    "object",
+                    "string"
+                  ],
+                  "description": "Delay checks the time interval between the inputs and outputs is not bigger than a configured number by subtracting the average timestamp of all inputs from the average timestamp of all the outputs. `DataSources`: Not used. `Session Support`: Only supports a single session assertion",
+                  "pattern": "\\$\\{.*\\}",
+                  "required": [
+                    "OutputName",
+                    "InputName",
+                    "MaximumDelayMs"
+                  ],
+                  "properties": {
+                    "OutputName": {
+                      "type": "string",
+                      "description": "Name of the output end point to check the outputs of"
+                    },
+                    "InputName": {
+                      "type": "string",
+                      "description": "Name of the input end point to check the inputs of"
+                    },
+                    "InputsAreOutputs": {
+                      "type": [
+                        "boolean",
+                        "string"
+                      ],
+                      "description": "Whether the given input in InputName is actually another outputs list",
+                      "default": false,
+                      "pattern": "\\$\\{.*\\}"
+                    },
+                    "MaximumDelayMs": {
+                      "type": [
+                        "integer",
+                        "string"
+                      ],
+                      "description": "maximum delay in milliseconds allowed for average delay for assertion to pass",
+                      "format": "int64",
+                      "maximum": 9223372036854780000.0,
+                      "minimum": 0.0,
+                      "pattern": "\\$\\{.*\\}"
+                    },
+                    "MaximumNegativeDelayBufferMs": {
+                      "type": [
+                        "integer",
+                        "null",
+                        "string"
+                      ],
+                      "description": "maximum negative delay buffer of average delay in milliseconds, if value falls within the buffer it is still compared to maximum allowed delay",
+                      "format": "int64",
+                      "default": 100,
+                      "maximum": 9223372036854780000.0,
+                      "minimum": 0.0,
+                      "pattern": "\\$\\{.*\\}"
+                    }
+                  }
+                },
+                {
+                  "title": "DelayByChunks",
+                  "type": [
+                    "null",
+                    "object",
+                    "string"
+                  ],
+                  "description": "Delay checks the time interval between the inputs and outputs is not bigger than a configured number by subtracting the timestamp of input chunks of a configured size from a timestamp of output chunks of a configured size, The timestamp of the chunks is calculated differently depending on the configuration. takes the chunks in ascending order (which will be the send/arrival order) from the configured input/output. `Warning`: This delay test only works on synchronous applications! `DataSources`: Not used. `Session Support`: Only supports a single session assertion",
+                  "pattern": "\\$\\{.*\\}",
+                  "required": [
+                    "Output",
+                    "Input",
+                    "MaximumDelayMs"
+                  ],
+                  "properties": {
+                    "Output": {
+                      "type": [
+                        "object",
+                        "string"
+                      ],
+                      "description": "The information about the output required for the assertion ",
+                      "pattern": "\\$\\{.*\\}",
+                      "required": [
+                        "Name",
+                        "ChunkSize"
+                      ],
+                      "properties": {
+                        "Name": {
+                          "type": "string",
+                          "description": "Name of the end point the chunk belongs to"
+                        },
+                        "ChunkSize": {
+                          "type": [
+                            "integer",
+                            "string"
+                          ],
+                          "description": "The end point items chunk size",
+                          "format": "int32",
+                          "maximum": 2147483647.0,
+                          "minimum": 0.0,
+                          "pattern": "\\$\\{.*\\}"
+                        },
+                        "ChunkTimeOption": {
+                          "type": [
+                            "integer",
+                            "string"
+                          ],
+                          "description": "How to calculate the time of a chunk. Options: [ `Average` - Calculates the chunks time by taking the average of all times in the chunk / `First` - Calculates the chunks time by taking the time of the first item in the chunk / `Last` - Calculates the chunks time by taking the time of the last item in the chunk ]",
+                          "default": "Average",
+                          "pattern": "\\$\\{.*\\}",
+                          "enum": [
+                            "Average",
+                            "First",
+                            "Last"
+                          ]
+                        }
+                      }
+                    },
+                    "Input": {
+                      "type": [
+                        "object",
+                        "string"
+                      ],
+                      "description": "The information about the input required for the assertion",
+                      "pattern": "\\$\\{.*\\}",
+                      "required": [
+                        "Name",
+                        "ChunkSize"
+                      ],
+                      "properties": {
+                        "Name": {
+                          "type": "string",
+                          "description": "Name of the end point the chunk belongs to"
+                        },
+                        "ChunkSize": {
+                          "type": [
+                            "integer",
+                            "string"
+                          ],
+                          "description": "The end point items chunk size",
+                          "format": "int32",
+                          "maximum": 2147483647.0,
+                          "minimum": 0.0,
+                          "pattern": "\\$\\{.*\\}"
+                        },
+                        "ChunkTimeOption": {
+                          "type": [
+                            "integer",
+                            "string"
+                          ],
+                          "description": "How to calculate the time of a chunk. Options: [ `Average` - Calculates the chunks time by taking the average of all times in the chunk / `First` - Calculates the chunks time by taking the time of the first item in the chunk / `Last` - Calculates the chunks time by taking the time of the last item in the chunk ]",
+                          "default": "Average",
+                          "pattern": "\\$\\{.*\\}",
+                          "enum": [
+                            "Average",
+                            "First",
+                            "Last"
+                          ]
+                        }
+                      }
+                    },
+                    "InputsAreOutputs": {
+                      "type": [
+                        "boolean",
+                        "string"
+                      ],
+                      "description": "Whether the given input in Input is actually another outputs list",
+                      "default": false,
+                      "pattern": "\\$\\{.*\\}"
+                    },
+                    "MaximumDelayMs": {
+                      "type": [
+                        "integer",
+                        "string"
+                      ],
+                      "description": "maximum delay in milliseconds allowed for a chunk's delay for the chunk to be considered as arrived on time",
+                      "format": "int64",
+                      "maximum": 9223372036854780000.0,
+                      "minimum": 0.0,
+                      "pattern": "\\$\\{.*\\}"
+                    },
+                    "MaximumNegativeDelayBufferMs": {
+                      "type": [
+                        "integer",
+                        "null",
+                        "string"
+                      ],
+                      "description": "maximum negative delay buffer of a chunk's delay in milliseconds, if value falls within the buffer it is still compared to maximum allowed delay",
+                      "format": "int64",
+                      "default": 100,
+                      "maximum": 9223372036854780000.0,
+                      "minimum": 0.0,
+                      "pattern": "\\$\\{.*\\}"
+                    }
+                  }
+                },
+                {
+                  "title": "HermeticByExpectedOutputCount",
+                  "type": [
+                    "null",
+                    "object",
+                    "string"
+                  ],
+                  "description": "Checks for IO hermetics by comparing the count of multiple outputs in a given session with certain names to a given expected count. `DataSources`: Not used. `Session Support`: Supports multiple sessions assertion. CommunicationData objects with same names will be referenced both by InputNames or OutputNames",
+                  "pattern": "\\$\\{.*\\}",
+                  "required": [
+                    "OutputNames",
+                    "ExpectedCount"
+                  ],
+                  "properties": {
+                    "OutputNames": {
+                      "type": [
+                        "array",
+                        "string"
+                      ],
+                      "description": "The names of the outputs to sum the counts of and then compare them to the expected count field in the given session",
+                      "pattern": "\\$\\{.*\\}",
+                      "minItems": 1,
+                      "items": [
+                        {
+                          "type": "string"
+                        }
+                      ]
+                    },
+                    "ExpectedCount": {
+                      "type": [
+                        "integer",
+                        "string"
+                      ],
+                      "description": "The expected count of the items in the given output name in the given session",
+                      "format": "int32",
+                      "maximum": 2147483647.0,
+                      "minimum": 0.0,
+                      "pattern": "\\$\\{.*\\}"
+                    }
+                  }
+                },
+                {
+                  "title": "HermeticByExpectedOutputCountInRange",
+                  "type": [
+                    "null",
+                    "object",
+                    "string"
+                  ],
+                  "description": "Checks for IO hermetics by comparing the count of multiple outputs in a given session with certain names to be between a given expected maximum limit and minimum limit. `DataSources`: Not used. `Session Support`: Supports multiple sessions assertion. CommunicationData objects with same names will be referenced both by InputNames or OutputNames",
+                  "pattern": "\\$\\{.*\\}",
+                  "required": [
+                    "OutputNames",
+                    "ExpectedMinimumCount",
+                    "ExpectedMaximumCount"
+                  ],
+                  "properties": {
+                    "OutputNames": {
+                      "type": [
+                        "array",
+                        "string"
+                      ],
+                      "description": "The names of the outputs to sum the counts of and then compare them to the expected count field in the given session",
+                      "pattern": "\\$\\{.*\\}",
+                      "minItems": 1,
+                      "items": [
+                        {
+                          "type": "string"
+                        }
+                      ]
+                    },
+                    "ExpectedMinimumCount": {
+                      "type": [
+                        "integer",
+                        "string"
+                      ],
+                      "description": "The expected minimum count of the items in the given output names in the given session",
+                      "format": "int32",
+                      "maximum": 2147483647.0,
+                      "minimum": 0.0,
+                      "pattern": "\\$\\{.*\\}"
+                    },
+                    "ExpectedMaximumCount": {
+                      "type": [
+                        "integer",
+                        "string"
+                      ],
+                      "description": "The expected maximum count of the items in the given output names in the given session",
+                      "format": "int32",
+                      "maximum": 2147483647.0,
+                      "minimum": 0.0,
+                      "pattern": "\\$\\{.*\\}"
+                    }
+                  }
+                },
+                {
+                  "title": "HermeticByInputOutputPercentage",
+                  "type": [
+                    "null",
+                    "object",
+                    "string"
+                  ],
+                  "description": "Checks for IO hermetics by comparing the count of multiple outputs in a given session with certain names to a given percentage of the count of multiple inputs in a given session with certain names. `DataSources`: Not used. `Session Support`: Supports multiple sessions assertion. CommunicationData objects with same names will be referenced both by InputNames or OutputNames",
+                  "pattern": "\\$\\{.*\\}",
+                  "required": [
+                    "OutputNames",
+                    "InputNames",
+                    "ExpectedPercentage"
+                  ],
+                  "properties": {
+                    "OutputNames": {
+                      "type": [
+                        "array",
+                        "string"
+                      ],
+                      "description": "The names of the outputs to sum the counts of ",
+                      "pattern": "\\$\\{.*\\}",
+                      "minItems": 1,
+                      "items": [
+                        {
+                          "type": "string"
+                        }
+                      ]
+                    },
+                    "InputNames": {
+                      "type": [
+                        "array",
+                        "string"
+                      ],
+                      "description": "The names of the inputs the sum of outputs should be a given percentage of the sum of",
+                      "pattern": "\\$\\{.*\\}",
+                      "minItems": 1,
+                      "items": [
+                        {
+                          "type": "string"
+                        }
+                      ]
+                    },
+                    "ExpectedPercentage": {
+                      "type": [
+                        "number",
+                        "string"
+                      ],
+                      "description": "The percentage of the sum of inputs count the outputs count should be equal to for the assertion to pass",
+                      "format": "double",
+                      "minimum": 0.0,
+                      "pattern": "\\$\\{.*\\}"
+                    },
+                    "InputsAreOutputs": {
+                      "type": [
+                        "boolean",
+                        "string"
+                      ],
+                      "description": "Whether the given inputs in InputNames are actually another outputs list",
+                      "default": false,
+                      "pattern": "\\$\\{.*\\}"
+                    },
+                    "MidpointRounding": {
+                      "type": [
+                        "integer",
+                        "string"
+                      ],
+                      "description": "Specifies the strategy the mathematical rounding method used for calculating the expected number of outputs (by taking a percentage of the sum of inputs) should use to round a number. Options: [ `AwayFromZero` - The strategy of rounding to the nearest number, and when a number is halfway between two others, it's rounded toward the nearest number that's away from zero / `ToEven` - The strategy of rounding to the nearest number, and when a number is halfway between two others, it's rounded toward the nearest even number / `ToZero` - The strategy of directed rounding toward zero, with the result closest to and no greater in magnitude than the infinitely precise result / `ToNegativeInfinity` - The strategy of downwards-directed rounding, with the result closest to and no greater than the infinitely precise result / `ToPositiveInfinity` - The strategy of upwards-directed rounding, with the result closest to and no less than the infinitely precise result ]",
+                      "default": "AwayFromZero",
+                      "pattern": "\\$\\{.*\\}",
+                      "enum": [
+                        "ToEven",
+                        "AwayFromZero",
+                        "ToZero",
+                        "ToNegativeInfinity",
+                        "ToPositiveInfinity"
+                      ]
+                    }
+                  }
+                },
+                {
+                  "title": "HermeticByInputOutputPercentageInRange",
+                  "type": [
+                    "null",
+                    "object",
+                    "string"
+                  ],
+                  "description": "Checks for IO hermetics by comparing the percentage of the count of multiple outputs in a given session with certain names to the count of multiple inputs in a given session with certain names, to be between expected minimum percentage and expected maximum percentage. `DataSources`: Not used. `Session Support`: Supports multiple sessions assertion. CommunicationData objects with same names will be referenced both by InputNames or OutputNames",
+                  "pattern": "\\$\\{.*\\}",
+                  "required": [
+                    "OutputNames",
+                    "InputNames",
+                    "ExpectedMinimumPercentage",
+                    "ExpectedMaximumPercentage"
+                  ],
+                  "properties": {
+                    "OutputNames": {
+                      "type": [
+                        "array",
+                        "string"
+                      ],
+                      "description": "The names of the outputs to sum the counts of ",
+                      "pattern": "\\$\\{.*\\}",
+                      "minItems": 1,
+                      "items": [
+                        {
+                          "type": "string"
+                        }
+                      ]
+                    },
+                    "InputNames": {
+                      "type": [
+                        "array",
+                        "string"
+                      ],
+                      "description": "The names of the inputs the sum of outputs should be a given percentage of the sum of",
+                      "pattern": "\\$\\{.*\\}",
+                      "minItems": 1,
+                      "items": [
+                        {
+                          "type": "string"
+                        }
+                      ]
+                    },
+                    "ExpectedMinimumPercentage": {
+                      "type": [
+                        "number",
+                        "string"
+                      ],
+                      "description": "The minimum percentage limit of the sum of inputs count to the outputs count, should be above the minimum to for the assertion to pass",
+                      "format": "double",
+                      "minimum": 0.0,
+                      "pattern": "\\$\\{.*\\}"
+                    },
+                    "ExpectedMaximumPercentage": {
+                      "type": [
+                        "number",
+                        "string"
+                      ],
+                      "description": "The maximum percentage limit of the sum of inputs count to the outputs count, should be below the maximum to for the assertion to pass",
+                      "format": "double",
+                      "minimum": 0.0,
+                      "pattern": "\\$\\{.*\\}"
+                    },
+                    "InputsAreOutputs": {
+                      "type": [
+                        "boolean",
+                        "string"
+                      ],
+                      "description": "Whether the given inputs in InputNames are actually another outputs list",
+                      "default": false,
+                      "pattern": "\\$\\{.*\\}"
+                    },
+                    "MidpointRounding": {
+                      "type": [
+                        "integer",
+                        "string"
+                      ],
+                      "description": "Specifies the strategy the mathematical rounding method used for calculating the expected number of outputs (by taking a percentage of the sum of inputs) should use to round a number. Options: [ `AwayFromZero` - The strategy of rounding to the nearest number, and when a number is halfway between two others, it's rounded toward the nearest number that's away from zero / `ToEven` - The strategy of rounding to the nearest number, and when a number is halfway between two others, it's rounded toward the nearest even number / `ToZero` - The strategy of directed rounding toward zero, with the result closest to and no greater in magnitude than the infinitely precise result / `ToNegativeInfinity` - The strategy of downwards-directed rounding, with the result closest to and no greater than the infinitely precise result / `ToPositiveInfinity` - The strategy of upwards-directed rounding, with the result closest to and no less than the infinitely precise result ]",
+                      "default": "AwayFromZero",
+                      "pattern": "\\$\\{.*\\}",
+                      "enum": [
+                        "ToEven",
+                        "AwayFromZero",
+                        "ToZero",
+                        "ToNegativeInfinity",
+                        "ToPositiveInfinity"
+                      ]
+                    }
+                  }
+                },
+                {
+                  "title": "HttpStatus",
+                  "type": [
+                    "null",
+                    "object",
+                    "string"
+                  ],
+                  "description": "Checks that all configured output's http status code is equal to a certain number. `DataSources`: Not used. `Session Support`: Only supports a single session assertion",
+                  "pattern": "\\$\\{.*\\}",
+                  "required": [
+                    "StatusCode",
+                    "OutputNames"
+                  ],
+                  "properties": {
+                    "StatusCode": {
+                      "type": [
+                        "integer",
+                        "string"
+                      ],
+                      "description": "The http status code all configured outputs should have",
+                      "format": "int32",
+                      "maximum": 599.0,
+                      "minimum": 100.0,
+                      "pattern": "\\$\\{.*\\}"
+                    },
+                    "OutputNames": {
+                      "type": [
+                        "array",
+                        "string"
+                      ],
+                      "description": "The names of the outputs to check the status code of",
+                      "pattern": "\\$\\{.*\\}",
+                      "minItems": 1,
+                      "items": [
+                        {
+                          "type": "string"
+                        }
+                      ]
+                    }
+                  }
+                },
+                {
+                  "title": "ObjectOutputJsonSchema",
+                  "type": [
+                    "null",
+                    "object",
+                    "string"
+                  ],
+                  "description": "Checks that all items in a configured output are valid according to atleast one of the json schemas provided from the configured DataSources. Expects the output items to be deserialized to any type of C# object that can be converted to Json. `DataSources`: Used for loading json schemas, all data sources are loaded as json schemas, expects to receive their items serialized. `Session Support`: Only supports a single session assertion. `Supported Json Drafts`: [ `\"$schema\": \"http://json-schema.org/draft-06/schema#\"` / `\"$schema\": \"http://json-schema.org/draft-07/schema#\"` / `\"$schema\": \"https://json-schema.org/draft/2019-09/schema\"` / `\"$schema\": \"https://json-schema.org/draft/2020-12/schema\"` / `\"$schema\": \"https://json-schema.org/draft/next/schema\"` ]",
+                  "pattern": "\\$\\{.*\\}",
+                  "required": [
+                    "OutputName"
+                  ],
+                  "properties": {
+                    "OutputName": {
+                      "type": "string",
+                      "description": "The names of the output who'se items should all be valid according to atleast one of the json schemas provided"
+                    }
+                  }
+                },
+                {
+                  "title": "OutputContentByExpectedCsvResults",
+                  "type": [
+                    "null",
+                    "object",
+                    "string"
+                  ],
+                  "description": "Checks for all json items in a configured output that their content is valid according to a csv results file.The results file contains the expected value of fields in each json item and is provided from the configured DataSources.Expects the output items to be deserialized to any type of C# object that can be converted to Json.`DataSources`: Used for loading the csv results file.`Session Support`: Only supports a single session assertion.",
+                  "pattern": "\\$\\{.*\\}",
+                  "required": [
+                    "OutputName",
+                    "ColumnNameToFieldPathMap"
+                  ],
+                  "properties": {
+                    "OutputName": {
+                      "type": "string",
+                      "description": "The name of the output to validate its items' content"
+                    },
+                    "ResultsMetaDataStorageKey": {
+                      "type": [
+                        "null",
+                        "string"
+                      ],
+                      "description": "The storage key of the dataSource item of the results. If no key was provided, takes the first item of from the DataSource"
+                    },
+                    "DataSourceName": {
+                      "type": [
+                        "null",
+                        "string"
+                      ],
+                      "description": "The name of the dataSource of the results item. If no name was provided, takes the first DataSource supplied"
+                    },
+                    "ColumnNameToFieldPathMap": {
+                      "type": [
+                        "object",
+                        "string"
+                      ],
+                      "description": "The mapping for each column's name in the outputs results and its matchig field's path in the output json.",
+                      "pattern": "\\$\\{.*\\}"
+                    },
+                    "JsonConverterType": {
+                      "type": [
+                        "integer",
+                        "string"
+                      ],
+                      "description": "The type of json converter to use for converting the output items",
+                      "default": "Json",
+                      "pattern": "\\$\\{.*\\}",
+                      "enum": [
+                        "Json",
+                        "Xml",
+                        "Object"
+                      ]
+                    },
+                    "CompareRowsNotInOrder": {
+                      "type": [
+                        "boolean",
+                        "string"
+                      ],
+                      "description": "If true, rows can match expected results in any order instead of by their index",
+                      "default": false,
+                      "pattern": "\\$\\{.*\\}"
+                    }
+                  }
+                },
+                {
+                  "title": "OutputDeserializableTo",
+                  "type": [
+                    "null",
+                    "object",
+                    "string"
+                  ],
+                  "description": "Checks that all items in a configured output can be deserialized with a configured deserializer. `DataSources`: Not used. `Session Support`: Only supports a single session assertion",
+                  "pattern": "\\$\\{.*\\}",
+                  "required": [
+                    "OutputName",
+                    "Deserialize"
+                  ],
+                  "properties": {
+                    "OutputName": {
+                      "type": "string",
+                      "description": "The names of the output who'se items should be deserializable"
+                    },
+                    "Deserialize": {
+                      "type": [
+                        "object",
+                        "string"
+                      ],
+                      "description": "The deserializer all output items should be deserializable with. Options are all available `QAAS.Base.Serialization` deserializers",
+                      "pattern": "\\$\\{.*\\}",
+                      "properties": {
+                        "Deserializer": {
+                          "type": [
+                            "integer",
+                            "string"
+                          ],
+                          "description": "The deserializer type to use for deserializing. Null means no deserialization will happen. Options are all available `QaaS.Framework.Serialization` deserializers",
+                          "pattern": "\\$\\{.*\\}",
+                          "enum": [
+                            "Binary",
+                            "Json",
+                            "MessagePack",
+                            "Xml",
+                            "Yaml",
+                            "ProtobufMessage",
+                            "XmlElement"
+                          ]
+                        },
+                        "SpecificType": {
+                          "type": [
+                            "object",
+                            "string"
+                          ],
+                          "description": "Configuration for making deserializer deserialize into a specific C# object, if set to null will deserialize to default deserilizer's C# object",
+                          "pattern": "\\$\\{.*\\}",
+                          "required": [
+                            "TypeFullName"
+                          ],
+                          "properties": {
+                            "AssemblyName": {
+                              "type": [
+                                "null",
+                                "string"
+                              ],
+                              "description": "The name of the assembly the type is located in, If no value is given by default tries to take the entry assembly"
+                            },
+                            "TypeFullName": {
+                              "type": "string",
+                              "description": "The full name (including path) of the type"
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                },
+                {
+                  "title": "ValidateHermeticMetricsByInputOutputPercentage",
+                  "type": [
+                    "null",
+                    "object",
+                    "string"
+                  ],
+                  "description": "Checks for metrics' hermetics by comparing the hermetics' percentage based on the `metric hermetics formula` to the hermetics percentage based on the outputs' count to inputs' count percentage `DataSources`: Not used. `Session Support`: Supports multiple sessions assertion. CommunicationData objects with same names will be referenced both by InputNames or OutputNames",
+                  "pattern": "\\$\\{.*\\}",
+                  "required": [
+                    "OutputNames",
+                    "InputNames",
+                    "MetricOutputSourceName",
+                    "InputMetricName",
+                    "OutputMetricName"
+                  ],
+                  "properties": {
+                    "OutputNames": {
+                      "type": [
+                        "array",
+                        "string"
+                      ],
+                      "description": "The names of the outputs to sum the counts of ",
+                      "pattern": "\\$\\{.*\\}",
+                      "minItems": 1,
+                      "items": [
+                        {
+                          "type": "string"
+                        }
+                      ]
+                    },
+                    "InputNames": {
+                      "type": [
+                        "array",
+                        "string"
+                      ],
+                      "description": "The names of the inputs the sum of outputs should be a given percentage of the sum of",
+                      "pattern": "\\$\\{.*\\}",
+                      "minItems": 1,
+                      "items": [
+                        {
+                          "type": "string"
+                        }
+                      ]
+                    },
+                    "InputsAreOutputs": {
+                      "type": [
+                        "boolean",
+                        "string"
+                      ],
+                      "description": "Whether the given inputs in InputNames are actually another outputs list",
+                      "default": false,
+                      "pattern": "\\$\\{.*\\}"
+                    },
+                    "MetricOutputSourceName": {
+                      "type": "string",
+                      "description": "The name of the output to take the metrics from"
+                    },
+                    "Tolerance": {
+                      "type": [
+                        "number",
+                        "string"
+                      ],
+                      "description": "The tolerance of difference between metrics` hermetics percantage and outputs' count to inputs' count hermetics percentage",
+                      "format": "double",
+                      "default": 0.01,
+                      "pattern": "\\$\\{.*\\}"
+                    },
+                    "InputMetricName": {
+                      "type": "string",
+                      "description": "The name of the input metric of the metric hemetrics formula"
+                    },
+                    "OutputMetricName": {
+                      "type": "string",
+                      "description": "The name of the output metric of the metric hemetrics formula"
+                    },
+                    "ProcessMetricName": {
+                      "type": [
+                        "null",
+                        "string"
+                      ],
+                      "description": "The name of the process metric of the metric hemetrics formula"
+                    },
+                    "CombineMetricName": {
+                      "type": [
+                        "null",
+                        "string"
+                      ],
+                      "description": "The name of the combine metric of the metric hemetrics formula"
+                    },
+                    "FilteredMetricName": {
+                      "type": [
+                        "null",
+                        "string"
+                      ],
+                      "description": "The name of the filtered metric of the metric hemetrics formula"
+                    },
+                    "SplitMetricName": {
+                      "type": [
+                        "null",
+                        "string"
+                      ],
+                      "description": "The name of the split metric of the metric hemetrics formula"
+                    }
+                  }
+                }
+              ]
+            }
+          }
+        }
+      ]
+    }
+  }
+}

@@ -4,6 +4,18 @@ site_url: !ENV [QAAS_DOCS_SITE_URL, "https://TheSmokeTeam.github.io/qaas-docs/"]
 repo_name: !ENV [QAAS_DOCS_REPO_NAME, "QaaS.Runner"]
 repo_url: !ENV [QAAS_DOCS_REPO_URL, "https://github.com/TheSmokeTeam/QaaS.Runner"]
 docs_dir: docs/
+strict: true
+
+validation:
+  nav:
+    omitted_files: warn
+    not_found: warn
+    absolute_links: warn
+  links:
+    not_found: warn
+    anchors: warn
+    absolute_links: warn
+    unrecognized_links: warn
 
 nav:
   - Home: index.md
@@ -86,6 +98,11 @@ nav:
       - execute: qaas/userInterfaces/runner/commands/execute.md
       - template: qaas/userInterfaces/runner/commands/template.md
       - Schema Extensions: qaas/userInterfaces/runner/schema-extensions.md
+      - Generated Schema References:
+        - Assertions: _generated/schemas/assertions.md
+        - Generators: _generated/schemas/generators.md
+        - Probes: _generated/schemas/probes.md
+        - Processors: _generated/schemas/processors.md
     - Extensibility:
       - Plugins: qaas/addOns/plugins.md
       - Modules: qaas/addOns/modules.md
@@ -94,7 +111,27 @@ nav:
       - Live Session Data: qaas/advancedConcepts/liveSessionData.md
       - Global Dictionary: qaas/advancedConcepts/globalDictionary.md
       - Configuration As Code: qaas/advancedConcepts/configurationAsCode.md
+      - YAML Mechanics: qaas/advancedConcepts/yaml-mechanics.md
       - Best Practices: qaas/bestPractices.md
+    - Recipes:
+      - Act / Assert Replay: qaas/recipes/act-assert-replay.md
+      - Dependency Gates: qaas/recipes/dependency-gates.md
+      - Schema Assertions: qaas/recipes/schema-assertions.md
+      - Storage and SaveData: qaas/recipes/storage-and-save-data.md
+      - Test Project README: qaas/recipes/test-project-readme.md
+    - Public Contract: qaas/public-contract.md
+    - Family Schemas:
+      - Overview: assets/schemas/index.md
+      - Runner Family Schema: assets/schemas/runner-family-schema.md
+      - Mocker Family Schema: assets/schemas/mocker-family-schema.md
+      - Hook Family Schemas: assets/schemas/hook-family-schemas.md
+    - Migration:
+      - Overview: qaas/migration/index.md
+      - Runner YAML: qaas/migration/runner-yaml.md
+      - Mocker YAML: qaas/migration/mocker-yaml.md
+      - Hooks: qaas/migration/hooks.md
+      - Configuration as Code: qaas/migration/configuration-as-code.md
+      - Command Flags: qaas/migration/command-flags.md
     - Functions:
       - Overview: qaas/functions/index.md
       # qaas-docs-generator start: runner-functions
@@ -274,6 +311,7 @@ nav:
   - Hooks:
     - Assertions:
       - Introduction: assertions/index.md
+      - Custom Authoring Guide: assertions/custom-authoring-guide.md
       # qaas-docs-generator start: hook-assertions
       - Available Assertions:
         - Latency:
@@ -327,6 +365,7 @@ nav:
       # qaas-docs-generator end: hook-assertions
     - Generators:
       - Introduction: generators/index.md
+      - Custom Authoring Guide: generators/custom-authoring-guide.md
       # qaas-docs-generator start: hook-generators
       - Available Generators:
         - External sources:
@@ -379,6 +418,7 @@ nav:
       # qaas-docs-generator end: hook-generators
     - Probes:
       - Introduction: probes/index.md
+      - Custom Authoring Guide: probes/custom-authoring-guide.md
       # qaas-docs-generator start: hook-probes
       - Available Probes:
         - RabbitMQ administration:
@@ -553,6 +593,7 @@ nav:
       # qaas-docs-generator end: hook-probes
     - Processors:
       - Introduction: processors/index.md
+      - Custom Authoring Guide: processors/custom-authoring-guide.md
       # qaas-docs-generator start: hook-processors
       - Available Processors:
         - Static responses:
@@ -664,6 +705,9 @@ nav:
       - Serialization: framework/projects/serialization.md
   - Integrations:
     - CI Pipeline (GitHub Actions): integrations/ci-pipeline.md
+    - PackageMirror: integrations/package-mirror.md
+    - Configuration Defaults: integrations/configuration-defaults.md
+    - Orchestrator Site: integrations/orchestrator-site.md
     - Kiwix MCP (Offline Docs): integrations/kiwix-mcp.md
 
 theme:
@@ -705,7 +749,33 @@ theme:
 plugins:
   - search
   - tags
-  - macros
+  - macros:
+      render_by_default: false
+  - llmstxt:
+      full_output: llms-full.txt
+      markdown_description: |
+        QaaS documentation covers Runner, Mocker, Framework, hook catalogs,
+        configuration references, and offline packaging from the same MkDocs source.
+      sections:
+        Home:
+          - index.md: Documentation entry point.
+        Runner:
+          - qaas/index.md: Runner overview.
+          - qaas/quickStart/*.md: Runner setup and workflow guides.
+          - qaas/userInterfaces/runner/**/*.md: Runner CLI and configuration reference.
+        Mocker:
+          - mocker/index.md: Mocker overview.
+          - mocker/quickStart/*.md: Mocker setup and workflow guides.
+          - mocker/userInterfaces/mocker/**/*.md: Mocker CLI and configuration reference.
+        Hook Catalogs:
+          - assertions/**/*.md: Assertion catalog and authoring guide.
+          - generators/**/*.md: Generator catalog and authoring guide.
+          - probes/**/*.md: Probe catalog and authoring guide.
+          - processors/**/*.md: Processor catalog and authoring guide.
+        Framework:
+          - framework/**/*.md: Framework reference.
+        Integrations:
+          - integrations/*.md: Integration and offline packaging guides.
 
 extra_javascript:
   - assets/javascripts/qaas-docs-build-defaults.js

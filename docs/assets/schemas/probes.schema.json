@@ -1,0 +1,3873 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "title": "probes 0.0.0",
+  "type": [
+    "object",
+    "string"
+  ],
+  "description": "Json schema representing the probes configuration fields and values",
+  "pattern": "\\$\\{.*\\}",
+  "properties": {
+    "Probes": {
+      "type": [
+        "array",
+        "string"
+      ],
+      "pattern": "\\$\\{.*\\}",
+      "items": [
+        {
+          "type": [
+            "object",
+            "string"
+          ],
+          "pattern": "\\$\\{.*\\}",
+          "properties": {
+            "Probe": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "enum": [
+                    "CreateRabbitMqBindings",
+                    "CreateRabbitMqExchanges",
+                    "CreateRabbitMqQueues",
+                    "CreateRabbitMqUsers",
+                    "CreateRabbitMqVirtualHosts",
+                    "CreateS3Bucket",
+                    "DeleteElasticIndices",
+                    "DeleteRabbitMqBindings",
+                    "DeleteRabbitMqExchanges",
+                    "DeleteRabbitMqPermissions",
+                    "DeleteRabbitMqQueues",
+                    "DeleteRabbitMqUsers",
+                    "DeleteRabbitMqVirtualHosts",
+                    "DeleteS3Bucket",
+                    "DownloadRabbitMqDefinitions",
+                    "DropMongoDbCollection",
+                    "EmptyElasticIndices",
+                    "EmptyMongoDbCollection",
+                    "EmptyRedisByChunks",
+                    "EmptyS3Bucket",
+                    "ExecuteRedisCommand",
+                    "ExecuteRedisCommands",
+                    "FlushAllRedis",
+                    "FlushDbRedis",
+                    "MsSqlDataBaseTablesTruncate",
+                    "OracleSqlDataBaseTablesTruncate",
+                    "OsChangeDeploymentEnvVars",
+                    "OsChangeStatefulSetEnvVars",
+                    "OsEditYamlConfigMap",
+                    "OsExecuteCommandsInContainers",
+                    "OsRestartPods",
+                    "OsScaleDeploymentPods",
+                    "OsScaleStatefulSetPods",
+                    "OsUpdateDeploymentImage",
+                    "OsUpdateDeploymentResources",
+                    "OsUpdateStatefulSetImage",
+                    "OsUpdateStatefulSetResources",
+                    "PostgreSqlDataBaseTablesTruncate",
+                    "PurgeRabbitMqQueues",
+                    "UploadRabbitMqDefinitions",
+                    "UpsertRabbitMqPermissions"
+                  ]
+                },
+                {}
+              ]
+            },
+            "ProbeConfiguration": {
+              "type": [
+                "object",
+                "string"
+              ],
+              "pattern": "\\$\\{.*\\}",
+              "anyOf": [
+                {},
+                {
+                  "title": "CreateRabbitMqBindings",
+                  "type": [
+                    "null",
+                    "object",
+                    "string"
+                  ],
+                  "description": "",
+                  "pattern": "\\$\\{.*\\}",
+                  "required": [
+                    "Host",
+                    "Bindings"
+                  ],
+                  "properties": {
+                    "Host": {
+                      "type": "string",
+                      "description": "Rabbitmq hostname"
+                    },
+                    "Username": {
+                      "type": "string",
+                      "description": "Rabbitmq username",
+                      "default": "admin"
+                    },
+                    "Password": {
+                      "type": "string",
+                      "description": "Rabbitmq password",
+                      "default": "admin"
+                    },
+                    "Port": {
+                      "type": [
+                        "integer",
+                        "string"
+                      ],
+                      "description": "Rabbitmq Amqp port",
+                      "format": "int32",
+                      "default": 5672,
+                      "maximum": 65535.0,
+                      "minimum": 0.0,
+                      "pattern": "\\$\\{.*\\}"
+                    },
+                    "VirtualHost": {
+                      "type": "string",
+                      "description": "Rabbitmq virtual host to access during this connection",
+                      "default": "/"
+                    },
+                    "Bindings": {
+                      "type": [
+                        "array",
+                        "string"
+                      ],
+                      "description": "The rabbitmq bindings",
+                      "pattern": "\\$\\{.*\\}",
+                      "minItems": 1,
+                      "items": [
+                        {
+                          "type": [
+                            "object",
+                            "string"
+                          ],
+                          "pattern": "\\$\\{.*\\}",
+                          "required": [
+                            "SourceName",
+                            "DestinationName"
+                          ],
+                          "properties": {
+                            "SourceName": {
+                              "type": "string",
+                              "description": "The name of the binding's source"
+                            },
+                            "DestinationName": {
+                              "type": "string",
+                              "description": "The name of the binding's destination"
+                            },
+                            "RoutingKey": {
+                              "type": "string",
+                              "description": "The binding's routing key",
+                              "default": "/"
+                            },
+                            "Arguments": {
+                              "type": [
+                                "null",
+                                "object",
+                                "string"
+                              ],
+                              "description": "The binding's arguments",
+                              "pattern": "\\$\\{.*\\}"
+                            },
+                            "BindingType": {
+                              "type": [
+                                "integer",
+                                "string"
+                              ],
+                              "description": "The type of the binding",
+                              "default": "ExchangeToQueue",
+                              "pattern": "\\$\\{.*\\}",
+                              "enum": [
+                                "ExchangeToQueue",
+                                "ExchangeToExchange"
+                              ]
+                            }
+                          }
+                        }
+                      ]
+                    }
+                  }
+                },
+                {
+                  "title": "CreateRabbitMqExchanges",
+                  "type": [
+                    "null",
+                    "object",
+                    "string"
+                  ],
+                  "description": "",
+                  "pattern": "\\$\\{.*\\}",
+                  "required": [
+                    "Host",
+                    "Exchanges"
+                  ],
+                  "properties": {
+                    "Host": {
+                      "type": "string",
+                      "description": "Rabbitmq hostname"
+                    },
+                    "Username": {
+                      "type": "string",
+                      "description": "Rabbitmq username",
+                      "default": "admin"
+                    },
+                    "Password": {
+                      "type": "string",
+                      "description": "Rabbitmq password",
+                      "default": "admin"
+                    },
+                    "Port": {
+                      "type": [
+                        "integer",
+                        "string"
+                      ],
+                      "description": "Rabbitmq Amqp port",
+                      "format": "int32",
+                      "default": 5672,
+                      "maximum": 65535.0,
+                      "minimum": 0.0,
+                      "pattern": "\\$\\{.*\\}"
+                    },
+                    "VirtualHost": {
+                      "type": "string",
+                      "description": "Rabbitmq virtual host to access during this connection",
+                      "default": "/"
+                    },
+                    "Exchanges": {
+                      "type": [
+                        "array",
+                        "string"
+                      ],
+                      "description": "The rabbitmq exchanges to create",
+                      "pattern": "\\$\\{.*\\}",
+                      "minItems": 1,
+                      "items": [
+                        {
+                          "type": [
+                            "object",
+                            "string"
+                          ],
+                          "pattern": "\\$\\{.*\\}",
+                          "required": [
+                            "Name"
+                          ],
+                          "properties": {
+                            "Name": {
+                              "type": "string",
+                              "description": "The name of the exchange"
+                            },
+                            "Type": {
+                              "type": [
+                                "integer",
+                                "string"
+                              ],
+                              "description": "The type of the exchange",
+                              "default": "Fanout",
+                              "pattern": "\\$\\{.*\\}",
+                              "enum": [
+                                "Fanout",
+                                "Topic",
+                                "Direct",
+                                "Headers",
+                                "ConsistentHash"
+                              ]
+                            },
+                            "Durable": {
+                              "type": [
+                                "boolean",
+                                "string"
+                              ],
+                              "description": "Should the exchange be durable",
+                              "default": false,
+                              "pattern": "\\$\\{.*\\}"
+                            },
+                            "AutoDelete": {
+                              "type": [
+                                "boolean",
+                                "string"
+                              ],
+                              "description": "Should the exchange be autoDelete",
+                              "default": false,
+                              "pattern": "\\$\\{.*\\}"
+                            },
+                            "Arguments": {
+                              "type": [
+                                "null",
+                                "object",
+                                "string"
+                              ],
+                              "description": "Extra arguments for the exchange",
+                              "pattern": "\\$\\{.*\\}"
+                            }
+                          }
+                        }
+                      ]
+                    }
+                  }
+                },
+                {
+                  "title": "CreateRabbitMqQueues",
+                  "type": [
+                    "null",
+                    "object",
+                    "string"
+                  ],
+                  "description": "",
+                  "pattern": "\\$\\{.*\\}",
+                  "required": [
+                    "Host",
+                    "Queues"
+                  ],
+                  "properties": {
+                    "Host": {
+                      "type": "string",
+                      "description": "Rabbitmq hostname"
+                    },
+                    "Username": {
+                      "type": "string",
+                      "description": "Rabbitmq username",
+                      "default": "admin"
+                    },
+                    "Password": {
+                      "type": "string",
+                      "description": "Rabbitmq password",
+                      "default": "admin"
+                    },
+                    "Port": {
+                      "type": [
+                        "integer",
+                        "string"
+                      ],
+                      "description": "Rabbitmq Amqp port",
+                      "format": "int32",
+                      "default": 5672,
+                      "maximum": 65535.0,
+                      "minimum": 0.0,
+                      "pattern": "\\$\\{.*\\}"
+                    },
+                    "VirtualHost": {
+                      "type": "string",
+                      "description": "Rabbitmq virtual host to access during this connection",
+                      "default": "/"
+                    },
+                    "Queues": {
+                      "type": [
+                        "array",
+                        "string"
+                      ],
+                      "description": "The rabbitmq queues to create",
+                      "pattern": "\\$\\{.*\\}",
+                      "minItems": 1,
+                      "items": [
+                        {
+                          "type": [
+                            "object",
+                            "string"
+                          ],
+                          "pattern": "\\$\\{.*\\}",
+                          "required": [
+                            "Name",
+                            "Exclusive"
+                          ],
+                          "properties": {
+                            "Name": {
+                              "type": "string",
+                              "description": "The name of the queue"
+                            },
+                            "Durable": {
+                              "type": [
+                                "boolean",
+                                "string"
+                              ],
+                              "description": "Should the exchange be durable",
+                              "default": false,
+                              "pattern": "\\$\\{.*\\}"
+                            },
+                            "Exclusive": {
+                              "type": [
+                                "boolean",
+                                "string"
+                              ],
+                              "description": "Should the queue be exclusive",
+                              "default": false,
+                              "pattern": "\\$\\{.*\\}"
+                            },
+                            "AutoDelete": {
+                              "type": [
+                                "boolean",
+                                "string"
+                              ],
+                              "description": "Should the queue be autoDelete",
+                              "default": true,
+                              "pattern": "\\$\\{.*\\}"
+                            },
+                            "Arguments": {
+                              "type": [
+                                "null",
+                                "object",
+                                "string"
+                              ],
+                              "description": "Extra arguments for the queue",
+                              "pattern": "\\$\\{.*\\}"
+                            }
+                          }
+                        }
+                      ]
+                    }
+                  }
+                },
+                {
+                  "title": "CreateRabbitMqUsers",
+                  "type": [
+                    "null",
+                    "object",
+                    "string"
+                  ],
+                  "description": "",
+                  "pattern": "\\$\\{.*\\}",
+                  "required": [
+                    "Host",
+                    "Users"
+                  ],
+                  "properties": {
+                    "ManagementScheme": {
+                      "type": "string",
+                      "description": "Rabbitmq management API scheme",
+                      "default": "http"
+                    },
+                    "ManagementPort": {
+                      "type": [
+                        "integer",
+                        "string"
+                      ],
+                      "description": "Rabbitmq management API port",
+                      "format": "int32",
+                      "default": 15672,
+                      "maximum": 65535.0,
+                      "minimum": 0.0,
+                      "pattern": "\\$\\{.*\\}"
+                    },
+                    "AllowInvalidServerCertificates": {
+                      "type": [
+                        "boolean",
+                        "string"
+                      ],
+                      "description": "Allow invalid TLS certificates when using HTTPS",
+                      "default": false,
+                      "pattern": "\\$\\{.*\\}"
+                    },
+                    "RequestTimeoutMs": {
+                      "type": [
+                        "integer",
+                        "string"
+                      ],
+                      "description": "Rabbitmq management API request timeout in milliseconds",
+                      "format": "int32",
+                      "default": 30000,
+                      "maximum": 2147483647.0,
+                      "minimum": 1.0,
+                      "pattern": "\\$\\{.*\\}"
+                    },
+                    "Host": {
+                      "type": "string",
+                      "description": "Rabbitmq hostname"
+                    },
+                    "Username": {
+                      "type": "string",
+                      "description": "Rabbitmq username",
+                      "default": "admin"
+                    },
+                    "Password": {
+                      "type": "string",
+                      "description": "Rabbitmq password",
+                      "default": "admin"
+                    },
+                    "Port": {
+                      "type": [
+                        "integer",
+                        "string"
+                      ],
+                      "description": "Rabbitmq Amqp port",
+                      "format": "int32",
+                      "default": 5672,
+                      "maximum": 65535.0,
+                      "minimum": 0.0,
+                      "pattern": "\\$\\{.*\\}"
+                    },
+                    "VirtualHost": {
+                      "type": "string",
+                      "description": "Rabbitmq virtual host to access during this connection",
+                      "default": "/"
+                    },
+                    "Users": {
+                      "type": [
+                        "array",
+                        "string"
+                      ],
+                      "description": "The rabbitmq users to create or update",
+                      "pattern": "\\$\\{.*\\}",
+                      "minItems": 1,
+                      "items": [
+                        {
+                          "type": [
+                            "object",
+                            "string"
+                          ],
+                          "pattern": "\\$\\{.*\\}",
+                          "required": [
+                            "Username"
+                          ],
+                          "properties": {
+                            "Username": {
+                              "type": "string",
+                              "description": "The rabbitmq user name"
+                            },
+                            "Password": {
+                              "type": [
+                                "null",
+                                "string"
+                              ],
+                              "description": "Optional password for the rabbitmq user"
+                            },
+                            "PasswordHash": {
+                              "type": [
+                                "null",
+                                "string"
+                              ],
+                              "description": "Optional password hash for the rabbitmq user"
+                            },
+                            "HashingAlgorithm": {
+                              "type": [
+                                "null",
+                                "string"
+                              ],
+                              "description": "Optional hashing algorithm for the password hash"
+                            },
+                            "Tags": {
+                              "type": [
+                                "array",
+                                "null",
+                                "string"
+                              ],
+                              "description": "Optional tags assigned to the rabbitmq user",
+                              "pattern": "\\$\\{.*\\}",
+                              "items": [
+                                {
+                                  "type": "string"
+                                }
+                              ]
+                            }
+                          }
+                        }
+                      ]
+                    }
+                  }
+                },
+                {
+                  "title": "CreateRabbitMqVirtualHosts",
+                  "type": [
+                    "null",
+                    "object",
+                    "string"
+                  ],
+                  "description": "",
+                  "pattern": "\\$\\{.*\\}",
+                  "required": [
+                    "Host",
+                    "VirtualHosts"
+                  ],
+                  "properties": {
+                    "ManagementScheme": {
+                      "type": "string",
+                      "description": "Rabbitmq management API scheme",
+                      "default": "http"
+                    },
+                    "ManagementPort": {
+                      "type": [
+                        "integer",
+                        "string"
+                      ],
+                      "description": "Rabbitmq management API port",
+                      "format": "int32",
+                      "default": 15672,
+                      "maximum": 65535.0,
+                      "minimum": 0.0,
+                      "pattern": "\\$\\{.*\\}"
+                    },
+                    "AllowInvalidServerCertificates": {
+                      "type": [
+                        "boolean",
+                        "string"
+                      ],
+                      "description": "Allow invalid TLS certificates when using HTTPS",
+                      "default": false,
+                      "pattern": "\\$\\{.*\\}"
+                    },
+                    "RequestTimeoutMs": {
+                      "type": [
+                        "integer",
+                        "string"
+                      ],
+                      "description": "Rabbitmq management API request timeout in milliseconds",
+                      "format": "int32",
+                      "default": 30000,
+                      "maximum": 2147483647.0,
+                      "minimum": 1.0,
+                      "pattern": "\\$\\{.*\\}"
+                    },
+                    "Host": {
+                      "type": "string",
+                      "description": "Rabbitmq hostname"
+                    },
+                    "Username": {
+                      "type": "string",
+                      "description": "Rabbitmq username",
+                      "default": "admin"
+                    },
+                    "Password": {
+                      "type": "string",
+                      "description": "Rabbitmq password",
+                      "default": "admin"
+                    },
+                    "Port": {
+                      "type": [
+                        "integer",
+                        "string"
+                      ],
+                      "description": "Rabbitmq Amqp port",
+                      "format": "int32",
+                      "default": 5672,
+                      "maximum": 65535.0,
+                      "minimum": 0.0,
+                      "pattern": "\\$\\{.*\\}"
+                    },
+                    "VirtualHost": {
+                      "type": "string",
+                      "description": "Rabbitmq virtual host to access during this connection",
+                      "default": "/"
+                    },
+                    "VirtualHosts": {
+                      "type": [
+                        "array",
+                        "string"
+                      ],
+                      "description": "The rabbitmq virtual hosts to create or update",
+                      "pattern": "\\$\\{.*\\}",
+                      "minItems": 1,
+                      "items": [
+                        {
+                          "type": [
+                            "object",
+                            "string"
+                          ],
+                          "pattern": "\\$\\{.*\\}",
+                          "required": [
+                            "Name"
+                          ],
+                          "properties": {
+                            "Name": {
+                              "type": "string",
+                              "description": "The name of the rabbitmq virtual host"
+                            },
+                            "Description": {
+                              "type": [
+                                "null",
+                                "string"
+                              ],
+                              "description": "Optional description for the rabbitmq virtual host"
+                            },
+                            "Tags": {
+                              "type": [
+                                "array",
+                                "null",
+                                "string"
+                              ],
+                              "description": "Optional tags for the rabbitmq virtual host",
+                              "pattern": "\\$\\{.*\\}",
+                              "items": [
+                                {
+                                  "type": "string"
+                                }
+                              ]
+                            },
+                            "DefaultQueueType": {
+                              "type": [
+                                "null",
+                                "string"
+                              ],
+                              "description": "Optional default queue type for the virtual host"
+                            },
+                            "ProtectedFromDeletion": {
+                              "type": [
+                                "boolean",
+                                "null",
+                                "string"
+                              ],
+                              "description": "Optional deletion protection flag for the virtual host",
+                              "pattern": "\\$\\{.*\\}"
+                            },
+                            "Tracing": {
+                              "type": [
+                                "boolean",
+                                "null",
+                                "string"
+                              ],
+                              "description": "Optional tracing flag for the virtual host",
+                              "pattern": "\\$\\{.*\\}"
+                            }
+                          }
+                        }
+                      ]
+                    }
+                  }
+                },
+                {
+                  "title": "CreateS3Bucket",
+                  "type": [
+                    "null",
+                    "object",
+                    "string"
+                  ],
+                  "description": "",
+                  "pattern": "\\$\\{.*\\}",
+                  "required": [
+                    "StorageBucket",
+                    "ServiceURL",
+                    "AccessKey",
+                    "SecretKey"
+                  ],
+                  "properties": {
+                    "StorageBucket": {
+                      "type": "string",
+                      "description": "Name of S3 bucket"
+                    },
+                    "ServiceURL": {
+                      "type": "string",
+                      "description": "S3 service url",
+                      "format": "uri"
+                    },
+                    "AccessKey": {
+                      "type": "string",
+                      "description": "S3 account access key"
+                    },
+                    "SecretKey": {
+                      "type": "string",
+                      "description": "S3 account secret access key"
+                    },
+                    "ForcePathStyle": {
+                      "type": [
+                        "boolean",
+                        "string"
+                      ],
+                      "description": "When true, requests will always use path style addressing",
+                      "default": true,
+                      "pattern": "\\$\\{.*\\}"
+                    }
+                  }
+                },
+                {
+                  "title": "DeleteElasticIndices",
+                  "type": [
+                    "null",
+                    "object",
+                    "string"
+                  ],
+                  "description": "",
+                  "pattern": "\\$\\{.*\\}",
+                  "required": [
+                    "IndexPattern",
+                    "Url",
+                    "Username",
+                    "Password"
+                  ],
+                  "properties": {
+                    "IndexPattern": {
+                      "type": "string",
+                      "description": "The index pattern of the relevant indices"
+                    },
+                    "Url": {
+                      "type": "string",
+                      "description": "The url of the elasticsearch",
+                      "format": "uri"
+                    },
+                    "Username": {
+                      "type": "string",
+                      "description": "The username of the elasticsearch"
+                    },
+                    "Password": {
+                      "type": "string",
+                      "description": "The password of the elasticsearch"
+                    },
+                    "RequestTimeoutMs": {
+                      "type": [
+                        "integer",
+                        "string"
+                      ],
+                      "description": "The timeout in milliseconds on the requests sent to the elastic",
+                      "default": 30000,
+                      "maximum": 4294967295.0,
+                      "minimum": 0.0,
+                      "pattern": "\\$\\{.*\\}"
+                    }
+                  }
+                },
+                {
+                  "title": "DeleteRabbitMqBindings",
+                  "type": [
+                    "null",
+                    "object",
+                    "string"
+                  ],
+                  "description": "",
+                  "pattern": "\\$\\{.*\\}",
+                  "required": [
+                    "Host",
+                    "Bindings"
+                  ],
+                  "properties": {
+                    "Host": {
+                      "type": "string",
+                      "description": "Rabbitmq hostname"
+                    },
+                    "Username": {
+                      "type": "string",
+                      "description": "Rabbitmq username",
+                      "default": "admin"
+                    },
+                    "Password": {
+                      "type": "string",
+                      "description": "Rabbitmq password",
+                      "default": "admin"
+                    },
+                    "Port": {
+                      "type": [
+                        "integer",
+                        "string"
+                      ],
+                      "description": "Rabbitmq Amqp port",
+                      "format": "int32",
+                      "default": 5672,
+                      "maximum": 65535.0,
+                      "minimum": 0.0,
+                      "pattern": "\\$\\{.*\\}"
+                    },
+                    "VirtualHost": {
+                      "type": "string",
+                      "description": "Rabbitmq virtual host to access during this connection",
+                      "default": "/"
+                    },
+                    "Bindings": {
+                      "type": [
+                        "array",
+                        "string"
+                      ],
+                      "description": "The rabbitmq bindings",
+                      "pattern": "\\$\\{.*\\}",
+                      "minItems": 1,
+                      "items": [
+                        {
+                          "type": [
+                            "object",
+                            "string"
+                          ],
+                          "pattern": "\\$\\{.*\\}",
+                          "required": [
+                            "SourceName",
+                            "DestinationName"
+                          ],
+                          "properties": {
+                            "SourceName": {
+                              "type": "string",
+                              "description": "The name of the binding's source"
+                            },
+                            "DestinationName": {
+                              "type": "string",
+                              "description": "The name of the binding's destination"
+                            },
+                            "RoutingKey": {
+                              "type": "string",
+                              "description": "The binding's routing key",
+                              "default": "/"
+                            },
+                            "Arguments": {
+                              "type": [
+                                "null",
+                                "object",
+                                "string"
+                              ],
+                              "description": "The binding's arguments",
+                              "pattern": "\\$\\{.*\\}"
+                            },
+                            "BindingType": {
+                              "type": [
+                                "integer",
+                                "string"
+                              ],
+                              "description": "The type of the binding",
+                              "default": "ExchangeToQueue",
+                              "pattern": "\\$\\{.*\\}",
+                              "enum": [
+                                "ExchangeToQueue",
+                                "ExchangeToExchange"
+                              ]
+                            }
+                          }
+                        }
+                      ]
+                    }
+                  }
+                },
+                {
+                  "title": "DeleteRabbitMqExchanges",
+                  "type": [
+                    "null",
+                    "object",
+                    "string"
+                  ],
+                  "description": "",
+                  "pattern": "\\$\\{.*\\}",
+                  "required": [
+                    "Host",
+                    "ExchangeNames"
+                  ],
+                  "properties": {
+                    "Host": {
+                      "type": "string",
+                      "description": "Rabbitmq hostname"
+                    },
+                    "Username": {
+                      "type": "string",
+                      "description": "Rabbitmq username",
+                      "default": "admin"
+                    },
+                    "Password": {
+                      "type": "string",
+                      "description": "Rabbitmq password",
+                      "default": "admin"
+                    },
+                    "Port": {
+                      "type": [
+                        "integer",
+                        "string"
+                      ],
+                      "description": "Rabbitmq Amqp port",
+                      "format": "int32",
+                      "default": 5672,
+                      "maximum": 65535.0,
+                      "minimum": 0.0,
+                      "pattern": "\\$\\{.*\\}"
+                    },
+                    "VirtualHost": {
+                      "type": "string",
+                      "description": "Rabbitmq virtual host to access during this connection",
+                      "default": "/"
+                    },
+                    "ExchangeNames": {
+                      "type": [
+                        "array",
+                        "string"
+                      ],
+                      "description": "A list of the names of all the exchanges to delete from the given rabbitmq",
+                      "pattern": "\\$\\{.*\\}",
+                      "minItems": 1,
+                      "items": [
+                        {
+                          "type": "string"
+                        }
+                      ]
+                    }
+                  }
+                },
+                {
+                  "title": "DeleteRabbitMqPermissions",
+                  "type": [
+                    "null",
+                    "object",
+                    "string"
+                  ],
+                  "description": "",
+                  "pattern": "\\$\\{.*\\}",
+                  "required": [
+                    "Host",
+                    "Permissions"
+                  ],
+                  "properties": {
+                    "ManagementScheme": {
+                      "type": "string",
+                      "description": "Rabbitmq management API scheme",
+                      "default": "http"
+                    },
+                    "ManagementPort": {
+                      "type": [
+                        "integer",
+                        "string"
+                      ],
+                      "description": "Rabbitmq management API port",
+                      "format": "int32",
+                      "default": 15672,
+                      "maximum": 65535.0,
+                      "minimum": 0.0,
+                      "pattern": "\\$\\{.*\\}"
+                    },
+                    "AllowInvalidServerCertificates": {
+                      "type": [
+                        "boolean",
+                        "string"
+                      ],
+                      "description": "Allow invalid TLS certificates when using HTTPS",
+                      "default": false,
+                      "pattern": "\\$\\{.*\\}"
+                    },
+                    "RequestTimeoutMs": {
+                      "type": [
+                        "integer",
+                        "string"
+                      ],
+                      "description": "Rabbitmq management API request timeout in milliseconds",
+                      "format": "int32",
+                      "default": 30000,
+                      "maximum": 2147483647.0,
+                      "minimum": 1.0,
+                      "pattern": "\\$\\{.*\\}"
+                    },
+                    "Host": {
+                      "type": "string",
+                      "description": "Rabbitmq hostname"
+                    },
+                    "Username": {
+                      "type": "string",
+                      "description": "Rabbitmq username",
+                      "default": "admin"
+                    },
+                    "Password": {
+                      "type": "string",
+                      "description": "Rabbitmq password",
+                      "default": "admin"
+                    },
+                    "Port": {
+                      "type": [
+                        "integer",
+                        "string"
+                      ],
+                      "description": "Rabbitmq Amqp port",
+                      "format": "int32",
+                      "default": 5672,
+                      "maximum": 65535.0,
+                      "minimum": 0.0,
+                      "pattern": "\\$\\{.*\\}"
+                    },
+                    "VirtualHost": {
+                      "type": "string",
+                      "description": "Rabbitmq virtual host to access during this connection",
+                      "default": "/"
+                    },
+                    "Permissions": {
+                      "type": [
+                        "array",
+                        "string"
+                      ],
+                      "description": "The rabbitmq permission targets to delete",
+                      "pattern": "\\$\\{.*\\}",
+                      "minItems": 1,
+                      "items": [
+                        {
+                          "type": [
+                            "object",
+                            "string"
+                          ],
+                          "pattern": "\\$\\{.*\\}",
+                          "required": [
+                            "VirtualHostName",
+                            "Username"
+                          ],
+                          "properties": {
+                            "VirtualHostName": {
+                              "type": "string",
+                              "description": "The rabbitmq virtual host name"
+                            },
+                            "Username": {
+                              "type": "string",
+                              "description": "The rabbitmq user name"
+                            }
+                          }
+                        }
+                      ]
+                    }
+                  }
+                },
+                {
+                  "title": "DeleteRabbitMqQueues",
+                  "type": [
+                    "null",
+                    "object",
+                    "string"
+                  ],
+                  "description": "",
+                  "pattern": "\\$\\{.*\\}",
+                  "required": [
+                    "Host",
+                    "QueueNames"
+                  ],
+                  "properties": {
+                    "Host": {
+                      "type": "string",
+                      "description": "Rabbitmq hostname"
+                    },
+                    "Username": {
+                      "type": "string",
+                      "description": "Rabbitmq username",
+                      "default": "admin"
+                    },
+                    "Password": {
+                      "type": "string",
+                      "description": "Rabbitmq password",
+                      "default": "admin"
+                    },
+                    "Port": {
+                      "type": [
+                        "integer",
+                        "string"
+                      ],
+                      "description": "Rabbitmq Amqp port",
+                      "format": "int32",
+                      "default": 5672,
+                      "maximum": 65535.0,
+                      "minimum": 0.0,
+                      "pattern": "\\$\\{.*\\}"
+                    },
+                    "VirtualHost": {
+                      "type": "string",
+                      "description": "Rabbitmq virtual host to access during this connection",
+                      "default": "/"
+                    },
+                    "QueueNames": {
+                      "type": [
+                        "array",
+                        "string"
+                      ],
+                      "description": "A list of the names of all the queues to delete from the given rabbitmq",
+                      "pattern": "\\$\\{.*\\}",
+                      "minItems": 1,
+                      "items": [
+                        {
+                          "type": "string"
+                        }
+                      ]
+                    }
+                  }
+                },
+                {
+                  "title": "DeleteRabbitMqUsers",
+                  "type": [
+                    "null",
+                    "object",
+                    "string"
+                  ],
+                  "description": "",
+                  "pattern": "\\$\\{.*\\}",
+                  "required": [
+                    "Host",
+                    "Usernames"
+                  ],
+                  "properties": {
+                    "ManagementScheme": {
+                      "type": "string",
+                      "description": "Rabbitmq management API scheme",
+                      "default": "http"
+                    },
+                    "ManagementPort": {
+                      "type": [
+                        "integer",
+                        "string"
+                      ],
+                      "description": "Rabbitmq management API port",
+                      "format": "int32",
+                      "default": 15672,
+                      "maximum": 65535.0,
+                      "minimum": 0.0,
+                      "pattern": "\\$\\{.*\\}"
+                    },
+                    "AllowInvalidServerCertificates": {
+                      "type": [
+                        "boolean",
+                        "string"
+                      ],
+                      "description": "Allow invalid TLS certificates when using HTTPS",
+                      "default": false,
+                      "pattern": "\\$\\{.*\\}"
+                    },
+                    "RequestTimeoutMs": {
+                      "type": [
+                        "integer",
+                        "string"
+                      ],
+                      "description": "Rabbitmq management API request timeout in milliseconds",
+                      "format": "int32",
+                      "default": 30000,
+                      "maximum": 2147483647.0,
+                      "minimum": 1.0,
+                      "pattern": "\\$\\{.*\\}"
+                    },
+                    "Host": {
+                      "type": "string",
+                      "description": "Rabbitmq hostname"
+                    },
+                    "Username": {
+                      "type": "string",
+                      "description": "Rabbitmq username",
+                      "default": "admin"
+                    },
+                    "Password": {
+                      "type": "string",
+                      "description": "Rabbitmq password",
+                      "default": "admin"
+                    },
+                    "Port": {
+                      "type": [
+                        "integer",
+                        "string"
+                      ],
+                      "description": "Rabbitmq Amqp port",
+                      "format": "int32",
+                      "default": 5672,
+                      "maximum": 65535.0,
+                      "minimum": 0.0,
+                      "pattern": "\\$\\{.*\\}"
+                    },
+                    "VirtualHost": {
+                      "type": "string",
+                      "description": "Rabbitmq virtual host to access during this connection",
+                      "default": "/"
+                    },
+                    "Usernames": {
+                      "type": [
+                        "array",
+                        "string"
+                      ],
+                      "description": "The rabbitmq users to delete",
+                      "pattern": "\\$\\{.*\\}",
+                      "minItems": 1,
+                      "items": [
+                        {
+                          "type": "string"
+                        }
+                      ]
+                    }
+                  }
+                },
+                {
+                  "title": "DeleteRabbitMqVirtualHosts",
+                  "type": [
+                    "null",
+                    "object",
+                    "string"
+                  ],
+                  "description": "",
+                  "pattern": "\\$\\{.*\\}",
+                  "required": [
+                    "Host",
+                    "VirtualHostNames"
+                  ],
+                  "properties": {
+                    "ManagementScheme": {
+                      "type": "string",
+                      "description": "Rabbitmq management API scheme",
+                      "default": "http"
+                    },
+                    "ManagementPort": {
+                      "type": [
+                        "integer",
+                        "string"
+                      ],
+                      "description": "Rabbitmq management API port",
+                      "format": "int32",
+                      "default": 15672,
+                      "maximum": 65535.0,
+                      "minimum": 0.0,
+                      "pattern": "\\$\\{.*\\}"
+                    },
+                    "AllowInvalidServerCertificates": {
+                      "type": [
+                        "boolean",
+                        "string"
+                      ],
+                      "description": "Allow invalid TLS certificates when using HTTPS",
+                      "default": false,
+                      "pattern": "\\$\\{.*\\}"
+                    },
+                    "RequestTimeoutMs": {
+                      "type": [
+                        "integer",
+                        "string"
+                      ],
+                      "description": "Rabbitmq management API request timeout in milliseconds",
+                      "format": "int32",
+                      "default": 30000,
+                      "maximum": 2147483647.0,
+                      "minimum": 1.0,
+                      "pattern": "\\$\\{.*\\}"
+                    },
+                    "Host": {
+                      "type": "string",
+                      "description": "Rabbitmq hostname"
+                    },
+                    "Username": {
+                      "type": "string",
+                      "description": "Rabbitmq username",
+                      "default": "admin"
+                    },
+                    "Password": {
+                      "type": "string",
+                      "description": "Rabbitmq password",
+                      "default": "admin"
+                    },
+                    "Port": {
+                      "type": [
+                        "integer",
+                        "string"
+                      ],
+                      "description": "Rabbitmq Amqp port",
+                      "format": "int32",
+                      "default": 5672,
+                      "maximum": 65535.0,
+                      "minimum": 0.0,
+                      "pattern": "\\$\\{.*\\}"
+                    },
+                    "VirtualHost": {
+                      "type": "string",
+                      "description": "Rabbitmq virtual host to access during this connection",
+                      "default": "/"
+                    },
+                    "VirtualHostNames": {
+                      "type": [
+                        "array",
+                        "string"
+                      ],
+                      "description": "The rabbitmq virtual host names to delete",
+                      "pattern": "\\$\\{.*\\}",
+                      "minItems": 1,
+                      "items": [
+                        {
+                          "type": "string"
+                        }
+                      ]
+                    }
+                  }
+                },
+                {
+                  "title": "DeleteS3Bucket",
+                  "type": [
+                    "null",
+                    "object",
+                    "string"
+                  ],
+                  "description": "",
+                  "pattern": "\\$\\{.*\\}",
+                  "required": [
+                    "StorageBucket",
+                    "ServiceURL",
+                    "AccessKey",
+                    "SecretKey"
+                  ],
+                  "properties": {
+                    "StorageBucket": {
+                      "type": "string",
+                      "description": "Name of S3 bucket"
+                    },
+                    "ServiceURL": {
+                      "type": "string",
+                      "description": "S3 service url",
+                      "format": "uri"
+                    },
+                    "AccessKey": {
+                      "type": "string",
+                      "description": "S3 account access key"
+                    },
+                    "SecretKey": {
+                      "type": "string",
+                      "description": "S3 account secret access key"
+                    },
+                    "ForcePathStyle": {
+                      "type": [
+                        "boolean",
+                        "string"
+                      ],
+                      "description": "When true, requests will always use path style addressing",
+                      "default": true,
+                      "pattern": "\\$\\{.*\\}"
+                    }
+                  }
+                },
+                {
+                  "title": "DownloadRabbitMqDefinitions",
+                  "type": [
+                    "null",
+                    "object",
+                    "string"
+                  ],
+                  "description": "",
+                  "pattern": "\\$\\{.*\\}",
+                  "required": [
+                    "Host",
+                    "DefinitionsFilePath"
+                  ],
+                  "properties": {
+                    "ManagementScheme": {
+                      "type": "string",
+                      "description": "Rabbitmq management API scheme",
+                      "default": "http"
+                    },
+                    "ManagementPort": {
+                      "type": [
+                        "integer",
+                        "string"
+                      ],
+                      "description": "Rabbitmq management API port",
+                      "format": "int32",
+                      "default": 15672,
+                      "maximum": 65535.0,
+                      "minimum": 0.0,
+                      "pattern": "\\$\\{.*\\}"
+                    },
+                    "AllowInvalidServerCertificates": {
+                      "type": [
+                        "boolean",
+                        "string"
+                      ],
+                      "description": "Allow invalid TLS certificates when using HTTPS",
+                      "default": false,
+                      "pattern": "\\$\\{.*\\}"
+                    },
+                    "RequestTimeoutMs": {
+                      "type": [
+                        "integer",
+                        "string"
+                      ],
+                      "description": "Rabbitmq management API request timeout in milliseconds",
+                      "format": "int32",
+                      "default": 30000,
+                      "maximum": 2147483647.0,
+                      "minimum": 1.0,
+                      "pattern": "\\$\\{.*\\}"
+                    },
+                    "Host": {
+                      "type": "string",
+                      "description": "Rabbitmq hostname"
+                    },
+                    "Username": {
+                      "type": "string",
+                      "description": "Rabbitmq username",
+                      "default": "admin"
+                    },
+                    "Password": {
+                      "type": "string",
+                      "description": "Rabbitmq password",
+                      "default": "admin"
+                    },
+                    "Port": {
+                      "type": [
+                        "integer",
+                        "string"
+                      ],
+                      "description": "Rabbitmq Amqp port",
+                      "format": "int32",
+                      "default": 5672,
+                      "maximum": 65535.0,
+                      "minimum": 0.0,
+                      "pattern": "\\$\\{.*\\}"
+                    },
+                    "VirtualHost": {
+                      "type": "string",
+                      "description": "Rabbitmq virtual host to access during this connection",
+                      "default": "/"
+                    },
+                    "DefinitionsFilePath": {
+                      "type": "string",
+                      "description": "Output path for the downloaded rabbitmq definitions JSON"
+                    },
+                    "VirtualHostName": {
+                      "type": [
+                        "null",
+                        "string"
+                      ],
+                      "description": "Optional virtual host name for vhost-scoped definitions export"
+                    }
+                  }
+                },
+                {
+                  "title": "DropMongoDbCollection",
+                  "type": [
+                    "null",
+                    "object",
+                    "string"
+                  ],
+                  "description": "",
+                  "pattern": "\\$\\{.*\\}",
+                  "required": [
+                    "ConnectionString",
+                    "DatabaseName",
+                    "CollectionName"
+                  ],
+                  "properties": {
+                    "ConnectionString": {
+                      "type": "string",
+                      "description": "Connection string to the MongoDB server"
+                    },
+                    "DatabaseName": {
+                      "type": "string",
+                      "description": "Name of the database to perform the operation on"
+                    },
+                    "CollectionName": {
+                      "type": "string",
+                      "description": "Name of the collection in the database to perform the operation on"
+                    },
+                    "ChunkSize": {
+                      "type": [
+                        "integer",
+                        "null",
+                        "string"
+                      ],
+                      "description": "Chunk size of the data to process, This represents the number of documents to process in a single operation. If not specified, all data will be processed in a single chunk.",
+                      "format": "int32",
+                      "maximum": 2147483647.0,
+                      "minimum": 1.0,
+                      "pattern": "\\$\\{.*\\}"
+                    }
+                  }
+                },
+                {
+                  "title": "EmptyElasticIndices",
+                  "type": [
+                    "null",
+                    "object",
+                    "string"
+                  ],
+                  "description": "",
+                  "pattern": "\\$\\{.*\\}",
+                  "required": [
+                    "IndexPattern",
+                    "Url",
+                    "Username",
+                    "Password"
+                  ],
+                  "properties": {
+                    "MatchQueryString": {
+                      "type": "string",
+                      "description": "The match query string for the documents from the relevant indices",
+                      "default": "*"
+                    },
+                    "IndexPattern": {
+                      "type": "string",
+                      "description": "The index pattern of the relevant indices"
+                    },
+                    "Url": {
+                      "type": "string",
+                      "description": "The url of the elasticsearch",
+                      "format": "uri"
+                    },
+                    "Username": {
+                      "type": "string",
+                      "description": "The username of the elasticsearch"
+                    },
+                    "Password": {
+                      "type": "string",
+                      "description": "The password of the elasticsearch"
+                    },
+                    "RequestTimeoutMs": {
+                      "type": [
+                        "integer",
+                        "string"
+                      ],
+                      "description": "The timeout in milliseconds on the requests sent to the elastic",
+                      "default": 30000,
+                      "maximum": 4294967295.0,
+                      "minimum": 0.0,
+                      "pattern": "\\$\\{.*\\}"
+                    }
+                  }
+                },
+                {
+                  "title": "EmptyMongoDbCollection",
+                  "type": [
+                    "null",
+                    "object",
+                    "string"
+                  ],
+                  "description": "",
+                  "pattern": "\\$\\{.*\\}",
+                  "required": [
+                    "ConnectionString",
+                    "DatabaseName",
+                    "CollectionName"
+                  ],
+                  "properties": {
+                    "ConnectionString": {
+                      "type": "string",
+                      "description": "Connection string to the MongoDB server"
+                    },
+                    "DatabaseName": {
+                      "type": "string",
+                      "description": "Name of the database to perform the operation on"
+                    },
+                    "CollectionName": {
+                      "type": "string",
+                      "description": "Name of the collection in the database to perform the operation on"
+                    },
+                    "ChunkSize": {
+                      "type": [
+                        "integer",
+                        "null",
+                        "string"
+                      ],
+                      "description": "Chunk size of the data to process, This represents the number of documents to process in a single operation. If not specified, all data will be processed in a single chunk.",
+                      "format": "int32",
+                      "maximum": 2147483647.0,
+                      "minimum": 1.0,
+                      "pattern": "\\$\\{.*\\}"
+                    }
+                  }
+                },
+                {
+                  "title": "EmptyRedisByChunks",
+                  "type": [
+                    "null",
+                    "object",
+                    "string"
+                  ],
+                  "description": "",
+                  "pattern": "\\$\\{.*\\}",
+                  "required": [
+                    "HostNames"
+                  ],
+                  "properties": {
+                    "RedisDataBase": {
+                      "type": [
+                        "integer",
+                        "string"
+                      ],
+                      "description": "Redis database to perform the probe on",
+                      "format": "int32",
+                      "default": 0,
+                      "pattern": "\\$\\{.*\\}"
+                    },
+                    "HostNames": {
+                      "type": [
+                        "array",
+                        "string"
+                      ],
+                      "description": "List of the redis hostnames (each hostname should contain the port too for example: - 'host1:8080'",
+                      "pattern": "\\$\\{.*\\}",
+                      "minItems": 1,
+                      "items": [
+                        {
+                          "type": "string"
+                        }
+                      ]
+                    },
+                    "Username": {
+                      "type": [
+                        "null",
+                        "string"
+                      ],
+                      "description": "User for the redis server"
+                    },
+                    "Password": {
+                      "type": [
+                        "null",
+                        "string"
+                      ],
+                      "description": "Password for the redis server"
+                    },
+                    "AbortOnConnectFail": {
+                      "type": [
+                        "boolean",
+                        "string"
+                      ],
+                      "description": "If true, connect will not create connection while no servers are available",
+                      "default": true,
+                      "pattern": "\\$\\{.*\\}"
+                    },
+                    "ConnectRetry": {
+                      "type": [
+                        "integer",
+                        "string"
+                      ],
+                      "description": "The number of times to repeat connect attempts during initial connect",
+                      "format": "int32",
+                      "default": 3,
+                      "pattern": "\\$\\{.*\\}"
+                    },
+                    "ClientName": {
+                      "type": [
+                        "null",
+                        "string"
+                      ],
+                      "description": "Identification for the connection within redis"
+                    },
+                    "AsyncTimeout": {
+                      "type": [
+                        "integer",
+                        "string"
+                      ],
+                      "description": "Time(ms) to allow for asynchronous operations",
+                      "format": "int32",
+                      "default": 5000,
+                      "pattern": "\\$\\{.*\\}"
+                    },
+                    "Ssl": {
+                      "type": [
+                        "boolean",
+                        "string"
+                      ],
+                      "description": "Specifies that SSL encryption should be used",
+                      "default": false,
+                      "pattern": "\\$\\{.*\\}"
+                    },
+                    "SslHost": {
+                      "type": [
+                        "null",
+                        "string"
+                      ],
+                      "description": "Enforces a preticular SSL host identity on the server's certificate"
+                    },
+                    "KeepAlive": {
+                      "type": [
+                        "integer",
+                        "string"
+                      ],
+                      "description": "Time (seconds) at which to send a message to help keep alive",
+                      "format": "int32",
+                      "default": 60,
+                      "pattern": "\\$\\{.*\\}"
+                    },
+                    "BatchSize": {
+                      "type": [
+                        "integer",
+                        "string"
+                      ],
+                      "description": "Batch Size to do the operation on",
+                      "format": "int32",
+                      "default": 100,
+                      "maximum": 2147483647.0,
+                      "minimum": 0.0,
+                      "pattern": "\\$\\{.*\\}"
+                    },
+                    "KeyRegexPattern": {
+                      "type": [
+                        "null",
+                        "string"
+                      ],
+                      "description": "Optional regex used to filter which redis keys should be deleted"
+                    }
+                  }
+                },
+                {
+                  "title": "EmptyS3Bucket",
+                  "type": [
+                    "null",
+                    "object",
+                    "string"
+                  ],
+                  "description": "",
+                  "pattern": "\\$\\{.*\\}",
+                  "required": [
+                    "StorageBucket",
+                    "ServiceURL",
+                    "AccessKey",
+                    "SecretKey"
+                  ],
+                  "properties": {
+                    "StorageBucket": {
+                      "type": "string",
+                      "description": "Name of S3 bucket"
+                    },
+                    "ServiceURL": {
+                      "type": "string",
+                      "description": "S3 service url",
+                      "format": "uri"
+                    },
+                    "AccessKey": {
+                      "type": "string",
+                      "description": "S3 account access key"
+                    },
+                    "SecretKey": {
+                      "type": "string",
+                      "description": "S3 account secret access key"
+                    },
+                    "ForcePathStyle": {
+                      "type": [
+                        "boolean",
+                        "string"
+                      ],
+                      "description": "When true, requests will always use path style addressing",
+                      "default": true,
+                      "pattern": "\\$\\{.*\\}"
+                    },
+                    "Prefix": {
+                      "type": "string",
+                      "description": "Prefix of all objects to delete from s3 bucket",
+                      "default": ""
+                    }
+                  }
+                },
+                {
+                  "title": "ExecuteRedisCommand",
+                  "type": [
+                    "null",
+                    "object",
+                    "string"
+                  ],
+                  "description": "",
+                  "pattern": "\\$\\{.*\\}",
+                  "required": [
+                    "HostNames",
+                    "Command"
+                  ],
+                  "properties": {
+                    "RedisDataBase": {
+                      "type": [
+                        "integer",
+                        "string"
+                      ],
+                      "description": "Redis database to perform the probe on",
+                      "format": "int32",
+                      "default": 0,
+                      "pattern": "\\$\\{.*\\}"
+                    },
+                    "HostNames": {
+                      "type": [
+                        "array",
+                        "string"
+                      ],
+                      "description": "List of the redis hostnames (each hostname should contain the port too for example: - 'host1:8080'",
+                      "pattern": "\\$\\{.*\\}",
+                      "minItems": 1,
+                      "items": [
+                        {
+                          "type": "string"
+                        }
+                      ]
+                    },
+                    "Username": {
+                      "type": [
+                        "null",
+                        "string"
+                      ],
+                      "description": "User for the redis server"
+                    },
+                    "Password": {
+                      "type": [
+                        "null",
+                        "string"
+                      ],
+                      "description": "Password for the redis server"
+                    },
+                    "AbortOnConnectFail": {
+                      "type": [
+                        "boolean",
+                        "string"
+                      ],
+                      "description": "If true, connect will not create connection while no servers are available",
+                      "default": true,
+                      "pattern": "\\$\\{.*\\}"
+                    },
+                    "ConnectRetry": {
+                      "type": [
+                        "integer",
+                        "string"
+                      ],
+                      "description": "The number of times to repeat connect attempts during initial connect",
+                      "format": "int32",
+                      "default": 3,
+                      "pattern": "\\$\\{.*\\}"
+                    },
+                    "ClientName": {
+                      "type": [
+                        "null",
+                        "string"
+                      ],
+                      "description": "Identification for the connection within redis"
+                    },
+                    "AsyncTimeout": {
+                      "type": [
+                        "integer",
+                        "string"
+                      ],
+                      "description": "Time(ms) to allow for asynchronous operations",
+                      "format": "int32",
+                      "default": 5000,
+                      "pattern": "\\$\\{.*\\}"
+                    },
+                    "Ssl": {
+                      "type": [
+                        "boolean",
+                        "string"
+                      ],
+                      "description": "Specifies that SSL encryption should be used",
+                      "default": false,
+                      "pattern": "\\$\\{.*\\}"
+                    },
+                    "SslHost": {
+                      "type": [
+                        "null",
+                        "string"
+                      ],
+                      "description": "Enforces a preticular SSL host identity on the server's certificate"
+                    },
+                    "KeepAlive": {
+                      "type": [
+                        "integer",
+                        "string"
+                      ],
+                      "description": "Time (seconds) at which to send a message to help keep alive",
+                      "format": "int32",
+                      "default": 60,
+                      "pattern": "\\$\\{.*\\}"
+                    },
+                    "Command": {
+                      "type": "string",
+                      "description": "The redis command to execute"
+                    },
+                    "Arguments": {
+                      "type": [
+                        "array",
+                        "null",
+                        "string"
+                      ],
+                      "description": "Optional redis command arguments",
+                      "pattern": "\\$\\{.*\\}",
+                      "items": [
+                        {
+                          "type": "string"
+                        }
+                      ]
+                    },
+                    "StoreResultAs": {
+                      "type": [
+                        "null",
+                        "string"
+                      ],
+                      "description": "Optional alias used to store the command result for later redisResults placeholders"
+                    }
+                  }
+                },
+                {
+                  "title": "ExecuteRedisCommands",
+                  "type": [
+                    "null",
+                    "object",
+                    "string"
+                  ],
+                  "description": "",
+                  "pattern": "\\$\\{.*\\}",
+                  "required": [
+                    "HostNames",
+                    "Commands"
+                  ],
+                  "properties": {
+                    "RedisDataBase": {
+                      "type": [
+                        "integer",
+                        "string"
+                      ],
+                      "description": "Redis database to perform the probe on",
+                      "format": "int32",
+                      "default": 0,
+                      "pattern": "\\$\\{.*\\}"
+                    },
+                    "HostNames": {
+                      "type": [
+                        "array",
+                        "string"
+                      ],
+                      "description": "List of the redis hostnames (each hostname should contain the port too for example: - 'host1:8080'",
+                      "pattern": "\\$\\{.*\\}",
+                      "minItems": 1,
+                      "items": [
+                        {
+                          "type": "string"
+                        }
+                      ]
+                    },
+                    "Username": {
+                      "type": [
+                        "null",
+                        "string"
+                      ],
+                      "description": "User for the redis server"
+                    },
+                    "Password": {
+                      "type": [
+                        "null",
+                        "string"
+                      ],
+                      "description": "Password for the redis server"
+                    },
+                    "AbortOnConnectFail": {
+                      "type": [
+                        "boolean",
+                        "string"
+                      ],
+                      "description": "If true, connect will not create connection while no servers are available",
+                      "default": true,
+                      "pattern": "\\$\\{.*\\}"
+                    },
+                    "ConnectRetry": {
+                      "type": [
+                        "integer",
+                        "string"
+                      ],
+                      "description": "The number of times to repeat connect attempts during initial connect",
+                      "format": "int32",
+                      "default": 3,
+                      "pattern": "\\$\\{.*\\}"
+                    },
+                    "ClientName": {
+                      "type": [
+                        "null",
+                        "string"
+                      ],
+                      "description": "Identification for the connection within redis"
+                    },
+                    "AsyncTimeout": {
+                      "type": [
+                        "integer",
+                        "string"
+                      ],
+                      "description": "Time(ms) to allow for asynchronous operations",
+                      "format": "int32",
+                      "default": 5000,
+                      "pattern": "\\$\\{.*\\}"
+                    },
+                    "Ssl": {
+                      "type": [
+                        "boolean",
+                        "string"
+                      ],
+                      "description": "Specifies that SSL encryption should be used",
+                      "default": false,
+                      "pattern": "\\$\\{.*\\}"
+                    },
+                    "SslHost": {
+                      "type": [
+                        "null",
+                        "string"
+                      ],
+                      "description": "Enforces a preticular SSL host identity on the server's certificate"
+                    },
+                    "KeepAlive": {
+                      "type": [
+                        "integer",
+                        "string"
+                      ],
+                      "description": "Time (seconds) at which to send a message to help keep alive",
+                      "format": "int32",
+                      "default": 60,
+                      "pattern": "\\$\\{.*\\}"
+                    },
+                    "Commands": {
+                      "type": [
+                        "array",
+                        "string"
+                      ],
+                      "description": "The redis commands to execute",
+                      "pattern": "\\$\\{.*\\}",
+                      "minItems": 1,
+                      "items": [
+                        {
+                          "type": [
+                            "object",
+                            "string"
+                          ],
+                          "pattern": "\\$\\{.*\\}",
+                          "required": [
+                            "Command"
+                          ],
+                          "properties": {
+                            "Command": {
+                              "type": "string",
+                              "description": "The redis command to execute"
+                            },
+                            "Arguments": {
+                              "type": [
+                                "array",
+                                "null",
+                                "string"
+                              ],
+                              "description": "Optional redis command arguments",
+                              "pattern": "\\$\\{.*\\}",
+                              "items": [
+                                {
+                                  "type": "string"
+                                }
+                              ]
+                            },
+                            "StoreResultAs": {
+                              "type": [
+                                "null",
+                                "string"
+                              ],
+                              "description": "Optional alias used to store the command result for later redisResults placeholders"
+                            }
+                          }
+                        }
+                      ]
+                    },
+                    "RepeatUntil": {
+                      "type": [
+                        "object",
+                        "string"
+                      ],
+                      "description": "Optional loop that repeats the command sequence until a stored redis result path matches the expected value",
+                      "pattern": "\\$\\{.*\\}",
+                      "required": [
+                        "ResultPath",
+                        "ExpectedValue"
+                      ],
+                      "properties": {
+                        "ResultPath": {
+                          "type": "string",
+                          "description": "Stored redisResults path to inspect after each command sequence iteration"
+                        },
+                        "ExpectedValue": {
+                          "type": "string",
+                          "description": "Scalar value that ends the loop when the resolved ResultPath matches it"
+                        },
+                        "MaxIterations": {
+                          "type": [
+                            "integer",
+                            "string"
+                          ],
+                          "description": "Safety cap for loop iterations",
+                          "format": "int32",
+                          "default": 100,
+                          "maximum": 2147483647.0,
+                          "minimum": 1.0,
+                          "pattern": "\\$\\{.*\\}"
+                        }
+                      }
+                    }
+                  }
+                },
+                {
+                  "title": "FlushAllRedis",
+                  "type": [
+                    "null",
+                    "object",
+                    "string"
+                  ],
+                  "description": "",
+                  "pattern": "\\$\\{.*\\}",
+                  "required": [
+                    "HostNames"
+                  ],
+                  "properties": {
+                    "HostNames": {
+                      "type": [
+                        "array",
+                        "string"
+                      ],
+                      "description": "List of the redis hostnames (each hostname should contain the port too for example: - 'host1:8080'",
+                      "pattern": "\\$\\{.*\\}",
+                      "minItems": 1,
+                      "items": [
+                        {
+                          "type": "string"
+                        }
+                      ]
+                    },
+                    "Username": {
+                      "type": [
+                        "null",
+                        "string"
+                      ],
+                      "description": "User for the redis server"
+                    },
+                    "Password": {
+                      "type": [
+                        "null",
+                        "string"
+                      ],
+                      "description": "Password for the redis server"
+                    },
+                    "AbortOnConnectFail": {
+                      "type": [
+                        "boolean",
+                        "string"
+                      ],
+                      "description": "If true, connect will not create connection while no servers are available",
+                      "default": true,
+                      "pattern": "\\$\\{.*\\}"
+                    },
+                    "ConnectRetry": {
+                      "type": [
+                        "integer",
+                        "string"
+                      ],
+                      "description": "The number of times to repeat connect attempts during initial connect",
+                      "format": "int32",
+                      "default": 3,
+                      "pattern": "\\$\\{.*\\}"
+                    },
+                    "ClientName": {
+                      "type": [
+                        "null",
+                        "string"
+                      ],
+                      "description": "Identification for the connection within redis"
+                    },
+                    "AsyncTimeout": {
+                      "type": [
+                        "integer",
+                        "string"
+                      ],
+                      "description": "Time(ms) to allow for asynchronous operations",
+                      "format": "int32",
+                      "default": 5000,
+                      "pattern": "\\$\\{.*\\}"
+                    },
+                    "Ssl": {
+                      "type": [
+                        "boolean",
+                        "string"
+                      ],
+                      "description": "Specifies that SSL encryption should be used",
+                      "default": false,
+                      "pattern": "\\$\\{.*\\}"
+                    },
+                    "SslHost": {
+                      "type": [
+                        "null",
+                        "string"
+                      ],
+                      "description": "Enforces a preticular SSL host identity on the server's certificate"
+                    },
+                    "KeepAlive": {
+                      "type": [
+                        "integer",
+                        "string"
+                      ],
+                      "description": "Time (seconds) at which to send a message to help keep alive",
+                      "format": "int32",
+                      "default": 60,
+                      "pattern": "\\$\\{.*\\}"
+                    }
+                  }
+                },
+                {
+                  "title": "FlushDbRedis",
+                  "type": [
+                    "null",
+                    "object",
+                    "string"
+                  ],
+                  "description": "",
+                  "pattern": "\\$\\{.*\\}",
+                  "required": [
+                    "HostNames"
+                  ],
+                  "properties": {
+                    "HostNames": {
+                      "type": [
+                        "array",
+                        "string"
+                      ],
+                      "description": "List of the redis hostnames (each hostname should contain the port too for example: - 'host1:8080'",
+                      "pattern": "\\$\\{.*\\}",
+                      "minItems": 1,
+                      "items": [
+                        {
+                          "type": "string"
+                        }
+                      ]
+                    },
+                    "Username": {
+                      "type": [
+                        "null",
+                        "string"
+                      ],
+                      "description": "User for the redis server"
+                    },
+                    "Password": {
+                      "type": [
+                        "null",
+                        "string"
+                      ],
+                      "description": "Password for the redis server"
+                    },
+                    "AbortOnConnectFail": {
+                      "type": [
+                        "boolean",
+                        "string"
+                      ],
+                      "description": "If true, connect will not create connection while no servers are available",
+                      "default": true,
+                      "pattern": "\\$\\{.*\\}"
+                    },
+                    "ConnectRetry": {
+                      "type": [
+                        "integer",
+                        "string"
+                      ],
+                      "description": "The number of times to repeat connect attempts during initial connect",
+                      "format": "int32",
+                      "default": 3,
+                      "pattern": "\\$\\{.*\\}"
+                    },
+                    "ClientName": {
+                      "type": [
+                        "null",
+                        "string"
+                      ],
+                      "description": "Identification for the connection within redis"
+                    },
+                    "AsyncTimeout": {
+                      "type": [
+                        "integer",
+                        "string"
+                      ],
+                      "description": "Time(ms) to allow for asynchronous operations",
+                      "format": "int32",
+                      "default": 5000,
+                      "pattern": "\\$\\{.*\\}"
+                    },
+                    "Ssl": {
+                      "type": [
+                        "boolean",
+                        "string"
+                      ],
+                      "description": "Specifies that SSL encryption should be used",
+                      "default": false,
+                      "pattern": "\\$\\{.*\\}"
+                    },
+                    "SslHost": {
+                      "type": [
+                        "null",
+                        "string"
+                      ],
+                      "description": "Enforces a preticular SSL host identity on the server's certificate"
+                    },
+                    "KeepAlive": {
+                      "type": [
+                        "integer",
+                        "string"
+                      ],
+                      "description": "Time (seconds) at which to send a message to help keep alive",
+                      "format": "int32",
+                      "default": 60,
+                      "pattern": "\\$\\{.*\\}"
+                    },
+                    "RedisDataBase": {
+                      "type": [
+                        "integer",
+                        "string"
+                      ],
+                      "description": "Redis database to perform the probe on",
+                      "format": "int32",
+                      "default": 0,
+                      "pattern": "\\$\\{.*\\}"
+                    }
+                  }
+                },
+                {
+                  "title": "MsSqlDataBaseTablesTruncate",
+                  "type": [
+                    "null",
+                    "object",
+                    "string"
+                  ],
+                  "description": "",
+                  "pattern": "\\$\\{.*\\}",
+                  "required": [
+                    "ConnectionString",
+                    "TableNames"
+                  ],
+                  "properties": {
+                    "ConnectionString": {
+                      "type": "string",
+                      "description": "The connection string to the database"
+                    },
+                    "TableNames": {
+                      "type": [
+                        "array",
+                        "string"
+                      ],
+                      "description": "The names of all the tables to truncate, they will be truncated by the order they are given in this list",
+                      "pattern": "\\$\\{.*\\}",
+                      "items": [
+                        {
+                          "type": "string"
+                        }
+                      ]
+                    },
+                    "CommandTimeoutSeconds": {
+                      "type": [
+                        "integer",
+                        "string"
+                      ],
+                      "description": "The wait time (in seconds) before terminating the attempt to execute the truncate command and generating an error",
+                      "format": "int32",
+                      "default": 30,
+                      "maximum": 2147483647.0,
+                      "minimum": 1.0,
+                      "pattern": "\\$\\{.*\\}"
+                    }
+                  }
+                },
+                {
+                  "title": "OracleSqlDataBaseTablesTruncate",
+                  "type": [
+                    "null",
+                    "object",
+                    "string"
+                  ],
+                  "description": "",
+                  "pattern": "\\$\\{.*\\}",
+                  "required": [
+                    "ConnectionString",
+                    "TableNames"
+                  ],
+                  "properties": {
+                    "ConnectionString": {
+                      "type": "string",
+                      "description": "The connection string to the database"
+                    },
+                    "TableNames": {
+                      "type": [
+                        "array",
+                        "string"
+                      ],
+                      "description": "The names of all the tables to truncate, they will be truncated by the order they are given in this list",
+                      "pattern": "\\$\\{.*\\}",
+                      "items": [
+                        {
+                          "type": "string"
+                        }
+                      ]
+                    },
+                    "CommandTimeoutSeconds": {
+                      "type": [
+                        "integer",
+                        "string"
+                      ],
+                      "description": "The wait time (in seconds) before terminating the attempt to execute the truncate command and generating an error",
+                      "format": "int32",
+                      "default": 30,
+                      "maximum": 2147483647.0,
+                      "minimum": 1.0,
+                      "pattern": "\\$\\{.*\\}"
+                    }
+                  }
+                },
+                {
+                  "title": "OsChangeDeploymentEnvVars",
+                  "type": [
+                    "null",
+                    "object",
+                    "string"
+                  ],
+                  "description": "",
+                  "pattern": "\\$\\{.*\\}",
+                  "required": [
+                    "ReplicaSetName",
+                    "Openshift"
+                  ],
+                  "properties": {
+                    "ReplicaSetName": {
+                      "type": "string",
+                      "description": "The name of the replicaset to scale the pods of"
+                    },
+                    "IntervalBetweenDesiredStateChecksMs": {
+                      "type": [
+                        "integer",
+                        "string"
+                      ],
+                      "description": "The interval in milliseconds between every check of the replica set's state (if it reached the desired number of pods yet)",
+                      "format": "int32",
+                      "default": 1000,
+                      "maximum": 2147483647.0,
+                      "minimum": 0.0,
+                      "pattern": "\\$\\{.*\\}"
+                    },
+                    "TimeoutWaitForDesiredStateSeconds": {
+                      "type": [
+                        "integer",
+                        "string"
+                      ],
+                      "description": "The timeout in seconds for waiting for the replicaset to scale to the given number of pods, when timeout is reached an error log is raised and the code continues to run",
+                      "format": "int32",
+                      "default": 300,
+                      "maximum": 2147483647.0,
+                      "minimum": 0.0,
+                      "pattern": "\\$\\{.*\\}"
+                    },
+                    "Openshift": {
+                      "type": [
+                        "object",
+                        "string"
+                      ],
+                      "description": "The openshift environment to perform action in",
+                      "pattern": "\\$\\{.*\\}",
+                      "required": [
+                        "Cluster",
+                        "Username",
+                        "Password",
+                        "Namespace"
+                      ],
+                      "properties": {
+                        "Cluster": {
+                          "type": "string",
+                          "description": "The openshift cluster api"
+                        },
+                        "Username": {
+                          "type": "string",
+                          "description": "Username with access to the openshift namespace and application"
+                        },
+                        "Password": {
+                          "type": "string",
+                          "description": "Password of the username with access to the openshift namespace and application"
+                        },
+                        "Namespace": {
+                          "type": "string",
+                          "description": "The openshift namespace the application is at"
+                        }
+                      }
+                    },
+                    "ContainerName": {
+                      "type": [
+                        "null",
+                        "string"
+                      ],
+                      "description": "The name of the container we would like to update, if not given - the probe will update all of the pod's containers"
+                    },
+                    "EnvVarsToUpdate": {
+                      "type": [
+                        "object",
+                        "string"
+                      ],
+                      "description": "The environment variables to update/add",
+                      "pattern": "\\$\\{.*\\}"
+                    },
+                    "EnvVarsToRemove": {
+                      "type": [
+                        "array",
+                        "string"
+                      ],
+                      "description": "The environment variables to remove",
+                      "pattern": "\\$\\{.*\\}",
+                      "items": [
+                        {
+                          "type": "string"
+                        }
+                      ]
+                    }
+                  }
+                },
+                {
+                  "title": "OsChangeStatefulSetEnvVars",
+                  "type": [
+                    "null",
+                    "object",
+                    "string"
+                  ],
+                  "description": "",
+                  "pattern": "\\$\\{.*\\}",
+                  "required": [
+                    "ReplicaSetName",
+                    "Openshift"
+                  ],
+                  "properties": {
+                    "ReplicaSetName": {
+                      "type": "string",
+                      "description": "The name of the replicaset to scale the pods of"
+                    },
+                    "IntervalBetweenDesiredStateChecksMs": {
+                      "type": [
+                        "integer",
+                        "string"
+                      ],
+                      "description": "The interval in milliseconds between every check of the replica set's state (if it reached the desired number of pods yet)",
+                      "format": "int32",
+                      "default": 1000,
+                      "maximum": 2147483647.0,
+                      "minimum": 0.0,
+                      "pattern": "\\$\\{.*\\}"
+                    },
+                    "TimeoutWaitForDesiredStateSeconds": {
+                      "type": [
+                        "integer",
+                        "string"
+                      ],
+                      "description": "The timeout in seconds for waiting for the replicaset to scale to the given number of pods, when timeout is reached an error log is raised and the code continues to run",
+                      "format": "int32",
+                      "default": 300,
+                      "maximum": 2147483647.0,
+                      "minimum": 0.0,
+                      "pattern": "\\$\\{.*\\}"
+                    },
+                    "Openshift": {
+                      "type": [
+                        "object",
+                        "string"
+                      ],
+                      "description": "The openshift environment to perform action in",
+                      "pattern": "\\$\\{.*\\}",
+                      "required": [
+                        "Cluster",
+                        "Username",
+                        "Password",
+                        "Namespace"
+                      ],
+                      "properties": {
+                        "Cluster": {
+                          "type": "string",
+                          "description": "The openshift cluster api"
+                        },
+                        "Username": {
+                          "type": "string",
+                          "description": "Username with access to the openshift namespace and application"
+                        },
+                        "Password": {
+                          "type": "string",
+                          "description": "Password of the username with access to the openshift namespace and application"
+                        },
+                        "Namespace": {
+                          "type": "string",
+                          "description": "The openshift namespace the application is at"
+                        }
+                      }
+                    },
+                    "ContainerName": {
+                      "type": [
+                        "null",
+                        "string"
+                      ],
+                      "description": "The name of the container we would like to update, if not given - the probe will update all of the pod's containers"
+                    },
+                    "EnvVarsToUpdate": {
+                      "type": [
+                        "object",
+                        "string"
+                      ],
+                      "description": "The environment variables to update/add",
+                      "pattern": "\\$\\{.*\\}"
+                    },
+                    "EnvVarsToRemove": {
+                      "type": [
+                        "array",
+                        "string"
+                      ],
+                      "description": "The environment variables to remove",
+                      "pattern": "\\$\\{.*\\}",
+                      "items": [
+                        {
+                          "type": "string"
+                        }
+                      ]
+                    }
+                  }
+                },
+                {
+                  "title": "OsEditYamlConfigMap",
+                  "type": [
+                    "null",
+                    "object",
+                    "string"
+                  ],
+                  "description": "",
+                  "pattern": "\\$\\{.*\\}",
+                  "required": [
+                    "Openshift",
+                    "ConfigMapName"
+                  ],
+                  "properties": {
+                    "Openshift": {
+                      "type": [
+                        "object",
+                        "string"
+                      ],
+                      "description": "The openshift environment to perform action in",
+                      "pattern": "\\$\\{.*\\}",
+                      "required": [
+                        "Cluster",
+                        "Username",
+                        "Password",
+                        "Namespace"
+                      ],
+                      "properties": {
+                        "Cluster": {
+                          "type": "string",
+                          "description": "The openshift cluster api"
+                        },
+                        "Username": {
+                          "type": "string",
+                          "description": "Username with access to the openshift namespace and application"
+                        },
+                        "Password": {
+                          "type": "string",
+                          "description": "Password of the username with access to the openshift namespace and application"
+                        },
+                        "Namespace": {
+                          "type": "string",
+                          "description": "The openshift namespace the application is at"
+                        }
+                      }
+                    },
+                    "ConfigMapName": {
+                      "type": "string",
+                      "description": "The config map to edit"
+                    },
+                    "ConfigMapYamlFileName": {
+                      "type": "string",
+                      "description": "The name of the yaml file inside the config map data",
+                      "default": "ConfigMap.yml"
+                    },
+                    "ValuesToEdit": {
+                      "type": [
+                        "object",
+                        "string"
+                      ],
+                      "description": "The description of the configmap paths and values to change (in JSONPath format). For example:path.to.yaml.value[0]: new value",
+                      "pattern": "\\$\\{.*\\}"
+                    }
+                  }
+                },
+                {
+                  "title": "OsExecuteCommandsInContainers",
+                  "type": [
+                    "null",
+                    "object",
+                    "string"
+                  ],
+                  "description": "",
+                  "pattern": "\\$\\{.*\\}",
+                  "required": [
+                    "Openshift",
+                    "ApplicationLabels",
+                    "Commands"
+                  ],
+                  "properties": {
+                    "Openshift": {
+                      "type": [
+                        "object",
+                        "string"
+                      ],
+                      "description": "The openshift environment to perform action in",
+                      "pattern": "\\$\\{.*\\}",
+                      "required": [
+                        "Cluster",
+                        "Username",
+                        "Password",
+                        "Namespace"
+                      ],
+                      "properties": {
+                        "Cluster": {
+                          "type": "string",
+                          "description": "The openshift cluster api"
+                        },
+                        "Username": {
+                          "type": "string",
+                          "description": "Username with access to the openshift namespace and application"
+                        },
+                        "Password": {
+                          "type": "string",
+                          "description": "Password of the username with access to the openshift namespace and application"
+                        },
+                        "Namespace": {
+                          "type": "string",
+                          "description": "The openshift namespace the application is at"
+                        }
+                      }
+                    },
+                    "ApplicationLabels": {
+                      "type": [
+                        "array",
+                        "string"
+                      ],
+                      "description": "A list of the k8s labels of the pods to execute the command in, for example: app=test",
+                      "pattern": "\\$\\{.*\\}",
+                      "items": [
+                        {
+                          "type": "string"
+                        }
+                      ]
+                    },
+                    "Commands": {
+                      "type": [
+                        "array",
+                        "string"
+                      ],
+                      "description": "A list of the commands to execute in the chosen containers",
+                      "pattern": "\\$\\{.*\\}",
+                      "items": [
+                        {
+                          "type": "string"
+                        }
+                      ]
+                    },
+                    "ContainerName": {
+                      "type": [
+                        "null",
+                        "string"
+                      ],
+                      "description": "The name of the container to run the commands in in all the found pods, if no name is given runs the command in all pod containers"
+                    }
+                  }
+                },
+                {
+                  "title": "OsRestartPods",
+                  "type": [
+                    "null",
+                    "object",
+                    "string"
+                  ],
+                  "description": "",
+                  "pattern": "\\$\\{.*\\}",
+                  "required": [
+                    "Openshift",
+                    "ApplicationLabels"
+                  ],
+                  "properties": {
+                    "Openshift": {
+                      "type": [
+                        "object",
+                        "string"
+                      ],
+                      "description": "The openshift environment to perform action in",
+                      "pattern": "\\$\\{.*\\}",
+                      "required": [
+                        "Cluster",
+                        "Username",
+                        "Password",
+                        "Namespace"
+                      ],
+                      "properties": {
+                        "Cluster": {
+                          "type": "string",
+                          "description": "The openshift cluster api"
+                        },
+                        "Username": {
+                          "type": "string",
+                          "description": "Username with access to the openshift namespace and application"
+                        },
+                        "Password": {
+                          "type": "string",
+                          "description": "Password of the username with access to the openshift namespace and application"
+                        },
+                        "Namespace": {
+                          "type": "string",
+                          "description": "The openshift namespace the application is at"
+                        }
+                      }
+                    },
+                    "ApplicationLabels": {
+                      "type": [
+                        "array",
+                        "string"
+                      ],
+                      "description": "A list of the k8s labels of the pods to execute the command in, for example: app=test",
+                      "pattern": "\\$\\{.*\\}",
+                      "items": [
+                        {
+                          "type": "string"
+                        }
+                      ]
+                    },
+                    "IntervalBetweenDesiredStateChecksMs": {
+                      "type": [
+                        "integer",
+                        "string"
+                      ],
+                      "description": "The interval in milliseconds between every check of the pod's state (if they are ready yet)",
+                      "format": "int32",
+                      "default": 1000,
+                      "maximum": 2147483647.0,
+                      "minimum": 0.0,
+                      "pattern": "\\$\\{.*\\}"
+                    },
+                    "TimeoutWaitForDesiredStateSeconds": {
+                      "type": [
+                        "integer",
+                        "string"
+                      ],
+                      "description": "The timeout in seconds for waiting for the pods to stop restarting, when timeout is reached an error log is raised and the code continues to run",
+                      "format": "int32",
+                      "default": 300,
+                      "maximum": 2147483647.0,
+                      "minimum": 0.0,
+                      "pattern": "\\$\\{.*\\}"
+                    }
+                  }
+                },
+                {
+                  "title": "OsScaleDeploymentPods",
+                  "type": [
+                    "null",
+                    "object",
+                    "string"
+                  ],
+                  "description": "",
+                  "pattern": "\\$\\{.*\\}",
+                  "required": [
+                    "ReplicaSetName",
+                    "Openshift",
+                    "DesiredNumberOfPods"
+                  ],
+                  "properties": {
+                    "ReplicaSetName": {
+                      "type": "string",
+                      "description": "The name of the replicaset to scale the pods of"
+                    },
+                    "IntervalBetweenDesiredStateChecksMs": {
+                      "type": [
+                        "integer",
+                        "string"
+                      ],
+                      "description": "The interval in milliseconds between every check of the replica set's state (if it reached the desired number of pods yet)",
+                      "format": "int32",
+                      "default": 1000,
+                      "maximum": 2147483647.0,
+                      "minimum": 0.0,
+                      "pattern": "\\$\\{.*\\}"
+                    },
+                    "TimeoutWaitForDesiredStateSeconds": {
+                      "type": [
+                        "integer",
+                        "string"
+                      ],
+                      "description": "The timeout in seconds for waiting for the replicaset to scale to the given number of pods, when timeout is reached an error log is raised and the code continues to run",
+                      "format": "int32",
+                      "default": 300,
+                      "maximum": 2147483647.0,
+                      "minimum": 0.0,
+                      "pattern": "\\$\\{.*\\}"
+                    },
+                    "Openshift": {
+                      "type": [
+                        "object",
+                        "string"
+                      ],
+                      "description": "The openshift environment to perform action in",
+                      "pattern": "\\$\\{.*\\}",
+                      "required": [
+                        "Cluster",
+                        "Username",
+                        "Password",
+                        "Namespace"
+                      ],
+                      "properties": {
+                        "Cluster": {
+                          "type": "string",
+                          "description": "The openshift cluster api"
+                        },
+                        "Username": {
+                          "type": "string",
+                          "description": "Username with access to the openshift namespace and application"
+                        },
+                        "Password": {
+                          "type": "string",
+                          "description": "Password of the username with access to the openshift namespace and application"
+                        },
+                        "Namespace": {
+                          "type": "string",
+                          "description": "The openshift namespace the application is at"
+                        }
+                      }
+                    },
+                    "DesiredNumberOfPods": {
+                      "type": [
+                        "integer",
+                        "string"
+                      ],
+                      "description": "The number of pods to scale the replica set to",
+                      "format": "int32",
+                      "pattern": "\\$\\{.*\\}"
+                    }
+                  }
+                },
+                {
+                  "title": "OsScaleStatefulSetPods",
+                  "type": [
+                    "null",
+                    "object",
+                    "string"
+                  ],
+                  "description": "",
+                  "pattern": "\\$\\{.*\\}",
+                  "required": [
+                    "ReplicaSetName",
+                    "Openshift",
+                    "DesiredNumberOfPods"
+                  ],
+                  "properties": {
+                    "ReplicaSetName": {
+                      "type": "string",
+                      "description": "The name of the replicaset to scale the pods of"
+                    },
+                    "IntervalBetweenDesiredStateChecksMs": {
+                      "type": [
+                        "integer",
+                        "string"
+                      ],
+                      "description": "The interval in milliseconds between every check of the replica set's state (if it reached the desired number of pods yet)",
+                      "format": "int32",
+                      "default": 1000,
+                      "maximum": 2147483647.0,
+                      "minimum": 0.0,
+                      "pattern": "\\$\\{.*\\}"
+                    },
+                    "TimeoutWaitForDesiredStateSeconds": {
+                      "type": [
+                        "integer",
+                        "string"
+                      ],
+                      "description": "The timeout in seconds for waiting for the replicaset to scale to the given number of pods, when timeout is reached an error log is raised and the code continues to run",
+                      "format": "int32",
+                      "default": 300,
+                      "maximum": 2147483647.0,
+                      "minimum": 0.0,
+                      "pattern": "\\$\\{.*\\}"
+                    },
+                    "Openshift": {
+                      "type": [
+                        "object",
+                        "string"
+                      ],
+                      "description": "The openshift environment to perform action in",
+                      "pattern": "\\$\\{.*\\}",
+                      "required": [
+                        "Cluster",
+                        "Username",
+                        "Password",
+                        "Namespace"
+                      ],
+                      "properties": {
+                        "Cluster": {
+                          "type": "string",
+                          "description": "The openshift cluster api"
+                        },
+                        "Username": {
+                          "type": "string",
+                          "description": "Username with access to the openshift namespace and application"
+                        },
+                        "Password": {
+                          "type": "string",
+                          "description": "Password of the username with access to the openshift namespace and application"
+                        },
+                        "Namespace": {
+                          "type": "string",
+                          "description": "The openshift namespace the application is at"
+                        }
+                      }
+                    },
+                    "DesiredNumberOfPods": {
+                      "type": [
+                        "integer",
+                        "string"
+                      ],
+                      "description": "The number of pods to scale the replica set to",
+                      "format": "int32",
+                      "pattern": "\\$\\{.*\\}"
+                    }
+                  }
+                },
+                {
+                  "title": "OsUpdateDeploymentImage",
+                  "type": [
+                    "null",
+                    "object",
+                    "string"
+                  ],
+                  "description": "",
+                  "pattern": "\\$\\{.*\\}",
+                  "required": [
+                    "ContainerName",
+                    "ReplicaSetName",
+                    "Openshift",
+                    "DesiredImage"
+                  ],
+                  "properties": {
+                    "ContainerName": {
+                      "type": "string",
+                      "description": "The name of the container to update"
+                    },
+                    "ReplicaSetName": {
+                      "type": "string",
+                      "description": "The name of the replicaset to scale the pods of"
+                    },
+                    "IntervalBetweenDesiredStateChecksMs": {
+                      "type": [
+                        "integer",
+                        "string"
+                      ],
+                      "description": "The interval in milliseconds between every check of the replica set's state (if it reached the desired number of pods yet)",
+                      "format": "int32",
+                      "default": 1000,
+                      "maximum": 2147483647.0,
+                      "minimum": 0.0,
+                      "pattern": "\\$\\{.*\\}"
+                    },
+                    "TimeoutWaitForDesiredStateSeconds": {
+                      "type": [
+                        "integer",
+                        "string"
+                      ],
+                      "description": "The timeout in seconds for waiting for the replicaset to scale to the given number of pods, when timeout is reached an error log is raised and the code continues to run",
+                      "format": "int32",
+                      "default": 300,
+                      "maximum": 2147483647.0,
+                      "minimum": 0.0,
+                      "pattern": "\\$\\{.*\\}"
+                    },
+                    "Openshift": {
+                      "type": [
+                        "object",
+                        "string"
+                      ],
+                      "description": "The openshift environment to perform action in",
+                      "pattern": "\\$\\{.*\\}",
+                      "required": [
+                        "Cluster",
+                        "Username",
+                        "Password",
+                        "Namespace"
+                      ],
+                      "properties": {
+                        "Cluster": {
+                          "type": "string",
+                          "description": "The openshift cluster api"
+                        },
+                        "Username": {
+                          "type": "string",
+                          "description": "Username with access to the openshift namespace and application"
+                        },
+                        "Password": {
+                          "type": "string",
+                          "description": "Password of the username with access to the openshift namespace and application"
+                        },
+                        "Namespace": {
+                          "type": "string",
+                          "description": "The openshift namespace the application is at"
+                        }
+                      }
+                    },
+                    "DesiredImage": {
+                      "type": "string",
+                      "description": "The desired image to update the container to"
+                    }
+                  }
+                },
+                {
+                  "title": "OsUpdateDeploymentResources",
+                  "type": [
+                    "null",
+                    "object",
+                    "string"
+                  ],
+                  "description": "",
+                  "pattern": "\\$\\{.*\\}",
+                  "required": [
+                    "ContainerName",
+                    "ReplicaSetName",
+                    "Openshift"
+                  ],
+                  "properties": {
+                    "ContainerName": {
+                      "type": "string",
+                      "description": "The name of the container to update"
+                    },
+                    "ReplicaSetName": {
+                      "type": "string",
+                      "description": "The name of the replicaset to scale the pods of"
+                    },
+                    "IntervalBetweenDesiredStateChecksMs": {
+                      "type": [
+                        "integer",
+                        "string"
+                      ],
+                      "description": "The interval in milliseconds between every check of the replica set's state (if it reached the desired number of pods yet)",
+                      "format": "int32",
+                      "default": 1000,
+                      "maximum": 2147483647.0,
+                      "minimum": 0.0,
+                      "pattern": "\\$\\{.*\\}"
+                    },
+                    "TimeoutWaitForDesiredStateSeconds": {
+                      "type": [
+                        "integer",
+                        "string"
+                      ],
+                      "description": "The timeout in seconds for waiting for the replicaset to scale to the given number of pods, when timeout is reached an error log is raised and the code continues to run",
+                      "format": "int32",
+                      "default": 300,
+                      "maximum": 2147483647.0,
+                      "minimum": 0.0,
+                      "pattern": "\\$\\{.*\\}"
+                    },
+                    "Openshift": {
+                      "type": [
+                        "object",
+                        "string"
+                      ],
+                      "description": "The openshift environment to perform action in",
+                      "pattern": "\\$\\{.*\\}",
+                      "required": [
+                        "Cluster",
+                        "Username",
+                        "Password",
+                        "Namespace"
+                      ],
+                      "properties": {
+                        "Cluster": {
+                          "type": "string",
+                          "description": "The openshift cluster api"
+                        },
+                        "Username": {
+                          "type": "string",
+                          "description": "Username with access to the openshift namespace and application"
+                        },
+                        "Password": {
+                          "type": "string",
+                          "description": "Password of the username with access to the openshift namespace and application"
+                        },
+                        "Namespace": {
+                          "type": "string",
+                          "description": "The openshift namespace the application is at"
+                        }
+                      }
+                    },
+                    "DesiredResources": {
+                      "type": [
+                        "object",
+                        "string"
+                      ],
+                      "description": "The resources to update the replicaset with. Overrides the current replicaset's resources.",
+                      "pattern": "\\$\\{.*\\}",
+                      "properties": {
+                        "Requests": {
+                          "type": [
+                            "object",
+                            "string"
+                          ],
+                          "description": "The requests resources to update the replicaset with",
+                          "pattern": "\\$\\{.*\\}",
+                          "properties": {
+                            "Cpu": {
+                              "type": [
+                                "null",
+                                "string"
+                              ],
+                              "description": "The amount of cpu to update the replicaset with"
+                            },
+                            "Memory": {
+                              "type": [
+                                "null",
+                                "string"
+                              ],
+                              "description": "The amount of memory to update the replicaset with"
+                            }
+                          }
+                        },
+                        "Limits": {
+                          "type": [
+                            "object",
+                            "string"
+                          ],
+                          "description": "The limits resources to update the replicaset with",
+                          "pattern": "\\$\\{.*\\}",
+                          "properties": {
+                            "Cpu": {
+                              "type": [
+                                "null",
+                                "string"
+                              ],
+                              "description": "The amount of cpu to update the replicaset with"
+                            },
+                            "Memory": {
+                              "type": [
+                                "null",
+                                "string"
+                              ],
+                              "description": "The amount of memory to update the replicaset with"
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                },
+                {
+                  "title": "OsUpdateStatefulSetImage",
+                  "type": [
+                    "null",
+                    "object",
+                    "string"
+                  ],
+                  "description": "",
+                  "pattern": "\\$\\{.*\\}",
+                  "required": [
+                    "ContainerName",
+                    "ReplicaSetName",
+                    "Openshift",
+                    "DesiredImage"
+                  ],
+                  "properties": {
+                    "ContainerName": {
+                      "type": "string",
+                      "description": "The name of the container to update"
+                    },
+                    "ReplicaSetName": {
+                      "type": "string",
+                      "description": "The name of the replicaset to scale the pods of"
+                    },
+                    "IntervalBetweenDesiredStateChecksMs": {
+                      "type": [
+                        "integer",
+                        "string"
+                      ],
+                      "description": "The interval in milliseconds between every check of the replica set's state (if it reached the desired number of pods yet)",
+                      "format": "int32",
+                      "default": 1000,
+                      "maximum": 2147483647.0,
+                      "minimum": 0.0,
+                      "pattern": "\\$\\{.*\\}"
+                    },
+                    "TimeoutWaitForDesiredStateSeconds": {
+                      "type": [
+                        "integer",
+                        "string"
+                      ],
+                      "description": "The timeout in seconds for waiting for the replicaset to scale to the given number of pods, when timeout is reached an error log is raised and the code continues to run",
+                      "format": "int32",
+                      "default": 300,
+                      "maximum": 2147483647.0,
+                      "minimum": 0.0,
+                      "pattern": "\\$\\{.*\\}"
+                    },
+                    "Openshift": {
+                      "type": [
+                        "object",
+                        "string"
+                      ],
+                      "description": "The openshift environment to perform action in",
+                      "pattern": "\\$\\{.*\\}",
+                      "required": [
+                        "Cluster",
+                        "Username",
+                        "Password",
+                        "Namespace"
+                      ],
+                      "properties": {
+                        "Cluster": {
+                          "type": "string",
+                          "description": "The openshift cluster api"
+                        },
+                        "Username": {
+                          "type": "string",
+                          "description": "Username with access to the openshift namespace and application"
+                        },
+                        "Password": {
+                          "type": "string",
+                          "description": "Password of the username with access to the openshift namespace and application"
+                        },
+                        "Namespace": {
+                          "type": "string",
+                          "description": "The openshift namespace the application is at"
+                        }
+                      }
+                    },
+                    "DesiredImage": {
+                      "type": "string",
+                      "description": "The desired image to update the container to"
+                    }
+                  }
+                },
+                {
+                  "title": "OsUpdateStatefulSetResources",
+                  "type": [
+                    "null",
+                    "object",
+                    "string"
+                  ],
+                  "description": "",
+                  "pattern": "\\$\\{.*\\}",
+                  "required": [
+                    "ContainerName",
+                    "ReplicaSetName",
+                    "Openshift"
+                  ],
+                  "properties": {
+                    "ContainerName": {
+                      "type": "string",
+                      "description": "The name of the container to update"
+                    },
+                    "ReplicaSetName": {
+                      "type": "string",
+                      "description": "The name of the replicaset to scale the pods of"
+                    },
+                    "IntervalBetweenDesiredStateChecksMs": {
+                      "type": [
+                        "integer",
+                        "string"
+                      ],
+                      "description": "The interval in milliseconds between every check of the replica set's state (if it reached the desired number of pods yet)",
+                      "format": "int32",
+                      "default": 1000,
+                      "maximum": 2147483647.0,
+                      "minimum": 0.0,
+                      "pattern": "\\$\\{.*\\}"
+                    },
+                    "TimeoutWaitForDesiredStateSeconds": {
+                      "type": [
+                        "integer",
+                        "string"
+                      ],
+                      "description": "The timeout in seconds for waiting for the replicaset to scale to the given number of pods, when timeout is reached an error log is raised and the code continues to run",
+                      "format": "int32",
+                      "default": 300,
+                      "maximum": 2147483647.0,
+                      "minimum": 0.0,
+                      "pattern": "\\$\\{.*\\}"
+                    },
+                    "Openshift": {
+                      "type": [
+                        "object",
+                        "string"
+                      ],
+                      "description": "The openshift environment to perform action in",
+                      "pattern": "\\$\\{.*\\}",
+                      "required": [
+                        "Cluster",
+                        "Username",
+                        "Password",
+                        "Namespace"
+                      ],
+                      "properties": {
+                        "Cluster": {
+                          "type": "string",
+                          "description": "The openshift cluster api"
+                        },
+                        "Username": {
+                          "type": "string",
+                          "description": "Username with access to the openshift namespace and application"
+                        },
+                        "Password": {
+                          "type": "string",
+                          "description": "Password of the username with access to the openshift namespace and application"
+                        },
+                        "Namespace": {
+                          "type": "string",
+                          "description": "The openshift namespace the application is at"
+                        }
+                      }
+                    },
+                    "DesiredResources": {
+                      "type": [
+                        "object",
+                        "string"
+                      ],
+                      "description": "The resources to update the replicaset with. Overrides the current replicaset's resources.",
+                      "pattern": "\\$\\{.*\\}",
+                      "properties": {
+                        "Requests": {
+                          "type": [
+                            "object",
+                            "string"
+                          ],
+                          "description": "The requests resources to update the replicaset with",
+                          "pattern": "\\$\\{.*\\}",
+                          "properties": {
+                            "Cpu": {
+                              "type": [
+                                "null",
+                                "string"
+                              ],
+                              "description": "The amount of cpu to update the replicaset with"
+                            },
+                            "Memory": {
+                              "type": [
+                                "null",
+                                "string"
+                              ],
+                              "description": "The amount of memory to update the replicaset with"
+                            }
+                          }
+                        },
+                        "Limits": {
+                          "type": [
+                            "object",
+                            "string"
+                          ],
+                          "description": "The limits resources to update the replicaset with",
+                          "pattern": "\\$\\{.*\\}",
+                          "properties": {
+                            "Cpu": {
+                              "type": [
+                                "null",
+                                "string"
+                              ],
+                              "description": "The amount of cpu to update the replicaset with"
+                            },
+                            "Memory": {
+                              "type": [
+                                "null",
+                                "string"
+                              ],
+                              "description": "The amount of memory to update the replicaset with"
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                },
+                {
+                  "title": "PostgreSqlDataBaseTablesTruncate",
+                  "type": [
+                    "null",
+                    "object",
+                    "string"
+                  ],
+                  "description": "",
+                  "pattern": "\\$\\{.*\\}",
+                  "required": [
+                    "ConnectionString",
+                    "TableNames"
+                  ],
+                  "properties": {
+                    "ConnectionString": {
+                      "type": "string",
+                      "description": "The connection string to the database"
+                    },
+                    "TableNames": {
+                      "type": [
+                        "array",
+                        "string"
+                      ],
+                      "description": "The names of all the tables to truncate, they will be truncated by the order they are given in this list",
+                      "pattern": "\\$\\{.*\\}",
+                      "items": [
+                        {
+                          "type": "string"
+                        }
+                      ]
+                    },
+                    "CommandTimeoutSeconds": {
+                      "type": [
+                        "integer",
+                        "string"
+                      ],
+                      "description": "The wait time (in seconds) before terminating the attempt to execute the truncate command and generating an error",
+                      "format": "int32",
+                      "default": 30,
+                      "maximum": 2147483647.0,
+                      "minimum": 1.0,
+                      "pattern": "\\$\\{.*\\}"
+                    }
+                  }
+                },
+                {
+                  "title": "PurgeRabbitMqQueues",
+                  "type": [
+                    "null",
+                    "object",
+                    "string"
+                  ],
+                  "description": "",
+                  "pattern": "\\$\\{.*\\}",
+                  "required": [
+                    "Host",
+                    "QueueNames"
+                  ],
+                  "properties": {
+                    "Host": {
+                      "type": "string",
+                      "description": "Rabbitmq hostname"
+                    },
+                    "Username": {
+                      "type": "string",
+                      "description": "Rabbitmq username",
+                      "default": "admin"
+                    },
+                    "Password": {
+                      "type": "string",
+                      "description": "Rabbitmq password",
+                      "default": "admin"
+                    },
+                    "Port": {
+                      "type": [
+                        "integer",
+                        "string"
+                      ],
+                      "description": "Rabbitmq Amqp port",
+                      "format": "int32",
+                      "default": 5672,
+                      "maximum": 65535.0,
+                      "minimum": 0.0,
+                      "pattern": "\\$\\{.*\\}"
+                    },
+                    "VirtualHost": {
+                      "type": "string",
+                      "description": "Rabbitmq virtual host to access during this connection",
+                      "default": "/"
+                    },
+                    "QueueNames": {
+                      "type": [
+                        "array",
+                        "string"
+                      ],
+                      "description": "A list of the names of all the queues to purge from the given rabbitmq",
+                      "pattern": "\\$\\{.*\\}",
+                      "minItems": 1,
+                      "items": [
+                        {
+                          "type": "string"
+                        }
+                      ]
+                    }
+                  }
+                },
+                {
+                  "title": "UploadRabbitMqDefinitions",
+                  "type": [
+                    "null",
+                    "object",
+                    "string"
+                  ],
+                  "description": "",
+                  "pattern": "\\$\\{.*\\}",
+                  "required": [
+                    "Host"
+                  ],
+                  "properties": {
+                    "ManagementScheme": {
+                      "type": "string",
+                      "description": "Rabbitmq management API scheme",
+                      "default": "http"
+                    },
+                    "ManagementPort": {
+                      "type": [
+                        "integer",
+                        "string"
+                      ],
+                      "description": "Rabbitmq management API port",
+                      "format": "int32",
+                      "default": 15672,
+                      "maximum": 65535.0,
+                      "minimum": 0.0,
+                      "pattern": "\\$\\{.*\\}"
+                    },
+                    "AllowInvalidServerCertificates": {
+                      "type": [
+                        "boolean",
+                        "string"
+                      ],
+                      "description": "Allow invalid TLS certificates when using HTTPS",
+                      "default": false,
+                      "pattern": "\\$\\{.*\\}"
+                    },
+                    "RequestTimeoutMs": {
+                      "type": [
+                        "integer",
+                        "string"
+                      ],
+                      "description": "Rabbitmq management API request timeout in milliseconds",
+                      "format": "int32",
+                      "default": 30000,
+                      "maximum": 2147483647.0,
+                      "minimum": 1.0,
+                      "pattern": "\\$\\{.*\\}"
+                    },
+                    "Host": {
+                      "type": "string",
+                      "description": "Rabbitmq hostname"
+                    },
+                    "Username": {
+                      "type": "string",
+                      "description": "Rabbitmq username",
+                      "default": "admin"
+                    },
+                    "Password": {
+                      "type": "string",
+                      "description": "Rabbitmq password",
+                      "default": "admin"
+                    },
+                    "Port": {
+                      "type": [
+                        "integer",
+                        "string"
+                      ],
+                      "description": "Rabbitmq Amqp port",
+                      "format": "int32",
+                      "default": 5672,
+                      "maximum": 65535.0,
+                      "minimum": 0.0,
+                      "pattern": "\\$\\{.*\\}"
+                    },
+                    "VirtualHost": {
+                      "type": "string",
+                      "description": "Rabbitmq virtual host to access during this connection",
+                      "default": "/"
+                    },
+                    "DefinitionsJson": {
+                      "type": [
+                        "null",
+                        "string"
+                      ],
+                      "description": "Optional inline JSON payload with rabbitmq definitions"
+                    },
+                    "DefinitionsFilePath": {
+                      "type": [
+                        "null",
+                        "string"
+                      ],
+                      "description": "Optional path to a JSON file containing rabbitmq definitions"
+                    },
+                    "VirtualHostName": {
+                      "type": [
+                        "null",
+                        "string"
+                      ],
+                      "description": "Optional virtual host name for vhost-scoped definitions import"
+                    }
+                  }
+                },
+                {
+                  "title": "UpsertRabbitMqPermissions",
+                  "type": [
+                    "null",
+                    "object",
+                    "string"
+                  ],
+                  "description": "",
+                  "pattern": "\\$\\{.*\\}",
+                  "required": [
+                    "Host",
+                    "Permissions"
+                  ],
+                  "properties": {
+                    "ManagementScheme": {
+                      "type": "string",
+                      "description": "Rabbitmq management API scheme",
+                      "default": "http"
+                    },
+                    "ManagementPort": {
+                      "type": [
+                        "integer",
+                        "string"
+                      ],
+                      "description": "Rabbitmq management API port",
+                      "format": "int32",
+                      "default": 15672,
+                      "maximum": 65535.0,
+                      "minimum": 0.0,
+                      "pattern": "\\$\\{.*\\}"
+                    },
+                    "AllowInvalidServerCertificates": {
+                      "type": [
+                        "boolean",
+                        "string"
+                      ],
+                      "description": "Allow invalid TLS certificates when using HTTPS",
+                      "default": false,
+                      "pattern": "\\$\\{.*\\}"
+                    },
+                    "RequestTimeoutMs": {
+                      "type": [
+                        "integer",
+                        "string"
+                      ],
+                      "description": "Rabbitmq management API request timeout in milliseconds",
+                      "format": "int32",
+                      "default": 30000,
+                      "maximum": 2147483647.0,
+                      "minimum": 1.0,
+                      "pattern": "\\$\\{.*\\}"
+                    },
+                    "Host": {
+                      "type": "string",
+                      "description": "Rabbitmq hostname"
+                    },
+                    "Username": {
+                      "type": "string",
+                      "description": "Rabbitmq username",
+                      "default": "admin"
+                    },
+                    "Password": {
+                      "type": "string",
+                      "description": "Rabbitmq password",
+                      "default": "admin"
+                    },
+                    "Port": {
+                      "type": [
+                        "integer",
+                        "string"
+                      ],
+                      "description": "Rabbitmq Amqp port",
+                      "format": "int32",
+                      "default": 5672,
+                      "maximum": 65535.0,
+                      "minimum": 0.0,
+                      "pattern": "\\$\\{.*\\}"
+                    },
+                    "VirtualHost": {
+                      "type": "string",
+                      "description": "Rabbitmq virtual host to access during this connection",
+                      "default": "/"
+                    },
+                    "Permissions": {
+                      "type": [
+                        "array",
+                        "string"
+                      ],
+                      "description": "The rabbitmq permissions to create or update",
+                      "pattern": "\\$\\{.*\\}",
+                      "minItems": 1,
+                      "items": [
+                        {
+                          "type": [
+                            "object",
+                            "string"
+                          ],
+                          "pattern": "\\$\\{.*\\}",
+                          "required": [
+                            "VirtualHostName",
+                            "Username"
+                          ],
+                          "properties": {
+                            "VirtualHostName": {
+                              "type": "string",
+                              "description": "The rabbitmq virtual host name"
+                            },
+                            "Username": {
+                              "type": "string",
+                              "description": "The rabbitmq user name"
+                            },
+                            "Configure": {
+                              "type": "string",
+                              "description": "Regex for configure permissions",
+                              "default": ".*"
+                            },
+                            "Write": {
+                              "type": "string",
+                              "description": "Regex for write permissions",
+                              "default": ".*"
+                            },
+                            "Read": {
+                              "type": "string",
+                              "description": "Regex for read permissions",
+                              "default": ".*"
+                            }
+                          }
+                        }
+                      ]
+                    }
+                  }
+                }
+              ]
+            }
+          }
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,1828 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "title": "generators 0.0.0",
+  "type": [
+    "object",
+    "string"
+  ],
+  "description": "Json schema representing the generators configuration fields and values",
+  "pattern": "\\$\\{.*\\}",
+  "properties": {
+    "Generators": {
+      "type": [
+        "array",
+        "string"
+      ],
+      "pattern": "\\$\\{.*\\}",
+      "items": [
+        {
+          "type": [
+            "object",
+            "string"
+          ],
+          "pattern": "\\$\\{.*\\}",
+          "properties": {
+            "Generator": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "enum": [
+                    "FromCSV",
+                    "FromDataLake",
+                    "FromDataSources",
+                    "FromFileSystem",
+                    "FromLettuceDataSources",
+                    "FromS3",
+                    "FromSessionDataDataSources",
+                    "Json",
+                    "JsonSchemaDraft4",
+                    "LettuceFromFileSystem",
+                    "Stacking"
+                  ]
+                },
+                {}
+              ]
+            },
+            "GeneratorConfiguration": {
+              "type": [
+                "object",
+                "string"
+              ],
+              "pattern": "\\$\\{.*\\}",
+              "anyOf": [
+                {},
+                {
+                  "title": "FromCSV",
+                  "type": [
+                    "null",
+                    "object",
+                    "string"
+                  ],
+                  "description": "Retrieves CSV rows from files in a configured path in the file system. `DataSources`: Not used. `SessionData`: Not used.",
+                  "pattern": "\\$\\{.*\\}",
+                  "required": [
+                    "FileSystem",
+                    "DataArrangeOrder",
+                    "Delimiter"
+                  ],
+                  "properties": {
+                    "FileSystem": {
+                      "type": [
+                        "object",
+                        "string"
+                      ],
+                      "description": "File system directory configuration",
+                      "pattern": "\\$\\{.*\\}",
+                      "required": [
+                        "Path"
+                      ],
+                      "properties": {
+                        "Path": {
+                          "type": "string",
+                          "description": "The path of the directory containing the relevant files"
+                        },
+                        "SearchPattern": {
+                          "type": "string",
+                          "description": "The search string to match against the names of files in path. This parameter can contain a combination of valid literal path and wildcard (* and ?) characters, but it doesn't support regular expressions.",
+                          "default": ""
+                        }
+                      }
+                    },
+                    "DataArrangeOrder": {
+                      "type": [
+                        "integer",
+                        "string"
+                      ],
+                      "description": "In which order to arrange the loaded data. Arranges data based of the key identifier of the item.  Options: [ `AsciiAsc` - orders by the ascii value ascending / `AsciiDesc` - orders by the ascii value descending / `FirstNumericalAsc` - orders by the first found numerical value in the string ascending /`FirstNumericalDesc` - orders by the first found numerical value in the string descending /'Unordered' - does not order the data ]",
+                      "pattern": "\\$\\{.*\\}",
+                      "enum": [
+                        "AsciiAsc",
+                        "AsciiDesc",
+                        "FirstNumericalAsc",
+                        "FirstNumericalDesc",
+                        "Unordered"
+                      ]
+                    },
+                    "Count": {
+                      "type": [
+                        "integer",
+                        "null",
+                        "string"
+                      ],
+                      "description": "The number of items to generate out of the given data sources (If count is bigger than available number of items an exception will be thrown), if no value is given generates the number of items in the given data sources",
+                      "format": "int32",
+                      "maximum": 2147483647.0,
+                      "minimum": 0.0,
+                      "pattern": "\\$\\{.*\\}"
+                    },
+                    "DataUuidRegexExpression": {
+                      "type": "string",
+                      "description": "A regex expression to use for filtering data from the external source by their UUID, only items that match the regex will be taken",
+                      "default": ".*"
+                    },
+                    "StorageMetaData": {
+                      "type": [
+                        "integer",
+                        "string"
+                      ],
+                      "description": "The way to store the name of the generated data as key in StorageMetaData. Options:[ `FullPath` - stores the full path of the item as the key / `RelativePath` - stores the relative path related to the prefix / `ItemName` - stores only the name of the item as the key / `None` - does not store the name of the item",
+                      "default": "RelativePath",
+                      "pattern": "\\$\\{.*\\}",
+                      "enum": [
+                        "FullPath",
+                        "RelativePath",
+                        "ItemName",
+                        "None"
+                      ]
+                    },
+                    "Delimiter": {
+                      "type": "string",
+                      "description": "The delimiter used between columns in the CSV content.",
+                      "default": ","
+                    },
+                    "HasHeaderRecord": {
+                      "type": [
+                        "boolean",
+                        "string"
+                      ],
+                      "description": "True when the first non-empty row contains the column names.",
+                      "default": true,
+                      "pattern": "\\$\\{.*\\}"
+                    },
+                    "ColumnNames": {
+                      "type": [
+                        "array",
+                        "null",
+                        "string"
+                      ],
+                      "description": "Column names to use when `HasHeaderRecord` is false. If omitted, names are auto-generated as `Column1`, `Column2`, and so on.",
+                      "pattern": "\\$\\{.*\\}",
+                      "items": [
+                        {
+                          "type": "string"
+                        }
+                      ]
+                    },
+                    "SkipEmptyRows": {
+                      "type": [
+                        "boolean",
+                        "string"
+                      ],
+                      "description": "True to skip rows whose fields are all empty or whitespace.",
+                      "default": true,
+                      "pattern": "\\$\\{.*\\}"
+                    },
+                    "TrimWhiteSpace": {
+                      "type": [
+                        "boolean",
+                        "string"
+                      ],
+                      "description": "True to trim surrounding whitespace from parsed fields.",
+                      "default": false,
+                      "pattern": "\\$\\{.*\\}"
+                    }
+                  }
+                },
+                {
+                  "title": "FromDataLake",
+                  "type": [
+                    "null",
+                    "object",
+                    "string"
+                  ],
+                  "description": "Supports generating data from data lake. `DataSources`: Not used. `SessionData`: Not used.",
+                  "pattern": "\\$\\{.*\\}",
+                  "required": [
+                    "Username",
+                    "Password",
+                    "Query"
+                  ],
+                  "properties": {
+                    "TrinoServerUri": {
+                      "type": "string",
+                      "description": "The trino server to connnect to",
+                      "default": "http://localhost:8080"
+                    },
+                    "Username": {
+                      "type": "string",
+                      "description": "The username for connecting to the trino server"
+                    },
+                    "Password": {
+                      "type": "string",
+                      "description": "The password for connecting to the trino server"
+                    },
+                    "ClientTag": {
+                      "type": "string",
+                      "description": "The client tag to use for connection",
+                      "default": "qaas"
+                    },
+                    "Catalog": {
+                      "type": "string",
+                      "description": "The datalake catalog to query",
+                      "default": "hive"
+                    },
+                    "Query": {
+                      "type": "string",
+                      "description": "The query to execute against the datalake"
+                    },
+                    "ColumnsToIgnore": {
+                      "type": [
+                        "array",
+                        "string"
+                      ],
+                      "description": "The columns to ignore in the query results, if no columns are given doesn't ignore any columns",
+                      "default": [],
+                      "pattern": "\\$\\{.*\\}",
+                      "items": [
+                        {
+                          "type": "string"
+                        }
+                      ]
+                    }
+                  }
+                },
+                {
+                  "title": "FromDataSources",
+                  "type": [
+                    "null",
+                    "object",
+                    "string"
+                  ],
+                  "description": "Supports generating data from multiple DataSources that contain data. `DataSources`: Used. `SessionData`: Passed to used DataSources.",
+                  "pattern": "\\$\\{.*\\}",
+                  "properties": {
+                    "Count": {
+                      "type": [
+                        "integer",
+                        "null",
+                        "string"
+                      ],
+                      "description": "The number of items to generate out of the given data sources (If count is bigger than available number of items an exception will be thrown), if no value is given generates the number of items in the given data sources",
+                      "format": "int32",
+                      "maximum": 2147483647.0,
+                      "minimum": 0.0,
+                      "pattern": "\\$\\{.*\\}"
+                    }
+                  }
+                },
+                {
+                  "title": "FromFileSystem",
+                  "type": [
+                    "null",
+                    "object",
+                    "string"
+                  ],
+                  "description": "Retrieves data from a configured path to a directory in the file system. `DataSources`: Not used. `SessionData`: Not used.",
+                  "pattern": "\\$\\{.*\\}",
+                  "required": [
+                    "DataArrangeOrder",
+                    "FileSystem"
+                  ],
+                  "properties": {
+                    "DataArrangeOrder": {
+                      "type": [
+                        "integer",
+                        "string"
+                      ],
+                      "description": "In which order to arrange the loaded data. Arranges data based of the key identifier of the item.  Options: [ `AsciiAsc` - orders by the ascii value ascending / `AsciiDesc` - orders by the ascii value descending / `FirstNumericalAsc` - orders by the first found numerical value in the string ascending /`FirstNumericalDesc` - orders by the first found numerical value in the string descending /'Unordered' - does not order the data ]",
+                      "pattern": "\\$\\{.*\\}",
+                      "enum": [
+                        "AsciiAsc",
+                        "AsciiDesc",
+                        "FirstNumericalAsc",
+                        "FirstNumericalDesc",
+                        "Unordered"
+                      ]
+                    },
+                    "Count": {
+                      "type": [
+                        "integer",
+                        "null",
+                        "string"
+                      ],
+                      "description": "The number of items to generate out of the given data sources (If count is bigger than available number of items an exception will be thrown), if no value is given generates the number of items in the given data sources",
+                      "format": "int32",
+                      "maximum": 2147483647.0,
+                      "minimum": 0.0,
+                      "pattern": "\\$\\{.*\\}"
+                    },
+                    "DataUuidRegexExpression": {
+                      "type": "string",
+                      "description": "A regex expression to use for filtering data from the external source by their UUID, only items that match the regex will be taken",
+                      "default": ".*"
+                    },
+                    "StorageMetaData": {
+                      "type": [
+                        "integer",
+                        "string"
+                      ],
+                      "description": "The way to store the name of the generated data as key in StorageMetaData. Options:[ `FullPath` - stores the full path of the item as the key / `RelativePath` - stores the relative path related to the prefix / `ItemName` - stores only the name of the item as the key / `None` - does not store the name of the item",
+                      "default": "RelativePath",
+                      "pattern": "\\$\\{.*\\}",
+                      "enum": [
+                        "FullPath",
+                        "RelativePath",
+                        "ItemName",
+                        "None"
+                      ]
+                    },
+                    "FileSystem": {
+                      "type": [
+                        "object",
+                        "string"
+                      ],
+                      "description": "File system directory configuration",
+                      "pattern": "\\$\\{.*\\}",
+                      "required": [
+                        "Path"
+                      ],
+                      "properties": {
+                        "Path": {
+                          "type": "string",
+                          "description": "The path of the directory containing the relevant files"
+                        },
+                        "SearchPattern": {
+                          "type": "string",
+                          "description": "The search string to match against the names of files in path. This parameter can contain a combination of valid literal path and wildcard (* and ?) characters, but it doesn't support regular expressions.",
+                          "default": ""
+                        }
+                      }
+                    }
+                  }
+                },
+                {
+                  "title": "FromLettuceDataSources",
+                  "type": [
+                    "null",
+                    "object",
+                    "string"
+                  ],
+                  "description": "Supports generating data from multiple DataSources that contain lettuce files. `DataSources`: Used, must all contain Lettuce formatted data deserialized into Json (JsonNode). `SessionData`: Passed to used DataSources.",
+                  "pattern": "\\$\\{.*\\}",
+                  "properties": {
+                    "Count": {
+                      "type": [
+                        "integer",
+                        "null",
+                        "string"
+                      ],
+                      "description": "The number of items to generate out of the given data sources (If count is bigger than available number of items an exception will be thrown), if no value is given generates the number of items in the given data sources",
+                      "format": "int32",
+                      "maximum": 2147483647.0,
+                      "minimum": 0.0,
+                      "pattern": "\\$\\{.*\\}"
+                    }
+                  }
+                },
+                {
+                  "title": "FromS3",
+                  "type": [
+                    "null",
+                    "object",
+                    "string"
+                  ],
+                  "description": "Retrieves data from a configured S3 bucket. `DataSources`: Not used. `SessionData`: Not used.",
+                  "pattern": "\\$\\{.*\\}",
+                  "required": [
+                    "DataArrangeOrder",
+                    "S3"
+                  ],
+                  "properties": {
+                    "DataArrangeOrder": {
+                      "type": [
+                        "integer",
+                        "string"
+                      ],
+                      "description": "In which order to arrange the loaded data. Arranges data based of the key identifier of the item.  Options: [ `AsciiAsc` - orders by the ascii value ascending / `AsciiDesc` - orders by the ascii value descending / `FirstNumericalAsc` - orders by the first found numerical value in the string ascending /`FirstNumericalDesc` - orders by the first found numerical value in the string descending /'Unordered' - does not order the data ]",
+                      "pattern": "\\$\\{.*\\}",
+                      "enum": [
+                        "AsciiAsc",
+                        "AsciiDesc",
+                        "FirstNumericalAsc",
+                        "FirstNumericalDesc",
+                        "Unordered"
+                      ]
+                    },
+                    "Count": {
+                      "type": [
+                        "integer",
+                        "null",
+                        "string"
+                      ],
+                      "description": "The number of items to generate out of the given data sources (If count is bigger than available number of items an exception will be thrown), if no value is given generates the number of items in the given data sources",
+                      "format": "int32",
+                      "maximum": 2147483647.0,
+                      "minimum": 0.0,
+                      "pattern": "\\$\\{.*\\}"
+                    },
+                    "DataUuidRegexExpression": {
+                      "type": "string",
+                      "description": "A regex expression to use for filtering data from the external source by their UUID, only items that match the regex will be taken",
+                      "default": ".*"
+                    },
+                    "StorageMetaData": {
+                      "type": [
+                        "integer",
+                        "string"
+                      ],
+                      "description": "The way to store the name of the generated data as key in StorageMetaData. Options:[ `FullPath` - stores the full path of the item as the key / `RelativePath` - stores the relative path related to the prefix / `ItemName` - stores only the name of the item as the key / `None` - does not store the name of the item",
+                      "default": "RelativePath",
+                      "pattern": "\\$\\{.*\\}",
+                      "enum": [
+                        "FullPath",
+                        "RelativePath",
+                        "ItemName",
+                        "None"
+                      ]
+                    },
+                    "LoadMetadataFirst": {
+                      "type": [
+                        "boolean",
+                        "string"
+                      ],
+                      "description": "Wheather to load lightweight S3 metadata first and then load objects sequentially (true) or load all objects parallelly (false)",
+                      "default": true,
+                      "pattern": "\\$\\{.*\\}"
+                    },
+                    "S3": {
+                      "type": [
+                        "object",
+                        "string"
+                      ],
+                      "description": "S3 configurations",
+                      "pattern": "\\$\\{.*\\}",
+                      "required": [
+                        "StorageBucket",
+                        "ServiceURL",
+                        "AccessKey",
+                        "SecretKey"
+                      ],
+                      "properties": {
+                        "StorageBucket": {
+                          "type": "string",
+                          "description": "Name of S3 bucket"
+                        },
+                        "ServiceURL": {
+                          "type": "string",
+                          "description": "S3 service url",
+                          "format": "uri"
+                        },
+                        "AccessKey": {
+                          "type": "string",
+                          "description": "S3 account access key"
+                        },
+                        "SecretKey": {
+                          "type": "string",
+                          "description": "S3 account secret access key"
+                        },
+                        "ForcePathStyle": {
+                          "type": [
+                            "boolean",
+                            "string"
+                          ],
+                          "description": "When true, requests will always use path style addressing",
+                          "default": true,
+                          "pattern": "\\$\\{.*\\}"
+                        },
+                        "Delimiter": {
+                          "type": "string",
+                          "description": "Delimiter of the objects to extract from s3 bucket, this determines what objects will be retrieved from the bucket, objects that have at least one occurence of the delimiter in their relative path after the `Prefix` will not be retrieved from the bucket.",
+                          "default": ""
+                        },
+                        "Prefix": {
+                          "type": "string",
+                          "description": "The prefix of the objects, in the s3 bucket to take",
+                          "default": ""
+                        },
+                        "SkipEmptyObjects": {
+                          "type": [
+                            "boolean",
+                            "string"
+                          ],
+                          "description": "Whether to skip the loading of empty s3 objects or not, if true skips them if false doesnt skip them",
+                          "default": true,
+                          "pattern": "\\$\\{.*\\}"
+                        }
+                      }
+                    }
+                  }
+                },
+                {
+                  "title": "FromSessionDataDataSources",
+                  "type": [
+                    "array",
+                    "null",
+                    "string"
+                  ],
+                  "description": "Supports generating data from multiple DataSources that contain SessionData files. `DataSources`: All Used. Must all be serialized (`byte[]`) `SessionData` items. `SessionData`: Passed to used DataSources.",
+                  "pattern": "\\$\\{.*\\}",
+                  "items": [
+                    {
+                      "title": "FromSessionDataDataSourcesConfiguration",
+                      "type": [
+                        "object",
+                        "string"
+                      ],
+                      "description": "Supports generating data from multiple DataSources that contain SessionData files. `DataSources`: All Used. Must all be serialized (`byte[]`) `SessionData` items. `SessionData`: Passed to used DataSources.",
+                      "pattern": "\\$\\{.*\\}",
+                      "additionalProperties": false,
+                      "required": [
+                        "SessionName",
+                        "CommunicationDataList"
+                      ],
+                      "properties": {
+                        "SessionName": {
+                          "type": "string",
+                          "description": "name of the session to load the outputs/inputs of as part of the generated data"
+                        },
+                        "CommunicationDataList": {
+                          "type": [
+                            "array",
+                            "string"
+                          ],
+                          "description": "All of the communnication data items in the given session data to load as part of the generated data by the order listed here",
+                          "pattern": "\\$\\{.*\\}",
+                          "minItems": 1,
+                          "items": [
+                            {
+                              "type": [
+                                "object",
+                                "string"
+                              ],
+                              "pattern": "\\$\\{.*\\}",
+                              "required": [
+                                "Type",
+                                "Name"
+                              ],
+                              "properties": {
+                                "Type": {
+                                  "type": [
+                                    "integer",
+                                    "string"
+                                  ],
+                                  "description": "The type of the communication data to generate. Options: [ `Input` -  an input communication data from the Inputs list in the SessionData structure / `Output` - an output communication data from the Outputs list in the SessionData structure ]",
+                                  "pattern": "\\$\\{.*\\}",
+                                  "enum": [
+                                    "Input",
+                                    "Output"
+                                  ]
+                                },
+                                "Name": {
+                                  "type": "string",
+                                  "description": "The name of the communication data in the session data to generate"
+                                }
+                              }
+                            }
+                          ]
+                        }
+                      },
+                      "definitions": {
+                        "CommunicationDataName": {
+                          "type": "object",
+                          "additionalProperties": false,
+                          "required": [
+                            "Type",
+                            "Name"
+                          ],
+                          "properties": {
+                            "Type": {
+                              "description": "The type of the communication data to generate. Options: [ `Input` -  an input communication data from the Inputs list in the SessionData structure / `Output` - an output communication data from the Outputs list in the SessionData structure ]",
+                              "oneOf": [
+                                {
+                                  "$ref": "#/properties/Generators/items/0/properties/GeneratorConfiguration/anyOf/7/items/0/definitions/CommunicationDataType"
+                                }
+                              ]
+                            },
+                            "Name": {
+                              "type": "string",
+                              "description": "The name of the communication data in the session data to generate",
+                              "minLength": 1
+                            }
+                          }
+                        },
+                        "CommunicationDataType": {
+                          "type": "integer",
+                          "description": "0 = Input\n1 = Output",
+                          "x-enumNames": [
+                            "Input",
+                            "Output"
+                          ],
+                          "enum": [
+                            0,
+                            1
+                          ]
+                        }
+                      }
+                    }
+                  ]
+                },
+                {
+                  "title": "Json",
+                  "type": [
+                    "null",
+                    "object",
+                    "string"
+                  ],
+                  "description": "Supports generating data from Json data sources. `DataSources`: Used, should only be a single one and must contain data deserialized into Json (JsonNode). `SessionData`: Passed to used DataSources.",
+                  "pattern": "\\$\\{.*\\}",
+                  "required": [
+                    "Count",
+                    "JsonDataSourceName"
+                  ],
+                  "properties": {
+                    "Count": {
+                      "type": [
+                        "integer",
+                        "string"
+                      ],
+                      "description": "The Number of generations",
+                      "format": "int32",
+                      "maximum": 2147483647.0,
+                      "minimum": 0.0,
+                      "pattern": "\\$\\{.*\\}"
+                    },
+                    "JsonFieldReplacements": {
+                      "type": [
+                        "array",
+                        "string"
+                      ],
+                      "description": "Field injections to generation's Json",
+                      "pattern": "\\$\\{.*\\}",
+                      "items": [
+                        {
+                          "type": [
+                            "object",
+                            "string"
+                          ],
+                          "pattern": "\\$\\{.*\\}",
+                          "required": [
+                            "Path"
+                          ],
+                          "properties": {
+                            "Path": {
+                              "type": "string",
+                              "description": "The path (JSONPath query language Feb 2024, by Stefan Gossner) of the field to inject to"
+                            },
+                            "ValueType": {
+                              "type": [
+                                "integer",
+                                "string"
+                              ],
+                              "description": "The type of static field injection to use",
+                              "pattern": "\\$\\{.*\\}",
+                              "enum": [
+                                "Null",
+                                "FromDataSource",
+                                "DateTime",
+                                "UnixEpochTime",
+                                "String",
+                                "Boolean",
+                                "Integer",
+                                "Double",
+                                "ByteArray"
+                              ]
+                            },
+                            "FromDataSource": {
+                              "type": [
+                                "object",
+                                "string"
+                              ],
+                              "description": "The generation field configuration",
+                              "pattern": "\\$\\{.*\\}",
+                              "required": [
+                                "Name"
+                              ],
+                              "properties": {
+                                "Name": {
+                                  "type": "string",
+                                  "description": "The name of the data source to use for the value of the field"
+                                },
+                                "OutOfRangePolicy": {
+                                  "type": [
+                                    "integer",
+                                    "string"
+                                  ],
+                                  "description": "The policy to use if the data source is out of range",
+                                  "pattern": "\\$\\{.*\\}",
+                                  "enum": [
+                                    "Null",
+                                    "Loop"
+                                  ]
+                                }
+                              }
+                            },
+                            "DateTime": {
+                              "type": [
+                                "object",
+                                "string"
+                              ],
+                              "description": "The date-time field configuration",
+                              "pattern": "\\$\\{.*\\}",
+                              "properties": {
+                                "Year": {
+                                  "type": [
+                                    "integer",
+                                    "null",
+                                    "string"
+                                  ],
+                                  "description": "Constant Year of the date time",
+                                  "format": "int32",
+                                  "pattern": "\\$\\{.*\\}"
+                                },
+                                "Month": {
+                                  "type": [
+                                    "integer",
+                                    "null",
+                                    "string"
+                                  ],
+                                  "description": "Constant Month of the date time",
+                                  "format": "int32",
+                                  "pattern": "\\$\\{.*\\}"
+                                },
+                                "Day": {
+                                  "type": [
+                                    "integer",
+                                    "null",
+                                    "string"
+                                  ],
+                                  "description": "Constant Day of the date time",
+                                  "format": "int32",
+                                  "pattern": "\\$\\{.*\\}"
+                                },
+                                "DayOffset": {
+                                  "type": [
+                                    "integer",
+                                    "string"
+                                  ],
+                                  "description": "Day offset from the date time",
+                                  "format": "int32",
+                                  "default": 0,
+                                  "pattern": "\\$\\{.*\\}"
+                                },
+                                "Hour": {
+                                  "type": [
+                                    "integer",
+                                    "null",
+                                    "string"
+                                  ],
+                                  "description": "Constant Hour of the date time",
+                                  "format": "int32",
+                                  "pattern": "\\$\\{.*\\}"
+                                },
+                                "HourOffset": {
+                                  "type": [
+                                    "integer",
+                                    "string"
+                                  ],
+                                  "description": "Hour offset from the date time",
+                                  "format": "int32",
+                                  "default": 0,
+                                  "pattern": "\\$\\{.*\\}"
+                                },
+                                "Minute": {
+                                  "type": [
+                                    "integer",
+                                    "null",
+                                    "string"
+                                  ],
+                                  "description": "Constant Minute of the date time",
+                                  "format": "int32",
+                                  "pattern": "\\$\\{.*\\}"
+                                },
+                                "MinuteOffset": {
+                                  "type": [
+                                    "integer",
+                                    "string"
+                                  ],
+                                  "description": "Minute offset from the date time",
+                                  "format": "int32",
+                                  "default": 0,
+                                  "pattern": "\\$\\{.*\\}"
+                                },
+                                "Second": {
+                                  "type": [
+                                    "integer",
+                                    "null",
+                                    "string"
+                                  ],
+                                  "description": "Constant Second of the date time",
+                                  "format": "int32",
+                                  "pattern": "\\$\\{.*\\}"
+                                },
+                                "SecondOffset": {
+                                  "type": [
+                                    "integer",
+                                    "string"
+                                  ],
+                                  "description": "Second offset from the date time",
+                                  "format": "int32",
+                                  "default": 0,
+                                  "pattern": "\\$\\{.*\\}"
+                                },
+                                "Millisecond": {
+                                  "type": [
+                                    "integer",
+                                    "null",
+                                    "string"
+                                  ],
+                                  "description": "Constant Millisecond of the date time",
+                                  "format": "int32",
+                                  "pattern": "\\$\\{.*\\}"
+                                },
+                                "MillisecondOffset": {
+                                  "type": [
+                                    "integer",
+                                    "string"
+                                  ],
+                                  "description": "Millisecond offset from the date time",
+                                  "format": "int32",
+                                  "default": 0,
+                                  "pattern": "\\$\\{.*\\}"
+                                },
+                                "TimeZone": {
+                                  "type": [
+                                    "null",
+                                    "string"
+                                  ],
+                                  "description": "Timezone of the date time (default UTC)"
+                                },
+                                "Format": {
+                                  "type": "string",
+                                  "description": "Format of the date time (default ISO 8601 without Tim Zone)",
+                                  "default": "o"
+                                }
+                              }
+                            },
+                            "UnixEpochTime": {
+                              "type": [
+                                "object",
+                                "string"
+                              ],
+                              "description": "The unix epoch time field configuration",
+                              "pattern": "\\$\\{.*\\}",
+                              "properties": {
+                                "Year": {
+                                  "type": [
+                                    "integer",
+                                    "null",
+                                    "string"
+                                  ],
+                                  "description": "Constant Year of the date time",
+                                  "format": "int32",
+                                  "pattern": "\\$\\{.*\\}"
+                                },
+                                "Month": {
+                                  "type": [
+                                    "integer",
+                                    "null",
+                                    "string"
+                                  ],
+                                  "description": "Constant Month of the date time",
+                                  "format": "int32",
+                                  "pattern": "\\$\\{.*\\}"
+                                },
+                                "Day": {
+                                  "type": [
+                                    "integer",
+                                    "null",
+                                    "string"
+                                  ],
+                                  "description": "Constant Day of the date time",
+                                  "format": "int32",
+                                  "pattern": "\\$\\{.*\\}"
+                                },
+                                "DayOffset": {
+                                  "type": [
+                                    "integer",
+                                    "string"
+                                  ],
+                                  "description": "Day offset from the date time",
+                                  "format": "int32",
+                                  "default": 0,
+                                  "pattern": "\\$\\{.*\\}"
+                                },
+                                "Hour": {
+                                  "type": [
+                                    "integer",
+                                    "null",
+                                    "string"
+                                  ],
+                                  "description": "Constant Hour of the date time",
+                                  "format": "int32",
+                                  "pattern": "\\$\\{.*\\}"
+                                },
+                                "HourOffset": {
+                                  "type": [
+                                    "integer",
+                                    "string"
+                                  ],
+                                  "description": "Hour offset from the date time",
+                                  "format": "int32",
+                                  "default": 0,
+                                  "pattern": "\\$\\{.*\\}"
+                                },
+                                "Minute": {
+                                  "type": [
+                                    "integer",
+                                    "null",
+                                    "string"
+                                  ],
+                                  "description": "Constant Minute of the date time",
+                                  "format": "int32",
+                                  "pattern": "\\$\\{.*\\}"
+                                },
+                                "MinuteOffset": {
+                                  "type": [
+                                    "integer",
+                                    "string"
+                                  ],
+                                  "description": "Minute offset from the date time",
+                                  "format": "int32",
+                                  "default": 0,
+                                  "pattern": "\\$\\{.*\\}"
+                                },
+                                "Second": {
+                                  "type": [
+                                    "integer",
+                                    "null",
+                                    "string"
+                                  ],
+                                  "description": "Constant Second of the date time",
+                                  "format": "int32",
+                                  "pattern": "\\$\\{.*\\}"
+                                },
+                                "SecondOffset": {
+                                  "type": [
+                                    "integer",
+                                    "string"
+                                  ],
+                                  "description": "Second offset from the date time",
+                                  "format": "int32",
+                                  "default": 0,
+                                  "pattern": "\\$\\{.*\\}"
+                                },
+                                "Millisecond": {
+                                  "type": [
+                                    "integer",
+                                    "null",
+                                    "string"
+                                  ],
+                                  "description": "Constant Millisecond of the date time",
+                                  "format": "int32",
+                                  "pattern": "\\$\\{.*\\}"
+                                },
+                                "MillisecondOffset": {
+                                  "type": [
+                                    "integer",
+                                    "string"
+                                  ],
+                                  "description": "Millisecond offset from the date time",
+                                  "format": "int32",
+                                  "default": 0,
+                                  "pattern": "\\$\\{.*\\}"
+                                },
+                                "UnixEpochScaleType": {
+                                  "type": [
+                                    "integer",
+                                    "string"
+                                  ],
+                                  "description": "Epoch Unix Time Scale Representation",
+                                  "default": "Seconds",
+                                  "pattern": "\\$\\{.*\\}",
+                                  "enum": [
+                                    "Seconds",
+                                    "Milliseconds"
+                                  ]
+                                },
+                                "UnixEpochObjectType": {
+                                  "type": [
+                                    "integer",
+                                    "string"
+                                  ],
+                                  "description": "Epoch Unix Time Object Representation",
+                                  "default": "Long",
+                                  "pattern": "\\$\\{.*\\}",
+                                  "enum": [
+                                    "Long",
+                                    "String"
+                                  ]
+                                }
+                              }
+                            },
+                            "String": {
+                              "type": [
+                                "object",
+                                "string"
+                              ],
+                              "description": "The value of the field if the type is 'String'",
+                              "pattern": "\\$\\{.*\\}",
+                              "properties": {
+                                "Value": {
+                                  "type": "string",
+                                  "description": "The literal value to inject when this manual value configuration is selected."
+                                }
+                              }
+                            },
+                            "Integer": {
+                              "type": [
+                                "object",
+                                "string"
+                              ],
+                              "description": "The value of the field if the type is 'Integer'",
+                              "pattern": "\\$\\{.*\\}",
+                              "properties": {
+                                "Value": {
+                                  "type": [
+                                    "integer",
+                                    "string"
+                                  ],
+                                  "description": "The literal value to inject when this manual value configuration is selected.",
+                                  "format": "int32",
+                                  "pattern": "\\$\\{.*\\}"
+                                }
+                              }
+                            },
+                            "Double": {
+                              "type": [
+                                "object",
+                                "string"
+                              ],
+                              "description": "The value of the field if the type is 'Double'",
+                              "pattern": "\\$\\{.*\\}",
+                              "properties": {
+                                "Value": {
+                                  "type": [
+                                    "number",
+                                    "string"
+                                  ],
+                                  "description": "The literal value to inject when this manual value configuration is selected.",
+                                  "format": "double",
+                                  "pattern": "\\$\\{.*\\}"
+                                }
+                              }
+                            },
+                            "Boolean": {
+                              "type": [
+                                "object",
+                                "string"
+                              ],
+                              "description": "The value of the field if the type is 'Boolean'",
+                              "pattern": "\\$\\{.*\\}",
+                              "properties": {
+                                "Value": {
+                                  "type": [
+                                    "boolean",
+                                    "string"
+                                  ],
+                                  "description": "The literal value to inject when this manual value configuration is selected.",
+                                  "pattern": "\\$\\{.*\\}"
+                                }
+                              }
+                            },
+                            "ByteArray": {
+                              "type": [
+                                "object",
+                                "string"
+                              ],
+                              "description": "The value of the field if the type is 'ByteArray'",
+                              "pattern": "\\$\\{.*\\}",
+                              "properties": {
+                                "Value": {
+                                  "type": "string",
+                                  "description": "The literal value to inject when this manual value configuration is selected.",
+                                  "format": "byte"
+                                }
+                              }
+                            }
+                          }
+                        }
+                      ]
+                    },
+                    "OutputObjectType": {
+                      "type": [
+                        "integer",
+                        "string"
+                      ],
+                      "description": "Output type of generation's Json, parsing the result to a specific type",
+                      "pattern": "\\$\\{.*\\}",
+                      "enum": [
+                        "Json",
+                        "Binary",
+                        "ProtobufMessage",
+                        "Xml"
+                      ]
+                    },
+                    "OutputObjectTypeConfiguration": {
+                      "type": [
+                        "object",
+                        "string"
+                      ],
+                      "description": "Output type of generation's Json configuration",
+                      "pattern": "\\$\\{.*\\}",
+                      "required": [
+                        "TypeFullName"
+                      ],
+                      "properties": {
+                        "AssemblyName": {
+                          "type": [
+                            "null",
+                            "string"
+                          ],
+                          "description": "The name of the assembly the type is located in, If no value is given by default tries to take the entry assembly"
+                        },
+                        "TypeFullName": {
+                          "type": "string",
+                          "description": "The full name (including path) of the type"
+                        }
+                      }
+                    },
+                    "JsonDataSourceName": {
+                      "type": "string",
+                      "description": "DataSource name that contains json"
+                    }
+                  }
+                },
+                {
+                  "title": "JsonSchemaDraft4",
+                  "type": [
+                    "null",
+                    "object",
+                    "string"
+                  ],
+                  "description": "Supports generating data from Json (Schema) data sources. `DataSources`: Used, should only be a single one and must  contain data deserialized into Json (JsonNode). `SessionData`: Passed to used DataSources.",
+                  "pattern": "\\$\\{.*\\}",
+                  "required": [
+                    "Count",
+                    "JsonDataSourceName"
+                  ],
+                  "properties": {
+                    "Count": {
+                      "type": [
+                        "integer",
+                        "string"
+                      ],
+                      "description": "The Number of generations",
+                      "format": "int32",
+                      "maximum": 2147483647.0,
+                      "minimum": 0.0,
+                      "pattern": "\\$\\{.*\\}"
+                    },
+                    "JsonFieldReplacements": {
+                      "type": [
+                        "array",
+                        "string"
+                      ],
+                      "description": "Field injections to generation's Json",
+                      "pattern": "\\$\\{.*\\}",
+                      "items": [
+                        {
+                          "type": [
+                            "object",
+                            "string"
+                          ],
+                          "pattern": "\\$\\{.*\\}",
+                          "required": [
+                            "Path"
+                          ],
+                          "properties": {
+                            "Path": {
+                              "type": "string",
+                              "description": "The path (JSONPath query language Feb 2024, by Stefan Gossner) of the field to inject to"
+                            },
+                            "ValueType": {
+                              "type": [
+                                "integer",
+                                "string"
+                              ],
+                              "description": "The type of static field injection to use",
+                              "pattern": "\\$\\{.*\\}",
+                              "enum": [
+                                "Null",
+                                "FromDataSource",
+                                "DateTime",
+                                "UnixEpochTime",
+                                "String",
+                                "Boolean",
+                                "Integer",
+                                "Double",
+                                "ByteArray"
+                              ]
+                            },
+                            "FromDataSource": {
+                              "type": [
+                                "object",
+                                "string"
+                              ],
+                              "description": "The generation field configuration",
+                              "pattern": "\\$\\{.*\\}",
+                              "required": [
+                                "Name"
+                              ],
+                              "properties": {
+                                "Name": {
+                                  "type": "string",
+                                  "description": "The name of the data source to use for the value of the field"
+                                },
+                                "OutOfRangePolicy": {
+                                  "type": [
+                                    "integer",
+                                    "string"
+                                  ],
+                                  "description": "The policy to use if the data source is out of range",
+                                  "pattern": "\\$\\{.*\\}",
+                                  "enum": [
+                                    "Null",
+                                    "Loop"
+                                  ]
+                                }
+                              }
+                            },
+                            "DateTime": {
+                              "type": [
+                                "object",
+                                "string"
+                              ],
+                              "description": "The date-time field configuration",
+                              "pattern": "\\$\\{.*\\}",
+                              "properties": {
+                                "Year": {
+                                  "type": [
+                                    "integer",
+                                    "null",
+                                    "string"
+                                  ],
+                                  "description": "Constant Year of the date time",
+                                  "format": "int32",
+                                  "pattern": "\\$\\{.*\\}"
+                                },
+                                "Month": {
+                                  "type": [
+                                    "integer",
+                                    "null",
+                                    "string"
+                                  ],
+                                  "description": "Constant Month of the date time",
+                                  "format": "int32",
+                                  "pattern": "\\$\\{.*\\}"
+                                },
+                                "Day": {
+                                  "type": [
+                                    "integer",
+                                    "null",
+                                    "string"
+                                  ],
+                                  "description": "Constant Day of the date time",
+                                  "format": "int32",
+                                  "pattern": "\\$\\{.*\\}"
+                                },
+                                "DayOffset": {
+                                  "type": [
+                                    "integer",
+                                    "string"
+                                  ],
+                                  "description": "Day offset from the date time",
+                                  "format": "int32",
+                                  "default": 0,
+                                  "pattern": "\\$\\{.*\\}"
+                                },
+                                "Hour": {
+                                  "type": [
+                                    "integer",
+                                    "null",
+                                    "string"
+                                  ],
+                                  "description": "Constant Hour of the date time",
+                                  "format": "int32",
+                                  "pattern": "\\$\\{.*\\}"
+                                },
+                                "HourOffset": {
+                                  "type": [
+                                    "integer",
+                                    "string"
+                                  ],
+                                  "description": "Hour offset from the date time",
+                                  "format": "int32",
+                                  "default": 0,
+                                  "pattern": "\\$\\{.*\\}"
+                                },
+                                "Minute": {
+                                  "type": [
+                                    "integer",
+                                    "null",
+                                    "string"
+                                  ],
+                                  "description": "Constant Minute of the date time",
+                                  "format": "int32",
+                                  "pattern": "\\$\\{.*\\}"
+                                },
+                                "MinuteOffset": {
+                                  "type": [
+                                    "integer",
+                                    "string"
+                                  ],
+                                  "description": "Minute offset from the date time",
+                                  "format": "int32",
+                                  "default": 0,
+                                  "pattern": "\\$\\{.*\\}"
+                                },
+                                "Second": {
+                                  "type": [
+                                    "integer",
+                                    "null",
+                                    "string"
+                                  ],
+                                  "description": "Constant Second of the date time",
+                                  "format": "int32",
+                                  "pattern": "\\$\\{.*\\}"
+                                },
+                                "SecondOffset": {
+                                  "type": [
+                                    "integer",
+                                    "string"
+                                  ],
+                                  "description": "Second offset from the date time",
+                                  "format": "int32",
+                                  "default": 0,
+                                  "pattern": "\\$\\{.*\\}"
+                                },
+                                "Millisecond": {
+                                  "type": [
+                                    "integer",
+                                    "null",
+                                    "string"
+                                  ],
+                                  "description": "Constant Millisecond of the date time",
+                                  "format": "int32",
+                                  "pattern": "\\$\\{.*\\}"
+                                },
+                                "MillisecondOffset": {
+                                  "type": [
+                                    "integer",
+                                    "string"
+                                  ],
+                                  "description": "Millisecond offset from the date time",
+                                  "format": "int32",
+                                  "default": 0,
+                                  "pattern": "\\$\\{.*\\}"
+                                },
+                                "TimeZone": {
+                                  "type": [
+                                    "null",
+                                    "string"
+                                  ],
+                                  "description": "Timezone of the date time (default UTC)"
+                                },
+                                "Format": {
+                                  "type": "string",
+                                  "description": "Format of the date time (default ISO 8601 without Tim Zone)",
+                                  "default": "o"
+                                }
+                              }
+                            },
+                            "UnixEpochTime": {
+                              "type": [
+                                "object",
+                                "string"
+                              ],
+                              "description": "The unix epoch time field configuration",
+                              "pattern": "\\$\\{.*\\}",
+                              "properties": {
+                                "Year": {
+                                  "type": [
+                                    "integer",
+                                    "null",
+                                    "string"
+                                  ],
+                                  "description": "Constant Year of the date time",
+                                  "format": "int32",
+                                  "pattern": "\\$\\{.*\\}"
+                                },
+                                "Month": {
+                                  "type": [
+                                    "integer",
+                                    "null",
+                                    "string"
+                                  ],
+                                  "description": "Constant Month of the date time",
+                                  "format": "int32",
+                                  "pattern": "\\$\\{.*\\}"
+                                },
+                                "Day": {
+                                  "type": [
+                                    "integer",
+                                    "null",
+                                    "string"
+                                  ],
+                                  "description": "Constant Day of the date time",
+                                  "format": "int32",
+                                  "pattern": "\\$\\{.*\\}"
+                                },
+                                "DayOffset": {
+                                  "type": [
+                                    "integer",
+                                    "string"
+                                  ],
+                                  "description": "Day offset from the date time",
+                                  "format": "int32",
+                                  "default": 0,
+                                  "pattern": "\\$\\{.*\\}"
+                                },
+                                "Hour": {
+                                  "type": [
+                                    "integer",
+                                    "null",
+                                    "string"
+                                  ],
+                                  "description": "Constant Hour of the date time",
+                                  "format": "int32",
+                                  "pattern": "\\$\\{.*\\}"
+                                },
+                                "HourOffset": {
+                                  "type": [
+                                    "integer",
+                                    "string"
+                                  ],
+                                  "description": "Hour offset from the date time",
+                                  "format": "int32",
+                                  "default": 0,
+                                  "pattern": "\\$\\{.*\\}"
+                                },
+                                "Minute": {
+                                  "type": [
+                                    "integer",
+                                    "null",
+                                    "string"
+                                  ],
+                                  "description": "Constant Minute of the date time",
+                                  "format": "int32",
+                                  "pattern": "\\$\\{.*\\}"
+                                },
+                                "MinuteOffset": {
+                                  "type": [
+                                    "integer",
+                                    "string"
+                                  ],
+                                  "description": "Minute offset from the date time",
+                                  "format": "int32",
+                                  "default": 0,
+                                  "pattern": "\\$\\{.*\\}"
+                                },
+                                "Second": {
+                                  "type": [
+                                    "integer",
+                                    "null",
+                                    "string"
+                                  ],
+                                  "description": "Constant Second of the date time",
+                                  "format": "int32",
+                                  "pattern": "\\$\\{.*\\}"
+                                },
+                                "SecondOffset": {
+                                  "type": [
+                                    "integer",
+                                    "string"
+                                  ],
+                                  "description": "Second offset from the date time",
+                                  "format": "int32",
+                                  "default": 0,
+                                  "pattern": "\\$\\{.*\\}"
+                                },
+                                "Millisecond": {
+                                  "type": [
+                                    "integer",
+                                    "null",
+                                    "string"
+                                  ],
+                                  "description": "Constant Millisecond of the date time",
+                                  "format": "int32",
+                                  "pattern": "\\$\\{.*\\}"
+                                },
+                                "MillisecondOffset": {
+                                  "type": [
+                                    "integer",
+                                    "string"
+                                  ],
+                                  "description": "Millisecond offset from the date time",
+                                  "format": "int32",
+                                  "default": 0,
+                                  "pattern": "\\$\\{.*\\}"
+                                },
+                                "UnixEpochScaleType": {
+                                  "type": [
+                                    "integer",
+                                    "string"
+                                  ],
+                                  "description": "Epoch Unix Time Scale Representation",
+                                  "default": "Seconds",
+                                  "pattern": "\\$\\{.*\\}",
+                                  "enum": [
+                                    "Seconds",
+                                    "Milliseconds"
+                                  ]
+                                },
+                                "UnixEpochObjectType": {
+                                  "type": [
+                                    "integer",
+                                    "string"
+                                  ],
+                                  "description": "Epoch Unix Time Object Representation",
+                                  "default": "Long",
+                                  "pattern": "\\$\\{.*\\}",
+                                  "enum": [
+                                    "Long",
+                                    "String"
+                                  ]
+                                }
+                              }
+                            },
+                            "String": {
+                              "type": [
+                                "object",
+                                "string"
+                              ],
+                              "description": "The value of the field if the type is 'String'",
+                              "pattern": "\\$\\{.*\\}",
+                              "properties": {
+                                "Value": {
+                                  "type": "string",
+                                  "description": "The literal value to inject when this manual value configuration is selected."
+                                }
+                              }
+                            },
+                            "Integer": {
+                              "type": [
+                                "object",
+                                "string"
+                              ],
+                              "description": "The value of the field if the type is 'Integer'",
+                              "pattern": "\\$\\{.*\\}",
+                              "properties": {
+                                "Value": {
+                                  "type": [
+                                    "integer",
+                                    "string"
+                                  ],
+                                  "description": "The literal value to inject when this manual value configuration is selected.",
+                                  "format": "int32",
+                                  "pattern": "\\$\\{.*\\}"
+                                }
+                              }
+                            },
+                            "Double": {
+                              "type": [
+                                "object",
+                                "string"
+                              ],
+                              "description": "The value of the field if the type is 'Double'",
+                              "pattern": "\\$\\{.*\\}",
+                              "properties": {
+                                "Value": {
+                                  "type": [
+                                    "number",
+                                    "string"
+                                  ],
+                                  "description": "The literal value to inject when this manual value configuration is selected.",
+                                  "format": "double",
+                                  "pattern": "\\$\\{.*\\}"
+                                }
+                              }
+                            },
+                            "Boolean": {
+                              "type": [
+                                "object",
+                                "string"
+                              ],
+                              "description": "The value of the field if the type is 'Boolean'",
+                              "pattern": "\\$\\{.*\\}",
+                              "properties": {
+                                "Value": {
+                                  "type": [
+                                    "boolean",
+                                    "string"
+                                  ],
+                                  "description": "The literal value to inject when this manual value configuration is selected.",
+                                  "pattern": "\\$\\{.*\\}"
+                                }
+                              }
+                            },
+                            "ByteArray": {
+                              "type": [
+                                "object",
+                                "string"
+                              ],
+                              "description": "The value of the field if the type is 'ByteArray'",
+                              "pattern": "\\$\\{.*\\}",
+                              "properties": {
+                                "Value": {
+                                  "type": "string",
+                                  "description": "The literal value to inject when this manual value configuration is selected.",
+                                  "format": "byte"
+                                }
+                              }
+                            }
+                          }
+                        }
+                      ]
+                    },
+                    "OutputObjectType": {
+                      "type": [
+                        "integer",
+                        "string"
+                      ],
+                      "description": "Output type of generation's Json, parsing the result to a specific type",
+                      "pattern": "\\$\\{.*\\}",
+                      "enum": [
+                        "Json",
+                        "Binary",
+                        "ProtobufMessage",
+                        "Xml"
+                      ]
+                    },
+                    "OutputObjectTypeConfiguration": {
+                      "type": [
+                        "object",
+                        "string"
+                      ],
+                      "description": "Output type of generation's Json configuration",
+                      "pattern": "\\$\\{.*\\}",
+                      "required": [
+                        "TypeFullName"
+                      ],
+                      "properties": {
+                        "AssemblyName": {
+                          "type": [
+                            "null",
+                            "string"
+                          ],
+                          "description": "The name of the assembly the type is located in, If no value is given by default tries to take the entry assembly"
+                        },
+                        "TypeFullName": {
+                          "type": "string",
+                          "description": "The full name (including path) of the type"
+                        }
+                      }
+                    },
+                    "JsonDataSourceName": {
+                      "type": "string",
+                      "description": "DataSource name that contains json"
+                    },
+                    "Seed": {
+                      "type": [
+                        "integer",
+                        "null",
+                        "string"
+                      ],
+                      "description": "The generation seed, used for random Json Schema value generation",
+                      "format": "int32",
+                      "pattern": "\\$\\{.*\\}"
+                    }
+                  }
+                },
+                {
+                  "title": "LettuceFromFileSystem",
+                  "type": [
+                    "null",
+                    "object",
+                    "string"
+                  ],
+                  "description": "Retrieves lettuce data from a configured path to a directory in the file system. `DataSources`: Not used. `SessionData`: Not used.",
+                  "pattern": "\\$\\{.*\\}",
+                  "required": [
+                    "FileSystem",
+                    "DataArrangeOrder"
+                  ],
+                  "properties": {
+                    "FileSystem": {
+                      "type": [
+                        "object",
+                        "string"
+                      ],
+                      "description": "File system directory configuration",
+                      "pattern": "\\$\\{.*\\}",
+                      "required": [
+                        "Path"
+                      ],
+                      "properties": {
+                        "Path": {
+                          "type": "string",
+                          "description": "The path of the directory containing the relevant files"
+                        },
+                        "SearchPattern": {
+                          "type": "string",
+                          "description": "The search string to match against the names of files in path. This parameter can contain a combination of valid literal path and wildcard (* and ?) characters, but it doesn't support regular expressions.",
+                          "default": ""
+                        }
+                      }
+                    },
+                    "DataArrangeOrder": {
+                      "type": [
+                        "integer",
+                        "string"
+                      ],
+                      "description": "In which order to arrange the loaded data. Arranges data based of the key identifier of the item.  Options: [ `AsciiAsc` - orders by the ascii value ascending / `AsciiDesc` - orders by the ascii value descending / `FirstNumericalAsc` - orders by the first found numerical value in the string ascending /`FirstNumericalDesc` - orders by the first found numerical value in the string descending /'Unordered' - does not order the data ]",
+                      "pattern": "\\$\\{.*\\}",
+                      "enum": [
+                        "AsciiAsc",
+                        "AsciiDesc",
+                        "FirstNumericalAsc",
+                        "FirstNumericalDesc",
+                        "Unordered"
+                      ]
+                    },
+                    "Count": {
+                      "type": [
+                        "integer",
+                        "null",
+                        "string"
+                      ],
+                      "description": "The number of items to generate out of the given data sources (If count is bigger than available number of items an exception will be thrown), if no value is given generates the number of items in the given data sources",
+                      "format": "int32",
+                      "maximum": 2147483647.0,
+                      "minimum": 0.0,
+                      "pattern": "\\$\\{.*\\}"
+                    },
+                    "DataUuidRegexExpression": {
+                      "type": "string",
+                      "description": "A regex expression to use for filtering data from the external source by their UUID, only items that match the regex will be taken",
+                      "default": ".*"
+                    },
+                    "StorageMetaData": {
+                      "type": [
+                        "integer",
+                        "string"
+                      ],
+                      "description": "The way to store the name of the generated data as key in StorageMetaData. Options:[ `FullPath` - stores the full path of the item as the key / `RelativePath` - stores the relative path related to the prefix / `ItemName` - stores only the name of the item as the key / `None` - does not store the name of the item",
+                      "default": "RelativePath",
+                      "pattern": "\\$\\{.*\\}",
+                      "enum": [
+                        "FullPath",
+                        "RelativePath",
+                        "ItemName",
+                        "None"
+                      ]
+                    }
+                  }
+                },
+                {
+                  "title": "Stacking",
+                  "type": [
+                    "null",
+                    "object",
+                    "string"
+                  ],
+                  "description": "Supports generating data from multiple DataSources by configured items per generator. `DataSources`: Used. `SessionData`: Passed to used DataSources.",
+                  "pattern": "\\$\\{.*\\}",
+                  "required": [
+                    "ItemsPerGenerator"
+                  ],
+                  "properties": {
+                    "Count": {
+                      "type": [
+                        "integer",
+                        "null",
+                        "string"
+                      ],
+                      "description": "The number of items to generate out of the given data sources (If count is bigger than available number of items an exception will be thrown), if no value is given generates the number of items in the given data sources",
+                      "format": "int32",
+                      "maximum": 2147483647.0,
+                      "minimum": 0.0,
+                      "pattern": "\\$\\{.*\\}"
+                    },
+                    "ItemsPerGenerator": {
+                      "type": [
+                        "array",
+                        "string"
+                      ],
+                      "description": "The number of items to generate out of the given data sources in turn",
+                      "pattern": "\\$\\{.*\\}",
+                      "minItems": 1,
+                      "items": [
+                        {
+                          "type": [
+                            "integer",
+                            "string"
+                          ],
+                          "format": "int32",
+                          "pattern": "\\$\\{.*\\}"
+                        }
+                      ]
+                    },
+                    "LoopFinishedGenerators": {
+                      "type": [
+                        "boolean",
+                        "string"
+                      ],
+                      "description": "When true, generators will restart when there are no more items in them",
+                      "default": false,
+                      "pattern": "\\$\\{.*\\}"
+                    }
+                  }
+                }
+              ]
+            }
+          }
+        }
+      ]
+    }
+  }
+}
