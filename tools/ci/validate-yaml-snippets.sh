@@ -122,6 +122,10 @@ if "{{" in text or "{%" in text:
     print("template")
     sys.exit(0)
 
+if "# spec:no-validate" in text or "# spec:fragment" in text:
+    print("syntax")
+    sys.exit(0)
+
 try:
     documents = list(yaml.safe_load_all(text))
 except Exception as exc:

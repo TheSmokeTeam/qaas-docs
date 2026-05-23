@@ -32,6 +32,7 @@ nav:
       - Write Hooks: qaas/quickStart/writeHooks.md
       - Run a Test: qaas/quickStart/runTest.md
       - Hello-World HTTP: qaas/quickStart/helloWorldHttp.md
+      - Action Selection Playbook: qaas/quickStart/actionSelectionPlaybook.md
       - Maintainable Tests: qaas/quickStart/makeTestMoreMaintainable.md
       - Debug Failures: qaas/quickStart/debugTestFailure.md
     - Configuration Reference:

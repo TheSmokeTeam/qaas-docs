@@ -106,6 +106,7 @@ Misuse: `<<` only merges **mappings**. Merging into a sequence is a parse error.
 Reference files live alongside the test file and are loaded with `Reference:`:
 
 ```yaml
+# spec:fragment
 DataSources:
   - Reference: References/payloads.yaml
 ```
