@@ -1,18 +1,27 @@
 ---
-id: qaas.functions.builders.mocker-commands-sections.servers
+id: qaas.functions.builders.mocker.commands.sections.servers
 type: reference
 status: stable
 since: 2.0.0
 last_verified: 2026-05-22
 applies_to: [runner]
-keywords: [qaas, functions, builders, mocker, commands, sections]
-summary: "This page mirrors the Servers section from Mocker Commands."
+keywords: [runner, qaas, functions, builders, mocker, commands, sections, servers]
+summary: "Reference page for Mocker Commands: Servers."
 ---
+
+<!-- Verified-against: QaaS.Runner\QaaS.Runner.Sessions\Actions\MockerCommands\MockerCommandBuilder.cs -->
+
 # Mocker Commands: Servers
 
-This page mirrors the `Servers` section from [Mocker Commands](../mocker-commands.md).
+> TL;DR — This page mirrors the `Servers` section from [Mocker Commands](../mocker-commands.md) as a focused reference.
 
-## `WithServerName`
+## When to use {: #when-to-use}
+
+Use this page when you need the focused member list, signatures, and source notes for this section without scanning the full parent reference.
+
+## C# (CAC) usage {: #c-cac-usage}
+
+### `WithServerName` {: #withservername}
 
 ??? info "Source file, signature, and docstring"
     **Member**
@@ -32,5 +41,12 @@ This page mirrors the `Servers` section from [Mocker Commands](../mocker-command
     **Docstring**
     
     Configures server name on the current Runner mocker command builder instance.
-    
-    Use this method when working with the documented Runner mocker command builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
+
+## Edge cases {: #edge-cases}
+
+- This page is generated from the parent reference section; edit the source XML docs or generator when content needs to change.
+- If a linked source member is renamed, regenerate the reference docs before changing prose by hand.
+
+## See also {: #see-also}
+
+- [Mocker Commands](../mocker-commands.md)

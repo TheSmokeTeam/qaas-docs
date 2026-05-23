@@ -1,20 +1,41 @@
 ---
-id: framework.functions.extension-methods-sections.extension-methods
+id: framework.functions.extension.methods.sections.extension.methods
 type: reference
 status: stable
 since: 2.0.0
 last_verified: 2026-05-22
 applies_to: [framework]
 keywords: [framework, functions, extension, methods, sections]
-summary: "This page mirrors the Extension Methods section from Extension Methods."
+summary: "Reference page for Extension Methods: Extension Methods."
 ---
+
+<!-- Verified-against: QaaS.Framework\QaaS.Framework.Configurations\ConfigurationBindingUtils\ConfigurationMergeUtils.cs -->
+<!-- Verified-against: QaaS.Framework\QaaS.Framework.Configurations\ConfigurationBindingUtils\IConfigurationUtils.cs -->
+<!-- Verified-against: QaaS.Framework\QaaS.Framework.Configurations\ConfigurationUtils.cs -->
+<!-- Verified-against: QaaS.Framework\QaaS.Framework.Configurations\References\ConfigurationReferencesParser.cs -->
+<!-- Verified-against: QaaS.Framework\QaaS.Framework.Infrastructure\DateTimeExtensions.cs -->
+<!-- Verified-against: QaaS.Framework\QaaS.Framework.SDK\Extensions\CommunicationDataExtensions.cs -->
+<!-- Verified-against: QaaS.Framework\QaaS.Framework.SDK\Extensions\ContextGlobalDictionaryExtensions.cs -->
+<!-- Verified-against: QaaS.Framework\QaaS.Framework.SDK\Extensions\DataExtensions.cs -->
+<!-- Verified-against: QaaS.Framework\QaaS.Framework.SDK\Extensions\DataSourceExtensions.cs -->
+<!-- Verified-against: QaaS.Framework\QaaS.Framework.SDK\Extensions\LoggingExetentions.cs -->
+<!-- Verified-against: QaaS.Framework\QaaS.Framework.SDK\Extensions\RunningCommunicationDataExtensions.cs -->
+<!-- Verified-against: QaaS.Framework\QaaS.Framework.SDK\Extensions\RunningSessionDataExtensions.cs -->
+<!-- Verified-against: QaaS.Framework\QaaS.Framework.SDK\Extensions\SessionDataExtensions.cs -->
+
 # Extension Methods: Extension Methods
 
-This page mirrors the `Extension Methods` section from [Extension Methods](../extension-methods.md).
+> TL;DR — This page mirrors the `Extension Methods` section from [Extension Methods](../extension-methods.md) as a focused reference.
 
-## Communication data
+## When to use {: #when-to-use}
 
-### `GetCommunicationDataByName<TData>`
+Use this page when you need the focused member list, signatures, and source notes for this section without scanning the full parent reference.
+
+## C# (CAC) usage {: #c-cac-usage}
+
+### Communication data {: #communication-data}
+
+#### `GetCommunicationDataByName<TData>`
 
 ??? info "Source file, signature, and docstring"
     **Member**
@@ -35,7 +56,7 @@ This page mirrors the `Extension Methods` section from [Extension Methods](../ex
     
     Retrieves a CommunicationData from an enumerable of CommunicationData by its name
 
-### `CastCommunicationData<TCastTo>`
+#### `CastCommunicationData<TCastTo>`
 
 ??? info "Source file, signature, and docstring"
     **Member**
@@ -56,7 +77,7 @@ This page mirrors the `Extension Methods` section from [Extension Methods](../ex
     
     Casts a CommunicationData to a different type
 
-### `GetDataByIoMatchIndex<TData>`
+#### `GetDataByIoMatchIndex<TData>`
 
 ??? info "Source file, signature, and docstring"
     **Member**
@@ -77,9 +98,9 @@ This page mirrors the `Extension Methods` section from [Extension Methods](../ex
     
     Retrieves data by its IoMatchIndex from a CommunicationData object
 
-## Configuration merge utilities
+### Configuration merge utilities {: #configuration-merge-utilities}
 
-### `MergeConfigurationObjectIntoIConfiguration`
+#### `MergeConfigurationObjectIntoIConfiguration`
 
 ??? info "Source file, signature, and docstring"
     **Member**
@@ -100,7 +121,7 @@ This page mirrors the `Extension Methods` section from [Extension Methods](../ex
     
     Merges a partial configuration object into an existing IConfiguration instance. Fields omitted from configurationObject are preserved from configuration . A field is treated as omitted when it still matches the default value produced by a fresh instance of the same configuration type.
 
-### `MergeConfiguration<TConfiguration>`
+#### `MergeConfiguration<TConfiguration>`
 
 ??? info "Source file, signature, and docstring"
     **Member**
@@ -121,9 +142,9 @@ This page mirrors the `Extension Methods` section from [Extension Methods](../ex
     
     Merges a partial configuration object into an existing configuration instance. When the incoming configuration type differs from the existing one, the incoming configuration replaces it. Fields that still match a fresh default instance of the incoming configuration type are ignored.
 
-## Configuration references parser
+### Configuration references parser {: #configuration-references-parser}
 
-### `ResolveReferencesInConfiguration`
+#### `ResolveReferencesInConfiguration`
 
 ??? info "Source file, signature, and docstring"
     **Member**
@@ -144,9 +165,9 @@ This page mirrors the `Extension Methods` section from [Extension Methods](../ex
     
     Resolves all references in configuration according to loaded reference configs and given referenceResolutionPaths
 
-## Configuration utilities
+### Configuration utilities {: #configuration-utilities}
 
-### `BindConfigurationObjectToIConfiguration`
+#### `BindConfigurationObjectToIConfiguration`
 
 ??? info "Source file, signature, and docstring"
     **Member**
@@ -167,7 +188,7 @@ This page mirrors the `Extension Methods` section from [Extension Methods](../ex
     
     Merges a partial configuration object into the existing IConfiguration . Existing values are preserved when the incoming object leaves a field at its type default.
 
-### `GetDictionaryFromConfiguration`
+#### `GetDictionaryFromConfiguration`
 
 ??? info "Source file, signature, and docstring"
     **Member**
@@ -188,7 +209,7 @@ This page mirrors the `Extension Methods` section from [Extension Methods](../ex
     
     Returns Dictionary representation of given IConfiguration
 
-### `BuildConfigurationAsYaml`
+#### `BuildConfigurationAsYaml`
 
 ??? info "Source file, signature, and docstring"
     **Member**
@@ -209,7 +230,7 @@ This page mirrors the `Extension Methods` section from [Extension Methods](../ex
     
     Serializes IConfiguration object to Yaml string by a specific given order of its content's sections if given - else return default serialize result.
 
-### `LoadAndValidateConfiguration<TConfiguration>`
+#### `LoadAndValidateConfiguration<TConfiguration>`
 
 ??? info "Source file, signature, and docstring"
     **Member**
@@ -230,7 +251,7 @@ This page mirrors the `Extension Methods` section from [Extension Methods](../ex
     
     Load IConfiguration to a c# object and validate it
 
-### `EnrichedBuild`
+#### `EnrichedBuild`
 
 ??? info "Source file, signature, and docstring"
     **Member**
@@ -251,7 +272,7 @@ This page mirrors the `Extension Methods` section from [Extension Methods](../ex
     
     Builds IConfiguration from configuration builder while adding all parameterless configuration resolution extensions to the build process
 
-### `BindToObject<T>`
+#### `BindToObject<T>`
 
 ??? info "Source file, signature, and docstring"
     **Member**
@@ -272,7 +293,7 @@ This page mirrors the `Extension Methods` section from [Extension Methods](../ex
     
     Converts IConfiguration object to a c# object of given type and validates the object according to DataAnnotations
 
-### `BindToObject`
+#### `BindToObject`
 
 ??? info "Source file, signature, and docstring"
     **Member**
@@ -293,9 +314,9 @@ This page mirrors the `Extension Methods` section from [Extension Methods](../ex
     
     Converts IConfiguration to an object of the given runtime type.
 
-## Context global dictionary
+### Context global dictionary {: #context-global-dictionary}
 
-### `LoadConfigurationSectionIntoGlobalDictionary<TExecutionData>`
+#### `LoadConfigurationSectionIntoGlobalDictionary<TExecutionData>`
 
 ??? info "Source file, signature, and docstring"
     **Member**
@@ -316,9 +337,9 @@ This page mirrors the `Extension Methods` section from [Extension Methods](../ex
     
     Loads the requested configuration section into the context global dictionary. Use "variables" as the section path to project the root variables section into runtime state without relying on a dedicated Variables API. Numeric child sections are normalized to lists so YAML list sections do not appear as dictionaries with stringified indexes such as "0" and "1" .
 
-## Data
+### Data {: #data}
 
-### `CastObjectData<TCasted>`
+#### `CastObjectData<TCasted>`
 
 ??? info "Source file, signature, and docstring"
     **Member**
@@ -339,7 +360,7 @@ This page mirrors the `Extension Methods` section from [Extension Methods](../ex
     
     Casts a `Data` of type object to another type, if the cast is not valid will throw InvalidCastException
 
-### `CastToObjectData<TData>`
+#### `CastToObjectData<TData>`
 
 ??? info "Source file, signature, and docstring"
     **Member**
@@ -360,7 +381,7 @@ This page mirrors the `Extension Methods` section from [Extension Methods](../ex
     
     Casts a `Data` of any type to a Data of type object, if the cast is not valid will throw InvalidCastException
 
-### `CastObjectDetailedData<TCasted>`
+#### `CastObjectDetailedData<TCasted>`
 
 ??? info "Source file, signature, and docstring"
     **Member**
@@ -381,7 +402,7 @@ This page mirrors the `Extension Methods` section from [Extension Methods](../ex
     
     Casts a `DetailedData` of type object to another type, if the cast is not valid will throw InvalidCastException
 
-### `CastToObjectDetailedData<TData>`
+#### `CastToObjectDetailedData<TData>`
 
 ??? info "Source file, signature, and docstring"
     **Member**
@@ -402,7 +423,7 @@ This page mirrors the `Extension Methods` section from [Extension Methods](../ex
     
     Casts a `DetailedData` of any type to a DetailedData of type object, if the cast is not valid will throw InvalidCastException
 
-### `FilterData<TData>`
+#### `FilterData<TData>`
 
 ??? info "Source file, signature, and docstring"
     **Member**
@@ -423,9 +444,9 @@ This page mirrors the `Extension Methods` section from [Extension Methods](../ex
     
     Filters the data of a detailed data item according to the given DataFilter
 
-## Data source
+### Data source {: #data-source}
 
-### `GetDataSourceByName`
+#### `GetDataSourceByName`
 
 ??? info "Source file, signature, and docstring"
     **Member**
@@ -446,7 +467,7 @@ This page mirrors the `Extension Methods` section from [Extension Methods](../ex
     
     Retrieves a DataSource from an enumerable of DataSources by its name
 
-### `RetrieveAndCast<TCastTo>`
+#### `RetrieveAndCast<TCastTo>`
 
 ??? info "Source file, signature, and docstring"
     **Member**
@@ -467,9 +488,9 @@ This page mirrors the `Extension Methods` section from [Extension Methods](../ex
     
     Casts a DataSource to a different type
 
-## Date time
+### Date time {: #date-time}
 
-### `ConvertDateTimeToUtcByTimeZoneOffset`
+#### `ConvertDateTimeToUtcByTimeZoneOffset`
 
 ??? info "Source file, signature, and docstring"
     **Member**
@@ -490,7 +511,7 @@ This page mirrors the `Extension Methods` section from [Extension Methods](../ex
     
     converts the given time to utc based on the timezone offset in summer time given
 
-### `ConvertDateTimeFromUtcToTimeZoneByTimeZoneOffset`
+#### `ConvertDateTimeFromUtcToTimeZoneByTimeZoneOffset`
 
 ??? info "Source file, signature, and docstring"
     **Member**
@@ -511,9 +532,9 @@ This page mirrors the `Extension Methods` section from [Extension Methods](../ex
     
     adds a timezone offset to the given utc time based on the timezone offset in summer time given
 
-## Running communication data
+### Running communication data {: #running-communication-data}
 
-### `GetRunningCommunicationDataByName<TData>`
+#### `GetRunningCommunicationDataByName<TData>`
 
 ??? info "Source file, signature, and docstring"
     **Member**
@@ -534,9 +555,9 @@ This page mirrors the `Extension Methods` section from [Extension Methods](../ex
     
     Retrieves a RunningCommunicationData{TData} from an enumerable of RunningCommunicationData{TData} by its name
 
-## Running session data
+### Running session data {: #running-session-data}
 
-### `GetInputByName<TInput, TOutput>`
+#### `GetInputByName<TInput, TOutput>`
 
 ??? info "Source file, signature, and docstring"
     **Member**
@@ -557,7 +578,7 @@ This page mirrors the `Extension Methods` section from [Extension Methods](../ex
     
     Retrieves an input RunningCommunicationData{TData} from RunningSessionData{TInput,TOutput} by its name
 
-### `GetOutputByName<TInput, TOutput>`
+#### `GetOutputByName<TInput, TOutput>`
 
 ??? info "Source file, signature, and docstring"
     **Member**
@@ -578,9 +599,9 @@ This page mirrors the `Extension Methods` section from [Extension Methods](../ex
     
     Retrieves an output RunningCommunicationData{TData} from RunningSessionData{TInput,TOutput} by its name
 
-## Serilog
+### Serilog {: #serilog}
 
-### `WithHostname`
+#### `WithHostname`
 
 ??? info "Source file, signature, and docstring"
     **Member**
@@ -601,7 +622,7 @@ This page mirrors the `Extension Methods` section from [Extension Methods](../ex
     
     Enriches log events with the machine hostname as a structured property and adds it as a tag (label) in Elasticsearch.
 
-### `WithEnvironment`
+#### `WithEnvironment`
 
 ??? info "Source file, signature, and docstring"
     **Member**
@@ -622,9 +643,9 @@ This page mirrors the `Extension Methods` section from [Extension Methods](../ex
     
     Enriches log events with the CI/Local environment as a structured property and adds it as a tag (label) in Elasticsearch.
 
-## Session data
+### Session data {: #session-data}
 
-### `GetSessionDataByName<TInput, TOutput>`
+#### `GetSessionDataByName<TInput, TOutput>`
 
 ??? info "Source file, signature, and docstring"
     **Member**
@@ -645,7 +666,7 @@ This page mirrors the `Extension Methods` section from [Extension Methods](../ex
     
     Retrieves a SessionData from an enumerable of SessionData by its name
 
-### `GetInputByName<TInput, TOutput>`
+#### `GetInputByName<TInput, TOutput>`
 
 ??? info "Source file, signature, and docstring"
     **Member**
@@ -666,7 +687,7 @@ This page mirrors the `Extension Methods` section from [Extension Methods](../ex
     
     Retrieves an input CommunicationData from SessionData by its name
 
-### `TryGetInputByName<TInput, TOutput>`
+#### `TryGetInputByName<TInput, TOutput>`
 
 ??? info "Source file, signature, and docstring"
     **Member**
@@ -687,7 +708,7 @@ This page mirrors the `Extension Methods` section from [Extension Methods](../ex
     
     Retrieves an input CommunicationData{TData} from SessionData by its name to inputValue
 
-### `GetOutputByName<TInput, TOutput>`
+#### `GetOutputByName<TInput, TOutput>`
 
 ??? info "Source file, signature, and docstring"
     **Member**
@@ -708,7 +729,7 @@ This page mirrors the `Extension Methods` section from [Extension Methods](../ex
     
     Retrieves an output CommunicationData from SessionData by its name
 
-### `TryGetOutputByName<TInput, TOutput>`
+#### `TryGetOutputByName<TInput, TOutput>`
 
 ??? info "Source file, signature, and docstring"
     **Member**
@@ -728,3 +749,12 @@ This page mirrors the `Extension Methods` section from [Extension Methods](../ex
     **Docstring**
     
     Retrieves an input CommunicationData{TData} from SessionData by its name to inputValue
+
+## Edge cases {: #edge-cases}
+
+- This page is generated from the parent reference section; edit the source XML docs or generator when content needs to change.
+- If a linked source member is renamed, regenerate the reference docs before changing prose by hand.
+
+## See also {: #see-also}
+
+- [Extension Methods](../extension-methods.md)

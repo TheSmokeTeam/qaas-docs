@@ -6,15 +6,17 @@ since: 2.0.0
 last_verified: 2026-05-22
 applies_to: [framework]
 keywords: [framework, projects, policies]
-summary: "QaaS.Framework.Policies contains the Framework solution's policy-chain implementation for repeated communication actions. The package is responsible for turning policy configuration objects into ru..."
+summary: "QaaS.Framework.Policies turns policy configuration objects into runtime policy chains for repeated communication actions."
 ---
 # QaaS.Framework.Policies
 
+> TL;DR — QaaS.Framework.Policies turns policy configuration objects into runtime policy chains for repeated communication actions.
+
 `QaaS.Framework.Policies` contains the Framework solution's policy-chain implementation for repeated communication actions. The package is responsible for turning policy configuration objects into runtime policy instances and then executing those policies in a stable order.
 
-## What this project contains
+## What this project contains {: #what-this-project-contains}
 
-### Core policy chain
+### Core policy chain {: #core-policy-chain}
 
 The chain shape is implemented in:
 
@@ -24,7 +26,7 @@ The chain shape is implemented in:
 
 `Policy` is the runtime base for the chain. It exposes the mechanics for adding the next policy, preparing the chain, and executing it. `PolicyBuilder` is the configuration-to-runtime bridge. It accepts one concrete `IPolicyConfig` implementation at a time and builds the corresponding runtime policy instance.
 
-### Simple policy implementations
+### Simple policy implementations {: #simple-policy-implementations}
 
 The package contains three direct policy types for common control behavior:
 
@@ -34,7 +36,7 @@ The package contains three direct policy types for common control behavior:
 
 These policies cover limiting execution by count, limiting it by time, and pacing it at a fixed rate.
 
-### Advanced load-balance policies
+### Advanced load-balance policies {: #advanced-load-balance-policies}
 
 The `AdvancedLoadBalance` folder contains:
 
@@ -42,9 +44,9 @@ The `AdvancedLoadBalance` folder contains:
 - `IncreasingLoadBalancePolicy.cs`
 - `LoadBalanceStage.cs`
 
-This part of the project handles multi-stage and ramping load behavior. It is where the package models stage-by-stage execution rates and timed or count-based stage transitions.
+This part of the project handles multi-stage and ramping load behavior. It is where the package represents stage-by-stage execution rates and timed or count-based stage transitions.
 
-### Configuration objects
+### Configuration objects {: #configuration-objects}
 
 The `ConfigurationObjects` folder contains the public configuration surface used by the builder:
 
@@ -57,7 +59,7 @@ The `ConfigurationObjects` folder contains the public configuration surface used
 
 `AdvancedLoadBalancePolicyConfig` also defines `StageConfig`, which is the package's stage shape. Each stage can define a `Rate`, `Amount`, `TimeoutMs`, and `TimeIntervalMs`.
 
-### Exceptions and timing abstraction
+### Exceptions and timing abstraction {: #exceptions-and-timing-abstraction}
 
 The project also contains:
 
@@ -69,7 +71,7 @@ The project also contains:
 
 These types support stop conditions and time-based execution without hard-coding the timing implementation everywhere.
 
-## Current behavior
+## Current behavior {: #current-behavior}
 
 The current implementation behaves as follows:
 
@@ -84,7 +86,7 @@ The current implementation behaves as follows:
 - `IncreasingLoadBalancePolicy` increases the rate only after the configured interval has elapsed.
 - `AdvancedLoadBalancePolicy` executes staged load behavior and advances stages according to `Amount` or `TimeoutMs`, while protecting the final stage from overflowing into an invalid next stage.
 
-## Main source areas
+## Main source areas {: #main-source-areas}
 
 The most important files and folders in this package are:
 
@@ -98,7 +100,7 @@ The most important files and folders in this package are:
 - `Exceptions/`
 - `Extentions/Stopwatch/`
 
-## Companion tests
+## Companion tests {: #companion-tests}
 
 `QaaS.Framework.Policies.Tests` is the sibling test project for this package.
 
@@ -118,3 +120,7 @@ Representative test files include:
 - `PolicyBehaviorTests.cs`
 - `LoadBalancePolicyTests.cs`
 - `PolicyValidationCoverageTests.cs`
+
+## See also {: #see-also}
+
+- [Framework](../index.md)

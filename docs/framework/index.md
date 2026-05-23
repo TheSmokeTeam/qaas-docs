@@ -3,12 +3,14 @@ id: framework.index
 type: explanation
 status: stable
 since: 2.0.0
-last_verified: 2026-05-22
+last_verified: 2026-05-23
 applies_to: [framework]
 keywords: [framework, index]
-summary: "QaaS.Framework is the shared runtime layer underneath QaaS.Runner, QaaS.Mocker, and custom hook packages such as QaaS.Common.Assertions, QaaS.Common.Generators, QaaS.Common.Probes, and QaaS.Common...."
+summary: "QaaS.Framework is the shared runtime and SDK layer used by Runner, Mocker, and custom hook packages."
 ---
 # QaaS.Framework
+
+> TL;DR — QaaS.Framework is the shared runtime and SDK layer used by Runner, Mocker, and custom hook packages.
 
 `QaaS.Framework` is the shared runtime layer underneath [QaaS.Runner](../qaas/index.md), [QaaS.Mocker](../mocker/index.md), and custom hook packages such as [QaaS.Common.Assertions](../assertions/index.md), [QaaS.Common.Generators](../generators/index.md), [QaaS.Common.Probes](../probes/index.md), and [QaaS.Common.Processors](../processors/index.md). It is not a standalone executable. Instead, it provides the configuration engine, SDK contracts, protocol abstractions, serialization, [Policies](./projects/policies.md), and provider infrastructure that the executable products compose at runtime.
 
@@ -20,7 +22,7 @@ In practice, the Framework comes into play in three places:
 
 This section documents the current contents of those projects as they exist in the solution today.
 
-## Runtime projects
+## Runtime projects {: #runtime-projects}
 
 | Project | What it contains | Companion test project |
 | --- | --- | --- |
@@ -33,7 +35,7 @@ This section documents the current contents of those projects as they exist in t
 | [QaaS.Framework.Providers](./projects/providers.md) | Hook discovery and instantiation layer: assembly scanning, type resolution, object creation, validation-aware loading, and Autofac registration. | `QaaS.Framework.Providers.Tests` |
 | [QaaS.Framework.Serialization](./projects/serialization.md) | Serializer and deserializer selection, format-specific implementations, factory classes, and runtime type resolution helpers. | `QaaS.Framework.Serialization.Tests` |
 
-## How to read this section
+## How to read this section {: #how-to-read-this-section}
 
 Start with the package that matches the problem you are solving:
 
@@ -41,7 +43,7 @@ Start with the package that matches the problem you are solving:
 - If you are trying to understand how Runner or Mocker executes work, start with [Executions](./projects/executions.md), then read [Protocols](./projects/protocols.md) and [Policies](./projects/policies.md) as needed.
 - If you are building custom hooks or extensions, start with [SDK](./projects/sdk.md), then read [Providers](./projects/providers.md) and [Serialization](./projects/serialization.md) depending on what your hook needs.
 
-## Companion test projects
+## Companion test projects {: #companion-test-projects}
 
 The solution also includes one sibling test project for every runtime package except Infrastructure:
 

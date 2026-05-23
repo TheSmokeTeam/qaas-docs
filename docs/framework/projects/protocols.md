@@ -6,15 +6,17 @@ since: 2.0.0
 last_verified: 2026-05-22
 applies_to: [framework]
 keywords: [framework, projects, protocols]
-summary: "QaaS.Framework.Protocols is the Framework solution's integration package for external I/O. It combines protocol contracts, protocol-specific configuration objects, concrete implementations, factori..."
+summary: "QaaS.Framework.Protocols provides external I/O contracts, configurations, implementations, factories, and metadata helpers."
 ---
 # QaaS.Framework.Protocols
 
+> TL;DR — QaaS.Framework.Protocols provides external I/O contracts, configurations, implementations, factories, and metadata helpers.
+
 `QaaS.Framework.Protocols` is the Framework solution's integration package for external I/O. It combines protocol contracts, protocol-specific configuration objects, concrete implementations, factories, and supporting utilities. The project consumes the shared session and data surface from [QaaS.Framework.SDK](./sdk.md) and turns those objects into real reads, sends, fetches, and request-response interactions.
 
-## What this project contains
+## What this project contains {: #what-this-project-contains}
 
-### Protocol contracts
+### Protocol contracts {: #protocol-contracts}
 
 The core contracts live directly under the `Protocols` folder:
 
@@ -28,7 +30,7 @@ The core contracts live directly under the `Protocols` folder:
 
 These interfaces divide the integration surface into single-item reads and sends, chunk-based reads and sends, fetch-style reads, and request-response transactions.
 
-### Configuration-object families
+### Configuration-object families {: #configuration-object-families}
 
 The `ConfigurationObjects` folder is a major part of the package. It contains both the common protocol interfaces and the protocol-specific configuration families:
 
@@ -49,7 +51,7 @@ The `ConfigurationObjects` folder is a major part of the package. It contains bo
 
 The factories switch on these concrete configuration types. In practice, this package is not using a generic registry for protocols. The configuration type is what determines which runtime class gets created.
 
-### Concrete protocol implementations
+### Concrete protocol implementations {: #concrete-protocol-implementations}
 
 The `Protocols` folder contains the package's concrete integrations, including:
 
@@ -74,7 +76,7 @@ The `Protocols` folder contains the package's concrete integrations, including:
 
 These implementations use SDK types such as `DataFilter`, `Data<T>`, `DetailedData<T>`, `CommunicationData<T>`, and protocol metadata. Those types belong to the SDK package; Protocols uses them but does not define them.
 
-### Factories
+### Factories {: #factories}
 
 The `Protocols/Factories` folder contains the dispatch layer:
 
@@ -85,7 +87,7 @@ The `Protocols/Factories` folder contains the dispatch layer:
 
 This is where the package turns configuration objects into concrete protocol instances.
 
-### Utilities and extensions
+### Utilities and extensions {: #utilities-and-extensions}
 
 The package also contains supporting code under:
 
@@ -96,7 +98,7 @@ The package also contains supporting code under:
 
 These files support naming strategies, S3 client behavior, and protocol-specific helpers.
 
-## Current behavior
+## Current behavior {: #current-behavior}
 
 The current source tree supports the following dispatch and behavior:
 
@@ -113,7 +115,7 @@ The current source tree supports the following dispatch and behavior:
 - `S3Protocol` handles object naming, retry-oriented reads, and bucket/object management behavior.
 - `ObjectNameGenerator` supports the package's naming strategies such as random GUIDs and growing numerical series.
 
-## Main source areas
+## Main source areas {: #main-source-areas}
 
 The highest-signal areas to read are:
 
@@ -125,7 +127,7 @@ The highest-signal areas to read are:
 
 If you want the fastest route through the package, start with the relevant configuration type, then the factory, then the protocol implementation that factory returns.
 
-## Companion tests
+## Companion tests {: #companion-tests}
 
 `QaaS.Framework.Protocols.Tests` is the sibling test project for this package.
 
@@ -149,3 +151,7 @@ Representative test files include:
 - `ProtocolConfigurationObjectsTests.cs`
 - `ProtocolCoverageEdgeCaseTests.cs`
 - `ProtocolIntegrationCoverageTests.cs`
+
+## See also {: #see-also}
+
+- [Framework](../index.md)

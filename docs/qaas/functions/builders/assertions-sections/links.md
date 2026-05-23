@@ -1,18 +1,27 @@
 ---
-id: qaas.functions.builders.assertions-sections.links
+id: qaas.functions.builders.assertions.sections.links
 type: reference
 status: stable
 since: 2.0.0
 last_verified: 2026-05-22
 applies_to: [runner]
-keywords: [qaas, functions, builders, assertions, sections, links]
-summary: "This page mirrors the Links section from Assertions."
+keywords: [runner, qaas, functions, builders, assertions, sections, links]
+summary: "Reference page for Assertions: Links."
 ---
+
+<!-- Verified-against: QaaS.Runner\QaaS.Runner.Assertions\ConfigurationObjects\AssertionBuilder.cs -->
+
 # Assertions: Links
 
-This page mirrors the `Links` section from [Assertions](../assertions.md).
+> TL;DR — This page mirrors the `Links` section from [Assertions](../assertions.md) as a focused reference.
 
-## `AddLink`
+## When to use {: #when-to-use}
+
+Use this page when you need the focused member list, signatures, and source notes for this section without scanning the full parent reference.
+
+## C# (CAC) usage {: #c-cac-usage}
+
+### `AddLink` {: #addlink}
 
 ??? info "Source file, signature, and docstring"
     **Member**
@@ -32,10 +41,8 @@ This page mirrors the `Links` section from [Assertions](../assertions.md).
     **Docstring**
     
     Adds the supplied link to the current Runner assertion builder instance.
-    
-    Use this method when working with the documented Runner assertion builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
-## `RemoveLink`
+### `RemoveLink` {: #removelink}
 
 ??? info "Source file, signature, and docstring"
     **Member**
@@ -55,10 +62,8 @@ This page mirrors the `Links` section from [Assertions](../assertions.md).
     **Docstring**
     
     Removes the configured link from the current Runner assertion builder instance.
-    
-    Use this method when working with the documented Runner assertion builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
-## `RemoveLinkAt`
+### `RemoveLinkAt` {: #removelinkat}
 
 ??? info "Source file, signature, and docstring"
     **Member**
@@ -78,5 +83,12 @@ This page mirrors the `Links` section from [Assertions](../assertions.md).
     **Docstring**
     
     Removes the configured link at the specified index from the current Runner assertion builder instance.
-    
-    Use this method when working with the documented Runner assertion builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
+
+## Edge cases {: #edge-cases}
+
+- This page is generated from the parent reference section; edit the source XML docs or generator when content needs to change.
+- If a linked source member is renamed, regenerate the reference docs before changing prose by hand.
+
+## See also {: #see-also}
+
+- [Assertions](../assertions.md)

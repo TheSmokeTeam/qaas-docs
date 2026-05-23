@@ -6,159 +6,196 @@ since: 2.0.0
 last_verified: 2026-05-22
 applies_to: [runner]
 keywords: [qaas, userinterfaces, runner, configurationsections, sessions, types]
-summary: "Consumers:"
+summary: "Consumer YAML scaffold for reading session inputs from supported back ends."
 ---
+<!-- Verified-against: QaaS.PackageMirror\schemas\runner-family\latest\docs-manifest.json -->
+<!-- Verified-against: QaaS.PackageMirror\schemas\runner-family\latest\schema.json -->
+
 # Consumers Configurations Yaml View
+
+> TL;DR — Copy this schema-derived YAML scaffold, replace placeholder values, and use the table view for field descriptions.
+
+## When to use {: #when-to-use}
+
+Use this page when you need the generated YAML shape for this configuration section and want every emitted field in one block.
+
+## YAML configuration {: #yaml-configuration}
+
+The scaffold follows the generated schema order. String placeholders are quoted, optional lists render as `[]`, and numeric placeholders use schema minimums when they exist.
+
+## Minimal example {: #minimal-example}
 
 ```yaml
 Consumers:
-  - Name:
-    TimeoutMs:
-    Configuration:
-    InitialTimeoutMs:
-    Stage:
+  -
+    Name: 'value'
+    TimeoutMs: 0
+    Configuration: {}
+    InitialTimeoutMs: 0
+    Stage: 0
     Policies:
-      - AdvancedLoadBalance:
-        Stages:
-          - Rate:
-            Amount:
-            TimeIntervalMs:
-            TimeoutMs:
+      -
+        AdvancedLoadBalance:
+          Stages:
+            -
+              Rate: 1.0
+              Amount: 1
+              TimeIntervalMs: 1000
+              TimeoutMs: 0
         Count:
-          Count:
+          Count: 0
         IncreasingLoadBalance:
-          MaxRate:
-          StartRate:
-          RateIncrease:
-          RateIncreaseIntervalMs:
-          TimeIntervalMs:
+          MaxRate: 1
+          StartRate: 1
+          RateIncrease: 1
+          RateIncreaseIntervalMs: 1000
+          TimeIntervalMs: 1000
         LoadBalance:
-          Rate:
-          TimeIntervalMs:
+          Rate: 1.0
+          TimeIntervalMs: 1000
         Timeout:
-          TimeoutMs:
+          TimeoutMs: 0
     DataFilter:
-      Body:
-      MetaData:
-      Timestamp:
+      Body: True
+      MetaData: True
+      Timestamp: True
     Deserialize:
-      Deserializer:
+      Deserializer: 'Binary'
       SpecificType:
-        TypeFullName:
-        AssemblyName:
+        TypeFullName: 'value'
+        AssemblyName: 'value'
     ElasticIndices:
-      IndexPattern:
-      Password:
-      Url:
-      Username:
-      FilterSecondsBeforeRunStartTime:
-      MatchQueryString:
-      ReadBatchSize:
-      ReadFromRunStartTime:
-      RequestTimeoutMs:
-      ScrollContextExpirationMs:
-      TimestampField:
+      IndexPattern: 'value'
+      Password: 'value'
+      Url: 'value'
+      Username: 'value'
+      FilterSecondsBeforeRunStartTime: 0
+      MatchQueryString: '*'
+      ReadBatchSize: 1000
+      ReadFromRunStartTime: False
+      RequestTimeoutMs: 30000
+      ScrollContextExpirationMs: 100000
+      TimestampField: '@timestamp'
     IbmMqQueue:
-      Channel:
-      HostName:
-      Manager:
-      Port:
-      QueueName:
+      Channel: 'value'
+      HostName: 'value'
+      Manager: 'value'
+      Port: 0
+      QueueName: 'value'
     KafkaTopic:
-      GroupId:
-      Password:
-      TopicName:
-      Username:
-      AutoOffsetReset:
-      EnableAutoCommit:
-      FetchMinBytes:
-      FetchWaitMaxMs:
-      HeartbeatIntervalMs:
-      MaxPollIntervalMs:
-      MessageMaxBytes:
-      PartitionAssignmentStrategy:
-      SaslMechanism:
-      SecurityProtocol:
-      SessionTimeOutMs:
-      HostNames: []
+      GroupId: 'value'
+      Password: 'value'
+      TopicName: 'value'
+      Username: 'value'
+      AutoOffsetReset: 'Latest'
+      EnableAutoCommit: True
+      FetchMinBytes: 1
+      FetchWaitMaxMs: 2000
+      HeartbeatIntervalMs: 1000
+      MaxPollIntervalMs: 15000
+      MessageMaxBytes: 1000000
+      PartitionAssignmentStrategy: 'Range'
+      SaslMechanism: 'Gssapi'
+      SecurityProtocol: 'Plaintext'
+      SessionTimeOutMs: 9000
+      HostNames:
+        - 'value'
     MsSqlTable:
-      ConnectionString:
-      TableName:
-      CommandTimeoutSeconds:
-      FilterSecondsBeforeRunStartTime:
-      InsertionTimeField:
-      InsertionTimeTimeZoneOffsetSummerTime:
-      ReadFromRunStartTime:
-      WhereStatement:
+      ConnectionString: 'value'
+      TableName: 'value'
+      AllowNoInsertionTimeField: False
+      CommandTimeoutSeconds: 30
+      FilterSecondsBeforeRunStartTime: 0
+      InsertionTimeField: 'value'
+      InsertionTimeTimeZoneOffsetSummerTime: 0
+      ReadFromRunStartTime: False
+      WhereStatement: 'value'
       ColumnsToIgnore: []
     OracleSqlTable:
-      ConnectionString:
-      TableName:
-      CommandTimeoutSeconds:
-      FilterSecondsBeforeRunStartTime:
-      InsertionTimeField:
-      InsertionTimeTimeZoneOffsetSummerTime:
-      ReadFromRunStartTime:
-      WhereStatement:
+      ConnectionString: 'value'
+      TableName: 'value'
+      AllowNoInsertionTimeField: False
+      CommandTimeoutSeconds: 30
+      FilterSecondsBeforeRunStartTime: 0
+      InsertionTimeField: 'value'
+      InsertionTimeTimeZoneOffsetSummerTime: 0
+      ReadFromRunStartTime: False
+      WhereStatement: 'value'
       ColumnsToIgnore: []
     PostgreSqlTable:
-      ConnectionString:
-      TableName:
-      CommandTimeoutSeconds:
-      FilterSecondsBeforeRunStartTime:
-      InsertionTimeField:
-      InsertionTimeTimeZoneOffsetSummerTime:
-      IsInsertionTimeFieldTimeZoneTz:
-      ReadFromRunStartTime:
-      WhereStatement:
+      ConnectionString: 'value'
+      TableName: 'value'
+      AllowNoInsertionTimeField: False
+      CommandTimeoutSeconds: 30
+      FilterSecondsBeforeRunStartTime: 0
+      InsertionTimeField: 'value'
+      InsertionTimeTimeZoneOffsetSummerTime: 0
+      IsInsertionTimeFieldTimeZoneTz: False
+      ReadFromRunStartTime: False
+      WhereStatement: 'value'
       ColumnsToIgnore: []
     RabbitMq:
-      Host:
-      ContinuationTimeoutSeconds:
-      CreatedQueueTimeToExpireMs:
-      ExchangeName:
-      HandshakeContinuationTimeoutSeconds:
-      Password:
-      Port:
-      QueueName:
-      RequestedConnectionTimeoutSeconds:
-      RoutingKey:
-      Username:
-      VirtualHost:
+      Host: 'value'
+      ContinuationTimeoutSeconds: 5
+      CreatedQueueTimeToExpireMs: 300000
+      ExchangeName: 'value'
+      HandshakeContinuationTimeoutSeconds: 10
+      Password: 'admin'
+      Port: 5672
+      QueueName: 'value'
+      RequestedConnectionTimeoutSeconds: 5
+      RoutingKey: '/'
+      Username: 'admin'
+      VirtualHost: '/'
     S3Bucket:
-      AccessKey:
-      SecretKey:
-      ServiceURL:
-      StorageBucket:
-      Delimiter:
-      ForcePathStyle:
-      MaximumRetryCount:
-      Prefix:
-      ReadFromRunStartTime:
-      SkipEmptyObjects:
+      AccessKey: 'value'
+      SecretKey: 'value'
+      ServiceURL: 'value'
+      StorageBucket: 'value'
+      Delimiter: ''
+      ForcePathStyle: True
+      MaximumRetryCount: 0
+      Prefix: ''
+      ReadFromRunStartTime: False
+      SkipEmptyObjects: False
     Socket:
-      Host:
-      Port:
-      ProtocolType:
-      AddressFamily:
-      BufferSize:
-      ReceiveTimeoutMs:
-      SeperationChar:
-      SocketType:
+      Host: 'value'
+      Port: 0
+      ProtocolType: 'IP'
+      AddressFamily: 'Unspecified'
+      BufferSize: 65536
+      ReceiveTimeoutMs: 5000
+      SeperationChar: 'value'
+      SocketType: 'Stream'
     TrinoSqlTable:
-      Catalog:
-      ClientTag:
-      ConnectionString:
-      Hostname:
-      Password:
-      Schema:
-      TableName:
-      Username:
-      CommandTimeoutSeconds:
-      FilterSecondsBeforeRunStartTime:
-      InsertionTimeField:
-      InsertionTimeTimeZoneOffsetSummerTime:
-      ReadFromRunStartTime:
-      WhereStatement:
+      Catalog: 'value'
+      ClientTag: 'value'
+      ConnectionString: 'value'
+      Hostname: 'value'
+      Password: 'value'
+      Schema: 'value'
+      TableName: 'value'
+      Username: 'value'
+      AllowNoInsertionTimeField: False
+      CommandTimeoutSeconds: 30
+      FilterSecondsBeforeRunStartTime: 0
+      InsertionTimeField: 'value'
+      InsertionTimeTimeZoneOffsetSummerTime: 0
+      ReadFromRunStartTime: False
+      WhereStatement: 'value'
       ColumnsToIgnore: []
 ```
+
+## Realistic example {: #realistic-example}
+
+Start with the minimal scaffold, replace placeholder values with project values, and keep only the optional branches that this configuration needs.
+
+## Edge cases {: #edge-cases}
+
+- Optional arrays are emitted as `[]`; add entries only when the section needs that collection.
+- Placeholder-style strings are quoted so YAML parsers keep them as scalar values.
+
+## See also {: #see-also}
+
+- [Configuration table](consumers-tableView.md)
+- [Overview](../overview.md)

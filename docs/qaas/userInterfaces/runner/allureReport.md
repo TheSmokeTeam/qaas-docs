@@ -10,31 +10,33 @@ summary: "Allure Report is a test reporting tool, that provides clear graphical 
 ---
 # Allure Report
 
+> TL;DR — Allure Report is a test reporting tool, that provides clear graphical reports about your tests.
+
 Allure Report is a test reporting tool, that provides clear graphical reports about your tests.
 
-## Allure Report Components
+## Allure Report Components {: #allure-report-components}
 
-### Suites
+### Suites {: #suites}
 
 The tests under the `suites` section in the allure report are put under the following hierarchy:
 
 * **ParentSuite** - The `ExecutionId` of the execution this assertion ran under
 * **Suite** - The `CaseName` of the case this assertion ran under
 
-### Behaviours
+### Behaviours {: #behaviours}
 
 The tests under the `behaviours` section in the allure report are put under the following hierarchy:
 
 * **Epic** - The `SessionNames` passed as parameters to the assertion
 * **Feature** - The `Assertion` type of the assertion
 
-### Packages
+### Packages {: #packages}
 
 The tests under the `packages` section in the allure report are put under the following hierarchy:
 
 * **Package** - The name of the C# QaaS test project
 
-### Test Result
+### Test Result {: #test-result}
 
 The results of a single assertion
 
@@ -76,8 +78,12 @@ In addition each session's SessionData `json` can be viewed by clicking the `Ses
 
 The `Test body` view shows the nested session steps, their inputs and outputs, and any failure reasons captured during execution.
 
-## Times
+## Times {: #times}
 
 Each `QaaS Test Suite` (An execution and a case) has its `Utc Start Time` recorded and saved as all of its tests' start time. A suite's test's stop time is the suite's start time plus the test duration which is composed of the duration of all sessions used by the assertion plus the assertion's run time.
 
 The start time of an allure report is the start time of the first `QaaS Test Suite` and the stop time is the stop time of the test with the biggest stop time.
+
+## See also {: #see-also}
+
+* [QaaS Runner](../../index.md)

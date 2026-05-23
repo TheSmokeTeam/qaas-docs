@@ -1,18 +1,27 @@
 ---
-id: qaas.functions.builders.transactions-sections.configuration
+id: qaas.functions.builders.transactions.sections.configuration
 type: reference
 status: stable
 since: 2.0.0
 last_verified: 2026-05-22
 applies_to: [runner]
-keywords: [qaas, functions, builders, transactions, sections, configuration]
-summary: "This page mirrors the Configuration section from Transactions."
+keywords: [runner, qaas, functions, builders, transactions, sections, configuration]
+summary: "Reference page for Transactions: Configuration."
 ---
+
+<!-- Verified-against: QaaS.Runner\QaaS.Runner.Sessions\Actions\Transactions\Builders\TransactionBuilder.cs -->
+
 # Transactions: Configuration
 
-This page mirrors the `Configuration` section from [Transactions](../transactions.md).
+> TL;DR — This page mirrors the `Configuration` section from [Transactions](../transactions.md) as a focused reference.
 
-## `WithTimeout`
+## When to use {: #when-to-use}
+
+Use this page when you need the focused member list, signatures, and source notes for this section without scanning the full parent reference.
+
+## C# (CAC) usage {: #c-cac-usage}
+
+### `WithTimeout` {: #withtimeout}
 
 ??? info "Source file, signature, and docstring"
     **Member**
@@ -32,10 +41,8 @@ This page mirrors the `Configuration` section from [Transactions](../transaction
     **Docstring**
     
     Configures timeout on the current Runner transaction builder instance.
-    
-    Use this method when working with the documented Runner transaction builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
-## `WithDeserializer`
+### `WithDeserializer` {: #withdeserializer}
 
 ??? info "Source file, signature, and docstring"
     **Member**
@@ -55,10 +62,8 @@ This page mirrors the `Configuration` section from [Transactions](../transaction
     **Docstring**
     
     Sets the deserializer configuration used by the current Runner transaction builder instance.
-    
-    Use this method when working with the documented Runner transaction builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
-## `WithSerializer`
+### `WithSerializer` {: #withserializer}
 
 ??? info "Source file, signature, and docstring"
     **Member**
@@ -78,10 +83,8 @@ This page mirrors the `Configuration` section from [Transactions](../transaction
     **Docstring**
     
     Sets the serializer configuration used by the current Runner transaction builder instance.
-    
-    Use this method when working with the documented Runner transaction builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
-## `WithIterations`
+### `WithIterations` {: #withiterations}
 
 ??? info "Source file, signature, and docstring"
     **Member**
@@ -101,10 +104,8 @@ This page mirrors the `Configuration` section from [Transactions](../transaction
     **Docstring**
     
     Sets how many iterations the transaction should execute.
-    
-    Use this method when working with the documented Runner transaction builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
-## `WithSleep`
+### `WithSleep` {: #withsleep}
 
 ??? info "Source file, signature, and docstring"
     **Member**
@@ -124,5 +125,12 @@ This page mirrors the `Configuration` section from [Transactions](../transaction
     **Docstring**
     
     Sets the delay applied between transaction iterations.
-    
-    Use this method when working with the documented Runner transaction builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
+
+## Edge cases {: #edge-cases}
+
+- This page is generated from the parent reference section; edit the source XML docs or generator when content needs to change.
+- If a linked source member is renamed, regenerate the reference docs before changing prose by hand.
+
+## See also {: #see-also}
+
+- [Transactions](../transactions.md)

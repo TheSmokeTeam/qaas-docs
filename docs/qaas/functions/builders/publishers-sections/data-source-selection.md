@@ -1,18 +1,27 @@
 ---
-id: qaas.functions.builders.publishers-sections.data-source-selection
+id: qaas.functions.builders.publishers.sections.data.source.selection
 type: reference
 status: stable
 since: 2.0.0
 last_verified: 2026-05-22
 applies_to: [runner]
-keywords: [qaas, functions, builders, publishers, sections, data]
-summary: "This page mirrors the Data source selection section from Publishers."
+keywords: [runner, qaas, functions, builders, publishers, sections, data, source, selection]
+summary: "Reference page for Publishers: Data source selection."
 ---
+
+<!-- Verified-against: QaaS.Runner\QaaS.Runner.Sessions\Actions\Publishers\Builders\PublisherBuilderLogic.cs -->
+
 # Publishers: Data source selection
 
-This page mirrors the `Data source selection` section from [Publishers](../publishers.md).
+> TL;DR — This page mirrors the `Data source selection` section from [Publishers](../publishers.md) as a focused reference.
 
-## `AddDataSource`
+## When to use {: #when-to-use}
+
+Use this page when you need the focused member list, signatures, and source notes for this section without scanning the full parent reference.
+
+## C# (CAC) usage {: #c-cac-usage}
+
+### `AddDataSource` {: #adddatasource}
 
 ??? info "Source file, signature, and docstring"
     **Member**
@@ -32,10 +41,8 @@ This page mirrors the `Data source selection` section from [Publishers](../publi
     **Docstring**
     
     Adds the supplied data source to the current Runner publisher builder instance.
-    
-    Use this method when working with the documented Runner publisher builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
-## `UpdateDataSource`
+### `UpdateDataSource` {: #updatedatasource}
 
 ??? info "Source file, signature, and docstring"
     **Member**
@@ -55,10 +62,8 @@ This page mirrors the `Data source selection` section from [Publishers](../publi
     **Docstring**
     
     Updates the configured data source stored on the current Runner publisher builder instance.
-    
-    Use this method when working with the documented Runner publisher builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
-## `RemoveDataSource`
+### `RemoveDataSource` {: #removedatasource}
 
 ??? info "Source file, signature, and docstring"
     **Member**
@@ -78,10 +83,8 @@ This page mirrors the `Data source selection` section from [Publishers](../publi
     **Docstring**
     
     Removes the configured data source from the current Runner publisher builder instance.
-    
-    Use this method when working with the documented Runner publisher builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
-## `RemoveDataSourceAt`
+### `RemoveDataSourceAt` {: #removedatasourceat}
 
 ??? info "Source file, signature, and docstring"
     **Member**
@@ -101,10 +104,8 @@ This page mirrors the `Data source selection` section from [Publishers](../publi
     **Docstring**
     
     Removes the configured data source at the specified index from the current Runner publisher builder instance.
-    
-    Use this method when working with the documented Runner publisher builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
-## `AddDataSourcePattern`
+### `AddDataSourcePattern` {: #adddatasourcepattern}
 
 ??? info "Source file, signature, and docstring"
     **Member**
@@ -124,10 +125,8 @@ This page mirrors the `Data source selection` section from [Publishers](../publi
     **Docstring**
     
     Adds the supplied data source pattern to the current Runner publisher builder instance.
-    
-    Use this method when working with the documented Runner publisher builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
-## `UpdateDataSourcePattern`
+### `UpdateDataSourcePattern` {: #updatedatasourcepattern}
 
 ??? info "Source file, signature, and docstring"
     **Member**
@@ -147,10 +146,8 @@ This page mirrors the `Data source selection` section from [Publishers](../publi
     **Docstring**
     
     Updates the configured data source pattern stored on the current Runner publisher builder instance.
-    
-    Use this method when working with the documented Runner publisher builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
-## `RemoveDataSourcePattern`
+### `RemoveDataSourcePattern` {: #removedatasourcepattern}
 
 ??? info "Source file, signature, and docstring"
     **Member**
@@ -170,10 +167,8 @@ This page mirrors the `Data source selection` section from [Publishers](../publi
     **Docstring**
     
     Removes the configured data source pattern from the current Runner publisher builder instance.
-    
-    Use this method when working with the documented Runner publisher builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
-## `RemoveDataSourcePatternAt`
+### `RemoveDataSourcePatternAt` {: #removedatasourcepatternat}
 
 ??? info "Source file, signature, and docstring"
     **Member**
@@ -193,5 +188,12 @@ This page mirrors the `Data source selection` section from [Publishers](../publi
     **Docstring**
     
     Removes the configured data source pattern at the specified index from the current Runner publisher builder instance.
-    
-    Use this method when working with the documented Runner publisher builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
+
+## Edge cases {: #edge-cases}
+
+- This page is generated from the parent reference section; edit the source XML docs or generator when content needs to change.
+- If a linked source member is renamed, regenerate the reference docs before changing prose by hand.
+
+## See also {: #see-also}
+
+- [Publishers](../publishers.md)

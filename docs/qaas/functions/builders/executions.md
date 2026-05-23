@@ -8,15 +8,23 @@ applies_to: [runner]
 keywords: [qaas, functions, builders, executions]
 summary: "Each entry uses the short function name as the table-of-contents label. Expand an entry to inspect its source file, signature, and XML doc comments."
 ---
+<!-- Verified-against: QaaS.Runner\QaaS.Runner\ExecutionBuilder.cs -->
+
 # Executions
+
+> TL;DR — This page lists the public Runner functions in the `Executions` category.
+
+## When to use {: #when-to-use}
+
+Use this page when you need source-backed signatures, declaring types, and XML doc comments for this function category.
 
 Each entry uses the short function name as the table-of-contents label. Expand an entry to inspect its source file, signature, and XML doc comments.
 
 The functions on this page are grouped by responsibility so related operations stay together.
 
-## Data source selection
+## Data source selection {: #data-source-selection}
 
-### `AddDataSource`
+### `AddDataSource` {: #adddatasource}
 
 ??? info "Source file, signature, and docstring"
     **Member**
@@ -36,10 +44,8 @@ The functions on this page are grouped by responsibility so related operations s
     **Docstring**
     
     Adds the supplied data source to the current Runner execution builder instance.
-    
-    Use this method when working with the documented Runner execution builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
-### `UpdateDataSource`
+### `UpdateDataSource` {: #updatedatasource}
 
 ??? info "Source file, signature, and docstring"
     **Member**
@@ -59,10 +65,8 @@ The functions on this page are grouped by responsibility so related operations s
     **Docstring**
     
     Updates the configured data source stored on the current Runner execution builder instance.
-    
-    Use this method when working with the documented Runner execution builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
-### `RemoveDataSource`
+### `RemoveDataSource` {: #removedatasource}
 
 ??? info "Source file, signature, and docstring"
     **Member**
@@ -82,10 +86,8 @@ The functions on this page are grouped by responsibility so related operations s
     **Docstring**
     
     Removes the configured data source from the current Runner execution builder instance.
-    
-    Use this method when working with the documented Runner execution builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
-### `RemoveDataSourceAt`
+### `RemoveDataSourceAt` {: #removedatasourceat}
 
 ??? info "Source file, signature, and docstring"
     **Member**
@@ -105,12 +107,10 @@ The functions on this page are grouped by responsibility so related operations s
     **Docstring**
     
     Removes the configured data source at the specified index from the current Runner execution builder instance.
-    
-    Use this method when working with the documented Runner execution builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
-## Session selection
+## Session selection {: #session-selection}
 
-### `AddSession`
+### `AddSession` {: #addsession}
 
 ??? info "Source file, signature, and docstring"
     **Member**
@@ -130,10 +130,8 @@ The functions on this page are grouped by responsibility so related operations s
     **Docstring**
     
     Adds the supplied session to the current Runner execution builder instance.
-    
-    Use this method when working with the documented Runner execution builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
-### `UpdateSession`
+### `UpdateSession` {: #updatesession}
 
 ??? info "Source file, signature, and docstring"
     **Member**
@@ -153,10 +151,8 @@ The functions on this page are grouped by responsibility so related operations s
     **Docstring**
     
     Updates the configured session stored on the current Runner execution builder instance.
-    
-    Use this method when working with the documented Runner execution builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
-### `RemoveSession`
+### `RemoveSession` {: #removesession}
 
 ??? info "Source file, signature, and docstring"
     **Member**
@@ -176,10 +172,8 @@ The functions on this page are grouped by responsibility so related operations s
     **Docstring**
     
     Removes the configured session from the current Runner execution builder instance.
-    
-    Use this method when working with the documented Runner execution builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
-### `RemoveSessionAt`
+### `RemoveSessionAt` {: #removesessionat}
 
 ??? info "Source file, signature, and docstring"
     **Member**
@@ -199,12 +193,10 @@ The functions on this page are grouped by responsibility so related operations s
     **Docstring**
     
     Removes the configured session at the specified index from the current Runner execution builder instance.
-    
-    Use this method when working with the documented Runner execution builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
-## Links
+## Links {: #links}
 
-### `AddLink`
+### `AddLink` {: #addlink}
 
 ??? info "Source file, signature, and docstring"
     **Member**
@@ -224,10 +216,8 @@ The functions on this page are grouped by responsibility so related operations s
     **Docstring**
     
     Adds the supplied link to the current Runner execution builder instance.
-    
-    Use this method when working with the documented Runner execution builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
-### `UpdateLinkAt`
+### `UpdateLinkAt` {: #updatelinkat}
 
 ??? info "Source file, signature, and docstring"
     **Member**
@@ -247,10 +237,8 @@ The functions on this page are grouped by responsibility so related operations s
     **Docstring**
     
     Updates the configured link at the specified index on the current Runner execution builder instance.
-    
-    Use this method when working with the documented Runner execution builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
-### `RemoveLink`
+### `RemoveLink` {: #removelink}
 
 ??? info "Source file, signature, and docstring"
     **Member**
@@ -270,10 +258,8 @@ The functions on this page are grouped by responsibility so related operations s
     **Docstring**
     
     Removes the configured link from the current Runner execution builder instance.
-    
-    Use this method when working with the documented Runner execution builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
-### `RemoveLinkAt`
+### `RemoveLinkAt` {: #removelinkat}
 
 ??? info "Source file, signature, and docstring"
     **Member**
@@ -293,12 +279,10 @@ The functions on this page are grouped by responsibility so related operations s
     **Docstring**
     
     Removes the configured link at the specified index from the current Runner execution builder instance.
-    
-    Use this method when working with the documented Runner execution builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
-## Storages
+## Storages {: #storages}
 
-### `AddStorage`
+### `AddStorage` {: #addstorage}
 
 ??? info "Source file, signature, and docstring"
     **Member**
@@ -318,10 +302,8 @@ The functions on this page are grouped by responsibility so related operations s
     **Docstring**
     
     Adds the supplied storage to the current Runner execution builder instance.
-    
-    Use this method when working with the documented Runner execution builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
-### `UpdateStorageAt`
+### `UpdateStorageAt` {: #updatestorageat}
 
 ??? info "Source file, signature, and docstring"
     **Member**
@@ -341,10 +323,8 @@ The functions on this page are grouped by responsibility so related operations s
     **Docstring**
     
     Updates the configured storage at the specified index on the current Runner execution builder instance.
-    
-    Use this method when working with the documented Runner execution builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
-### `RemoveStorageAt`
+### `RemoveStorageAt` {: #removestorageat}
 
 ??? info "Source file, signature, and docstring"
     **Member**
@@ -364,12 +344,10 @@ The functions on this page are grouped by responsibility so related operations s
     **Docstring**
     
     Removes the configured storage at the specified index from the current Runner execution builder instance.
-    
-    Use this method when working with the documented Runner execution builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
-## Assertions
+## Assertions {: #assertions}
 
-### `AddAssertion`
+### `AddAssertion` {: #addassertion}
 
 ??? info "Source file, signature, and docstring"
     **Member**
@@ -389,10 +367,8 @@ The functions on this page are grouped by responsibility so related operations s
     **Docstring**
     
     Adds the supplied assertion to the current Runner execution builder instance.
-    
-    Use this method when working with the documented Runner execution builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
-### `UpdateAssertion`
+### `UpdateAssertion` {: #updateassertion}
 
 ??? info "Source file, signature, and docstring"
     **Member**
@@ -412,10 +388,8 @@ The functions on this page are grouped by responsibility so related operations s
     **Docstring**
     
     Updates the configured assertion stored on the current Runner execution builder instance.
-    
-    Use this method when working with the documented Runner execution builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
-### `RemoveAssertion`
+### `RemoveAssertion` {: #removeassertion}
 
 ??? info "Source file, signature, and docstring"
     **Member**
@@ -435,10 +409,8 @@ The functions on this page are grouped by responsibility so related operations s
     **Docstring**
     
     Removes the configured assertion from the current Runner execution builder instance.
-    
-    Use this method when working with the documented Runner execution builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
-### `RemoveAssertionAt`
+### `RemoveAssertionAt` {: #removeassertionat}
 
 ??? info "Source file, signature, and docstring"
     **Member**
@@ -458,12 +430,10 @@ The functions on this page are grouped by responsibility so related operations s
     **Docstring**
     
     Removes the configured assertion at the specified index from the current Runner execution builder instance.
-    
-    Use this method when working with the documented Runner execution builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
-## Executions
+## Executions {: #executions_1}
 
-### `ExecutionType`
+### `ExecutionType` {: #executiontype}
 
 ??? info "Source file, signature, and docstring"
     **Member**
@@ -483,10 +453,8 @@ The functions on this page are grouped by responsibility so related operations s
     **Docstring**
     
     Sets the execution type used when the runner execution is built.
-    
-    Use this method when working with the documented Runner execution builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
-### `SetExecutionId`
+### `SetExecutionId` {: #setexecutionid}
 
 ??? info "Source file, signature, and docstring"
     **Member**
@@ -509,9 +477,9 @@ The functions on this page are grouped by responsibility so related operations s
     
     The execution identifier flows into the built context and can later be used by logging, reports, and storage integrations.
 
-## Configuration
+## Configuration {: #configuration}
 
-### `WithGlobalDict`
+### `WithGlobalDict` {: #withglobaldict}
 
 ??? info "Source file, signature, and docstring"
     **Member**
@@ -531,10 +499,8 @@ The functions on this page are grouped by responsibility so related operations s
     **Docstring**
     
     Replaces the global dictionary stored on the runner execution context.
-    
-    Use this method when working with the documented Runner execution builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
-### `SetCase`
+### `SetCase` {: #setcase}
 
 ??? info "Source file, signature, and docstring"
     **Member**
@@ -557,7 +523,7 @@ The functions on this page are grouped by responsibility so related operations s
     
     Case files are used as the final scenario-specific overlay that shapes the runtime configuration for a specific execution.
 
-### `WithMetadata`
+### `WithMetadata` {: #withmetadata}
 
 ??? info "Source file, signature, and docstring"
     **Member**
@@ -577,12 +543,10 @@ The functions on this page are grouped by responsibility so related operations s
     **Docstring**
     
     Sets the metadata configuration stored on the execution.
-    
-    Use this method when working with the documented Runner execution builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
-## General
+## General {: #general}
 
-### `Build`
+### `Build` {: #build}
 
 ??? info "Source file, signature, and docstring"
     **Member**
@@ -604,3 +568,7 @@ The functions on this page are grouped by responsibility so related operations s
     Builds the configured Runner execution builder output from the current state.
     
     Call this after the fluent configuration is complete. The method validates the accumulated state and materializes the runtime or immutable configuration object represented by the builder.
+
+## See also {: #see-also}
+
+- [Runner Functions](../index.md)

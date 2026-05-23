@@ -6,9 +6,11 @@ since: 2.0.0
 last_verified: 2026-05-22
 applies_to: [runner]
 keywords: [qaas, userinterfaces, runner, configurationsections, sessions, types]
-summary: "Mocker commands connect QaaS.Runner tests to QaaS.Mocker servers through the Redis-backed Mocker controller. They let a test dynamically change mock behavior, trigger mock-side actions, or consume ..."
+summary: "Mocker commands let Runner sessions control a Redis-backed QaaS.Mocker Controller."
 ---
 # Mocker Commands
+
+> TL;DR — Mocker commands let Runner sessions control a Redis-backed QaaS.Mocker Controller.
 
 Mocker commands connect [QaaS.Runner](../../../../../../qaas/index.md) tests to [QaaS.Mocker](../../../../../../mocker/index.md) servers through the Redis-backed Mocker controller. They let a test dynamically change mock behavior, trigger mock-side actions, or consume mock activity during the execution of a test session.
 
@@ -20,7 +22,7 @@ Use this page for behavior and YAML shape. The same action can be built in C# wi
 
 **Table Property Path** - `Sessions[].MockerCommands[]`
 
-## ChangeActionStub
+## ChangeActionStub {: #changeactionstub}
 
 Changes the transaction stub used by a named mock action. The command updates Mocker runtime state and does not create session `Input` or `Output`.
 
@@ -31,7 +33,7 @@ Type: ChangeActionStub
 ChangeActionStub: {}
 ```
 
-## TriggerAction
+## TriggerAction {: #triggeraction}
 
 Triggers a named mock action on the Mocker side. The command asks the selected Mocker instances to execute the action and does not create session `Input` or `Output`.
 
@@ -42,7 +44,7 @@ Type: TriggerAction
 TriggerAction: {}
 ```
 
-## Consume
+## Consume {: #consume}
 
 Consumes data captured by the Mocker. After the Redis command succeeds, the Runner reads the Mocker input and/or output Redis queues selected by the server's reported `InputOutputState`. It pops queue items until the consume timeout elapses without another item, applies input and output filters, optionally deserializes the bodies, and stores the consumed values as session `Input` and `Output`.
 
@@ -65,3 +67,7 @@ Consume: {}
     ```yaml
     Body: <byte[]>
     ```
+
+## See also {: #see-also}
+
+- [Sessions](../overview.md)

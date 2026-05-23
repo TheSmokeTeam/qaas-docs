@@ -1,18 +1,27 @@
 ---
-id: qaas.functions.builders.publishers-sections.configuration
+id: qaas.functions.builders.publishers.sections.configuration
 type: reference
 status: stable
 since: 2.0.0
 last_verified: 2026-05-22
 applies_to: [runner]
-keywords: [qaas, functions, builders, publishers, sections, configuration]
-summary: "This page mirrors the Configuration section from Publishers."
+keywords: [runner, qaas, functions, builders, publishers, sections, configuration]
+summary: "Reference page for Publishers: Configuration."
 ---
+
+<!-- Verified-against: QaaS.Runner\QaaS.Runner.Sessions\Actions\Publishers\Builders\PublisherBuilderLogic.cs -->
+
 # Publishers: Configuration
 
-This page mirrors the `Configuration` section from [Publishers](../publishers.md).
+> TL;DR — This page mirrors the `Configuration` section from [Publishers](../publishers.md) as a focused reference.
 
-## `WithSerializer`
+## When to use {: #when-to-use}
+
+Use this page when you need the focused member list, signatures, and source notes for this section without scanning the full parent reference.
+
+## C# (CAC) usage {: #c-cac-usage}
+
+### `WithSerializer` {: #withserializer}
 
 ??? info "Source file, signature, and docstring"
     **Member**
@@ -32,10 +41,8 @@ This page mirrors the `Configuration` section from [Publishers](../publishers.md
     **Docstring**
     
     Sets the serializer configuration used by the current Runner publisher builder instance.
-    
-    Use this method when working with the documented Runner publisher builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
-## `WithIterations`
+### `WithIterations` {: #withiterations}
 
 ??? info "Source file, signature, and docstring"
     **Member**
@@ -54,11 +61,9 @@ This page mirrors the `Configuration` section from [Publishers](../publishers.md
     
     **Docstring**
     
-    Sets how many iterations the transaction should execute.
-    
-    Use this method when working with the documented Runner publisher builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
+    Sets how many iterations the publisher should execute.
 
-## `WithSleep`
+### `WithSleep` {: #withsleep}
 
 ??? info "Source file, signature, and docstring"
     **Member**
@@ -78,10 +83,8 @@ This page mirrors the `Configuration` section from [Publishers](../publishers.md
     **Docstring**
     
     Sets the delay applied between transaction iterations.
-    
-    Use this method when working with the documented Runner publisher builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
-## `WithChunks`
+### `WithChunks` {: #withchunks}
 
 ??? info "Source file, signature, and docstring"
     **Member**
@@ -101,10 +104,8 @@ This page mirrors the `Configuration` section from [Publishers](../publishers.md
     **Docstring**
     
     Configures chunks on the current Runner publisher builder instance.
-    
-    Use this method when working with the documented Runner publisher builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
-## `WithParallelism`
+### `WithParallelism` {: #withparallelism}
 
 ??? info "Source file, signature, and docstring"
     **Member**
@@ -124,5 +125,12 @@ This page mirrors the `Configuration` section from [Publishers](../publishers.md
     **Docstring**
     
     Configures parallelism on the current Runner publisher builder instance.
-    
-    Use this method when working with the documented Runner publisher builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
+
+## Edge cases {: #edge-cases}
+
+- This page is generated from the parent reference section; edit the source XML docs or generator when content needs to change.
+- If a linked source member is renamed, regenerate the reference docs before changing prose by hand.
+
+## See also {: #see-also}
+
+- [Publishers](../publishers.md)

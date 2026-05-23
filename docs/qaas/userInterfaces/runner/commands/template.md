@@ -3,33 +3,40 @@ id: qaas.userinterfaces.runner.commands.template
 type: reference
 status: stable
 since: 2.0.0
-last_verified: 2026-05-22
+last_verified: 2026-05-23
 applies_to: [runner]
 keywords: [qaas, userinterfaces, runner, commands, template]
 summary: "Template a qaas configuration file to see how it looks after being loaded, will template what it can even if the configuration file is invalid."
 ---
+<!-- Verified-against: QaaS.Runner\QaaS.Runner\Bootstrap.cs -->
+<!-- Verified-against: QaaS.Runner\QaaS.Runner\Execution.cs -->
+<!-- Verified-against: QaaS.Runner\QaaS.Runner\Options\AssertableOptions.cs -->
+<!-- Verified-against: QaaS.Runner\QaaS.Runner\Options\BaseOptions.cs -->
+<!-- Verified-against: QaaS.Runner\QaaS.Runner\Options\ExecuteOptions.cs -->
+<!-- Verified-against: QaaS.Runner\QaaS.Runner\Runner.cs -->
+
 # template
 
-Template a qaas configuration file to see how it looks after being loaded, will template what it can even if the configuration file is invalid.
+> TL;DR — Template a qaas configuration file to see how it looks after being loaded, will template what it can even if the configuration file is invalid.
 
-## Invocation
+## Invocation {: #invocation}
 
 ```bash
 dotnet run <dotnet-parameters> -- template <config-file> [flags]
 ```
 
-## Use When
+## When to use {: #when-to-use}
 
 - You want to see the effective YAML after files, folders, references, placeholders, and environment overrides are resolved.
 - You are validating a complicated configuration merge before running a real test.
 
-## Positional Arguments
+## Positional Arguments {: #positional-arguments}
 
 | Position | Property | Source Type | Required | Default | Value Type | Description |
 | -------- | -------- | ----------- | -------- | ------- | ---------- | ----------- |
 | `0` | `ConfigurationFile` | `Base options` | Yes | test.qaas.yaml | `string` | Path to a qaas yaml configuration file to use with the command. |
 
-## Flags
+## Flags {: #flags}
 
 | Category | Flag | Inherited | Required | Default | Value Type | Description |
 | -------- | ---- | --------- | -------- | ------- | ---------- | ----------- |
@@ -56,33 +63,45 @@ dotnet run <dotnet-parameters> -- template <config-file> [flags]
 | Configuration | `-w`, `--with-files` | Yes | No | [] | `string list` | List of files to overwrite the qaas configuration with, The first file overwrites the qaas configuration file and then the one after it overwrite the result and so on... |
 | Configuration | `-f`, `--with-folders` | Yes | No | [] | `string list` | List of folders whose yaml files overwrite the qaas configuration in alphabetical order, after overwrite files and in the order the folders are given. |
 
-## Flag Notes
+## Flag Notes {: #flag-notes}
 
-### `-r`, `--overwrite-arguments`
+### `-r`, `--overwrite-arguments` {: #-r-overwrite-arguments}
 
 ```text
 -r MetaData:Environment=qa
 ```
 
-### `-p`, `--push-references`
+### `-p`, `--push-references` {: #-p-push-references}
 
 Use pushed references when a list placeholder in the loaded configuration should be expanded from another YAML file.
 
-## Examples
+## Examples {: #examples}
 
-### Print the resolved configuration
+### Print the resolved configuration {: #print-the-resolved-configuration}
 
 ```bash
 dotnet run -- template test.qaas.yaml
 ```
 
-### Preview the merged config with one extra file and one override
+### Preview the merged config with one extra file and one override {: #preview-the-merged-config-with-one-extra-file-and-one-override}
 
 ```bash
 dotnet run -- template test.qaas.yaml -w local.qaas.yaml -r MetaData:Environment=qa
 ```
 
-## Raw CLI Help
+## Exit Codes {: #exit-codes}
+
+| Code | Meaning |
+| ---- | ------- |
+| `0` | Help/version requests, successful `act` or `template` runs, and assertion-bearing runs where every assertion result is passed. |
+| `1` | Command-line parse failures, invalid configuration failures, or assertion-bearing runs with at least one assertion result that is not passed. |
+| `>1` | `execute` can aggregate several failing assertion-bearing executions because Runner sums execution exit codes. |
+
+`RunAndGetExitCode()` returns the resolved code to an embedding host. `Run()` applies the same code to the process: by default it terminates with that code, while `--no-process-exit` stores the code on the current process without terminating it.
+
+Unexpected lifecycle exceptions are rethrown after cleanup instead of being translated into one of the table values.
+
+## Raw CLI Help {: #raw-cli-help}
 
 ```text
 Usage:
@@ -205,3 +224,7 @@ No-args guidance:
   Empty arguments only work for code-only hosts that choose a no-args path in Program.cs.
   If a YAML file is part of the scenario, pass it explicitly: dotnet run -- run <config-file>.
 ```
+
+## See also {: #see-also}
+
+- [Runner commands](commands.md)

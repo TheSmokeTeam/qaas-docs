@@ -3,12 +3,15 @@ id: mocker.index
 type: explanation
 status: stable
 since: 2.0.0
-last_verified: 2026-05-22
+last_verified: 2026-05-23
 applies_to: [mocker]
 keywords: [mocker, index]
-summary: "QaaS.Mocker is the mock-server runtime in the QaaS ecosystem. It runs HTTP, gRPC, and socket mocks from YAML or from code, routes incoming traffic to named Stubs, and lets each stub shape its respo..."
+summary: "QaaS.Mocker runs HTTP, gRPC, and socket mocks from YAML or C# configuration and routes traffic to named stubs."
+render_macros: true
 ---
 # QaaS Mocker
+
+> TL;DR — QaaS.Mocker runs HTTP, gRPC, and socket mocks from YAML or C# configuration and routes traffic to named stubs.
 
 **QaaS.Mocker** is the mock-server runtime in the QaaS ecosystem. It runs HTTP, gRPC, and socket mocks from YAML or from code, routes incoming traffic to named [Stubs](userInterfaces/mocker/configurationSections/stubs/overview.md), and lets each stub shape its response through reusable or project-local [Processors](../processors/index.md).
 
@@ -19,7 +22,7 @@ summary: "QaaS.Mocker is the mock-server runtime in the QaaS ecosystem. It runs 
 | **Source**  | [QaaS.Mocker]({{ links.repository_mocker }}) |
 | **Docker**  | Multi-stage Dockerfile included                           |
 
-## Key Capabilities
+## Key Capabilities {: #key-capabilities}
 
 - **Protocol coverage** - host HTTP, gRPC, TCP, and UDP mocks from one process.
 - **Composable responses** - map endpoints to named [Stubs](userInterfaces/mocker/configurationSections/stubs/overview.md), then let [Processors](../processors/index.md) turn request data and optional [DataSources](userInterfaces/mocker/configurationSections/dataSources/overview.md) into responses.

@@ -1,18 +1,27 @@
 ---
-id: qaas.functions.builders.assertions-sections.collection-helpers
+id: qaas.functions.builders.assertions.sections.collection.helpers
 type: reference
 status: stable
 since: 2.0.0
 last_verified: 2026-05-22
 applies_to: [runner]
-keywords: [qaas, functions, builders, assertions, sections, collection]
-summary: "This page mirrors the Collection helpers section from Assertions."
+keywords: [runner, qaas, functions, builders, assertions, sections, collection, helpers]
+summary: "Reference page for Assertions: Collection helpers."
 ---
+
+<!-- Verified-against: QaaS.Runner\QaaS.Runner.Assertions\ConfigurationObjects\AssertionBuilder.cs -->
+
 # Assertions: Collection helpers
 
-This page mirrors the `Collection helpers` section from [Assertions](../assertions.md).
+> TL;DR — This page mirrors the `Collection helpers` section from [Assertions](../assertions.md) as a focused reference.
 
-## `UpdateConfiguration`
+## When to use {: #when-to-use}
+
+Use this page when you need the focused member list, signatures, and source notes for this section without scanning the full parent reference.
+
+## C# (CAC) usage {: #c-cac-usage}
+
+### `UpdateConfiguration` {: #updateconfiguration}
 
 ??? info "Source file, signature, and docstring"
     **Member**
@@ -32,10 +41,8 @@ This page mirrors the `Collection helpers` section from [Assertions](../assertio
     **Docstring**
     
     Sets the configuration currently stored on the Runner assertion builder instance.
-    
-    Use this method when working with the documented Runner assertion builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
-## `RemoveConfiguration`
+### `RemoveConfiguration` {: #removeconfiguration}
 
 ??? info "Source file, signature, and docstring"
     **Member**
@@ -55,5 +62,12 @@ This page mirrors the `Collection helpers` section from [Assertions](../assertio
     **Docstring**
     
     Clears the configuration currently stored on the Runner assertion builder instance.
-    
-    Use this method when working with the documented Runner assertion builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
+
+## Edge cases {: #edge-cases}
+
+- This page is generated from the parent reference section; edit the source XML docs or generator when content needs to change.
+- If a linked source member is renamed, regenerate the reference docs before changing prose by hand.
+
+## See also {: #see-also}
+
+- [Assertions](../assertions.md)

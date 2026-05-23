@@ -10,6 +10,8 @@ summary: "Transactions are communication actions that both send and receive data
 ---
 # Transactions
 
+> TL;DR — Transactions are communication actions that both send and receive data from the system. Every transaction creates both an Input and an Output in SessionData with its own name.
+
 Transactions are communication actions that both send and receive data from the system. Every transaction creates both an `Input` and an `Output` in `SessionData` with its own name.
 
 Transactions represent request/response actions. At runtime a transaction resolves configured data sources, serializes each input item when needed, calls the selected transactor, records the sent item as session `Input`, and records a response as session `Output` when the transactor returns one. Input and output items receive matching indexes so assertions can correlate a request with its response. Transactions can run in fixed iterations or loop mode, sleep between iterations, and stop early when the policy chain returns false.
@@ -18,7 +20,7 @@ Use this page for behavior and YAML shape. The same action can be built in C# wi
 
 **Table Property Path** - `Sessions[].Transactions[]`
 
-## Http
+## Http {: #http}
 
 Sends an HTTP request and stores the HTTP response when one arrives. The protocol builds a fresh `HttpRequestMessage` for each retry, uses item metadata to override the configured URI or headers when present, captures the response body, status code, reason phrase, HTTP version, content headers, response headers, and trailing headers, and returns no output when the final attempt times out or fails with an HTTP transport exception.
 
@@ -49,7 +51,7 @@ Http: {}
             TrailingHeaders: <IDictionary<string, string>>
     ```
 
-## Grpc
+## Grpc {: #grpc}
 
 Invokes a gRPC method with Protobuf message input and output. The protocol loads the configured assembly, resolves the generated service client and RPC method, calls it with a deadline based on the action timeout, stores the returned `IMessage` as output, and returns no output when the call deadline is exceeded.
 
@@ -68,3 +70,7 @@ Grpc: {}
     ```yaml
     Body: <Google.Protobuf.IMessage>
     ```
+
+## See also {: #see-also}
+
+- [Sessions](../overview.md)

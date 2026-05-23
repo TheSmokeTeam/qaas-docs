@@ -8,15 +8,39 @@ applies_to: [framework]
 keywords: [framework, functions, extension, methods]
 summary: "This page collects public Framework extension methods that have XML documentation or explicit docs annotations."
 ---
+<!-- Verified-against: QaaS.Framework\QaaS.Framework.Configurations\ConfigurationBindingUtils\ConfigurationMergeUtils.cs -->
+<!-- Verified-against: QaaS.Framework\QaaS.Framework.Configurations\ConfigurationBindingUtils\IConfigurationUtils.cs -->
+<!-- Verified-against: QaaS.Framework\QaaS.Framework.Configurations\ConfigurationBuilderExtensions\PlaceholderConfigurationBuilderExtension.cs -->
+<!-- Verified-against: QaaS.Framework\QaaS.Framework.Configurations\ConfigurationBuilderExtensions\YamlConfigurationBuilderExtension.cs -->
+<!-- Verified-against: QaaS.Framework\QaaS.Framework.Configurations\ConfigurationUpdateExtensions.cs -->
+<!-- Verified-against: QaaS.Framework\QaaS.Framework.Configurations\ConfigurationUtils.cs -->
+<!-- Verified-against: QaaS.Framework\QaaS.Framework.Configurations\References\ConfigurationReferencesParser.cs -->
+<!-- Verified-against: QaaS.Framework\QaaS.Framework.Infrastructure\DateTimeExtensions.cs -->
+<!-- Verified-against: QaaS.Framework\QaaS.Framework.SDK\Extensions\CommunicationDataExtensions.cs -->
+<!-- Verified-against: QaaS.Framework\QaaS.Framework.SDK\Extensions\ContextGlobalDictionaryExtensions.cs -->
+<!-- Verified-against: QaaS.Framework\QaaS.Framework.SDK\Extensions\DataExtensions.cs -->
+<!-- Verified-against: QaaS.Framework\QaaS.Framework.SDK\Extensions\DataSourceExtensions.cs -->
+<!-- Verified-against: QaaS.Framework\QaaS.Framework.SDK\Extensions\EnumerableExtensions.cs -->
+<!-- Verified-against: QaaS.Framework\QaaS.Framework.SDK\Extensions\LoggingExetentions.cs -->
+<!-- Verified-against: QaaS.Framework\QaaS.Framework.SDK\Extensions\RunningCommunicationDataExtensions.cs -->
+<!-- Verified-against: QaaS.Framework\QaaS.Framework.SDK\Extensions\RunningSessionDataExtensions.cs -->
+<!-- Verified-against: QaaS.Framework\QaaS.Framework.SDK\Extensions\SessionDataExtensions.cs -->
+
 # Extension Methods
+
+> TL;DR — This page lists public Framework extension methods with source-backed signatures and XML doc comments.
+
+## When to use {: #when-to-use}
+
+Use this page when you need extension-method helpers without scanning each regular function category.
 
 This page collects public `Framework` extension methods that have XML documentation or explicit docs annotations.
 
 Annotated extension methods continue to appear in their regular category pages; this page gives the extension surface a dedicated view.
 
-## Configuration
+## Configuration {: #configuration}
 
-### Placeholders
+### Placeholders {: #placeholders}
 
 #### `AddPlaceholderResolver`
 
@@ -41,7 +65,7 @@ Annotated extension methods continue to appear in their regular category pages; 
     
     Call this extension before building IConfiguration when placeholder expansion should be applied as part of the configuration pipeline.
 
-### Updates
+### Updates {: #updates}
 
 #### `UpdateConfiguration<TConfiguration>`
 
@@ -112,7 +136,7 @@ Annotated extension methods continue to appear in their regular category pages; 
     
     Use this overload when configuration is already represented as an IConfiguration tree and should be updated without first binding it to a typed configuration object.
 
-### YAML
+### YAML {: #yaml}
 
 #### `AddYamlFromHttpGet`
 
@@ -160,9 +184,9 @@ Annotated extension methods continue to appear in their regular category pages; 
     
     Call this extension during configuration bootstrap so YAML sources go through the same QaaS-aware loading path for files and remote URLs.
 
-## Extension Methods
+## Extension Methods {: #extension-methods_1}
 
-### Communication data
+### Communication data {: #communication-data}
 
 #### `GetCommunicationDataByName<TData>`
 
@@ -227,7 +251,7 @@ Annotated extension methods continue to appear in their regular category pages; 
     
     Retrieves data by its IoMatchIndex from a CommunicationData object
 
-### Configuration merge utilities
+### Configuration merge utilities {: #configuration-merge-utilities}
 
 #### `MergeConfigurationObjectIntoIConfiguration`
 
@@ -271,7 +295,7 @@ Annotated extension methods continue to appear in their regular category pages; 
     
     Merges a partial configuration object into an existing configuration instance. When the incoming configuration type differs from the existing one, the incoming configuration replaces it. Fields that still match a fresh default instance of the incoming configuration type are ignored.
 
-### Configuration references parser
+### Configuration references parser {: #configuration-references-parser}
 
 #### `ResolveReferencesInConfiguration`
 
@@ -294,7 +318,7 @@ Annotated extension methods continue to appear in their regular category pages; 
     
     Resolves all references in configuration according to loaded reference configs and given referenceResolutionPaths
 
-### Configuration utilities
+### Configuration utilities {: #configuration-utilities}
 
 #### `BindConfigurationObjectToIConfiguration`
 
@@ -443,7 +467,7 @@ Annotated extension methods continue to appear in their regular category pages; 
     
     Converts IConfiguration to an object of the given runtime type.
 
-### Context global dictionary
+### Context global dictionary {: #context-global-dictionary}
 
 #### `LoadConfigurationSectionIntoGlobalDictionary<TExecutionData>`
 
@@ -466,7 +490,7 @@ Annotated extension methods continue to appear in their regular category pages; 
     
     Loads the requested configuration section into the context global dictionary. Use "variables" as the section path to project the root variables section into runtime state without relying on a dedicated Variables API. Numeric child sections are normalized to lists so YAML list sections do not appear as dictionaries with stringified indexes such as "0" and "1" .
 
-### Data
+### Data {: #data}
 
 #### `CastObjectData<TCasted>`
 
@@ -573,7 +597,7 @@ Annotated extension methods continue to appear in their regular category pages; 
     
     Filters the data of a detailed data item according to the given DataFilter
 
-### Data source
+### Data source {: #data-source}
 
 #### `GetDataSourceByName`
 
@@ -617,7 +641,7 @@ Annotated extension methods continue to appear in their regular category pages; 
     
     Casts a DataSource to a different type
 
-### Date time
+### Date time {: #date-time}
 
 #### `ConvertDateTimeToUtcByTimeZoneOffset`
 
@@ -661,7 +685,7 @@ Annotated extension methods continue to appear in their regular category pages; 
     
     adds a timezone offset to the given utc time based on the timezone offset in summer time given
 
-### Running communication data
+### Running communication data {: #running-communication-data}
 
 #### `GetRunningCommunicationDataByName<TData>`
 
@@ -684,7 +708,7 @@ Annotated extension methods continue to appear in their regular category pages; 
     
     Retrieves a RunningCommunicationData{TData} from an enumerable of RunningCommunicationData{TData} by its name
 
-### Running session data
+### Running session data {: #running-session-data}
 
 #### `GetInputByName<TInput, TOutput>`
 
@@ -728,7 +752,7 @@ Annotated extension methods continue to appear in their regular category pages; 
     
     Retrieves an output RunningCommunicationData{TData} from RunningSessionData{TInput,TOutput} by its name
 
-### Serilog
+### Serilog {: #serilog}
 
 #### `WithHostname`
 
@@ -772,7 +796,7 @@ Annotated extension methods continue to appear in their regular category pages; 
     
     Enriches log events with the CI/Local environment as a structured property and adds it as a tag (label) in Elasticsearch.
 
-### Session data
+### Session data {: #session-data}
 
 #### `GetSessionDataByName<TInput, TOutput>`
 
@@ -879,9 +903,9 @@ Annotated extension methods continue to appear in their regular category pages; 
     
     Retrieves an input CommunicationData{TData} from SessionData by its name to inputValue
 
-## Utilities
+## Utilities {: #utilities}
 
-### Enumerables
+### Enumerables {: #enumerables}
 
 #### `AsSingle<TItem>`
 
@@ -905,3 +929,7 @@ Annotated extension methods continue to appear in their regular category pages; 
     Returns the single item contained in the provided sequence.
     
     The helper enforces the invariant that exactly one item must be present and throws when the sequence is empty or contains more than one value.
+
+## See also {: #see-also}
+
+- [Functions](index.md)

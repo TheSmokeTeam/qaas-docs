@@ -1,18 +1,27 @@
 ---
-id: framework.functions.builders.data-sources-sections.data-source-selection
+id: framework.functions.builders.data.sources.sections.data.source.selection
 type: reference
 status: stable
 since: 2.0.0
 last_verified: 2026-05-22
 applies_to: [framework]
-keywords: [framework, functions, builders, data, sources, sections]
-summary: "This page mirrors the Data source selection section from Data Sources."
+keywords: [framework, functions, builders, data, sources, sections, source, selection]
+summary: "Reference page for Data Sources: Data source selection."
 ---
+
+<!-- Verified-against: QaaS.Framework\QaaS.Framework.SDK\DataSourceObjects\DataSourceBuilder.cs -->
+
 # Data Sources: Data source selection
 
-This page mirrors the `Data source selection` section from [Data Sources](../data-sources.md).
+> TL;DR — This page mirrors the `Data source selection` section from [Data Sources](../data-sources.md) as a focused reference.
 
-## `AddDataSourceName`
+## When to use {: #when-to-use}
+
+Use this page when you need the focused member list, signatures, and source notes for this section without scanning the full parent reference.
+
+## C# (CAC) usage {: #c-cac-usage}
+
+### `AddDataSourceName` {: #adddatasourcename}
 
 ??? info "Source file, signature, and docstring"
     **Member**
@@ -32,10 +41,8 @@ This page mirrors the `Data source selection` section from [Data Sources](../dat
     **Docstring**
     
     Adds the supplied data source name to the current Framework data source builder instance.
-    
-    Use this method when working with the documented Framework data source builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
-## `RemoveDataSourceName`
+### `RemoveDataSourceName` {: #removedatasourcename}
 
 ??? info "Source file, signature, and docstring"
     **Member**
@@ -55,10 +62,8 @@ This page mirrors the `Data source selection` section from [Data Sources](../dat
     **Docstring**
     
     Removes the configured data source name from the current Framework data source builder instance.
-    
-    Use this method when working with the documented Framework data source builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
-## `RemoveDataSourceNameAt`
+### `RemoveDataSourceNameAt` {: #removedatasourcenameat}
 
 ??? info "Source file, signature, and docstring"
     **Member**
@@ -78,10 +83,8 @@ This page mirrors the `Data source selection` section from [Data Sources](../dat
     **Docstring**
     
     Removes the configured data source name at the specified index from the current Framework data source builder instance.
-    
-    Use this method when working with the documented Framework data source builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
-## `AddDataSourcePattern`
+### `AddDataSourcePattern` {: #adddatasourcepattern}
 
 ??? info "Source file, signature, and docstring"
     **Member**
@@ -101,10 +104,8 @@ This page mirrors the `Data source selection` section from [Data Sources](../dat
     **Docstring**
     
     Adds the supplied data source pattern to the current Framework data source builder instance.
-    
-    Use this method when working with the documented Framework data source builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
-## `RemoveDataSourcePattern`
+### `RemoveDataSourcePattern` {: #removedatasourcepattern}
 
 ??? info "Source file, signature, and docstring"
     **Member**
@@ -124,10 +125,8 @@ This page mirrors the `Data source selection` section from [Data Sources](../dat
     **Docstring**
     
     Removes the configured data source pattern from the current Framework data source builder instance.
-    
-    Use this method when working with the documented Framework data source builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
-## `RemoveDataSourcePatternAt`
+### `RemoveDataSourcePatternAt` {: #removedatasourcepatternat}
 
 ??? info "Source file, signature, and docstring"
     **Member**
@@ -147,5 +146,12 @@ This page mirrors the `Data source selection` section from [Data Sources](../dat
     **Docstring**
     
     Removes the configured data source pattern at the specified index from the current Framework data source builder instance.
-    
-    Use this method when working with the documented Framework data source builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
+
+## Edge cases {: #edge-cases}
+
+- This page is generated from the parent reference section; edit the source XML docs or generator when content needs to change.
+- If a linked source member is renamed, regenerate the reference docs before changing prose by hand.
+
+## See also {: #see-also}
+
+- [Data Sources](../data-sources.md)

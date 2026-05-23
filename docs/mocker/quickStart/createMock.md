@@ -3,12 +3,15 @@ id: mocker.quickstart.createmock
 type: tutorial
 status: stable
 since: 2.0.0
-last_verified: 2026-05-22
+last_verified: 2026-05-23
 applies_to: [mocker]
 keywords: [mocker, quickstart, createmock]
-summary: "Use YAML when the mock shape is mostly declarative and you want the runtime definition to stay easy to scan: where the DataSources come from, which Stub processes them, and which Server endpoint ex..."
+summary: "Use YAML to define mock data sources, stubs, and servers in a declarative mock configuration."
+render_macros: true
 ---
 # Create a Mock (YAML)
+
+> TL;DR — Use YAML to define mock data sources, stubs, and servers in a declarative mock configuration.
 
 Use YAML when the mock shape is mostly declarative and you want the runtime definition to stay easy to scan: where the [DataSources](../userInterfaces/mocker/configurationSections/dataSources/overview.md) come from, which [Stub](../userInterfaces/mocker/configurationSections/stubs/overview.md) processes them, and which [Server](../userInterfaces/mocker/configurationSections/server/overview.md) endpoint exposes them. QaaS.Mocker reads those sections into the same execution builder concepts you will use in larger mocks later.
 
@@ -16,7 +19,7 @@ This version keeps the mock definition in `mocker.qaas.yaml` and uses a small lo
 
 The completed sample is available at [DummyAppMock (YAML)]({{ links.repository_mocker_quickstart_yaml }}).
 
-## Scenario
+## Scenario {: #scenario}
 
 The mock should:
 
@@ -24,7 +27,7 @@ The mock should:
 - return JSON from `GET /data`
 - load the response body from `ServerData/sample.json`
 
-## Create the Project
+## Create the Project {: #create-the-project}
 
 ```bash
 dotnet new qaas-mocker -n DummyAppMock
@@ -34,7 +37,7 @@ dotnet add DummyAppMock/DummyAppMock.csproj package QaaS.Common.Generators
 
 The sample keeps the response [Processor](../../processors/index.md) local so the quick start stays compatible with the currently published public packages.
 
-## Keep `Program.cs` Minimal
+## Keep `Program.cs` Minimal {: #keep-programcs-minimal}
 
 `DummyAppMock/Program.cs`
 
@@ -44,7 +47,7 @@ QaaS.Mocker.Bootstrap.New(args).Run();
 
 This host is YAML-only. Empty program arguments therefore show help text, so the run command must pass `run mocker.qaas.yaml` explicitly.
 
-## Add the Local Processor
+## Add the Local Processor {: #add-the-local-processor}
 
 The YAML file will only describe the mock flow. The actual response body is produced by a small local processor that loads the JSON payload from the data source and returns it with an HTTP 200 response.
 
@@ -95,7 +98,7 @@ public class ServerDataProcessor : BaseTransactionProcessor<ServerDataProcessorC
 }
 ```
 
-## Add the Response File
+## Add the Response File {: #add-the-response-file}
 
 `DummyAppMock/ServerData/sample.json`
 
@@ -106,7 +109,7 @@ public class ServerDataProcessor : BaseTransactionProcessor<ServerDataProcessorC
 }
 ```
 
-## Start with the `DataSources` Section
+## Start with the `DataSources` Section {: #start-with-the-datasources-section}
 
 Begin by telling Mocker where the response payload lives through [DataSources](../userInterfaces/mocker/configurationSections/dataSources/overview.md).
 
@@ -124,7 +127,7 @@ DataSources:
 
 This means: "load files from the local `ServerData` folder and expose them as a named data source called `ServerData`."
 
-## Add the `Stubs` Section
+## Add the `Stubs` Section {: #add-the-stubs-section}
 
 Next add the transaction stub that connects the incoming request to your local processor.
 
@@ -139,9 +142,9 @@ Stubs:
 
 The [Stub](../userInterfaces/mocker/configurationSections/stubs/overview.md) says that when a request reaches this action, Mocker should call `ServerDataProcessor` and give it the `ServerData` data source.
 
-## Add the `Servers` Section
+## Add the `Servers` Section {: #add-the-servers-section}
 
-Finally define the [Server](../userInterfaces/mocker/configurationSections/server/overview.md) and map `GET /data` to the stub you just created.
+Finally define the [Server](../userInterfaces/mocker/configurationSections/server/overview.md) and map `GET /data` to the stub created in the previous step.
 
 Append this section to `mocker.qaas.yaml`:
 
@@ -160,7 +163,7 @@ Servers:
 
 This is the actual mock surface: open port `8080`, listen locally, and route `GET /data` to the stub named `ServerDataStub`.
 
-## Full `mocker.qaas.yaml`
+## Full `mocker.qaas.yaml` {: #full-mockerqaasyaml}
 
 ```yaml
 DataSources:
@@ -188,7 +191,7 @@ Servers:
               TransactionStubName: ServerDataStub
 ```
 
-## Run the Mock
+## Run the Mock {: #run-the-mock}
 
 From `DummyAppMock/DummyAppMock`:
 
@@ -203,3 +206,11 @@ curl http://127.0.0.1:8080/data
 ```
 
 The mock keeps running after the check. Stop it with `Ctrl+C` when you are done.
+
+## See also {: #see-also}
+
+- [Create a mock in code](createMockCode.md)
+- [Deploy a mock](deployMock.md)
+- [DataSources](../userInterfaces/mocker/configurationSections/dataSources/overview.md)
+- [Stubs](../userInterfaces/mocker/configurationSections/stubs/overview.md)
+- [Servers](../userInterfaces/mocker/configurationSections/server/overview.md)

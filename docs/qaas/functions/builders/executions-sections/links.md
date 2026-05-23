@@ -1,18 +1,27 @@
 ---
-id: qaas.functions.builders.executions-sections.links
+id: qaas.functions.builders.executions.sections.links
 type: reference
 status: stable
 since: 2.0.0
 last_verified: 2026-05-22
 applies_to: [runner]
-keywords: [qaas, functions, builders, executions, sections, links]
-summary: "This page mirrors the Links section from Executions."
+keywords: [runner, qaas, functions, builders, executions, sections, links]
+summary: "Reference page for Executions: Links."
 ---
+
+<!-- Verified-against: QaaS.Runner\QaaS.Runner\ExecutionBuilder.cs -->
+
 # Executions: Links
 
-This page mirrors the `Links` section from [Executions](../executions.md).
+> TL;DR — This page mirrors the `Links` section from [Executions](../executions.md) as a focused reference.
 
-## `AddLink`
+## When to use {: #when-to-use}
+
+Use this page when you need the focused member list, signatures, and source notes for this section without scanning the full parent reference.
+
+## C# (CAC) usage {: #c-cac-usage}
+
+### `AddLink` {: #addlink}
 
 ??? info "Source file, signature, and docstring"
     **Member**
@@ -32,10 +41,8 @@ This page mirrors the `Links` section from [Executions](../executions.md).
     **Docstring**
     
     Adds the supplied link to the current Runner execution builder instance.
-    
-    Use this method when working with the documented Runner execution builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
-## `UpdateLinkAt`
+### `UpdateLinkAt` {: #updatelinkat}
 
 ??? info "Source file, signature, and docstring"
     **Member**
@@ -55,10 +62,8 @@ This page mirrors the `Links` section from [Executions](../executions.md).
     **Docstring**
     
     Updates the configured link at the specified index on the current Runner execution builder instance.
-    
-    Use this method when working with the documented Runner execution builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
-## `RemoveLink`
+### `RemoveLink` {: #removelink}
 
 ??? info "Source file, signature, and docstring"
     **Member**
@@ -78,10 +83,8 @@ This page mirrors the `Links` section from [Executions](../executions.md).
     **Docstring**
     
     Removes the configured link from the current Runner execution builder instance.
-    
-    Use this method when working with the documented Runner execution builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
-## `RemoveLinkAt`
+### `RemoveLinkAt` {: #removelinkat}
 
 ??? info "Source file, signature, and docstring"
     **Member**
@@ -101,5 +104,12 @@ This page mirrors the `Links` section from [Executions](../executions.md).
     **Docstring**
     
     Removes the configured link at the specified index from the current Runner execution builder instance.
-    
-    Use this method when working with the documented Runner execution builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
+
+## Edge cases {: #edge-cases}
+
+- This page is generated from the parent reference section; edit the source XML docs or generator when content needs to change.
+- If a linked source member is renamed, regenerate the reference docs before changing prose by hand.
+
+## See also {: #see-also}
+
+- [Executions](../executions.md)

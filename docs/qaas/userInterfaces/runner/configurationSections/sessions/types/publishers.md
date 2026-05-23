@@ -10,6 +10,8 @@ summary: "Publishers are communication actions that send data to the system. Eve
 ---
 # Publishers
 
+> TL;DR — Publishers are communication actions that send data to the system. Every publisher creates an Input in SessionData with its own name.
+
 Publishers are communication actions that send data to the system. Every publisher creates an `Input` in `SessionData` with its own name.
 
 At runtime a publisher resolves the configured data source names and patterns, serializes each generated data item when a serializer is configured, sends the payload through the selected protocol, and records the original item as session `Input`. Publishers can run in a fixed number of iterations or loop mode, sleep between iterations, run supported sends in parallel, and stop early when the policy chain returns false.
@@ -18,7 +20,7 @@ Use this page for behavior and YAML shape. The same action can be built in C# wi
 
 **Table Property Path** - `Sessions[].Publishers[]`
 
-## RabbitMq
+## RabbitMq {: #rabbitmq}
 
 Publishes byte payloads to RabbitMQ through an AMQP channel. When `QueueName` is configured the publisher uses RabbitMQ's default exchange and the queue name as the routing key; otherwise it publishes to the configured exchange and routing key. Per-item `MetaData.RabbitMq` can override the routing key, headers, expiration, content type, and message type for that item.
 
@@ -28,7 +30,7 @@ Publishes byte payloads to RabbitMQ through an AMQP channel. When `QueueName` is
 RabbitMq: {}
 ```
 
-## KafkaTopic
+## KafkaTopic {: #kafkatopic}
 
 Publishes byte payloads to a Kafka topic with the configured producer options. The topic, message key, and headers can come from `MetaData.Kafka` on each item or from the publisher configuration. The configured partition is used for sends, producer queue and compression settings are passed to the Kafka client, and `MessageSendMaxRetries` controls retry attempts around `Produce`.
 
@@ -38,7 +40,7 @@ Publishes byte payloads to a Kafka topic with the configured producer options. T
 KafkaTopic: {}
 ```
 
-## Redis
+## Redis {: #redis}
 
 Publishes chunks of byte payloads to Redis by creating a Redis transaction and adding one Redis command per item. The configured `RedisDataType` selects the command: string set, list left or right push, set add, hash set, sorted set add, or geo add. Item metadata supplies the key and any required hash field, sorted-set score, or geo coordinates.
 
@@ -51,7 +53,7 @@ Redis: {}
 !!! Notice "Batch Publishing"
     Redis publisher uses batch publishing by default. When `BatchSize` is `1`, it behaves like single-message publishing. When batch publishing is enabled, policies apply per batch rather than per message.
 
-## OracleSqlTable
+## OracleSqlTable {: #oraclesqltable}
 
 Publishes chunks of structured data to an Oracle SQL table. Each item body is converted to a row-shaped object, the protocol opens an Oracle connection, and the configured command timeout applies to insert execution.
 
@@ -61,7 +63,7 @@ Publishes chunks of structured data to an Oracle SQL table. Each item body is co
 OracleSqlTable: {}
 ```
 
-## MsSqlTable
+## MsSqlTable {: #mssqltable}
 
 Publishes chunks of structured data to a Microsoft SQL Server table. Item bodies are converted into rows and inserted into the configured table with the SQL command timeout from the sender configuration. Values that look like SQL user-defined type literals are passed through instead of quoted as plain strings.
 
@@ -71,7 +73,7 @@ Publishes chunks of structured data to a Microsoft SQL Server table. Item bodies
 MsSqlTable: {}
 ```
 
-## PostgreSqlTable
+## PostgreSqlTable {: #postgresqltable}
 
 Publishes chunks of structured data to a PostgreSQL table. Item bodies are converted into row data and inserted into the configured table using the PostgreSQL sender configuration and command timeout.
 
@@ -81,7 +83,7 @@ Publishes chunks of structured data to a PostgreSQL table. Item bodies are conve
 PostgreSqlTable: {}
 ```
 
-## MongoDbCollection
+## MongoDbCollection {: #mongodbcollection}
 
 Publishes chunks of documents to a MongoDB collection. Each item body is serialized to JSON, parsed as a BSON document, and inserted with `InsertMany` into the configured database and collection.
 
@@ -91,7 +93,7 @@ Publishes chunks of documents to a MongoDB collection. Each item body is seriali
 MongoDbCollection: {}
 ```
 
-## S3Bucket
+## S3Bucket {: #s3bucket}
 
 Publishes byte payloads as objects in an S3-compatible bucket. The object key comes from `MetaData.Storage.Key` when present; otherwise the configured object-name generator and prefix are used. Uploads use the configured storage class and retry mechanism.
 
@@ -101,7 +103,7 @@ Publishes byte payloads as objects in an S3-compatible bucket. The object key co
 S3Bucket: {}
 ```
 
-## ElasticIndex
+## ElasticIndex {: #elasticindex}
 
 Publishes chunks of documents to the configured Elasticsearch index with the Bulk API. The protocol sends item bodies as the indexed documents and fails the action if Elasticsearch reports bulk errors or an unsuccessful API call.
 
@@ -114,7 +116,7 @@ ElasticIndex: {}
 !!! warning "ElasticSearch server timeout"
     When sending requests to the Elasticsearch server, remember that it can enforce its own request timeout. If increasing `RequestTimeoutMilliseconds` does not help, the server-side timeout may still be the limiting factor.
 
-## Socket
+## Socket {: #socket}
 
 Publishes byte payloads directly through a socket connection to the configured host and port. The sender applies the configured socket family, type, protocol, send buffer size, timeout, Nagle setting, and linger setting before sending each payload.
 
@@ -124,7 +126,7 @@ Publishes byte payloads directly through a socket connection to the configured h
 Socket: {}
 ```
 
-## Sftp
+## Sftp {: #sftp}
 
 Publishes byte payloads as files over SFTP. The target file path is the configured remote path plus `MetaData.Storage.Key` when present, or a generated object name when no key is provided.
 
@@ -133,3 +135,7 @@ Publishes byte payloads as files over SFTP. The target file path is the configur
 ```yaml
 Sftp: {}
 ```
+
+## See also {: #see-also}
+
+- [Sessions](../overview.md)

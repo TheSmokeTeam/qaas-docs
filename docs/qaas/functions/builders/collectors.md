@@ -8,15 +8,23 @@ applies_to: [runner]
 keywords: [qaas, functions, builders, collectors]
 summary: "Each entry uses the short function name as the table-of-contents label. Expand an entry to inspect its source file, signature, and XML doc comments."
 ---
+<!-- Verified-against: QaaS.Runner\QaaS.Runner.Sessions\Actions\Collectors\CollectorBuilder.cs -->
+
 # Collectors
+
+> TL;DR — This page lists the public Runner functions in the `Collectors` category.
+
+## When to use {: #when-to-use}
+
+Use this page when you need source-backed signatures, declaring types, and XML doc comments for this function category.
 
 Each entry uses the short function name as the table-of-contents label. Expand an entry to inspect its source file, signature, and XML doc comments.
 
 The functions on this page are grouped by responsibility so related operations stay together.
 
-## Identity and hook selection
+## Identity and hook selection {: #identity-and-hook-selection}
 
-### `Named`
+### `Named` {: #named}
 
 ??? info "Source file, signature, and docstring"
     **Member**
@@ -36,12 +44,10 @@ The functions on this page are grouped by responsibility so related operations s
     **Docstring**
     
     Sets the name used for the current Runner collector builder instance.
-    
-    Use this method when working with the documented Runner collector builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
-## Collection helpers
+## Collection helpers {: #collection-helpers}
 
-### `UpdateConfiguration`
+### `UpdateConfiguration` {: #updateconfiguration}
 
 ??? info "Source file, signature, and docstring"
     **Member**
@@ -61,12 +67,10 @@ The functions on this page are grouped by responsibility so related operations s
     **Docstring**
     
     Updates the configuration currently stored on the Runner collector builder instance.
-    
-    Use this method when working with the documented Runner collector builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
-## General
+## General {: #general}
 
-### `FilterData`
+### `FilterData` {: #filterdata}
 
 ??? info "Source file, signature, and docstring"
     **Member**
@@ -86,10 +90,8 @@ The functions on this page are grouped by responsibility so related operations s
     **Docstring**
     
     Sets the data filter used by the current Runner collector builder instance.
-    
-    Use this method when working with the documented Runner collector builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
-### `CollectInRange`
+### `CollectInRange` {: #collectinrange}
 
 ??? info "Source file, signature, and docstring"
     **Member**
@@ -109,10 +111,8 @@ The functions on this page are grouped by responsibility so related operations s
     **Docstring**
     
     Configures collect in range on the current Runner collector builder instance.
-    
-    Use this method when working with the documented Runner collector builder API surface in code. The behavior exposed here is part of the public surface that the generated function documentation groups under 'Configuration as Code / Collectors'.
 
-### `Configure`
+### `Configure` {: #configure}
 
 ??? info "Source file, signature, and docstring"
     **Member**
@@ -132,5 +132,7 @@ The functions on this page are grouped by responsibility so related operations s
     **Docstring**
     
     Sets the configuration currently stored on the Runner collector builder instance.
-    
-    Use this method when working with the documented Runner collector builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
+
+## See also {: #see-also}
+
+- [Runner Functions](../index.md)

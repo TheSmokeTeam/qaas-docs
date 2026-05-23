@@ -8,7 +8,20 @@ applies_to: [runner]
 keywords: [qaas, userinterfaces, runner, configurationsections, assertions, configurations]
 summary: "Assertions Configurations Table View"
 ---
+<!-- Verified-against: QaaS.PackageMirror\schemas\runner-family\latest\docs-manifest.json -->
+<!-- Verified-against: QaaS.PackageMirror\schemas\runner-family\latest\schema.json -->
+
 # Assertions Configurations Table View
+
+> TL;DR — Use this generated field table to check property paths, types, required status, defaults, and descriptions.
+
+## When to use {: #when-to-use}
+
+Use this page when you need the exact field path or value type for a configuration section before editing YAML.
+
+## YAML configuration {: #yaml-configuration}
+
+The table below mirrors the schema used by the YAML scaffold page. Nested rows use dotted paths and `[]` for list items.
 
 | Property Path | Type | Required | Default | Description |
 | ------------- | ---- | -------- | ------- | ----------- |
@@ -55,3 +68,13 @@ summary: "Assertions Configurations Table View"
 | `Assertions[].SessionNames[]` | `string` | &#10006 |  |  |
 | `Assertions[].StatusesToReport` | `list or string` | &#10006 | List containing all assertion statuses | Defines which assertion statuses will appear in the final report. Statuses explicitly listed will be included in the report, while all others will be exluded.Options: [`Passed` `Broken` `Failed` `Skipped` `Unknown` ] |
 | `Assertions[].StatusesToReport[]` | `one of [Passed / Failed / Broken / Unknown / Skipped]` | &#10006 |  | 0 = Passed<br />1 = Failed<br />2 = Broken<br />3 = Unknown<br />4 = Skipped |
+
+## Edge cases {: #edge-cases}
+
+- Empty default cells mean the schema does not define a default value for that field.
+- Required status applies to the immediate parent object shown by the property path.
+
+## See also {: #see-also}
+
+- [YAML scaffold](yamlView.md)
+- [Overview](../overview.md)

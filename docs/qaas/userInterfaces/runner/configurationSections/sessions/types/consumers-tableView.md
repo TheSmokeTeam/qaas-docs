@@ -8,7 +8,20 @@ applies_to: [runner]
 keywords: [qaas, userinterfaces, runner, configurationsections, sessions, types]
 summary: "Consumers Configurations Table View"
 ---
+<!-- Verified-against: QaaS.PackageMirror\schemas\runner-family\latest\docs-manifest.json -->
+<!-- Verified-against: QaaS.PackageMirror\schemas\runner-family\latest\schema.json -->
+
 # Consumers Configurations Table View
+
+> TL;DR — Use this generated field table to check property paths, types, required status, defaults, and descriptions.
+
+## When to use {: #when-to-use}
+
+Use this page when you need the exact field path or value type for a configuration section before editing YAML.
+
+## YAML configuration {: #yaml-configuration}
+
+The table below mirrors the schema used by the YAML scaffold page. Nested rows use dotted paths and `[]` for list items.
 
 | Property Path | Type | Required | Default | Description |
 | ------------- | ---- | -------- | ------- | ----------- |
@@ -89,6 +102,7 @@ summary: "Consumers Configurations Table View"
 | `Sessions[].Consumers[].MsSqlTable` | `object or string` | &#10006 |  | Consume messages from an mssql database table |
 | `Sessions[].Consumers[].MsSqlTable.ConnectionString` | `string` | &#10004 |  | The connection string to the database |
 | `Sessions[].Consumers[].MsSqlTable.TableName` | `string` | &#10004 |  | The table to insert data to |
+| `Sessions[].Consumers[].MsSqlTable.AllowNoInsertionTimeField` | `string or true/false` | &#10006 | False | Set to true to acknowledge that the table has no insertion time column and suppress the related startup warning. |
 | `Sessions[].Consumers[].MsSqlTable.CommandTimeoutSeconds` | `integer or string` | &#10006 | 30 | The wait time (in seconds) before terminating the attempt to execute an sql copy/insertion command and generating an error |
 | `Sessions[].Consumers[].MsSqlTable.FilterSecondsBeforeRunStartTime` | `integer or string` | &#10006 | 0 | If the ReadFromRunStartTime is enabled, this property specifies how far before the start of the read action to start reading messages in seconds |
 | `Sessions[].Consumers[].MsSqlTable.InsertionTimeField` | `string or null` | &#10006 |  | The insertion time field name, in cases where the table can be updated this will be the update time field |
@@ -100,6 +114,7 @@ summary: "Consumers Configurations Table View"
 | `Sessions[].Consumers[].OracleSqlTable` | `object or string` | &#10006 |  | Consume messages from an oracle sql database table |
 | `Sessions[].Consumers[].OracleSqlTable.ConnectionString` | `string` | &#10004 |  | The connection string to the database |
 | `Sessions[].Consumers[].OracleSqlTable.TableName` | `string` | &#10004 |  | The table to insert data to |
+| `Sessions[].Consumers[].OracleSqlTable.AllowNoInsertionTimeField` | `string or true/false` | &#10006 | False | Set to true to acknowledge that the table has no insertion time column and suppress the related startup warning. |
 | `Sessions[].Consumers[].OracleSqlTable.CommandTimeoutSeconds` | `integer or string` | &#10006 | 30 | The wait time (in seconds) before terminating the attempt to execute an sql copy/insertion command and generating an error |
 | `Sessions[].Consumers[].OracleSqlTable.FilterSecondsBeforeRunStartTime` | `integer or string` | &#10006 | 0 | If the ReadFromRunStartTime is enabled, this property specifies how far before the start of the read action to start reading messages in seconds |
 | `Sessions[].Consumers[].OracleSqlTable.InsertionTimeField` | `string or null` | &#10006 |  | The insertion time field name, in cases where the table can be updated this will be the update time field |
@@ -111,6 +126,7 @@ summary: "Consumers Configurations Table View"
 | `Sessions[].Consumers[].PostgreSqlTable` | `object or string` | &#10006 |  | Consume messages from an postgresql database table |
 | `Sessions[].Consumers[].PostgreSqlTable.ConnectionString` | `string` | &#10004 |  | The connection string to the database |
 | `Sessions[].Consumers[].PostgreSqlTable.TableName` | `string` | &#10004 |  | The table to insert data to |
+| `Sessions[].Consumers[].PostgreSqlTable.AllowNoInsertionTimeField` | `string or true/false` | &#10006 | False | Set to true to acknowledge that the table has no insertion time column and suppress the related startup warning. |
 | `Sessions[].Consumers[].PostgreSqlTable.CommandTimeoutSeconds` | `integer or string` | &#10006 | 30 | The wait time (in seconds) before terminating the attempt to execute an sql copy/insertion command and generating an error |
 | `Sessions[].Consumers[].PostgreSqlTable.FilterSecondsBeforeRunStartTime` | `integer or string` | &#10006 | 0 | If the ReadFromRunStartTime is enabled, this property specifies how far before the start of the read action to start reading messages in seconds |
 | `Sessions[].Consumers[].PostgreSqlTable.InsertionTimeField` | `string or null` | &#10006 |  | The insertion time field name, in cases where the table can be updated this will be the update time field |
@@ -162,6 +178,7 @@ summary: "Consumers Configurations Table View"
 | `Sessions[].Consumers[].TrinoSqlTable.Schema` | `string` | &#10004 |  | The name of the schema that holds the table name in it |
 | `Sessions[].Consumers[].TrinoSqlTable.TableName` | `string` | &#10004 |  | The table to insert data to |
 | `Sessions[].Consumers[].TrinoSqlTable.Username` | `string` | &#10004 |  | The username to login to the Trino |
+| `Sessions[].Consumers[].TrinoSqlTable.AllowNoInsertionTimeField` | `string or true/false` | &#10006 | False | Set to true to acknowledge that the table has no insertion time column and suppress the related startup warning. |
 | `Sessions[].Consumers[].TrinoSqlTable.CommandTimeoutSeconds` | `integer or string` | &#10006 | 30 | The wait time (in seconds) before terminating the attempt to execute an sql copy/insertion command and generating an error |
 | `Sessions[].Consumers[].TrinoSqlTable.FilterSecondsBeforeRunStartTime` | `integer or string` | &#10006 | 0 | If the ReadFromRunStartTime is enabled, this property specifies how far before the start of the read action to start reading messages in seconds |
 | `Sessions[].Consumers[].TrinoSqlTable.InsertionTimeField` | `string or null` | &#10006 |  | The insertion time field name, in cases where the table can be updated this will be the update time field |
@@ -170,3 +187,13 @@ summary: "Consumers Configurations Table View"
 | `Sessions[].Consumers[].TrinoSqlTable.WhereStatement` | `string or null` | &#10006 |  | The where statement (without the where keyword) to add to the sql query to filter db query results, if no statement is given doesn't use where in the query |
 | `Sessions[].Consumers[].TrinoSqlTable.ColumnsToIgnore` | `list or string` | &#10006 | [] | The columns to ignore in the sql query results, if no columns are given doesn't ignore any columns |
 | `Sessions[].Consumers[].TrinoSqlTable.ColumnsToIgnore[]` | `string` | &#10006 |  |  |
+
+## Edge cases {: #edge-cases}
+
+- Empty default cells mean the schema does not define a default value for that field.
+- Required status applies to the immediate parent object shown by the property path.
+
+## See also {: #see-also}
+
+- [YAML scaffold](consumers-yamlView.md)
+- [Overview](../overview.md)

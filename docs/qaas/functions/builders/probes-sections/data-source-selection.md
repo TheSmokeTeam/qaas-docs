@@ -1,18 +1,27 @@
 ---
-id: qaas.functions.builders.probes-sections.data-source-selection
+id: qaas.functions.builders.probes.sections.data.source.selection
 type: reference
 status: stable
 since: 2.0.0
 last_verified: 2026-05-22
 applies_to: [runner]
-keywords: [qaas, functions, builders, probes, sections, data]
-summary: "This page mirrors the Data source selection section from Probes."
+keywords: [runner, qaas, functions, builders, probes, sections, data, source, selection]
+summary: "Reference page for Probes: Data source selection."
 ---
+
+<!-- Verified-against: QaaS.Runner\QaaS.Runner.Sessions\Actions\Probes\ProbeBuilder.cs -->
+
 # Probes: Data source selection
 
-This page mirrors the `Data source selection` section from [Probes](../probes.md).
+> TL;DR — This page mirrors the `Data source selection` section from [Probes](../probes.md) as a focused reference.
 
-## `AddDataSourceName`
+## When to use {: #when-to-use}
+
+Use this page when you need the focused member list, signatures, and source notes for this section without scanning the full parent reference.
+
+## C# (CAC) usage {: #c-cac-usage}
+
+### `AddDataSourceName` {: #adddatasourcename}
 
 ??? info "Source file, signature, and docstring"
     **Member**
@@ -32,10 +41,8 @@ This page mirrors the `Data source selection` section from [Probes](../probes.md
     **Docstring**
     
     Adds the supplied data source name to the current Runner probe builder instance.
-    
-    Use this method when working with the documented Runner probe builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
-## `RemoveDataSourceName`
+### `RemoveDataSourceName` {: #removedatasourcename}
 
 ??? info "Source file, signature, and docstring"
     **Member**
@@ -55,10 +62,8 @@ This page mirrors the `Data source selection` section from [Probes](../probes.md
     **Docstring**
     
     Removes the configured data source name from the current Runner probe builder instance.
-    
-    Use this method when working with the documented Runner probe builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
-## `RemoveDataSourceNameAt`
+### `RemoveDataSourceNameAt` {: #removedatasourcenameat}
 
 ??? info "Source file, signature, and docstring"
     **Member**
@@ -78,10 +83,8 @@ This page mirrors the `Data source selection` section from [Probes](../probes.md
     **Docstring**
     
     Removes the configured data source name at the specified index from the current Runner probe builder instance.
-    
-    Use this method when working with the documented Runner probe builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
-## `AddDataSourcePattern`
+### `AddDataSourcePattern` {: #adddatasourcepattern}
 
 ??? info "Source file, signature, and docstring"
     **Member**
@@ -101,10 +104,8 @@ This page mirrors the `Data source selection` section from [Probes](../probes.md
     **Docstring**
     
     Adds the supplied data source pattern to the current Runner probe builder instance.
-    
-    Use this method when working with the documented Runner probe builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
-## `RemoveDataSourcePattern`
+### `RemoveDataSourcePattern` {: #removedatasourcepattern}
 
 ??? info "Source file, signature, and docstring"
     **Member**
@@ -124,10 +125,8 @@ This page mirrors the `Data source selection` section from [Probes](../probes.md
     **Docstring**
     
     Removes the configured data source pattern from the current Runner probe builder instance.
-    
-    Use this method when working with the documented Runner probe builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
-## `RemoveDataSourcePatternAt`
+### `RemoveDataSourcePatternAt` {: #removedatasourcepatternat}
 
 ??? info "Source file, signature, and docstring"
     **Member**
@@ -147,5 +146,12 @@ This page mirrors the `Data source selection` section from [Probes](../probes.md
     **Docstring**
     
     Removes the configured data source pattern at the specified index from the current Runner probe builder instance.
-    
-    Use this method when working with the documented Runner probe builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
+
+## Edge cases {: #edge-cases}
+
+- This page is generated from the parent reference section; edit the source XML docs or generator when content needs to change.
+- If a linked source member is renamed, regenerate the reference docs before changing prose by hand.
+
+## See also {: #see-also}
+
+- [Probes](../probes.md)

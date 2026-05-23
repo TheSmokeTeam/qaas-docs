@@ -6,15 +6,17 @@ since: 2.0.0
 last_verified: 2026-05-22
 applies_to: [framework]
 keywords: [framework, projects, executions]
-summary: "QaaS.Framework.Executions is the shared execution-infrastructure package in the Framework solution. It is not the full application layer for Runner or Mocker. Instead, it provides the common runtim..."
+summary: "QaaS.Framework.Executions provides shared execution infrastructure used by Runner and Mocker."
 ---
 # QaaS.Framework.Executions
 
+> TL;DR — QaaS.Framework.Executions provides shared execution infrastructure used by Runner and Mocker.
+
 `QaaS.Framework.Executions` is the shared execution-infrastructure package in the Framework solution. It is not the full application layer for Runner or Mocker. Instead, it provides the common runtime base classes, loader behavior, CLI helpers, and logging setup that those higher-level applications build on.
 
-## What this project contains
+## What this project contains {: #what-this-project-contains}
 
-### Runtime contracts and base types
+### Runtime contracts and base types {: #runtime-contracts-and-base-types}
 
 The minimal execution surface is defined by:
 
@@ -25,7 +27,7 @@ The minimal execution surface is defined by:
 
 This package no longer defines mode-specific logic such as `ShouldRun(ExecutionType)` in `ILogic`. That older shape is not the current interface.
 
-### Loader and logging support
+### Loader and logging support {: #loader-and-logging-support}
 
 The loader and logging layer lives in:
 
@@ -35,7 +37,7 @@ The loader and logging layer lives in:
 
 `BaseLoader<TOptions, TRunner>` validates the supplied options, configures logging, and leaves concrete runner creation to the derived loader. `ExecutionLogging.cs` contains the shared default logger setup and the optional Elasticsearch sink integration used by downstream applications.
 
-### Shared CLI helpers
+### Shared CLI helpers {: #shared-cli-helpers}
 
 The `CommandLineBuilders` folder contains:
 
@@ -44,11 +46,11 @@ The `CommandLineBuilders` folder contains:
 
 These files centralize the shared command-line parsing rules and help-text formatting used by applications built on this package.
 
-### Compatibility surface
+### Compatibility surface {: #compatibility-surface}
 
 `Constants.cs` still exists as an obsolete compatibility wrapper so downstream consumers can migrate without breaking immediately.
 
-## Current behavior
+## Current behavior {: #current-behavior}
 
 The current implementation focuses on a narrow but important set of responsibilities:
 
@@ -60,7 +62,7 @@ The current implementation focuses on a narrow but important set of responsibili
 - `ParserBuilder.cs` configures case-insensitive parsing behavior for the shared CLI layer.
 - `HelpTextBuilder.cs` injects the framework's custom usage-line formatting.
 
-## Main source areas
+## Main source areas {: #main-source-areas}
 
 The most important files in this package are:
 
@@ -75,7 +77,7 @@ The most important files in this package are:
 - `CommandLineBuilders/HelpTextBuilder.cs`
 - `Constants.cs`
 
-## Companion tests
+## Companion tests {: #companion-tests}
 
 `QaaS.Framework.Executions.Tests` validates the shared execution layer without relying on the higher-level applications.
 
@@ -95,3 +97,7 @@ Representative test files include:
 
 - `ExecutionsBehaviorTests.cs`
 - `ExecutionsCoverageEdgeCaseTests.cs`
+
+## See also {: #see-also}
+
+- [Framework](../index.md)

@@ -8,15 +8,23 @@ applies_to: [mocker]
 keywords: [mocker, functions, builders, transaction, stubs]
 summary: "Each entry uses the short function name as the table-of-contents label. Expand an entry to inspect its source file, signature, and XML doc comments."
 ---
+<!-- Verified-against: QaaS.Mocker\QaaS.Mocker.Stubs\ConfigurationObjects\TransactionStubBuilder.cs -->
+
 # Transaction Stubs
+
+> TL;DR — This page lists the public Mocker functions in the `Transaction Stubs` category.
+
+## When to use {: #when-to-use}
+
+Use this page when you need source-backed signatures, declaring types, and XML doc comments for this function category.
 
 Each entry uses the short function name as the table-of-contents label. Expand an entry to inspect its source file, signature, and XML doc comments.
 
 The functions on this page are grouped by responsibility so related operations stay together.
 
-## Identity and hook selection
+## Identity and hook selection {: #identity-and-hook-selection}
 
-### `Named`
+### `Named` {: #named}
 
 ??? info "Source file, signature, and docstring"
     **Member**
@@ -36,10 +44,8 @@ The functions on this page are grouped by responsibility so related operations s
     **Docstring**
     
     Sets the name used for the current Mocker transaction stub builder instance.
-    
-    Use this method when working with the documented Mocker transaction stub builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
-### `HookNamed`
+### `HookNamed` {: #hooknamed}
 
 ??? info "Source file, signature, and docstring"
     **Member**
@@ -59,12 +65,10 @@ The functions on this page are grouped by responsibility so related operations s
     **Docstring**
     
     Sets the hook implementation name used by the current Mocker transaction stub builder instance.
-    
-    Use this method when working with the documented Mocker transaction stub builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
-## Data source selection
+## Data source selection {: #data-source-selection}
 
-### `AddDataSourceName`
+### `AddDataSourceName` {: #adddatasourcename}
 
 ??? info "Source file, signature, and docstring"
     **Member**
@@ -84,10 +88,8 @@ The functions on this page are grouped by responsibility so related operations s
     **Docstring**
     
     Adds the supplied data source name to the current Mocker transaction stub builder instance.
-    
-    Use this method when working with the documented Mocker transaction stub builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
-### `UpdateDataSourceName`
+### `UpdateDataSourceName` {: #updatedatasourcename}
 
 ??? info "Source file, signature, and docstring"
     **Member**
@@ -107,10 +109,8 @@ The functions on this page are grouped by responsibility so related operations s
     **Docstring**
     
     Updates the configured data source name stored on the current Mocker transaction stub builder instance.
-    
-    Use this method when working with the documented Mocker transaction stub builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
-### `RemoveDataSourceName`
+### `RemoveDataSourceName` {: #removedatasourcename}
 
 ??? info "Source file, signature, and docstring"
     **Member**
@@ -130,10 +130,8 @@ The functions on this page are grouped by responsibility so related operations s
     **Docstring**
     
     Removes the configured data source name from the current Mocker transaction stub builder instance.
-    
-    Use this method when working with the documented Mocker transaction stub builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
-### `RemoveDataSourceNameAt`
+### `RemoveDataSourceNameAt` {: #removedatasourcenameat}
 
 ??? info "Source file, signature, and docstring"
     **Member**
@@ -153,12 +151,10 @@ The functions on this page are grouped by responsibility so related operations s
     **Docstring**
     
     Removes the configured data source name at the specified index from the current Mocker transaction stub builder instance.
-    
-    Use this method when working with the documented Mocker transaction stub builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
-## Configuration
+## Configuration {: #configuration}
 
-### `WithRequestBodyDeserialization`
+### `WithRequestBodyDeserialization` {: #withrequestbodydeserialization}
 
 ??? info "Source file, signature, and docstring"
     **Member**
@@ -178,10 +174,8 @@ The functions on this page are grouped by responsibility so related operations s
     **Docstring**
     
     Sets how request bodies are deserialized before the stub processor runs.
-    
-    Use this method when working with the documented Mocker transaction stub builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
-### `WithResponseBodySerialization`
+### `WithResponseBodySerialization` {: #withresponsebodyserialization}
 
 ??? info "Source file, signature, and docstring"
     **Member**
@@ -201,12 +195,10 @@ The functions on this page are grouped by responsibility so related operations s
     **Docstring**
     
     Sets how response bodies are serialized after the stub processor runs.
-    
-    Use this method when working with the documented Mocker transaction stub builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
-## Collection helpers
+## Collection helpers {: #collection-helpers}
 
-### `UpdateConfiguration`
+### `UpdateConfiguration` {: #updateconfiguration}
 
 ??? info "Source file, signature, and docstring"
     **Member**
@@ -226,12 +218,10 @@ The functions on this page are grouped by responsibility so related operations s
     **Docstring**
     
     Updates the configuration currently stored on the Mocker transaction stub builder instance.
-    
-    Use this method when working with the documented Mocker transaction stub builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
-## General
+## General {: #general}
 
-### `Configure`
+### `Configure` {: #configure}
 
 ??? info "Source file, signature, and docstring"
     **Member**
@@ -251,10 +241,8 @@ The functions on this page are grouped by responsibility so related operations s
     **Docstring**
     
     Sets the configuration currently stored on the Mocker transaction stub builder instance.
-    
-    Use this method when working with the documented Mocker transaction stub builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
-### `Configure`
+### `Configure` {: #configure_1}
 
 ??? info "Source file, signature, and docstring"
     **Member**
@@ -274,10 +262,8 @@ The functions on this page are grouped by responsibility so related operations s
     **Docstring**
     
     Sets the configuration currently stored on the Mocker transaction stub builder instance.
-    
-    Use this method when working with the documented Mocker transaction stub builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
-### `Build`
+### `Build` {: #build}
 
 ??? info "Source file, signature, and docstring"
     **Member**
@@ -300,7 +286,7 @@ The functions on this page are grouped by responsibility so related operations s
     
     Call this after the fluent configuration is complete. The method validates the accumulated state and materializes the runtime or immutable configuration object represented by the builder.
 
-### `FromConfig`
+### `FromConfig` {: #fromconfig}
 
 ??? info "Source file, signature, and docstring"
     **Member**
@@ -322,3 +308,7 @@ The functions on this page are grouped by responsibility so related operations s
     Creates a new Mocker transaction stub builder instance from an existing configuration object.
     
     Use this when an existing immutable configuration needs to be brought back into the fluent builder workflow for incremental changes.
+
+## See also {: #see-also}
+
+- [Mocker Functions](../index.md)

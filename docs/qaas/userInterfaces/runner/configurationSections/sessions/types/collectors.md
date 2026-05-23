@@ -10,6 +10,8 @@ summary: "Collectors are communication actions that collect data from an endpoin
 ---
 # Collectors
 
+> TL;DR — Collectors are communication actions that collect data from an endpoint within a range of time in a single action. Every collector will create an Output by its name in the SessionData.
+
 Collectors are communication actions that collect data from an endpoint within a range of time in a single action. Every collector will create an `Output` by its name in the `SessionData`.
 
 Collectors run after the session has a known start and end time. At runtime the collector applies the configured start and end offsets, waits until the effective end time has passed, calls the selected fetcher for that time range, filters the returned data, and stores the results as session `Output`. If the configured start is after the configured end, the action fails before calling the fetcher.
@@ -18,7 +20,7 @@ Use this page for behavior and YAML shape. The same action can be built in C# wi
 
 **Table Property Path** - `Sessions[].Collectors[]`
 
-## Prometheus
+## Prometheus {: #prometheus}
 
 Collects samples from the Prometheus `query_range` API and saves each returned sample as an output item. The Prometheus response type must be `matrix`; unsupported result types fail the action.
 
@@ -58,3 +60,7 @@ Prometheus: {}
     means a rounded time from before the start of the collection range will also be returned.
     For example, if the interval is 1 minute, the start time is `13:59:56` and the end time
     is `14:00:02`, the timestamps of the data samples returned will be `[13:59:00, 14:00:00]`.
+
+## See also {: #see-also}
+
+- [Sessions](../overview.md)

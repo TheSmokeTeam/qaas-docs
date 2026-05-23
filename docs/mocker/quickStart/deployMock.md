@@ -3,12 +3,15 @@ id: mocker.quickstart.deploymock
 type: tutorial
 status: stable
 since: 2.0.0
-last_verified: 2026-05-22
+last_verified: 2026-05-23
 applies_to: [mocker]
 keywords: [mocker, quickstart, deploymock]
 summary: "Once the mock works locally, package it as a container image and deploy it with a native Helm chart."
+render_macros: true
 ---
 # Deploy a Mock
+
+> TL;DR — Package a working mock as a container image and deploy it with the native Helm chart.
 
 Once the mock works locally, package it as a container image and deploy it with a native Helm chart.
 
@@ -17,7 +20,7 @@ The finished chart lives alongside the sample project:
 - [DummyAppMock (YAML)]({{ links.repository_mocker_quickstart_yaml }})
 - [DummyAppMock (Code)]({{ links.repository_mocker_quickstart_code }})
 
-## Build the Image
+## Build the Image {: #build-the-image}
 
 The project template already contains a Dockerfile. For a project named `DummyAppMock`, the final image can look like this:
 
@@ -70,7 +73,7 @@ docker build -t ghcr.io/my-org/dummy-app-mock:1.0.0 \
 
 After the image is published, Kubernetes only needs to pull `ghcr.io/my-org/dummy-app-mock:1.0.0` and run it. Rebuilding is only needed when you publish a new image tag.
 
-## Native Helm Chart
+## Native Helm Chart {: #native-helm-chart}
 
 This chart deploys:
 
@@ -78,7 +81,7 @@ This chart deploys:
 - a Redis instance for the optional [Controller](../userInterfaces/mocker/configurationSections/controller/overview.md)
 - a service for the mocker HTTP endpoint
 
-### `Chart.yaml`
+### `Chart.yaml` {: #chartyaml}
 
 ```yaml
 apiVersion: v2
@@ -89,7 +92,7 @@ version: 0.1.0
 appVersion: "1.0.0"
 ```
 
-### `values.yaml`
+### `values.yaml` {: #valuesyaml}
 
 ```yaml
 mocker:
@@ -115,9 +118,10 @@ redis:
     port: 6379
 ```
 
-### `templates/mocker-deployment.yaml`
+### `templates/mocker-deployment.yaml` {: #templatesmocker-deploymentyaml}
 
 {% raw %}
+
 ```yaml
 apiVersion: apps/v1
 kind: Deployment
@@ -147,11 +151,13 @@ spec:
             - name: Controller__Redis__Host
               value: "{{ .Release.Name }}-redis:{{ .Values.redis.service.port }}"
 ```
+
 {% endraw %}
 
-### `templates/mocker-service.yaml`
+### `templates/mocker-service.yaml` {: #templatesmocker-serviceyaml}
 
 {% raw %}
+
 ```yaml
 apiVersion: v1
 kind: Service
@@ -167,11 +173,13 @@ spec:
       targetPort: {{ .Values.mocker.service.port }}
       protocol: TCP
 ```
+
 {% endraw %}
 
-### `templates/redis-deployment.yaml`
+### `templates/redis-deployment.yaml` {: #templatesredis-deploymentyaml}
 
 {% raw %}
+
 ```yaml
 apiVersion: apps/v1
 kind: Deployment
@@ -194,11 +202,13 @@ spec:
           ports:
             - containerPort: {{ .Values.redis.service.port }}
 ```
+
 {% endraw %}
 
-### `templates/redis-service.yaml`
+### `templates/redis-service.yaml` {: #templatesredis-serviceyaml}
 
 {% raw %}
+
 ```yaml
 apiVersion: v1
 kind: Service
@@ -214,12 +224,21 @@ spec:
       targetPort: {{ .Values.redis.service.port }}
       protocol: TCP
 ```
+
 {% endraw %}
 
-## Deploy
+## Deploy {: #deploy}
 
 ```bash
 helm upgrade --install dummy-app-mock ./chart
 ```
 
 The mocker becomes reachable through the mocker service, and the [Controller](../userInterfaces/mocker/configurationSections/controller/overview.md) connects to Redis through the injected `Controller__Redis__Host` environment variable.
+
+## See also {: #see-also}
+
+- [Create a mock in YAML](createMock.md)
+- [Create a mock in code](createMockCode.md)
+- [Integrate with tests](integrateWithTests.md)
+- [CI pipeline](../../integrations/ci-pipeline.md)
+- [Servers](../userInterfaces/mocker/configurationSections/server/overview.md)
