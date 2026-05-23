@@ -194,4 +194,3 @@ These patterns look reasonable but fail at template time:
 - [Configuration resolution priority](../userInterfaces/runner/configurationResolutionPriority.md)
 - [Make tests maintainable](../quickStart/makeTestMoreMaintainable.md)
 - [Runner template command](../userInterfaces/runner/commands/template.md)
-- [Public contract](../public-contract.md)

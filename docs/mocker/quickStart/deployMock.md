@@ -240,5 +240,4 @@ The mocker becomes reachable through the mocker service, and the [Controller](..
 - [Create a mock in YAML](createMock.md)
 - [Create a mock in code](createMockCode.md)
 - [Integrate with tests](integrateWithTests.md)
-- [CI pipeline](../../integrations/ci-pipeline.md)
 - [Servers](../userInterfaces/mocker/configurationSections/server/overview.md)

@@ -45,9 +45,6 @@ jobs:
       - name: Frontmatter conformance check
         run: bash tools/ci/check-frontmatter.sh
 
-      - name: Catalog coverage check
-        run: python tools/ci/check-catalog-coverage.py
-
       - name: Verification marker check
         run: python tools/ci/check-verification-markers.py
 
@@ -113,9 +110,6 @@ jobs:
 
       - name: Validate C# snippets (structural)
         run: python tools/validate_csharp_snippets.py
-
-      - name: Validate contract page links
-        run: python tools/validate_docs_contract_links.py
 
       - name: Compile C# snippets
         run: bash tools/ci/compile-csharp-snippets.sh

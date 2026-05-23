@@ -113,25 +113,6 @@ nav:
       - Configuration As Code: qaas/advancedConcepts/configurationAsCode.md
       - YAML Mechanics: qaas/advancedConcepts/yaml-mechanics.md
       - Best Practices: qaas/bestPractices.md
-    - Recipes:
-      - Act / Assert Replay: qaas/recipes/act-assert-replay.md
-      - Dependency Gates: qaas/recipes/dependency-gates.md
-      - Schema Assertions: qaas/recipes/schema-assertions.md
-      - Storage and SaveData: qaas/recipes/storage-and-save-data.md
-      - Test Project README: qaas/recipes/test-project-readme.md
-    - Public Contract: qaas/public-contract.md
-    - Family Schemas:
-      - Overview: assets/schemas/index.md
-      - Runner Family Schema: assets/schemas/runner-family-schema.md
-      - Mocker Family Schema: assets/schemas/mocker-family-schema.md
-      - Hook Family Schemas: assets/schemas/hook-family-schemas.md
-    - Migration:
-      - Overview: qaas/migration/index.md
-      - Runner YAML: qaas/migration/runner-yaml.md
-      - Mocker YAML: qaas/migration/mocker-yaml.md
-      - Hooks: qaas/migration/hooks.md
-      - Configuration as Code: qaas/migration/configuration-as-code.md
-      - Command Flags: qaas/migration/command-flags.md
     - Functions:
       - Overview: qaas/functions/index.md
       # qaas-docs-generator start: runner-functions
@@ -233,12 +214,11 @@ nav:
         - Bootstrap: qaas/functions/commands/bootstrap.md
         - Runner: qaas/functions/commands/runner.md
       - Extension Methods:
-        - Extension Methods:
-          - Overview: qaas/functions/extension-methods.md
-          - Context artifact: qaas/functions/extension-methods-sections/context-artifact.md
-          - Date time: qaas/functions/extension-methods-sections/date-time.md
-          - Detailed data: qaas/functions/extension-methods-sections/detailed-data.md
-          - Session: qaas/functions/extension-methods-sections/session.md
+        - Overview: qaas/functions/extension-methods.md
+        - Context artifact: qaas/functions/extension-methods-sections/context-artifact.md
+        - Date time: qaas/functions/extension-methods-sections/date-time.md
+        - Detailed data: qaas/functions/extension-methods-sections/detailed-data.md
+        - Session: qaas/functions/extension-methods-sections/session.md
       # qaas-docs-generator end: runner-functions
   - Mocker:
     - General:
@@ -302,11 +282,10 @@ nav:
         - Bootstrap: mocker/functions/commands/bootstrap.md
         - Mocker Runner: mocker/functions/commands/mocker-runner.md
       - Extension Methods:
-        - Extension Methods:
-          - Overview: mocker/functions/extension-methods.md
-          - Data: mocker/functions/extension-methods-sections/data.md
-          - Http: mocker/functions/extension-methods-sections/http.md
-          - Socket: mocker/functions/extension-methods-sections/socket.md
+        - Overview: mocker/functions/extension-methods.md
+        - Data: mocker/functions/extension-methods-sections/data.md
+        - Http: mocker/functions/extension-methods-sections/http.md
+        - Socket: mocker/functions/extension-methods-sections/socket.md
       # qaas-docs-generator end: mocker-functions
   - Hooks:
     - Assertions:
@@ -669,30 +648,29 @@ nav:
         - Updates: framework/functions/updates.md
         - YAML: framework/functions/yaml.md
       - Extension Methods:
-        - Extension Methods:
-          - Overview: framework/functions/extension-methods.md
-          - Configuration:
-            - Overview: framework/functions/extension-methods-sections/configuration.md
-            - Placeholders: framework/functions/extension-methods-sections/configuration/placeholders.md
-            - Updates: framework/functions/extension-methods-sections/configuration/updates.md
-            - YAML: framework/functions/extension-methods-sections/configuration/yaml.md
-          - Extension Methods:
-            - Overview: framework/functions/extension-methods-sections/extension-methods.md
-            - Communication data: framework/functions/extension-methods-sections/extension-methods/communication-data.md
-            - Configuration merge utilities: framework/functions/extension-methods-sections/extension-methods/configuration-merge-utilities.md
-            - Configuration references parser: framework/functions/extension-methods-sections/extension-methods/configuration-references-parser.md
-            - Configuration utilities: framework/functions/extension-methods-sections/extension-methods/configuration-utilities.md
-            - Context global dictionary: framework/functions/extension-methods-sections/extension-methods/context-global-dictionary.md
-            - Data: framework/functions/extension-methods-sections/extension-methods/data.md
-            - Data source: framework/functions/extension-methods-sections/extension-methods/data-source.md
-            - Date time: framework/functions/extension-methods-sections/extension-methods/date-time.md
-            - Running communication data: framework/functions/extension-methods-sections/extension-methods/running-communication-data.md
-            - Running session data: framework/functions/extension-methods-sections/extension-methods/running-session-data.md
-            - Serilog: framework/functions/extension-methods-sections/extension-methods/serilog.md
-            - Session data: framework/functions/extension-methods-sections/extension-methods/session-data.md
-          - Utilities:
-            - Overview: framework/functions/extension-methods-sections/utilities.md
-            - Enumerables: framework/functions/extension-methods-sections/utilities/enumerables.md
+        - Overview: framework/functions/extension-methods.md
+        - Configuration:
+          - Overview: framework/functions/extension-methods-sections/configuration.md
+          - Placeholders: framework/functions/extension-methods-sections/configuration/placeholders.md
+          - Updates: framework/functions/extension-methods-sections/configuration/updates.md
+          - YAML: framework/functions/extension-methods-sections/configuration/yaml.md
+        - Methods:
+          - Overview: framework/functions/extension-methods-sections/extension-methods.md
+          - Communication data: framework/functions/extension-methods-sections/extension-methods/communication-data.md
+          - Configuration merge utilities: framework/functions/extension-methods-sections/extension-methods/configuration-merge-utilities.md
+          - Configuration references parser: framework/functions/extension-methods-sections/extension-methods/configuration-references-parser.md
+          - Configuration utilities: framework/functions/extension-methods-sections/extension-methods/configuration-utilities.md
+          - Context global dictionary: framework/functions/extension-methods-sections/extension-methods/context-global-dictionary.md
+          - Data: framework/functions/extension-methods-sections/extension-methods/data.md
+          - Data source: framework/functions/extension-methods-sections/extension-methods/data-source.md
+          - Date time: framework/functions/extension-methods-sections/extension-methods/date-time.md
+          - Running communication data: framework/functions/extension-methods-sections/extension-methods/running-communication-data.md
+          - Running session data: framework/functions/extension-methods-sections/extension-methods/running-session-data.md
+          - Serilog: framework/functions/extension-methods-sections/extension-methods/serilog.md
+          - Session data: framework/functions/extension-methods-sections/extension-methods/session-data.md
+        - Utilities:
+          - Overview: framework/functions/extension-methods-sections/utilities.md
+          - Enumerables: framework/functions/extension-methods-sections/utilities/enumerables.md
       # qaas-docs-generator end: framework-functions
     - Projects:
       - SDK: framework/projects/sdk.md
@@ -703,12 +681,6 @@ nav:
       - Protocols: framework/projects/protocols.md
       - Providers: framework/projects/providers.md
       - Serialization: framework/projects/serialization.md
-  - Integrations:
-    - CI Pipeline (GitHub Actions): integrations/ci-pipeline.md
-    - PackageMirror: integrations/package-mirror.md
-    - Configuration Defaults: integrations/configuration-defaults.md
-    - Orchestrator Site: integrations/orchestrator-site.md
-    - Kiwix MCP (Offline Docs): integrations/kiwix-mcp.md
 
 theme:
   name: material
@@ -774,8 +746,6 @@ plugins:
           - processors/**/*.md: Processor catalog and authoring guide.
         Framework:
           - framework/**/*.md: Framework reference.
-        Integrations:
-          - integrations/*.md: Integration and offline packaging guides.
 
 extra_javascript:
   - assets/javascripts/qaas-docs-build-defaults.js
@@ -836,8 +806,8 @@ extra:
     qaas_community: !ENV [QAAS_DOCS_LINK_QAAS_COMMUNITY, "https://discord.gg/rg2NYT4Mea"]
     nuget_feed: !ENV [QAAS_DOCS_LINK_NUGET_FEED, "https://api.nuget.org/v3/index.json"]
     artifactory: !ENV [QAAS_DOCS_LINK_ARTIFACTORY, "https://jfrog.com/artifactory"]
-    runner_schema: !ENV [QAAS_DOCS_LINK_RUNNER_SCHEMA, "../../assets/schemas/runner-family-schema.json"]
-    mocker_schema: !ENV [QAAS_DOCS_LINK_MOCKER_SCHEMA, "../../assets/schemas/mocker-family-schema.json"]
+    runner_schema: !ENV [QAAS_DOCS_LINK_RUNNER_SCHEMA, "../../../assets/schemas/runner-family-schema.json"]
+    mocker_schema: !ENV [QAAS_DOCS_LINK_MOCKER_SCHEMA, "../../../assets/schemas/mocker-family-schema.json"]
   images:
     dotnet_sdk: !ENV [QAAS_DOCS_IMAGE_DOTNET_SDK, "mcr.microsoft.com/dotnet/sdk:10.0"]
     dotnet_runtime: !ENV [QAAS_DOCS_IMAGE_DOTNET_RUNTIME, "mcr.microsoft.com/dotnet/runtime:10.0"]

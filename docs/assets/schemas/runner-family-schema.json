@@ -807,7 +807,7 @@
                 ],
                 "pattern": "\\$\\{.*\\}",
                 "items": {
-                  "title": "FromSessionDataDataSources",
+                  "title": "FromSessionDataDataSourcesConfiguration",
                   "type": [
                     "object",
                     "string"
@@ -2920,15 +2920,6 @@
                       ],
                       "description": "The insertion time field name, in cases where the table can be updated this will be the update time field"
                     },
-                    "AllowNoInsertionTimeField": {
-                      "type": [
-                        "boolean",
-                        "string"
-                      ],
-                      "description": "Set to true to acknowledge that the table has no insertion time column and suppress the related startup warning.",
-                      "default": false,
-                      "pattern": "\\$\\{.*\\}"
-                    },
                     "InsertionTimeTimeZoneOffsetSummerTime": {
                       "type": [
                         "integer",
@@ -3020,15 +3011,6 @@
                         "string"
                       ],
                       "description": "The insertion time field name, in cases where the table can be updated this will be the update time field"
-                    },
-                    "AllowNoInsertionTimeField": {
-                      "type": [
-                        "boolean",
-                        "string"
-                      ],
-                      "description": "Set to true to acknowledge that the table has no insertion time column and suppress the related startup warning.",
-                      "default": false,
-                      "pattern": "\\$\\{.*\\}"
                     },
                     "InsertionTimeTimeZoneOffsetSummerTime": {
                       "type": [
@@ -3127,15 +3109,6 @@
                         "string"
                       ],
                       "description": "The insertion time field name, in cases where the table can be updated this will be the update time field"
-                    },
-                    "AllowNoInsertionTimeField": {
-                      "type": [
-                        "boolean",
-                        "string"
-                      ],
-                      "description": "Set to true to acknowledge that the table has no insertion time column and suppress the related startup warning.",
-                      "default": false,
-                      "pattern": "\\$\\{.*\\}"
                     },
                     "InsertionTimeTimeZoneOffsetSummerTime": {
                       "type": [
@@ -3252,15 +3225,6 @@
                         "string"
                       ],
                       "description": "The insertion time field name, in cases where the table can be updated this will be the update time field"
-                    },
-                    "AllowNoInsertionTimeField": {
-                      "type": [
-                        "boolean",
-                        "string"
-                      ],
-                      "description": "Set to true to acknowledge that the table has no insertion time column and suppress the related startup warning.",
-                      "default": false,
-                      "pattern": "\\$\\{.*\\}"
                     },
                     "InsertionTimeTimeZoneOffsetSummerTime": {
                       "type": [
@@ -5466,30 +5430,6 @@
                   "description": "Whether to publish in loop",
                   "default": false,
                   "pattern": "\\$\\{.*\\}"
-                },
-                "Parallel": {
-                  "type": [
-                    "object",
-                    "string"
-                  ],
-                  "description": "Whether to run the transaction in a specified parallelism",
-                  "pattern": "\\$\\{.*\\}",
-                  "required": [
-                    "Parallelism"
-                  ],
-                  "properties": {
-                    "Parallelism": {
-                      "type": [
-                        "integer",
-                        "string"
-                      ],
-                      "description": "The amount of parallel tasks to execute at once",
-                      "format": "int32",
-                      "maximum": 2147483647.0,
-                      "minimum": 1.0,
-                      "pattern": "\\$\\{.*\\}"
-                    }
-                  }
                 },
                 "SleepTimeMs": {
                   "type": [

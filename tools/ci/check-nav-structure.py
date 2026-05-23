@@ -10,7 +10,7 @@ from yaml.nodes import MappingNode, ScalarNode, SequenceNode
 
 DOCS_ROOT = Path("docs")
 MKDOCS_CONFIG = Path("mkdocs.yml")
-EXPECTED_TOP_NAV = ("Home", "Runner", "Mocker", "Hooks", "Framework", "Integrations")
+EXPECTED_TOP_NAV = ("Home", "Runner", "Mocker", "Hooks", "Framework")
 SKIP_PARTS = {"_generated"}
 LEGACY_META = "docs" + "/_meta"
 

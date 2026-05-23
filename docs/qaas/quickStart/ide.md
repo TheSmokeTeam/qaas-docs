@@ -19,7 +19,7 @@ If your team keeps Runner definitions in `test.qaas.yaml`, configure your IDE wi
 
 ## Runner Schema {: #runner-schema}
 
-- [**QaaS.Runner Schema**]({{ links.runner_schema }})
+<a class="md-button md-button--primary" href="{{ links.runner_schema }}" download="runner-family-schema.json">Download QaaS.Runner Schema</a>
 
 The Runner schema covers:
 

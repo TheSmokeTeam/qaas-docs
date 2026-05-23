@@ -19,7 +19,7 @@ If your team keeps mock definitions in `mocker.qaas.yaml`, configure your IDE wi
 
 ## Mocker Schema {: #mocker-schema}
 
-- [**QaaS.Mocker Schema**]({{ links.mocker_schema }})
+<a class="md-button md-button--primary" href="{{ links.mocker_schema }}" download="mocker-family-schema.json">Download QaaS.Mocker Schema</a>
 
 The Mocker schema covers:
 
