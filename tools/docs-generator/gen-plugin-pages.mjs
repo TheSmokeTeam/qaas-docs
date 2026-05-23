@@ -14,6 +14,7 @@ import { fileURLToPath } from 'node:url';
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const ROOT = path.resolve(__dirname, '../..');
 const DOCS = path.join(ROOT, 'docs');
+const PLANNING = path.join(ROOT, 'planning');
 const SCHEMA_DIR = 'D:/QaaS/QaaS.JsonSchemaExtensions/generated-schemas';
 const TODAY = '2026-05-22';
 
@@ -159,7 +160,7 @@ function renderYamlExample(cfgKey, propsObj, requiredArr, indent = 2) {
   return lines;
 }
 
-function frontmatter({ id, slug, type, area, since, last_verified, applies_to, prereqs, code_langs, keywords, ai_summary, canonical_url, source_path }) {
+function frontmatter({ id, slug, type, area, since, last_verified, applies_to, prereqs, code_langs, keywords, summary, canonical_url, source_path }) {
   const lines = [
     '---',
     `id: ${id}`,
@@ -172,7 +173,7 @@ function frontmatter({ id, slug, type, area, since, last_verified, applies_to, p
     `prerequisites: [${(prereqs||[]).join(', ')}]`,
     `code_langs: [${code_langs.join(', ')}]`,
     `keywords: [${keywords.join(', ')}]`,
-    `ai_summary: "${ai_summary.replace(/"/g, '\\"').slice(0, 278)}"`,
+    `summary: "${summary.replace(/"/g, '\\"').slice(0, 278)}"`,
     `tags: [${area}]`,
     `canonical_url: ${canonical_url}`,
   ];
@@ -210,7 +211,7 @@ for (const fam of FAMILIES) {
     if (!summary) xmldocGaps.push({ family: fam.key, plugin: name, source_file: sourceFile || '(no source file located)' });
 
     const relSource = sourceFile ? sourceFile.replace(/^.*?QaaS\./, 'QaaS.') : 'unknown';
-    const aiSummary = (summary || `${name} ${fam.area.slice(0,-1)} plugin (auto-generated reference).`).slice(0, 278);
+    const pageSummary = (summary || `${name} ${fam.area.slice(0,-1)} plugin reference.`).slice(0, 278);
 
     // ---------- overview.md ----------
     const overviewFm = frontmatter({
@@ -224,14 +225,14 @@ for (const fam of FAMILIES) {
       prereqs: [],
       code_langs: ['yaml', 'csharp'],
       keywords: [fam.area, name, fam.cfgKey],
-      ai_summary: aiSummary,
+      summary: pageSummary,
       canonical_url: `/${fam.area}/${fam.folder}/${name}/overview/`,
       source_path: relSource,
     });
     const summaryPara = summary
       ? summary
-      : `No summary available yet — see [docs/_meta/xmldoc-gaps.md](../../../_meta/xmldoc-gaps.md).`;
-    const summaryBanner = summary ? '' : `!!! warning "Missing XMLDoc"\n    Source class has no \`<summary>\` comment. Tracked in [docs/_meta/xmldoc-gaps.md](../../../_meta/xmldoc-gaps.md).\n\n`;
+      : `Source summary unavailable. Add a \`<summary>\` comment to the source class, then rerun \`node tools/docs-generator/gen-plugin-pages.mjs\`.`;
+    const summaryBanner = summary ? '' : `!!! warning "Missing XMLDoc"\n    Source class has no \`<summary>\` comment. The gap report is written to \`planning/xmldoc-gaps.md\`.\n\n`;
 
     // Build a minimal realistic YAML wired into a Session.
     const cfgLines = renderYamlExample(fam.cfgKey, p.properties || {}, p.required || [], 8);
@@ -287,7 +288,7 @@ ${yamlBlock}
       prereqs: [`${fam.area}/${fam.folder}/${name}/overview.md`],
       code_langs: ['yaml'],
       keywords: [fam.area, name, 'configuration', 'reference'],
-      ai_summary: `Field-by-field reference for ${name} ${fam.cfgKey} keys, types, defaults and descriptions, generated from ${fam.schema}.`,
+      summary: `Field-by-field reference for ${name} ${fam.cfgKey} keys, types, defaults and descriptions, generated from ${fam.schema}.`,
       canonical_url: `/${fam.area}/${fam.folder}/${name}/configuration/tableView/`,
       source_path: `QaaS.JsonSchemaExtensions/generated-schemas/${fam.schema}`,
     });
@@ -316,7 +317,7 @@ See [yamlView](yamlView.md) for a minimal scaffold and [overview](../overview.md
       prereqs: [`${fam.area}/${fam.folder}/${name}/overview.md`],
       code_langs: ['yaml'],
       keywords: [fam.area, name, 'yaml', 'scaffold'],
-      ai_summary: `Minimal YAML scaffold for ${name} ${fam.cfgKey} — copy, fill the blanks, drop into a Session step.`,
+      summary: `Minimal YAML scaffold for ${name} ${fam.cfgKey}; fill the blanks, then drop it into a Session step.`,
       canonical_url: `/${fam.area}/${fam.folder}/${name}/configuration/yamlView/`,
       source_path: `QaaS.JsonSchemaExtensions/generated-schemas/${fam.schema}`,
     });
@@ -342,7 +343,7 @@ const gapMd = [
   '',
   `Last refreshed: ${TODAY}`,
   '',
-  'Plugin classes that ship without a `<summary>` XMLDoc block. Each plugin page emits a "No summary available yet" placeholder + an admonition banner. Fix-forward: add `<summary>` to the source class, rerun `node tools/docs-generator/gen-plugin-pages.mjs`.',
+  'Plugin classes that ship without a `<summary>` XMLDoc block. Each plugin page emits a source-summary-unavailable placeholder and an admonition banner. Fix-forward: add `<summary>` to the source class, then rerun `node tools/docs-generator/gen-plugin-pages.mjs`.',
   '',
   '| Family | Plugin | Source file |',
   '| ------ | ------ | ----------- |',
@@ -351,7 +352,8 @@ const gapMd = [
   `**Total gaps:** ${xmldocGaps.length}`,
   '',
 ].join('\n');
-fs.writeFileSync(path.join(DOCS, '_meta', 'xmldoc-gaps.md'), gapMd);
+fs.mkdirSync(PLANNING, { recursive: true });
+fs.writeFileSync(path.join(PLANNING, 'xmldoc-gaps.md'), gapMd);
 
 console.log(`pages written: ${totalPages}`);
 console.log(`xmldoc gaps:   ${xmldocGaps.length}`);

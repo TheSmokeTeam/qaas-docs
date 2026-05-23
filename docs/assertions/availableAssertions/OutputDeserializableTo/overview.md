@@ -12,40 +12,49 @@ summary: "Performs a logic test that checks if the items of a configured output 
 
 # OutputDeserializableTo
 
-Performs a logic test that checks if the items of a configured output can all be deserialized using a configured deserializer
+> TL;DR — Performs a logic test that checks if the items of a configured output can all be deserialized using a configured deserializer
 
-## What it does
+## When to use {: #when-to-use}
 
-Performs a logic test that checks if the items of a configured output can all be deserialized using a configured deserializer See [Configuration ▸ tableView](configuration/tableView.md) for the full field reference and [Configuration ▸ yamlView](configuration/yamlView.md) for a minimal scaffold.
+Takes every item from one output, treats the body as serialized bytes, and tries to deserialize each item with the configured deserializer.
 
-## YAML example
+The assertion passes only when every item can be deserialized successfully. It records the index and exception for each failure in the trace, which makes it useful as a fast safety check that a response stream really matches the serialization format you expect.
+
+## YAML configuration {: #yaml-configuration}
+
+Use the hook name in the matching runtime section, then place hook-specific fields under the configuration object shown in the examples below.
+
+## Minimal example {: #minimal-example}
 
 ```yaml
 Sessions:
-  - Name: OutputDeserializableToSession
-    Assertions:
-      - Name: OutputDeserializableToStep
-        Assertion: OutputDeserializableTo
-        AssertionConfiguration:
-        OutputName:
-        Deserialize:
-          Deserializer:
-          SpecificType:
-            AssemblyName:
-            TypeFullName:
+  - Name: SampleSession
+
+Assertions:
+  - Name: OutputDeserializableToAssertion
+    Assertion: OutputDeserializableTo
+    SessionNames:
+      - SampleSession
+
+    AssertionConfiguration:
+      OutputName: Reply
+      Deserialize:
+        Deserializer: Json
 ```
 
+## Realistic example {: #realistic-example}
 
-## Where it lives
+This configuration checks the `Reply` output of `SampleSession` and attempts to deserialize every saved body with the JSON deserializer.
 
-| | |
-|--|--|
-| **Plugin family** | assertions |
-| **YAML key** | `OutputDeserializableTo` |
-| **Schema** | [`assertions.schema.json`](../../../_generated/schemas/assertions.md) |
-| **Source** | `QaaS.Common.Assertions\QaaS.Common.Assertions\DeserializationLogic\OutputDeserializableTo.cs` |
+If every item is valid JSON bytes, the assertion passes. If any item is malformed, the assertion fails and the trace shows which item index could not be deserialized.
 
-## See also
+## Edge cases {: #edge-cases}
 
-- [assertions index](../../index.md)
-- [Custom assertion authoring guide](../../custom-authoring-guide.md)
+- Missing required configuration keys fail schema validation before the hook runs.
+- Keep hook names and referenced session or data-source names aligned with the surrounding YAML.
+
+## See also {: #see-also}
+
+- [Configuration table](configuration/tableView.md)
+- [YAML scaffold](configuration/yamlView.md)
+- [Assertions](../../index.md)

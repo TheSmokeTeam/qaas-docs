@@ -12,45 +12,63 @@ summary: "OsEditYamlConfigMap probe plugin (auto-generated reference)."
 
 # OsEditYamlConfigMap
 
-!!! warning "Missing XMLDoc"
-    Source class has no `<summary>` comment. Tracked in [docs/_meta/xmldoc-gaps.md](../../../_meta/xmldoc-gaps.md).
+> TL;DR — Probe that edits yaml config maps
 
-No summary available yet — see [docs/_meta/xmldoc-gaps.md](../../../_meta/xmldoc-gaps.md).
+## When to use {: #when-to-use}
 
-## What it does
+Loads a YAML document from a config map, edits the configured paths, and writes the updated document back to the config map.
 
-Behavior not yet documented in source XMLDoc. See [Configuration ▸ tableView](configuration/tableView.md) for the full field reference and [Configuration ▸ yamlView](configuration/yamlView.md) for a minimal scaffold.
+This is useful when an application reads structured configuration from a config map and only a few settings need to change for a particular scenario.
 
-## YAML example
+## YAML configuration {: #yaml-configuration}
+
+Use the hook name in the matching runtime section, then place hook-specific fields under the configuration object shown in the examples below.
+
+## Minimal example {: #minimal-example}
 
 ```yaml
 Sessions:
-  - Name: OsEditYamlConfigMapSession
+  - Name: ProbeSession
     Probes:
-      - Name: OsEditYamlConfigMapStep
+      - Name: OsEditYamlConfigMapProbe
         Probe: OsEditYamlConfigMap
         ProbeConfiguration:
-        Openshift:
-          Cluster:
-          Username:
-          Password:
-          Namespace:
-        ConfigMapName:
-        ConfigMapYamlFileName:
-        ValuesToEdit:
+          UseGlobalDict: true
+          ConfigMapName: orders-config
+          ConfigMapYamlFileName: application.yaml
+          ValuesToEdit:
+            service.retries: 5
+            logging.level.default: Warning
+          Openshift:
+            Cluster: https://api.cluster.local:6443
+            Namespace: docs
+            Username: docs-user
+            Password: docs-password
 ```
 
+## Realistic example {: #realistic-example}
 
-## Where it lives
+This probe opens `application.yaml` inside the `orders-config` config map, changes `service.retries` to `5`, and changes `logging.level.default` to `Warning`.
 
-| | |
-|--|--|
-| **Plugin family** | probes |
-| **YAML key** | `OsEditYamlConfigMap` |
-| **Schema** | [`probes.schema.json`](../../../_generated/schemas/probes.md) |
-| **Source** | `QaaS.Common.Probes\QaaS.Common.Probes\ConfigurationObjects\Os\OsEditYamlConfigMapConfig.cs` |
+It is a targeted way to adjust structured YAML configuration without replacing the whole config map by hand.
 
-## See also
+### Global Dictionary Behavior {: #global-dictionary-behavior}
 
-- [probes index](../../index.md)
-- [Custom probe authoring guide](../../custom-authoring-guide.md)
+With `UseGlobalDict: true`, missing shared cluster settings can be resolved from `Os/Defaults`, and missing `ValuesToEdit` can be restored from `Os/Recovery/ConfigMap/<ConfigMapName>` after an earlier probe in the same execution and session captured the pre-change state.
+
+The probe writes its pre-change snapshot to the unique canonical scoped path for the current probe execution and then updates the recovery alias so a later rollback probe can reuse it. This is useful when you want to patch YAML values during setup and then restore the original values by replaying the saved JSON-path map.
+
+No additional per-probe recovery caveat applies beyond the execution and session scoping rules.
+
+When `UseGlobalDict` is `false`, the probe keeps the current behavior: it uses only local YAML or code configuration and does not read or write probe-global-dictionary state.
+
+## Edge cases {: #edge-cases}
+
+- Missing required configuration keys fail schema validation before the hook runs.
+- Keep hook names and referenced session or data-source names aligned with the surrounding YAML.
+
+## See also {: #see-also}
+
+- [Configuration table](configuration/tableView.md)
+- [YAML scaffold](configuration/yamlView.md)
+- [Probes](../../index.md)

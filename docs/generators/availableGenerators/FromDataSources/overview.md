@@ -12,35 +12,52 @@ summary: "Generates data from the enumerable of data sources it receives"
 
 # FromDataSources
 
-Generates data from the enumerable of data sources it receives
+> TL;DR — Generates data from the enumerable of data sources it receives
 
-## What it does
+## When to use {: #when-to-use}
 
-Generates data from the enumerable of data sources it receives See [Configuration ▸ tableView](configuration/tableView.md) for the full field reference and [Configuration ▸ yamlView](configuration/yamlView.md) for a minimal scaffold.
+Forwards the generated items produced by the attached data sources and exposes them as a new data source.
 
-## YAML example
+It does not transform the payloads. It is mainly a way to cap, regroup, or re-export existing generated data under a new name so the same base source can be reused in multiple places.
+
+## YAML configuration {: #yaml-configuration}
+
+Use the hook name in the matching runtime section, then place hook-specific fields under the configuration object shown in the examples below.
+
+## Minimal example {: #minimal-example}
 
 ```yaml
-Sessions:
-  - Name: FromDataSourcesSession
-    Generators:
-      - Name: FromDataSourcesStep
-        DataSource: FromDataSources
-        GeneratorConfiguration:
-        Count:
+DataSources:
+  - Name: RawPayloads
+    Generator: FromFileSystem
+    GeneratorConfiguration:
+      DataArrangeOrder: AsciiAsc
+      FileSystem:
+        Path: sample-data/payloads
+        SearchPattern: '*.json'
+      StorageMetaData: ItemName
+
+  - Name: ForwardedPayloads
+    Generator: FromDataSources
+    DataSourceNames:
+      - RawPayloads
+    GeneratorConfiguration:
+      Count: 2
 ```
 
+## Realistic example {: #realistic-example}
 
-## Where it lives
+`RawPayloads` loads every matching file from disk, and `ForwardedPayloads` then re-emits only the first two generated items from that source.
 
-| | |
-|--|--|
-| **Plugin family** | generators |
-| **YAML key** | `FromDataSources` |
-| **Schema** | [`generators.schema.json`](../../../_generated/schemas/generators.md) |
-| **Source** | `QaaS.Common.Generators\QaaS.Common.Generators\FromDataSourcesGenerators\FromDataSources.cs` |
+This is useful when you want to reuse an existing data source but limit how many items a particular session or stub should see.
 
-## See also
+## Edge cases {: #edge-cases}
 
-- [generators index](../../index.md)
-- [Custom generator authoring guide](../../custom-authoring-guide.md)
+- Missing required configuration keys fail schema validation before the hook runs.
+- Keep hook names and referenced session or data-source names aligned with the surrounding YAML.
+
+## See also {: #see-also}
+
+- [Configuration table](configuration/tableView.md)
+- [YAML scaffold](configuration/yamlView.md)
+- [Generators](../../index.md)

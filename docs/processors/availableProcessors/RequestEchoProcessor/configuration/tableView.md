@@ -10,18 +10,34 @@ summary: "Field-by-field reference for RequestEchoProcessor ProcessorConfigurati
 ---
 <!-- Verified-against: QaaS.JsonSchemaExtensions/generated-schemas/processors.schema.json -->
 
-# RequestEchoProcessor — Configuration (table view)
+# RequestEchoProcessor Configurations Table View
 
-Generated from `processors.schema.json`. Every field below is verified against the JSON schema at `QaaS.JsonSchemaExtensions/generated-schemas/processors.schema.json`.
+> TL;DR — Use this generated field table to check property paths, types, required status, defaults, and descriptions.
+
+## When to use {: #when-to-use}
+
+Use this page when you need the exact field path or value type for a hook configuration before editing YAML.
+
+## YAML configuration {: #yaml-configuration}
+
+The table below mirrors the schema used by the YAML scaffold page. Nested rows use dotted paths and `[]` for list items.
 
 | Property Path | Type | Required | Default | Description |
 | ------------- | ---- | -------- | ------- | ----------- |
 | `ProcessorConfiguration` | `object or string` | &#10006 |  |  |
-| `ProcessorConfiguration.StatusCode` | `integer or string` | &#10004 |  | Response Status Code |
 | `ProcessorConfiguration.ContentType` | `string` | &#10004 |  | Response Content-Type header |
-| `ProcessorConfiguration.IncludeRequestHeaders` | `boolean or string` | &#10006 |  | Include request headers in the echoed JSON response |
-| `ProcessorConfiguration.IncludePathParameters` | `boolean or string` | &#10006 |  | Include request path parameters in the echoed JSON response |
-| `ProcessorConfiguration.IncludeUri` | `boolean or string` | &#10006 |  | Include request Uri in the echoed JSON response |
-| `ProcessorConfiguration.ResponseHeaders` | `null or object or string` | &#10006 |  | Additional response headers |
+| `ProcessorConfiguration.StatusCode` | `integer or string` | &#10004 |  | Response Status Code |
+| `ProcessorConfiguration.IncludePathParameters` | `string or true/false` | &#10006 |  | Include request path parameters in the echoed JSON response |
+| `ProcessorConfiguration.IncludeRequestHeaders` | `string or true/false` | &#10006 |  | Include request headers in the echoed JSON response |
+| `ProcessorConfiguration.IncludeUri` | `string or true/false` | &#10006 |  | Include request Uri in the echoed JSON response |
+| `ProcessorConfiguration.ResponseHeaders` | `object or string or null` | &#10006 |  | Additional response headers |
 
-See [yamlView](yamlView.md) for a minimal scaffold and [overview](../overview.md) for a runnable example.
+## Edge cases {: #edge-cases}
+
+- Empty default cells mean the schema does not define a default value for that field.
+- Required status applies to the immediate parent object shown by the property path.
+
+## See also {: #see-also}
+
+- [YAML scaffold](yamlView.md)
+- [Overview](../overview.md)

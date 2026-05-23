@@ -12,44 +12,55 @@ summary: "Runs Redis FLUSHALL against the configured server to remove keys from 
 
 # FlushAllRedis
 
-Runs Redis FLUSHALL against the configured server to remove keys from every database.
+> TL;DR — Runs Redis FLUSHALL against the configured server to remove keys from every database.
 
-## What it does
+## When to use {: #when-to-use}
 
-Runs Redis FLUSHALL against the configured server to remove keys from every database. See [Configuration ▸ tableView](configuration/tableView.md) for the full field reference and [Configuration ▸ yamlView](configuration/yamlView.md) for a minimal scaffold.
+Runs `FLUSHALL` on the targeted Redis server and removes keys from every database on that server.
 
-## YAML example
+This is the broadest Redis cleanup option and is only appropriate when the Redis instance is dedicated to the scenario or test environment.
+
+## YAML configuration {: #yaml-configuration}
+
+Use the hook name in the matching runtime section, then place hook-specific fields under the configuration object shown in the examples below.
+
+## Minimal example {: #minimal-example}
 
 ```yaml
 Sessions:
-  - Name: FlushAllRedisSession
+  - Name: ProbeSession
     Probes:
-      - Name: FlushAllRedisStep
+      - Name: FlushAllRedisProbe
         Probe: FlushAllRedis
         ProbeConfiguration:
-        HostNames: []
-        Username:
-        Password:
-        AbortOnConnectFail:
-        ConnectRetry:
-        ClientName:
-        AsyncTimeout:
-        Ssl:
-        SslHost:
-        KeepAlive:
+          UseGlobalDict: true
+          HostNames:
+            - localhost:6379
 ```
 
+## Realistic example {: #realistic-example}
 
-## Where it lives
+This configuration performs a full Redis server flush against `localhost:6379`.
 
-| | |
-|--|--|
-| **Plugin family** | probes |
-| **YAML key** | `FlushAllRedis` |
-| **Schema** | [`probes.schema.json`](../../../_generated/schemas/probes.md) |
-| **Source** | `QaaS.Common.Probes\QaaS.Common.Probes\RedisProbes\FlushAllRedis.cs` |
+After the probe runs, all Redis databases on that server are emptied.
 
-## See also
+### Global Dictionary Behavior {: #global-dictionary-behavior}
 
-- [probes index](../../index.md)
-- [Custom probe authoring guide](../../custom-authoring-guide.md)
+With `UseGlobalDict: true`, missing server connection fields can be resolved from the session-scoped `Redis/Defaults` alias when those keys do not appear in the local probe configuration. The probe still binds and validates after the merge, and any key that is present locally keeps priority over the shared default.
+
+That makes the probe useful when a maintenance step should reuse the same Redis server definition without repeating it.
+
+No recovery alias is involved for this probe.
+
+When `UseGlobalDict` is `false`, the probe behaves exactly as before and uses only local YAML or code configuration.
+
+## Edge cases {: #edge-cases}
+
+- Missing required configuration keys fail schema validation before the hook runs.
+- Keep hook names and referenced session or data-source names aligned with the surrounding YAML.
+
+## See also {: #see-also}
+
+- [Configuration table](configuration/tableView.md)
+- [YAML scaffold](configuration/yamlView.md)
+- [Probes](../../index.md)

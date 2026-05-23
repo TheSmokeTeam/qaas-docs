@@ -12,35 +12,54 @@ summary: "Generates data from the enumerable of data sources it receives that is
 
 # FromLettuceDataSources
 
-Generates data from the enumerable of data sources it receives that is in `Lettuce` file format, presumes all items in the enumerable are deserialized into <see cref="SerializationType.Json"/>
+> TL;DR — Generates data from the enumerable of data sources it receives that is in `Lettuce` file format, presumes all items in the enumerable are deserialized into Json
 
-## What it does
+## When to use {: #when-to-use}
 
-Generates data from the enumerable of data sources it receives that is in `Lettuce` file format, presumes all items in the enumerable are deserialized into <see cref="SerializationType.Json"/> See [Configuration ▸ tableView](configuration/tableView.md) for the full field reference and [Configuration ▸ yamlView](configuration/yamlView.md) for a minimal scaffold.
+Consumes attached data sources whose bodies are lettuce-style JSON envelopes, base64-decodes the `Body`, and emits the decoded payload as the generated item.
 
-## YAML example
+When the lettuce envelope contains a RabbitMQ routing key, that routing key is copied into the generated item metadata so publisher or consumer flows can reuse it naturally.
+
+## YAML configuration {: #yaml-configuration}
+
+Use the hook name in the matching runtime section, then place hook-specific fields under the configuration object shown in the examples below.
+
+## Minimal example {: #minimal-example}
 
 ```yaml
-Sessions:
-  - Name: FromLettuceDataSourcesSession
-    Generators:
-      - Name: FromLettuceDataSourcesStep
-        DataSource: FromLettuceDataSources
-        GeneratorConfiguration:
-        Count:
+DataSources:
+  - Name: LettuceEvents
+    Generator: FromFileSystem
+    Deserialize:
+      Deserializer: Json
+    GeneratorConfiguration:
+      DataArrangeOrder: AsciiAsc
+      FileSystem:
+        Path: sample-data/lettuce
+        SearchPattern: '*.json'
+      StorageMetaData: ItemName
+
+  - Name: DecodedEvents
+    Generator: FromLettuceDataSources
+    DataSourceNames:
+      - LettuceEvents
+    GeneratorConfiguration:
+      Count: 5
 ```
 
+## Realistic example {: #realistic-example}
 
-## Where it lives
+`LettuceEvents` loads JSON envelope files, and `DecodedEvents` converts those envelopes into raw payload bytes.
 
-| | |
-|--|--|
-| **Plugin family** | generators |
-| **YAML key** | `FromLettuceDataSources` |
-| **Schema** | [`generators.schema.json`](../../../_generated/schemas/generators.md) |
-| **Source** | `QaaS.Common.Generators\QaaS.Common.Generators\FromDataSourcesGenerators\FromLettuceDataSources.cs` |
+With this setup, the first five decoded messages become available to the rest of the configuration, and any routing key carried inside each lettuce envelope is preserved in RabbitMQ metadata.
 
-## See also
+## Edge cases {: #edge-cases}
 
-- [generators index](../../index.md)
-- [Custom generator authoring guide](../../custom-authoring-guide.md)
+- Missing required configuration keys fail schema validation before the hook runs.
+- Keep hook names and referenced session or data-source names aligned with the surrounding YAML.
+
+## See also {: #see-also}
+
+- [Configuration table](configuration/tableView.md)
+- [YAML scaffold](configuration/yamlView.md)
+- [Generators](../../index.md)

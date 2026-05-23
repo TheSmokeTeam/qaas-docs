@@ -12,40 +12,71 @@ summary: "Checks that the configured output content matches the expected values 
 
 # OutputContentByExpectedCsvResults
 
-Checks that the configured output content matches the expected values loaded from a CSV results file.
+> TL;DR — Checks that the configured output content matches the expected values loaded from a CSV results file.
 
-## What it does
+## When to use {: #when-to-use}
 
-Checks that the configured output content matches the expected values loaded from a CSV results file. See [Configuration ▸ tableView](configuration/tableView.md) for the full field reference and [Configuration ▸ yamlView](configuration/yamlView.md) for a minimal scaffold.
+Loads expected results from a CSV data source, converts each output item to JSON, and validates configured fields by mapping CSV columns to JSON paths.
 
-## YAML example
+Field validation is per mapped column and can use exact matching, numeric error ranges, override values, or base64-to-hex conversion. The assertion can compare rows by position or, when `CompareRowsNotInOrder` is enabled, match rows in any order while still ensuring each expected row is satisfied only once.
+
+## YAML configuration {: #yaml-configuration}
+
+Use the hook name in the matching runtime section, then place hook-specific fields under the configuration object shown in the examples below.
+
+## Minimal example {: #minimal-example}
 
 ```yaml
+DataSources:
+  - Name: ExpectedResultsCsv
+    Generator: FromFileSystem
+    GeneratorConfiguration:
+      DataArrangeOrder: AsciiAsc
+      FileSystem:
+        Path: expectations
+        SearchPattern: '*.csv'
+      StorageMetaData: ItemName
+
 Sessions:
-  - Name: OutputContentByExpectedCsvResultsSession
-    Assertions:
-      - Name: OutputContentByExpectedCsvResultsStep
-        Assertion: OutputContentByExpectedCsvResults
-        AssertionConfiguration:
-        OutputName:
-        ResultsMetaDataStorageKey:
-        DataSourceName:
-        ColumnNameToFieldPathMap:
-        JsonConverterType:
-        CompareRowsNotInOrder:
+  - Name: SampleSession
+
+Assertions:
+  - Name: OutputContentByExpectedCsvResultsAssertion
+    Assertion: OutputContentByExpectedCsvResults
+    SessionNames:
+      - SampleSession
+    DataSourceNames:
+      - ExpectedResultsCsv
+    AssertionConfiguration:
+      OutputName: Reply
+      DataSourceName: ExpectedResultsCsv
+      ColumnNameToFieldPathMap:
+        ORDER_ID:
+          Path: $.orderId
+          FieldValidationConfig:
+            Type: ExactValue
+        TOTAL:
+          Path: $.total
+          FieldValidationConfig:
+            Type: ErrorRange
+            ErrorRange:
+              ErrorRange: 0.1
+      CompareRowsNotInOrder: true
 ```
 
+## Realistic example {: #realistic-example}
 
-## Where it lives
+This example reads expected rows from `ExpectedResultsCsv`, compares them with the JSON bodies stored in the `Reply` output, and validates two fields.
 
-| | |
-|--|--|
-| **Plugin family** | assertions |
-| **YAML key** | `OutputContentByExpectedCsvResults` |
-| **Schema** | [`assertions.schema.json`](../../../_generated/schemas/assertions.md) |
-| **Source** | `QaaS.Common.Assertions\QaaS.Common.Assertions\ContentLogic\OutputContentByExpectedCsvResults.cs` |
+`ORDER_ID` must match exactly, while `TOTAL` can differ by up to 0.1. Because `CompareRowsNotInOrder` is enabled, the assertion can match the observed output rows to the expected CSV rows in any order instead of forcing row 1 to match row 1.
 
-## See also
+## Edge cases {: #edge-cases}
 
-- [assertions index](../../index.md)
-- [Custom assertion authoring guide](../../custom-authoring-guide.md)
+- Missing required configuration keys fail schema validation before the hook runs.
+- Keep hook names and referenced session or data-source names aligned with the surrounding YAML.
+
+## See also {: #see-also}
+
+- [Configuration table](configuration/tableView.md)
+- [YAML scaffold](configuration/yamlView.md)
+- [Assertions](../../index.md)

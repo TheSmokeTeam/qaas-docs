@@ -12,47 +12,58 @@ summary: "Scans the selected Redis database in batches and deletes matching keys
 
 # EmptyRedisByChunks
 
-Scans the selected Redis database in batches and deletes matching keys, optionally filtering them by a regular expression.
+> TL;DR — Concrete Redis chunk-deletion probe that uses the standard Redis batch probe configuration.
 
-## What it does
+## When to use {: #when-to-use}
 
-Scans the selected Redis database in batches and deletes matching keys, optionally filtering them by a regular expression. See [Configuration ▸ tableView](configuration/tableView.md) for the full field reference and [Configuration ▸ yamlView](configuration/yamlView.md) for a minimal scaffold.
+Scans the selected Redis database and deletes matching keys in batches instead of trying to remove everything in one call.
 
-## YAML example
+An optional key regex narrows the deletion to a subset of keys, which is useful when only one scenario namespace should be cleaned while the rest of the database stays untouched.
+
+## YAML configuration {: #yaml-configuration}
+
+Use the hook name in the matching runtime section, then place hook-specific fields under the configuration object shown in the examples below.
+
+## Minimal example {: #minimal-example}
 
 ```yaml
 Sessions:
-  - Name: EmptyRedisByChunksSession
+  - Name: ProbeSession
     Probes:
-      - Name: EmptyRedisByChunksStep
+      - Name: EmptyRedisByChunksProbe
         Probe: EmptyRedisByChunks
         ProbeConfiguration:
-        RedisDataBase:
-        HostNames: []
-        Username:
-        Password:
-        AbortOnConnectFail:
-        ConnectRetry:
-        ClientName:
-        AsyncTimeout:
-        Ssl:
-        SslHost:
-        KeepAlive:
-        BatchSize:
-        KeyRegexPattern:
+          UseGlobalDict: true
+          HostNames:
+            - localhost:6379
+          RedisDataBase: 0
+          BatchSize: 500
+          KeyRegexPattern: '^qaas:'
 ```
 
+## Realistic example {: #realistic-example}
 
-## Where it lives
+This probe connects to Redis database `0`, finds keys that start with `qaas:`, and deletes them in batches of up to 500 keys at a time.
 
-| | |
-|--|--|
-| **Plugin family** | probes |
-| **YAML key** | `EmptyRedisByChunks` |
-| **Schema** | [`probes.schema.json`](../../../_generated/schemas/probes.md) |
-| **Source** | `QaaS.Common.Probes\QaaS.Common.Probes\RedisProbes\EmptyRedisByChunks.cs` |
+That gives you a focused cleanup step for scenario-owned keys without flushing unrelated Redis data.
 
-## See also
+### Global Dictionary Behavior {: #global-dictionary-behavior}
 
-- [probes index](../../index.md)
-- [Custom probe authoring guide](../../custom-authoring-guide.md)
+With `UseGlobalDict: true`, missing server connection fields and `RedisDataBase` can be resolved from the session-scoped `Redis/Defaults` alias when those keys do not appear in the local probe configuration. The probe still binds and validates after the merge, and any key that is present locally keeps priority over the shared default.
+
+That makes the probe useful when large cleanup jobs should reuse Redis connection defaults while still keeping the chunk size and scan behavior local.
+
+No recovery alias is involved for this probe.
+
+When `UseGlobalDict` is `false`, the probe behaves exactly as before and uses only local YAML or code configuration.
+
+## Edge cases {: #edge-cases}
+
+- Missing required configuration keys fail schema validation before the hook runs.
+- Keep hook names and referenced session or data-source names aligned with the surrounding YAML.
+
+## See also {: #see-also}
+
+- [Configuration table](configuration/tableView.md)
+- [YAML scaffold](configuration/yamlView.md)
+- [Probes](../../index.md)

@@ -10,23 +10,41 @@ summary: "Field-by-field reference for ValidateHermeticMetricsByInputOutputPerce
 ---
 <!-- Verified-against: QaaS.JsonSchemaExtensions/generated-schemas/assertions.schema.json -->
 
-# ValidateHermeticMetricsByInputOutputPercentage — Configuration (table view)
+# ValidateHermeticMetricsByInputOutputPercentage Configurations Table View
 
-Generated from `assertions.schema.json`. Every field below is verified against the JSON schema at `QaaS.JsonSchemaExtensions/generated-schemas/assertions.schema.json`.
+> TL;DR — Use this generated field table to check property paths, types, required status, defaults, and descriptions.
+
+## When to use {: #when-to-use}
+
+Use this page when you need the exact field path or value type for a hook configuration before editing YAML.
+
+## YAML configuration {: #yaml-configuration}
+
+The table below mirrors the schema used by the YAML scaffold page. Nested rows use dotted paths and `[]` for list items.
 
 | Property Path | Type | Required | Default | Description |
 | ------------- | ---- | -------- | ------- | ----------- |
-| `AssertionConfiguration` | `object or string` | &#10006 |  |  |
-| `AssertionConfiguration.OutputNames` | `array or string` | &#10004 |  | The names of the outputs to sum the counts of |
-| `AssertionConfiguration.InputNames` | `array or string` | &#10004 |  | The names of the inputs the sum of outputs should be a given percentage of the sum of |
-| `AssertionConfiguration.InputsAreOutputs` | `boolean or string` | &#10006 | false | Whether the given inputs in InputNames are actually another outputs list |
-| `AssertionConfiguration.MetricOutputSourceName` | `string` | &#10004 |  | The name of the output to take the metrics from |
-| `AssertionConfiguration.Tolerance` | `number or string` | &#10006 | 0.01 | The tolerance of difference between metrics` hermetics percantage and outputs' count to inputs' count hermetics percentage |
+| `AssertionConfiguration` | `object or string` | &#10006 |  | Checks for metrics' hermetics by comparing the hermetics' percentage based on the `metric hermetics formula` to the hermetics percentage based on the outputs' count to inputs' count percentage `DataSources`: Not used. `Session Support`: Supports multiple sessions assertion. CommunicationData objects with same names will be referenced both by InputNames or OutputNames |
 | `AssertionConfiguration.InputMetricName` | `string` | &#10004 |  | The name of the input metric of the metric hemetrics formula |
+| `AssertionConfiguration.MetricOutputSourceName` | `string` | &#10004 |  | The name of the output to take the metrics from |
 | `AssertionConfiguration.OutputMetricName` | `string` | &#10004 |  | The name of the output metric of the metric hemetrics formula |
-| `AssertionConfiguration.ProcessMetricName` | `null or string` | &#10006 |  | The name of the process metric of the metric hemetrics formula |
-| `AssertionConfiguration.CombineMetricName` | `null or string` | &#10006 |  | The name of the combine metric of the metric hemetrics formula |
-| `AssertionConfiguration.FilteredMetricName` | `null or string` | &#10006 |  | The name of the filtered metric of the metric hemetrics formula |
-| `AssertionConfiguration.SplitMetricName` | `null or string` | &#10006 |  | The name of the split metric of the metric hemetrics formula |
+| `AssertionConfiguration.CombineMetricName` | `string or null` | &#10006 |  | The name of the combine metric of the metric hemetrics formula |
+| `AssertionConfiguration.FilteredMetricName` | `string or null` | &#10006 |  | The name of the filtered metric of the metric hemetrics formula |
+| `AssertionConfiguration.InputsAreOutputs` | `string or true/false` | &#10006 | `False` | Whether the given inputs in InputNames are actually another outputs list |
+| `AssertionConfiguration.ProcessMetricName` | `string or null` | &#10006 |  | The name of the process metric of the metric hemetrics formula |
+| `AssertionConfiguration.SplitMetricName` | `string or null` | &#10006 |  | The name of the split metric of the metric hemetrics formula |
+| `AssertionConfiguration.Tolerance` | `number or string` | &#10006 | `0.01` | The tolerance of difference between metrics` hermetics percantage and outputs' count to inputs' count hermetics percentage |
+| `AssertionConfiguration.InputNames` | `list or string` | &#10004 |  | The names of the inputs the sum of outputs should be a given percentage of the sum of |
+| `AssertionConfiguration.InputNames[]` | `string` | &#10006 |  |  |
+| `AssertionConfiguration.OutputNames` | `list or string` | &#10004 |  | The names of the outputs to sum the counts of  |
+| `AssertionConfiguration.OutputNames[]` | `string` | &#10006 |  |  |
 
-See [yamlView](yamlView.md) for a minimal scaffold and [overview](../overview.md) for a runnable example.
+## Edge cases {: #edge-cases}
+
+- Empty default cells mean the schema does not define a default value for that field.
+- Required status applies to the immediate parent object shown by the property path.
+
+## See also {: #see-also}
+
+- [YAML scaffold](yamlView.md)
+- [Overview](../overview.md)

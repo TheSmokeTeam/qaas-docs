@@ -12,36 +12,50 @@ summary: "Performs a hermetic test by comparing the count of a given output in a
 
 # HermeticByExpectedOutputCount
 
-Performs a hermetic test by comparing the count of a given output in a session to a given expected count
+> TL;DR — Performs a hermetic test by comparing the count of a given output in a session to a given expected count
 
-## What it does
+## When to use {: #when-to-use}
 
-Performs a hermetic test by comparing the count of a given output in a session to a given expected count See [Configuration ▸ tableView](configuration/tableView.md) for the full field reference and [Configuration ▸ yamlView](configuration/yamlView.md) for a minimal scaffold.
+Adds up the number of items found in the configured output names across every session given to the assertion and compares that total with one exact expected count.
 
-## YAML example
+Missing output names contribute zero instead of throwing. That makes the assertion useful when you want a strict "exactly N outputs were produced" check over one session or over a filtered group of sessions.
+
+## YAML configuration {: #yaml-configuration}
+
+Use the hook name in the matching runtime section, then place hook-specific fields under the configuration object shown in the examples below.
+
+## Minimal example {: #minimal-example}
 
 ```yaml
 Sessions:
-  - Name: HermeticByExpectedOutputCountSession
-    Assertions:
-      - Name: HermeticByExpectedOutputCountStep
-        Assertion: HermeticByExpectedOutputCount
-        AssertionConfiguration:
-        OutputNames: []
-        ExpectedCount:
+  - Name: SampleSession
+
+Assertions:
+  - Name: HermeticByExpectedOutputCountAssertion
+    Assertion: HermeticByExpectedOutputCount
+    SessionNames:
+      - SampleSession
+
+    AssertionConfiguration:
+      OutputNames:
+        - Reply
+        - RetryReply
+      ExpectedCount: 3
 ```
 
+## Realistic example {: #realistic-example}
 
-## Where it lives
+This assertion totals the number of saved items in `Reply` and `RetryReply` for `SampleSession` and expects the combined count to be exactly 3.
 
-| | |
-|--|--|
-| **Plugin family** | assertions |
-| **YAML key** | `HermeticByExpectedOutputCount` |
-| **Schema** | [`assertions.schema.json`](../../../_generated/schemas/assertions.md) |
-| **Source** | `QaaS.Common.Assertions\QaaS.Common.Assertions\Hermetic\HermeticByExpectedOutputCount.cs` |
+If one of those outputs is missing entirely it contributes zero. The assertion passes only when the final summed count equals 3.
 
-## See also
+## Edge cases {: #edge-cases}
 
-- [assertions index](../../index.md)
-- [Custom assertion authoring guide](../../custom-authoring-guide.md)
+- Missing required configuration keys fail schema validation before the hook runs.
+- Keep hook names and referenced session or data-source names aligned with the surrounding YAML.
+
+## See also {: #see-also}
+
+- [Configuration table](configuration/tableView.md)
+- [YAML scaffold](configuration/yamlView.md)
+- [Assertions](../../index.md)

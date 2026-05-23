@@ -6,51 +6,62 @@ since: 2.0.0
 last_verified: 2026-05-22
 applies_to: [assertions]
 keywords: [assertions, DelayByChunks, AssertionConfiguration]
-summary: "Checks for delay between an input source to an output source by subtracting the timestamp of input chunks of a configured size from a timestamp of output chunks of a configured size, takes the chun..."
+summary: "Checks delay between input and output chunks using configured chunk sizes and timestamp differences."
 ---
 <!-- Verified-against: QaaS.Common.Assertions\QaaS.Common.Assertions\Delay\DelayByChunks.cs -->
 
 # DelayByChunks
 
-Checks for delay between an input source to an output source by subtracting the timestamp of input chunks of a configured size from a timestamp of output chunks of a configured size, takes the chunks in ascending order of the input/output lists.
+> TL;DR — Checks for delay between an input source to an output source by subtracting the timestamp of input chunks of a configured size from a timestamp of output chunks of a configured size, takes the chunks in ascending order of the input/output lists.
 
-## What it does
+## When to use {: #when-to-use}
 
-Checks for delay between an input source to an output source by subtracting the timestamp of input chunks of a configured size from a timestamp of output chunks of a configured size, takes the chunks in ascending order of the input/output lists. See [Configuration ▸ tableView](configuration/tableView.md) for the full field reference and [Configuration ▸ yamlView](configuration/yamlView.md) for a minimal scaffold.
+Splits the named input and output streams into ordered chunks, computes one timestamp per chunk, and then checks whether each output chunk arrives within the allowed delay relative to the matching input chunk.
 
-## YAML example
+The chunk timestamp can be taken from the first item, last item, or the average of the items in the chunk. The assertion succeeds only when the number of on-time output chunks matches the number of complete input chunks. Incomplete trailing chunks are ignored, an output chunk size of zero means "no output is expected", and large negative chunk delays are treated as invalid timing data.
+
+## YAML configuration {: #yaml-configuration}
+
+Use the hook name in the matching runtime section, then place hook-specific fields under the configuration object shown in the examples below.
+
+## Minimal example {: #minimal-example}
 
 ```yaml
 Sessions:
-  - Name: DelayByChunksSession
-    Assertions:
-      - Name: DelayByChunksStep
-        Assertion: DelayByChunks
-        AssertionConfiguration:
-        Output:
-          Name:
-          ChunkSize:
-          ChunkTimeOption:
-        Input:
-          Name:
-          ChunkSize:
-          ChunkTimeOption:
-        InputsAreOutputs:
-        MaximumDelayMs:
-        MaximumNegativeDelayBufferMs:
+  - Name: SampleSession
+
+Assertions:
+  - Name: DelayByChunksAssertion
+    Assertion: DelayByChunks
+    SessionNames:
+      - SampleSession
+
+    AssertionConfiguration:
+      Input:
+        Name: PublishedBatch
+        ChunkSize: 2
+        ChunkTimeOption: Last
+      Output:
+        Name: ProcessedBatch
+        ChunkSize: 1
+        ChunkTimeOption: Last
+      MaximumDelayMs: 500
+      MaximumNegativeDelayBufferMs: 50
 ```
 
+## Realistic example {: #realistic-example}
 
-## Where it lives
+This configuration treats every two input items in `PublishedBatch` as one logical batch and compares that batch to each single output item in `ProcessedBatch`, using the last timestamp inside each chunk.
 
-| | |
-|--|--|
-| **Plugin family** | assertions |
-| **YAML key** | `DelayByChunks` |
-| **Schema** | [`assertions.schema.json`](../../../_generated/schemas/assertions.md) |
-| **Source** | `QaaS.Common.Assertions\QaaS.Common.Assertions\Delay\DelayByChunks.cs` |
+With this setup, the assertion expects one output chunk for every complete two-item input chunk, and each output chunk must arrive within 500 ms of its matching input chunk. Small negative timing drift up to 50 ms is tolerated.
 
-## See also
+## Edge cases {: #edge-cases}
 
-- [assertions index](../../index.md)
-- [Custom assertion authoring guide](../../custom-authoring-guide.md)
+- Missing required configuration keys fail schema validation before the hook runs.
+- Keep hook names and referenced session or data-source names aligned with the surrounding YAML.
+
+## See also {: #see-also}
+
+- [Configuration table](configuration/tableView.md)
+- [YAML scaffold](configuration/yamlView.md)
+- [Assertions](../../index.md)

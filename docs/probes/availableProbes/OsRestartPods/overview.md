@@ -12,42 +12,57 @@ summary: "Probe that restarts all pods with configured labels in the configured 
 
 # OsRestartPods
 
-Probe that restarts all pods with configured labels in the configured namespace
+> TL;DR — Probe that restarts all pods with configured labels in the configured namespace
 
-## What it does
+## When to use {: #when-to-use}
 
-Probe that restarts all pods with configured labels in the configured namespace See [Configuration ▸ tableView](configuration/tableView.md) for the full field reference and [Configuration ▸ yamlView](configuration/yamlView.md) for a minimal scaffold.
+Deletes pods that match the configured labels and waits until the platform brings the workload back to its desired ready state.
 
-## YAML example
+This is useful when a scenario needs a clean restart of an application after changing config maps, secrets, or environment settings.
+
+## YAML configuration {: #yaml-configuration}
+
+Use the hook name in the matching runtime section, then place hook-specific fields under the configuration object shown in the examples below.
+
+## Minimal example {: #minimal-example}
 
 ```yaml
 Sessions:
-  - Name: OsRestartPodsSession
+  - Name: ProbeSession
     Probes:
-      - Name: OsRestartPodsStep
+      - Name: OsRestartPodsProbe
         Probe: OsRestartPods
         ProbeConfiguration:
-        Openshift:
-          Cluster:
-          Username:
-          Password:
-          Namespace:
-        ApplicationLabels: []
-        IntervalBetweenDesiredStateChecksMs:
-        TimeoutWaitForDesiredStateSeconds:
+          ApplicationLabels:
+            - app=orders-api
+          IntervalBetweenDesiredStateChecksMs: 1000
+          TimeoutWaitForDesiredStateSeconds: 300
+          Openshift:
+            Cluster: https://api.cluster.local:6443
+            Namespace: docs
+            Username: docs-user
+            Password: docs-password
 ```
 
+## Realistic example {: #realistic-example}
 
-## Where it lives
+This probe deletes the pods labeled `app=orders-api` and waits until the replacement pods are ready again.
 
-| | |
-|--|--|
-| **Plugin family** | probes |
-| **YAML key** | `OsRestartPods` |
-| **Schema** | [`probes.schema.json`](../../../_generated/schemas/probes.md) |
-| **Source** | `QaaS.Common.Probes\QaaS.Common.Probes\OsProbes\OsRestartPods.cs` |
+It gives the scenario a controlled application restart without manually deleting pods outside the flow.
 
-## See also
+### Global Dictionary Behavior {: #global-dictionary-behavior}
 
-- [probes index](../../index.md)
-- [Custom probe authoring guide](../../custom-authoring-guide.md)
+This probe is intentionally left out of the probe-global-dictionary fallback feature in this first pass. There is no meaningful reusable recovery payload for it, so there is no `UseGlobalDict` option and no family alias involved.
+
+That means the behavior is unchanged for every run: the probe uses only the values supplied directly in local YAML or code configuration.
+
+## Edge cases {: #edge-cases}
+
+- Missing required configuration keys fail schema validation before the hook runs.
+- Keep hook names and referenced session or data-source names aligned with the surrounding YAML.
+
+## See also {: #see-also}
+
+- [Configuration table](configuration/tableView.md)
+- [YAML scaffold](configuration/yamlView.md)
+- [Probes](../../index.md)

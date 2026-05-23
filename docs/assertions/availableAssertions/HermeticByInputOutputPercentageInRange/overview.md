@@ -12,40 +12,52 @@ summary: "Checks whether the percentage between configured inputs and outputs st
 
 # HermeticByInputOutputPercentageInRange
 
-Checks whether the percentage between configured inputs and outputs stays within the expected minimum and maximum range.
+> TL;DR — Checks whether the percentage between configured inputs and outputs stays within the expected minimum and maximum range.
 
-## What it does
+## When to use {: #when-to-use}
 
-Checks whether the percentage between configured inputs and outputs stays within the expected minimum and maximum range. See [Configuration ▸ tableView](configuration/tableView.md) for the full field reference and [Configuration ▸ yamlView](configuration/yamlView.md) for a minimal scaffold.
+Sums the configured input and output counts, calculates the real output-to-input percentage, and checks whether that real percentage stays within the configured inclusive minimum and maximum range.
 
-## YAML example
+Unlike the exact-percentage variant, this assertion compares the calculated percentage directly instead of converting the input count into one exact expected output count. It still supports `InputsAreOutputs` for output-to-output comparisons.
+
+## YAML configuration {: #yaml-configuration}
+
+Use the hook name in the matching runtime section, then place hook-specific fields under the configuration object shown in the examples below.
+
+## Minimal example {: #minimal-example}
 
 ```yaml
 Sessions:
-  - Name: HermeticByInputOutputPercentageInRangeSession
-    Assertions:
-      - Name: HermeticByInputOutputPercentageInRangeStep
-        Assertion: HermeticByInputOutputPercentageInRange
-        AssertionConfiguration:
-        OutputNames: []
-        InputNames: []
-        ExpectedMinimumPercentage:
-        ExpectedMaximumPercentage:
-        InputsAreOutputs:
-        MidpointRounding:
+  - Name: SampleSession
+
+Assertions:
+  - Name: HermeticByInputOutputPercentageInRangeAssertion
+    Assertion: HermeticByInputOutputPercentageInRange
+    SessionNames:
+      - SampleSession
+
+    AssertionConfiguration:
+      InputNames:
+        - Published
+      OutputNames:
+        - Delivered
+      ExpectedMinimumPercentage: 45
+      ExpectedMaximumPercentage: 55
 ```
 
+## Realistic example {: #realistic-example}
 
-## Where it lives
+This snippet checks whether `Delivered` stays near a 1:2 ratio with `Published`.
 
-| | |
-|--|--|
-| **Plugin family** | assertions |
-| **YAML key** | `HermeticByInputOutputPercentageInRange` |
-| **Schema** | [`assertions.schema.json`](../../../_generated/schemas/assertions.md) |
-| **Source** | `QaaS.Common.Assertions\QaaS.Common.Assertions\Hermetic\HermeticByInputOutputPercentageInRange.cs` |
+The assertion passes when the actual output percentage is between 45 and 55 percent inclusive. It is useful when the flow is allowed to vary slightly but should stay close to a target ratio.
 
-## See also
+## Edge cases {: #edge-cases}
 
-- [assertions index](../../index.md)
-- [Custom assertion authoring guide](../../custom-authoring-guide.md)
+- Missing required configuration keys fail schema validation before the hook runs.
+- Keep hook names and referenced session or data-source names aligned with the surrounding YAML.
+
+## See also {: #see-also}
+
+- [Configuration table](configuration/tableView.md)
+- [YAML scaffold](configuration/yamlView.md)
+- [Assertions](../../index.md)

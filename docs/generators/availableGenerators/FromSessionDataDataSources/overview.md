@@ -12,35 +12,57 @@ summary: "Generates data from the enumerable of data sources it receives, presum
 
 # FromSessionDataDataSources
 
-Generates data from the enumerable of data sources it receives, presumes all items in the enumerable are serialized and can be treated as a byte array
+> TL;DR — Generates data from the enumerable of data sources it receives, presumes all items in the enumerable are serialized and can be treated as a byte array
 
-## What it does
+## When to use {: #when-to-use}
 
-Generates data from the enumerable of data sources it receives, presumes all items in the enumerable are serialized and can be treated as a byte array See [Configuration ▸ tableView](configuration/tableView.md) for the full field reference and [Configuration ▸ yamlView](configuration/yamlView.md) for a minimal scaffold.
+Loads serialized session data from attached data sources, deserializes it back into session snapshots, and then emits the inputs and outputs named in the configuration.
 
-## YAML example
+This generator is useful when you want to replay or mine previously captured sessions. It lets you pull only the communication streams you care about instead of replaying the entire saved session.
+
+## YAML configuration {: #yaml-configuration}
+
+Use the hook name in the matching runtime section, then place hook-specific fields under the configuration object shown in the examples below.
+
+## Minimal example {: #minimal-example}
 
 ```yaml
-Sessions:
-  - Name: FromSessionDataDataSourcesSession
-    Generators:
-      - Name: FromSessionDataDataSourcesStep
-        DataSource: FromSessionDataDataSources
-        GeneratorConfiguration:
+DataSources:
+  - Name: SavedSessionData
+    Generator: FromFileSystem
+    GeneratorConfiguration:
+      DataArrangeOrder: AsciiAsc
+      FileSystem:
+        Path: sample-data/session-data
+        SearchPattern: '*.sessionData'
+      StorageMetaData: ItemName
 
+  - Name: ExtractedReplayData
+    Generator: FromSessionDataDataSources
+    DataSourceNames:
+      - SavedSessionData
+    GeneratorConfiguration:
+      - SessionName: CheckoutSession
+        CommunicationDataList:
+          - Name: Published
+            Type: Input
+          - Name: Delivered
+            Type: Output
 ```
 
+## Realistic example {: #realistic-example}
 
-## Where it lives
+`SavedSessionData` points at serialized session snapshots on disk. `ExtractedReplayData` then deserializes those snapshots, looks for the session named `CheckoutSession`, and emits both its `Published` input data and its `Delivered` output data.
 
-| | |
-|--|--|
-| **Plugin family** | generators |
-| **YAML key** | `FromSessionDataDataSources` |
-| **Schema** | [`generators.schema.json`](../../../_generated/schemas/generators.md) |
-| **Source** | `QaaS.Common.Generators\QaaS.Common.Generators\FromDataSourcesGenerators\FromSessionDataDataSources.cs` |
+That makes the resulting data source useful for replay scenarios, regression checks, or derived generators that need past session traffic as their input.
 
-## See also
+## Edge cases {: #edge-cases}
 
-- [generators index](../../index.md)
-- [Custom generator authoring guide](../../custom-authoring-guide.md)
+- Missing required configuration keys fail schema validation before the hook runs.
+- Keep hook names and referenced session or data-source names aligned with the surrounding YAML.
+
+## See also {: #see-also}
+
+- [Configuration table](configuration/tableView.md)
+- [YAML scaffold](configuration/yamlView.md)
+- [Generators](../../index.md)

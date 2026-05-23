@@ -12,39 +12,58 @@ summary: "Empties the configured S3 bucket and deletes it, treating a missing bu
 
 # DeleteS3Bucket
 
-Empties the configured S3 bucket and deletes it, treating a missing bucket as an already-satisfied state.
+> TL;DR — Empties the configured S3 bucket and deletes it, treating a missing bucket as an already-satisfied state.
 
-## What it does
+## When to use {: #when-to-use}
 
-Empties the configured S3 bucket and deletes it, treating a missing bucket as an already-satisfied state. See [Configuration ▸ tableView](configuration/tableView.md) for the full field reference and [Configuration ▸ yamlView](configuration/yamlView.md) for a minimal scaffold.
+Deletes an S3-compatible bucket after first emptying all objects from it.
 
-## YAML example
+This is the destructive bucket-level cleanup option and is useful when the scenario creates temporary buckets that should be removed completely at the end of a run.
+
+## YAML configuration {: #yaml-configuration}
+
+Use the hook name in the matching runtime section, then place hook-specific fields under the configuration object shown in the examples below.
+
+## Minimal example {: #minimal-example}
 
 ```yaml
 Sessions:
-  - Name: DeleteS3BucketSession
+  - Name: ProbeSession
     Probes:
-      - Name: DeleteS3BucketStep
+      - Name: DeleteS3BucketProbe
         Probe: DeleteS3Bucket
         ProbeConfiguration:
-        StorageBucket:
-        ServiceURL:
-        AccessKey:
-        SecretKey:
-        ForcePathStyle:
+          UseGlobalDict: true
+          AccessKey: access-key
+          SecretKey: secret-key
+          ServiceURL: http://minio.local:9000
+          StorageBucket: qaas-docs-temp
+          ForcePathStyle: true
 ```
 
+## Realistic example {: #realistic-example}
 
-## Where it lives
+This probe connects to the S3-compatible service at `http://minio.local:9000`, empties the `qaas-docs-temp` bucket, and then deletes the bucket itself.
 
-| | |
-|--|--|
-| **Plugin family** | probes |
-| **YAML key** | `DeleteS3Bucket` |
-| **Schema** | [`probes.schema.json`](../../../_generated/schemas/probes.md) |
-| **Source** | `QaaS.Common.Probes\QaaS.Common.Probes\S3Probes\DeleteS3Bucket.cs` |
+It is appropriate for fully disposable test buckets.
 
-## See also
+### Global Dictionary Behavior {: #global-dictionary-behavior}
 
-- [probes index](../../index.md)
-- [Custom probe authoring guide](../../custom-authoring-guide.md)
+With `UseGlobalDict: true`, missing bucket connection fields can be resolved from the session-scoped `S3/Defaults` alias when those keys do not appear in the local probe configuration. The probe still binds and validates after the merge, and any key that is present locally keeps priority over the shared default.
+
+That makes the probe useful when bucket deletion should reuse the same S3 target settings that were already resolved earlier.
+
+No recovery alias is written for S3 in this first pass.
+
+When `UseGlobalDict` is `false`, the probe behaves exactly as before and uses only local YAML or code configuration.
+
+## Edge cases {: #edge-cases}
+
+- Missing required configuration keys fail schema validation before the hook runs.
+- Keep hook names and referenced session or data-source names aligned with the surrounding YAML.
+
+## See also {: #see-also}
+
+- [Configuration table](configuration/tableView.md)
+- [YAML scaffold](configuration/yamlView.md)
+- [Probes](../../index.md)

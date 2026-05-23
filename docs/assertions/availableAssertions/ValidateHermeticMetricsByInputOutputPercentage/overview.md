@@ -12,45 +12,58 @@ summary: "Compares the hermetic percentage calculated from configured inputs and
 
 # ValidateHermeticMetricsByInputOutputPercentage
 
-Compares the hermetic percentage calculated from configured inputs and outputs with the hermetic percentage reported by the metrics output.
+> TL;DR — Compares the hermetic percentage calculated from configured inputs and outputs with the hermetic percentage reported by the metrics output.
 
-## What it does
+## When to use {: #when-to-use}
 
-Compares the hermetic percentage calculated from configured inputs and outputs with the hermetic percentage reported by the metrics output. See [Configuration ▸ tableView](configuration/tableView.md) for the full field reference and [Configuration ▸ yamlView](configuration/yamlView.md) for a minimal scaffold.
+Calculates hermetic behavior in two different ways and compares the results: first from the real input/output counts in the selected communication data, and second from the latest metric values found in a metrics output.
 
-## YAML example
+The metrics side uses the built-in hermetic formula `(output + process + combine + filtered) / (input + split) * 100`, with any optional metric names contributing zero when omitted. The assertion passes when the absolute difference between the metrics-based percentage and the count-based percentage stays below `Tolerance`.
+
+## YAML configuration {: #yaml-configuration}
+
+Use the hook name in the matching runtime section, then place hook-specific fields under the configuration object shown in the examples below.
+
+## Minimal example {: #minimal-example}
 
 ```yaml
 Sessions:
-  - Name: ValidateHermeticMetricsByInputOutputPercentageSession
-    Assertions:
-      - Name: ValidateHermeticMetricsByInputOutputPercentageStep
-        Assertion: ValidateHermeticMetricsByInputOutputPercentage
-        AssertionConfiguration:
-        OutputNames: []
-        InputNames: []
-        InputsAreOutputs:
-        MetricOutputSourceName:
-        Tolerance:
-        InputMetricName:
-        OutputMetricName:
-        ProcessMetricName:
-        CombineMetricName:
-        FilteredMetricName:
-        SplitMetricName:
+  - Name: SampleSession
+
+Assertions:
+  - Name: ValidateHermeticMetricsByInputOutputPercentageAssertion
+    Assertion: ValidateHermeticMetricsByInputOutputPercentage
+    SessionNames:
+      - SampleSession
+
+    AssertionConfiguration:
+      InputNames:
+        - Published
+      OutputNames:
+        - Delivered
+      MetricOutputSourceName: Metrics
+      InputMetricName: input_total
+      OutputMetricName: output_total
+      ProcessMetricName: process_total
+      CombineMetricName: combine_total
+      FilteredMetricName: filtered_total
+      SplitMetricName: split_total
+      Tolerance: 0.5
 ```
 
+## Realistic example {: #realistic-example}
 
-## Where it lives
+This snippet compares the observed `Published` to `Delivered` ratio with the ratio reported through the latest metric samples stored in the `Metrics` output.
 
-| | |
-|--|--|
-| **Plugin family** | assertions |
-| **YAML key** | `ValidateHermeticMetricsByInputOutputPercentage` |
-| **Schema** | [`assertions.schema.json`](../../../_generated/schemas/assertions.md) |
-| **Source** | `QaaS.Common.Assertions\QaaS.Common.Assertions\Hermetic\ValidateHermeticMetricsByInputOutputPercentage.cs` |
+The assertion looks up the latest sample for each configured metric name, computes the metrics hermetic percentage, and accepts the run only when that result stays within 0.5 percentage points of the real input/output percentage.
 
-## See also
+## Edge cases {: #edge-cases}
 
-- [assertions index](../../index.md)
-- [Custom assertion authoring guide](../../custom-authoring-guide.md)
+- Missing required configuration keys fail schema validation before the hook runs.
+- Keep hook names and referenced session or data-source names aligned with the surrounding YAML.
+
+## See also {: #see-also}
+
+- [Configuration table](configuration/tableView.md)
+- [YAML scaffold](configuration/yamlView.md)
+- [Assertions](../../index.md)

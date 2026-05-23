@@ -12,42 +12,59 @@ summary: "Wraps the incoming request payload and optional request metadata in a 
 
 # JsonEnvelopeProcessor
 
-Wraps the incoming request payload and optional request metadata in a JSON envelope response.
+> TL;DR — Wraps the incoming request payload and optional request metadata in a JSON envelope response.
 
-## What it does
+## When to use {: #when-to-use}
 
-Wraps the incoming request payload and optional request metadata in a JSON envelope response. See [Configuration ▸ tableView](configuration/tableView.md) for the full field reference and [Configuration ▸ yamlView](configuration/yamlView.md) for a minimal scaffold.
+Wraps the incoming request into a JSON object under a configurable body-property name and can optionally add request metadata such as headers, path parameters, URI, and the original body type.
 
-## YAML example
+This is useful when a downstream system expects a structured JSON envelope but the incoming request may be raw text, bytes, or another object type.
+
+## YAML configuration {: #yaml-configuration}
+
+Use the hook name in the matching runtime section, then place hook-specific fields under the configuration object shown in the examples below.
+
+## Minimal example {: #minimal-example}
 
 ```yaml
-Sessions:
-  - Name: JsonEnvelopeProcessorSession
-    Processors:
-      - Name: JsonEnvelopeProcessorStep
-        Processor: JsonEnvelopeProcessor
-        ProcessorConfiguration:
-        StatusCode:
-        ContentType:
-        BodyPropertyName:
-        IncludeBodyType:
-        IncludeUri:
-        IncludeRequestHeaders:
-        IncludePathParameters:
-        ResponseHeaders:
+Stubs:
+  - Name: JsonEnvelopeProcessorStub
+    Processor: JsonEnvelopeProcessor
+
+    ProcessorConfiguration:
+      BodyPropertyName: request
+      ContentType: application/json
+      StatusCode: 200
+      IncludeBodyType: true
+      IncludePathParameters: true
+      IncludeRequestHeaders: true
+      IncludeUri: true
+
+Servers:
+  - Http:
+      Port: 8080
+      IsLocalhost: true
+      Endpoints:
+        - Path: /health
+          Actions:
+            - Name: HealthAction
+              Method: Get
+              TransactionStubName: JsonEnvelopeProcessorStub
 ```
 
+## Realistic example {: #realistic-example}
 
-## Where it lives
+This stub returns a JSON document that places the incoming request body under the `request` property and also includes the request URI, headers, path parameters, and original body-type information.
 
-| | |
-|--|--|
-| **Plugin family** | processors |
-| **YAML key** | `JsonEnvelopeProcessor` |
-| **Schema** | [`processors.schema.json`](../../../_generated/schemas/processors.md) |
-| **Source** | `QaaS.Common.Processors\QaaS.Common.Processors\JsonEnvelopeProcessor.cs` |
+The response comes back as HTTP `200` with `application/json`.
 
-## See also
+## Edge cases {: #edge-cases}
 
-- [processors index](../../index.md)
-- [Custom processor authoring guide](../../custom-authoring-guide.md)
+- Missing required configuration keys fail schema validation before the hook runs.
+- Keep hook names and referenced session or data-source names aligned with the surrounding YAML.
+
+## See also {: #see-also}
+
+- [Configuration table](configuration/tableView.md)
+- [YAML scaffold](configuration/yamlView.md)
+- [Processors](../../index.md)

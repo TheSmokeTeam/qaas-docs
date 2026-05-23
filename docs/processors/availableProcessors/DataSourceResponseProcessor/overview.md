@@ -12,41 +12,67 @@ summary: "Builds the response from generated data produced by one configured dat
 
 # DataSourceResponseProcessor
 
-Builds the response from generated data produced by one configured data source.
+> TL;DR — Builds the response from generated data produced by one configured data source.
 
-## What it does
+## When to use {: #when-to-use}
 
-Builds the response from generated data produced by one configured data source. See [Configuration ▸ tableView](configuration/tableView.md) for the full field reference and [Configuration ▸ yamlView](configuration/yamlView.md) for a minimal scaffold.
+Selects a generated item from an attached data source and returns that item as the HTTP response body.
 
-## YAML example
+It can choose the first item, the last item, or a zero-based index. When no item can be selected, it can return a fallback body instead of throwing. This is useful when responses should come from prepared files or generated fixtures.
+
+## YAML configuration {: #yaml-configuration}
+
+Use the hook name in the matching runtime section, then place hook-specific fields under the configuration object shown in the examples below.
+
+## Minimal example {: #minimal-example}
 
 ```yaml
-Sessions:
-  - Name: DataSourceResponseProcessorSession
-    Processors:
-      - Name: DataSourceResponseProcessorStep
-        Processor: DataSourceResponseProcessor
-        ProcessorConfiguration:
-        DataSourceName:
-        SelectionMode:
-        Index:
-        StatusCode:
-        ContentType:
-        FallbackBody:
-        ResponseHeaders:
+DataSources:
+  - Name: PreparedResponses
+    Generator: FromFileSystem
+    GeneratorConfiguration:
+      DataArrangeOrder: AsciiAsc
+      FileSystem:
+        Path: sample-data/responses
+        SearchPattern: '*.json'
+      StorageMetaData: ItemName
+
+Stubs:
+  - Name: DataSourceResponseProcessorStub
+    Processor: DataSourceResponseProcessor
+    DataSourceNames:
+      - PreparedResponses
+    ProcessorConfiguration:
+      DataSourceName: PreparedResponses
+      SelectionMode: First
+      StatusCode: 202
+      ContentType: application/json
+
+Servers:
+  - Http:
+      Port: 8080
+      IsLocalhost: true
+      Endpoints:
+        - Path: /health
+          Actions:
+            - Name: HealthAction
+              Method: Get
+              TransactionStubName: DataSourceResponseProcessorStub
 ```
 
+## Realistic example {: #realistic-example}
 
-## Where it lives
+This configuration attaches the `PreparedResponses` data source to the stub and tells the processor to return the first generated response body from that source.
 
-| | |
-|--|--|
-| **Plugin family** | processors |
-| **YAML key** | `DataSourceResponseProcessor` |
-| **Schema** | [`processors.schema.json`](../../../_generated/schemas/processors.md) |
-| **Source** | `QaaS.Common.Processors\QaaS.Common.Processors\DataSourceResponseProcessor.cs` |
+The body is returned as an HTTP `202` response with `application/json`.
 
-## See also
+## Edge cases {: #edge-cases}
 
-- [processors index](../../index.md)
-- [Custom processor authoring guide](../../custom-authoring-guide.md)
+- Missing required configuration keys fail schema validation before the hook runs.
+- Keep hook names and referenced session or data-source names aligned with the surrounding YAML.
+
+## See also {: #see-also}
+
+- [Configuration table](configuration/tableView.md)
+- [YAML scaffold](configuration/yamlView.md)
+- [Processors](../../index.md)

@@ -12,50 +12,65 @@ summary: "Executes multiple Redis commands sequentially against the selected Red
 
 # ExecuteRedisCommands
 
-Executes multiple Redis commands sequentially against the selected Redis database, allowing later commands to reuse earlier results through redisResults placeholders and optional looping.
+> TL;DR — Executes multiple Redis commands sequentially against the selected Redis database, allowing later commands to reuse earlier results through redisResults placeholders and optional looping.
 
-## What it does
+## When to use {: #when-to-use}
 
-Executes multiple Redis commands sequentially against the selected Redis database, allowing later commands to reuse earlier results through redisResults placeholders and optional looping. See [Configuration ▸ tableView](configuration/tableView.md) for the full field reference and [Configuration ▸ yamlView](configuration/yamlView.md) for a minimal scaffold.
+Runs a configured sequence of Redis commands in order against the selected database.
 
-## YAML example
+It is useful when a scenario needs a small Redis setup script, such as creating a key and then seeding a list or hash before the tested system starts consuming from it.
+
+## YAML configuration {: #yaml-configuration}
+
+Use the hook name in the matching runtime section, then place hook-specific fields under the configuration object shown in the examples below.
+
+## Minimal example {: #minimal-example}
 
 ```yaml
 Sessions:
-  - Name: ExecuteRedisCommandsSession
+  - Name: ProbeSession
     Probes:
-      - Name: ExecuteRedisCommandsStep
+      - Name: ExecuteRedisCommandsProbe
         Probe: ExecuteRedisCommands
         ProbeConfiguration:
-        RedisDataBase:
-        HostNames: []
-        Username:
-        Password:
-        AbortOnConnectFail:
-        ConnectRetry:
-        ClientName:
-        AsyncTimeout:
-        Ssl:
-        SslHost:
-        KeepAlive:
-        Commands: []
-        RepeatUntil:
-          ResultPath:
-          ExpectedValue:
-          MaxIterations:
+          UseGlobalDict: true
+          HostNames:
+            - localhost:6379
+          RedisDataBase: 0
+          Commands:
+            - Command: SET
+              Arguments:
+                - qaas:mode
+                - docs
+            - Command: LPUSH
+              Arguments:
+                - qaas:jobs
+                - first-job
 ```
 
+## Realistic example {: #realistic-example}
 
-## Where it lives
+This probe first sets `qaas:mode` to `docs`, then pushes `first-job` into the `qaas:jobs` list.
 
-| | |
-|--|--|
-| **Plugin family** | probes |
-| **YAML key** | `ExecuteRedisCommands` |
-| **Schema** | [`probes.schema.json`](../../../_generated/schemas/probes.md) |
-| **Source** | `QaaS.Common.Probes\QaaS.Common.Probes\RedisProbes\ExecuteRedisCommands.cs` |
+Because the commands are executed in sequence, the Redis state is prepared deterministically before the next scenario step runs.
 
-## See also
+### Global Dictionary Behavior {: #global-dictionary-behavior}
 
-- [probes index](../../index.md)
-- [Custom probe authoring guide](../../custom-authoring-guide.md)
+With `UseGlobalDict: true`, missing `HostNames`, authentication fields, and `RedisDataBase` can be resolved from the session-scoped `Redis/Defaults` alias when those keys do not appear in the local probe configuration. The probe still binds and validates after the merge, and any key that is present locally keeps priority over the shared default.
+
+That makes the probe useful when several Redis command probes should share one connection definition while each probe keeps its own command list.
+
+The existing `redisResults` placeholder behavior is unchanged; global-dictionary fallback only affects configuration loading.
+
+When `UseGlobalDict` is `false`, the probe behaves exactly as before and uses only local YAML or code configuration.
+
+## Edge cases {: #edge-cases}
+
+- Missing required configuration keys fail schema validation before the hook runs.
+- Keep hook names and referenced session or data-source names aligned with the surrounding YAML.
+
+## See also {: #see-also}
+
+- [Configuration table](configuration/tableView.md)
+- [YAML scaffold](configuration/yamlView.md)
+- [Probes](../../index.md)

@@ -12,40 +12,56 @@ summary: "Probe that deletes rabbitmq queues"
 
 # DeleteRabbitMqQueues
 
-Probe that deletes rabbitmq queues
+> TL;DR — Probe that deletes rabbitmq queues
 
-## What it does
+## When to use {: #when-to-use}
 
-Probe that deletes rabbitmq queues See [Configuration ▸ tableView](configuration/tableView.md) for the full field reference and [Configuration ▸ yamlView](configuration/yamlView.md) for a minimal scaffold.
+Deletes RabbitMQ queues through the AMQP connection defined in the probe configuration.
 
-## YAML example
+This is useful for queue cleanup when the queue should be removed entirely instead of only purged.
+
+## YAML configuration {: #yaml-configuration}
+
+Use the hook name in the matching runtime section, then place hook-specific fields under the configuration object shown in the examples below.
+
+## Minimal example {: #minimal-example}
 
 ```yaml
 Sessions:
-  - Name: DeleteRabbitMqQueuesSession
+  - Name: ProbeSession
     Probes:
-      - Name: DeleteRabbitMqQueuesStep
+      - Name: DeleteRabbitMqQueuesProbe
         Probe: DeleteRabbitMqQueues
         ProbeConfiguration:
-        Host:
-        Username:
-        Password:
-        Port:
-        VirtualHost:
-        QueueNames: []
+          UseGlobalDict: true
+          Host: rabbitmq.local
+          Port: 5672
+          Username: guest
+          Password: guest
+          VirtualHost: /
+          QueueNames:
+            - orders.queue
 ```
 
+## Realistic example {: #realistic-example}
 
-## Where it lives
+This probe deletes the `orders.queue` queue from the `/` virtual host.
 
-| | |
-|--|--|
-| **Plugin family** | probes |
-| **YAML key** | `DeleteRabbitMqQueues` |
-| **Schema** | [`probes.schema.json`](../../../_generated/schemas/probes.md) |
-| **Source** | `QaaS.Common.Probes\QaaS.Common.Probes\RabbitMqProbes\DeleteRabbitMqQueues.cs` |
+Any messages still in the queue are removed along with the queue itself.
 
-## See also
+### Global Dictionary Behavior {: #global-dictionary-behavior}
 
-- [probes index](../../index.md)
-- [Custom probe authoring guide](../../custom-authoring-guide.md)
+With `UseGlobalDict: true`, the resolved broker settings are saved under the session-scoped `RabbitMq/AmqpDefaults` alias, and this probe also writes the deleted queue names as `RabbitMqQueueConfig[]` to `RabbitMq/Recovery/Queues`. The canonical payload still lives under `__ProbeGlobalDict/Scoped/<execution-scope>/<session-name>/<probe-name>`, so every probe execution keeps its own isolated write path.
+
+That makes the probe useful in recovery or rollback scenarios where `CreateRabbitMqQueues` runs later in the same execution and session and restores the deleted topology from the saved alias instead of hard-coding it twice. When `UseGlobalDict` is `false`, current behavior stays unchanged: only local YAML or code configuration is used, and nothing is written to the probe global dictionary.
+
+## Edge cases {: #edge-cases}
+
+- Missing required configuration keys fail schema validation before the hook runs.
+- Keep hook names and referenced session or data-source names aligned with the surrounding YAML.
+
+## See also {: #see-also}
+
+- [Configuration table](configuration/tableView.md)
+- [YAML scaffold](configuration/yamlView.md)
+- [Probes](../../index.md)

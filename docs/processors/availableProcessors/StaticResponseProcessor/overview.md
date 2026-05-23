@@ -12,38 +12,55 @@ summary: "Returns a fixed UTF-8 response body with the configured status code, c
 
 # StaticResponseProcessor
 
-Returns a fixed UTF-8 response body with the configured status code, content type, and headers.
+> TL;DR — Returns a fixed UTF-8 response body with the configured status code, content type, and headers.
 
-## What it does
+## When to use {: #when-to-use}
 
-Returns a fixed UTF-8 response body with the configured status code, content type, and headers. See [Configuration ▸ tableView](configuration/tableView.md) for the full field reference and [Configuration ▸ yamlView](configuration/yamlView.md) for a minimal scaffold.
+Returns a fixed UTF-8 response body together with the configured HTTP status code, content type, and headers.
 
-## YAML example
+This is the simplest processor for serving a known canned response from a stubbed endpoint.
+
+## YAML configuration {: #yaml-configuration}
+
+Use the hook name in the matching runtime section, then place hook-specific fields under the configuration object shown in the examples below.
+
+## Minimal example {: #minimal-example}
 
 ```yaml
-Sessions:
-  - Name: StaticResponseProcessorSession
-    Processors:
-      - Name: StaticResponseProcessorStep
-        Processor: StaticResponseProcessor
-        ProcessorConfiguration:
-        Body:
-        StatusCode:
-        ContentType:
-        ResponseHeaders:
+Stubs:
+  - Name: StaticResponseProcessorStub
+    Processor: StaticResponseProcessor
+
+    ProcessorConfiguration:
+      Body: stub is healthy
+      StatusCode: 200
+      ContentType: text/plain; charset=utf-8
+
+Servers:
+  - Http:
+      Port: 8080
+      IsLocalhost: true
+      Endpoints:
+        - Path: /health
+          Actions:
+            - Name: HealthAction
+              Method: Get
+              TransactionStubName: StaticResponseProcessorStub
 ```
 
+## Realistic example {: #realistic-example}
 
-## Where it lives
+This configuration makes the endpoint always return the text `stub is healthy` as a UTF-8 body.
 
-| | |
-|--|--|
-| **Plugin family** | processors |
-| **YAML key** | `StaticResponseProcessor` |
-| **Schema** | [`processors.schema.json`](../../../_generated/schemas/processors.md) |
-| **Source** | `QaaS.Common.Processors\QaaS.Common.Processors\StaticResponseProcessor.cs` |
+The response status is `200` and the content type is `text/plain; charset=utf-8`.
 
-## See also
+## Edge cases {: #edge-cases}
 
-- [processors index](../../index.md)
-- [Custom processor authoring guide](../../custom-authoring-guide.md)
+- Missing required configuration keys fail schema validation before the hook runs.
+- Keep hook names and referenced session or data-source names aligned with the surrounding YAML.
+
+## See also {: #see-also}
+
+- [Configuration table](configuration/tableView.md)
+- [YAML scaffold](configuration/yamlView.md)
+- [Processors](../../index.md)

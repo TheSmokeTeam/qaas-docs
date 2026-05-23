@@ -12,46 +12,52 @@ summary: "Reads CSV files from the configured file-system path and turns each ro
 
 # FromCSV
 
-Reads CSV files from the configured file-system path and turns each row into generated data items.
+> TL;DR — Reads CSV files from the configured file-system path and turns each row into generated data items.
 
-## What it does
+## When to use {: #when-to-use}
 
-Reads CSV files from the configured file-system path and turns each row into generated data items. See [Configuration ▸ tableView](configuration/tableView.md) for the full field reference and [Configuration ▸ yamlView](configuration/yamlView.md) for a minimal scaffold.
+Reads rows from one or more CSV files in a local directory and emits one generated item per row.
 
-## YAML example
+It can use the file header row, or configured column names when the files are headerless. Empty rows can be skipped, surrounding whitespace can be trimmed, and the generator can stop after a fixed number of rows. When storage metadata is enabled, each generated item keeps track of where it came from in the file set.
+
+## YAML configuration {: #yaml-configuration}
+
+Use the hook name in the matching runtime section, then place hook-specific fields under the configuration object shown in the examples below.
+
+## Minimal example {: #minimal-example}
 
 ```yaml
-Sessions:
-  - Name: FromCSVSession
-    Generators:
-      - Name: FromCSVStep
-        DataSource: FromCSV
-        GeneratorConfiguration:
-        FileSystem:
-          Path:
-          SearchPattern:
-        DataArrangeOrder:
-        Count:
-        DataUuidRegexExpression:
-        StorageMetaData:
-        Delimiter:
-        HasHeaderRecord:
-        ColumnNames: []
-        SkipEmptyRows:
-        TrimWhiteSpace:
+DataSources:
+  - Name: OrdersCsvRows
+    Generator: FromCSV
+    GeneratorConfiguration:
+      DataArrangeOrder: AsciiAsc
+      Delimiter: ','
+      HasHeaderRecord: false
+      SkipEmptyRows: true
+      TrimWhiteSpace: true
+      ColumnNames:
+        - orderId
+        - total
+      FileSystem:
+        Path: sample-data/csv
+        SearchPattern: '*.csv'
+      StorageMetaData: ItemName
 ```
 
+## Realistic example {: #realistic-example}
 
-## Where it lives
+This example reads every `*.csv` file under `sample-data/csv`, orders the files alphabetically, treats each line as a two-column record, and emits one generated item per row.
 
-| | |
-|--|--|
-| **Plugin family** | generators |
-| **YAML key** | `FromCSV` |
-| **Schema** | [`generators.schema.json`](../../../_generated/schemas/generators.md) |
-| **Source** | `QaaS.Common.Generators\QaaS.Common.Generators\FromExternalSourceGenerators\FromCSV.cs` |
+Because `HasHeaderRecord` is `false`, the first and second columns are exposed as `orderId` and `total`. Empty rows are ignored, whitespace is trimmed, and each emitted item keeps the source file name in its storage metadata.
 
-## See also
+## Edge cases {: #edge-cases}
 
-- [generators index](../../index.md)
-- [Custom generator authoring guide](../../custom-authoring-guide.md)
+- Missing required configuration keys fail schema validation before the hook runs.
+- Keep hook names and referenced session or data-source names aligned with the surrounding YAML.
+
+## See also {: #see-also}
+
+- [Configuration table](configuration/tableView.md)
+- [YAML scaffold](configuration/yamlView.md)
+- [Generators](../../index.md)

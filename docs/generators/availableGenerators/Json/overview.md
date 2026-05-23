@@ -12,41 +12,65 @@ summary: "Generates JSON data from a configured prototype document."
 
 # Json
 
-Generates JSON data from a configured prototype document.
+> TL;DR — Generates JSON data from a configured prototype document.
 
-## What it does
+## When to use {: #when-to-use}
 
-Generates JSON data from a configured prototype document. See [Configuration ▸ tableView](configuration/tableView.md) for the full field reference and [Configuration ▸ yamlView](configuration/yamlView.md) for a minimal scaffold.
+Clones a prototype JSON document from an attached JSON data source and applies configured field replacements before emitting the result.
 
-## YAML example
+The output can stay as JSON, or it can be parsed into another supported object type. Replacements can inject literal values, pull values from other data sources, or generate time-based values.
+
+## YAML configuration {: #yaml-configuration}
+
+Use the hook name in the matching runtime section, then place hook-specific fields under the configuration object shown in the examples below.
+
+## Minimal example {: #minimal-example}
 
 ```yaml
-Sessions:
-  - Name: JsonSession
-    Generators:
-      - Name: JsonStep
-        DataSource: Json
-        GeneratorConfiguration:
-        Count:
-        JsonFieldReplacements: []
-        OutputObjectType:
-        OutputObjectTypeConfiguration:
-          AssemblyName:
-          TypeFullName:
-        JsonDataSourceName:
+DataSources:
+  - Name: OrderPrototype
+    Generator: FromFileSystem
+    Deserialize:
+      Deserializer: Json
+    GeneratorConfiguration:
+      DataArrangeOrder: AsciiAsc
+      FileSystem:
+        Path: sample-data/json
+        SearchPattern: 'order-template.json'
+      StorageMetaData: ItemName
+
+  - Name: GeneratedOrders
+    Generator: Json
+    DataSourceNames:
+      - OrderPrototype
+    GeneratorConfiguration:
+      JsonDataSourceName: OrderPrototype
+      Count: 2
+      OutputObjectType: Json
+      JsonFieldReplacements:
+        - Path: $.customerId
+          ValueType: String
+          String:
+            Value: CUST-001
+        - Path: $.priority
+          ValueType: Boolean
+          Boolean:
+            Value: true
 ```
 
+## Realistic example {: #realistic-example}
 
-## Where it lives
+This setup reads `order-template.json`, clones that JSON twice, and updates two fields in each cloned document before exposing the generated items.
 
-| | |
-|--|--|
-| **Plugin family** | generators |
-| **YAML key** | `Json` |
-| **Schema** | [`generators.schema.json`](../../../_generated/schemas/generators.md) |
-| **Source** | `QaaS.Common.Generators\QaaS.Common.Generators\JsonGenerators\Json.cs` |
+`customerId` is replaced with `CUST-001`, `priority` is set to `true`, and the output remains JSON because `OutputObjectType` is `Json`.
 
-## See also
+## Edge cases {: #edge-cases}
 
-- [generators index](../../index.md)
-- [Custom generator authoring guide](../../custom-authoring-guide.md)
+- Missing required configuration keys fail schema validation before the hook runs.
+- Keep hook names and referenced session or data-source names aligned with the surrounding YAML.
+
+## See also {: #see-also}
+
+- [Configuration table](configuration/tableView.md)
+- [YAML scaffold](configuration/yamlView.md)
+- [Generators](../../index.md)

@@ -12,45 +12,67 @@ summary: "Probe that changes the environment variables of a statefulSet"
 
 # OsChangeStatefulSetEnvVars
 
-Probe that changes the environment variables of a statefulSet
+> TL;DR — Probe that changes the environment variables of a statefulSet
 
-## What it does
+## When to use {: #when-to-use}
 
-Probe that changes the environment variables of a statefulSet See [Configuration ▸ tableView](configuration/tableView.md) for the full field reference and [Configuration ▸ yamlView](configuration/yamlView.md) for a minimal scaffold.
+Updates or removes environment variables on a stateful set and then waits for the workload to converge.
 
-## YAML example
+This is useful for stateful components such as brokers or databases that need a controlled configuration change before the scenario runs.
+
+## YAML configuration {: #yaml-configuration}
+
+Use the hook name in the matching runtime section, then place hook-specific fields under the configuration object shown in the examples below.
+
+## Minimal example {: #minimal-example}
 
 ```yaml
 Sessions:
-  - Name: OsChangeStatefulSetEnvVarsSession
+  - Name: ProbeSession
     Probes:
-      - Name: OsChangeStatefulSetEnvVarsStep
+      - Name: OsChangeStatefulSetEnvVarsProbe
         Probe: OsChangeStatefulSetEnvVars
         ProbeConfiguration:
-        ReplicaSetName:
-        IntervalBetweenDesiredStateChecksMs:
-        TimeoutWaitForDesiredStateSeconds:
-        Openshift:
-          Cluster:
-          Username:
-          Password:
-          Namespace:
-        ContainerName:
-        EnvVarsToUpdate:
-        EnvVarsToRemove: []
+          UseGlobalDict: true
+          ReplicaSetName: orders-worker
+          ContainerName: worker
+          EnvVarsToUpdate:
+            FEATURE_FLAG_X: enabled
+            PROCESSING_MODE: replay
+          EnvVarsToRemove:
+            - LEGACY_MODE
+          IntervalBetweenDesiredStateChecksMs: 1000
+          TimeoutWaitForDesiredStateSeconds: 300
+          Openshift:
+            Cluster: https://api.cluster.local:6443
+            Namespace: docs
+            Username: docs-user
+            Password: docs-password
 ```
 
+## Realistic example {: #realistic-example}
 
-## Where it lives
+This configuration updates the `worker` container in the `orders-worker` stateful set, adds two environment variables, removes `LEGACY_MODE`, and then waits for the stateful set rollout to settle.
 
-| | |
-|--|--|
-| **Plugin family** | probes |
-| **YAML key** | `OsChangeStatefulSetEnvVars` |
-| **Schema** | [`probes.schema.json`](../../../_generated/schemas/probes.md) |
-| **Source** | `QaaS.Common.Probes\QaaS.Common.Probes\OsProbes\OsChangeStatefulSetEnvVars.cs` |
+It is the stateful-set equivalent of the deployment environment-variable probe.
 
-## See also
+### Global Dictionary Behavior {: #global-dictionary-behavior}
 
-- [probes index](../../index.md)
-- [Custom probe authoring guide](../../custom-authoring-guide.md)
+With `UseGlobalDict: true`, missing shared cluster settings can be resolved from `Os/Defaults`, and missing `EnvVarsToUpdate` and `EnvVarsToRemove` can be restored from `Os/Recovery/EnvVars/StatefulSet/<ReplicaSetName>/<ContainerName-or-__all__>` after an earlier probe in the same execution and session captured the pre-change state.
+
+The probe writes its pre-change snapshot to the unique canonical scoped path for the current probe execution and then updates the recovery alias so a later rollback probe can reuse it. This is useful when you want to inject temporary environment variables into a stateful workload and later restore them.
+
+A recovery payload is written only when the probe resolves exactly one target container, because that is the only time the original environment can be captured unambiguously.
+
+When `UseGlobalDict` is `false`, the probe keeps the current behavior: it uses only local YAML or code configuration and does not read or write probe-global-dictionary state.
+
+## Edge cases {: #edge-cases}
+
+- Missing required configuration keys fail schema validation before the hook runs.
+- Keep hook names and referenced session or data-source names aligned with the surrounding YAML.
+
+## See also {: #see-also}
+
+- [Configuration table](configuration/tableView.md)
+- [YAML scaffold](configuration/yamlView.md)
+- [Probes](../../index.md)

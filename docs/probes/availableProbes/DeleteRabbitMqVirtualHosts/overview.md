@@ -12,44 +12,57 @@ summary: "Deletes RabbitMQ virtual hosts through the management API."
 
 # DeleteRabbitMqVirtualHosts
 
+> TL;DR — Deletes RabbitMQ virtual hosts through the management API.
+
+## When to use {: #when-to-use}
+
 Deletes RabbitMQ virtual hosts through the management API.
 
-## What it does
+This is useful when scenario-specific namespaces should be removed entirely after the run is finished.
 
-Deletes RabbitMQ virtual hosts through the management API. See [Configuration ▸ tableView](configuration/tableView.md) for the full field reference and [Configuration ▸ yamlView](configuration/yamlView.md) for a minimal scaffold.
+## YAML configuration {: #yaml-configuration}
 
-## YAML example
+Use the hook name in the matching runtime section, then place hook-specific fields under the configuration object shown in the examples below.
+
+## Minimal example {: #minimal-example}
 
 ```yaml
 Sessions:
-  - Name: DeleteRabbitMqVirtualHostsSession
+  - Name: ProbeSession
     Probes:
-      - Name: DeleteRabbitMqVirtualHostsStep
+      - Name: DeleteRabbitMqVirtualHostsProbe
         Probe: DeleteRabbitMqVirtualHosts
         ProbeConfiguration:
-        ManagementScheme:
-        ManagementPort:
-        AllowInvalidServerCertificates:
-        RequestTimeoutMs:
-        Host:
-        Username:
-        Password:
-        Port:
-        VirtualHost:
-        VirtualHostNames: []
+          UseGlobalDict: true
+          Host: rabbitmq.local
+          ManagementScheme: http
+          ManagementPort: 15672
+          Username: guest
+          Password: guest
+          VirtualHost: /
+          VirtualHostNames:
+            - orders-vhost
 ```
 
+## Realistic example {: #realistic-example}
 
-## Where it lives
+This probe deletes the `orders-vhost` virtual host through the management API.
 
-| | |
-|--|--|
-| **Plugin family** | probes |
-| **YAML key** | `DeleteRabbitMqVirtualHosts` |
-| **Schema** | [`probes.schema.json`](../../../_generated/schemas/probes.md) |
-| **Source** | `QaaS.Common.Probes\QaaS.Common.Probes\RabbitMqProbes\DeleteRabbitMqVirtualHosts.cs` |
+It is a full namespace cleanup step for temporary RabbitMQ environments.
 
-## See also
+### Global Dictionary Behavior {: #global-dictionary-behavior}
 
-- [probes index](../../index.md)
-- [Custom probe authoring guide](../../custom-authoring-guide.md)
+With `UseGlobalDict: true`, the resolved broker settings are saved under the session-scoped `RabbitMq/AmqpDefaults` alias, and this probe also writes the deleted virtual-host names as `RabbitMqVirtualHostConfig[]` to `RabbitMq/Recovery/VirtualHosts`. The canonical payload still lives under `__ProbeGlobalDict/Scoped/<execution-scope>/<session-name>/<probe-name>`, so every probe execution keeps its own isolated write path.
+
+That makes the probe useful in recovery or rollback scenarios where `CreateRabbitMqVirtualHosts` runs later in the same execution and session and restores the deleted topology from the saved alias instead of hard-coding it twice. When `UseGlobalDict` is `false`, current behavior stays unchanged: only local YAML or code configuration is used, and nothing is written to the probe global dictionary.
+
+## Edge cases {: #edge-cases}
+
+- Missing required configuration keys fail schema validation before the hook runs.
+- Keep hook names and referenced session or data-source names aligned with the surrounding YAML.
+
+## See also {: #see-also}
+
+- [Configuration table](configuration/tableView.md)
+- [YAML scaffold](configuration/yamlView.md)
+- [Probes](../../index.md)

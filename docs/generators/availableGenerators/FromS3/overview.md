@@ -12,48 +12,51 @@ summary: "Retrieves data from objects in a configured S3 bucket and prefix."
 
 # FromS3
 
-Retrieves data from objects in a configured S3 bucket and prefix.
+> TL;DR — Retrieves data from objects in a configured S3 bucket and prefix.
 
-## What it does
+## When to use {: #when-to-use}
 
-Retrieves data from objects in a configured S3 bucket and prefix. See [Configuration ▸ tableView](configuration/tableView.md) for the full field reference and [Configuration ▸ yamlView](configuration/yamlView.md) for a minimal scaffold.
+Reads objects from an S3-compatible bucket and emits one generated item per object.
 
-## YAML example
+It can walk the bucket directly or load object metadata first, filter keys, skip empty objects, order the results, and attach storage metadata that describes which object was used.
+
+## YAML configuration {: #yaml-configuration}
+
+Use the hook name in the matching runtime section, then place hook-specific fields under the configuration object shown in the examples below.
+
+## Minimal example {: #minimal-example}
 
 ```yaml
-Sessions:
-  - Name: FromS3Session
-    Generators:
-      - Name: FromS3Step
-        DataSource: FromS3
-        GeneratorConfiguration:
-        DataArrangeOrder:
-        Count:
-        DataUuidRegexExpression:
-        StorageMetaData:
-        LoadMetadataFirst:
-        S3:
-          StorageBucket:
-          ServiceURL:
-          AccessKey:
-          SecretKey:
-          ForcePathStyle:
-          Delimiter:
-          Prefix:
-          SkipEmptyObjects:
+DataSources:
+  - Name: BucketPayloads
+    Generator: FromS3
+    GeneratorConfiguration:
+      DataArrangeOrder: AsciiAsc
+      LoadMetadataFirst: true
+      StorageMetaData: ItemName
+      S3:
+        AccessKey: access-key
+        SecretKey: secret-key
+        ServiceURL: http://minio.local:9000
+        StorageBucket: qaas-docs
+        Prefix: payloads/
+        SkipEmptyObjects: true
+        ForcePathStyle: true
 ```
 
+## Realistic example {: #realistic-example}
 
-## Where it lives
+This configuration reads objects from the `qaas-docs` bucket under the `payloads/` prefix, skips empty objects, and emits the remaining objects in deterministic ASCII order.
 
-| | |
-|--|--|
-| **Plugin family** | generators |
-| **YAML key** | `FromS3` |
-| **Schema** | [`generators.schema.json`](../../../_generated/schemas/generators.md) |
-| **Source** | `QaaS.Common.Generators\QaaS.Common.Generators\FromExternalSourceGenerators\FromS3.cs` |
+Because metadata is loaded first, the generator can order and filter the object set before it starts retrieving the actual object bodies.
 
-## See also
+## Edge cases {: #edge-cases}
 
-- [generators index](../../index.md)
-- [Custom generator authoring guide](../../custom-authoring-guide.md)
+- Missing required configuration keys fail schema validation before the hook runs.
+- Keep hook names and referenced session or data-source names aligned with the surrounding YAML.
+
+## See also {: #see-also}
+
+- [Configuration table](configuration/tableView.md)
+- [YAML scaffold](configuration/yamlView.md)
+- [Generators](../../index.md)

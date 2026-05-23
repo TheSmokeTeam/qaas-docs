@@ -12,36 +12,49 @@ summary: "Performs a logic test on the http status of all selected outputs in a 
 
 # HttpStatus
 
-Performs a logic test on the http status of all selected outputs in a session by checking they all have the desired http status code
+> TL;DR — Performs a logic test on the http status of all selected outputs in a session by checking they all have the desired http status code
 
-## What it does
+## When to use {: #when-to-use}
 
-Performs a logic test on the http status of all selected outputs in a session by checking they all have the desired http status code See [Configuration ▸ tableView](configuration/tableView.md) for the full field reference and [Configuration ▸ yamlView](configuration/yamlView.md) for a minimal scaffold.
+Reads every saved item in the configured output lists of a single session and verifies that each item carries the expected HTTP status code in its metadata.
 
-## YAML example
+If any output item is missing HTTP status metadata entirely, the assertion throws instead of silently ignoring it. When status codes are present but some do not match, the assertion fails and records both the unexpected status codes and the outputs where they appeared.
+
+## YAML configuration {: #yaml-configuration}
+
+Use the hook name in the matching runtime section, then place hook-specific fields under the configuration object shown in the examples below.
+
+## Minimal example {: #minimal-example}
 
 ```yaml
 Sessions:
-  - Name: HttpStatusSession
-    Assertions:
-      - Name: HttpStatusStep
-        Assertion: HttpStatus
-        AssertionConfiguration:
-        StatusCode:
-        OutputNames: []
+  - Name: SampleSession
+
+Assertions:
+  - Name: HttpStatusAssertion
+    Assertion: HttpStatus
+    SessionNames:
+      - SampleSession
+
+    AssertionConfiguration:
+      StatusCode: 200
+      OutputNames:
+        - Reply
 ```
 
+## Realistic example {: #realistic-example}
 
-## Where it lives
+This assertion checks the `Reply` output of `SampleSession` and expects every saved item to have HTTP status `200`.
 
-| | |
-|--|--|
-| **Plugin family** | assertions |
-| **YAML key** | `HttpStatus` |
-| **Schema** | [`assertions.schema.json`](../../../_generated/schemas/assertions.md) |
-| **Source** | `QaaS.Common.Assertions\QaaS.Common.Assertions\HttpMetaDataLogic\HttpStatus.cs` |
+If all items report `200`, the assertion passes. If any item reports a different status it fails with a detailed trace, and if any item has no HTTP status metadata at all it fails by exception because the status check cannot be trusted.
 
-## See also
+## Edge cases {: #edge-cases}
 
-- [assertions index](../../index.md)
-- [Custom assertion authoring guide](../../custom-authoring-guide.md)
+- Missing required configuration keys fail schema validation before the hook runs.
+- Keep hook names and referenced session or data-source names aligned with the surrounding YAML.
+
+## See also {: #see-also}
+
+- [Configuration table](configuration/tableView.md)
+- [YAML scaffold](configuration/yamlView.md)
+- [Assertions](../../index.md)
