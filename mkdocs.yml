@@ -763,10 +763,14 @@ plugins:
           - framework/**/*.md: Framework reference.
 
 extra_javascript:
-  - assets/javascripts/qaas-docs-build-defaults.js
-  - assets/javascripts/qaas-docs-runtime-overrides.js
-  - assets/javascripts/runtime-link-overrides.js
-  - assets/javascripts/current-page-title.js
+  - path: assets/javascripts/qaas-docs-build-defaults.js
+    defer: true
+  - path: assets/javascripts/qaas-docs-runtime-overrides.js
+    defer: true
+  - path: assets/javascripts/runtime-link-overrides.js
+    defer: true
+  - path: assets/javascripts/current-page-title.js
+    defer: true
 
 extra_css:
   - stylesheets/functions.css
@@ -784,8 +788,7 @@ markdown_extensions:
   - pymdownx.tabbed:
       alternate_style: true
   - pymdownx.highlight:
-      anchor_linenums: true
-      line_spans: __span
+      anchor_linenums: false
       pygments_lang_class: true
   - toc:
       permalink: true

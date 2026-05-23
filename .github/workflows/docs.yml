@@ -38,8 +38,9 @@ jobs:
       - name: Install validator tooling
         run: |
           npm install -g markdownlint-cli2
-          curl -sSfL https://github.com/lycheeverse/lychee/releases/latest/download/lychee-x86_64-unknown-linux-gnu.tar.gz | tar -xz -C /usr/local/bin lychee
-          curl -sSfL https://github.com/vale-cli/vale/releases/download/v3.14.2/vale_3.14.2_Linux_64-bit.tar.gz | tar -xz -C /usr/local/bin vale
+          mkdir -p /tmp/lychee && curl -sSfL https://github.com/lycheeverse/lychee/releases/latest/download/lychee-x86_64-unknown-linux-gnu.tar.gz | tar -xz -C /tmp/lychee
+          sudo install -m 0755 "$(find /tmp/lychee -name lychee -type f | head -1)" /usr/local/bin/lychee
+          curl -sSfL https://github.com/errata-ai/vale/releases/download/v3.14.2/vale_3.14.2_Linux_64-bit.tar.gz | sudo tar -xz -C /usr/local/bin vale
           python -m pip install yamllint check-jsonschema
 
       - name: Frontmatter conformance check
