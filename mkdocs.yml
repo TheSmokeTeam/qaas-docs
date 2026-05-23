@@ -692,10 +692,12 @@ theme:
     - content.tabs.link
     - navigation.instant
     - navigation.instant.progress
+    - navigation.instant.prefetch
     - navigation.tabs
     - navigation.tabs.sticky
     - navigation.sections
     - navigation.path
+    - navigation.prune
     - navigation.top
     - search.suggest
     - search.highlight
@@ -723,6 +725,19 @@ plugins:
   - tags
   - macros:
       render_by_default: false
+  - minify:
+      minify_html: true
+      minify_js: true
+      minify_css: true
+      htmlmin_opts:
+        remove_comments: true
+      js_files:
+        - assets/javascripts/qaas-docs-build-defaults.js
+        - assets/javascripts/qaas-docs-runtime-overrides.js
+        - assets/javascripts/runtime-link-overrides.js
+        - assets/javascripts/current-page-title.js
+      css_files:
+        - stylesheets/functions.css
   - llmstxt:
       full_output: llms-full.txt
       markdown_description: |
