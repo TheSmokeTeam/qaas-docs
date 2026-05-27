@@ -12,19 +12,17 @@ summary: "Updates container resource requests and limits in a Kubernetes or Open
 
 # OsUpdateStatefulSetResources
 
-> TL;DR — Updates container resource requests and limits in a Kubernetes or OpenShift stateful set.
+> TL;DR: Updates container resource requests and limits in a Kubernetes or OpenShift stateful set.
 
-## When to use {: #when-to-use}
+Updates container resource requests and limits in a Kubernetes or OpenShift stateful set.
+
+## What It Does
 
 Updates CPU and memory requests and limits on a stateful set container, then waits for the stateful rollout to converge.
 
 This is useful when a scenario needs to change the resource profile of a stateful component without rebuilding or redeploying the whole environment manually.
 
-## YAML configuration {: #yaml-configuration}
-
-Use the hook name in the matching runtime section, then place hook-specific fields under the configuration object shown in the examples below.
-
-## Minimal example {: #minimal-example}
+## Minimal example
 
 ```yaml
 Sessions:
@@ -52,13 +50,13 @@ Sessions:
               Memory: 512Mi
 ```
 
-## Realistic example {: #realistic-example}
+## Realistic example
 
 This probe updates the `worker` container in the `orders-worker` stateful set so that it requests `500m` CPU and `512Mi` memory, with limits of `1500m` CPU and `2Gi` memory.
 
 After the patch is applied, the probe waits for the stateful set to finish rolling out.
 
-### Global Dictionary Behavior {: #global-dictionary-behavior}
+### Global Dictionary Behavior
 
 With `UseGlobalDict: true`, missing shared cluster settings can be resolved from `Os/Defaults`, and missing `DesiredResources` can be restored from `Os/Recovery/Resources/StatefulSet/<ReplicaSetName>/<ContainerName>` after an earlier probe in the same execution and session captured the pre-change state.
 
@@ -68,13 +66,6 @@ No additional per-probe recovery caveat applies beyond the execution and session
 
 When `UseGlobalDict` is `false`, the probe keeps the current behavior: it uses only local YAML or code configuration and does not read or write probe-global-dictionary state.
 
-## Edge cases {: #edge-cases}
+## See also
 
-- Missing required configuration keys fail schema validation before the hook runs.
-- Keep hook names and referenced session or data-source names aligned with the surrounding YAML.
-
-## See also {: #see-also}
-
-- [Configuration table](configuration/tableView.md)
-- [YAML scaffold](configuration/yamlView.md)
-- [Probes](../../index.md)
+Use the surrounding documentation navigation to move between related generated reference pages.

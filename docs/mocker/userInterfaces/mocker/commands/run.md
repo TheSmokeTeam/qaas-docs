@@ -8,30 +8,31 @@ applies_to: [mocker]
 keywords: [mocker, userinterfaces, commands, run]
 summary: "Start the configured mock servers and optional controller runtime."
 ---
-
 # run
 
-> TL;DR — Start the configured mock servers and optional controller runtime.
+> TL;DR: Start the configured mock servers and optional controller runtime.
 
-## Invocation {: #invocation}
+Start the configured mock servers and optional controller runtime.
+
+## Invocation
 
 ```bash
 dotnet run <dotnet-parameters> -- run <config-file> [flags]
 ```
 
-## When to use {: #when-to-use}
+## Use When
 
 - You want to boot the mock environment from a committed mocker YAML file.
 - You need to layer temporary overrides before starting the servers.
 - You want a local interactive host by combining the command with `--run-locally`.
 
-## Positional Arguments {: #positional-arguments}
+## Positional Arguments
 
 | Position | Property | Source Type | Inherited | Required | Default | Value Type | Description |
 | -------- | -------- | ----------- | --------- | -------- | ------- | ---------- | ----------- |
 | `0` | `ConfigurationFile` | `Mocker options` | Yes | Yes | mocker.qaas.yaml | `string` | Path to a mocker yaml configuration file to use with the command. |
 
-## Flags {: #flags}
+## Flags
 
 | Category | Flag | Inherited | Required | Default | Value Type | Description |
 | -------- | ---- | --------- | -------- | ------- | ---------- | ----------- |
@@ -49,39 +50,39 @@ dotnet run <dotnet-parameters> -- run <config-file> [flags]
 | Runtime | `--run-locally` | Yes | No | False | `bool` | Runs the project locally and enables exit by any key press. |
 | Logging | `--send-logs` | Yes | No | False | `bool` | Whether to send logs to the configured Elasticsearch sink. |
 
-## Flag Notes {: #flag-notes}
+## Flag Notes
 
-### `-r`, `--overwrite-arguments` {: #-r-overwrite-arguments}
+### `-r`, `--overwrite-arguments`
 
 ```text
 -r Server:Port=8081
 ```
 
-### `--run-locally` {: #-run-locally}
+### `--run-locally`
 
 Use this when you want the host process to keep the mock runtime attached to the current console session.
 
-## Examples {: #examples}
+## Examples
 
-### Start the mocker with the default configuration {: #start-the-mocker-with-the-default-configuration}
+### Start the mocker with the default configuration
 
 ```bash
 dotnet run -- run mocker.qaas.yaml
 ```
 
-### Start the mocker with local overrides {: #start-the-mocker-with-local-overrides}
+### Start the mocker with local overrides
 
 ```bash
 dotnet run -- run mocker.qaas.yaml -w local-overrides.yaml -r Server:Port=8081
 ```
 
-### Run locally and keep the host interactive {: #run-locally-and-keep-the-host-interactive}
+### Run locally and keep the host interactive
 
 ```bash
 dotnet run -- run mocker.qaas.yaml --run-locally
 ```
 
-## Raw CLI Help {: #raw-cli-help}
+## Raw CLI Help
 
 ```text
 Usage:
@@ -138,6 +139,6 @@ No-args guidance:
   If a YAML file is part of the scenario, pass it explicitly: dotnet run -- run <config-file>.
 ```
 
-## See also {: #see-also}
+## See also
 
-- [Mocker commands](commands.md)
+Use the surrounding documentation navigation to move between related generated reference pages.

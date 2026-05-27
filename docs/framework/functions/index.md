@@ -15,14 +15,14 @@ This overview indexes the current public function surface documented through sou
 
 Each category page keeps the table of contents focused on short function names and collapses the source file, signature, and XML doc comments behind each entry.
 
-## Available Functions {: #available-functions}
+## Available Functions
 
-### Builders {: #builders}
+### Builders
 
 - [Data Sources](builders/data-sources.md)
 - [Policies](builders/policies.md)
 
-### Functions {: #functions}
+### Functions
 
 - [Contexts](contexts.md)
 - [Enumerables](enumerables.md)
@@ -30,6 +30,6 @@ Each category page keeps the table of contents focused on short function names a
 - [Updates](updates.md)
 - [YAML](yaml.md)
 
-### Extension Methods {: #extension-methods}
+### Extension Methods
 
 - [Extension Methods](extension-methods.md)

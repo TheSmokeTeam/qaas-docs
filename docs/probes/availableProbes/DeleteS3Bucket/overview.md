@@ -12,19 +12,17 @@ summary: "Empties the configured S3 bucket and deletes it, treating a missing bu
 
 # DeleteS3Bucket
 
-> TL;DR — Empties the configured S3 bucket and deletes it, treating a missing bucket as an already-satisfied state.
+> TL;DR: Empties the configured S3 bucket and deletes it, treating a missing bucket as an already-satisfied state.
 
-## When to use {: #when-to-use}
+Empties the configured S3 bucket and deletes it, treating a missing bucket as an already-satisfied state.
+
+## What It Does
 
 Deletes an S3-compatible bucket after first emptying all objects from it.
 
 This is the destructive bucket-level cleanup option and is useful when the scenario creates temporary buckets that should be removed completely at the end of a run.
 
-## YAML configuration {: #yaml-configuration}
-
-Use the hook name in the matching runtime section, then place hook-specific fields under the configuration object shown in the examples below.
-
-## Minimal example {: #minimal-example}
+## Minimal example
 
 ```yaml
 Sessions:
@@ -41,13 +39,13 @@ Sessions:
           ForcePathStyle: true
 ```
 
-## Realistic example {: #realistic-example}
+## Realistic example
 
 This probe connects to the S3-compatible service at `http://minio.local:9000`, empties the `qaas-docs-temp` bucket, and then deletes the bucket itself.
 
 It is appropriate for fully disposable test buckets.
 
-### Global Dictionary Behavior {: #global-dictionary-behavior}
+### Global Dictionary Behavior
 
 With `UseGlobalDict: true`, missing bucket connection fields can be resolved from the session-scoped `S3/Defaults` alias when those keys do not appear in the local probe configuration. The probe still binds and validates after the merge, and any key that is present locally keeps priority over the shared default.
 
@@ -57,13 +55,6 @@ No recovery alias is written for S3 in this first pass.
 
 When `UseGlobalDict` is `false`, the probe behaves exactly as before and uses only local YAML or code configuration.
 
-## Edge cases {: #edge-cases}
+## See also
 
-- Missing required configuration keys fail schema validation before the hook runs.
-- Keep hook names and referenced session or data-source names aligned with the surrounding YAML.
-
-## See also {: #see-also}
-
-- [Configuration table](configuration/tableView.md)
-- [YAML scaffold](configuration/yamlView.md)
-- [Probes](../../index.md)
+Use the surrounding documentation navigation to move between related generated reference pages.

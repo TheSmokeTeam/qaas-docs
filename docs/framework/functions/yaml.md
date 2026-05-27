@@ -12,16 +12,12 @@ summary: "Each entry uses the short function name as the table-of-contents label
 
 # YAML
 
-> TL;DR — This page lists the public Framework functions in the `YAML` category.
-
-## When to use {: #when-to-use}
-
-Use this page when you need source-backed signatures, declaring types, and XML doc comments for this function category.
+> TL;DR: Each entry uses the short function name as the table-of-contents label. Expand an entry to inspect its source file, signature, and XML doc comments.
 
 Each entry uses the short function name as the table-of-contents label. Expand an entry to inspect its source file, signature, and XML doc comments.
 
 
-## `AddYamlFromHttpGet` {: #addyamlfromhttpget}
+## `AddYamlFromHttpGet`
 
 ??? info "Source file, signature, and docstring"
     **Member**
@@ -44,7 +40,7 @@ Each entry uses the short function name as the table-of-contents label. Expand a
     
     Call this extension during configuration bootstrap when YAML should be loaded remotely instead of from the local file system.
 
-## `AddYaml` {: #addyaml}
+## `AddYaml`
 
 ??? info "Source file, signature, and docstring"
     **Member**
@@ -67,6 +63,6 @@ Each entry uses the short function name as the table-of-contents label. Expand a
     
     Call this extension during configuration bootstrap so YAML sources go through the same QaaS-aware loading path for files and remote URLs.
 
-## See also {: #see-also}
+## See also
 
-- [Framework Functions](index.md)
+Use the surrounding documentation navigation to move between related generated reference pages.

@@ -8,20 +8,15 @@ applies_to: [framework]
 keywords: [framework, functions, builders, policies, sections, general]
 summary: "Reference page for Policies: General."
 ---
-
 <!-- Verified-against: QaaS.Framework\QaaS.Framework.Policies\PolicyBuilder.cs -->
 
 # Policies: General
 
-> TL;DR — This page mirrors the `General` section from [Policies](../policies.md) as a focused reference.
+> TL;DR: Reference page for Policies: General.
 
-## When to use {: #when-to-use}
+This page mirrors the `General` section from [Policies](../policies.md).
 
-Use this page when you need the focused member list, signatures, and source notes for this section without scanning the full parent reference.
-
-## C# (CAC) usage {: #c-cac-usage}
-
-### `Configure` {: #configure}
+## `Configure`
 
 ??? info "Source file, signature, and docstring"
     **Member**
@@ -41,8 +36,10 @@ Use this page when you need the focused member list, signatures, and source note
     **Docstring**
     
     Sets the configuration currently stored on the Framework policy builder instance.
+    
+    Use this method when working with the documented Framework policy builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
-### `Build` {: #build}
+## `Build`
 
 ??? info "Source file, signature, and docstring"
     **Member**
@@ -65,7 +62,7 @@ Use this page when you need the focused member list, signatures, and source note
     
     Call this after the fluent configuration is complete. The method validates the accumulated state and materializes the runtime or immutable configuration object represented by the builder.
 
-### `BuildPolicies` {: #buildpolicies}
+## `BuildPolicies`
 
 ??? info "Source file, signature, and docstring"
     **Member**
@@ -88,11 +85,6 @@ Use this page when you need the focused member list, signatures, and source note
     
     This helper lets callers collapse several fluent policy builders into the policy chain consumed by the runtime configuration surface.
 
-## Edge cases {: #edge-cases}
+## See also
 
-- This page is generated from the parent reference section; edit the source XML docs or generator when content needs to change.
-- If a linked source member is renamed, regenerate the reference docs before changing prose by hand.
-
-## See also {: #see-also}
-
-- [Policies](../policies.md)
+Use the surrounding documentation navigation to move between related generated reference pages.

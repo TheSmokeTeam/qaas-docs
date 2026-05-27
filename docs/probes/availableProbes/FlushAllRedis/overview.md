@@ -12,19 +12,17 @@ summary: "Runs Redis FLUSHALL against the configured server to remove keys from 
 
 # FlushAllRedis
 
-> TL;DR — Runs Redis FLUSHALL against the configured server to remove keys from every database.
+> TL;DR: Runs Redis FLUSHALL against the configured server to remove keys from every database.
 
-## When to use {: #when-to-use}
+Runs Redis FLUSHALL against the configured server to remove keys from every database.
+
+## What It Does
 
 Runs `FLUSHALL` on the targeted Redis server and removes keys from every database on that server.
 
 This is the broadest Redis cleanup option and is only appropriate when the Redis instance is dedicated to the scenario or test environment.
 
-## YAML configuration {: #yaml-configuration}
-
-Use the hook name in the matching runtime section, then place hook-specific fields under the configuration object shown in the examples below.
-
-## Minimal example {: #minimal-example}
+## Minimal example
 
 ```yaml
 Sessions:
@@ -38,13 +36,13 @@ Sessions:
             - localhost:6379
 ```
 
-## Realistic example {: #realistic-example}
+## Realistic example
 
 This configuration performs a full Redis server flush against `localhost:6379`.
 
 After the probe runs, all Redis databases on that server are emptied.
 
-### Global Dictionary Behavior {: #global-dictionary-behavior}
+### Global Dictionary Behavior
 
 With `UseGlobalDict: true`, missing server connection fields can be resolved from the session-scoped `Redis/Defaults` alias when those keys do not appear in the local probe configuration. The probe still binds and validates after the merge, and any key that is present locally keeps priority over the shared default.
 
@@ -54,13 +52,6 @@ No recovery alias is involved for this probe.
 
 When `UseGlobalDict` is `false`, the probe behaves exactly as before and uses only local YAML or code configuration.
 
-## Edge cases {: #edge-cases}
+## See also
 
-- Missing required configuration keys fail schema validation before the hook runs.
-- Keep hook names and referenced session or data-source names aligned with the surrounding YAML.
-
-## See also {: #see-also}
-
-- [Configuration table](configuration/tableView.md)
-- [YAML scaffold](configuration/yamlView.md)
-- [Probes](../../index.md)
+Use the surrounding documentation navigation to move between related generated reference pages.

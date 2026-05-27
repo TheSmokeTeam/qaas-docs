@@ -12,19 +12,17 @@ summary: "Truncates the configured Microsoft SQL Server tables in the order they
 
 # MsSqlDataBaseTablesTruncate
 
-> TL;DR — Truncates the configured Microsoft SQL Server tables in the order they are listed.
+> TL;DR: Truncates the configured Microsoft SQL Server tables in the order they are listed.
 
-## When to use {: #when-to-use}
+Truncates the configured Microsoft SQL Server tables in the order they are listed.
+
+## What It Does
 
 Truncates the configured SQL Server tables in the order they are listed.
 
 This is useful when a scenario needs a fast relational cleanup step and the target tables are safe to truncate directly.
 
-## YAML configuration {: #yaml-configuration}
-
-Use the hook name in the matching runtime section, then place hook-specific fields under the configuration object shown in the examples below.
-
-## Minimal example {: #minimal-example}
+## Minimal example
 
 ```yaml
 Sessions:
@@ -41,13 +39,13 @@ Sessions:
             - dbo.Orders
 ```
 
-## Realistic example {: #realistic-example}
+## Realistic example
 
 This probe connects to SQL Server, then truncates `dbo.Outbox` and `dbo.Orders` with a 30-second command timeout.
 
 The listed order is preserved, which is helpful when cleanup should happen in a known sequence.
 
-### Global Dictionary Behavior {: #global-dictionary-behavior}
+### Global Dictionary Behavior
 
 With `UseGlobalDict: true`, missing `ConnectionString` and other shared SQL settings can be resolved from the session-scoped `Sql/Defaults` alias when those keys do not appear in the local probe configuration. The probe still binds and validates after the merge, and any key that is present locally keeps priority over the shared default.
 
@@ -57,13 +55,6 @@ No recovery alias is written for SQL truncation in this first pass.
 
 When `UseGlobalDict` is `false`, the probe behaves exactly as before and uses only local YAML or code configuration.
 
-## Edge cases {: #edge-cases}
+## See also
 
-- Missing required configuration keys fail schema validation before the hook runs.
-- Keep hook names and referenced session or data-source names aligned with the surrounding YAML.
-
-## See also {: #see-also}
-
-- [Configuration table](configuration/tableView.md)
-- [YAML scaffold](configuration/yamlView.md)
-- [Probes](../../index.md)
+Use the surrounding documentation navigation to move between related generated reference pages.

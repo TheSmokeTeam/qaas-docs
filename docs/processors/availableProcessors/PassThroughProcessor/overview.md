@@ -12,19 +12,17 @@ summary: "Returns the incoming request payload unchanged while applying the conf
 
 # PassThroughProcessor
 
-> TL;DR — Returns the incoming request payload unchanged while applying the configured response metadata.
+> TL;DR: Returns the incoming request payload unchanged while applying the configured response metadata.
 
-## When to use {: #when-to-use}
+Returns the incoming request payload unchanged while applying the configured response metadata.
+
+## What It Does
 
 Returns the incoming request body unchanged and optionally preserves the request metadata from the original data item.
 
 It is the simplest processor for echoing raw request content back to the caller while still letting you control response status, content type, and extra headers.
 
-## YAML configuration {: #yaml-configuration}
-
-Use the hook name in the matching runtime section, then place hook-specific fields under the configuration object shown in the examples below.
-
-## Minimal example {: #minimal-example}
+## Minimal example
 
 ```yaml
 Stubs:
@@ -48,19 +46,12 @@ Servers:
               TransactionStubName: PassThroughProcessorStub
 ```
 
-## Realistic example {: #realistic-example}
+## Realistic example
 
 This configuration returns the request body exactly as it arrived and marks the response as `202`.
 
 Because `PreserveMetaData` is enabled, request metadata already attached to the incoming item is preserved instead of being discarded.
 
-## Edge cases {: #edge-cases}
+## See also
 
-- Missing required configuration keys fail schema validation before the hook runs.
-- Keep hook names and referenced session or data-source names aligned with the surrounding YAML.
-
-## See also {: #see-also}
-
-- [Configuration table](configuration/tableView.md)
-- [YAML scaffold](configuration/yamlView.md)
-- [Processors](../../index.md)
+Use the surrounding documentation navigation to move between related generated reference pages.

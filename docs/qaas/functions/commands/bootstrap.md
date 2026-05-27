@@ -12,16 +12,12 @@ summary: "Each entry uses the short function name as the table-of-contents label
 
 # Bootstrap
 
-> TL;DR — This page lists the public Runner functions in the `Bootstrap` category.
-
-## When to use {: #when-to-use}
-
-Use this page when you need source-backed signatures, declaring types, and XML doc comments for this function category.
+> TL;DR: Each entry uses the short function name as the table-of-contents label. Expand an entry to inspect its source file, signature, and XML doc comments.
 
 Each entry uses the short function name as the table-of-contents label. Expand an entry to inspect its source file, signature, and XML doc comments.
 
 
-## `New` {: #new}
+## `New`
 
 ??? info "Source file, signature, and docstring"
     **Member**
@@ -44,7 +40,7 @@ Each entry uses the short function name as the table-of-contents label. Expand a
     
     This is the primary code-first entry point for bootstrapping the product from command-line style arguments so library startup and CLI startup stay aligned.
 
-## `New<TRunner>` {: #newtrunner}
+## `New<TRunner>`
 
 ??? info "Source file, signature, and docstring"
     **Member**
@@ -67,6 +63,6 @@ Each entry uses the short function name as the table-of-contents label. Expand a
     
     This is the primary code-first entry point for bootstrapping the product from command-line style arguments so library startup and CLI startup stay aligned.
 
-## See also {: #see-also}
+## See also
 
-- [Runner Functions](../index.md)
+Use the surrounding documentation navigation to move between related generated reference pages.

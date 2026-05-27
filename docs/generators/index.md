@@ -36,11 +36,11 @@ See the [Write Hooks](../qaas/quickStart/writeHooks.md) guide for a step-by-step
 
 
 <!-- generated hook catalog start -->
-## Available Hooks {: #available-hooks}
+## Available Hooks
 
 The built-in hooks below are grouped by usage area so it is easier to shortlist the right hook before drilling into configuration details.
 
-### External sources {: #external-sources}
+### External sources
 
 - [FromCSV](availableGenerators/FromCSV/overview.md): Reads CSV files from the configured file-system path and turns each row into generated data items.
 - [FromDataLake](availableGenerators/FromDataLake/overview.md): Retrieves rows from the configured data lake query and exposes each row as a generated JSON object.
@@ -48,14 +48,14 @@ The built-in hooks below are grouped by usage area so it is easier to shortlist 
 - [LettuceFromFileSystem](availableGenerators/LettuceFromFileSystem/overview.md): Retrieves lettuce-formatted files from the configured file-system path and exposes them as generated messages with their routing key metadata.
 - [FromS3](availableGenerators/FromS3/overview.md): Retrieves data from objects in a configured S3 bucket and prefix.
 
-### Existing data sources {: #existing-data-sources}
+### Existing data sources
 
 - [FromDataSources](availableGenerators/FromDataSources/overview.md): Generates data from the enumerable of data sources it receives
 - [FromLettuceDataSources](availableGenerators/FromLettuceDataSources/overview.md): Generates data from the enumerable of data sources it receives that is in `Lettuce` file format, presumes all items in the enumerable are deserialized into Json
 - [FromSessionDataDataSources](availableGenerators/FromSessionDataDataSources/overview.md): Generates data from the enumerable of data sources it receives, presumes all items in the enumerable are serialized and can be treated as a byte array
 - [Stacking](availableGenerators/Stacking/overview.md): Combines multiple data sources by taking a configured number of items from each source in turn.
 
-### Structured payloads {: #structured-payloads}
+### Structured payloads
 
 - [Json](availableGenerators/Json/overview.md): Generates JSON data from a configured prototype document.
 - [JsonSchemaDraft4](availableGenerators/JsonSchemaDraft4/overview.md): Generates JSON data that conforms to a configured JSON Schema Draft 4 document.

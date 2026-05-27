@@ -12,19 +12,17 @@ summary: "Probe that deletes rabbitmq exchanges"
 
 # DeleteRabbitMqExchanges
 
-> TL;DR — Probe that deletes rabbitmq exchanges
+> TL;DR: Probe that deletes rabbitmq exchanges
 
-## When to use {: #when-to-use}
+Probe that deletes rabbitmq exchanges
+
+## What It Does
 
 Deletes RabbitMQ exchanges through the AMQP connection defined in the probe configuration.
 
 This is useful when an exchange was created for a temporary scenario and should be removed cleanly afterward.
 
-## YAML configuration {: #yaml-configuration}
-
-Use the hook name in the matching runtime section, then place hook-specific fields under the configuration object shown in the examples below.
-
-## Minimal example {: #minimal-example}
+## Minimal example
 
 ```yaml
 Sessions:
@@ -43,25 +41,18 @@ Sessions:
             - orders.exchange
 ```
 
-## Realistic example {: #realistic-example}
+## Realistic example
 
 This configuration deletes the `orders.exchange` exchange from the `/` virtual host.
 
 It is a topology cleanup step that removes the exchange but leaves other RabbitMQ objects untouched.
 
-### Global Dictionary Behavior {: #global-dictionary-behavior}
+### Global Dictionary Behavior
 
 With `UseGlobalDict: true`, the resolved broker settings are saved under the session-scoped `RabbitMq/AmqpDefaults` alias, and this probe also writes the deleted exchange names as `RabbitMqExchangeConfig[]` to `RabbitMq/Recovery/Exchanges`. The canonical payload still lives under `__ProbeGlobalDict/Scoped/<execution-scope>/<session-name>/<probe-name>`, so every probe execution keeps its own isolated write path.
 
 That makes the probe useful in recovery or rollback scenarios where `CreateRabbitMqExchanges` runs later in the same execution and session and restores the deleted topology from the saved alias instead of hard-coding it twice. When `UseGlobalDict` is `false`, current behavior stays unchanged: only local YAML or code configuration is used, and nothing is written to the probe global dictionary.
 
-## Edge cases {: #edge-cases}
+## See also
 
-- Missing required configuration keys fail schema validation before the hook runs.
-- Keep hook names and referenced session or data-source names aligned with the surrounding YAML.
-
-## See also {: #see-also}
-
-- [Configuration table](configuration/tableView.md)
-- [YAML scaffold](configuration/yamlView.md)
-- [Probes](../../index.md)
+Use the surrounding documentation navigation to move between related generated reference pages.

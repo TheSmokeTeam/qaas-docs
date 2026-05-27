@@ -8,20 +8,15 @@ applies_to: [runner]
 keywords: [runner, qaas, functions, builders, executions, sections, assertions]
 summary: "Reference page for Executions: Assertions."
 ---
-
 <!-- Verified-against: QaaS.Runner\QaaS.Runner\ExecutionBuilder.cs -->
 
 # Executions: Assertions
 
-> TL;DR — This page mirrors the `Assertions` section from [Executions](../executions.md) as a focused reference.
+> TL;DR: Reference page for Executions: Assertions.
 
-## When to use {: #when-to-use}
+This page mirrors the `Assertions` section from [Executions](../executions.md).
 
-Use this page when you need the focused member list, signatures, and source notes for this section without scanning the full parent reference.
-
-## C# (CAC) usage {: #c-cac-usage}
-
-### `AddAssertion` {: #addassertion}
+## `AddAssertion`
 
 ??? info "Source file, signature, and docstring"
     **Member**
@@ -41,8 +36,10 @@ Use this page when you need the focused member list, signatures, and source note
     **Docstring**
     
     Adds the supplied assertion to the current Runner execution builder instance.
+    
+    Use this method when working with the documented Runner execution builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
-### `UpdateAssertion` {: #updateassertion}
+## `UpdateAssertion`
 
 ??? info "Source file, signature, and docstring"
     **Member**
@@ -62,8 +59,10 @@ Use this page when you need the focused member list, signatures, and source note
     **Docstring**
     
     Updates the configured assertion stored on the current Runner execution builder instance.
+    
+    Use this method when working with the documented Runner execution builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
-### `RemoveAssertion` {: #removeassertion}
+## `RemoveAssertion`
 
 ??? info "Source file, signature, and docstring"
     **Member**
@@ -83,8 +82,10 @@ Use this page when you need the focused member list, signatures, and source note
     **Docstring**
     
     Removes the configured assertion from the current Runner execution builder instance.
+    
+    Use this method when working with the documented Runner execution builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
-### `RemoveAssertionAt` {: #removeassertionat}
+## `RemoveAssertionAt`
 
 ??? info "Source file, signature, and docstring"
     **Member**
@@ -104,12 +105,9 @@ Use this page when you need the focused member list, signatures, and source note
     **Docstring**
     
     Removes the configured assertion at the specified index from the current Runner execution builder instance.
+    
+    Use this method when working with the documented Runner execution builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
-## Edge cases {: #edge-cases}
+## See also
 
-- This page is generated from the parent reference section; edit the source XML docs or generator when content needs to change.
-- If a linked source member is renamed, regenerate the reference docs before changing prose by hand.
-
-## See also {: #see-also}
-
-- [Executions](../executions.md)
+Use the surrounding documentation navigation to move between related generated reference pages.

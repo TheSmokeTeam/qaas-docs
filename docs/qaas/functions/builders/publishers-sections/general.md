@@ -8,20 +8,15 @@ applies_to: [runner]
 keywords: [runner, qaas, functions, builders, publishers, sections, general]
 summary: "Reference page for Publishers: General."
 ---
-
 <!-- Verified-against: QaaS.Runner\QaaS.Runner.Sessions\Actions\Publishers\Builders\PublisherBuilderLogic.cs -->
 
 # Publishers: General
 
-> TL;DR — This page mirrors the `General` section from [Publishers](../publishers.md) as a focused reference.
+> TL;DR: Reference page for Publishers: General.
 
-## When to use {: #when-to-use}
+This page mirrors the `General` section from [Publishers](../publishers.md).
 
-Use this page when you need the focused member list, signatures, and source notes for this section without scanning the full parent reference.
-
-## C# (CAC) usage {: #c-cac-usage}
-
-### `FilterData` {: #filterdata}
+## `FilterData`
 
 ??? info "Source file, signature, and docstring"
     **Member**
@@ -41,8 +36,10 @@ Use this page when you need the focused member list, signatures, and source note
     **Docstring**
     
     Sets the data filter used by the current Runner publisher builder instance.
+    
+    Use this method when working with the documented Runner publisher builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
-### `InLoops` {: #inloops}
+## `InLoops`
 
 ??? info "Source file, signature, and docstring"
     **Member**
@@ -62,8 +59,10 @@ Use this page when you need the focused member list, signatures, and source note
     **Docstring**
     
     Marks the transaction to execute continuously in loop mode.
+    
+    Use this method when working with the documented Runner publisher builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
-### `Configure` {: #configure}
+## `Configure`
 
 ??? info "Source file, signature, and docstring"
     **Member**
@@ -83,12 +82,9 @@ Use this page when you need the focused member list, signatures, and source note
     **Docstring**
     
     Sets the configuration currently stored on the Runner publisher builder instance.
+    
+    Use this method when working with the documented Runner publisher builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
-## Edge cases {: #edge-cases}
+## See also
 
-- This page is generated from the parent reference section; edit the source XML docs or generator when content needs to change.
-- If a linked source member is renamed, regenerate the reference docs before changing prose by hand.
-
-## See also {: #see-also}
-
-- [Publishers](../publishers.md)
+Use the surrounding documentation navigation to move between related generated reference pages.
