@@ -1,4 +1,5 @@
-ARG MKDOCS_MATERIAL_IMAGE
+ARG MKDOCS_MATERIAL_IMAGE=squidfunk/mkdocs-material:9.5
+ARG NGINX_IMAGE=nginx:1.27-alpine
 FROM ${MKDOCS_MATERIAL_IMAGE} AS build
 
 WORKDIR /docs
@@ -80,7 +81,6 @@ ENV QAAS_DOCS_SITE_URL=${QAAS_DOCS_SITE_URL} \
 RUN python tools/write_runtime_link_defaults.py docs/assets/javascripts/qaas-docs-build-defaults.js \
  && mkdocs build --clean
 
-ARG NGINX_IMAGE
 FROM ${NGINX_IMAGE} AS runtime
 
 COPY tools/nginx.conf /etc/nginx/conf.d/default.conf
