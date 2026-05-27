@@ -12,19 +12,17 @@ summary: "Downloads RabbitMQ definitions from the management API so the current 
 
 # DownloadRabbitMqDefinitions
 
-> TL;DR — Downloads RabbitMQ definitions from the management API so the current topology can be captured and reused.
+> TL;DR: Downloads RabbitMQ definitions from the management API so the current topology can be captured and reused.
 
-## When to use {: #when-to-use}
+Downloads RabbitMQ definitions from the management API so the current topology can be captured and reused.
+
+## What It Does
 
 Downloads RabbitMQ definitions through the management API and writes them to a JSON file.
 
 This is useful for snapshotting an existing RabbitMQ topology before a run changes it, or for exporting a topology that should later be restored elsewhere.
 
-## YAML configuration {: #yaml-configuration}
-
-Use the hook name in the matching runtime section, then place hook-specific fields under the configuration object shown in the examples below.
-
-## Minimal example {: #minimal-example}
+## YAML Example
 
 ```yaml
 Sessions:
@@ -44,25 +42,18 @@ Sessions:
           DefinitionsFilePath: artifacts/rabbitmq/orders-definitions.json
 ```
 
-## Realistic example {: #realistic-example}
+## What This Configuration Does
 
 This probe connects to the RabbitMQ management API and saves the definitions for `orders-vhost` into `artifacts/rabbitmq/orders-definitions.json`.
 
 The resulting file can be used as an environment snapshot or as input for a later upload step.
 
-### Global Dictionary Behavior {: #global-dictionary-behavior}
+### Global Dictionary Behavior
 
 With `UseGlobalDict: true`, missing management connection fields can be resolved from the session-scoped `RabbitMq/ManagementDefaults` alias when those keys are missing locally. This probe does not use a recovery alias in v1; it only consumes shared RabbitMQ defaults.
 
 That is useful when a backup step should reuse the same broker credentials that were already resolved by an earlier RabbitMQ management probe. When `UseGlobalDict` is `false`, the probe behaves exactly as before and uses only its local configuration.
 
-## Edge cases {: #edge-cases}
+## See also
 
-- Missing required configuration keys fail schema validation before the hook runs.
-- Keep hook names and referenced session or data-source names aligned with the surrounding YAML.
-
-## See also {: #see-also}
-
-- [Configuration table](configuration/tableView.md)
-- [YAML scaffold](configuration/yamlView.md)
-- [Probes](../../index.md)
+Use the surrounding documentation navigation to move between related generated reference pages.

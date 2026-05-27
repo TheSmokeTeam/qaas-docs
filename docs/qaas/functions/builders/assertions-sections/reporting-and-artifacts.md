@@ -8,20 +8,15 @@ applies_to: [runner]
 keywords: [runner, qaas, functions, builders, assertions, sections, reporting, and, artifacts]
 summary: "Reference page for Assertions: Reporting and artifacts."
 ---
-
 <!-- Verified-against: QaaS.Runner\QaaS.Runner.Assertions\ConfigurationObjects\AssertionBuilder.cs -->
 
 # Assertions: Reporting and artifacts
 
-> TL;DR — This page mirrors the `Reporting and artifacts` section from [Assertions](../assertions.md) as a focused reference.
+> TL;DR: Reference page for Assertions: Reporting and artifacts.
 
-## When to use {: #when-to-use}
+This page mirrors the `Reporting and artifacts` section from [Assertions](../assertions.md).
 
-Use this page when you need the focused member list, signatures, and source notes for this section without scanning the full parent reference.
-
-## C# (CAC) usage {: #c-cac-usage}
-
-### `ReportOnlyStatuses` {: #reportonlystatuses}
+## `ReportOnlyStatuses`
 
 ??? info "Source file, signature, and docstring"
     **Member**
@@ -41,8 +36,10 @@ Use this page when you need the focused member list, signatures, and source note
     **Docstring**
     
     Sets which assertion statuses should be included in reports.
+    
+    Use this method when working with the documented Runner assertion builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
-### `ShouldSaveSessionData` {: #shouldsavesessiondata}
+## `ShouldSaveSessionData`
 
 ??? info "Source file, signature, and docstring"
     **Member**
@@ -62,8 +59,10 @@ Use this page when you need the focused member list, signatures, and source note
     **Docstring**
     
     Configures whether session data is saved with the assertion result.
+    
+    Use this method when working with the documented Runner assertion builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
-### `ShouldSaveLogs` {: #shouldsavelogs}
+## `ShouldSaveLogs`
 
 ??? info "Source file, signature, and docstring"
     **Member**
@@ -83,8 +82,10 @@ Use this page when you need the focused member list, signatures, and source note
     **Docstring**
     
     Configures whether logs are saved with the assertion result.
+    
+    Use this method when working with the documented Runner assertion builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
-### `ShouldSaveConfigurationTemplate` {: #shouldsaveconfigurationtemplate}
+## `ShouldSaveConfigurationTemplate`
 
 ??? info "Source file, signature, and docstring"
     **Member**
@@ -104,8 +105,10 @@ Use this page when you need the focused member list, signatures, and source note
     **Docstring**
     
     Configures whether the rendered configuration template is saved with the assertion result.
+    
+    Use this method when working with the documented Runner assertion builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
-### `ShouldSaveAttachments` {: #shouldsaveattachments}
+## `ShouldSaveAttachments`
 
 ??? info "Source file, signature, and docstring"
     **Member**
@@ -125,8 +128,10 @@ Use this page when you need the focused member list, signatures, and source note
     **Docstring**
     
     Configures whether attachments are saved with the assertion result.
+    
+    Use this method when working with the documented Runner assertion builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
-### `ShouldDisplayTrace` {: #shoulddisplaytrace}
+## `ShouldDisplayTrace`
 
 ??? info "Source file, signature, and docstring"
     **Member**
@@ -146,12 +151,9 @@ Use this page when you need the focused member list, signatures, and source note
     **Docstring**
     
     Configures whether the assertion trace is displayed with the result.
+    
+    Use this method when working with the documented Runner assertion builder API surface in code. The behavior exposed here is part of the public surface that the generated function documentation groups under 'Configuration as Code / Assertions'.
 
-## Edge cases {: #edge-cases}
+## See also
 
-- This page is generated from the parent reference section; edit the source XML docs or generator when content needs to change.
-- If a linked source member is renamed, regenerate the reference docs before changing prose by hand.
-
-## See also {: #see-also}
-
-- [Assertions](../assertions.md)
+Use the surrounding documentation navigation to move between related generated reference pages.

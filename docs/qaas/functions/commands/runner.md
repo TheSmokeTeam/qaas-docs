@@ -12,16 +12,12 @@ summary: "Each entry uses the short function name as the table-of-contents label
 
 # Runner
 
-> TL;DR — This page lists the public Runner functions in the `Runner` category.
-
-## When to use {: #when-to-use}
-
-Use this page when you need source-backed signatures, declaring types, and XML doc comments for this function category.
+> TL;DR: Each entry uses the short function name as the table-of-contents label. Expand an entry to inspect its source file, signature, and XML doc comments.
 
 Each entry uses the short function name as the table-of-contents label. Expand an entry to inspect its source file, signature, and XML doc comments.
 
 
-## `Run` {: #run}
+## `Run`
 
 ??? info "Source file, signature, and docstring"
     **Member**
@@ -44,7 +40,7 @@ Each entry uses the short function name as the table-of-contents label. Expand a
     
     Call this when the current process should honor Runner exit behavior. If the caller needs to inspect the exit code without terminating the process, prefer RunAndGetExitCode().
 
-## `RunAndGetExitCode` {: #runandgetexitcode}
+## `RunAndGetExitCode`
 
 ??? info "Source file, signature, and docstring"
     **Member**
@@ -67,7 +63,7 @@ Each entry uses the short function name as the table-of-contents label. Expand a
     
     Call this when the caller wants to control how the resulting exit code is handled instead of letting Runner apply its default process policy.
 
-## `Dispose` {: #dispose}
+## `Dispose`
 
 ??? info "Source file, signature, and docstring"
     **Member**
@@ -90,6 +86,6 @@ Each entry uses the short function name as the table-of-contents label. Expand a
     
     Dispose should be called exactly once when the host is no longer needed so scopes, loggers, and other runtime resources are released deterministically.
 
-## See also {: #see-also}
+## See also
 
-- [Runner Functions](../index.md)
+Use the surrounding documentation navigation to move between related generated reference pages.

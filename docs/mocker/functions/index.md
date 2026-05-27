@@ -15,18 +15,18 @@ This overview indexes the current public function surface documented through sou
 
 Each category page keeps the table of contents focused on short function names and collapses the source file, signature, and XML doc comments behind each entry.
 
-## Available Functions {: #available-functions}
+## Available Functions
 
-### Builders {: #builders}
+### Builders
 
 - [Executions](builders/executions.md)
 - [Transaction Stubs](builders/transaction-stubs.md)
 
-### Commands {: #commands}
+### Commands
 
 - [Bootstrap](commands/bootstrap.md)
 - [Mocker Runner](commands/mocker-runner.md)
 
-### Extension Methods {: #extension-methods}
+### Extension Methods
 
 - [Extension Methods](extension-methods.md)

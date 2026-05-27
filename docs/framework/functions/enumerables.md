@@ -12,16 +12,12 @@ summary: "Each entry uses the short function name as the table-of-contents label
 
 # Enumerables
 
-> TL;DR — This page lists the public Framework functions in the `Enumerables` category.
-
-## When to use {: #when-to-use}
-
-Use this page when you need source-backed signatures, declaring types, and XML doc comments for this function category.
+> TL;DR: Each entry uses the short function name as the table-of-contents label. Expand an entry to inspect its source file, signature, and XML doc comments.
 
 Each entry uses the short function name as the table-of-contents label. Expand an entry to inspect its source file, signature, and XML doc comments.
 
 
-## `AsSingle<TItem>` {: #assingletitem}
+## `AsSingle<TItem>`
 
 ??? info "Source file, signature, and docstring"
     **Member**
@@ -44,7 +40,7 @@ Each entry uses the short function name as the table-of-contents label. Expand a
     
     The helper enforces the invariant that exactly one item must be present and throws when the sequence is empty or contains more than one value.
 
-## `GetFilteredConfigurationObjectList<TData, TPattern>` {: #getfilteredconfigurationobjectlisttdata-tpattern}
+## `GetFilteredConfigurationObjectList<TData, TPattern>`
 
 ??? info "Source file, signature, and docstring"
     **Member**
@@ -67,6 +63,6 @@ Each entry uses the short function name as the table-of-contents label. Expand a
     
     Throws when a requested condition does not match any item so callers can fail fast on invalid configuration references.
 
-## See also {: #see-also}
+## See also
 
-- [Framework Functions](index.md)
+Use the surrounding documentation navigation to move between related generated reference pages.

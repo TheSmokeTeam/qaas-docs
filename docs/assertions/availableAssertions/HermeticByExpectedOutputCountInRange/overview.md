@@ -12,19 +12,17 @@ summary: "Performs a hermetic test by comparing the count of a given output in a
 
 # HermeticByExpectedOutputCountInRange
 
-> TL;DR — Performs a hermetic test by comparing the count of a given output in a session to a given expected minimum and maximum
+> TL;DR: Performs a hermetic test by comparing the count of a given output in a session to a given expected minimum and maximum
 
-## When to use {: #when-to-use}
+Performs a hermetic test by comparing the count of a given output in a session to a given expected minimum and maximum
+
+## What It Does
 
 Adds up the number of items in the configured output names across the selected sessions and checks whether the total falls between a minimum and a maximum inclusive boundary.
 
 This is the range-based form of the exact-count hermetic check. It is useful when a flow is allowed to produce some controlled variation but still must stay inside a defined envelope.
 
-## YAML configuration {: #yaml-configuration}
-
-Use the hook name in the matching runtime section, then place hook-specific fields under the configuration object shown in the examples below.
-
-## Minimal example {: #minimal-example}
+## YAML Example
 
 ```yaml
 Sessions:
@@ -43,19 +41,12 @@ Assertions:
       ExpectedMaximumCount: 4
 ```
 
-## Realistic example {: #realistic-example}
+## What This Configuration Does
 
 This snippet counts how many items were saved under `Reply` for `SampleSession`.
 
 The assertion passes when the count is between 2 and 4 inclusive. Counts below 2 or above 4 fail the assertion.
 
-## Edge cases {: #edge-cases}
+## See also
 
-- Missing required configuration keys fail schema validation before the hook runs.
-- Keep hook names and referenced session or data-source names aligned with the surrounding YAML.
-
-## See also {: #see-also}
-
-- [Configuration table](configuration/tableView.md)
-- [YAML scaffold](configuration/yamlView.md)
-- [Assertions](../../index.md)
+Use the surrounding documentation navigation to move between related generated reference pages.

@@ -8,20 +8,15 @@ applies_to: [mocker]
 keywords: [mocker, functions, extension, methods, sections, http]
 summary: "Reference page for Extension Methods: Http."
 ---
-
 <!-- Verified-against: QaaS.Mocker\QaaS.Mocker.Servers\Extensions\HttpExtensions.cs -->
 
 # Extension Methods: Http
 
-> TL;DR — This page mirrors the `Http` section from [Extension Methods](../extension-methods.md) as a focused reference.
+> TL;DR: Reference page for Extension Methods: Http.
 
-## When to use {: #when-to-use}
+This page mirrors the `Http` section from [Extension Methods](../extension-methods.md).
 
-Use this page when you need the focused member list, signatures, and source notes for this section without scanning the full parent reference.
-
-## C# (CAC) usage {: #c-cac-usage}
-
-### `ToHttpMethodEnum` {: #tohttpmethodenum}
+## `ToHttpMethodEnum`
 
 ??? info "Source file, signature, and docstring"
     **Member**
@@ -42,7 +37,7 @@ Use this page when you need the focused member list, signatures, and source note
     
     Converts a string representation of an HTTP method to the corresponding HttpMethod enum.
 
-### `ConstructRequestDataAsync` {: #constructrequestdataasync}
+## `ConstructRequestDataAsync`
 
 ??? info "Source file, signature, and docstring"
     **Member**
@@ -63,7 +58,7 @@ Use this page when you need the focused member list, signatures, and source note
     
     Constructs request data from an HttpRequest .
 
-### `HandleResponseDataAndCloseAsync` {: #handleresponsedataandcloseasync}
+## `HandleResponseDataAndCloseAsync`
 
 ??? info "Source file, signature, and docstring"
     **Member**
@@ -84,11 +79,6 @@ Use this page when you need the focused member list, signatures, and source note
     
     Handles response data by setting headers and writing the response body.
 
-## Edge cases {: #edge-cases}
+## See also
 
-- This page is generated from the parent reference section; edit the source XML docs or generator when content needs to change.
-- If a linked source member is renamed, regenerate the reference docs before changing prose by hand.
-
-## See also {: #see-also}
-
-- [Extension Methods](../extension-methods.md)
+Use the surrounding documentation navigation to move between related generated reference pages.

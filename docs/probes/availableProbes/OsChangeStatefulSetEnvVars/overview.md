@@ -12,19 +12,17 @@ summary: "Probe that changes the environment variables of a statefulSet"
 
 # OsChangeStatefulSetEnvVars
 
-> TL;DR — Probe that changes the environment variables of a statefulSet
+> TL;DR: Probe that changes the environment variables of a statefulSet
 
-## When to use {: #when-to-use}
+Probe that changes the environment variables of a statefulSet
+
+## What It Does
 
 Updates or removes environment variables on a stateful set and then waits for the workload to converge.
 
 This is useful for stateful components such as brokers or databases that need a controlled configuration change before the scenario runs.
 
-## YAML configuration {: #yaml-configuration}
-
-Use the hook name in the matching runtime section, then place hook-specific fields under the configuration object shown in the examples below.
-
-## Minimal example {: #minimal-example}
+## YAML Example
 
 ```yaml
 Sessions:
@@ -50,13 +48,13 @@ Sessions:
             Password: docs-password
 ```
 
-## Realistic example {: #realistic-example}
+## What This Configuration Does
 
 This configuration updates the `worker` container in the `orders-worker` stateful set, adds two environment variables, removes `LEGACY_MODE`, and then waits for the stateful set rollout to settle.
 
 It is the stateful-set equivalent of the deployment environment-variable probe.
 
-### Global Dictionary Behavior {: #global-dictionary-behavior}
+### Global Dictionary Behavior
 
 With `UseGlobalDict: true`, missing shared cluster settings can be resolved from `Os/Defaults`, and missing `EnvVarsToUpdate` and `EnvVarsToRemove` can be restored from `Os/Recovery/EnvVars/StatefulSet/<ReplicaSetName>/<ContainerName-or-__all__>` after an earlier probe in the same execution and session captured the pre-change state.
 
@@ -66,13 +64,6 @@ A recovery payload is written only when the probe resolves exactly one target co
 
 When `UseGlobalDict` is `false`, the probe keeps the current behavior: it uses only local YAML or code configuration and does not read or write probe-global-dictionary state.
 
-## Edge cases {: #edge-cases}
+## See also
 
-- Missing required configuration keys fail schema validation before the hook runs.
-- Keep hook names and referenced session or data-source names aligned with the surrounding YAML.
-
-## See also {: #see-also}
-
-- [Configuration table](configuration/tableView.md)
-- [YAML scaffold](configuration/yamlView.md)
-- [Probes](../../index.md)
+Use the surrounding documentation navigation to move between related generated reference pages.

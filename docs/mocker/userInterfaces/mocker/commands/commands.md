@@ -8,27 +8,26 @@ applies_to: [mocker]
 keywords: [mocker, userinterfaces, commands]
 summary: "QaaS Mocker exposes a compact command surface: one command to start the runtime and one command to render the effective configuration without starting it."
 ---
-
 # Commands
 
-> TL;DR — Mocker commands start the configured mock environment or render the effective configuration for review.
+> TL;DR: QaaS Mocker exposes a compact command surface: one command to start the runtime and one command to render the effective configuration without starting it.
 
 QaaS Mocker exposes a compact command surface: one command to start the runtime and one command to render the effective configuration without starting it.
 
-## Invocation Pattern {: #invocation-pattern}
+## Invocation Pattern
 
 ```bash
 dotnet run <dotnet-parameters> -- <command> [command-values] [command-flags]
 ```
 
-## Available Commands {: #available-commands}
+## Available Commands
 
 | Command | Description | Best For |
 | ------- | ----------- | -------- |
 | [`run`](./run.md) | Start the configured mock servers and optional controller runtime. | Start the configured mock servers and optional controller runtime. |
 | [`template`](./template.md) | Render the effective merged configuration after file, folder, argument, and environment overrides. | Render the effective merged mocker configuration without starting the runtime. |
 
-## Common Flags {: #common-flags}
+## Common Flags
 
 | Category | Flag | Default | Type | Description |
 | -------- | ---- | ------- | ---- | ----------- |
@@ -46,12 +45,12 @@ dotnet run <dotnet-parameters> -- <command> [command-values] [command-flags]
 | Runtime | `--run-locally` | False | `bool` | Runs the project locally and enables exit by any key press. |
 | Logging | `--send-logs` | False | `bool` | Whether to send logs to the configured Elasticsearch sink. |
 
-## Working Style {: #working-style}
+## Working Style
 
 - Use `template` when you want to verify the final merged configuration before you boot the runtime.
 - Use `run` when you are ready to start the configured mock servers and optional controller process.
 
-## Raw CLI Help {: #raw-cli-help}
+## Raw CLI Help
 
 ```text
 Usage:
@@ -172,7 +171,6 @@ Usage:
                                      the command.
 ```
 
-## See also {: #see-also}
+## See also
 
-- [`run`](./run.md)
-- [`template`](./template.md)
+Use the surrounding documentation navigation to move between related generated reference pages.

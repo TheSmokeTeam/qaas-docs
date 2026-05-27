@@ -8,20 +8,15 @@ applies_to: [runner]
 keywords: [runner, qaas, functions, builders, transactions, sections, data, source, selection]
 summary: "Reference page for Transactions: Data source selection."
 ---
-
 <!-- Verified-against: QaaS.Runner\QaaS.Runner.Sessions\Actions\Transactions\Builders\TransactionBuilder.cs -->
 
 # Transactions: Data source selection
 
-> TL;DR — This page mirrors the `Data source selection` section from [Transactions](../transactions.md) as a focused reference.
+> TL;DR: Reference page for Transactions: Data source selection.
 
-## When to use {: #when-to-use}
+This page mirrors the `Data source selection` section from [Transactions](../transactions.md).
 
-Use this page when you need the focused member list, signatures, and source notes for this section without scanning the full parent reference.
-
-## C# (CAC) usage {: #c-cac-usage}
-
-### `AddDataSource` {: #adddatasource}
+## `AddDataSource`
 
 ??? info "Source file, signature, and docstring"
     **Member**
@@ -41,8 +36,10 @@ Use this page when you need the focused member list, signatures, and source note
     **Docstring**
     
     Adds the supplied data source to the current Runner transaction builder instance.
+    
+    Use this method when working with the documented Runner transaction builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
-### `AddDataSourcePattern` {: #adddatasourcepattern}
+## `AddDataSourcePattern`
 
 ??? info "Source file, signature, and docstring"
     **Member**
@@ -62,8 +59,10 @@ Use this page when you need the focused member list, signatures, and source note
     **Docstring**
     
     Adds the supplied data source pattern to the current Runner transaction builder instance.
+    
+    Use this method when working with the documented Runner transaction builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
-### `UpdateDataSource` {: #updatedatasource}
+## `UpdateDataSource`
 
 ??? info "Source file, signature, and docstring"
     **Member**
@@ -83,8 +82,10 @@ Use this page when you need the focused member list, signatures, and source note
     **Docstring**
     
     Updates the configured data source stored on the current Runner transaction builder instance.
+    
+    Use this method when working with the documented Runner transaction builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
-### `RemoveDataSource` {: #removedatasource}
+## `RemoveDataSource`
 
 ??? info "Source file, signature, and docstring"
     **Member**
@@ -104,8 +105,10 @@ Use this page when you need the focused member list, signatures, and source note
     **Docstring**
     
     Removes the configured data source from the current Runner transaction builder instance.
+    
+    Use this method when working with the documented Runner transaction builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
-### `RemoveDataSourceAt` {: #removedatasourceat}
+## `RemoveDataSourceAt`
 
 ??? info "Source file, signature, and docstring"
     **Member**
@@ -125,8 +128,10 @@ Use this page when you need the focused member list, signatures, and source note
     **Docstring**
     
     Removes the configured data source at the specified index from the current Runner transaction builder instance.
+    
+    Use this method when working with the documented Runner transaction builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
-### `UpdateDataSourcePattern` {: #updatedatasourcepattern}
+## `UpdateDataSourcePattern`
 
 ??? info "Source file, signature, and docstring"
     **Member**
@@ -146,8 +151,10 @@ Use this page when you need the focused member list, signatures, and source note
     **Docstring**
     
     Updates the configured data source pattern stored on the current Runner transaction builder instance.
+    
+    Use this method when working with the documented Runner transaction builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
-### `RemoveDataSourcePattern` {: #removedatasourcepattern}
+## `RemoveDataSourcePattern`
 
 ??? info "Source file, signature, and docstring"
     **Member**
@@ -167,8 +174,10 @@ Use this page when you need the focused member list, signatures, and source note
     **Docstring**
     
     Removes the configured data source pattern from the current Runner transaction builder instance.
+    
+    Use this method when working with the documented Runner transaction builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
-### `RemoveDataSourcePatternAt` {: #removedatasourcepatternat}
+## `RemoveDataSourcePatternAt`
 
 ??? info "Source file, signature, and docstring"
     **Member**
@@ -188,12 +197,9 @@ Use this page when you need the focused member list, signatures, and source note
     **Docstring**
     
     Removes the configured data source pattern at the specified index from the current Runner transaction builder instance.
+    
+    Use this method when working with the documented Runner transaction builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
-## Edge cases {: #edge-cases}
+## See also
 
-- This page is generated from the parent reference section; edit the source XML docs or generator when content needs to change.
-- If a linked source member is renamed, regenerate the reference docs before changing prose by hand.
-
-## See also {: #see-also}
-
-- [Transactions](../transactions.md)
+Use the surrounding documentation navigation to move between related generated reference pages.

@@ -12,19 +12,17 @@ summary: "Probe that changes the environment variables of a deployment"
 
 # OsChangeDeploymentEnvVars
 
-> TL;DR — Probe that changes the environment variables of a deployment
+> TL;DR: Probe that changes the environment variables of a deployment
 
-## When to use {: #when-to-use}
+Probe that changes the environment variables of a deployment
+
+## What It Does
 
 Updates or removes environment variables on a deployment and then waits for the deployment to converge to its desired state.
 
 This is useful when a scenario needs to switch feature flags, endpoint URLs, or other container environment settings before traffic starts.
 
-## YAML configuration {: #yaml-configuration}
-
-Use the hook name in the matching runtime section, then place hook-specific fields under the configuration object shown in the examples below.
-
-## Minimal example {: #minimal-example}
+## YAML Example
 
 ```yaml
 Sessions:
@@ -50,13 +48,13 @@ Sessions:
             Password: docs-password
 ```
 
-## Realistic example {: #realistic-example}
+## What This Configuration Does
 
 This probe updates the `api` container in the `orders-api` deployment so that `FEATURE_FLAG_X` and `DOWNSTREAM_BASE_URL` are set, while `LEGACY_MODE` is removed.
 
 After patching the deployment, it waits until the workload reaches the desired state again before the scenario continues.
 
-### Global Dictionary Behavior {: #global-dictionary-behavior}
+### Global Dictionary Behavior
 
 With `UseGlobalDict: true`, missing shared cluster settings can be resolved from `Os/Defaults`, and missing `EnvVarsToUpdate` and `EnvVarsToRemove` can be restored from `Os/Recovery/EnvVars/Deployment/<ReplicaSetName>/<ContainerName-or-__all__>` after an earlier probe in the same execution and session captured the pre-change state.
 
@@ -66,13 +64,6 @@ A recovery payload is written only when the probe resolves exactly one target co
 
 When `UseGlobalDict` is `false`, the probe keeps the current behavior: it uses only local YAML or code configuration and does not read or write probe-global-dictionary state.
 
-## Edge cases {: #edge-cases}
+## See also
 
-- Missing required configuration keys fail schema validation before the hook runs.
-- Keep hook names and referenced session or data-source names aligned with the surrounding YAML.
-
-## See also {: #see-also}
-
-- [Configuration table](configuration/tableView.md)
-- [YAML scaffold](configuration/yamlView.md)
-- [Probes](../../index.md)
+Use the surrounding documentation navigation to move between related generated reference pages.

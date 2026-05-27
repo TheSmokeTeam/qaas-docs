@@ -12,54 +12,32 @@ summary: "Minimal YAML scaffold for ExecuteRedisCommands ProbeConfiguration — 
 
 # ExecuteRedisCommands Configurations Yaml View
 
-> TL;DR — Copy this schema-derived YAML scaffold, replace placeholder values, and use the table view for field descriptions.
-
-## When to use {: #when-to-use}
-
-Use this page when you need a starting YAML shape for this hook configuration and want all generated fields in one block.
-
-## YAML configuration {: #yaml-configuration}
-
-The scaffold follows the generated schema order. String placeholders are quoted, optional lists render as `[]`, and numeric placeholders use schema minimums when they exist.
-
-## Minimal example {: #minimal-example}
+> TL;DR: Minimal YAML scaffold for ExecuteRedisCommands ProbeConfiguration — copy, fill the blanks, drop into a Session step.
 
 ```yaml
 ProbeConfiguration:
-  AbortOnConnectFail: True
-  AsyncTimeout: 5000
-  ClientName: 'value'
-  ConnectRetry: 3
-  KeepAlive: 60
-  Password: 'value'
-  RedisDataBase: 0
-  Ssl: False
-  SslHost: 'value'
-  UseGlobalDict: False
-  Username: 'value'
+  AbortOnConnectFail:
+  AsyncTimeout:
+  ClientName:
+  ConnectRetry:
+  KeepAlive:
+  Password:
+  RedisDataBase:
+  Ssl:
+  SslHost:
+  UseGlobalDict:
+  Username:
   Commands:
-    -
-      Command: 'value'
-      StoreResultAs: 'value'
+    - Command:
+      StoreResultAs:
       Arguments: []
-  HostNames:
-    - 'value'
+  HostNames: []
   RepeatUntil:
-    ExpectedValue: 'value'
-    ResultPath: 'value'
-    MaxIterations: 100
+    ExpectedValue:
+    ResultPath:
+    MaxIterations:
 ```
 
-## Realistic example {: #realistic-example}
+## See also
 
-Start with the minimal scaffold, replace placeholder values with project values, and combine it with the surrounding hook entry shown on the overview page.
-
-## Edge cases {: #edge-cases}
-
-- Optional arrays are emitted as `[]`; add entries only when the hook needs that collection.
-- Placeholder-style strings are quoted so YAML parsers keep them as scalar values.
-
-## See also {: #see-also}
-
-- [Configuration table](tableView.md)
-- [Overview](../overview.md)
+Use the surrounding documentation navigation to move between related generated reference pages.

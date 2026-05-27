@@ -12,19 +12,17 @@ summary: "Returns a JSON response that echoes the incoming request body and opti
 
 # RequestEchoProcessor
 
-> TL;DR — Returns a JSON response that echoes the incoming request body and optional request metadata.
+> TL;DR: Returns a JSON response that echoes the incoming request body and optional request metadata.
 
-## When to use {: #when-to-use}
+Returns a JSON response that echoes the incoming request body and optional request metadata.
+
+## What It Does
 
 Returns a JSON echo of the incoming request body and can optionally include the request URI, headers, and path parameters.
 
 For byte-array request bodies it also includes base64, text, and length information so binary payloads can still be inspected easily.
 
-## YAML configuration {: #yaml-configuration}
-
-Use the hook name in the matching runtime section, then place hook-specific fields under the configuration object shown in the examples below.
-
-## Minimal example {: #minimal-example}
+## YAML Example
 
 ```yaml
 Stubs:
@@ -50,19 +48,12 @@ Servers:
               TransactionStubName: RequestEchoProcessorStub
 ```
 
-## Realistic example {: #realistic-example}
+## What This Configuration Does
 
 This stub responds with a JSON document that mirrors the incoming request body and includes the request URI, path parameters, and request headers.
 
 It returns HTTP `200` as a diagnostic echo response.
 
-## Edge cases {: #edge-cases}
+## See also
 
-- Missing required configuration keys fail schema validation before the hook runs.
-- Keep hook names and referenced session or data-source names aligned with the surrounding YAML.
-
-## See also {: #see-also}
-
-- [Configuration table](configuration/tableView.md)
-- [YAML scaffold](configuration/yamlView.md)
-- [Processors](../../index.md)
+Use the surrounding documentation navigation to move between related generated reference pages.
