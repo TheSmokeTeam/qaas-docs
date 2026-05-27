@@ -1,30 +1,14 @@
----
-id: probes.available.emptys3bucket.overview
-type: reference
-status: stable
-since: 2.0.0
-last_verified: 2026-05-22
-applies_to: [probes]
-keywords: [probes, EmptyS3Bucket, ProbeConfiguration]
-summary: "Deletes objects from the configured S3 bucket, optionally constrained to a prefix, while treating a missing bucket as a no-op."
----
-<!-- Verified-against: QaaS.Common.Probes\QaaS.Common.Probes\S3Probes\EmptyS3Bucket.cs -->
-
 # EmptyS3Bucket
 
-> TL;DR — Deletes objects from the configured S3 bucket, optionally constrained to a prefix, while treating a missing bucket as a no-op.
+Deletes objects from the configured S3 bucket, optionally constrained to a prefix, while treating a missing bucket as a no-op.
 
-## When to use {: #when-to-use}
+## What It Does
 
 Deletes objects from an S3-compatible bucket without deleting the bucket itself.
 
 An optional prefix limits the cleanup to one logical folder, which is useful when multiple scenarios share the same bucket but write to different prefixes.
 
-## YAML configuration {: #yaml-configuration}
-
-Use the hook name in the matching runtime section, then place hook-specific fields under the configuration object shown in the examples below.
-
-## Minimal example {: #minimal-example}
+## YAML Example
 
 ```yaml
 Sessions:
@@ -42,13 +26,13 @@ Sessions:
           Prefix: runs/2026-03-28/
 ```
 
-## Realistic example {: #realistic-example}
+## What This Configuration Does
 
 This configuration removes every object under the `runs/2026-03-28/` prefix from the `qaas-docs` bucket and keeps the bucket itself intact.
 
 That makes it useful for cleaning one run namespace without affecting the rest of the bucket.
 
-### Global Dictionary Behavior {: #global-dictionary-behavior}
+### Global Dictionary Behavior
 
 With `UseGlobalDict: true`, missing bucket connection fields can be resolved from the session-scoped `S3/Defaults` alias when those keys do not appear in the local probe configuration. The probe still binds and validates after the merge, and any key that is present locally keeps priority over the shared default.
 
@@ -57,14 +41,3 @@ That makes the probe useful when object cleanup should reuse the same S3 bucket 
 No recovery alias is written for S3 in this first pass.
 
 When `UseGlobalDict` is `false`, the probe behaves exactly as before and uses only local YAML or code configuration.
-
-## Edge cases {: #edge-cases}
-
-- Missing required configuration keys fail schema validation before the hook runs.
-- Keep hook names and referenced session or data-source names aligned with the surrounding YAML.
-
-## See also {: #see-also}
-
-- [Configuration table](configuration/tableView.md)
-- [YAML scaffold](configuration/yamlView.md)
-- [Probes](../../index.md)

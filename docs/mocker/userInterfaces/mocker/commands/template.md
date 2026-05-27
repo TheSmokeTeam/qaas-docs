@@ -1,36 +1,25 @@
----
-id: mocker.userinterfaces.mocker.commands.template
-type: reference
-status: stable
-since: 2.0.0
-last_verified: 2026-05-22
-applies_to: [mocker]
-keywords: [mocker, userinterfaces, commands, template]
-summary: "Render the effective merged configuration after file, folder, argument, and environment overrides."
----
-
 # template
 
-> TL;DR — Render the effective merged configuration after file, folder, argument, and environment overrides.
+Render the effective merged configuration after file, folder, argument, and environment overrides.
 
-## Invocation {: #invocation}
+## Invocation
 
 ```bash
 dotnet run <dotnet-parameters> -- template <config-file> [flags]
 ```
 
-## When to use {: #when-to-use}
+## Use When
 
 - You want to inspect the final server, controller, and stub configuration before starting the runtime.
 - You need to confirm how overwrite files, folders, arguments, and environment variables combine.
 
-## Positional Arguments {: #positional-arguments}
+## Positional Arguments
 
 | Position | Property | Source Type | Inherited | Required | Default | Value Type | Description |
 | -------- | -------- | ----------- | --------- | -------- | ------- | ---------- | ----------- |
 | `0` | `ConfigurationFile` | `Mocker options` | Yes | Yes | mocker.qaas.yaml | `string` | Path to a mocker yaml configuration file to use with the command. |
 
-## Flags {: #flags}
+## Flags
 
 | Category | Flag | Inherited | Required | Default | Value Type | Description |
 | -------- | ---- | --------- | -------- | ------- | ---------- | ----------- |
@@ -48,27 +37,27 @@ dotnet run <dotnet-parameters> -- template <config-file> [flags]
 | Runtime | `--run-locally` | Yes | No | False | `bool` | Runs the project locally and enables exit by any key press. |
 | Logging | `--send-logs` | Yes | No | False | `bool` | Whether to send logs to the configured Elasticsearch sink. |
 
-## Flag Notes {: #flag-notes}
+## Flag Notes
 
-### `-o`, `--output-folder` {: #-o-output-folder}
+### `-o`, `--output-folder`
 
 Use an output folder when you want the rendered configuration written to disk for review or diffing.
 
-## Examples {: #examples}
+## Examples
 
-### Print the resolved mocker configuration {: #print-the-resolved-mocker-configuration}
+### Print the resolved mocker configuration
 
 ```bash
 dotnet run -- template mocker.qaas.yaml
 ```
 
-### Render the merged config into an output folder {: #render-the-merged-config-into-an-output-folder}
+### Render the merged config into an output folder
 
 ```bash
 dotnet run -- template mocker.qaas.yaml -w local-overrides.yaml -o rendered
 ```
 
-## Raw CLI Help {: #raw-cli-help}
+## Raw CLI Help
 
 ```text
 Usage:
@@ -124,7 +113,3 @@ No-args guidance:
   Empty arguments only work for code-only hosts that choose a no-args path in Program.cs.
   If a YAML file is part of the scenario, pass it explicitly: dotnet run -- run <config-file>.
 ```
-
-## See also {: #see-also}
-
-- [Mocker commands](commands.md)

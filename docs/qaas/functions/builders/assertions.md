@@ -1,30 +1,12 @@
----
-id: qaas.functions.builders.assertions
-type: reference
-status: stable
-since: 2.0.0
-last_verified: 2026-05-22
-applies_to: [runner]
-keywords: [qaas, functions, builders, assertions]
-summary: "Each entry uses the short function name as the table-of-contents label. Expand an entry to inspect its source file, signature, and XML doc comments."
----
-<!-- Verified-against: QaaS.Runner\QaaS.Runner.Assertions\ConfigurationObjects\AssertionBuilder.cs -->
-
 # Assertions
-
-> TL;DR — This page lists the public Runner functions in the `Assertions` category.
-
-## When to use {: #when-to-use}
-
-Use this page when you need source-backed signatures, declaring types, and XML doc comments for this function category.
 
 Each entry uses the short function name as the table-of-contents label. Expand an entry to inspect its source file, signature, and XML doc comments.
 
 The functions on this page are grouped by responsibility so related operations stay together.
 
-## Identity and hook selection {: #identity-and-hook-selection}
+## Identity and hook selection
 
-### `Named` {: #named}
+### `Named`
 
 ??? info "Source file, signature, and docstring"
     **Member**
@@ -44,8 +26,10 @@ The functions on this page are grouped by responsibility so related operations s
     **Docstring**
     
     Sets the name used for the current Runner assertion builder instance.
+    
+    Use this method when working with the documented Runner assertion builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
-### `HookNamed` {: #hooknamed}
+### `HookNamed`
 
 ??? info "Source file, signature, and docstring"
     **Member**
@@ -65,10 +49,12 @@ The functions on this page are grouped by responsibility so related operations s
     **Docstring**
     
     Sets the hook implementation name used by the current Runner assertion builder instance.
+    
+    Use this method when working with the documented Runner assertion builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
-## Classification {: #classification}
+## Classification
 
-### `WithCategory` {: #withcategory}
+### `WithCategory`
 
 ??? info "Source file, signature, and docstring"
     **Member**
@@ -88,8 +74,10 @@ The functions on this page are grouped by responsibility so related operations s
     **Docstring**
     
     Configures category on the current Runner assertion builder instance.
+    
+    Use this method when working with the documented Runner assertion builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
-### `WithSeverity` {: #withseverity}
+### `WithSeverity`
 
 ??? info "Source file, signature, and docstring"
     **Member**
@@ -109,10 +97,12 @@ The functions on this page are grouped by responsibility so related operations s
     **Docstring**
     
     Sets the severity associated with the assertion result.
+    
+    Use this method when working with the documented Runner assertion builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
-## Data source selection {: #data-source-selection}
+## Data source selection
 
-### `AddDataSourceName` {: #adddatasourcename}
+### `AddDataSourceName`
 
 ??? info "Source file, signature, and docstring"
     **Member**
@@ -132,8 +122,10 @@ The functions on this page are grouped by responsibility so related operations s
     **Docstring**
     
     Adds the supplied data source name to the current Runner assertion builder instance.
+    
+    Use this method when working with the documented Runner assertion builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
-### `RemoveDataSourceName` {: #removedatasourcename}
+### `RemoveDataSourceName`
 
 ??? info "Source file, signature, and docstring"
     **Member**
@@ -153,8 +145,10 @@ The functions on this page are grouped by responsibility so related operations s
     **Docstring**
     
     Removes the configured data source name from the current Runner assertion builder instance.
+    
+    Use this method when working with the documented Runner assertion builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
-### `RemoveDataSourceNameAt` {: #removedatasourcenameat}
+### `RemoveDataSourceNameAt`
 
 ??? info "Source file, signature, and docstring"
     **Member**
@@ -174,8 +168,10 @@ The functions on this page are grouped by responsibility so related operations s
     **Docstring**
     
     Removes the configured data source name at the specified index from the current Runner assertion builder instance.
+    
+    Use this method when working with the documented Runner assertion builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
-### `AddDataSourcePattern` {: #adddatasourcepattern}
+### `AddDataSourcePattern`
 
 ??? info "Source file, signature, and docstring"
     **Member**
@@ -195,8 +191,10 @@ The functions on this page are grouped by responsibility so related operations s
     **Docstring**
     
     Adds the supplied data source pattern to the current Runner assertion builder instance.
+    
+    Use this method when working with the documented Runner assertion builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
-### `RemoveDataSourcePattern` {: #removedatasourcepattern}
+### `RemoveDataSourcePattern`
 
 ??? info "Source file, signature, and docstring"
     **Member**
@@ -216,8 +214,10 @@ The functions on this page are grouped by responsibility so related operations s
     **Docstring**
     
     Removes the configured data source pattern from the current Runner assertion builder instance.
+    
+    Use this method when working with the documented Runner assertion builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
-### `RemoveDataSourcePatternAt` {: #removedatasourcepatternat}
+### `RemoveDataSourcePatternAt`
 
 ??? info "Source file, signature, and docstring"
     **Member**
@@ -237,10 +237,12 @@ The functions on this page are grouped by responsibility so related operations s
     **Docstring**
     
     Removes the configured data source pattern at the specified index from the current Runner assertion builder instance.
+    
+    Use this method when working with the documented Runner assertion builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
-## Session selection {: #session-selection}
+## Session selection
 
-### `AddSessionName` {: #addsessionname}
+### `AddSessionName`
 
 ??? info "Source file, signature, and docstring"
     **Member**
@@ -260,8 +262,10 @@ The functions on this page are grouped by responsibility so related operations s
     **Docstring**
     
     Adds the supplied session name to the current Runner assertion builder instance.
+    
+    Use this method when working with the documented Runner assertion builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
-### `RemoveSessionName` {: #removesessionname}
+### `RemoveSessionName`
 
 ??? info "Source file, signature, and docstring"
     **Member**
@@ -281,8 +285,10 @@ The functions on this page are grouped by responsibility so related operations s
     **Docstring**
     
     Removes the configured session name from the current Runner assertion builder instance.
+    
+    Use this method when working with the documented Runner assertion builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
-### `RemoveSessionNameAt` {: #removesessionnameat}
+### `RemoveSessionNameAt`
 
 ??? info "Source file, signature, and docstring"
     **Member**
@@ -302,8 +308,10 @@ The functions on this page are grouped by responsibility so related operations s
     **Docstring**
     
     Removes the configured session name at the specified index from the current Runner assertion builder instance.
+    
+    Use this method when working with the documented Runner assertion builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
-### `AddSessionPattern` {: #addsessionpattern}
+### `AddSessionPattern`
 
 ??? info "Source file, signature, and docstring"
     **Member**
@@ -323,8 +331,10 @@ The functions on this page are grouped by responsibility so related operations s
     **Docstring**
     
     Adds the supplied session pattern to the current Runner assertion builder instance.
+    
+    Use this method when working with the documented Runner assertion builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
-### `RemoveSessionPattern` {: #removesessionpattern}
+### `RemoveSessionPattern`
 
 ??? info "Source file, signature, and docstring"
     **Member**
@@ -344,8 +354,10 @@ The functions on this page are grouped by responsibility so related operations s
     **Docstring**
     
     Removes the configured session pattern from the current Runner assertion builder instance.
+    
+    Use this method when working with the documented Runner assertion builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
-### `RemoveSessionPatternAt` {: #removesessionpatternat}
+### `RemoveSessionPatternAt`
 
 ??? info "Source file, signature, and docstring"
     **Member**
@@ -365,10 +377,12 @@ The functions on this page are grouped by responsibility so related operations s
     **Docstring**
     
     Removes the configured session pattern at the specified index from the current Runner assertion builder instance.
+    
+    Use this method when working with the documented Runner assertion builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
-## Links {: #links}
+## Links
 
-### `AddLink` {: #addlink}
+### `AddLink`
 
 ??? info "Source file, signature, and docstring"
     **Member**
@@ -388,8 +402,10 @@ The functions on this page are grouped by responsibility so related operations s
     **Docstring**
     
     Adds the supplied link to the current Runner assertion builder instance.
+    
+    Use this method when working with the documented Runner assertion builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
-### `RemoveLink` {: #removelink}
+### `RemoveLink`
 
 ??? info "Source file, signature, and docstring"
     **Member**
@@ -409,8 +425,10 @@ The functions on this page are grouped by responsibility so related operations s
     **Docstring**
     
     Removes the configured link from the current Runner assertion builder instance.
+    
+    Use this method when working with the documented Runner assertion builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
-### `RemoveLinkAt` {: #removelinkat}
+### `RemoveLinkAt`
 
 ??? info "Source file, signature, and docstring"
     **Member**
@@ -430,10 +448,12 @@ The functions on this page are grouped by responsibility so related operations s
     **Docstring**
     
     Removes the configured link at the specified index from the current Runner assertion builder instance.
+    
+    Use this method when working with the documented Runner assertion builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
-## Reporting and artifacts {: #reporting-and-artifacts}
+## Reporting and artifacts
 
-### `ReportOnlyStatuses` {: #reportonlystatuses}
+### `ReportOnlyStatuses`
 
 ??? info "Source file, signature, and docstring"
     **Member**
@@ -453,8 +473,10 @@ The functions on this page are grouped by responsibility so related operations s
     **Docstring**
     
     Sets which assertion statuses should be included in reports.
+    
+    Use this method when working with the documented Runner assertion builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
-### `ShouldSaveSessionData` {: #shouldsavesessiondata}
+### `ShouldSaveSessionData`
 
 ??? info "Source file, signature, and docstring"
     **Member**
@@ -474,8 +496,10 @@ The functions on this page are grouped by responsibility so related operations s
     **Docstring**
     
     Configures whether session data is saved with the assertion result.
+    
+    Use this method when working with the documented Runner assertion builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
-### `ShouldSaveLogs` {: #shouldsavelogs}
+### `ShouldSaveLogs`
 
 ??? info "Source file, signature, and docstring"
     **Member**
@@ -495,8 +519,10 @@ The functions on this page are grouped by responsibility so related operations s
     **Docstring**
     
     Configures whether logs are saved with the assertion result.
+    
+    Use this method when working with the documented Runner assertion builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
-### `ShouldSaveConfigurationTemplate` {: #shouldsaveconfigurationtemplate}
+### `ShouldSaveConfigurationTemplate`
 
 ??? info "Source file, signature, and docstring"
     **Member**
@@ -516,8 +542,10 @@ The functions on this page are grouped by responsibility so related operations s
     **Docstring**
     
     Configures whether the rendered configuration template is saved with the assertion result.
+    
+    Use this method when working with the documented Runner assertion builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
-### `ShouldSaveAttachments` {: #shouldsaveattachments}
+### `ShouldSaveAttachments`
 
 ??? info "Source file, signature, and docstring"
     **Member**
@@ -537,8 +565,10 @@ The functions on this page are grouped by responsibility so related operations s
     **Docstring**
     
     Configures whether attachments are saved with the assertion result.
+    
+    Use this method when working with the documented Runner assertion builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
-### `ShouldDisplayTrace` {: #shoulddisplaytrace}
+### `ShouldDisplayTrace`
 
 ??? info "Source file, signature, and docstring"
     **Member**
@@ -558,10 +588,12 @@ The functions on this page are grouped by responsibility so related operations s
     **Docstring**
     
     Configures whether the assertion trace is displayed with the result.
+    
+    Use this method when working with the documented Runner assertion builder API surface in code. The behavior exposed here is part of the public surface that the generated function documentation groups under 'Configuration as Code / Assertions'.
 
-## Collection helpers {: #collection-helpers}
+## Collection helpers
 
-### `UpdateConfiguration` {: #updateconfiguration}
+### `UpdateConfiguration`
 
 ??? info "Source file, signature, and docstring"
     **Member**
@@ -581,8 +613,10 @@ The functions on this page are grouped by responsibility so related operations s
     **Docstring**
     
     Sets the configuration currently stored on the Runner assertion builder instance.
+    
+    Use this method when working with the documented Runner assertion builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
-### `RemoveConfiguration` {: #removeconfiguration}
+### `RemoveConfiguration`
 
 ??? info "Source file, signature, and docstring"
     **Member**
@@ -602,10 +636,12 @@ The functions on this page are grouped by responsibility so related operations s
     **Docstring**
     
     Clears the configuration currently stored on the Runner assertion builder instance.
+    
+    Use this method when working with the documented Runner assertion builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
-## General {: #general}
+## General
 
-### `Configure` {: #configure}
+### `Configure`
 
 ??? info "Source file, signature, and docstring"
     **Member**
@@ -625,7 +661,5 @@ The functions on this page are grouped by responsibility so related operations s
     **Docstring**
     
     Sets the configuration currently stored on the Runner assertion builder instance.
-
-## See also {: #see-also}
-
-- [Runner Functions](../index.md)
+    
+    Use this method when working with the documented Runner assertion builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.

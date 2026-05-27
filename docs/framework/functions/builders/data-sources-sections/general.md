@@ -1,27 +1,8 @@
----
-id: framework.functions.builders.data.sources.sections.general
-type: reference
-status: stable
-since: 2.0.0
-last_verified: 2026-05-22
-applies_to: [framework]
-keywords: [framework, functions, builders, data, sources, sections, general]
-summary: "Reference page for Data Sources: General."
----
-
-<!-- Verified-against: QaaS.Framework\QaaS.Framework.SDK\DataSourceObjects\DataSourceBuilder.cs -->
-
 # Data Sources: General
 
-> TL;DR — This page mirrors the `General` section from [Data Sources](../data-sources.md) as a focused reference.
+This page mirrors the `General` section from [Data Sources](../data-sources.md).
 
-## When to use {: #when-to-use}
-
-Use this page when you need the focused member list, signatures, and source notes for this section without scanning the full parent reference.
-
-## C# (CAC) usage {: #c-cac-usage}
-
-### `IsLazy` {: #islazy}
+## `IsLazy`
 
 ??? info "Source file, signature, and docstring"
     **Member**
@@ -41,8 +22,10 @@ Use this page when you need the focused member list, signatures, and source note
     **Docstring**
     
     Marks the data source for lazy resolution.
+    
+    Use this method when working with the documented Framework data source builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
-### `Configure` {: #configure}
+## `Configure`
 
 ??? info "Source file, signature, and docstring"
     **Member**
@@ -65,7 +48,7 @@ Use this page when you need the focused member list, signatures, and source note
     
     The supplied object is serialized to JSON and loaded into the builder as the new generator configuration.
 
-### `Register` {: #register}
+## `Register`
 
 ??? info "Source file, signature, and docstring"
     **Member**
@@ -87,12 +70,3 @@ Use this page when you need the focused member list, signatures, and source note
     Registers the configured data source definition and returns the resulting data source descriptor.
     
     Registration produces the immutable data-source descriptor that is later resolved against generator hooks during execution build.
-
-## Edge cases {: #edge-cases}
-
-- This page is generated from the parent reference section; edit the source XML docs or generator when content needs to change.
-- If a linked source member is renamed, regenerate the reference docs before changing prose by hand.
-
-## See also {: #see-also}
-
-- [Data Sources](../data-sources.md)

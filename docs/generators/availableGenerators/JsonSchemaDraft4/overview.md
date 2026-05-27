@@ -1,30 +1,14 @@
----
-id: generators.available.jsonschemadraft4.overview
-type: reference
-status: stable
-since: 2.0.0
-last_verified: 2026-05-22
-applies_to: [generators]
-keywords: [generators, JsonSchemaDraft4, GeneratorConfiguration]
-summary: "Generates JSON data that conforms to a configured JSON Schema Draft 4 document."
----
-<!-- Verified-against: QaaS.Common.Generators\QaaS.Common.Generators\JsonGenerators\JsonSchemaDraft4.cs -->
-
 # JsonSchemaDraft4
 
-> TL;DR — Generates JSON data that conforms to a configured JSON Schema Draft 4 document.
+Generates JSON data that conforms to a configured JSON Schema Draft 4 document.
 
-## When to use {: #when-to-use}
+## What It Does
 
 Generates JSON documents from a Draft 4 JSON schema and then applies the same field-replacement system used by the regular `Json` generator.
 
 This is useful when you want structurally valid random test data but still need certain fields pinned to known values. An optional seed makes the random generation repeatable across runs.
 
-## YAML configuration {: #yaml-configuration}
-
-Use the hook name in the matching runtime section, then place hook-specific fields under the configuration object shown in the examples below.
-
-## Minimal example {: #minimal-example}
+## YAML Example
 
 ```yaml
 DataSources:
@@ -54,19 +38,8 @@ DataSources:
             Value: high
 ```
 
-## Realistic example {: #realistic-example}
+## What This Configuration Does
 
 This example reads a Draft 4 schema from `order-schema.json`, generates three schema-valid JSON documents from it, and then forces the `priority` field in each document to `high`.
 
 Because the seed is fixed to `42`, the random parts of the generated payloads stay repeatable between runs.
-
-## Edge cases {: #edge-cases}
-
-- Missing required configuration keys fail schema validation before the hook runs.
-- Keep hook names and referenced session or data-source names aligned with the surrounding YAML.
-
-## See also {: #see-also}
-
-- [Configuration table](configuration/tableView.md)
-- [YAML scaffold](configuration/yamlView.md)
-- [Generators](../../index.md)

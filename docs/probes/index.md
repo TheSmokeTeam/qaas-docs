@@ -36,11 +36,11 @@ See [Write Hooks](../qaas/quickStart/writeHooks.md) for the pattern.
 
 
 <!-- generated hook catalog start -->
-## Available Hooks {: #available-hooks}
+## Available Hooks
 
 The built-in hooks below are grouped by usage area so it is easier to shortlist the right hook before drilling into configuration details.
 
-### RabbitMQ administration {: #rabbitmq-administration}
+### RabbitMQ administration
 
 - [CreateRabbitMqBindings](availableProbes/CreateRabbitMqBindings/overview.md): Creates RabbitMQ bindings between exchanges and queues or between exchanges by using the configured binding definitions.
 - [DeleteRabbitMqBindings](availableProbes/DeleteRabbitMqBindings/overview.md): Deletes RabbitMQ bindings using the configured source, destination, routing key, and binding type.
@@ -58,7 +58,7 @@ The built-in hooks below are grouped by usage area so it is easier to shortlist 
 - [CreateRabbitMqVirtualHosts](availableProbes/CreateRabbitMqVirtualHosts/overview.md): Creates RabbitMQ virtual hosts through the management API so later probes and sessions can use them.
 - [DeleteRabbitMqVirtualHosts](availableProbes/DeleteRabbitMqVirtualHosts/overview.md): Deletes RabbitMQ virtual hosts through the management API.
 
-### Redis maintenance {: #redis-maintenance}
+### Redis maintenance
 
 - [ExecuteRedisCommand](availableProbes/ExecuteRedisCommand/overview.md): Executes one Redis command with optional arguments against the selected Redis database, optionally storing the result for later redisResults placeholder reuse.
 - [ExecuteRedisCommands](availableProbes/ExecuteRedisCommands/overview.md): Executes multiple Redis commands sequentially against the selected Redis database, allowing later commands to reuse earlier results through redisResults placeholders and optional looping.
@@ -66,7 +66,7 @@ The built-in hooks below are grouped by usage area so it is easier to shortlist 
 - [FlushAllRedis](availableProbes/FlushAllRedis/overview.md): Runs Redis FLUSHALL against the configured server to remove keys from every database.
 - [FlushDbRedis](availableProbes/FlushDbRedis/overview.md): Runs Redis FLUSHDB against the selected Redis database.
 
-### Databases {: #databases}
+### Databases
 
 - [DeleteElasticIndices](availableProbes/DeleteElasticIndices/overview.md): Deletes every Elasticsearch index that matches the configured index pattern.
 - [EmptyElasticIndices](availableProbes/EmptyElasticIndices/overview.md): Empties elastic indices by their index pattern
@@ -76,13 +76,13 @@ The built-in hooks below are grouped by usage area so it is easier to shortlist 
 - [DeleteS3Bucket](availableProbes/DeleteS3Bucket/overview.md): Empties the configured S3 bucket and deletes it, treating a missing bucket as an already-satisfied state.
 - [EmptyS3Bucket](availableProbes/EmptyS3Bucket/overview.md): Deletes objects from the configured S3 bucket, optionally constrained to a prefix, while treating a missing bucket as a no-op.
 
-### SQL maintenance {: #sql-maintenance}
+### SQL maintenance
 
 - [MsSqlDataBaseTablesTruncate](availableProbes/MsSqlDataBaseTablesTruncate/overview.md): Truncates the configured Microsoft SQL Server tables in the order they are listed.
 - [OracleSqlDataBaseTablesTruncate](availableProbes/OracleSqlDataBaseTablesTruncate/overview.md): Truncates the configured Oracle tables in the order they are listed.
 - [PostgreSqlDataBaseTablesTruncate](availableProbes/PostgreSqlDataBaseTablesTruncate/overview.md): Truncates the configured PostgreSQL tables in the order they are listed.
 
-### Cluster orchestration {: #cluster-orchestration}
+### Cluster orchestration
 
 - [OsEditYamlConfigMap](availableProbes/OsEditYamlConfigMap/overview.md): Probe that edits yaml config maps
 - [OsChangeDeploymentEnvVars](availableProbes/OsChangeDeploymentEnvVars/overview.md): Probe that changes the environment variables of a deployment

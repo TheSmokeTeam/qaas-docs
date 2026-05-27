@@ -1,30 +1,14 @@
----
-id: probes.available.osupdatedeploymentimage.overview
-type: reference
-status: stable
-since: 2.0.0
-last_verified: 2026-05-22
-applies_to: [probes]
-keywords: [probes, OsUpdateDeploymentImage, ProbeConfiguration]
-summary: "Updates the image of one container in a Kubernetes or OpenShift deployment."
----
-<!-- Verified-against: QaaS.Common.Probes\QaaS.Common.Probes\OsProbes\OsUpdateDeploymentImage.cs -->
-
 # OsUpdateDeploymentImage
 
-> TL;DR — Updates the image of one container in a Kubernetes or OpenShift deployment.
+Updates the image of one container in a Kubernetes or OpenShift deployment.
 
-## When to use {: #when-to-use}
+## What It Does
 
 Updates the container image used by a deployment and waits until the deployment rollout reaches the desired state.
 
 This is useful when a scenario needs to switch a deployment to a prebuilt image version as part of setup.
 
-## YAML configuration {: #yaml-configuration}
-
-Use the hook name in the matching runtime section, then place hook-specific fields under the configuration object shown in the examples below.
-
-## Minimal example {: #minimal-example}
+## YAML Example
 
 ```yaml
 Sessions:
@@ -46,13 +30,13 @@ Sessions:
             Password: docs-password
 ```
 
-## Realistic example {: #realistic-example}
+## What This Configuration Does
 
 This probe changes the `api` container in the `orders-api` deployment to use `registry.local/orders-api:2.1.0`.
 
 After patching the deployment, it waits for the rollout to finish before the scenario proceeds.
 
-### Global Dictionary Behavior {: #global-dictionary-behavior}
+### Global Dictionary Behavior
 
 With `UseGlobalDict: true`, missing shared cluster settings can be resolved from `Os/Defaults`, and missing `DesiredImage` can be restored from `Os/Recovery/Image/Deployment/<ReplicaSetName>/<ContainerName>` after an earlier probe in the same execution and session captured the pre-change state.
 
@@ -61,14 +45,3 @@ The probe writes its pre-change snapshot to the unique canonical scoped path for
 No additional per-probe recovery caveat applies beyond the execution and session scoping rules.
 
 When `UseGlobalDict` is `false`, the probe keeps the current behavior: it uses only local YAML or code configuration and does not read or write probe-global-dictionary state.
-
-## Edge cases {: #edge-cases}
-
-- Missing required configuration keys fail schema validation before the hook runs.
-- Keep hook names and referenced session or data-source names aligned with the surrounding YAML.
-
-## See also {: #see-also}
-
-- [Configuration table](configuration/tableView.md)
-- [YAML scaffold](configuration/yamlView.md)
-- [Probes](../../index.md)

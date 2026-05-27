@@ -1,33 +1,12 @@
----
-id: qaas.functions.extension-methods
-type: reference
-status: stable
-since: 2.0.0
-last_verified: 2026-05-22
-applies_to: [runner]
-keywords: [qaas, functions, extension, methods]
-summary: "This page collects public Runner extension methods that have XML documentation or explicit docs annotations."
----
-<!-- Verified-against: QaaS.Runner\QaaS.Runner.Infrastructure\ContextArtifactExtensions.cs -->
-<!-- Verified-against: QaaS.Runner\QaaS.Runner.Infrastructure\DateTimeExtensions.cs -->
-<!-- Verified-against: QaaS.Runner\QaaS.Runner.Sessions\Extensions\DetailedDataExtensions.cs -->
-<!-- Verified-against: QaaS.Runner\QaaS.Runner.Sessions\Extensions\SessionExtensions.cs -->
-
 # Extension Methods
-
-> TL;DR — This page lists public Runner extension methods with source-backed signatures and XML doc comments.
-
-## When to use {: #when-to-use}
-
-Use this page when you need extension-method helpers without scanning each regular function category.
 
 This page collects public `Runner` extension methods that have XML documentation or explicit docs annotations.
 
 Annotated extension methods continue to appear in their regular category pages; this page gives the extension surface a dedicated view.
 
-## Context artifact {: #context-artifact}
+## Context artifact
 
-### `SetRenderedConfigurationTemplate` {: #setrenderedconfigurationtemplate}
+### `SetRenderedConfigurationTemplate`
 
 ??? info "Source file, signature, and docstring"
     **Member**
@@ -48,7 +27,7 @@ Annotated extension methods continue to appear in their regular category pages; 
     
     Saves the rendered runner configuration template for the current execution scope.
 
-### `GetRenderedConfigurationTemplate` {: #getrenderedconfigurationtemplate}
+### `GetRenderedConfigurationTemplate`
 
 ??? info "Source file, signature, and docstring"
     **Member**
@@ -69,7 +48,7 @@ Annotated extension methods continue to appear in their regular category pages; 
     
     Returns the rendered configuration template captured for the current execution scope, if one exists.
 
-### `AppendSessionLog` {: #appendsessionlog}
+### `AppendSessionLog`
 
 ??? info "Source file, signature, and docstring"
     **Member**
@@ -90,7 +69,7 @@ Annotated extension methods continue to appear in their regular category pages; 
     
     Appends a session-scoped log line that can later be attached to reports.
 
-### `GetSessionLog` {: #getsessionlog}
+### `GetSessionLog`
 
 ??? info "Source file, signature, and docstring"
     **Member**
@@ -111,9 +90,9 @@ Annotated extension methods continue to appear in their regular category pages; 
     
     Returns the concatenated session log text for a session, or null when nothing was captured.
 
-## Date time {: #date-time}
+## Date time
 
-### `ConvertDateTimeToUtcByTimeZoneOffset` {: #convertdatetimetoutcbytimezoneoffset}
+### `ConvertDateTimeToUtcByTimeZoneOffset`
 
 ??? info "Source file, signature, and docstring"
     **Member**
@@ -134,7 +113,7 @@ Annotated extension methods continue to appear in their regular category pages; 
     
     Converts a local wall-clock value into UTC using a summer-time offset and optional DST override.
 
-### `ConvertDateTimeFromUtcToTimeZoneByTimeZoneOffset` {: #convertdatetimefromutctotimezonebytimezoneoffset}
+### `ConvertDateTimeFromUtcToTimeZoneByTimeZoneOffset`
 
 ??? info "Source file, signature, and docstring"
     **Member**
@@ -155,9 +134,9 @@ Annotated extension methods continue to appear in their regular category pages; 
     
     Converts a UTC value into a local wall-clock value using a summer-time offset and optional DST override.
 
-## Detailed data {: #detailed-data}
+## Detailed data
 
-### `AddIoMatchIndexToDetailedData<T>` {: #addiomatchindextodetaileddatat}
+### `AddIoMatchIndexToDetailedData<T>`
 
 ??? info "Source file, signature, and docstring"
     **Member**
@@ -178,9 +157,9 @@ Annotated extension methods continue to appear in their regular category pages; 
     
     Adds an index to a detailed data object
 
-## Session {: #session}
+## Session
 
-### `DisposeOfEnumerable<TEnumerable>` {: #disposeofenumerabletenumerable}
+### `DisposeOfEnumerable<TEnumerable>`
 
 ??? info "Source file, signature, and docstring"
     **Member**
@@ -201,7 +180,7 @@ Annotated extension methods continue to appear in their regular category pages; 
     
     Disposes of an enumerable of items that extend the `IDisposable` interface
 
-### `AppendActionFailure` {: #appendactionfailure}
+### `AppendActionFailure`
 
 ??? info "Source file, signature, and docstring"
     **Member**
@@ -221,7 +200,3 @@ Annotated extension methods continue to appear in their regular category pages; 
     **Docstring**
     
     Appends a failed action to the action failure list, and logs accordingly.
-
-## See also {: #see-also}
-
-- [Functions](index.md)

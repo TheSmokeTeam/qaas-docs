@@ -1,30 +1,12 @@
----
-id: qaas.functions.builders.probes
-type: reference
-status: stable
-since: 2.0.0
-last_verified: 2026-05-22
-applies_to: [runner]
-keywords: [qaas, functions, builders, probes]
-summary: "Each entry uses the short function name as the table-of-contents label. Expand an entry to inspect its source file, signature, and XML doc comments."
----
-<!-- Verified-against: QaaS.Runner\QaaS.Runner.Sessions\Actions\Probes\ProbeBuilder.cs -->
-
 # Probes
-
-> TL;DR — This page lists the public Runner functions in the `Probes` category.
-
-## When to use {: #when-to-use}
-
-Use this page when you need source-backed signatures, declaring types, and XML doc comments for this function category.
 
 Each entry uses the short function name as the table-of-contents label. Expand an entry to inspect its source file, signature, and XML doc comments.
 
 The functions on this page are grouped by responsibility so related operations stay together.
 
-## Identity and hook selection {: #identity-and-hook-selection}
+## Identity and hook selection
 
-### `Named` {: #named}
+### `Named`
 
 ??? info "Source file, signature, and docstring"
     **Member**
@@ -44,8 +26,10 @@ The functions on this page are grouped by responsibility so related operations s
     **Docstring**
     
     Sets the name used for the current Runner probe builder instance.
+    
+    Use this method when working with the documented Runner probe builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
-### `HookNamed` {: #hooknamed}
+### `HookNamed`
 
 ??? info "Source file, signature, and docstring"
     **Member**
@@ -65,10 +49,12 @@ The functions on this page are grouped by responsibility so related operations s
     **Docstring**
     
     Sets the hook implementation name used by the current Runner probe builder instance.
+    
+    Use this method when working with the documented Runner probe builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
-## Execution order {: #execution-order}
+## Execution order
 
-### `AtStage` {: #atstage}
+### `AtStage`
 
 ??? info "Source file, signature, and docstring"
     **Member**
@@ -88,10 +74,12 @@ The functions on this page are grouped by responsibility so related operations s
     **Docstring**
     
     Sets the stage used by the current Runner probe builder instance.
+    
+    Use this method when working with the documented Runner probe builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
-## Data source selection {: #data-source-selection}
+## Data source selection
 
-### `AddDataSourceName` {: #adddatasourcename}
+### `AddDataSourceName`
 
 ??? info "Source file, signature, and docstring"
     **Member**
@@ -111,8 +99,10 @@ The functions on this page are grouped by responsibility so related operations s
     **Docstring**
     
     Adds the supplied data source name to the current Runner probe builder instance.
+    
+    Use this method when working with the documented Runner probe builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
-### `RemoveDataSourceName` {: #removedatasourcename}
+### `RemoveDataSourceName`
 
 ??? info "Source file, signature, and docstring"
     **Member**
@@ -132,8 +122,10 @@ The functions on this page are grouped by responsibility so related operations s
     **Docstring**
     
     Removes the configured data source name from the current Runner probe builder instance.
+    
+    Use this method when working with the documented Runner probe builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
-### `RemoveDataSourceNameAt` {: #removedatasourcenameat}
+### `RemoveDataSourceNameAt`
 
 ??? info "Source file, signature, and docstring"
     **Member**
@@ -153,8 +145,10 @@ The functions on this page are grouped by responsibility so related operations s
     **Docstring**
     
     Removes the configured data source name at the specified index from the current Runner probe builder instance.
+    
+    Use this method when working with the documented Runner probe builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
-### `AddDataSourcePattern` {: #adddatasourcepattern}
+### `AddDataSourcePattern`
 
 ??? info "Source file, signature, and docstring"
     **Member**
@@ -174,8 +168,10 @@ The functions on this page are grouped by responsibility so related operations s
     **Docstring**
     
     Adds the supplied data source pattern to the current Runner probe builder instance.
+    
+    Use this method when working with the documented Runner probe builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
-### `RemoveDataSourcePattern` {: #removedatasourcepattern}
+### `RemoveDataSourcePattern`
 
 ??? info "Source file, signature, and docstring"
     **Member**
@@ -195,8 +191,10 @@ The functions on this page are grouped by responsibility so related operations s
     **Docstring**
     
     Removes the configured data source pattern from the current Runner probe builder instance.
+    
+    Use this method when working with the documented Runner probe builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
-### `RemoveDataSourcePatternAt` {: #removedatasourcepatternat}
+### `RemoveDataSourcePatternAt`
 
 ??? info "Source file, signature, and docstring"
     **Member**
@@ -216,10 +214,12 @@ The functions on this page are grouped by responsibility so related operations s
     **Docstring**
     
     Removes the configured data source pattern at the specified index from the current Runner probe builder instance.
+    
+    Use this method when working with the documented Runner probe builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
-## Collection helpers {: #collection-helpers}
+## Collection helpers
 
-### `UpdateConfiguration` {: #updateconfiguration}
+### `UpdateConfiguration`
 
 ??? info "Source file, signature, and docstring"
     **Member**
@@ -239,8 +239,10 @@ The functions on this page are grouped by responsibility so related operations s
     **Docstring**
     
     Sets the configuration currently stored on the Runner probe builder instance.
+    
+    Use this method when working with the documented Runner probe builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
-### `RemoveConfiguration` {: #removeconfiguration}
+### `RemoveConfiguration`
 
 ??? info "Source file, signature, and docstring"
     **Member**
@@ -260,10 +262,12 @@ The functions on this page are grouped by responsibility so related operations s
     **Docstring**
     
     Clears the configuration currently stored on the Runner probe builder instance.
+    
+    Use this method when working with the documented Runner probe builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
-## General {: #general}
+## General
 
-### `Configure` {: #configure}
+### `Configure`
 
 ??? info "Source file, signature, and docstring"
     **Member**
@@ -283,7 +287,5 @@ The functions on this page are grouped by responsibility so related operations s
     **Docstring**
     
     Sets the configuration currently stored on the Runner probe builder instance.
-
-## See also {: #see-also}
-
-- [Runner Functions](../index.md)
+    
+    Use this method when working with the documented Runner probe builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.

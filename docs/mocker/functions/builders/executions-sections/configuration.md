@@ -1,27 +1,8 @@
----
-id: mocker.functions.builders.executions.sections.configuration
-type: reference
-status: stable
-since: 2.0.0
-last_verified: 2026-05-22
-applies_to: [mocker]
-keywords: [mocker, functions, builders, executions, sections, configuration]
-summary: "Reference page for Executions: Configuration."
----
-
-<!-- Verified-against: QaaS.Mocker\QaaS.Mocker\ExecutionBuilder.cs -->
-
 # Executions: Configuration
 
-> TL;DR — This page mirrors the `Configuration` section from [Executions](../executions.md) as a focused reference.
+This page mirrors the `Configuration` section from [Executions](../executions.md).
 
-## When to use {: #when-to-use}
-
-Use this page when you need the focused member list, signatures, and source notes for this section without scanning the full parent reference.
-
-## C# (CAC) usage {: #c-cac-usage}
-
-### `WithRootConfiguration` {: #withrootconfiguration}
+## `WithRootConfiguration`
 
 ??? info "Source file, signature, and docstring"
     **Member**
@@ -41,8 +22,10 @@ Use this page when you need the focused member list, signatures, and source note
     **Docstring**
     
     Replaces the root configuration stored on the current execution context.
+    
+    Use this method when working with the documented Mocker execution builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
-### `WithController` {: #withcontroller}
+## `WithController`
 
 ??? info "Source file, signature, and docstring"
     **Member**
@@ -62,12 +45,5 @@ Use this page when you need the focused member list, signatures, and source note
     **Docstring**
     
     Sets the controller configuration used by the current Mocker execution builder instance.
-
-## Edge cases {: #edge-cases}
-
-- This page is generated from the parent reference section; edit the source XML docs or generator when content needs to change.
-- If a linked source member is renamed, regenerate the reference docs before changing prose by hand.
-
-## See also {: #see-also}
-
-- [Executions](../executions.md)
+    
+    Use this method when working with the documented Mocker execution builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.

@@ -1,32 +1,12 @@
----
-id: mocker.functions.extension-methods
-type: reference
-status: stable
-since: 2.0.0
-last_verified: 2026-05-22
-applies_to: [mocker]
-keywords: [mocker, functions, extension, methods]
-summary: "This page collects public Mocker extension methods that have XML documentation or explicit docs annotations."
----
-<!-- Verified-against: QaaS.Mocker\QaaS.Mocker.Servers\Extensions\DataExtensions.cs -->
-<!-- Verified-against: QaaS.Mocker\QaaS.Mocker.Servers\Extensions\HttpExtensions.cs -->
-<!-- Verified-against: QaaS.Mocker\QaaS.Mocker.Servers\Extensions\SocketExtensions.cs -->
-
 # Extension Methods
-
-> TL;DR — This page lists public Mocker extension methods with source-backed signatures and XML doc comments.
-
-## When to use {: #when-to-use}
-
-Use this page when you need extension-method helpers without scanning each regular function category.
 
 This page collects public `Mocker` extension methods that have XML documentation or explicit docs annotations.
 
 Annotated extension methods continue to appear in their regular category pages; this page gives the extension surface a dedicated view.
 
-## Data {: #data}
+## Data
 
-### `CloneDetailed` {: #clonedetailed}
+### `CloneDetailed`
 
 ??? info "Source file, signature, and docstring"
     **Member**
@@ -47,9 +27,9 @@ Annotated extension methods continue to appear in their regular category pages; 
     
     Clones a payload into a DetailedData{T} instance with a capture timestamp.
 
-## Http {: #http}
+## Http
 
-### `ToHttpMethodEnum` {: #tohttpmethodenum}
+### `ToHttpMethodEnum`
 
 ??? info "Source file, signature, and docstring"
     **Member**
@@ -70,7 +50,7 @@ Annotated extension methods continue to appear in their regular category pages; 
     
     Converts a string representation of an HTTP method to the corresponding HttpMethod enum.
 
-### `ConstructRequestDataAsync` {: #constructrequestdataasync}
+### `ConstructRequestDataAsync`
 
 ??? info "Source file, signature, and docstring"
     **Member**
@@ -91,7 +71,7 @@ Annotated extension methods continue to appear in their regular category pages; 
     
     Constructs request data from an HttpRequest .
 
-### `HandleResponseDataAndCloseAsync` {: #handleresponsedataandcloseasync}
+### `HandleResponseDataAndCloseAsync`
 
 ??? info "Source file, signature, and docstring"
     **Member**
@@ -112,9 +92,9 @@ Annotated extension methods continue to appear in their regular category pages; 
     
     Handles response data by setting headers and writing the response body.
 
-## Socket {: #socket}
+## Socket
 
-### `GetBytesFromChannelWithinTimeout` {: #getbytesfromchannelwithintimeout}
+### `GetBytesFromChannelWithinTimeout`
 
 ??? info "Source file, signature, and docstring"
     **Member**
@@ -134,7 +114,3 @@ Annotated extension methods continue to appear in their regular category pages; 
     **Docstring**
     
     Implements timeout-based socket collection. When endpoint is provided the call is treated as datagram-based receive, so the loop does not rely on Available before reading.
-
-## See also {: #see-also}
-
-- [Functions](index.md)

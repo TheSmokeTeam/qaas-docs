@@ -1,30 +1,14 @@
----
-id: generators.available.fromcsv.overview
-type: reference
-status: stable
-since: 2.0.0
-last_verified: 2026-05-22
-applies_to: [generators]
-keywords: [generators, FromCSV, GeneratorConfiguration]
-summary: "Reads CSV files from the configured file-system path and turns each row into generated data items."
----
-<!-- Verified-against: QaaS.Common.Generators\QaaS.Common.Generators\FromExternalSourceGenerators\FromCSV.cs -->
-
 # FromCSV
 
-> TL;DR — Reads CSV files from the configured file-system path and turns each row into generated data items.
+Reads CSV files from the configured file-system path and turns each row into generated data items.
 
-## When to use {: #when-to-use}
+## What It Does
 
 Reads rows from one or more CSV files in a local directory and emits one generated item per row.
 
 It can use the file header row, or configured column names when the files are headerless. Empty rows can be skipped, surrounding whitespace can be trimmed, and the generator can stop after a fixed number of rows. When storage metadata is enabled, each generated item keeps track of where it came from in the file set.
 
-## YAML configuration {: #yaml-configuration}
-
-Use the hook name in the matching runtime section, then place hook-specific fields under the configuration object shown in the examples below.
-
-## Minimal example {: #minimal-example}
+## YAML Example
 
 ```yaml
 DataSources:
@@ -45,19 +29,8 @@ DataSources:
       StorageMetaData: ItemName
 ```
 
-## Realistic example {: #realistic-example}
+## What This Configuration Does
 
 This example reads every `*.csv` file under `sample-data/csv`, orders the files alphabetically, treats each line as a two-column record, and emits one generated item per row.
 
 Because `HasHeaderRecord` is `false`, the first and second columns are exposed as `orderId` and `total`. Empty rows are ignored, whitespace is trimmed, and each emitted item keeps the source file name in its storage metadata.
-
-## Edge cases {: #edge-cases}
-
-- Missing required configuration keys fail schema validation before the hook runs.
-- Keep hook names and referenced session or data-source names aligned with the surrounding YAML.
-
-## See also {: #see-also}
-
-- [Configuration table](configuration/tableView.md)
-- [YAML scaffold](configuration/yamlView.md)
-- [Generators](../../index.md)
