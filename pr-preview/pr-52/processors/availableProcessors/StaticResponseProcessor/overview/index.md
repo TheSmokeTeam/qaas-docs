@@ -1,0 +1,45 @@
+# StaticResponseProcessor
+
+> TL;DR: Returns a fixed UTF-8 response body with the configured status code, content type, and headers.
+
+Returns a fixed UTF-8 response body with the configured status code, content type, and headers.
+
+## What It Does
+
+Returns a fixed UTF-8 response body together with the configured HTTP status code, content type, and headers.
+
+This is the simplest processor for serving a known canned response from a stubbed endpoint.
+
+## Minimal example
+
+```yaml
+Stubs:
+  - Name: StaticResponseProcessorStub
+    Processor: StaticResponseProcessor
+
+    ProcessorConfiguration:
+      Body: stub is healthy
+      StatusCode: 200
+      ContentType: text/plain; charset=utf-8
+
+Servers:
+  - Http:
+      Port: 8080
+      IsLocalhost: true
+      Endpoints:
+        - Path: /health
+          Actions:
+            - Name: HealthAction
+              Method: Get
+              TransactionStubName: StaticResponseProcessorStub
+```
+
+## Realistic example
+
+This configuration makes the endpoint always return the text `stub is healthy` as a UTF-8 body.
+
+The response status is `200` and the content type is `text/plain; charset=utf-8`.
+
+## See also
+
+Use the surrounding documentation navigation to move between related generated reference pages.
