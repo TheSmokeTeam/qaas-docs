@@ -1,8 +1,27 @@
+---
+id: qaas.functions.builders.collectors.sections.general
+type: reference
+status: stable
+since: 2.0.0
+last_verified: 2026-05-22
+applies_to: [runner]
+keywords: [runner, qaas, functions, builders, collectors, sections, general]
+summary: "Reference page for Collectors: General."
+---
+
+<!-- Verified-against: QaaS.Runner\QaaS.Runner.Sessions\Actions\Collectors\CollectorBuilder.cs -->
+
 # Collectors: General
 
-This page mirrors the `General` section from [Collectors](../collectors.md).
+> TL;DR — This page mirrors the `General` section from [Collectors](../collectors.md) as a focused reference.
 
-## `FilterData`
+## When to use {: #when-to-use}
+
+Use this page when you need the focused member list, signatures, and source notes for this section without scanning the full parent reference.
+
+## C# (CAC) usage {: #c-cac-usage}
+
+### `FilterData` {: #filterdata}
 
 ??? info "Source file, signature, and docstring"
     **Member**
@@ -22,10 +41,8 @@ This page mirrors the `General` section from [Collectors](../collectors.md).
     **Docstring**
     
     Sets the data filter used by the current Runner collector builder instance.
-    
-    Use this method when working with the documented Runner collector builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
-## `CollectInRange`
+### `CollectInRange` {: #collectinrange}
 
 ??? info "Source file, signature, and docstring"
     **Member**
@@ -45,10 +62,8 @@ This page mirrors the `General` section from [Collectors](../collectors.md).
     **Docstring**
     
     Configures collect in range on the current Runner collector builder instance.
-    
-    Use this method when working with the documented Runner collector builder API surface in code. The behavior exposed here is part of the public surface that the generated function documentation groups under 'Configuration as Code / Collectors'.
 
-## `Configure`
+### `Configure` {: #configure}
 
 ??? info "Source file, signature, and docstring"
     **Member**
@@ -68,5 +83,12 @@ This page mirrors the `General` section from [Collectors](../collectors.md).
     **Docstring**
     
     Sets the configuration currently stored on the Runner collector builder instance.
-    
-    Use this method when working with the documented Runner collector builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
+
+## Edge cases {: #edge-cases}
+
+- This page is generated from the parent reference section; edit the source XML docs or generator when content needs to change.
+- If a linked source member is renamed, regenerate the reference docs before changing prose by hand.
+
+## See also {: #see-also}
+
+- [Collectors](../collectors.md)

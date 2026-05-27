@@ -1,14 +1,30 @@
+---
+id: probes.available.deleterabbitmqexchanges.overview
+type: reference
+status: stable
+since: 2.0.0
+last_verified: 2026-05-22
+applies_to: [probes]
+keywords: [probes, DeleteRabbitMqExchanges, ProbeConfiguration]
+summary: "Probe that deletes rabbitmq exchanges"
+---
+<!-- Verified-against: QaaS.Common.Probes\QaaS.Common.Probes\RabbitMqProbes\DeleteRabbitMqExchanges.cs -->
+
 # DeleteRabbitMqExchanges
 
-Probe that deletes rabbitmq exchanges
+> TL;DR — Probe that deletes rabbitmq exchanges
 
-## What It Does
+## When to use {: #when-to-use}
 
 Deletes RabbitMQ exchanges through the AMQP connection defined in the probe configuration.
 
 This is useful when an exchange was created for a temporary scenario and should be removed cleanly afterward.
 
-## YAML Example
+## YAML configuration {: #yaml-configuration}
+
+Use the hook name in the matching runtime section, then place hook-specific fields under the configuration object shown in the examples below.
+
+## Minimal example {: #minimal-example}
 
 ```yaml
 Sessions:
@@ -27,14 +43,25 @@ Sessions:
             - orders.exchange
 ```
 
-## What This Configuration Does
+## Realistic example {: #realistic-example}
 
 This configuration deletes the `orders.exchange` exchange from the `/` virtual host.
 
 It is a topology cleanup step that removes the exchange but leaves other RabbitMQ objects untouched.
 
-### Global Dictionary Behavior
+### Global Dictionary Behavior {: #global-dictionary-behavior}
 
 With `UseGlobalDict: true`, the resolved broker settings are saved under the session-scoped `RabbitMq/AmqpDefaults` alias, and this probe also writes the deleted exchange names as `RabbitMqExchangeConfig[]` to `RabbitMq/Recovery/Exchanges`. The canonical payload still lives under `__ProbeGlobalDict/Scoped/<execution-scope>/<session-name>/<probe-name>`, so every probe execution keeps its own isolated write path.
 
 That makes the probe useful in recovery or rollback scenarios where `CreateRabbitMqExchanges` runs later in the same execution and session and restores the deleted topology from the saved alias instead of hard-coding it twice. When `UseGlobalDict` is `false`, current behavior stays unchanged: only local YAML or code configuration is used, and nothing is written to the probe global dictionary.
+
+## Edge cases {: #edge-cases}
+
+- Missing required configuration keys fail schema validation before the hook runs.
+- Keep hook names and referenced session or data-source names aligned with the surrounding YAML.
+
+## See also {: #see-also}
+
+- [Configuration table](configuration/tableView.md)
+- [YAML scaffold](configuration/yamlView.md)
+- [Probes](../../index.md)

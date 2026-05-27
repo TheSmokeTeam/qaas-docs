@@ -1,4 +1,16 @@
+---
+id: framework.index
+type: explanation
+status: stable
+since: 2.0.0
+last_verified: 2026-05-23
+applies_to: [framework]
+keywords: [framework, index]
+summary: "QaaS.Framework is the shared runtime and SDK layer used by Runner, Mocker, and custom hook packages."
+---
 # QaaS.Framework
+
+> TL;DR — QaaS.Framework is the shared runtime and SDK layer used by Runner, Mocker, and custom hook packages.
 
 `QaaS.Framework` is the shared runtime layer underneath [QaaS.Runner](../qaas/index.md), [QaaS.Mocker](../mocker/index.md), and custom hook packages such as [QaaS.Common.Assertions](../assertions/index.md), [QaaS.Common.Generators](../generators/index.md), [QaaS.Common.Probes](../probes/index.md), and [QaaS.Common.Processors](../processors/index.md). It is not a standalone executable. Instead, it provides the configuration engine, SDK contracts, protocol abstractions, serialization, [Policies](./projects/policies.md), and provider infrastructure that the executable products compose at runtime.
 
@@ -6,15 +18,15 @@ In practice, the Framework comes into play in three places:
 
 - [QaaS.Runner](../qaas/index.md) uses it to load configuration, bind YAML into runtime objects, build [session actions](../qaas/userInterfaces/runner/configurationSections/sessions/overview.md), execute protocols, and evaluate hooks.
 - [QaaS.Mocker](../mocker/index.md) uses it to load mock definitions, resolve [DataSources](../mocker/userInterfaces/mocker/configurationSections/dataSources/overview.md) and [Processors](../processors/index.md), and translate runtime objects into HTTP, gRPC, or socket behavior.
-- Custom [QaaS.Common.Generators](../generators/index.md), [QaaS.Common.Assertions](../assertions/index.md), [QaaS.Common.Probes](../probes/index.md), and [QaaS.Common.Processors](../processors/index.md) depend on [QaaS.Framework.SDK](./projects/sdk.md) because it defines the shared object model and base classes they plug into.
+- Custom [QaaS.Common.Generators](../generators/index.md), [QaaS.Common.Assertions](../assertions/index.md), [QaaS.Common.Probes](../probes/index.md), and [QaaS.Common.Processors](../processors/index.md) depend on [QaaS.Framework.SDK](./projects/sdk.md) because it defines the shared object surface and base classes they plug into.
 
 This section documents the current contents of those projects as they exist in the solution today.
 
-## Runtime projects
+## Runtime projects {: #runtime-projects}
 
 | Project | What it contains | Companion test project |
 | --- | --- | --- |
-| [QaaS.Framework.SDK](./projects/sdk.md) | Core runtime contracts and object model: contexts, execution data, session and communication objects, data sources, hook interfaces and base classes, metadata, filters, and helper extensions. | `QaaS.Framework.SDK.Tests` |
+| [QaaS.Framework.SDK](./projects/sdk.md) | Core runtime contracts and object surface: contexts, execution data, session and communication objects, data sources, hook interfaces and base classes, metadata, filters, and helper extensions. | `QaaS.Framework.SDK.Tests` |
 | [QaaS.Framework.Configurations](./projects/configuration.md) | Configuration loading pipeline: YAML ingestion, HTTP YAML sources, placeholder resolution, `<<` collapse handling, reference expansion, recursive binding, recursive validation, and partial-update helpers. | `QaaS.Framework.Configurations.Tests` |
 | [QaaS.Framework.Executions](./projects/executions.md) | Shared execution infrastructure: `IRunner`, `BaseExecution`, `BaseExecutionBuilder`, loader and logging support, CLI parser builders, and help-text generation. | `QaaS.Framework.Executions.Tests` |
 | [QaaS.Framework.Infrastructure](./projects/infrastructure.md) | Small shared utility package containing date and time helpers, filesystem-safe naming, and `IDomainBuilder<T>`. | No dedicated test project in the solution |
@@ -23,7 +35,7 @@ This section documents the current contents of those projects as they exist in t
 | [QaaS.Framework.Providers](./projects/providers.md) | Hook discovery and instantiation layer: assembly scanning, type resolution, object creation, validation-aware loading, and Autofac registration. | `QaaS.Framework.Providers.Tests` |
 | [QaaS.Framework.Serialization](./projects/serialization.md) | Serializer and deserializer selection, format-specific implementations, factory classes, and runtime type resolution helpers. | `QaaS.Framework.Serialization.Tests` |
 
-## How to read this section
+## How to read this section {: #how-to-read-this-section}
 
 Start with the package that matches the problem you are solving:
 
@@ -31,7 +43,7 @@ Start with the package that matches the problem you are solving:
 - If you are trying to understand how Runner or Mocker executes work, start with [Executions](./projects/executions.md), then read [Protocols](./projects/protocols.md) and [Policies](./projects/policies.md) as needed.
 - If you are building custom hooks or extensions, start with [SDK](./projects/sdk.md), then read [Providers](./projects/providers.md) and [Serialization](./projects/serialization.md) depending on what your hook needs.
 
-## Companion test projects
+## Companion test projects {: #companion-test-projects}
 
 The solution also includes one sibling test project for every runtime package except Infrastructure:
 

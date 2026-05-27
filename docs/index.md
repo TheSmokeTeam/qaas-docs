@@ -1,12 +1,25 @@
+---
+id: index
+type: explanation
+status: stable
+since: 2.0.0
+last_verified: 2026-05-23
+applies_to: [runner]
+keywords: [index]
+summary: "QaaS docs cover Runner tests, Mocker services, Framework APIs, shared hooks, integrations, and offline packaging from the same MkDocs source."
+render_macros: true
+---
 # QaaS Documentation
+
+> TL;DR — QaaS docs cover Runner tests, Mocker services, Framework APIs, shared hooks, integrations, and offline packaging from the same MkDocs source.
 
 **QaaS (QA As A Service)** is a .NET 10 ecosystem for integration and end-to-end testing of backend applications. Define tests in YAML, extend behavior with C# hooks, and validate results with minimal boilerplate.
 
-## Quick Navigation
+## Quick Navigation {: #quick-navigation}
 
 <div class="grid cards" markdown>
 
--   :material-test-tube:{ .lg .middle } **Runner**
+- :material-test-tube:{ .lg .middle } **Runner**
 
     ---
 
@@ -14,7 +27,7 @@
 
     [:octicons-arrow-right-24: Runner Docs](qaas/index.md)
 
--   :material-server:{ .lg .middle } **Mocker**
+- :material-server:{ .lg .middle } **Mocker**
 
     ---
 
@@ -22,7 +35,7 @@
 
     [:octicons-arrow-right-24: Mocker Docs](mocker/index.md)
 
--   :material-check-all:{ .lg .middle } **Hooks**
+- :material-check-all:{ .lg .middle } **Hooks**
 
     ---
 
@@ -30,7 +43,7 @@
 
     [:octicons-arrow-right-24: Hooks Reference](assertions/index.md)
 
--   :material-puzzle:{ .lg .middle } **Framework**
+- :material-puzzle:{ .lg .middle } **Framework**
 
     ---
 
@@ -40,7 +53,7 @@
 
 </div>
 
-## Zero-to-Hero Path
+## Zero-to-Hero Path {: #zero-to-hero-path}
 
 | Phase                                  | # | Guide                                                             | Description                                                              |
 |----------------------------------------|:-:|-------------------------------------------------------------------|--------------------------------------------------------------------------|
@@ -54,7 +67,7 @@
 | :material-trophy: **Master**           | 8 | [Maintainable Tests](qaas/quickStart/makeTestMoreMaintainable.md) | Improve structure by using anchors, placeholders, and variable files     |
 |                                        | 9 | [Architecture](qaas/architecture.md)                              | Understand the Runner pipeline and design complex scenarios              |
 
-## Contact Us
+## Contact Us {: #contact-us}
 
 Join our community where you can ask questions, report bugs, request features, and interact with the community.
 

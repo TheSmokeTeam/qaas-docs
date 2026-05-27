@@ -4,6 +4,18 @@ site_url: !ENV [QAAS_DOCS_SITE_URL, "https://TheSmokeTeam.github.io/qaas-docs/"]
 repo_name: !ENV [QAAS_DOCS_REPO_NAME, "QaaS.Runner"]
 repo_url: !ENV [QAAS_DOCS_REPO_URL, "https://github.com/TheSmokeTeam/QaaS.Runner"]
 docs_dir: docs/
+strict: true
+
+validation:
+  nav:
+    omitted_files: warn
+    not_found: warn
+    absolute_links: warn
+  links:
+    not_found: warn
+    anchors: warn
+    absolute_links: warn
+    unrecognized_links: warn
 
 nav:
   - Home: index.md
@@ -19,6 +31,8 @@ nav:
       - Write a Test (Code): qaas/quickStart/writeTestCode.md
       - Write Hooks: qaas/quickStart/writeHooks.md
       - Run a Test: qaas/quickStart/runTest.md
+      - Hello-World HTTP: qaas/quickStart/helloWorldHttp.md
+      - Action Selection Playbook: qaas/quickStart/actionSelectionPlaybook.md
       - Maintainable Tests: qaas/quickStart/makeTestMoreMaintainable.md
       - Debug Failures: qaas/quickStart/debugTestFailure.md
     - Configuration Reference:
@@ -84,6 +98,12 @@ nav:
       - assert: qaas/userInterfaces/runner/commands/assert.md
       - execute: qaas/userInterfaces/runner/commands/execute.md
       - template: qaas/userInterfaces/runner/commands/template.md
+      - Schema Extensions: qaas/userInterfaces/runner/schema-extensions.md
+      - Generated Schema References:
+        - Assertions: _generated/schemas/assertions.md
+        - Generators: _generated/schemas/generators.md
+        - Probes: _generated/schemas/probes.md
+        - Processors: _generated/schemas/processors.md
     - Extensibility:
       - Plugins: qaas/addOns/plugins.md
       - Modules: qaas/addOns/modules.md
@@ -92,6 +112,7 @@ nav:
       - Live Session Data: qaas/advancedConcepts/liveSessionData.md
       - Global Dictionary: qaas/advancedConcepts/globalDictionary.md
       - Configuration As Code: qaas/advancedConcepts/configurationAsCode.md
+      - YAML Mechanics: qaas/advancedConcepts/yaml-mechanics.md
       - Best Practices: qaas/bestPractices.md
     - Functions:
       - Overview: qaas/functions/index.md
@@ -194,12 +215,11 @@ nav:
         - Bootstrap: qaas/functions/commands/bootstrap.md
         - Runner: qaas/functions/commands/runner.md
       - Extension Methods:
-        - Extension Methods:
-          - Overview: qaas/functions/extension-methods.md
-          - Context artifact: qaas/functions/extension-methods-sections/context-artifact.md
-          - Date time: qaas/functions/extension-methods-sections/date-time.md
-          - Detailed data: qaas/functions/extension-methods-sections/detailed-data.md
-          - Session: qaas/functions/extension-methods-sections/session.md
+        - Overview: qaas/functions/extension-methods.md
+        - Context artifact: qaas/functions/extension-methods-sections/context-artifact.md
+        - Date time: qaas/functions/extension-methods-sections/date-time.md
+        - Detailed data: qaas/functions/extension-methods-sections/detailed-data.md
+        - Session: qaas/functions/extension-methods-sections/session.md
       # qaas-docs-generator end: runner-functions
   - Mocker:
     - General:
@@ -234,6 +254,9 @@ nav:
       - Overview: mocker/userInterfaces/mocker/commands/commands.md
       - run: mocker/userInterfaces/mocker/commands/run.md
       - template: mocker/userInterfaces/mocker/commands/template.md
+    - Authoring Guide:
+      - Multi-Server Routing: mocker/authoring-guide/multi-server-routing.md
+      - Controller Recipe (Redis): mocker/authoring-guide/controller-recipe-redis.md
     - Functions:
       - Overview: mocker/functions/index.md
       # qaas-docs-generator start: mocker-functions
@@ -260,15 +283,15 @@ nav:
         - Bootstrap: mocker/functions/commands/bootstrap.md
         - Mocker Runner: mocker/functions/commands/mocker-runner.md
       - Extension Methods:
-        - Extension Methods:
-          - Overview: mocker/functions/extension-methods.md
-          - Data: mocker/functions/extension-methods-sections/data.md
-          - Http: mocker/functions/extension-methods-sections/http.md
-          - Socket: mocker/functions/extension-methods-sections/socket.md
+        - Overview: mocker/functions/extension-methods.md
+        - Data: mocker/functions/extension-methods-sections/data.md
+        - Http: mocker/functions/extension-methods-sections/http.md
+        - Socket: mocker/functions/extension-methods-sections/socket.md
       # qaas-docs-generator end: mocker-functions
   - Hooks:
     - Assertions:
       - Introduction: assertions/index.md
+      - Custom Authoring Guide: assertions/custom-authoring-guide.md
       # qaas-docs-generator start: hook-assertions
       - Available Assertions:
         - Latency:
@@ -322,6 +345,7 @@ nav:
       # qaas-docs-generator end: hook-assertions
     - Generators:
       - Introduction: generators/index.md
+      - Custom Authoring Guide: generators/custom-authoring-guide.md
       # qaas-docs-generator start: hook-generators
       - Available Generators:
         - External sources:
@@ -374,6 +398,7 @@ nav:
       # qaas-docs-generator end: hook-generators
     - Probes:
       - Introduction: probes/index.md
+      - Custom Authoring Guide: probes/custom-authoring-guide.md
       # qaas-docs-generator start: hook-probes
       - Available Probes:
         - RabbitMQ administration:
@@ -548,6 +573,7 @@ nav:
       # qaas-docs-generator end: hook-probes
     - Processors:
       - Introduction: processors/index.md
+      - Custom Authoring Guide: processors/custom-authoring-guide.md
       # qaas-docs-generator start: hook-processors
       - Available Processors:
         - Static responses:
@@ -623,30 +649,29 @@ nav:
         - Updates: framework/functions/updates.md
         - YAML: framework/functions/yaml.md
       - Extension Methods:
-        - Extension Methods:
-          - Overview: framework/functions/extension-methods.md
-          - Configuration:
-            - Overview: framework/functions/extension-methods-sections/configuration.md
-            - Placeholders: framework/functions/extension-methods-sections/configuration/placeholders.md
-            - Updates: framework/functions/extension-methods-sections/configuration/updates.md
-            - YAML: framework/functions/extension-methods-sections/configuration/yaml.md
-          - Extension Methods:
-            - Overview: framework/functions/extension-methods-sections/extension-methods.md
-            - Communication data: framework/functions/extension-methods-sections/extension-methods/communication-data.md
-            - Configuration merge utilities: framework/functions/extension-methods-sections/extension-methods/configuration-merge-utilities.md
-            - Configuration references parser: framework/functions/extension-methods-sections/extension-methods/configuration-references-parser.md
-            - Configuration utilities: framework/functions/extension-methods-sections/extension-methods/configuration-utilities.md
-            - Context global dictionary: framework/functions/extension-methods-sections/extension-methods/context-global-dictionary.md
-            - Data: framework/functions/extension-methods-sections/extension-methods/data.md
-            - Data source: framework/functions/extension-methods-sections/extension-methods/data-source.md
-            - Date time: framework/functions/extension-methods-sections/extension-methods/date-time.md
-            - Running communication data: framework/functions/extension-methods-sections/extension-methods/running-communication-data.md
-            - Running session data: framework/functions/extension-methods-sections/extension-methods/running-session-data.md
-            - Serilog: framework/functions/extension-methods-sections/extension-methods/serilog.md
-            - Session data: framework/functions/extension-methods-sections/extension-methods/session-data.md
-          - Utilities:
-            - Overview: framework/functions/extension-methods-sections/utilities.md
-            - Enumerables: framework/functions/extension-methods-sections/utilities/enumerables.md
+        - Overview: framework/functions/extension-methods.md
+        - Configuration:
+          - Overview: framework/functions/extension-methods-sections/configuration.md
+          - Placeholders: framework/functions/extension-methods-sections/configuration/placeholders.md
+          - Updates: framework/functions/extension-methods-sections/configuration/updates.md
+          - YAML: framework/functions/extension-methods-sections/configuration/yaml.md
+        - Methods:
+          - Overview: framework/functions/extension-methods-sections/extension-methods.md
+          - Communication data: framework/functions/extension-methods-sections/extension-methods/communication-data.md
+          - Configuration merge utilities: framework/functions/extension-methods-sections/extension-methods/configuration-merge-utilities.md
+          - Configuration references parser: framework/functions/extension-methods-sections/extension-methods/configuration-references-parser.md
+          - Configuration utilities: framework/functions/extension-methods-sections/extension-methods/configuration-utilities.md
+          - Context global dictionary: framework/functions/extension-methods-sections/extension-methods/context-global-dictionary.md
+          - Data: framework/functions/extension-methods-sections/extension-methods/data.md
+          - Data source: framework/functions/extension-methods-sections/extension-methods/data-source.md
+          - Date time: framework/functions/extension-methods-sections/extension-methods/date-time.md
+          - Running communication data: framework/functions/extension-methods-sections/extension-methods/running-communication-data.md
+          - Running session data: framework/functions/extension-methods-sections/extension-methods/running-session-data.md
+          - Serilog: framework/functions/extension-methods-sections/extension-methods/serilog.md
+          - Session data: framework/functions/extension-methods-sections/extension-methods/session-data.md
+        - Utilities:
+          - Overview: framework/functions/extension-methods-sections/utilities.md
+          - Enumerables: framework/functions/extension-methods-sections/utilities/enumerables.md
       # qaas-docs-generator end: framework-functions
     - Projects:
       - SDK: framework/projects/sdk.md
@@ -668,10 +693,12 @@ theme:
     - content.tabs.link
     - navigation.instant
     - navigation.instant.progress
+    - navigation.instant.prefetch
     - navigation.tabs
     - navigation.tabs.sticky
     - navigation.sections
     - navigation.path
+    - navigation.prune
     - navigation.top
     - search.suggest
     - search.highlight
@@ -697,13 +724,54 @@ theme:
 plugins:
   - search
   - tags
-  - macros
+  - macros:
+      render_by_default: false
+  - minify:
+      minify_html: true
+      minify_js: true
+      minify_css: true
+      htmlmin_opts:
+        remove_comments: true
+      js_files:
+        - assets/javascripts/qaas-docs-build-defaults.js
+        - assets/javascripts/qaas-docs-runtime-overrides.js
+        - assets/javascripts/runtime-link-overrides.js
+        - assets/javascripts/current-page-title.js
+      css_files:
+        - stylesheets/functions.css
+  - llmstxt:
+      full_output: llms-full.txt
+      markdown_description: |
+        QaaS documentation covers Runner, Mocker, Framework, hook catalogs,
+        configuration references, and offline packaging from the same MkDocs source.
+      sections:
+        Home:
+          - index.md: Documentation entry point.
+        Runner:
+          - qaas/index.md: Runner overview.
+          - qaas/quickStart/*.md: Runner setup and workflow guides.
+          - qaas/userInterfaces/runner/**/*.md: Runner CLI and configuration reference.
+        Mocker:
+          - mocker/index.md: Mocker overview.
+          - mocker/quickStart/*.md: Mocker setup and workflow guides.
+          - mocker/userInterfaces/mocker/**/*.md: Mocker CLI and configuration reference.
+        Hook Catalogs:
+          - assertions/**/*.md: Assertion catalog and authoring guide.
+          - generators/**/*.md: Generator catalog and authoring guide.
+          - probes/**/*.md: Probe catalog and authoring guide.
+          - processors/**/*.md: Processor catalog and authoring guide.
+        Framework:
+          - framework/**/*.md: Framework reference.
 
 extra_javascript:
-  - assets/javascripts/qaas-docs-build-defaults.js
-  - assets/javascripts/qaas-docs-runtime-overrides.js
-  - assets/javascripts/runtime-link-overrides.js
-  - assets/javascripts/current-page-title.js
+  - path: assets/javascripts/qaas-docs-build-defaults.js
+    defer: true
+  - path: assets/javascripts/qaas-docs-runtime-overrides.js
+    defer: true
+  - path: assets/javascripts/runtime-link-overrides.js
+    defer: true
+  - path: assets/javascripts/current-page-title.js
+    defer: true
 
 extra_css:
   - stylesheets/functions.css
@@ -721,8 +789,7 @@ markdown_extensions:
   - pymdownx.tabbed:
       alternate_style: true
   - pymdownx.highlight:
-      anchor_linenums: true
-      line_spans: __span
+      anchor_linenums: false
       pygments_lang_class: true
   - toc:
       permalink: true
@@ -758,8 +825,13 @@ extra:
     qaas_community: !ENV [QAAS_DOCS_LINK_QAAS_COMMUNITY, "https://discord.gg/rg2NYT4Mea"]
     nuget_feed: !ENV [QAAS_DOCS_LINK_NUGET_FEED, "https://api.nuget.org/v3/index.json"]
     artifactory: !ENV [QAAS_DOCS_LINK_ARTIFACTORY, "https://jfrog.com/artifactory"]
-    runner_schema: !ENV [QAAS_DOCS_LINK_RUNNER_SCHEMA, "../../assets/schemas/runner-family-schema.json"]
-    mocker_schema: !ENV [QAAS_DOCS_LINK_MOCKER_SCHEMA, "../../assets/schemas/mocker-family-schema.json"]
+    runner_schema: !ENV [QAAS_DOCS_LINK_RUNNER_SCHEMA, "../../../assets/schemas/runner-family-schema.json"]
+    mocker_schema: !ENV [QAAS_DOCS_LINK_MOCKER_SCHEMA, "../../../assets/schemas/mocker-family-schema.json"]
+  images:
+    dotnet_sdk: !ENV [QAAS_DOCS_IMAGE_DOTNET_SDK, "mcr.microsoft.com/dotnet/sdk:10.0"]
+    dotnet_runtime: !ENV [QAAS_DOCS_IMAGE_DOTNET_RUNTIME, "mcr.microsoft.com/dotnet/runtime:10.0"]
+    redis_repository: !ENV [QAAS_DOCS_IMAGE_REDIS_REPOSITORY, "redis"]
+    redis_tag: !ENV [QAAS_DOCS_IMAGE_REDIS_TAG, "7-alpine"]
   social:
     - icon: fontawesome/brands/github
       link: !ENV [QAAS_DOCS_SOCIAL_GITHUB_URL, "https://github.com/TheSmokeTeam/QaaS.Runner"]

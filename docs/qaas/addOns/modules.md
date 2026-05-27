@@ -1,8 +1,21 @@
+---
+id: qaas.addons.modules
+type: reference
+status: stable
+since: 2.0.0
+last_verified: 2026-05-22
+applies_to: [runner]
+keywords: [qaas, addons, modules]
+summary: "QaaS Module Packages are Artifactory artifacts that bundle reusable YAML folders for Runner configurations."
+render_macros: true
+---
 # QaaS Module Packages
+
+> TL;DR — QaaS Module Packages are Artifactory artifacts that bundle reusable YAML folders for Runner configurations.
 
 `QaaS Module Packages` are bundles of folders containing YAML files, uploaded as artifacts to [Artifactory]({{ links.artifactory }}). In the context of `QaaS`, each such artifact is referred to as a **module**. These modules can be used interchangeably with any YAML file within [QaaS.Runner](../index.md).
 
-## Publishing Conventions
+## Publishing Conventions {: #publishing-conventions}
 
 - Place modules under `{{ links.artifactory }}`
 - Module directory names must be in **PascalCase**
@@ -18,11 +31,11 @@
         `-- commons.yaml
 ```
 
-## Using Modules from Artifactory
+## Using Modules from Artifactory {: #using-modules-from-artifactory}
 
 To use a YAML file from Artifactory in a `qaas` command, replace the local file path with the full URL to the file in Artifactory.
 
-### Example: Using `commons.yaml` from `CommonModule` v0.1.0
+### Example: Using `commons.yaml` from `CommonModule` v0.1.0 {: #example-using-commonsyaml-from-commonmodule-v010}
 
 1. Open the target module file in the Artifactory UI.
 2. Copy the URL to the file, for example `{{ links.artifactory }}/commons.yaml`.
@@ -31,3 +44,7 @@ To use a YAML file from Artifactory in a `qaas` command, replace the local file 
 ```bash
 dotnet run -- run test.qaas.yaml -w {{ links.artifactory }}/commons.yaml
 ```
+
+## See also {: #see-also}
+
+- [QaaS Runner](../index.md)

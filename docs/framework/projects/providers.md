@@ -1,10 +1,22 @@
+---
+id: framework.projects.providers
+type: reference
+status: stable
+since: 2.0.0
+last_verified: 2026-05-22
+applies_to: [framework]
+keywords: [framework, projects, providers]
+summary: "QaaS.Framework.Providers discovers hook implementations and resolves configured hook names at runtime."
+---
 # QaaS.Framework.Providers
+
+> TL;DR — QaaS.Framework.Providers discovers hook implementations and resolves configured hook names at runtime.
 
 `QaaS.Framework.Providers` is the Framework solution's hook-discovery and hook-loading package. It is responsible for finding hook implementations in the current process, resolving the configured hook type, creating the hook instance, injecting `Context`, validating configuration, and registering the final hook collection into Autofac.
 
-## What this project contains
+## What this project contains {: #what-this-project-contains}
 
-### Hook metadata and object creation
+### Hook metadata and object creation {: #hook-metadata-and-object-creation}
 
 The package starts with two small but important pieces:
 
@@ -13,7 +25,7 @@ The package starts with two small but important pieces:
 
 This separation lets the package keep configuration data and object creation concerns independent.
 
-### Hook discovery and resolution
+### Hook discovery and resolution {: #hook-discovery-and-resolution}
 
 The core discovery implementation lives in:
 
@@ -22,11 +34,11 @@ The core discovery implementation lives in:
 
 `HookProvider<THook>` scans assemblies, finds supported subclasses of the requested hook contract, resolves the requested type name, and creates the instance through `IByNameObjectCreator`.
 
-### Validation-aware loading
+### Validation-aware loading {: #validation-aware-loading}
 
 `HooksFromProvidersLoader.cs` is the layer that takes configured `HookData<THook>` records and turns them into initialized hook instances. It also runs `LoadAndValidateConfiguration(...)` and adds hook-specific prefixes to validation failures so downstream applications can tell which configured hook produced each error.
 
-### Autofac integration
+### Autofac integration {: #autofac-integration}
 
 `Modules/HooksLoaderModule.cs` is the Autofac module for this package. It wires together:
 
@@ -36,7 +48,7 @@ The core discovery implementation lives in:
 
 This is the registration output that downstream applications usually consume after the container is built.
 
-## Current behavior
+## Current behavior {: #current-behavior}
 
 The current implementation behaves as follows:
 
@@ -52,7 +64,7 @@ The current implementation behaves as follows:
 - validation errors are enriched with hook name and type context before they are returned
 - `HooksLoaderModule<THook>` exposes the resolved hook collection as `IList<KeyValuePair<string, THook>>`
 
-## Main source areas
+## Main source areas {: #main-source-areas}
 
 The most important files in this package are:
 
@@ -63,7 +75,7 @@ The most important files in this package are:
 - `Modules/HooksLoaderModule.cs`
 - `CustomExceptions/UnsupportedSubClassException.cs`
 
-## Companion tests
+## Companion tests {: #companion-tests}
 
 `QaaS.Framework.Providers.Tests` is the sibling test project for this package.
 
@@ -85,3 +97,7 @@ Representative test files include:
 - `ProvidersBehaviorTests.cs`
 - `ProvidersCoverageTests.cs`
 - `DuplicateHooks.cs`
+
+## See also {: #see-also}
+
+- [Framework](../index.md)

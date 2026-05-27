@@ -1,10 +1,22 @@
+---
+id: framework.projects.sdk
+type: reference
+status: stable
+since: 2.0.0
+last_verified: 2026-05-22
+applies_to: [framework]
+keywords: [framework, projects, sdk]
+summary: "QaaS.Framework.SDK is the main runtime-contract package. It defines the object surface QaaS works with: contexts, execution data, sessions, communications."
+---
 # QaaS.Framework.SDK
 
-`QaaS.Framework.SDK` is the main runtime-contract package in the Framework solution. It defines the object model that the rest of QaaS works with: contexts, execution data, sessions, communications, data sources, hook contracts, hook base classes, metadata, and helper extensions. Any hook package that integrates with the Framework depends on this package because it is the shared vocabulary for the runtime.
+> TL;DR — QaaS.Framework.SDK is the main runtime-contract package. It defines the object surface QaaS works with: contexts, execution data, sessions, communications.
 
-## What this project contains
+`QaaS.Framework.SDK` is the main runtime-contract package in the Framework solution. It defines the object surface that the rest of QaaS works with: contexts, execution data, sessions, communications, data sources, hook contracts, hook base classes, metadata, and helper extensions. Any hook package that integrates with the Framework depends on this package because it is the shared vocabulary for the runtime.
 
-### Context and execution state
+## What this project contains {: #what-this-project-contains}
+
+### Context and execution state {: #context-and-execution-state}
 
 The context layer lives under `ContextObjects` and `ExecutionObjects`:
 
@@ -22,7 +34,7 @@ The context layer lives under `ContextObjects` and `ExecutionObjects`:
 
 `Bind.cs` is the bridge back from configuration to typed objects. It binds from `context.RootConfiguration`, reapplies default values into the configuration tree when needed, and validates the bound object before handing it back to the caller.
 
-### Data sources
+### Data sources {: #data-sources}
 
 The `DataSourceObjects` folder contains:
 
@@ -31,9 +43,9 @@ The `DataSourceObjects` folder contains:
 
 `DataSource` is the runtime object used when the framework needs to retrieve or reuse data. `DataSourceBuilder` is the configuration and fluent-builder shape for constructing those sources. It supports serializer and deserializer metadata, dependency selection by name or regex, and YAML-friendly configuration output.
 
-### Session, communication, and metadata model
+### Session, communication, and metadata surface {: #session-communication-and-metadata-surface}
 
-The `Session` folder contains the runtime data model that most hooks and protocols work with:
+The `Session` folder contains the runtime data surface that most hooks and protocols work with:
 
 - `DataObjects/`
 - `CommunicationDataObjects/`
@@ -55,7 +67,7 @@ Key runtime types in this area include:
 
 `ExecutionData.cs` is the package's execution-state container. It currently holds `DataSources`, `SessionDatas`, and `AssertionResults`.
 
-### Hooks
+### Hooks {: #hooks}
 
 The hook system lives under `Hooks`:
 
@@ -85,7 +97,7 @@ Assertions add reporting fields on top of that shared hook contract:
 
 The transaction-processor path is important. The current SDK does not expose the old `BaseProcessor<TConfiguration>` shape that some stale docs referenced. The built-in `StatusCodeTransactionProcessor` is also part of the package and provides a ready-made processor for status-code-oriented responses.
 
-### Filters and extensions
+### Filters and extensions {: #filters-and-extensions}
 
 The package contains supporting helpers under:
 
@@ -95,7 +107,7 @@ The package contains supporting helpers under:
 
 These files provide common filtering and lookup helpers for sessions, communications, data sources, and context objects, plus logging helpers that enrich log messages with runtime metadata.
 
-## Current behavior
+## Current behavior {: #current-behavior}
 
 The current implementation provides the following runtime behavior:
 
@@ -107,9 +119,9 @@ The current implementation provides the following runtime behavior:
 - `DataSource` supports cached and lazy retrieval behavior depending on how it is configured.
 - The hook base classes load their configuration from the root configuration and validate it through the shared configuration package.
 - `SessionDataSerialization` serializes and deserializes session and communication payloads by using the Serialization package's factories and `SpecificTypeConfig`.
-- The extension methods cover casting, filtering, lookup, metadata-path access, and logging enrichment across the runtime data model.
+- The extension methods cover casting, filtering, lookup, metadata-path access, and logging enrichment across the runtime data surface.
 
-## Main source areas
+## Main source areas {: #main-source-areas}
 
 The highest-signal areas to read are:
 
@@ -122,7 +134,7 @@ The highest-signal areas to read are:
 - `Extensions/`
 - `MetaDataConfig.cs`
 
-## Companion tests
+## Companion tests {: #companion-tests}
 
 `QaaS.Framework.SDK.Tests` is the sibling test project for this package.
 
@@ -145,3 +157,7 @@ Representative test files include:
 - `SDKCoverageEdgeCaseTests.cs`
 - `SDKSerializationCoverageTests.cs`
 - `BuildersTests/DataSourceBuilderTests.cs`
+
+## See also {: #see-also}
+
+- [Framework](../index.md)

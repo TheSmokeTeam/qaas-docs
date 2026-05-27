@@ -1,4 +1,17 @@
+---
+id: mocker.quickstart.deploymock
+type: tutorial
+status: stable
+since: 2.0.0
+last_verified: 2026-05-23
+applies_to: [mocker]
+keywords: [mocker, quickstart, deploymock]
+summary: "Once the mock works locally, package it as a container image and deploy it with a native Helm chart."
+render_macros: true
+---
 # Deploy a Mock
+
+> TL;DR — Package a working mock as a container image and deploy it with the native Helm chart.
 
 Once the mock works locally, package it as a container image and deploy it with a native Helm chart.
 
@@ -7,25 +20,35 @@ The finished chart lives alongside the sample project:
 - [DummyAppMock (YAML)]({{ links.repository_mocker_quickstart_yaml }})
 - [DummyAppMock (Code)]({{ links.repository_mocker_quickstart_code }})
 
-## Build the Image
+## Build the Image {: #build-the-image}
 
 The project template already contains a Dockerfile. For a project named `DummyAppMock`, the final image can look like this:
 
 ```dockerfile
-FROM mcr.microsoft.com/dotnet/sdk:10.0 AS build
+ARG DOTNET_SDK_IMAGE={{ images.dotnet_sdk }}
+ARG DOTNET_RUNTIME_IMAGE={{ images.dotnet_runtime }}
+
+FROM ${DOTNET_SDK_IMAGE} AS build
 WORKDIR /src
 COPY . .
+ARG QAAS_NUGET_SOURCE_NAME=nuget_feed
+ARG QAAS_NUGET_SOURCE_URL={{ links.nuget_feed }}
+RUN dotnet nuget remove source "${QAAS_NUGET_SOURCE_NAME}" --configfile NuGet.config || true \
+ && dotnet nuget add source "${QAAS_NUGET_SOURCE_URL}" --name "${QAAS_NUGET_SOURCE_NAME}" --configfile NuGet.config
 RUN dotnet restore DummyAppMock.sln --configfile NuGet.config
 RUN dotnet publish DummyAppMock/DummyAppMock.csproj -c Release -o /app/publish --no-restore
 
-FROM mcr.microsoft.com/dotnet/runtime:10.0
+FROM ${DOTNET_RUNTIME_IMAGE}
 WORKDIR /app
 COPY --from=build /app/publish .
-ENTRYPOINT ["dotnet", "DummyAppMock.dll", "mocker.qaas.yaml"]
+ENV QAAS_MOCKER_CONFIG=mocker.qaas.yaml
+ENTRYPOINT ["sh", "-c", "exec dotnet DummyAppMock.dll \"$QAAS_MOCKER_CONFIG\""]
 ```
 
 !!! warning "⚠️ Important"
     Build the project as part of the Docker image build, then push that finished runtime image to your registry. The deployed container should only pull the published image and start the already-built application. It should not compile the project during pod startup.
+
+The Dockerfile keeps the SDK image, runtime image, NuGet source name, NuGet source URL, and mocker configuration file configurable. Use build arguments for values needed before `dotnet restore`, and use the `QAAS_MOCKER_CONFIG` environment variable when the same image should start a different mocker YAML file.
 
 Build and push the image to your registry:
 
@@ -34,9 +57,23 @@ docker build -t ghcr.io/my-org/dummy-app-mock:1.0.0 .
 docker push ghcr.io/my-org/dummy-app-mock:1.0.0
 ```
 
+For a private feed or a custom image mirror:
+
+```bash
+DOTNET_SDK_IMAGE=registry.example.com/dotnet/sdk:10.0
+DOTNET_RUNTIME_IMAGE=registry.example.com/dotnet/runtime:10.0
+QAAS_NUGET_SOURCE_URL=https://nuget.example.com/v3/index.json
+
+docker build -t ghcr.io/my-org/dummy-app-mock:1.0.0 \
+  --build-arg DOTNET_SDK_IMAGE="${DOTNET_SDK_IMAGE}" \
+  --build-arg DOTNET_RUNTIME_IMAGE="${DOTNET_RUNTIME_IMAGE}" \
+  --build-arg QAAS_NUGET_SOURCE_URL="${QAAS_NUGET_SOURCE_URL}" \
+  .
+```
+
 After the image is published, Kubernetes only needs to pull `ghcr.io/my-org/dummy-app-mock:1.0.0` and run it. Rebuilding is only needed when you publish a new image tag.
 
-## Native Helm Chart
+## Native Helm Chart {: #native-helm-chart}
 
 This chart deploys:
 
@@ -44,7 +81,7 @@ This chart deploys:
 - a Redis instance for the optional [Controller](../userInterfaces/mocker/configurationSections/controller/overview.md)
 - a service for the mocker HTTP endpoint
 
-### `Chart.yaml`
+### `Chart.yaml` {: #chartyaml}
 
 ```yaml
 apiVersion: v2
@@ -55,7 +92,7 @@ version: 0.1.0
 appVersion: "1.0.0"
 ```
 
-### `values.yaml`
+### `values.yaml` {: #valuesyaml}
 
 ```yaml
 mocker:
@@ -69,20 +106,22 @@ mocker:
     port: 80
   controller:
     serverName: DummyAppMock
+  configFile: mocker.qaas.yaml
 
 redis:
   image:
-    repository: redis
-    tag: 7-alpine
+    repository: {{ images.redis_repository }}
+    tag: {{ images.redis_tag }}
     pullPolicy: IfNotPresent
   service:
     type: ClusterIP
     port: 6379
 ```
 
-### `templates/mocker-deployment.yaml`
+### `templates/mocker-deployment.yaml` {: #templatesmocker-deploymentyaml}
 
 {% raw %}
+
 ```yaml
 apiVersion: apps/v1
 kind: Deployment
@@ -105,16 +144,20 @@ spec:
           ports:
             - containerPort: {{ .Values.mocker.service.port }}
           env:
+            - name: QAAS_MOCKER_CONFIG
+              value: {{ .Values.mocker.configFile | quote }}
             - name: Controller__ServerName
               value: {{ .Values.mocker.controller.serverName | quote }}
             - name: Controller__Redis__Host
               value: "{{ .Release.Name }}-redis:{{ .Values.redis.service.port }}"
 ```
+
 {% endraw %}
 
-### `templates/mocker-service.yaml`
+### `templates/mocker-service.yaml` {: #templatesmocker-serviceyaml}
 
 {% raw %}
+
 ```yaml
 apiVersion: v1
 kind: Service
@@ -130,11 +173,13 @@ spec:
       targetPort: {{ .Values.mocker.service.port }}
       protocol: TCP
 ```
+
 {% endraw %}
 
-### `templates/redis-deployment.yaml`
+### `templates/redis-deployment.yaml` {: #templatesredis-deploymentyaml}
 
 {% raw %}
+
 ```yaml
 apiVersion: apps/v1
 kind: Deployment
@@ -157,11 +202,13 @@ spec:
           ports:
             - containerPort: {{ .Values.redis.service.port }}
 ```
+
 {% endraw %}
 
-### `templates/redis-service.yaml`
+### `templates/redis-service.yaml` {: #templatesredis-serviceyaml}
 
 {% raw %}
+
 ```yaml
 apiVersion: v1
 kind: Service
@@ -177,12 +224,20 @@ spec:
       targetPort: {{ .Values.redis.service.port }}
       protocol: TCP
 ```
+
 {% endraw %}
 
-## Deploy
+## Deploy {: #deploy}
 
 ```bash
 helm upgrade --install dummy-app-mock ./chart
 ```
 
 The mocker becomes reachable through the mocker service, and the [Controller](../userInterfaces/mocker/configurationSections/controller/overview.md) connects to Redis through the injected `Controller__Redis__Host` environment variable.
+
+## See also {: #see-also}
+
+- [Create a mock in YAML](createMock.md)
+- [Create a mock in code](createMockCode.md)
+- [Integrate with tests](integrateWithTests.md)
+- [Servers](../userInterfaces/mocker/configurationSections/server/overview.md)

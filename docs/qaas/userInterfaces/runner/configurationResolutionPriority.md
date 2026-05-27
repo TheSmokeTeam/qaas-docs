@@ -1,10 +1,29 @@
+---
+id: qaas.userinterfaces.runner.configurationresolutionpriority
+type: reference
+status: stable
+since: 2.0.0
+last_verified: 2026-05-22
+applies_to: [runner]
+keywords: [qaas, userinterfaces, runner, configurationresolutionpriority]
+summary: "This page describes how QaaS.Runner builds the effective configuration for the run, act, assert, and template commands."
+---
+
 # Configuration Resolution
 
 This page describes how `QaaS.Runner` builds the effective configuration for the [`run`](commands/run.md), [`act`](commands/act.md), [`assert`](commands/assert.md), and [`template`](commands/template.md) commands.
 
-The behavior below comes from `RunLoader.BuildContext(...)` in `QaaS.Runner` and `ContextBuilder.GetConfiguration()` in [QaaS.Framework.SDK](../../../framework/projects/sdk.md).
+> TL;DR: Runner layers the base YAML, overwrite files, overwrite folders, cases, command-line overrides, pushed references, environment variables, placeholders, and `<<` merges into one effective configuration.
 
-## Default Resolution Order
+The Runner builds the effective configuration by layering the inputs below.
+
+## When to use {: #when-to-use}
+
+- You need to predict which YAML value wins when several configuration inputs define the same setting.
+- You are choosing between `-w`, `-f`, `-r`, `-p`, cases, and environment variables.
+- You want to understand why `--resolve-cases-last` changes case overlay behavior.
+
+## Default Resolution Order {: #default-resolution-order}
 
 By default, Runner builds the final configuration in this order:
 
@@ -30,7 +49,7 @@ By default, Runner builds the final configuration in this order:
 9. `<<` collapse resolution.
    - After placeholders are resolved, QaaS flattens nested `<<` merge structures into the final configuration tree.
 
-## Supported Reference Keys
+## Supported Reference Keys {: #supported-reference-keys}
 
 Runner currently supports pushed-reference injection into these top-level lists:
 
@@ -57,7 +76,7 @@ The replace keyword is also prefixed onto specific name and reference paths so i
 
 Other values inside an injected reference are left as written unless they match one of the paths above.
 
-## What `--resolve-cases-last` Changes
+## What `--resolve-cases-last` Changes {: #what-resolve-cases-last-changes}
 
 `--resolve-cases-last` changes only one part of the pipeline: the case file is no longer applied before overwrite arguments and pushed references.
 
@@ -75,7 +94,7 @@ With `--resolve-cases-last`, the order becomes:
 
 Use this when the case should override the already-expanded shared configuration instead of being part of the reference-expansion input.
 
-## How Environment Variables Actually Behave
+## How Environment Variables Actually Behave {: #how-environment-variables-actually-behave}
 
 When environment-variable resolution is enabled:
 
@@ -89,7 +108,7 @@ That last rule matters: environment variables can override existing sections and
 ???- info "--no-env"
     `--no-env` disables environment-variable resolution both for the main configuration and for pushed-reference bundles.
 
-## Details About Cases
+## Details About Cases {: #details-about-cases}
 
 When `-c` / `--cases` is used, Runner creates one context per case file:
 
@@ -100,7 +119,7 @@ When `-c` / `--cases` is used, Runner creates one context per case file:
 
 Each selected case goes through the same resolution pipeline above.
 
-## Details About Pushed References
+## Details About Pushed References {: #details-about-pushed-references}
 
 Pushed references are resolved independently before they are injected into the main configuration:
 
@@ -112,13 +131,13 @@ Pushed references are resolved independently before they are injected into the m
 
 Reference bundles do not perform a second nested reference-expansion pass of their own.
 
-## Code-Only Runner Builds
+## Code-Only Runner Builds {: #code-only-runner-builds}
 
-Runner normally expects a configuration file, but `RunLoader` has one exception: if the file is missing and Runner discovers execution-builder configurators, it logs a warning and continues with the code-based configuration path instead of failing immediately.
+Runner normally expects a configuration file. A code-only host can still proceed without one when execution-builder configurators are discovered; Runner logs a warning and continues with the code-based configuration path instead of failing immediately.
 
-## `execute` Is Different
+## `execute` Is Different {: #execute-is-different}
 
-The `execute` command uses a simpler pipeline in `ExecuteLoader`:
+The `execute` command uses a shorter pipeline:
 
 - load the execute YAML file
 - apply environment variables
@@ -126,3 +145,12 @@ The `execute` command uses a simpler pipeline in `ExecuteLoader`:
 - bind to `ExecuteConfigurations`
 
 It does not use the case overlay, overwrite-file/folder pipeline, pushed references, or `<<` collapse logic described above.
+
+## See also {: #see-also}
+
+- [Commands overview](commands/commands.md)
+- [`run`](commands/run.md)
+- [`template`](commands/template.md)
+- [Configuration Sections](configurationSections/configurationSections.md)
+- [DataSources](configurationSections/dataSources/overview.md)
+- [Sessions](configurationSections/sessions/overview.md)

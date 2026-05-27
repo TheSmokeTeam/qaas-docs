@@ -1,10 +1,22 @@
+---
+id: framework.projects.serialization
+type: reference
+status: stable
+since: 2.0.0
+last_verified: 2026-05-22
+applies_to: [framework]
+keywords: [framework, projects, serialization]
+summary: "QaaS.Framework.Serialization provides shared serializers and deserializers used by Framework and SDK packages."
+---
 # QaaS.Framework.Serialization
+
+> TL;DR — QaaS.Framework.Serialization provides shared serializers and deserializers used by Framework and SDK packages.
 
 `QaaS.Framework.Serialization` is the Framework solution's serializer and deserializer package. It is a standalone package that other QaaS packages reference, including [QaaS.Framework.SDK](./sdk.md). The package contains the configuration objects that choose a format, the factories that create the right runtime implementation, and the concrete serializers and deserializers for each supported format.
 
-## What this project contains
+## What this project contains {: #what-this-project-contains}
 
-### Format selection and configuration
+### Format selection and configuration {: #format-selection-and-configuration}
 
 The package exposes four central configuration types:
 
@@ -15,7 +27,7 @@ The package exposes four central configuration types:
 
 `SerializationType` is the format enum used across the package. `SerializeConfig` and `DeserializeConfig` describe how a caller wants serialization or deserialization to happen. `SpecificTypeConfig` stores the type metadata needed when deserialization must reconstruct a specific runtime type.
 
-### Factory layer
+### Factory layer {: #factory-layer}
 
 The runtime dispatch layer is implemented in:
 
@@ -24,7 +36,7 @@ The runtime dispatch layer is implemented in:
 
 These factories translate the selected `SerializationType` into a concrete serializer or deserializer implementation.
 
-### Concrete serializers
+### Concrete serializers {: #concrete-serializers}
 
 The `Serializers` folder currently contains:
 
@@ -36,7 +48,7 @@ The `Serializers` folder currently contains:
 - `Yaml.cs`
 - `ProtobufMessage.cs`
 
-### Concrete deserializers
+### Concrete deserializers {: #concrete-deserializers}
 
 The `Deserializers` folder contains the matching format implementations:
 
@@ -48,7 +60,7 @@ The `Deserializers` folder contains the matching format implementations:
 - `Yaml.cs`
 - `ProtobufMessage.cs`
 
-## Supported formats
+## Supported formats {: #supported-formats}
 
 The current package supports these serialization formats:
 
@@ -62,7 +74,7 @@ The current package supports these serialization formats:
 
 The current enum and implementation name is `ProtobufMessage`, not `Protobuf`.
 
-## Current behavior
+## Current behavior {: #current-behavior}
 
 The current implementation includes several format-specific behaviors that are worth calling out:
 
@@ -75,9 +87,9 @@ The current implementation includes several format-specific behaviors that are w
 - several deserializers return `null` for `null` payloads instead of throwing
 - YAML deserialization contains a special case for empty payloads when the requested type is `string`
 
-This package is used heavily by the SDK for session and communication serialization, but it remains a separate package because the serialization layer is intentionally reusable outside of the SDK's higher-level object model.
+This package is used heavily by the SDK for session and communication serialization, but it remains a separate package because the serialization layer is intentionally reusable outside of the SDK's higher-level object surface.
 
-## Main source areas
+## Main source areas {: #main-source-areas}
 
 The most important files and folders are:
 
@@ -90,7 +102,7 @@ The most important files and folders are:
 - `Serializers/`
 - `Deserializers/`
 
-## Companion tests
+## Companion tests {: #companion-tests}
 
 `QaaS.Framework.Serialization.Tests` is the sibling test project for this package.
 
@@ -108,3 +120,7 @@ Representative test files include:
 
 - `SerializationBehaviorTests.cs`
 - `SerializationEdgeCaseTests.cs`
+
+## See also {: #see-also}
+
+- [Framework](../index.md)

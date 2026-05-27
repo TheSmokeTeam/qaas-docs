@@ -1,14 +1,30 @@
+---
+id: generators.available.lettucefromfilesystem.overview
+type: reference
+status: stable
+since: 2.0.0
+last_verified: 2026-05-22
+applies_to: [generators]
+keywords: [generators, LettuceFromFileSystem, GeneratorConfiguration]
+summary: "Retrieves lettuce-formatted files from the configured file-system path and exposes them as generated messages with their routing key metadata."
+---
+<!-- Verified-against: QaaS.Common.Generators\QaaS.Common.Generators\FromExternalSourceGenerators\LettuceFromFileSystem.cs -->
+
 # LettuceFromFileSystem
 
-Retrieves lettuce-formatted files from the configured file-system path and exposes them as generated messages with their routing key metadata.
+> TL;DR — Retrieves lettuce-formatted files from the configured file-system path and exposes them as generated messages with their routing key metadata.
 
-## What It Does
+## When to use {: #when-to-use}
 
 Reads lettuce envelope files directly from the local file system, decodes the base64 `Body`, and emits the decoded payload bytes.
 
 If the envelope contains a RabbitMQ routing key, that routing key is copied into the generated item metadata so it can be reused when publishing or asserting later in the flow.
 
-## YAML Example
+## YAML configuration {: #yaml-configuration}
+
+Use the hook name in the matching runtime section, then place hook-specific fields under the configuration object shown in the examples below.
+
+## Minimal example {: #minimal-example}
 
 ```yaml
 DataSources:
@@ -22,8 +38,19 @@ DataSources:
       StorageMetaData: ItemName
 ```
 
-## What This Configuration Does
+## Realistic example {: #realistic-example}
 
 This configuration scans `sample-data/lettuce` for lettuce envelope files, processes them in deterministic order, and exposes the decoded payload from each file as a generated item.
 
 Any routing key carried by the envelope is preserved in metadata, which makes the generated data ready for RabbitMQ-based flows.
+
+## Edge cases {: #edge-cases}
+
+- Missing required configuration keys fail schema validation before the hook runs.
+- Keep hook names and referenced session or data-source names aligned with the surrounding YAML.
+
+## See also {: #see-also}
+
+- [Configuration table](configuration/tableView.md)
+- [YAML scaffold](configuration/yamlView.md)
+- [Generators](../../index.md)

@@ -1,10 +1,23 @@
+---
+id: qaas.quickstart.writetestcode
+type: tutorial
+status: stable
+since: 2.0.0
+last_verified: 2026-05-23
+applies_to: [runner]
+keywords: [qaas, quickstart, writetestcode]
+summary: "Build the Runner quick-start configuration directly in `Program.cs` when C# should own the test setup."
+render_macros: true
+---
 # Write a Test (Code)
+
+> TL;DR — Build the Runner quick-start configuration directly in `Program.cs` when C# should own the test setup.
 
 This sample builds the same Runner configuration shape as the YAML quick start, but does it directly in `Program.cs` and gives the delay assertion a 10-second window so the documented smoke flow stays stable.
 
 The completed sample is available at [DummyAppTests (Code)]({{ links.repository_runner_quickstart_code }}).
 
-## Create the Project
+## Create the Project {: #create-the-project}
 
 ```bash
 dotnet new qaas-runner -n DummyAppTests
@@ -14,7 +27,7 @@ dotnet add DummyAppTests/DummyAppTests.csproj package QaaS.Common.Assertions
 dotnet add DummyAppTests/DummyAppTests.csproj package QaaS.Common.Generators
 ```
 
-## Keep an Empty Bootstrap File
+## Keep an Empty Bootstrap File {: #keep-an-empty-bootstrap-file}
 
 Runner exposes the execution builder through `Bootstrap.New(...)`, so this sample keeps an empty `test.qaas.yaml` only to initialize that builder.
 
@@ -24,7 +37,7 @@ Runner exposes the execution builder through `Bootstrap.New(...)`, so this sampl
 {}
 ```
 
-## Add the Test Data
+## Add the Test Data {: #add-the-test-data}
 
 `DummyAppTests/TestData/input.json`
 
@@ -37,11 +50,11 @@ Runner exposes the execution builder through `Bootstrap.New(...)`, so this sampl
 ]
 ```
 
-## Build `Program.cs` in Small Pieces
+## Build `Program.cs` in Small Pieces {: #build-programcs-in-small-pieces}
 
 `DummyAppTests/Program.cs`
 
-### Start with the Imports and Bootstrap
+### Start with the Imports and Bootstrap {: #start-with-the-imports-and-bootstrap}
 
 The first block imports the Runner builders, falls back to `run test.qaas.yaml` when no CLI arguments are supplied, and opens the execution builder that `Bootstrap.New(...)` creates from the empty YAML file.
 
@@ -72,7 +85,7 @@ const string inputExchangeName = "dummy-app-tests-input";
 const string outputExchangeName = "dummy-app-tests-output";
 ```
 
-### Create the Data Source
+### Create the Data Source {: #create-the-data-source}
 
 Start with the input payload source. This data source reads the JSON request message from the local `TestData` folder.
 
@@ -90,7 +103,7 @@ var dataSource = new DataSourceBuilder()
     });
 ```
 
-### Create the RabbitMQ Connection Settings
+### Create the RabbitMQ Connection Settings {: #create-the-rabbitmq-connection-settings}
 
 The sample uses one shared RabbitMQ configuration object so the publisher and consumer are guaranteed to point at the same broker. It also uses dedicated exchange names so the quick-start smoke path does not collide with other RabbitMQ traffic on the same machine.
 
@@ -105,7 +118,7 @@ var rabbitMqConfiguration = new BaseRabbitMqConfig
 };
 ```
 
-### Create the Publisher
+### Create the Publisher {: #create-the-publisher}
 
 The publisher takes data from `FromFileSystemTestData`, applies a simple load-balance policy, and publishes each payload into the `input` exchange.
 
@@ -128,7 +141,7 @@ var publisher = new PublisherBuilder()
     });
 ```
 
-### Create the Consumer
+### Create the Consumer {: #create-the-consumer}
 
 The consumer listens on the `output` exchange, waits up to five seconds, and deserializes the received payload as JSON before assertions run.
 
@@ -151,7 +164,7 @@ var consumer = new ConsumerBuilder()
     });
 ```
 
-### Create the Session
+### Create the Session {: #create-the-session}
 
 The session groups the publisher and consumer into one execution flow so Runner knows which actions belong together.
 
@@ -162,7 +175,7 @@ var session = new SessionBuilder()
     .AddConsumer(consumer);
 ```
 
-### Create the Assertions
+### Create the Assertions {: #create-the-assertions}
 
 The first assertion checks hermeticity: every published message should produce a corresponding output message. The second checks delay: each input/output pair should complete within ten seconds.
 
@@ -206,7 +219,7 @@ var delayAssertion = new AssertionBuilder
     });
 ```
 
-### Assemble the Runner Execution
+### Assemble the Runner Execution {: #assemble-the-runner-execution}
 
 The last step attaches metadata, the data source, the session, and the assertions to the current execution builder, then starts the Runner.
 
@@ -225,7 +238,7 @@ executionBuilder
 runner.Run();
 ```
 
-## Full `Program.cs`
+## Full `Program.cs` {: #full-programcs}
 
 This is the complete file exactly as it appears in the sample repository.
 
@@ -371,7 +384,7 @@ runner.Run();
 
 This `Program.cs` maps directly to the YAML quick start: `MetaData`, one `FromFileSystem` data source, one RabbitMQ session, and two assertions.
 
-## Run the Code Path
+## Run the Code Path {: #run-the-code-path}
 
 From `DummyAppTests/DummyAppTests`:
 
@@ -380,3 +393,11 @@ dotnet run
 ```
 
 The sample expects a local RabbitMQ broker on `127.0.0.1:5672` and a component that relays the published message from `input` to `output`, the same way the quick-start CI smoke test does.
+
+## See also {: #see-also}
+
+- [Write a test in YAML](writeTestYaml.md)
+- [Run test](runTest.md)
+- [DataSources](../userInterfaces/runner/configurationSections/dataSources/overview.md)
+- [Sessions](../userInterfaces/runner/configurationSections/sessions/overview.md)
+- [Assertions](../userInterfaces/runner/configurationSections/assertions/overview.md)

@@ -1,14 +1,30 @@
+---
+id: processors.available.texttransformprocessor.overview
+type: reference
+status: stable
+since: 2.0.0
+last_verified: 2026-05-22
+applies_to: [processors]
+keywords: [processors, TextTransformProcessor, ProcessorConfiguration]
+summary: "Reads the incoming payload as text, applies the configured text transformation, and returns the transformed response."
+---
+<!-- Verified-against: QaaS.Common.Processors\QaaS.Common.Processors\TextTransformProcessor.cs -->
+
 # TextTransformProcessor
 
-Reads the incoming payload as text, applies the configured text transformation, and returns the transformed response.
+> TL;DR — Reads the incoming payload as text, applies the configured text transformation, and returns the transformed response.
 
-## What It Does
+## When to use {: #when-to-use}
 
 Reads the incoming request body as text, optionally trims it, replaces matched text, and then adds a prefix and suffix before returning the transformed result.
 
 If the original body is not already text, the processor serializes it first. This makes it useful for lightweight normalization, templating, or diagnostics without writing custom code.
 
-## YAML Example
+## YAML configuration {: #yaml-configuration}
+
+Use the hook name in the matching runtime section, then place hook-specific fields under the configuration object shown in the examples below.
+
+## Minimal example {: #minimal-example}
 
 ```yaml
 Stubs:
@@ -36,8 +52,19 @@ Servers:
               TransactionStubName: TextTransformProcessorStub
 ```
 
-## What This Configuration Does
+## Realistic example {: #realistic-example}
 
 This example trims the incoming body, replaces `hello` with `hi`, then wraps the result in square brackets.
 
-For an input like `  hello world  `, the response body becomes `[hi world]`. The response is returned as HTTP `202`.
+For an input containing `hello world` with leading and trailing spaces, the response body becomes `[hi world]`. The response is returned as HTTP `202`.
+
+## Edge cases {: #edge-cases}
+
+- Missing required configuration keys fail schema validation before the hook runs.
+- Keep hook names and referenced session or data-source names aligned with the surrounding YAML.
+
+## See also {: #see-also}
+
+- [Configuration table](configuration/tableView.md)
+- [YAML scaffold](configuration/yamlView.md)
+- [Processors](../../index.md)

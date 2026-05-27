@@ -1,4 +1,5 @@
-FROM squidfunk/mkdocs-material:9.5 AS build
+ARG MKDOCS_MATERIAL_IMAGE
+FROM ${MKDOCS_MATERIAL_IMAGE} AS build
 
 WORKDIR /docs
 
@@ -39,6 +40,10 @@ ARG QAAS_DOCS_LINK_NUGET_FEED=https://api.nuget.org/v3/index.json
 ARG QAAS_DOCS_LINK_ARTIFACTORY=https://jfrog.com/artifactory
 ARG QAAS_DOCS_LINK_RUNNER_SCHEMA=../../assets/schemas/runner-family-schema.json
 ARG QAAS_DOCS_LINK_MOCKER_SCHEMA=../../assets/schemas/mocker-family-schema.json
+ARG QAAS_DOCS_IMAGE_DOTNET_SDK=mcr.microsoft.com/dotnet/sdk:10.0
+ARG QAAS_DOCS_IMAGE_DOTNET_RUNTIME=mcr.microsoft.com/dotnet/runtime:10.0
+ARG QAAS_DOCS_IMAGE_REDIS_REPOSITORY=redis
+ARG QAAS_DOCS_IMAGE_REDIS_TAG=7-alpine
 
 ENV QAAS_DOCS_SITE_URL=${QAAS_DOCS_SITE_URL} \
     QAAS_DOCS_REPO_NAME=${QAAS_DOCS_REPO_NAME} \
@@ -66,12 +71,17 @@ ENV QAAS_DOCS_SITE_URL=${QAAS_DOCS_SITE_URL} \
     QAAS_DOCS_LINK_NUGET_FEED=${QAAS_DOCS_LINK_NUGET_FEED} \
     QAAS_DOCS_LINK_ARTIFACTORY=${QAAS_DOCS_LINK_ARTIFACTORY} \
     QAAS_DOCS_LINK_RUNNER_SCHEMA=${QAAS_DOCS_LINK_RUNNER_SCHEMA} \
-    QAAS_DOCS_LINK_MOCKER_SCHEMA=${QAAS_DOCS_LINK_MOCKER_SCHEMA}
+    QAAS_DOCS_LINK_MOCKER_SCHEMA=${QAAS_DOCS_LINK_MOCKER_SCHEMA} \
+    QAAS_DOCS_IMAGE_DOTNET_SDK=${QAAS_DOCS_IMAGE_DOTNET_SDK} \
+    QAAS_DOCS_IMAGE_DOTNET_RUNTIME=${QAAS_DOCS_IMAGE_DOTNET_RUNTIME} \
+    QAAS_DOCS_IMAGE_REDIS_REPOSITORY=${QAAS_DOCS_IMAGE_REDIS_REPOSITORY} \
+    QAAS_DOCS_IMAGE_REDIS_TAG=${QAAS_DOCS_IMAGE_REDIS_TAG}
 
 RUN python tools/write_runtime_link_defaults.py docs/assets/javascripts/qaas-docs-build-defaults.js \
  && mkdocs build --clean
 
-FROM nginx:1.27-alpine AS runtime
+ARG NGINX_IMAGE
+FROM ${NGINX_IMAGE} AS runtime
 
 COPY tools/nginx.conf /etc/nginx/conf.d/default.conf
 COPY tools/docker-entrypoint.d/qaas-docs-runtime-overrides.sh /docker-entrypoint.d/qaas-docs-runtime-overrides.sh

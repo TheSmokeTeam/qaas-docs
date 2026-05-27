@@ -1,8 +1,27 @@
+---
+id: mocker.functions.builders.executions.sections.servers
+type: reference
+status: stable
+since: 2.0.0
+last_verified: 2026-05-22
+applies_to: [mocker]
+keywords: [mocker, functions, builders, executions, sections, servers]
+summary: "Reference page for Executions: Servers."
+---
+
+<!-- Verified-against: QaaS.Mocker\QaaS.Mocker\ExecutionBuilder.cs -->
+
 # Executions: Servers
 
-This page mirrors the `Servers` section from [Executions](../executions.md).
+> TL;DR — This page mirrors the `Servers` section from [Executions](../executions.md) as a focused reference.
 
-## `WithServer`
+## When to use {: #when-to-use}
+
+Use this page when you need the focused member list, signatures, and source notes for this section without scanning the full parent reference.
+
+## C# (CAC) usage {: #c-cac-usage}
+
+### `WithServer` {: #withserver}
 
 ??? info "Source file, signature, and docstring"
     **Member**
@@ -22,10 +41,8 @@ This page mirrors the `Servers` section from [Executions](../executions.md).
     **Docstring**
     
     Sets the single-server configuration used by the current Mocker execution builder instance.
-    
-    Use this method when working with the documented Mocker execution builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
-## `AddServers`
+### `AddServers` {: #addservers}
 
 ??? info "Source file, signature, and docstring"
     **Member**
@@ -45,10 +62,8 @@ This page mirrors the `Servers` section from [Executions](../executions.md).
     **Docstring**
     
     Adds the supplied servers to the current Mocker execution builder instance.
-    
-    Use this method when working with the documented Mocker execution builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
-## `UpdateServer`
+### `UpdateServer` {: #updateserver}
 
 ??? info "Source file, signature, and docstring"
     **Member**
@@ -68,10 +83,8 @@ This page mirrors the `Servers` section from [Executions](../executions.md).
     **Docstring**
     
     Updates the configured single-server definition on the current Mocker execution builder instance.
-    
-    Use this method when working with the documented Mocker execution builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
-## `AddServer`
+### `AddServer` {: #addserver}
 
 ??? info "Source file, signature, and docstring"
     **Member**
@@ -91,10 +104,8 @@ This page mirrors the `Servers` section from [Executions](../executions.md).
     **Docstring**
     
     Adds the supplied server to the current Mocker execution builder instance.
-    
-    Use this method when working with the documented Mocker execution builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
-## `UpdateServerAt`
+### `UpdateServerAt` {: #updateserverat}
 
 ??? info "Source file, signature, and docstring"
     **Member**
@@ -114,10 +125,8 @@ This page mirrors the `Servers` section from [Executions](../executions.md).
     **Docstring**
     
     Updates the configured server stored at the specified index on the current Mocker execution builder instance.
-    
-    Use this method when working with the documented Mocker execution builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
-## `RemoveServer`
+### `RemoveServer` {: #removeserver}
 
 ??? info "Source file, signature, and docstring"
     **Member**
@@ -137,10 +146,8 @@ This page mirrors the `Servers` section from [Executions](../executions.md).
     **Docstring**
     
     Removes the configured single-server definition from the current Mocker execution builder instance.
-    
-    Use this method when working with the documented Mocker execution builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
-## `RemoveServerAt`
+### `RemoveServerAt` {: #removeserverat}
 
 ??? info "Source file, signature, and docstring"
     **Member**
@@ -160,5 +167,12 @@ This page mirrors the `Servers` section from [Executions](../executions.md).
     **Docstring**
     
     Removes the configured server stored at the specified index from the current Mocker execution builder instance.
-    
-    Use this method when working with the documented Mocker execution builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
+
+## Edge cases {: #edge-cases}
+
+- This page is generated from the parent reference section; edit the source XML docs or generator when content needs to change.
+- If a linked source member is renamed, regenerate the reference docs before changing prose by hand.
+
+## See also {: #see-also}
+
+- [Executions](../executions.md)

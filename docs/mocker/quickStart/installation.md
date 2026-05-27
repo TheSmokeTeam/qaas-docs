@@ -1,6 +1,19 @@
+---
+id: mocker.quickstart.installation
+type: tutorial
+status: stable
+since: 2.0.0
+last_verified: 2026-05-23
+applies_to: [mocker]
+keywords: [mocker, quickstart, installation]
+summary: "Add the relevant package source to your global NuGet.Config file, usually ~/.nuget/NuGet/NuGet.Config."
+render_macros: true
+---
 # Installation
 
-## Prerequisites
+> TL;DR — Add the QaaS package source, create a Mocker project, and restore the required NuGet packages.
+
+## Prerequisites {: #prerequisites}
 
 | Requirement                        | Details                                                             |
 |------------------------------------|---------------------------------------------------------------------|
@@ -8,7 +21,7 @@
 | NuGet feed                         | A global `NuGet.Config` file configured with the correct nuget feed |
 | IDE setup                          | Recommended for YAML schema validation and completion               |
 
-## Global NuGet.Config
+## Global NuGet.Config {: #global-nugetconfig}
 
 Add the relevant package source to your global `NuGet.Config` file, usually `~/.nuget/NuGet/NuGet.Config`.
 
@@ -21,7 +34,7 @@ Add the relevant package source to your global `NuGet.Config` file, usually `~/.
 </configuration>
 ```
 
-## Packages
+## Packages {: #packages}
 
 Add the package to your project:
 
@@ -45,7 +58,7 @@ Add the package to your project:
 
 [QaaS.Common.Generators](../../generators/index.md) is optional in general, but it is used by the quick-start examples on this site. [QaaS.Common.Processors](../../processors/index.md) is also optional, but install it when you want packaged reusable processors instead of only project-local processor classes.
 
-## Project Template
+## Project Template {: #project-template}
 
 Use [QaaS.Mocker.Template]({{ links.repository_mocker_template }}) when you want a ready-to-run mocker repo instead of wiring packages by hand.
 
@@ -61,8 +74,15 @@ The generated repo includes:
 - a minimal `/health` mock under `Servers`
 - `Dockerfile` and generated GitHub Actions CI
 
-If you use Artifactory or another private feed, update the generated `NuGet.config` before the first restore.
+If you use Artifactory or another private feed, keep the feed URL configurable rather than baking one environment into the project. Update the generated `NuGet.config` for local restores, and pass the same feed into Docker builds with the template's NuGet source build argument before `dotnet restore`.
 
-## IDE Setup
+## IDE Setup {: #ide-setup}
 
 Use the dedicated [IDE Setup](ide.md) page for the Mocker-specific JSON schema and editor mappings.
+
+## See also {: #see-also}
+
+- [Mocker IDE setup](ide.md)
+- [Create a mock in YAML](createMock.md)
+- [Create a mock in code](createMockCode.md)
+- [Runner installation](../../qaas/quickStart/installation.md)

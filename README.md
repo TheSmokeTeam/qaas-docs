@@ -30,6 +30,7 @@ pip install -r requirements.txt
 Build the site:
 
 ```bash
+python tools/write_runtime_link_defaults.py docs/assets/javascripts/qaas-docs-build-defaults.js
 mkdocs build
 ```
 
@@ -38,6 +39,15 @@ Run a local preview:
 ```bash
 mkdocs serve
 ```
+
+Install the tracked pre-commit hook:
+
+```bash
+git config core.hooksPath .githooks
+```
+
+The hook runs `markdownlint-cli2`, strict MkDocs build, `llms.txt` validation,
+and offline `lychee` against the rendered site check root.
 
 ## Deterministic Reference Docs
 
@@ -145,12 +155,34 @@ External page links used by docs content:
 
 If `DOCKERHUB_REPOSITORY` is not set, CI uses `${DOCKER_USERNAME}/${repo-name}`.
 
+Docker build image inputs:
+
+| Variable | Dockerfile Argument | Description |
+|----------|---------------------|-------------|
+| `QAAS_DOCS_MKDOCS_MATERIAL_IMAGE` | `MKDOCS_MATERIAL_IMAGE` | Build-stage MkDocs Material image |
+| `QAAS_DOCS_NGINX_IMAGE` | `NGINX_IMAGE` | Runtime Nginx image |
+
+Image references rendered into docs examples:
+
+| Environment Variable | `extra.images` Key | Description |
+|----------------------|--------------------|-------------|
+| `QAAS_DOCS_IMAGE_DOTNET_SDK` | `dotnet_sdk` | .NET SDK image used in Dockerfile examples |
+| `QAAS_DOCS_IMAGE_DOTNET_RUNTIME` | `dotnet_runtime` | .NET runtime image used in Dockerfile examples |
+| `QAAS_DOCS_IMAGE_REDIS_REPOSITORY` | `redis_repository` | Redis image repository used in Helm examples |
+| `QAAS_DOCS_IMAGE_REDIS_TAG` | `redis_tag` | Redis image tag used in Helm examples |
+
 ## Docker
 
 Build locally:
 
 ```bash
-docker build -t qaas-docs .
+QAAS_DOCS_MKDOCS_MATERIAL_IMAGE=squidfunk/mkdocs-material:9.5
+QAAS_DOCS_NGINX_IMAGE=nginx:1.27-alpine
+
+docker build -t qaas-docs \
+  --build-arg MKDOCS_MATERIAL_IMAGE="${QAAS_DOCS_MKDOCS_MATERIAL_IMAGE}" \
+  --build-arg NGINX_IMAGE="${QAAS_DOCS_NGINX_IMAGE}" \
+  .
 docker run -p 8000:8000 qaas-docs
 ```
 
@@ -160,10 +192,19 @@ If you need different docs URLs or repository links baked into the image, pass t
 
 ```bash
 docker build -t qaas-docs \
+  --build-arg MKDOCS_MATERIAL_IMAGE="${QAAS_DOCS_MKDOCS_MATERIAL_IMAGE}" \
+  --build-arg NGINX_IMAGE="${QAAS_DOCS_NGINX_IMAGE}" \
   --build-arg QAAS_DOCS_SITE_URL=https://docs.example.com/qaas/ \
+  --build-arg QAAS_DOCS_LINK_NUGET_FEED=https://nuget.example.com/v3/index.json \
   --build-arg QAAS_DOCS_LINK_REPOSITORY_RUNNER=https://github.com/example/QaaS.Runner \
+  --build-arg QAAS_DOCS_IMAGE_DOTNET_SDK="${QAAS_DOCS_IMAGE_DOTNET_SDK}" \
+  --build-arg QAAS_DOCS_IMAGE_DOTNET_RUNTIME="${QAAS_DOCS_IMAGE_DOTNET_RUNTIME}" \
+  --build-arg QAAS_DOCS_IMAGE_REDIS_REPOSITORY="${QAAS_DOCS_IMAGE_REDIS_REPOSITORY}" \
+  --build-arg QAAS_DOCS_IMAGE_REDIS_TAG="${QAAS_DOCS_IMAGE_REDIS_TAG}" \
   .
 ```
+
+`QAAS_DOCS_LINK_NUGET_FEED` controls the NuGet feed URL shown in generated examples and installation snippets. `QAAS_DOCS_IMAGE_*` variables control image references rendered into Dockerfile and Helm examples during the MkDocs build. These values do not rewrite product repository `NuGet.config` files or already-built static pages at runtime; templates and sample Dockerfiles should pass their own NuGet source and image names as build inputs before `dotnet restore`.
 
 You can also override the same `QAAS_DOCS_*` URLs at container startup. The runtime image keeps the stock Nginx entrypoint and writes a small runtime override file from `/docker-entrypoint.d`, so no custom Dockerfile `ENTRYPOINT` is required:
 

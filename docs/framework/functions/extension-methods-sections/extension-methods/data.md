@@ -1,8 +1,27 @@
+---
+id: framework.functions.extension.methods.sections.extension.methods.data
+type: reference
+status: stable
+since: 2.0.0
+last_verified: 2026-05-22
+applies_to: [framework]
+keywords: [framework, functions, extension, methods, sections, data]
+summary: "Reference page for Extension Methods: Extension Methods / Data."
+---
+
+<!-- Verified-against: QaaS.Framework\QaaS.Framework.SDK\Extensions\DataExtensions.cs -->
+
 # Extension Methods: Extension Methods / Data
 
-This page mirrors the `Extension Methods / Data` section from [Extension Methods](../../extension-methods.md).
+> TL;DR — This page mirrors the `Extension Methods / Data` section from [Extension Methods](../../extension-methods.md) as a focused reference.
 
-## `CastObjectData<TCasted>`
+## When to use {: #when-to-use}
+
+Use this page when you need the focused member list, signatures, and source notes for this section without scanning the full parent reference.
+
+## C# (CAC) usage {: #c-cac-usage}
+
+### `CastObjectData<TCasted>` {: #castobjectdatatcasted}
 
 ??? info "Source file, signature, and docstring"
     **Member**
@@ -23,7 +42,7 @@ This page mirrors the `Extension Methods / Data` section from [Extension Methods
     
     Casts a `Data` of type object to another type, if the cast is not valid will throw InvalidCastException
 
-## `CastToObjectData<TData>`
+### `CastToObjectData<TData>` {: #casttoobjectdatatdata}
 
 ??? info "Source file, signature, and docstring"
     **Member**
@@ -44,7 +63,7 @@ This page mirrors the `Extension Methods / Data` section from [Extension Methods
     
     Casts a `Data` of any type to a Data of type object, if the cast is not valid will throw InvalidCastException
 
-## `CastObjectDetailedData<TCasted>`
+### `CastObjectDetailedData<TCasted>` {: #castobjectdetaileddatatcasted}
 
 ??? info "Source file, signature, and docstring"
     **Member**
@@ -65,7 +84,7 @@ This page mirrors the `Extension Methods / Data` section from [Extension Methods
     
     Casts a `DetailedData` of type object to another type, if the cast is not valid will throw InvalidCastException
 
-## `CastToObjectDetailedData<TData>`
+### `CastToObjectDetailedData<TData>` {: #casttoobjectdetaileddatatdata}
 
 ??? info "Source file, signature, and docstring"
     **Member**
@@ -86,7 +105,7 @@ This page mirrors the `Extension Methods / Data` section from [Extension Methods
     
     Casts a `DetailedData` of any type to a DetailedData of type object, if the cast is not valid will throw InvalidCastException
 
-## `FilterData<TData>`
+### `FilterData<TData>` {: #filterdatatdata}
 
 ??? info "Source file, signature, and docstring"
     **Member**
@@ -106,3 +125,12 @@ This page mirrors the `Extension Methods / Data` section from [Extension Methods
     **Docstring**
     
     Filters the data of a detailed data item according to the given DataFilter
+
+## Edge cases {: #edge-cases}
+
+- This page is generated from the parent reference section; edit the source XML docs or generator when content needs to change.
+- If a linked source member is renamed, regenerate the reference docs before changing prose by hand.
+
+## See also {: #see-also}
+
+- [Extension Methods](../../extension-methods.md)

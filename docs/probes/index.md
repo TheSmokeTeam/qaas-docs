@@ -1,4 +1,18 @@
+---
+id: probes.index
+type: explanation
+status: stable
+since: 2.0.0
+last_verified: 2026-05-23
+applies_to: [probes]
+keywords: [probes, index]
+summary: "Probes perform setup, cleanup, and infrastructure actions before or after Runner sessions."
+render_macros: true
+---
+
 # Probes
+
+> TL;DR — Probes perform setup, cleanup, and infrastructure actions before or after Runner sessions.
 
 Probes are **hooks** that manipulate infrastructure before or after [Sessions](../qaas/userInterfaces/runner/configurationSections/sessions/overview.md) run. They are typically used for setup and cleanup tasks such as creating queues, flushing caches, scaling pods, truncating tables, or deleting data.
 
@@ -10,23 +24,23 @@ The **QaaS.Common.Probes** NuGet package ships the built-in probe library. You c
 | **Source**     | [QaaS.Common.Probes]({{ links.repository_probes }}) |
 | **Depends on** | [QaaS.Framework.SDK](../framework/projects/sdk.md)               |
 
-## Installation
+## Installation {: #installation}
 
 ```xml
 <PackageReference Include="QaaS.Common.Probes" Version="x.x.x" />
 ```
 
-## Writing Custom Probes
+## Writing Custom Probes {: #writing-custom-probes}
 
 See [Write Hooks](../qaas/quickStart/writeHooks.md) for the pattern.
 
 
 <!-- generated hook catalog start -->
-## Available Hooks
+## Available Hooks {: #available-hooks}
 
 The built-in hooks below are grouped by usage area so it is easier to shortlist the right hook before drilling into configuration details.
 
-### RabbitMQ administration
+### RabbitMQ administration {: #rabbitmq-administration}
 
 - [CreateRabbitMqBindings](availableProbes/CreateRabbitMqBindings/overview.md): Creates RabbitMQ bindings between exchanges and queues or between exchanges by using the configured binding definitions.
 - [DeleteRabbitMqBindings](availableProbes/DeleteRabbitMqBindings/overview.md): Deletes RabbitMQ bindings using the configured source, destination, routing key, and binding type.
@@ -44,7 +58,7 @@ The built-in hooks below are grouped by usage area so it is easier to shortlist 
 - [CreateRabbitMqVirtualHosts](availableProbes/CreateRabbitMqVirtualHosts/overview.md): Creates RabbitMQ virtual hosts through the management API so later probes and sessions can use them.
 - [DeleteRabbitMqVirtualHosts](availableProbes/DeleteRabbitMqVirtualHosts/overview.md): Deletes RabbitMQ virtual hosts through the management API.
 
-### Redis maintenance
+### Redis maintenance {: #redis-maintenance}
 
 - [ExecuteRedisCommand](availableProbes/ExecuteRedisCommand/overview.md): Executes one Redis command with optional arguments against the selected Redis database, optionally storing the result for later redisResults placeholder reuse.
 - [ExecuteRedisCommands](availableProbes/ExecuteRedisCommands/overview.md): Executes multiple Redis commands sequentially against the selected Redis database, allowing later commands to reuse earlier results through redisResults placeholders and optional looping.
@@ -52,7 +66,7 @@ The built-in hooks below are grouped by usage area so it is easier to shortlist 
 - [FlushAllRedis](availableProbes/FlushAllRedis/overview.md): Runs Redis FLUSHALL against the configured server to remove keys from every database.
 - [FlushDbRedis](availableProbes/FlushDbRedis/overview.md): Runs Redis FLUSHDB against the selected Redis database.
 
-### Databases
+### Databases {: #databases}
 
 - [DeleteElasticIndices](availableProbes/DeleteElasticIndices/overview.md): Deletes every Elasticsearch index that matches the configured index pattern.
 - [EmptyElasticIndices](availableProbes/EmptyElasticIndices/overview.md): Empties elastic indices by their index pattern
@@ -62,13 +76,13 @@ The built-in hooks below are grouped by usage area so it is easier to shortlist 
 - [DeleteS3Bucket](availableProbes/DeleteS3Bucket/overview.md): Empties the configured S3 bucket and deletes it, treating a missing bucket as an already-satisfied state.
 - [EmptyS3Bucket](availableProbes/EmptyS3Bucket/overview.md): Deletes objects from the configured S3 bucket, optionally constrained to a prefix, while treating a missing bucket as a no-op.
 
-### SQL maintenance
+### SQL maintenance {: #sql-maintenance}
 
 - [MsSqlDataBaseTablesTruncate](availableProbes/MsSqlDataBaseTablesTruncate/overview.md): Truncates the configured Microsoft SQL Server tables in the order they are listed.
 - [OracleSqlDataBaseTablesTruncate](availableProbes/OracleSqlDataBaseTablesTruncate/overview.md): Truncates the configured Oracle tables in the order they are listed.
 - [PostgreSqlDataBaseTablesTruncate](availableProbes/PostgreSqlDataBaseTablesTruncate/overview.md): Truncates the configured PostgreSQL tables in the order they are listed.
 
-### Cluster orchestration
+### Cluster orchestration {: #cluster-orchestration}
 
 - [OsEditYamlConfigMap](availableProbes/OsEditYamlConfigMap/overview.md): Probe that edits yaml config maps
 - [OsChangeDeploymentEnvVars](availableProbes/OsChangeDeploymentEnvVars/overview.md): Probe that changes the environment variables of a deployment

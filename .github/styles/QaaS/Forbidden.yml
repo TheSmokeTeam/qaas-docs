@@ -1,0 +1,24 @@
+extends: existence
+message: "Remove '%s' from user-facing docs."
+level: error
+ignorecase: true
+tokens:
+  - '\b[A]I\b'
+  - '\ba[g]ent(s)?\b'
+  - '\b[L]LM(s)?\b'
+  - '\bClau[d]e\b'
+  - '\bChat[G]PT\b'
+  - '\bco[p]ilot\b'
+  - '\bmo[d]el(s)?\b'
+  - '\bsea[m]less\b'
+  - '\bpower[f]ul\b'
+  - '\beasy-to-[u]se\b'
+  - '\bro[b]ust\b'
+  - '\bcutting-[e]dge\b'
+  - '\bsimp[l]y\b'
+  - '\bju[s]t\b'
+  - '\bobvi[o]usly\b'
+  - 'TO[D]O:\s+implement'
+  - '\bpseudo[c]ode\b'
+  - '\bimagine\s+thi[s]\b'
+  - '\ba[i]_summary\b'

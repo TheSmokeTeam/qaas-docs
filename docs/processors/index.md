@@ -1,4 +1,18 @@
+---
+id: processors.index
+type: explanation
+status: stable
+since: 2.0.0
+last_verified: 2026-05-23
+applies_to: [processors]
+keywords: [processors, index]
+summary: "Processors are hooks that create mock responses in QaaS.Mocker. They implement BaseTransactionProcessor<TConfig> and are referenced by class name from a Stub."
+render_macros: true
+---
+
 # Processors
+
+> TL;DR — Processors create Mocker responses from transaction requests, metadata, and optional data-source inputs.
 
 Processors are **hooks** that create mock responses in [QaaS.Mocker](../mocker/index.md). They implement `BaseTransactionProcessor<TConfig>` and are referenced by class name from a [Stub](../mocker/userInterfaces/mocker/configurationSections/stubs/overview.md).
 
@@ -10,47 +24,47 @@ The **QaaS.Common.Processors** package is the reusable processor library for sha
 | **Source**     | [QaaS.Common.Processors]({{ links.repository_processors }}) |
 | **Depends on** | [QaaS.Framework.SDK](../framework/projects/sdk.md)                       |
 
-## Installation
+## Installation {: #installation}
 
 ```xml
 <PackageReference Include="QaaS.Common.Processors" Version="x.x.x" />
 ```
 
-## Writing a Custom Processor
+## Writing a Custom Processor {: #writing-a-custom-processor}
 
 See the [Write Hooks](../qaas/quickStart/writeHooks.md) guide for the local-hook pattern.
 
-## Quick-Start Note
+## Quick-Start Note {: #quick-start-note}
 
 The Mocker quick starts on this site keep the file-backed response processor inside the sample project so the examples stay runnable against the currently published NuGet packages.
 
 
 <!-- generated hook catalog start -->
-## Available Hooks
+## Available Hooks {: #available-hooks}
 
 The built-in hooks below are grouped by usage area so it is easier to shortlist the right hook before drilling into configuration details.
 
-### Static responses
+### Static responses {: #static-responses}
 
 - [StaticResponseProcessor](availableProcessors/StaticResponseProcessor/overview.md): Returns a fixed UTF-8 response body with the configured status code, content type, and headers.
 - [StatusCodeTransactionProcessor](availableProcessors/StatusCodeTransactionProcessor/overview.md): Skim Transaction Processor which returns empty-bodied data objects with Status Code configuration.
 
-### Request-derived responses
+### Request-derived responses {: #request-derived-responses}
 
 - [RequestEchoProcessor](availableProcessors/RequestEchoProcessor/overview.md): Returns a JSON response that echoes the incoming request body and optional request metadata.
 - [PassThroughProcessor](availableProcessors/PassThroughProcessor/overview.md): Returns the incoming request payload unchanged while applying the configured response metadata.
 
-### Transformations
+### Transformations {: #transformations}
 
 - [JsonEnvelopeProcessor](availableProcessors/JsonEnvelopeProcessor/overview.md): Wraps the incoming request payload and optional request metadata in a JSON envelope response.
 - [TextTransformProcessor](availableProcessors/TextTransformProcessor/overview.md): Reads the incoming payload as text, applies the configured text transformation, and returns the transformed response.
 
-### Data-driven responses
+### Data-driven responses {: #data-driven-responses}
 
 - [ConditionalResponseProcessor](availableProcessors/ConditionalResponseProcessor/overview.md): Returns the first configured response whose rule matches the incoming request metadata, or the configured default response when no rule matches.
 - [DataSourceResponseProcessor](availableProcessors/DataSourceResponseProcessor/overview.md): Builds the response from generated data produced by one configured data source.
 
-### Error responses
+### Error responses {: #error-responses}
 
 - [ProblemDetailsProcessor](availableProcessors/ProblemDetailsProcessor/overview.md): Returns an RFC 7807 style problem-details JSON response using the configured status and fields.
 

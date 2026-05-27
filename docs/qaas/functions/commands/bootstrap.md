@@ -1,9 +1,27 @@
+---
+id: qaas.functions.commands.bootstrap
+type: reference
+status: stable
+since: 2.0.0
+last_verified: 2026-05-22
+applies_to: [runner]
+keywords: [qaas, functions, commands, bootstrap]
+summary: "Each entry uses the short function name as the table-of-contents label. Expand an entry to inspect its source file, signature, and XML doc comments."
+---
+<!-- Verified-against: QaaS.Runner\QaaS.Runner\Bootstrap.cs -->
+
 # Bootstrap
+
+> TL;DR — This page lists the public Runner functions in the `Bootstrap` category.
+
+## When to use {: #when-to-use}
+
+Use this page when you need source-backed signatures, declaring types, and XML doc comments for this function category.
 
 Each entry uses the short function name as the table-of-contents label. Expand an entry to inspect its source file, signature, and XML doc comments.
 
 
-## `New`
+## `New` {: #new}
 
 ??? info "Source file, signature, and docstring"
     **Member**
@@ -26,7 +44,7 @@ Each entry uses the short function name as the table-of-contents label. Expand a
     
     This is the primary code-first entry point for bootstrapping the product from command-line style arguments so library startup and CLI startup stay aligned.
 
-## `New<TRunner>`
+## `New<TRunner>` {: #newtrunner}
 
 ??? info "Source file, signature, and docstring"
     **Member**
@@ -48,3 +66,7 @@ Each entry uses the short function name as the table-of-contents label. Expand a
     Creates a new Runner instance from the supplied bootstrap inputs.
     
     This is the primary code-first entry point for bootstrapping the product from command-line style arguments so library startup and CLI startup stay aligned.
+
+## See also {: #see-also}
+
+- [Runner Functions](../index.md)

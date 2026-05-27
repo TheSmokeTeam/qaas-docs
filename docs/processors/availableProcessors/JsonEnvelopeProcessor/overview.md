@@ -1,14 +1,30 @@
+---
+id: processors.available.jsonenvelopeprocessor.overview
+type: reference
+status: stable
+since: 2.0.0
+last_verified: 2026-05-22
+applies_to: [processors]
+keywords: [processors, JsonEnvelopeProcessor, ProcessorConfiguration]
+summary: "Wraps the incoming request payload and optional request metadata in a JSON envelope response."
+---
+<!-- Verified-against: QaaS.Common.Processors\QaaS.Common.Processors\JsonEnvelopeProcessor.cs -->
+
 # JsonEnvelopeProcessor
 
-Wraps the incoming request payload and optional request metadata in a JSON envelope response.
+> TL;DR — Wraps the incoming request payload and optional request metadata in a JSON envelope response.
 
-## What It Does
+## When to use {: #when-to-use}
 
 Wraps the incoming request into a JSON object under a configurable body-property name and can optionally add request metadata such as headers, path parameters, URI, and the original body type.
 
 This is useful when a downstream system expects a structured JSON envelope but the incoming request may be raw text, bytes, or another object type.
 
-## YAML Example
+## YAML configuration {: #yaml-configuration}
+
+Use the hook name in the matching runtime section, then place hook-specific fields under the configuration object shown in the examples below.
+
+## Minimal example {: #minimal-example}
 
 ```yaml
 Stubs:
@@ -36,8 +52,19 @@ Servers:
               TransactionStubName: JsonEnvelopeProcessorStub
 ```
 
-## What This Configuration Does
+## Realistic example {: #realistic-example}
 
 This stub returns a JSON document that places the incoming request body under the `request` property and also includes the request URI, headers, path parameters, and original body-type information.
 
 The response comes back as HTTP `200` with `application/json`.
+
+## Edge cases {: #edge-cases}
+
+- Missing required configuration keys fail schema validation before the hook runs.
+- Keep hook names and referenced session or data-source names aligned with the surrounding YAML.
+
+## See also {: #see-also}
+
+- [Configuration table](configuration/tableView.md)
+- [YAML scaffold](configuration/yamlView.md)
+- [Processors](../../index.md)

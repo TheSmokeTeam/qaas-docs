@@ -1,10 +1,22 @@
+---
+id: framework.projects.configuration
+type: reference
+status: stable
+since: 2.0.0
+last_verified: 2026-05-22
+applies_to: [framework]
+keywords: [framework, projects, configuration]
+summary: "QaaS.Framework.Configurations loads, expands, binds, validates, and updates YAML-backed configuration."
+---
 # QaaS.Framework.Configurations
+
+> TL;DR — QaaS.Framework.Configurations loads, expands, binds, validates, and updates YAML-backed configuration.
 
 `QaaS.Framework.Configurations` is the Framework solution's configuration engine. It is a standalone package that other QaaS packages reference, including [QaaS.Framework.SDK](./sdk.md). Its responsibility is broader than loading YAML into C# objects. It owns the full flow of building configuration, preprocessing it, binding it, validating it, and updating it.
 
-## What this project contains
+## What this project contains {: #what-this-project-contains}
 
-### Core configuration utilities
+### Core configuration utilities {: #core-configuration-utilities}
 
 `ConfigurationUtils.cs` is the main entry point for package-level operations. It contains helpers for:
 
@@ -16,7 +28,7 @@
 
 `ValidationUtils.cs` contains recursive validation helpers. The validation flow walks nested objects, collections, and dictionaries and returns path-aware validation results instead of validating only the top-level object.
 
-### Preprocessing and build pipeline
+### Preprocessing and build pipeline {: #preprocessing-and-build-pipeline}
 
 The preprocessing layer is split into dedicated files:
 
@@ -27,7 +39,7 @@ The preprocessing layer is split into dedicated files:
 
 This means the package can build configuration from local files, configuration folders, and remote YAML sources before the final binding step happens.
 
-### Binding and merge internals
+### Binding and merge internals {: #binding-and-merge-internals}
 
 The `ConfigurationBindingUtils` folder contains the lower-level binding helpers that make the public APIs work with nested configuration shapes:
 
@@ -40,7 +52,7 @@ These files are responsible for mapping configuration sections into objects, lis
 
 `ConfigurationUpdateExtensions.cs` exposes the public update surface for applying sparse configuration patches to existing typed objects or configuration trees.
 
-### References
+### References {: #references}
 
 The `References` folder contains the project's reference-expansion subsystem:
 
@@ -49,7 +61,7 @@ The `References` folder contains the project's reference-expansion subsystem:
 
 This logic resolves referenced YAML files and injects referenced content into the active configuration according to the configured replacement rules.
 
-### Validation attributes and shared configuration objects
+### Validation attributes and shared configuration objects {: #validation-attributes-and-shared-configuration-objects}
 
 The package contains a substantial custom validation library under `CustomValidationAttributes`. These attributes supplement standard `DataAnnotations` with QaaS-specific rules such as conditional required or null behavior, path validation, uniqueness checks, and cross-collection reference checks.
 
@@ -60,7 +72,7 @@ The `CommonConfigurationObjects` folder provides shared configuration types reus
 - Mongo collection configuration
 - shared storage abstractions
 
-## Current behavior
+## Current behavior {: #current-behavior}
 
 The current source implements the following behavior:
 
@@ -74,7 +86,7 @@ The current source implements the following behavior:
 - Partial updates can merge sparse typed objects or raw `IConfiguration` trees without discarding omitted values.
 - Reference resolution can inject and reorder list items based on `ReferenceConfig` instructions.
 
-## Main source areas
+## Main source areas {: #main-source-areas}
 
 If you are reading the package to understand its responsibilities, these are the highest-signal files and folders:
 
@@ -91,7 +103,7 @@ If you are reading the package to understand its responsibilities, these are the
 - `CustomValidationAttributes/`
 - `CommonConfigurationObjects/`
 
-## Companion tests
+## Companion tests {: #companion-tests}
 
 `QaaS.Framework.Configurations.Tests` is the sibling test project for this package. It is important because it documents behavior that the old docs did not capture well.
 
@@ -116,3 +128,7 @@ Representative test files include:
 - `HttpGetYamlConfigurationProviderTests.cs`
 - `AdvancedCustomValidationAttributesTests.cs`
 - `CustomValidationAttributesBehaviorTests.cs`
+
+## See also {: #see-also}
+
+- [Framework](../index.md)

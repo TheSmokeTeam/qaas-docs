@@ -1,14 +1,33 @@
+---
+id: qaas.userinterfaces.runner.commands.commands
+type: reference
+status: stable
+since: 2.0.0
+last_verified: 2026-05-23
+applies_to: [runner]
+keywords: [qaas, userinterfaces, runner, commands]
+summary: "Runner commands inspect configuration, run sessions, evaluate assertions, and orchestrate multi-command flows."
+---
+<!-- Verified-against: QaaS.Runner\QaaS.Runner\Bootstrap.cs -->
+<!-- Verified-against: QaaS.Runner\QaaS.Runner\Execution.cs -->
+<!-- Verified-against: QaaS.Runner\QaaS.Runner\Options\AssertableOptions.cs -->
+<!-- Verified-against: QaaS.Runner\QaaS.Runner\Options\BaseOptions.cs -->
+<!-- Verified-against: QaaS.Runner\QaaS.Runner\Options\ExecuteOptions.cs -->
+<!-- Verified-against: QaaS.Runner\QaaS.Runner\Runner.cs -->
+
 # Commands
+
+> TL;DR — Runner commands inspect configuration, run sessions, evaluate assertions, and orchestrate multi-command flows.
 
 QaaS Runner commands all start from the same host process and then branch into focused execution modes depending on whether you want to inspect configuration, run sessions, evaluate assertions, or orchestrate multiple commands.
 
-## Invocation Pattern
+## Invocation Pattern {: #invocation-pattern}
 
 ```bash
 dotnet run <dotnet-parameters> -- <command> [command-values] [command-flags]
 ```
 
-## Available Commands
+## Available Commands {: #available-commands}
 
 | Command | Description | Best For |
 | ------- | ----------- | -------- |
@@ -18,7 +37,7 @@ dotnet run <dotnet-parameters> -- <command> [command-values] [command-flags]
 | [`run`](./run.md) | Run a qaas test according to the given configurations. | Run the full QaaS flow: sessions, assertions, reporting, and optional Allure serving. |
 | [`template`](./template.md) | Template a qaas configuration file to see how it looks after being loaded, will template what it can even if the configuration file is invalid. | Render the fully resolved Runner configuration without executing it. |
 
-## Common Flags
+## Common Flags {: #common-flags}
 
 | Category | Flag | Default | Type | Description |
 | -------- | ---- | ------- | ---- | ----------- |
@@ -31,14 +50,26 @@ dotnet run <dotnet-parameters> -- <command> [command-values] [command-flags]
 | Runtime | `--no-process-exit` | False | `bool` | When this flag is used the runner will not terminate the current process after it completes. Useful when embedding QaaS.Runner and orchestrating multiple runners in a single host process. |
 | Logging | `--send-logs` | False | `bool` | Whether to send logs to the configured Elasticsearch sink. |
 
-## Working Style
+## Working Style {: #working-style}
 
 - Use `template` to inspect the resolved YAML before you execute anything.
 - Use `run` for the standard end-to-end path.
 - Use `act` followed by `assert` when you want to split data capture from assertion evaluation.
 - Use `execute` when the workflow itself should be declared as YAML.
 
-## Raw CLI Help
+## Exit Codes {: #exit-codes}
+
+| Code | Meaning |
+| ---- | ------- |
+| `0` | Help/version requests, successful `act` or `template` runs, and assertion-bearing runs where every assertion result is passed. |
+| `1` | Command-line parse failures, invalid configuration failures, or assertion-bearing runs with at least one assertion result that is not passed. |
+| `>1` | `execute` can aggregate several failing assertion-bearing executions because Runner sums execution exit codes. |
+
+`RunAndGetExitCode()` returns the resolved code to an embedding host. `Run()` applies the same code to the process: by default it terminates with that code, while `--no-process-exit` stores the code on the current process without terminating it.
+
+Unexpected lifecycle exceptions are rethrown after cleanup instead of being translated into one of the table values.
+
+## Raw CLI Help {: #raw-cli-help}
 
 ```text
 ERROR(S):
@@ -67,3 +98,11 @@ No-args guidance:
   Empty arguments only work for code-only hosts that choose a no-args path in Program.cs.
   If a YAML file is part of the scenario, pass it explicitly: dotnet run -- run <config-file>.
 ```
+
+## See also {: #see-also}
+
+- [`act`](./act.md)
+- [`assert`](./assert.md)
+- [`execute`](./execute.md)
+- [`run`](./run.md)
+- [`template`](./template.md)

@@ -1,0 +1,203 @@
+name: docs
+
+on:
+  push:
+    branches: [feature/document-actions, master]
+  pull_request:
+    branches: [master]
+
+jobs:
+  build-and-validate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    permissions:
+      contents: read
+      pull-requests: write
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: "10.0.x"
+
+      - name: Install MkDocs stack
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install -r requirements.txt
+
+      - name: Install validator tooling
+        run: |
+          npm install -g markdownlint-cli2
+          mkdir -p /tmp/lychee && curl -sSfL https://github.com/lycheeverse/lychee/releases/latest/download/lychee-x86_64-unknown-linux-gnu.tar.gz | tar -xz -C /tmp/lychee
+          sudo install -m 0755 "$(find /tmp/lychee -name lychee -type f | head -1)" /usr/local/bin/lychee
+          curl -sSfL https://github.com/errata-ai/vale/releases/download/v3.14.2/vale_3.14.2_Linux_64-bit.tar.gz | sudo tar -xz -C /usr/local/bin vale
+          python -m pip install yamllint check-jsonschema
+
+      - name: Frontmatter conformance check
+        run: bash tools/ci/check-frontmatter.sh
+
+      - name: Verification marker check
+        run: python tools/ci/check-verification-markers.py
+
+      - name: Reference skeleton check
+        run: python tools/ci/check-reference-skeleton.py
+
+      - name: Page heading check
+        run: python tools/ci/check-page-headings.py
+
+      - name: Example density check
+        run: python tools/ci/check-example-density.py
+
+      - name: Navigation structure check
+        run: python tools/ci/check-nav-structure.py
+
+      - name: Offline readiness check
+        run: python tools/ci/check-offline-readiness.py
+
+      - name: Heading anchor check
+        run: python tools/ci/check-heading-anchors.py
+
+      - name: Vale prose lint
+        run: vale docs
+
+      - name: markdownlint
+        run: markdownlint-cli2 "docs/**/*.md" "#docs/_generated/**"
+
+      - name: yamllint
+        run: yamllint -c tools/ci/yamllint.yml mkdocs.yml mkdocs.yml.fragments/
+
+      - name: mkdocs build --strict
+        run: mkdocs build --strict --site-dir site
+
+      - name: Build llms.txt bundles
+        run: python tools/build_llmstxt.py --site-dir site
+
+      - name: Validate llms.txt bundles
+        run: bash tools/ci/check-llmstxt.sh site
+
+      - name: htmlproofer (intra-site anchors)
+        run: |
+          python -c "import mkdocs_htmlproofer_plugin" 2>/dev/null || true
+          # htmlproofer-plugin runs as part of mkdocs build when configured;
+          # this is the standalone backstop:
+          bash tools/ci/prepare-site-check-root.sh site site-check qaas-docs
+          curl -sSfL https://github.com/wjdp/htmltest/releases/latest/download/htmltest_0.17.0_linux_amd64.tar.gz | tar -xz -C /usr/local/bin htmltest
+          htmltest -c tools/ci/htmltest.yml
+
+      - name: lychee offline (relative links)
+        run: lychee --offline --config tools/ci/lychee.toml --root-dir "$PWD/site-check" 'site-check/**/*.html'
+
+      - name: lychee (external + relative links)
+        run: lychee --config tools/ci/lychee.toml --root-dir "$PWD/site-check" 'site-check/**/*.html'
+
+      - name: Validate YAML snippets against schemas
+        run: bash tools/ci/validate-yaml-snippets.sh
+
+      - name: Validate spec-target example density
+        run: python tools/validate_docs_examples.py
+
+      - name: Validate YAML examples (parse)
+        run: python tools/validate_yaml_examples.py
+
+      - name: Validate all snippets (yaml/json/bash/dockerfile/powershell)
+        run: python tools/validate_snippets.py
+
+      - name: Validate C# snippets (structural)
+        run: python tools/validate_csharp_snippets.py
+
+      - name: Compile C# snippets
+        run: bash tools/ci/compile-csharp-snippets.sh
+
+      - name: Upload site artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: qaas-docs-site
+          path: site/
+          retention-days: 14
+
+  build-zim:
+    runs-on: ubuntu-latest
+    needs: build-and-validate
+    timeout-minutes: 20
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+
+      - name: Install llms builder dependencies
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install -r requirements.txt
+
+      - name: Download site artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: qaas-docs-site
+          path: site/
+
+      - name: Build ZIM via openzim/zim-tools (pinned)
+        run: |
+          bash tools/zim/build-zim.sh "qaas-docs-${GITHUB_SHA::8}.zim"
+
+      - name: Smoke-test ZIM with kiwix-serve (pinned)
+        run: |
+          zim_name="qaas-docs-${GITHUB_SHA::8}"
+          docker run --rm -d --name kiwix --entrypoint /usr/local/bin/kiwix-serve \
+            -v "$PWD":/data -p 8888:8888 \
+            ghcr.io/kiwix/kiwix-serve:3.8.2 \
+            --port 8888 --threads 4 --nodatealiases "/data/${zim_name}.zim"
+          ok=0
+          for i in $(seq 1 30); do
+            curl -fsS 'http://localhost:8888/search?pattern=IProbe' >/dev/null && \
+              curl -fsS "http://localhost:8888/content/${zim_name}/qaas-docs/qaas/index.html" >/dev/null && {
+                ok=1
+                break
+              }
+            sleep 1
+          done
+          docker rm -f kiwix
+          test "$ok" -eq 1
+
+      - name: Upload ZIM artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: qaas-docs-zim
+          path: qaas-docs-*.zim
+          retention-days: 30
+
+  pr-preview:
+    runs-on: ubuntu-latest
+    needs: build-and-validate
+    if: github.event_name == 'pull_request'
+    permissions:
+      contents: write
+      pull-requests: write
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Download site artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: qaas-docs-site
+          path: site/
+      - name: Deploy preview
+        uses: rossjrw/pr-preview-action@v1
+        with:
+          source-dir: site/
+          preview-branch: gh-pages
+          umbrella-dir: pr-preview

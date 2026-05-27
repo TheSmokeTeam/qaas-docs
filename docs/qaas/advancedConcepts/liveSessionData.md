@@ -1,4 +1,16 @@
+---
+id: qaas.advancedconcepts.livesessiondata
+type: reference
+status: stable
+since: 2.0.0
+last_verified: 2026-05-22
+applies_to: [runner]
+keywords: [qaas, advancedconcepts, livesessiondata]
+summary: "Live session data lets generators read outputs from actions that already ran in the current session."
+---
 # Live Action Based Generators
+
+> TL;DR — Live session data lets generators read outputs from actions that already ran in the current session.
 
 In certain advanced scenarios, you may need to access data from a currently running action inside your [QaaS.Common.Generators](../../generators/index.md). This allows generator logic to react to live processing results instead of waiting for completed [session data](../userInterfaces/runner/configurationSections/sessions/overview.md).
 
@@ -6,7 +18,7 @@ This pattern is useful when a [Publisher](../userInterfaces/runner/configuration
 
 ---
 
-## How Live Generators Actually Become Live
+## How Live Generators Actually Become Live {: #how-live-generators-actually-become-live}
 
 The important detail is that [Publishers](../userInterfaces/runner/configurationSections/sessions/types/publishers.md) are **prepared** before the [Session](../userInterfaces/runner/configurationSections/sessions/overview.md) starts running actions.
 
@@ -24,7 +36,7 @@ So a live action based generator is only truly live when the data source is lazy
 
 ---
 
-## Resolving the Correct Running Session
+## Resolving the Correct Running Session {: #resolving-the-correct-running-session}
 
 The runtime stores currently running sessions in `Context.CurrentRunningSessions`.
 
@@ -37,11 +49,11 @@ In a multi-session execution, `GetSessionByName(...)` is the safer choice becaus
 
 ---
 
-## Creating a Live Action Based Generator
+## Creating a Live Action Based Generator {: #creating-a-live-action-based-generator}
 
 You can create a generator that reads a running [Consumer](../userInterfaces/runner/configurationSections/sessions/types/consumers.md) and republishes that data while the [Consumer](../userInterfaces/runner/configurationSections/sessions/types/consumers.md) is still active.
 
-### Step 1: Define the Generator
+### Step 1: Define the Generator {: #step-1-define-the-generator}
 
 ```csharp
 using System.Collections.Immutable;
@@ -82,7 +94,7 @@ public class FromConsumerGenerator : BaseGenerator<FromConsumerGeneratorConfig>
 }
 ```
 
-### Key Points
+### Key Points {: #key-points}
 
 - `GetSessionByName(Configuration.SessionName)` resolves the intended running session directly.
 - `GetOutputByName(Configuration.ConsumerName)` retrieves the live output channel of that action.
@@ -93,7 +105,7 @@ If you are in a true single-session flow, `Context.CurrentRunningSessions.GetAll
 
 ---
 
-## Republishing Through RabbitMQ
+## Republishing Through RabbitMQ {: #republishing-through-rabbitmq}
 
 When a generator republishes data that originally came from a RabbitMQ consumer, one detail matters:
 
@@ -105,11 +117,14 @@ That can create a feedback loop where the original consumer receives the republi
 That is why the example above clears the RabbitMQ metadata:
 
 ```csharp
-yield return new Data<object>
+Data<object> RepublishWithoutRabbitMqMetadata(Data<object> item)
 {
-    Body = item.Body,
-    MetaData = item.MetaData with { RabbitMq = null }
-};
+    return new Data<object>
+    {
+        Body = item.Body,
+        MetaData = item.MetaData with { RabbitMq = null }
+    };
+}
 ```
 
 If you want to preserve RabbitMQ metadata, replace it with the metadata that matches the target publisher instead of clearing it.
@@ -118,11 +133,19 @@ This exact pattern was validated locally against RabbitMQ: a running consumer st
 
 ---
 
-## Using the Generator in a Session
+## Using the Generator in a Session {: #using-the-generator-in-a-session}
 
-### YAML Configuration
+### YAML Configuration {: #yaml-configuration}
 
 ```yaml
+anchors:
+  rabbitmq: &rabbitmq
+    Host: rabbitmq
+    Username: admin
+    Password: admin
+    Port: 5672
+    RoutingKey: /
+
 DataSources:
   - Name: FromConsumerGenerator
     Generator: FromConsumerGenerator
@@ -177,7 +200,7 @@ Now you have:
 
 ---
 
-## One Live Stream, One Consumer Path
+## One Live Stream, One Consumer Path {: #one-live-stream-one-consumer-path}
 
 The runtime backs `GetData()` with one shared live communication object for that running action.
 
@@ -190,11 +213,11 @@ If you fan out the same live stream to several consumers without verifying the b
 
 ---
 
-## Cancelling a Running Action via Generator
+## Cancelling a Running Action via Generator {: #cancelling-a-running-action-via-generator}
 
 You can also use a generator to cancel a running action when a condition is met.
 
-### Example: Cancel Consumer After 50 Items
+### Example: Cancel Consumer After 50 Items {: #example-cancel-consumer-after-50-items}
 
 ```csharp
 using System.Collections.Immutable;
@@ -236,9 +259,13 @@ public class CancelConsumerGenerator : BaseGenerator<CancelConsumerGeneratorConf
 }
 ```
 
-### Key Mechanism
+### Key Mechanism {: #key-mechanism}
 
 - `liveConsumer.DataCancellationTokenSource.Cancel()` signals the running action to stop
 - this works because the generator is reading the same running communication object that the action is writing to
 
 That makes live generators useful not only for republishing, but also for early termination, failure-path testing, and rate-based control flows.
+
+## See also {: #see-also}
+
+- [QaaS Runner](../index.md)

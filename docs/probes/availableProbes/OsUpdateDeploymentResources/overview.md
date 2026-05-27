@@ -1,14 +1,30 @@
+---
+id: probes.available.osupdatedeploymentresources.overview
+type: reference
+status: stable
+since: 2.0.0
+last_verified: 2026-05-22
+applies_to: [probes]
+keywords: [probes, OsUpdateDeploymentResources, ProbeConfiguration]
+summary: "Updates container resource requests and limits in a Kubernetes or OpenShift deployment."
+---
+<!-- Verified-against: QaaS.Common.Probes\QaaS.Common.Probes\OsProbes\OsUpdateDeploymentResources.cs -->
+
 # OsUpdateDeploymentResources
 
-Updates container resource requests and limits in a Kubernetes or OpenShift deployment.
+> TL;DR — Updates container resource requests and limits in a Kubernetes or OpenShift deployment.
 
-## What It Does
+## When to use {: #when-to-use}
 
 Updates CPU and memory requests and limits on a deployment container, then waits for the deployment to converge.
 
 This is useful when a scenario needs a temporary resource profile, for example to test scaling thresholds or resource-constrained behavior.
 
-## YAML Example
+## YAML configuration {: #yaml-configuration}
+
+Use the hook name in the matching runtime section, then place hook-specific fields under the configuration object shown in the examples below.
+
+## Minimal example {: #minimal-example}
 
 ```yaml
 Sessions:
@@ -36,13 +52,13 @@ Sessions:
               Memory: 256Mi
 ```
 
-## What This Configuration Does
+## Realistic example {: #realistic-example}
 
 This probe updates the `api` container in the `orders-api` deployment so that it requests `250m` CPU and `256Mi` memory, with limits of `1000m` CPU and `1Gi` memory.
 
 The deployment is then allowed to roll out and settle before the scenario continues.
 
-### Global Dictionary Behavior
+### Global Dictionary Behavior {: #global-dictionary-behavior}
 
 With `UseGlobalDict: true`, missing shared cluster settings can be resolved from `Os/Defaults`, and missing `DesiredResources` can be restored from `Os/Recovery/Resources/Deployment/<ReplicaSetName>/<ContainerName>` after an earlier probe in the same execution and session captured the pre-change state.
 
@@ -51,3 +67,14 @@ The probe writes its pre-change snapshot to the unique canonical scoped path for
 No additional per-probe recovery caveat applies beyond the execution and session scoping rules.
 
 When `UseGlobalDict` is `false`, the probe keeps the current behavior: it uses only local YAML or code configuration and does not read or write probe-global-dictionary state.
+
+## Edge cases {: #edge-cases}
+
+- Missing required configuration keys fail schema validation before the hook runs.
+- Keep hook names and referenced session or data-source names aligned with the surrounding YAML.
+
+## See also {: #see-also}
+
+- [Configuration table](configuration/tableView.md)
+- [YAML scaffold](configuration/yamlView.md)
+- [Probes](../../index.md)

@@ -1,14 +1,30 @@
+---
+id: probes.available.oschangestatefulsetenvvars.overview
+type: reference
+status: stable
+since: 2.0.0
+last_verified: 2026-05-22
+applies_to: [probes]
+keywords: [probes, OsChangeStatefulSetEnvVars, ProbeConfiguration]
+summary: "Probe that changes the environment variables of a statefulSet"
+---
+<!-- Verified-against: QaaS.Common.Probes\QaaS.Common.Probes\OsProbes\OsChangeStatefulSetEnvVars.cs -->
+
 # OsChangeStatefulSetEnvVars
 
-Probe that changes the environment variables of a statefulSet
+> TL;DR — Probe that changes the environment variables of a statefulSet
 
-## What It Does
+## When to use {: #when-to-use}
 
 Updates or removes environment variables on a stateful set and then waits for the workload to converge.
 
 This is useful for stateful components such as brokers or databases that need a controlled configuration change before the scenario runs.
 
-## YAML Example
+## YAML configuration {: #yaml-configuration}
+
+Use the hook name in the matching runtime section, then place hook-specific fields under the configuration object shown in the examples below.
+
+## Minimal example {: #minimal-example}
 
 ```yaml
 Sessions:
@@ -34,13 +50,13 @@ Sessions:
             Password: docs-password
 ```
 
-## What This Configuration Does
+## Realistic example {: #realistic-example}
 
 This configuration updates the `worker` container in the `orders-worker` stateful set, adds two environment variables, removes `LEGACY_MODE`, and then waits for the stateful set rollout to settle.
 
 It is the stateful-set equivalent of the deployment environment-variable probe.
 
-### Global Dictionary Behavior
+### Global Dictionary Behavior {: #global-dictionary-behavior}
 
 With `UseGlobalDict: true`, missing shared cluster settings can be resolved from `Os/Defaults`, and missing `EnvVarsToUpdate` and `EnvVarsToRemove` can be restored from `Os/Recovery/EnvVars/StatefulSet/<ReplicaSetName>/<ContainerName-or-__all__>` after an earlier probe in the same execution and session captured the pre-change state.
 
@@ -49,3 +65,14 @@ The probe writes its pre-change snapshot to the unique canonical scoped path for
 A recovery payload is written only when the probe resolves exactly one target container, because that is the only time the original environment can be captured unambiguously.
 
 When `UseGlobalDict` is `false`, the probe keeps the current behavior: it uses only local YAML or code configuration and does not read or write probe-global-dictionary state.
+
+## Edge cases {: #edge-cases}
+
+- Missing required configuration keys fail schema validation before the hook runs.
+- Keep hook names and referenced session or data-source names aligned with the surrounding YAML.
+
+## See also {: #see-also}
+
+- [Configuration table](configuration/tableView.md)
+- [YAML scaffold](configuration/yamlView.md)
+- [Probes](../../index.md)

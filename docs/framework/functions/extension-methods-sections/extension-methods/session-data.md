@@ -1,8 +1,27 @@
+---
+id: framework.functions.extension.methods.sections.extension.methods.session.data
+type: reference
+status: stable
+since: 2.0.0
+last_verified: 2026-05-22
+applies_to: [framework]
+keywords: [framework, functions, extension, methods, sections, session, data]
+summary: "Reference page for Extension Methods: Extension Methods / Session data."
+---
+
+<!-- Verified-against: QaaS.Framework\QaaS.Framework.SDK\Extensions\SessionDataExtensions.cs -->
+
 # Extension Methods: Extension Methods / Session data
 
-This page mirrors the `Extension Methods / Session data` section from [Extension Methods](../../extension-methods.md).
+> TL;DR — This page mirrors the `Extension Methods / Session data` section from [Extension Methods](../../extension-methods.md) as a focused reference.
 
-## `GetSessionDataByName<TInput, TOutput>`
+## When to use {: #when-to-use}
+
+Use this page when you need the focused member list, signatures, and source notes for this section without scanning the full parent reference.
+
+## C# (CAC) usage {: #c-cac-usage}
+
+### `GetSessionDataByName<TInput, TOutput>` {: #getsessiondatabynametinput-toutput}
 
 ??? info "Source file, signature, and docstring"
     **Member**
@@ -23,7 +42,7 @@ This page mirrors the `Extension Methods / Session data` section from [Extension
     
     Retrieves a SessionData from an enumerable of SessionData by its name
 
-## `GetInputByName<TInput, TOutput>`
+### `GetInputByName<TInput, TOutput>` {: #getinputbynametinput-toutput}
 
 ??? info "Source file, signature, and docstring"
     **Member**
@@ -44,7 +63,7 @@ This page mirrors the `Extension Methods / Session data` section from [Extension
     
     Retrieves an input CommunicationData from SessionData by its name
 
-## `TryGetInputByName<TInput, TOutput>`
+### `TryGetInputByName<TInput, TOutput>` {: #trygetinputbynametinput-toutput}
 
 ??? info "Source file, signature, and docstring"
     **Member**
@@ -65,7 +84,7 @@ This page mirrors the `Extension Methods / Session data` section from [Extension
     
     Retrieves an input CommunicationData{TData} from SessionData by its name to inputValue
 
-## `GetOutputByName<TInput, TOutput>`
+### `GetOutputByName<TInput, TOutput>` {: #getoutputbynametinput-toutput}
 
 ??? info "Source file, signature, and docstring"
     **Member**
@@ -86,7 +105,7 @@ This page mirrors the `Extension Methods / Session data` section from [Extension
     
     Retrieves an output CommunicationData from SessionData by its name
 
-## `TryGetOutputByName<TInput, TOutput>`
+### `TryGetOutputByName<TInput, TOutput>` {: #trygetoutputbynametinput-toutput}
 
 ??? info "Source file, signature, and docstring"
     **Member**
@@ -106,3 +125,12 @@ This page mirrors the `Extension Methods / Session data` section from [Extension
     **Docstring**
     
     Retrieves an input CommunicationData{TData} from SessionData by its name to inputValue
+
+## Edge cases {: #edge-cases}
+
+- This page is generated from the parent reference section; edit the source XML docs or generator when content needs to change.
+- If a linked source member is renamed, regenerate the reference docs before changing prose by hand.
+
+## See also {: #see-also}
+
+- [Extension Methods](../../extension-methods.md)

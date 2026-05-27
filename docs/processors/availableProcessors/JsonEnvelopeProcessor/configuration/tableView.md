@@ -1,4 +1,26 @@
+---
+id: processors.available.jsonenvelopeprocessor.configuration.tableview
+type: reference
+status: stable
+since: 2.0.0
+last_verified: 2026-05-22
+applies_to: [processors]
+keywords: [processors, JsonEnvelopeProcessor, configuration, reference]
+summary: "Field-by-field reference for JsonEnvelopeProcessor ProcessorConfiguration keys, types, defaults and descriptions, generated from processors.schema.json."
+---
+<!-- Verified-against: QaaS.JsonSchemaExtensions/generated-schemas/processors.schema.json -->
+
 # JsonEnvelopeProcessor Configurations Table View
+
+> TL;DR — Use this generated field table to check property paths, types, required status, defaults, and descriptions.
+
+## When to use {: #when-to-use}
+
+Use this page when you need the exact field path or value type for a hook configuration before editing YAML.
+
+## YAML configuration {: #yaml-configuration}
+
+The table below mirrors the schema used by the YAML scaffold page. Nested rows use dotted paths and `[]` for list items.
 
 | Property Path | Type | Required | Default | Description |
 | ------------- | ---- | -------- | ------- | ----------- |
@@ -11,3 +33,13 @@
 | `ProcessorConfiguration.IncludeRequestHeaders` | `string or true/false` | &#10006 |  | Include request headers as requestHeaders in the response |
 | `ProcessorConfiguration.IncludeUri` | `string or true/false` | &#10006 |  | Include the request URI as uri in the response |
 | `ProcessorConfiguration.ResponseHeaders` | `object or string or null` | &#10006 |  | Additional response headers |
+
+## Edge cases {: #edge-cases}
+
+- Empty default cells mean the schema does not define a default value for that field.
+- Required status applies to the immediate parent object shown by the property path.
+
+## See also {: #see-also}
+
+- [YAML scaffold](yamlView.md)
+- [Overview](../overview.md)

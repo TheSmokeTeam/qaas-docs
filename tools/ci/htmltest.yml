@@ -1,0 +1,5 @@
+DirectoryPath: "site-check"
+CheckExternal: false
+EnforceHTML5: false
+IgnoreDirectoryMissingTrailingSlash: true
+LogLevel: 1

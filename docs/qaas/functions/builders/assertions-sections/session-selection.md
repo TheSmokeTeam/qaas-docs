@@ -1,8 +1,27 @@
+---
+id: qaas.functions.builders.assertions.sections.session.selection
+type: reference
+status: stable
+since: 2.0.0
+last_verified: 2026-05-22
+applies_to: [runner]
+keywords: [runner, qaas, functions, builders, assertions, sections, session, selection]
+summary: "Reference page for Assertions: Session selection."
+---
+
+<!-- Verified-against: QaaS.Runner\QaaS.Runner.Assertions\ConfigurationObjects\AssertionBuilder.cs -->
+
 # Assertions: Session selection
 
-This page mirrors the `Session selection` section from [Assertions](../assertions.md).
+> TL;DR — This page mirrors the `Session selection` section from [Assertions](../assertions.md) as a focused reference.
 
-## `AddSessionName`
+## When to use {: #when-to-use}
+
+Use this page when you need the focused member list, signatures, and source notes for this section without scanning the full parent reference.
+
+## C# (CAC) usage {: #c-cac-usage}
+
+### `AddSessionName` {: #addsessionname}
 
 ??? info "Source file, signature, and docstring"
     **Member**
@@ -22,10 +41,8 @@ This page mirrors the `Session selection` section from [Assertions](../assertion
     **Docstring**
     
     Adds the supplied session name to the current Runner assertion builder instance.
-    
-    Use this method when working with the documented Runner assertion builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
-## `RemoveSessionName`
+### `RemoveSessionName` {: #removesessionname}
 
 ??? info "Source file, signature, and docstring"
     **Member**
@@ -45,10 +62,8 @@ This page mirrors the `Session selection` section from [Assertions](../assertion
     **Docstring**
     
     Removes the configured session name from the current Runner assertion builder instance.
-    
-    Use this method when working with the documented Runner assertion builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
-## `RemoveSessionNameAt`
+### `RemoveSessionNameAt` {: #removesessionnameat}
 
 ??? info "Source file, signature, and docstring"
     **Member**
@@ -68,10 +83,8 @@ This page mirrors the `Session selection` section from [Assertions](../assertion
     **Docstring**
     
     Removes the configured session name at the specified index from the current Runner assertion builder instance.
-    
-    Use this method when working with the documented Runner assertion builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
-## `AddSessionPattern`
+### `AddSessionPattern` {: #addsessionpattern}
 
 ??? info "Source file, signature, and docstring"
     **Member**
@@ -91,10 +104,8 @@ This page mirrors the `Session selection` section from [Assertions](../assertion
     **Docstring**
     
     Adds the supplied session pattern to the current Runner assertion builder instance.
-    
-    Use this method when working with the documented Runner assertion builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
-## `RemoveSessionPattern`
+### `RemoveSessionPattern` {: #removesessionpattern}
 
 ??? info "Source file, signature, and docstring"
     **Member**
@@ -114,10 +125,8 @@ This page mirrors the `Session selection` section from [Assertions](../assertion
     **Docstring**
     
     Removes the configured session pattern from the current Runner assertion builder instance.
-    
-    Use this method when working with the documented Runner assertion builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
-## `RemoveSessionPatternAt`
+### `RemoveSessionPatternAt` {: #removesessionpatternat}
 
 ??? info "Source file, signature, and docstring"
     **Member**
@@ -137,5 +146,12 @@ This page mirrors the `Session selection` section from [Assertions](../assertion
     **Docstring**
     
     Removes the configured session pattern at the specified index from the current Runner assertion builder instance.
-    
-    Use this method when working with the documented Runner assertion builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
+
+## Edge cases {: #edge-cases}
+
+- This page is generated from the parent reference section; edit the source XML docs or generator when content needs to change.
+- If a linked source member is renamed, regenerate the reference docs before changing prose by hand.
+
+## See also {: #see-also}
+
+- [Assertions](../assertions.md)

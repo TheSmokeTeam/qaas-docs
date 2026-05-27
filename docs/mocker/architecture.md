@@ -1,8 +1,20 @@
+---
+id: mocker.architecture
+type: explanation
+status: stable
+since: 2.0.0
+last_verified: 2026-05-23
+applies_to: [mocker]
+keywords: [mocker, architecture]
+summary: "QaaS.Mocker loads configuration into DataSources, Stubs, Servers, and an optional Controller before serving mock traffic."
+---
 # Architecture
+
+> TL;DR — QaaS.Mocker loads configuration into DataSources, Stubs, Servers, and an optional Controller before serving mock traffic.
 
 [QaaS.Mocker](index.md) has a small runtime surface, but the execution path is structured. Configuration is loaded first, then converted into a runtime graph of [DataSources](userInterfaces/mocker/configurationSections/dataSources/overview.md), [Stubs](userInterfaces/mocker/configurationSections/stubs/overview.md), [Servers](userInterfaces/mocker/configurationSections/server/overview.md), and the optional [Controller](userInterfaces/mocker/configurationSections/controller/overview.md).
 
-## Runtime Flow
+## Runtime Flow {: #runtime-flow}
 
 1. **Bootstrap** loads configuration from YAML, code, overwrite files, overwrite arguments, and environment variables.
 2. **Execution building** resolves [DataSources](userInterfaces/mocker/configurationSections/dataSources/overview.md), [Stubs](userInterfaces/mocker/configurationSections/stubs/overview.md), [Servers](userInterfaces/mocker/configurationSections/server/overview.md), and [Controller](userInterfaces/mocker/configurationSections/controller/overview.md) into in-memory runtime objects.
@@ -10,13 +22,13 @@
 4. **Request handling** matches the incoming request to an endpoint action, resolves the target stub, and runs its processor.
 5. **Response shaping** returns the `Data<object>` produced by the processor as protocol-specific output.
 
-## Main Building Blocks
+## Main Building Blocks {: #main-building-blocks}
 
-### DataSources
+### DataSources {: #datasources}
 
 Data sources are optional inputs for a stub. They usually come from generators such as `FromFileSystem` in [QaaS.Common.Generators](../generators/index.md), but they can also be built in code. A [Processor](../processors/index.md) can read one or more named data sources and decide which generated item becomes the response payload.
 
-### Stubs
+### Stubs {: #stubs}
 
 A stub is the reusable response unit in Mocker. It binds together:
 
@@ -26,9 +38,9 @@ A stub is the reusable response unit in Mocker. It binds together:
 
 Multiple endpoints can reuse the same stub, which keeps response logic centralized even when the same payload is exposed through several routes.
 
-### Servers
+### Servers {: #servers}
 
-The preferred runtime model is `Servers`, a list where each item can host one protocol configuration. In practice that means one mocker process can expose several HTTP servers, several gRPC servers, or a mixture of protocols at the same time.
+The preferred runtime shape is `Servers`, a list where each item can host one protocol configuration. In practice that means one mocker process can expose several HTTP servers, several gRPC servers, or a mixture of protocols at the same time.
 
 For HTTP, the path is:
 
@@ -36,7 +48,7 @@ For HTTP, the path is:
 
 For gRPC and socket servers the same idea applies, but the routing key is the RPC method or socket behavior instead of an HTTP route.
 
-### Processors
+### Processors {: #processors}
 
 Processors are the code that actually creates the response. They receive:
 
@@ -45,11 +57,11 @@ Processors are the code that actually creates the response. They receive:
 
 They return a `Data<object>` with body and metadata that Mocker translates into the outgoing protocol response. This is why [QaaS.Common.Processors](../processors/index.md) and project-local processors are the core extension point in the Mocker runtime.
 
-### Controller
+### Controller {: #controller}
 
 The controller is optional. When enabled, it adds a Redis-backed coordination surface that [QaaS.Runner](../qaas/index.md) [Sessions](../qaas/userInterfaces/runner/configurationSections/sessions/overview.md) or other automation can use to switch stubs, trigger runtime actions, or consume cached runtime data. Local quick starts can ignore it, but deployment scenarios often enable it.
 
-## Why The Model Scales
+## Why This Structure Scales {: #why-this-structure-scales}
 
 The architecture stays stable as a mock grows:
 
@@ -57,3 +69,11 @@ The architecture stays stable as a mock grows:
 - reuse response logic by pointing many actions at one stub
 - swap YAML and code configuration without changing runtime semantics
 - move from local execution to container or Helm deployment without changing the core mock design
+
+## See also {: #see-also}
+
+- [Mocker overview](index.md)
+- [DataSources](userInterfaces/mocker/configurationSections/dataSources/overview.md)
+- [Stubs](userInterfaces/mocker/configurationSections/stubs/overview.md)
+- [Servers](userInterfaces/mocker/configurationSections/server/overview.md)
+- [Processors](../processors/index.md)

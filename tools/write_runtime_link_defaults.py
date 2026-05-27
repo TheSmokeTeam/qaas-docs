@@ -19,6 +19,7 @@ def main() -> int:
 
     defaults = {
         "site_url": resolve_value("QAAS_DOCS_SITE_URL", "https://TheSmokeTeam.github.io/qaas-docs/"),
+        "repo_name": resolve_value("QAAS_DOCS_REPO_NAME", "QaaS.Runner"),
         "repo_url": resolve_value("QAAS_DOCS_REPO_URL", "https://github.com/TheSmokeTeam/QaaS.Runner"),
         "social_github_url": resolve_value("QAAS_DOCS_SOCIAL_GITHUB_URL", "https://github.com/TheSmokeTeam/QaaS.Runner"),
         "docs_site": resolve_value("QAAS_DOCS_LINK_DOCS_SITE", "https://TheSmokeTeam.github.io/qaas-docs/"),
