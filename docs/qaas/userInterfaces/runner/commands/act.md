@@ -17,7 +17,9 @@ summary: "Run a qaas test without the assertions and save all sessionData."
 
 # act
 
-> TL;DR — Run a qaas test without the assertions and save all sessionData.
+> TL;DR: Run a qaas test without the assertions and save all sessionData.
+
+Run a qaas test without the assertions and save all sessionData.
 
 ## Invocation {: #invocation}
 
@@ -25,7 +27,7 @@ summary: "Run a qaas test without the assertions and save all sessionData."
 dotnet run <dotnet-parameters> -- act <config-file> [flags]
 ```
 
-## When to use {: #when-to-use}
+## Use When {: #use-when}
 
 - You want to capture fresh SessionData without running assertions yet.
 - You are debugging session behavior and need the produced artifacts first.
@@ -66,13 +68,13 @@ dotnet run <dotnet-parameters> -- act <config-file> [flags]
 
 ## Flag Notes {: #flag-notes}
 
-### `-r`, `--overwrite-arguments` {: #-r-overwrite-arguments}
+### `-r`, `--overwrite-arguments` {: #r-overwrite-arguments}
 
 ```text
 -r MetaData:Environment=qa
 ```
 
-### `-p`, `--push-references` {: #-p-push-references}
+### `-p`, `--push-references` {: #p-push-references}
 
 Use pushed references when a list placeholder in the loaded configuration should be expanded from another YAML file.
 
@@ -89,18 +91,6 @@ dotnet run -- act test.qaas.yaml
 ```bash
 dotnet run -- act test.qaas.yaml -c cases -n happy-path -i Checkout
 ```
-
-## Exit Codes {: #exit-codes}
-
-| Code | Meaning |
-| ---- | ------- |
-| `0` | Help/version requests, successful `act` or `template` runs, and assertion-bearing runs where every assertion result is passed. |
-| `1` | Command-line parse failures, invalid configuration failures, or assertion-bearing runs with at least one assertion result that is not passed. |
-| `>1` | `execute` can aggregate several failing assertion-bearing executions because Runner sums execution exit codes. |
-
-`RunAndGetExitCode()` returns the resolved code to an embedding host. `Run()` applies the same code to the process: by default it terminates with that code, while `--no-process-exit` stores the code on the current process without terminating it.
-
-Unexpected lifecycle exceptions are rethrown after cleanup instead of being translated into one of the table values.
 
 ## Raw CLI Help {: #raw-cli-help}
 
@@ -228,4 +218,4 @@ No-args guidance:
 
 ## See also {: #see-also}
 
-- [Runner commands](commands.md)
+Use the surrounding documentation navigation to move between related generated reference pages.

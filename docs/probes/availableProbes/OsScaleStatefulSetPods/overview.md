@@ -12,17 +12,15 @@ summary: "Probe that scales openshift statefulsets"
 
 # OsScaleStatefulSetPods
 
-> TL;DR — Probe that scales openshift statefulsets
+> TL;DR: Probe that scales openshift statefulsets
 
-## When to use {: #when-to-use}
+Probe that scales openshift statefulsets
+
+## What It Does {: #what-it-does}
 
 Scales a stateful set to the configured replica count and waits until the stateful workload converges.
 
 This is useful when a scenario needs to grow or shrink a stateful component before traffic starts.
-
-## YAML configuration {: #yaml-configuration}
-
-Use the hook name in the matching runtime section, then place hook-specific fields under the configuration object shown in the examples below.
 
 ## Minimal example {: #minimal-example}
 
@@ -61,13 +59,6 @@ No additional per-probe recovery caveat applies beyond the execution and session
 
 When `UseGlobalDict` is `false`, the probe keeps the current behavior: it uses only local YAML or code configuration and does not read or write probe-global-dictionary state.
 
-## Edge cases {: #edge-cases}
-
-- Missing required configuration keys fail schema validation before the hook runs.
-- Keep hook names and referenced session or data-source names aligned with the surrounding YAML.
-
 ## See also {: #see-also}
 
-- [Configuration table](configuration/tableView.md)
-- [YAML scaffold](configuration/yamlView.md)
-- [Probes](../../index.md)
+Use the surrounding documentation navigation to move between related generated reference pages.

@@ -8,10 +8,11 @@ applies_to: [mocker]
 keywords: [mocker, userinterfaces, commands, run]
 summary: "Start the configured mock servers and optional controller runtime."
 ---
-
 # run
 
-> TL;DR — Start the configured mock servers and optional controller runtime.
+> TL;DR: Start the configured mock servers and optional controller runtime.
+
+Start the configured mock servers and optional controller runtime.
 
 ## Invocation {: #invocation}
 
@@ -19,7 +20,7 @@ summary: "Start the configured mock servers and optional controller runtime."
 dotnet run <dotnet-parameters> -- run <config-file> [flags]
 ```
 
-## When to use {: #when-to-use}
+## Use When {: #use-when}
 
 - You want to boot the mock environment from a committed mocker YAML file.
 - You need to layer temporary overrides before starting the servers.
@@ -51,13 +52,13 @@ dotnet run <dotnet-parameters> -- run <config-file> [flags]
 
 ## Flag Notes {: #flag-notes}
 
-### `-r`, `--overwrite-arguments` {: #-r-overwrite-arguments}
+### `-r`, `--overwrite-arguments` {: #r-overwrite-arguments}
 
 ```text
 -r Server:Port=8081
 ```
 
-### `--run-locally` {: #-run-locally}
+### `--run-locally` {: #run-locally}
 
 Use this when you want the host process to keep the mock runtime attached to the current console session.
 
@@ -140,4 +141,4 @@ No-args guidance:
 
 ## See also {: #see-also}
 
-- [Mocker commands](commands.md)
+Use the surrounding documentation navigation to move between related generated reference pages.

@@ -12,17 +12,15 @@ summary: "Probe that Executes a command passed by the `cmd` string variable on e
 
 # OsExecuteCommandsInContainers
 
-> TL;DR — Probe that Executes a command passed by the `cmd` string variable on every pod and container if passed to the function
+> TL;DR: Probe that Executes a command passed by the `cmd` string variable on every pod and container if passed to the function
 
-## When to use {: #when-to-use}
+Probe that Executes a command passed by the `cmd` string variable on every pod and container if passed to the function
+
+## What It Does {: #what-it-does}
 
 Finds pods by label selection and executes the configured commands inside the matching containers.
 
 This is useful for ad hoc maintenance steps such as inspecting environment state, clearing temporary files, or triggering in-container admin commands before or after a scenario.
-
-## YAML configuration {: #yaml-configuration}
-
-Use the hook name in the matching runtime section, then place hook-specific fields under the configuration object shown in the examples below.
 
 ## Minimal example {: #minimal-example}
 
@@ -58,13 +56,6 @@ This probe is intentionally left out of the probe-global-dictionary fallback fea
 
 That means the behavior is unchanged for every run: the probe uses only the values supplied directly in local YAML or code configuration.
 
-## Edge cases {: #edge-cases}
-
-- Missing required configuration keys fail schema validation before the hook runs.
-- Keep hook names and referenced session or data-source names aligned with the surrounding YAML.
-
 ## See also {: #see-also}
 
-- [Configuration table](configuration/tableView.md)
-- [YAML scaffold](configuration/yamlView.md)
-- [Probes](../../index.md)
+Use the surrounding documentation navigation to move between related generated reference pages.

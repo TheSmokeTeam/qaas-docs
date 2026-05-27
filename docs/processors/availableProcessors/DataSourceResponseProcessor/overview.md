@@ -12,17 +12,15 @@ summary: "Builds the response from generated data produced by one configured dat
 
 # DataSourceResponseProcessor
 
-> TL;DR — Builds the response from generated data produced by one configured data source.
+> TL;DR: Builds the response from generated data produced by one configured data source.
 
-## When to use {: #when-to-use}
+Builds the response from generated data produced by one configured data source.
+
+## What It Does {: #what-it-does}
 
 Selects a generated item from an attached data source and returns that item as the HTTP response body.
 
 It can choose the first item, the last item, or a zero-based index. When no item can be selected, it can return a fallback body instead of throwing. This is useful when responses should come from prepared files or generated fixtures.
-
-## YAML configuration {: #yaml-configuration}
-
-Use the hook name in the matching runtime section, then place hook-specific fields under the configuration object shown in the examples below.
 
 ## Minimal example {: #minimal-example}
 
@@ -66,13 +64,6 @@ This configuration attaches the `PreparedResponses` data source to the stub and 
 
 The body is returned as an HTTP `202` response with `application/json`.
 
-## Edge cases {: #edge-cases}
-
-- Missing required configuration keys fail schema validation before the hook runs.
-- Keep hook names and referenced session or data-source names aligned with the surrounding YAML.
-
 ## See also {: #see-also}
 
-- [Configuration table](configuration/tableView.md)
-- [YAML scaffold](configuration/yamlView.md)
-- [Processors](../../index.md)
+Use the surrounding documentation navigation to move between related generated reference pages.

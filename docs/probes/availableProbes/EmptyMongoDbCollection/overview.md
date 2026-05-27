@@ -12,17 +12,15 @@ summary: "Deletes all documents from the configured MongoDB collection so it sta
 
 # EmptyMongoDbCollection
 
-> TL;DR — Deletes all documents from the configured MongoDB collection so it starts clean for the test run.
+> TL;DR: Deletes all documents from the configured MongoDB collection so it starts clean for the test run.
 
-## When to use {: #when-to-use}
+Deletes all documents from the configured MongoDB collection so it starts clean for the test run.
+
+## What It Does {: #what-it-does}
 
 Deletes all documents from one MongoDB collection while leaving the collection itself in place.
 
 This is useful for repeatable cleanup in environments where the collection should stay available but the data written by the previous run should be removed.
-
-## YAML configuration {: #yaml-configuration}
-
-Use the hook name in the matching runtime section, then place hook-specific fields under the configuration object shown in the examples below.
 
 ## Minimal example {: #minimal-example}
 
@@ -56,13 +54,6 @@ No recovery alias is written for MongoDB in this first pass.
 
 When `UseGlobalDict` is `false`, the probe behaves exactly as before and uses only local YAML or code configuration.
 
-## Edge cases {: #edge-cases}
-
-- Missing required configuration keys fail schema validation before the hook runs.
-- Keep hook names and referenced session or data-source names aligned with the surrounding YAML.
-
 ## See also {: #see-also}
 
-- [Configuration table](configuration/tableView.md)
-- [YAML scaffold](configuration/yamlView.md)
-- [Probes](../../index.md)
+Use the surrounding documentation navigation to move between related generated reference pages.

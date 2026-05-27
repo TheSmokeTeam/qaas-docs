@@ -12,17 +12,15 @@ summary: "Compares the hermetic percentage calculated from configured inputs and
 
 # ValidateHermeticMetricsByInputOutputPercentage
 
-> TL;DR — Compares the hermetic percentage calculated from configured inputs and outputs with the hermetic percentage reported by the metrics output.
+> TL;DR: Compares the hermetic percentage calculated from configured inputs and outputs with the hermetic percentage reported by the metrics output.
 
-## When to use {: #when-to-use}
+Compares the hermetic percentage calculated from configured inputs and outputs with the hermetic percentage reported by the metrics output.
+
+## What It Does {: #what-it-does}
 
 Calculates hermetic behavior in two different ways and compares the results: first from the real input/output counts in the selected communication data, and second from the latest metric values found in a metrics output.
 
 The metrics side uses the built-in hermetic formula `(output + process + combine + filtered) / (input + split) * 100`, with any optional metric names contributing zero when omitted. The assertion passes when the absolute difference between the metrics-based percentage and the count-based percentage stays below `Tolerance`.
-
-## YAML configuration {: #yaml-configuration}
-
-Use the hook name in the matching runtime section, then place hook-specific fields under the configuration object shown in the examples below.
 
 ## Minimal example {: #minimal-example}
 
@@ -57,13 +55,6 @@ This snippet compares the observed `Published` to `Delivered` ratio with the rat
 
 The assertion looks up the latest sample for each configured metric name, computes the metrics hermetic percentage, and accepts the run only when that result stays within 0.5 percentage points of the real input/output percentage.
 
-## Edge cases {: #edge-cases}
-
-- Missing required configuration keys fail schema validation before the hook runs.
-- Keep hook names and referenced session or data-source names aligned with the surrounding YAML.
-
 ## See also {: #see-also}
 
-- [Configuration table](configuration/tableView.md)
-- [YAML scaffold](configuration/yamlView.md)
-- [Assertions](../../index.md)
+Use the surrounding documentation navigation to move between related generated reference pages.

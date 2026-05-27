@@ -12,17 +12,15 @@ summary: "Updates the image of one container in a Kubernetes or OpenShift statef
 
 # OsUpdateStatefulSetImage
 
-> TL;DR — Updates the image of one container in a Kubernetes or OpenShift stateful set.
+> TL;DR: Updates the image of one container in a Kubernetes or OpenShift stateful set.
 
-## When to use {: #when-to-use}
+Updates the image of one container in a Kubernetes or OpenShift stateful set.
+
+## What It Does {: #what-it-does}
 
 Updates the container image used by a stateful set and waits for the stateful rollout to converge.
 
 This is useful when a scenario needs a stateful component to run from a different prebuilt image version.
-
-## YAML configuration {: #yaml-configuration}
-
-Use the hook name in the matching runtime section, then place hook-specific fields under the configuration object shown in the examples below.
 
 ## Minimal example {: #minimal-example}
 
@@ -62,13 +60,6 @@ No additional per-probe recovery caveat applies beyond the execution and session
 
 When `UseGlobalDict` is `false`, the probe keeps the current behavior: it uses only local YAML or code configuration and does not read or write probe-global-dictionary state.
 
-## Edge cases {: #edge-cases}
-
-- Missing required configuration keys fail schema validation before the hook runs.
-- Keep hook names and referenced session or data-source names aligned with the surrounding YAML.
-
 ## See also {: #see-also}
 
-- [Configuration table](configuration/tableView.md)
-- [YAML scaffold](configuration/yamlView.md)
-- [Probes](../../index.md)
+Use the surrounding documentation navigation to move between related generated reference pages.

@@ -12,15 +12,7 @@ summary: "Field-by-field reference for EmptyElasticIndices ProbeConfiguration ke
 
 # EmptyElasticIndices Configurations Table View
 
-> TL;DR — Use this generated field table to check property paths, types, required status, defaults, and descriptions.
-
-## When to use {: #when-to-use}
-
-Use this page when you need the exact field path or value type for a hook configuration before editing YAML.
-
-## YAML configuration {: #yaml-configuration}
-
-The table below mirrors the schema used by the YAML scaffold page. Nested rows use dotted paths and `[]` for list items.
+> TL;DR: Field-by-field reference for EmptyElasticIndices ProbeConfiguration keys, types, defaults and descriptions, generated from probes.schema.json.
 
 | Property Path | Type | Required | Default | Description |
 | ------------- | ---- | -------- | ------- | ----------- |
@@ -29,17 +21,11 @@ The table below mirrors the schema used by the YAML scaffold page. Nested rows u
 | `ProbeConfiguration.Password` | `string` | &#10004 |  | The password of the elasticsearch |
 | `ProbeConfiguration.Url` | `string` | &#10004 |  | The url of the elasticsearch |
 | `ProbeConfiguration.Username` | `string` | &#10004 |  | The username of the elasticsearch |
-| `ProbeConfiguration.AllowInvalidServerCertificates` | `string or true/false` | &#10006 | `False` | Allow invalid TLS certificates when connecting to Elasticsearch over HTTPS. |
-| `ProbeConfiguration.MatchQueryString` | `string` | &#10006 | `*` | The match query string for the documents from the relevant indices |
-| `ProbeConfiguration.RequestTimeoutMs` | `integer or string` | &#10006 | `30000` | The timeout in milliseconds on the requests sent to the elastic |
-| `ProbeConfiguration.UseGlobalDict` | `string or true/false` | &#10006 | `False` | When true, missing Elasticsearch probe configuration keys can be resolved from the shared global dictionary before local values are applied. |
-
-## Edge cases {: #edge-cases}
-
-- Empty default cells mean the schema does not define a default value for that field.
-- Required status applies to the immediate parent object shown by the property path.
+| `ProbeConfiguration.AllowInvalidServerCertificates` | `string or true/false` | &#10006 | False | Allow invalid TLS certificates when connecting to Elasticsearch over HTTPS. |
+| `ProbeConfiguration.MatchQueryString` | `string` | &#10006 | * | The match query string for the documents from the relevant indices |
+| `ProbeConfiguration.RequestTimeoutMs` | `integer or string` | &#10006 | 30000 | The timeout in milliseconds on the requests sent to the elastic |
+| `ProbeConfiguration.UseGlobalDict` | `string or true/false` | &#10006 | False | When true, missing Elasticsearch probe configuration keys can be resolved from the shared global dictionary before local values are applied. |
 
 ## See also {: #see-also}
 
-- [YAML scaffold](yamlView.md)
-- [Overview](../overview.md)
+Use the surrounding documentation navigation to move between related generated reference pages.

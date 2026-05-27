@@ -17,7 +17,9 @@ summary: "Template a qaas configuration file to see how it looks after being loa
 
 # template
 
-> TL;DR — Template a qaas configuration file to see how it looks after being loaded, will template what it can even if the configuration file is invalid.
+> TL;DR: Template a qaas configuration file to see how it looks after being loaded, will template what it can even if the configuration file is invalid.
+
+Template a qaas configuration file to see how it looks after being loaded, will template what it can even if the configuration file is invalid.
 
 ## Invocation {: #invocation}
 
@@ -25,7 +27,7 @@ summary: "Template a qaas configuration file to see how it looks after being loa
 dotnet run <dotnet-parameters> -- template <config-file> [flags]
 ```
 
-## When to use {: #when-to-use}
+## Use When {: #use-when}
 
 - You want to see the effective YAML after files, folders, references, placeholders, and environment overrides are resolved.
 - You are validating a complicated configuration merge before running a real test.
@@ -65,13 +67,13 @@ dotnet run <dotnet-parameters> -- template <config-file> [flags]
 
 ## Flag Notes {: #flag-notes}
 
-### `-r`, `--overwrite-arguments` {: #-r-overwrite-arguments}
+### `-r`, `--overwrite-arguments` {: #r-overwrite-arguments}
 
 ```text
 -r MetaData:Environment=qa
 ```
 
-### `-p`, `--push-references` {: #-p-push-references}
+### `-p`, `--push-references` {: #p-push-references}
 
 Use pushed references when a list placeholder in the loaded configuration should be expanded from another YAML file.
 
@@ -88,18 +90,6 @@ dotnet run -- template test.qaas.yaml
 ```bash
 dotnet run -- template test.qaas.yaml -w local.qaas.yaml -r MetaData:Environment=qa
 ```
-
-## Exit Codes {: #exit-codes}
-
-| Code | Meaning |
-| ---- | ------- |
-| `0` | Help/version requests, successful `act` or `template` runs, and assertion-bearing runs where every assertion result is passed. |
-| `1` | Command-line parse failures, invalid configuration failures, or assertion-bearing runs with at least one assertion result that is not passed. |
-| `>1` | `execute` can aggregate several failing assertion-bearing executions because Runner sums execution exit codes. |
-
-`RunAndGetExitCode()` returns the resolved code to an embedding host. `Run()` applies the same code to the process: by default it terminates with that code, while `--no-process-exit` stores the code on the current process without terminating it.
-
-Unexpected lifecycle exceptions are rethrown after cleanup instead of being translated into one of the table values.
 
 ## Raw CLI Help {: #raw-cli-help}
 
@@ -227,4 +217,4 @@ No-args guidance:
 
 ## See also {: #see-also}
 
-- [Runner commands](commands.md)
+Use the surrounding documentation navigation to move between related generated reference pages.

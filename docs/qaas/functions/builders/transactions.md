@@ -12,11 +12,7 @@ summary: "Each entry uses the short function name as the table-of-contents label
 
 # Transactions
 
-> TL;DR — This page lists the public Runner functions in the `Transactions` category.
-
-## When to use {: #when-to-use}
-
-Use this page when you need source-backed signatures, declaring types, and XML doc comments for this function category.
+> TL;DR: Each entry uses the short function name as the table-of-contents label. Expand an entry to inspect its source file, signature, and XML doc comments.
 
 Each entry uses the short function name as the table-of-contents label. Expand an entry to inspect its source file, signature, and XML doc comments.
 
@@ -44,6 +40,8 @@ The functions on this page are grouped by responsibility so related operations s
     **Docstring**
     
     Sets the name used for the current Runner transaction builder instance.
+    
+    Use this method when working with the documented Runner transaction builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
 ## Execution order {: #execution-order}
 
@@ -67,6 +65,8 @@ The functions on this page are grouped by responsibility so related operations s
     **Docstring**
     
     Sets the stage used by the current Runner transaction builder instance.
+    
+    Use this method when working with the documented Runner transaction builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
 ## Data source selection {: #data-source-selection}
 
@@ -90,6 +90,8 @@ The functions on this page are grouped by responsibility so related operations s
     **Docstring**
     
     Adds the supplied data source to the current Runner transaction builder instance.
+    
+    Use this method when working with the documented Runner transaction builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
 ### `AddDataSourcePattern` {: #adddatasourcepattern}
 
@@ -111,6 +113,8 @@ The functions on this page are grouped by responsibility so related operations s
     **Docstring**
     
     Adds the supplied data source pattern to the current Runner transaction builder instance.
+    
+    Use this method when working with the documented Runner transaction builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
 ### `UpdateDataSource` {: #updatedatasource}
 
@@ -132,6 +136,8 @@ The functions on this page are grouped by responsibility so related operations s
     **Docstring**
     
     Updates the configured data source stored on the current Runner transaction builder instance.
+    
+    Use this method when working with the documented Runner transaction builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
 ### `RemoveDataSource` {: #removedatasource}
 
@@ -153,6 +159,8 @@ The functions on this page are grouped by responsibility so related operations s
     **Docstring**
     
     Removes the configured data source from the current Runner transaction builder instance.
+    
+    Use this method when working with the documented Runner transaction builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
 ### `RemoveDataSourceAt` {: #removedatasourceat}
 
@@ -174,6 +182,8 @@ The functions on this page are grouped by responsibility so related operations s
     **Docstring**
     
     Removes the configured data source at the specified index from the current Runner transaction builder instance.
+    
+    Use this method when working with the documented Runner transaction builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
 ### `UpdateDataSourcePattern` {: #updatedatasourcepattern}
 
@@ -195,6 +205,8 @@ The functions on this page are grouped by responsibility so related operations s
     **Docstring**
     
     Updates the configured data source pattern stored on the current Runner transaction builder instance.
+    
+    Use this method when working with the documented Runner transaction builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
 ### `RemoveDataSourcePattern` {: #removedatasourcepattern}
 
@@ -216,6 +228,8 @@ The functions on this page are grouped by responsibility so related operations s
     **Docstring**
     
     Removes the configured data source pattern from the current Runner transaction builder instance.
+    
+    Use this method when working with the documented Runner transaction builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
 ### `RemoveDataSourcePatternAt` {: #removedatasourcepatternat}
 
@@ -237,6 +251,8 @@ The functions on this page are grouped by responsibility so related operations s
     **Docstring**
     
     Removes the configured data source pattern at the specified index from the current Runner transaction builder instance.
+    
+    Use this method when working with the documented Runner transaction builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
 ## Input selection {: #input-selection}
 
@@ -260,6 +276,8 @@ The functions on this page are grouped by responsibility so related operations s
     **Docstring**
     
     Sets the input data filter used by the transaction.
+    
+    Use this method when working with the documented Runner transaction builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
 ## Output selection {: #output-selection}
 
@@ -283,6 +301,8 @@ The functions on this page are grouped by responsibility so related operations s
     **Docstring**
     
     Sets the output data filter used by the transaction.
+    
+    Use this method when working with the documented Runner transaction builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
 ## Policies {: #policies}
 
@@ -306,6 +326,8 @@ The functions on this page are grouped by responsibility so related operations s
     **Docstring**
     
     Adds the supplied policy to the current Runner transaction builder instance.
+    
+    Use this method when working with the documented Runner transaction builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
 ### `UpdatePolicyAt` {: #updatepolicyat}
 
@@ -327,6 +349,8 @@ The functions on this page are grouped by responsibility so related operations s
     **Docstring**
     
     Updates the configured policy at the specified index on the current Runner transaction builder instance.
+    
+    Use this method when working with the documented Runner transaction builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
 ### `RemovePolicyAt` {: #removepolicyat}
 
@@ -348,6 +372,8 @@ The functions on this page are grouped by responsibility so related operations s
     **Docstring**
     
     Removes the configured policy at the specified index from the current Runner transaction builder instance.
+    
+    Use this method when working with the documented Runner transaction builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
 ## Configuration {: #configuration}
 
@@ -371,6 +397,8 @@ The functions on this page are grouped by responsibility so related operations s
     **Docstring**
     
     Configures timeout on the current Runner transaction builder instance.
+    
+    Use this method when working with the documented Runner transaction builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
 ### `WithDeserializer` {: #withdeserializer}
 
@@ -392,6 +420,8 @@ The functions on this page are grouped by responsibility so related operations s
     **Docstring**
     
     Sets the deserializer configuration used by the current Runner transaction builder instance.
+    
+    Use this method when working with the documented Runner transaction builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
 ### `WithSerializer` {: #withserializer}
 
@@ -413,6 +443,8 @@ The functions on this page are grouped by responsibility so related operations s
     **Docstring**
     
     Sets the serializer configuration used by the current Runner transaction builder instance.
+    
+    Use this method when working with the documented Runner transaction builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
 ### `WithIterations` {: #withiterations}
 
@@ -434,6 +466,31 @@ The functions on this page are grouped by responsibility so related operations s
     **Docstring**
     
     Sets how many iterations the transaction should execute.
+    
+    Use this method when working with the documented Runner transaction builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
+
+### `WithParallelism` {: #withparallelism}
+
+??? info "Source file, signature, and docstring"
+    **Member**
+    `TransactionBuilder.WithParallelism(int parallelism)`
+    
+    **Kind** `function`
+    
+    **Declaring Type** `TransactionBuilder`
+    
+    **Source File** `QaaS.Runner.Sessions/Actions/Transactions/Builders/TransactionBuilder.cs`
+    
+    **Signature**
+    ```csharp
+    public TransactionBuilder WithParallelism(int parallelism)
+    ```
+    
+    **Docstring**
+    
+    Configures the transaction to run with the supplied parallelism.
+    
+    Use this method when working with the documented Runner transaction builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
 ### `WithSleep` {: #withsleep}
 
@@ -455,6 +512,8 @@ The functions on this page are grouped by responsibility so related operations s
     **Docstring**
     
     Sets the delay applied between transaction iterations.
+    
+    Use this method when working with the documented Runner transaction builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
 ## Collection helpers {: #collection-helpers}
 
@@ -478,6 +537,8 @@ The functions on this page are grouped by responsibility so related operations s
     **Docstring**
     
     Updates the configuration currently stored on the Runner transaction builder instance.
+    
+    Use this method when working with the documented Runner transaction builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
 ## General {: #general}
 
@@ -501,6 +562,8 @@ The functions on this page are grouped by responsibility so related operations s
     **Docstring**
     
     Marks the transaction to execute continuously in loop mode.
+    
+    Use this method when working with the documented Runner transaction builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
 ### `Configure` {: #configure}
 
@@ -522,7 +585,9 @@ The functions on this page are grouped by responsibility so related operations s
     **Docstring**
     
     Sets the configuration currently stored on the Runner transaction builder instance.
+    
+    Use this method when working with the documented Runner transaction builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
 ## See also {: #see-also}
 
-- [Runner Functions](../index.md)
+Use the surrounding documentation navigation to move between related generated reference pages.

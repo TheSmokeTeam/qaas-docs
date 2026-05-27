@@ -12,11 +12,7 @@ summary: "Each entry uses the short function name as the table-of-contents label
 
 # Executions
 
-> TL;DR — This page lists the public Mocker functions in the `Executions` category.
-
-## When to use {: #when-to-use}
-
-Use this page when you need source-backed signatures, declaring types, and XML doc comments for this function category.
+> TL;DR: Each entry uses the short function name as the table-of-contents label. Expand an entry to inspect its source file, signature, and XML doc comments.
 
 Each entry uses the short function name as the table-of-contents label. Expand an entry to inspect its source file, signature, and XML doc comments.
 
@@ -44,6 +40,8 @@ The functions on this page are grouped by responsibility so related operations s
     **Docstring**
     
     Adds the supplied data source to the current Mocker execution builder instance.
+    
+    Use this method when working with the documented Mocker execution builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
 ### `UpdateDataSource` {: #updatedatasource}
 
@@ -65,6 +63,8 @@ The functions on this page are grouped by responsibility so related operations s
     **Docstring**
     
     Updates the configured data source stored on the current Mocker execution builder instance.
+    
+    Use this method when working with the documented Mocker execution builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
 ### `RemoveDataSource` {: #removedatasource}
 
@@ -86,6 +86,8 @@ The functions on this page are grouped by responsibility so related operations s
     **Docstring**
     
     Removes the configured data source from the current Mocker execution builder instance.
+    
+    Use this method when working with the documented Mocker execution builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
 ### `RemoveDataSourceAt` {: #removedatasourceat}
 
@@ -107,6 +109,8 @@ The functions on this page are grouped by responsibility so related operations s
     **Docstring**
     
     Removes the configured data source at the specified index from the current Mocker execution builder instance.
+    
+    Use this method when working with the documented Mocker execution builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
 ## Output selection {: #output-selection}
 
@@ -130,6 +134,8 @@ The functions on this page are grouped by responsibility so related operations s
     **Docstring**
     
     Sets the template output folder used by template mode.
+    
+    Use this method when working with the documented Mocker execution builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
 ## Servers {: #servers}
 
@@ -153,6 +159,8 @@ The functions on this page are grouped by responsibility so related operations s
     **Docstring**
     
     Sets the single-server configuration used by the current Mocker execution builder instance.
+    
+    Use this method when working with the documented Mocker execution builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
 ### `AddServers` {: #addservers}
 
@@ -174,6 +182,8 @@ The functions on this page are grouped by responsibility so related operations s
     **Docstring**
     
     Adds the supplied servers to the current Mocker execution builder instance.
+    
+    Use this method when working with the documented Mocker execution builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
 ### `UpdateServer` {: #updateserver}
 
@@ -195,6 +205,8 @@ The functions on this page are grouped by responsibility so related operations s
     **Docstring**
     
     Updates the configured single-server definition on the current Mocker execution builder instance.
+    
+    Use this method when working with the documented Mocker execution builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
 ### `AddServer` {: #addserver}
 
@@ -216,6 +228,8 @@ The functions on this page are grouped by responsibility so related operations s
     **Docstring**
     
     Adds the supplied server to the current Mocker execution builder instance.
+    
+    Use this method when working with the documented Mocker execution builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
 ### `UpdateServerAt` {: #updateserverat}
 
@@ -237,6 +251,8 @@ The functions on this page are grouped by responsibility so related operations s
     **Docstring**
     
     Updates the configured server stored at the specified index on the current Mocker execution builder instance.
+    
+    Use this method when working with the documented Mocker execution builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
 ### `RemoveServer` {: #removeserver}
 
@@ -258,6 +274,8 @@ The functions on this page are grouped by responsibility so related operations s
     **Docstring**
     
     Removes the configured single-server definition from the current Mocker execution builder instance.
+    
+    Use this method when working with the documented Mocker execution builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
 ### `RemoveServerAt` {: #removeserverat}
 
@@ -279,6 +297,8 @@ The functions on this page are grouped by responsibility so related operations s
     **Docstring**
     
     Removes the configured server stored at the specified index from the current Mocker execution builder instance.
+    
+    Use this method when working with the documented Mocker execution builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
 ## Transaction stubs {: #transaction-stubs}
 
@@ -302,8 +322,10 @@ The functions on this page are grouped by responsibility so related operations s
     **Docstring**
     
     Adds the supplied stub to the current Mocker execution builder instance.
+    
+    Use this method when working with the documented Mocker execution builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
-### `AddStub` {: #addstub_1}
+### `AddStub` {: #addstub-2}
 
 ??? info "Source file, signature, and docstring"
     **Member**
@@ -323,6 +345,8 @@ The functions on this page are grouped by responsibility so related operations s
     **Docstring**
     
     Adds the supplied stub to the current Mocker execution builder instance.
+    
+    Use this method when working with the documented Mocker execution builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
 ### `UpdateStub` {: #updatestub}
 
@@ -344,8 +368,10 @@ The functions on this page are grouped by responsibility so related operations s
     **Docstring**
     
     Updates the configured stub stored on the current Mocker execution builder instance.
+    
+    Use this method when working with the documented Mocker execution builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
-### `UpdateStub` {: #updatestub_1}
+### `UpdateStub` {: #updatestub-2}
 
 ??? info "Source file, signature, and docstring"
     **Member**
@@ -365,6 +391,8 @@ The functions on this page are grouped by responsibility so related operations s
     **Docstring**
     
     Updates the configured stub stored on the current Mocker execution builder instance.
+    
+    Use this method when working with the documented Mocker execution builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
 ### `RemoveStubAt` {: #removestubat}
 
@@ -386,6 +414,8 @@ The functions on this page are grouped by responsibility so related operations s
     **Docstring**
     
     Removes the configured stub at the specified index from the current Mocker execution builder instance.
+    
+    Use this method when working with the documented Mocker execution builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
 ### `RemoveStub` {: #removestub}
 
@@ -407,8 +437,10 @@ The functions on this page are grouped by responsibility so related operations s
     **Docstring**
     
     Removes the configured stub from the current Mocker execution builder instance.
+    
+    Use this method when working with the documented Mocker execution builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
-## Executions {: #executions_1}
+## Executions {: #executions}
 
 ### `ExecutionBuilder` {: #executionbuilder}
 
@@ -453,6 +485,8 @@ The functions on this page are grouped by responsibility so related operations s
     **Docstring**
     
     Sets the execution mode used by the resulting mocker runtime.
+    
+    Use this method when working with the documented Mocker execution builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
 ## Configuration {: #configuration}
 
@@ -476,6 +510,8 @@ The functions on this page are grouped by responsibility so related operations s
     **Docstring**
     
     Replaces the root configuration stored on the current execution context.
+    
+    Use this method when working with the documented Mocker execution builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
 ### `WithController` {: #withcontroller}
 
@@ -497,6 +533,8 @@ The functions on this page are grouped by responsibility so related operations s
     **Docstring**
     
     Sets the controller configuration used by the current Mocker execution builder instance.
+    
+    Use this method when working with the documented Mocker execution builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
 ## Reporting and artifacts {: #reporting-and-artifacts}
 
@@ -520,6 +558,8 @@ The functions on this page are grouped by responsibility so related operations s
     **Docstring**
     
     Replaces the logger stored on the current Mocker execution builder instance.
+    
+    Use this method when working with the documented Mocker execution builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
 ## Collection helpers {: #collection-helpers}
 
@@ -543,6 +583,8 @@ The functions on this page are grouped by responsibility so related operations s
     **Docstring**
     
     Updates the configured controller stored on the current Mocker execution builder instance.
+    
+    Use this method when working with the documented Mocker execution builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
 ### `RemoveController` {: #removecontroller}
 
@@ -564,6 +606,8 @@ The functions on this page are grouped by responsibility so related operations s
     **Docstring**
     
     Removes the configured controller from the current Mocker execution builder instance.
+    
+    Use this method when working with the documented Mocker execution builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
 ## General {: #general}
 
@@ -587,6 +631,8 @@ The functions on this page are grouped by responsibility so related operations s
     **Docstring**
     
     Configures whether the mocker waits for an interactive local shutdown signal.
+    
+    Use this method when working with the documented Mocker execution builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
 ### `Build` {: #build}
 
@@ -636,4 +682,4 @@ The functions on this page are grouped by responsibility so related operations s
 
 ## See also {: #see-also}
 
-- [Mocker Functions](../index.md)
+Use the surrounding documentation navigation to move between related generated reference pages.

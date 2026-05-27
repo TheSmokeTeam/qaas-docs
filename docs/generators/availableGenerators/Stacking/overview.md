@@ -12,17 +12,15 @@ summary: "Combines multiple data sources by taking a configured number of items 
 
 # Stacking
 
-> TL;DR — Combines multiple data sources by taking a configured number of items from each source in turn.
+> TL;DR: Combines multiple data sources by taking a configured number of items from each source in turn.
 
-## When to use {: #when-to-use}
+Combines multiple data sources by taking a configured number of items from each source in turn.
+
+## What It Does {: #what-it-does}
 
 Combines multiple attached data sources by taking a configured number of items from each source in sequence and repeating that pattern until the sources are exhausted or a count limit is reached.
 
 It is useful when you need a predictable mix of payload families rather than consuming one data source completely before moving to the next. It can also keep looping over finished generators when you want a longer mixed stream.
-
-## YAML configuration {: #yaml-configuration}
-
-Use the hook name in the matching runtime section, then place hook-specific fields under the configuration object shown in the examples below.
 
 ## Minimal example {: #minimal-example}
 
@@ -65,13 +63,6 @@ DataSources:
 
 Because `LoopFinishedGenerators` is enabled, the stacking process can continue even if one source runs out earlier than the other.
 
-## Edge cases {: #edge-cases}
-
-- Missing required configuration keys fail schema validation before the hook runs.
-- Keep hook names and referenced session or data-source names aligned with the surrounding YAML.
-
 ## See also {: #see-also}
 
-- [Configuration table](configuration/tableView.md)
-- [YAML scaffold](configuration/yamlView.md)
-- [Generators](../../index.md)
+Use the surrounding documentation navigation to move between related generated reference pages.

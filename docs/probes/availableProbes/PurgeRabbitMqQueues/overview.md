@@ -12,17 +12,15 @@ summary: "Probe that purges rabbitmq queues"
 
 # PurgeRabbitMqQueues
 
-> TL;DR — Probe that purges rabbitmq queues
+> TL;DR: Probe that purges rabbitmq queues
 
-## When to use {: #when-to-use}
+Probe that purges rabbitmq queues
+
+## What It Does {: #what-it-does}
 
 Purges all messages from the configured RabbitMQ queues through the AMQP connection, while keeping the queues themselves.
 
 This is useful when the topology should stay in place but leftover messages from a previous run must be removed.
-
-## YAML configuration {: #yaml-configuration}
-
-Use the hook name in the matching runtime section, then place hook-specific fields under the configuration object shown in the examples below.
 
 ## Minimal example {: #minimal-example}
 
@@ -55,13 +53,6 @@ With `UseGlobalDict: true`, missing broker connection fields and `QueueNames` ca
 
 That is useful when several RabbitMQ maintenance probes share one broker definition without repeating it in every YAML block. When `UseGlobalDict` is `false`, the probe behaves exactly as before and uses only its local configuration.
 
-## Edge cases {: #edge-cases}
-
-- Missing required configuration keys fail schema validation before the hook runs.
-- Keep hook names and referenced session or data-source names aligned with the surrounding YAML.
-
 ## See also {: #see-also}
 
-- [Configuration table](configuration/tableView.md)
-- [YAML scaffold](configuration/yamlView.md)
-- [Probes](../../index.md)
+Use the surrounding documentation navigation to move between related generated reference pages.

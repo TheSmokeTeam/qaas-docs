@@ -15,11 +15,7 @@ summary: "This page collects public Runner extension methods that have XML docum
 
 # Extension Methods
 
-> TL;DR — This page lists public Runner extension methods with source-backed signatures and XML doc comments.
-
-## When to use {: #when-to-use}
-
-Use this page when you need extension-method helpers without scanning each regular function category.
+> TL;DR: This page collects public Runner extension methods that have XML documentation or explicit docs annotations.
 
 This page collects public `Runner` extension methods that have XML documentation or explicit docs annotations.
 
@@ -157,7 +153,7 @@ Annotated extension methods continue to appear in their regular category pages; 
 
 ## Detailed data {: #detailed-data}
 
-### `AddIoMatchIndexToDetailedData<T>` {: #addiomatchindextodetaileddatat}
+### `AddIoMatchIndexToDetailedData<T>` {: #addiomatchindextodetaileddata-t}
 
 ??? info "Source file, signature, and docstring"
     **Member**
@@ -180,7 +176,7 @@ Annotated extension methods continue to appear in their regular category pages; 
 
 ## Session {: #session}
 
-### `DisposeOfEnumerable<TEnumerable>` {: #disposeofenumerabletenumerable}
+### `DisposeOfEnumerable<TEnumerable>` {: #disposeofenumerable-tenumerable}
 
 ??? info "Source file, signature, and docstring"
     **Member**
@@ -224,4 +220,4 @@ Annotated extension methods continue to appear in their regular category pages; 
 
 ## See also {: #see-also}
 
-- [Functions](index.md)
+Use the surrounding documentation navigation to move between related generated reference pages.
