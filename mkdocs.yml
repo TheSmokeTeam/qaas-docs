@@ -215,11 +215,12 @@ nav:
         - Bootstrap: qaas/functions/commands/bootstrap.md
         - Runner: qaas/functions/commands/runner.md
       - Extension Methods:
-        - Overview: qaas/functions/extension-methods.md
-        - Context artifact: qaas/functions/extension-methods-sections/context-artifact.md
-        - Date time: qaas/functions/extension-methods-sections/date-time.md
-        - Detailed data: qaas/functions/extension-methods-sections/detailed-data.md
-        - Session: qaas/functions/extension-methods-sections/session.md
+        - Extension Methods:
+          - Overview: qaas/functions/extension-methods.md
+          - Context artifact: qaas/functions/extension-methods-sections/context-artifact.md
+          - Date time: qaas/functions/extension-methods-sections/date-time.md
+          - Detailed data: qaas/functions/extension-methods-sections/detailed-data.md
+          - Session: qaas/functions/extension-methods-sections/session.md
       # qaas-docs-generator end: runner-functions
   - Mocker:
     - General:
@@ -283,10 +284,11 @@ nav:
         - Bootstrap: mocker/functions/commands/bootstrap.md
         - Mocker Runner: mocker/functions/commands/mocker-runner.md
       - Extension Methods:
-        - Overview: mocker/functions/extension-methods.md
-        - Data: mocker/functions/extension-methods-sections/data.md
-        - Http: mocker/functions/extension-methods-sections/http.md
-        - Socket: mocker/functions/extension-methods-sections/socket.md
+        - Extension Methods:
+          - Overview: mocker/functions/extension-methods.md
+          - Data: mocker/functions/extension-methods-sections/data.md
+          - Http: mocker/functions/extension-methods-sections/http.md
+          - Socket: mocker/functions/extension-methods-sections/socket.md
       # qaas-docs-generator end: mocker-functions
   - Hooks:
     - Assertions:
@@ -649,29 +651,30 @@ nav:
         - Updates: framework/functions/updates.md
         - YAML: framework/functions/yaml.md
       - Extension Methods:
-        - Overview: framework/functions/extension-methods.md
-        - Configuration:
-          - Overview: framework/functions/extension-methods-sections/configuration.md
-          - Placeholders: framework/functions/extension-methods-sections/configuration/placeholders.md
-          - Updates: framework/functions/extension-methods-sections/configuration/updates.md
-          - YAML: framework/functions/extension-methods-sections/configuration/yaml.md
-        - Methods:
-          - Overview: framework/functions/extension-methods-sections/extension-methods.md
-          - Communication data: framework/functions/extension-methods-sections/extension-methods/communication-data.md
-          - Configuration merge utilities: framework/functions/extension-methods-sections/extension-methods/configuration-merge-utilities.md
-          - Configuration references parser: framework/functions/extension-methods-sections/extension-methods/configuration-references-parser.md
-          - Configuration utilities: framework/functions/extension-methods-sections/extension-methods/configuration-utilities.md
-          - Context global dictionary: framework/functions/extension-methods-sections/extension-methods/context-global-dictionary.md
-          - Data: framework/functions/extension-methods-sections/extension-methods/data.md
-          - Data source: framework/functions/extension-methods-sections/extension-methods/data-source.md
-          - Date time: framework/functions/extension-methods-sections/extension-methods/date-time.md
-          - Running communication data: framework/functions/extension-methods-sections/extension-methods/running-communication-data.md
-          - Running session data: framework/functions/extension-methods-sections/extension-methods/running-session-data.md
-          - Serilog: framework/functions/extension-methods-sections/extension-methods/serilog.md
-          - Session data: framework/functions/extension-methods-sections/extension-methods/session-data.md
-        - Utilities:
-          - Overview: framework/functions/extension-methods-sections/utilities.md
-          - Enumerables: framework/functions/extension-methods-sections/utilities/enumerables.md
+        - Extension Methods:
+          - Overview: framework/functions/extension-methods.md
+          - Configuration:
+            - Overview: framework/functions/extension-methods-sections/configuration.md
+            - Placeholders: framework/functions/extension-methods-sections/configuration/placeholders.md
+            - Updates: framework/functions/extension-methods-sections/configuration/updates.md
+            - YAML: framework/functions/extension-methods-sections/configuration/yaml.md
+          - Extension Methods:
+            - Overview: framework/functions/extension-methods-sections/extension-methods.md
+            - Communication data: framework/functions/extension-methods-sections/extension-methods/communication-data.md
+            - Configuration merge utilities: framework/functions/extension-methods-sections/extension-methods/configuration-merge-utilities.md
+            - Configuration references parser: framework/functions/extension-methods-sections/extension-methods/configuration-references-parser.md
+            - Configuration utilities: framework/functions/extension-methods-sections/extension-methods/configuration-utilities.md
+            - Context global dictionary: framework/functions/extension-methods-sections/extension-methods/context-global-dictionary.md
+            - Data: framework/functions/extension-methods-sections/extension-methods/data.md
+            - Data source: framework/functions/extension-methods-sections/extension-methods/data-source.md
+            - Date time: framework/functions/extension-methods-sections/extension-methods/date-time.md
+            - Running communication data: framework/functions/extension-methods-sections/extension-methods/running-communication-data.md
+            - Running session data: framework/functions/extension-methods-sections/extension-methods/running-session-data.md
+            - Serilog: framework/functions/extension-methods-sections/extension-methods/serilog.md
+            - Session data: framework/functions/extension-methods-sections/extension-methods/session-data.md
+          - Utilities:
+            - Overview: framework/functions/extension-methods-sections/utilities.md
+            - Enumerables: framework/functions/extension-methods-sections/utilities/enumerables.md
       # qaas-docs-generator end: framework-functions
     - Projects:
       - SDK: framework/projects/sdk.md

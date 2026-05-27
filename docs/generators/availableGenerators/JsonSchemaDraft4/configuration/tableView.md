@@ -8,19 +8,8 @@ applies_to: [generators]
 keywords: [generators, JsonSchemaDraft4, configuration, reference]
 summary: "Field-by-field reference for JsonSchemaDraft4 GeneratorConfiguration keys, types, defaults and descriptions, generated from generators.schema.json."
 ---
-<!-- Verified-against: QaaS.JsonSchemaExtensions/generated-schemas/generators.schema.json -->
 
 # JsonSchemaDraft4 Configurations Table View
-
-> TL;DR — Use this generated field table to check property paths, types, required status, defaults, and descriptions.
-
-## When to use {: #when-to-use}
-
-Use this page when you need the exact field path or value type for a hook configuration before editing YAML.
-
-## YAML configuration {: #yaml-configuration}
-
-The table below mirrors the schema used by the YAML scaffold page. Nested rows use dotted paths and `[]` for list items.
 
 | Property Path | Type | Required | Default | Description |
 | ------------- | ---- | -------- | ------- | ----------- |
@@ -39,17 +28,17 @@ The table below mirrors the schema used by the YAML scaffold page. Nested rows u
 | `GeneratorConfiguration.JsonFieldReplacements[].ByteArray.Value` | `string` | &#10006 |  | The literal value to inject when this manual value configuration is selected. |
 | `GeneratorConfiguration.JsonFieldReplacements[].DateTime` | `object or string` | &#10006 |  | The date-time field configuration |
 | `GeneratorConfiguration.JsonFieldReplacements[].DateTime.Day` | `integer or string or null` | &#10006 |  | Constant Day of the date time |
-| `GeneratorConfiguration.JsonFieldReplacements[].DateTime.DayOffset` | `integer or string` | &#10006 | `0` | Day offset from the date time |
-| `GeneratorConfiguration.JsonFieldReplacements[].DateTime.Format` | `string` | &#10006 | `o` | Format of the date time (default ISO 8601 without Tim Zone) |
+| `GeneratorConfiguration.JsonFieldReplacements[].DateTime.DayOffset` | `integer or string` | &#10006 | 0 | Day offset from the date time |
+| `GeneratorConfiguration.JsonFieldReplacements[].DateTime.Format` | `string` | &#10006 | o | Format of the date time (default ISO 8601 without Tim Zone) |
 | `GeneratorConfiguration.JsonFieldReplacements[].DateTime.Hour` | `integer or string or null` | &#10006 |  | Constant Hour of the date time |
-| `GeneratorConfiguration.JsonFieldReplacements[].DateTime.HourOffset` | `integer or string` | &#10006 | `0` | Hour offset from the date time |
+| `GeneratorConfiguration.JsonFieldReplacements[].DateTime.HourOffset` | `integer or string` | &#10006 | 0 | Hour offset from the date time |
 | `GeneratorConfiguration.JsonFieldReplacements[].DateTime.Millisecond` | `integer or string or null` | &#10006 |  | Constant Millisecond of the date time |
-| `GeneratorConfiguration.JsonFieldReplacements[].DateTime.MillisecondOffset` | `integer or string` | &#10006 | `0` | Millisecond offset from the date time |
+| `GeneratorConfiguration.JsonFieldReplacements[].DateTime.MillisecondOffset` | `integer or string` | &#10006 | 0 | Millisecond offset from the date time |
 | `GeneratorConfiguration.JsonFieldReplacements[].DateTime.Minute` | `integer or string or null` | &#10006 |  | Constant Minute of the date time |
-| `GeneratorConfiguration.JsonFieldReplacements[].DateTime.MinuteOffset` | `integer or string` | &#10006 | `0` | Minute offset from the date time |
+| `GeneratorConfiguration.JsonFieldReplacements[].DateTime.MinuteOffset` | `integer or string` | &#10006 | 0 | Minute offset from the date time |
 | `GeneratorConfiguration.JsonFieldReplacements[].DateTime.Month` | `integer or string or null` | &#10006 |  | Constant Month of the date time |
 | `GeneratorConfiguration.JsonFieldReplacements[].DateTime.Second` | `integer or string or null` | &#10006 |  | Constant Second of the date time |
-| `GeneratorConfiguration.JsonFieldReplacements[].DateTime.SecondOffset` | `integer or string` | &#10006 | `0` | Second offset from the date time |
+| `GeneratorConfiguration.JsonFieldReplacements[].DateTime.SecondOffset` | `integer or string` | &#10006 | 0 | Second offset from the date time |
 | `GeneratorConfiguration.JsonFieldReplacements[].DateTime.TimeZone` | `string or null` | &#10006 |  | Timezone of the date time (default UTC) |
 | `GeneratorConfiguration.JsonFieldReplacements[].DateTime.Year` | `integer or string or null` | &#10006 |  | Constant Year of the date time |
 | `GeneratorConfiguration.JsonFieldReplacements[].Double` | `object or string` | &#10006 |  | The value of the field if the type is 'Double' |
@@ -63,29 +52,19 @@ The table below mirrors the schema used by the YAML scaffold page. Nested rows u
 | `GeneratorConfiguration.JsonFieldReplacements[].String.Value` | `string` | &#10006 |  | The literal value to inject when this manual value configuration is selected. |
 | `GeneratorConfiguration.JsonFieldReplacements[].UnixEpochTime` | `object or string` | &#10006 |  | The unix epoch time field configuration |
 | `GeneratorConfiguration.JsonFieldReplacements[].UnixEpochTime.Day` | `integer or string or null` | &#10006 |  | Constant Day of the date time |
-| `GeneratorConfiguration.JsonFieldReplacements[].UnixEpochTime.DayOffset` | `integer or string` | &#10006 | `0` | Day offset from the date time |
+| `GeneratorConfiguration.JsonFieldReplacements[].UnixEpochTime.DayOffset` | `integer or string` | &#10006 | 0 | Day offset from the date time |
 | `GeneratorConfiguration.JsonFieldReplacements[].UnixEpochTime.Hour` | `integer or string or null` | &#10006 |  | Constant Hour of the date time |
-| `GeneratorConfiguration.JsonFieldReplacements[].UnixEpochTime.HourOffset` | `integer or string` | &#10006 | `0` | Hour offset from the date time |
+| `GeneratorConfiguration.JsonFieldReplacements[].UnixEpochTime.HourOffset` | `integer or string` | &#10006 | 0 | Hour offset from the date time |
 | `GeneratorConfiguration.JsonFieldReplacements[].UnixEpochTime.Millisecond` | `integer or string or null` | &#10006 |  | Constant Millisecond of the date time |
-| `GeneratorConfiguration.JsonFieldReplacements[].UnixEpochTime.MillisecondOffset` | `integer or string` | &#10006 | `0` | Millisecond offset from the date time |
+| `GeneratorConfiguration.JsonFieldReplacements[].UnixEpochTime.MillisecondOffset` | `integer or string` | &#10006 | 0 | Millisecond offset from the date time |
 | `GeneratorConfiguration.JsonFieldReplacements[].UnixEpochTime.Minute` | `integer or string or null` | &#10006 |  | Constant Minute of the date time |
-| `GeneratorConfiguration.JsonFieldReplacements[].UnixEpochTime.MinuteOffset` | `integer or string` | &#10006 | `0` | Minute offset from the date time |
+| `GeneratorConfiguration.JsonFieldReplacements[].UnixEpochTime.MinuteOffset` | `integer or string` | &#10006 | 0 | Minute offset from the date time |
 | `GeneratorConfiguration.JsonFieldReplacements[].UnixEpochTime.Month` | `integer or string or null` | &#10006 |  | Constant Month of the date time |
 | `GeneratorConfiguration.JsonFieldReplacements[].UnixEpochTime.Second` | `integer or string or null` | &#10006 |  | Constant Second of the date time |
-| `GeneratorConfiguration.JsonFieldReplacements[].UnixEpochTime.SecondOffset` | `integer or string` | &#10006 | `0` | Second offset from the date time |
+| `GeneratorConfiguration.JsonFieldReplacements[].UnixEpochTime.SecondOffset` | `integer or string` | &#10006 | 0 | Second offset from the date time |
 | `GeneratorConfiguration.JsonFieldReplacements[].UnixEpochTime.UnixEpochObjectType` | `one of [Long / String]` | &#10006 |  | Epoch Unix Time Object Representation |
 | `GeneratorConfiguration.JsonFieldReplacements[].UnixEpochTime.UnixEpochScaleType` | `one of [Seconds / Milliseconds]` | &#10006 |  | Epoch Unix Time Scale Representation |
 | `GeneratorConfiguration.JsonFieldReplacements[].UnixEpochTime.Year` | `integer or string or null` | &#10006 |  | Constant Year of the date time |
 | `GeneratorConfiguration.OutputObjectTypeConfiguration` | `object or string` | &#10006 |  | Output type of generation's Json configuration |
 | `GeneratorConfiguration.OutputObjectTypeConfiguration.TypeFullName` | `string` | &#10004 |  | The full name (including path) of the type |
 | `GeneratorConfiguration.OutputObjectTypeConfiguration.AssemblyName` | `string or null` | &#10006 |  | The name of the assembly the type is located in, If no value is given by default tries to take the entry assembly |
-
-## Edge cases {: #edge-cases}
-
-- Empty default cells mean the schema does not define a default value for that field.
-- Required status applies to the immediate parent object shown by the property path.
-
-## See also {: #see-also}
-
-- [YAML scaffold](yamlView.md)
-- [Overview](../overview.md)

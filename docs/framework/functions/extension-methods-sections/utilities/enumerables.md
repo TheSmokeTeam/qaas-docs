@@ -9,19 +9,11 @@ keywords: [framework, functions, extension, methods, sections, utilities, enumer
 summary: "Reference page for Extension Methods: Utilities / Enumerables."
 ---
 
-<!-- Verified-against: QaaS.Framework\QaaS.Framework.SDK\Extensions\EnumerableExtensions.cs -->
-
 # Extension Methods: Utilities / Enumerables
 
-> TL;DR — This page mirrors the `Utilities / Enumerables` section from [Extension Methods](../../extension-methods.md) as a focused reference.
+This page mirrors the `Utilities / Enumerables` section from [Extension Methods](../../extension-methods.md).
 
-## When to use {: #when-to-use}
-
-Use this page when you need the focused member list, signatures, and source notes for this section without scanning the full parent reference.
-
-## C# (CAC) usage {: #c-cac-usage}
-
-### `AsSingle<TItem>` {: #assingletitem}
+## `AsSingle<TItem>`
 
 ??? info "Source file, signature, and docstring"
     **Member**
@@ -43,12 +35,3 @@ Use this page when you need the focused member list, signatures, and source note
     Returns the single item contained in the provided sequence.
     
     The helper enforces the invariant that exactly one item must be present and throws when the sequence is empty or contains more than one value.
-
-## Edge cases {: #edge-cases}
-
-- This page is generated from the parent reference section; edit the source XML docs or generator when content needs to change.
-- If a linked source member is renamed, regenerate the reference docs before changing prose by hand.
-
-## See also {: #see-also}
-
-- [Extension Methods](../../extension-methods.md)

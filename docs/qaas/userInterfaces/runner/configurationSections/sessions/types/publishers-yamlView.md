@@ -8,185 +8,152 @@ applies_to: [runner]
 keywords: [qaas, userinterfaces, runner, configurationsections, sessions, types]
 summary: "Publisher YAML scaffold for writing data source items to supported targets."
 ---
-<!-- Verified-against: QaaS.PackageMirror\schemas\runner-family\latest\docs-manifest.json -->
-<!-- Verified-against: QaaS.PackageMirror\schemas\runner-family\latest\schema.json -->
 
 # Publishers Configurations Yaml View
 
-> TL;DR — Copy this schema-derived YAML scaffold, replace placeholder values, and use the table view for field descriptions.
-
-## When to use {: #when-to-use}
-
-Use this page when you need the generated YAML shape for this configuration section and want every emitted field in one block.
-
-## YAML configuration {: #yaml-configuration}
-
-The scaffold follows the generated schema order. String placeholders are quoted, optional lists render as `[]`, and numeric placeholders use schema minimums when they exist.
-
-## Minimal example {: #minimal-example}
-
 ```yaml
 Publishers:
-  -
-    Name: 'value'
-    Configuration: {}
-    Iterations: 1
-    Loop: False
-    SleepTimeMs: 0
-    Stage: 1
+  - Name:
+    Configuration:
+    Iterations:
+    Loop:
+    SleepTimeMs:
+    Stage:
     DataSourceNames: []
     DataSourcePatterns: []
     Policies:
-      -
-        AdvancedLoadBalance:
-          Stages:
-            -
-              Rate: 1.0
-              Amount: 1
-              TimeIntervalMs: 1000
-              TimeoutMs: 0
+      - AdvancedLoadBalance:
+        Stages:
+          - Rate:
+            Amount:
+            TimeIntervalMs:
+            TimeoutMs:
         Count:
-          Count: 0
+          Count:
         IncreasingLoadBalance:
-          MaxRate: 1
-          StartRate: 1
-          RateIncrease: 1
-          RateIncreaseIntervalMs: 1000
-          TimeIntervalMs: 1000
+          MaxRate:
+          StartRate:
+          RateIncrease:
+          RateIncreaseIntervalMs:
+          TimeIntervalMs:
         LoadBalance:
-          Rate: 1.0
-          TimeIntervalMs: 1000
+          Rate:
+          TimeIntervalMs:
         Timeout:
-          TimeoutMs: 0
+          TimeoutMs:
     Chunk:
-      ChunkSize: 0
+      ChunkSize:
     DataFilter:
-      Body: True
-      MetaData: True
-      Timestamp: True
+      Body:
+      MetaData:
+      Timestamp:
     ElasticIndex:
-      IndexName: 'value'
-      Password: 'value'
-      Url: 'value'
-      Username: 'value'
-      BatchSize: 1
-      PublishAsync: False
-      RequestTimeoutMs: 30000
+      IndexName:
+      Password:
+      Url:
+      Username:
+      BatchSize:
+      PublishAsync:
+      RequestTimeoutMs:
     KafkaTopic:
-      Password: 'value'
-      TopicName: 'value'
-      Username: 'value'
-      CompressionLevel: 0
-      CompressionType: 'None'
-      DefaultKafkaKey: 'value'
-      Headers: {}
-      MessageMaxBytes: 1000000
-      MessageSendMaxRetries: 10
-      MessageSendRetriesIntervalMs: 1000
-      Partition: -1
-      QueueBufferingBackpressureThreshold: 1
-      QueueBufferingMaxKbytes: 1048576
-      QueueBufferingMaxMessages: 100000
-      SaslMechanism: 'Gssapi'
-      SecurityProtocol: 'Plaintext'
-      HostNames:
-        - 'value'
+      Password:
+      TopicName:
+      Username:
+      CompressionLevel:
+      CompressionType:
+      DefaultKafkaKey:
+      Headers:
+      MessageMaxBytes:
+      MessageSendMaxRetries:
+      MessageSendRetriesIntervalMs:
+      Partition:
+      QueueBufferingBackpressureThreshold:
+      QueueBufferingMaxKbytes:
+      QueueBufferingMaxMessages:
+      SaslMechanism:
+      SecurityProtocol:
+      HostNames: []
     MongoDbCollection:
-      CollectionName: 'value'
-      ConnectionString: 'value'
-      DatabaseName: 'value'
+      CollectionName:
+      ConnectionString:
+      DatabaseName:
     MsSqlTable:
-      ConnectionString: 'value'
-      TableName: 'value'
-      CommandTimeoutSeconds: 30
-      IsUDTInsertion: False
+      ConnectionString:
+      TableName:
+      CommandTimeoutSeconds:
+      IsUDTInsertion:
     OracleSqlTable:
-      ConnectionString: 'value'
-      TableName: 'value'
-      CommandTimeoutSeconds: 30
+      ConnectionString:
+      TableName:
+      CommandTimeoutSeconds:
     Parallel:
-      Parallelism: 1
+      Parallelism:
     PostgreSqlTable:
-      ConnectionString: 'value'
-      TableName: 'value'
-      CommandTimeoutSeconds: 30
+      ConnectionString:
+      TableName:
+      CommandTimeoutSeconds:
     RabbitMq:
-      Host: 'value'
-      ContentType: 'value'
-      ContinuationTimeoutSeconds: 5
-      ExchangeName: 'value'
-      Expiration: 'value'
-      HandshakeContinuationTimeoutSeconds: 10
-      Headers: {}
-      Password: 'admin'
-      Port: 5672
-      QueueName: 'value'
-      RequestedConnectionTimeoutSeconds: 5
-      RoutingKey: '/'
-      Type: 'value'
-      Username: 'admin'
-      VirtualHost: '/'
+      Host:
+      ContentType:
+      ContinuationTimeoutSeconds:
+      ExchangeName:
+      Expiration:
+      HandshakeContinuationTimeoutSeconds:
+      Headers:
+      Password:
+      Port:
+      QueueName:
+      RequestedConnectionTimeoutSeconds:
+      RoutingKey:
+      Type:
+      Username:
+      VirtualHost:
     Redis:
-      RedisDataType: 'SetString'
-      AbortOnConnectFail: True
-      AsyncTimeout: 5000
-      BatchSize: 0
-      ClientName: 'value'
-      CommandFlags: 'None'
-      ConnectRetry: 3
-      KeepAlive: 60
-      Password: 'value'
-      RedisDataBase: 0
-      Retries: 1
-      RetryIntervalMs: 1000
-      Ssl: False
-      SslHost: 'value'
-      Username: 'value'
-      When: 'Always'
-      HostNames:
-        - 'value'
+      RedisDataType:
+      AbortOnConnectFail:
+      AsyncTimeout:
+      BatchSize:
+      ClientName:
+      CommandFlags:
+      ConnectRetry:
+      KeepAlive:
+      Password:
+      RedisDataBase:
+      Retries:
+      RetryIntervalMs:
+      Ssl:
+      SslHost:
+      Username:
+      When:
+      HostNames: []
     S3Bucket:
-      AccessKey: 'value'
-      SecretKey: 'value'
-      ServiceURL: 'value'
-      StorageBucket: 'value'
-      ForcePathStyle: True
-      Prefix: ''
-      Retries: 0
-      S3SentObjectsNaming: 'GrowingNumericalSeries'
-      S3StorageClass: 'DeepArchive'
+      AccessKey:
+      SecretKey:
+      ServiceURL:
+      StorageBucket:
+      ForcePathStyle:
+      Prefix:
+      Retries:
+      S3SentObjectsNaming:
+      S3StorageClass:
     Serialize:
-      Serializer: 'Binary'
+      Serializer:
     Sftp:
-      Hostname: 'value'
-      Password: 'value'
-      Path: 'value'
-      Username: 'value'
-      NamingType: 'GrowingNumericalSeries'
-      Port: 22
-      Prefix: ''
+      Hostname:
+      Password:
+      Path:
+      Username:
+      NamingType:
+      Port:
+      Prefix:
     Socket:
-      Host: 'value'
-      Port: 0
-      ProtocolType: 'IP'
-      AddressFamily: 'Unspecified'
-      BufferSize: 65536
-      LingerTimeSeconds: 1
-      NagleAlgorithm: False
-      SendTimeoutMs: 5000
-      SocketType: 'Stream'
+      Host:
+      Port:
+      ProtocolType:
+      AddressFamily:
+      BufferSize:
+      LingerTimeSeconds:
+      NagleAlgorithm:
+      SendTimeoutMs:
+      SocketType:
 ```
-
-## Realistic example {: #realistic-example}
-
-Start with the minimal scaffold, replace placeholder values with project values, and keep only the optional branches that this configuration needs.
-
-## Edge cases {: #edge-cases}
-
-- Optional arrays are emitted as `[]`; add entries only when the section needs that collection.
-- Placeholder-style strings are quoted so YAML parsers keep them as scalar values.
-
-## See also {: #see-also}
-
-- [Configuration table](publishers-tableView.md)
-- [Overview](../overview.md)

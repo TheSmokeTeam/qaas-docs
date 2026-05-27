@@ -8,23 +8,16 @@ applies_to: [runner]
 keywords: [qaas, functions, builders, storages]
 summary: "Each entry uses the short function name as the table-of-contents label. Expand an entry to inspect its source file, signature, and XML doc comments."
 ---
-<!-- Verified-against: QaaS.Runner\QaaS.Runner.Storage\StorageBuilder.cs -->
 
 # Storages
-
-> TL;DR — This page lists the public Runner functions in the `Storages` category.
-
-## When to use {: #when-to-use}
-
-Use this page when you need source-backed signatures, declaring types, and XML doc comments for this function category.
 
 Each entry uses the short function name as the table-of-contents label. Expand an entry to inspect its source file, signature, and XML doc comments.
 
 The functions on this page are grouped by responsibility so related operations stay together.
 
-## Storages {: #storages_1}
+## Storages
 
-### `WithJsonStorageFormat` {: #withjsonstorageformat}
+### `WithJsonStorageFormat`
 
 ??? info "Source file, signature, and docstring"
     **Member**
@@ -44,10 +37,12 @@ The functions on this page are grouped by responsibility so related operations s
     **Docstring**
     
     Sets the JSON formatting used by runtime storages.
+    
+    Use this method when working with the documented Runner storage builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
-## Collection helpers {: #collection-helpers}
+## Collection helpers
 
-### `UpdateConfiguration` {: #updateconfiguration}
+### `UpdateConfiguration`
 
 ??? info "Source file, signature, and docstring"
     **Member**
@@ -67,10 +62,12 @@ The functions on this page are grouped by responsibility so related operations s
     **Docstring**
     
     Updates the configuration currently stored on the Runner storage builder instance.
+    
+    Use this method when working with the documented Runner storage builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
-## General {: #general}
+## General
 
-### `Configure` {: #configure}
+### `Configure`
 
 ??? info "Source file, signature, and docstring"
     **Member**
@@ -90,7 +87,5 @@ The functions on this page are grouped by responsibility so related operations s
     **Docstring**
     
     Sets the configuration currently stored on the Runner storage builder instance.
-
-## See also {: #see-also}
-
-- [Runner Functions](../index.md)
+    
+    Use this method when working with the documented Runner storage builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.

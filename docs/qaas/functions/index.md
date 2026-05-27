@@ -15,9 +15,9 @@ This overview indexes the current public function surface documented through sou
 
 Each category page keeps the table of contents focused on short function names and collapses the source file, signature, and XML doc comments behind each entry.
 
-## Available Functions {: #available-functions}
+## Available Functions
 
-### Builders {: #builders}
+### Builders
 
 - [Assertions](builders/assertions.md)
 - [Collectors](builders/collectors.md)
@@ -31,11 +31,11 @@ Each category page keeps the table of contents focused on short function names a
 - [Storages](builders/storages.md)
 - [Transactions](builders/transactions.md)
 
-### Commands {: #commands}
+### Commands
 
 - [Bootstrap](commands/bootstrap.md)
 - [Runner](commands/runner.md)
 
-### Extension Methods {: #extension-methods}
+### Extension Methods
 
 - [Extension Methods](extension-methods.md)

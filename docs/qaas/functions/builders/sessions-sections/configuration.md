@@ -9,19 +9,11 @@ keywords: [runner, qaas, functions, builders, sessions, sections, configuration]
 summary: "Reference page for Sessions: Configuration."
 ---
 
-<!-- Verified-against: QaaS.Runner\QaaS.Runner.Sessions\Session\Builders\SessionBuilderLogic.cs -->
-
 # Sessions: Configuration
 
-> TL;DR — This page mirrors the `Configuration` section from [Sessions](../sessions.md) as a focused reference.
+This page mirrors the `Configuration` section from [Sessions](../sessions.md).
 
-## When to use {: #when-to-use}
-
-Use this page when you need the focused member list, signatures, and source notes for this section without scanning the full parent reference.
-
-## C# (CAC) usage {: #c-cac-usage}
-
-### `WithTimeoutBefore` {: #withtimeoutbefore}
+## `WithTimeoutBefore`
 
 ??? info "Source file, signature, and docstring"
     **Member**
@@ -41,8 +33,10 @@ Use this page when you need the focused member list, signatures, and source note
     **Docstring**
     
     Sets the timeout applied before the session runs.
+    
+    Use this method when working with the documented Runner session builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
-### `WithTimeoutAfter` {: #withtimeoutafter}
+## `WithTimeoutAfter`
 
 ??? info "Source file, signature, and docstring"
     **Member**
@@ -62,8 +56,10 @@ Use this page when you need the focused member list, signatures, and source note
     **Docstring**
     
     Sets the timeout applied after the session runs.
+    
+    Use this method when working with the documented Runner session builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
-### `WithTimeZone` {: #withtimezone}
+## `WithTimeZone`
 
 ??? info "Source file, signature, and docstring"
     **Member**
@@ -85,12 +81,3 @@ Use this page when you need the focused member list, signatures, and source note
     Sets the time zone id used for daylight-saving-aware offset conversions in this session.
     
     Use this when session actions that rely on offset-based date conversion should resolve daylight-saving rules from a specific time zone.
-
-## Edge cases {: #edge-cases}
-
-- This page is generated from the parent reference section; edit the source XML docs or generator when content needs to change.
-- If a linked source member is renamed, regenerate the reference docs before changing prose by hand.
-
-## See also {: #see-also}
-
-- [Sessions](../sessions.md)

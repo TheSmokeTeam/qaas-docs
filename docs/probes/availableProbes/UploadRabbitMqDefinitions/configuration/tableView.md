@@ -8,43 +8,22 @@ applies_to: [probes]
 keywords: [probes, UploadRabbitMqDefinitions, configuration, reference]
 summary: "Field-by-field reference for UploadRabbitMqDefinitions ProbeConfiguration keys, types, defaults and descriptions, generated from probes.schema.json."
 ---
-<!-- Verified-against: QaaS.JsonSchemaExtensions/generated-schemas/probes.schema.json -->
 
 # UploadRabbitMqDefinitions Configurations Table View
-
-> TL;DR — Use this generated field table to check property paths, types, required status, defaults, and descriptions.
-
-## When to use {: #when-to-use}
-
-Use this page when you need the exact field path or value type for a hook configuration before editing YAML.
-
-## YAML configuration {: #yaml-configuration}
-
-The table below mirrors the schema used by the YAML scaffold page. Nested rows use dotted paths and `[]` for list items.
 
 | Property Path | Type | Required | Default | Description |
 | ------------- | ---- | -------- | ------- | ----------- |
 | `ProbeConfiguration` | `object or string` | &#10006 |  |  |
 | `ProbeConfiguration.Host` | `string` | &#10004 |  | Rabbitmq hostname |
-| `ProbeConfiguration.AllowInvalidServerCertificates` | `string or true/false` | &#10006 | `False` | Allow invalid TLS certificates when using HTTPS |
+| `ProbeConfiguration.AllowInvalidServerCertificates` | `string or true/false` | &#10006 | False | Allow invalid TLS certificates when using HTTPS |
 | `ProbeConfiguration.DefinitionsFilePath` | `string or null` | &#10006 |  | Optional path to a JSON file containing rabbitmq definitions |
 | `ProbeConfiguration.DefinitionsJson` | `string or null` | &#10006 |  | Optional inline JSON payload with rabbitmq definitions |
-| `ProbeConfiguration.ManagementPort` | `integer or string` | &#10006 | `15672` | Rabbitmq management API port |
-| `ProbeConfiguration.ManagementScheme` | `string` | &#10006 | `http` | Rabbitmq management API scheme |
-| `ProbeConfiguration.Password` | `string` | &#10006 | `admin` | Rabbitmq password |
-| `ProbeConfiguration.Port` | `integer or string` | &#10006 | `5672` | Rabbitmq Amqp port |
-| `ProbeConfiguration.RequestTimeoutMs` | `integer or string` | &#10006 | `30000` | Rabbitmq management API request timeout in milliseconds |
-| `ProbeConfiguration.UseGlobalDict` | `string or true/false` | &#10006 | `False` | When true, missing probe configuration keys may be resolved from the shared global dictionary before local YAML/code values are applied. |
-| `ProbeConfiguration.Username` | `string` | &#10006 | `admin` | Rabbitmq username |
-| `ProbeConfiguration.VirtualHost` | `string` | &#10006 | `/` | Rabbitmq virtual host to access during this connection |
+| `ProbeConfiguration.ManagementPort` | `integer or string` | &#10006 | 15672 | Rabbitmq management API port |
+| `ProbeConfiguration.ManagementScheme` | `string` | &#10006 | http | Rabbitmq management API scheme |
+| `ProbeConfiguration.Password` | `string` | &#10006 | admin | Rabbitmq password |
+| `ProbeConfiguration.Port` | `integer or string` | &#10006 | 5672 | Rabbitmq Amqp port |
+| `ProbeConfiguration.RequestTimeoutMs` | `integer or string` | &#10006 | 30000 | Rabbitmq management API request timeout in milliseconds |
+| `ProbeConfiguration.UseGlobalDict` | `string or true/false` | &#10006 | False | When true, missing probe configuration keys may be resolved from the shared global dictionary before local YAML/code values are applied. |
+| `ProbeConfiguration.Username` | `string` | &#10006 | admin | Rabbitmq username |
+| `ProbeConfiguration.VirtualHost` | `string` | &#10006 | / | Rabbitmq virtual host to access during this connection |
 | `ProbeConfiguration.VirtualHostName` | `string or null` | &#10006 |  | Optional virtual host name for vhost-scoped definitions import |
-
-## Edge cases {: #edge-cases}
-
-- Empty default cells mean the schema does not define a default value for that field.
-- Required status applies to the immediate parent object shown by the property path.
-
-## See also {: #see-also}
-
-- [YAML scaffold](yamlView.md)
-- [Overview](../overview.md)

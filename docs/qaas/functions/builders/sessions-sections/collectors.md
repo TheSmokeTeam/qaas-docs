@@ -9,19 +9,11 @@ keywords: [runner, qaas, functions, builders, sessions, sections, collectors]
 summary: "Reference page for Sessions: Collectors."
 ---
 
-<!-- Verified-against: QaaS.Runner\QaaS.Runner.Sessions\Session\Builders\SessionBuilderLogic.cs -->
-
 # Sessions: Collectors
 
-> TL;DR — This page mirrors the `Collectors` section from [Sessions](../sessions.md) as a focused reference.
+This page mirrors the `Collectors` section from [Sessions](../sessions.md).
 
-## When to use {: #when-to-use}
-
-Use this page when you need the focused member list, signatures, and source notes for this section without scanning the full parent reference.
-
-## C# (CAC) usage {: #c-cac-usage}
-
-### `AddCollector` {: #addcollector}
+## `AddCollector`
 
 ??? info "Source file, signature, and docstring"
     **Member**
@@ -41,8 +33,10 @@ Use this page when you need the focused member list, signatures, and source note
     **Docstring**
     
     Adds the supplied collector to the current Runner session builder instance.
+    
+    Use this method when working with the documented Runner session builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
-### `UpdateCollector` {: #updatecollector}
+## `UpdateCollector`
 
 ??? info "Source file, signature, and docstring"
     **Member**
@@ -62,8 +56,10 @@ Use this page when you need the focused member list, signatures, and source note
     **Docstring**
     
     Updates the configured collector stored on the current Runner session builder instance.
+    
+    Use this method when working with the documented Runner session builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
-### `RemoveCollector` {: #removecollector}
+## `RemoveCollector`
 
 ??? info "Source file, signature, and docstring"
     **Member**
@@ -83,8 +79,10 @@ Use this page when you need the focused member list, signatures, and source note
     **Docstring**
     
     Removes the configured collector from the current Runner session builder instance.
+    
+    Use this method when working with the documented Runner session builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
-### `RemoveCollectorAt` {: #removecollectorat}
+## `RemoveCollectorAt`
 
 ??? info "Source file, signature, and docstring"
     **Member**
@@ -104,12 +102,5 @@ Use this page when you need the focused member list, signatures, and source note
     **Docstring**
     
     Removes the configured collector at the specified index from the current Runner session builder instance.
-
-## Edge cases {: #edge-cases}
-
-- This page is generated from the parent reference section; edit the source XML docs or generator when content needs to change.
-- If a linked source member is renamed, regenerate the reference docs before changing prose by hand.
-
-## See also {: #see-also}
-
-- [Sessions](../sessions.md)
+    
+    Use this method when working with the documented Runner session builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.

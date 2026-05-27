@@ -9,19 +9,11 @@ keywords: [framework, functions, builders, data, sources, sections, configuratio
 summary: "Reference page for Data Sources: Configuration."
 ---
 
-<!-- Verified-against: QaaS.Framework\QaaS.Framework.SDK\DataSourceObjects\DataSourceBuilder.cs -->
-
 # Data Sources: Configuration
 
-> TL;DR — This page mirrors the `Configuration` section from [Data Sources](../data-sources.md) as a focused reference.
+This page mirrors the `Configuration` section from [Data Sources](../data-sources.md).
 
-## When to use {: #when-to-use}
-
-Use this page when you need the focused member list, signatures, and source notes for this section without scanning the full parent reference.
-
-## C# (CAC) usage {: #c-cac-usage}
-
-### `WithSerializer` {: #withserializer}
+## `WithSerializer`
 
 ??? info "Source file, signature, and docstring"
     **Member**
@@ -41,8 +33,10 @@ Use this page when you need the focused member list, signatures, and source note
     **Docstring**
     
     Sets the serializer configuration used by the current Framework data source builder instance.
+    
+    Use this method when working with the documented Framework data source builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
-### `WithDeserializer` {: #withdeserializer}
+## `WithDeserializer`
 
 ??? info "Source file, signature, and docstring"
     **Member**
@@ -62,12 +56,5 @@ Use this page when you need the focused member list, signatures, and source note
     **Docstring**
     
     Sets the deserializer configuration used by the current Framework data source builder instance.
-
-## Edge cases {: #edge-cases}
-
-- This page is generated from the parent reference section; edit the source XML docs or generator when content needs to change.
-- If a linked source member is renamed, regenerate the reference docs before changing prose by hand.
-
-## See also {: #see-also}
-
-- [Data Sources](../data-sources.md)
+    
+    Use this method when working with the documented Framework data source builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.

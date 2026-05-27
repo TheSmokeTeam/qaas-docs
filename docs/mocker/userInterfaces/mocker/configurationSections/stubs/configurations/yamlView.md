@@ -8,49 +8,20 @@ applies_to: [mocker]
 keywords: [mocker, userinterfaces, configurationsections, stubs, configurations, yamlview]
 summary: "Stub configuration YAML example."
 ---
-<!-- Verified-against: QaaS.PackageMirror\schemas\mocker-family\latest\docs-manifest.json -->
-<!-- Verified-against: QaaS.PackageMirror\schemas\mocker-family\latest\schema.json -->
 
 # Stubs Configurations Yaml View
 
-> TL;DR — Copy this schema-derived YAML scaffold, replace placeholder values, and use the table view for field descriptions.
-
-## When to use {: #when-to-use}
-
-Use this page when you need the generated YAML shape for this configuration section and want every emitted field in one block.
-
-## YAML configuration {: #yaml-configuration}
-
-The scaffold follows the generated schema order. String placeholders are quoted, optional lists render as `[]`, and numeric placeholders use schema minimums when they exist.
-
-## Minimal example {: #minimal-example}
-
 ```yaml
 Stubs:
-  -
-    Name: 'value'
-    Processor: 'value'
-    ProcessorConfiguration: {}
+  - Name:
+    Processor:
+    ProcessorConfiguration:
     DataSourceNames: []
     RequestBodyDeserialization:
-      Deserializer: 'Binary'
+      Deserializer:
       SpecificType:
-        TypeFullName: 'value'
-        AssemblyName: 'value'
+        TypeFullName:
+        AssemblyName:
     ResponseBodySerialization:
-      Serializer: 'Binary'
+      Serializer:
 ```
-
-## Realistic example {: #realistic-example}
-
-Start with the minimal scaffold, replace placeholder values with project values, and keep only the optional branches that this configuration needs.
-
-## Edge cases {: #edge-cases}
-
-- Optional arrays are emitted as `[]`; add entries only when the section needs that collection.
-- Placeholder-style strings are quoted so YAML parsers keep them as scalar values.
-
-## See also {: #see-also}
-
-- [Configuration table](tableView.md)
-- [Overview](../overview.md)

@@ -9,19 +9,11 @@ keywords: [runner, qaas, functions, builders, probes, sections, collection, help
 summary: "Reference page for Probes: Collection helpers."
 ---
 
-<!-- Verified-against: QaaS.Runner\QaaS.Runner.Sessions\Actions\Probes\ProbeBuilder.cs -->
-
 # Probes: Collection helpers
 
-> TL;DR — This page mirrors the `Collection helpers` section from [Probes](../probes.md) as a focused reference.
+This page mirrors the `Collection helpers` section from [Probes](../probes.md).
 
-## When to use {: #when-to-use}
-
-Use this page when you need the focused member list, signatures, and source notes for this section without scanning the full parent reference.
-
-## C# (CAC) usage {: #c-cac-usage}
-
-### `UpdateConfiguration` {: #updateconfiguration}
+## `UpdateConfiguration`
 
 ??? info "Source file, signature, and docstring"
     **Member**
@@ -41,8 +33,10 @@ Use this page when you need the focused member list, signatures, and source note
     **Docstring**
     
     Sets the configuration currently stored on the Runner probe builder instance.
+    
+    Use this method when working with the documented Runner probe builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
-### `RemoveConfiguration` {: #removeconfiguration}
+## `RemoveConfiguration`
 
 ??? info "Source file, signature, and docstring"
     **Member**
@@ -62,12 +56,5 @@ Use this page when you need the focused member list, signatures, and source note
     **Docstring**
     
     Clears the configuration currently stored on the Runner probe builder instance.
-
-## Edge cases {: #edge-cases}
-
-- This page is generated from the parent reference section; edit the source XML docs or generator when content needs to change.
-- If a linked source member is renamed, regenerate the reference docs before changing prose by hand.
-
-## See also {: #see-also}
-
-- [Probes](../probes.md)
+    
+    Use this method when working with the documented Runner probe builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.

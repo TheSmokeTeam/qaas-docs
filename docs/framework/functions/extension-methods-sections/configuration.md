@@ -9,23 +9,13 @@ keywords: [framework, functions, extension, methods, sections, configuration]
 summary: "Reference page for Extension Methods: Configuration."
 ---
 
-<!-- Verified-against: QaaS.Framework\QaaS.Framework.Configurations\ConfigurationBuilderExtensions\PlaceholderConfigurationBuilderExtension.cs -->
-<!-- Verified-against: QaaS.Framework\QaaS.Framework.Configurations\ConfigurationBuilderExtensions\YamlConfigurationBuilderExtension.cs -->
-<!-- Verified-against: QaaS.Framework\QaaS.Framework.Configurations\ConfigurationUpdateExtensions.cs -->
-
 # Extension Methods: Configuration
 
-> TL;DR — This page mirrors the `Configuration` section from [Extension Methods](../extension-methods.md) as a focused reference.
+This page mirrors the `Configuration` section from [Extension Methods](../extension-methods.md).
 
-## When to use {: #when-to-use}
+## Placeholders
 
-Use this page when you need the focused member list, signatures, and source notes for this section without scanning the full parent reference.
-
-## C# (CAC) usage {: #c-cac-usage}
-
-### Placeholders {: #placeholders}
-
-#### `AddPlaceholderResolver`
+### `AddPlaceholderResolver`
 
 ??? info "Source file, signature, and docstring"
     **Member**
@@ -48,9 +38,9 @@ Use this page when you need the focused member list, signatures, and source note
     
     Call this extension before building IConfiguration when placeholder expansion should be applied as part of the configuration pipeline.
 
-### Updates {: #updates}
+## Updates
 
-#### `UpdateConfiguration<TConfiguration>`
+### `UpdateConfiguration<TConfiguration>`
 
 ??? info "Source file, signature, and docstring"
     **Member**
@@ -73,7 +63,7 @@ Use this page when you need the focused member list, signatures, and source note
     
     Use this helper when a partially populated typed configuration object should override only the supplied fields while preserving the rest of the existing configuration state.
 
-#### `UpdateConfiguration<TConfiguration>`
+### `UpdateConfiguration<TConfiguration>`
 
 ??? info "Source file, signature, and docstring"
     **Member**
@@ -96,7 +86,7 @@ Use this page when you need the focused member list, signatures, and source note
     
     Use this overload when the patch comes from an anonymous object, JSON-like payload, or any other object whose shape matches part of the target configuration contract.
 
-#### `UpdateConfiguration`
+### `UpdateConfiguration`
 
 ??? info "Source file, signature, and docstring"
     **Member**
@@ -119,9 +109,9 @@ Use this page when you need the focused member list, signatures, and source note
     
     Use this overload when configuration is already represented as an IConfiguration tree and should be updated without first binding it to a typed configuration object.
 
-### YAML {: #yaml}
+## YAML
 
-#### `AddYamlFromHttpGet`
+### `AddYamlFromHttpGet`
 
 ??? info "Source file, signature, and docstring"
     **Member**
@@ -144,7 +134,7 @@ Use this page when you need the focused member list, signatures, and source note
     
     Call this extension during configuration bootstrap when YAML should be loaded remotely instead of from the local file system.
 
-#### `AddYaml`
+### `AddYaml`
 
 ??? info "Source file, signature, and docstring"
     **Member**
@@ -166,12 +156,3 @@ Use this page when you need the focused member list, signatures, and source note
     Adds a YAML configuration source from a local file path or URL.
     
     Call this extension during configuration bootstrap so YAML sources go through the same QaaS-aware loading path for files and remote URLs.
-
-## Edge cases {: #edge-cases}
-
-- This page is generated from the parent reference section; edit the source XML docs or generator when content needs to change.
-- If a linked source member is renamed, regenerate the reference docs before changing prose by hand.
-
-## See also {: #see-also}
-
-- [Extension Methods](../extension-methods.md)

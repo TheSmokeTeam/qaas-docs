@@ -9,19 +9,11 @@ keywords: [runner, qaas, functions, builders, consumers, sections, policies]
 summary: "Reference page for Consumers: Policies."
 ---
 
-<!-- Verified-against: QaaS.Runner\QaaS.Runner.Sessions\Actions\Consumers\Builders\ConsumerBuilderLogic.cs -->
-
 # Consumers: Policies
 
-> TL;DR — This page mirrors the `Policies` section from [Consumers](../consumers.md) as a focused reference.
+This page mirrors the `Policies` section from [Consumers](../consumers.md).
 
-## When to use {: #when-to-use}
-
-Use this page when you need the focused member list, signatures, and source notes for this section without scanning the full parent reference.
-
-## C# (CAC) usage {: #c-cac-usage}
-
-### `AddPolicy` {: #addpolicy}
+## `AddPolicy`
 
 ??? info "Source file, signature, and docstring"
     **Member**
@@ -41,8 +33,10 @@ Use this page when you need the focused member list, signatures, and source note
     **Docstring**
     
     Adds the supplied policy to the current Runner consumer builder instance.
+    
+    Use this method when working with the documented Runner consumer builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
-### `UpdatePolicyAt` {: #updatepolicyat}
+## `UpdatePolicyAt`
 
 ??? info "Source file, signature, and docstring"
     **Member**
@@ -62,8 +56,10 @@ Use this page when you need the focused member list, signatures, and source note
     **Docstring**
     
     Updates the configured policy at the specified index on the current Runner consumer builder instance.
+    
+    Use this method when working with the documented Runner consumer builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
-### `RemovePolicyAt` {: #removepolicyat}
+## `RemovePolicyAt`
 
 ??? info "Source file, signature, and docstring"
     **Member**
@@ -83,12 +79,5 @@ Use this page when you need the focused member list, signatures, and source note
     **Docstring**
     
     Removes the configured policy at the specified index from the current Runner consumer builder instance.
-
-## Edge cases {: #edge-cases}
-
-- This page is generated from the parent reference section; edit the source XML docs or generator when content needs to change.
-- If a linked source member is renamed, regenerate the reference docs before changing prose by hand.
-
-## See also {: #see-also}
-
-- [Consumers](../consumers.md)
+    
+    Use this method when working with the documented Runner consumer builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.

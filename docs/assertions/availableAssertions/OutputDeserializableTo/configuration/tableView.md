@@ -8,19 +8,8 @@ applies_to: [assertions]
 keywords: [assertions, OutputDeserializableTo, configuration, reference]
 summary: "Field-by-field reference for OutputDeserializableTo AssertionConfiguration keys, types, defaults and descriptions, generated from assertions.schema.json."
 ---
-<!-- Verified-against: QaaS.JsonSchemaExtensions/generated-schemas/assertions.schema.json -->
 
 # OutputDeserializableTo Configurations Table View
-
-> TL;DR — Use this generated field table to check property paths, types, required status, defaults, and descriptions.
-
-## When to use {: #when-to-use}
-
-Use this page when you need the exact field path or value type for a hook configuration before editing YAML.
-
-## YAML configuration {: #yaml-configuration}
-
-The table below mirrors the schema used by the YAML scaffold page. Nested rows use dotted paths and `[]` for list items.
 
 | Property Path | Type | Required | Default | Description |
 | ------------- | ---- | -------- | ------- | ----------- |
@@ -31,13 +20,3 @@ The table below mirrors the schema used by the YAML scaffold page. Nested rows u
 | `AssertionConfiguration.Deserialize.SpecificType` | `object or string` | &#10006 |  | Configuration for making deserializer deserialize into a specific C# object, if set to null will deserialize to default deserilizer's C# object |
 | `AssertionConfiguration.Deserialize.SpecificType.TypeFullName` | `string` | &#10004 |  | The full name (including path) of the type |
 | `AssertionConfiguration.Deserialize.SpecificType.AssemblyName` | `string or null` | &#10006 |  | The name of the assembly the type is located in, If no value is given by default tries to take the entry assembly |
-
-## Edge cases {: #edge-cases}
-
-- Empty default cells mean the schema does not define a default value for that field.
-- Required status applies to the immediate parent object shown by the property path.
-
-## See also {: #see-also}
-
-- [YAML scaffold](yamlView.md)
-- [Overview](../overview.md)
