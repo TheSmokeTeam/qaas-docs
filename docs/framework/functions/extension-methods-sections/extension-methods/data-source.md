@@ -8,20 +8,13 @@ applies_to: [framework]
 keywords: [framework, functions, extension, methods, sections, data, source]
 summary: "Reference page for Extension Methods: Extension Methods / Data source."
 ---
-
 <!-- Verified-against: QaaS.Framework\QaaS.Framework.SDK\Extensions\DataSourceExtensions.cs -->
 
 # Extension Methods: Extension Methods / Data source
 
-> TL;DR — This page mirrors the `Extension Methods / Data source` section from [Extension Methods](../../extension-methods.md) as a focused reference.
+This page mirrors the `Extension Methods / Data source` section from [Extension Methods](../../extension-methods.md).
 
-## When to use {: #when-to-use}
-
-Use this page when you need the focused member list, signatures, and source notes for this section without scanning the full parent reference.
-
-## C# (CAC) usage {: #c-cac-usage}
-
-### `GetDataSourceByName` {: #getdatasourcebyname}
+## `GetDataSourceByName`
 
 ??? info "Source file, signature, and docstring"
     **Member**
@@ -42,7 +35,7 @@ Use this page when you need the focused member list, signatures, and source note
     
     Retrieves a DataSource from an enumerable of DataSources by its name
 
-### `RetrieveAndCast<TCastTo>` {: #retrieveandcasttcastto}
+## `RetrieveAndCast<TCastTo>`
 
 ??? info "Source file, signature, and docstring"
     **Member**
@@ -62,12 +55,3 @@ Use this page when you need the focused member list, signatures, and source note
     **Docstring**
     
     Casts a DataSource to a different type
-
-## Edge cases {: #edge-cases}
-
-- This page is generated from the parent reference section; edit the source XML docs or generator when content needs to change.
-- If a linked source member is renamed, regenerate the reference docs before changing prose by hand.
-
-## See also {: #see-also}
-
-- [Extension Methods](../../extension-methods.md)

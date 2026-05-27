@@ -12,16 +12,10 @@ summary: "Each entry uses the short function name as the table-of-contents label
 
 # Updates
 
-> TL;DR — This page lists the public Framework functions in the `Updates` category.
-
-## When to use {: #when-to-use}
-
-Use this page when you need source-backed signatures, declaring types, and XML doc comments for this function category.
-
 Each entry uses the short function name as the table-of-contents label. Expand an entry to inspect its source file, signature, and XML doc comments.
 
 
-## `UpdateConfiguration<TConfiguration>` {: #updateconfigurationtconfiguration}
+## `UpdateConfiguration<TConfiguration>`
 
 ??? info "Source file, signature, and docstring"
     **Member**
@@ -44,7 +38,7 @@ Each entry uses the short function name as the table-of-contents label. Expand a
     
     Use this helper when a partially populated typed configuration object should override only the supplied fields while preserving the rest of the existing configuration state.
 
-## `UpdateConfiguration<TConfiguration>` {: #updateconfigurationtconfiguration_1}
+## `UpdateConfiguration<TConfiguration>`
 
 ??? info "Source file, signature, and docstring"
     **Member**
@@ -67,7 +61,7 @@ Each entry uses the short function name as the table-of-contents label. Expand a
     
     Use this overload when the patch comes from an anonymous object, JSON-like payload, or any other object whose shape matches part of the target configuration contract.
 
-## `UpdateConfiguration` {: #updateconfiguration}
+## `UpdateConfiguration`
 
 ??? info "Source file, signature, and docstring"
     **Member**
@@ -89,7 +83,3 @@ Each entry uses the short function name as the table-of-contents label. Expand a
     Merges an object-shaped configuration patch into the current IConfiguration tree. Fields omitted from incomingConfiguration are preserved from the current configuration. Fields explicitly set to null in the patch clear the existing value.
     
     Use this overload when configuration is already represented as an IConfiguration tree and should be updated without first binding it to a typed configuration object.
-
-## See also {: #see-also}
-
-- [Framework Functions](index.md)

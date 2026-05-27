@@ -8,20 +8,13 @@ applies_to: [framework]
 keywords: [framework, functions, extension, methods, sections, running, session, data]
 summary: "Reference page for Extension Methods: Extension Methods / Running session data."
 ---
-
 <!-- Verified-against: QaaS.Framework\QaaS.Framework.SDK\Extensions\RunningSessionDataExtensions.cs -->
 
 # Extension Methods: Extension Methods / Running session data
 
-> TL;DR — This page mirrors the `Extension Methods / Running session data` section from [Extension Methods](../../extension-methods.md) as a focused reference.
+This page mirrors the `Extension Methods / Running session data` section from [Extension Methods](../../extension-methods.md).
 
-## When to use {: #when-to-use}
-
-Use this page when you need the focused member list, signatures, and source notes for this section without scanning the full parent reference.
-
-## C# (CAC) usage {: #c-cac-usage}
-
-### `GetInputByName<TInput, TOutput>` {: #getinputbynametinput-toutput}
+## `GetInputByName<TInput, TOutput>`
 
 ??? info "Source file, signature, and docstring"
     **Member**
@@ -42,7 +35,7 @@ Use this page when you need the focused member list, signatures, and source note
     
     Retrieves an input RunningCommunicationData{TData} from RunningSessionData{TInput,TOutput} by its name
 
-### `GetOutputByName<TInput, TOutput>` {: #getoutputbynametinput-toutput}
+## `GetOutputByName<TInput, TOutput>`
 
 ??? info "Source file, signature, and docstring"
     **Member**
@@ -62,12 +55,3 @@ Use this page when you need the focused member list, signatures, and source note
     **Docstring**
     
     Retrieves an output RunningCommunicationData{TData} from RunningSessionData{TInput,TOutput} by its name
-
-## Edge cases {: #edge-cases}
-
-- This page is generated from the parent reference section; edit the source XML docs or generator when content needs to change.
-- If a linked source member is renamed, regenerate the reference docs before changing prose by hand.
-
-## See also {: #see-also}
-
-- [Extension Methods](../../extension-methods.md)

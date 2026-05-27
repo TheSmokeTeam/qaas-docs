@@ -8,20 +8,13 @@ applies_to: [framework]
 keywords: [framework, functions, contexts, sections, configuration]
 summary: "Reference page for Contexts: Configuration."
 ---
-
 <!-- Verified-against: QaaS.Framework\QaaS.Framework.SDK\ContextObjects\ContextBuilder.cs -->
 
 # Contexts: Configuration
 
-> TL;DR — This page mirrors the `Configuration` section from [Contexts](../contexts.md) as a focused reference.
+This page mirrors the `Configuration` section from [Contexts](../contexts.md).
 
-## When to use {: #when-to-use}
-
-Use this page when you need the focused member list, signatures, and source notes for this section without scanning the full parent reference.
-
-## C# (CAC) usage {: #c-cac-usage}
-
-### `SetConfigurationFile` {: #setconfigurationfile}
+## `SetConfigurationFile`
 
 ??? info "Source file, signature, and docstring"
     **Member**
@@ -44,7 +37,7 @@ Use this page when you need the focused member list, signatures, and source note
     
     Use this when the base configuration file should be selected or replaced after the builder has been created.
 
-### `WithOverwriteFile` {: #withoverwritefile}
+## `WithOverwriteFile`
 
 ??? info "Source file, signature, and docstring"
     **Member**
@@ -67,7 +60,7 @@ Use this page when you need the focused member list, signatures, and source note
     
     Overwrite files are applied after the base configuration and before the final configuration is built.
 
-### `WithOverwriteFolder` {: #withoverwritefolder}
+## `WithOverwriteFolder`
 
 ??? info "Source file, signature, and docstring"
     **Member**
@@ -90,7 +83,7 @@ Use this page when you need the focused member list, signatures, and source note
     
     Every YAML file discovered in the folder is applied as an overwrite source in the order returned by the file-system enumeration.
 
-### `SetCase` {: #setcase}
+## `SetCase`
 
 ??? info "Source file, signature, and docstring"
     **Member**
@@ -113,7 +106,7 @@ Use this page when you need the focused member list, signatures, and source note
     
     The supplied value is also stored as the case name on the built context.
 
-### `WithOverwriteArgument` {: #withoverwriteargument}
+## `WithOverwriteArgument`
 
 ??? info "Source file, signature, and docstring"
     **Member**
@@ -136,7 +129,7 @@ Use this page when you need the focused member list, signatures, and source note
     
     Use this when command-line style overrides should participate in the same configuration pipeline as YAML sources.
 
-### `WithReferenceResolution` {: #withreferenceresolution}
+## `WithReferenceResolution`
 
 ??? info "Source file, signature, and docstring"
     **Member**
@@ -159,7 +152,7 @@ Use this page when you need the focused member list, signatures, and source note
     
     Reference-resolution rules are applied while building the final configuration so linked configuration values can be expanded consistently.
 
-### `WithEnvironmentVariableResolution` {: #withenvironmentvariableresolution}
+## `WithEnvironmentVariableResolution`
 
 ??? info "Source file, signature, and docstring"
     **Member**
@@ -181,12 +174,3 @@ Use this page when you need the focused member list, signatures, and source note
     Enables environment-variable expansion while the context is being built.
     
     Enable this when configuration values should resolve environment variables while the context is being built.
-
-## Edge cases {: #edge-cases}
-
-- This page is generated from the parent reference section; edit the source XML docs or generator when content needs to change.
-- If a linked source member is renamed, regenerate the reference docs before changing prose by hand.
-
-## See also {: #see-also}
-
-- [Contexts](../contexts.md)

@@ -12,16 +12,6 @@ summary: "Field-by-field reference for FromSessionDataDataSources GeneratorConfi
 
 # FromSessionDataDataSources Configurations Table View
 
-> TL;DR — Use this generated field table to check property paths, types, required status, defaults, and descriptions.
-
-## When to use {: #when-to-use}
-
-Use this page when you need the exact field path or value type for a hook configuration before editing YAML.
-
-## YAML configuration {: #yaml-configuration}
-
-The table below mirrors the schema used by the YAML scaffold page. Nested rows use dotted paths and `[]` for list items.
-
 | Property Path | Type | Required | Default | Description |
 | ------------- | ---- | -------- | ------- | ----------- |
 | `GeneratorConfiguration` | `list or string or null` | &#10006 |  |  |
@@ -31,13 +21,3 @@ The table below mirrors the schema used by the YAML scaffold page. Nested rows u
 | `GeneratorConfiguration[].CommunicationDataList[]` | `object or string` | &#10006 |  |  |
 | `GeneratorConfiguration[].CommunicationDataList[].Name` | `string` | &#10004 |  | The name of the communication data in the session data to generate |
 | `GeneratorConfiguration[].CommunicationDataList[].Type` | `one of [Input / Output]` | &#10004 |  | The type of the communication data to generate. Options: [ `Input` -  an input communication data from the Inputs list in the SessionData structure / `Output` - an output communication data from the Outputs list in the SessionData structure ] |
-
-## Edge cases {: #edge-cases}
-
-- Empty default cells mean the schema does not define a default value for that field.
-- Required status applies to the immediate parent object shown by the property path.
-
-## See also {: #see-also}
-
-- [YAML scaffold](yamlView.md)
-- [Overview](../overview.md)

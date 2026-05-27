@@ -8,20 +8,13 @@ applies_to: [framework]
 keywords: [framework, functions, builders, policies, sections, configuration]
 summary: "Reference page for Policies: Configuration."
 ---
-
 <!-- Verified-against: QaaS.Framework\QaaS.Framework.Policies\PolicyBuilder.cs -->
 
 # Policies: Configuration
 
-> TL;DR — This page mirrors the `Configuration` section from [Policies](../policies.md) as a focused reference.
+This page mirrors the `Configuration` section from [Policies](../policies.md).
 
-## When to use {: #when-to-use}
-
-Use this page when you need the focused member list, signatures, and source notes for this section without scanning the full parent reference.
-
-## C# (CAC) usage {: #c-cac-usage}
-
-### `WithCount` {: #withcount}
+## `WithCount`
 
 ??? info "Source file, signature, and docstring"
     **Member**
@@ -41,8 +34,10 @@ Use this page when you need the focused member list, signatures, and source note
     **Docstring**
     
     Sets the count policy configuration on the current Framework policy builder instance.
+    
+    Use this method when working with the documented Framework policy builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
-### `WithTimeout` {: #withtimeout}
+## `WithTimeout`
 
 ??? info "Source file, signature, and docstring"
     **Member**
@@ -62,8 +57,10 @@ Use this page when you need the focused member list, signatures, and source note
     **Docstring**
     
     Sets the timeout policy configuration on the current Framework policy builder instance.
+    
+    Use this method when working with the documented Framework policy builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
-### `WithLoadBalance` {: #withloadbalance}
+## `WithLoadBalance`
 
 ??? info "Source file, signature, and docstring"
     **Member**
@@ -83,8 +80,10 @@ Use this page when you need the focused member list, signatures, and source note
     **Docstring**
     
     Sets the load-balance policy configuration on the current Framework policy builder instance.
+    
+    Use this method when working with the documented Framework policy builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
-### `WithIncreasingLoadBalance` {: #withincreasingloadbalance}
+## `WithIncreasingLoadBalance`
 
 ??? info "Source file, signature, and docstring"
     **Member**
@@ -104,8 +103,10 @@ Use this page when you need the focused member list, signatures, and source note
     **Docstring**
     
     Sets the increasing load-balance policy configuration on the current Framework policy builder instance.
+    
+    Use this method when working with the documented Framework policy builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
-### `WithAdvancedLoadBalance` {: #withadvancedloadbalance}
+## `WithAdvancedLoadBalance`
 
 ??? info "Source file, signature, and docstring"
     **Member**
@@ -125,12 +126,5 @@ Use this page when you need the focused member list, signatures, and source note
     **Docstring**
     
     Sets the advanced load-balance policy configuration on the current Framework policy builder instance.
-
-## Edge cases {: #edge-cases}
-
-- This page is generated from the parent reference section; edit the source XML docs or generator when content needs to change.
-- If a linked source member is renamed, regenerate the reference docs before changing prose by hand.
-
-## See also {: #see-also}
-
-- [Policies](../policies.md)
+    
+    Use this method when working with the documented Framework policy builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.

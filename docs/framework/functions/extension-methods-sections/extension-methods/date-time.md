@@ -8,20 +8,13 @@ applies_to: [framework]
 keywords: [framework, functions, extension, methods, sections, date, time]
 summary: "Reference page for Extension Methods: Extension Methods / Date time."
 ---
-
 <!-- Verified-against: QaaS.Framework\QaaS.Framework.Infrastructure\DateTimeExtensions.cs -->
 
 # Extension Methods: Extension Methods / Date time
 
-> TL;DR — This page mirrors the `Extension Methods / Date time` section from [Extension Methods](../../extension-methods.md) as a focused reference.
+This page mirrors the `Extension Methods / Date time` section from [Extension Methods](../../extension-methods.md).
 
-## When to use {: #when-to-use}
-
-Use this page when you need the focused member list, signatures, and source notes for this section without scanning the full parent reference.
-
-## C# (CAC) usage {: #c-cac-usage}
-
-### `ConvertDateTimeToUtcByTimeZoneOffset` {: #convertdatetimetoutcbytimezoneoffset}
+## `ConvertDateTimeToUtcByTimeZoneOffset`
 
 ??? info "Source file, signature, and docstring"
     **Member**
@@ -42,7 +35,7 @@ Use this page when you need the focused member list, signatures, and source note
     
     converts the given time to utc based on the timezone offset in summer time given
 
-### `ConvertDateTimeFromUtcToTimeZoneByTimeZoneOffset` {: #convertdatetimefromutctotimezonebytimezoneoffset}
+## `ConvertDateTimeFromUtcToTimeZoneByTimeZoneOffset`
 
 ??? info "Source file, signature, and docstring"
     **Member**
@@ -62,12 +55,3 @@ Use this page when you need the focused member list, signatures, and source note
     **Docstring**
     
     adds a timezone offset to the given utc time based on the timezone offset in summer time given
-
-## Edge cases {: #edge-cases}
-
-- This page is generated from the parent reference section; edit the source XML docs or generator when content needs to change.
-- If a linked source member is renamed, regenerate the reference docs before changing prose by hand.
-
-## See also {: #see-also}
-
-- [Extension Methods](../../extension-methods.md)

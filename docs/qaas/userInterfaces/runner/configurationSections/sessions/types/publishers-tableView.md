@@ -13,16 +13,6 @@ summary: "Publishers Configurations Table View"
 
 # Publishers Configurations Table View
 
-> TL;DR — Use this generated field table to check property paths, types, required status, defaults, and descriptions.
-
-## When to use {: #when-to-use}
-
-Use this page when you need the exact field path or value type for a configuration section before editing YAML.
-
-## YAML configuration {: #yaml-configuration}
-
-The table below mirrors the schema used by the YAML scaffold page. Nested rows use dotted paths and `[]` for list items.
-
 | Property Path | Type | Required | Default | Description |
 | ------------- | ---- | -------- | ------- | ----------- |
 | `Sessions[].Publishers` | `list or string or null` | &#10006 |  | List of all publishers to build and run for this session. Publishers iterate over data and use protocols to send it to the application |
@@ -176,13 +166,3 @@ The table below mirrors the schema used by the YAML scaffold page. Nested rows u
 | `Sessions[].Publishers[].Socket.NagleAlgorithm` | `string or true/false` | &#10006 | False | Whether to use the Nagle Algorithm (true) or not(false). The Nagle algorithm is a method used in TCP/IP networks to improve the efficiency of data transmission. It's designed to reduce the number of small packets that are sent over the network.The Nagle algorithm is designed to improve the efficiency of small packets, but it can sometimes cause delays in the transmission of large packets. |
 | `Sessions[].Publishers[].Socket.SendTimeoutMs` | `integer or string` | &#10006 | 5000 | socket's timeout sending a packet in milliseconds |
 | `Sessions[].Publishers[].Socket.SocketType` | `one of [Stream / Dgram / Raw / Rdm / Seqpacket / Unknown]` | &#10006 |  | Specifies the type of socket |
-
-## Edge cases {: #edge-cases}
-
-- Empty default cells mean the schema does not define a default value for that field.
-- Required status applies to the immediate parent object shown by the property path.
-
-## See also {: #see-also}
-
-- [YAML scaffold](publishers-yamlView.md)
-- [Overview](../overview.md)

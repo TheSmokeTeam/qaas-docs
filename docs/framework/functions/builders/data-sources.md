@@ -12,19 +12,13 @@ summary: "Each entry uses the short function name as the table-of-contents label
 
 # Data Sources
 
-> TL;DR — This page lists the public Framework functions in the `Data Sources` category.
-
-## When to use {: #when-to-use}
-
-Use this page when you need source-backed signatures, declaring types, and XML doc comments for this function category.
-
 Each entry uses the short function name as the table-of-contents label. Expand an entry to inspect its source file, signature, and XML doc comments.
 
 The functions on this page are grouped by responsibility so related operations stay together.
 
-## Identity and hook selection {: #identity-and-hook-selection}
+## Identity and hook selection
 
-### `Named` {: #named}
+### `Named`
 
 ??? info "Source file, signature, and docstring"
     **Member**
@@ -44,8 +38,10 @@ The functions on this page are grouped by responsibility so related operations s
     **Docstring**
     
     Sets the name used for the current Framework data source builder instance.
+    
+    Use this method when working with the documented Framework data source builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
-### `HookNamed` {: #hooknamed}
+### `HookNamed`
 
 ??? info "Source file, signature, and docstring"
     **Member**
@@ -65,10 +61,12 @@ The functions on this page are grouped by responsibility so related operations s
     **Docstring**
     
     Sets the hook implementation name used by the current Framework data source builder instance.
+    
+    Use this method when working with the documented Framework data source builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
-## Data source selection {: #data-source-selection}
+## Data source selection
 
-### `AddDataSourceName` {: #adddatasourcename}
+### `AddDataSourceName`
 
 ??? info "Source file, signature, and docstring"
     **Member**
@@ -88,8 +86,10 @@ The functions on this page are grouped by responsibility so related operations s
     **Docstring**
     
     Adds the supplied data source name to the current Framework data source builder instance.
+    
+    Use this method when working with the documented Framework data source builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
-### `RemoveDataSourceName` {: #removedatasourcename}
+### `RemoveDataSourceName`
 
 ??? info "Source file, signature, and docstring"
     **Member**
@@ -109,8 +109,10 @@ The functions on this page are grouped by responsibility so related operations s
     **Docstring**
     
     Removes the configured data source name from the current Framework data source builder instance.
+    
+    Use this method when working with the documented Framework data source builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
-### `RemoveDataSourceNameAt` {: #removedatasourcenameat}
+### `RemoveDataSourceNameAt`
 
 ??? info "Source file, signature, and docstring"
     **Member**
@@ -130,8 +132,10 @@ The functions on this page are grouped by responsibility so related operations s
     **Docstring**
     
     Removes the configured data source name at the specified index from the current Framework data source builder instance.
+    
+    Use this method when working with the documented Framework data source builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
-### `AddDataSourcePattern` {: #adddatasourcepattern}
+### `AddDataSourcePattern`
 
 ??? info "Source file, signature, and docstring"
     **Member**
@@ -151,8 +155,10 @@ The functions on this page are grouped by responsibility so related operations s
     **Docstring**
     
     Adds the supplied data source pattern to the current Framework data source builder instance.
+    
+    Use this method when working with the documented Framework data source builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
-### `RemoveDataSourcePattern` {: #removedatasourcepattern}
+### `RemoveDataSourcePattern`
 
 ??? info "Source file, signature, and docstring"
     **Member**
@@ -172,8 +178,10 @@ The functions on this page are grouped by responsibility so related operations s
     **Docstring**
     
     Removes the configured data source pattern from the current Framework data source builder instance.
+    
+    Use this method when working with the documented Framework data source builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
-### `RemoveDataSourcePatternAt` {: #removedatasourcepatternat}
+### `RemoveDataSourcePatternAt`
 
 ??? info "Source file, signature, and docstring"
     **Member**
@@ -193,10 +201,12 @@ The functions on this page are grouped by responsibility so related operations s
     **Docstring**
     
     Removes the configured data source pattern at the specified index from the current Framework data source builder instance.
+    
+    Use this method when working with the documented Framework data source builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
-## Configuration {: #configuration}
+## Configuration
 
-### `WithSerializer` {: #withserializer}
+### `WithSerializer`
 
 ??? info "Source file, signature, and docstring"
     **Member**
@@ -216,8 +226,10 @@ The functions on this page are grouped by responsibility so related operations s
     **Docstring**
     
     Sets the serializer configuration used by the current Framework data source builder instance.
+    
+    Use this method when working with the documented Framework data source builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
-### `WithDeserializer` {: #withdeserializer}
+### `WithDeserializer`
 
 ??? info "Source file, signature, and docstring"
     **Member**
@@ -237,10 +249,12 @@ The functions on this page are grouped by responsibility so related operations s
     **Docstring**
     
     Sets the deserializer configuration used by the current Framework data source builder instance.
+    
+    Use this method when working with the documented Framework data source builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
-## Collection helpers {: #collection-helpers}
+## Collection helpers
 
-### `RemoveConfiguration` {: #removeconfiguration}
+### `RemoveConfiguration`
 
 ??? info "Source file, signature, and docstring"
     **Member**
@@ -263,7 +277,7 @@ The functions on this page are grouped by responsibility so related operations s
     
     After this call, the builder holds an empty configuration until a new one is supplied.
 
-### `UpdateConfiguration` {: #updateconfiguration}
+### `UpdateConfiguration`
 
 ??? info "Source file, signature, and docstring"
     **Member**
@@ -286,9 +300,9 @@ The functions on this page are grouped by responsibility so related operations s
     
     Use this method when only part of the generator configuration should change. Fields omitted from the patch are preserved from the current GeneratorConfiguration tree.
 
-## General {: #general}
+## General
 
-### `IsLazy` {: #islazy}
+### `IsLazy`
 
 ??? info "Source file, signature, and docstring"
     **Member**
@@ -308,8 +322,10 @@ The functions on this page are grouped by responsibility so related operations s
     **Docstring**
     
     Marks the data source for lazy resolution.
+    
+    Use this method when working with the documented Framework data source builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
-### `Configure` {: #configure}
+### `Configure`
 
 ??? info "Source file, signature, and docstring"
     **Member**
@@ -332,7 +348,7 @@ The functions on this page are grouped by responsibility so related operations s
     
     The supplied object is serialized to JSON and loaded into the builder as the new generator configuration.
 
-### `Register` {: #register}
+### `Register`
 
 ??? info "Source file, signature, and docstring"
     **Member**
@@ -354,7 +370,3 @@ The functions on this page are grouped by responsibility so related operations s
     Registers the configured data source definition and returns the resulting data source descriptor.
     
     Registration produces the immutable data-source descriptor that is later resolved against generator hooks during execution build.
-
-## See also {: #see-also}
-
-- [Framework Functions](../index.md)

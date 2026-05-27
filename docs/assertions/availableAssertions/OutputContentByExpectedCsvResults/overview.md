@@ -12,19 +12,15 @@ summary: "Checks that the configured output content matches the expected values 
 
 # OutputContentByExpectedCsvResults
 
-> TL;DR — Checks that the configured output content matches the expected values loaded from a CSV results file.
+Checks that the configured output content matches the expected values loaded from a CSV results file.
 
-## When to use {: #when-to-use}
+## What It Does
 
 Loads expected results from a CSV data source, converts each output item to JSON, and validates configured fields by mapping CSV columns to JSON paths.
 
 Field validation is per mapped column and can use exact matching, numeric error ranges, override values, or base64-to-hex conversion. The assertion can compare rows by position or, when `CompareRowsNotInOrder` is enabled, match rows in any order while still ensuring each expected row is satisfied only once.
 
-## YAML configuration {: #yaml-configuration}
-
-Use the hook name in the matching runtime section, then place hook-specific fields under the configuration object shown in the examples below.
-
-## Minimal example {: #minimal-example}
+## YAML Example
 
 ```yaml
 DataSources:
@@ -64,19 +60,8 @@ Assertions:
       CompareRowsNotInOrder: true
 ```
 
-## Realistic example {: #realistic-example}
+## What This Configuration Does
 
 This example reads expected rows from `ExpectedResultsCsv`, compares them with the JSON bodies stored in the `Reply` output, and validates two fields.
 
 `ORDER_ID` must match exactly, while `TOTAL` can differ by up to 0.1. Because `CompareRowsNotInOrder` is enabled, the assertion can match the observed output rows to the expected CSV rows in any order instead of forcing row 1 to match row 1.
-
-## Edge cases {: #edge-cases}
-
-- Missing required configuration keys fail schema validation before the hook runs.
-- Keep hook names and referenced session or data-source names aligned with the surrounding YAML.
-
-## See also {: #see-also}
-
-- [Configuration table](configuration/tableView.md)
-- [YAML scaffold](configuration/yamlView.md)
-- [Assertions](../../index.md)

@@ -8,20 +8,13 @@ applies_to: [runner]
 keywords: [runner, qaas, functions, builders, assertions, sections, data, source, selection]
 summary: "Reference page for Assertions: Data source selection."
 ---
-
 <!-- Verified-against: QaaS.Runner\QaaS.Runner.Assertions\ConfigurationObjects\AssertionBuilder.cs -->
 
 # Assertions: Data source selection
 
-> TL;DR — This page mirrors the `Data source selection` section from [Assertions](../assertions.md) as a focused reference.
+This page mirrors the `Data source selection` section from [Assertions](../assertions.md).
 
-## When to use {: #when-to-use}
-
-Use this page when you need the focused member list, signatures, and source notes for this section without scanning the full parent reference.
-
-## C# (CAC) usage {: #c-cac-usage}
-
-### `AddDataSourceName` {: #adddatasourcename}
+## `AddDataSourceName`
 
 ??? info "Source file, signature, and docstring"
     **Member**
@@ -41,8 +34,10 @@ Use this page when you need the focused member list, signatures, and source note
     **Docstring**
     
     Adds the supplied data source name to the current Runner assertion builder instance.
+    
+    Use this method when working with the documented Runner assertion builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
-### `RemoveDataSourceName` {: #removedatasourcename}
+## `RemoveDataSourceName`
 
 ??? info "Source file, signature, and docstring"
     **Member**
@@ -62,8 +57,10 @@ Use this page when you need the focused member list, signatures, and source note
     **Docstring**
     
     Removes the configured data source name from the current Runner assertion builder instance.
+    
+    Use this method when working with the documented Runner assertion builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
-### `RemoveDataSourceNameAt` {: #removedatasourcenameat}
+## `RemoveDataSourceNameAt`
 
 ??? info "Source file, signature, and docstring"
     **Member**
@@ -83,8 +80,10 @@ Use this page when you need the focused member list, signatures, and source note
     **Docstring**
     
     Removes the configured data source name at the specified index from the current Runner assertion builder instance.
+    
+    Use this method when working with the documented Runner assertion builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
-### `AddDataSourcePattern` {: #adddatasourcepattern}
+## `AddDataSourcePattern`
 
 ??? info "Source file, signature, and docstring"
     **Member**
@@ -104,8 +103,10 @@ Use this page when you need the focused member list, signatures, and source note
     **Docstring**
     
     Adds the supplied data source pattern to the current Runner assertion builder instance.
+    
+    Use this method when working with the documented Runner assertion builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
-### `RemoveDataSourcePattern` {: #removedatasourcepattern}
+## `RemoveDataSourcePattern`
 
 ??? info "Source file, signature, and docstring"
     **Member**
@@ -125,8 +126,10 @@ Use this page when you need the focused member list, signatures, and source note
     **Docstring**
     
     Removes the configured data source pattern from the current Runner assertion builder instance.
+    
+    Use this method when working with the documented Runner assertion builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
-### `RemoveDataSourcePatternAt` {: #removedatasourcepatternat}
+## `RemoveDataSourcePatternAt`
 
 ??? info "Source file, signature, and docstring"
     **Member**
@@ -146,12 +149,5 @@ Use this page when you need the focused member list, signatures, and source note
     **Docstring**
     
     Removes the configured data source pattern at the specified index from the current Runner assertion builder instance.
-
-## Edge cases {: #edge-cases}
-
-- This page is generated from the parent reference section; edit the source XML docs or generator when content needs to change.
-- If a linked source member is renamed, regenerate the reference docs before changing prose by hand.
-
-## See also {: #see-also}
-
-- [Assertions](../assertions.md)
+    
+    Use this method when working with the documented Runner assertion builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.

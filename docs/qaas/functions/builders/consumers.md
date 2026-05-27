@@ -12,19 +12,13 @@ summary: "Each entry uses the short function name as the table-of-contents label
 
 # Consumers
 
-> TL;DR — This page lists the public Runner functions in the `Consumers` category.
-
-## When to use {: #when-to-use}
-
-Use this page when you need source-backed signatures, declaring types, and XML doc comments for this function category.
-
 Each entry uses the short function name as the table-of-contents label. Expand an entry to inspect its source file, signature, and XML doc comments.
 
 The functions on this page are grouped by responsibility so related operations stay together.
 
-## Identity and hook selection {: #identity-and-hook-selection}
+## Identity and hook selection
 
-### `Named` {: #named}
+### `Named`
 
 ??? info "Source file, signature, and docstring"
     **Member**
@@ -44,10 +38,12 @@ The functions on this page are grouped by responsibility so related operations s
     **Docstring**
     
     Sets the name used for the current Runner consumer builder instance.
+    
+    Use this method when working with the documented Runner consumer builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
-## Execution order {: #execution-order}
+## Execution order
 
-### `AtStage` {: #atstage}
+### `AtStage`
 
 ??? info "Source file, signature, and docstring"
     **Member**
@@ -67,10 +63,12 @@ The functions on this page are grouped by responsibility so related operations s
     **Docstring**
     
     Sets the stage used by the current Runner consumer builder instance.
+    
+    Use this method when working with the documented Runner consumer builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
-## Policies {: #policies}
+## Policies
 
-### `AddPolicy` {: #addpolicy}
+### `AddPolicy`
 
 ??? info "Source file, signature, and docstring"
     **Member**
@@ -90,8 +88,10 @@ The functions on this page are grouped by responsibility so related operations s
     **Docstring**
     
     Adds the supplied policy to the current Runner consumer builder instance.
+    
+    Use this method when working with the documented Runner consumer builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
-### `UpdatePolicyAt` {: #updatepolicyat}
+### `UpdatePolicyAt`
 
 ??? info "Source file, signature, and docstring"
     **Member**
@@ -111,8 +111,10 @@ The functions on this page are grouped by responsibility so related operations s
     **Docstring**
     
     Updates the configured policy at the specified index on the current Runner consumer builder instance.
+    
+    Use this method when working with the documented Runner consumer builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
-### `RemovePolicyAt` {: #removepolicyat}
+### `RemovePolicyAt`
 
 ??? info "Source file, signature, and docstring"
     **Member**
@@ -132,10 +134,12 @@ The functions on this page are grouped by responsibility so related operations s
     **Docstring**
     
     Removes the configured policy at the specified index from the current Runner consumer builder instance.
+    
+    Use this method when working with the documented Runner consumer builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
-## Configuration {: #configuration}
+## Configuration
 
-### `WithTimeout` {: #withtimeout}
+### `WithTimeout`
 
 ??? info "Source file, signature, and docstring"
     **Member**
@@ -155,8 +159,10 @@ The functions on this page are grouped by responsibility so related operations s
     **Docstring**
     
     Configures timeout on the current Runner consumer builder instance.
+    
+    Use this method when working with the documented Runner consumer builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
-### `WithInitialTimeout` {: #withinitialtimeout}
+### `WithInitialTimeout`
 
 ??? info "Source file, signature, and docstring"
     **Member**
@@ -176,8 +182,10 @@ The functions on this page are grouped by responsibility so related operations s
     **Docstring**
     
     Configures timeout on the current Runner consumer builder instance.
+    
+    Use this method when working with the documented Runner consumer builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
-### `WithDeserializer` {: #withdeserializer}
+### `WithDeserializer`
 
 ??? info "Source file, signature, and docstring"
     **Member**
@@ -197,10 +205,12 @@ The functions on this page are grouped by responsibility so related operations s
     **Docstring**
     
     Sets the deserializer configuration used by the current Runner consumer builder instance.
+    
+    Use this method when working with the documented Runner consumer builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
-## Collection helpers {: #collection-helpers}
+## Collection helpers
 
-### `UpdateConfiguration` {: #updateconfiguration}
+### `UpdateConfiguration`
 
 ??? info "Source file, signature, and docstring"
     **Member**
@@ -220,10 +230,12 @@ The functions on this page are grouped by responsibility so related operations s
     **Docstring**
     
     Updates the configuration currently stored on the Runner consumer builder instance.
+    
+    Use this method when working with the documented Runner consumer builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
-## General {: #general}
+## General
 
-### `FilterData` {: #filterdata}
+### `FilterData`
 
 ??? info "Source file, signature, and docstring"
     **Member**
@@ -243,8 +255,10 @@ The functions on this page are grouped by responsibility so related operations s
     **Docstring**
     
     Sets the data filter used by the current Runner consumer builder instance.
+    
+    Use this method when working with the documented Runner consumer builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
-### `Configure` {: #configure}
+### `Configure`
 
 ??? info "Source file, signature, and docstring"
     **Member**
@@ -264,7 +278,5 @@ The functions on this page are grouped by responsibility so related operations s
     **Docstring**
     
     Sets the configuration currently stored on the Runner consumer builder instance.
-
-## See also {: #see-also}
-
-- [Runner Functions](../index.md)
+    
+    Use this method when working with the documented Runner consumer builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.

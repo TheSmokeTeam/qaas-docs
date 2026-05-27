@@ -13,16 +13,6 @@ summary: "Consumers Configurations Table View"
 
 # Consumers Configurations Table View
 
-> TL;DR — Use this generated field table to check property paths, types, required status, defaults, and descriptions.
-
-## When to use {: #when-to-use}
-
-Use this page when you need the exact field path or value type for a configuration section before editing YAML.
-
-## YAML configuration {: #yaml-configuration}
-
-The table below mirrors the schema used by the YAML scaffold page. Nested rows use dotted paths and `[]` for list items.
-
 | Property Path | Type | Required | Default | Description |
 | ------------- | ---- | -------- | ------- | ----------- |
 | `Sessions[].Consumers` | `list or string or null` | &#10006 |  | List of all consumers to build and run for this session. Consumers use protocols to receive data from the application |
@@ -187,13 +177,3 @@ The table below mirrors the schema used by the YAML scaffold page. Nested rows u
 | `Sessions[].Consumers[].TrinoSqlTable.WhereStatement` | `string or null` | &#10006 |  | The where statement (without the where keyword) to add to the sql query to filter db query results, if no statement is given doesn't use where in the query |
 | `Sessions[].Consumers[].TrinoSqlTable.ColumnsToIgnore` | `list or string` | &#10006 | [] | The columns to ignore in the sql query results, if no columns are given doesn't ignore any columns |
 | `Sessions[].Consumers[].TrinoSqlTable.ColumnsToIgnore[]` | `string` | &#10006 |  |  |
-
-## Edge cases {: #edge-cases}
-
-- Empty default cells mean the schema does not define a default value for that field.
-- Required status applies to the immediate parent object shown by the property path.
-
-## See also {: #see-also}
-
-- [YAML scaffold](consumers-yamlView.md)
-- [Overview](../overview.md)

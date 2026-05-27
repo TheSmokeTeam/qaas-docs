@@ -8,20 +8,13 @@ applies_to: [runner]
 keywords: [runner, qaas, functions, builders, sessions, sections, identity, and, hook, selection]
 summary: "Reference page for Sessions: Identity and hook selection."
 ---
-
 <!-- Verified-against: QaaS.Runner\QaaS.Runner.Sessions\Session\Builders\SessionBuilderLogic.cs -->
 
 # Sessions: Identity and hook selection
 
-> TL;DR — This page mirrors the `Identity and hook selection` section from [Sessions](../sessions.md) as a focused reference.
+This page mirrors the `Identity and hook selection` section from [Sessions](../sessions.md).
 
-## When to use {: #when-to-use}
-
-Use this page when you need the focused member list, signatures, and source notes for this section without scanning the full parent reference.
-
-## C# (CAC) usage {: #c-cac-usage}
-
-### `Named` {: #named}
+## `Named`
 
 ??? info "Source file, signature, and docstring"
     **Member**
@@ -41,12 +34,5 @@ Use this page when you need the focused member list, signatures, and source note
     **Docstring**
     
     Sets the name used for the current Runner session builder instance.
-
-## Edge cases {: #edge-cases}
-
-- This page is generated from the parent reference section; edit the source XML docs or generator when content needs to change.
-- If a linked source member is renamed, regenerate the reference docs before changing prose by hand.
-
-## See also {: #see-also}
-
-- [Sessions](../sessions.md)
+    
+    Use this method when working with the documented Runner session builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.

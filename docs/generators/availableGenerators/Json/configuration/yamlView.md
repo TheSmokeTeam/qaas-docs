@@ -12,85 +12,58 @@ summary: "Minimal YAML scaffold for Json GeneratorConfiguration — copy, fill t
 
 # Json Configurations Yaml View
 
-> TL;DR — Copy this schema-derived YAML scaffold, replace placeholder values, and use the table view for field descriptions.
-
-## When to use {: #when-to-use}
-
-Use this page when you need a starting YAML shape for this hook configuration and want all generated fields in one block.
-
-## YAML configuration {: #yaml-configuration}
-
-The scaffold follows the generated schema order. String placeholders are quoted, optional lists render as `[]`, and numeric placeholders use schema minimums when they exist.
-
-## Minimal example {: #minimal-example}
-
 ```yaml
 GeneratorConfiguration:
-  Count: 0
-  JsonDataSourceName: 'value'
-  OutputObjectType: 'Json'
+  Count:
+  JsonDataSourceName:
+  OutputObjectType:
   JsonFieldReplacements:
-    -
-      Path: 'value'
-      ValueType: 'Null'
+    - Path:
+      ValueType:
       Boolean:
-        Value: false
+        Value:
       ByteArray:
-        Value: 'value'
+        Value:
       DateTime:
-        Day: 0
-        DayOffset: 0
-        Format: 'o'
-        Hour: 0
-        HourOffset: 0
-        Millisecond: 0
-        MillisecondOffset: 0
-        Minute: 0
-        MinuteOffset: 0
-        Month: 0
-        Second: 0
-        SecondOffset: 0
-        TimeZone: 'value'
-        Year: 0
+        Day:
+        DayOffset:
+        Format:
+        Hour:
+        HourOffset:
+        Millisecond:
+        MillisecondOffset:
+        Minute:
+        MinuteOffset:
+        Month:
+        Second:
+        SecondOffset:
+        TimeZone:
+        Year:
       Double:
-        Value: 0
+        Value:
       FromDataSource:
-        Name: 'value'
-        OutOfRangePolicy: 'Null'
+        Name:
+        OutOfRangePolicy:
       Integer:
-        Value: 0
+        Value:
       String:
-        Value: 'value'
+        Value:
       UnixEpochTime:
-        Day: 0
-        DayOffset: 0
-        Hour: 0
-        HourOffset: 0
-        Millisecond: 0
-        MillisecondOffset: 0
-        Minute: 0
-        MinuteOffset: 0
-        Month: 0
-        Second: 0
-        SecondOffset: 0
-        UnixEpochObjectType: 'Long'
-        UnixEpochScaleType: 'Seconds'
-        Year: 0
+        Day:
+        DayOffset:
+        Hour:
+        HourOffset:
+        Millisecond:
+        MillisecondOffset:
+        Minute:
+        MinuteOffset:
+        Month:
+        Second:
+        SecondOffset:
+        UnixEpochObjectType:
+        UnixEpochScaleType:
+        Year:
   OutputObjectTypeConfiguration:
-    TypeFullName: 'value'
-    AssemblyName: 'value'
+    TypeFullName:
+    AssemblyName:
 ```
-
-## Realistic example {: #realistic-example}
-
-Start with the minimal scaffold, replace placeholder values with project values, and combine it with the surrounding hook entry shown on the overview page.
-
-## Edge cases {: #edge-cases}
-
-- Optional arrays are emitted as `[]`; add entries only when the hook needs that collection.
-- Placeholder-style strings are quoted so YAML parsers keep them as scalar values.
-
-## See also {: #see-also}
-
-- [Configuration table](tableView.md)
-- [Overview](../overview.md)

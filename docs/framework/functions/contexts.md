@@ -12,19 +12,13 @@ summary: "Each entry uses the short function name as the table-of-contents label
 
 # Contexts
 
-> TL;DR — This page lists the public Framework functions in the `Contexts` category.
-
-## When to use {: #when-to-use}
-
-Use this page when you need source-backed signatures, declaring types, and XML doc comments for this function category.
-
 Each entry uses the short function name as the table-of-contents label. Expand an entry to inspect its source file, signature, and XML doc comments.
 
 The functions on this page are grouped by responsibility so related operations stay together.
 
-## Executions {: #executions}
+## Executions
 
-### `SetExecutionId` {: #setexecutionid}
+### `SetExecutionId`
 
 ??? info "Source file, signature, and docstring"
     **Member**
@@ -47,9 +41,9 @@ The functions on this page are grouped by responsibility so related operations s
     
     The execution identifier flows into the built context and can later be used by logging, reports, and storage integrations.
 
-## Contexts {: #contexts_1}
+## Contexts
 
-### `ContextBuilder` {: #contextbuilder}
+### `ContextBuilder`
 
 ??? info "Source file, signature, and docstring"
     **Member**
@@ -72,7 +66,7 @@ The functions on this page are grouped by responsibility so related operations s
     
     Use this constructor when the context should load its initial configuration from a file path before overwrite sources and reference resolution are applied.
 
-### `ContextBuilder` {: #contextbuilder_1}
+### `ContextBuilder`
 
 ??? info "Source file, signature, and docstring"
     **Member**
@@ -95,9 +89,9 @@ The functions on this page are grouped by responsibility so related operations s
     
     Use this constructor when configuration sources are assembled externally and should be handed to the QaaS context pipeline as-is.
 
-## Configuration {: #configuration}
+## Configuration
 
-### `SetConfigurationFile` {: #setconfigurationfile}
+### `SetConfigurationFile`
 
 ??? info "Source file, signature, and docstring"
     **Member**
@@ -120,7 +114,7 @@ The functions on this page are grouped by responsibility so related operations s
     
     Use this when the base configuration file should be selected or replaced after the builder has been created.
 
-### `WithOverwriteFile` {: #withoverwritefile}
+### `WithOverwriteFile`
 
 ??? info "Source file, signature, and docstring"
     **Member**
@@ -143,7 +137,7 @@ The functions on this page are grouped by responsibility so related operations s
     
     Overwrite files are applied after the base configuration and before the final configuration is built.
 
-### `WithOverwriteFolder` {: #withoverwritefolder}
+### `WithOverwriteFolder`
 
 ??? info "Source file, signature, and docstring"
     **Member**
@@ -166,7 +160,7 @@ The functions on this page are grouped by responsibility so related operations s
     
     Every YAML file discovered in the folder is applied as an overwrite source in the order returned by the file-system enumeration.
 
-### `SetCase` {: #setcase}
+### `SetCase`
 
 ??? info "Source file, signature, and docstring"
     **Member**
@@ -189,7 +183,7 @@ The functions on this page are grouped by responsibility so related operations s
     
     The supplied value is also stored as the case name on the built context.
 
-### `WithOverwriteArgument` {: #withoverwriteargument}
+### `WithOverwriteArgument`
 
 ??? info "Source file, signature, and docstring"
     **Member**
@@ -212,7 +206,7 @@ The functions on this page are grouped by responsibility so related operations s
     
     Use this when command-line style overrides should participate in the same configuration pipeline as YAML sources.
 
-### `WithReferenceResolution` {: #withreferenceresolution}
+### `WithReferenceResolution`
 
 ??? info "Source file, signature, and docstring"
     **Member**
@@ -235,7 +229,7 @@ The functions on this page are grouped by responsibility so related operations s
     
     Reference-resolution rules are applied while building the final configuration so linked configuration values can be expanded consistently.
 
-### `WithEnvironmentVariableResolution` {: #withenvironmentvariableresolution}
+### `WithEnvironmentVariableResolution`
 
 ??? info "Source file, signature, and docstring"
     **Member**
@@ -258,9 +252,9 @@ The functions on this page are grouped by responsibility so related operations s
     
     Enable this when configuration values should resolve environment variables while the context is being built.
 
-## Reporting and artifacts {: #reporting-and-artifacts}
+## Reporting and artifacts
 
-### `SetLogger` {: #setlogger}
+### `SetLogger`
 
 ??? info "Source file, signature, and docstring"
     **Member**
@@ -283,9 +277,9 @@ The functions on this page are grouped by responsibility so related operations s
     
     The configured logger becomes the logger used by the context itself and by runtime components resolved from that context.
 
-## General {: #general}
+## General
 
-### `ResolveCaseLast` {: #resolvecaselast}
+### `ResolveCaseLast`
 
 ??? info "Source file, signature, and docstring"
     **Member**
@@ -307,7 +301,3 @@ The functions on this page are grouped by responsibility so related operations s
     Delays case-file application until after reference resolution has completed.
     
     This changes resolution order so the case overlay is applied after references are expanded from the base configuration and overwrites.
-
-## See also {: #see-also}
-
-- [Framework Functions](index.md)

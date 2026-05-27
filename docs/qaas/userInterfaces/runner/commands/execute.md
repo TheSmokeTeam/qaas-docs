@@ -17,26 +17,26 @@ summary: "Executes a YAML file containing a sequential list of Runner commands."
 
 # execute
 
-> TL;DR — Executes a yaml execution file that contains a list of other commands to execute in a sequential order. The flags of all commands in the execution file that can also be given in the execute command ('s', 'e', 'l', 'g') will be ignored.
+Executes a yaml execution file that contains a list of other commands to execute in a sequential order. The flags of all commands in the execution file that can also be given in the execute command ('s', 'e', 'l', 'g') will be ignored.
 
-## Invocation {: #invocation}
+## Invocation
 
 ```bash
 dotnet run <dotnet-parameters> -- execute <executable-file> [flags]
 ```
 
-## When to use {: #when-to-use}
+## Use When
 
 - You want to orchestrate several Runner commands from a single YAML file.
 - You need stable IDs for filtering, logging, and report correlation across a multi-command flow.
 
-## Positional Arguments {: #positional-arguments}
+## Positional Arguments
 
 | Position | Property | Source Type | Required | Default | Value Type | Description |
 | -------- | -------- | ----------- | -------- | ------- | ---------- | ----------- |
 | `0` | `ConfigurationFile` | `Execute options` | Yes | executable.yaml | `string` | Path to a yaml configuration file that contains a list of QaaS commands to execute in sequential order. |
 
-## Flags {: #flags}
+## Flags
 
 | Category | Flag | Inherited | Required | Default | Value Type | Description |
 | -------- | ---- | --------- | -------- | ------- | ---------- | ----------- |
@@ -50,9 +50,9 @@ dotnet run <dotnet-parameters> -- execute <executable-file> [flags]
 | Logging | `-l`, `--logger-level` | Yes | No |  | `LogEventLevel (optional)` | The logger's level, overrides both the default logger's level (Information) and the level of any logger's configuration given.<br />All available options (not case sensitive) are: Verbose, Debug,<br />Information, Warning, Error, Fatal. |
 | Runtime | `--no-process-exit` | No | No | False | `bool` | When this flag is used the runner will not terminate the current process after it completes. Useful when embedding QaaS.Runner and orchestrating multiple runners in a single host process. |
 | Logging | `--send-logs` | Yes | No | False | `bool` | Whether to send logs to the configured Elasticsearch sink. |
-| Results | `-s`, `--serve-results` | No | No |  | `string` | Serves Allure output after executing all commands.<br />If the flag is provided without a value it serves the default raw results folder 'allure-results'.<br />Provide a folder name such as 'allure-report' to open a generated report directory, which is useful for Allure 3 flows.<br />When any of the commands written in the executable configuration file use this flag it will not do anything, this is the deciding flag.<br />Uses a locally installed allure CLI tool, if allure CLI is not installed and added to path the serve will fail. |
+| Results | `-s`, `--serve-results` | No | No | False | `bool` | If flag is enabled will automatically serve the test results in a human readable manner using allure after executing all commands.<br />when any of the commands written in the executable configuration file use this flag it will not do anything, this is the deciding flag.<br />Uses a locally installed allure CLI tool, if allure CLI is not installed and added to path the serve will fail. |
 
-## Executable File Format {: #executable-file-format}
+## Executable File Format
 
 The executable YAML contains QaaS commands, not `dotnet run` invocations:
 
@@ -62,110 +62,93 @@ Commands:
     Id: preview
   - Command: run test.qaas.yaml
     Id: smoke
+    Parallel: false
 ```
 
-Each entry accepts `Command` and `Id`. The list order is the execution order; `Id` is the stable identifier used by `--command-ids-to-run`, logs, and generated report output.
+`Id` is the stable identifier used by `--command-ids-to-run`, logs, and generated report output.
 
-## Flag Notes {: #flag-notes}
+## Flag Notes
 
-### `-c`, `--command-ids-to-run` {: #-c-command-ids-to-run}
+### `-c`, `--command-ids-to-run`
 
 Use one or more IDs from the executable file when you only want a subset of the declared commands to run.
 
-### `-s`, `--serve-results` {: #-s-serve-results}
+### `-s`, `--serve-results`
 
 The top-level `execute` flag decides whether results are served after the flow completes. Embedded `serve-results` flags inside the YAML commands do not take over.
 
-## Examples {: #examples}
+## Examples
 
-### Execute every command in the YAML file {: #execute-every-command-in-the-yaml-file}
+### Execute every command in the YAML file
 
 ```bash
 dotnet run -- execute executable.yaml
 ```
 
-### Execute only selected command IDs {: #execute-only-selected-command-ids}
+### Execute only selected command IDs
 
 ```bash
 dotnet run -- execute executable.yaml -c smoke assert-only
 ```
 
-### Execute the flow and open the report folder {: #execute-the-flow-and-open-the-report-folder}
+### Execute the flow and open the report folder
 
 ```bash
 dotnet run -- execute executable.yaml -s allure-report
 ```
 
-## Exit Codes {: #exit-codes}
-
-| Code | Meaning |
-| ---- | ------- |
-| `0` | Help/version requests, successful `act` or `template` runs, and assertion-bearing runs where every assertion result is passed. |
-| `1` | Command-line parse failures, invalid configuration failures, or assertion-bearing runs with at least one assertion result that is not passed. |
-| `>1` | `execute` can aggregate several failing assertion-bearing executions because Runner sums execution exit codes. |
-
-`RunAndGetExitCode()` returns the resolved code to an embedding host. `Run()` applies the same code to the process: by default it terminates with that code, while `--no-process-exit` stores the code on the current process without terminating it.
-
-Unexpected lifecycle exceptions are rethrown after cleanup instead of being translated into one of the table values.
-
-## Raw CLI Help {: #raw-cli-help}
+## Raw CLI Help
 
 ```text
 Usage:
  dotnet run [Dotnet Parameters] -- [Command] [Values] [Flags]
 
-  -s folder, --serve-results=folder    Serves Allure output after executing all commands.
-                                       If the flag is provided without a value it serves the default raw results folder
-                                       'allure-results'.
-                                       Provide a folder name such as 'allure-report' to open a generated report
-                                       directory, which is useful for Allure 3 flows.
-                                       When any of the commands written in the executable configuration file use this
-                                       flag it will not do anything, this is the deciding flag.
-                                       Uses a locally installed allure CLI tool, if allure CLI is not installed and
-                                       added to path the serve will fail.
+  -s, --serve-results                (Default: false)
+                                     If flag is enabled will automatically serve the test results in a human readable
+                                     manner using allure after executing all commands.
+                                     when any of the commands written in the executable configuration file use this flag
+                                     it will not do anything, this is the deciding flag.
+                                     Uses a locally installed allure CLI tool, if allure CLI is not installed and added
+                                     to path the serve will fail.
 
 
-  -e, --empty-allure-directory         (Default: false) If flag is enabled will automatically empty the allure results
-                                       directory before running.
+  -e, --empty-allure-directory       (Default: false) If flag is enabled will automatically empty the allure results
+                                     directory before running.
 
-  -c, --command-ids-to-run             Ids of the commands to run. Only the commands given would run. If none is given
-                                       runs all commands.
+  -c, --command-ids-to-run           Ids of the commands to run. Only the commands given would run. If none is given
+                                     runs all commands.
 
-  --no-process-exit                    (Default: false) When this flag is used the runner will not terminate the current
-                                       process after it completes. Useful when embedding QaaS.Runner and orchestrating
-                                       multiple runners in a single host process.
+  --no-process-exit                  (Default: false) When this flag is used the runner will not terminate the current
+                                     process after it completes. Useful when embedding QaaS.Runner and orchestrating
+                                     multiple runners in a single host process.
 
-  -l, --logger-level                   The logger's level, overrides both the default logger's level (Information) and
-                                       the level of any logger's configuration given.
-                                       All available options (not case sensitive) are: Verbose, Debug,
-                                       Information, Warning, Error, Fatal.
+  -l, --logger-level                 The logger's level, overrides both the default logger's level (Information) and the
+                                     level of any logger's configuration given.
+                                     All available options (not case sensitive) are: Verbose, Debug,
+                                     Information, Warning, Error, Fatal.
 
-  -g, --logger-configuration-file      Path to a logger's configuration file, will override the default logger's
-                                       configuration. Its level can be overridden by the logger-level flag.
+  -g, --logger-configuration-file    Path to a logger's configuration file, will override the default logger's
+                                     configuration. Its level can be overridden by the logger-level flag.
 
-  --send-logs                          (Default: false) Whether to send logs to the configured Elasticsearch sink.
+  --send-logs                        (Default: false) Whether to send logs to the configured Elasticsearch sink.
 
-  --elastic-uri                        Elasticsearch URI used by the logger sink when send-logs is enabled.
+  --elastic-uri                      Elasticsearch URI used by the logger sink when send-logs is enabled.
 
-  --elastic-username                   Optional Elasticsearch username for the logger sink.
+  --elastic-username                 Optional Elasticsearch username for the logger sink.
 
-  --elastic-password                   Optional Elasticsearch password for the logger sink.
+  --elastic-password                 Optional Elasticsearch password for the logger sink.
 
-  --disable-elastic-defaults           (Default: false) Disables Elastic defaults registered through the runtime
-                                       defaults provider for this run.
+  --disable-elastic-defaults         (Default: false) Disables Elastic defaults registered through the runtime defaults
+                                     provider for this run.
 
-  --help                               Display this help screen.
+  --help                             Display this help screen.
 
-  --version                            Display version information.
+  --version                          Display version information.
 
-  value pos. 0                         (Default: executable.yaml) Path to a yaml configuration file that contains a list
-                                       of QaaS commands to execute in sequential order.
+  value pos. 0                       (Default: executable.yaml) Path to a yaml configuration file that contains a list
+                                     of QaaS commands to execute in sequential order.
 
 No-args guidance:
   Empty arguments only work for code-only hosts that choose a no-args path in Program.cs.
   If a YAML file is part of the scenario, pass it explicitly: dotnet run -- run <config-file>.
 ```
-
-## See also {: #see-also}
-
-- [Runner commands](commands.md)

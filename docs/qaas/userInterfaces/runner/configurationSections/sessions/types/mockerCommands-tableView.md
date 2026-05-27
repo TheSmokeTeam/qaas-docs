@@ -13,16 +13,6 @@ summary: "Mocker Commands Configurations Table View"
 
 # Mocker Commands Configurations Table View
 
-> TL;DR — Use this generated field table to check property paths, types, required status, defaults, and descriptions.
-
-## When to use {: #when-to-use}
-
-Use this page when you need the exact field path or value type for a configuration section before editing YAML.
-
-## YAML configuration {: #yaml-configuration}
-
-The table below mirrors the schema used by the YAML scaffold page. Nested rows use dotted paths and `[]` for list items.
-
 | Property Path | Type | Required | Default | Description |
 | ------------- | ---- | -------- | ------- | ----------- |
 | `Sessions[].MockerCommands` | `list or string or null` | &#10006 |  | List of all mocker commands to run for this session. Mocker Commands trigger the mocker instance through redis api to act specific actions |
@@ -100,13 +90,3 @@ The table below mirrors the schema used by the YAML scaffold page. Nested rows u
 | `Sessions[].MockerCommands[].Configuration.TriggerAction` | `object or string` | &#10006 |  | Mocker 'TriggerAction' command properties |
 | `Sessions[].MockerCommands[].Configuration.TriggerAction.ActionName` | `string` | &#10004 |  | The Action's name that is being triggered |
 | `Sessions[].MockerCommands[].Configuration.TriggerAction.TimeoutMs` | `integer or string` | &#10006 | 0 | The time to enable the action for in milliseconds |
-
-## Edge cases {: #edge-cases}
-
-- Empty default cells mean the schema does not define a default value for that field.
-- Required status applies to the immediate parent object shown by the property path.
-
-## See also {: #see-also}
-
-- [YAML scaffold](mockerCommands-yamlView.md)
-- [Overview](../overview.md)

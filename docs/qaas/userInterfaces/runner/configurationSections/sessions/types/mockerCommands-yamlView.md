@@ -13,106 +13,79 @@ summary: "Mocker command YAML scaffold for controlling mocker servers during a R
 
 # Mocker Commands Configurations Yaml View
 
-> TL;DR — Copy this schema-derived YAML scaffold, replace placeholder values, and use the table view for field descriptions.
-
-## When to use {: #when-to-use}
-
-Use this page when you need the generated YAML shape for this configuration section and want every emitted field in one block.
-
-## YAML configuration {: #yaml-configuration}
-
-The scaffold follows the generated schema order. String placeholders are quoted, optional lists render as `[]`, and numeric placeholders use schema minimums when they exist.
-
-## Minimal example {: #minimal-example}
-
 ```yaml
 MockerCommands:
-  -
-    Name: 'value'
-    ServerName: 'value'
-    RequestDurationMs: 3000
-    RequestRetries: 3
-    Stage: 4
+  - Name:
+    ServerName:
+    RequestDurationMs:
+    RequestRetries:
+    Stage:
     Command:
       ChangeActionStub:
-        ActionName: 'value'
-        StubName: 'value'
+        ActionName:
+        StubName:
       Consume:
-        TimeoutMs: 0
-        ActionName: 'value'
+        TimeoutMs:
+        ActionName:
         InputDataFilter:
-          Body: True
-          MetaData: True
-          Timestamp: True
+          Body:
+          MetaData:
+          Timestamp:
         InputDeserialize:
-          Deserializer: 'Binary'
+          Deserializer:
           SpecificType:
-            TypeFullName: 'value'
-            AssemblyName: 'value'
+            TypeFullName:
+            AssemblyName:
         OutputDataFilter:
-          Body: True
-          MetaData: True
-          Timestamp: True
+          Body:
+          MetaData:
+          Timestamp:
         OutputDeserialize:
-          Deserializer: 'Binary'
+          Deserializer:
           SpecificType:
-            TypeFullName: 'value'
-            AssemblyName: 'value'
+            TypeFullName:
+            AssemblyName:
       TriggerAction:
-        ActionName: 'value'
-        TimeoutMs: 0
+        ActionName:
+        TimeoutMs:
     Redis:
-      Host: 'value'
-      AbortOnConnectFail: True
-      AsyncTimeoutMs: 5000
-      ClientName: 'value'
-      ConnectRetry: 3
-      KeepAliveSeconds: 60
-      Password: 'value'
-      RedisDataBase: 0
-      Ssl: False
-      SslHost: 'value'
-      Username: 'value'
+      Host:
+      AbortOnConnectFail:
+      AsyncTimeoutMs:
+      ClientName:
+      ConnectRetry:
+      KeepAliveSeconds:
+      Password:
+      RedisDataBase:
+      Ssl:
+      SslHost:
+      Username:
     Configuration:
       ChangeActionStub:
-        ActionName: 'value'
-        StubName: 'value'
+        ActionName:
+        StubName:
       Consume:
-        TimeoutMs: 0
-        ActionName: 'value'
+        TimeoutMs:
+        ActionName:
         InputDataFilter:
-          Body: True
-          MetaData: True
-          Timestamp: True
+          Body:
+          MetaData:
+          Timestamp:
         InputDeserialize:
-          Deserializer: 'Binary'
+          Deserializer:
           SpecificType:
-            TypeFullName: 'value'
-            AssemblyName: 'value'
+            TypeFullName:
+            AssemblyName:
         OutputDataFilter:
-          Body: True
-          MetaData: True
-          Timestamp: True
+          Body:
+          MetaData:
+          Timestamp:
         OutputDeserialize:
-          Deserializer: 'Binary'
+          Deserializer:
           SpecificType:
-            TypeFullName: 'value'
-            AssemblyName: 'value'
+            TypeFullName:
+            AssemblyName:
       TriggerAction:
-        ActionName: 'value'
-        TimeoutMs: 0
+        ActionName:
+        TimeoutMs:
 ```
-
-## Realistic example {: #realistic-example}
-
-Start with the minimal scaffold, replace placeholder values with project values, and keep only the optional branches that this configuration needs.
-
-## Edge cases {: #edge-cases}
-
-- Optional arrays are emitted as `[]`; add entries only when the section needs that collection.
-- Placeholder-style strings are quoted so YAML parsers keep them as scalar values.
-
-## See also {: #see-also}
-
-- [Configuration table](mockerCommands-tableView.md)
-- [Overview](../overview.md)

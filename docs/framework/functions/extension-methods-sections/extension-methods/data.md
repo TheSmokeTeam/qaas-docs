@@ -8,20 +8,13 @@ applies_to: [framework]
 keywords: [framework, functions, extension, methods, sections, data]
 summary: "Reference page for Extension Methods: Extension Methods / Data."
 ---
-
 <!-- Verified-against: QaaS.Framework\QaaS.Framework.SDK\Extensions\DataExtensions.cs -->
 
 # Extension Methods: Extension Methods / Data
 
-> TL;DR — This page mirrors the `Extension Methods / Data` section from [Extension Methods](../../extension-methods.md) as a focused reference.
+This page mirrors the `Extension Methods / Data` section from [Extension Methods](../../extension-methods.md).
 
-## When to use {: #when-to-use}
-
-Use this page when you need the focused member list, signatures, and source notes for this section without scanning the full parent reference.
-
-## C# (CAC) usage {: #c-cac-usage}
-
-### `CastObjectData<TCasted>` {: #castobjectdatatcasted}
+## `CastObjectData<TCasted>`
 
 ??? info "Source file, signature, and docstring"
     **Member**
@@ -42,7 +35,7 @@ Use this page when you need the focused member list, signatures, and source note
     
     Casts a `Data` of type object to another type, if the cast is not valid will throw InvalidCastException
 
-### `CastToObjectData<TData>` {: #casttoobjectdatatdata}
+## `CastToObjectData<TData>`
 
 ??? info "Source file, signature, and docstring"
     **Member**
@@ -63,7 +56,7 @@ Use this page when you need the focused member list, signatures, and source note
     
     Casts a `Data` of any type to a Data of type object, if the cast is not valid will throw InvalidCastException
 
-### `CastObjectDetailedData<TCasted>` {: #castobjectdetaileddatatcasted}
+## `CastObjectDetailedData<TCasted>`
 
 ??? info "Source file, signature, and docstring"
     **Member**
@@ -84,7 +77,7 @@ Use this page when you need the focused member list, signatures, and source note
     
     Casts a `DetailedData` of type object to another type, if the cast is not valid will throw InvalidCastException
 
-### `CastToObjectDetailedData<TData>` {: #casttoobjectdetaileddatatdata}
+## `CastToObjectDetailedData<TData>`
 
 ??? info "Source file, signature, and docstring"
     **Member**
@@ -105,7 +98,7 @@ Use this page when you need the focused member list, signatures, and source note
     
     Casts a `DetailedData` of any type to a DetailedData of type object, if the cast is not valid will throw InvalidCastException
 
-### `FilterData<TData>` {: #filterdatatdata}
+## `FilterData<TData>`
 
 ??? info "Source file, signature, and docstring"
     **Member**
@@ -125,12 +118,3 @@ Use this page when you need the focused member list, signatures, and source note
     **Docstring**
     
     Filters the data of a detailed data item according to the given DataFilter
-
-## Edge cases {: #edge-cases}
-
-- This page is generated from the parent reference section; edit the source XML docs or generator when content needs to change.
-- If a linked source member is renamed, regenerate the reference docs before changing prose by hand.
-
-## See also {: #see-also}
-
-- [Extension Methods](../../extension-methods.md)
