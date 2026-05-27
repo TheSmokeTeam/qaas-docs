@@ -12,17 +12,15 @@ summary: "Creates one or more RabbitMQ queues with the configured queue argument
 
 # CreateRabbitMqQueues
 
-> TL;DR — Creates one or more RabbitMQ queues with the configured queue arguments.
+> TL;DR: Creates one or more RabbitMQ queues with the configured queue arguments.
 
-## When to use {: #when-to-use}
+Creates one or more RabbitMQ queues with the configured queue arguments.
+
+## What It Does {: #what-it-does}
 
 Creates RabbitMQ queues through the AMQP connection defined in the probe configuration.
 
 This is useful for provisioning the queue side of a topology before bindings or message flow start.
-
-## YAML configuration {: #yaml-configuration}
-
-Use the hook name in the matching runtime section, then place hook-specific fields under the configuration object shown in the examples below.
 
 ## Minimal example {: #minimal-example}
 
@@ -58,13 +56,6 @@ With `UseGlobalDict: true`, missing broker connection fields are first resolved 
 
 Any key that is present locally still wins, even when the local value is `false`, `0`, an empty string, or an empty collection. This makes the probe useful when you want to recreate queues after a cleanup step. When `UseGlobalDict` is `false`, the probe ignores both aliases and keeps the current local-only behavior.
 
-## Edge cases {: #edge-cases}
-
-- Missing required configuration keys fail schema validation before the hook runs.
-- Keep hook names and referenced session or data-source names aligned with the surrounding YAML.
-
 ## See also {: #see-also}
 
-- [Configuration table](configuration/tableView.md)
-- [YAML scaffold](configuration/yamlView.md)
-- [Probes](../../index.md)
+Use the surrounding documentation navigation to move between related generated reference pages.

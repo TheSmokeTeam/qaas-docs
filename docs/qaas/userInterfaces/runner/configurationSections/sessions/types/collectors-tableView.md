@@ -13,15 +13,7 @@ summary: "Collectors Configurations Table View"
 
 # Collectors Configurations Table View
 
-> TL;DR — Use this generated field table to check property paths, types, required status, defaults, and descriptions.
-
-## When to use {: #when-to-use}
-
-Use this page when you need the exact field path or value type for a configuration section before editing YAML.
-
-## YAML configuration {: #yaml-configuration}
-
-The table below mirrors the schema used by the YAML scaffold page. Nested rows use dotted paths and `[]` for list items.
+> TL;DR: Collectors Configurations Table View
 
 | Property Path | Type | Required | Default | Description |
 | ------------- | ---- | -------- | ------- | ----------- |
@@ -44,12 +36,6 @@ The table below mirrors the schema used by the YAML scaffold page. Nested rows u
 | `Sessions[].Collectors[].Prometheus.SampleIntervalMs` | `integer or string` | &#10006 | 30000 | The interval to sample the expression's value from the prometheus during the collection time range in milliseconds |
 | `Sessions[].Collectors[].Prometheus.TimeoutMs` | `integer or string` | &#10006 | 120000 | The timeout in milliseconds for the execution of the query sent to the prometheus API |
 
-## Edge cases {: #edge-cases}
-
-- Empty default cells mean the schema does not define a default value for that field.
-- Required status applies to the immediate parent object shown by the property path.
-
 ## See also {: #see-also}
 
-- [YAML scaffold](collectors-yamlView.md)
-- [Overview](../overview.md)
+Use the surrounding documentation navigation to move between related generated reference pages.

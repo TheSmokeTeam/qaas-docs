@@ -8,20 +8,15 @@ applies_to: [runner]
 keywords: [runner, qaas, functions, extension, methods, sections, context, artifact]
 summary: "Reference page for Extension Methods: Context artifact."
 ---
-
 <!-- Verified-against: QaaS.Runner\QaaS.Runner.Infrastructure\ContextArtifactExtensions.cs -->
 
 # Extension Methods: Context artifact
 
-> TL;DR — This page mirrors the `Context artifact` section from [Extension Methods](../extension-methods.md) as a focused reference.
+> TL;DR: Reference page for Extension Methods: Context artifact.
 
-## When to use {: #when-to-use}
+This page mirrors the `Context artifact` section from [Extension Methods](../extension-methods.md).
 
-Use this page when you need the focused member list, signatures, and source notes for this section without scanning the full parent reference.
-
-## C# (CAC) usage {: #c-cac-usage}
-
-### `SetRenderedConfigurationTemplate` {: #setrenderedconfigurationtemplate}
+## `SetRenderedConfigurationTemplate` {: #setrenderedconfigurationtemplate}
 
 ??? info "Source file, signature, and docstring"
     **Member**
@@ -42,7 +37,7 @@ Use this page when you need the focused member list, signatures, and source note
     
     Saves the rendered runner configuration template for the current execution scope.
 
-### `GetRenderedConfigurationTemplate` {: #getrenderedconfigurationtemplate}
+## `GetRenderedConfigurationTemplate` {: #getrenderedconfigurationtemplate}
 
 ??? info "Source file, signature, and docstring"
     **Member**
@@ -63,7 +58,7 @@ Use this page when you need the focused member list, signatures, and source note
     
     Returns the rendered configuration template captured for the current execution scope, if one exists.
 
-### `AppendSessionLog` {: #appendsessionlog}
+## `AppendSessionLog` {: #appendsessionlog}
 
 ??? info "Source file, signature, and docstring"
     **Member**
@@ -84,7 +79,7 @@ Use this page when you need the focused member list, signatures, and source note
     
     Appends a session-scoped log line that can later be attached to reports.
 
-### `GetSessionLog` {: #getsessionlog}
+## `GetSessionLog` {: #getsessionlog}
 
 ??? info "Source file, signature, and docstring"
     **Member**
@@ -105,11 +100,6 @@ Use this page when you need the focused member list, signatures, and source note
     
     Returns the concatenated session log text for a session, or null when nothing was captured.
 
-## Edge cases {: #edge-cases}
-
-- This page is generated from the parent reference section; edit the source XML docs or generator when content needs to change.
-- If a linked source member is renamed, regenerate the reference docs before changing prose by hand.
-
 ## See also {: #see-also}
 
-- [Extension Methods](../extension-methods.md)
+Use the surrounding documentation navigation to move between related generated reference pages.

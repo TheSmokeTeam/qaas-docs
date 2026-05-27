@@ -12,17 +12,15 @@ summary: "Wraps the incoming request payload and optional request metadata in a 
 
 # JsonEnvelopeProcessor
 
-> TL;DR — Wraps the incoming request payload and optional request metadata in a JSON envelope response.
+> TL;DR: Wraps the incoming request payload and optional request metadata in a JSON envelope response.
 
-## When to use {: #when-to-use}
+Wraps the incoming request payload and optional request metadata in a JSON envelope response.
+
+## What It Does {: #what-it-does}
 
 Wraps the incoming request into a JSON object under a configurable body-property name and can optionally add request metadata such as headers, path parameters, URI, and the original body type.
 
 This is useful when a downstream system expects a structured JSON envelope but the incoming request may be raw text, bytes, or another object type.
-
-## YAML configuration {: #yaml-configuration}
-
-Use the hook name in the matching runtime section, then place hook-specific fields under the configuration object shown in the examples below.
 
 ## Minimal example {: #minimal-example}
 
@@ -58,13 +56,6 @@ This stub returns a JSON document that places the incoming request body under th
 
 The response comes back as HTTP `200` with `application/json`.
 
-## Edge cases {: #edge-cases}
-
-- Missing required configuration keys fail schema validation before the hook runs.
-- Keep hook names and referenced session or data-source names aligned with the surrounding YAML.
-
 ## See also {: #see-also}
 
-- [Configuration table](configuration/tableView.md)
-- [YAML scaffold](configuration/yamlView.md)
-- [Processors](../../index.md)
+Use the surrounding documentation navigation to move between related generated reference pages.

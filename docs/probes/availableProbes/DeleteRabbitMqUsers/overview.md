@@ -12,17 +12,15 @@ summary: "Deletes RabbitMQ users through the management API."
 
 # DeleteRabbitMqUsers
 
-> TL;DR — Deletes RabbitMQ users through the management API.
+> TL;DR: Deletes RabbitMQ users through the management API.
 
-## When to use {: #when-to-use}
+Deletes RabbitMQ users through the management API.
+
+## What It Does {: #what-it-does}
 
 Deletes RabbitMQ users through the management API.
 
 This is useful for cleaning up temporary credentials that were created for a scenario or test environment.
-
-## YAML configuration {: #yaml-configuration}
-
-Use the hook name in the matching runtime section, then place hook-specific fields under the configuration object shown in the examples below.
 
 ## Minimal example {: #minimal-example}
 
@@ -56,13 +54,6 @@ With `UseGlobalDict: true`, the resolved broker settings are saved under the ses
 
 That makes the probe useful in recovery or rollback scenarios where `CreateRabbitMqUsers` runs later in the same execution and session and restores the deleted topology from the saved alias instead of hard-coding it twice. When `UseGlobalDict` is `false`, current behavior stays unchanged: only local YAML or code configuration is used, and nothing is written to the probe global dictionary.
 
-## Edge cases {: #edge-cases}
-
-- Missing required configuration keys fail schema validation before the hook runs.
-- Keep hook names and referenced session or data-source names aligned with the surrounding YAML.
-
 ## See also {: #see-also}
 
-- [Configuration table](configuration/tableView.md)
-- [YAML scaffold](configuration/yamlView.md)
-- [Probes](../../index.md)
+Use the surrounding documentation navigation to move between related generated reference pages.

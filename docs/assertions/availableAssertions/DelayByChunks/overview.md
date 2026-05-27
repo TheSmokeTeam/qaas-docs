@@ -12,17 +12,15 @@ summary: "Checks delay between input and output chunks using configured chunk si
 
 # DelayByChunks
 
-> TL;DR — Checks for delay between an input source to an output source by subtracting the timestamp of input chunks of a configured size from a timestamp of output chunks of a configured size, takes the chunks in ascending order of the input/output lists.
+> TL;DR: Checks delay between input and output chunks using configured chunk sizes and timestamp differences.
 
-## When to use {: #when-to-use}
+Checks for delay between an input source to an output source by subtracting the timestamp of input chunks of a configured size from a timestamp of output chunks of a configured size, takes the chunks in ascending order of the input/output lists.
+
+## What It Does {: #what-it-does}
 
 Splits the named input and output streams into ordered chunks, computes one timestamp per chunk, and then checks whether each output chunk arrives within the allowed delay relative to the matching input chunk.
 
 The chunk timestamp can be taken from the first item, last item, or the average of the items in the chunk. The assertion succeeds only when the number of on-time output chunks matches the number of complete input chunks. Incomplete trailing chunks are ignored, an output chunk size of zero means "no output is expected", and large negative chunk delays are treated as invalid timing data.
-
-## YAML configuration {: #yaml-configuration}
-
-Use the hook name in the matching runtime section, then place hook-specific fields under the configuration object shown in the examples below.
 
 ## Minimal example {: #minimal-example}
 
@@ -55,13 +53,6 @@ This configuration treats every two input items in `PublishedBatch` as one logic
 
 With this setup, the assertion expects one output chunk for every complete two-item input chunk, and each output chunk must arrive within 500 ms of its matching input chunk. Small negative timing drift up to 50 ms is tolerated.
 
-## Edge cases {: #edge-cases}
-
-- Missing required configuration keys fail schema validation before the hook runs.
-- Keep hook names and referenced session or data-source names aligned with the surrounding YAML.
-
 ## See also {: #see-also}
 
-- [Configuration table](configuration/tableView.md)
-- [YAML scaffold](configuration/yamlView.md)
-- [Assertions](../../index.md)
+Use the surrounding documentation navigation to move between related generated reference pages.

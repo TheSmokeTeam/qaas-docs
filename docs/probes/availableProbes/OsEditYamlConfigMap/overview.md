@@ -12,17 +12,15 @@ summary: "OsEditYamlConfigMap probe plugin (auto-generated reference)."
 
 # OsEditYamlConfigMap
 
-> TL;DR — Probe that edits yaml config maps
+> TL;DR: OsEditYamlConfigMap probe plugin (auto-generated reference).
 
-## When to use {: #when-to-use}
+Probe that edits yaml config maps
+
+## What It Does {: #what-it-does}
 
 Loads a YAML document from a config map, edits the configured paths, and writes the updated document back to the config map.
 
 This is useful when an application reads structured configuration from a config map and only a few settings need to change for a particular scenario.
-
-## YAML configuration {: #yaml-configuration}
-
-Use the hook name in the matching runtime section, then place hook-specific fields under the configuration object shown in the examples below.
 
 ## Minimal example {: #minimal-example}
 
@@ -62,13 +60,6 @@ No additional per-probe recovery caveat applies beyond the execution and session
 
 When `UseGlobalDict` is `false`, the probe keeps the current behavior: it uses only local YAML or code configuration and does not read or write probe-global-dictionary state.
 
-## Edge cases {: #edge-cases}
-
-- Missing required configuration keys fail schema validation before the hook runs.
-- Keep hook names and referenced session or data-source names aligned with the surrounding YAML.
-
 ## See also {: #see-also}
 
-- [Configuration table](configuration/tableView.md)
-- [YAML scaffold](configuration/yamlView.md)
-- [Probes](../../index.md)
+Use the surrounding documentation navigation to move between related generated reference pages.

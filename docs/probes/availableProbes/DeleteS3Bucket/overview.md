@@ -12,17 +12,15 @@ summary: "Empties the configured S3 bucket and deletes it, treating a missing bu
 
 # DeleteS3Bucket
 
-> TL;DR — Empties the configured S3 bucket and deletes it, treating a missing bucket as an already-satisfied state.
+> TL;DR: Empties the configured S3 bucket and deletes it, treating a missing bucket as an already-satisfied state.
 
-## When to use {: #when-to-use}
+Empties the configured S3 bucket and deletes it, treating a missing bucket as an already-satisfied state.
+
+## What It Does {: #what-it-does}
 
 Deletes an S3-compatible bucket after first emptying all objects from it.
 
 This is the destructive bucket-level cleanup option and is useful when the scenario creates temporary buckets that should be removed completely at the end of a run.
-
-## YAML configuration {: #yaml-configuration}
-
-Use the hook name in the matching runtime section, then place hook-specific fields under the configuration object shown in the examples below.
 
 ## Minimal example {: #minimal-example}
 
@@ -57,13 +55,6 @@ No recovery alias is written for S3 in this first pass.
 
 When `UseGlobalDict` is `false`, the probe behaves exactly as before and uses only local YAML or code configuration.
 
-## Edge cases {: #edge-cases}
-
-- Missing required configuration keys fail schema validation before the hook runs.
-- Keep hook names and referenced session or data-source names aligned with the surrounding YAML.
-
 ## See also {: #see-also}
 
-- [Configuration table](configuration/tableView.md)
-- [YAML scaffold](configuration/yamlView.md)
-- [Probes](../../index.md)
+Use the surrounding documentation navigation to move between related generated reference pages.

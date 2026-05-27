@@ -12,17 +12,15 @@ summary: "Deletes every Elasticsearch index that matches the configured index pa
 
 # DeleteElasticIndices
 
-> TL;DR — Deletes every Elasticsearch index that matches the configured index pattern.
+> TL;DR: Deletes every Elasticsearch index that matches the configured index pattern.
 
-## When to use {: #when-to-use}
+Deletes every Elasticsearch index that matches the configured index pattern.
+
+## What It Does {: #what-it-does}
 
 Deletes every Elasticsearch index that matches the configured pattern.
 
 Use this when a scenario creates disposable indices and the cleanest reset is to remove the indices themselves instead of deleting documents from inside them.
-
-## YAML configuration {: #yaml-configuration}
-
-Use the hook name in the matching runtime section, then place hook-specific fields under the configuration object shown in the examples below.
 
 ## Minimal example {: #minimal-example}
 
@@ -57,13 +55,6 @@ No recovery alias is written for Elasticsearch in this first pass.
 
 When `UseGlobalDict` is `false`, the probe behaves exactly as before and uses only local YAML or code configuration.
 
-## Edge cases {: #edge-cases}
-
-- Missing required configuration keys fail schema validation before the hook runs.
-- Keep hook names and referenced session or data-source names aligned with the surrounding YAML.
-
 ## See also {: #see-also}
 
-- [Configuration table](configuration/tableView.md)
-- [YAML scaffold](configuration/yamlView.md)
-- [Probes](../../index.md)
+Use the surrounding documentation navigation to move between related generated reference pages.

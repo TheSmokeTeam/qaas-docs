@@ -12,16 +12,12 @@ summary: "Each entry uses the short function name as the table-of-contents label
 
 # Updates
 
-> TL;DR — This page lists the public Framework functions in the `Updates` category.
-
-## When to use {: #when-to-use}
-
-Use this page when you need source-backed signatures, declaring types, and XML doc comments for this function category.
+> TL;DR: Each entry uses the short function name as the table-of-contents label. Expand an entry to inspect its source file, signature, and XML doc comments.
 
 Each entry uses the short function name as the table-of-contents label. Expand an entry to inspect its source file, signature, and XML doc comments.
 
 
-## `UpdateConfiguration<TConfiguration>` {: #updateconfigurationtconfiguration}
+## `UpdateConfiguration<TConfiguration>` {: #updateconfiguration-tconfiguration}
 
 ??? info "Source file, signature, and docstring"
     **Member**
@@ -44,7 +40,7 @@ Each entry uses the short function name as the table-of-contents label. Expand a
     
     Use this helper when a partially populated typed configuration object should override only the supplied fields while preserving the rest of the existing configuration state.
 
-## `UpdateConfiguration<TConfiguration>` {: #updateconfigurationtconfiguration_1}
+## `UpdateConfiguration<TConfiguration>` {: #updateconfiguration-tconfiguration-2}
 
 ??? info "Source file, signature, and docstring"
     **Member**
@@ -92,4 +88,4 @@ Each entry uses the short function name as the table-of-contents label. Expand a
 
 ## See also {: #see-also}
 
-- [Framework Functions](index.md)
+Use the surrounding documentation navigation to move between related generated reference pages.

@@ -8,20 +8,15 @@ applies_to: [framework]
 keywords: [framework, functions, extension, methods, sections, configuration, updates]
 summary: "Reference page for Extension Methods: Configuration / Updates."
 ---
-
 <!-- Verified-against: QaaS.Framework\QaaS.Framework.Configurations\ConfigurationUpdateExtensions.cs -->
 
 # Extension Methods: Configuration / Updates
 
-> TL;DR — This page mirrors the `Configuration / Updates` section from [Extension Methods](../../extension-methods.md) as a focused reference.
+> TL;DR: Reference page for Extension Methods: Configuration / Updates.
 
-## When to use {: #when-to-use}
+This page mirrors the `Configuration / Updates` section from [Extension Methods](../../extension-methods.md).
 
-Use this page when you need the focused member list, signatures, and source notes for this section without scanning the full parent reference.
-
-## C# (CAC) usage {: #c-cac-usage}
-
-### `UpdateConfiguration<TConfiguration>` {: #updateconfigurationtconfiguration}
+## `UpdateConfiguration<TConfiguration>` {: #updateconfiguration-tconfiguration}
 
 ??? info "Source file, signature, and docstring"
     **Member**
@@ -44,7 +39,7 @@ Use this page when you need the focused member list, signatures, and source note
     
     Use this helper when a partially populated typed configuration object should override only the supplied fields while preserving the rest of the existing configuration state.
 
-### `UpdateConfiguration<TConfiguration>` {: #updateconfigurationtconfiguration_1}
+## `UpdateConfiguration<TConfiguration>` {: #updateconfiguration-tconfiguration-2}
 
 ??? info "Source file, signature, and docstring"
     **Member**
@@ -67,7 +62,7 @@ Use this page when you need the focused member list, signatures, and source note
     
     Use this overload when the patch comes from an anonymous object, JSON-like payload, or any other object whose shape matches part of the target configuration contract.
 
-### `UpdateConfiguration` {: #updateconfiguration}
+## `UpdateConfiguration` {: #updateconfiguration}
 
 ??? info "Source file, signature, and docstring"
     **Member**
@@ -90,11 +85,6 @@ Use this page when you need the focused member list, signatures, and source note
     
     Use this overload when configuration is already represented as an IConfiguration tree and should be updated without first binding it to a typed configuration object.
 
-## Edge cases {: #edge-cases}
-
-- This page is generated from the parent reference section; edit the source XML docs or generator when content needs to change.
-- If a linked source member is renamed, regenerate the reference docs before changing prose by hand.
-
 ## See also {: #see-also}
 
-- [Extension Methods](../../extension-methods.md)
+Use the surrounding documentation navigation to move between related generated reference pages.

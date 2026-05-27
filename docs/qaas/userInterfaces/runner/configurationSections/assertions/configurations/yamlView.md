@@ -13,69 +13,45 @@ summary: "Assertion configuration YAML example."
 
 # Assertions Configurations Yaml View
 
-> TL;DR — Copy this schema-derived YAML scaffold, replace placeholder values, and use the table view for field descriptions.
-
-## When to use {: #when-to-use}
-
-Use this page when you need the generated YAML shape for this configuration section and want every emitted field in one block.
-
-## YAML configuration {: #yaml-configuration}
-
-The scaffold follows the generated schema order. String placeholders are quoted, optional lists render as `[]`, and numeric placeholders use schema minimums when they exist.
-
-## Minimal example {: #minimal-example}
+> TL;DR: Assertion configuration YAML example.
 
 ```yaml
 Assertions:
-  -
-    Assertion: 'value'
-    Name: 'value'
-    AssertionConfiguration: {}
-    Category: 'value'
-    Configuration: {}
-    DisplayTrace: True
-    SaveAttachments: True
-    SaveLogs: True
-    SaveSessionData: True
-    SaveTemplate: True
-    Severity: 'Trivial'
+  - Assertion:
+    Name:
+    AssertionConfiguration:
+    Category:
+    Configuration:
+    DisplayTrace:
+    SaveAttachments:
+    SaveLogs:
+    SaveSessionData:
+    SaveTemplate:
+    Severity:
     DataSourceNames: []
     DataSourcePatterns: []
     Links:
-      -
-        Configuration: {}
-        Name: 'value'
+      - Configuration:
+        Name:
         Grafana:
-          DashboardId: 'value'
-          Url: 'value'
+          DashboardId:
+          Url:
           Variables:
-            -
-              Key: 'value'
-              Value: 'value'
+            - Key:
+              Value:
         Kibana:
-          DataViewId: 'value'
-          Url: 'value'
-          KqlQuery: 'value'
-          TimestampField: '@timestamp'
+          DataViewId:
+          Url:
+          KqlQuery:
+          TimestampField:
         Prometheus:
-          Url: 'value'
-          Expressions:
-            - 'value'
+          Url:
+          Expressions: []
     SessionNamePatterns: []
     SessionNames: []
     StatusesToReport: []
 ```
 
-## Realistic example {: #realistic-example}
-
-Start with the minimal scaffold, replace placeholder values with project values, and keep only the optional branches that this configuration needs.
-
-## Edge cases {: #edge-cases}
-
-- Optional arrays are emitted as `[]`; add entries only when the section needs that collection.
-- Placeholder-style strings are quoted so YAML parsers keep them as scalar values.
-
 ## See also {: #see-also}
 
-- [Configuration table](tableView.md)
-- [Overview](../overview.md)
+Use the surrounding documentation navigation to move between related generated reference pages.

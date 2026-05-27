@@ -8,20 +8,15 @@ applies_to: [runner]
 keywords: [runner, qaas, functions, builders, transactions, sections, configuration]
 summary: "Reference page for Transactions: Configuration."
 ---
-
 <!-- Verified-against: QaaS.Runner\QaaS.Runner.Sessions\Actions\Transactions\Builders\TransactionBuilder.cs -->
 
 # Transactions: Configuration
 
-> TL;DR — This page mirrors the `Configuration` section from [Transactions](../transactions.md) as a focused reference.
+> TL;DR: Reference page for Transactions: Configuration.
 
-## When to use {: #when-to-use}
+This page mirrors the `Configuration` section from [Transactions](../transactions.md).
 
-Use this page when you need the focused member list, signatures, and source notes for this section without scanning the full parent reference.
-
-## C# (CAC) usage {: #c-cac-usage}
-
-### `WithTimeout` {: #withtimeout}
+## `WithTimeout` {: #withtimeout}
 
 ??? info "Source file, signature, and docstring"
     **Member**
@@ -41,8 +36,10 @@ Use this page when you need the focused member list, signatures, and source note
     **Docstring**
     
     Configures timeout on the current Runner transaction builder instance.
+    
+    Use this method when working with the documented Runner transaction builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
-### `WithDeserializer` {: #withdeserializer}
+## `WithDeserializer` {: #withdeserializer}
 
 ??? info "Source file, signature, and docstring"
     **Member**
@@ -62,8 +59,10 @@ Use this page when you need the focused member list, signatures, and source note
     **Docstring**
     
     Sets the deserializer configuration used by the current Runner transaction builder instance.
+    
+    Use this method when working with the documented Runner transaction builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
-### `WithSerializer` {: #withserializer}
+## `WithSerializer` {: #withserializer}
 
 ??? info "Source file, signature, and docstring"
     **Member**
@@ -83,8 +82,10 @@ Use this page when you need the focused member list, signatures, and source note
     **Docstring**
     
     Sets the serializer configuration used by the current Runner transaction builder instance.
+    
+    Use this method when working with the documented Runner transaction builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
-### `WithIterations` {: #withiterations}
+## `WithIterations` {: #withiterations}
 
 ??? info "Source file, signature, and docstring"
     **Member**
@@ -104,8 +105,33 @@ Use this page when you need the focused member list, signatures, and source note
     **Docstring**
     
     Sets how many iterations the transaction should execute.
+    
+    Use this method when working with the documented Runner transaction builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
-### `WithSleep` {: #withsleep}
+## `WithParallelism` {: #withparallelism}
+
+??? info "Source file, signature, and docstring"
+    **Member**
+    `TransactionBuilder.WithParallelism(int parallelism)`
+    
+    **Kind** `function`
+    
+    **Declaring Type** `TransactionBuilder`
+    
+    **Source File** `QaaS.Runner.Sessions/Actions/Transactions/Builders/TransactionBuilder.cs`
+    
+    **Signature**
+    ```csharp
+    public TransactionBuilder WithParallelism(int parallelism)
+    ```
+    
+    **Docstring**
+    
+    Configures the transaction to run with the supplied parallelism.
+    
+    Use this method when working with the documented Runner transaction builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
+
+## `WithSleep` {: #withsleep}
 
 ??? info "Source file, signature, and docstring"
     **Member**
@@ -125,12 +151,9 @@ Use this page when you need the focused member list, signatures, and source note
     **Docstring**
     
     Sets the delay applied between transaction iterations.
-
-## Edge cases {: #edge-cases}
-
-- This page is generated from the parent reference section; edit the source XML docs or generator when content needs to change.
-- If a linked source member is renamed, regenerate the reference docs before changing prose by hand.
+    
+    Use this method when working with the documented Runner transaction builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
 ## See also {: #see-also}
 
-- [Transactions](../transactions.md)
+Use the surrounding documentation navigation to move between related generated reference pages.

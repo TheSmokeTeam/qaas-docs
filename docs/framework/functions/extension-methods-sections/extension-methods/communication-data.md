@@ -8,20 +8,15 @@ applies_to: [framework]
 keywords: [framework, functions, extension, methods, sections, communication, data]
 summary: "Reference page for Extension Methods: Extension Methods / Communication data."
 ---
-
 <!-- Verified-against: QaaS.Framework\QaaS.Framework.SDK\Extensions\CommunicationDataExtensions.cs -->
 
 # Extension Methods: Extension Methods / Communication data
 
-> TL;DR — This page mirrors the `Extension Methods / Communication data` section from [Extension Methods](../../extension-methods.md) as a focused reference.
+> TL;DR: Reference page for Extension Methods: Extension Methods / Communication data.
 
-## When to use {: #when-to-use}
+This page mirrors the `Extension Methods / Communication data` section from [Extension Methods](../../extension-methods.md).
 
-Use this page when you need the focused member list, signatures, and source notes for this section without scanning the full parent reference.
-
-## C# (CAC) usage {: #c-cac-usage}
-
-### `GetCommunicationDataByName<TData>` {: #getcommunicationdatabynametdata}
+## `GetCommunicationDataByName<TData>` {: #getcommunicationdatabyname-tdata}
 
 ??? info "Source file, signature, and docstring"
     **Member**
@@ -42,7 +37,7 @@ Use this page when you need the focused member list, signatures, and source note
     
     Retrieves a CommunicationData from an enumerable of CommunicationData by its name
 
-### `CastCommunicationData<TCastTo>` {: #castcommunicationdatatcastto}
+## `CastCommunicationData<TCastTo>` {: #castcommunicationdata-tcastto}
 
 ??? info "Source file, signature, and docstring"
     **Member**
@@ -63,7 +58,7 @@ Use this page when you need the focused member list, signatures, and source note
     
     Casts a CommunicationData to a different type
 
-### `GetDataByIoMatchIndex<TData>` {: #getdatabyiomatchindextdata}
+## `GetDataByIoMatchIndex<TData>` {: #getdatabyiomatchindex-tdata}
 
 ??? info "Source file, signature, and docstring"
     **Member**
@@ -84,11 +79,6 @@ Use this page when you need the focused member list, signatures, and source note
     
     Retrieves data by its IoMatchIndex from a CommunicationData object
 
-## Edge cases {: #edge-cases}
-
-- This page is generated from the parent reference section; edit the source XML docs or generator when content needs to change.
-- If a linked source member is renamed, regenerate the reference docs before changing prose by hand.
-
 ## See also {: #see-also}
 
-- [Extension Methods](../../extension-methods.md)
+Use the surrounding documentation navigation to move between related generated reference pages.

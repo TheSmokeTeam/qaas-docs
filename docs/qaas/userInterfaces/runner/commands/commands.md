@@ -17,7 +17,7 @@ summary: "Runner commands inspect configuration, run sessions, evaluate assertio
 
 # Commands
 
-> TL;DR — Runner commands inspect configuration, run sessions, evaluate assertions, and orchestrate multi-command flows.
+> TL;DR: Runner commands inspect configuration, run sessions, evaluate assertions, and orchestrate multi-command flows.
 
 QaaS Runner commands all start from the same host process and then branch into focused execution modes depending on whether you want to inspect configuration, run sessions, evaluate assertions, or orchestrate multiple commands.
 
@@ -57,18 +57,6 @@ dotnet run <dotnet-parameters> -- <command> [command-values] [command-flags]
 - Use `act` followed by `assert` when you want to split data capture from assertion evaluation.
 - Use `execute` when the workflow itself should be declared as YAML.
 
-## Exit Codes {: #exit-codes}
-
-| Code | Meaning |
-| ---- | ------- |
-| `0` | Help/version requests, successful `act` or `template` runs, and assertion-bearing runs where every assertion result is passed. |
-| `1` | Command-line parse failures, invalid configuration failures, or assertion-bearing runs with at least one assertion result that is not passed. |
-| `>1` | `execute` can aggregate several failing assertion-bearing executions because Runner sums execution exit codes. |
-
-`RunAndGetExitCode()` returns the resolved code to an embedding host. `Run()` applies the same code to the process: by default it terminates with that code, while `--no-process-exit` stores the code on the current process without terminating it.
-
-Unexpected lifecycle exceptions are rethrown after cleanup instead of being translated into one of the table values.
-
 ## Raw CLI Help {: #raw-cli-help}
 
 ```text
@@ -101,8 +89,4 @@ No-args guidance:
 
 ## See also {: #see-also}
 
-- [`act`](./act.md)
-- [`assert`](./assert.md)
-- [`execute`](./execute.md)
-- [`run`](./run.md)
-- [`template`](./template.md)
+Use the surrounding documentation navigation to move between related generated reference pages.

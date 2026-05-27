@@ -13,15 +13,7 @@ summary: "Stubs Configurations Table View"
 
 # Stubs Configurations Table View
 
-> TL;DR — Use this generated field table to check property paths, types, required status, defaults, and descriptions.
-
-## When to use {: #when-to-use}
-
-Use this page when you need the exact field path or value type for a configuration section before editing YAML.
-
-## YAML configuration {: #yaml-configuration}
-
-The table below mirrors the schema used by the YAML scaffold page. Nested rows use dotted paths and `[]` for list items.
+> TL;DR: Stubs Configurations Table View
 
 | Property Path | Type | Required | Default | Description |
 | ------------- | ---- | -------- | ------- | ----------- |
@@ -40,12 +32,6 @@ The table below mirrors the schema used by the YAML scaffold page. Nested rows u
 | `Stubs[].ResponseBodySerialization` | `object or string` | &#10006 |  | Serialize to use on the response body |
 | `Stubs[].ResponseBodySerialization.Serializer` | `one of [Binary / Json / MessagePack / Xml / Yaml / ProtobufMessage / XmlElement]` | &#10006 |  | The serializer type to use for serializing. Null means no serialization will happen. Options are all available `QaaS.Framework.Serialization` serializers |
 
-## Edge cases {: #edge-cases}
-
-- Empty default cells mean the schema does not define a default value for that field.
-- Required status applies to the immediate parent object shown by the property path.
-
 ## See also {: #see-also}
 
-- [YAML scaffold](yamlView.md)
-- [Overview](../overview.md)
+Use the surrounding documentation navigation to move between related generated reference pages.
