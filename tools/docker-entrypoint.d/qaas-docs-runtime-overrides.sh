@@ -2,6 +2,7 @@
 set -eu
 
 target="/usr/share/nginx/html/assets/javascripts/qaas-docs-runtime-overrides.js"
+min_target="/usr/share/nginx/html/assets/javascripts/qaas-docs-runtime-overrides.min.js"
 target_dir="${target%/*}"
 
 mkdir -p "$target_dir"
@@ -72,4 +73,13 @@ nuget_feed QAAS_DOCS_LINK_NUGET_FEED
 artifactory QAAS_DOCS_LINK_ARTIFACTORY
 runner_schema QAAS_DOCS_LINK_RUNNER_SCHEMA
 mocker_schema QAAS_DOCS_LINK_MOCKER_SCHEMA
+image_dotnet_sdk QAAS_DOCS_IMAGE_DOTNET_SDK
+image_dotnet_runtime QAAS_DOCS_IMAGE_DOTNET_RUNTIME
+image_redis_repository QAAS_DOCS_IMAGE_REDIS_REPOSITORY
+image_redis_tag QAAS_DOCS_IMAGE_REDIS_TAG
 EOF
+
+# MkDocs Material's minify plugin rewrites HTML to the .min.js asset. Keep both
+# filenames in sync so the same runtime image works with minified and
+# non-minified local builds.
+cp "$target" "$min_target"
