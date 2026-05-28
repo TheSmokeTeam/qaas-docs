@@ -1,0 +1,2714 @@
+# QaaS full content: tutorials-1
+
+
+
+## Create a Mock (YAML)
+
+Source: /mocker/quickStart/createMock/
+Type: tutorials
+Applies to: mocker
+Summary: Use YAML to define mock data sources, stubs, and servers in a declarative mock configuration.
+
+# Create a Mock (YAML)
+
+> TL;DR — Use YAML to define mock data sources, stubs, and servers in a declarative mock configuration.
+
+Use YAML when the mock shape is mostly declarative and you want the runtime definition to stay easy to scan: where the [DataSources](../userInterfaces/mocker/configurationSections/dataSources/overview.md) come from, which [Stub](../userInterfaces/mocker/configurationSections/stubs/overview.md) processes them, and which [Server](../userInterfaces/mocker/configurationSections/server/overview.md) endpoint exposes them. QaaS.Mocker reads those sections into the same execution builder concepts you will use in larger mocks later.
+
+This version keeps the mock definition in `mocker.qaas.yaml` and uses a small local processor for the response body.
+
+The completed sample is available at [DummyAppMock (YAML)]({{ links.repository_mocker_quickstart_yaml }}).
+
+## Scenario {: #scenario}
+
+The mock should:
+
+- listen on `http://127.0.0.1:8080`
+- return JSON from `GET /data`
+- load the response body from `ServerData/sample.json`
+
+## Create the Project {: #create-the-project}
+
+```bash
+dotnet new qaas-mocker -n DummyAppMock
+cd DummyAppMock
+dotnet add DummyAppMock/DummyAppMock.csproj package QaaS.Common.Generators
+```
+
+The sample keeps the response [Processor](../../processors/index.md) local so the quick start stays compatible with the currently published public packages.
+
+## Keep `Program.cs` Minimal {: #keep-programcs-minimal}
+
+`DummyAppMock/Program.cs`
+
+```csharp
+QaaS.Mocker.Bootstrap.New(args).Run();
+```
+
+This host is YAML-only. Empty program arguments therefore show help text, so the run command must pass `run mocker.qaas.yaml` explicitly.
+
+## Add the Local Processor {: #add-the-local-processor}
+
+The YAML file will only describe the mock flow. The actual response body is produced by a small local processor that loads the JSON payload from the data source and returns it with an HTTP 200 response.
+
+`DummyAppMock/Processors/ServerDataProcessor.cs`
+
+```csharp
+using System.Collections.Immutable;
+using System.ComponentModel;
+using QaaS.Framework.SDK.DataSourceObjects;
+using QaaS.Framework.SDK.Extensions;
+using QaaS.Framework.SDK.Hooks.Processor;
+using QaaS.Framework.SDK.Session.DataObjects;
+using QaaS.Framework.SDK.Session.MetaDataObjects;
+
+namespace DummyAppMock.Processors;
+
+public record ServerDataProcessorConfig
+{
+    [Description("Status code to return"), DefaultValue("200")]
+    public int StatusCode { get; set; } = 200;
+}
+
+public class ServerDataProcessor : BaseTransactionProcessor<ServerDataProcessorConfig>
+{
+    public override Data<object> Process(IImmutableList<DataSource> dataSourceList, Data<object> requestData)
+    {
+        var response = dataSourceList
+            .GetDataSourceByName("ServerData")
+            .Retrieve()
+            .FirstOrDefault();
+
+        return new Data<object>
+        {
+            Body = response?.Body ?? "{}"u8.ToArray(),
+            MetaData = new MetaData
+            {
+                Http = new Http
+                {
+                    StatusCode = Configuration.StatusCode,
+                    ResponseHeaders = new Dictionary<string, string>
+                    {
+                        ["Content-Type"] = "application/json"
+                    }
+                }
+            }
+        };
+    }
+}
+```
+
+## Add the Response File {: #add-the-response-file}
+
+`DummyAppMock/ServerData/sample.json`
+
+```json
+{
+  "message": "hello from DummyAppMock",
+  "source": "dummy_app_mock"
+}
+```
+
+## Start with the `DataSources` Section {: #start-with-the-datasources-section}
+
+Begin by telling Mocker where the response payload lives through [DataSources](../userInterfaces/mocker/configurationSections/dataSources/overview.md).
+
+`DummyAppMock/mocker.qaas.yaml`
+
+```yaml
+DataSources:
+  - Name: ServerData
+    Generator: FromFileSystem
+    GeneratorConfiguration:
+      DataArrangeOrder: AsciiAsc
+      FileSystem:
+        Path: ServerData
+```
+
+This means: "load files from the local `ServerData` folder and expose them as a named data source called `ServerData`."
+
+## Add the `Stubs` Section {: #add-the-stubs-section}
+
+Next add the transaction stub that connects the incoming request to your local processor.
+
+Append this section to `mocker.qaas.yaml`:
+
+```yaml
+Stubs:
+  - Name: ServerDataStub
+    Processor: ServerDataProcessor
+    DataSourceNames: [ServerData]
+```
+
+The [Stub](../userInterfaces/mocker/configurationSections/stubs/overview.md) says that when a request reaches this action, Mocker should call `ServerDataProcessor` and give it the `ServerData` data source.
+
+## Add the `Servers` Section {: #add-the-servers-section}
+
+Finally define the [Server](../userInterfaces/mocker/configurationSections/server/overview.md) and map `GET /data` to the stub created in the previous step.
+
+Append this section to `mocker.qaas.yaml`:
+
+```yaml
+Servers:
+  - Http:
+      Port: 8080
+      IsLocalhost: false
+      Endpoints:
+        - Path: /data
+          Actions:
+            - Name: GetServerData
+              Method: Get
+              TransactionStubName: ServerDataStub
+```
+
+This is the actual mock surface: open port `8080`, listen locally, and route `GET /data` to the stub named `ServerDataStub`.
+
+## Full `mocker.qaas.yaml` {: #full-mockerqaasyaml}
+
+```yaml
+DataSources:
+  - Name: ServerData
+    Generator: FromFileSystem
+    GeneratorConfiguration:
+      DataArrangeOrder: AsciiAsc
+      FileSystem:
+        Path: ServerData
+
+Stubs:
+  - Name: ServerDataStub
+    Processor: ServerDataProcessor
+    DataSourceNames: [ServerData]
+
+Servers:
+  - Http:
+      Port: 8080
+      IsLocalhost: false
+      Endpoints:
+        - Path: /data
+          Actions:
+            - Name: GetServerData
+              Method: Get
+              TransactionStubName: ServerDataStub
+```
+
+## Run the Mock {: #run-the-mock}
+
+From `DummyAppMock/DummyAppMock`:
+
+```bash
+dotnet run -- run mocker.qaas.yaml
+```
+
+Then verify it:
+
+```bash
+curl http://127.0.0.1:8080/data
+```
+
+The mock keeps running after the check. Stop it with `Ctrl+C` when you are done.
+
+## See also {: #see-also}
+
+- [Create a mock in code](createMockCode.md)
+- [Deploy a mock](deployMock.md)
+- [DataSources](../userInterfaces/mocker/configurationSections/dataSources/overview.md)
+- [Stubs](../userInterfaces/mocker/configurationSections/stubs/overview.md)
+- [Servers](../userInterfaces/mocker/configurationSections/server/overview.md)
+
+
+## Create a Mock (Code)
+
+Source: /mocker/quickStart/createMockCode/
+Type: tutorials
+Applies to: mocker
+Summary: This sample builds the same mock as the YAML quick start, but assembles the mock configuration in Program.cs.
+
+# Create a Mock (Code)
+
+> TL;DR — Use C# configuration when the mock shape should be assembled in `Program.cs`.
+
+This sample builds the same mock as the YAML quick start, but assembles the mock configuration in `Program.cs`.
+
+The completed sample is available at [DummyAppMock (Code)]({{ links.repository_mocker_quickstart_code }}).
+
+## Create the Project {: #create-the-project}
+
+```bash
+dotnet new qaas-mocker -n DummyAppMock
+cd DummyAppMock
+dotnet add DummyAppMock/DummyAppMock.csproj package QaaS.Mocker
+dotnet add DummyAppMock/DummyAppMock.csproj package QaaS.Common.Generators
+```
+
+## Add the Response File {: #add-the-response-file}
+
+`DummyAppMock/ServerData/sample.json`
+
+```json
+{
+  "message": "hello from DummyAppMock",
+  "source": "dummy_app_mock"
+}
+```
+
+## Reuse the Same Local Processor {: #reuse-the-same-local-processor}
+
+Use the same `ServerDataProcessor` shown in the YAML quick start. The code-first sample keeps the processor identical so the only difference is how the mock is configured.
+
+## Build `Program.cs` in Small Pieces {: #build-programcs-in-small-pieces}
+
+`DummyAppMock/Program.cs`
+
+### Start with the Imports {: #start-with-the-imports}
+
+```csharp
+using DummyAppMock.Processors;
+using QaaS.Common.Generators.ConfigurationObjects.FromExternalSourceConfigurations;
+using QaaS.Common.Generators.FromExternalSourceGenerators;
+using QaaS.Framework.SDK.DataSourceObjects;
+using QaaS.Framework.SDK.Extensions;
+using QaaS.Mocker;
+using QaaS.Mocker.Servers.ConfigurationObjects;
+using QaaS.Mocker.Servers.ConfigurationObjects.HttpServerConfigs;
+using QaaS.Mocker.Stubs.ConfigurationObjects;
+using HttpMethod = QaaS.Mocker.Servers.ConfigurationObjects.HttpServerConfigs.HttpMethod;
+```
+
+### Start from the Standard Bootstrap Host {: #start-from-the-standard-bootstrap-host}
+
+The sample now starts with the normal Mocker bootstrap flow, then pulls out the single execution builder that the host created. When you run without arguments it defaults to `run mocker.qaas.yaml`, so the app keeps the same startup contract as the YAML sample while still adding the mock structure in code.
+
+```csharp
+var bootstrapArguments = args.Length > 0 ? args : ["run", "mocker.qaas.yaml"];
+var runner = Bootstrap.New(bootstrapArguments);
+var executionBuilder = runner.ExecutionBuilders.AsSingle();
+```
+
+### Create the Data Source {: #create-the-data-source}
+
+Start by describing where the response body comes from. This block gives the mock a named data source called `ServerData` that reads files from the local `ServerData` folder.
+
+```csharp
+var dataSource = new DataSourceBuilder()
+    .Named("ServerData")
+    .HookNamed(nameof(FromFileSystem))
+    .Configure(new FromFileSystemConfig
+    {
+        DataArrangeOrder = DataArrangeOrder.AsciiAsc,
+        FileSystem = new FileSystemConfig
+        {
+            Path = "ServerData"
+        }
+    });
+```
+
+### Create the Stub {: #create-the-stub}
+
+Next connect the incoming request flow to the local processor. The stub says "when this action runs, execute `ServerDataProcessor` and give it the `ServerData` source."
+
+```csharp
+var stub = new TransactionStubBuilder()
+    .Named("ServerDataStub")
+    .HookNamed(nameof(ServerDataProcessor))
+    .AddDataSourceName("ServerData");
+```
+
+### Create the Server {: #create-the-server}
+
+Now define the mock surface itself. This server listens on port `8080` and maps `GET /data` to the stub created in the previous step.
+
+```csharp
+var server = new ServerConfig
+{
+    Http = new HttpServerConfig
+    {
+        Port = 8080,
+        IsLocalhost = false,
+        Endpoints =
+        [
+            new HttpEndpointConfig
+            {
+                Path = "/data",
+                Actions =
+                [
+                    new HttpEndpointActionConfig
+                    {
+                        Name = "GetServerData",
+                        Method = HttpMethod.Get,
+                        TransactionStubName = "ServerDataStub"
+                    }
+                ]
+            }
+        ]
+    }
+};
+```
+
+### Add Everything to the Bootstrapped Execution {: #add-everything-to-the-bootstrapped-execution}
+
+Finally attach each piece to the bootstrapped `ExecutionBuilder`, then run the host.
+
+```csharp
+executionBuilder
+    .AddDataSource(dataSource)
+    .AddStub(stub)
+    .AddServer(server);
+
+runner.Run();
+```
+
+## Full `Program.cs` {: #full-programcs}
+
+This is the complete file exactly as it appears in the sample repository.
+
+`DummyAppMock/Program.cs`
+
+```csharp
+using DummyAppMock.Processors;
+using QaaS.Common.Generators.ConfigurationObjects.FromExternalSourceConfigurations;
+using QaaS.Common.Generators.FromExternalSourceGenerators;
+using QaaS.Framework.SDK.DataSourceObjects;
+using QaaS.Framework.SDK.Extensions;
+using QaaS.Mocker;
+using QaaS.Mocker.Servers.ConfigurationObjects;
+using QaaS.Mocker.Servers.ConfigurationObjects.HttpServerConfigs;
+using QaaS.Mocker.Stubs.ConfigurationObjects;
+using HttpMethod = QaaS.Mocker.Servers.ConfigurationObjects.HttpServerConfigs.HttpMethod;
+
+var bootstrapArguments = args.Length > 0 ? args : ["run", "mocker.qaas.yaml"];
+var runner = Bootstrap.New(bootstrapArguments);
+var executionBuilder = runner.ExecutionBuilders.AsSingle();
+
+var dataSource = new DataSourceBuilder()
+    .Named("ServerData")
+    .HookNamed(nameof(FromFileSystem))
+    .Configure(new FromFileSystemConfig
+    {
+        DataArrangeOrder = DataArrangeOrder.AsciiAsc,
+        FileSystem = new FileSystemConfig
+        {
+            Path = "ServerData"
+        }
+    });
+
+var stub = new TransactionStubBuilder()
+    .Named("ServerDataStub")
+    .HookNamed(nameof(ServerDataProcessor))
+    .AddDataSourceName("ServerData");
+
+var server = new ServerConfig
+{
+    Http = new HttpServerConfig
+    {
+        Port = 8080,
+        IsLocalhost = false,
+        Endpoints =
+        [
+            new HttpEndpointConfig
+            {
+                Path = "/data",
+                Actions =
+                [
+                    new HttpEndpointActionConfig
+                    {
+                        Name = "GetServerData",
+                        Method = HttpMethod.Get,
+                        TransactionStubName = "ServerDataStub"
+                    }
+                ]
+            }
+        ]
+    }
+};
+
+executionBuilder
+    .AddDataSource(dataSource)
+    .AddStub(stub)
+    .AddServer(server);
+
+runner.Run();
+```
+
+This `Program.cs` still maps directly to the YAML quick start: one `FromFileSystem` data source, one stub, and one HTTP server endpoint. The difference is only where that configuration is defined.
+
+## Run the Code Path {: #run-the-code-path}
+
+From `DummyAppMock/DummyAppMock`:
+
+```bash
+dotnet run
+```
+
+Then verify it:
+
+```bash
+curl http://127.0.0.1:8080/data
+```
+
+The mock keeps running after the check. Stop it with `Ctrl+C` when you are done.
+
+## See also {: #see-also}
+
+- [Create a mock in YAML](createMock.md)
+- [Deploy a mock](deployMock.md)
+- [Mocker functions](../functions/index.md)
+- [DataSources](../userInterfaces/mocker/configurationSections/dataSources/overview.md)
+- [Stubs](../userInterfaces/mocker/configurationSections/stubs/overview.md)
+
+
+## Deploy a Mock
+
+Source: /mocker/quickStart/deployMock/
+Type: tutorials
+Applies to: mocker
+Summary: Once the mock works locally, package it as a container image and deploy it with a native Helm chart.
+
+# Deploy a Mock
+
+> TL;DR — Package a working mock as a container image and deploy it with the native Helm chart.
+
+Once the mock works locally, package it as a container image and deploy it with a native Helm chart.
+
+The finished chart lives alongside the sample project:
+
+- [DummyAppMock (YAML)]({{ links.repository_mocker_quickstart_yaml }})
+- [DummyAppMock (Code)]({{ links.repository_mocker_quickstart_code }})
+
+## Build the Image {: #build-the-image}
+
+The project template already contains a Dockerfile. For a project named `DummyAppMock`, the final image can look like this:
+
+```dockerfile
+ARG DOTNET_SDK_IMAGE={{ images.dotnet_sdk }}
+ARG DOTNET_RUNTIME_IMAGE={{ images.dotnet_runtime }}
+
+FROM ${DOTNET_SDK_IMAGE} AS build
+WORKDIR /src
+COPY . .
+ARG QAAS_NUGET_SOURCE_NAME=nuget_feed
+ARG QAAS_NUGET_SOURCE_URL={{ links.nuget_feed }}
+RUN dotnet nuget remove source "${QAAS_NUGET_SOURCE_NAME}" --configfile NuGet.config || true \
+ && dotnet nuget add source "${QAAS_NUGET_SOURCE_URL}" --name "${QAAS_NUGET_SOURCE_NAME}" --configfile NuGet.config
+RUN dotnet restore DummyAppMock.sln --configfile NuGet.config
+RUN dotnet publish DummyAppMock/DummyAppMock.csproj -c Release -o /app/publish --no-restore
+
+FROM ${DOTNET_RUNTIME_IMAGE}
+WORKDIR /app
+COPY --from=build /app/publish .
+ENV QAAS_MOCKER_CONFIG=mocker.qaas.yaml
+ENTRYPOINT ["sh", "-c", "exec dotnet DummyAppMock.dll \"$QAAS_MOCKER_CONFIG\""]
+```
+
+!!! warning "⚠️ Important"
+    Build the project as part of the Docker image build, then push that finished runtime image to your registry. The deployed container should only pull the published image and start the already-built application. It should not compile the project during pod startup.
+
+The Dockerfile keeps the SDK image, runtime image, NuGet source name, NuGet source URL, and mocker configuration file configurable. Use build arguments for values needed before `dotnet restore`, and use the `QAAS_MOCKER_CONFIG` environment variable when the same image should start a different mocker YAML file.
+
+Build and push the image to your registry:
+
+```bash
+docker build -t ghcr.io/my-org/dummy-app-mock:1.0.0 .
+docker push ghcr.io/my-org/dummy-app-mock:1.0.0
+```
+
+For a private feed or a custom image mirror:
+
+```bash
+DOTNET_SDK_IMAGE=registry.example.com/dotnet/sdk:10.0
+DOTNET_RUNTIME_IMAGE=registry.example.com/dotnet/runtime:10.0
+QAAS_NUGET_SOURCE_URL=https://nuget.example.com/v3/index.json
+
+docker build -t ghcr.io/my-org/dummy-app-mock:1.0.0 \
+  --build-arg DOTNET_SDK_IMAGE="${DOTNET_SDK_IMAGE}" \
+  --build-arg DOTNET_RUNTIME_IMAGE="${DOTNET_RUNTIME_IMAGE}" \
+  --build-arg QAAS_NUGET_SOURCE_URL="${QAAS_NUGET_SOURCE_URL}" \
+  .
+```
+
+After the image is published, Kubernetes only needs to pull `ghcr.io/my-org/dummy-app-mock:1.0.0` and run it. Rebuilding is only needed when you publish a new image tag.
+
+## Native Helm Chart {: #native-helm-chart}
+
+This chart deploys:
+
+- the mocker container
+- a Redis instance for the optional [Controller](../userInterfaces/mocker/configurationSections/controller/overview.md)
+- a service for the mocker HTTP endpoint
+
+### `Chart.yaml` {: #chartyaml}
+
+```yaml
+apiVersion: v2
+name: dummy-app-mock
+description: Helm chart for deploying a QaaS.Mocker quick-start project
+type: application
+version: 0.1.0
+appVersion: "1.0.0"
+```
+
+### `values.yaml` {: #valuesyaml}
+
+```yaml
+mocker:
+  replicaCount: 1
+  image:
+    repository: ghcr.io/my-org/dummy-app-mock
+    tag: 1.0.0
+    pullPolicy: IfNotPresent
+  service:
+    type: ClusterIP
+    port: 80
+  controller:
+    serverName: DummyAppMock
+  configFile: mocker.qaas.yaml
+
+redis:
+  image:
+    repository: {{ images.redis_repository }}
+    tag: {{ images.redis_tag }}
+    pullPolicy: IfNotPresent
+  service:
+    type: ClusterIP
+    port: 6379
+```
+
+### `templates/mocker-deployment.yaml` {: #templatesmocker-deploymentyaml}
+
+{% raw %}
+
+```yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ .Release.Name }}-mocker
+spec:
+  replicas: {{ .Values.mocker.replicaCount }}
+  selector:
+    matchLabels:
+      app: {{ .Release.Name }}-mocker
+  template:
+    metadata:
+      labels:
+        app: {{ .Release.Name }}-mocker
+    spec:
+      containers:
+        - name: mocker
+          image: "{{ .Values.mocker.image.repository }}:{{ .Values.mocker.image.tag }}"
+          imagePullPolicy: {{ .Values.mocker.image.pullPolicy }}
+          ports:
+            - containerPort: {{ .Values.mocker.service.port }}
+          env:
+            - name: QAAS_MOCKER_CONFIG
+              value: {{ .Values.mocker.configFile | quote }}
+            - name: Controller__ServerName
+              value: {{ .Values.mocker.controller.serverName | quote }}
+            - name: Controller__Redis__Host
+              value: "{{ .Release.Name }}-redis:{{ .Values.redis.service.port }}"
+```
+
+{% endraw %}
+
+### `templates/mocker-service.yaml` {: #templatesmocker-serviceyaml}
+
+{% raw %}
+
+```yaml
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ .Release.Name }}-mocker
+spec:
+  type: {{ .Values.mocker.service.type }}
+  selector:
+    app: {{ .Release.Name }}-mocker
+  ports:
+    - name: http
+      port: {{ .Values.mocker.service.port }}
+      targetPort: {{ .Values.mocker.service.port }}
+      protocol: TCP
+```
+
+{% endraw %}
+
+### `templates/redis-deployment.yaml` {: #templatesredis-deploymentyaml}
+
+{% raw %}
+
+```yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ .Release.Name }}-redis
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: {{ .Release.Name }}-redis
+  template:
+    metadata:
+      labels:
+        app: {{ .Release.Name }}-redis
+    spec:
+      containers:
+        - name: redis
+          image: "{{ .Values.redis.image.repository }}:{{ .Values.redis.image.tag }}"
+          imagePullPolicy: {{ .Values.redis.image.pullPolicy }}
+          ports:
+            - containerPort: {{ .Values.redis.service.port }}
+```
+
+{% endraw %}
+
+### `templates/redis-service.yaml` {: #templatesredis-serviceyaml}
+
+{% raw %}
+
+```yaml
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ .Release.Name }}-redis
+spec:
+  type: {{ .Values.redis.service.type }}
+  selector:
+    app: {{ .Release.Name }}-redis
+  ports:
+    - name: redis
+      port: {{ .Values.redis.service.port }}
+      targetPort: {{ .Values.redis.service.port }}
+      protocol: TCP
+```
+
+{% endraw %}
+
+## Deploy {: #deploy}
+
+```bash
+helm upgrade --install dummy-app-mock ./chart
+```
+
+The mocker becomes reachable through the mocker service, and the [Controller](../userInterfaces/mocker/configurationSections/controller/overview.md) connects to Redis through the injected `Controller__Redis__Host` environment variable.
+
+## See also {: #see-also}
+
+- [Create a mock in YAML](createMock.md)
+- [Create a mock in code](createMockCode.md)
+- [Integrate with tests](integrateWithTests.md)
+- [Servers](../userInterfaces/mocker/configurationSections/server/overview.md)
+
+
+## Mocker IDE Setup
+
+Source: /mocker/quickStart/ide/
+Type: tutorials
+Applies to: mocker
+Summary: QaaS.Mocker can be configured in YAML or in C# (Configuration as Code). This page focuses on the YAML experience for Mocker projects.
+
+# Mocker IDE Setup
+
+> TL;DR — Configure IDE schema assistance for Mocker YAML while keeping C# configuration available when needed.
+
+QaaS.Mocker can be configured in YAML or in C# ([Configuration as Code](../../qaas/advancedConcepts/configurationAsCode.md)). This page focuses on the YAML experience for Mocker projects.
+
+If your team keeps mock definitions in `mocker.qaas.yaml`, configure your IDE with the Mocker JSON schema so you get validation, completion, and structure-aware suggestions while editing.
+
+## Mocker Schema {: #mocker-schema}
+
+<a class="md-button md-button--primary" href="{{ links.mocker_schema }}" download="mocker-family-schema.json">Download QaaS.Mocker Schema</a>
+
+The Mocker schema covers:
+
+- core `QaaS.Mocker` configuration such as [DataSources](../userInterfaces/mocker/configurationSections/dataSources/overview.md), [Stubs](../userInterfaces/mocker/configurationSections/stubs/overview.md), [Controller](../userInterfaces/mocker/configurationSections/controller/overview.md), and [Servers](../userInterfaces/mocker/configurationSections/server/overview.md)
+- packaged generator configuration used by Mocker projects through [QaaS.Common.Generators](../../generators/index.md)
+- processor configuration for packaged [QaaS.Common.Processors](../../processors/index.md) and project-local processors referenced by [Stubs](../userInterfaces/mocker/configurationSections/stubs/overview.md)
+
+## What you get after mapping the schema {: #what-you-get-after-mapping-the-schema}
+
+After you attach the schema to your Mocker YAML files, your IDE can provide:
+
+- syntax highlighting
+- auto-completion
+- validation errors for invalid values or missing required fields
+- contextual suggestions based on the current configuration section
+
+!!! tip
+    To trigger suggestions manually, use `Ctrl + Space`.
+
+## VS Code {: #vs-code}
+
+Open `settings.json` and add a YAML schema mapping for your Mocker files:
+
+```json
+{
+  "yaml.schemas": {
+    "{{ links.mocker_schema }}": "mocker.qaas.yaml"
+  }
+}
+```
+
+If your project uses a different file name or a folder pattern, change the right-hand side to match your own YAML files.
+
+## Rider {: #rider}
+
+1. Open `File` -> `Settings` -> `Languages & Frameworks` -> `Schemas and DTDs` -> `JSON Schema Mappings`.
+2. Click the **+** button to add a new mapping.
+3. Select the Mocker schema file or URL.
+4. Map it to `mocker.qaas.yaml` or to the YAML pattern your Mocker project uses.
+
+!!! warning "⚠️ Important"
+    Rider stores schema mappings per project. Repeat this setup for each Mocker repository you create.
+
+## See also {: #see-also}
+
+- [Installation](installation.md)
+- [Create a mock in YAML](createMock.md)
+- [Controller](../userInterfaces/mocker/configurationSections/controller/overview.md)
+- [Servers](../userInterfaces/mocker/configurationSections/server/overview.md)
+- [Stubs](../userInterfaces/mocker/configurationSections/stubs/overview.md)
+
+
+## Installation
+
+Source: /mocker/quickStart/installation/
+Type: tutorials
+Applies to: mocker
+Summary: Add the relevant package source to your global NuGet.Config file, usually ~/.nuget/NuGet/NuGet.Config.
+
+# Installation
+
+> TL;DR — Add the QaaS package source, create a Mocker project, and restore the required NuGet packages.
+
+## Prerequisites {: #prerequisites}
+
+| Requirement                        | Details                                                             |
+|------------------------------------|---------------------------------------------------------------------|
+| [.NET SDK]({{ links.dotnet_sdk }}) | Version **10.0**                                                    |
+| NuGet feed                         | A global `NuGet.Config` file configured with the correct nuget feed |
+| IDE setup                          | Recommended for YAML schema validation and completion               |
+
+## Global NuGet.Config {: #global-nugetconfig}
+
+Add the relevant package source to your global `NuGet.Config` file, usually `~/.nuget/NuGet/NuGet.Config`.
+
+```xml
+<configuration>
+    <packageSources>
+        <clear />
+        <add key="nuget_feed" value="{{ links.nuget_feed }}" protocolVersion="3" />
+    </packageSources>
+</configuration>
+```
+
+## Packages {: #packages}
+
+Add the package to your project:
+
+=== "`.csproj`"
+
+    ```xml
+    <ItemGroup>
+      <PackageReference Include="QaaS.Mocker" Version="x.x.x" />
+      <PackageReference Include="QaaS.Common.Generators" Version="x.x.x" />
+      <PackageReference Include="QaaS.Common.Processors" Version="x.x.x" />
+    </ItemGroup>
+    ```
+
+=== "CLI"
+
+    ```bash
+    dotnet add package QaaS.Mocker
+    dotnet add package QaaS.Common.Generators
+    dotnet add package QaaS.Common.Processors
+    ```
+
+[QaaS.Common.Generators](../../generators/index.md) is optional in general, but it is used by the quick-start examples on this site. [QaaS.Common.Processors](../../processors/index.md) is also optional, but install it when you want packaged reusable processors instead of only project-local processor classes.
+
+## Project Template {: #project-template}
+
+Use [QaaS.Mocker.Template]({{ links.repository_mocker_template }}) when you want a ready-to-run mocker repo instead of wiring packages by hand.
+
+```bash
+dotnet new install QaaS.Mocker.Template
+dotnet new qaas-mocker -n MyServiceMock
+```
+
+The generated repo includes:
+
+- `NuGet.config` pointing at: `{{ links.nuget_feed }}`
+- `QaaS.Mocker` with `Version="x.x.x"` (set a concrete package version for your project)
+- a minimal `/health` mock under `Servers`
+- `Dockerfile` and generated GitHub Actions CI
+
+If you use Artifactory or another private feed, keep the feed URL configurable rather than baking one environment into the project. Update the generated `NuGet.config` for local restores, and pass the same feed into Docker builds with the template's NuGet source build argument before `dotnet restore`.
+
+## IDE Setup {: #ide-setup}
+
+Use the dedicated [IDE Setup](ide.md) page for the Mocker-specific JSON schema and editor mappings.
+
+## See also {: #see-also}
+
+- [Mocker IDE setup](ide.md)
+- [Create a mock in YAML](createMock.md)
+- [Create a mock in code](createMockCode.md)
+- [Runner installation](../../qaas/quickStart/installation.md)
+
+
+## Integrate with Tests
+
+Source: /mocker/quickStart/integrateWithTests/
+Type: tutorials
+Applies to: mocker
+Summary: For end-to-end integration between QaaS.Runner tests and a mock server, configure the Controller section in mocker.qaas.yaml.
+
+# Integrate with Tests
+
+> TL;DR — Connect Runner tests to a Mocker instance through the Controller section and Runner Mocker Commands.
+
+For end-to-end integration between [QaaS.Runner](../../qaas/index.md) tests and a mock server, configure the [Controller](../userInterfaces/mocker/configurationSections/controller/overview.md) section in `mocker.qaas.yaml`.
+
+The controller bridges `QaaS.Runner` tests and `QaaS.Mocker` servers via Redis pub/sub. Tests send commands to the mocker, making it perform specific actions. See [Mocker Commands](../../qaas/userInterfaces/runner/configurationSections/sessions/types/mockerCommands.md) for details.
+
+## Configuring Controller {: #configuring-controller}
+
+To let the tests and the mocker recognize each other, configure a server name and a Redis connection.
+
+`mocker.qaas.yaml`
+
+```yaml
+Controller:
+  ServerName: MockerExample
+  Redis:
+    Host: redis:6379
+    RedisDataBase: 0
+```
+
+## See also {: #see-also}
+
+- [Create a mock in YAML](createMock.md)
+- [Controller](../userInterfaces/mocker/configurationSections/controller/overview.md)
+- [Mocker Commands](../../qaas/userInterfaces/runner/configurationSections/sessions/types/mockerCommands.md)
+- [Debug a failed test](../../qaas/quickStart/debugTestFailure.md)
+
+
+## Debug Test Failure
+
+Source: /qaas/quickStart/debugTestFailure/
+Type: tutorials
+Applies to: runner
+Summary: Use split Runner phases, focused logging, and saved report artifacts to debug failed tests.
+
+# Debug Test Failure
+
+> TL;DR — Use split Runner phases, focused logging, and saved report artifacts to debug failed tests.
+
+## QaaS Logs {: #qaas-logs}
+
+QaaS includes a configurable logger that can output logs to the console or to a file. The log level can be adjusted using the `-l` flag, or the entire logging configuration can be overridden using the `-g` flag.
+
+For more information about the logger, refer to the [Logger documentation](../userInterfaces/logger.md).
+
+## QaaS Act/Assert Commands {: #qaas-actassert-commands}
+
+QaaS provides two specialized commands to help debug test failures:
+
+- [`act`](../userInterfaces/runner/commands/act.md): Runs only the `act` phase of the test, which includes [DataSources](../userInterfaces/runner/configurationSections/dataSources/overview.md) and [Sessions](../userInterfaces/runner/configurationSections/sessions/overview.md). The output is stored in an external storage location.
+- [`assert`](../userInterfaces/runner/commands/assert.md): Runs only the `assert` phase of the test, which includes [DataSources](../userInterfaces/runner/configurationSections/dataSources/overview.md) and [Assertions](../userInterfaces/runner/configurationSections/assertions/overview.md). It retrieves required data from the same external storage.
+
+Both commands use the configuration defined in the [Storages](../userInterfaces/runner/configurationSections/storages/overview.md) section to access the external storage.
+
+These commands are particularly useful for:
+
+- Debugging assertion configurations
+- Using QaaS solely as a data injector for testing or validation
+
+### Usage Examples {: #usage-examples}
+
+To run only the `act` phase and store output in a specified directory:
+
+```bash
+dotnet run -- act test.qaas.yaml -w Variables/...
+```
+
+To run only the `assert` phase using previously stored data:
+
+```bash
+dotnet run -- assert test.qaas.yaml -w Variables/...
+```
+
+This workflow allows you to isolate and inspect each phase of the test independently, making it easier to identify and resolve issues.
+
+## Triage protocol {: #triage-protocol}
+
+When `qaas-runner run` exits non-zero, do not re-run blindly. Walk these steps:
+
+1. **Confirm YAML loads.** Run `qaas-runner template test.qaas.yaml`. Fix placeholder or schema errors before continuing.
+2. **Confirm publishers fired.** If they did not, a probe or pre-session step failed; check the probe's trace.
+3. **Confirm consumers received.** If they did not, suspect channel naming or a system-under-test that is not consuming.
+4. **Confirm the assertion ran.** If it did not, configuration validation failed; check `AssertionTrace`.
+5. **Classify the failure.** A real failure points to a defect in the system-under-test. A spurious failure points to a wrong test or assertion — split with `act` + `assert`.
+
+## Split with act + assert {: #split-with-act-assert}
+
+Capture once, replay assertions repeatedly:
+
+```bash
+# 1. Capture only — run sessions, save data, skip assertions.
+qaas-runner act test.qaas.yaml
+
+# 2. Replay only the assertions against the captured data.
+qaas-runner assert test.qaas.yaml
+```
+
+Interpretation:
+
+- `act` failed but `assert` would have passed -> infrastructure (broker, system-under-test, mocker).
+- `act` succeeded but `assert` failed -> the assertion or its configuration is wrong.
+- Both succeed but `run` fails -> an order-of-operation bug (e.g. a probe between act and assert).
+
+## High-yield triage commands {: #high-yield-triage-commands}
+
+```bash
+# A. Dump the resolved YAML (post-placeholder substitution).
+qaas-runner template test.qaas.yaml > resolved.yaml
+diff -u test.qaas.yaml resolved.yaml | less
+
+# B. Crank logging.
+qaas-runner run test.qaas.yaml -l Verbose
+
+# C. Open Allure HTML.
+qaas-runner run test.qaas.yaml -s allure-results -e
+
+# D. Re-run only failing assertions in a tight loop.
+qaas-runner assert test.qaas.yaml
+```
+
+## Reporter wiring for triage {: #reporter-wiring-for-triage}
+
+Two reporter knobs matter most. Leave them on in dev and CI:
+
+```yaml
+Reporters:
+  - Name: AllureFull
+    Reporter: AllureReporter
+    ReporterConfiguration:
+      SaveSessionData: true     # raw payloads under allure-results/attachments
+      SaveAttachments: true     # request/response blobs per assertion step
+      DisplayTrace: true        # surfaces AssertionTrace in the rendered step
+```
+
+With `SaveAttachments: true`, each assertion step in the Allure HTML carries:
+
+- `request-<i>.bin` — what the publisher sent.
+- `response-<i>.bin` — what the consumer observed.
+- `assertion-trace.txt` — verbatim `AssertionTrace`.
+- `assertion-message.txt` — verbatim `AssertionMessage`.
+
+Open these first when an assertion is red.
+
+## Common gotchas {: #common-gotchas}
+
+1. **`CopyToOutputDirectory` missing on `*.qaas.yaml`** -> runner errors with "config file not found" because it is reading from `bin/Release/net10.0`, not your source tree. Fix the csproj.
+2. **Schema cache stale** -> "unknown enum value" right after you added a custom plugin. Re-run the schema generator and clean `bin/`.
+3. **Channel naming mismatch** -> publishers fire but consumers time out. Verify the mocker's logged channel name matches what the runner expects.
+4. **`RabbitMq.Host: 127.0.0.1` in a containerised runner** -> host is the container itself. Use `host.docker.internal` or join networks.
+5. **`ExpectedPercentage: 100` with at-least-once delivery** -> flake. Use `>= 95` or a session-level dedupe consumer.
+6. **Custom hook not loaded** -> `Processor: MyThing` rejected as unknown. The runner only discovers types its `AppDomain` already references.
+7. **Reporter not writing** -> check `SaveSessionData` / `SaveAttachments` / `DisplayTrace`; defaults are false in some templates.
+
+## Environment differences (laptop vs CI) {: #environment-differences-laptop-vs-ci}
+
+| Symptom | Likely cause |
+|---|---|
+| Pass local, fail CI | RabbitMQ readiness — CI's Rabbit is cold. Add a wait-for-ready probe. |
+| Pass CI, fail local | NuGet feed difference. Pin versions; restore with `--configfile NuGet.config`. |
+| Hangs forever | `TimeoutMs` only bounds per-message waits. Add an outer timeout on the runner invocation. |
+| Different assertion result | Non-deterministic test data order. Set `DataArrangeOrder: AsciiAsc` and use named fixtures. |
+| Mocker unreachable | Container networking. Use `--network host` or publish ports + `127.0.0.1` mapping. |
+
+## See also {: #see-also}
+
+- [Run test](runTest.md)
+- [`run` command](../userInterfaces/runner/commands/run.md)
+- [`act` command](../userInterfaces/runner/commands/act.md)
+- [`assert` command](../userInterfaces/runner/commands/assert.md)
+- [Allure Report](../userInterfaces/runner/allureReport.md)
+
+
+## Runner IDE Setup
+
+Source: /qaas/quickStart/ide/
+Type: tutorials
+Applies to: runner
+Summary: QaaS.Runner can be configured in YAML or in C# (Configuration as Code). This page focuses on the YAML experience for Runner projects.
+
+# Runner IDE Setup
+
+> TL;DR — Configure IDE schema assistance for Runner YAML while keeping C# configuration available when needed.
+
+QaaS.Runner can be configured in YAML or in C# ([Configuration as Code](../advancedConcepts/configurationAsCode.md)). This page focuses on the YAML experience for Runner projects.
+
+If your team keeps Runner definitions in `test.qaas.yaml`, configure your IDE with the Runner JSON schema so you get validation, completion, and structure-aware suggestions while editing.
+
+## Runner Schema {: #runner-schema}
+
+<a class="md-button md-button--primary" href="{{ links.runner_schema }}" download="runner-family-schema.json">Download QaaS.Runner Schema</a>
+
+The Runner schema covers:
+
+- core `QaaS.Runner` configuration such as [MetaData](../userInterfaces/runner/configurationSections/metaData/overview.md), [Links](../userInterfaces/runner/configurationSections/links/overview.md), [Storages](../userInterfaces/runner/configurationSections/storages/overview.md), [DataSources](../userInterfaces/runner/configurationSections/dataSources/overview.md), [Sessions](../userInterfaces/runner/configurationSections/sessions/overview.md), and [Assertions](../userInterfaces/runner/configurationSections/assertions/overview.md)
+- the packaged hook families commonly used by Runner projects, including [QaaS.Common.Assertions](../../assertions/index.md), [QaaS.Common.Generators](../../generators/index.md), and [QaaS.Common.Probes](../../probes/index.md)
+
+## What you get after mapping the schema {: #what-you-get-after-mapping-the-schema}
+
+After you attach the schema to your Runner YAML files, your IDE can provide:
+
+- syntax highlighting
+- auto-completion
+- validation errors for invalid values or missing required fields
+- contextual suggestions based on the current configuration section
+
+!!! tip
+    To trigger suggestions manually, use `Ctrl + Space`.
+
+## VS Code {: #vs-code}
+
+Open `settings.json` and add a YAML schema mapping for your Runner files:
+
+```json
+{
+  "yaml.schemas": {
+    "{{ links.runner_schema }}": "test.qaas.yaml"
+  }
+}
+```
+
+If your project uses a different file name or a folder pattern, change the right-hand side to match your own YAML files.
+
+## Rider {: #rider}
+
+1. Open `File` -> `Settings` -> `Languages & Frameworks` -> `Schemas and DTDs` -> `JSON Schema Mappings`.
+2. Click the **+** button to add a new mapping.
+3. Select the Runner schema file or URL.
+4. Map it to `test.qaas.yaml` or to the YAML pattern your Runner project uses.
+
+!!! warning "⚠️ Important"
+    Rider stores schema mappings per project. Repeat this setup for each Runner repository you create.
+
+## See also {: #see-also}
+
+- [Installation](installation.md)
+- [Write a test in YAML](writeTestYaml.md)
+- [Configuration sections](../userInterfaces/runner/configurationSections/configurationSections.md)
+- [Runner commands](../userInterfaces/runner/commands/commands.md)
+
+
+## Installation
+
+Source: /qaas/quickStart/installation/
+Type: tutorials
+Applies to: runner
+Summary: Add the relevant package source to your global NuGet.Config file, usually ~/.nuget/NuGet/NuGet.Config.
+
+# Installation
+
+> TL;DR — Add the QaaS package source, create a Runner project, and restore the required NuGet packages.
+
+## Prerequisites {: #prerequisites}
+
+| Requirement                                         | Details                                                             |
+|-----------------------------------------------------|---------------------------------------------------------------------|
+| [.NET SDK]({{ links.dotnet_sdk }})                  | Version **10.0**                                                    |
+| NuGet feed                                          | A global `NuGet.Config` file configured with the correct nuget feed |
+| [Allure CLI]({{ links.allure_installation_guide }}) | Optional, for viewing reports locally                               |
+
+## Global NuGet.Config {: #global-nugetconfig}
+
+Add the relevant package source to your global `NuGet.Config` file, usually `~/.nuget/NuGet/NuGet.Config`.
+
+```xml
+<configuration>
+  <packageSources>
+    <clear />
+    <add key="nuget_feed" value="{{ links.nuget_feed }}" protocolVersion="3" />
+  </packageSources>
+</configuration>
+```
+
+## Packages {: #packages}
+
+Add the packages your project needs. At minimum, you need `QaaS.Runner`; the Common libraries are optional [Plugins](../addOns/plugins.md).
+
+=== "`.csproj`"
+
+    ```xml
+    <ItemGroup>
+      <PackageReference Include="QaaS.Runner" Version="x.x.x" />
+      <PackageReference Include="QaaS.Common.Assertions" Version="x.x.x" />
+      <PackageReference Include="QaaS.Common.Generators" Version="x.x.x" />
+      <PackageReference Include="QaaS.Common.Probes" Version="x.x.x" />
+    </ItemGroup>
+    ```
+
+=== "CLI"
+
+    ```bash
+    dotnet add package QaaS.Runner
+    dotnet add package QaaS.Common.Assertions
+    dotnet add package QaaS.Common.Generators
+    dotnet add package QaaS.Common.Probes
+    ```
+
+!!! tip "Version compatibility"
+    All Common packages must share the same [QaaS.Framework.SDK](../../framework/projects/sdk.md) version, or a compatible newer minor version, as the `QaaS.Runner` package you reference.
+
+[QaaS.Common.Assertions](../../assertions/index.md), [QaaS.Common.Generators](../../generators/index.md), and [QaaS.Common.Probes](../../probes/index.md) are the packaged hook libraries used most often in Runner projects.
+
+## Project Template {: #project-template}
+
+Use [QaaS.Runner.Template]({{ links.repository_runner_template }}) when you want a ready-to-run runner repo instead of wiring packages by hand.
+
+```bash
+dotnet new install QaaS.Runner.Template
+dotnet new qaas-runner -n MyServiceTests
+```
+
+The generated repo includes:
+
+- `NuGet.config` pointing at: `{{ links.nuget_feed }}`
+- `QaaS.Runner` with `Version="x.x.x"` (set a concrete package version for your project)
+- a minimal valid `test.qaas.yaml`
+- a Rider launch profile for `run test.qaas.yaml`
+
+If you use Artifactory or another private feed, keep the feed URL configurable rather than baking one environment into the project. Update the generated `NuGet.config` for local restores, and pass the same feed into Docker builds or CI restore steps through a build variable before `dotnet restore`.
+
+## Allure CLI {: #allure-cli}
+
+The Allure CLI installation instructions are available [Here]({{ links.allure_installation_guide }}).
+
+## See also {: #see-also}
+
+- [Runner IDE setup](ide.md)
+- [Write a test in YAML](writeTestYaml.md)
+- [Run test](runTest.md)
+- [Mocker installation](../../mocker/quickStart/installation.md)
+
+
+## Maintainable Test
+
+Source: /qaas/quickStart/makeTestMoreMaintainable/
+Type: tutorials
+Applies to: runner
+Summary: Use anchors, placeholders, overwrite files, and cases to keep Runner YAML reusable across environments and variants.
+
+# Maintainable Test
+
+> TL;DR — Use anchors, placeholders, overwrite files, and cases to keep Runner YAML reusable across environments and variants.
+
+We now have a working test that has produced results. However, the test file has several issues:
+
+- The `.yaml` file is lengthy and hard to read.
+- There is no clear distinction between configuration values that are fixed and those that vary by environment.
+- Changes to common settings (e.g., RabbitMQ host) require updates in multiple locations - such as four places in the example (two publishers and two consumers).
+
+To address these issues, we can use **anchors**, **placeholders**, and **overwriting files** to improve maintainability and reduce duplication.
+
+## Anchors {: #anchors}
+
+Anchors allow us to define reusable configuration blocks that are expanded when the YAML is rendered. They help eliminate duplication by creating "macros" for repeated structures.
+
+### Anchors Syntax {: #anchors-syntax}
+
+Define an anchor:
+
+```yaml
+anchor: &anchorName anchorValue
+```
+
+Use an anchor:
+
+```yaml
+anchorName: &anchorName anchorValue
+UseAnchor: *anchorName
+```
+
+### Example: Refactoring with Anchors {: #example-refactoring-with-anchors}
+
+We identify duplicated sections in the [Sessions](../userInterfaces/runner/configurationSections/sessions/overview.md) and [Assertions](../userInterfaces/runner/configurationSections/assertions/overview.md) sections. We create anchors for these and use the YAML merge key (`<<`) to incorporate them.
+
+```yaml
+anchors:
+  rabbitMqExchangeAnchor: &rabbitMqExchangeAnchor
+    Host: rabbitmq
+    Username: admin
+    Password: admin
+    RoutingKey: /
+    Port: 5672
+  sessionAnchor: &sessionAnchor
+    Publishers:
+      - &sessionPublisherAnchor
+        Name: Publisher
+        Policies:
+          - LoadBalance:
+              Rate: 50
+        RabbitMq: &publisherRabbitMqExchangeAnchor
+          <<: *rabbitMqExchangeAnchor
+          ExchangeName: input
+    Consumers:
+      - Name: Consumer
+        TimeoutMs: 5000
+        Deserialize:
+          Deserializer: Json
+        RabbitMq:
+          <<: *rabbitMqExchangeAnchor
+          ExchangeName: output
+  hermeticAssertionAnchor: &hermeticAssertionAnchor
+    Name: HermeticByInputOutputPercentage
+    Assertion: HermeticByInputOutputPercentage
+    AssertionConfiguration:
+      OutputNames: [Consumer]
+      InputNames: [Publisher]
+      ExpectedPercentage: 100
+  delayAssertionAnchor: &delayAssertionAnchor
+    Name: DelayByChunks
+    Assertion: DelayByChunks
+    AssertionConfiguration:
+      Output:
+        Name: Consumer
+        ChunkSize: 1
+      Input:
+        Name: Publisher
+        ChunkSize: 1
+      MaximumDelayMs: 5000
+
+DataSources:
+  - Name: FromFileSystemTestData
+    Generator: FromFileSystem
+    GeneratorConfiguration:
+      DataArrangeOrder: AsciiAsc
+      FileSystem:
+        Path: TestData
+  - Name: 10Samples
+    Generator: JsonArrayGenerator
+    GeneratorConfiguration:
+      Count: 10
+      NumberOfItemsPerArray: 5
+
+Sessions:
+  - <<: *sessionAnchor
+    Name: RabbitMqExchangeWithFromFileSystemTestData
+    Publishers:
+      - <<: *sessionPublisherAnchor
+        DataSourceNames: [FromFileSystemTestData]
+  - <<: *sessionAnchor
+    Name: RabbitMqExchangeWith10Samples
+    Publishers:
+      - <<: *sessionPublisherAnchor
+        Serialize:
+          Serializer: Json
+        DataSourceNames: [10Samples]
+        RabbitMq:
+          <<: *publisherRabbitMqExchangeAnchor
+
+Assertions:
+  - <<: *hermeticAssertionAnchor
+    SessionNames: [RabbitMqExchangeWithFromFileSystemTestData]
+  - <<: *delayAssertionAnchor
+    SessionNames: [RabbitMqExchangeWithFromFileSystemTestData]
+  - <<: *hermeticAssertionAnchor
+    SessionNames: [RabbitMqExchangeWith10Samples]
+  - <<: *delayAssertionAnchor
+    SessionNames: [RabbitMqExchangeWith10Samples]
+  - Name: LengthAssertion
+    Assertion: LengthAssertion
+    SessionNames: [RabbitMqExchangeWith10Samples]
+    AssertionConfiguration:
+      OutputName: Consumer
+      ExpectedLength: 5
+```
+
+### Best Practices for Anchors {: #best-practices-for-anchors}
+
+- Place all anchors under the `anchors` section to keep them separate from active configurations.
+- Use `camelCase` for anchor names.
+- Use anchors only for complex values (dictionaries or lists).
+- Anchors do not work with overwriting files - changes to an anchor are not propagated to its references in overwritten files.
+
+## Placeholders {: #placeholders}
+
+Placeholders allow dynamic value substitution within YAML configurations. They are especially useful for environment-specific settings.
+
+### Placeholders Syntax {: #placeholders-syntax}
+
+```yaml
+${variables:rabbitmq:host}
+```
+
+Supports:
+
+- Default values: `${variables:rabbitmq:host??localhost}`
+- Partial value inclusion: `${variables:rabbitmq:host}-prod`
+
+### Example: Using Placeholders {: #example-using-placeholders}
+
+Move environment-specific values into the `variables` section:
+
+```yaml
+variables:
+  rabbitmq:
+    host: rabbitmq
+    port: 5672
+
+anchors:
+  rabbitMqExchangeAnchor: &rabbitMqExchangeAnchor
+    Host: ${variables:rabbitmq:host}
+    Port: ${variables:rabbitmq:port}
+    Username: admin
+    Password: admin
+    RoutingKey: /
+```
+
+This allows the same configuration to be reused across environments by changing the values in the variables file.
+
+### Best Practices {: #best-practices}
+
+- Place placeholder values under the `variables` section.
+- Use `camelCase` for variable keys.
+- Use placeholders for non-logical, environment-dependent values.
+
+## Overwriting Files {: #overwriting-files}
+
+QaaS supports merging multiple YAML files, allowing you to separate configuration from logic. This is ideal for managing environment-specific settings.
+
+### File Structure {: #file-structure}
+
+```plaintext
+DummyAppTests/
+|-- test.qaas.yaml
+|-- Variables/
+|   |-- local.yaml
+|   |-- k8s.yaml
+|-- Cases/
+|-- TestData/...
+```
+
+### Environment-Specific Variables {: #environment-specific-variables}
+
+#### **Variables/local.yaml**
+
+```yaml
+variables:
+  rabbitmq:
+    host: <clusterHostname>
+    port: <nodePort>
+```
+
+#### **Variables/k8s.yaml**
+
+```yaml
+variables:
+  rabbitmq:
+    host: rabbitmq
+    port: 5672
+```
+
+### Running the Test {: #running-the-test}
+
+To run the test with a specific environment:
+
+```bash
+dotnet run -- run test.qaas.yaml -w Variables/local.yaml
+```
+
+```bash
+dotnet run -- run test.qaas.yaml -w Variables/k8s.yaml
+```
+
+This approach enables clean separation of concerns and allows the same test logic to be reused across different environments.
+
+> Note: Variable files use the `.yaml` extension because they contain only configuration data, not QaaS-specific structures.
+
+## Cases: Handling Repetitive Test Variants {: #cases-handling-repetitive-test-variants}
+
+When you have many similar test cases that differ only slightly (for example, different [DataSources](../userInterfaces/runner/configurationSections/dataSources/overview.md) or [Assertions](../userInterfaces/runner/configurationSections/assertions/overview.md)), use the `cases` feature.
+
+### Step 1: Create a Generic Template {: #step-1-create-a-generic-template}
+
+Refactor `test.qaas.yaml` to be generic, using placeholders and minimal configuration:
+
+```yaml
+anchors:
+  rabbitMqExchangeAnchor: &rabbitMqExchangeAnchor
+    Host: ${variables:rabbitmq:host}
+    Port: ${variables:rabbitmq:port}
+    Username: admin
+    Password: admin
+    RoutingKey: /
+
+DataSources:
+  - Name: DataSource
+    Generator: FromFileSystem
+    GeneratorConfiguration:
+      StorageName: LocalFiles
+      StorageMetaData: ItemName
+      Order: AsciiAsc
+
+Sessions:
+  - Name: Session
+    Publishers:
+      - Name: Publisher
+        DataSourceNames: [ DataSource ]
+        Policies:
+          - LoadBalance:
+              Rate: 50
+        RabbitMq:
+          <<: *rabbitMqExchangeAnchor
+          ExchangeName: input
+    Consumers:
+      - Name: Consumer
+        TimeoutMs: 5000
+        Deserialize:
+          Deserializer: Json
+        RabbitMq:
+          <<: *rabbitMqExchangeAnchor
+          ExchangeName: output
+
+Assertions:
+  - Name: HermeticByInputOutputPercentage
+    Assertion: HermeticByInputOutputPercentage
+    SessionNames: [Session]
+    AssertionConfiguration:
+      OutputNames: [Consumer]
+      InputNames: [Publisher]
+      ExpectedPercentage: 100
+  - Name: DelayByChunks
+    Assertion: DelayByChunks
+    SessionNames: [Session]
+    AssertionConfiguration:
+      Output:
+        Name: Consumer
+        ChunkSize: 1
+      Input:
+        Name: Publisher
+        ChunkSize: 1
+      MaximumDelayMs: 5000
+```
+
+### Step 2: Define Case Files {: #step-2-define-case-files}
+
+Create a `Cases` directory with individual case files:
+
+#### **Cases/externalData.yaml**
+
+```yaml
+DataSources:0:
+  Generator: FromFileSystem
+  GeneratorConfiguration:
+    DataArrangeOrder: AsciiAsc
+    FileSystem:
+      Path: TestData
+```
+
+#### **Cases/jsonArrayGenerator.yaml**
+
+```yaml
+DataSources:0:
+  Generator: JsonArrayGenerator
+  GeneratorConfiguration:
+    Count: 10
+    NumberOfItemsPerArray: 5
+
+Sessions:0:Publishers:0:Serialize:Serializer: Json
+
+Assertions:2:
+  Assertion: LengthAssertion
+  SessionNames: [Session]
+  AssertionConfiguration:
+    OutputName: Consumer
+    ExpectedLength: 5
+```
+
+### Key Features of Case Files {: #key-features-of-case-files}
+
+- Use full path notation (for example, `DataSources:0:` in [DataSources](../userInterfaces/runner/configurationSections/dataSources/overview.md)) to access and modify specific elements.
+- Access list items by index using the index number as a key.
+- Overwrite variables using `${}` placeholders.
+- Support nested modifications without requiring indentation.
+
+### Running with Cases {: #running-with-cases}
+
+Use the `-c` flag to specify the cases directory:
+
+```bash
+dotnet run -- run test.qaas.yaml -w Variables/local.yaml -c Cases
+```
+
+- `-c Cases`: Loads all case files from the `Cases` directory.
+- Each case generates a separate test run.
+
+### Allure Results {: #allure-results}
+
+[Allure Report](../userInterfaces/runner/allureReport.md) will group [Assertions](../userInterfaces/runner/configurationSections/assertions/overview.md) under suites named by the case file path:
+
+```plaintext
+Cases/externalData.yaml
+Cases/jsonArrayGenerator.yaml
+```
+
+This provides clear traceability and reporting for each test variant.
+
+## See also {: #see-also}
+
+- [Write a test in YAML](writeTestYaml.md)
+- [Configuration resolution](../userInterfaces/runner/configurationResolutionPriority.md)
+- [DataSources](../userInterfaces/runner/configurationSections/dataSources/overview.md)
+- [Sessions](../userInterfaces/runner/configurationSections/sessions/overview.md)
+- [Assertions](../userInterfaces/runner/configurationSections/assertions/overview.md)
+
+
+## Run Test
+
+Source: /qaas/quickStart/runTest/
+Type: tutorials
+Applies to: runner
+Summary: Once the local quick-start environment is ready, run the sample from the project directory.
+
+# Run Test
+
+> TL;DR — Run the sample Runner configuration from the project directory and inspect the generated results.
+
+Once the local quick-start environment is ready, run the sample from the project directory.
+
+## YAML Sample {: #yaml-sample}
+
+```bash
+dotnet run -- run test.qaas.yaml
+```
+
+## Code Sample {: #code-sample}
+
+```bash
+dotnet run
+```
+
+## Output {: #output}
+
+Both variants write execution artifacts to `allure-results`. If you want to pass explicit Runner flags for the code sample, use the normal Runner command form after `dotnet run --`.
+
+If you have the Allure CLI installed, you can serve the report locally:
+
+```bash
+allure serve
+```
+
+## See also {: #see-also}
+
+- [Write a test in YAML](writeTestYaml.md)
+- [Write a test in code](writeTestCode.md)
+- [`run` command](../userInterfaces/runner/commands/run.md)
+- [Debug test failure](debugTestFailure.md)
+
+
+## Writing Custom Hooks in QaaS for Advanced Testing
+
+Source: /qaas/quickStart/writeHooks/
+Type: tutorials
+Applies to: runner
+Summary: Implement custom generators, processors, probes, or assertions when packaged hooks do not cover the required behavior.
+
+# Writing Custom Hooks in QaaS for Advanced Testing
+
+> TL;DR — Implement custom generators, processors, probes, or assertions when packaged hooks do not cover the required behavior.
+
+When the built-in [Plugins](../addOns/plugins.md) and packaged hooks do not provide sufficient functionality for your test requirements, custom hooks can be implemented in a C# project to extend [QaaS.Framework](../../framework/index.md). This guide demonstrates how to create and integrate custom [QaaS.Common.Generators](../../generators/index.md), [QaaS.Common.Assertions](../../assertions/index.md), and [QaaS.Common.Probes](../../probes/index.md) style hooks to test a specific condition:
+
+> *The application receives a JSON array as input and sends a JSON array with the same number of items as output.*
+
+## 1. Creating a Custom Generator: `JsonArrayGenerator` {: #1-creating-a-custom-generator-jsonarraygenerator}
+
+A generator produces test data for [DataSources](../userInterfaces/runner/configurationSections/dataSources/overview.md) and implements the `IGenerator` interface from the `QaaS.Framework.SDK` package. We extend `BaseGenerator<T>` with a configuration record that includes validation and default values.
+
+### Generator Configuration Record {: #generator-configuration-record}
+
+```csharp
+using System.Collections.Immutable;
+using System.ComponentModel.DataAnnotations;
+using System.Text.Json.Nodes;
+using QaaS.Framework.SDK.DataSourceObjects;
+using QaaS.Framework.SDK.Hooks.Generator;
+using QaaS.Framework.SDK.Session.DataObjects;
+using QaaS.Framework.SDK.Session.SessionDataObjects;
+
+namespace DummyAppTests;
+
+/// <summary>
+/// Configuration for JsonArrayGenerator with required and optional settings.
+/// </summary>
+public record JsonArrayGeneratorConfiguration
+{
+    [Required]
+    public uint? Count { get; set; }
+
+    public uint NumberOfItemsPerArray { get; set; } = 5;
+}
+```
+
+### Generator Implementation {: #generator-implementation}
+
+```csharp
+using System.Collections.Immutable;
+using System.ComponentModel.DataAnnotations;
+using System.Text.Json.Nodes;
+using QaaS.Framework.SDK.DataSourceObjects;
+using QaaS.Framework.SDK.Hooks.Generator;
+using QaaS.Framework.SDK.Session.DataObjects;
+using QaaS.Framework.SDK.Session.SessionDataObjects;
+
+namespace DummyAppTests;
+
+/// <summary>
+/// Configuration for JsonArrayGenerator with required and optional settings.
+/// </summary>
+public record JsonArrayGeneratorConfiguration
+{
+    [Required]
+    public uint? Count { get; set; }
+
+    public uint NumberOfItemsPerArray { get; set; } = 5;
+}
+
+/// <summary>
+/// Generates a specified number of JSON arrays, each containing a configurable number of items.
+/// </summary>
+public class JsonArrayGenerator : BaseGenerator<JsonArrayGeneratorConfiguration>
+{
+    public override IEnumerable<Data<object>> Generate(
+        IImmutableList<SessionData> sessionDataList,
+        IImmutableList<DataSource> dataSourceList)
+    {
+        for (var generatedDataIndex = 0; generatedDataIndex < Configuration.Count; generatedDataIndex++)
+        {
+            var jsonArray = new JsonArray();
+            for (var jsonArrayItemIndex = 0; jsonArrayItemIndex < Configuration.NumberOfItemsPerArray; jsonArrayItemIndex++)
+                jsonArray.Add("SomeItem");
+
+            yield return new Data<object>
+            {
+                Body = jsonArray
+            };
+        }
+    }
+}
+```
+
+### File System Structure After Addition {: #file-system-structure-after-addition}
+
+```plaintext
+DummyAppTests/
+|-- DummyAppTests.csproj
+|-- Program.cs
+|-- JsonArrayGenerator.cs
+|-- LengthAssertion.cs
+|-- PrintCurrentTimeProbe.cs
+|-- test.qaas.yaml
+|-- Variables/
+|   |-- local.yaml
+|   `-- k8s.yaml
+`-- TestData/
+```
+
+## 2. Configuring the Generator in `DataSources` {: #2-configuring-the-generator-in-datasources}
+
+Define a [DataSource](../userInterfaces/runner/configurationSections/dataSources/overview.md) in `test.qaas.yaml` that uses the custom generator with specific configuration.
+
+```yaml
+DataSources:
+  - Name: 10Samples
+    Generator: JsonArrayGenerator
+    GeneratorConfiguration:
+      Count: 10
+      NumberOfItemsPerArray: 5
+```
+
+This creates 10 JSON arrays, each with 5 items.
+
+## 3. Using the DataSource in a New Session {: #3-using-the-datasource-in-a-new-session}
+
+Create a new [Session](../userInterfaces/runner/configurationSections/sessions/overview.md) that uses the `10Samples` data source. Since the data is JSON, a `Serializer` must be configured.
+
+```yaml
+Sessions:
+  - Name: RabbitMqExchangeWith10Samples
+    Publishers:
+      - Name: Publisher
+        DataSourceNames: [10Samples]
+        Policies:
+          - LoadBalance:
+              Rate: 50
+        RabbitMq:
+          Host: 127.0.0.1
+          Username: admin
+          Password: admin
+          RoutingKey: /
+          Port: 5672
+          ExchangeName: input
+        Serialize:
+          Serializer: Json
+    Consumers:
+      - Name: Consumer
+        TimeoutMs: 5000
+        RabbitMq:
+          Host: 127.0.0.1
+          Username: admin
+          Password: admin
+          RoutingKey: /
+          Port: 5672
+          ExchangeName: output
+        Deserialize:
+          Deserializer: Json
+```
+
+## 4. Adding Common Assertions {: #4-adding-common-assertions}
+
+Apply standard [QaaS.Common.Assertions](../../assertions/index.md) to the new session for hermeticity and delay.
+
+```yaml
+Assertions:
+  - Name: HermeticByInputOutputPercentage
+    Assertion: HermeticByInputOutputPercentage
+    SessionNames: [RabbitMqExchangeWith10Samples]
+    AssertionConfiguration:
+      OutputNames: [Consumer]
+      InputNames: [Publisher]
+      ExpectedPercentage: 100
+
+  - Name: DelayByChunks
+    Assertion: DelayByChunks
+    SessionNames: [RabbitMqExchangeWith10Samples]
+    AssertionConfiguration:
+      Output:
+        Name: Consumer
+        ChunkSize: 1
+      Input:
+        Name: Publisher
+        ChunkSize: 1
+      MaximumDelayMs: 5000
+```
+
+## 5. Creating a Custom Assertion: `LengthAssertion` {: #5-creating-a-custom-assertion-lengthassertion}
+
+To verify that output JSON arrays have the expected length, implement a custom assertion in the same style as [QaaS.Common.Assertions](../../assertions/index.md).
+
+### Assertion Configuration Record {: #assertion-configuration-record}
+
+```csharp
+using System.Collections.Immutable;
+using System.ComponentModel.DataAnnotations;
+using System.Text.Json.Nodes;
+using QaaS.Framework.Serialization;
+using QaaS.Framework.SDK.DataSourceObjects;
+using QaaS.Framework.SDK.Extensions;
+using QaaS.Framework.SDK.Hooks.Assertion;
+using QaaS.Framework.SDK.Session.SessionDataObjects;
+
+namespace DummyAppTests;
+
+/// <summary>
+/// Configuration for LengthAssertion to validate output array length.
+/// </summary>
+public record LengthAssertionConfiguration
+{
+    [Required]
+    public uint? ExpectedLength { get; set; }
+
+    [Required]
+    public string? OutputName { get; set; }
+}
+```
+
+### Assertion Implementation {: #assertion-implementation}
+
+```csharp
+using System.Collections.Immutable;
+using System.ComponentModel.DataAnnotations;
+using System.Text.Json.Nodes;
+using QaaS.Framework.Serialization;
+using QaaS.Framework.SDK.DataSourceObjects;
+using QaaS.Framework.SDK.Extensions;
+using QaaS.Framework.SDK.Hooks.Assertion;
+using QaaS.Framework.SDK.Session.SessionDataObjects;
+
+namespace DummyAppTests;
+
+/// <summary>
+/// Configuration for LengthAssertion to validate output array length.
+/// </summary>
+public record LengthAssertionConfiguration
+{
+    [Required]
+    public uint? ExpectedLength { get; set; }
+
+    [Required]
+    public string? OutputName { get; set; }
+}
+
+/// <summary>
+/// Asserts that all output JSON arrays have the expected number of items.
+/// </summary>
+public class LengthAssertion : BaseAssertion<LengthAssertionConfiguration>
+{
+    public override bool Assert(
+        IImmutableList<SessionData> sessionDataList,
+        IImmutableList<DataSource> dataSourceList)
+    {
+        var output = sessionDataList.AsSingle()
+            .GetOutputByName(Configuration.OutputName!)
+            .CastCommunicationData<JsonArray>();
+
+        var invalidOutputs = output.Data
+            .Select((item, index) => new { Index = index, ActualLength = item.Body?.Count })
+            .Where(item => item.ActualLength != Configuration.ExpectedLength)
+            .ToArray();
+
+        AssertionMessage = $"Number of outputs that were not the expected length is {invalidOutputs.Length}";
+        AssertionTrace = invalidOutputs.Length == 0
+            ? "All outputs matched the expected length."
+            : string.Join(Environment.NewLine, invalidOutputs.Select(item =>
+                $"Output #{item.Index} had length {item.ActualLength?.ToString() ?? "null"}."));
+        AssertionAttachments.Add(new AssertionAttachment
+        {
+            Path = "length-assertion/summary.json",
+            Data = new
+            {
+                ExpectedLength = Configuration.ExpectedLength,
+                InvalidOutputCount = invalidOutputs.Length,
+                InvalidOutputs = invalidOutputs
+            },
+            SerializationType = SerializationType.Json
+        });
+
+        return invalidOutputs.Length == 0;
+    }
+}
+```
+
+### Assertion Result Fields {: #assertion-result-fields}
+
+`BaseAssertion<TConfiguration>` gives custom assertions a few result fields that are picked up by Runner reporting:
+
+- `AssertionMessage` becomes the Allure status message for passed, failed, skipped, and unknown assertion results.
+- `AssertionTrace` becomes the Allure status trace when the assertion's `DisplayTrace` configuration is true. Set `DisplayTrace: false` when the trace is very large or sensitive.
+- `AssertionAttachments` stores extra files with the assertion result. Each `AssertionAttachment` needs a relative `Path`, the `Data` to persist, and an optional `SerializationType`. If `SerializationType` is null, the data is treated as raw bytes.
+- `AssertionStatus` can explicitly override the boolean returned from `Assert(...)`. Leave it unset for the usual `true` to `Passed` and `false` to `Failed` mapping. Any exception thrown from `Assert(...)` is reported as `Broken`.
+
+### Assertion YAML Usage {: #assertion-yaml-usage}
+
+```yaml
+Assertions:
+  - Name: LengthAssertion
+    Assertion: LengthAssertion
+    SessionNames: [RabbitMqExchangeWith10Samples]
+    AssertionConfiguration:
+      OutputName: Consumer
+      ExpectedLength: 5
+```
+
+## See also {: #see-also}
+
+- [Assertions authoring guide](../../assertions/custom-authoring-guide.md)
+- [Generators authoring guide](../../generators/custom-authoring-guide.md)
+- [Probes authoring guide](../../probes/custom-authoring-guide.md)
+- [Processors authoring guide](../../processors/custom-authoring-guide.md)
+- [Framework SDK](../../framework/projects/sdk.md)
+
+## 6. Creating a Custom Probe: `PrintCurrentTimeProbe` {: #6-creating-a-custom-probe-printcurrenttimeprobe}
+
+A probe executes custom logic during test execution. Here is a simple probe that logs the current UTC time.
+
+### Probe Implementation {: #probe-implementation}
+
+```csharp
+using System.Collections.Immutable;
+using QaaS.Framework.SDK.DataSourceObjects;
+using QaaS.Framework.SDK.Hooks.Probe;
+using QaaS.Framework.SDK.Session.SessionDataObjects;
+
+namespace DummyAppTests;
+
+/// <summary>
+/// Prints the current UTC time to the console.
+/// Probes can perform more complex operations using session data and configurations.
+/// </summary>
+public class PrintCurrentTimeProbe : BaseProbe<object>
+{
+    public override void Run(
+        IImmutableList<SessionData> sessionDataList,
+        IImmutableList<DataSource> dataSourceList)
+    {
+        var currentTime = DateTime.UtcNow;
+        Console.WriteLine($"Current time is: {currentTime}");
+    }
+}
+```
+
+### Probe YAML Usage {: #probe-yaml-usage}
+
+```yaml
+Sessions:
+  - Name: RabbitMqExchangeWithFromFileSystemTestData
+    Probes:
+      - Probe: PrintCurrentTimeProbe
+        Name: GetCurrentTime
+```
+
+## Final `test.qaas.yaml` Overview {: #final-testqaasyaml-overview}
+
+```yaml
+MetaData:
+  Team: Smoke
+  System: DummyApp
+
+DataSources:
+  - Name: FromFileSystemTestData
+    Generator: FromFileSystem
+    GeneratorConfiguration:
+      DataArrangeOrder: AsciiAsc
+      FileSystem:
+        Path: TestData
+  - Name: 10Samples
+    Generator: JsonArrayGenerator
+    GeneratorConfiguration:
+      Count: 10
+      NumberOfItemsPerArray: 5
+
+Sessions:
+  - Name: RabbitMqExchangeWithFromFileSystemTestData
+    Probes:
+      - Probe: PrintCurrentTimeProbe
+        Name: GetCurrentTime
+    Publishers:
+      - Name: Publisher
+        DataSourceNames: [FromFileSystemTestData]
+        Policies:
+          - LoadBalance:
+              Rate: 50
+        RabbitMq:
+          Host: 127.0.0.1
+          Username: admin
+          Password: admin
+          RoutingKey: /
+          Port: 5672
+          ExchangeName: input
+    Consumers:
+      - Name: Consumer
+        TimeoutMs: 5000
+        RabbitMq:
+          Host: 127.0.0.1
+          Username: admin
+          Password: admin
+          RoutingKey: /
+          Port: 5672
+          ExchangeName: output
+        Deserialize:
+          Deserializer: Json
+  - Name: RabbitMqExchangeWith10Samples
+    Publishers:
+      - Name: Publisher
+        DataSourceNames: [10Samples]
+        Policies:
+          - LoadBalance:
+              Rate: 50
+        RabbitMq:
+          Host: 127.0.0.1
+          Username: admin
+          Password: admin
+          RoutingKey: /
+          Port: 5672
+          ExchangeName: input
+        Serialize:
+          Serializer: Json
+    Consumers:
+      - Name: Consumer
+        TimeoutMs: 5000
+        RabbitMq:
+          Host: 127.0.0.1
+          Username: admin
+          Password: admin
+          RoutingKey: /
+          Port: 5672
+          ExchangeName: output
+        Deserialize:
+          Deserializer: Json
+
+Assertions:
+  - Name: HermeticByInputOutputPercentage
+    Assertion: HermeticByInputOutputPercentage
+    SessionNames: [RabbitMqExchangeWithFromFileSystemTestData]
+    AssertionConfiguration:
+      OutputNames: [Consumer]
+      InputNames: [Publisher]
+      ExpectedPercentage: 100
+  - Name: DelayByChunks
+    Assertion: DelayByChunks
+    SessionNames: [RabbitMqExchangeWithFromFileSystemTestData]
+    AssertionConfiguration:
+      Output:
+        Name: Consumer
+        ChunkSize: 1
+      Input:
+        Name: Publisher
+        ChunkSize: 1
+      MaximumDelayMs: 5000
+  - Name: HermeticByInputOutputPercentage
+    Assertion: HermeticByInputOutputPercentage
+    SessionNames: [RabbitMqExchangeWith10Samples]
+    AssertionConfiguration:
+      OutputNames: [Consumer]
+      InputNames: [Publisher]
+      ExpectedPercentage: 100
+  - Name: DelayByChunks
+    Assertion: DelayByChunks
+    SessionNames: [RabbitMqExchangeWith10Samples]
+    AssertionConfiguration:
+      Output:
+        Name: Consumer
+        ChunkSize: 1
+      Input:
+        Name: Publisher
+        ChunkSize: 1
+      MaximumDelayMs: 5000
+  - Name: LengthAssertion
+    Assertion: LengthAssertion
+    SessionNames: [RabbitMqExchangeWith10Samples]
+    AssertionConfiguration:
+      OutputName: Consumer
+      ExpectedLength: 5
+```
+
+
+## Write a Test (Code)
+
+Source: /qaas/quickStart/writeTestCode/
+Type: tutorials
+Applies to: runner
+Summary: Build the Runner quick-start configuration directly in `Program.cs` when C# should own the test setup.
+
+# Write a Test (Code)
+
+> TL;DR — Build the Runner quick-start configuration directly in `Program.cs` when C# should own the test setup.
+
+This sample builds the same Runner configuration shape as the YAML quick start, but does it directly in `Program.cs` and gives the delay assertion a 10-second window so the documented smoke flow stays stable.
+
+The completed sample is available at [DummyAppTests (Code)]({{ links.repository_runner_quickstart_code }}).
+
+## Create the Project {: #create-the-project}
+
+```bash
+dotnet new qaas-runner -n DummyAppTests
+cd DummyAppTests
+dotnet add DummyAppTests/DummyAppTests.csproj package QaaS.Runner
+dotnet add DummyAppTests/DummyAppTests.csproj package QaaS.Common.Assertions
+dotnet add DummyAppTests/DummyAppTests.csproj package QaaS.Common.Generators
+```
+
+## Keep an Empty Bootstrap File {: #keep-an-empty-bootstrap-file}
+
+Runner exposes the execution builder through `Bootstrap.New(...)`, so this sample keeps an empty `test.qaas.yaml` only to initialize that builder.
+
+`DummyAppTests/test.qaas.yaml`
+
+```yaml
+{}
+```
+
+## Add the Test Data {: #add-the-test-data}
+
+`DummyAppTests/TestData/input.json`
+
+```json
+[
+  {
+    "id": 1,
+    "message": "hello from DummyAppTests"
+  }
+]
+```
+
+## Build `Program.cs` in Small Pieces {: #build-programcs-in-small-pieces}
+
+`DummyAppTests/Program.cs`
+
+### Start with the Imports and Bootstrap {: #start-with-the-imports-and-bootstrap}
+
+The first block imports the Runner builders, falls back to `run test.qaas.yaml` when no CLI arguments are supplied, and opens the execution builder that `Bootstrap.New(...)` creates from the empty YAML file.
+
+```csharp
+using QaaS.Common.Assertions.CommonAssertionsConfigs.Delay;
+using QaaS.Common.Assertions.CommonAssertionsConfigs.Hermetic;
+using QaaS.Common.Assertions.Delay;
+using QaaS.Common.Assertions.Hermetic;
+using QaaS.Common.Generators.ConfigurationObjects.FromExternalSourceConfigurations;
+using QaaS.Common.Generators.FromExternalSourceGenerators;
+using QaaS.Framework.Policies;
+using QaaS.Framework.Policies.ConfigurationObjects;
+using QaaS.Framework.Protocols.ConfigurationObjects.RabbitMq;
+using QaaS.Framework.SDK;
+using QaaS.Framework.SDK.DataSourceObjects;
+using QaaS.Framework.SDK.Extensions;
+using QaaS.Framework.Serialization;
+using QaaS.Runner;
+using QaaS.Runner.Assertions.ConfigurationObjects;
+using QaaS.Runner.Sessions.Actions.Consumers.Builders;
+using QaaS.Runner.Sessions.Actions.Publishers.Builders;
+using QaaS.Runner.Sessions.Session.Builders;
+
+var bootstrapArguments = args.Length > 0 ? args : ["run", "test.qaas.yaml"];
+var runner = Bootstrap.New(bootstrapArguments);
+var executionBuilder = runner.ExecutionBuilders.AsSingle();
+const string inputExchangeName = "dummy-app-tests-input";
+const string outputExchangeName = "dummy-app-tests-output";
+```
+
+### Create the Data Source {: #create-the-data-source}
+
+Start with the input payload source. This data source reads the JSON request message from the local `TestData` folder.
+
+```csharp
+var dataSource = new DataSourceBuilder()
+    .Named("FromFileSystemTestData")
+    .HookNamed(nameof(FromFileSystem))
+    .Configure(new FromFileSystemConfig
+    {
+        DataArrangeOrder = DataArrangeOrder.AsciiAsc,
+        FileSystem = new FileSystemConfig
+        {
+            Path = "TestData"
+        }
+    });
+```
+
+### Create the RabbitMQ Connection Settings {: #create-the-rabbitmq-connection-settings}
+
+The sample uses one shared RabbitMQ configuration object so the publisher and consumer are guaranteed to point at the same broker. It also uses dedicated exchange names so the quick-start smoke path does not collide with other RabbitMQ traffic on the same machine.
+
+```csharp
+var rabbitMqConfiguration = new BaseRabbitMqConfig
+{
+    Host = "127.0.0.1",
+    Username = "admin",
+    Password = "admin",
+    VirtualHost = "/",
+    Port = 5672
+};
+```
+
+### Create the Publisher {: #create-the-publisher}
+
+The publisher takes data from `FromFileSystemTestData`, applies a simple load-balance policy, and publishes each payload into the `input` exchange.
+
+```csharp
+var publisher = new PublisherBuilder()
+    .Named("Publisher")
+    .AddDataSource("FromFileSystemTestData")
+    .AddPolicy(new PolicyBuilder().Configure(new LoadBalancePolicyConfig
+    {
+        Rate = 50
+    }))
+    .Configure(new RabbitMqSenderConfig
+    {
+        Host = rabbitMqConfiguration.Host,
+        Username = rabbitMqConfiguration.Username,
+        Password = rabbitMqConfiguration.Password,
+        Port = rabbitMqConfiguration.Port,
+        ExchangeName = inputExchangeName,
+        RoutingKey = "/"
+    });
+```
+
+### Create the Consumer {: #create-the-consumer}
+
+The consumer listens on the `output` exchange, waits up to five seconds, and deserializes the received payload as JSON before assertions run.
+
+```csharp
+var consumer = new ConsumerBuilder()
+    .Named("Consumer")
+    .WithTimeout(5000)
+    .Configure(new RabbitMqReaderConfig
+    {
+        Host = rabbitMqConfiguration.Host,
+        Username = rabbitMqConfiguration.Username,
+        Password = rabbitMqConfiguration.Password,
+        Port = rabbitMqConfiguration.Port,
+        ExchangeName = outputExchangeName,
+        RoutingKey = "/"
+    })
+    .WithDeserializer(new DeserializeConfig
+    {
+        Deserializer = SerializationType.Json
+    });
+```
+
+### Create the Session {: #create-the-session}
+
+The session groups the publisher and consumer into one execution flow so Runner knows which actions belong together.
+
+```csharp
+var session = new SessionBuilder()
+    .Named("RabbitMqExchangeWithFromFileSystemTestData")
+    .AddPublisher(publisher)
+    .AddConsumer(consumer);
+```
+
+### Create the Assertions {: #create-the-assertions}
+
+The first assertion checks hermeticity: every published message should produce a corresponding output message. The second checks delay: each input/output pair should complete within ten seconds.
+
+```csharp
+var hermeticAssertion = new AssertionBuilder
+    {
+        AssertionInstance = null!,
+        Reporter = null!
+    }
+    .Named("HermeticByInputOutputPercentage")
+    .HookNamed(nameof(HermeticByInputOutputPercentage))
+    .AddSessionName(session.Name!)
+    .Configure(new HermeticByInputOutputPercentageConfiguration
+    {
+        OutputNames = [consumer.Name!],
+        InputNames = [publisher.Name!],
+        ExpectedPercentage = 100
+    });
+
+var delayAssertion = new AssertionBuilder
+    {
+        AssertionInstance = null!,
+        Reporter = null!
+    }
+    .Named("DelayByChunks")
+    .HookNamed(nameof(DelayByChunks))
+    .AddSessionName(session.Name!)
+    .Configure(new DelayByChunksConfiguration
+    {
+        Output = new Chunk
+        {
+            Name = consumer.Name!,
+            ChunkSize = 1
+        },
+        Input = new Chunk
+        {
+            Name = publisher.Name!,
+            ChunkSize = 1
+        },
+        MaximumDelayMs = 10000
+    });
+```
+
+### Assemble the Runner Execution {: #assemble-the-runner-execution}
+
+The last step attaches metadata, the data source, the session, and the assertions to the current execution builder, then starts the Runner.
+
+```csharp
+executionBuilder
+    .WithMetadata(new MetaDataConfig
+    {
+        Team = "Smoke",
+        System = "DummyApp"
+    })
+    .AddDataSource(dataSource)
+    .AddSession(session)
+    .AddAssertion(hermeticAssertion)
+    .AddAssertion(delayAssertion);
+
+runner.Run();
+```
+
+## Full `Program.cs` {: #full-programcs}
+
+This is the complete file exactly as it appears in the sample repository.
+
+`DummyAppTests/Program.cs`
+
+```csharp
+using QaaS.Common.Assertions.CommonAssertionsConfigs.Delay;
+using QaaS.Common.Assertions.CommonAssertionsConfigs.Hermetic;
+using QaaS.Common.Assertions.Delay;
+using QaaS.Common.Assertions.Hermetic;
+using QaaS.Common.Generators.ConfigurationObjects.FromExternalSourceConfigurations;
+using QaaS.Common.Generators.FromExternalSourceGenerators;
+using QaaS.Framework.Policies;
+using QaaS.Framework.Policies.ConfigurationObjects;
+using QaaS.Framework.Protocols.ConfigurationObjects.RabbitMq;
+using QaaS.Framework.SDK;
+using QaaS.Framework.SDK.DataSourceObjects;
+using QaaS.Framework.SDK.Extensions;
+using QaaS.Framework.Serialization;
+using QaaS.Runner;
+using QaaS.Runner.Assertions.ConfigurationObjects;
+using QaaS.Runner.Sessions.Actions.Consumers.Builders;
+using QaaS.Runner.Sessions.Actions.Publishers.Builders;
+using QaaS.Runner.Sessions.Session.Builders;
+
+var bootstrapArguments = args.Length > 0 ? args : ["run", "test.qaas.yaml"];
+var runner = Bootstrap.New(bootstrapArguments);
+var executionBuilder = runner.ExecutionBuilders.AsSingle();
+const string inputExchangeName = "dummy-app-tests-input";
+const string outputExchangeName = "dummy-app-tests-output";
+
+var dataSource = new DataSourceBuilder()
+    .Named("FromFileSystemTestData")
+    .HookNamed(nameof(FromFileSystem))
+    .Configure(new FromFileSystemConfig
+    {
+        DataArrangeOrder = DataArrangeOrder.AsciiAsc,
+        FileSystem = new FileSystemConfig
+        {
+            Path = "TestData"
+        }
+    });
+
+var rabbitMqConfiguration = new BaseRabbitMqConfig
+{
+    Host = "127.0.0.1",
+    Username = "admin",
+    Password = "admin",
+    VirtualHost = "/",
+    Port = 5672
+};
+
+var publisher = new PublisherBuilder()
+    .Named("Publisher")
+    .AddDataSource("FromFileSystemTestData")
+    .AddPolicy(new PolicyBuilder().Configure(new LoadBalancePolicyConfig
+    {
+        Rate = 50
+    }))
+    .Configure(new RabbitMqSenderConfig
+    {
+        Host = rabbitMqConfiguration.Host,
+        Username = rabbitMqConfiguration.Username,
+        Password = rabbitMqConfiguration.Password,
+        Port = rabbitMqConfiguration.Port,
+        ExchangeName = inputExchangeName,
+        RoutingKey = "/"
+    });
+
+var consumer = new ConsumerBuilder()
+    .Named("Consumer")
+    .WithTimeout(5000)
+    .Configure(new RabbitMqReaderConfig
+    {
+        Host = rabbitMqConfiguration.Host,
+        Username = rabbitMqConfiguration.Username,
+        Password = rabbitMqConfiguration.Password,
+        Port = rabbitMqConfiguration.Port,
+        ExchangeName = outputExchangeName,
+        RoutingKey = "/"
+    })
+    .WithDeserializer(new DeserializeConfig
+    {
+        Deserializer = SerializationType.Json
+    });
+
+var session = new SessionBuilder()
+    .Named("RabbitMqExchangeWithFromFileSystemTestData")
+    .AddPublisher(publisher)
+    .AddConsumer(consumer);
+
+var hermeticAssertion = new AssertionBuilder
+    {
+        AssertionInstance = null!,
+        Reporter = null!
+    }
+    .Named("HermeticByInputOutputPercentage")
+    .HookNamed(nameof(HermeticByInputOutputPercentage))
+    .AddSessionName(session.Name!)
+    .Configure(new HermeticByInputOutputPercentageConfiguration
+    {
+        OutputNames = [consumer.Name!],
+        InputNames = [publisher.Name!],
+        ExpectedPercentage = 100
+    });
+
+var delayAssertion = new AssertionBuilder
+    {
+        AssertionInstance = null!,
+        Reporter = null!
+    }
+    .Named("DelayByChunks")
+    .HookNamed(nameof(DelayByChunks))
+    .AddSessionName(session.Name!)
+    .Configure(new DelayByChunksConfiguration
+    {
+        Output = new Chunk
+        {
+            Name = consumer.Name!,
+            ChunkSize = 1
+        },
+        Input = new Chunk
+        {
+            Name = publisher.Name!,
+            ChunkSize = 1
+        },
+        MaximumDelayMs = 10000
+    });
+
+executionBuilder
+    .WithMetadata(new MetaDataConfig
+    {
+        Team = "Smoke",
+        System = "DummyApp"
+    })
+    .AddDataSource(dataSource)
+    .AddSession(session)
+    .AddAssertion(hermeticAssertion)
+    .AddAssertion(delayAssertion);
+
+runner.Run();
+```
+
+This `Program.cs` maps directly to the YAML quick start: `MetaData`, one `FromFileSystem` data source, one RabbitMQ session, and two assertions.
+
+## Run the Code Path {: #run-the-code-path}
+
+From `DummyAppTests/DummyAppTests`:
+
+```bash
+dotnet run
+```
+
+The sample expects a local RabbitMQ broker on `127.0.0.1:5672` and a component that relays the published message from `input` to `output`, the same way the quick-start CI smoke test does.
+
+## See also {: #see-also}
+
+- [Write a test in YAML](writeTestYaml.md)
+- [Run test](runTest.md)
+- [DataSources](../userInterfaces/runner/configurationSections/dataSources/overview.md)
+- [Sessions](../userInterfaces/runner/configurationSections/sessions/overview.md)
+- [Assertions](../userInterfaces/runner/configurationSections/assertions/overview.md)
+
+
+## Write a Test (YAML)
+
+Source: /qaas/quickStart/writeTestYaml/
+Type: tutorials
+Applies to: runner
+Summary: Define DataSources, Sessions, and Assertions in YAML when the test flow should stay declarative.
+
+# Write a Test (YAML)
+
+> TL;DR — Define DataSources, Sessions, and Assertions in YAML when the test flow should stay declarative.
+
+Use YAML when you want the test flow to stay declarative, easy to diff, and easy to hand to someone who does not need to read C# first. QaaS.Runner loads the YAML into an execution builder, so the YAML sections below map directly to the runtime concepts you will keep using later: [MetaData](../userInterfaces/runner/configurationSections/metaData/overview.md), [DataSources](../userInterfaces/runner/configurationSections/dataSources/overview.md), [Sessions](../userInterfaces/runner/configurationSections/sessions/overview.md), and [Assertions](../userInterfaces/runner/configurationSections/assertions/overview.md).
+
+This sample publishes one message to RabbitMQ's `dummy-app-tests-input` exchange, waits for a response on the `dummy-app-tests-output` exchange, and verifies both delivery and timing.
+
+The completed sample is available at [DummyAppTests (YAML)]({{ links.repository_runner_quickstart_yaml }}).
+
+## Create the Project {: #create-the-project}
+
+```bash
+dotnet new qaas-runner -n DummyAppTests
+cd DummyAppTests
+dotnet add DummyAppTests/DummyAppTests.csproj package QaaS.Common.Assertions
+dotnet add DummyAppTests/DummyAppTests.csproj package QaaS.Common.Generators
+```
+
+## Keep `Program.cs` Minimal {: #keep-programcs-minimal}
+
+`DummyAppTests/Program.cs`
+
+```csharp
+QaaS.Runner.Bootstrap.New(args).Run();
+```
+
+The host stays small because the entire test definition will live in `test.qaas.yaml`. With this YAML-only host, empty program arguments now show help text, so the run command must pass `run test.qaas.yaml` explicitly.
+
+## Add the Test Data {: #add-the-test-data}
+
+`DummyAppTests/TestData/input.json`
+
+```json
+[
+  {
+    "id": 1,
+    "message": "hello from DummyAppTests"
+  }
+]
+```
+
+The sample publishes this payload to RabbitMQ and then checks that it comes back through the expected `dummy-app-tests-input` to `dummy-app-tests-output` flow.
+
+## Start with `MetaData` and `DataSources` {: #start-with-metadata-and-datasources}
+
+Start the file with the parts that describe the test at a high level and tell Runner where the input data comes from.
+
+`DummyAppTests/test.qaas.yaml`
+
+```yaml
+MetaData:
+  Team: Smoke
+  System: DummyApp
+
+DataSources:
+  - Name: FromFileSystemTestData
+    Generator: FromFileSystem
+    GeneratorConfiguration:
+      DataArrangeOrder: AsciiAsc
+      FileSystem:
+        Path: TestData
+```
+
+[MetaData](../userInterfaces/runner/configurationSections/metaData/overview.md) makes the run easier to identify later in reports. [DataSources](../userInterfaces/runner/configurationSections/dataSources/overview.md) says: "load the test payloads from the local `TestData` folder."
+
+## Add the `Sessions` Section {: #add-the-sessions-section}
+
+Next add the session that performs the real work. A session groups the actions that exercise the system under test. In this sample the publisher writes to RabbitMQ's `dummy-app-tests-input` exchange and the consumer listens on the `dummy-app-tests-output` exchange.
+
+Append this section to `test.qaas.yaml`:
+
+```yaml
+Sessions:
+  - Name: RabbitMqExchangeWithFromFileSystemTestData
+    Publishers:
+      - Name: Publisher
+        DataSourceNames: [FromFileSystemTestData]
+        Policies:
+          - LoadBalance:
+              Rate: 50
+        RabbitMq:
+          Host: 127.0.0.1
+          Username: admin
+          Password: admin
+          Port: 5672
+          ExchangeName: dummy-app-tests-input
+          RoutingKey: /
+    Consumers:
+      - Name: Consumer
+        TimeoutMs: 5000
+        RabbitMq:
+          Host: 127.0.0.1
+          Username: admin
+          Password: admin
+          Port: 5672
+          ExchangeName: dummy-app-tests-output
+          RoutingKey: /
+        Deserialize:
+          Deserializer: Json
+```
+
+The [Publisher](../userInterfaces/runner/configurationSections/sessions/types/publishers.md) sends every payload loaded by `FromFileSystemTestData` to the `dummy-app-tests-input` exchange. The [Consumer](../userInterfaces/runner/configurationSections/sessions/types/consumers.md) listens on the `dummy-app-tests-output` exchange, waits up to five seconds, and deserializes the received body as JSON. In a real test, your application or local quick-start environment should move the message from `dummy-app-tests-input` to `dummy-app-tests-output`.
+
+## Add the `Assertions` Section {: #add-the-assertions-section}
+
+Finally add the assertions that decide whether the test passed.
+
+Append this section to `test.qaas.yaml`:
+
+```yaml
+Assertions:
+  - Name: HermeticByInputOutputPercentage
+    Assertion: HermeticByInputOutputPercentage
+    SessionNames: [RabbitMqExchangeWithFromFileSystemTestData]
+    AssertionConfiguration:
+      OutputNames: [Consumer]
+      InputNames: [Publisher]
+      ExpectedPercentage: 100
+  - Name: DelayByChunks
+    Assertion: DelayByChunks
+    SessionNames: [RabbitMqExchangeWithFromFileSystemTestData]
+    AssertionConfiguration:
+      Output:
+        Name: Consumer
+        ChunkSize: 1
+      Input:
+        Name: Publisher
+        ChunkSize: 1
+      MaximumDelayMs: 10000
+```
+
+`HermeticByInputOutputPercentage` from [QaaS.Common.Assertions](../../assertions/index.md) checks that every input produced a matching output. `DelayByChunks` from [QaaS.Common.Assertions](../../assertions/index.md) checks that the output arrives within ten seconds.
+
+## Full `test.qaas.yaml` {: #full-testqaasyaml}
+
+This is the complete authored configuration after all three sections are combined:
+
+```yaml
+MetaData:
+  Team: Smoke
+  System: DummyApp
+
+DataSources:
+  - Name: FromFileSystemTestData
+    Generator: FromFileSystem
+    GeneratorConfiguration:
+      DataArrangeOrder: AsciiAsc
+      FileSystem:
+        Path: TestData
+
+Sessions:
+  - Name: RabbitMqExchangeWithFromFileSystemTestData
+    Publishers:
+      - Name: Publisher
+        DataSourceNames: [FromFileSystemTestData]
+        Policies:
+          - LoadBalance:
+              Rate: 50
+        RabbitMq:
+          Host: 127.0.0.1
+          Username: admin
+          Password: admin
+          Port: 5672
+          ExchangeName: dummy-app-tests-input
+          RoutingKey: /
+    Consumers:
+      - Name: Consumer
+        TimeoutMs: 5000
+        RabbitMq:
+          Host: 127.0.0.1
+          Username: admin
+          Password: admin
+          Port: 5672
+          ExchangeName: dummy-app-tests-output
+          RoutingKey: /
+        Deserialize:
+          Deserializer: Json
+
+Assertions:
+  - Name: HermeticByInputOutputPercentage
+    Assertion: HermeticByInputOutputPercentage
+    SessionNames: [RabbitMqExchangeWithFromFileSystemTestData]
+    AssertionConfiguration:
+      OutputNames: [Consumer]
+      InputNames: [Publisher]
+      ExpectedPercentage: 100
+  - Name: DelayByChunks
+    Assertion: DelayByChunks
+    SessionNames: [RabbitMqExchangeWithFromFileSystemTestData]
+    AssertionConfiguration:
+      Output:
+        Name: Consumer
+        ChunkSize: 1
+      Input:
+        Name: Publisher
+        ChunkSize: 1
+      MaximumDelayMs: 10000
+```
+
+## Run {: #run}
+
+From `DummyAppTests/DummyAppTests`:
+
+```bash
+dotnet run -- run test.qaas.yaml
+```
+
+## Result {: #result}
+
+Runner publishes the JSON payload from `TestData/input.json` to `dummy-app-tests-input`, then waits for the corresponding response on `dummy-app-tests-output`. The consumer verifies both 100% hermeticity and a maximum end-to-end delay of 10000 ms. Once you connect a real application, that application should be the component that consumes from `dummy-app-tests-input` and publishes to `dummy-app-tests-output`.
+
+## See also {: #see-also}
+
+- [Write a test in code](writeTestCode.md)
+- [Run test](runTest.md)
+- [DataSources](../userInterfaces/runner/configurationSections/dataSources/overview.md)
+- [Sessions](../userInterfaces/runner/configurationSections/sessions/overview.md)
+- [Assertions](../userInterfaces/runner/configurationSections/assertions/overview.md)
