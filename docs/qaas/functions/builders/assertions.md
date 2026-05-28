@@ -44,6 +44,8 @@ The functions on this page are grouped by responsibility so related operations s
     **Docstring**
     
     Sets the name used for the current Runner assertion builder instance.
+    
+    Use this method when working with the documented Runner assertion builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
 ### `HookNamed` {: #hooknamed}
 
@@ -65,6 +67,8 @@ The functions on this page are grouped by responsibility so related operations s
     **Docstring**
     
     Sets the hook implementation name used by the current Runner assertion builder instance.
+    
+    Use this method when working with the documented Runner assertion builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
 ## Classification {: #classification}
 
@@ -88,6 +92,8 @@ The functions on this page are grouped by responsibility so related operations s
     **Docstring**
     
     Configures category on the current Runner assertion builder instance.
+    
+    Use this method when working with the documented Runner assertion builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
 ### `WithSeverity` {: #withseverity}
 
@@ -109,6 +115,8 @@ The functions on this page are grouped by responsibility so related operations s
     **Docstring**
     
     Sets the severity associated with the assertion result.
+    
+    Use this method when working with the documented Runner assertion builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
 ## Data source selection {: #data-source-selection}
 
@@ -132,6 +140,8 @@ The functions on this page are grouped by responsibility so related operations s
     **Docstring**
     
     Adds the supplied data source name to the current Runner assertion builder instance.
+    
+    Use this method when working with the documented Runner assertion builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
 ### `RemoveDataSourceName` {: #removedatasourcename}
 
@@ -153,6 +163,8 @@ The functions on this page are grouped by responsibility so related operations s
     **Docstring**
     
     Removes the configured data source name from the current Runner assertion builder instance.
+    
+    Use this method when working with the documented Runner assertion builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
 ### `RemoveDataSourceNameAt` {: #removedatasourcenameat}
 
@@ -174,6 +186,8 @@ The functions on this page are grouped by responsibility so related operations s
     **Docstring**
     
     Removes the configured data source name at the specified index from the current Runner assertion builder instance.
+    
+    Use this method when working with the documented Runner assertion builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
 ### `AddDataSourcePattern` {: #adddatasourcepattern}
 
@@ -195,6 +209,8 @@ The functions on this page are grouped by responsibility so related operations s
     **Docstring**
     
     Adds the supplied data source pattern to the current Runner assertion builder instance.
+    
+    Use this method when working with the documented Runner assertion builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
 ### `RemoveDataSourcePattern` {: #removedatasourcepattern}
 
@@ -216,6 +232,8 @@ The functions on this page are grouped by responsibility so related operations s
     **Docstring**
     
     Removes the configured data source pattern from the current Runner assertion builder instance.
+    
+    Use this method when working with the documented Runner assertion builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
 ### `RemoveDataSourcePatternAt` {: #removedatasourcepatternat}
 
@@ -237,6 +255,8 @@ The functions on this page are grouped by responsibility so related operations s
     **Docstring**
     
     Removes the configured data source pattern at the specified index from the current Runner assertion builder instance.
+    
+    Use this method when working with the documented Runner assertion builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
 ## Session selection {: #session-selection}
 
@@ -260,6 +280,8 @@ The functions on this page are grouped by responsibility so related operations s
     **Docstring**
     
     Adds the supplied session name to the current Runner assertion builder instance.
+    
+    Use this method when working with the documented Runner assertion builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
 ### `RemoveSessionName` {: #removesessionname}
 
@@ -281,6 +303,8 @@ The functions on this page are grouped by responsibility so related operations s
     **Docstring**
     
     Removes the configured session name from the current Runner assertion builder instance.
+    
+    Use this method when working with the documented Runner assertion builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
 ### `RemoveSessionNameAt` {: #removesessionnameat}
 
@@ -302,6 +326,8 @@ The functions on this page are grouped by responsibility so related operations s
     **Docstring**
     
     Removes the configured session name at the specified index from the current Runner assertion builder instance.
+    
+    Use this method when working with the documented Runner assertion builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
 ### `AddSessionPattern` {: #addsessionpattern}
 
@@ -323,6 +349,8 @@ The functions on this page are grouped by responsibility so related operations s
     **Docstring**
     
     Adds the supplied session pattern to the current Runner assertion builder instance.
+    
+    Use this method when working with the documented Runner assertion builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
 ### `RemoveSessionPattern` {: #removesessionpattern}
 
@@ -344,6 +372,8 @@ The functions on this page are grouped by responsibility so related operations s
     **Docstring**
     
     Removes the configured session pattern from the current Runner assertion builder instance.
+    
+    Use this method when working with the documented Runner assertion builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
 ### `RemoveSessionPatternAt` {: #removesessionpatternat}
 
@@ -365,6 +395,8 @@ The functions on this page are grouped by responsibility so related operations s
     **Docstring**
     
     Removes the configured session pattern at the specified index from the current Runner assertion builder instance.
+    
+    Use this method when working with the documented Runner assertion builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
 ## Links {: #links}
 
@@ -388,6 +420,8 @@ The functions on this page are grouped by responsibility so related operations s
     **Docstring**
     
     Adds the supplied link to the current Runner assertion builder instance.
+    
+    Use this method when working with the documented Runner assertion builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
 ### `RemoveLink` {: #removelink}
 
@@ -409,6 +443,8 @@ The functions on this page are grouped by responsibility so related operations s
     **Docstring**
     
     Removes the configured link from the current Runner assertion builder instance.
+    
+    Use this method when working with the documented Runner assertion builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
 ### `RemoveLinkAt` {: #removelinkat}
 
@@ -430,6 +466,8 @@ The functions on this page are grouped by responsibility so related operations s
     **Docstring**
     
     Removes the configured link at the specified index from the current Runner assertion builder instance.
+    
+    Use this method when working with the documented Runner assertion builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
 ## Reporting and artifacts {: #reporting-and-artifacts}
 
@@ -453,6 +491,8 @@ The functions on this page are grouped by responsibility so related operations s
     **Docstring**
     
     Sets which assertion statuses should be included in reports.
+    
+    Use this method when working with the documented Runner assertion builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
 ### `ShouldSaveSessionData` {: #shouldsavesessiondata}
 
@@ -474,6 +514,8 @@ The functions on this page are grouped by responsibility so related operations s
     **Docstring**
     
     Configures whether session data is saved with the assertion result.
+    
+    Use this method when working with the documented Runner assertion builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
 ### `ShouldSaveLogs` {: #shouldsavelogs}
 
@@ -495,6 +537,8 @@ The functions on this page are grouped by responsibility so related operations s
     **Docstring**
     
     Configures whether logs are saved with the assertion result.
+    
+    Use this method when working with the documented Runner assertion builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
 ### `ShouldSaveConfigurationTemplate` {: #shouldsaveconfigurationtemplate}
 
@@ -516,6 +560,8 @@ The functions on this page are grouped by responsibility so related operations s
     **Docstring**
     
     Configures whether the rendered configuration template is saved with the assertion result.
+    
+    Use this method when working with the documented Runner assertion builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
 ### `ShouldSaveAttachments` {: #shouldsaveattachments}
 
@@ -537,6 +583,8 @@ The functions on this page are grouped by responsibility so related operations s
     **Docstring**
     
     Configures whether attachments are saved with the assertion result.
+    
+    Use this method when working with the documented Runner assertion builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
 ### `ShouldDisplayTrace` {: #shoulddisplaytrace}
 
@@ -558,6 +606,8 @@ The functions on this page are grouped by responsibility so related operations s
     **Docstring**
     
     Configures whether the assertion trace is displayed with the result.
+    
+    Use this method when working with the documented Runner assertion builder API surface in code. The behavior exposed here is part of the public surface that the generated function documentation groups under 'Configuration as Code / Assertions'.
 
 ## Collection helpers {: #collection-helpers}
 
@@ -581,6 +631,8 @@ The functions on this page are grouped by responsibility so related operations s
     **Docstring**
     
     Sets the configuration currently stored on the Runner assertion builder instance.
+    
+    Use this method when working with the documented Runner assertion builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
 ### `RemoveConfiguration` {: #removeconfiguration}
 
@@ -602,6 +654,8 @@ The functions on this page are grouped by responsibility so related operations s
     **Docstring**
     
     Clears the configuration currently stored on the Runner assertion builder instance.
+    
+    Use this method when working with the documented Runner assertion builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
 ## General {: #general}
 
@@ -625,6 +679,8 @@ The functions on this page are grouped by responsibility so related operations s
     **Docstring**
     
     Sets the configuration currently stored on the Runner assertion builder instance.
+    
+    Use this method when working with the documented Runner assertion builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
 ## See also {: #see-also}
 

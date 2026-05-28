@@ -41,8 +41,8 @@ ProbeConfiguration:
       Name: 'value'
       DefaultQueueType: 'value'
       Description: 'value'
-      ProtectedFromDeletion: false
-      Tracing: false
+      ProtectedFromDeletion: True
+      Tracing: True
       Tags: []
 ```
 

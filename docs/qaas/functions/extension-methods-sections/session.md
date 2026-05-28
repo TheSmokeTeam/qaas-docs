@@ -8,20 +8,18 @@ applies_to: [runner]
 keywords: [runner, qaas, functions, extension, methods, sections, session]
 summary: "Reference page for Extension Methods: Session."
 ---
-
 <!-- Verified-against: QaaS.Runner\QaaS.Runner.Sessions\Extensions\SessionExtensions.cs -->
+<!-- Verified-against: QaaS.Runner\QaaS.Runner.Infrastructure\ContextArtifactExtensions.cs -->
+<!-- Verified-against: QaaS.Runner\QaaS.Runner.Infrastructure\DateTimeExtensions.cs -->
+<!-- Verified-against: QaaS.Runner\QaaS.Runner.Sessions\Extensions\DetailedDataExtensions.cs -->
 
 # Extension Methods: Session
 
-> TL;DR — This page mirrors the `Session` section from [Extension Methods](../extension-methods.md) as a focused reference.
+> TL;DR — Reference page for Extension Methods: Session.
 
-## When to use {: #when-to-use}
+This page mirrors the `Session` section from [Extension Methods](../extension-methods.md).
 
-Use this page when you need the focused member list, signatures, and source notes for this section without scanning the full parent reference.
-
-## C# (CAC) usage {: #c-cac-usage}
-
-### `DisposeOfEnumerable<TEnumerable>` {: #disposeofenumerabletenumerable}
+## `DisposeOfEnumerable<TEnumerable>` {: #disposeofenumerable-tenumerable}
 
 ??? info "Source file, signature, and docstring"
     **Member**
@@ -42,7 +40,7 @@ Use this page when you need the focused member list, signatures, and source note
     
     Disposes of an enumerable of items that extend the `IDisposable` interface
 
-### `AppendActionFailure` {: #appendactionfailure}
+## `AppendActionFailure` {: #appendactionfailure}
 
 ??? info "Source file, signature, and docstring"
     **Member**
@@ -63,11 +61,6 @@ Use this page when you need the focused member list, signatures, and source note
     
     Appends a failed action to the action failure list, and logs accordingly.
 
-## Edge cases {: #edge-cases}
-
-- This page is generated from the parent reference section; edit the source XML docs or generator when content needs to change.
-- If a linked source member is renamed, regenerate the reference docs before changing prose by hand.
-
 ## See also {: #see-also}
 
-- [Extension Methods](../extension-methods.md)
+- [Runner Functions](index.md)

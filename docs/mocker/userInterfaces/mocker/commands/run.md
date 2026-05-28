@@ -8,7 +8,6 @@ applies_to: [mocker]
 keywords: [mocker, userinterfaces, commands, run]
 summary: "Start the configured mock servers and optional controller runtime."
 ---
-
 # run
 
 > TL;DR — Start the configured mock servers and optional controller runtime.
@@ -51,13 +50,13 @@ dotnet run <dotnet-parameters> -- run <config-file> [flags]
 
 ## Flag Notes {: #flag-notes}
 
-### `-r`, `--overwrite-arguments` {: #-r-overwrite-arguments}
+### `-r`, `--overwrite-arguments` {: #r-overwrite-arguments}
 
 ```text
 -r Server:Port=8081
 ```
 
-### `--run-locally` {: #-run-locally}
+### `--run-locally` {: #run-locally}
 
 Use this when you want the host process to keep the mock runtime attached to the current console session.
 

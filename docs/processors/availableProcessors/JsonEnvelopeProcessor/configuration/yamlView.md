@@ -29,10 +29,10 @@ ProcessorConfiguration:
   BodyPropertyName: 'value'
   ContentType: 'value'
   StatusCode: 0
-  IncludeBodyType: false
-  IncludePathParameters: false
-  IncludeRequestHeaders: false
-  IncludeUri: false
+  IncludeBodyType: True
+  IncludePathParameters: True
+  IncludeRequestHeaders: True
+  IncludeUri: True
   ResponseHeaders: {}
 ```
 

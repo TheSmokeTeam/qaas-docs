@@ -189,4 +189,3 @@ Start with the minimal scaffold, replace placeholder values with project values,
 ## See also {: #see-also}
 
 - [Configuration table](publishers-tableView.md)
-- [Overview](../overview.md)

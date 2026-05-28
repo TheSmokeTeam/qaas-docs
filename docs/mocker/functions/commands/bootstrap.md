@@ -44,7 +44,7 @@ Each entry uses the short function name as the table-of-contents label. Expand a
     
     This is the primary code-first entry point for bootstrapping the product from command-line style arguments so library startup and CLI startup stay aligned.
 
-## `New<TRunner>` {: #newtrunner}
+## `New<TRunner>` {: #new-trunner}
 
 ??? info "Source file, signature, and docstring"
     **Member**

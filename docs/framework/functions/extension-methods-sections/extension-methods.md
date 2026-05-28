@@ -8,7 +8,6 @@ applies_to: [framework]
 keywords: [framework, functions, extension, methods, sections]
 summary: "Reference page for Extension Methods: Extension Methods."
 ---
-
 <!-- Verified-against: QaaS.Framework\QaaS.Framework.Configurations\ConfigurationBindingUtils\ConfigurationMergeUtils.cs -->
 <!-- Verified-against: QaaS.Framework\QaaS.Framework.Configurations\ConfigurationBindingUtils\IConfigurationUtils.cs -->
 <!-- Verified-against: QaaS.Framework\QaaS.Framework.Configurations\ConfigurationUtils.cs -->
@@ -22,20 +21,20 @@ summary: "Reference page for Extension Methods: Extension Methods."
 <!-- Verified-against: QaaS.Framework\QaaS.Framework.SDK\Extensions\RunningCommunicationDataExtensions.cs -->
 <!-- Verified-against: QaaS.Framework\QaaS.Framework.SDK\Extensions\RunningSessionDataExtensions.cs -->
 <!-- Verified-against: QaaS.Framework\QaaS.Framework.SDK\Extensions\SessionDataExtensions.cs -->
+<!-- Verified-against: QaaS.Framework\QaaS.Framework.Configurations\ConfigurationBuilderExtensions\PlaceholderConfigurationBuilderExtension.cs -->
+<!-- Verified-against: QaaS.Framework\QaaS.Framework.Configurations\ConfigurationBuilderExtensions\YamlConfigurationBuilderExtension.cs -->
+<!-- Verified-against: QaaS.Framework\QaaS.Framework.Configurations\ConfigurationUpdateExtensions.cs -->
+<!-- Verified-against: QaaS.Framework\QaaS.Framework.SDK\Extensions\EnumerableExtensions.cs -->
 
 # Extension Methods: Extension Methods
 
-> TL;DR — This page mirrors the `Extension Methods` section from [Extension Methods](../extension-methods.md) as a focused reference.
+> TL;DR — Reference page for Extension Methods: Extension Methods.
 
-## When to use {: #when-to-use}
+This page mirrors the `Extension Methods` section from [Extension Methods](../extension-methods.md).
 
-Use this page when you need the focused member list, signatures, and source notes for this section without scanning the full parent reference.
+## Communication data {: #communication-data}
 
-## C# (CAC) usage {: #c-cac-usage}
-
-### Communication data {: #communication-data}
-
-#### `GetCommunicationDataByName<TData>`
+### `GetCommunicationDataByName<TData>` {: #getcommunicationdatabyname-tdata}
 
 ??? info "Source file, signature, and docstring"
     **Member**
@@ -56,7 +55,7 @@ Use this page when you need the focused member list, signatures, and source note
     
     Retrieves a CommunicationData from an enumerable of CommunicationData by its name
 
-#### `CastCommunicationData<TCastTo>`
+### `CastCommunicationData<TCastTo>` {: #castcommunicationdata-tcastto}
 
 ??? info "Source file, signature, and docstring"
     **Member**
@@ -77,7 +76,7 @@ Use this page when you need the focused member list, signatures, and source note
     
     Casts a CommunicationData to a different type
 
-#### `GetDataByIoMatchIndex<TData>`
+### `GetDataByIoMatchIndex<TData>` {: #getdatabyiomatchindex-tdata}
 
 ??? info "Source file, signature, and docstring"
     **Member**
@@ -98,9 +97,9 @@ Use this page when you need the focused member list, signatures, and source note
     
     Retrieves data by its IoMatchIndex from a CommunicationData object
 
-### Configuration merge utilities {: #configuration-merge-utilities}
+## Configuration merge utilities {: #configuration-merge-utilities}
 
-#### `MergeConfigurationObjectIntoIConfiguration`
+### `MergeConfigurationObjectIntoIConfiguration` {: #mergeconfigurationobjectintoiconfiguration}
 
 ??? info "Source file, signature, and docstring"
     **Member**
@@ -121,7 +120,7 @@ Use this page when you need the focused member list, signatures, and source note
     
     Merges a partial configuration object into an existing IConfiguration instance. Fields omitted from configurationObject are preserved from configuration . A field is treated as omitted when it still matches the default value produced by a fresh instance of the same configuration type.
 
-#### `MergeConfiguration<TConfiguration>`
+### `MergeConfiguration<TConfiguration>` {: #mergeconfiguration-tconfiguration}
 
 ??? info "Source file, signature, and docstring"
     **Member**
@@ -142,9 +141,9 @@ Use this page when you need the focused member list, signatures, and source note
     
     Merges a partial configuration object into an existing configuration instance. When the incoming configuration type differs from the existing one, the incoming configuration replaces it. Fields that still match a fresh default instance of the incoming configuration type are ignored.
 
-### Configuration references parser {: #configuration-references-parser}
+## Configuration references parser {: #configuration-references-parser}
 
-#### `ResolveReferencesInConfiguration`
+### `ResolveReferencesInConfiguration` {: #resolvereferencesinconfiguration}
 
 ??? info "Source file, signature, and docstring"
     **Member**
@@ -165,9 +164,9 @@ Use this page when you need the focused member list, signatures, and source note
     
     Resolves all references in configuration according to loaded reference configs and given referenceResolutionPaths
 
-### Configuration utilities {: #configuration-utilities}
+## Configuration utilities {: #configuration-utilities}
 
-#### `BindConfigurationObjectToIConfiguration`
+### `BindConfigurationObjectToIConfiguration` {: #bindconfigurationobjecttoiconfiguration}
 
 ??? info "Source file, signature, and docstring"
     **Member**
@@ -188,7 +187,7 @@ Use this page when you need the focused member list, signatures, and source note
     
     Merges a partial configuration object into the existing IConfiguration . Existing values are preserved when the incoming object leaves a field at its type default.
 
-#### `GetDictionaryFromConfiguration`
+### `GetDictionaryFromConfiguration` {: #getdictionaryfromconfiguration}
 
 ??? info "Source file, signature, and docstring"
     **Member**
@@ -209,7 +208,7 @@ Use this page when you need the focused member list, signatures, and source note
     
     Returns Dictionary representation of given IConfiguration
 
-#### `BuildConfigurationAsYaml`
+### `BuildConfigurationAsYaml` {: #buildconfigurationasyaml}
 
 ??? info "Source file, signature, and docstring"
     **Member**
@@ -230,7 +229,7 @@ Use this page when you need the focused member list, signatures, and source note
     
     Serializes IConfiguration object to Yaml string by a specific given order of its content's sections if given - else return default serialize result.
 
-#### `LoadAndValidateConfiguration<TConfiguration>`
+### `LoadAndValidateConfiguration<TConfiguration>` {: #loadandvalidateconfiguration-tconfiguration}
 
 ??? info "Source file, signature, and docstring"
     **Member**
@@ -251,7 +250,7 @@ Use this page when you need the focused member list, signatures, and source note
     
     Load IConfiguration to a c# object and validate it
 
-#### `EnrichedBuild`
+### `EnrichedBuild` {: #enrichedbuild}
 
 ??? info "Source file, signature, and docstring"
     **Member**
@@ -272,7 +271,7 @@ Use this page when you need the focused member list, signatures, and source note
     
     Builds IConfiguration from configuration builder while adding all parameterless configuration resolution extensions to the build process
 
-#### `BindToObject<T>`
+### `BindToObject<T>` {: #bindtoobject-t}
 
 ??? info "Source file, signature, and docstring"
     **Member**
@@ -293,7 +292,7 @@ Use this page when you need the focused member list, signatures, and source note
     
     Converts IConfiguration object to a c# object of given type and validates the object according to DataAnnotations
 
-#### `BindToObject`
+### `BindToObject` {: #bindtoobject}
 
 ??? info "Source file, signature, and docstring"
     **Member**
@@ -314,9 +313,9 @@ Use this page when you need the focused member list, signatures, and source note
     
     Converts IConfiguration to an object of the given runtime type.
 
-### Context global dictionary {: #context-global-dictionary}
+## Context global dictionary {: #context-global-dictionary}
 
-#### `LoadConfigurationSectionIntoGlobalDictionary<TExecutionData>`
+### `LoadConfigurationSectionIntoGlobalDictionary<TExecutionData>` {: #loadconfigurationsectionintoglobaldictionary-texecutiondata}
 
 ??? info "Source file, signature, and docstring"
     **Member**
@@ -337,9 +336,9 @@ Use this page when you need the focused member list, signatures, and source note
     
     Loads the requested configuration section into the context global dictionary. Use "variables" as the section path to project the root variables section into runtime state without relying on a dedicated Variables API. Numeric child sections are normalized to lists so YAML list sections do not appear as dictionaries with stringified indexes such as "0" and "1" .
 
-### Data {: #data}
+## Data {: #data}
 
-#### `CastObjectData<TCasted>`
+### `CastObjectData<TCasted>` {: #castobjectdata-tcasted}
 
 ??? info "Source file, signature, and docstring"
     **Member**
@@ -360,7 +359,7 @@ Use this page when you need the focused member list, signatures, and source note
     
     Casts a `Data` of type object to another type, if the cast is not valid will throw InvalidCastException
 
-#### `CastToObjectData<TData>`
+### `CastToObjectData<TData>` {: #casttoobjectdata-tdata}
 
 ??? info "Source file, signature, and docstring"
     **Member**
@@ -381,7 +380,7 @@ Use this page when you need the focused member list, signatures, and source note
     
     Casts a `Data` of any type to a Data of type object, if the cast is not valid will throw InvalidCastException
 
-#### `CastObjectDetailedData<TCasted>`
+### `CastObjectDetailedData<TCasted>` {: #castobjectdetaileddata-tcasted}
 
 ??? info "Source file, signature, and docstring"
     **Member**
@@ -402,7 +401,7 @@ Use this page when you need the focused member list, signatures, and source note
     
     Casts a `DetailedData` of type object to another type, if the cast is not valid will throw InvalidCastException
 
-#### `CastToObjectDetailedData<TData>`
+### `CastToObjectDetailedData<TData>` {: #casttoobjectdetaileddata-tdata}
 
 ??? info "Source file, signature, and docstring"
     **Member**
@@ -423,7 +422,7 @@ Use this page when you need the focused member list, signatures, and source note
     
     Casts a `DetailedData` of any type to a DetailedData of type object, if the cast is not valid will throw InvalidCastException
 
-#### `FilterData<TData>`
+### `FilterData<TData>` {: #filterdata-tdata}
 
 ??? info "Source file, signature, and docstring"
     **Member**
@@ -444,9 +443,9 @@ Use this page when you need the focused member list, signatures, and source note
     
     Filters the data of a detailed data item according to the given DataFilter
 
-### Data source {: #data-source}
+## Data source {: #data-source}
 
-#### `GetDataSourceByName`
+### `GetDataSourceByName` {: #getdatasourcebyname}
 
 ??? info "Source file, signature, and docstring"
     **Member**
@@ -467,7 +466,7 @@ Use this page when you need the focused member list, signatures, and source note
     
     Retrieves a DataSource from an enumerable of DataSources by its name
 
-#### `RetrieveAndCast<TCastTo>`
+### `RetrieveAndCast<TCastTo>` {: #retrieveandcast-tcastto}
 
 ??? info "Source file, signature, and docstring"
     **Member**
@@ -488,9 +487,9 @@ Use this page when you need the focused member list, signatures, and source note
     
     Casts a DataSource to a different type
 
-### Date time {: #date-time}
+## Date time {: #date-time}
 
-#### `ConvertDateTimeToUtcByTimeZoneOffset`
+### `ConvertDateTimeToUtcByTimeZoneOffset` {: #convertdatetimetoutcbytimezoneoffset}
 
 ??? info "Source file, signature, and docstring"
     **Member**
@@ -511,7 +510,7 @@ Use this page when you need the focused member list, signatures, and source note
     
     converts the given time to utc based on the timezone offset in summer time given
 
-#### `ConvertDateTimeFromUtcToTimeZoneByTimeZoneOffset`
+### `ConvertDateTimeFromUtcToTimeZoneByTimeZoneOffset` {: #convertdatetimefromutctotimezonebytimezoneoffset}
 
 ??? info "Source file, signature, and docstring"
     **Member**
@@ -532,9 +531,9 @@ Use this page when you need the focused member list, signatures, and source note
     
     adds a timezone offset to the given utc time based on the timezone offset in summer time given
 
-### Running communication data {: #running-communication-data}
+## Running communication data {: #running-communication-data}
 
-#### `GetRunningCommunicationDataByName<TData>`
+### `GetRunningCommunicationDataByName<TData>` {: #getrunningcommunicationdatabyname-tdata}
 
 ??? info "Source file, signature, and docstring"
     **Member**
@@ -555,9 +554,9 @@ Use this page when you need the focused member list, signatures, and source note
     
     Retrieves a RunningCommunicationData{TData} from an enumerable of RunningCommunicationData{TData} by its name
 
-### Running session data {: #running-session-data}
+## Running session data {: #running-session-data}
 
-#### `GetInputByName<TInput, TOutput>`
+### `GetInputByName<TInput, TOutput>` {: #getinputbyname-tinput-toutput}
 
 ??? info "Source file, signature, and docstring"
     **Member**
@@ -578,7 +577,7 @@ Use this page when you need the focused member list, signatures, and source note
     
     Retrieves an input RunningCommunicationData{TData} from RunningSessionData{TInput,TOutput} by its name
 
-#### `GetOutputByName<TInput, TOutput>`
+### `GetOutputByName<TInput, TOutput>` {: #getoutputbyname-tinput-toutput}
 
 ??? info "Source file, signature, and docstring"
     **Member**
@@ -599,9 +598,9 @@ Use this page when you need the focused member list, signatures, and source note
     
     Retrieves an output RunningCommunicationData{TData} from RunningSessionData{TInput,TOutput} by its name
 
-### Serilog {: #serilog}
+## Serilog {: #serilog}
 
-#### `WithHostname`
+### `WithHostname` {: #withhostname}
 
 ??? info "Source file, signature, and docstring"
     **Member**
@@ -622,7 +621,7 @@ Use this page when you need the focused member list, signatures, and source note
     
     Enriches log events with the machine hostname as a structured property and adds it as a tag (label) in Elasticsearch.
 
-#### `WithEnvironment`
+### `WithEnvironment` {: #withenvironment}
 
 ??? info "Source file, signature, and docstring"
     **Member**
@@ -643,9 +642,9 @@ Use this page when you need the focused member list, signatures, and source note
     
     Enriches log events with the CI/Local environment as a structured property and adds it as a tag (label) in Elasticsearch.
 
-### Session data {: #session-data}
+## Session data {: #session-data}
 
-#### `GetSessionDataByName<TInput, TOutput>`
+### `GetSessionDataByName<TInput, TOutput>` {: #getsessiondatabyname-tinput-toutput}
 
 ??? info "Source file, signature, and docstring"
     **Member**
@@ -666,7 +665,7 @@ Use this page when you need the focused member list, signatures, and source note
     
     Retrieves a SessionData from an enumerable of SessionData by its name
 
-#### `GetInputByName<TInput, TOutput>`
+### `GetInputByName<TInput, TOutput>` {: #getinputbyname-tinput-toutput-2}
 
 ??? info "Source file, signature, and docstring"
     **Member**
@@ -687,7 +686,7 @@ Use this page when you need the focused member list, signatures, and source note
     
     Retrieves an input CommunicationData from SessionData by its name
 
-#### `TryGetInputByName<TInput, TOutput>`
+### `TryGetInputByName<TInput, TOutput>` {: #trygetinputbyname-tinput-toutput}
 
 ??? info "Source file, signature, and docstring"
     **Member**
@@ -708,7 +707,7 @@ Use this page when you need the focused member list, signatures, and source note
     
     Retrieves an input CommunicationData{TData} from SessionData by its name to inputValue
 
-#### `GetOutputByName<TInput, TOutput>`
+### `GetOutputByName<TInput, TOutput>` {: #getoutputbyname-tinput-toutput-2}
 
 ??? info "Source file, signature, and docstring"
     **Member**
@@ -729,7 +728,7 @@ Use this page when you need the focused member list, signatures, and source note
     
     Retrieves an output CommunicationData from SessionData by its name
 
-#### `TryGetOutputByName<TInput, TOutput>`
+### `TryGetOutputByName<TInput, TOutput>` {: #trygetoutputbyname-tinput-toutput}
 
 ??? info "Source file, signature, and docstring"
     **Member**
@@ -750,11 +749,6 @@ Use this page when you need the focused member list, signatures, and source note
     
     Retrieves an input CommunicationData{TData} from SessionData by its name to inputValue
 
-## Edge cases {: #edge-cases}
-
-- This page is generated from the parent reference section; edit the source XML docs or generator when content needs to change.
-- If a linked source member is renamed, regenerate the reference docs before changing prose by hand.
-
 ## See also {: #see-also}
 
-- [Extension Methods](../extension-methods.md)
+Use the surrounding documentation navigation to move between related generated reference pages.

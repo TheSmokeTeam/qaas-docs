@@ -65,13 +65,13 @@ dotnet run <dotnet-parameters> -- template <config-file> [flags]
 
 ## Flag Notes {: #flag-notes}
 
-### `-r`, `--overwrite-arguments` {: #-r-overwrite-arguments}
+### `-r`, `--overwrite-arguments` {: #r-overwrite-arguments}
 
 ```text
 -r MetaData:Environment=qa
 ```
 
-### `-p`, `--push-references` {: #-p-push-references}
+### `-p`, `--push-references` {: #p-push-references}
 
 Use pushed references when a list placeholder in the loaded configuration should be expanded from another YAML file.
 

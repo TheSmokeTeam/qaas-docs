@@ -21,7 +21,7 @@ Use this page when you need source-backed signatures, declaring types, and XML d
 Each entry uses the short function name as the table-of-contents label. Expand an entry to inspect its source file, signature, and XML doc comments.
 
 
-## `UpdateConfiguration<TConfiguration>` {: #updateconfigurationtconfiguration}
+## `UpdateConfiguration<TConfiguration>` {: #updateconfiguration-tconfiguration}
 
 ??? info "Source file, signature, and docstring"
     **Member**
@@ -44,7 +44,7 @@ Each entry uses the short function name as the table-of-contents label. Expand a
     
     Use this helper when a partially populated typed configuration object should override only the supplied fields while preserving the rest of the existing configuration state.
 
-## `UpdateConfiguration<TConfiguration>` {: #updateconfigurationtconfiguration_1}
+## `UpdateConfiguration<TConfiguration>` {: #updateconfiguration-tconfiguration-2}
 
 ??? info "Source file, signature, and docstring"
     **Member**

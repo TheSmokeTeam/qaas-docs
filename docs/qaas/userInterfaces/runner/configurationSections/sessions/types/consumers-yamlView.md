@@ -198,4 +198,3 @@ Start with the minimal scaffold, replace placeholder values with project values,
 ## See also {: #see-also}
 
 - [Configuration table](consumers-tableView.md)
-- [Overview](../overview.md)

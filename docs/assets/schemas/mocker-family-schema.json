@@ -807,7 +807,7 @@
                 ],
                 "pattern": "\\$\\{.*\\}",
                 "items": {
-                  "title": "FromSessionDataDataSourcesConfiguration",
+                  "title": "FromSessionDataDataSources",
                   "type": [
                     "object",
                     "string"

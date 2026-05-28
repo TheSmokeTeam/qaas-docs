@@ -29,7 +29,7 @@ The scaffold follows the generated schema order. String placeholders are quoted,
 Probes:
   -
     Name: 'value'
-    Probe: 'value'
+    Probe: 'CreateRabbitMqBindings'
     Configuration: {}
     ProbeConfiguration: {}
     Stage: 3
@@ -49,4 +49,3 @@ Start with the minimal scaffold, replace placeholder values with project values,
 ## See also {: #see-also}
 
 - [Configuration table](probes-tableView.md)
-- [Overview](../overview.md)

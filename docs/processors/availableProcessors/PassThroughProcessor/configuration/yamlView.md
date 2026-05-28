@@ -28,7 +28,7 @@ The scaffold follows the generated schema order. String placeholders are quoted,
 ProcessorConfiguration:
   StatusCode: 0
   ContentType: 'value'
-  PreserveMetaData: false
+  PreserveMetaData: True
   ResponseHeaders: {}
 ```
 

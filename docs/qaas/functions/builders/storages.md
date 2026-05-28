@@ -22,7 +22,7 @@ Each entry uses the short function name as the table-of-contents label. Expand a
 
 The functions on this page are grouped by responsibility so related operations stay together.
 
-## Storages {: #storages_1}
+## Storages {: #storages}
 
 ### `WithJsonStorageFormat` {: #withjsonstorageformat}
 
@@ -44,6 +44,8 @@ The functions on this page are grouped by responsibility so related operations s
     **Docstring**
     
     Sets the JSON formatting used by runtime storages.
+    
+    Use this method when working with the documented Runner storage builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
 ## Collection helpers {: #collection-helpers}
 
@@ -67,6 +69,8 @@ The functions on this page are grouped by responsibility so related operations s
     **Docstring**
     
     Updates the configuration currently stored on the Runner storage builder instance.
+    
+    Use this method when working with the documented Runner storage builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
 ## General {: #general}
 
@@ -90,6 +94,8 @@ The functions on this page are grouped by responsibility so related operations s
     **Docstring**
     
     Sets the configuration currently stored on the Runner storage builder instance.
+    
+    Use this method when working with the documented Runner storage builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
 ## See also {: #see-also}
 
