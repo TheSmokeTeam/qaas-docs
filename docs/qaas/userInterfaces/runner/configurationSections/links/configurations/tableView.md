@@ -40,10 +40,10 @@ The table below mirrors the schema used by the YAML scaffold page. Nested rows u
 | `Links[].Kibana.DataViewId` | `string` | &#10004 |  | The Id of the desired data view to view |
 | `Links[].Kibana.Url` | `string` | &#10004 |  | The kibana's url, the base url without any route |
 | `Links[].Kibana.KqlQuery` | `string or null` | &#10006 |  | A custom Kql query to add to the generated URL, this query is added to the session time filtering query with `and`  |
-| `Links[].Kibana.TimestampField` | `string` | &#10006 | @timestamp | The name of the main timestamp field to use to query on specific times in given data view |
+| `Links[].Kibana.TimestampField` | `string` | &#10006 | `@timestamp` | The name of the main timestamp field to use to query on specific times in given data view |
 | `Links[].Prometheus` | `object or string` | &#10006 |  | Links the prometheus' graph filtered for the test's session times to each test result. |
 | `Links[].Prometheus.Url` | `string` | &#10004 |  | The prometheus' url, the base url without any route |
-| `Links[].Prometheus.Expressions` | `list or string` | &#10006 | [<br />  ""<br />] | The expressions to generate prometheus panels for |
+| `Links[].Prometheus.Expressions` | `list or string` | &#10006 | `[<br />  ""<br />]` | The expressions to generate prometheus panels for |
 | `Links[].Prometheus.Expressions[]` | `string` | &#10006 |  |  |
 
 ## Edge cases {: #edge-cases}

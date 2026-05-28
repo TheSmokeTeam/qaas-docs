@@ -14,11 +14,11 @@ summary: "This page collects public Mocker extension methods that have XML docum
 
 # Extension Methods
 
-> TL;DR — This page lists public Mocker extension methods with source-backed signatures and XML doc comments.
+> TL;DR — This page lists the public Mocker extension methods generated from XML documentation.
 
 ## When to use {: #when-to-use}
 
-Use this page when you need extension-method helpers without scanning each regular function category.
+Use this page when you need extension-method signatures and doc comments for the Mocker API surface.
 
 This page collects public `Mocker` extension methods that have XML documentation or explicit docs annotations.
 
@@ -137,4 +137,4 @@ Annotated extension methods continue to appear in their regular category pages; 
 
 ## See also {: #see-also}
 
-- [Functions](index.md)
+- [Mocker Functions](index.md)

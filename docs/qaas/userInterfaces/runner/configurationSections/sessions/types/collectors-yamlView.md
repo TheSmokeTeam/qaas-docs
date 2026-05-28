@@ -58,4 +58,3 @@ Start with the minimal scaffold, replace placeholder values with project values,
 ## See also {: #see-also}
 
 - [Configuration table](collectors-tableView.md)
-- [Overview](../overview.md)

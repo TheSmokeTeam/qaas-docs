@@ -30,7 +30,7 @@ The table below mirrors the schema used by the YAML scaffold page. Nested rows u
 | `DataSources[].Generator` | `string` | &#10004 |  | The name of the generator to use |
 | `DataSources[].Name` | `string` | &#10004 |  | Name of data source to reference it by (must be unique) |
 | `DataSources[].GeneratorConfiguration` | `object or string or null` | &#10006 |  | Implementation configuration for the generator, the configuration given here is loaded into the provided generator dynamically. |
-| `DataSources[].Lazy` | `string or true/false` | &#10006 | False | True to iterate over data lazily |
+| `DataSources[].Lazy` | `string or true/false` | &#10006 | `False` | True to iterate over data lazily |
 | `DataSources[].DataSourceNames` | `list or string` | &#10006 |  | Names of data sources to pass to this data source for usage, those data sources dont have to be defined before this data source. |
 | `DataSources[].DataSourceNames[]` | `string` | &#10006 |  |  |
 | `DataSources[].DataSourcePatterns` | `list or string` | &#10006 |  | Regex patterns of data sources to pass to this data source for usage, those data sources dont have to be defined before this data source. |

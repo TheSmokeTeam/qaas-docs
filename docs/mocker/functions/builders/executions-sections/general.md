@@ -8,20 +8,15 @@ applies_to: [mocker]
 keywords: [mocker, functions, builders, executions, sections, general]
 summary: "Reference page for Executions: General."
 ---
-
 <!-- Verified-against: QaaS.Mocker\QaaS.Mocker\ExecutionBuilder.cs -->
 
 # Executions: General
 
-> TL;DR — This page mirrors the `General` section from [Executions](../executions.md) as a focused reference.
+> TL;DR — Reference page for Executions: General.
 
-## When to use {: #when-to-use}
+This page mirrors the `General` section from [Executions](../executions.md).
 
-Use this page when you need the focused member list, signatures, and source notes for this section without scanning the full parent reference.
-
-## C# (CAC) usage {: #c-cac-usage}
-
-### `RunLocally` {: #runlocally}
+## `RunLocally` {: #runlocally}
 
 ??? info "Source file, signature, and docstring"
     **Member**
@@ -41,8 +36,10 @@ Use this page when you need the focused member list, signatures, and source note
     **Docstring**
     
     Configures whether the mocker waits for an interactive local shutdown signal.
+    
+    Use this method when working with the documented Mocker execution builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
-### `Build` {: #build}
+## `Build` {: #build}
 
 ??? info "Source file, signature, and docstring"
     **Member**
@@ -65,7 +62,7 @@ Use this page when you need the focused member list, signatures, and source note
     
     Call this after the fluent configuration is complete. The method validates the accumulated state and materializes the runtime or immutable configuration object represented by the builder.
 
-### `Validate` {: #validate}
+## `Validate` {: #validate}
 
 ??? info "Source file, signature, and docstring"
     **Member**
@@ -88,11 +85,6 @@ Use this page when you need the focused member list, signatures, and source note
     
     Validation results are returned instead of thrown so callers can aggregate or report configuration problems before running the product.
 
-## Edge cases {: #edge-cases}
-
-- This page is generated from the parent reference section; edit the source XML docs or generator when content needs to change.
-- If a linked source member is renamed, regenerate the reference docs before changing prose by hand.
-
 ## See also {: #see-also}
 
-- [Executions](../executions.md)
+Use the surrounding documentation navigation to move between related generated reference pages.

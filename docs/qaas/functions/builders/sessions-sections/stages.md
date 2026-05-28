@@ -8,20 +8,15 @@ applies_to: [runner]
 keywords: [runner, qaas, functions, builders, sessions, sections, stages]
 summary: "Reference page for Sessions: Stages."
 ---
-
 <!-- Verified-against: QaaS.Runner\QaaS.Runner.Sessions\Session\Builders\SessionBuilderLogic.cs -->
 
 # Sessions: Stages
 
-> TL;DR — This page mirrors the `Stages` section from [Sessions](../sessions.md) as a focused reference.
+> TL;DR — Reference page for Sessions: Stages.
 
-## When to use {: #when-to-use}
+This page mirrors the `Stages` section from [Sessions](../sessions.md).
 
-Use this page when you need the focused member list, signatures, and source notes for this section without scanning the full parent reference.
-
-## C# (CAC) usage {: #c-cac-usage}
-
-### `AddStage` {: #addstage}
+## `AddStage` {: #addstage}
 
 ??? info "Source file, signature, and docstring"
     **Member**
@@ -41,8 +36,10 @@ Use this page when you need the focused member list, signatures, and source note
     **Docstring**
     
     Adds the supplied stage to the current Runner session builder instance.
+    
+    Use this method when working with the documented Runner session builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
-### `UpdateStage` {: #updatestage}
+## `UpdateStage` {: #updatestage}
 
 ??? info "Source file, signature, and docstring"
     **Member**
@@ -62,8 +59,10 @@ Use this page when you need the focused member list, signatures, and source note
     **Docstring**
     
     Updates the configured stage stored on the current Runner session builder instance.
+    
+    Use this method when working with the documented Runner session builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
-### `RemoveStage` {: #removestage}
+## `RemoveStage` {: #removestage}
 
 ??? info "Source file, signature, and docstring"
     **Member**
@@ -83,8 +82,10 @@ Use this page when you need the focused member list, signatures, and source note
     **Docstring**
     
     Removes the configured stage from the current Runner session builder instance.
+    
+    Use this method when working with the documented Runner session builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
-### `RemoveStageAt` {: #removestageat}
+## `RemoveStageAt` {: #removestageat}
 
 ??? info "Source file, signature, and docstring"
     **Member**
@@ -104,12 +105,9 @@ Use this page when you need the focused member list, signatures, and source note
     **Docstring**
     
     Removes the configured stage at the specified index from the current Runner session builder instance.
-
-## Edge cases {: #edge-cases}
-
-- This page is generated from the parent reference section; edit the source XML docs or generator when content needs to change.
-- If a linked source member is renamed, regenerate the reference docs before changing prose by hand.
+    
+    Use this method when working with the documented Runner session builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
 ## See also {: #see-also}
 
-- [Sessions](../sessions.md)
+Use the surrounding documentation navigation to move between related generated reference pages.

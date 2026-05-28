@@ -44,6 +44,8 @@ The functions on this page are grouped by responsibility so related operations s
     **Docstring**
     
     Adds the supplied data source to the current Runner execution builder instance.
+    
+    Use this method when working with the documented Runner execution builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
 ### `UpdateDataSource` {: #updatedatasource}
 
@@ -65,6 +67,8 @@ The functions on this page are grouped by responsibility so related operations s
     **Docstring**
     
     Updates the configured data source stored on the current Runner execution builder instance.
+    
+    Use this method when working with the documented Runner execution builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
 ### `RemoveDataSource` {: #removedatasource}
 
@@ -86,6 +90,8 @@ The functions on this page are grouped by responsibility so related operations s
     **Docstring**
     
     Removes the configured data source from the current Runner execution builder instance.
+    
+    Use this method when working with the documented Runner execution builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
 ### `RemoveDataSourceAt` {: #removedatasourceat}
 
@@ -107,6 +113,8 @@ The functions on this page are grouped by responsibility so related operations s
     **Docstring**
     
     Removes the configured data source at the specified index from the current Runner execution builder instance.
+    
+    Use this method when working with the documented Runner execution builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
 ## Session selection {: #session-selection}
 
@@ -130,6 +138,8 @@ The functions on this page are grouped by responsibility so related operations s
     **Docstring**
     
     Adds the supplied session to the current Runner execution builder instance.
+    
+    Use this method when working with the documented Runner execution builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
 ### `UpdateSession` {: #updatesession}
 
@@ -151,6 +161,8 @@ The functions on this page are grouped by responsibility so related operations s
     **Docstring**
     
     Updates the configured session stored on the current Runner execution builder instance.
+    
+    Use this method when working with the documented Runner execution builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
 ### `RemoveSession` {: #removesession}
 
@@ -172,6 +184,8 @@ The functions on this page are grouped by responsibility so related operations s
     **Docstring**
     
     Removes the configured session from the current Runner execution builder instance.
+    
+    Use this method when working with the documented Runner execution builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
 ### `RemoveSessionAt` {: #removesessionat}
 
@@ -193,6 +207,8 @@ The functions on this page are grouped by responsibility so related operations s
     **Docstring**
     
     Removes the configured session at the specified index from the current Runner execution builder instance.
+    
+    Use this method when working with the documented Runner execution builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
 ## Links {: #links}
 
@@ -216,6 +232,8 @@ The functions on this page are grouped by responsibility so related operations s
     **Docstring**
     
     Adds the supplied link to the current Runner execution builder instance.
+    
+    Use this method when working with the documented Runner execution builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
 ### `UpdateLinkAt` {: #updatelinkat}
 
@@ -237,6 +255,8 @@ The functions on this page are grouped by responsibility so related operations s
     **Docstring**
     
     Updates the configured link at the specified index on the current Runner execution builder instance.
+    
+    Use this method when working with the documented Runner execution builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
 ### `RemoveLink` {: #removelink}
 
@@ -258,6 +278,8 @@ The functions on this page are grouped by responsibility so related operations s
     **Docstring**
     
     Removes the configured link from the current Runner execution builder instance.
+    
+    Use this method when working with the documented Runner execution builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
 ### `RemoveLinkAt` {: #removelinkat}
 
@@ -279,6 +301,8 @@ The functions on this page are grouped by responsibility so related operations s
     **Docstring**
     
     Removes the configured link at the specified index from the current Runner execution builder instance.
+    
+    Use this method when working with the documented Runner execution builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
 ## Storages {: #storages}
 
@@ -302,6 +326,8 @@ The functions on this page are grouped by responsibility so related operations s
     **Docstring**
     
     Adds the supplied storage to the current Runner execution builder instance.
+    
+    Use this method when working with the documented Runner execution builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
 ### `UpdateStorageAt` {: #updatestorageat}
 
@@ -323,6 +349,8 @@ The functions on this page are grouped by responsibility so related operations s
     **Docstring**
     
     Updates the configured storage at the specified index on the current Runner execution builder instance.
+    
+    Use this method when working with the documented Runner execution builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
 ### `RemoveStorageAt` {: #removestorageat}
 
@@ -344,6 +372,8 @@ The functions on this page are grouped by responsibility so related operations s
     **Docstring**
     
     Removes the configured storage at the specified index from the current Runner execution builder instance.
+    
+    Use this method when working with the documented Runner execution builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
 ## Assertions {: #assertions}
 
@@ -367,6 +397,8 @@ The functions on this page are grouped by responsibility so related operations s
     **Docstring**
     
     Adds the supplied assertion to the current Runner execution builder instance.
+    
+    Use this method when working with the documented Runner execution builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
 ### `UpdateAssertion` {: #updateassertion}
 
@@ -388,6 +420,8 @@ The functions on this page are grouped by responsibility so related operations s
     **Docstring**
     
     Updates the configured assertion stored on the current Runner execution builder instance.
+    
+    Use this method when working with the documented Runner execution builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
 ### `RemoveAssertion` {: #removeassertion}
 
@@ -409,6 +443,8 @@ The functions on this page are grouped by responsibility so related operations s
     **Docstring**
     
     Removes the configured assertion from the current Runner execution builder instance.
+    
+    Use this method when working with the documented Runner execution builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
 ### `RemoveAssertionAt` {: #removeassertionat}
 
@@ -430,8 +466,10 @@ The functions on this page are grouped by responsibility so related operations s
     **Docstring**
     
     Removes the configured assertion at the specified index from the current Runner execution builder instance.
+    
+    Use this method when working with the documented Runner execution builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
-## Executions {: #executions_1}
+## Executions {: #executions}
 
 ### `ExecutionType` {: #executiontype}
 
@@ -453,6 +491,8 @@ The functions on this page are grouped by responsibility so related operations s
     **Docstring**
     
     Sets the execution type used when the runner execution is built.
+    
+    Use this method when working with the documented Runner execution builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
 ### `SetExecutionId` {: #setexecutionid}
 
@@ -499,6 +539,8 @@ The functions on this page are grouped by responsibility so related operations s
     **Docstring**
     
     Replaces the global dictionary stored on the runner execution context.
+    
+    Use this method when working with the documented Runner execution builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
 ### `SetCase` {: #setcase}
 
@@ -543,6 +585,8 @@ The functions on this page are grouped by responsibility so related operations s
     **Docstring**
     
     Sets the metadata configuration stored on the execution.
+    
+    Use this method when working with the documented Runner execution builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
 ## General {: #general}
 

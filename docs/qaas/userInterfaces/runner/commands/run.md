@@ -68,39 +68,15 @@ dotnet run <dotnet-parameters> -- run <config-file> [flags]
 
 ## Flag Notes {: #flag-notes}
 
-### `-r`, `--overwrite-arguments` {: #-r-overwrite-arguments}
+### `-r`, `--overwrite-arguments` {: #r-overwrite-arguments}
 
 ```text
 -r MetaData:Environment=qa
 ```
 
-### `-p`, `--push-references` {: #-p-push-references}
+### `-p`, `--push-references` {: #p-push-references}
 
 Use pushed references when a list placeholder in the loaded configuration should be expanded from another YAML file.
-
-## Parallelism {: #parallelism}
-
-The `run` command has no parallelism flag. Configure parallel sends on publisher actions with `Sessions[].Publishers[].Parallel.Parallelism`; the schema requires `Parallelism` to be at least `1`.
-
-```yaml
-DataSources:
-  - Name: Payloads
-    Generator: FromFileSystem
-    GeneratorConfiguration:
-      DataArrangeOrder: AsciiAsc
-      FileSystem: { Path: Fixtures/payloads }
-Sessions:
-  - Name: PublishLoad
-    Publishers:
-      - Name: SendCheckoutEvents
-        DataSourceNames: [Payloads]
-        Parallel:
-          Parallelism: 4
-        RabbitMq:
-          Host: localhost
-```
-
-The C# equivalent is `PublisherBuilder.WithParallelism(int)`.
 
 ## Examples {: #examples}
 

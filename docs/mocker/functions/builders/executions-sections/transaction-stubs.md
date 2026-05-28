@@ -8,20 +8,15 @@ applies_to: [mocker]
 keywords: [mocker, functions, builders, executions, sections, transaction, stubs]
 summary: "Reference page for Executions: Transaction stubs."
 ---
-
 <!-- Verified-against: QaaS.Mocker\QaaS.Mocker\ExecutionBuilder.cs -->
 
 # Executions: Transaction stubs
 
-> TL;DR — This page mirrors the `Transaction stubs` section from [Executions](../executions.md) as a focused reference.
+> TL;DR — Reference page for Executions: Transaction stubs.
 
-## When to use {: #when-to-use}
+This page mirrors the `Transaction stubs` section from [Executions](../executions.md).
 
-Use this page when you need the focused member list, signatures, and source notes for this section without scanning the full parent reference.
-
-## C# (CAC) usage {: #c-cac-usage}
-
-### `AddStub` {: #addstub}
+## `AddStub` {: #addstub}
 
 ??? info "Source file, signature, and docstring"
     **Member**
@@ -41,8 +36,10 @@ Use this page when you need the focused member list, signatures, and source note
     **Docstring**
     
     Adds the supplied stub to the current Mocker execution builder instance.
+    
+    Use this method when working with the documented Mocker execution builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
-### `AddStub` {: #addstub_1}
+## `AddStub` {: #addstub-2}
 
 ??? info "Source file, signature, and docstring"
     **Member**
@@ -62,8 +59,10 @@ Use this page when you need the focused member list, signatures, and source note
     **Docstring**
     
     Adds the supplied stub to the current Mocker execution builder instance.
+    
+    Use this method when working with the documented Mocker execution builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
-### `UpdateStub` {: #updatestub}
+## `UpdateStub` {: #updatestub}
 
 ??? info "Source file, signature, and docstring"
     **Member**
@@ -83,8 +82,10 @@ Use this page when you need the focused member list, signatures, and source note
     **Docstring**
     
     Updates the configured stub stored on the current Mocker execution builder instance.
+    
+    Use this method when working with the documented Mocker execution builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
-### `UpdateStub` {: #updatestub_1}
+## `UpdateStub` {: #updatestub-2}
 
 ??? info "Source file, signature, and docstring"
     **Member**
@@ -104,8 +105,10 @@ Use this page when you need the focused member list, signatures, and source note
     **Docstring**
     
     Updates the configured stub stored on the current Mocker execution builder instance.
+    
+    Use this method when working with the documented Mocker execution builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
-### `RemoveStubAt` {: #removestubat}
+## `RemoveStubAt` {: #removestubat}
 
 ??? info "Source file, signature, and docstring"
     **Member**
@@ -125,8 +128,10 @@ Use this page when you need the focused member list, signatures, and source note
     **Docstring**
     
     Removes the configured stub at the specified index from the current Mocker execution builder instance.
+    
+    Use this method when working with the documented Mocker execution builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
-### `RemoveStub` {: #removestub}
+## `RemoveStub` {: #removestub}
 
 ??? info "Source file, signature, and docstring"
     **Member**
@@ -146,12 +151,9 @@ Use this page when you need the focused member list, signatures, and source note
     **Docstring**
     
     Removes the configured stub from the current Mocker execution builder instance.
-
-## Edge cases {: #edge-cases}
-
-- This page is generated from the parent reference section; edit the source XML docs or generator when content needs to change.
-- If a linked source member is renamed, regenerate the reference docs before changing prose by hand.
+    
+    Use this method when working with the documented Mocker execution builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
 ## See also {: #see-also}
 
-- [Executions](../executions.md)
+Use the surrounding documentation navigation to move between related generated reference pages.

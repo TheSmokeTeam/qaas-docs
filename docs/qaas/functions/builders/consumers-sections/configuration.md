@@ -8,20 +8,15 @@ applies_to: [runner]
 keywords: [runner, qaas, functions, builders, consumers, sections, configuration]
 summary: "Reference page for Consumers: Configuration."
 ---
-
 <!-- Verified-against: QaaS.Runner\QaaS.Runner.Sessions\Actions\Consumers\Builders\ConsumerBuilderLogic.cs -->
 
 # Consumers: Configuration
 
-> TL;DR — This page mirrors the `Configuration` section from [Consumers](../consumers.md) as a focused reference.
+> TL;DR — Reference page for Consumers: Configuration.
 
-## When to use {: #when-to-use}
+This page mirrors the `Configuration` section from [Consumers](../consumers.md).
 
-Use this page when you need the focused member list, signatures, and source notes for this section without scanning the full parent reference.
-
-## C# (CAC) usage {: #c-cac-usage}
-
-### `WithTimeout` {: #withtimeout}
+## `WithTimeout` {: #withtimeout}
 
 ??? info "Source file, signature, and docstring"
     **Member**
@@ -41,8 +36,10 @@ Use this page when you need the focused member list, signatures, and source note
     **Docstring**
     
     Configures timeout on the current Runner consumer builder instance.
+    
+    Use this method when working with the documented Runner consumer builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
-### `WithInitialTimeout` {: #withinitialtimeout}
+## `WithInitialTimeout` {: #withinitialtimeout}
 
 ??? info "Source file, signature, and docstring"
     **Member**
@@ -62,8 +59,10 @@ Use this page when you need the focused member list, signatures, and source note
     **Docstring**
     
     Configures timeout on the current Runner consumer builder instance.
+    
+    Use this method when working with the documented Runner consumer builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
-### `WithDeserializer` {: #withdeserializer}
+## `WithDeserializer` {: #withdeserializer}
 
 ??? info "Source file, signature, and docstring"
     **Member**
@@ -83,12 +82,9 @@ Use this page when you need the focused member list, signatures, and source note
     **Docstring**
     
     Sets the deserializer configuration used by the current Runner consumer builder instance.
-
-## Edge cases {: #edge-cases}
-
-- This page is generated from the parent reference section; edit the source XML docs or generator when content needs to change.
-- If a linked source member is renamed, regenerate the reference docs before changing prose by hand.
+    
+    Use this method when working with the documented Runner consumer builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
 ## See also {: #see-also}
 
-- [Consumers](../consumers.md)
+Use the surrounding documentation navigation to move between related generated reference pages.

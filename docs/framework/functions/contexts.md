@@ -47,7 +47,7 @@ The functions on this page are grouped by responsibility so related operations s
     
     The execution identifier flows into the built context and can later be used by logging, reports, and storage integrations.
 
-## Contexts {: #contexts_1}
+## Contexts {: #contexts}
 
 ### `ContextBuilder` {: #contextbuilder}
 
@@ -72,7 +72,7 @@ The functions on this page are grouped by responsibility so related operations s
     
     Use this constructor when the context should load its initial configuration from a file path before overwrite sources and reference resolution are applied.
 
-### `ContextBuilder` {: #contextbuilder_1}
+### `ContextBuilder` {: #contextbuilder-2}
 
 ??? info "Source file, signature, and docstring"
     **Member**

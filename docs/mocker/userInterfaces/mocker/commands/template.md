@@ -8,7 +8,6 @@ applies_to: [mocker]
 keywords: [mocker, userinterfaces, commands, template]
 summary: "Render the effective merged configuration after file, folder, argument, and environment overrides."
 ---
-
 # template
 
 > TL;DR — Render the effective merged configuration after file, folder, argument, and environment overrides.
@@ -50,7 +49,7 @@ dotnet run <dotnet-parameters> -- template <config-file> [flags]
 
 ## Flag Notes {: #flag-notes}
 
-### `-o`, `--output-folder` {: #-o-output-folder}
+### `-o`, `--output-folder` {: #o-output-folder}
 
 Use an output folder when you want the rendered configuration written to disk for review or diffing.
 

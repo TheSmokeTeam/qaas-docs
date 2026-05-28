@@ -120,6 +120,7 @@ nav:
       - Builders:
         - Assertions:
           - Overview: qaas/functions/builders/assertions.md
+          - When to use: qaas/functions/builders/assertions-sections/when-to-use.md
           - Identity and hook selection: qaas/functions/builders/assertions-sections/identity-and-hook-selection.md
           - Classification: qaas/functions/builders/assertions-sections/classification.md
           - Data source selection: qaas/functions/builders/assertions-sections/data-source-selection.md
@@ -130,11 +131,13 @@ nav:
           - General: qaas/functions/builders/assertions-sections/general.md
         - Collectors:
           - Overview: qaas/functions/builders/collectors.md
+          - When to use: qaas/functions/builders/collectors-sections/when-to-use.md
           - Identity and hook selection: qaas/functions/builders/collectors-sections/identity-and-hook-selection.md
           - Collection helpers: qaas/functions/builders/collectors-sections/collection-helpers.md
           - General: qaas/functions/builders/collectors-sections/general.md
         - Consumers:
           - Overview: qaas/functions/builders/consumers.md
+          - When to use: qaas/functions/builders/consumers-sections/when-to-use.md
           - Identity and hook selection: qaas/functions/builders/consumers-sections/identity-and-hook-selection.md
           - Execution order: qaas/functions/builders/consumers-sections/execution-order.md
           - Policies: qaas/functions/builders/consumers-sections/policies.md
@@ -143,6 +146,7 @@ nav:
           - General: qaas/functions/builders/consumers-sections/general.md
         - Executions:
           - Overview: qaas/functions/builders/executions.md
+          - When to use: qaas/functions/builders/executions-sections/when-to-use.md
           - Data source selection: qaas/functions/builders/executions-sections/data-source-selection.md
           - Session selection: qaas/functions/builders/executions-sections/session-selection.md
           - Links: qaas/functions/builders/executions-sections/links.md
@@ -153,11 +157,13 @@ nav:
           - General: qaas/functions/builders/executions-sections/general.md
         - Links:
           - Overview: qaas/functions/builders/links.md
+          - When to use: qaas/functions/builders/links-sections/when-to-use.md
           - Identity and hook selection: qaas/functions/builders/links-sections/identity-and-hook-selection.md
           - Collection helpers: qaas/functions/builders/links-sections/collection-helpers.md
           - General: qaas/functions/builders/links-sections/general.md
         - Mocker Commands:
           - Overview: qaas/functions/builders/mocker-commands.md
+          - When to use: qaas/functions/builders/mocker-commands-sections/when-to-use.md
           - Identity and hook selection: qaas/functions/builders/mocker-commands-sections/identity-and-hook-selection.md
           - Execution order: qaas/functions/builders/mocker-commands-sections/execution-order.md
           - Servers: qaas/functions/builders/mocker-commands-sections/servers.md
@@ -166,6 +172,7 @@ nav:
           - General: qaas/functions/builders/mocker-commands-sections/general.md
         - Probes:
           - Overview: qaas/functions/builders/probes.md
+          - When to use: qaas/functions/builders/probes-sections/when-to-use.md
           - Identity and hook selection: qaas/functions/builders/probes-sections/identity-and-hook-selection.md
           - Execution order: qaas/functions/builders/probes-sections/execution-order.md
           - Data source selection: qaas/functions/builders/probes-sections/data-source-selection.md
@@ -173,6 +180,7 @@ nav:
           - General: qaas/functions/builders/probes-sections/general.md
         - Publishers:
           - Overview: qaas/functions/builders/publishers.md
+          - When to use: qaas/functions/builders/publishers-sections/when-to-use.md
           - Identity and hook selection: qaas/functions/builders/publishers-sections/identity-and-hook-selection.md
           - Execution order: qaas/functions/builders/publishers-sections/execution-order.md
           - Data source selection: qaas/functions/builders/publishers-sections/data-source-selection.md
@@ -182,6 +190,7 @@ nav:
           - General: qaas/functions/builders/publishers-sections/general.md
         - Sessions:
           - Overview: qaas/functions/builders/sessions.md
+          - When to use: qaas/functions/builders/sessions-sections/when-to-use.md
           - Identity and hook selection: qaas/functions/builders/sessions-sections/identity-and-hook-selection.md
           - Execution order: qaas/functions/builders/sessions-sections/execution-order.md
           - Classification: qaas/functions/builders/sessions-sections/classification.md
@@ -197,11 +206,13 @@ nav:
           - General: qaas/functions/builders/sessions-sections/general.md
         - Storages:
           - Overview: qaas/functions/builders/storages.md
+          - When to use: qaas/functions/builders/storages-sections/when-to-use.md
           - Storages: qaas/functions/builders/storages-sections/storages.md
           - Collection helpers: qaas/functions/builders/storages-sections/collection-helpers.md
           - General: qaas/functions/builders/storages-sections/general.md
         - Transactions:
           - Overview: qaas/functions/builders/transactions.md
+          - When to use: qaas/functions/builders/transactions-sections/when-to-use.md
           - Identity and hook selection: qaas/functions/builders/transactions-sections/identity-and-hook-selection.md
           - Execution order: qaas/functions/builders/transactions-sections/execution-order.md
           - Data source selection: qaas/functions/builders/transactions-sections/data-source-selection.md
@@ -212,10 +223,15 @@ nav:
           - Collection helpers: qaas/functions/builders/transactions-sections/collection-helpers.md
           - General: qaas/functions/builders/transactions-sections/general.md
       - Commands:
-        - Bootstrap: qaas/functions/commands/bootstrap.md
-        - Runner: qaas/functions/commands/runner.md
+        - Bootstrap:
+          - Overview: qaas/functions/commands/bootstrap.md
+          - When to use: qaas/functions/commands/bootstrap-sections/when-to-use.md
+        - Runner:
+          - Overview: qaas/functions/commands/runner.md
+          - When to use: qaas/functions/commands/runner-sections/when-to-use.md
       - Extension Methods:
         - Overview: qaas/functions/extension-methods.md
+        - When to use: qaas/functions/extension-methods-sections/when-to-use.md
         - Context artifact: qaas/functions/extension-methods-sections/context-artifact.md
         - Date time: qaas/functions/extension-methods-sections/date-time.md
         - Detailed data: qaas/functions/extension-methods-sections/detailed-data.md
@@ -263,6 +279,7 @@ nav:
       - Builders:
         - Executions:
           - Overview: mocker/functions/builders/executions.md
+          - When to use: mocker/functions/builders/executions-sections/when-to-use.md
           - Data source selection: mocker/functions/builders/executions-sections/data-source-selection.md
           - Output selection: mocker/functions/builders/executions-sections/output-selection.md
           - Servers: mocker/functions/builders/executions-sections/servers.md
@@ -274,16 +291,22 @@ nav:
           - General: mocker/functions/builders/executions-sections/general.md
         - Transaction Stubs:
           - Overview: mocker/functions/builders/transaction-stubs.md
+          - When to use: mocker/functions/builders/transaction-stubs-sections/when-to-use.md
           - Identity and hook selection: mocker/functions/builders/transaction-stubs-sections/identity-and-hook-selection.md
           - Data source selection: mocker/functions/builders/transaction-stubs-sections/data-source-selection.md
           - Configuration: mocker/functions/builders/transaction-stubs-sections/configuration.md
           - Collection helpers: mocker/functions/builders/transaction-stubs-sections/collection-helpers.md
           - General: mocker/functions/builders/transaction-stubs-sections/general.md
       - Commands:
-        - Bootstrap: mocker/functions/commands/bootstrap.md
-        - Mocker Runner: mocker/functions/commands/mocker-runner.md
+        - Bootstrap:
+          - Overview: mocker/functions/commands/bootstrap.md
+          - When to use: mocker/functions/commands/bootstrap-sections/when-to-use.md
+        - Mocker Runner:
+          - Overview: mocker/functions/commands/mocker-runner.md
+          - When to use: mocker/functions/commands/mocker-runner-sections/when-to-use.md
       - Extension Methods:
         - Overview: mocker/functions/extension-methods.md
+        - When to use: mocker/functions/extension-methods-sections/when-to-use.md
         - Data: mocker/functions/extension-methods-sections/data.md
         - Http: mocker/functions/extension-methods-sections/http.md
         - Socket: mocker/functions/extension-methods-sections/socket.md
@@ -626,6 +649,7 @@ nav:
       - Builders:
         - Data Sources:
           - Overview: framework/functions/builders/data-sources.md
+          - When to use: framework/functions/builders/data-sources-sections/when-to-use.md
           - Identity and hook selection: framework/functions/builders/data-sources-sections/identity-and-hook-selection.md
           - Data source selection: framework/functions/builders/data-sources-sections/data-source-selection.md
           - Configuration: framework/functions/builders/data-sources-sections/configuration.md
@@ -633,23 +657,34 @@ nav:
           - General: framework/functions/builders/data-sources-sections/general.md
         - Policies:
           - Overview: framework/functions/builders/policies.md
+          - When to use: framework/functions/builders/policies-sections/when-to-use.md
           - Configuration: framework/functions/builders/policies-sections/configuration.md
           - Collection helpers: framework/functions/builders/policies-sections/collection-helpers.md
           - General: framework/functions/builders/policies-sections/general.md
       - Functions:
         - Contexts:
           - Overview: framework/functions/contexts.md
+          - When to use: framework/functions/contexts-sections/when-to-use.md
           - Executions: framework/functions/contexts-sections/executions.md
           - Contexts: framework/functions/contexts-sections/contexts.md
           - Configuration: framework/functions/contexts-sections/configuration.md
           - Reporting and artifacts: framework/functions/contexts-sections/reporting-and-artifacts.md
           - General: framework/functions/contexts-sections/general.md
-        - Enumerables: framework/functions/enumerables.md
-        - Placeholders: framework/functions/placeholders.md
-        - Updates: framework/functions/updates.md
-        - YAML: framework/functions/yaml.md
+        - Enumerables:
+          - Overview: framework/functions/enumerables.md
+          - When to use: framework/functions/enumerables-sections/when-to-use.md
+        - Placeholders:
+          - Overview: framework/functions/placeholders.md
+          - When to use: framework/functions/placeholders-sections/when-to-use.md
+        - Updates:
+          - Overview: framework/functions/updates.md
+          - When to use: framework/functions/updates-sections/when-to-use.md
+        - YAML:
+          - Overview: framework/functions/yaml.md
+          - When to use: framework/functions/yaml-sections/when-to-use.md
       - Extension Methods:
         - Overview: framework/functions/extension-methods.md
+        - When to use: framework/functions/extension-methods-sections/when-to-use.md
         - Configuration:
           - Overview: framework/functions/extension-methods-sections/configuration.md
           - Placeholders: framework/functions/extension-methods-sections/configuration/placeholders.md
