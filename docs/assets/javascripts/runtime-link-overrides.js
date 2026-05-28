@@ -22,6 +22,88 @@
     return;
   }
 
+  function replaceConfiguredDefaults(value, includeShortValues) {
+    var nextValue = value;
+    replacements.forEach(function (replacementValue, currentValue) {
+      if (!includeShortValues && currentValue.length < 8) return;
+      if (nextValue.includes(currentValue)) {
+        nextValue = nextValue.split(currentValue).join(replacementValue);
+      }
+    });
+    return nextValue;
+  }
+
+  function replaceAttribute(node, attribute) {
+    var currentValue = node.getAttribute(attribute);
+    if (!currentValue) return;
+    var nextValue = replaceConfiguredDefaults(currentValue, true);
+    if (nextValue !== currentValue) node.setAttribute(attribute, nextValue);
+  }
+
+  function linePrefixForTextNode(preElement, targetNode) {
+    var walker = document.createTreeWalker(preElement, NodeFilter.SHOW_TEXT);
+    var linePrefix = "";
+
+    while (walker.nextNode()) {
+      var currentNode = walker.currentNode;
+      if (currentNode === targetNode) return linePrefix;
+
+      var value = currentNode.nodeValue || "";
+      var lastNewline = value.lastIndexOf("\n");
+      linePrefix = lastNewline === -1 ? linePrefix + value : value.slice(lastNewline + 1);
+    }
+
+    return linePrefix;
+  }
+
+  function replaceContextualShortTextNode(node) {
+    var defaultRedisRepository = defaults.image_redis_repository;
+    var overrideRedisRepository = overrides.image_redis_repository;
+    if (
+      typeof defaultRedisRepository !== "string" ||
+      typeof overrideRedisRepository !== "string" ||
+      defaultRedisRepository.length >= 8 ||
+      !overrideRedisRepository.trim() ||
+      node.nodeValue !== defaultRedisRepository
+    ) {
+      return;
+    }
+
+    var preElement = node.parentElement && node.parentElement.closest("pre");
+    if (!preElement) return;
+    if (/repository\s*:\s*$/.test(linePrefixForTextNode(preElement, node))) {
+      node.nodeValue = overrideRedisRepository.trim();
+    }
+  }
+
+  function applyTextRuntimeOverrides() {
+    var skipTags = {
+      SCRIPT: true,
+      STYLE: true,
+      NOSCRIPT: true,
+      TEXTAREA: true,
+      INPUT: true
+    };
+    var walker = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT, {
+      acceptNode: function (node) {
+        var parent = node.parentElement;
+        if (!parent || skipTags[parent.tagName]) return NodeFilter.FILTER_REJECT;
+        return NodeFilter.FILTER_ACCEPT;
+      }
+    });
+    var textNodes = [];
+
+    while (walker.nextNode()) {
+      textNodes.push(walker.currentNode);
+    }
+
+    textNodes.forEach(function (node) {
+      var nextValue = replaceConfiguredDefaults(node.nodeValue, false);
+      if (nextValue !== node.nodeValue) node.nodeValue = nextValue;
+      replaceContextualShortTextNode(node);
+    });
+  }
+
   function applyRuntimeLinkOverrides() {
     [
       ["a[href]", "href"],
@@ -32,35 +114,24 @@
       var selector = entry[0];
       var attribute = entry[1];
       document.querySelectorAll(selector).forEach(function (node) {
-        var nextValue = replacements.get(node.getAttribute(attribute));
-        if (nextValue) node.setAttribute(attribute, nextValue);
+        replaceAttribute(node, attribute);
       });
     });
 
     var repoTitleElement = document.querySelector(".md-source__repository");
     if (repoTitleElement) {
-      replacements.forEach(function (nextValue, currentValue) {
-        if (repoTitleElement.textContent.includes(currentValue)) {
-          repoTitleElement.textContent = repoTitleElement.textContent.replace(currentValue, nextValue);
-        }
-      });
+      repoTitleElement.textContent = replaceConfiguredDefaults(repoTitleElement.textContent, false);
     }
 
     if (document.title) {
-      replacements.forEach(function (nextValue, currentValue) {
-        if (document.title.includes(currentValue)) {
-          document.title = document.title.replace(currentValue, nextValue);
-        }
-      });
+      document.title = replaceConfiguredDefaults(document.title, false);
     }
 
     document.querySelectorAll(".md-header__topic").forEach(function (node) {
-      replacements.forEach(function (nextValue, currentValue) {
-        if (node.textContent.includes(currentValue)) {
-          node.textContent = node.textContent.replace(currentValue, nextValue);
-        }
-      });
+      node.textContent = replaceConfiguredDefaults(node.textContent, false);
     });
+
+    applyTextRuntimeOverrides();
   }
 
   // Material's document$ observable fires on initial load AND after every

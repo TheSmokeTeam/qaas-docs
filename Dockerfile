@@ -87,7 +87,8 @@ COPY tools/nginx.conf /etc/nginx/conf.d/default.conf
 COPY tools/docker-entrypoint.d/qaas-docs-runtime-overrides.sh /docker-entrypoint.d/qaas-docs-runtime-overrides.sh
 COPY --from=build /docs/site /usr/share/nginx/html
 
-RUN chmod +x /docker-entrypoint.d/qaas-docs-runtime-overrides.sh
+RUN sed -i 's/\r$//' /docker-entrypoint.d/qaas-docs-runtime-overrides.sh \
+ && chmod +x /docker-entrypoint.d/qaas-docs-runtime-overrides.sh
 
 EXPOSE 8000
 

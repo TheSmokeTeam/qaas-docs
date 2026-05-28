@@ -204,16 +204,18 @@ docker build -t qaas-docs \
   .
 ```
 
-`QAAS_DOCS_LINK_NUGET_FEED` controls the NuGet feed URL shown in generated examples and installation snippets. `QAAS_DOCS_IMAGE_*` variables control image references rendered into Dockerfile and Helm examples during the MkDocs build. These values do not rewrite product repository `NuGet.config` files or already-built static pages at runtime; templates and sample Dockerfiles should pass their own NuGet source and image names as build inputs before `dotnet restore`.
+`QAAS_DOCS_LINK_NUGET_FEED` controls the NuGet feed URL shown in generated examples and installation snippets. `QAAS_DOCS_IMAGE_*` variables control image references rendered into Dockerfile and Helm examples. These values do not rewrite product repository `NuGet.config` files; templates and sample Dockerfiles should pass their own NuGet source and image names as build inputs before `dotnet restore`.
 
-You can also override the same `QAAS_DOCS_*` URLs at container startup. The runtime image keeps the stock Nginx entrypoint and writes a small runtime override file from `/docker-entrypoint.d`, so no custom Dockerfile `ENTRYPOINT` is required:
+You can also override the same `QAAS_DOCS_*` URLs and example image references at container startup. The runtime image keeps the stock Nginx entrypoint and writes a small runtime override file from `/docker-entrypoint.d`, so no custom Dockerfile `ENTRYPOINT` is required:
 
 ```bash
 docker run \
   -p 8000:8000 \
   -e QAAS_DOCS_LINK_REPOSITORY_RUNNER=https://github.com/example/QaaS.Runner \
   -e QAAS_DOCS_LINK_QAAS_COMMUNITY=https://discord.gg/example \
+  -e QAAS_DOCS_IMAGE_REDIS_REPOSITORY=registry.example.com/library/redis \
+  -e QAAS_DOCS_IMAGE_REDIS_TAG=7.2.4 \
   qaas-docs
 ```
 
-Runtime `QAAS_DOCS_*` variables do not rebuild the static site. They only replace the configured outbound URLs in the served HTML, so the same image can be reused across environments while preserving the default values when no runtime overrides are provided.
+Runtime `QAAS_DOCS_*` variables do not rebuild the static site. They replace the configured outbound URLs and rendered example image references in the served HTML, so the same image can be reused across environments while preserving the default values when no runtime overrides are provided.
