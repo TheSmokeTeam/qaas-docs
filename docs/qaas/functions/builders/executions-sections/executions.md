@@ -8,20 +8,15 @@ applies_to: [runner]
 keywords: [runner, qaas, functions, builders, executions, sections]
 summary: "Reference page for Executions: Executions."
 ---
-
 <!-- Verified-against: QaaS.Runner\QaaS.Runner\ExecutionBuilder.cs -->
 
 # Executions: Executions
 
-> TL;DR — This page mirrors the `Executions` section from [Executions](../executions.md) as a focused reference.
+> TL;DR — Reference page for Executions: Executions.
 
-## When to use {: #when-to-use}
+This page mirrors the `Executions` section from [Executions](../executions.md).
 
-Use this page when you need the focused member list, signatures, and source notes for this section without scanning the full parent reference.
-
-## C# (CAC) usage {: #c-cac-usage}
-
-### `ExecutionType` {: #executiontype}
+## `ExecutionType` {: #executiontype}
 
 ??? info "Source file, signature, and docstring"
     **Member**
@@ -41,8 +36,10 @@ Use this page when you need the focused member list, signatures, and source note
     **Docstring**
     
     Sets the execution type used when the runner execution is built.
+    
+    Use this method when working with the documented Runner execution builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
-### `SetExecutionId` {: #setexecutionid}
+## `SetExecutionId` {: #setexecutionid}
 
 ??? info "Source file, signature, and docstring"
     **Member**
@@ -65,11 +62,6 @@ Use this page when you need the focused member list, signatures, and source note
     
     The execution identifier flows into the built context and can later be used by logging, reports, and storage integrations.
 
-## Edge cases {: #edge-cases}
-
-- This page is generated from the parent reference section; edit the source XML docs or generator when content needs to change.
-- If a linked source member is renamed, regenerate the reference docs before changing prose by hand.
-
 ## See also {: #see-also}
 
-- [Executions](../executions.md)
+Use the surrounding documentation navigation to move between related generated reference pages.

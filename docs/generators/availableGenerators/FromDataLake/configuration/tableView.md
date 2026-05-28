@@ -30,7 +30,7 @@ The table below mirrors the schema used by the YAML scaffold page. Nested rows u
 | `GeneratorConfiguration.Username` | `string` | &#10004 |  | The username for connecting to the trino server |
 | `GeneratorConfiguration.Catalog` | `string` | &#10006 | `hive` | The datalake catalog to query |
 | `GeneratorConfiguration.ClientTag` | `string` | &#10006 | `qaas` | The client tag to use for connection |
-| `GeneratorConfiguration.TrinoServerUri` | `string` | &#10006 | `http://localhost:8080` | The trino server to connnect to |
+| `GeneratorConfiguration.TrinoServerUri` | `string` | &#10006 | ``http://localhost:8080`` | The trino server to connnect to |
 | `GeneratorConfiguration.ColumnsToIgnore` | `list or string` | &#10006 | `[]` | The columns to ignore in the query results, if no columns are given doesn't ignore any columns |
 | `GeneratorConfiguration.ColumnsToIgnore[]` | `string` | &#10006 |  |  |
 

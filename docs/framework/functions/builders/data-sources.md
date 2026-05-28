@@ -44,6 +44,8 @@ The functions on this page are grouped by responsibility so related operations s
     **Docstring**
     
     Sets the name used for the current Framework data source builder instance.
+    
+    Use this method when working with the documented Framework data source builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
 ### `HookNamed` {: #hooknamed}
 
@@ -65,6 +67,8 @@ The functions on this page are grouped by responsibility so related operations s
     **Docstring**
     
     Sets the hook implementation name used by the current Framework data source builder instance.
+    
+    Use this method when working with the documented Framework data source builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
 ## Data source selection {: #data-source-selection}
 
@@ -88,6 +92,8 @@ The functions on this page are grouped by responsibility so related operations s
     **Docstring**
     
     Adds the supplied data source name to the current Framework data source builder instance.
+    
+    Use this method when working with the documented Framework data source builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
 ### `RemoveDataSourceName` {: #removedatasourcename}
 
@@ -109,6 +115,8 @@ The functions on this page are grouped by responsibility so related operations s
     **Docstring**
     
     Removes the configured data source name from the current Framework data source builder instance.
+    
+    Use this method when working with the documented Framework data source builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
 ### `RemoveDataSourceNameAt` {: #removedatasourcenameat}
 
@@ -130,6 +138,8 @@ The functions on this page are grouped by responsibility so related operations s
     **Docstring**
     
     Removes the configured data source name at the specified index from the current Framework data source builder instance.
+    
+    Use this method when working with the documented Framework data source builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
 ### `AddDataSourcePattern` {: #adddatasourcepattern}
 
@@ -151,6 +161,8 @@ The functions on this page are grouped by responsibility so related operations s
     **Docstring**
     
     Adds the supplied data source pattern to the current Framework data source builder instance.
+    
+    Use this method when working with the documented Framework data source builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
 ### `RemoveDataSourcePattern` {: #removedatasourcepattern}
 
@@ -172,6 +184,8 @@ The functions on this page are grouped by responsibility so related operations s
     **Docstring**
     
     Removes the configured data source pattern from the current Framework data source builder instance.
+    
+    Use this method when working with the documented Framework data source builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
 ### `RemoveDataSourcePatternAt` {: #removedatasourcepatternat}
 
@@ -193,6 +207,8 @@ The functions on this page are grouped by responsibility so related operations s
     **Docstring**
     
     Removes the configured data source pattern at the specified index from the current Framework data source builder instance.
+    
+    Use this method when working with the documented Framework data source builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
 ## Configuration {: #configuration}
 
@@ -216,6 +232,8 @@ The functions on this page are grouped by responsibility so related operations s
     **Docstring**
     
     Sets the serializer configuration used by the current Framework data source builder instance.
+    
+    Use this method when working with the documented Framework data source builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
 ### `WithDeserializer` {: #withdeserializer}
 
@@ -237,6 +255,8 @@ The functions on this page are grouped by responsibility so related operations s
     **Docstring**
     
     Sets the deserializer configuration used by the current Framework data source builder instance.
+    
+    Use this method when working with the documented Framework data source builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
 ## Collection helpers {: #collection-helpers}
 
@@ -308,6 +328,8 @@ The functions on this page are grouped by responsibility so related operations s
     **Docstring**
     
     Marks the data source for lazy resolution.
+    
+    Use this method when working with the documented Framework data source builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
 ### `Configure` {: #configure}
 

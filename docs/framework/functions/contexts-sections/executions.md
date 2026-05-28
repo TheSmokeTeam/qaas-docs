@@ -8,20 +8,15 @@ applies_to: [framework]
 keywords: [framework, functions, contexts, sections, executions]
 summary: "Reference page for Contexts: Executions."
 ---
-
 <!-- Verified-against: QaaS.Framework\QaaS.Framework.SDK\ContextObjects\ContextBuilder.cs -->
 
 # Contexts: Executions
 
-> TL;DR — This page mirrors the `Executions` section from [Contexts](../contexts.md) as a focused reference.
+> TL;DR — Reference page for Contexts: Executions.
 
-## When to use {: #when-to-use}
+This page mirrors the `Executions` section from [Contexts](../contexts.md).
 
-Use this page when you need the focused member list, signatures, and source notes for this section without scanning the full parent reference.
-
-## C# (CAC) usage {: #c-cac-usage}
-
-### `SetExecutionId` {: #setexecutionid}
+## `SetExecutionId` {: #setexecutionid}
 
 ??? info "Source file, signature, and docstring"
     **Member**
@@ -44,11 +39,6 @@ Use this page when you need the focused member list, signatures, and source note
     
     The execution identifier flows into the built context and can later be used by logging, reports, and storage integrations.
 
-## Edge cases {: #edge-cases}
-
-- This page is generated from the parent reference section; edit the source XML docs or generator when content needs to change.
-- If a linked source member is renamed, regenerate the reference docs before changing prose by hand.
-
 ## See also {: #see-also}
 
-- [Contexts](../contexts.md)
+Use the surrounding documentation navigation to move between related generated reference pages.

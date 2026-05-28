@@ -62,17 +62,18 @@ Commands:
     Id: preview
   - Command: run test.qaas.yaml
     Id: smoke
+    Parallel: false
 ```
 
-Each entry accepts `Command` and `Id`. The list order is the execution order; `Id` is the stable identifier used by `--command-ids-to-run`, logs, and generated report output.
+`Id` is the stable identifier used by `--command-ids-to-run`, logs, and generated report output.
 
 ## Flag Notes {: #flag-notes}
 
-### `-c`, `--command-ids-to-run` {: #-c-command-ids-to-run}
+### `-c`, `--command-ids-to-run` {: #c-command-ids-to-run}
 
 Use one or more IDs from the executable file when you only want a subset of the declared commands to run.
 
-### `-s`, `--serve-results` {: #-s-serve-results}
+### `-s`, `--serve-results` {: #s-serve-results}
 
 The top-level `execute` flag decides whether results are served after the flow completes. Embedded `serve-results` flags inside the YAML commands do not take over.
 

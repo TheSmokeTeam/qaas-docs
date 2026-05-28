@@ -44,6 +44,8 @@ The functions on this page are grouped by responsibility so related operations s
     **Docstring**
     
     Sets the count policy configuration on the current Framework policy builder instance.
+    
+    Use this method when working with the documented Framework policy builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
 ### `WithTimeout` {: #withtimeout}
 
@@ -65,6 +67,8 @@ The functions on this page are grouped by responsibility so related operations s
     **Docstring**
     
     Sets the timeout policy configuration on the current Framework policy builder instance.
+    
+    Use this method when working with the documented Framework policy builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
 ### `WithLoadBalance` {: #withloadbalance}
 
@@ -86,6 +90,8 @@ The functions on this page are grouped by responsibility so related operations s
     **Docstring**
     
     Sets the load-balance policy configuration on the current Framework policy builder instance.
+    
+    Use this method when working with the documented Framework policy builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
 ### `WithIncreasingLoadBalance` {: #withincreasingloadbalance}
 
@@ -107,6 +113,8 @@ The functions on this page are grouped by responsibility so related operations s
     **Docstring**
     
     Sets the increasing load-balance policy configuration on the current Framework policy builder instance.
+    
+    Use this method when working with the documented Framework policy builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
 ### `WithAdvancedLoadBalance` {: #withadvancedloadbalance}
 
@@ -128,6 +136,8 @@ The functions on this page are grouped by responsibility so related operations s
     **Docstring**
     
     Sets the advanced load-balance policy configuration on the current Framework policy builder instance.
+    
+    Use this method when working with the documented Framework policy builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
 ## Collection helpers {: #collection-helpers}
 
@@ -151,6 +161,8 @@ The functions on this page are grouped by responsibility so related operations s
     **Docstring**
     
     Updates the configuration currently stored on the Framework policy builder instance.
+    
+    Use this method when working with the documented Framework policy builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
 ## General {: #general}
 
@@ -174,6 +186,8 @@ The functions on this page are grouped by responsibility so related operations s
     **Docstring**
     
     Sets the configuration currently stored on the Framework policy builder instance.
+    
+    Use this method when working with the documented Framework policy builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
 ### `Build` {: #build}
 

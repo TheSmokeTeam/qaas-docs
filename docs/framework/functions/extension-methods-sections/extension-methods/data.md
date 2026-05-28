@@ -8,20 +8,31 @@ applies_to: [framework]
 keywords: [framework, functions, extension, methods, sections, data]
 summary: "Reference page for Extension Methods: Extension Methods / Data."
 ---
-
 <!-- Verified-against: QaaS.Framework\QaaS.Framework.SDK\Extensions\DataExtensions.cs -->
+<!-- Verified-against: QaaS.Framework\QaaS.Framework.Configurations\ConfigurationBindingUtils\ConfigurationMergeUtils.cs -->
+<!-- Verified-against: QaaS.Framework\QaaS.Framework.Configurations\ConfigurationBindingUtils\IConfigurationUtils.cs -->
+<!-- Verified-against: QaaS.Framework\QaaS.Framework.Configurations\ConfigurationBuilderExtensions\PlaceholderConfigurationBuilderExtension.cs -->
+<!-- Verified-against: QaaS.Framework\QaaS.Framework.Configurations\ConfigurationBuilderExtensions\YamlConfigurationBuilderExtension.cs -->
+<!-- Verified-against: QaaS.Framework\QaaS.Framework.Configurations\ConfigurationUpdateExtensions.cs -->
+<!-- Verified-against: QaaS.Framework\QaaS.Framework.Configurations\ConfigurationUtils.cs -->
+<!-- Verified-against: QaaS.Framework\QaaS.Framework.Configurations\References\ConfigurationReferencesParser.cs -->
+<!-- Verified-against: QaaS.Framework\QaaS.Framework.Infrastructure\DateTimeExtensions.cs -->
+<!-- Verified-against: QaaS.Framework\QaaS.Framework.SDK\Extensions\CommunicationDataExtensions.cs -->
+<!-- Verified-against: QaaS.Framework\QaaS.Framework.SDK\Extensions\ContextGlobalDictionaryExtensions.cs -->
+<!-- Verified-against: QaaS.Framework\QaaS.Framework.SDK\Extensions\DataSourceExtensions.cs -->
+<!-- Verified-against: QaaS.Framework\QaaS.Framework.SDK\Extensions\EnumerableExtensions.cs -->
+<!-- Verified-against: QaaS.Framework\QaaS.Framework.SDK\Extensions\LoggingExetentions.cs -->
+<!-- Verified-against: QaaS.Framework\QaaS.Framework.SDK\Extensions\RunningCommunicationDataExtensions.cs -->
+<!-- Verified-against: QaaS.Framework\QaaS.Framework.SDK\Extensions\RunningSessionDataExtensions.cs -->
+<!-- Verified-against: QaaS.Framework\QaaS.Framework.SDK\Extensions\SessionDataExtensions.cs -->
 
 # Extension Methods: Extension Methods / Data
 
-> TL;DR — This page mirrors the `Extension Methods / Data` section from [Extension Methods](../../extension-methods.md) as a focused reference.
+> TL;DR — Reference page for Extension Methods: Extension Methods / Data.
 
-## When to use {: #when-to-use}
+This page mirrors the `Extension Methods / Data` section from [Extension Methods](../../extension-methods.md).
 
-Use this page when you need the focused member list, signatures, and source notes for this section without scanning the full parent reference.
-
-## C# (CAC) usage {: #c-cac-usage}
-
-### `CastObjectData<TCasted>` {: #castobjectdatatcasted}
+## `CastObjectData<TCasted>` {: #castobjectdata-tcasted}
 
 ??? info "Source file, signature, and docstring"
     **Member**
@@ -42,7 +53,7 @@ Use this page when you need the focused member list, signatures, and source note
     
     Casts a `Data` of type object to another type, if the cast is not valid will throw InvalidCastException
 
-### `CastToObjectData<TData>` {: #casttoobjectdatatdata}
+## `CastToObjectData<TData>` {: #casttoobjectdata-tdata}
 
 ??? info "Source file, signature, and docstring"
     **Member**
@@ -63,7 +74,7 @@ Use this page when you need the focused member list, signatures, and source note
     
     Casts a `Data` of any type to a Data of type object, if the cast is not valid will throw InvalidCastException
 
-### `CastObjectDetailedData<TCasted>` {: #castobjectdetaileddatatcasted}
+## `CastObjectDetailedData<TCasted>` {: #castobjectdetaileddata-tcasted}
 
 ??? info "Source file, signature, and docstring"
     **Member**
@@ -84,7 +95,7 @@ Use this page when you need the focused member list, signatures, and source note
     
     Casts a `DetailedData` of type object to another type, if the cast is not valid will throw InvalidCastException
 
-### `CastToObjectDetailedData<TData>` {: #casttoobjectdetaileddatatdata}
+## `CastToObjectDetailedData<TData>` {: #casttoobjectdetaileddata-tdata}
 
 ??? info "Source file, signature, and docstring"
     **Member**
@@ -105,7 +116,7 @@ Use this page when you need the focused member list, signatures, and source note
     
     Casts a `DetailedData` of any type to a DetailedData of type object, if the cast is not valid will throw InvalidCastException
 
-### `FilterData<TData>` {: #filterdatatdata}
+## `FilterData<TData>` {: #filterdata-tdata}
 
 ??? info "Source file, signature, and docstring"
     **Member**
@@ -126,11 +137,6 @@ Use this page when you need the focused member list, signatures, and source note
     
     Filters the data of a detailed data item according to the given DataFilter
 
-## Edge cases {: #edge-cases}
-
-- This page is generated from the parent reference section; edit the source XML docs or generator when content needs to change.
-- If a linked source member is renamed, regenerate the reference docs before changing prose by hand.
-
 ## See also {: #see-also}
 
-- [Extension Methods](../../extension-methods.md)
+Use the surrounding documentation navigation to move between related generated reference pages.

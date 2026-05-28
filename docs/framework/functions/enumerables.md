@@ -21,7 +21,7 @@ Use this page when you need source-backed signatures, declaring types, and XML d
 Each entry uses the short function name as the table-of-contents label. Expand an entry to inspect its source file, signature, and XML doc comments.
 
 
-## `AsSingle<TItem>` {: #assingletitem}
+## `AsSingle<TItem>` {: #assingle-titem}
 
 ??? info "Source file, signature, and docstring"
     **Member**
@@ -44,7 +44,7 @@ Each entry uses the short function name as the table-of-contents label. Expand a
     
     The helper enforces the invariant that exactly one item must be present and throws when the sequence is empty or contains more than one value.
 
-## `GetFilteredConfigurationObjectList<TData, TPattern>` {: #getfilteredconfigurationobjectlisttdata-tpattern}
+## `GetFilteredConfigurationObjectList<TData, TPattern>` {: #getfilteredconfigurationobjectlist-tdata-tpattern}
 
 ??? info "Source file, signature, and docstring"
     **Member**
