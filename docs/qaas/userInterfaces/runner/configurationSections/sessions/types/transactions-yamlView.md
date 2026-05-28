@@ -13,104 +13,83 @@ summary: "Transaction YAML scaffold for HTTP or gRPC request-response actions."
 
 # Transactions Configurations Yaml View
 
-> TL;DR — Copy this schema-derived YAML scaffold, replace placeholder values, and use the table view for field descriptions.
-
-## When to use {: #when-to-use}
-
-Use this page when you need the generated YAML shape for this configuration section and want every emitted field in one block.
-
-## YAML configuration {: #yaml-configuration}
-
-The scaffold follows the generated schema order. String placeholders are quoted, optional lists render as `[]`, and numeric placeholders use schema minimums when they exist.
-
-## Minimal example {: #minimal-example}
+> TL;DR: Transaction YAML scaffold for HTTP or gRPC request-response actions.
 
 ```yaml
 Transactions:
-  -
-    Name: 'value'
-    TimeoutMs: 0
-    Configuration: {}
-    Iterations: 1
-    Loop: False
-    SleepTimeMs: 0
-    Stage: 2
-    DataSourceNames: []
-    DataSourcePatterns: []
+  - Name: "value"
+    TimeoutMs: "${value}"
+    Configuration: "${value}"
+    Iterations: "${value}"
+    Loop: "${value}"
+    SleepTimeMs: "${value}"
+    Stage: "${value}"
+    DataSourceNames:
+      - "value"
+    DataSourcePatterns:
+      - "value"
     Policies:
-      -
-        AdvancedLoadBalance:
+      - AdvancedLoadBalance:
           Stages:
-            -
-              Rate: 1.0
-              Amount: 1
-              TimeIntervalMs: 1000
-              TimeoutMs: 0
+            - Rate: "${value}"
+              Amount: "${value}"
+              TimeIntervalMs: "${value}"
+              TimeoutMs: "${value}"
         Count:
-          Count: 0
+          Count: "${value}"
         IncreasingLoadBalance:
-          MaxRate: 1
-          StartRate: 1
-          RateIncrease: 1
-          RateIncreaseIntervalMs: 1000
-          TimeIntervalMs: 1000
+          MaxRate: "${value}"
+          StartRate: "${value}"
+          RateIncrease: "${value}"
+          RateIncreaseIntervalMs: "${value}"
+          TimeIntervalMs: "${value}"
         LoadBalance:
-          Rate: 1.0
-          TimeIntervalMs: 1000
+          Rate: "${value}"
+          TimeIntervalMs: "${value}"
         Timeout:
-          TimeoutMs: 0
+          TimeoutMs: "${value}"
     Grpc:
-      AssemblyName: 'value'
-      Host: 'value'
-      Port: 0
-      ProtoNameSpace: 'value'
-      RpcName: 'value'
-      ServiceName: 'value'
+      AssemblyName: "value"
+      Host: "value"
+      Port: "${value}"
+      ProtoNameSpace: "value"
+      RpcName: "value"
+      ServiceName: "value"
     Http:
-      BaseAddress: 'value'
-      Method: 'Post'
-      Headers: {}
-      MessageSendRetriesIntervalMs: 1000
-      Port: 8080
-      RequestHeaders: {}
-      Retries: 1
-      Route: ''
+      BaseAddress: "value"
+      Method: "Post"
+      Headers: "${value}"
+      MessageSendRetriesIntervalMs: "${value}"
+      Port: "${value}"
+      RequestHeaders: "${value}"
+      Retries: "${value}"
+      Route: ""
       JwtAuth:
-        Secret: 'value'
-        BuildJwtConfig: True
-        Claims: {}
-        HierarchicalClaims: 'value'
-        HttpAuthScheme: 'Bearer'
-        JwtAlgorithm: 'HMACSHA256Algorithm'
+        Secret: "value"
+        BuildJwtConfig: "${value}"
+        Claims: "${value}"
+        HierarchicalClaims: "value"
+        HttpAuthScheme: "Bearer"
+        JwtAlgorithm: "HMACSHA256Algorithm"
     InputDataFilter:
-      Body: True
-      MetaData: True
-      Timestamp: True
+      Body: "${value}"
+      MetaData: "${value}"
+      Timestamp: "${value}"
     InputSerialize:
-      Serializer: 'Binary'
+      Serializer: "Binary"
     OutputDataFilter:
-      Body: True
-      MetaData: True
-      Timestamp: True
+      Body: "${value}"
+      MetaData: "${value}"
+      Timestamp: "${value}"
     OutputDeserialize:
-      Deserializer: 'Binary'
+      Deserializer: "Binary"
       SpecificType:
-        TypeFullName: 'value'
-        AssemblyName: 'value'
+        TypeFullName: "value"
+        AssemblyName: "value"
     Parallel:
-      Parallelism: 1
+      Parallelism: "${value}"
 ```
-
-## Realistic example {: #realistic-example}
-
-Start with the minimal scaffold, replace placeholder values with project values, and keep only the optional branches that this configuration needs.
-
-## Edge cases {: #edge-cases}
-
-- Optional arrays are emitted as `[]`; add entries only when the section needs that collection.
-- Placeholder-style strings are quoted so YAML parsers keep them as scalar values.
 
 ## See also {: #see-also}
 
-- [Configuration table](transactions-tableView.md)
-- [Overview](../overview.md)
+Use the surrounding documentation navigation to move between related generated reference pages.

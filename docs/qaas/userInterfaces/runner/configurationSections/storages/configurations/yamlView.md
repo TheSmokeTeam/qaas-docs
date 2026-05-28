@@ -13,48 +13,27 @@ summary: "Storage configuration YAML example."
 
 # Storages Configurations Yaml View
 
-> TL;DR — Copy this schema-derived YAML scaffold, replace placeholder values, and use the table view for field descriptions.
-
-## When to use {: #when-to-use}
-
-Use this page when you need the generated YAML shape for this configuration section and want every emitted field in one block.
-
-## YAML configuration {: #yaml-configuration}
-
-The scaffold follows the generated schema order. String placeholders are quoted, optional lists render as `[]`, and numeric placeholders use schema minimums when they exist.
-
-## Minimal example {: #minimal-example}
+> TL;DR: Storage configuration YAML example.
 
 ```yaml
 Storages:
-  -
-    Configuration: {}
-    JsonStorageFormat: 'Indented'
+  - Configuration: "${value}"
+    JsonStorageFormat: "Indented"
     FileSystem:
-      Path: 'value'
-      SearchPattern: ''
+      Path: "value"
+      SearchPattern: ""
     S3:
-      AccessKey: 'value'
-      SecretKey: 'value'
-      ServiceURL: 'value'
-      StorageBucket: 'value'
-      Delimiter: ''
-      ForcePathStyle: True
-      MaximumRetryCount: 0
-      Prefix: ''
-      SkipEmptyObjects: True
+      AccessKey: "value"
+      SecretKey: "value"
+      ServiceURL: "value"
+      StorageBucket: "value"
+      Delimiter: ""
+      ForcePathStyle: "${value}"
+      MaximumRetryCount: "${value}"
+      Prefix: ""
+      SkipEmptyObjects: "${value}"
 ```
-
-## Realistic example {: #realistic-example}
-
-Start with the minimal scaffold, replace placeholder values with project values, and keep only the optional branches that this configuration needs.
-
-## Edge cases {: #edge-cases}
-
-- Optional arrays are emitted as `[]`; add entries only when the section needs that collection.
-- Placeholder-style strings are quoted so YAML parsers keep them as scalar values.
 
 ## See also {: #see-also}
 
-- [Configuration table](tableView.md)
-- [Overview](../overview.md)
+Use the surrounding documentation navigation to move between related generated reference pages.

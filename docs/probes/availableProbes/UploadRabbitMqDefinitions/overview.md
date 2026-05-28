@@ -12,17 +12,15 @@ summary: "Uploads a previously captured RabbitMQ definitions file back into the 
 
 # UploadRabbitMqDefinitions
 
-> TL;DR — Uploads a previously captured RabbitMQ definitions file back into the broker through the management API.
+> TL;DR: Uploads a previously captured RabbitMQ definitions file back into the broker through the management API.
 
-## When to use {: #when-to-use}
+Uploads a previously captured RabbitMQ definitions file back into the broker through the management API.
+
+## What It Does {: #what-it-does}
 
 Uploads RabbitMQ definitions through the management API from either an inline JSON payload or a JSON file.
 
 This is useful for restoring a known topology snapshot before the scenario starts.
-
-## YAML configuration {: #yaml-configuration}
-
-Use the hook name in the matching runtime section, then place hook-specific fields under the configuration object shown in the examples below.
 
 ## Minimal example {: #minimal-example}
 
@@ -56,13 +54,6 @@ With `UseGlobalDict: true`, missing management connection fields can be resolved
 
 That is useful when a restore step should reuse broker credentials that were already stored in the session defaults. When `UseGlobalDict` is `false`, the probe behaves exactly as before and uses only its local configuration.
 
-## Edge cases {: #edge-cases}
-
-- Missing required configuration keys fail schema validation before the hook runs.
-- Keep hook names and referenced session or data-source names aligned with the surrounding YAML.
-
 ## See also {: #see-also}
 
-- [Configuration table](configuration/tableView.md)
-- [YAML scaffold](configuration/yamlView.md)
-- [Probes](../../index.md)
+Use the surrounding documentation navigation to move between related generated reference pages.

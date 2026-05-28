@@ -12,17 +12,15 @@ summary: "Generates data from the enumerable of data sources it receives, presum
 
 # FromSessionDataDataSources
 
-> TL;DR — Generates data from the enumerable of data sources it receives, presumes all items in the enumerable are serialized and can be treated as a byte array
+> TL;DR: Generates data from the enumerable of data sources it receives, presumes all items in the enumerable are serialized and can be treated as a byte array
 
-## When to use {: #when-to-use}
+Generates data from the enumerable of data sources it receives, presumes all items in the enumerable are serialized and can be treated as a byte array
+
+## What It Does {: #what-it-does}
 
 Loads serialized session data from attached data sources, deserializes it back into session snapshots, and then emits the inputs and outputs named in the configuration.
 
 This generator is useful when you want to replay or mine previously captured sessions. It lets you pull only the communication streams you care about instead of replaying the entire saved session.
-
-## YAML configuration {: #yaml-configuration}
-
-Use the hook name in the matching runtime section, then place hook-specific fields under the configuration object shown in the examples below.
 
 ## Minimal example {: #minimal-example}
 
@@ -56,13 +54,6 @@ DataSources:
 
 That makes the resulting data source useful for replay scenarios, regression checks, or derived generators that need past session traffic as their input.
 
-## Edge cases {: #edge-cases}
-
-- Missing required configuration keys fail schema validation before the hook runs.
-- Keep hook names and referenced session or data-source names aligned with the surrounding YAML.
-
 ## See also {: #see-also}
 
-- [Configuration table](configuration/tableView.md)
-- [YAML scaffold](configuration/yamlView.md)
-- [Generators](../../index.md)
+Use the surrounding documentation navigation to move between related generated reference pages.

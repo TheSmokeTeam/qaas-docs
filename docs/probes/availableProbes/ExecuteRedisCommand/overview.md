@@ -12,17 +12,15 @@ summary: "Executes one Redis command with optional arguments against the selecte
 
 # ExecuteRedisCommand
 
-> TL;DR — Executes one Redis command with optional arguments against the selected Redis database, optionally storing the result for later redisResults placeholder reuse.
+> TL;DR: Executes one Redis command with optional arguments against the selected Redis database, optionally storing the result for later redisResults placeholder reuse.
 
-## When to use {: #when-to-use}
+Executes one Redis command with optional arguments against the selected Redis database, optionally storing the result for later redisResults placeholder reuse.
+
+## What It Does {: #what-it-does}
 
 Runs one Redis command with the configured arguments against the selected Redis database.
 
 This is useful for one-off setup or cleanup operations such as setting flags, creating keys, or issuing simple maintenance commands inside a scenario flow.
-
-## YAML configuration {: #yaml-configuration}
-
-Use the hook name in the matching runtime section, then place hook-specific fields under the configuration object shown in the examples below.
 
 ## Minimal example {: #minimal-example}
 
@@ -59,13 +57,6 @@ The existing `redisResults` placeholder behavior is unchanged; global-dictionary
 
 When `UseGlobalDict` is `false`, the probe behaves exactly as before and uses only local YAML or code configuration.
 
-## Edge cases {: #edge-cases}
-
-- Missing required configuration keys fail schema validation before the hook runs.
-- Keep hook names and referenced session or data-source names aligned with the surrounding YAML.
-
 ## See also {: #see-also}
 
-- [Configuration table](configuration/tableView.md)
-- [YAML scaffold](configuration/yamlView.md)
-- [Probes](../../index.md)
+Use the surrounding documentation navigation to move between related generated reference pages.

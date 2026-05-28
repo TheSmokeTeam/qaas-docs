@@ -8,20 +8,15 @@ applies_to: [runner]
 keywords: [runner, qaas, functions, builders, transactions, sections, general]
 summary: "Reference page for Transactions: General."
 ---
-
 <!-- Verified-against: QaaS.Runner\QaaS.Runner.Sessions\Actions\Transactions\Builders\TransactionBuilder.cs -->
 
 # Transactions: General
 
-> TL;DR — This page mirrors the `General` section from [Transactions](../transactions.md) as a focused reference.
+> TL;DR: Reference page for Transactions: General.
 
-## When to use {: #when-to-use}
+This page mirrors the `General` section from [Transactions](../transactions.md).
 
-Use this page when you need the focused member list, signatures, and source notes for this section without scanning the full parent reference.
-
-## C# (CAC) usage {: #c-cac-usage}
-
-### `InLoops` {: #inloops}
+## `InLoops` {: #inloops}
 
 ??? info "Source file, signature, and docstring"
     **Member**
@@ -41,8 +36,10 @@ Use this page when you need the focused member list, signatures, and source note
     **Docstring**
     
     Marks the transaction to execute continuously in loop mode.
+    
+    Use this method when working with the documented Runner transaction builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
-### `Configure` {: #configure}
+## `Configure` {: #configure}
 
 ??? info "Source file, signature, and docstring"
     **Member**
@@ -62,12 +59,9 @@ Use this page when you need the focused member list, signatures, and source note
     **Docstring**
     
     Sets the configuration currently stored on the Runner transaction builder instance.
-
-## Edge cases {: #edge-cases}
-
-- This page is generated from the parent reference section; edit the source XML docs or generator when content needs to change.
-- If a linked source member is renamed, regenerate the reference docs before changing prose by hand.
+    
+    Use this method when working with the documented Runner transaction builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
 ## See also {: #see-also}
 
-- [Transactions](../transactions.md)
+Use the surrounding documentation navigation to move between related generated reference pages.

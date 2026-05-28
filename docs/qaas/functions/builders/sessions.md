@@ -12,11 +12,7 @@ summary: "Each entry uses the short function name as the table-of-contents label
 
 # Sessions
 
-> TL;DR — This page lists the public Runner functions in the `Sessions` category.
-
-## When to use {: #when-to-use}
-
-Use this page when you need source-backed signatures, declaring types, and XML doc comments for this function category.
+> TL;DR: Each entry uses the short function name as the table-of-contents label. Expand an entry to inspect its source file, signature, and XML doc comments.
 
 Each entry uses the short function name as the table-of-contents label. Expand an entry to inspect its source file, signature, and XML doc comments.
 
@@ -44,6 +40,8 @@ The functions on this page are grouped by responsibility so related operations s
     **Docstring**
     
     Sets the name used for the current Runner session builder instance.
+    
+    Use this method when working with the documented Runner session builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
 ## Execution order {: #execution-order}
 
@@ -67,6 +65,8 @@ The functions on this page are grouped by responsibility so related operations s
     **Docstring**
     
     Sets the stage used by the current Runner session builder instance.
+    
+    Use this method when working with the documented Runner session builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
 ## Classification {: #classification}
 
@@ -90,6 +90,8 @@ The functions on this page are grouped by responsibility so related operations s
     **Docstring**
     
     Sets the category used by the current Runner session builder instance.
+    
+    Use this method when working with the documented Runner session builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
 ## Session selection {: #session-selection}
 
@@ -113,6 +115,8 @@ The functions on this page are grouped by responsibility so related operations s
     **Docstring**
     
     Limits the session to run only until the specified stage.
+    
+    Use this method when working with the documented Runner session builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
 ## Probes {: #probes}
 
@@ -136,6 +140,8 @@ The functions on this page are grouped by responsibility so related operations s
     **Docstring**
     
     Adds the supplied probe to the current Runner session builder instance.
+    
+    Use this method when working with the documented Runner session builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
 ### `UpdateProbe` {: #updateprobe}
 
@@ -157,6 +163,8 @@ The functions on this page are grouped by responsibility so related operations s
     **Docstring**
     
     Updates the configured probe stored on the current Runner session builder instance.
+    
+    Use this method when working with the documented Runner session builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
 ### `RemoveProbe` {: #removeprobe}
 
@@ -178,6 +186,8 @@ The functions on this page are grouped by responsibility so related operations s
     **Docstring**
     
     Removes the configured probe from the current Runner session builder instance.
+    
+    Use this method when working with the documented Runner session builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
 ### `RemoveProbeAt` {: #removeprobeat}
 
@@ -199,6 +209,8 @@ The functions on this page are grouped by responsibility so related operations s
     **Docstring**
     
     Removes the configured probe at the specified index from the current Runner session builder instance.
+    
+    Use this method when working with the documented Runner session builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
 ## Publishers {: #publishers}
 
@@ -222,6 +234,8 @@ The functions on this page are grouped by responsibility so related operations s
     **Docstring**
     
     Adds the supplied publisher to the current Runner session builder instance.
+    
+    Use this method when working with the documented Runner session builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
 ### `UpdatePublisher` {: #updatepublisher}
 
@@ -243,6 +257,8 @@ The functions on this page are grouped by responsibility so related operations s
     **Docstring**
     
     Updates the configured publisher stored on the current Runner session builder instance.
+    
+    Use this method when working with the documented Runner session builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
 ### `RemovePublisher` {: #removepublisher}
 
@@ -264,6 +280,8 @@ The functions on this page are grouped by responsibility so related operations s
     **Docstring**
     
     Removes the configured publisher from the current Runner session builder instance.
+    
+    Use this method when working with the documented Runner session builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
 ### `RemovePublisherAt` {: #removepublisherat}
 
@@ -285,6 +303,8 @@ The functions on this page are grouped by responsibility so related operations s
     **Docstring**
     
     Removes the configured publisher at the specified index from the current Runner session builder instance.
+    
+    Use this method when working with the documented Runner session builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
 ## Consumers {: #consumers}
 
@@ -308,6 +328,8 @@ The functions on this page are grouped by responsibility so related operations s
     **Docstring**
     
     Adds the supplied consumer to the current Runner session builder instance.
+    
+    Use this method when working with the documented Runner session builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
 ### `UpdateConsumer` {: #updateconsumer}
 
@@ -329,6 +351,8 @@ The functions on this page are grouped by responsibility so related operations s
     **Docstring**
     
     Updates the configured consumer stored on the current Runner session builder instance.
+    
+    Use this method when working with the documented Runner session builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
 ### `RemoveConsumer` {: #removeconsumer}
 
@@ -350,6 +374,8 @@ The functions on this page are grouped by responsibility so related operations s
     **Docstring**
     
     Removes the configured consumer from the current Runner session builder instance.
+    
+    Use this method when working with the documented Runner session builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
 ### `RemoveConsumerAt` {: #removeconsumerat}
 
@@ -371,6 +397,8 @@ The functions on this page are grouped by responsibility so related operations s
     **Docstring**
     
     Removes the configured consumer at the specified index from the current Runner session builder instance.
+    
+    Use this method when working with the documented Runner session builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
 ## Transactions {: #transactions}
 
@@ -394,6 +422,8 @@ The functions on this page are grouped by responsibility so related operations s
     **Docstring**
     
     Adds the supplied transaction to the current Runner session builder instance.
+    
+    Use this method when working with the documented Runner session builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
 ### `UpdateTransaction` {: #updatetransaction}
 
@@ -415,6 +445,8 @@ The functions on this page are grouped by responsibility so related operations s
     **Docstring**
     
     Updates the configured transaction stored on the current Runner session builder instance.
+    
+    Use this method when working with the documented Runner session builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
 ### `RemoveTransaction` {: #removetransaction}
 
@@ -436,6 +468,8 @@ The functions on this page are grouped by responsibility so related operations s
     **Docstring**
     
     Removes the configured transaction from the current Runner session builder instance.
+    
+    Use this method when working with the documented Runner session builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
 ### `RemoveTransactionAt` {: #removetransactionat}
 
@@ -457,6 +491,8 @@ The functions on this page are grouped by responsibility so related operations s
     **Docstring**
     
     Removes the configured transaction at the specified index from the current Runner session builder instance.
+    
+    Use this method when working with the documented Runner session builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
 ## Collectors {: #collectors}
 
@@ -480,6 +516,8 @@ The functions on this page are grouped by responsibility so related operations s
     **Docstring**
     
     Adds the supplied collector to the current Runner session builder instance.
+    
+    Use this method when working with the documented Runner session builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
 ### `UpdateCollector` {: #updatecollector}
 
@@ -501,6 +539,8 @@ The functions on this page are grouped by responsibility so related operations s
     **Docstring**
     
     Updates the configured collector stored on the current Runner session builder instance.
+    
+    Use this method when working with the documented Runner session builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
 ### `RemoveCollector` {: #removecollector}
 
@@ -522,6 +562,8 @@ The functions on this page are grouped by responsibility so related operations s
     **Docstring**
     
     Removes the configured collector from the current Runner session builder instance.
+    
+    Use this method when working with the documented Runner session builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
 ### `RemoveCollectorAt` {: #removecollectorat}
 
@@ -543,6 +585,8 @@ The functions on this page are grouped by responsibility so related operations s
     **Docstring**
     
     Removes the configured collector at the specified index from the current Runner session builder instance.
+    
+    Use this method when working with the documented Runner session builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
 ## Stages {: #stages}
 
@@ -566,6 +610,8 @@ The functions on this page are grouped by responsibility so related operations s
     **Docstring**
     
     Adds the supplied stage to the current Runner session builder instance.
+    
+    Use this method when working with the documented Runner session builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
 ### `UpdateStage` {: #updatestage}
 
@@ -587,6 +633,8 @@ The functions on this page are grouped by responsibility so related operations s
     **Docstring**
     
     Updates the configured stage stored on the current Runner session builder instance.
+    
+    Use this method when working with the documented Runner session builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
 ### `RemoveStage` {: #removestage}
 
@@ -608,6 +656,8 @@ The functions on this page are grouped by responsibility so related operations s
     **Docstring**
     
     Removes the configured stage from the current Runner session builder instance.
+    
+    Use this method when working with the documented Runner session builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
 ### `RemoveStageAt` {: #removestageat}
 
@@ -629,6 +679,8 @@ The functions on this page are grouped by responsibility so related operations s
     **Docstring**
     
     Removes the configured stage at the specified index from the current Runner session builder instance.
+    
+    Use this method when working with the documented Runner session builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
 ## Configuration {: #configuration}
 
@@ -652,6 +704,8 @@ The functions on this page are grouped by responsibility so related operations s
     **Docstring**
     
     Sets the timeout applied before the session runs.
+    
+    Use this method when working with the documented Runner session builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
 ### `WithTimeoutAfter` {: #withtimeoutafter}
 
@@ -673,6 +727,8 @@ The functions on this page are grouped by responsibility so related operations s
     **Docstring**
     
     Sets the timeout applied after the session runs.
+    
+    Use this method when working with the documented Runner session builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
 ### `WithTimeZone` {: #withtimezone}
 
@@ -719,6 +775,8 @@ The functions on this page are grouped by responsibility so related operations s
     **Docstring**
     
     Adds the supplied mocker command to the current Runner session builder instance.
+    
+    Use this method when working with the documented Runner session builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
 ### `UpdateMockerCommand` {: #updatemockercommand}
 
@@ -740,6 +798,8 @@ The functions on this page are grouped by responsibility so related operations s
     **Docstring**
     
     Updates the configured mocker command stored on the current Runner session builder instance.
+    
+    Use this method when working with the documented Runner session builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
 ### `RemoveMockerCommand` {: #removemockercommand}
 
@@ -761,6 +821,8 @@ The functions on this page are grouped by responsibility so related operations s
     **Docstring**
     
     Removes the configured mocker command from the current Runner session builder instance.
+    
+    Use this method when working with the documented Runner session builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
 ### `RemoveMockerCommandAt` {: #removemockercommandat}
 
@@ -782,6 +844,8 @@ The functions on this page are grouped by responsibility so related operations s
     **Docstring**
     
     Removes the configured mocker command at the specified index from the current Runner session builder instance.
+    
+    Use this method when working with the documented Runner session builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
 ## General {: #general}
 
@@ -805,7 +869,9 @@ The functions on this page are grouped by responsibility so related operations s
     **Docstring**
     
     Disables data persistence for the configured session.
+    
+    Use this method when working with the documented Runner session builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
 ## See also {: #see-also}
 
-- [Runner Functions](../index.md)
+Use the surrounding documentation navigation to move between related generated reference pages.

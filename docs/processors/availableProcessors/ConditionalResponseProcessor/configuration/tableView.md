@@ -12,15 +12,7 @@ summary: "Field-by-field reference for ConditionalResponseProcessor ProcessorCon
 
 # ConditionalResponseProcessor Configurations Table View
 
-> TL;DR — Use this generated field table to check property paths, types, required status, defaults, and descriptions.
-
-## When to use {: #when-to-use}
-
-Use this page when you need the exact field path or value type for a hook configuration before editing YAML.
-
-## YAML configuration {: #yaml-configuration}
-
-The table below mirrors the schema used by the YAML scaffold page. Nested rows use dotted paths and `[]` for list items.
+> TL;DR: Field-by-field reference for ConditionalResponseProcessor ProcessorConfiguration keys, types, defaults and descriptions, generated from processors.schema.json.
 
 | Property Path | Type | Required | Default | Description |
 | ------------- | ---- | -------- | ------- | ----------- |
@@ -39,12 +31,6 @@ The table below mirrors the schema used by the YAML scaffold page. Nested rows u
 | `ProcessorConfiguration.Rules[].ResponseBody` | `string or null` | &#10006 |  | Response body when the rule matches |
 | `ProcessorConfiguration.Rules[].ResponseHeaders` | `object or string or null` | &#10006 |  | Response headers when the rule matches |
 
-## Edge cases {: #edge-cases}
-
-- Empty default cells mean the schema does not define a default value for that field.
-- Required status applies to the immediate parent object shown by the property path.
-
 ## See also {: #see-also}
 
-- [YAML scaffold](yamlView.md)
-- [Overview](../overview.md)
+Use the surrounding documentation navigation to move between related generated reference pages.

@@ -12,17 +12,15 @@ summary: "Updates container resource requests and limits in a Kubernetes or Open
 
 # OsUpdateDeploymentResources
 
-> TL;DR — Updates container resource requests and limits in a Kubernetes or OpenShift deployment.
+> TL;DR: Updates container resource requests and limits in a Kubernetes or OpenShift deployment.
 
-## When to use {: #when-to-use}
+Updates container resource requests and limits in a Kubernetes or OpenShift deployment.
+
+## What It Does {: #what-it-does}
 
 Updates CPU and memory requests and limits on a deployment container, then waits for the deployment to converge.
 
 This is useful when a scenario needs a temporary resource profile, for example to test scaling thresholds or resource-constrained behavior.
-
-## YAML configuration {: #yaml-configuration}
-
-Use the hook name in the matching runtime section, then place hook-specific fields under the configuration object shown in the examples below.
 
 ## Minimal example {: #minimal-example}
 
@@ -68,13 +66,6 @@ No additional per-probe recovery caveat applies beyond the execution and session
 
 When `UseGlobalDict` is `false`, the probe keeps the current behavior: it uses only local YAML or code configuration and does not read or write probe-global-dictionary state.
 
-## Edge cases {: #edge-cases}
-
-- Missing required configuration keys fail schema validation before the hook runs.
-- Keep hook names and referenced session or data-source names aligned with the surrounding YAML.
-
 ## See also {: #see-also}
 
-- [Configuration table](configuration/tableView.md)
-- [YAML scaffold](configuration/yamlView.md)
-- [Probes](../../index.md)
+Use the surrounding documentation navigation to move between related generated reference pages.

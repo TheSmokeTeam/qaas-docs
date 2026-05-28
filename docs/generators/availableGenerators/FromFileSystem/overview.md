@@ -12,17 +12,15 @@ summary: "Retrieves data from files under a configured path in the local file sy
 
 # FromFileSystem
 
-> TL;DR — Retrieves data from files under a configured path in the local file system.
+> TL;DR: Retrieves data from files under a configured path in the local file system.
 
-## When to use {: #when-to-use}
+Retrieves data from files under a configured path in the local file system.
+
+## What It Does {: #what-it-does}
 
 Reads files from a local directory and emits each matched file as one generated item.
 
 It can order the file list deterministically, filter by a UUID-like pattern, stop after a fixed count, and attach storage metadata that identifies the source file or path.
-
-## YAML configuration {: #yaml-configuration}
-
-Use the hook name in the matching runtime section, then place hook-specific fields under the configuration object shown in the examples below.
 
 ## Minimal example {: #minimal-example}
 
@@ -44,13 +42,6 @@ This example loads every `*.json` file under `sample-data/payloads` and exposes 
 
 Because the order is `AsciiAsc`, runs see the same file order every time, and `StorageMetaData: ItemName` preserves the file name for downstream logic that needs to know which file produced each payload.
 
-## Edge cases {: #edge-cases}
-
-- Missing required configuration keys fail schema validation before the hook runs.
-- Keep hook names and referenced session or data-source names aligned with the surrounding YAML.
-
 ## See also {: #see-also}
 
-- [Configuration table](configuration/tableView.md)
-- [YAML scaffold](configuration/yamlView.md)
-- [Generators](../../index.md)
+Use the surrounding documentation navigation to move between related generated reference pages.

@@ -12,11 +12,7 @@ summary: "Each entry uses the short function name as the table-of-contents label
 
 # Transaction Stubs
 
-> TL;DR — This page lists the public Mocker functions in the `Transaction Stubs` category.
-
-## When to use {: #when-to-use}
-
-Use this page when you need source-backed signatures, declaring types, and XML doc comments for this function category.
+> TL;DR: Each entry uses the short function name as the table-of-contents label. Expand an entry to inspect its source file, signature, and XML doc comments.
 
 Each entry uses the short function name as the table-of-contents label. Expand an entry to inspect its source file, signature, and XML doc comments.
 
@@ -44,6 +40,8 @@ The functions on this page are grouped by responsibility so related operations s
     **Docstring**
     
     Sets the name used for the current Mocker transaction stub builder instance.
+    
+    Use this method when working with the documented Mocker transaction stub builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
 ### `HookNamed` {: #hooknamed}
 
@@ -65,6 +63,8 @@ The functions on this page are grouped by responsibility so related operations s
     **Docstring**
     
     Sets the hook implementation name used by the current Mocker transaction stub builder instance.
+    
+    Use this method when working with the documented Mocker transaction stub builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
 ## Data source selection {: #data-source-selection}
 
@@ -88,6 +88,8 @@ The functions on this page are grouped by responsibility so related operations s
     **Docstring**
     
     Adds the supplied data source name to the current Mocker transaction stub builder instance.
+    
+    Use this method when working with the documented Mocker transaction stub builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
 ### `UpdateDataSourceName` {: #updatedatasourcename}
 
@@ -109,6 +111,8 @@ The functions on this page are grouped by responsibility so related operations s
     **Docstring**
     
     Updates the configured data source name stored on the current Mocker transaction stub builder instance.
+    
+    Use this method when working with the documented Mocker transaction stub builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
 ### `RemoveDataSourceName` {: #removedatasourcename}
 
@@ -130,6 +134,8 @@ The functions on this page are grouped by responsibility so related operations s
     **Docstring**
     
     Removes the configured data source name from the current Mocker transaction stub builder instance.
+    
+    Use this method when working with the documented Mocker transaction stub builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
 ### `RemoveDataSourceNameAt` {: #removedatasourcenameat}
 
@@ -151,6 +157,8 @@ The functions on this page are grouped by responsibility so related operations s
     **Docstring**
     
     Removes the configured data source name at the specified index from the current Mocker transaction stub builder instance.
+    
+    Use this method when working with the documented Mocker transaction stub builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
 ## Configuration {: #configuration}
 
@@ -174,6 +182,8 @@ The functions on this page are grouped by responsibility so related operations s
     **Docstring**
     
     Sets how request bodies are deserialized before the stub processor runs.
+    
+    Use this method when working with the documented Mocker transaction stub builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
 ### `WithResponseBodySerialization` {: #withresponsebodyserialization}
 
@@ -195,6 +205,8 @@ The functions on this page are grouped by responsibility so related operations s
     **Docstring**
     
     Sets how response bodies are serialized after the stub processor runs.
+    
+    Use this method when working with the documented Mocker transaction stub builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
 ## Collection helpers {: #collection-helpers}
 
@@ -218,6 +230,8 @@ The functions on this page are grouped by responsibility so related operations s
     **Docstring**
     
     Updates the configuration currently stored on the Mocker transaction stub builder instance.
+    
+    Use this method when working with the documented Mocker transaction stub builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
 ## General {: #general}
 
@@ -241,8 +255,10 @@ The functions on this page are grouped by responsibility so related operations s
     **Docstring**
     
     Sets the configuration currently stored on the Mocker transaction stub builder instance.
+    
+    Use this method when working with the documented Mocker transaction stub builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
-### `Configure` {: #configure_1}
+### `Configure` {: #configure-2}
 
 ??? info "Source file, signature, and docstring"
     **Member**
@@ -262,6 +278,8 @@ The functions on this page are grouped by responsibility so related operations s
     **Docstring**
     
     Sets the configuration currently stored on the Mocker transaction stub builder instance.
+    
+    Use this method when working with the documented Mocker transaction stub builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
 ### `Build` {: #build}
 
@@ -311,4 +329,4 @@ The functions on this page are grouped by responsibility so related operations s
 
 ## See also {: #see-also}
 
-- [Mocker Functions](../index.md)
+Use the surrounding documentation navigation to move between related generated reference pages.

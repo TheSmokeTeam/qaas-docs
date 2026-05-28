@@ -12,17 +12,15 @@ summary: "Probe that changes the environment variables of a deployment"
 
 # OsChangeDeploymentEnvVars
 
-> TL;DR — Probe that changes the environment variables of a deployment
+> TL;DR: Probe that changes the environment variables of a deployment
 
-## When to use {: #when-to-use}
+Probe that changes the environment variables of a deployment
+
+## What It Does {: #what-it-does}
 
 Updates or removes environment variables on a deployment and then waits for the deployment to converge to its desired state.
 
 This is useful when a scenario needs to switch feature flags, endpoint URLs, or other container environment settings before traffic starts.
-
-## YAML configuration {: #yaml-configuration}
-
-Use the hook name in the matching runtime section, then place hook-specific fields under the configuration object shown in the examples below.
 
 ## Minimal example {: #minimal-example}
 
@@ -66,13 +64,6 @@ A recovery payload is written only when the probe resolves exactly one target co
 
 When `UseGlobalDict` is `false`, the probe keeps the current behavior: it uses only local YAML or code configuration and does not read or write probe-global-dictionary state.
 
-## Edge cases {: #edge-cases}
-
-- Missing required configuration keys fail schema validation before the hook runs.
-- Keep hook names and referenced session or data-source names aligned with the surrounding YAML.
-
 ## See also {: #see-also}
 
-- [Configuration table](configuration/tableView.md)
-- [YAML scaffold](configuration/yamlView.md)
-- [Probes](../../index.md)
+Use the surrounding documentation navigation to move between related generated reference pages.

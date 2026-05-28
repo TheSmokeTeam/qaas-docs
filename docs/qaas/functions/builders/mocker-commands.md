@@ -12,11 +12,7 @@ summary: "Each entry uses the short function name as the table-of-contents label
 
 # Mocker Commands
 
-> TL;DR — This page lists the public Runner functions in the `Mocker Commands` category.
-
-## When to use {: #when-to-use}
-
-Use this page when you need source-backed signatures, declaring types, and XML doc comments for this function category.
+> TL;DR: Each entry uses the short function name as the table-of-contents label. Expand an entry to inspect its source file, signature, and XML doc comments.
 
 Each entry uses the short function name as the table-of-contents label. Expand an entry to inspect its source file, signature, and XML doc comments.
 
@@ -44,6 +40,8 @@ The functions on this page are grouped by responsibility so related operations s
     **Docstring**
     
     Sets the name used for the current Runner mocker command builder instance.
+    
+    Use this method when working with the documented Runner mocker command builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
 ## Execution order {: #execution-order}
 
@@ -67,6 +65,8 @@ The functions on this page are grouped by responsibility so related operations s
     **Docstring**
     
     Sets the stage used by the current Runner mocker command builder instance.
+    
+    Use this method when working with the documented Runner mocker command builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
 ## Servers {: #servers}
 
@@ -90,6 +90,8 @@ The functions on this page are grouped by responsibility so related operations s
     **Docstring**
     
     Configures server name on the current Runner mocker command builder instance.
+    
+    Use this method when working with the documented Runner mocker command builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
 ## Configuration {: #configuration}
 
@@ -113,6 +115,8 @@ The functions on this page are grouped by responsibility so related operations s
     **Docstring**
     
     Configures redis on the current Runner mocker command builder instance.
+    
+    Use this method when working with the documented Runner mocker command builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
 ### `WithRequestDurationMs` {: #withrequestdurationms}
 
@@ -134,6 +138,8 @@ The functions on this page are grouped by responsibility so related operations s
     **Docstring**
     
     Configures request duration ms on the current Runner mocker command builder instance.
+    
+    Use this method when working with the documented Runner mocker command builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
 ### `WithRequestRetries` {: #withrequestretries}
 
@@ -155,6 +161,8 @@ The functions on this page are grouped by responsibility so related operations s
     **Docstring**
     
     Configures request retries on the current Runner mocker command builder instance.
+    
+    Use this method when working with the documented Runner mocker command builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
 ## Collection helpers {: #collection-helpers}
 
@@ -178,6 +186,8 @@ The functions on this page are grouped by responsibility so related operations s
     **Docstring**
     
     Updates the configuration currently stored on the Runner mocker command builder instance.
+    
+    Use this method when working with the documented Runner mocker command builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
 ## General {: #general}
 
@@ -201,7 +211,9 @@ The functions on this page are grouped by responsibility so related operations s
     **Docstring**
     
     Sets the configuration currently stored on the Runner mocker command builder instance.
+    
+    Use this method when working with the documented Runner mocker command builder API surface in code. The change is stored on the current builder instance and is consumed by later build, validation, or execution steps.
 
 ## See also {: #see-also}
 
-- [Runner Functions](../index.md)
+Use the surrounding documentation navigation to move between related generated reference pages.

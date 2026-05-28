@@ -8,10 +8,11 @@ applies_to: [mocker]
 keywords: [mocker, userinterfaces, commands, template]
 summary: "Render the effective merged configuration after file, folder, argument, and environment overrides."
 ---
-
 # template
 
-> TL;DR — Render the effective merged configuration after file, folder, argument, and environment overrides.
+> TL;DR: Render the effective merged configuration after file, folder, argument, and environment overrides.
+
+Render the effective merged configuration after file, folder, argument, and environment overrides.
 
 ## Invocation {: #invocation}
 
@@ -19,7 +20,7 @@ summary: "Render the effective merged configuration after file, folder, argument
 dotnet run <dotnet-parameters> -- template <config-file> [flags]
 ```
 
-## When to use {: #when-to-use}
+## Use When {: #use-when}
 
 - You want to inspect the final server, controller, and stub configuration before starting the runtime.
 - You need to confirm how overwrite files, folders, arguments, and environment variables combine.
@@ -50,7 +51,7 @@ dotnet run <dotnet-parameters> -- template <config-file> [flags]
 
 ## Flag Notes {: #flag-notes}
 
-### `-o`, `--output-folder` {: #-o-output-folder}
+### `-o`, `--output-folder` {: #o-output-folder}
 
 Use an output folder when you want the rendered configuration written to disk for review or diffing.
 
@@ -127,4 +128,4 @@ No-args guidance:
 
 ## See also {: #see-also}
 
-- [Mocker commands](commands.md)
+Use the surrounding documentation navigation to move between related generated reference pages.

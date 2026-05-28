@@ -8,10 +8,9 @@ applies_to: [mocker]
 keywords: [mocker, userinterfaces, commands]
 summary: "QaaS Mocker exposes a compact command surface: one command to start the runtime and one command to render the effective configuration without starting it."
 ---
-
 # Commands
 
-> TL;DR — Mocker commands start the configured mock environment or render the effective configuration for review.
+> TL;DR: QaaS Mocker exposes a compact command surface: one command to start the runtime and one command to render the effective configuration without starting it.
 
 QaaS Mocker exposes a compact command surface: one command to start the runtime and one command to render the effective configuration without starting it.
 
@@ -174,5 +173,4 @@ Usage:
 
 ## See also {: #see-also}
 
-- [`run`](./run.md)
-- [`template`](./template.md)
+Use the surrounding documentation navigation to move between related generated reference pages.
