@@ -21,7 +21,7 @@ Use this page when you need the focused member list, signatures, and source note
 
 ## C# (CAC) usage {: #c-cac-usage}
 
-### `GetSessionDataByName<TInput, TOutput>` {: #getsessiondatabynametinput-toutput}
+### `GetSessionDataByName<TInput, TOutput>` {: #getsessiondatabyname-tinput-toutput}
 
 ??? info "Source file, signature, and docstring"
     **Member**
@@ -42,7 +42,7 @@ Use this page when you need the focused member list, signatures, and source note
     
     Retrieves a SessionData from an enumerable of SessionData by its name
 
-### `GetInputByName<TInput, TOutput>` {: #getinputbynametinput-toutput}
+### `GetInputByName<TInput, TOutput>` {: #getinputbyname-tinput-toutput}
 
 ??? info "Source file, signature, and docstring"
     **Member**
@@ -63,7 +63,7 @@ Use this page when you need the focused member list, signatures, and source note
     
     Retrieves an input CommunicationData from SessionData by its name
 
-### `TryGetInputByName<TInput, TOutput>` {: #trygetinputbynametinput-toutput}
+### `TryGetInputByName<TInput, TOutput>` {: #trygetinputbyname-tinput-toutput}
 
 ??? info "Source file, signature, and docstring"
     **Member**
@@ -84,7 +84,7 @@ Use this page when you need the focused member list, signatures, and source note
     
     Retrieves an input CommunicationData{TData} from SessionData by its name to inputValue
 
-### `GetOutputByName<TInput, TOutput>` {: #getoutputbynametinput-toutput}
+### `GetOutputByName<TInput, TOutput>` {: #getoutputbyname-tinput-toutput}
 
 ??? info "Source file, signature, and docstring"
     **Member**
@@ -105,7 +105,7 @@ Use this page when you need the focused member list, signatures, and source note
     
     Retrieves an output CommunicationData from SessionData by its name
 
-### `TryGetOutputByName<TInput, TOutput>` {: #trygetoutputbynametinput-toutput}
+### `TryGetOutputByName<TInput, TOutput>` {: #trygetoutputbyname-tinput-toutput}
 
 ??? info "Source file, signature, and docstring"
     **Member**

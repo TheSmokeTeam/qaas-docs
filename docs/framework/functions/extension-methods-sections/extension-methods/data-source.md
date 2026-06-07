@@ -42,7 +42,7 @@ Use this page when you need the focused member list, signatures, and source note
     
     Retrieves a DataSource from an enumerable of DataSources by its name
 
-### `RetrieveAndCast<TCastTo>` {: #retrieveandcasttcastto}
+### `RetrieveAndCast<TCastTo>` {: #retrieveandcast-tcastto}
 
 ??? info "Source file, signature, and docstring"
     **Member**

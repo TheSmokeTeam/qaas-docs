@@ -21,7 +21,7 @@ Use this page when you need the focused member list, signatures, and source note
 
 ## C# (CAC) usage {: #c-cac-usage}
 
-### `GetInputByName<TInput, TOutput>` {: #getinputbynametinput-toutput}
+### `GetInputByName<TInput, TOutput>` {: #getinputbyname-tinput-toutput}
 
 ??? info "Source file, signature, and docstring"
     **Member**
@@ -42,7 +42,7 @@ Use this page when you need the focused member list, signatures, and source note
     
     Retrieves an input RunningCommunicationData{TData} from RunningSessionData{TInput,TOutput} by its name
 
-### `GetOutputByName<TInput, TOutput>` {: #getoutputbynametinput-toutput}
+### `GetOutputByName<TInput, TOutput>` {: #getoutputbyname-tinput-toutput}
 
 ??? info "Source file, signature, and docstring"
     **Member**

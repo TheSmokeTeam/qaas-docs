@@ -34,7 +34,7 @@ ProcessorConfiguration:
   Extensions: {}
   Instance: 'value'
   ResponseHeaders: {}
-  UseRequestUriAsInstance: false
+  UseRequestUriAsInstance: True
 ```
 
 ## Realistic example {: #realistic-example}

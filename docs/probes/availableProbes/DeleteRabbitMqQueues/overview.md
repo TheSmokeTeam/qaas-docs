@@ -18,7 +18,7 @@ summary: "Probe that deletes rabbitmq queues"
 
 Deletes RabbitMQ queues through the AMQP connection defined in the probe configuration.
 
-This is useful for queue cleanup when the queue should be removed entirely instead of only purged.
+This is useful for queue cleanup when the queue should be removed entirely rather than only purged.
 
 ## YAML configuration {: #yaml-configuration}
 

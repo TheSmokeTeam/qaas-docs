@@ -21,7 +21,7 @@ Use this page when you need the focused member list, signatures, and source note
 
 ## C# (CAC) usage {: #c-cac-usage}
 
-### `AsSingle<TItem>` {: #assingletitem}
+### `AsSingle<TItem>` {: #assingle-titem}
 
 ??? info "Source file, signature, and docstring"
     **Member**

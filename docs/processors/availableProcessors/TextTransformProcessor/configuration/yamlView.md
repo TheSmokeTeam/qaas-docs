@@ -33,7 +33,7 @@ ProcessorConfiguration:
   ResponseHeaders: {}
   SearchText: 'value'
   Suffix: 'value'
-  TrimWhitespace: false
+  TrimWhitespace: True
 ```
 
 ## Realistic example {: #realistic-example}

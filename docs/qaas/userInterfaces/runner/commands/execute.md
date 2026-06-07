@@ -62,9 +62,10 @@ Commands:
     Id: preview
   - Command: run test.qaas.yaml
     Id: smoke
+    Parallel: false
 ```
 
-Each entry accepts `Command` and `Id`. The list order is the execution order; `Id` is the stable identifier used by `--command-ids-to-run`, logs, and generated report output.
+`Id` is the stable identifier used by `--command-ids-to-run`, logs, and generated report output.
 
 ## Flag Notes {: #flag-notes}
 

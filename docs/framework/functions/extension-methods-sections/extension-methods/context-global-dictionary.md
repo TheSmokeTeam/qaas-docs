@@ -21,7 +21,7 @@ Use this page when you need the focused member list, signatures, and source note
 
 ## C# (CAC) usage {: #c-cac-usage}
 
-### `LoadConfigurationSectionIntoGlobalDictionary<TExecutionData>` {: #loadconfigurationsectionintoglobaldictionarytexecutiondata}
+### `LoadConfigurationSectionIntoGlobalDictionary<TExecutionData>` {: #loadconfigurationsectionintoglobaldictionary-texecutiondata}
 
 ??? info "Source file, signature, and docstring"
     **Member**

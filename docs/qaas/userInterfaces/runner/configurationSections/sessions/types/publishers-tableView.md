@@ -81,7 +81,7 @@ The table below mirrors the schema used by the YAML scaffold page. Nested rows u
 | `Sessions[].Publishers[].KafkaTopic.CompressionType` | `one of [None / Gzip / Snappy / Lz4 / Zstd]` | &#10006 |  | Compression type to use before sending messages |
 | `Sessions[].Publishers[].KafkaTopic.DefaultKafkaKey` | `string or null` | &#10006 |  | The default kafka message key given if no key is given in the generated data under `MetaData` in the kafka key field |
 | `Sessions[].Publishers[].KafkaTopic.Headers` | `object or string or null` | &#10006 |  | Default Headers to send messages with, if the message doesn't contain any Headers in its MetaData these Headers are used |
-| `Sessions[].Publishers[].KafkaTopic.MessageMaxBytes` | `integer or string` | &#10006 | 1000000 | Maximum allowed Kafka message size in bytes. Must not exceed broker/topic limits. |
+| `Sessions[].Publishers[].KafkaTopic.MessageMaxBytes` | `integer or string` | &#10006 | 1000000 | Maximum allowed Kafka message size in bytes (librdkafka `message.max.bytes`). Valid range is 1000 to 1000000000; must not exceed broker/topic limits. |
 | `Sessions[].Publishers[].KafkaTopic.MessageSendMaxRetries` | `integer or string` | &#10006 | 10 | Max amount of retries when message send to Kafka Topic failed. |
 | `Sessions[].Publishers[].KafkaTopic.MessageSendRetriesIntervalMs` | `integer or string` | &#10006 | 1000 | Time interval in milliseconds to wait between each retry of Kafka Topic message send. |
 | `Sessions[].Publishers[].KafkaTopic.Partition` | `integer or string` | &#10006 | -1 | The Kafka partition to produce to, by default -1 is treated as Partition.Any which will mean it uses an unspecified / unknown partition. |

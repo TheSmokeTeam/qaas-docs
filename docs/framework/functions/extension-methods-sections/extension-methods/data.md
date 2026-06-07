@@ -21,7 +21,7 @@ Use this page when you need the focused member list, signatures, and source note
 
 ## C# (CAC) usage {: #c-cac-usage}
 
-### `CastObjectData<TCasted>` {: #castobjectdatatcasted}
+### `CastObjectData<TCasted>` {: #castobjectdata-tcasted}
 
 ??? info "Source file, signature, and docstring"
     **Member**
@@ -42,7 +42,7 @@ Use this page when you need the focused member list, signatures, and source note
     
     Casts a `Data` of type object to another type, if the cast is not valid will throw InvalidCastException
 
-### `CastToObjectData<TData>` {: #casttoobjectdatatdata}
+### `CastToObjectData<TData>` {: #casttoobjectdata-tdata}
 
 ??? info "Source file, signature, and docstring"
     **Member**
@@ -63,7 +63,7 @@ Use this page when you need the focused member list, signatures, and source note
     
     Casts a `Data` of any type to a Data of type object, if the cast is not valid will throw InvalidCastException
 
-### `CastObjectDetailedData<TCasted>` {: #castobjectdetaileddatatcasted}
+### `CastObjectDetailedData<TCasted>` {: #castobjectdetaileddata-tcasted}
 
 ??? info "Source file, signature, and docstring"
     **Member**
@@ -84,7 +84,7 @@ Use this page when you need the focused member list, signatures, and source note
     
     Casts a `DetailedData` of type object to another type, if the cast is not valid will throw InvalidCastException
 
-### `CastToObjectDetailedData<TData>` {: #casttoobjectdetaileddatatdata}
+### `CastToObjectDetailedData<TData>` {: #casttoobjectdetaileddata-tdata}
 
 ??? info "Source file, signature, and docstring"
     **Member**
@@ -105,7 +105,7 @@ Use this page when you need the focused member list, signatures, and source note
     
     Casts a `DetailedData` of any type to a DetailedData of type object, if the cast is not valid will throw InvalidCastException
 
-### `FilterData<TData>` {: #filterdatatdata}
+### `FilterData<TData>` {: #filterdata-tdata}
 
 ??? info "Source file, signature, and docstring"
     **Member**

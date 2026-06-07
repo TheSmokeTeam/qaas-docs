@@ -34,7 +34,7 @@ GeneratorConfiguration:
       Path: 'value'
       ValueType: 'Null'
       Boolean:
-        Value: false
+        Value: True
       ByteArray:
         Value: 'value'
       DateTime:
@@ -53,7 +53,7 @@ GeneratorConfiguration:
         TimeZone: 'value'
         Year: 0
       Double:
-        Value: 0
+        Value: 1.0
       FromDataSource:
         Name: 'value'
         OutOfRangePolicy: 'Null'

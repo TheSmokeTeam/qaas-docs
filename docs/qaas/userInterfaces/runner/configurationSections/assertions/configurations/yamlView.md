@@ -28,7 +28,7 @@ The scaffold follows the generated schema order. String placeholders are quoted,
 ```yaml
 Assertions:
   -
-    Assertion: 'value'
+    Assertion: 'DelayByAverage'
     Name: 'value'
     AssertionConfiguration: {}
     Category: 'value'
