@@ -85,7 +85,7 @@ Use this page when you need the focused member list, signatures, and source note
     
     Serializes IConfiguration object to Yaml string by a specific given order of its content's sections if given - else return default serialize result.
 
-### `LoadAndValidateConfiguration<TConfiguration>` {: #loadandvalidateconfigurationtconfiguration}
+### `LoadAndValidateConfiguration<TConfiguration>` {: #loadandvalidateconfiguration-tconfiguration}
 
 ??? info "Source file, signature, and docstring"
     **Member**
@@ -127,7 +127,7 @@ Use this page when you need the focused member list, signatures, and source note
     
     Builds IConfiguration from configuration builder while adding all parameterless configuration resolution extensions to the build process
 
-### `BindToObject<T>` {: #bindtoobjectt}
+### `BindToObject<T>` {: #bindtoobject-t}
 
 ??? info "Source file, signature, and docstring"
     **Member**

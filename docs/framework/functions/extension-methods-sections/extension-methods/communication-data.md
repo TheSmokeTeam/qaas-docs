@@ -21,7 +21,7 @@ Use this page when you need the focused member list, signatures, and source note
 
 ## C# (CAC) usage {: #c-cac-usage}
 
-### `GetCommunicationDataByName<TData>` {: #getcommunicationdatabynametdata}
+### `GetCommunicationDataByName<TData>` {: #getcommunicationdatabyname-tdata}
 
 ??? info "Source file, signature, and docstring"
     **Member**
@@ -42,7 +42,7 @@ Use this page when you need the focused member list, signatures, and source note
     
     Retrieves a CommunicationData from an enumerable of CommunicationData by its name
 
-### `CastCommunicationData<TCastTo>` {: #castcommunicationdatatcastto}
+### `CastCommunicationData<TCastTo>` {: #castcommunicationdata-tcastto}
 
 ??? info "Source file, signature, and docstring"
     **Member**
@@ -63,7 +63,7 @@ Use this page when you need the focused member list, signatures, and source note
     
     Casts a CommunicationData to a different type
 
-### `GetDataByIoMatchIndex<TData>` {: #getdatabyiomatchindextdata}
+### `GetDataByIoMatchIndex<TData>` {: #getdatabyiomatchindex-tdata}
 
 ??? info "Source file, signature, and docstring"
     **Member**

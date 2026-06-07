@@ -29,7 +29,7 @@ The scaffold follows the generated schema order. String placeholders are quoted,
 Stubs:
   -
     Name: 'value'
-    Processor: 'value'
+    Processor: 'ConditionalResponseProcessor'
     ProcessorConfiguration: {}
     DataSourceNames: []
     RequestBodyDeserialization:

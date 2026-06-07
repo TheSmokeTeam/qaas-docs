@@ -26,8 +26,8 @@ The scaffold follows the generated schema order. String placeholders are quoted,
 
 ```yaml
 AssertionConfiguration:
-  ExpectedMaximumPercentage: 0
-  ExpectedMinimumPercentage: 0
+  ExpectedMaximumPercentage: 1.0
+  ExpectedMinimumPercentage: 1.0
   InputsAreOutputs: False
   MidpointRounding: 'ToEven'
   InputNames:

@@ -435,6 +435,27 @@ The functions on this page are grouped by responsibility so related operations s
     
     Sets how many iterations the transaction should execute.
 
+### `WithParallelism` {: #withparallelism}
+
+??? info "Source file, signature, and docstring"
+    **Member**
+    `TransactionBuilder.WithParallelism(int parallelism)`
+    
+    **Kind** `function`
+    
+    **Declaring Type** `TransactionBuilder`
+    
+    **Source File** `QaaS.Runner.Sessions/Actions/Transactions/Builders/TransactionBuilder.cs`
+    
+    **Signature**
+    ```csharp
+    public TransactionBuilder WithParallelism(int parallelism)
+    ```
+    
+    **Docstring**
+    
+    Configures the transaction to run with the supplied parallelism.
+
 ### `WithSleep` {: #withsleep}
 
 ??? info "Source file, signature, and docstring"

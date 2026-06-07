@@ -290,7 +290,7 @@ Sessions:
     Probes:
       -
         Name: 'value'
-        Probe: 'value'
+        Probe: 'CreateRabbitMqBindings'
         Configuration: {}
         ProbeConfiguration: {}
         Stage: 3

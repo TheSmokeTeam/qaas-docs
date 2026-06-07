@@ -28,7 +28,7 @@ The scaffold follows the generated schema order. String placeholders are quoted,
 ```yaml
 DataSources:
   -
-    Generator: 'value'
+    Generator: 'FromCSV'
     Name: 'value'
     GeneratorConfiguration: {}
     Lazy: False

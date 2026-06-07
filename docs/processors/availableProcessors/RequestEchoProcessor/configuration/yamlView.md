@@ -28,9 +28,9 @@ The scaffold follows the generated schema order. String placeholders are quoted,
 ProcessorConfiguration:
   ContentType: 'value'
   StatusCode: 0
-  IncludePathParameters: false
-  IncludeRequestHeaders: false
-  IncludeUri: false
+  IncludePathParameters: True
+  IncludeRequestHeaders: True
+  IncludeUri: True
   ResponseHeaders: {}
 ```
 

@@ -56,7 +56,7 @@ Servers:
 
 This example trims the incoming body, replaces `hello` with `hi`, then wraps the result in square brackets.
 
-For an input containing `hello world` with leading and trailing spaces, the response body becomes `[hi world]`. The response is returned as HTTP `202`.
+For an input containing `hello world` with surrounding spaces, the response body becomes `[hi world]`. The response is returned as HTTP `202`.
 
 ## Edge cases {: #edge-cases}
 

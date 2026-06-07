@@ -21,7 +21,7 @@ Use this page when you need the focused member list, signatures, and source note
 
 ## C# (CAC) usage {: #c-cac-usage}
 
-### `UpdateConfiguration<TConfiguration>` {: #updateconfigurationtconfiguration}
+### `UpdateConfiguration<TConfiguration>` {: #updateconfiguration-tconfiguration}
 
 ??? info "Source file, signature, and docstring"
     **Member**
@@ -44,7 +44,7 @@ Use this page when you need the focused member list, signatures, and source note
     
     Use this helper when a partially populated typed configuration object should override only the supplied fields while preserving the rest of the existing configuration state.
 
-### `UpdateConfiguration<TConfiguration>` {: #updateconfigurationtconfiguration_1}
+### `UpdateConfiguration<TConfiguration>` {: #updateconfiguration-tconfiguration-2}
 
 ??? info "Source file, signature, and docstring"
     **Member**

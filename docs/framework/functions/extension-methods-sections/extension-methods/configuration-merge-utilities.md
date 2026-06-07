@@ -42,7 +42,7 @@ Use this page when you need the focused member list, signatures, and source note
     
     Merges a partial configuration object into an existing IConfiguration instance. Fields omitted from configurationObject are preserved from configuration . A field is treated as omitted when it still matches the default value produced by a fresh instance of the same configuration type.
 
-### `MergeConfiguration<TConfiguration>` {: #mergeconfigurationtconfiguration}
+### `MergeConfiguration<TConfiguration>` {: #mergeconfiguration-tconfiguration}
 
 ??? info "Source file, signature, and docstring"
     **Member**
