@@ -8,6 +8,9 @@ OUT="${1:-qaas-docs.zim}"
 SITE_DIR="site"
 ZIM_ROOT="${ZIM_ROOT:-site-zim}"
 BASE_PATH="${BASE_PATH:-qaas-docs}"
+ZIM_TOOLS_IMAGE="${QAAS_DOCS_ZIM_TOOLS_IMAGE:-ghcr.io/openzim/zim-tools:3.7.0}"
+ZIM_TOOLS_DOWNLOAD_URL="${QAAS_DOCS_ZIM_TOOLS_DOWNLOAD_URL:-https://download.openzim.org/release/zim-tools/}"
+KIWIX_SERVE_IMAGE="${QAAS_DOCS_KIWIX_SERVE_IMAGE:-ghcr.io/kiwix/kiwix-serve:3.8.2}"
 
 if [ ! -d "$SITE_DIR" ]; then
   echo "[zim] building site first with: mkdocs build --strict"
@@ -131,17 +134,17 @@ if command -v zimwriterfs >/dev/null 2>&1; then
   echo "[zim] using local zimwriterfs"
   zimwriterfs "${COMMON_ARGS[@]}" "$HTML_DIR" "$OUT"
 elif command -v docker >/dev/null 2>&1; then
-  echo "[zim] using docker openzim/zim-tools:3.7.0"
-  docker run --rm -v "$PWD":/work -w /work ghcr.io/openzim/zim-tools:3.7.0 \
+  echo "[zim] using docker $ZIM_TOOLS_IMAGE"
+  docker run --rm -v "$PWD":/work -w /work "$ZIM_TOOLS_IMAGE" \
     zimwriterfs "${COMMON_ARGS[@]}" "$HTML_DIR" "$OUT"
 else
   echo "[zim] ERROR: neither zimwriterfs nor docker found." >&2
-  echo "       Install: https://download.openzim.org/release/zim-tools/" >&2
+  echo "       Install: $ZIM_TOOLS_DOWNLOAD_URL" >&2
   exit 1
 fi
 
 echo "[zim] wrote $OUT ($(du -h "$OUT" | cut -f1))"
 echo "[zim] verify locally with:"
 echo "       docker run --rm --entrypoint /usr/local/bin/kiwix-serve -p 8888:8888 \\"
-echo "         -v \"$(cd "$(dirname "$OUT")" && pwd):/data\" ghcr.io/kiwix/kiwix-serve:3.8.2 \\"
+echo "         -v \"$(cd "$(dirname "$OUT")" && pwd):/data\" $KIWIX_SERVE_IMAGE \\"
 echo "         --port 8888 --threads 4 --nodatealiases /data/$(basename "$OUT")"

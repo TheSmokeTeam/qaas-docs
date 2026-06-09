@@ -43,10 +43,11 @@ env:
   QAAS_DOCS_LINK_QAAS_COMMUNITY: ${{ vars.QAAS_DOCS_LINK_QAAS_COMMUNITY || 'https://discord.gg/rg2NYT4Mea' }}
   QAAS_DOCS_LINK_NUGET_FEED: ${{ vars.QAAS_DOCS_LINK_NUGET_FEED || 'https://api.nuget.org/v3/index.json' }}
   QAAS_DOCS_LINK_ARTIFACTORY: ${{ vars.QAAS_DOCS_LINK_ARTIFACTORY || 'https://jfrog.com/artifactory' }}
-  QAAS_DOCS_LINK_RUNNER_SCHEMA: ${{ vars.QAAS_DOCS_LINK_RUNNER_SCHEMA || '../../assets/schemas/runner-family-schema.json' }}
-  QAAS_DOCS_LINK_MOCKER_SCHEMA: ${{ vars.QAAS_DOCS_LINK_MOCKER_SCHEMA || '../../assets/schemas/mocker-family-schema.json' }}
+  QAAS_DOCS_LINK_RUNNER_SCHEMA: ${{ vars.QAAS_DOCS_LINK_RUNNER_SCHEMA || '../../../assets/schemas/runner-family-schema.json' }}
+  QAAS_DOCS_LINK_MOCKER_SCHEMA: ${{ vars.QAAS_DOCS_LINK_MOCKER_SCHEMA || '../../../assets/schemas/mocker-family-schema.json' }}
   QAAS_DOCS_MKDOCS_MATERIAL_IMAGE: ${{ vars.QAAS_DOCS_MKDOCS_MATERIAL_IMAGE || 'squidfunk/mkdocs-material:9.5' }}
   QAAS_DOCS_NGINX_IMAGE: ${{ vars.QAAS_DOCS_NGINX_IMAGE || 'nginx:1.27-alpine' }}
+  QAAS_DOCS_GENERATOR_SUBMODULE_URL: ${{ vars.QAAS_DOCS_GENERATOR_SUBMODULE_URL || 'https://github.com/TheSmokeTeam/QaaS.Docs.Generator.git' }}
   QAAS_DOCS_IMAGE_DOTNET_SDK: ${{ vars.QAAS_DOCS_IMAGE_DOTNET_SDK || 'mcr.microsoft.com/dotnet/sdk:10.0' }}
   QAAS_DOCS_IMAGE_DOTNET_RUNTIME: ${{ vars.QAAS_DOCS_IMAGE_DOTNET_RUNTIME || 'mcr.microsoft.com/dotnet/runtime:10.0' }}
   QAAS_DOCS_IMAGE_REDIS_REPOSITORY: ${{ vars.QAAS_DOCS_IMAGE_REDIS_REPOSITORY || 'redis' }}
@@ -58,8 +59,12 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
-        with:
-          submodules: recursive
+
+      - name: Initialize generator submodule
+        run: |
+          git config submodule.tools/QaaS.Docs.Generator.url "$QAAS_DOCS_GENERATOR_SUBMODULE_URL"
+          git submodule sync --recursive
+          git submodule update --init --recursive
 
       - name: Setup Python
         uses: actions/setup-python@v5

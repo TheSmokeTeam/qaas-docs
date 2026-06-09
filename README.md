@@ -171,6 +171,24 @@ Image references rendered into docs examples:
 | `QAAS_DOCS_IMAGE_REDIS_REPOSITORY` | `redis_repository` | Redis image repository used in Helm examples |
 | `QAAS_DOCS_IMAGE_REDIS_TAG` | `redis_tag` | Redis image tag used in Helm examples |
 
+CI and local tool inputs:
+
+| Variable | Default | Description |
+|----------|---------|-------------|
+| `QAAS_DOCS_LYCHEE_DOWNLOAD_URL` | `https://github.com/lycheeverse/lychee/releases/latest/download/lychee-x86_64-unknown-linux-gnu.tar.gz` | Lychee archive downloaded by docs validation |
+| `QAAS_DOCS_VALE_DOWNLOAD_URL` | `https://github.com/errata-ai/vale/releases/download/v3.14.2/vale_3.14.2_Linux_64-bit.tar.gz` | Vale archive downloaded by docs validation |
+| `QAAS_DOCS_HTMLTEST_DOWNLOAD_URL` | `https://github.com/wjdp/htmltest/releases/latest/download/htmltest_0.17.0_linux_amd64.tar.gz` | htmltest archive downloaded by docs validation |
+| `QAAS_DOCS_GENERATOR_SUBMODULE_URL` | `https://github.com/TheSmokeTeam/QaaS.Docs.Generator.git` | `QaaS.Docs.Generator` submodule source used by CI |
+| `QAAS_DOCS_ZIM_TOOLS_IMAGE` | `ghcr.io/openzim/zim-tools:3.7.0` | Docker image used to build ZIM files when `zimwriterfs` is not installed |
+| `QAAS_DOCS_ZIM_TOOLS_DOWNLOAD_URL` | `https://download.openzim.org/release/zim-tools/` | Help link shown when no local or Docker ZIM builder exists |
+| `QAAS_DOCS_KIWIX_SERVE_IMAGE` | `ghcr.io/kiwix/kiwix-serve:3.8.2` | Docker image used to smoke-test ZIM files |
+| `QAAS_WORKSPACE_ROOT` | `D:/QaaS` | Base path used by the legacy plugin-page generator |
+| `QAAS_DOCS_SCHEMA_SOURCE_DIR` | `$QAAS_WORKSPACE_ROOT/QaaS.JsonSchemaExtensions/generated-schemas` | Schema source path used by the legacy plugin-page generator |
+| `QAAS_DOCS_ASSERTIONS_SOURCE_ROOT` | `$QAAS_WORKSPACE_ROOT/QaaS.Common.Assertions/QaaS.Common.Assertions` | Assertion source path used by the legacy plugin-page generator |
+| `QAAS_DOCS_GENERATORS_SOURCE_ROOT` | `$QAAS_WORKSPACE_ROOT/QaaS.Common.Generators/QaaS.Common.Generators` | Generator source path used by the legacy plugin-page generator |
+| `QAAS_DOCS_PROBES_SOURCE_ROOT` | `$QAAS_WORKSPACE_ROOT/QaaS.Common.Probes/QaaS.Common.Probes` | Probe source path used by the legacy plugin-page generator |
+| `QAAS_DOCS_PROCESSORS_SOURCE_ROOT` | `$QAAS_WORKSPACE_ROOT/QaaS.Common.Processors/QaaS.Common.Processors` | Processor source path used by the legacy plugin-page generator |
+
 ## Docker
 
 Build locally:
