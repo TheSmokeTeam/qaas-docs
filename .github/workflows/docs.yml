@@ -13,6 +13,10 @@ jobs:
     permissions:
       contents: read
       pull-requests: write
+    env:
+      QAAS_DOCS_LYCHEE_DOWNLOAD_URL: ${{ vars.QAAS_DOCS_LYCHEE_DOWNLOAD_URL || 'https://github.com/lycheeverse/lychee/releases/latest/download/lychee-x86_64-unknown-linux-gnu.tar.gz' }}
+      QAAS_DOCS_VALE_DOWNLOAD_URL: ${{ vars.QAAS_DOCS_VALE_DOWNLOAD_URL || 'https://github.com/errata-ai/vale/releases/download/v3.14.2/vale_3.14.2_Linux_64-bit.tar.gz' }}
+      QAAS_DOCS_HTMLTEST_DOWNLOAD_URL: ${{ vars.QAAS_DOCS_HTMLTEST_DOWNLOAD_URL || 'https://github.com/wjdp/htmltest/releases/latest/download/htmltest_0.17.0_linux_amd64.tar.gz' }}
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -38,9 +42,9 @@ jobs:
       - name: Install validator tooling
         run: |
           npm install -g markdownlint-cli2
-          mkdir -p /tmp/lychee && curl -sSfL https://github.com/lycheeverse/lychee/releases/latest/download/lychee-x86_64-unknown-linux-gnu.tar.gz | tar -xz -C /tmp/lychee
+          mkdir -p /tmp/lychee && curl -sSfL "$QAAS_DOCS_LYCHEE_DOWNLOAD_URL" | tar -xz -C /tmp/lychee
           sudo install -m 0755 "$(find /tmp/lychee -name lychee -type f | head -1)" /usr/local/bin/lychee
-          curl -sSfL https://github.com/errata-ai/vale/releases/download/v3.14.2/vale_3.14.2_Linux_64-bit.tar.gz | sudo tar -xz -C /usr/local/bin vale
+          curl -sSfL "$QAAS_DOCS_VALE_DOWNLOAD_URL" | sudo tar -xz -C /usr/local/bin vale
           python -m pip install yamllint check-jsonschema
 
       - name: Frontmatter conformance check
@@ -91,7 +95,7 @@ jobs:
           # htmlproofer-plugin runs as part of mkdocs build when configured;
           # this is the standalone backstop:
           bash tools/ci/prepare-site-check-root.sh site site-check qaas-docs
-          curl -sSfL https://github.com/wjdp/htmltest/releases/latest/download/htmltest_0.17.0_linux_amd64.tar.gz | tar -xz -C /usr/local/bin htmltest
+          curl -sSfL "$QAAS_DOCS_HTMLTEST_DOWNLOAD_URL" | tar -xz -C /usr/local/bin htmltest
           htmltest -c tools/ci/htmltest.yml
 
       - name: lychee offline (relative links)
@@ -129,6 +133,10 @@ jobs:
     runs-on: ubuntu-latest
     needs: build-and-validate
     timeout-minutes: 20
+    env:
+      QAAS_DOCS_KIWIX_SERVE_IMAGE: ${{ vars.QAAS_DOCS_KIWIX_SERVE_IMAGE || 'ghcr.io/kiwix/kiwix-serve:3.8.2' }}
+      QAAS_DOCS_ZIM_TOOLS_IMAGE: ${{ vars.QAAS_DOCS_ZIM_TOOLS_IMAGE || 'ghcr.io/openzim/zim-tools:3.7.0' }}
+      QAAS_DOCS_ZIM_TOOLS_DOWNLOAD_URL: ${{ vars.QAAS_DOCS_ZIM_TOOLS_DOWNLOAD_URL || 'https://download.openzim.org/release/zim-tools/' }}
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -150,16 +158,16 @@ jobs:
           name: qaas-docs-site
           path: site/
 
-      - name: Build ZIM via openzim/zim-tools (pinned)
+      - name: Build ZIM via configured zim-tools image
         run: |
           bash tools/zim/build-zim.sh "qaas-docs-${GITHUB_SHA::8}.zim"
 
-      - name: Smoke-test ZIM with kiwix-serve (pinned)
+      - name: Smoke-test ZIM with configured kiwix-serve image
         run: |
           zim_name="qaas-docs-${GITHUB_SHA::8}"
           docker run --rm -d --name kiwix --entrypoint /usr/local/bin/kiwix-serve \
             -v "$PWD":/data -p 8888:8888 \
-            ghcr.io/kiwix/kiwix-serve:3.8.2 \
+            "$QAAS_DOCS_KIWIX_SERVE_IMAGE" \
             --port 8888 --threads 4 --nodatealiases "/data/${zim_name}.zim"
           ok=0
           for i in $(seq 1 30); do

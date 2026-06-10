@@ -15,25 +15,31 @@ const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const ROOT = path.resolve(__dirname, '../..');
 const DOCS = path.join(ROOT, 'docs');
 const PLANNING = path.join(ROOT, 'planning');
-const SCHEMA_DIR = 'D:/QaaS/QaaS.JsonSchemaExtensions/generated-schemas';
+const WORKSPACE_ROOT = process.env.QAAS_WORKSPACE_ROOT || 'D:/QaaS';
+const SCHEMA_DIR = process.env.QAAS_DOCS_SCHEMA_SOURCE_DIR ||
+  path.join(WORKSPACE_ROOT, 'QaaS.JsonSchemaExtensions/generated-schemas');
 const TODAY = '2026-05-22';
 
 const FAMILIES = [
   { key: 'assertions', area: 'assertions', folder: 'availableAssertions',
     arr: 'Assertions', cfgKey: 'AssertionConfiguration', schema: 'assertions.schema.json',
-    srcRoot: 'D:/QaaS/QaaS.Common.Assertions/QaaS.Common.Assertions',
+    srcRoot: process.env.QAAS_DOCS_ASSERTIONS_SOURCE_ROOT ||
+      path.join(WORKSPACE_ROOT, 'QaaS.Common.Assertions/QaaS.Common.Assertions'),
     appliesTo: 'assertions', idPrefix: 'assertions.available' },
   { key: 'generators', area: 'generators', folder: 'availableGenerators',
     arr: 'Generators', cfgKey: 'GeneratorConfiguration', schema: 'generators.schema.json',
-    srcRoot: 'D:/QaaS/QaaS.Common.Generators/QaaS.Common.Generators',
+    srcRoot: process.env.QAAS_DOCS_GENERATORS_SOURCE_ROOT ||
+      path.join(WORKSPACE_ROOT, 'QaaS.Common.Generators/QaaS.Common.Generators'),
     appliesTo: 'generators', idPrefix: 'generators.available' },
   { key: 'probes', area: 'probes', folder: 'availableProbes',
     arr: 'Probes', cfgKey: 'ProbeConfiguration', schema: 'probes.schema.json',
-    srcRoot: 'D:/QaaS/QaaS.Common.Probes/QaaS.Common.Probes',
+    srcRoot: process.env.QAAS_DOCS_PROBES_SOURCE_ROOT ||
+      path.join(WORKSPACE_ROOT, 'QaaS.Common.Probes/QaaS.Common.Probes'),
     appliesTo: 'probes', idPrefix: 'probes.available' },
   { key: 'processors', area: 'processors', folder: 'availableProcessors',
     arr: 'Processors', cfgKey: 'ProcessorConfiguration', schema: 'processors.schema.json',
-    srcRoot: 'D:/QaaS/QaaS.Common.Processors/QaaS.Common.Processors',
+    srcRoot: process.env.QAAS_DOCS_PROCESSORS_SOURCE_ROOT ||
+      path.join(WORKSPACE_ROOT, 'QaaS.Common.Processors/QaaS.Common.Processors'),
     appliesTo: 'processors', idPrefix: 'processors.available' },
 ];
 

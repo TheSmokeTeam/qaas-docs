@@ -7,7 +7,7 @@ window.__QAAS_DOCS_BUILD_DEFAULTS__ = {
   "image_dotnet_sdk": "mcr.microsoft.com/dotnet/sdk:10.0",
   "image_redis_repository": "redis",
   "image_redis_tag": "7-alpine",
-  "mocker_schema": "../../assets/schemas/mocker-family-schema.json",
+  "mocker_schema": "../../../assets/schemas/mocker-family-schema.json",
   "nuget_feed": "https://api.nuget.org/v3/index.json",
   "qaas_community": "https://discord.gg/rg2NYT4Mea",
   "repo_name": "QaaS.Runner",
@@ -27,7 +27,7 @@ window.__QAAS_DOCS_BUILD_DEFAULTS__ = {
   "repository_runner_quickstart_code": "https://github.com/TheSmokeTeam/DummyAppTests/tree/code_configuration",
   "repository_runner_quickstart_yaml": "https://github.com/TheSmokeTeam/DummyAppTests/tree/yaml_configuration",
   "repository_runner_template": "https://github.com/TheSmokeTeam/QaaS.Runner.Template",
-  "runner_schema": "../../assets/schemas/runner-family-schema.json",
+  "runner_schema": "../../../assets/schemas/runner-family-schema.json",
   "site_url": "https://TheSmokeTeam.github.io/qaas-docs/",
   "social_github_url": "https://github.com/TheSmokeTeam/QaaS.Runner"
 };
