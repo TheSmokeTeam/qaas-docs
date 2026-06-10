@@ -1,0 +1,1601 @@
+# Extension Methods
+
+> TL;DR — This page lists the public Framework extension methods generated from XML documentation.
+
+## When to use
+
+Use this page when you need extension-method signatures and doc comments for the Framework API surface.
+
+This page collects public `Framework` extension methods that have XML documentation or explicit docs annotations.
+
+Annotated extension methods continue to appear in their regular category pages; this page gives the extension surface a dedicated view.
+
+## Configuration
+
+### Placeholders
+
+#### `AddPlaceholderResolver`
+
+Source file, signature, and docstring
+
+**Member** `PlaceholderConfigurationBuilderExtension.AddPlaceholderResolver(this IConfigurationBuilder configurationBuilder)`
+
+**Kind** `function`
+
+**Declaring Type** `PlaceholderConfigurationBuilderExtension (extension type)`
+
+**Source File** `QaaS.Framework.Configurations/ConfigurationBuilderExtensions/PlaceholderConfigurationBuilderExtension.cs`
+
+**Signature**
+
+```csharp
+public static IConfigurationBuilder AddPlaceholderResolver(this IConfigurationBuilder configurationBuilder)
+```
+
+**Docstring**
+
+Adds the placeholder-resolving configuration source to the configuration builder.
+
+Call this extension before building IConfiguration when placeholder expansion should be applied as part of the configuration pipeline.
+
+### Updates
+
+#### `UpdateConfiguration<TConfiguration>`
+
+Source file, signature, and docstring
+
+**Member** `ConfigurationUpdateExtensions.UpdateConfiguration<TConfiguration>(this TConfiguration? currentConfiguration, TConfiguration incomingConfiguration)`
+
+**Kind** `function`
+
+**Declaring Type** `ConfigurationUpdateExtensions (extension type)`
+
+**Source File** `QaaS.Framework.Configurations/ConfigurationUpdateExtensions.cs`
+
+**Signature**
+
+```csharp
+public static TConfiguration UpdateConfiguration<TConfiguration>(this TConfiguration? currentConfiguration, TConfiguration incomingConfiguration) where TConfiguration : class
+```
+
+**Docstring**
+
+Merges a typed configuration patch into the current configuration. When both configurations share the same runtime type, omitted fields are preserved from the current value. When the runtime type changes, the incoming configuration replaces the current one.
+
+Use this helper when a partially populated typed configuration object should override only the supplied fields while preserving the rest of the existing configuration state.
+
+#### `UpdateConfiguration<TConfiguration>`
+
+Source file, signature, and docstring
+
+**Member** `ConfigurationUpdateExtensions.UpdateConfiguration<TConfiguration>(this TConfiguration? currentConfiguration, object incomingConfiguration)`
+
+**Kind** `function`
+
+**Declaring Type** `ConfigurationUpdateExtensions (extension type)`
+
+**Source File** `QaaS.Framework.Configurations/ConfigurationUpdateExtensions.cs`
+
+**Signature**
+
+```csharp
+public static TConfiguration UpdateConfiguration<TConfiguration>(this TConfiguration? currentConfiguration, object incomingConfiguration) where TConfiguration : class
+```
+
+**Docstring**
+
+Merges an object-shaped configuration patch into the current typed configuration. Fields omitted from incomingConfiguration are preserved from the current configuration. Fields explicitly set to null in the patch clear the existing value. When the current configuration is missing, the incoming object is bound to when possible.
+
+Use this overload when the patch comes from an anonymous object, JSON-like payload, or any other object whose shape matches part of the target configuration contract.
+
+#### `UpdateConfiguration`
+
+Source file, signature, and docstring
+
+**Member** `ConfigurationUpdateExtensions.UpdateConfiguration(this IConfiguration? currentConfiguration, object incomingConfiguration)`
+
+**Kind** `function`
+
+**Declaring Type** `ConfigurationUpdateExtensions (extension type)`
+
+**Source File** `QaaS.Framework.Configurations/ConfigurationUpdateExtensions.cs`
+
+**Signature**
+
+```csharp
+public static IConfiguration UpdateConfiguration(this IConfiguration? currentConfiguration, object incomingConfiguration)
+```
+
+**Docstring**
+
+Merges an object-shaped configuration patch into the current IConfiguration tree. Fields omitted from incomingConfiguration are preserved from the current configuration. Fields explicitly set to null in the patch clear the existing value.
+
+Use this overload when configuration is already represented as an IConfiguration tree and should be updated without first binding it to a typed configuration object.
+
+### YAML
+
+#### `AddYamlFromHttpGet`
+
+Source file, signature, and docstring
+
+**Member** `YamlConfigurationBuilderExtension.AddYamlFromHttpGet(this IConfigurationBuilder builder, string yamlUrl, TimeSpan? timeout = null)`
+
+**Kind** `function`
+
+**Declaring Type** `YamlConfigurationBuilderExtension (extension type)`
+
+**Source File** `QaaS.Framework.Configurations/ConfigurationBuilderExtensions/YamlConfigurationBuilderExtension.cs`
+
+**Signature**
+
+```csharp
+public static IConfigurationBuilder AddYamlFromHttpGet(this IConfigurationBuilder builder, string yamlUrl, TimeSpan? timeout = null)
+```
+
+**Docstring**
+
+Adds a YAML configuration source that is loaded through HTTP GET.
+
+Call this extension during configuration bootstrap when YAML should be loaded remotely instead of from the local file system.
+
+#### `AddYaml`
+
+Source file, signature, and docstring
+
+**Member** `YamlConfigurationBuilderExtension.AddYaml(this IConfigurationBuilder builder, string yamlPath)`
+
+**Kind** `function`
+
+**Declaring Type** `YamlConfigurationBuilderExtension (extension type)`
+
+**Source File** `QaaS.Framework.Configurations/ConfigurationBuilderExtensions/YamlConfigurationBuilderExtension.cs`
+
+**Signature**
+
+```csharp
+public static IConfigurationBuilder AddYaml(this IConfigurationBuilder builder, string yamlPath)
+```
+
+**Docstring**
+
+Adds a YAML configuration source from a local file path or URL.
+
+Call this extension during configuration bootstrap so YAML sources go through the same QaaS-aware loading path for files and remote URLs.
+
+## Extension Methods
+
+### Communication data
+
+#### `GetCommunicationDataByName<TData>`
+
+Source file, signature, and docstring
+
+**Member** `CommunicationDataExtensions.GetCommunicationDataByName<TData>(this IEnumerable<CommunicationData<TData>>? communicationDataEnumerable, string communicationDataName, string? communicationDataType = null)`
+
+**Kind** `function`
+
+**Declaring Type** `CommunicationDataExtensions (extension type)`
+
+**Source File** `QaaS.Framework.SDK/Extensions/CommunicationDataExtensions.cs`
+
+**Signature**
+
+```csharp
+public static CommunicationData<TData> GetCommunicationDataByName<TData>(this IEnumerable<CommunicationData<TData>>? communicationDataEnumerable, string communicationDataName, string? communicationDataType = null)
+```
+
+**Docstring**
+
+Retrieves a CommunicationData from an enumerable of CommunicationData by its name
+
+#### `CastCommunicationData<TCastTo>`
+
+Source file, signature, and docstring
+
+**Member** `CommunicationDataExtensions.CastCommunicationData<TCastTo>(this CommunicationData<object> communicationData, string? communicationDataType = null)`
+
+**Kind** `function`
+
+**Declaring Type** `CommunicationDataExtensions (extension type)`
+
+**Source File** `QaaS.Framework.SDK/Extensions/CommunicationDataExtensions.cs`
+
+**Signature**
+
+```csharp
+public static CommunicationData<TCastTo> CastCommunicationData<TCastTo>(this CommunicationData<object> communicationData, string? communicationDataType = null)
+```
+
+**Docstring**
+
+Casts a CommunicationData to a different type
+
+#### `GetDataByIoMatchIndex<TData>`
+
+Source file, signature, and docstring
+
+**Member** `CommunicationDataExtensions.GetDataByIoMatchIndex<TData>(this CommunicationData<TData> communicationData, int ioMatchIndex)`
+
+**Kind** `function`
+
+**Declaring Type** `CommunicationDataExtensions (extension type)`
+
+**Source File** `QaaS.Framework.SDK/Extensions/CommunicationDataExtensions.cs`
+
+**Signature**
+
+```csharp
+public static DetailedData<TData> GetDataByIoMatchIndex<TData>(this CommunicationData<TData> communicationData, int ioMatchIndex)
+```
+
+**Docstring**
+
+Retrieves data by its IoMatchIndex from a CommunicationData object
+
+#### `TryGetCommunicationDataByName<TData>`
+
+Source file, signature, and docstring
+
+**Member** `CommunicationDataExtensions.TryGetCommunicationDataByName<TData>(this IEnumerable<CommunicationData<TData>>? communicationDataEnumerable, string communicationDataName, [NotNullWhen(true)] out CommunicationData<TData>? communicationDataValue)`
+
+**Kind** `function`
+
+**Declaring Type** `CommunicationDataExtensions (extension type)`
+
+**Source File** `QaaS.Framework.SDK/Extensions/CommunicationDataExtensions.cs`
+
+**Signature**
+
+```csharp
+public static bool TryGetCommunicationDataByName<TData>(this IEnumerable<CommunicationData<TData>>? communicationDataEnumerable, string communicationDataName, [NotNullWhen(true)] out CommunicationData<TData>? communicationDataValue)
+```
+
+**Docstring**
+
+Attempts to retrieve a CommunicationData from an enumerable of CommunicationData by its name, never throws
+
+Example: `if (sessionData.Outputs.TryGetCommunicationDataByName("orders_output", out var output)) { ... }`
+
+#### `TryCastCommunicationData<TCastTo>`
+
+Source file, signature, and docstring
+
+**Member** `CommunicationDataExtensions.TryCastCommunicationData<TCastTo>(this CommunicationData<object> communicationData, [NotNullWhen(true)] out CommunicationData<TCastTo>? casted)`
+
+**Kind** `function`
+
+**Declaring Type** `CommunicationDataExtensions (extension type)`
+
+**Source File** `QaaS.Framework.SDK/Extensions/CommunicationDataExtensions.cs`
+
+**Signature**
+
+```csharp
+public static bool TryCastCommunicationData<TCastTo>(this CommunicationData<object> communicationData, [NotNullWhen(true)] out CommunicationData<TCastTo>? casted)
+```
+
+**Docstring**
+
+Attempts to cast a CommunicationData to a different type, never throws
+
+Example: `if (communication.TryCastCommunicationData<byte[]>(out var bytesCommunication)) { ... }`
+
+#### `TryGetDataByIoMatchIndex<TData>`
+
+Source file, signature, and docstring
+
+**Member** `CommunicationDataExtensions.TryGetDataByIoMatchIndex<TData>(this CommunicationData<TData> communicationData, int ioMatchIndex, [NotNullWhen(true)] out DetailedData<TData>? data)`
+
+**Kind** `function`
+
+**Declaring Type** `CommunicationDataExtensions (extension type)`
+
+**Source File** `QaaS.Framework.SDK/Extensions/CommunicationDataExtensions.cs`
+
+**Signature**
+
+```csharp
+public static bool TryGetDataByIoMatchIndex<TData>(this CommunicationData<TData> communicationData, int ioMatchIndex, [NotNullWhen(true)] out DetailedData<TData>? data)
+```
+
+**Docstring**
+
+Attempts to retrieve data by its IoMatchIndex from a CommunicationData object, never throws
+
+Example: `if (communication.TryGetDataByIoMatchIndex(0, out var firstMatch)) { ... }`
+
+#### `GetBodies<TData>`
+
+Source file, signature, and docstring
+
+**Member** `CommunicationDataExtensions.GetBodies<TData>(this CommunicationData<TData> communicationData)`
+
+**Kind** `function`
+
+**Declaring Type** `CommunicationDataExtensions (extension type)`
+
+**Source File** `QaaS.Framework.SDK/Extensions/CommunicationDataExtensions.cs`
+
+**Signature**
+
+```csharp
+public static IList<TData?> GetBodies<TData>(this CommunicationData<TData> communicationData)
+```
+
+**Docstring**
+
+Retrieves the bodies of all data items of a CommunicationData, removing the need to project the Data list manually when only the contents matter
+
+Example: `IList<object?> bodies = communication.GetBodies();`
+
+#### `GetBodiesAs<TCasted>`
+
+Source file, signature, and docstring
+
+**Member** `CommunicationDataExtensions.GetBodiesAs<TCasted>(this CommunicationData<object> communicationData)`
+
+**Kind** `function`
+
+**Declaring Type** `CommunicationDataExtensions (extension type)`
+
+**Source File** `QaaS.Framework.SDK/Extensions/CommunicationDataExtensions.cs`
+
+**Signature**
+
+```csharp
+public static IList<TCasted?> GetBodiesAs<TCasted>(this CommunicationData<object> communicationData)
+```
+
+**Docstring**
+
+Retrieves the bodies of all data items of a CommunicationData of type object directly as the requested type
+
+Example: `IList<string?> bodies = communication.GetBodiesAs<string>();`
+
+#### `ConvertCommunicationData<TConverted>`
+
+Source file, signature, and docstring
+
+**Member** `CommunicationDataExtensions.ConvertCommunicationData<TConverted>(this CommunicationData<object> communicationData, SerializationType? serializationTypeOverride = null)`
+
+**Kind** `function`
+
+**Declaring Type** `CommunicationDataExtensions (extension type)`
+
+**Source File** `QaaS.Framework.SDK/Extensions/CommunicationDataExtensions.cs`
+
+**Signature**
+
+```csharp
+public static CommunicationData<TConverted> ConvertCommunicationData<TConverted>(this CommunicationData<object> communicationData, SerializationType? serializationTypeOverride = null)
+```
+
+**Docstring**
+
+Converts a CommunicationData of type object to a CommunicationData of the requested type regardless of the current representation of its bodies, using the CommunicationData's own SerializationType by default: bodies that already are are kept as-is, byte[] bodies are deserialized, and any other representation (e.g. JsonNode, yaml dictionaries) is round-tripped through the serialization type into . When no serialization type is available falls back to a plain cast (same behavior as CastCommunicationData{TCastTo} )
+
+Example: `CommunicationData<Order> typed = communication.ConvertCommunicationData<Order>();`
+
+### Configuration merge utilities
+
+#### `MergeConfigurationObjectIntoIConfiguration`
+
+Source file, signature, and docstring
+
+**Member** `ConfigurationMergeUtils.MergeConfigurationObjectIntoIConfiguration(this IConfiguration configuration, object? configurationObject)`
+
+**Kind** `function`
+
+**Declaring Type** `ConfigurationMergeUtils (extension type)`
+
+**Source File** `QaaS.Framework.Configurations/ConfigurationBindingUtils/ConfigurationMergeUtils.cs`
+
+**Signature**
+
+```csharp
+public static IConfiguration MergeConfigurationObjectIntoIConfiguration(this IConfiguration configuration, object? configurationObject)
+```
+
+**Docstring**
+
+Merges a partial configuration object into an existing IConfiguration instance. Fields omitted from configurationObject are preserved from configuration . A field is treated as omitted when it still matches the default value produced by a fresh instance of the same configuration type.
+
+#### `MergeConfiguration<TConfiguration>`
+
+Source file, signature, and docstring
+
+**Member** `ConfigurationMergeUtils.MergeConfiguration<TConfiguration>(this TConfiguration? currentConfiguration, TConfiguration? newConfiguration)`
+
+**Kind** `function`
+
+**Declaring Type** `ConfigurationMergeUtils (extension type)`
+
+**Source File** `QaaS.Framework.Configurations/ConfigurationBindingUtils/ConfigurationMergeUtils.cs`
+
+**Signature**
+
+```csharp
+public static TConfiguration? MergeConfiguration<TConfiguration>(this TConfiguration? currentConfiguration, TConfiguration? newConfiguration)
+```
+
+**Docstring**
+
+Merges a partial configuration object into an existing configuration instance. When the incoming configuration type differs from the existing one, the incoming configuration replaces it. Fields that still match a fresh default instance of the incoming configuration type are ignored.
+
+### Configuration references parser
+
+#### `ResolveReferencesInConfiguration`
+
+Source file, signature, and docstring
+
+**Member** `ConfigurationReferencesParser.ResolveReferencesInConfiguration(this IConfiguration builtConfiguration, ICollection<ReferenceConfig>? referenceConfigs, IList<string>? referenceResolutionPaths, IList<string>? uniqueIdPathRegexes, bool resolveReferencesWithEnvironmentVariables)`
+
+**Kind** `function`
+
+**Declaring Type** `ConfigurationReferencesParser (extension type)`
+
+**Source File** `QaaS.Framework.Configurations/References/ConfigurationReferencesParser.cs`
+
+**Signature**
+
+```csharp
+public static IConfiguration ResolveReferencesInConfiguration(this IConfiguration builtConfiguration, ICollection<ReferenceConfig>? referenceConfigs, IList<string>? referenceResolutionPaths, IList<string>? uniqueIdPathRegexes, bool resolveReferencesWithEnvironmentVariables)
+```
+
+**Docstring**
+
+Resolves all references in configuration according to loaded reference configs and given referenceResolutionPaths
+
+### Configuration utilities
+
+#### `BindConfigurationObjectToIConfiguration`
+
+Source file, signature, and docstring
+
+**Member** `IConfigurationUtils.BindConfigurationObjectToIConfiguration(this IConfiguration configuration, object? configurationObject)`
+
+**Kind** `function`
+
+**Declaring Type** `IConfigurationUtils (extension type)`
+
+**Source File** `QaaS.Framework.Configurations/ConfigurationBindingUtils/IConfigurationUtils.cs`
+
+**Signature**
+
+```csharp
+public static IConfiguration BindConfigurationObjectToIConfiguration(this IConfiguration configuration, object? configurationObject)
+```
+
+**Docstring**
+
+Merges a partial configuration object into the existing IConfiguration . Existing values are preserved when the incoming object leaves a field at its type default.
+
+#### `GetDictionaryFromConfiguration`
+
+Source file, signature, and docstring
+
+**Member** `IConfigurationUtils.GetDictionaryFromConfiguration(this IConfiguration? configuration)`
+
+**Kind** `function`
+
+**Declaring Type** `IConfigurationUtils (extension type)`
+
+**Source File** `QaaS.Framework.Configurations/ConfigurationBindingUtils/IConfigurationUtils.cs`
+
+**Signature**
+
+```csharp
+public static Dictionary<string, object?> GetDictionaryFromConfiguration(this IConfiguration? configuration)
+```
+
+**Docstring**
+
+Returns Dictionary representation of given IConfiguration
+
+#### `BuildConfigurationAsYaml`
+
+Source file, signature, and docstring
+
+**Member** `ConfigurationUtils.BuildConfigurationAsYaml(this IConfiguration configuration, List<string>? configurationSectionNames = null)`
+
+**Kind** `function`
+
+**Declaring Type** `ConfigurationUtils (extension type)`
+
+**Source File** `QaaS.Framework.Configurations/ConfigurationUtils.cs`
+
+**Signature**
+
+```csharp
+public static string BuildConfigurationAsYaml(this IConfiguration configuration, List<string>? configurationSectionNames = null)
+```
+
+**Docstring**
+
+Serializes IConfiguration object to Yaml string by a specific given order of its content's sections if given - else return default serialize result.
+
+#### `LoadAndValidateConfiguration<TConfiguration>`
+
+Source file, signature, and docstring
+
+**Member** `ConfigurationUtils.LoadAndValidateConfiguration<TConfiguration>(this IConfiguration configuration, BinderOptions? binderOptions = null, ILogger? logger = null)`
+
+**Kind** `function`
+
+**Declaring Type** `ConfigurationUtils (extension type)`
+
+**Source File** `QaaS.Framework.Configurations/ConfigurationUtils.cs`
+
+**Signature**
+
+```csharp
+public static TConfiguration LoadAndValidateConfiguration<TConfiguration>(this IConfiguration configuration, BinderOptions? binderOptions = null, ILogger? logger = null) where TConfiguration : new()
+```
+
+**Docstring**
+
+Load IConfiguration to a c# object and validate it
+
+#### `EnrichedBuild`
+
+Source file, signature, and docstring
+
+**Member** `ConfigurationUtils.EnrichedBuild(this IConfigurationBuilder configurationBuilder, bool addEnvironmentVariables)`
+
+**Kind** `function`
+
+**Declaring Type** `ConfigurationUtils (extension type)`
+
+**Source File** `QaaS.Framework.Configurations/ConfigurationUtils.cs`
+
+**Signature**
+
+```csharp
+public static IConfiguration EnrichedBuild(this IConfigurationBuilder configurationBuilder, bool addEnvironmentVariables)
+```
+
+**Docstring**
+
+Builds IConfiguration from configuration builder while adding all parameterless configuration resolution extensions to the build process
+
+#### `BindToObject<T>`
+
+Source file, signature, and docstring
+
+**Member** `ConfigurationUtils.BindToObject<T>(this IConfiguration source, BinderOptions binderOptions, ILogger? logger = null)`
+
+**Kind** `function`
+
+**Declaring Type** `ConfigurationUtils (extension type)`
+
+**Source File** `QaaS.Framework.Configurations/ConfigurationUtils.cs`
+
+**Signature**
+
+```csharp
+public static T BindToObject<T>(this IConfiguration source, BinderOptions binderOptions, ILogger? logger = null) where T : new()
+```
+
+**Docstring**
+
+Converts IConfiguration object to a c# object of given type and validates the object according to DataAnnotations
+
+#### `BindToObject`
+
+Source file, signature, and docstring
+
+**Member** `ConfigurationUtils.BindToObject(this IConfiguration source, Type objectType, BinderOptions binderOptions, ILogger? logger = null)`
+
+**Kind** `function`
+
+**Declaring Type** `ConfigurationUtils (extension type)`
+
+**Source File** `QaaS.Framework.Configurations/ConfigurationUtils.cs`
+
+**Signature**
+
+```csharp
+public static object BindToObject(this IConfiguration source, Type objectType, BinderOptions binderOptions, ILogger? logger = null)
+```
+
+**Docstring**
+
+Converts IConfiguration to an object of the given runtime type.
+
+### Context global dictionary
+
+#### `LoadConfigurationSectionIntoGlobalDictionary<TExecutionData>`
+
+Source file, signature, and docstring
+
+**Member** `ContextGlobalDictionaryExtensions.LoadConfigurationSectionIntoGlobalDictionary<TExecutionData>(this BaseContext<TExecutionData> context, string configurationSectionPath, List<string>? destinationPath = null)`
+
+**Kind** `function`
+
+**Declaring Type** `ContextGlobalDictionaryExtensions (extension type)`
+
+**Source File** `QaaS.Framework.SDK/Extensions/ContextGlobalDictionaryExtensions.cs`
+
+**Signature**
+
+```csharp
+public static void LoadConfigurationSectionIntoGlobalDictionary<TExecutionData>(this BaseContext<TExecutionData> context, string configurationSectionPath, List<string>? destinationPath = null) where TExecutionData : class, IExecutionData, new()
+```
+
+**Docstring**
+
+Loads the requested configuration section into the context global dictionary. Use "variables" as the section path to project the root variables section into runtime state without relying on a dedicated Variables API. Numeric child sections are normalized to lists so YAML list sections do not appear as dictionaries with stringified indexes such as "0" and "1" .
+
+### Data
+
+#### `CastObjectData<TCasted>`
+
+Source file, signature, and docstring
+
+**Member** `DataExtensions.CastObjectData<TCasted>(this Data<object> data)`
+
+**Kind** `function`
+
+**Declaring Type** `DataExtensions (extension type)`
+
+**Source File** `QaaS.Framework.SDK/Extensions/DataExtensions.cs`
+
+**Signature**
+
+```csharp
+public static Data<TCasted> CastObjectData<TCasted>(this Data<object> data)
+```
+
+**Docstring**
+
+Casts a `Data` of type object to another type, if the cast is not valid will throw InvalidCastException
+
+#### `CastToObjectData<TData>`
+
+Source file, signature, and docstring
+
+**Member** `DataExtensions.CastToObjectData<TData>(this Data<TData> data)`
+
+**Kind** `function`
+
+**Declaring Type** `DataExtensions (extension type)`
+
+**Source File** `QaaS.Framework.SDK/Extensions/DataExtensions.cs`
+
+**Signature**
+
+```csharp
+public static Data<object> CastToObjectData<TData>(this Data<TData> data)
+```
+
+**Docstring**
+
+Casts a `Data` of any type to a Data of type object, if the cast is not valid will throw InvalidCastException
+
+#### `CastObjectDetailedData<TCasted>`
+
+Source file, signature, and docstring
+
+**Member** `DataExtensions.CastObjectDetailedData<TCasted>(this DetailedData<object> detailedData)`
+
+**Kind** `function`
+
+**Declaring Type** `DataExtensions (extension type)`
+
+**Source File** `QaaS.Framework.SDK/Extensions/DataExtensions.cs`
+
+**Signature**
+
+```csharp
+public static DetailedData<TCasted> CastObjectDetailedData<TCasted>(this DetailedData<object> detailedData)
+```
+
+**Docstring**
+
+Casts a `DetailedData` of type object to another type, if the cast is not valid will throw InvalidCastException
+
+#### `CastToObjectDetailedData<TData>`
+
+Source file, signature, and docstring
+
+**Member** `DataExtensions.CastToObjectDetailedData<TData>(this DetailedData<TData> detailedData)`
+
+**Kind** `function`
+
+**Declaring Type** `DataExtensions (extension type)`
+
+**Source File** `QaaS.Framework.SDK/Extensions/DataExtensions.cs`
+
+**Signature**
+
+```csharp
+public static DetailedData<object> CastToObjectDetailedData<TData>(this DetailedData<TData> detailedData)
+```
+
+**Docstring**
+
+Casts a `DetailedData` of any type to a DetailedData of type object, if the cast is not valid will throw InvalidCastException
+
+#### `FilterData<TData>`
+
+Source file, signature, and docstring
+
+**Member** `DataExtensions.FilterData<TData>(this DetailedData<TData> dataItemToFilter, DataFilter dataFilter)`
+
+**Kind** `function`
+
+**Declaring Type** `DataExtensions (extension type)`
+
+**Source File** `QaaS.Framework.SDK/Extensions/DataExtensions.cs`
+
+**Signature**
+
+```csharp
+public static DetailedData<TData> FilterData<TData>(this DetailedData<TData> dataItemToFilter, DataFilter dataFilter) where TData : class
+```
+
+**Docstring**
+
+Filters the data of a detailed data item according to the given DataFilter
+
+#### `TryCastObjectData<TCasted>`
+
+Source file, signature, and docstring
+
+**Member** `DataExtensions.TryCastObjectData<TCasted>(this Data<object> data, [NotNullWhen(true)] out Data<TCasted>? casted)`
+
+**Kind** `function`
+
+**Declaring Type** `DataExtensions (extension type)`
+
+**Source File** `QaaS.Framework.SDK/Extensions/DataExtensions.cs`
+
+**Signature**
+
+```csharp
+public static bool TryCastObjectData<TCasted>(this Data<object> data, [NotNullWhen(true)] out Data<TCasted>? casted)
+```
+
+**Docstring**
+
+Attempts to cast a `Data` of type object to another type, never throws
+
+Example: `if (data.TryCastObjectData<byte[]>(out var bytesData)) { ... }`
+
+#### `TryCastObjectDetailedData<TCasted>`
+
+Source file, signature, and docstring
+
+**Member** `DataExtensions.TryCastObjectDetailedData<TCasted>(this DetailedData<object> detailedData, [NotNullWhen(true)] out DetailedData<TCasted>? casted)`
+
+**Kind** `function`
+
+**Declaring Type** `DataExtensions (extension type)`
+
+**Source File** `QaaS.Framework.SDK/Extensions/DataExtensions.cs`
+
+**Signature**
+
+```csharp
+public static bool TryCastObjectDetailedData<TCasted>(this DetailedData<object> detailedData, [NotNullWhen(true)] out DetailedData<TCasted>? casted)
+```
+
+**Docstring**
+
+Attempts to cast a `DetailedData` of type object to another type, never throws
+
+Example: `if (detailedData.TryCastObjectDetailedData<byte[]>(out var bytesItem)) { ... }`
+
+#### `GetBodyAs<TBody>`
+
+Source file, signature, and docstring
+
+**Member** `DataExtensions.GetBodyAs<TBody>(this Data<object> data)`
+
+**Kind** `function`
+
+**Declaring Type** `DataExtensions (extension type)`
+
+**Source File** `QaaS.Framework.SDK/Extensions/DataExtensions.cs`
+
+**Signature**
+
+```csharp
+public static TBody? GetBodyAs<TBody>(this Data<object> data)
+```
+
+**Docstring**
+
+Retrieves the body of a `Data` (or `DetailedData`) of type object directly as the requested type, removing the need to cast the whole Data wrapper in order to reach a typed body
+
+Example: `byte[]? raw = detailedData.GetBodyAs<byte[]>();`
+
+#### `TryGetBodyAs<TBody>`
+
+Source file, signature, and docstring
+
+**Member** `DataExtensions.TryGetBodyAs<TBody>(this Data<object> data, out TBody? body)`
+
+**Kind** `function`
+
+**Declaring Type** `DataExtensions (extension type)`
+
+**Source File** `QaaS.Framework.SDK/Extensions/DataExtensions.cs`
+
+**Signature**
+
+```csharp
+public static bool TryGetBodyAs<TBody>(this Data<object> data, out TBody? body)
+```
+
+**Docstring**
+
+Attempts to retrieve the body of a `Data` (or `DetailedData`) of type object directly as the requested type, never throws
+
+Example: `if (detailedData.TryGetBodyAs<string>(out var text)) { ... }`
+
+#### `ConvertBodyTo<TBody>`
+
+Source file, signature, and docstring
+
+**Member** `DataExtensions.ConvertBodyTo<TBody>(this Data<object> data, SerializationType serializationType)`
+
+**Kind** `function`
+
+**Declaring Type** `DataExtensions (extension type)`
+
+**Source File** `QaaS.Framework.SDK/Extensions/DataExtensions.cs`
+
+**Signature**
+
+```csharp
+public static TBody? ConvertBodyTo<TBody>(this Data<object> data, SerializationType serializationType)
+```
+
+**Docstring**
+
+Converts the body of a `Data` (or `DetailedData`) of type object to the requested type regardless of its current representation: bodies that already are are returned as-is, byte[] bodies are deserialized, and any other representation (e.g. JsonNode, yaml dictionaries) is round-tripped through the given serialization type into
+
+Example: `Order? order = detailedData.ConvertBodyTo<Order>(SerializationType.Json);`
+
+#### `ConvertData<TBody>`
+
+Source file, signature, and docstring
+
+**Member** `DataExtensions.ConvertData<TBody>(this Data<object> data, SerializationType serializationType)`
+
+**Kind** `function`
+
+**Declaring Type** `DataExtensions (extension type)`
+
+**Source File** `QaaS.Framework.SDK/Extensions/DataExtensions.cs`
+
+**Signature**
+
+```csharp
+public static Data<TBody> ConvertData<TBody>(this Data<object> data, SerializationType serializationType)
+```
+
+**Docstring**
+
+Converts a `Data` of type object to a `Data` of the requested type regardless of its current body representation, preserving its MetaData (see ConvertBodyTo{TBody} for the conversion rules)
+
+Example: `Data<Order> typed = data.ConvertData<Order>(SerializationType.Json);`
+
+#### `ConvertDetailedData<TBody>`
+
+Source file, signature, and docstring
+
+**Member** `DataExtensions.ConvertDetailedData<TBody>(this DetailedData<object> detailedData, SerializationType serializationType)`
+
+**Kind** `function`
+
+**Declaring Type** `DataExtensions (extension type)`
+
+**Source File** `QaaS.Framework.SDK/Extensions/DataExtensions.cs`
+
+**Signature**
+
+```csharp
+public static DetailedData<TBody> ConvertDetailedData<TBody>(this DetailedData<object> detailedData, SerializationType serializationType)
+```
+
+**Docstring**
+
+Converts a `DetailedData` of type object to a `DetailedData` of the requested type regardless of its current body representation, preserving its MetaData and Timestamp (see ConvertBodyTo{TBody} for the conversion rules)
+
+Example: `DetailedData<Order> typed = detailedData.ConvertDetailedData<Order>(SerializationType.Json);`
+
+### Data source
+
+#### `GetDataSourceByName`
+
+Source file, signature, and docstring
+
+**Member** `DataSourceExtensions.GetDataSourceByName(this IEnumerable<DataSource>? dataSourceEnumerable, string dataSourceName)`
+
+**Kind** `function`
+
+**Declaring Type** `DataSourceExtensions (extension type)`
+
+**Source File** `QaaS.Framework.SDK/Extensions/DataSourceExtensions.cs`
+
+**Signature**
+
+```csharp
+public static DataSource GetDataSourceByName(this IEnumerable<DataSource>? dataSourceEnumerable, string dataSourceName)
+```
+
+**Docstring**
+
+Retrieves a DataSource from an enumerable of DataSources by its name
+
+#### `RetrieveAndCast<TCastTo>`
+
+Source file, signature, and docstring
+
+**Member** `DataSourceExtensions.RetrieveAndCast<TCastTo>(this DataSource dataSource, IImmutableList<SessionData>? ranSessionsDataList = null)`
+
+**Kind** `function`
+
+**Declaring Type** `DataSourceExtensions (extension type)`
+
+**Source File** `QaaS.Framework.SDK/Extensions/DataSourceExtensions.cs`
+
+**Signature**
+
+```csharp
+public static IEnumerable<Data<TCastTo>> RetrieveAndCast<TCastTo>(this DataSource dataSource, IImmutableList<SessionData>? ranSessionsDataList = null)
+```
+
+**Docstring**
+
+Casts a DataSource to a different type
+
+### Date time
+
+#### `ConvertDateTimeToUtcByTimeZoneOffset`
+
+Source file, signature, and docstring
+
+**Member** `DateTimeExtensions.ConvertDateTimeToUtcByTimeZoneOffset(this DateTime timeToConvertToUtc, int insertionTimeTimeZoneOffsetSummerTime, bool? isDayLightSavingTime = null, string? timeZoneId = null)`
+
+**Kind** `function`
+
+**Declaring Type** `DateTimeExtensions (extension type)`
+
+**Source File** `QaaS.Framework.Infrastructure/DateTimeExtensions.cs`
+
+**Signature**
+
+```csharp
+public static DateTime ConvertDateTimeToUtcByTimeZoneOffset(this DateTime timeToConvertToUtc, int insertionTimeTimeZoneOffsetSummerTime, bool? isDayLightSavingTime = null, string? timeZoneId = null)
+```
+
+**Docstring**
+
+converts the given time to utc based on the timezone offset in summer time given
+
+#### `ConvertDateTimeFromUtcToTimeZoneByTimeZoneOffset`
+
+Source file, signature, and docstring
+
+**Member** `DateTimeExtensions.ConvertDateTimeFromUtcToTimeZoneByTimeZoneOffset(this DateTime utcTimeToConvert, int timeZoneOffsetSummerTime, bool? isDayLightSavingTime = null, string? timeZoneId = null)`
+
+**Kind** `function`
+
+**Declaring Type** `DateTimeExtensions (extension type)`
+
+**Source File** `QaaS.Framework.Infrastructure/DateTimeExtensions.cs`
+
+**Signature**
+
+```csharp
+public static DateTime ConvertDateTimeFromUtcToTimeZoneByTimeZoneOffset(this DateTime utcTimeToConvert, int timeZoneOffsetSummerTime, bool? isDayLightSavingTime = null, string? timeZoneId = null)
+```
+
+**Docstring**
+
+adds a timezone offset to the given utc time based on the timezone offset in summer time given
+
+### Deserializer
+
+#### `Deserialize<TResult>`
+
+Source file, signature, and docstring
+
+**Member** `DeserializerExtensions.Deserialize<TResult>(this IDeserializer deserializer, byte[]? data)`
+
+**Kind** `function`
+
+**Declaring Type** `DeserializerExtensions (extension type)`
+
+**Source File** `QaaS.Framework.Serialization/SerializationExtensions.cs`
+
+**Signature**
+
+```csharp
+public static TResult? Deserialize<TResult>(this IDeserializer deserializer, byte[]? data)
+```
+
+**Docstring**
+
+Deserializes the given byte[] directly to instead of object, removing the need to pass a Type instance and cast the result manually
+
+Example: `Order? order = deserializer.Deserialize<Order>(payload);`
+
+#### `DeserializeFromString<TResult>`
+
+Source file, signature, and docstring
+
+**Member** `DeserializerExtensions.DeserializeFromString<TResult>(this IDeserializer deserializer, string? data)`
+
+**Kind** `function`
+
+**Declaring Type** `DeserializerExtensions (extension type)`
+
+**Source File** `QaaS.Framework.Serialization/SerializationExtensions.cs`
+
+**Signature**
+
+```csharp
+public static TResult? DeserializeFromString<TResult>(this IDeserializer deserializer, string? data)
+```
+
+**Docstring**
+
+Deserializes the given UTF-8 string directly to , most useful for the text based formats (Json, Yaml, Xml, XmlElement)
+
+Example: `Order? order = SerializationType.Json.BuildDeserializer().DeserializeFromString<Order>(json);`
+
+#### `DeserializeFromString`
+
+Source file, signature, and docstring
+
+**Member** `DeserializerExtensions.DeserializeFromString(this IDeserializer deserializer, string? data, Type? deserializeType = null)`
+
+**Kind** `function`
+
+**Declaring Type** `DeserializerExtensions (extension type)`
+
+**Source File** `QaaS.Framework.Serialization/SerializationExtensions.cs`
+
+**Signature**
+
+```csharp
+public static object? DeserializeFromString(this IDeserializer deserializer, string? data, Type? deserializeType = null)
+```
+
+**Docstring**
+
+Deserializes the given UTF-8 string to an object, most useful for the text based formats (Json, Yaml, Xml, XmlElement)
+
+Example: `object? parsed = deserializer.DeserializeFromString(json, typeof(Order));`
+
+#### `TryDeserialize<TResult>`
+
+Source file, signature, and docstring
+
+**Member** `DeserializerExtensions.TryDeserialize<TResult>(this IDeserializer deserializer, byte[]? data, out TResult? deserialized)`
+
+**Kind** `function`
+
+**Declaring Type** `DeserializerExtensions (extension type)`
+
+**Source File** `QaaS.Framework.Serialization/SerializationExtensions.cs`
+
+**Signature**
+
+```csharp
+public static bool TryDeserialize<TResult>(this IDeserializer deserializer, byte[]? data, out TResult? deserialized)
+```
+
+**Docstring**
+
+Attempts to deserialize the given byte[] directly to , never throws
+
+Example: `if (deserializer.TryDeserialize<Order>(payload, out var order)) { ... }`
+
+### Running communication data
+
+#### `GetRunningCommunicationDataByName<TData>`
+
+Source file, signature, and docstring
+
+**Member** `RunningCommunicationDataExtensions.GetRunningCommunicationDataByName<TData>(this IEnumerable<RunningCommunicationData<TData>>? runningCommunicationDataEnumerable, string runningCommunicationDataName, string? runningCommunicationDataType = null)`
+
+**Kind** `function`
+
+**Declaring Type** `RunningCommunicationDataExtensions (extension type)`
+
+**Source File** `QaaS.Framework.SDK/Extensions/RunningCommunicationDataExtensions.cs`
+
+**Signature**
+
+```csharp
+public static RunningCommunicationData<TData> GetRunningCommunicationDataByName<TData>(this IEnumerable<RunningCommunicationData<TData>>? runningCommunicationDataEnumerable, string runningCommunicationDataName, string? runningCommunicationDataType = null)
+```
+
+**Docstring**
+
+Retrieves a RunningCommunicationData{TData} from an enumerable of RunningCommunicationData{TData} by its name
+
+### Running session data
+
+#### `GetInputByName<TInput, TOutput>`
+
+Source file, signature, and docstring
+
+**Member** `RunningSessionDataExtensions.GetInputByName<TInput, TOutput>(this RunningSessionData<TInput, TOutput>? runningSessionData, string inputName)`
+
+**Kind** `function`
+
+**Declaring Type** `RunningSessionDataExtensions (extension type)`
+
+**Source File** `QaaS.Framework.SDK/Extensions/RunningSessionDataExtensions.cs`
+
+**Signature**
+
+```csharp
+public static RunningCommunicationData<TInput> GetInputByName<TInput, TOutput>(this RunningSessionData<TInput, TOutput>? runningSessionData, string inputName)
+```
+
+**Docstring**
+
+Retrieves an input RunningCommunicationData{TData} from RunningSessionData{TInput,TOutput} by its name
+
+#### `GetOutputByName<TInput, TOutput>`
+
+Source file, signature, and docstring
+
+**Member** `RunningSessionDataExtensions.GetOutputByName<TInput, TOutput>(this RunningSessionData<TInput, TOutput>? runningSessionData, string outputName)`
+
+**Kind** `function`
+
+**Declaring Type** `RunningSessionDataExtensions (extension type)`
+
+**Source File** `QaaS.Framework.SDK/Extensions/RunningSessionDataExtensions.cs`
+
+**Signature**
+
+```csharp
+public static RunningCommunicationData<TOutput> GetOutputByName<TInput, TOutput>(this RunningSessionData<TInput, TOutput>? runningSessionData, string outputName)
+```
+
+**Docstring**
+
+Retrieves an output RunningCommunicationData{TData} from RunningSessionData{TInput,TOutput} by its name
+
+### Serialization type
+
+#### `BuildSerializer`
+
+Source file, signature, and docstring
+
+**Member** `SerializationTypeExtensions.BuildSerializer(this SerializationType serializationType)`
+
+**Kind** `function`
+
+**Declaring Type** `SerializationTypeExtensions (extension type)`
+
+**Source File** `QaaS.Framework.Serialization/SerializationTypeExtensions.cs`
+
+**Signature**
+
+```csharp
+public static ISerializer BuildSerializer(this SerializationType serializationType)
+```
+
+**Docstring**
+
+Builds the serializer that matches this serialization type
+
+Example: `var serializer = SerializationType.Yaml.BuildSerializer();`
+
+#### `BuildDeserializer`
+
+Source file, signature, and docstring
+
+**Member** `SerializationTypeExtensions.BuildDeserializer(this SerializationType serializationType)`
+
+**Kind** `function`
+
+**Declaring Type** `SerializationTypeExtensions (extension type)`
+
+**Source File** `QaaS.Framework.Serialization/SerializationTypeExtensions.cs`
+
+**Signature**
+
+```csharp
+public static IDeserializer BuildDeserializer(this SerializationType serializationType)
+```
+
+**Docstring**
+
+Builds the deserializer that matches this serialization type
+
+Example: `var deserializer = SerializationType.Yaml.BuildDeserializer();`
+
+### Serializer
+
+#### `SerializeToString`
+
+Source file, signature, and docstring
+
+**Member** `SerializerExtensions.SerializeToString(this ISerializer serializer, object? data)`
+
+**Kind** `function`
+
+**Declaring Type** `SerializerExtensions (extension type)`
+
+**Source File** `QaaS.Framework.Serialization/SerializationExtensions.cs`
+
+**Signature**
+
+```csharp
+public static string? SerializeToString(this ISerializer serializer, object? data)
+```
+
+**Docstring**
+
+Serializes the given data and returns the result as a UTF-8 string, most useful for the text based formats (Json, Yaml, Xml, XmlElement)
+
+Example: `string? json = SerializationType.Json.BuildSerializer().SerializeToString(order);`
+
+#### `TrySerialize`
+
+Source file, signature, and docstring
+
+**Member** `SerializerExtensions.TrySerialize(this ISerializer serializer, object? data, out byte[]? serialized)`
+
+**Kind** `function`
+
+**Declaring Type** `SerializerExtensions (extension type)`
+
+**Source File** `QaaS.Framework.Serialization/SerializationExtensions.cs`
+
+**Signature**
+
+```csharp
+public static bool TrySerialize(this ISerializer serializer, object? data, out byte[]? serialized)
+```
+
+**Docstring**
+
+Attempts to serialize the given data, never throws
+
+Example: `if (serializer.TrySerialize(order, out var payload)) { ... }`
+
+### Serilog
+
+#### `WithHostname`
+
+Source file, signature, and docstring
+
+**Member** `SerilogExtensions.WithHostname(this LoggerEnrichmentConfiguration enrichmentConfiguration)`
+
+**Kind** `function`
+
+**Declaring Type** `SerilogExtensions (extension type)`
+
+**Source File** `QaaS.Framework.SDK/Extensions/LoggingExetentions.cs`
+
+**Signature**
+
+```csharp
+public static LoggerConfiguration WithHostname(this LoggerEnrichmentConfiguration enrichmentConfiguration)
+```
+
+**Docstring**
+
+Enriches log events with the machine hostname as a structured property and adds it as a tag (label) in Elasticsearch.
+
+#### `WithEnvironment`
+
+Source file, signature, and docstring
+
+**Member** `SerilogExtensions.WithEnvironment(this LoggerEnrichmentConfiguration enrichmentConfiguration)`
+
+**Kind** `function`
+
+**Declaring Type** `SerilogExtensions (extension type)`
+
+**Source File** `QaaS.Framework.SDK/Extensions/LoggingExetentions.cs`
+
+**Signature**
+
+```csharp
+public static LoggerConfiguration WithEnvironment(this LoggerEnrichmentConfiguration enrichmentConfiguration)
+```
+
+**Docstring**
+
+Enriches log events with the CI/Local environment as a structured property and adds it as a tag (label) in Elasticsearch.
+
+### Session data
+
+#### `GetSessionDataByName<TInput, TOutput>`
+
+Source file, signature, and docstring
+
+**Member** `SessionDataExtensions.GetSessionDataByName<TInput, TOutput>(this IEnumerable<GenericSessionData<TInput, TOutput>>? sessionDataEnumerable, string sessionName)`
+
+**Kind** `function`
+
+**Declaring Type** `SessionDataExtensions (extension type)`
+
+**Source File** `QaaS.Framework.SDK/Extensions/SessionDataExtensions.cs`
+
+**Signature**
+
+```csharp
+public static GenericSessionData<TInput, TOutput> GetSessionDataByName<TInput, TOutput>(this IEnumerable<GenericSessionData<TInput, TOutput>>? sessionDataEnumerable, string sessionName)
+```
+
+**Docstring**
+
+Retrieves a SessionData from an enumerable of SessionData by its name
+
+#### `GetInputByName<TInput, TOutput>`
+
+Source file, signature, and docstring
+
+**Member** `SessionDataExtensions.GetInputByName<TInput, TOutput>(this GenericSessionData<TInput, TOutput>? sessionData, string inputName)`
+
+**Kind** `function`
+
+**Declaring Type** `SessionDataExtensions (extension type)`
+
+**Source File** `QaaS.Framework.SDK/Extensions/SessionDataExtensions.cs`
+
+**Signature**
+
+```csharp
+public static CommunicationData<TInput> GetInputByName<TInput, TOutput>(this GenericSessionData<TInput, TOutput>? sessionData, string inputName)
+```
+
+**Docstring**
+
+Retrieves an input CommunicationData from SessionData by its name
+
+#### `TryGetInputByName<TInput, TOutput>`
+
+Source file, signature, and docstring
+
+**Member** `SessionDataExtensions.TryGetInputByName<TInput, TOutput>(this GenericSessionData<TInput, TOutput>? sessionData, string inputName, out CommunicationData<TInput>? inputValue)`
+
+**Kind** `function`
+
+**Declaring Type** `SessionDataExtensions (extension type)`
+
+**Source File** `QaaS.Framework.SDK/Extensions/SessionDataExtensions.cs`
+
+**Signature**
+
+```csharp
+public static bool TryGetInputByName<TInput, TOutput>(this GenericSessionData<TInput, TOutput>? sessionData, string inputName, out CommunicationData<TInput>? inputValue)
+```
+
+**Docstring**
+
+Retrieves an input CommunicationData{TData} from SessionData by its name to inputValue
+
+#### `GetOutputByName<TInput, TOutput>`
+
+Source file, signature, and docstring
+
+**Member** `SessionDataExtensions.GetOutputByName<TInput, TOutput>(this GenericSessionData<TInput, TOutput>? sessionData, string outputName)`
+
+**Kind** `function`
+
+**Declaring Type** `SessionDataExtensions (extension type)`
+
+**Source File** `QaaS.Framework.SDK/Extensions/SessionDataExtensions.cs`
+
+**Signature**
+
+```csharp
+public static CommunicationData<TOutput> GetOutputByName<TInput, TOutput>(this GenericSessionData<TInput, TOutput>? sessionData, string outputName)
+```
+
+**Docstring**
+
+Retrieves an output CommunicationData from SessionData by its name
+
+#### `TryGetOutputByName<TInput, TOutput>`
+
+Source file, signature, and docstring
+
+**Member** `SessionDataExtensions.TryGetOutputByName<TInput, TOutput>(this GenericSessionData<TInput, TOutput>? sessionData, string outputName, out CommunicationData<TOutput>? outputValue)`
+
+**Kind** `function`
+
+**Declaring Type** `SessionDataExtensions (extension type)`
+
+**Source File** `QaaS.Framework.SDK/Extensions/SessionDataExtensions.cs`
+
+**Signature**
+
+```csharp
+public static bool TryGetOutputByName<TInput, TOutput>(this GenericSessionData<TInput, TOutput>? sessionData, string outputName, out CommunicationData<TOutput>? outputValue)
+```
+
+**Docstring**
+
+Retrieves an input CommunicationData{TData} from SessionData by its name to inputValue
+
+#### `GetInputAs<TInput>`
+
+Source file, signature, and docstring
+
+**Member** `SessionDataExtensions.GetInputAs<TInput>(this GenericSessionData<object, object>? sessionData, string inputName, SerializationType? serializationTypeOverride = null)`
+
+**Kind** `function`
+
+**Declaring Type** `SessionDataExtensions (extension type)`
+
+**Source File** `QaaS.Framework.SDK/Extensions/SessionDataExtensions.cs`
+
+**Signature**
+
+```csharp
+public static CommunicationData<TInput> GetInputAs<TInput>(this GenericSessionData<object, object>? sessionData, string inputName, SerializationType? serializationTypeOverride = null)
+```
+
+**Docstring**
+
+Retrieves an input CommunicationData from SessionData by its name with all its data bodies converted to the requested type in a single call, using the input's own SerializationType by default (see ConvertCommunicationData{TConverted} for the conversion rules)
+
+Example: `CommunicationData<OrderRequest> input = sessionData.GetInputAs<OrderRequest>("orders_input");`
+
+#### `GetOutputAs<TOutput>`
+
+Source file, signature, and docstring
+
+**Member** `SessionDataExtensions.GetOutputAs<TOutput>(this GenericSessionData<object, object>? sessionData, string outputName, SerializationType? serializationTypeOverride = null)`
+
+**Kind** `function`
+
+**Declaring Type** `SessionDataExtensions (extension type)`
+
+**Source File** `QaaS.Framework.SDK/Extensions/SessionDataExtensions.cs`
+
+**Signature**
+
+```csharp
+public static CommunicationData<TOutput> GetOutputAs<TOutput>(this GenericSessionData<object, object>? sessionData, string outputName, SerializationType? serializationTypeOverride = null)
+```
+
+**Docstring**
+
+Retrieves an output CommunicationData from SessionData by its name with all its data bodies converted to the requested type in a single call, using the output's own SerializationType by default (see ConvertCommunicationData{TConverted} for the conversion rules)
+
+Example: `CommunicationData<Order> output = sessionData.GetOutputAs<Order>("orders_output");`
+
+#### `TryGetInputAs<TInput>`
+
+Source file, signature, and docstring
+
+**Member** `SessionDataExtensions.TryGetInputAs<TInput>(this GenericSessionData<object, object>? sessionData, string inputName, [NotNullWhen(true)] out CommunicationData<TInput>? inputValue, SerializationType? serializationTypeOverride = null)`
+
+**Kind** `function`
+
+**Declaring Type** `SessionDataExtensions (extension type)`
+
+**Source File** `QaaS.Framework.SDK/Extensions/SessionDataExtensions.cs`
+
+**Signature**
+
+```csharp
+public static bool TryGetInputAs<TInput>(this GenericSessionData<object, object>? sessionData, string inputName, [NotNullWhen(true)] out CommunicationData<TInput>? inputValue, SerializationType? serializationTypeOverride = null)
+```
+
+**Docstring**
+
+Attempts to retrieve an input CommunicationData from SessionData by its name with all its data bodies converted to the requested type, never throws
+
+Example: `if (sessionData.TryGetInputAs<OrderRequest>("orders_input", out var input)) { ... }`
+
+#### `TryGetOutputAs<TOutput>`
+
+Source file, signature, and docstring
+
+**Member** `SessionDataExtensions.TryGetOutputAs<TOutput>(this GenericSessionData<object, object>? sessionData, string outputName, [NotNullWhen(true)] out CommunicationData<TOutput>? outputValue, SerializationType? serializationTypeOverride = null)`
+
+**Kind** `function`
+
+**Declaring Type** `SessionDataExtensions (extension type)`
+
+**Source File** `QaaS.Framework.SDK/Extensions/SessionDataExtensions.cs`
+
+**Signature**
+
+```csharp
+public static bool TryGetOutputAs<TOutput>(this GenericSessionData<object, object>? sessionData, string outputName, [NotNullWhen(true)] out CommunicationData<TOutput>? outputValue, SerializationType? serializationTypeOverride = null)
+```
+
+**Docstring**
+
+Attempts to retrieve an output CommunicationData from SessionData by its name with all its data bodies converted to the requested type, never throws
+
+Example: `if (sessionData.TryGetOutputAs<Order>("orders_output", out var output)) { ... }`
+
+#### `GetInputBodies<TInput>`
+
+Source file, signature, and docstring
+
+**Member** `SessionDataExtensions.GetInputBodies<TInput>(this GenericSessionData<object, object>? sessionData, string inputName, SerializationType? serializationTypeOverride = null)`
+
+**Kind** `function`
+
+**Declaring Type** `SessionDataExtensions (extension type)`
+
+**Source File** `QaaS.Framework.SDK/Extensions/SessionDataExtensions.cs`
+
+**Signature**
+
+```csharp
+public static IList<TInput?> GetInputBodies<TInput>(this GenericSessionData<object, object>? sessionData, string inputName, SerializationType? serializationTypeOverride = null)
+```
+
+**Docstring**
+
+Retrieves the typed bodies of all data items of an input found by its name in a single call, the shortest path from a SessionData to the actual contents of an input (see GetInputAs{TInput} for the conversion rules)
+
+Example: `IList<OrderRequest?> requests = sessionData.GetInputBodies<OrderRequest>("orders_input");`
+
+#### `GetOutputBodies<TOutput>`
+
+Source file, signature, and docstring
+
+**Member** `SessionDataExtensions.GetOutputBodies<TOutput>(this GenericSessionData<object, object>? sessionData, string outputName, SerializationType? serializationTypeOverride = null)`
+
+**Kind** `function`
+
+**Declaring Type** `SessionDataExtensions (extension type)`
+
+**Source File** `QaaS.Framework.SDK/Extensions/SessionDataExtensions.cs`
+
+**Signature**
+
+```csharp
+public static IList<TOutput?> GetOutputBodies<TOutput>(this GenericSessionData<object, object>? sessionData, string outputName, SerializationType? serializationTypeOverride = null)
+```
+
+**Docstring**
+
+Retrieves the typed bodies of all data items of an output found by its name in a single call, the shortest path from a SessionData to the actual contents of an output (see GetOutputAs{TOutput} for the conversion rules)
+
+Example: `IList<Order?> orders = sessionData.GetOutputBodies<Order>("orders_output");`
+
+## Utilities
+
+### Enumerables
+
+#### `AsSingle<TItem>`
+
+Source file, signature, and docstring
+
+**Member** `EnumerableExtensions.AsSingle<TItem>(this IEnumerable<TItem> enumerable)`
+
+**Kind** `function`
+
+**Declaring Type** `EnumerableExtensions (extension type)`
+
+**Source File** `QaaS.Framework.SDK/Extensions/EnumerableExtensions.cs`
+
+**Signature**
+
+```csharp
+public static TItem AsSingle<TItem>(this IEnumerable<TItem> enumerable)
+```
+
+**Docstring**
+
+Returns the single item contained in the provided sequence.
+
+The helper enforces the invariant that exactly one item must be present and throws when the sequence is empty or contains more than one value.
+
+## See also
+
+- [Framework Functions](https://TheSmokeTeam.github.io/qaas-docs/framework/functions/index.md)
