@@ -131,7 +131,7 @@ if (outputs.TryGetCommunicationDataByName("orders_output", out var communication
     // Convert every body using the CommunicationData's own SerializationType:
     CommunicationData<Order> typed = communication.ConvertCommunicationData<Order>();
 
-    // Or just the bodies:
+    // Or only the bodies:
     IList<object?> bodies      = communication.GetBodies();
     IList<Order?>  typedBodies = communication.GetBodiesAs<Order>();
 }

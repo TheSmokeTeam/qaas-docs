@@ -800,7 +800,7 @@ Annotated extension methods continue to appear in their regular category pages; 
     
     **Docstring**
     
-    Retrieves the body of a `Data` (or `DetailedData`) of type object directly as the requested type, removing the need to cast the whole Data wrapper just to reach a typed body
+    Retrieves the body of a `Data` (or `DetailedData`) of type object directly as the requested type, removing the need to cast the whole Data wrapper in order to reach a typed body
     
     Example: `byte[]? raw = detailedData.GetBodyAs<byte[]>();`
 
