@@ -40,7 +40,7 @@ Use this page when you need the focused member list, signatures, and source note
     
     **Docstring**
     
-    Casts a `Data` of type object to another type, if the cast is not valid will throw InvalidCastException. When the body is a deserialized representation of the target type instead of the target type itself (e.g. a JsonNode produced by json deserialization without a configured type), the cast automatically converts the body through its inferred serialization type (see TryInferSerializationType)
+    Casts a `Data` of type object to another type, if the cast is not valid will throw InvalidCastException. A null body always casts successfully and produces the default value of the target type (null for reference types, the zero value for value types). When the body is a deserialized representation of the target type instead of the target type itself (e.g. a JsonNode produced by json deserialization without a configured type), the cast automatically converts the body through its inferred serialization type (see TryInferSerializationType)
 
 ### `CastToObjectData<TData>` {: #casttoobjectdata-tdata}
 
@@ -82,7 +82,7 @@ Use this page when you need the focused member list, signatures, and source note
     
     **Docstring**
     
-    Casts a `DetailedData` of type object to another type, if the cast is not valid will throw InvalidCastException. When the body is a deserialized representation of the target type instead of the target type itself (e.g. a JsonNode produced by json deserialization without a configured type), the cast automatically converts the body through its inferred serialization type (see TryInferSerializationType)
+    Casts a `DetailedData` of type object to another type, if the cast is not valid will throw InvalidCastException. A null body always casts successfully and produces the default value of the target type (null for reference types, the zero value for value types). When the body is a deserialized representation of the target type instead of the target type itself (e.g. a JsonNode produced by json deserialization without a configured type), the cast automatically converts the body through its inferred serialization type (see TryInferSerializationType)
 
 ### `CastToObjectDetailedData<TData>` {: #casttoobjectdetaileddata-tdata}
 
