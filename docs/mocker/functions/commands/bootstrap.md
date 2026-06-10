@@ -65,7 +65,7 @@ Each entry uses the short function name as the table-of-contents label. Expand a
     
     Creates a new runner instance from the supplied bootstrap inputs.
     
-    Use this overload when the mocker run should be represented by a custom implementation while keeping the same command-line bootstrap flow.
+    Use this overload when the mocker run should be represented by a custom TRunner implementation while keeping the same command-line bootstrap flow.
 
 ## See also {: #see-also}
 
