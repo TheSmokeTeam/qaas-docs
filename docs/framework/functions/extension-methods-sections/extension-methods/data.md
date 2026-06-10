@@ -40,7 +40,7 @@ Use this page when you need the focused member list, signatures, and source note
     
     **Docstring**
     
-    Casts a `Data` of type object to another type, if the cast is not valid will throw InvalidCastException
+    Casts a `Data` of type object to another type, if the cast is not valid will throw InvalidCastException. When the body is a deserialized representation of the target type instead of the target type itself (e.g. a JsonNode produced by json deserialization without a configured type), the cast automatically converts the body through its inferred serialization type (see TryInferSerializationType)
 
 ### `CastToObjectData<TData>` {: #casttoobjectdata-tdata}
 
@@ -82,7 +82,7 @@ Use this page when you need the focused member list, signatures, and source note
     
     **Docstring**
     
-    Casts a `DetailedData` of type object to another type, if the cast is not valid will throw InvalidCastException
+    Casts a `DetailedData` of type object to another type, if the cast is not valid will throw InvalidCastException. When the body is a deserialized representation of the target type instead of the target type itself (e.g. a JsonNode produced by json deserialization without a configured type), the cast automatically converts the body through its inferred serialization type (see TryInferSerializationType)
 
 ### `CastToObjectDetailedData<TData>` {: #casttoobjectdetaileddata-tdata}
 
@@ -145,7 +145,7 @@ Use this page when you need the focused member list, signatures, and source note
     
     **Docstring**
     
-    Attempts to cast a `Data` of type object to another type, never throws
+    Attempts to cast a `Data` of type object to another type, never throws. Bodies that are deserialized representations of the target type (e.g. JsonNode) are automatically converted the same way CastObjectData{TCasted} converts them
     
     Example: `if (data.TryCastObjectData<byte[]>(out var bytesData)) { ... }`
 
@@ -168,7 +168,7 @@ Use this page when you need the focused member list, signatures, and source note
     
     **Docstring**
     
-    Attempts to cast a `DetailedData` of type object to another type, never throws
+    Attempts to cast a `DetailedData` of type object to another type, never throws. Bodies that are deserialized representations of the target type (e.g. JsonNode) are automatically converted the same way CastObjectDetailedData{TCasted} converts them
     
     Example: `if (detailedData.TryCastObjectDetailedData<byte[]>(out var bytesItem)) { ... }`
 
@@ -191,7 +191,7 @@ Use this page when you need the focused member list, signatures, and source note
     
     **Docstring**
     
-    Retrieves the body of a `Data` (or `DetailedData`) of type object directly as the requested type, removing the need to cast the whole Data wrapper in order to reach a typed body
+    Retrieves the body of a `Data` (or `DetailedData`) of type object directly as the requested type, removing the need to cast the whole Data wrapper in order to reach a typed body. When the body is a deserialized representation of the target type instead of the target type itself (e.g. a JsonNode produced by json deserialization without a configured type), the body is automatically converted through its inferred serialization type (see TryInferSerializationType)
     
     Example: `byte[]? raw = detailedData.GetBodyAs<byte[]>();`
 
@@ -214,7 +214,7 @@ Use this page when you need the focused member list, signatures, and source note
     
     **Docstring**
     
-    Attempts to retrieve the body of a `Data` (or `DetailedData`) of type object directly as the requested type, never throws
+    Attempts to retrieve the body of a `Data` (or `DetailedData`) of type object directly as the requested type, never throws. Bodies that are deserialized representations of the target type (e.g. JsonNode) are automatically converted the same way GetBodyAs{TBody} converts them
     
     Example: `if (detailedData.TryGetBodyAs<string>(out var text)) { ... }`
 
@@ -237,7 +237,7 @@ Use this page when you need the focused member list, signatures, and source note
     
     **Docstring**
     
-    Converts the body of a `Data` (or `DetailedData`) of type object to the requested type regardless of its current representation: bodies that already are are returned as-is, byte[] bodies are deserialized, and any other representation (e.g. JsonNode, yaml dictionaries) is round-tripped through the given serialization type into
+    Converts the body of a `Data` (or `DetailedData`) of type object to the requested type regardless of its current representation: bodies that already are TBody are returned as-is, byte[] bodies are deserialized, and any other representation (e.g. JsonNode, yaml dictionaries) is round-tripped through the given serialization type into TBody
     
     Example: `Order? order = detailedData.ConvertBodyTo<Order>(SerializationType.Json);`
 

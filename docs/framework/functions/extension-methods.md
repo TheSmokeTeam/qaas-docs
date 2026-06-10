@@ -109,7 +109,7 @@ Annotated extension methods continue to appear in their regular category pages; 
     
     **Docstring**
     
-    Merges an object-shaped configuration patch into the current typed configuration. Fields omitted from incomingConfiguration are preserved from the current configuration. Fields explicitly set to null in the patch clear the existing value. When the current configuration is missing, the incoming object is bound to when possible.
+    Merges an object-shaped configuration patch into the current typed configuration. Fields omitted from incomingConfiguration are preserved from the current configuration. Fields explicitly set to null in the patch clear the existing value. When the current configuration is missing, the incoming object is bound to TConfiguration when possible.
     
     Use this overload when the patch comes from an anonymous object, JSON-like payload, or any other object whose shape matches part of the target configuration contract.
 
@@ -228,7 +228,7 @@ Annotated extension methods continue to appear in their regular category pages; 
     
     **Docstring**
     
-    Casts a CommunicationData to a different type
+    Casts a CommunicationData to a different type. When a body is a deserialized representation of the target type instead of the target type itself (e.g. a JsonNode produced by json deserialization without a configured type), the cast automatically converts that body using the CommunicationData's own SerializationType when it has one, or the serialization type inferred from the body's runtime type otherwise (see TryInferSerializationType)
 
 #### `GetDataByIoMatchIndex<TData>`
 
@@ -293,7 +293,7 @@ Annotated extension methods continue to appear in their regular category pages; 
     
     **Docstring**
     
-    Attempts to cast a CommunicationData to a different type, never throws
+    Attempts to cast a CommunicationData to a different type, never throws. Bodies that are deserialized representations of the target type (e.g. JsonNode) are automatically converted the same way CastCommunicationData{TCastTo} converts them
     
     Example: `if (communication.TryCastCommunicationData<byte[]>(out var bytesCommunication)) { ... }`
 
@@ -362,7 +362,7 @@ Annotated extension methods continue to appear in their regular category pages; 
     
     **Docstring**
     
-    Retrieves the bodies of all data items of a CommunicationData of type object directly as the requested type
+    Retrieves the bodies of all data items of a CommunicationData of type object directly as the requested type. Bodies that are deserialized representations of the target type (e.g. JsonNode bodies) are automatically converted using the CommunicationData's own SerializationType when it has one, or the serialization type inferred from each body's runtime type otherwise
     
     Example: `IList<string?> bodies = communication.GetBodiesAs<string>();`
 
@@ -385,7 +385,7 @@ Annotated extension methods continue to appear in their regular category pages; 
     
     **Docstring**
     
-    Converts a CommunicationData of type object to a CommunicationData of the requested type regardless of the current representation of its bodies, using the CommunicationData's own SerializationType by default: bodies that already are are kept as-is, byte[] bodies are deserialized, and any other representation (e.g. JsonNode, yaml dictionaries) is round-tripped through the serialization type into . When no serialization type is available falls back to a plain cast (same behavior as CastCommunicationData{TCastTo} )
+    Converts a CommunicationData of type object to a CommunicationData of the requested type regardless of the current representation of its bodies, using the CommunicationData's own SerializationType by default: bodies that already are TConverted are kept as-is, byte[] bodies are deserialized, and any other representation (e.g. JsonNode, yaml dictionaries) is round-tripped through the serialization type into TConverted. When no serialization type is available falls back to a plain cast (same behavior as CastCommunicationData{TCastTo})
     
     Example: `CommunicationData<Order> typed = communication.ConvertCommunicationData<Order>();`
 
@@ -410,7 +410,7 @@ Annotated extension methods continue to appear in their regular category pages; 
     
     **Docstring**
     
-    Merges a partial configuration object into an existing IConfiguration instance. Fields omitted from configurationObject are preserved from configuration . A field is treated as omitted when it still matches the default value produced by a fresh instance of the same configuration type.
+    Merges a partial configuration object into an existing IConfiguration instance. Fields omitted from configurationObject are preserved from configuration. A field is treated as omitted when it still matches the default value produced by a fresh instance of the same configuration type.
 
 #### `MergeConfiguration<TConfiguration>`
 
@@ -477,7 +477,7 @@ Annotated extension methods continue to appear in their regular category pages; 
     
     **Docstring**
     
-    Merges a partial configuration object into the existing IConfiguration . Existing values are preserved when the incoming object leaves a field at its type default.
+    Merges a partial configuration object into the existing IConfiguration. Existing values are preserved when the incoming object leaves a field at its type default.
 
 #### `GetDictionaryFromConfiguration`
 
@@ -626,7 +626,7 @@ Annotated extension methods continue to appear in their regular category pages; 
     
     **Docstring**
     
-    Loads the requested configuration section into the context global dictionary. Use "variables" as the section path to project the root variables section into runtime state without relying on a dedicated Variables API. Numeric child sections are normalized to lists so YAML list sections do not appear as dictionaries with stringified indexes such as "0" and "1" .
+    Loads the requested configuration section into the context global dictionary. Use "variables" as the section path to project the root variables section into runtime state without relying on a dedicated Variables API. Numeric child sections are normalized to lists so YAML list sections do not appear as dictionaries with stringified indexes such as "0" and "1".
 
 ### Data {: #data}
 
@@ -649,7 +649,7 @@ Annotated extension methods continue to appear in their regular category pages; 
     
     **Docstring**
     
-    Casts a `Data` of type object to another type, if the cast is not valid will throw InvalidCastException
+    Casts a `Data` of type object to another type, if the cast is not valid will throw InvalidCastException. When the body is a deserialized representation of the target type instead of the target type itself (e.g. a JsonNode produced by json deserialization without a configured type), the cast automatically converts the body through its inferred serialization type (see TryInferSerializationType)
 
 #### `CastToObjectData<TData>`
 
@@ -691,7 +691,7 @@ Annotated extension methods continue to appear in their regular category pages; 
     
     **Docstring**
     
-    Casts a `DetailedData` of type object to another type, if the cast is not valid will throw InvalidCastException
+    Casts a `DetailedData` of type object to another type, if the cast is not valid will throw InvalidCastException. When the body is a deserialized representation of the target type instead of the target type itself (e.g. a JsonNode produced by json deserialization without a configured type), the cast automatically converts the body through its inferred serialization type (see TryInferSerializationType)
 
 #### `CastToObjectDetailedData<TData>`
 
@@ -754,7 +754,7 @@ Annotated extension methods continue to appear in their regular category pages; 
     
     **Docstring**
     
-    Attempts to cast a `Data` of type object to another type, never throws
+    Attempts to cast a `Data` of type object to another type, never throws. Bodies that are deserialized representations of the target type (e.g. JsonNode) are automatically converted the same way CastObjectData{TCasted} converts them
     
     Example: `if (data.TryCastObjectData<byte[]>(out var bytesData)) { ... }`
 
@@ -777,7 +777,7 @@ Annotated extension methods continue to appear in their regular category pages; 
     
     **Docstring**
     
-    Attempts to cast a `DetailedData` of type object to another type, never throws
+    Attempts to cast a `DetailedData` of type object to another type, never throws. Bodies that are deserialized representations of the target type (e.g. JsonNode) are automatically converted the same way CastObjectDetailedData{TCasted} converts them
     
     Example: `if (detailedData.TryCastObjectDetailedData<byte[]>(out var bytesItem)) { ... }`
 
@@ -800,7 +800,7 @@ Annotated extension methods continue to appear in their regular category pages; 
     
     **Docstring**
     
-    Retrieves the body of a `Data` (or `DetailedData`) of type object directly as the requested type, removing the need to cast the whole Data wrapper in order to reach a typed body
+    Retrieves the body of a `Data` (or `DetailedData`) of type object directly as the requested type, removing the need to cast the whole Data wrapper in order to reach a typed body. When the body is a deserialized representation of the target type instead of the target type itself (e.g. a JsonNode produced by json deserialization without a configured type), the body is automatically converted through its inferred serialization type (see TryInferSerializationType)
     
     Example: `byte[]? raw = detailedData.GetBodyAs<byte[]>();`
 
@@ -823,7 +823,7 @@ Annotated extension methods continue to appear in their regular category pages; 
     
     **Docstring**
     
-    Attempts to retrieve the body of a `Data` (or `DetailedData`) of type object directly as the requested type, never throws
+    Attempts to retrieve the body of a `Data` (or `DetailedData`) of type object directly as the requested type, never throws. Bodies that are deserialized representations of the target type (e.g. JsonNode) are automatically converted the same way GetBodyAs{TBody} converts them
     
     Example: `if (detailedData.TryGetBodyAs<string>(out var text)) { ... }`
 
@@ -846,7 +846,7 @@ Annotated extension methods continue to appear in their regular category pages; 
     
     **Docstring**
     
-    Converts the body of a `Data` (or `DetailedData`) of type object to the requested type regardless of its current representation: bodies that already are are returned as-is, byte[] bodies are deserialized, and any other representation (e.g. JsonNode, yaml dictionaries) is round-tripped through the given serialization type into
+    Converts the body of a `Data` (or `DetailedData`) of type object to the requested type regardless of its current representation: bodies that already are TBody are returned as-is, byte[] bodies are deserialized, and any other representation (e.g. JsonNode, yaml dictionaries) is round-tripped through the given serialization type into TBody
     
     Example: `Order? order = detailedData.ConvertBodyTo<Order>(SerializationType.Json);`
 
@@ -1005,7 +1005,7 @@ Annotated extension methods continue to appear in their regular category pages; 
     
     **Docstring**
     
-    Deserializes the given byte[] directly to instead of object, removing the need to pass a Type instance and cast the result manually
+    Deserializes the given byte[] directly to TResult instead of object, removing the need to pass a Type instance and cast the result manually
     
     Example: `Order? order = deserializer.Deserialize<Order>(payload);`
 
@@ -1028,7 +1028,7 @@ Annotated extension methods continue to appear in their regular category pages; 
     
     **Docstring**
     
-    Deserializes the given UTF-8 string directly to , most useful for the text based formats (Json, Yaml, Xml, XmlElement)
+    Deserializes the given UTF-8 string directly to TResult, most useful for the text based formats (Json, Yaml, Xml, XmlElement)
     
     Example: `Order? order = SerializationType.Json.BuildDeserializer().DeserializeFromString<Order>(json);`
 
@@ -1074,7 +1074,7 @@ Annotated extension methods continue to appear in their regular category pages; 
     
     **Docstring**
     
-    Attempts to deserialize the given byte[] directly to , never throws
+    Attempts to deserialize the given byte[] directly to TResult, never throws
     
     Example: `if (deserializer.TryDeserialize<Order>(payload, out var order)) { ... }`
 

@@ -56,7 +56,7 @@ Use this page when you need the focused member list, signatures, and source note
     
     **Docstring**
     
-    Deserializes the given byte[] directly to instead of object, removing the need to pass a Type instance and cast the result manually
+    Deserializes the given byte[] directly to TResult instead of object, removing the need to pass a Type instance and cast the result manually
     
     Example: `Order? order = deserializer.Deserialize<Order>(payload);`
 
@@ -79,7 +79,7 @@ Use this page when you need the focused member list, signatures, and source note
     
     **Docstring**
     
-    Deserializes the given UTF-8 string directly to , most useful for the text based formats (Json, Yaml, Xml, XmlElement)
+    Deserializes the given UTF-8 string directly to TResult, most useful for the text based formats (Json, Yaml, Xml, XmlElement)
     
     Example: `Order? order = SerializationType.Json.BuildDeserializer().DeserializeFromString<Order>(json);`
 
@@ -125,7 +125,7 @@ Use this page when you need the focused member list, signatures, and source note
     
     **Docstring**
     
-    Attempts to deserialize the given byte[] directly to , never throws
+    Attempts to deserialize the given byte[] directly to TResult, never throws
     
     Example: `if (deserializer.TryDeserialize<Order>(payload, out var order)) { ... }`
 

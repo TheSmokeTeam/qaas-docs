@@ -61,7 +61,7 @@ Use this page when you need the focused member list, signatures, and source note
     
     **Docstring**
     
-    Casts a CommunicationData to a different type
+    Casts a CommunicationData to a different type. When a body is a deserialized representation of the target type instead of the target type itself (e.g. a JsonNode produced by json deserialization without a configured type), the cast automatically converts that body using the CommunicationData's own SerializationType when it has one, or the serialization type inferred from the body's runtime type otherwise (see TryInferSerializationType)
 
 ### `GetDataByIoMatchIndex<TData>` {: #getdatabyiomatchindex-tdata}
 
@@ -126,7 +126,7 @@ Use this page when you need the focused member list, signatures, and source note
     
     **Docstring**
     
-    Attempts to cast a CommunicationData to a different type, never throws
+    Attempts to cast a CommunicationData to a different type, never throws. Bodies that are deserialized representations of the target type (e.g. JsonNode) are automatically converted the same way CastCommunicationData{TCastTo} converts them
     
     Example: `if (communication.TryCastCommunicationData<byte[]>(out var bytesCommunication)) { ... }`
 
@@ -195,7 +195,7 @@ Use this page when you need the focused member list, signatures, and source note
     
     **Docstring**
     
-    Retrieves the bodies of all data items of a CommunicationData of type object directly as the requested type
+    Retrieves the bodies of all data items of a CommunicationData of type object directly as the requested type. Bodies that are deserialized representations of the target type (e.g. JsonNode bodies) are automatically converted using the CommunicationData's own SerializationType when it has one, or the serialization type inferred from each body's runtime type otherwise
     
     Example: `IList<string?> bodies = communication.GetBodiesAs<string>();`
 
@@ -218,7 +218,7 @@ Use this page when you need the focused member list, signatures, and source note
     
     **Docstring**
     
-    Converts a CommunicationData of type object to a CommunicationData of the requested type regardless of the current representation of its bodies, using the CommunicationData's own SerializationType by default: bodies that already are are kept as-is, byte[] bodies are deserialized, and any other representation (e.g. JsonNode, yaml dictionaries) is round-tripped through the serialization type into . When no serialization type is available falls back to a plain cast (same behavior as CastCommunicationData{TCastTo} )
+    Converts a CommunicationData of type object to a CommunicationData of the requested type regardless of the current representation of its bodies, using the CommunicationData's own SerializationType by default: bodies that already are TConverted are kept as-is, byte[] bodies are deserialized, and any other representation (e.g. JsonNode, yaml dictionaries) is round-tripped through the serialization type into TConverted. When no serialization type is available falls back to a plain cast (same behavior as CastCommunicationData{TCastTo})
     
     Example: `CommunicationData<Order> typed = communication.ConvertCommunicationData<Order>();`
 

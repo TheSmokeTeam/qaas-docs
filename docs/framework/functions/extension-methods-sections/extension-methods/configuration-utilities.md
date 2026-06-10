@@ -41,7 +41,7 @@ Use this page when you need the focused member list, signatures, and source note
     
     **Docstring**
     
-    Merges a partial configuration object into the existing IConfiguration . Existing values are preserved when the incoming object leaves a field at its type default.
+    Merges a partial configuration object into the existing IConfiguration. Existing values are preserved when the incoming object leaves a field at its type default.
 
 ### `GetDictionaryFromConfiguration` {: #getdictionaryfromconfiguration}
 

@@ -3,9 +3,9 @@ id: framework.functions.casting-and-serialization
 type: how-to
 status: stable
 since: 2.0.0
-last_verified: 2026-05-27
+last_verified: 2026-06-10
 applies_to: [framework, runner]
-keywords: [framework, casting, serialization, deserialization, QaasSerializer, ConvertBodyTo, GetOutputBodies, TryCast, typed, session data]
+keywords: [framework, casting, serialization, deserialization, QaasSerializer, ConvertBodyTo, GetOutputBodies, TryCast, typed, session data, JsonNode, representation]
 summary: "Use the QaasSerializer facade and the typed casting extension methods to turn raw session payloads into typed objects in one call."
 ---
 
@@ -104,6 +104,34 @@ Conversion uses the `SerializationType` declared on the `CommunicationData` itse
 3. body is `byte[]` → deserialized with the given format
 4. anything else (for example `JsonNode`, YAML dictionaries) → round-tripped serialize → deserialize into `T`
 
+## Representation-aware casting {: #representation-aware-casting}
+
+A consumer that reads from a protocol (for example a RabbitMQ queue) without a configured
+specific type receives bodies as deserialized representations: json arrives as `JsonNode`,
+yaml as `Dictionary<object, object>`, xml as `XDocument`/`XElement`. The cast family —
+`CastCommunicationData<T>`, `CastObjectDetailedData<T>`, `CastObjectData<T>`, `GetBodyAs<T>`,
+`GetBodiesAs<T>`, and their `Try…` variants — converts such bodies to the requested type
+instead of throwing:
+
+```csharp
+// Producer side: generated Person objects published to RabbitMQ as json bytes.
+// Consumer side: without a configured type the consumed bodies are JsonNode instances,
+// yet the cast still lands on the producer's POCO:
+CommunicationData<object> consumed = /* read + deserialized from the queue */;
+CommunicationData<Person> people = consumed.CastCommunicationData<Person>();
+```
+
+Each body resolves in this order:
+
+1. direct cast — a body that already is `T` is returned as-is
+2. declared format — the `SerializationType` declared on the `CommunicationData` round-trips the body into `T`
+3. inferred format — without a declared type, the representation picks the format: `JsonNode`/`JsonElement`/`JsonDocument` → json, `XDocument` → xml, `XElement` → xml element, `Dictionary<object, object>`/`List<object>` → yaml (see `QaasSerializer.TryInferSerializationType`)
+4. otherwise the original indicative `InvalidCastException` is thrown (`Try…` variants return `false`)
+
+`byte[]` bodies stay strict on purpose: raw bytes convert only when the `CommunicationData`
+declares its `SerializationType`, so protocol code that requires `byte[]` bodies keeps failing
+fast instead of guessing a format.
+
 ## Working with single data items {: #single-data-items}
 
 ```csharp
@@ -140,10 +168,10 @@ if (outputs.TryGetCommunicationDataByName("orders_output", out var communication
 ## Edge cases {: #edge-cases}
 
 - `Binary` and `ProtobufMessage` formats require a concrete target type; `QaasSerializer.Deserialize<T>` always provides one.
-- The `Xml`/`XmlElement` deserializers produce `XDocument`/`XElement`; asking for an incompatible `T` throws an indicative `QaasSerializationException` (or returns `false` from `Try…` variants).
+- The `Xml`/`XmlElement` deserializers produce `XDocument`/`XElement` by default and honor a requested type: `XDocument`, `XElement`, and `string` are special-cased, while any other type deserializes through `XmlSerializer` (which requires a public type with a parameterless constructor). The matching serializers accept typed POCOs the same way.
 - `GetOutputBodies<T>`/`GetInputBodies<T>` throw the same indicative exception as `GetOutputByName`/`GetInputByName` when the name is missing; use the `TryGet…As` variants for optional payloads.
 - Conversion never mutates the source objects; converted `Data`/`DetailedData`/`CommunicationData` instances are new wrappers that preserve the original names, metadata, and timestamps.
-- `GetBodyAs<T>` only succeeds when the body already *is* the requested type; its `InvalidCastException` message points you to `ConvertBodyTo<T>` when the body is a different representation of the same content.
+- `GetBodyAs<T>` returns the body as-is when it already *is* the requested type, and converts deserialized representations as described in [Representation-aware casting](#representation-aware-casting). For bodies it cannot convert (for example `byte[]` without a declared format) its `InvalidCastException` message points you to `ConvertBodyTo<T>`.
 
 ## See also {: #see-also}
 
