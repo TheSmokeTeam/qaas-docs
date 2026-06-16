@@ -99,12 +99,9 @@ Two reporter knobs matter most. Leave them on in dev and CI:
 
 ```yaml
 Reporters:
-  - Name: AllureFull
-    Reporter: AllureReporter
-    ReporterConfiguration:
-      SaveSessionData: true     # raw payloads under allure-results/attachments
-      SaveAttachments: true     # request/response blobs per assertion step
-      DisplayTrace: true        # surfaces AssertionTrace in the rendered step
+  SaveSessionData: true     # raw payloads under allure-results/attachments
+  SaveAttachments: true     # request/response blobs per assertion step
+  DisplayTrace: true        # surfaces AssertionTrace in the rendered step
 ```
 
 With `SaveAttachments: true`, each assertion step in the Allure HTML carries:

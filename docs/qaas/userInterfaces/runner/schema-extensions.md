@@ -34,14 +34,14 @@ MetaData:
   Team: Smoke
   System: SchemaDemo
 
-Reporters:
-  - Name: ConsoleOnly
-    Reporter: ConsoleReporter         # value validated against the anyOf enum
-    ReporterConfiguration:
-      Verbose: true
+Assertions:
+  - Name: PayloadSize
+    Assertion: HasMinimumPayloadSize   # value validated against the anyOf enum
+    AssertionConfiguration:
+      MinimumBytes: 1024
 ```
 
-The runner loads the schema at startup; unknown enum values fail with a precise message such as `value 'XYZReporter' not in [AllureReporter, ConsoleReporter]`.
+The runner loads the schema at startup; unknown enum values fail with a precise message such as `value 'XYZAssertion' not in [HttpStatus, ObjectOutputJsonSchema, ...]`.
 
 ## C# (CAC) usage {: #csharp}
 
@@ -50,23 +50,24 @@ The runner loads the schema at startup; unknown enum values fail with a precise 
 Every QaaS extension-point base type carries `[JsonSchema]`. The generator reflects on assemblies, collects types decorated this way, and produces one schema per concrete subclass:
 
 ```csharp
+using System.Collections.Immutable;
 using QaaS.JsonSchemaExtensions;
-using QaaS.Runner.Assertions;
-using QaaS.Runner.Assertions.AssertionObjects;
+using QaaS.Framework.SDK.DataSourceObjects;
+using QaaS.Framework.SDK.Hooks.Assertion;
+using QaaS.Framework.SDK.Session.SessionDataObjects;
 
 [JsonSchema]
-public abstract class BaseReporter<TConfiguration> : IReporter
+public abstract class BaseAssertion<TConfiguration> : IAssertion
     where TConfiguration : new()
 {
     public TConfiguration Configuration { get; set; } = default!;
     public string Name { get; set; } = default!;
-    public string AssertionName { get; set; } = default!;
-    public bool SaveSessionData { get; set; }
-    public bool SaveAttachments { get; set; }
-    public bool DisplayTrace { get; set; }
-    public long EpochTestSuiteStartTime { get; set; }
+    public string AssertionMessage { get; protected set; } = string.Empty;
+    public string AssertionTrace { get; protected set; } = string.Empty;
 
-    public abstract void WriteTestResults(AssertionResult assertionResult);
+    public abstract bool Assert(
+        IImmutableList<SessionData> sessionData,
+        IImmutableList<DataSource> dataSources);
 }
 ```
 
@@ -77,27 +78,27 @@ Each plugin family that participates in YAML `anyOf` exposes its options through
 ```csharp
 using QaaS.JsonSchemaExtensions;
 
-namespace MyReporters;
+namespace MyAssertions;
 
-public record AllureReporterConfig;
+public record HasMinimumPayloadSizeConfig;
 
-public record ConsoleReporterConfig;
+public record HasExpectedStatusConfig;
 
-public static class ReporterSchemaOptions
+public static class AssertionSchemaOptions
 {
     public static readonly IReadOnlyList<AnyOfSchemaOption> All = new[]
     {
         new AnyOfSchemaOption(
-            EnumOption: "AllureReporter",
-            ConfigurationType: typeof(AllureReporterConfig),
-            Title: "Allure Reporter",
-            Description: "Writes Allure-compatible JSON to allure-results/."),
+            EnumOption: "HasMinimumPayloadSize",
+            ConfigurationType: typeof(HasMinimumPayloadSizeConfig),
+            Title: "Has minimum payload size",
+            Description: "Checks every selected output payload size."),
 
         new AnyOfSchemaOption(
-            EnumOption: "ConsoleReporter",
-            ConfigurationType: typeof(ConsoleReporterConfig),
-            Title: "Console Reporter",
-            Description: "Prints results to stdout."),
+            EnumOption: "HasExpectedStatus",
+            ConfigurationType: typeof(HasExpectedStatusConfig),
+            Title: "Has expected status",
+            Description: "Checks every selected output status code."),
     };
 }
 ```
@@ -120,22 +121,22 @@ Project tree for an external schema-extension package:
 MySchemaExtensions/
 └─ MySchemaExtensions/
    ├─ MySchemaExtensions.csproj
-   ├─ ReporterSchemaOptions.cs
-   ├─ AllureReporterConfig.cs
-   └─ ConsoleReporterConfig.cs
+   ├─ AssertionSchemaOptions.cs
+   ├─ HasMinimumPayloadSizeConfig.cs
+   └─ HasExpectedStatusConfig.cs
 ```
 
-`AllureReporterConfig.cs`:
+`HasMinimumPayloadSizeConfig.cs`:
 
 ```csharp
 using System.ComponentModel;
 
-namespace MyReporters;
+namespace MyAssertions;
 
-public record AllureReporterConfig
+public record HasMinimumPayloadSizeConfig
 {
-    [Description("Output directory."), DefaultValue("allure-results")]
-    public string OutputDir { get; set; } = "allure-results";
+    [Description("Minimum payload size in bytes."), DefaultValue(1024)]
+    public int MinimumBytes { get; set; } = 1024;
 }
 ```
 
@@ -152,7 +153,6 @@ A production schema-extension package usually:
 ```json
 {
   "assemblies": [
-    "MyReporters.dll",
     "MyAssertions.dll"
   ],
   "outputDirectory": "schemas",
