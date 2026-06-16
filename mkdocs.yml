@@ -150,6 +150,7 @@ nav:
           - Assertions: qaas/functions/builders/executions-sections/assertions.md
           - Executions: qaas/functions/builders/executions-sections/executions.md
           - Configuration: qaas/functions/builders/executions-sections/configuration.md
+          - Collection helpers: qaas/functions/builders/executions-sections/collection-helpers.md
           - General: qaas/functions/builders/executions-sections/general.md
         - Links:
           - Overview: qaas/functions/builders/links.md
