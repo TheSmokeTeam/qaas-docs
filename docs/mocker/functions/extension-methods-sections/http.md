@@ -61,7 +61,7 @@ Use this page when you need the focused member list, signatures, and source note
     
     **Docstring**
     
-    Constructs request data from an HttpRequest .
+    Constructs request data from an HttpRequest.
 
 ### `HandleResponseDataAndCloseAsync` {: #handleresponsedataandcloseasync}
 
