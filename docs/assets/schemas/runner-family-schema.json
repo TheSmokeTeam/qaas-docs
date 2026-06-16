@@ -12840,6 +12840,10 @@
                           "string"
                         ],
                         "pattern": "\\$\\{.*\\}",
+                        "required": [
+                          "Key",
+                          "Value"
+                        ],
                         "properties": {
                           "Key": {
                             "type": "string"
@@ -14016,6 +14020,10 @@
                     "string"
                   ],
                   "pattern": "\\$\\{.*\\}",
+                  "required": [
+                    "Key",
+                    "Value"
+                  ],
                   "properties": {
                     "Key": {
                       "type": "string"
@@ -14065,6 +14073,181 @@
           ],
           "description": "Extra labels added by the user",
           "pattern": "\\$\\{.*\\}"
+        }
+      }
+    },
+    "Reporters": {
+      "type": [
+        "object",
+        "string"
+      ],
+      "description": "The reporters used to report the test results",
+      "pattern": "\\$\\{.*\\}",
+      "properties": {
+        "SaveLogs": {
+          "type": [
+            "boolean",
+            "null",
+            "string"
+          ],
+          "description": "Whether to save the session logs belonging to the assertion in the test report",
+          "pattern": "\\$\\{.*\\}"
+        },
+        "SaveAttachments": {
+          "type": [
+            "boolean",
+            "null",
+            "string"
+          ],
+          "description": "Whether to save the attachments of the assertion in the test report (true) or not (false)",
+          "pattern": "\\$\\{.*\\}"
+        },
+        "SaveTemplate": {
+          "type": [
+            "boolean",
+            "null",
+            "string"
+          ],
+          "description": "Whether to save the configuration template in the test report (true) or not (false)",
+          "pattern": "\\$\\{.*\\}"
+        },
+        "SaveSessionData": {
+          "type": [
+            "boolean",
+            "null",
+            "string"
+          ],
+          "description": "Whether to save the data of the session's belonging to this assertion in the test report",
+          "pattern": "\\$\\{.*\\}"
+        },
+        "DisplayTrace": {
+          "type": [
+            "boolean",
+            "null",
+            "string"
+          ],
+          "description": "Whether to display the assertion's message trace in the assertion results or not. Should be set to false when the assertion trace is massive and displaying it can cause performance issues",
+          "pattern": "\\$\\{.*\\}"
+        },
+        "ReportPortal": {
+          "type": [
+            "object",
+            "string"
+          ],
+          "description": "The ReportPortal configuration to use for this reporter. If not set, the default ReportPortal configuration will be used.",
+          "pattern": "\\$\\{.*\\}",
+          "properties": {
+            "Enabled": {
+              "type": [
+                "boolean",
+                "string"
+              ],
+              "description": "Whether to publish runner assertion results to ReportPortal in addition to Allure. Defaults to the registered QaaS.Configuration value.",
+              "default": true,
+              "pattern": "\\$\\{.*\\}"
+            },
+            "Endpoint": {
+              "type": [
+                "null",
+                "string"
+              ],
+              "description": "ReportPortal endpoint URL. Defaults to the registered global ReportPortal URL. Accepts either the gateway URL or the API URL and normalizes it to /api/."
+            },
+            "Project": {
+              "type": [
+                "null",
+                "string"
+              ],
+              "description": "ReportPortal project where the launch will be published. Defaults to MetaData.Team; QaaS routes launches by MetaData.Team at runtime."
+            },
+            "ApiKey": {
+              "type": [
+                "null",
+                "string"
+              ],
+              "description": "ReportPortal API key used for best-effort publishing when reporting is enabled. Defaults to the registered global API key."
+            },
+            "LaunchName": {
+              "type": [
+                "null",
+                "string"
+              ],
+              "description": "Optional launch name override. When omitted the runner derives the launch name from the grouped run descriptor."
+            },
+            "Description": {
+              "type": [
+                "null",
+                "string"
+              ],
+              "description": "Optional launch description override. When omitted the runner derives the launch description from the grouped run descriptor."
+            },
+            "DebugMode": {
+              "type": [
+                "boolean",
+                "string"
+              ],
+              "description": "Whether to create the launch in debug mode.",
+              "default": false,
+              "pattern": "\\$\\{.*\\}"
+            },
+            "Attributes": {
+              "type": [
+                "object",
+                "string"
+              ],
+              "description": "Static launch attributes to add to every launch in addition to the default QaaS team/system/session/source attributes.",
+              "pattern": "\\$\\{.*\\}"
+            }
+          }
+        },
+        "ReportPortalLaunchManager": {
+          "type": [
+            "object",
+            "string"
+          ],
+          "pattern": "\\$\\{.*\\}"
+        },
+        "ReportPortalRunDescriptor": {
+          "type": [
+            "object",
+            "string"
+          ],
+          "pattern": "\\$\\{.*\\}",
+          "properties": {
+            "TeamName": {
+              "type": [
+                "null",
+                "string"
+              ]
+            },
+            "SystemName": {
+              "type": "string"
+            },
+            "SessionNames": {
+              "type": [
+                "array",
+                "string"
+              ],
+              "pattern": "\\$\\{.*\\}",
+              "items": {
+                "type": "string"
+              }
+            },
+            "ExecutionMode": {
+              "type": "string"
+            },
+            "StartedAtLocal": {
+              "type": "string",
+              "format": "date-time"
+            },
+            "LaunchAttributes": {
+              "type": [
+                "object",
+                "string"
+              ],
+              "pattern": "\\$\\{.*\\}"
+            }
+          }
         }
       }
     }
