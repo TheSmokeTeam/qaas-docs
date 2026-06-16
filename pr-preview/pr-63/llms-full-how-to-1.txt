@@ -1,0 +1,1913 @@
+# QaaS full content: how-to-1
+
+
+
+## Custom Assertions — Authoring Guide
+
+Source: /assertions/custom-authoring-guide/
+Type: how-to
+Applies to: assertions, framework, runner, mocker
+Summary: Derive a custom assertion from BaseAssertion<TConfig> in QaaS.Framework.SDK and wire it into an Assertions[] entry.
+
+# Custom Assertions — Authoring Guide
+
+> TL;DR — An assertion is an `IAssertion` hook that inspects accumulated `SessionData`, sets `AssertionTrace` / `AssertionMessage`, and returns `bool`. Derive `BaseAssertion<TConfiguration>` and reference it from an `Assertions[]` entry.
+
+## When to use {: #when-to-use}
+
+- The built-in assertion catalog (see [Available Assertions](index.md)) does not cover your invariant.
+- You need a domain-specific check (size bounds, structural rules, business rules) over collected interactions.
+- You need to publish custom traces or attachments into the reporter pipeline.
+
+## YAML configuration {: #yaml}
+
+```yaml
+Assertions:
+  - Name: PayloadSize
+    Assertion: HasMinimumPayloadSize
+    SessionNames: [HttpSession]
+    AssertionConfiguration:
+      OutputName: HttpConsumer
+      MinimumBytes: 512
+```
+
+## C# (CAC) usage {: #csharp}
+
+Derive `BaseAssertion<TConfiguration>` from `QaaS.Framework.SDK.Hooks.Assertion`. Override `Assert(IImmutableList<SessionData>, IImmutableList<DataSource>)`. Use `AssertionMessage` to describe the failure; the runner converts it into a red Allure step.
+
+```csharp
+using System.Collections.Immutable;
+using QaaS.Framework.SDK.DataSourceObjects;
+using QaaS.Framework.SDK.Hooks.Assertion;
+using QaaS.Framework.SDK.Session.SessionDataObjects;
+
+public sealed record MyConfig;
+
+public sealed class MyAssertion : BaseAssertion<MyConfig>
+{
+    public override bool Assert(
+        IImmutableList<SessionData> sessionDataList,
+        IImmutableList<DataSource> dataSourceList)
+    {
+        AssertionMessage = "ok";
+        return true;
+    }
+}
+```
+
+## Minimal example {: #example-minimal}
+
+```csharp
+public record NonEmptyConfig { public string OutputName { get; set; } = default!; }
+
+public sealed class NonEmpty : BaseAssertion<NonEmptyConfig>
+{
+    public override bool Assert(
+        IImmutableList<SessionData> sessionDataList,
+        IImmutableList<DataSource> _)
+    {
+        var n = sessionDataList.SelectMany(s => s.GetOutputByName(Configuration.OutputName).Data).Count();
+        AssertionMessage = n > 0 ? $"observed {n}" : "no data";
+        return n > 0;
+    }
+}
+```
+
+## Realistic example {: #example-realistic}
+
+A payload-size assertion paired with a mocker stub that returns fixed-size responses. The runner asserts every observed payload meets a minimum byte threshold; the mocker generates payloads of a configurable size.
+
+The custom assertion (runner side):
+
+```csharp
+using System.Collections.Immutable;
+using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
+using QaaS.Framework.SDK.DataSourceObjects;
+using QaaS.Framework.SDK.Hooks.Assertion;
+using QaaS.Framework.SDK.Session.SessionDataObjects;
+
+namespace MyTests.Assertions;
+
+public record HasMinimumPayloadSizeConfig
+{
+    [Description("Consumer output to inspect.")]
+    [Required]
+    public string OutputName { get; set; } = default!;
+
+    [Description("Inclusive minimum payload size in bytes.")]
+    [Range(1, int.MaxValue)]
+    public int MinimumBytes { get; set; }
+}
+
+public sealed class HasMinimumPayloadSize : BaseAssertion<HasMinimumPayloadSizeConfig>
+{
+    public override bool Assert(
+        IImmutableList<SessionData> sessionDataList,
+        IImmutableList<DataSource> dataSourceList)
+    {
+        var observed = sessionDataList
+            .SelectMany(s => s.GetOutputByName(Configuration.OutputName).Data)
+            .ToImmutableList();
+
+        if (observed.Count == 0)
+        {
+            AssertionMessage = $"No data observed on '{Configuration.OutputName}'.";
+            return false;
+        }
+
+        var smallest = observed.Min(d => d.Body is byte[] body ? body.Length : 0);
+        AssertionTrace = $"Observed {observed.Count} payloads; smallest={smallest}B; threshold={Configuration.MinimumBytes}B.";
+
+        if (smallest < Configuration.MinimumBytes)
+        {
+            AssertionMessage = $"Smallest payload {smallest}B < required {Configuration.MinimumBytes}B.";
+            return false;
+        }
+
+        AssertionMessage = $"All payloads >= {Configuration.MinimumBytes}B.";
+        return true;
+    }
+}
+```
+
+The matching mocker stub (mocker side):
+
+```csharp
+using System.Collections.Immutable;
+using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
+using QaaS.Framework.SDK.DataSourceObjects;
+using QaaS.Framework.SDK.Hooks.Processor;
+using QaaS.Framework.SDK.Session.DataObjects;
+using QaaS.Framework.SDK.Session.MetaDataObjects;
+
+namespace MyMock.Processors;
+
+public record FixedSizeResponseConfig
+{
+    [Description("Exact payload size in bytes.")]
+    [Range(1, 1_048_576)]
+    public int SizeBytes { get; set; } = 1024;
+
+    [Description("HTTP status to return."), DefaultValue(200)]
+    public int StatusCode { get; set; } = 200;
+}
+
+public class FixedSizeResponse : BaseTransactionProcessor<FixedSizeResponseConfig>
+{
+    public override Data<object> Process(
+        IImmutableList<DataSource> _,
+        Data<object> __)
+    {
+        var bytes = new byte[Configuration.SizeBytes];
+        Array.Fill<byte>(bytes, (byte)'x');
+
+        return new Data<object>
+        {
+            Body = bytes,
+            MetaData = new MetaData
+            {
+                Http = new Http
+                {
+                    StatusCode = Configuration.StatusCode,
+                    ResponseHeaders = new Dictionary<string, string>
+                    {
+                        ["Content-Type"] = "application/octet-stream",
+                        ["Content-Length"] = bytes.Length.ToString(),
+                    },
+                },
+            },
+        };
+    }
+}
+```
+
+Test YAML (runner side):
+
+```yaml
+DataSources:
+  - Name: Inputs
+    Generator: FromFileSystem
+    GeneratorConfiguration:
+      DataArrangeOrder: AsciiAsc
+      FileSystem: { Path: TestData }
+Sessions:
+  - Name: HttpSession
+    Publishers:
+      - Name: HttpPublisher
+        DataSourceNames: [Inputs]
+        Policies: [{ LoadBalance: { Rate: 5 } }]
+        Http:
+          Url: http://127.0.0.1:8080/data
+          Method: Get
+    Consumers:
+      - Name: HttpConsumer
+        HttpResponseFrom: HttpPublisher
+        Deserialize: { Deserializer: None }
+Assertions:
+  - Name: PayloadSize
+    Assertion: HasMinimumPayloadSize
+    SessionNames: [HttpSession]
+    AssertionConfiguration:
+      OutputName: HttpConsumer
+      MinimumBytes: 512
+```
+
+Mocker YAML:
+
+```yaml
+Stubs:
+  - Name: FixedKb
+    Processor: FixedSizeResponse
+    ProcessorConfiguration: { SizeBytes: 1024, StatusCode: 200 }
+Servers:
+  - Http:
+      Port: 8080
+      IsLocalhost: false
+      Endpoints:
+        - Path: /data
+          Actions:
+            - Name: GetFixed
+              Method: Get
+              TransactionStubName: FixedKb
+```
+
+## Registration and discovery {: #registration}
+
+Custom assertions are discovered by short type name. The runner scans referenced assemblies for types deriving from `BaseAssertion<>`. To wire one in:
+
+1. Place the class in any namespace inside an assembly the runner loads (your test project, or a referenced library).
+2. Reference the assembly from the project that hosts the YAML — a project reference or a NuGet package both work.
+3. In YAML, set `Assertion:` to the **simple type name** (e.g. `HasMinimumPayloadSize`), not the fully-qualified name.
+
+```yaml
+Assertions:
+  - Name: PayloadSize
+    Assertion: HasMinimumPayloadSize      # simple type name
+    SessionNames: [HttpSession]
+```
+
+Two assertions with the same simple name across assemblies will collide; rename one. The runner only discovers types whose assembly is already loaded in its `AppDomain` — a transitive dependency that nothing references will not be visible. Custom data annotations on `TConfiguration` (`[Required]`, `[Range]`, `[Url]`) are validated before `Assert` runs.
+
+After adding or renaming a custom assertion, regenerate the YAML schema so editors pick up the new enum value. See [Schema extensions](../qaas/userInterfaces/runner/schema-extensions.md) for the regeneration command and the `bin/` cache flush.
+
+## Edge cases {: #edge-cases}
+
+- `Configuration` is null before `LoadAndValidateConfiguration` runs. Do not read it in a constructor.
+- `Assert` returns `bool`; do not throw to signal a failure. Set `AssertionMessage` and return `false`.
+- Stub responses are byte arrays. Pre-allocate buffers for size-sensitive scenarios.
+- The mocker stub must have a unique `Name`; the runner references it via `TransactionStubName`.
+- Runner and mocker must restore packages from the same feed so schema validation accepts both sides.
+
+## See also {: #see-also}
+
+- [Assertions — Introduction](index.md)
+- [Sessions — Assertions reference](../qaas/userInterfaces/runner/configurationSections/assertions/overview.md)
+- [Processors — custom authoring guide](../processors/custom-authoring-guide.md)
+
+
+## Custom Generators — Authoring Guide
+
+Source: /generators/custom-authoring-guide/
+Type: how-to
+Applies to: generators, framework, runner
+Summary: Derive a custom generator from BaseGenerator<TConfig> in QaaS.Framework.SDK and wire it into a DataSource.
+
+# Custom Generators — Authoring Guide
+
+> TL;DR — A generator is an `IGenerator` hook that produces `IEnumerable<Data<object>>` from a configured source. Derive `BaseGenerator<TConfiguration>` and reference it from a `DataSources[]` entry.
+
+## When to use {: #when-to-use}
+
+- The built-in generator catalog (see [Available Generators](index.md)) does not parse the fixture shape you need.
+- You want lazy projection (yield one record at a time) over a large fixture without buffering it in memory.
+- You need typed coercion (`int`, `bool`, `decimal`) in the generator rather than the system-under-test.
+
+## YAML configuration {: #yaml}
+
+```yaml
+DataSources:
+  - Name: Users
+    Generator: TypedCsv
+    GeneratorConfiguration:
+      Path: TestData/users.csv
+      Delimiter: ","
+      Columns: ["id:int", "name:string", "active:bool"]
+```
+
+`DataSources[].Name` and `DataSources[].Generator` are the only required fields; everything inside `GeneratorConfiguration` is your record shape.
+
+## C# (CAC) usage {: #csharp}
+
+Derive `BaseGenerator<TConfiguration>` from `QaaS.Framework.SDK.Hooks.Generator`. Override `Generate(IImmutableList<SessionData>, IImmutableList<DataSource>)` and `yield return` lazily.
+
+```csharp
+using System.Collections.Immutable;
+using QaaS.Framework.SDK.DataSourceObjects;
+using QaaS.Framework.SDK.Hooks.Generator;
+using QaaS.Framework.SDK.Session.DataObjects;
+using QaaS.Framework.SDK.Session.SessionDataObjects;
+
+public sealed record MyConfig;
+
+public sealed class MyGenerator : BaseGenerator<MyConfig>
+{
+    public override IEnumerable<Data<object>> Generate(
+        IImmutableList<SessionData> sessionDataList,
+        IImmutableList<DataSource> dataSourceList)
+    {
+        // yield return Data<object> per record
+        yield break;
+    }
+}
+```
+
+## Minimal example {: #example-minimal}
+
+```csharp
+public record ConstantConfig
+{
+    public int Count { get; set; } = 1;
+    public string Body { get; set; } = "{}";
+}
+
+public sealed class Constant : BaseGenerator<ConstantConfig>
+{
+    public override IEnumerable<Data<object>> Generate(
+        IImmutableList<SessionData> _,
+        IImmutableList<DataSource> __)
+    {
+        for (var i = 0; i < Configuration.Count; i++)
+            yield return new Data<object> { Body = System.Text.Encoding.UTF8.GetBytes(Configuration.Body) };
+    }
+}
+```
+
+## Realistic example {: #example-realistic}
+
+Typed CSV generator that parses each row according to a `name:type` column schema and yields one JSON-encoded `Data<object>` per row.
+
+```csharp
+using System.Collections.Immutable;
+using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
+using System.Globalization;
+using System.Text.Json;
+using QaaS.Framework.SDK.DataSourceObjects;
+using QaaS.Framework.SDK.Hooks.Generator;
+using QaaS.Framework.SDK.Session.DataObjects;
+using QaaS.Framework.SDK.Session.SessionDataObjects;
+
+namespace MyTests.Generators;
+
+public record TypedCsvConfig
+{
+    [Description("Path to the CSV file, resolved relative to working directory.")]
+    [Required]
+    public string Path { get; set; } = default!;
+
+    [Description("Field delimiter."), DefaultValue(",")]
+    [StringLength(1, MinimumLength = 1)]
+    public string Delimiter { get; set; } = ",";
+
+    [Description("Header schema: 'name:type'. Types: string,int,long,bool,decimal,double.")]
+    [Required]
+    public List<string> Columns { get; set; } = new();
+}
+
+public sealed class TypedCsv : BaseGenerator<TypedCsvConfig>
+{
+    public override IEnumerable<Data<object>> Generate(
+        IImmutableList<SessionData> sessionDataList,
+        IImmutableList<DataSource> dataSourceList)
+    {
+        var schema = Configuration.Columns.Select(ParseHeader).ToImmutableList();
+        var sep = Configuration.Delimiter[0];
+
+        foreach (var line in File.ReadLines(Configuration.Path).Skip(1))
+        {
+            if (string.IsNullOrWhiteSpace(line)) continue;
+
+            var cells = line.Split(sep);
+            if (cells.Length != schema.Count)
+                throw new InvalidDataException(
+                    $"Row '{line}' has {cells.Length} columns; schema declares {schema.Count}.");
+
+            var record = new Dictionary<string, object?>(schema.Count);
+            for (var i = 0; i < schema.Count; i++)
+                record[schema[i].Name] = Coerce(cells[i], schema[i].Type);
+
+            yield return new Data<object>
+            {
+                Body = JsonSerializer.SerializeToUtf8Bytes(record),
+            };
+        }
+    }
+
+    private static (string Name, string Type) ParseHeader(string spec)
+    {
+        var parts = spec.Split(':', 2);
+        if (parts.Length != 2)
+            throw new InvalidDataException($"Column spec '{spec}' must be 'name:type'.");
+        return (parts[0].Trim(), parts[1].Trim().ToLowerInvariant());
+    }
+
+    private static object? Coerce(string raw, string type)
+    {
+        if (string.IsNullOrEmpty(raw)) return null;
+        return type switch
+        {
+            "string"  => raw,
+            "int"     => int.Parse(raw, CultureInfo.InvariantCulture),
+            "long"    => long.Parse(raw, CultureInfo.InvariantCulture),
+            "bool"    => bool.Parse(raw),
+            "decimal" => decimal.Parse(raw, CultureInfo.InvariantCulture),
+            "double"  => double.Parse(raw, CultureInfo.InvariantCulture),
+            _ => throw new InvalidDataException($"Unknown column type '{type}'."),
+        };
+    }
+}
+```
+
+YAML:
+
+```yaml
+DataSources:
+  - Name: Users
+    Generator: TypedCsv
+    GeneratorConfiguration:
+      Path: TestData/users.csv
+      Delimiter: ","
+      Columns:
+        - "id:int"
+        - "name:string"
+        - "age:int"
+        - "active:bool"
+        - "balance:decimal"
+```
+
+Combine multiple typed-CSV data sources with the built-in `Stacking` generator when fixtures live in several files:
+
+```yaml
+DataSources:
+  - { Name: UsersUS, Generator: TypedCsv, GeneratorConfiguration: { Path: TestData/users-us.csv, Columns: ["id:int","region:string","name:string"] } }
+  - { Name: UsersEU, Generator: TypedCsv, GeneratorConfiguration: { Path: TestData/users-eu.csv, Columns: ["id:int","region:string","name:string"] } }
+  - Name: AllUsers
+    Generator: Stacking
+    GeneratorConfiguration:
+      DataSourceNames: [UsersUS, UsersEU]
+      ItemsPerSource: 100
+```
+
+## Registration and discovery {: #registration}
+
+Custom generators are discovered by short type name. The runner scans referenced assemblies for types deriving from `BaseGenerator<>`. To wire one in:
+
+1. Place the class in any namespace inside an assembly the runner loads (your test project, or a referenced library).
+2. Reference the assembly from the project that hosts the YAML — a project reference or a NuGet package both work.
+3. In YAML, set `Generator:` to the **simple type name** (e.g. `TypedCsv`), not the fully-qualified name.
+
+```yaml
+DataSources:
+  - Name: Users
+    Generator: TypedCsv        # simple type name
+```
+
+Two generators with the same simple name across assemblies will collide; rename one. The runner only discovers types whose assembly is already loaded in its `AppDomain` — a transitive dependency that nothing references will not be visible. Data annotations on `TConfiguration` (`[Required]`, `[Range]`) are validated before `Generate` is called.
+
+After adding or renaming a custom generator, regenerate the YAML schema so editors pick up the new enum value. See [Schema extensions](../qaas/userInterfaces/runner/schema-extensions.md) for the regeneration command and the `bin/` cache flush.
+
+## Edge cases {: #edge-cases}
+
+- `Generate` returns `IEnumerable`, not `IAsyncEnumerable`. Do not call `.ToList()` before yielding — large CSVs would balloon memory.
+- `File.ReadLines` is lazy and pairs naturally with `yield return`.
+- Header row is skipped because the `Columns` config is the source of truth. If you want runtime header validation, parse the first line and assert it matches `Columns`.
+- Empty cells become `null`, not the type's default. Downstream consumers must handle nullable JSON.
+- CSVs with embedded commas or quotes are not handled by `String.Split`. Use a real CSV reader for those fixtures.
+
+## See also {: #see-also}
+
+- [Generators — Introduction](index.md)
+- [Generators — FromCSV (built-in)](availableGenerators/FromCSV/overview.md)
+- [DataSources reference](../qaas/userInterfaces/runner/configurationSections/dataSources/overview.md)
+
+
+## Runner + Mocker Controller (Redis) Recipe
+
+Source: /mocker/authoring-guide/controller-recipe-redis/
+Type: how-to
+Applies to: mocker, runner
+Summary: End-to-end Runner + Mocker recipe wired through a Redis-backed Controller: readiness probe, channel naming, ack/timeout behavior, and a full MockerCommands block.
+
+# Runner + Mocker Controller (Redis) Recipe
+
+> TL;DR — Use the Redis-backed Controller when Runner must coordinate actions against a running Mocker instance.
+
+End-to-end example of a Runner test that drives a Mocker through its [Controller](../userInterfaces/mocker/configurationSections/controller/overview.md). The two hosts communicate over Redis; the Runner issues [Mocker Commands](../../qaas/userInterfaces/runner/configurationSections/sessions/types/mockerCommands.md) (swap a stub, trigger an action, consume cached transactions) while the test is running.
+
+## TL;DR {: #tldr}
+
+> Start Redis, start the Mocker with `Controller.Redis` configured, run the test with a [`MockerCommand`](../../qaas/userInterfaces/runner/configurationSections/sessions/types/mockerCommands.md) action. Two channel names must match across the YAMLs.
+
+## When to use {: #when-to-use}
+
+- The test needs to change Mocker behavior mid-run (e.g. swap a `200` stub for a `503` stub between two publish phases).
+- The test needs to drain cached Mocker transactions through the Runner instead of asserting against the SUT.
+
+## Prerequisites {: #prerequisites}
+
+- A reachable Redis instance (local container is fine).
+- Two host projects: one Runner, one Mocker, both able to resolve the Redis host.
+
+## Step 1: Redis {: #step-1-redis}
+
+```bash
+docker run --rm -d --name qaas-redis -p 6379:6379 redis:7-alpine
+```
+
+## Step 2: Mocker YAML {: #step-2-mocker-yaml}
+
+```yaml
+# controller.mocker.yaml
+Controller:
+  ServerName: HelloMocker
+  Redis:
+    Host: 127.0.0.1
+    Port: 6379
+
+Servers:
+  - Http:
+      Port: 8080
+      Endpoints:
+        - Path: /hello
+          Actions:
+            - Name: HelloOk
+              Method: Get
+              TransactionStubName: HelloStub
+
+Stubs:
+  - Name: HelloStub
+    Processor: StaticResponseProcessor
+    TransactionData:
+      MetaData:
+        Http:
+          StatusCode: 200
+      Body: "hello"
+  - Name: HelloFail
+    Processor: StaticResponseProcessor
+    TransactionData:
+      MetaData:
+        Http:
+          StatusCode: 503
+      Body: "unavailable"
+```
+
+`Controller.ServerName` is the channel root the Runner addresses. It must match the `MockerCommands[].ServerName` value used on the Runner side (step 3). If `Controller` is omitted or `Redis` is unreachable, the servers still start but no Mocker Commands will route — this is a frequent silent-fail mode.
+
+## Step 3: Runner YAML {: #step-3-runner-yaml}
+
+```yaml
+# controller.qaas.yaml
+MetaData:
+  Team: Smoke
+  System: HelloMocker
+
+Sessions:
+  - Name: ControlSession
+    Probes:
+      - Name: WaitForMocker
+        Probe: PingProbe
+        ProbeConfiguration:
+          Url: http://127.0.0.1:8080/hello
+        Stage: 0
+    Transactions:
+      - Name: CallHelloOk
+        Stage: 1
+        TimeoutMs: 5000
+        Http:
+          BaseAddress: http://127.0.0.1
+          Port: 8080
+          Route: /hello
+          Method: Get
+      - Name: CallHelloAfterSwap
+        Stage: 3
+        TimeoutMs: 5000
+        Http:
+          BaseAddress: http://127.0.0.1
+          Port: 8080
+          Route: /hello
+          Method: Get
+    MockerCommands:
+      - Name: SwapToFailure
+        ServerName: HelloMocker
+        Stage: 2
+        Redis:
+          Host: 127.0.0.1:6379
+        Command:
+          ChangeActionStub:
+            ActionName: HelloOk
+            StubName: HelloFail
+      - Name: ReadCachedTransactions
+        ServerName: HelloMocker
+        Stage: 4
+        Redis:
+          Host: 127.0.0.1:6379
+        Command:
+          Consume:
+            TimeoutMs: 5000
+            ActionName: HelloOk
+
+Assertions:
+  - Name: FirstCallOk
+    Assertion: HttpStatus
+    SessionNames: [ControlSession]
+    AssertionConfiguration:
+      OutputName: CallHelloOk
+      ExpectedStatus: 200
+  - Name: SecondCallFailed
+    Assertion: HttpStatus
+    SessionNames: [ControlSession]
+    AssertionConfiguration:
+      OutputName: CallHelloAfterSwap
+      ExpectedStatus: 503
+```
+
+## Step 4: Run {: #step-4-run}
+
+```bash
+dotnet run --project Mocker -- run controller.mocker.yaml &
+dotnet run --project Runner -- run controller.qaas.yaml
+```
+
+Expected ordering inside `ControlSession`:
+
+1. `WaitForMocker` (stage `0`) confirms the Mocker is reachable.
+2. `CallHelloOk` calls `/hello` and receives `200`.
+3. `SwapToFailure` (stage `2`) sends a `ChangeActionStub` command through Redis. The Mocker rebinds `HelloOk` to `HelloFail`.
+4. `CallHelloAfterSwap` calls `/hello` and receives `503`.
+5. `ReadCachedTransactions` drains cached transactions for `HelloOk`.
+
+## Channel naming {: #channel-naming}
+
+The Runner-side `MockerCommands[].ServerName` and Mocker-side `Controller.ServerName` must be byte-for-byte identical. The Mocker logs the active channel name at INFO when it boots:
+
+```text
+[INFO] Controller channel ready: HelloMocker
+```
+
+If you do not see that line, the controller did not start — usually because `Controller.Redis.Host` is unreachable or the `Controller` block is missing entirely.
+
+## Acknowledgement and timeout behavior {: #acknowledgement-and-timeout-behavior}
+
+- The Runner publishes the command and waits for a Mocker acknowledgement on the same Redis channel.
+- If the Mocker is not subscribed (wrong channel name, Redis down, controller block omitted), the Mocker Command fails the session with a timeout error rather than hanging forever.
+- `MockerCommands[].RequestDurationMs` bounds a single command. The session timeout still applies on top.
+
+## Edge cases {: #edge-cases}
+
+- The probe in stage `0` is required; without it, the first publisher can race ahead of Mocker readiness and read a connection refusal.
+- `ChangeActionStub` is idempotent — issuing the same swap twice is a no-op. `Consume` is destructive — the cache empties after the first consumption.
+- The `ServerName` on a `MockerCommand` must match `Controller.ServerName` in the Mocker YAML. A typo there fails when the command cannot be acknowledged.
+- `Controller.Redis` with `Host: 127.0.0.1` inside a containerized Mocker addresses the container itself. Use `host.docker.internal` or a shared docker network.
+
+## See also {: #see-also}
+
+- [Controller overview](../userInterfaces/mocker/configurationSections/controller/overview.md)
+- [Mocker Commands (Runner side)](../../qaas/userInterfaces/runner/configurationSections/sessions/types/mockerCommands.md)
+- [Multi-server routing](multi-server-routing.md)
+- [Stages — Canonical Recipes](../../qaas/advancedConcepts/stages.md#canonical-recipes)
+- [Hello-World HTTP](../../qaas/quickStart/helloWorldHttp.md)
+
+
+## Mocker — Multi-Server Routing
+
+Source: /mocker/authoring-guide/multi-server-routing/
+Type: how-to
+Applies to: mocker
+Summary: Expose multiple named HTTP servers from a single mocker process so a runner can target each one deterministically by name and instance.
+
+# Mocker — Multi-Server Routing
+
+> TL;DR — One mocker binary, multiple logical servers on different ports; each server owns its stubs and exposes a deterministic channel name so multiple runners can target specific servers without cross-talk.
+
+## When to use {: #when-to-use}
+
+- Your system-under-test calls several downstream services that you want to mock independently in one process.
+- You want each mock to have its own response shape, latency, and failure mode without spinning up three containers.
+- You need a worked example of the `Servers` (plural) YAML root and the channel-name convention.
+
+## YAML configuration {: #yaml}
+
+```yaml
+DataSources:
+  - Name: OrderResponses
+    Generator: FromFileSystem
+    GeneratorConfiguration:
+      DataArrangeOrder: AsciiAsc
+      FileSystem: { Path: Fixtures/orders }
+  - Name: PaymentResponses
+    Generator: FromFileSystem
+    GeneratorConfiguration:
+      DataArrangeOrder: AsciiAsc
+      FileSystem: { Path: Fixtures/payments }
+  - Name: CatalogResponses
+    Generator: FromFileSystem
+    GeneratorConfiguration:
+      DataArrangeOrder: AsciiAsc
+      FileSystem: { Path: Fixtures/catalog }
+
+Stubs:
+  - Name: OrdersStub
+    Processor: DataSourceResponse
+    DataSourceNames: [OrderResponses]
+    ProcessorConfiguration: { StatusCode: 200 }
+  - Name: PaymentsStub
+    Processor: DataSourceResponse
+    DataSourceNames: [PaymentResponses]
+    ProcessorConfiguration: { StatusCode: 200 }
+  - Name: CatalogStub
+    Processor: DataSourceResponse
+    DataSourceNames: [CatalogResponses]
+    ProcessorConfiguration: { StatusCode: 200 }
+
+Servers:
+  - Name: orders
+    InstanceName: primary
+    Http:
+      Port: 8081
+      IsLocalhost: false
+      Endpoints:
+        - Path: /orders/{id}
+          Actions:
+            - { Name: GetOrder,    Method: Get,  TransactionStubName: OrdersStub }
+        - Path: /orders
+          Actions:
+            - { Name: CreateOrder, Method: Post, TransactionStubName: OrdersStub }
+
+  - Name: payments
+    InstanceName: primary
+    Http:
+      Port: 8082
+      IsLocalhost: false
+      Endpoints:
+        - Path: /payments
+          Actions:
+            - { Name: Charge, Method: Post, TransactionStubName: PaymentsStub }
+
+  - Name: catalog
+    InstanceName: primary
+    Http:
+      Port: 8083
+      IsLocalhost: false
+      Endpoints:
+        - Path: /catalog/{sku}
+          Actions:
+            - { Name: GetItem, Method: Get, TransactionStubName: CatalogStub }
+```
+
+## C# (CAC) usage {: #csharp}
+
+No custom processor is required for pure routing. The mocker is fully YAML-driven once `Bootstrap` runs:
+
+```csharp
+QaaS.Mocker.Bootstrap.New(args).Run();
+```
+
+Add custom processors per stub when you need behaviour beyond `DataSourceResponse` — see [Processors — custom authoring guide](../../processors/custom-authoring-guide.md).
+
+## Minimal example {: #example-minimal}
+
+A single server with one endpoint, copied from one fixture file:
+
+```yaml
+DataSources:
+  - Name: OrderResponses
+    Generator: FromFileSystem
+    GeneratorConfiguration:
+      DataArrangeOrder: AsciiAsc
+      FileSystem: { Path: Fixtures/orders }
+Stubs:
+  - Name: OrdersStub
+    Processor: DataSourceResponse
+    DataSourceNames: [OrderResponses]
+    ProcessorConfiguration: { StatusCode: 200 }
+Servers:
+  - Name: orders
+    InstanceName: primary
+    Http:
+      Port: 8081
+      IsLocalhost: false
+      Endpoints:
+        - Path: /orders
+          Actions:
+            - { Name: CreateOrder, Method: Post, TransactionStubName: OrdersStub }
+```
+
+## Realistic example {: #example-realistic}
+
+Two instances of the same logical server (blue/green) on different ports, so runners can deliberately split traffic to test cutovers:
+
+```yaml
+Servers:
+  - Name: orders
+    InstanceName: blue
+    Http: { Port: 8081, IsLocalhost: false, Endpoints: [ ] }   # blue stubs here
+  - Name: orders
+    InstanceName: green
+    Http: { Port: 8181, IsLocalhost: false, Endpoints: [ ] }   # green stubs here
+```
+
+Runner A points at `http://localhost:8081` (instance `blue`); Runner B points at `:8181` (instance `green`). Both can run in parallel against the same mocker process without cross-contamination.
+
+## Edge cases {: #edge-cases}
+
+- `Server:` (singular) and `Servers:` (plural) are mutually exclusive. Use plural the moment you need more than one.
+- Ports must be unique across `Servers[*].Http.Port`; the mocker fails fast at startup if not.
+- `Name` is required when there is more than one server; the runner uses it to disambiguate channels.
+- `InstanceName` defaults to a deterministic value when omitted, but pinning it explicitly makes channel names predictable in CI logs.
+- `IsLocalhost: false` binds to `0.0.0.0` (reachable from sibling containers). Set `true` for laptop dev to stay on `127.0.0.1`.
+
+## See also {: #see-also}
+
+- [Mocker — Servers reference](../userInterfaces/mocker/configurationSections/server/overview.md)
+- [Mocker — Stubs reference](../userInterfaces/mocker/configurationSections/stubs/overview.md)
+- [Processors — custom authoring guide](../../processors/custom-authoring-guide.md)
+
+
+## Custom Probes — Authoring Guide
+
+Source: /probes/custom-authoring-guide/
+Type: how-to
+Applies to: probes, framework, runner
+Summary: Derive a custom probe from BaseProbe<TConfig> in QaaS.Framework.SDK and wire it into a session via the Probes block.
+
+# Custom Probes — Authoring Guide
+
+> TL;DR — A probe is an `IProbe` hook that runs inside a session, can read `SessionData` and `DataSources`, and produces no output payload. Derive `BaseProbe<TConfiguration>` and declare it in YAML under `Sessions[].Probes`.
+
+## When to use {: #when-to-use}
+
+- The built-in probe catalog (see [Available Probes](index.md)) does not cover the side effect you need.
+- You want to poll an external endpoint, mutate environment state, or perform a sanity check inside the session lifecycle.
+- You need to express a side effect that does not record interaction data.
+
+## YAML configuration {: #yaml}
+
+A probe slot lives inside a session and references the configured probe by name:
+
+```yaml
+Sessions:
+  - Name: Smoke
+    Probes:
+      - Name: WaitReady
+        Probe: WaitForHttpReady
+        ProbeConfiguration:
+          Url: http://127.0.0.1:8080/health
+          ReadyStatusCode: 200
+          BackpressureStatusCode: 503
+          TimeoutMs: 30000
+          IntervalMs: 500
+        Stage: 3
+```
+
+The fields `Name`, `Probe`, `ProbeConfiguration`, `Stage`, `DataSourceNames`, and `DataSourcePatterns` are documented in the [Probes section reference](../qaas/userInterfaces/runner/configurationSections/sessions/types/probes.md).
+
+## C# (CAC) usage {: #csharp}
+
+Derive `BaseProbe<TConfiguration>` from `QaaS.Framework.SDK.Hooks.Probe`. Override `Run(IImmutableList<SessionData>, IImmutableList<DataSource>)`. Use `Context.Logger` for diagnostics; throw on unrecoverable failure.
+
+```csharp
+using System.Collections.Immutable;
+using QaaS.Framework.SDK.DataSourceObjects;
+using QaaS.Framework.SDK.Hooks.Probe;
+using QaaS.Framework.SDK.Session.SessionDataObjects;
+
+public sealed record WaitForHttpReadyConfig;
+
+public sealed class WaitForHttpReady : BaseProbe<WaitForHttpReadyConfig>
+{
+    public override void Run(
+        IImmutableList<SessionData> sessionDataList,
+        IImmutableList<DataSource> dataSourceList)
+    {
+        // Side-effect work goes here. Throw to fail the probe.
+    }
+}
+```
+
+## Minimal example {: #example-minimal}
+
+```csharp
+public record PingConfig
+{
+    public string Url { get; set; } = default!;
+}
+
+public sealed class PingProbe : BaseProbe<PingConfig>
+{
+    public override void Run(
+        IImmutableList<SessionData> _,
+        IImmutableList<DataSource> __)
+    {
+        Context.Logger.LogInformation("Pinging {Url}", Configuration.Url);
+    }
+}
+```
+
+```yaml
+Sessions:
+  - Name: Ping
+    Probes:
+      - Name: Hello
+        Probe: PingProbe
+        ProbeConfiguration: { Url: http://127.0.0.1:8080/ }
+```
+
+## Realistic example {: #example-realistic}
+
+Polling an HTTP endpoint that reports `503` while warming up and `200` when ready. The probe retries with a fixed interval until the deadline, then throws.
+
+```csharp
+using System.Collections.Immutable;
+using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
+using QaaS.Framework.SDK.DataSourceObjects;
+using QaaS.Framework.SDK.Hooks.Probe;
+using QaaS.Framework.SDK.Session.SessionDataObjects;
+
+namespace MyTests.Probes;
+
+public record WaitForHttpReadyConfig
+{
+    [Description("Health URL to poll.")]
+    [Required, Url]
+    public string Url { get; set; } = default!;
+
+    [Description("Status code interpreted as READY."), DefaultValue(200)]
+    [Range(100, 599)]
+    public int ReadyStatusCode { get; set; } = 200;
+
+    [Description("Status code interpreted as transient backpressure."), DefaultValue(503)]
+    [Range(100, 599)]
+    public int BackpressureStatusCode { get; set; } = 503;
+
+    [Description("Maximum total wait time in milliseconds."), DefaultValue(60_000)]
+    [Range(100, int.MaxValue)]
+    public int TimeoutMs { get; set; } = 60_000;
+
+    [Description("Pause between attempts in milliseconds."), DefaultValue(500)]
+    [Range(50, 60_000)]
+    public int IntervalMs { get; set; } = 500;
+}
+
+public sealed class WaitForHttpReady : BaseProbe<WaitForHttpReadyConfig>
+{
+    private static readonly HttpClient Http = new() { Timeout = TimeSpan.FromSeconds(5) };
+
+    public override void Run(
+        IImmutableList<SessionData> sessionDataList,
+        IImmutableList<DataSource> dataSourceList)
+    {
+        var deadline = DateTime.UtcNow.AddMilliseconds(Configuration.TimeoutMs);
+        var attempts = 0;
+        var lastStatus = -1;
+
+        while (DateTime.UtcNow < deadline)
+        {
+            attempts++;
+            try
+            {
+                using var resp = Http.GetAsync(Configuration.Url).GetAwaiter().GetResult();
+                lastStatus = (int)resp.StatusCode;
+                Context.Logger.LogInformation(
+                    "WaitForHttpReady attempt={Attempt} status={Status}",
+                    attempts, lastStatus);
+
+                if (lastStatus == Configuration.ReadyStatusCode)
+                    return;
+
+                if (lastStatus != Configuration.BackpressureStatusCode)
+                    throw new InvalidOperationException(
+                        $"Unexpected status {lastStatus} from {Configuration.Url}; " +
+                        $"expected {Configuration.ReadyStatusCode} or {Configuration.BackpressureStatusCode}.");
+            }
+            catch (HttpRequestException ex)
+            {
+                Context.Logger.LogWarning(ex, "WaitForHttpReady transient error on attempt {Attempt}", attempts);
+            }
+
+            Thread.Sleep(Configuration.IntervalMs);
+        }
+
+        throw new TimeoutException(
+            $"Endpoint {Configuration.Url} did not return {Configuration.ReadyStatusCode} within " +
+            $"{Configuration.TimeoutMs}ms after {attempts} attempts (last status {lastStatus}).");
+    }
+}
+```
+
+Paired YAML:
+
+```yaml
+DataSources:
+  - Name: Inputs
+    Generator: FromFileSystem
+    GeneratorConfiguration:
+      DataArrangeOrder: AsciiAsc
+      FileSystem: { Path: TestData }
+
+Sessions:
+  - Name: HappyPath
+    Probes:
+      - Name: WaitReady
+        Probe: WaitForHttpReady
+        Stage: 1
+        ProbeConfiguration:
+          Url: http://127.0.0.1:8080/health
+          ReadyStatusCode: 200
+          BackpressureStatusCode: 503
+          TimeoutMs: 30000
+          IntervalMs: 500
+    Publishers:
+      - Name: Publisher
+        DataSourceNames: [Inputs]
+        Policies: [{ LoadBalance: { Rate: 5 } }]
+        Http:
+          Url: http://127.0.0.1:8080/data
+          Method: Get
+    Consumers:
+      - Name: Consumer
+        HttpResponseFrom: Publisher
+        Deserialize: { Deserializer: Json }
+
+Assertions:
+  - Name: Hermetic
+    Assertion: HermeticByInputOutputPercentage
+    SessionNames: [HappyPath]
+    AssertionConfiguration:
+      OutputNames: [Consumer]
+      InputNames: [Publisher]
+      ExpectedPercentage: 100
+```
+
+## Logging {: #logging}
+
+`Context.Logger` is a `Microsoft.Extensions.Logging.ILogger`. Use the standard structured-logging methods — `LogInformation`, `LogWarning`, `LogError`, `LogDebug` — with named placeholders. Source probes in `QaaS.Common.Probes` (`BaseOsUpdatePodsProbe`, `BaseRabbitMqManagementProbe`) follow this pattern.
+
+```csharp
+public sealed class LoggingProbe : BaseProbe<PingConfig>
+{
+    public override void Run(
+        IImmutableList<SessionData> sessionDataList,
+        IImmutableList<DataSource> dataSourceList)
+    {
+        var attempt = 1;
+        var ex = new HttpRequestException("Connection refused.");
+
+        Context.Logger.LogInformation("Probing {Url}", Configuration.Url);
+        Context.Logger.LogWarning(ex, "Transient failure on attempt {Attempt}", attempt);
+    }
+}
+```
+
+Do not call Serilog-style methods such as `Information(...)` or `Warning(...)`; they do not exist on `ILogger`.
+
+## Registration and discovery {: #registration}
+
+Custom probes are discovered by short type name. The runner scans referenced assemblies for types deriving from `BaseProbe<>`. To wire a probe in:
+
+1. Place the probe class in any namespace inside an assembly the runner loads (your test project, or a referenced library).
+2. Reference the assembly from the project that hosts your YAML.
+3. In YAML, set `Probe:` to the **simple type name** (e.g. `PingProbe`), not the fully-qualified name.
+
+```yaml
+Sessions:
+  - Name: Smoke
+    Probes:
+      - Name: HitHealth
+        Probe: PingProbe        # simple type name
+        ProbeConfiguration: { Url: http://127.0.0.1:8080/ }
+```
+
+Two types with the same simple name across assemblies will collide; rename one. Configuration validation (`[Required]`, `[Range]`, `[Url]`) runs before `Run` is invoked.
+
+## Retry and long-running probes {: #retry}
+
+Probes that loop with backoff are common (health checks, queue drains, eventual-consistency waits). Pattern:
+
+- Use `HttpClient.Send` (sync) inside `Run`. `Run` is not async; do not wrap it in `Task.Run`.
+- Use `Thread.Sleep` between attempts. Honor a configured total-deadline so the suite cannot hang.
+- Treat one status code as "ready", one as "transient backpressure". Any other status throws.
+- Log every attempt at `LogInformation` and every transient retry at `LogWarning`.
+
+The `WaitForHttpReady` example above is the canonical retry skeleton. For a stricter variant that distinguishes retry-budget exhaustion from total-time exhaustion, add a `MaxRetries` config field and check `attempt > MaxRetries || DateTime.UtcNow >= deadline` before sleeping.
+
+## Edge cases {: #edge-cases}
+
+- `IProbe.Run` is synchronous. Do not wrap it in `Task.Run` — the runner's iteration scheduler controls concurrency.
+- Reuse `HttpClient` statically. Creating one per `Run` call leaks sockets under load.
+- Unhandled exceptions from `Run` fail the probe, which fails the session and the suite. That is the intended way to surface "endpoint never became ready".
+- The `[Url]` data annotation rejects bare `localhost` at config-load time; provide a scheme.
+- Configuration is null before `LoadAndValidateConfiguration` runs. Never read `Configuration` in a constructor.
+
+## See also {: #see-also}
+
+- [Probes — Introduction](index.md)
+- [Probes — Available probes](availableProbes/UploadRabbitMqDefinitions/overview.md)
+- [Sessions — Probes type reference](../qaas/userInterfaces/runner/configurationSections/sessions/types/probes.md)
+
+
+## Custom Processors — Authoring Guide
+
+Source: /processors/custom-authoring-guide/
+Type: how-to
+Applies to: processors, framework, mocker
+Summary: Derive a custom transaction processor from BaseTransactionProcessor<TConfig> and wire it into a mocker stub.
+
+# Custom Processors — Authoring Guide
+
+> TL;DR — A processor inspects an inbound request and produces the response payload. Derive `BaseTransactionProcessor<TConfiguration>`, override `Process`, and reference it from a mocker `Stubs[].Processor` entry.
+
+## When to use {: #when-to-use}
+
+- The built-in processor catalog (see [Available Processors](index.md)) does not cover your transformation.
+- You need to mutate request bodies (redact, enrich, project) before the response is computed.
+- You need to read multiple data sources to assemble a response.
+
+## YAML configuration {: #yaml}
+
+A processor binding lives inside a mocker stub:
+
+```yaml
+Stubs:
+  - Name: SanitisedEcho
+    Processor: PiiRedactingEcho
+    ProcessorConfiguration:
+      RedactedFields: [email, phone, ssn]
+      Replacement: "***"
+      StatusCode: 200
+
+Servers:
+  - Http:
+      Port: 8080
+      Endpoints:
+        - Path: /users
+          Actions:
+            - Name: UpsertUser
+              Method: Post
+              TransactionStubName: SanitisedEcho
+```
+
+## C# (CAC) usage {: #csharp}
+
+Derive `BaseTransactionProcessor<TConfiguration>` from `QaaS.Framework.SDK.Hooks.Processor`. Override `Process(IImmutableList<DataSource>, Data<object>)`, return a new `Data<object>` whose `Body` is the bytes you want to send back.
+
+```csharp
+using System.Collections.Immutable;
+using QaaS.Framework.SDK.DataSourceObjects;
+using QaaS.Framework.SDK.Hooks.Processor;
+using QaaS.Framework.SDK.Session.DataObjects;
+
+public sealed record MyConfig;
+
+public sealed class MyProcessor : BaseTransactionProcessor<MyConfig>
+{
+    public override Data<object> Process(
+        IImmutableList<DataSource> dataSourceList,
+        Data<object> requestData)
+    {
+        // produce response bytes
+        return new Data<object> { Body = System.Text.Encoding.UTF8.GetBytes("{\"ok\":true}") };
+    }
+}
+```
+
+## Minimal example {: #example-minimal}
+
+```csharp
+public record EchoConfig { public int StatusCode { get; set; } = 200; }
+
+public sealed class Echo : BaseTransactionProcessor<EchoConfig>
+{
+    public override Data<object> Process(
+        IImmutableList<DataSource> _,
+        Data<object> requestData) => new() { Body = requestData.Body };
+}
+```
+
+## Realistic example {: #example-realistic}
+
+A processor that walks the request JSON, redacts configured property names (case-insensitive), and returns the sanitised body. The same configuration drives every endpoint that references the stub.
+
+```csharp
+using System.Collections.Immutable;
+using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
+using System.Text;
+using System.Text.Json.Nodes;
+using QaaS.Framework.SDK.DataSourceObjects;
+using QaaS.Framework.SDK.Hooks.Processor;
+using QaaS.Framework.SDK.Session.DataObjects;
+using QaaS.Framework.SDK.Session.MetaDataObjects;
+
+namespace MyMock.Processors;
+
+public record PiiRedactingEchoConfig
+{
+    [Description("Case-insensitive JSON property names to redact wherever they appear.")]
+    [Required, MinLength(1)]
+    public List<string> RedactedFields { get; set; } = new();
+
+    [Description("Replacement token written to the response."), DefaultValue("***")]
+    public string Replacement { get; set; } = "***";
+
+    [Description("HTTP status to return."), DefaultValue(200)]
+    [Range(100, 599)]
+    public int StatusCode { get; set; } = 200;
+}
+
+public class PiiRedactingEcho : BaseTransactionProcessor<PiiRedactingEchoConfig>
+{
+    public override Data<object> Process(
+        IImmutableList<DataSource> dataSourceList,
+        Data<object> requestData)
+    {
+        var raw = requestData.Body as byte[] ?? Array.Empty<byte>();
+        var json = raw.Length == 0 ? new JsonObject() : JsonNode.Parse(raw) ?? new JsonObject();
+
+        var fields = Configuration.RedactedFields
+            .Select(f => f.ToLowerInvariant())
+            .ToHashSet();
+
+        Redact(json, fields, Configuration.Replacement);
+
+        var sanitised = Encoding.UTF8.GetBytes(json.ToJsonString());
+
+        return new Data<object>
+        {
+            Body = sanitised,
+            MetaData = new MetaData
+            {
+                Http = new Http
+                {
+                    StatusCode = Configuration.StatusCode,
+                    ResponseHeaders = new Dictionary<string, string>
+                    {
+                        ["Content-Type"] = "application/json",
+                        ["X-Redacted-Field-Count"] = fields.Count.ToString(),
+                    },
+                },
+            },
+        };
+    }
+
+    private static void Redact(JsonNode? node, HashSet<string> fields, string replacement)
+    {
+        switch (node)
+        {
+            case JsonObject obj:
+                foreach (var key in obj.Select(kv => kv.Key).ToList())
+                {
+                    if (fields.Contains(key.ToLowerInvariant()))
+                        obj[key] = replacement;
+                    else
+                        Redact(obj[key], fields, replacement);
+                }
+                break;
+            case JsonArray arr:
+                for (var i = 0; i < arr.Count; i++)
+                    Redact(arr[i], fields, replacement);
+                break;
+        }
+    }
+}
+```
+
+Mocker YAML:
+
+```yaml
+Stubs:
+  - Name: SanitisedEcho
+    Processor: PiiRedactingEcho
+    ProcessorConfiguration:
+      RedactedFields: [email, phone, ssn, nationalId]
+      Replacement: "***"
+      StatusCode: 200
+
+Servers:
+  - Http:
+      Port: 8080
+      IsLocalhost: false
+      Endpoints:
+        - Path: /users
+          Actions:
+            - Name: UpsertUser
+              Method: Post
+              TransactionStubName: SanitisedEcho
+```
+
+After the round-trip a request body of
+
+```json
+{ "id": 42, "email": "alice@example.com", "phone": "+1-555-0142", "profile": { "ssn": "123-45-6789", "nickname": "ali" } }
+```
+
+is rewritten to
+
+```json
+{ "id": 42, "email": "***", "phone": "***", "profile": { "ssn": "***", "nickname": "ali" } }
+```
+
+## Registration and discovery {: #registration}
+
+Custom processors are discovered by short type name. The mocker scans referenced assemblies for types deriving from `BaseProcessor<>`. To wire one in:
+
+1. Place the class in any namespace inside an assembly the mocker host loads (your mocker project, or a referenced library).
+2. Reference the assembly from the project that hosts the mocker YAML — a project reference or a NuGet package both work.
+3. In YAML, set `Processor:` to the **simple type name** (e.g. `PiiRedactingEcho`), not the fully-qualified name.
+
+```yaml
+Stubs:
+  - Name: SanitisedEcho
+    Processor: PiiRedactingEcho      # simple type name
+```
+
+Two processors with the same simple name across assemblies will collide; rename one. The mocker only discovers types whose assembly is already loaded in its `AppDomain` — a transitive dependency that nothing references will not be visible. Data annotations on `TConfiguration` (`[Required]`, `[Range]`) are validated before `Process` runs.
+
+After adding or renaming a custom processor, regenerate the mocker schema so editors pick up the new enum value. See [Schema extensions](../qaas/userInterfaces/runner/schema-extensions.md) for the regeneration command and the `bin/` cache flush.
+
+## Edge cases {: #edge-cases}
+
+- Non-JSON payloads raise on `JsonNode.Parse`. Wrap in `try/catch` and return the body unchanged if you need a tolerant variant.
+- Field matching is case-insensitive on the property name; recursion handles nested paths automatically.
+- `Body` is `byte[]`, not `string`. Encode with UTF-8 explicitly.
+- The processor instance is shared across in-flight requests. Do not hold per-request state in fields.
+- Custom response headers belong in `MetaData.Http.ResponseHeaders`; the mocker emits them verbatim.
+
+## See also {: #see-also}
+
+- [Processors — Introduction](index.md)
+- [Mocker — Stubs reference](../mocker/userInterfaces/mocker/configurationSections/stubs/overview.md)
+- [Mocker — Servers reference](../mocker/userInterfaces/mocker/configurationSections/server/overview.md)
+
+
+## Action Selection Playbook
+
+Source: /qaas/quickStart/actionSelectionPlaybook/
+Type: how-to
+Applies to: runner, mocker
+Summary: Choose Runner action types, name evidence consistently, and combine Runner with Mocker for repeatable tests.
+
+# Action Selection Playbook
+
+> TL;DR — Pick the action by the evidence it must create: publishers create inputs, consumers create outputs, transactions create both, collectors create time-window outputs, probes prepare infrastructure, and mocker commands control mock behavior.
+
+Use this page before writing a new Runner session. It maps a test intent to the
+smallest action type that proves it, then shows naming and YAML patterns that
+keep reports, assertions, and Mocker captures readable.
+
+## Action Selection Matrix {: #action-selection-matrix}
+
+| Intent | Use | SessionData result | Typical assertion input |
+|---|---|---|---|
+| Send an event, message, file, or row and verify it downstream | [Publisher](../userInterfaces/runner/configurationSections/sessions/types/publishers.md) | `Input` named after the publisher | Compare the publisher input with a later consumer output |
+| Read from a broker, table, bucket, index, socket, or queue | [Consumer](../userInterfaces/runner/configurationSections/sessions/types/consumers.md) | `Output` named after the consumer | Validate count, schema, content, or latency |
+| Call request/response protocols such as HTTP or gRPC | [Transaction](../userInterfaces/runner/configurationSections/sessions/types/transactions.md) | `Input` and `Output` named after the transaction | Validate status, response body, headers, or schema |
+| Query observability after a time window | [Collector](../userInterfaces/runner/configurationSections/sessions/types/collectors.md) | `Output` named after the collector | Validate metric values for the run window |
+| Prepare or clean test infrastructure | [Probe](../userInterfaces/runner/configurationSections/sessions/types/probes.md) | No interaction data | Check later actions against the prepared state |
+| Change, trigger, or consume Mocker behavior from Runner | [Mocker Command](../userInterfaces/runner/configurationSections/sessions/types/mockerCommands.md) | Depends on command; `Consume` can create `Input` and `Output` | Validate captured mock traffic or selected stub behavior |
+
+## Naming Contract {: #naming-contract}
+
+Names are the join keys between YAML, session data, reports, and assertions.
+Prefer names that describe the business step and the protocol role:
+
+```yaml
+Sessions:
+  - Name: CreateOrderFlow
+    Transactions:
+      - Name: HttpCreateOrder
+        TimeoutMs: 5000
+        Http:
+          BaseAddress: http://127.0.0.1
+          Port: 8080
+          Route: /orders
+          Method: Post
+    Consumers:
+      - Name: KafkaOrderProjected
+        TimeoutMs: 10000
+        KafkaTopic:
+          HostNames: [broker.local:9092]
+          Username: qaas
+          Password: qaas
+          TopicName: orders.projected
+          GroupId: qaas-orders-projection
+    Collectors:
+      - Name: PrometheusOrderLatency
+        Prometheus:
+          Url: http://prometheus.local:9090
+          Expression: qaas_order_projection_latency_seconds
+```
+
+Keep these rules:
+
+- One action name represents one proof point.
+- Assertion `OutputName` or `InputName` values must match the action name.
+- Publisher and transaction names should include the verb.
+- Consumer and collector names should include the observed state.
+- Mocker command names should include the mock action or capture they control.
+
+## HTTP Transaction Pattern {: #http-transaction-pattern}
+
+Use a transaction when the test sends a request and the response is evidence.
+
+```yaml
+MetaData:
+  Team: Payments
+  System: OrdersApi
+
+Storages:
+  - Name: LocalSessions
+    StorageConfiguration:
+      Type: Local
+      Path: ./session-data
+
+Sessions:
+  - Name: CreateOrderHttp
+    Transactions:
+      - Name: HttpCreateOrder
+        TimeoutMs: 5000
+        Http:
+          BaseAddress: http://127.0.0.1
+          Port: 8080
+          Route: /orders
+          Method: Post
+
+Assertions:
+  - Name: CreateOrderReturnedCreated
+    Assertion: HttpStatus
+    SessionNames: [CreateOrderHttp]
+    AssertionConfiguration:
+      OutputName: HttpCreateOrder
+      ExpectedStatus: 201
+```
+
+Evidence created:
+
+- `CreateOrderHttp.Inputs.HttpCreateOrder` stores the sent request item.
+- `CreateOrderHttp.Outputs.HttpCreateOrder` stores the response.
+- The assertion reads `OutputName: HttpCreateOrder`.
+
+## Publish Then Consume Pattern {: #publish-then-consume-pattern}
+
+Use a publisher plus a consumer when the system is asynchronous. The publisher
+proves what was sent. The consumer proves what the system emitted later.
+
+```yaml
+MetaData:
+  Team: Payments
+  System: OrdersProjection
+
+Storages:
+  - Name: LocalSessions
+    StorageConfiguration:
+      Type: Local
+      Path: ./session-data
+
+Sessions:
+  - Name: OrderProjectionFlow
+    Publishers:
+      - Name: PublishOrderCreated
+        TimeoutMs: 5000
+        KafkaTopic:
+          HostNames: [broker.local:9092]
+          Username: qaas
+          Password: qaas
+          TopicName: orders.created
+    Consumers:
+      - Name: ConsumeProjectedOrder
+        TimeoutMs: 10000
+        KafkaTopic:
+          HostNames: [broker.local:9092]
+          Username: qaas
+          Password: qaas
+          TopicName: orders.projected
+          GroupId: qaas-orders-projection
+
+Assertions:
+  - Name: ProjectedOrderHasExpectedShape
+    Assertion: JsonSchema
+    SessionNames: [OrderProjectionFlow]
+    AssertionConfiguration:
+      OutputName: ConsumeProjectedOrder
+      SchemaPath: ./schemas/projected-order.schema.json
+```
+
+Review checklist:
+
+- Publisher and consumer use different names.
+- The consumer timeout is long enough for the asynchronous hop.
+- The assertion reads the consumer output, not the publisher input.
+- A separate content assertion can compare fields from `PublishOrderCreated`
+  and `ConsumeProjectedOrder` when the projection must preserve data.
+
+## Mocker Control Pattern {: #mocker-control-pattern}
+
+Use Mocker commands when the test must change a dependency during the run or
+consume traffic captured by the mock server.
+
+```yaml
+Sessions:
+  - Name: DependencyBehaviorFlow
+    MockerCommands:
+      - Name: SwitchPaymentStub
+        ServerName: PaymentsMock
+        Redis:
+          Host: redis.local
+          Username: qaas
+          Password: qaas
+        Command:
+          Type: ChangeActionStub
+          ChangeActionStub:
+            ActionName: AuthorizePayment
+            StubName: PaymentApproved
+      - Name: ConsumePaymentCapture
+        ServerName: PaymentsMock
+        Redis:
+          Host: redis.local
+          Username: qaas
+          Password: qaas
+        Command:
+          Type: Consume
+          Consume:
+            ActionName: AuthorizePayment
+            TimeoutMs: 5000
+```
+
+Review checklist:
+
+- `ServerName` matches the Mocker controller server name.
+- `ChangeActionStub` runs before the system-under-test calls the dependency.
+- `Consume` runs after the call and stores captured mock traffic.
+- Tests that depend on captured mock traffic assert against the consume action
+  name, not the stub name.
+
+## Time-Window Observation Pattern {: #time-window-observation-pattern}
+
+Use a collector when pass/fail depends on telemetry emitted during the test
+window.
+
+```yaml
+Sessions:
+  - Name: LatencyObservationFlow
+    Transactions:
+      - Name: HttpCreateOrder
+        TimeoutMs: 5000
+        Http:
+          BaseAddress: http://127.0.0.1
+          Port: 8080
+          Route: /orders
+          Method: Post
+    Collectors:
+      - Name: PrometheusOrderLatency
+        Prometheus:
+          Url: http://prometheus.local:9090
+          Expression: qaas_order_create_duration_seconds
+```
+
+Review checklist:
+
+- The transaction name identifies the action that caused the telemetry.
+- The collector name identifies the metric family or observation purpose.
+- The collector query uses labels that are stable for the test run.
+- Assertions read the collector output and do not infer telemetry from logs.
+
+## Common Mistakes {: #common-mistakes}
+
+| Mistake | Result | Fix |
+|---|---|---|
+| Using a publisher for request/response HTTP | No response output to assert | Use a transaction |
+| Using a consumer to prepare a queue | The test reads instead of preparing state | Use a probe or fixture setup |
+| Reusing the same name across actions | Assertions and report attachments become ambiguous | Use one unique name per proof point |
+| Asserting on a publisher when the system is asynchronous | The test proves send only, not processing | Add a consumer or collector |
+| Putting Mocker setup outside the session evidence path | The report does not show which stub was active | Use Mocker commands in the session |
+
+## See also {: #see-also}
+
+- [Sessions overview](../userInterfaces/runner/configurationSections/sessions/overview.md)
+- [Publishers](../userInterfaces/runner/configurationSections/sessions/types/publishers.md)
+- [Consumers](../userInterfaces/runner/configurationSections/sessions/types/consumers.md)
+- [Transactions](../userInterfaces/runner/configurationSections/sessions/types/transactions.md)
+- [Collectors](../userInterfaces/runner/configurationSections/sessions/types/collectors.md)
+- [Probes](../userInterfaces/runner/configurationSections/sessions/types/probes.md)
+- [Mocker commands](../userInterfaces/runner/configurationSections/sessions/types/mockerCommands.md)
+- [Debug test failure](debugTestFailure.md)
+
+
+## Hello-World HTTP Test
+
+Source: /qaas/quickStart/helloWorldHttp/
+Type: how-to
+Applies to: runner, mocker
+Summary: Smallest end-to-end QaaS recipe: a runner test against a mocker stub that returns HTTP 200 on /hello, with act/assert replay for fast iteration.
+
+# Hello-World HTTP Test
+
+> TL;DR — Build a smallest end-to-end Runner plus Mocker HTTP smoke test that returns HTTP 200 on `/hello`.
+
+The smallest end-to-end QaaS scenario: a Runner test that calls an HTTP endpoint exposed by a Mocker stub. Useful as a smoke check and as the seed for the [`act`](../userInterfaces/runner/commands/act.md) / [`assert`](../userInterfaces/runner/commands/assert.md) replay workflow.
+
+## TL;DR {: #tldr}
+
+> Two YAML files (`hello.qaas.yaml`, `hello.mocker.yaml`), no custom code, three commands: start the mocker, run the test, replay the assertions against captured data.
+
+## When to use {: #when-to-use}
+
+- You want a working baseline before introducing custom assertions, generators, or processors.
+- You want a minimal repro to attach to a bug report.
+- You want a small target to demonstrate the [`act`](../userInterfaces/runner/commands/act.md) / [`assert`](../userInterfaces/runner/commands/assert.md) split.
+
+## Prerequisites {: #prerequisites}
+
+- .NET SDK 10 installed.
+- Two checked-out projects: a Runner host and a Mocker host (see [Installation](installation.md)).
+
+## Mocker YAML {: #mocker-yaml}
+
+```yaml
+# hello.mocker.yaml
+Servers:
+  - Http:
+      Port: 8080
+      Endpoints:
+        - Path: /hello
+          Actions:
+            - Name: HelloOk
+              Method: Get
+              TransactionStubName: HelloStub
+
+Stubs:
+  - Name: HelloStub
+    Processor: StaticResponseProcessor
+    TransactionData:
+      MetaData:
+        Http:
+          StatusCode: 200
+      Body: "hello"
+```
+
+Start the mocker:
+
+```bash
+dotnet run --project Mocker -- run hello.mocker.yaml
+```
+
+## Runner YAML {: #runner-yaml}
+
+```yaml
+# hello.qaas.yaml
+MetaData:
+  Team: Smoke
+  System: HelloWorld
+
+Storages:
+  - Name: LocalSessions
+    StorageConfiguration:
+      Type: Local
+      Path: ./session-data
+
+Sessions:
+  - Name: HelloSession
+    Transactions:
+      - Name: CallHello
+        TimeoutMs: 5000
+        Http:
+          BaseAddress: http://127.0.0.1
+          Port: 8080
+          Route: /hello
+          Method: Get
+
+Assertions:
+  - Name: ReturnedOk
+    Assertion: HttpStatus
+    SessionNames: [HelloSession]
+    AssertionConfiguration:
+      OutputName: CallHello
+      ExpectedStatus: 200
+```
+
+## End-to-end run {: #end-to-end-run}
+
+```bash
+dotnet run --project Runner -- run hello.qaas.yaml
+```
+
+Expected: exit `0`, one green session, one green assertion in `allure-results/`.
+
+## Act / assert replay {: #act-assert-replay}
+
+Once the run is green, split the same scenario for fast iteration on assertions:
+
+```bash
+# 1. Capture once: run the transaction, persist session data under ./session-data.
+dotnet run --project Runner -- act hello.qaas.yaml
+
+# 2. Replay the assertions against captured data. No HTTP call is made.
+dotnet run --project Runner -- assert hello.qaas.yaml
+```
+
+Repeat step 2 as you iterate on assertion configuration; step 1 only needs to re-run when the transaction or system-under-test changes. See [Debug test failure](debugTestFailure.md) for how to interpret a passing-`act` / failing-`assert` outcome.
+
+## Edge cases {: #edge-cases}
+
+- The mocker must be running before `act` or `run`; the transaction does not wait for readiness on its own. Add a [`Probe`](../userInterfaces/runner/configurationSections/sessions/types/probes.md) (`PingProbe` against `/hello`) at stage `0` if your launch order is flaky.
+- `StorageConfiguration.Path` is relative to the runner's working directory at the time of `act`. `assert` must run from the same working directory or the captured data will not be found.
+- `OutputName` on the assertion matches the transaction's `Name`.
+
+## See also {: #see-also}
+
+- [Run a test](runTest.md)
+- [Debug test failure](debugTestFailure.md)
+- [`act` command](../userInterfaces/runner/commands/act.md)
+- [`assert` command](../userInterfaces/runner/commands/assert.md)
+- [Storages overview](../userInterfaces/runner/configurationSections/storages/overview.md)
+
+
+## Runner — YAML Schema Extensions
+
+Source: /qaas/userInterfaces/runner/schema-extensions/
+Type: how-to
+Applies to: runner, framework, jsonschema
+Summary: Register a new plugin family with QaaS.JsonSchemaExtensions by tagging the base with [JsonSchema] and emitting AnyOfSchemaOption discriminators, then regenerate the runner schema.
+
+# Runner — YAML Schema Extensions
+
+> TL;DR — Tag the base of your plugin family with `[JsonSchema]`, expose an `IReadOnlyList<AnyOfSchemaOption>` discriminator, and re-run the schema generator. The runner's YAML editor and runtime validation pick up the new family immediately.
+
+## When to use {: #when-to-use}
+
+- You authored a new plugin family (a new assertion / generator / probe / processor base) and want IDE autocomplete plus runtime validation for its YAML.
+- You want to add a custom discriminator value to an existing `anyOf` keyword.
+- You need to understand the relationship between `[JsonSchema]`, `AnyOfSchemaOption`, and the schemas the runner downloads at startup.
+
+## YAML configuration {: #yaml}
+
+The generated schema is referenced from your test YAML via the `# yaml-language-server: $schema=...` comment so IDEs pick it up:
+
+```yaml
+# yaml-language-server: $schema=./schemas/runner.schema.json
+
+MetaData:
+  Team: Smoke
+  System: SchemaDemo
+
+Assertions:
+  - Name: PayloadSize
+    Assertion: HasMinimumPayloadSize   # value validated against the anyOf enum
+    AssertionConfiguration:
+      MinimumBytes: 1024
+```
+
+The runner loads the schema at startup; unknown enum values fail with a precise message such as `value 'XYZAssertion' not in [HttpStatus, ObjectOutputJsonSchema, ...]`.
+
+## C# (CAC) usage {: #csharp}
+
+### Tag the base {: #tag-the-base}
+
+Every QaaS extension-point base type carries `[JsonSchema]`. The generator reflects on assemblies, collects types decorated this way, and produces one schema per concrete subclass:
+
+```csharp
+using System.Collections.Immutable;
+using QaaS.JsonSchemaExtensions;
+using QaaS.Framework.SDK.DataSourceObjects;
+using QaaS.Framework.SDK.Hooks.Assertion;
+using QaaS.Framework.SDK.Session.SessionDataObjects;
+
+[JsonSchema]
+public abstract class BaseAssertion<TConfiguration> : IAssertion
+    where TConfiguration : new()
+{
+    public TConfiguration Configuration { get; set; } = default!;
+    public string Name { get; set; } = default!;
+    public string AssertionMessage { get; protected set; } = string.Empty;
+    public string AssertionTrace { get; protected set; } = string.Empty;
+
+    public abstract bool Assert(
+        IImmutableList<SessionData> sessionData,
+        IImmutableList<DataSource> dataSources);
+}
+```
+
+### Register the discriminator {: #register-the-discriminator}
+
+Each plugin family that participates in YAML `anyOf` exposes its options through `AnyOfSchemaOption`:
+
+```csharp
+using QaaS.JsonSchemaExtensions;
+
+namespace MyAssertions;
+
+public record HasMinimumPayloadSizeConfig;
+
+public record HasExpectedStatusConfig;
+
+public static class AssertionSchemaOptions
+{
+    public static readonly IReadOnlyList<AnyOfSchemaOption> All = new[]
+    {
+        new AnyOfSchemaOption(
+            EnumOption: "HasMinimumPayloadSize",
+            ConfigurationType: typeof(HasMinimumPayloadSizeConfig),
+            Title: "Has minimum payload size",
+            Description: "Checks every selected output payload size."),
+
+        new AnyOfSchemaOption(
+            EnumOption: "HasExpectedStatus",
+            ConfigurationType: typeof(HasExpectedStatusConfig),
+            Title: "Has expected status",
+            Description: "Checks every selected output status code."),
+    };
+}
+```
+
+`AnyOfSchemaOption` is a sealed record:
+
+```csharp
+public sealed record AnyOfSchemaOption(
+    string EnumOption,
+    Type ConfigurationType,
+    string Title,
+    string? Description);
+```
+
+## Minimal example {: #example-minimal}
+
+Project tree for an external schema-extension package:
+
+```text
+MySchemaExtensions/
+└─ MySchemaExtensions/
+   ├─ MySchemaExtensions.csproj
+   ├─ AssertionSchemaOptions.cs
+   ├─ HasMinimumPayloadSizeConfig.cs
+   └─ HasExpectedStatusConfig.cs
+```
+
+`HasMinimumPayloadSizeConfig.cs`:
+
+```csharp
+using System.ComponentModel;
+
+namespace MyAssertions;
+
+public record HasMinimumPayloadSizeConfig
+{
+    [Description("Minimum payload size in bytes."), DefaultValue(1024)]
+    public int MinimumBytes { get; set; } = 1024;
+}
+```
+
+## Realistic example {: #example-realistic}
+
+A production schema-extension package usually:
+
+1. Ships the `[JsonSchema]`-decorated bases as NuGet.
+2. Provides a `SchemaTargets.json` listing the assemblies the generator must load.
+3. Runs the schema generator in CI, diffs the output against checked-in schemas, and fails the build on drift.
+
+`SchemaTargets.json`:
+
+```json
+{
+  "assemblies": [
+    "MyAssertions.dll"
+  ],
+  "outputDirectory": "schemas",
+  "discoveryMode": "AllPublicTypes"
+}
+```
+
+CI fragment:
+
+```yaml
+- name: Regenerate schemas
+  run: |
+    dotnet run --project D:/QaaS/QaaS.JsonSchemaExtensions/QaaS.SchemaGenerator -- \
+      --targets ./SchemaTargets.json --output ./schemas
+    git diff --exit-code schemas/
+```
+
+## Edge cases {: #edge-cases}
+
+- `AnyOfSchemaOption.EnumOption` must be unique across all options in the same family. Duplicates produce a malformed schema (last one wins).
+- `ConfigurationType` must be a parameterless-constructible record or class — the generator instantiates it to walk its properties.
+- `[JsonSchema]` on the base is required even if every subclass is also tagged; discovery walks the inheritance chain from the base.
+- Schemas are not regenerated by `dotnet build`. They are produced by `QaaS.SchemaGenerator` and checked in. Forgetting to re-run it is the most common cause of "the runner says my new enum value is unknown".
+- The runner caches schemas under the build output. After regenerating, clean `bin/` to force a reload.
+
+## See also {: #see-also}
+
+- [Runner — configuration sections](configurationSections/configurationSections.md)
+- [Runner — configuration resolution priority](configurationResolutionPriority.md)
+- [Assertions — custom authoring guide](../../../assertions/custom-authoring-guide.md)
