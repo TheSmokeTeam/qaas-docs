@@ -27,6 +27,7 @@ Each category page keeps the table of contents focused on short function names a
 - [Mocker Commands](builders/mocker-commands.md)
 - [Probes](builders/probes.md)
 - [Publishers](builders/publishers.md)
+- [Reporters](builders/reporters.md)
 - [Sessions](builders/sessions.md)
 - [Storages](builders/storages.md)
 - [Transactions](builders/transactions.md)

@@ -51,8 +51,8 @@ The table below mirrors the schema used by the YAML scaffold page. Nested rows u
 | `Assertions[].Links[].Grafana.Url` | `string` | &#10004 |  | The grafana's url, the base url without any route |
 | `Assertions[].Links[].Grafana.Variables` | `list or string` | &#10006 |  | The variables to display the dashboard with |
 | `Assertions[].Links[].Grafana.Variables[]` | `object or string` | &#10006 |  |  |
-| `Assertions[].Links[].Grafana.Variables[].Key` | `string` | &#10006 |  |  |
-| `Assertions[].Links[].Grafana.Variables[].Value` | `string` | &#10006 |  |  |
+| `Assertions[].Links[].Grafana.Variables[].Key` | `string` | &#10004 |  |  |
+| `Assertions[].Links[].Grafana.Variables[].Value` | `string` | &#10004 |  |  |
 | `Assertions[].Links[].Kibana` | `object or string` | &#10006 |  | Links the kibana's discovery filtered for the test's session times to each test result. |
 | `Assertions[].Links[].Kibana.DataViewId` | `string` | &#10004 |  | The Id of the desired data view to view |
 | `Assertions[].Links[].Kibana.Url` | `string` | &#10004 |  | The kibana's url, the base url without any route |

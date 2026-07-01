@@ -12840,6 +12840,10 @@
                           "string"
                         ],
                         "pattern": "\\$\\{.*\\}",
+                        "required": [
+                          "Key",
+                          "Value"
+                        ],
                         "properties": {
                           "Key": {
                             "type": "string"
@@ -14016,6 +14020,10 @@
                     "string"
                   ],
                   "pattern": "\\$\\{.*\\}",
+                  "required": [
+                    "Key",
+                    "Value"
+                  ],
                   "properties": {
                     "Key": {
                       "type": "string"
@@ -14065,6 +14073,140 @@
           ],
           "description": "Extra labels added by the user",
           "pattern": "\\$\\{.*\\}"
+        }
+      }
+    },
+    "Reporters": {
+      "type": [
+        "object",
+        "string"
+      ],
+      "description": "The reporters which being used to report the test results. This section is not required, and if not set defualt values will be used.",
+      "pattern": "\\$\\{.*\\}",
+      "properties": {
+        "SaveLogs": {
+          "type": [
+            "boolean",
+            "null",
+            "string"
+          ],
+          "description": "Whether to save the session logs belonging to the assertions in the test report. If not set, each assertion will determine whether to save them.",
+          "pattern": "\\$\\{.*\\}"
+        },
+        "SaveAttachments": {
+          "type": [
+            "boolean",
+            "null",
+            "string"
+          ],
+          "description": "Whether to save the attachments belonging to the assertions in the test report. If not set, each assertion will determine whether to save them.",
+          "pattern": "\\$\\{.*\\}"
+        },
+        "SaveTemplate": {
+          "type": [
+            "boolean",
+            "null",
+            "string"
+          ],
+          "description": "Whether to save the configuration template belonging to the assertions in the test report. If not set, each assertion will determine whether to save it.",
+          "pattern": "\\$\\{.*\\}"
+        },
+        "SaveSessionData": {
+          "type": [
+            "boolean",
+            "null",
+            "string"
+          ],
+          "description": "Whether to save the session data belonging to the assertions in the test report. If not set, each assertion will determine whether to save it.",
+          "pattern": "\\$\\{.*\\}"
+        },
+        "DisplayTrace": {
+          "type": [
+            "boolean",
+            "null",
+            "string"
+          ],
+          "description": "Whether to display the assertion message trace in the assertions results. If not set, each assertion will determine whether to display it.",
+          "pattern": "\\$\\{.*\\}"
+        },
+        "ReportPortal": {
+          "type": [
+            "object",
+            "string"
+          ],
+          "description": "ReportPortal configuration to use for this reporter. If not set, the default ReportPortal configuration will be used.",
+          "pattern": "\\$\\{.*\\}",
+          "properties": {
+            "Enabled": {
+              "type": [
+                "boolean",
+                "null",
+                "string"
+              ],
+              "description": "Whether to enable ReportPortal reporting",
+              "default": "QaaS.Configuration defaults",
+              "pattern": "\\$\\{.*\\}"
+            },
+            "Endpoint": {
+              "type": [
+                "null",
+                "string"
+              ],
+              "description": "ReportPortal endpoint URI. Accepts either the gateway URL or the API URL and normalizes it to /api/. Defaults to the global API URL.",
+              "default": "Global URL in QaaS.Configuration"
+            },
+            "Project": {
+              "type": [
+                "null",
+                "string"
+              ],
+              "description": "ReportPortal project where the launch will be published. Default is MetaData.Team value.",
+              "default": "MetaData.Team value"
+            },
+            "ApiKey": {
+              "type": [
+                "null",
+                "string"
+              ],
+              "description": "ReportPortal API key used for publishing. Defaults to the global API key.",
+              "default": "Global API key in QaaS.Configuration"
+            },
+            "LaunchName": {
+              "type": [
+                "null",
+                "string"
+              ],
+              "description": "Optional launch name override.",
+              "default": "Generated according MetaData.Team, MetaData.System and the session occured"
+            },
+            "Description": {
+              "type": [
+                "null",
+                "string"
+              ],
+              "description": "Optional launch description override.",
+              "default": "Default QaaS description"
+            },
+            "DebugMode": {
+              "type": [
+                "boolean",
+                "null",
+                "string"
+              ],
+              "description": "Whether to create the launch in debug mode.",
+              "default": false,
+              "pattern": "\\$\\{.*\\}"
+            },
+            "Attributes": {
+              "type": [
+                "null",
+                "object",
+                "string"
+              ],
+              "description": "Static launch attributes to add to every launch in addition to the default QaaS team/system/session/source attributes.",
+              "pattern": "\\$\\{.*\\}"
+            }
+          }
         }
       }
     }
