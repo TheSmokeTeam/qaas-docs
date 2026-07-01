@@ -1,19 +1,19 @@
 ---
-id: qaas.functions.builders.reporters.sections.general
+id: qaas.functions.builders.executions.sections.reporters
 type: reference
 status: stable
 since: 2.0.0
 last_verified: 2026-05-27
 applies_to: [runner]
 keywords: [runner, reference]
-summary: "Reference page for Reporters: General."
+summary: "Reference page for Executions: Reporters."
 ---
 
-<!-- Verified-against: QaaS.Runner\QaaS.Runner.Assertions\ConfigurationObjects\ReporterBuilder.cs -->
+<!-- Verified-against: QaaS.Runner\QaaS.Runner\ExecutionBuilder.cs -->
 
-# Reporters: General
+# Executions: Reporters
 
-> TL;DR — This page mirrors the `General` section from [Reporters](../reporters.md) as a focused reference.
+> TL;DR — This page mirrors the `Reporters` section from [Executions](../executions.md) as a focused reference.
 
 ## When to use {: #when-to-use}
 
@@ -21,26 +21,26 @@ Use this page when you need the focused member list, signatures, and source note
 
 ## C# (CAC) usage {: #c-cac-usage}
 
-### `ConfigureReportPortal` {: #configurereportportal}
+### `UpdateReporters` {: #updatereporters}
 
 ??? info "Source file, signature, and docstring"
     **Member**
-    `ReporterBuilder.ConfigureReportPortal(ReportPortalConfig reportPortalConfig)`
+    `ExecutionBuilder.UpdateReporters(ReporterBuilder reporterBuilder)`
     
     **Kind** `function`
     
-    **Declaring Type** `ReporterBuilder`
+    **Declaring Type** `ExecutionBuilder`
     
-    **Source File** `QaaS.Runner.Assertions/ConfigurationObjects/ReporterBuilder.cs`
+    **Source File** `QaaS.Runner/ExecutionBuilder.cs`
     
     **Signature**
     ```csharp
-    public ReporterBuilder ConfigureReportPortal(ReportPortalConfig reportPortalConfig)
+    public ExecutionBuilder UpdateReporters(ReporterBuilder reporterBuilder)
     ```
     
     **Docstring**
     
-    Sets the ReportPortal configuration used when creating a ReportPortal reporter.
+    Updates the reporter configuration stored on the current Runner execution builder instance.
 
 ## Edge cases {: #edge-cases}
 
@@ -49,4 +49,4 @@ Use this page when you need the focused member list, signatures, and source note
 
 ## See also {: #see-also}
 
-- [Reporters](../reporters.md)
+- [Executions](../executions.md)

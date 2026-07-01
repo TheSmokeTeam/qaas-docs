@@ -63,6 +63,27 @@ Use this page when you need the focused member list, signatures, and source note
     
     Configures whether assertion attachments are saved with reporter results.
 
+### `ShouldSaveTemplate` {: #shouldsavetemplate}
+
+??? info "Source file, signature, and docstring"
+    **Member**
+    `ReporterBuilder.ShouldSaveTemplate(bool shouldSaveTemplate)`
+    
+    **Kind** `function`
+    
+    **Declaring Type** `ReporterBuilder`
+    
+    **Source File** `QaaS.Runner.Assertions/ConfigurationObjects/ReporterBuilder.cs`
+    
+    **Signature**
+    ```csharp
+    public ReporterBuilder ShouldSaveTemplate(bool shouldSaveTemplate)
+    ```
+    
+    **Docstring**
+    
+    Configures whether the rendered assertion configuration template is saved with reporter results.
+
 ### `ShouldSaveSessionData` {: #shouldsavesessiondata}
 
 ??? info "Source file, signature, and docstring"
