@@ -14,28 +14,13 @@ Use the section pages when you want the canonical reference for [MetaData](https
 
 The `.yaml` configuration file is divided into the following sections:
 
-```yaml
-MetaData:
-  Team: Platform
-  System: Checkout
-
-Links: []
-
-Storages: []
-
-DataSources: []
-
-Sessions: []
-
-Assertions: []
-
-Reporters:
-  SaveSessionData: true
-  SaveAttachments: true
-  SaveLogs: true
-  SaveTemplate: true
-  DisplayTrace: true
-```
+- `MetaData`
+- `Links`
+- `Storages`
+- `DataSources`
+- `Sessions`
+- `Assertions`
+- `Reporters`
 
 ## Layering Example
 
@@ -65,12 +50,6 @@ Storages: []
 DataSources: []
 Sessions: []
 Assertions: []
-Reporters:
-  SaveSessionData: true
-  SaveAttachments: true
-  SaveLogs: true
-  SaveTemplate: true
-  DisplayTrace: true
 ```
 
 Run with the base file first and the overwrite file after it:
