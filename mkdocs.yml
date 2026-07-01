@@ -150,6 +150,7 @@ nav:
           - Assertions: qaas/functions/builders/executions-sections/assertions.md
           - Executions: qaas/functions/builders/executions-sections/executions.md
           - Configuration: qaas/functions/builders/executions-sections/configuration.md
+          - Collection helpers: qaas/functions/builders/executions-sections/collection-helpers.md
           - General: qaas/functions/builders/executions-sections/general.md
         - Links:
           - Overview: qaas/functions/builders/links.md
@@ -180,6 +181,10 @@ nav:
           - Configuration: qaas/functions/builders/publishers-sections/configuration.md
           - Collection helpers: qaas/functions/builders/publishers-sections/collection-helpers.md
           - General: qaas/functions/builders/publishers-sections/general.md
+        - Reporters:
+          - Overview: qaas/functions/builders/reporters.md
+          - Reporting and artifacts: qaas/functions/builders/reporters-sections/reporting-and-artifacts.md
+          - General: qaas/functions/builders/reporters-sections/general.md
         - Sessions:
           - Overview: qaas/functions/builders/sessions.md
           - Identity and hook selection: qaas/functions/builders/sessions-sections/identity-and-hook-selection.md

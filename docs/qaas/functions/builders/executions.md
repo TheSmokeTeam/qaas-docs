@@ -544,6 +544,29 @@ The functions on this page are grouped by responsibility so related operations s
     
     Sets the metadata configuration stored on the execution.
 
+## Collection helpers {: #collection-helpers}
+
+### `UpdateReporters` {: #updatereporters}
+
+??? info "Source file, signature, and docstring"
+    **Member**
+    `ExecutionBuilder.UpdateReporters(ReporterBuilder reporterBuilder)`
+    
+    **Kind** `function`
+    
+    **Declaring Type** `ExecutionBuilder`
+    
+    **Source File** `QaaS.Runner/ExecutionBuilder.cs`
+    
+    **Signature**
+    ```csharp
+    public ExecutionBuilder UpdateReporters(ReporterBuilder reporterBuilder)
+    ```
+    
+    **Docstring**
+    
+    Updates the reporter configuration stored on the current Runner execution builder instance.
+
 ## General {: #general}
 
 ### `Build` {: #build}
