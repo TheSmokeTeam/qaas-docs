@@ -26,13 +26,23 @@ Use the section pages when you want the canonical reference for [MetaData](metaD
 
 The `.yaml` configuration file is divided into the following sections:
 
-- `MetaData`
-- `Links`
-- `Storages`
-- `DataSources`
-- `Sessions`
-- `Assertions`
-- `Reporters`
+```yaml
+MetaData:
+  Team: Platform
+  System: Checkout
+
+Links: []
+
+Storages: []
+
+DataSources: []
+
+Sessions: []
+
+Assertions: []
+
+Reporters: {}
+```
 
 ## Layering Example {: #layering-example}
 
@@ -48,6 +58,7 @@ Storages: []
 DataSources: []
 Sessions: []
 Assertions: []
+Reporters: {}
 ```
 
 Put environment-specific values in an overwrite file:
@@ -62,6 +73,7 @@ Storages: []
 DataSources: []
 Sessions: []
 Assertions: []
+Reporters: {}
 ```
 
 Run with the base file first and the overwrite file after it:
