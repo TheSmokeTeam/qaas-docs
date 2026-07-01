@@ -88,6 +88,10 @@ nav:
         - Overview: qaas/userInterfaces/runner/configurationSections/assertions/overview.md
         - Table View: qaas/userInterfaces/runner/configurationSections/assertions/configurations/tableView.md
         - YAML View: qaas/userInterfaces/runner/configurationSections/assertions/configurations/yamlView.md
+      - Reporters:
+        - Overview: qaas/userInterfaces/runner/configurationSections/reporters/overview.md
+        - Table View: qaas/userInterfaces/runner/configurationSections/reporters/configurations/tableView.md
+        - YAML View: qaas/userInterfaces/runner/configurationSections/reporters/configurations/yamlView.md
       - Configuration Resolution: qaas/userInterfaces/runner/configurationResolutionPriority.md
       - Allure Report: qaas/userInterfaces/runner/allureReport.md
       - Logger: qaas/userInterfaces/logger.md
