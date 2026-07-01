@@ -29,7 +29,12 @@ Sessions: []
 
 Assertions: []
 
-Reporters: {}
+Reporters:
+  SaveSessionData: true
+  SaveAttachments: true
+  SaveLogs: true
+  SaveTemplate: true
+  DisplayTrace: true
 ```
 
 ## Layering Example
@@ -46,7 +51,6 @@ Storages: []
 DataSources: []
 Sessions: []
 Assertions: []
-Reporters: {}
 ```
 
 Put environment-specific values in an overwrite file:
@@ -61,7 +65,12 @@ Storages: []
 DataSources: []
 Sessions: []
 Assertions: []
-Reporters: {}
+Reporters:
+  SaveSessionData: true
+  SaveAttachments: true
+  SaveLogs: true
+  SaveTemplate: true
+  DisplayTrace: true
 ```
 
 Run with the base file first and the overwrite file after it:
