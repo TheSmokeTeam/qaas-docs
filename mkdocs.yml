@@ -88,6 +88,10 @@ nav:
         - Overview: qaas/userInterfaces/runner/configurationSections/assertions/overview.md
         - Table View: qaas/userInterfaces/runner/configurationSections/assertions/configurations/tableView.md
         - YAML View: qaas/userInterfaces/runner/configurationSections/assertions/configurations/yamlView.md
+      - Reporters:
+        - Overview: qaas/userInterfaces/runner/configurationSections/reporters/overview.md
+        - Table View: qaas/userInterfaces/runner/configurationSections/reporters/configurations/tableView.md
+        - YAML View: qaas/userInterfaces/runner/configurationSections/reporters/configurations/yamlView.md
       - Configuration Resolution: qaas/userInterfaces/runner/configurationResolutionPriority.md
       - Allure Report: qaas/userInterfaces/runner/allureReport.md
       - Logger: qaas/userInterfaces/logger.md
@@ -148,9 +152,9 @@ nav:
           - Links: qaas/functions/builders/executions-sections/links.md
           - Storages: qaas/functions/builders/executions-sections/storages.md
           - Assertions: qaas/functions/builders/executions-sections/assertions.md
+          - Reporters: qaas/functions/builders/executions-sections/reporters.md
           - Executions: qaas/functions/builders/executions-sections/executions.md
           - Configuration: qaas/functions/builders/executions-sections/configuration.md
-          - Collection helpers: qaas/functions/builders/executions-sections/collection-helpers.md
           - General: qaas/functions/builders/executions-sections/general.md
         - Links:
           - Overview: qaas/functions/builders/links.md

@@ -42,27 +42,6 @@ Use this page when you need the focused member list, signatures, and source note
     
     Sets the ReportPortal configuration used when creating a ReportPortal reporter.
 
-### `ShouldSaveTemplate` {: #shouldsavetemplate}
-
-??? info "Source file, signature, and docstring"
-    **Member**
-    `ReporterBuilder.ShouldSaveTemplate(bool shouldSaveTemplate)`
-    
-    **Kind** `function`
-    
-    **Declaring Type** `ReporterBuilder`
-    
-    **Source File** `QaaS.Runner.Assertions/ConfigurationObjects/ReporterBuilder.cs`
-    
-    **Signature**
-    ```csharp
-    public ReporterBuilder ShouldSaveTemplate(bool shouldSaveTemplate)
-    ```
-    
-    **Docstring**
-    
-    Configures whether the rendered assertion configuration template is saved with reporter results.
-
 ## Edge cases {: #edge-cases}
 
 - This page is generated from the parent reference section; edit the source XML docs or generator when content needs to change.

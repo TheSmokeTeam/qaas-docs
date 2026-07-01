@@ -14,7 +14,7 @@ summary: "Each configuration section in the .yaml file is used to perform a diff
 Each configuration section in the `.yaml` file is used to perform a different action and has its own configurations and descriptions.
 In this part of the documentation you can read about all the possible configurations available to you within each configuration section.
 
-> TL;DR: Runner YAML is split into top-level sections for metadata, links, storage, data sources, sessions, and assertions. Layer additional files, folders, cases, references, and overrides when a base file should stay reusable.
+> TL;DR: Runner YAML is split into top-level sections for metadata, links, storage, data sources, sessions, assertions, and reporters. Layer additional files, folders, cases, references, and overrides when a base file should stay reusable.
 
 ## When to use {: #when-to-use}
 
@@ -22,7 +22,7 @@ In this part of the documentation you can read about all the possible configurat
 - You need a compact map from top-level YAML sections to the detailed reference pages.
 - You want a layering pattern for environment-specific or case-specific overrides.
 
-Use the section pages when you want the canonical reference for [MetaData](metaData/overview.md), [Links](links/overview.md), [Storages](storages/overview.md), [DataSources](dataSources/overview.md), [Sessions](sessions/overview.md), and [Assertions](assertions/overview.md).
+Use the section pages when you want the canonical reference for [MetaData](metaData/overview.md), [Links](links/overview.md), [Storages](storages/overview.md), [DataSources](dataSources/overview.md), [Sessions](sessions/overview.md), [Assertions](assertions/overview.md), and [Reporters](reporters/overview.md).
 
 The `.yaml` configuration file is divided into the following sections:
 
@@ -40,6 +40,8 @@ DataSources: []
 Sessions: []
 
 Assertions: []
+
+Reporters: {}
 ```
 
 ## Layering Example {: #layering-example}
@@ -56,6 +58,7 @@ Storages: []
 DataSources: []
 Sessions: []
 Assertions: []
+Reporters: {}
 ```
 
 Put environment-specific values in an overwrite file:
@@ -70,6 +73,7 @@ Storages: []
 DataSources: []
 Sessions: []
 Assertions: []
+Reporters: {}
 ```
 
 Run with the base file first and the overwrite file after it:
@@ -97,3 +101,4 @@ All configuration table views are ordered according to three rules.
 - [DataSources](dataSources/overview.md)
 - [Sessions](sessions/overview.md)
 - [Assertions](assertions/overview.md)
+- [Reporters](reporters/overview.md)

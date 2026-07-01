@@ -1,19 +1,19 @@
 ---
-id: qaas.functions.builders.executions.sections.collection.helpers
+id: qaas.functions.builders.executions.sections.reporters
 type: reference
 status: stable
 since: 2.0.0
 last_verified: 2026-05-27
 applies_to: [runner]
 keywords: [runner, reference]
-summary: "Reference page for Executions: Collection helpers."
+summary: "Reference page for Executions: Reporters."
 ---
 
 <!-- Verified-against: QaaS.Runner\QaaS.Runner\ExecutionBuilder.cs -->
 
-# Executions: Collection helpers
+# Executions: Reporters
 
-> TL;DR — This page mirrors the `Collection helpers` section from [Executions](../executions.md) as a focused reference.
+> TL;DR — This page mirrors the `Reporters` section from [Executions](../executions.md) as a focused reference.
 
 ## When to use {: #when-to-use}
 
