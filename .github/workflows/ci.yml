@@ -52,6 +52,9 @@ env:
   QAAS_DOCS_IMAGE_DOTNET_RUNTIME: ${{ vars.QAAS_DOCS_IMAGE_DOTNET_RUNTIME || 'mcr.microsoft.com/dotnet/runtime:10.0' }}
   QAAS_DOCS_IMAGE_REDIS_REPOSITORY: ${{ vars.QAAS_DOCS_IMAGE_REDIS_REPOSITORY || 'redis' }}
   QAAS_DOCS_IMAGE_REDIS_TAG: ${{ vars.QAAS_DOCS_IMAGE_REDIS_TAG || '7-alpine' }}
+  QAAS_DOCS_KIWIX_SERVE_IMAGE: ${{ vars.QAAS_DOCS_KIWIX_SERVE_IMAGE || 'ghcr.io/kiwix/kiwix-serve:3.8.2' }}
+  QAAS_DOCS_ZIM_TOOLS_IMAGE: ${{ vars.QAAS_DOCS_ZIM_TOOLS_IMAGE || 'ghcr.io/openzim/zim-tools:3.7.0' }}
+  QAAS_DOCS_ZIM_TOOLS_DOWNLOAD_URL: ${{ vars.QAAS_DOCS_ZIM_TOOLS_DOWNLOAD_URL || 'https://download.openzim.org/release/zim-tools/' }}
 
 jobs:
   build-site:
@@ -82,10 +85,20 @@ jobs:
       - name: Install dependencies
         run: pip install -r requirements.txt
 
+      - name: Validate ZIM release workflow
+        run: python tools/ci/check-zim-release-workflow.py
+
       - name: Build site
         run: |
           python tools/write_runtime_link_defaults.py docs/assets/javascripts/qaas-docs-build-defaults.js
           mkdocs build --strict --site-dir site
+
+      - name: Upload site artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: qaas-docs-site
+          path: site/
+          retention-days: 14
 
       - name: Upload Pages artifact
         if: github.event_name == 'push' && (github.ref == 'refs/heads/master' || github.ref == 'refs/heads/fix/improve_docs' || github.ref == 'refs/heads/fix/docs_errors')
@@ -104,6 +117,80 @@ jobs:
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
+
+  build-zim:
+    if: startsWith(github.ref, 'refs/tags/')
+    needs: build-site
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    permissions:
+      contents: write
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      - name: Download site artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: qaas-docs-site
+          path: site/
+
+      - name: Build ZIM
+        id: zim
+        shell: bash
+        run: |
+          zim_tag="${{ github.ref_name }}"
+          zim_tag="${zim_tag//\//-}"
+          zim_path="qaas-docs-${zim_tag}.zim"
+          zim_slug="${zim_path%.zim}"
+          zim_slug="${zim_slug,,}"
+          zim_slug="${zim_slug//+/plus}"
+          bash tools/zim/build-zim.sh "$zim_path"
+          echo "path=$zim_path" >> "$GITHUB_OUTPUT"
+          echo "slug=$zim_slug" >> "$GITHUB_OUTPUT"
+
+      - name: Smoke-test ZIM
+        shell: bash
+        run: |
+          set -euo pipefail
+          container_name="qaas-docs-kiwix"
+          trap 'docker rm -f "$container_name" >/dev/null 2>&1 || true' EXIT
+          docker run --rm -d --name "$container_name" --entrypoint /usr/local/bin/kiwix-serve \
+            -v "$PWD":/data -p 8888:8888 \
+            "$QAAS_DOCS_KIWIX_SERVE_IMAGE" \
+            --port 8888 --threads 4 --nodatealiases "/data/${{ steps.zim.outputs.path }}"
+          ok=0
+          for _ in $(seq 1 30); do
+            if curl -fsS 'http://localhost:8888/search?pattern=IProbe' >/dev/null && \
+              curl -fsS "http://localhost:8888/content/${{ steps.zim.outputs.slug }}/qaas-docs/qaas/index.html" >/dev/null; then
+              ok=1
+              break
+            fi
+            sleep 1
+          done
+          test "$ok" -eq 1
+
+      - name: Upload ZIM artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: qaas-docs-zim
+          path: ${{ steps.zim.outputs.path }}
+          retention-days: 30
+
+      - name: Attach ZIM to GitHub release
+        uses: softprops/action-gh-release@v2
+        with:
+          files: ${{ steps.zim.outputs.path }}
+          fail_on_unmatched_files: true
+          make_latest: true
 
   publish-docker-image:
     if: startsWith(github.ref, 'refs/tags/') || github.event_name == 'workflow_dispatch'
