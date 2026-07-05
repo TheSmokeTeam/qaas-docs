@@ -76,7 +76,7 @@ The `<<` merge key copies mapping entries from the source anchor into the target
 
 ```yaml
 defaults: &http-defaults
-  Method: GET
+  Method: Get
   BaseAddress: http://localhost:5050
   Route: /default
 
@@ -94,7 +94,7 @@ Effective `Http` after template:
 
 ```yaml
 Http:
-  Method: GET
+  Method: Get
   BaseAddress: http://localhost:5050
   Route: /fast
 ```
@@ -143,6 +143,7 @@ Sessions:
       - Name: HelloCall
         TimeoutMs: 5000
         Http:
+          Method: Get
           BaseAddress: ${app.base_url}
           Route: /hello
 ```
