@@ -5,7 +5,7 @@
 set -euo pipefail
 
 OUT="${1:-qaas-docs.zim}"
-SITE_DIR="site"
+SITE_DIR="${SITE_DIR:-site}"
 ZIM_ROOT="${ZIM_ROOT:-site-zim}"
 BASE_PATH="${BASE_PATH:-qaas-docs}"
 ZIM_TOOLS_IMAGE="${QAAS_DOCS_ZIM_TOOLS_IMAGE:-ghcr.io/openzim/zim-tools:3.7.0}"
@@ -127,6 +127,7 @@ COMMON_ARGS=(
   --publisher="TheSmokeTeam"
   --tags="qaas;docs;offline"
   --redirects="$REDIRECTS"
+  --withFullTextIndex
   --scraper="zimwriterfs/3.7.0"
 )
 
