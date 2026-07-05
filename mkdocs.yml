@@ -228,6 +228,7 @@ nav:
         - Context artifact: qaas/functions/extension-methods-sections/context-artifact.md
         - Date time: qaas/functions/extension-methods-sections/date-time.md
         - Detailed data: qaas/functions/extension-methods-sections/detailed-data.md
+        - Runner case expansion: qaas/functions/extension-methods-sections/runner-case-expansion.md
         - Session: qaas/functions/extension-methods-sections/session.md
       # qaas-docs-generator end: runner-functions
   - Mocker:
