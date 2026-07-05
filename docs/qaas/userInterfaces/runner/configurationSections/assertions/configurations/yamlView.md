@@ -32,7 +32,6 @@ Assertions:
     Name: 'value'
     AssertionConfiguration: {}
     Category: 'value'
-    Configuration: {}
     DisplayTrace: True
     SaveAttachments: True
     SaveLogs: True
@@ -43,7 +42,6 @@ Assertions:
     DataSourcePatterns: []
     Links:
       -
-        Configuration: {}
         Name: 'value'
         Grafana:
           DashboardId: 'value'

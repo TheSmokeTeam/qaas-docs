@@ -30,7 +30,6 @@ Probes:
   -
     Name: 'value'
     Probe: 'CreateRabbitMqBindings'
-    Configuration: {}
     ProbeConfiguration: {}
     Stage: 3
     DataSourceNames: []
