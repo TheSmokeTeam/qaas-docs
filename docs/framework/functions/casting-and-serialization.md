@@ -117,7 +117,7 @@ instead of throwing:
 // Producer side: generated Person objects published to RabbitMQ as json bytes.
 // Consumer side: without a configured type the consumed bodies are JsonNode instances,
 // yet the cast still lands on the producer's POCO:
-CommunicationData<object> consumed = /* read + deserialized from the queue */;
+CommunicationData<object> consumed = ReadConsumedCommunicationData();
 CommunicationData<Person> people = consumed.CastCommunicationData<Person>();
 ```
 
