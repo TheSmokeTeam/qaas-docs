@@ -126,6 +126,144 @@ Use this page when you need the focused member list, signatures, and source note
     
     Retrieves an input CommunicationData{TData} from SessionData by its name to inputValue
 
+### `GetInputAs<TInput>` {: #getinputas-tinput}
+
+??? info "Source file, signature, and docstring"
+    **Member**
+    `SessionDataExtensions.GetInputAs<TInput>(this GenericSessionData<object, object>? sessionData, string inputName, SerializationType? serializationTypeOverride = null)`
+    
+    **Kind** `function`
+    
+    **Declaring Type** `SessionDataExtensions (extension type)`
+    
+    **Source File** `QaaS.Framework.SDK/Extensions/SessionDataExtensions.cs`
+    
+    **Signature**
+    ```csharp
+    public static CommunicationData<TInput> GetInputAs<TInput>(this GenericSessionData<object, object>? sessionData, string inputName, SerializationType? serializationTypeOverride = null)
+    ```
+    
+    **Docstring**
+    
+    Retrieves an input CommunicationData from SessionData by its name with all its data bodies converted to the requested type in a single call, using the input's own SerializationType by default (see ConvertCommunicationData{TConverted} for the conversion rules)
+    
+    Example: `CommunicationData<OrderRequest> input = sessionData.GetInputAs<OrderRequest>("orders_input");`
+
+### `GetOutputAs<TOutput>` {: #getoutputas-toutput}
+
+??? info "Source file, signature, and docstring"
+    **Member**
+    `SessionDataExtensions.GetOutputAs<TOutput>(this GenericSessionData<object, object>? sessionData, string outputName, SerializationType? serializationTypeOverride = null)`
+    
+    **Kind** `function`
+    
+    **Declaring Type** `SessionDataExtensions (extension type)`
+    
+    **Source File** `QaaS.Framework.SDK/Extensions/SessionDataExtensions.cs`
+    
+    **Signature**
+    ```csharp
+    public static CommunicationData<TOutput> GetOutputAs<TOutput>(this GenericSessionData<object, object>? sessionData, string outputName, SerializationType? serializationTypeOverride = null)
+    ```
+    
+    **Docstring**
+    
+    Retrieves an output CommunicationData from SessionData by its name with all its data bodies converted to the requested type in a single call, using the output's own SerializationType by default (see ConvertCommunicationData{TConverted} for the conversion rules)
+    
+    Example: `CommunicationData<Order> output = sessionData.GetOutputAs<Order>("orders_output");`
+
+### `TryGetInputAs<TInput>` {: #trygetinputas-tinput}
+
+??? info "Source file, signature, and docstring"
+    **Member**
+    `SessionDataExtensions.TryGetInputAs<TInput>(this GenericSessionData<object, object>? sessionData, string inputName, [NotNullWhen(true)] out CommunicationData<TInput>? inputValue, SerializationType? serializationTypeOverride = null)`
+    
+    **Kind** `function`
+    
+    **Declaring Type** `SessionDataExtensions (extension type)`
+    
+    **Source File** `QaaS.Framework.SDK/Extensions/SessionDataExtensions.cs`
+    
+    **Signature**
+    ```csharp
+    public static bool TryGetInputAs<TInput>(this GenericSessionData<object, object>? sessionData, string inputName, [NotNullWhen(true)] out CommunicationData<TInput>? inputValue, SerializationType? serializationTypeOverride = null)
+    ```
+    
+    **Docstring**
+    
+    Attempts to retrieve an input CommunicationData from SessionData by its name with all its data bodies converted to the requested type, never throws
+    
+    Example: `if (sessionData.TryGetInputAs<OrderRequest>("orders_input", out var input)) { ... }`
+
+### `TryGetOutputAs<TOutput>` {: #trygetoutputas-toutput}
+
+??? info "Source file, signature, and docstring"
+    **Member**
+    `SessionDataExtensions.TryGetOutputAs<TOutput>(this GenericSessionData<object, object>? sessionData, string outputName, [NotNullWhen(true)] out CommunicationData<TOutput>? outputValue, SerializationType? serializationTypeOverride = null)`
+    
+    **Kind** `function`
+    
+    **Declaring Type** `SessionDataExtensions (extension type)`
+    
+    **Source File** `QaaS.Framework.SDK/Extensions/SessionDataExtensions.cs`
+    
+    **Signature**
+    ```csharp
+    public static bool TryGetOutputAs<TOutput>(this GenericSessionData<object, object>? sessionData, string outputName, [NotNullWhen(true)] out CommunicationData<TOutput>? outputValue, SerializationType? serializationTypeOverride = null)
+    ```
+    
+    **Docstring**
+    
+    Attempts to retrieve an output CommunicationData from SessionData by its name with all its data bodies converted to the requested type, never throws
+    
+    Example: `if (sessionData.TryGetOutputAs<Order>("orders_output", out var output)) { ... }`
+
+### `GetInputBodies<TInput>` {: #getinputbodies-tinput}
+
+??? info "Source file, signature, and docstring"
+    **Member**
+    `SessionDataExtensions.GetInputBodies<TInput>(this GenericSessionData<object, object>? sessionData, string inputName, SerializationType? serializationTypeOverride = null)`
+    
+    **Kind** `function`
+    
+    **Declaring Type** `SessionDataExtensions (extension type)`
+    
+    **Source File** `QaaS.Framework.SDK/Extensions/SessionDataExtensions.cs`
+    
+    **Signature**
+    ```csharp
+    public static IList<TInput?> GetInputBodies<TInput>(this GenericSessionData<object, object>? sessionData, string inputName, SerializationType? serializationTypeOverride = null)
+    ```
+    
+    **Docstring**
+    
+    Retrieves the typed bodies of all data items of an input found by its name in a single call, the shortest path from a SessionData to the actual contents of an input (see GetInputAs{TInput} for the conversion rules)
+    
+    Example: `IList<OrderRequest?> requests = sessionData.GetInputBodies<OrderRequest>("orders_input");`
+
+### `GetOutputBodies<TOutput>` {: #getoutputbodies-toutput}
+
+??? info "Source file, signature, and docstring"
+    **Member**
+    `SessionDataExtensions.GetOutputBodies<TOutput>(this GenericSessionData<object, object>? sessionData, string outputName, SerializationType? serializationTypeOverride = null)`
+    
+    **Kind** `function`
+    
+    **Declaring Type** `SessionDataExtensions (extension type)`
+    
+    **Source File** `QaaS.Framework.SDK/Extensions/SessionDataExtensions.cs`
+    
+    **Signature**
+    ```csharp
+    public static IList<TOutput?> GetOutputBodies<TOutput>(this GenericSessionData<object, object>? sessionData, string outputName, SerializationType? serializationTypeOverride = null)
+    ```
+    
+    **Docstring**
+    
+    Retrieves the typed bodies of all data items of an output found by its name in a single call, the shortest path from a SessionData to the actual contents of an output (see GetOutputAs{TOutput} for the conversion rules)
+    
+    Example: `IList<Order?> orders = sessionData.GetOutputBodies<Order>("orders_output");`
+
 ## Edge cases {: #edge-cases}
 
 - This page is generated from the parent reference section; edit the source XML docs or generator when content needs to change.

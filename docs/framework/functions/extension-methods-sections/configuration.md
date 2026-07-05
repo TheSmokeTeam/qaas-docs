@@ -92,7 +92,7 @@ Use this page when you need the focused member list, signatures, and source note
     
     **Docstring**
     
-    Merges an object-shaped configuration patch into the current typed configuration. Fields omitted from incomingConfiguration are preserved from the current configuration. Fields explicitly set to null in the patch clear the existing value. When the current configuration is missing, the incoming object is bound to when possible.
+    Merges an object-shaped configuration patch into the current typed configuration. Fields omitted from incomingConfiguration are preserved from the current configuration. Fields explicitly set to null in the patch clear the existing value. When the current configuration is missing, the incoming object is bound to TConfiguration when possible.
     
     Use this overload when the patch comes from an anonymous object, JSON-like payload, or any other object whose shape matches part of the target configuration contract.
 
