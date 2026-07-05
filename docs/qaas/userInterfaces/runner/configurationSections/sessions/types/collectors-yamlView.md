@@ -29,7 +29,6 @@ The scaffold follows the generated schema order. String placeholders are quoted,
 Collectors:
   -
     Name: 'value'
-    Configuration: {}
     EndTimeReachedCheckIntervalMs: 1000
     CollectionRange:
       EndTimeMs: 0

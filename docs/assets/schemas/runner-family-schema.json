@@ -2293,13 +2293,6 @@
                 "TimeoutMs"
               ],
               "properties": {
-                "Configuration": {
-                  "type": [
-                    "object",
-                    "string"
-                  ],
-                  "pattern": "\\$\\{.*\\}"
-                },
                 "Name": {
                   "type": "string",
                   "description": "The name of the consumer"
@@ -3853,13 +3846,6 @@
                 "Name"
               ],
               "properties": {
-                "Configuration": {
-                  "type": [
-                    "object",
-                    "string"
-                  ],
-                  "pattern": "\\$\\{.*\\}"
-                },
                 "Name": {
                   "type": "string",
                   "description": "The name of the publisher"
@@ -6129,13 +6115,6 @@
                       "description": "The name of the rpc to invoke"
                     }
                   }
-                },
-                "Configuration": {
-                  "type": [
-                    "object",
-                    "string"
-                  ],
-                  "pattern": "\\$\\{.*\\}"
                 }
               }
             }
@@ -6302,13 +6281,6 @@
                     "string"
                   ],
                   "description": "Implementation configuration for the probe, the configuration given here is loaded into the provided probe dynamically.",
-                  "pattern": "\\$\\{.*\\}"
-                },
-                "Configuration": {
-                  "type": [
-                    "object",
-                    "string"
-                  ],
                   "pattern": "\\$\\{.*\\}"
                 }
               },
@@ -11618,13 +11590,6 @@
                       "description": "The api key for interacting with prometheus"
                     }
                   }
-                },
-                "Configuration": {
-                  "type": [
-                    "object",
-                    "string"
-                  ],
-                  "pattern": "\\$\\{.*\\}"
                 }
               }
             }
@@ -11777,281 +11742,6 @@
                     "string"
                   ],
                   "description": "The command action to commit",
-                  "pattern": "\\$\\{.*\\}",
-                  "properties": {
-                    "ChangeActionStub": {
-                      "type": [
-                        "object",
-                        "string"
-                      ],
-                      "description": "Mocker 'ChangeActionStub' command properties",
-                      "pattern": "\\$\\{.*\\}",
-                      "required": [
-                        "ActionName",
-                        "StubName"
-                      ],
-                      "properties": {
-                        "ActionName": {
-                          "type": "string",
-                          "description": "The Action's name that is being changed"
-                        },
-                        "StubName": {
-                          "type": "string",
-                          "description": "The Stub's Name attached to the action"
-                        }
-                      }
-                    },
-                    "TriggerAction": {
-                      "type": [
-                        "object",
-                        "string"
-                      ],
-                      "description": "Mocker 'TriggerAction' command properties",
-                      "pattern": "\\$\\{.*\\}",
-                      "required": [
-                        "ActionName"
-                      ],
-                      "properties": {
-                        "ActionName": {
-                          "type": "string",
-                          "description": "The Action's name that is being triggered"
-                        },
-                        "TimeoutMs": {
-                          "type": [
-                            "integer",
-                            "string"
-                          ],
-                          "description": "The time to enable the action for in milliseconds",
-                          "format": "int32",
-                          "default": 0,
-                          "pattern": "\\$\\{.*\\}"
-                        }
-                      }
-                    },
-                    "Consume": {
-                      "type": [
-                        "object",
-                        "string"
-                      ],
-                      "description": "Mocker 'Consume' command properties",
-                      "pattern": "\\$\\{.*\\}",
-                      "required": [
-                        "TimeoutMs"
-                      ],
-                      "properties": {
-                        "TimeoutMs": {
-                          "type": [
-                            "integer",
-                            "string"
-                          ],
-                          "description": "The Timeout (ms) while consuming data from Mock Servers",
-                          "format": "int32",
-                          "maximum": 2147483647.0,
-                          "minimum": 0.0,
-                          "pattern": "\\$\\{.*\\}"
-                        },
-                        "ActionName": {
-                          "type": [
-                            "null",
-                            "string"
-                          ],
-                          "description": "The Action name to consume, if not given consumes all action"
-                        },
-                        "InputDataFilter": {
-                          "type": [
-                            "object",
-                            "string"
-                          ],
-                          "description": "How to filter the properties of each returned Mocker Input data",
-                          "pattern": "\\$\\{.*\\}",
-                          "properties": {
-                            "Body": {
-                              "type": [
-                                "boolean",
-                                "string"
-                              ],
-                              "description": "Whether to keep the `Body` in the data (true) or filter it (false)",
-                              "default": true,
-                              "pattern": "\\$\\{.*\\}"
-                            },
-                            "Timestamp": {
-                              "type": [
-                                "boolean",
-                                "string"
-                              ],
-                              "description": "Whether to keep the `Timestamp` in the data (true) or filter it (false)",
-                              "default": true,
-                              "pattern": "\\$\\{.*\\}"
-                            },
-                            "MetaData": {
-                              "type": [
-                                "boolean",
-                                "string"
-                              ],
-                              "description": "Whether to keep the `MetaData` in the data (true) or filter it (false)",
-                              "default": true,
-                              "pattern": "\\$\\{.*\\}"
-                            }
-                          }
-                        },
-                        "OutputDataFilter": {
-                          "type": [
-                            "object",
-                            "string"
-                          ],
-                          "description": "How to filter the properties of each returned Mocker Output data",
-                          "pattern": "\\$\\{.*\\}",
-                          "properties": {
-                            "Body": {
-                              "type": [
-                                "boolean",
-                                "string"
-                              ],
-                              "description": "Whether to keep the `Body` in the data (true) or filter it (false)",
-                              "default": true,
-                              "pattern": "\\$\\{.*\\}"
-                            },
-                            "Timestamp": {
-                              "type": [
-                                "boolean",
-                                "string"
-                              ],
-                              "description": "Whether to keep the `Timestamp` in the data (true) or filter it (false)",
-                              "default": true,
-                              "pattern": "\\$\\{.*\\}"
-                            },
-                            "MetaData": {
-                              "type": [
-                                "boolean",
-                                "string"
-                              ],
-                              "description": "Whether to keep the `MetaData` in the data (true) or filter it (false)",
-                              "default": true,
-                              "pattern": "\\$\\{.*\\}"
-                            }
-                          }
-                        },
-                        "InputDeserialize": {
-                          "type": [
-                            "object",
-                            "string"
-                          ],
-                          "description": "The deserializer to use to deserialize the consumed input data received by the mocker",
-                          "pattern": "\\$\\{.*\\}",
-                          "properties": {
-                            "Deserializer": {
-                              "type": "string",
-                              "description": "The deserializer type to use for deserializing. Null means no deserialization will happen. Options are all available `QaaS.Framework.Serialization` deserializers",
-                              "x-enumNames": [
-                                "Binary",
-                                "Json",
-                                "MessagePack",
-                                "Xml",
-                                "Yaml",
-                                "ProtobufMessage",
-                                "XmlElement"
-                              ],
-                              "enum": [
-                                "Binary",
-                                "Json",
-                                "MessagePack",
-                                "Xml",
-                                "Yaml",
-                                "ProtobufMessage",
-                                "XmlElement"
-                              ]
-                            },
-                            "SpecificType": {
-                              "type": [
-                                "object",
-                                "string"
-                              ],
-                              "description": "Configuration for making deserializer deserialize into a specific C# object, if set to null will deserialize to default deserilizer's C# object",
-                              "pattern": "\\$\\{.*\\}",
-                              "required": [
-                                "TypeFullName"
-                              ],
-                              "properties": {
-                                "AssemblyName": {
-                                  "type": [
-                                    "null",
-                                    "string"
-                                  ],
-                                  "description": "The name of the assembly the type is located in, If no value is given by default tries to take the entry assembly"
-                                },
-                                "TypeFullName": {
-                                  "type": "string",
-                                  "description": "The full name (including path) of the type"
-                                }
-                              }
-                            }
-                          }
-                        },
-                        "OutputDeserialize": {
-                          "type": [
-                            "object",
-                            "string"
-                          ],
-                          "description": "The deserializer to use to deserialize the consumed output data published by the mocker",
-                          "pattern": "\\$\\{.*\\}",
-                          "properties": {
-                            "Deserializer": {
-                              "type": "string",
-                              "description": "The deserializer type to use for deserializing. Null means no deserialization will happen. Options are all available `QaaS.Framework.Serialization` deserializers",
-                              "x-enumNames": [
-                                "Binary",
-                                "Json",
-                                "MessagePack",
-                                "Xml",
-                                "Yaml",
-                                "ProtobufMessage",
-                                "XmlElement"
-                              ],
-                              "enum": [
-                                "Binary",
-                                "Json",
-                                "MessagePack",
-                                "Xml",
-                                "Yaml",
-                                "ProtobufMessage",
-                                "XmlElement"
-                              ]
-                            },
-                            "SpecificType": {
-                              "type": [
-                                "object",
-                                "string"
-                              ],
-                              "description": "Configuration for making deserializer deserialize into a specific C# object, if set to null will deserialize to default deserilizer's C# object",
-                              "pattern": "\\$\\{.*\\}",
-                              "required": [
-                                "TypeFullName"
-                              ],
-                              "properties": {
-                                "AssemblyName": {
-                                  "type": [
-                                    "null",
-                                    "string"
-                                  ],
-                                  "description": "The name of the assembly the type is located in, If no value is given by default tries to take the entry assembly"
-                                },
-                                "TypeFullName": {
-                                  "type": "string",
-                                  "description": "The full name (including path) of the type"
-                                }
-                              }
-                            }
-                          }
-                        }
-                      }
-                    }
-                  }
-                },
-                "Configuration": {
-                  "type": [
-                    "object",
-                    "string"
-                  ],
                   "pattern": "\\$\\{.*\\}",
                   "properties": {
                     "ChangeActionStub": {
@@ -12513,13 +12203,6 @@
                 "pattern": "\\$\\{.*\\}"
               }
             }
-          },
-          "Configuration": {
-            "type": [
-              "object",
-              "string"
-            ],
-            "pattern": "\\$\\{.*\\}"
           }
         }
       }
@@ -12710,13 +12393,6 @@
             "description": "Implementation configuration for the assertion, the configuration given here is loaded into the provided assertion dynamically.",
             "pattern": "\\$\\{.*\\}"
           },
-          "Configuration": {
-            "type": [
-              "object",
-              "string"
-            ],
-            "pattern": "\\$\\{.*\\}"
-          },
           "Links": {
             "type": [
               "array",
@@ -12855,13 +12531,6 @@
                       }
                     }
                   }
-                },
-                "Configuration": {
-                  "type": [
-                    "object",
-                    "string"
-                  ],
-                  "pattern": "\\$\\{.*\\}"
                 }
               }
             }
@@ -14035,13 +13704,6 @@
                 }
               }
             }
-          },
-          "Configuration": {
-            "type": [
-              "object",
-              "string"
-            ],
-            "pattern": "\\$\\{.*\\}"
           }
         }
       }
