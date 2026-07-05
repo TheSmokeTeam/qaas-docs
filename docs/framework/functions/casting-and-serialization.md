@@ -171,7 +171,7 @@ if (outputs.TryGetCommunicationDataByName("orders_output", out var communication
 - The `Xml`/`XmlElement` deserializers produce `XDocument`/`XElement` by default and honor a requested type: `XDocument`, `XElement`, and `string` are special-cased, while any other type deserializes through `XmlSerializer` (which requires a public type with a parameterless constructor). The matching serializers accept typed POCOs the same way.
 - `GetOutputBodies<T>`/`GetInputBodies<T>` throw the same indicative exception as `GetOutputByName`/`GetInputByName` when the name is missing; use the `TryGet…As` variants for optional payloads.
 - Conversion never mutates the source objects; converted `Data`/`DetailedData`/`CommunicationData` instances are new wrappers that preserve the original names, metadata, and timestamps.
-- `GetBodyAs<T>` returns the body as-is when it already *is* the requested type, and converts deserialized representations as described in [Representation-aware casting](#representation-aware-casting). For bodies it cannot convert (for example `byte[]` without a declared format) its `InvalidCastException` message points you to `ConvertBodyTo<T>`.
+- `GetBodyAs<T>` returns the body as-is when it already *is* the requested type, and converts deserialized representations as described in the Representation-aware casting section. For bodies it cannot convert (for example `byte[]` without a declared format) its `InvalidCastException` message points you to `ConvertBodyTo<T>`.
 
 ## See also {: #see-also}
 
