@@ -28,7 +28,6 @@ The scaffold follows the generated schema order. String placeholders are quoted,
 ```yaml
 Storages:
   -
-    Configuration: {}
     JsonStorageFormat: 'Indented'
     FileSystem:
       Path: 'value'

@@ -109,7 +109,7 @@ Annotated extension methods continue to appear in their regular category pages; 
     
     **Docstring**
     
-    Merges an object-shaped configuration patch into the current typed configuration. Fields omitted from incomingConfiguration are preserved from the current configuration. Fields explicitly set to null in the patch clear the existing value. When the current configuration is missing, the incoming object is bound to when possible.
+    Merges an object-shaped configuration patch into the current typed configuration. Fields omitted from incomingConfiguration are preserved from the current configuration. Fields explicitly set to null in the patch clear the existing value. When the current configuration is missing, the incoming object is bound to TConfiguration when possible.
     
     Use this overload when the patch comes from an anonymous object, JSON-like payload, or any other object whose shape matches part of the target configuration contract.
 
@@ -272,7 +272,7 @@ Annotated extension methods continue to appear in their regular category pages; 
     
     **Docstring**
     
-    Merges a partial configuration object into an existing IConfiguration instance. Fields omitted from configurationObject are preserved from configuration . A field is treated as omitted when it still matches the default value produced by a fresh instance of the same configuration type.
+    Merges a partial configuration object into an existing IConfiguration instance. Fields omitted from configurationObject are preserved from configuration. A field is treated as omitted when it still matches the default value produced by a fresh instance of the same configuration type.
 
 #### `MergeConfiguration<TConfiguration>`
 
@@ -339,7 +339,7 @@ Annotated extension methods continue to appear in their regular category pages; 
     
     **Docstring**
     
-    Merges a partial configuration object into the existing IConfiguration . Existing values are preserved when the incoming object leaves a field at its type default.
+    Merges a partial configuration object into the existing IConfiguration. Existing values are preserved when the incoming object leaves a field at its type default.
 
 #### `GetDictionaryFromConfiguration`
 
@@ -488,7 +488,7 @@ Annotated extension methods continue to appear in their regular category pages; 
     
     **Docstring**
     
-    Loads the requested configuration section into the context global dictionary. Use "variables" as the section path to project the root variables section into runtime state without relying on a dedicated Variables API. Numeric child sections are normalized to lists so YAML list sections do not appear as dictionaries with stringified indexes such as "0" and "1" .
+    Loads the requested configuration section into the context global dictionary. Use "variables" as the section path to project the root variables section into runtime state without relying on a dedicated Variables API. Numeric child sections are normalized to lists so YAML list sections do not appear as dictionaries with stringified indexes such as "0" and "1".
 
 ### Data {: #data}
 

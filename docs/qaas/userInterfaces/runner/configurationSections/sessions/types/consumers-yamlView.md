@@ -30,7 +30,6 @@ Consumers:
   -
     Name: 'value'
     TimeoutMs: 0
-    Configuration: {}
     InitialTimeoutMs: 0
     Stage: 0
     Policies:

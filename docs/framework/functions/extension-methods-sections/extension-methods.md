@@ -119,7 +119,7 @@ Use this page when you need the focused member list, signatures, and source note
     
     **Docstring**
     
-    Merges a partial configuration object into an existing IConfiguration instance. Fields omitted from configurationObject are preserved from configuration . A field is treated as omitted when it still matches the default value produced by a fresh instance of the same configuration type.
+    Merges a partial configuration object into an existing IConfiguration instance. Fields omitted from configurationObject are preserved from configuration. A field is treated as omitted when it still matches the default value produced by a fresh instance of the same configuration type.
 
 #### `MergeConfiguration<TConfiguration>`
 
@@ -186,7 +186,7 @@ Use this page when you need the focused member list, signatures, and source note
     
     **Docstring**
     
-    Merges a partial configuration object into the existing IConfiguration . Existing values are preserved when the incoming object leaves a field at its type default.
+    Merges a partial configuration object into the existing IConfiguration. Existing values are preserved when the incoming object leaves a field at its type default.
 
 #### `GetDictionaryFromConfiguration`
 
@@ -335,7 +335,7 @@ Use this page when you need the focused member list, signatures, and source note
     
     **Docstring**
     
-    Loads the requested configuration section into the context global dictionary. Use "variables" as the section path to project the root variables section into runtime state without relying on a dedicated Variables API. Numeric child sections are normalized to lists so YAML list sections do not appear as dictionaries with stringified indexes such as "0" and "1" .
+    Loads the requested configuration section into the context global dictionary. Use "variables" as the section path to project the root variables section into runtime state without relying on a dedicated Variables API. Numeric child sections are normalized to lists so YAML list sections do not appear as dictionaries with stringified indexes such as "0" and "1".
 
 ### Data {: #data}
 

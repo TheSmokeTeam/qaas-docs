@@ -28,7 +28,6 @@ The scaffold follows the generated schema order. String placeholders are quoted,
 ```yaml
 Links:
   -
-    Configuration: {}
     Name: 'value'
     Grafana:
       DashboardId: 'value'
