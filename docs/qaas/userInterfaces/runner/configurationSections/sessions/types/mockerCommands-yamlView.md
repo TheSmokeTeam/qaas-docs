@@ -73,34 +73,6 @@ MockerCommands:
       Ssl: False
       SslHost: 'value'
       Username: 'value'
-    Configuration:
-      ChangeActionStub:
-        ActionName: 'value'
-        StubName: 'value'
-      Consume:
-        TimeoutMs: 0
-        ActionName: 'value'
-        InputDataFilter:
-          Body: True
-          MetaData: True
-          Timestamp: True
-        InputDeserialize:
-          Deserializer: 'Binary'
-          SpecificType:
-            TypeFullName: 'value'
-            AssemblyName: 'value'
-        OutputDataFilter:
-          Body: True
-          MetaData: True
-          Timestamp: True
-        OutputDeserialize:
-          Deserializer: 'Binary'
-          SpecificType:
-            TypeFullName: 'value'
-            AssemblyName: 'value'
-      TriggerAction:
-        ActionName: 'value'
-        TimeoutMs: 0
 ```
 
 ## Realistic example {: #realistic-example}

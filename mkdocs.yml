@@ -228,6 +228,7 @@ nav:
         - Context artifact: qaas/functions/extension-methods-sections/context-artifact.md
         - Date time: qaas/functions/extension-methods-sections/date-time.md
         - Detailed data: qaas/functions/extension-methods-sections/detailed-data.md
+        - Runner case expansion: qaas/functions/extension-methods-sections/runner-case-expansion.md
         - Session: qaas/functions/extension-methods-sections/session.md
       # qaas-docs-generator end: runner-functions
   - Mocker:
@@ -674,14 +675,18 @@ nav:
           - Data: framework/functions/extension-methods-sections/extension-methods/data.md
           - Data source: framework/functions/extension-methods-sections/extension-methods/data-source.md
           - Date time: framework/functions/extension-methods-sections/extension-methods/date-time.md
+          - Deserializer: framework/functions/extension-methods-sections/extension-methods/deserializer.md
           - Running communication data: framework/functions/extension-methods-sections/extension-methods/running-communication-data.md
           - Running session data: framework/functions/extension-methods-sections/extension-methods/running-session-data.md
+          - Serialization type: framework/functions/extension-methods-sections/extension-methods/serialization-type.md
+          - Serializer: framework/functions/extension-methods-sections/extension-methods/serializer.md
           - Serilog: framework/functions/extension-methods-sections/extension-methods/serilog.md
           - Session data: framework/functions/extension-methods-sections/extension-methods/session-data.md
         - Utilities:
           - Overview: framework/functions/extension-methods-sections/utilities.md
           - Enumerables: framework/functions/extension-methods-sections/utilities/enumerables.md
       # qaas-docs-generator end: framework-functions
+      - Casting & serializing data: framework/functions/casting-and-serialization.md
     - Projects:
       - SDK: framework/projects/sdk.md
       - Configuration: framework/projects/configuration.md

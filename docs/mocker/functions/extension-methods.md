@@ -89,7 +89,7 @@ Annotated extension methods continue to appear in their regular category pages; 
     
     **Docstring**
     
-    Constructs request data from an HttpRequest .
+    Constructs request data from an HttpRequest.
 
 ### `HandleResponseDataAndCloseAsync` {: #handleresponsedataandcloseasync}
 

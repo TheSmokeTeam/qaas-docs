@@ -76,27 +76,27 @@ The `<<` merge key copies mapping entries from the source anchor into the target
 
 ```yaml
 defaults: &http-defaults
-  Method: GET
-  TimeoutSeconds: 5
+  Method: Get
+  BaseAddress: http://localhost:5050
+  Route: /default
 
 Sessions:
   - Name: Fast
-    Publishers:
+    Transactions:
       - Name: FastCall
-        Publisher: Http
-        Configuration:
+        TimeoutMs: 5000
+        Http:
           <<: *http-defaults
-          Url: http://localhost:5050/fast
-          TimeoutSeconds: 1
+          Route: /fast
 ```
 
-Effective `Configuration` after template:
+Effective `Http` after template:
 
 ```yaml
-Configuration:
-  Method: GET
-  TimeoutSeconds: 1
-  Url: http://localhost:5050/fast
+Http:
+  Method: Get
+  BaseAddress: http://localhost:5050
+  Route: /fast
 ```
 
 Misuse: `<<` only merges **mappings**. Merging into a sequence is a parse error.
@@ -139,11 +139,13 @@ Placeholders use `${...}` syntax and resolve against the merged dictionary built
 ```yaml
 Sessions:
   - Name: HttpSession
-    Publishers:
-      - Name: HelloPublisher
-        Publisher: Http
-        Configuration:
-          Url: ${app.base_url}/hello
+    Transactions:
+      - Name: HelloCall
+        TimeoutMs: 5000
+        Http:
+          Method: Get
+          BaseAddress: ${app.base_url}
+          Route: /hello
 ```
 
 Resolution order for `${app.base_url}`:

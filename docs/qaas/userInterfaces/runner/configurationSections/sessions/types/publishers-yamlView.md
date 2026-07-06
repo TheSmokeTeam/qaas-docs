@@ -29,7 +29,6 @@ The scaffold follows the generated schema order. String placeholders are quoted,
 Publishers:
   -
     Name: 'value'
-    Configuration: {}
     Iterations: 1
     Loop: False
     SleepTimeMs: 0

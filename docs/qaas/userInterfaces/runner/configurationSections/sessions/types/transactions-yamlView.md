@@ -30,7 +30,6 @@ Transactions:
   -
     Name: 'value'
     TimeoutMs: 0
-    Configuration: {}
     Iterations: 1
     Loop: False
     SleepTimeMs: 0

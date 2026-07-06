@@ -29,7 +29,6 @@ The table below mirrors the schema used by the YAML scaffold page. Nested rows u
 | `Sessions[].Consumers[]` | `object or string` | &#10006 |  |  |
 | `Sessions[].Consumers[].Name` | `string` | &#10004 |  | The name of the consumer |
 | `Sessions[].Consumers[].TimeoutMs` | `integer or string` | &#10004 |  | The consumption timeout in milliseconds (timeout is the time since last message was read by the consumer) |
-| `Sessions[].Consumers[].Configuration` | `object or string` | &#10006 |  |  |
 | `Sessions[].Consumers[].InitialTimeoutMs` | `integer or string or null` | &#10006 |  | The initial consumption timeout in milliseconds (timeout is the time before any message has been read by the consumer) |
 | `Sessions[].Consumers[].Stage` | `integer or string` | &#10006 | 0 | The stage in which the Consumer runs at |
 | `Sessions[].Consumers[].Policies` | `list or string` | &#10006 |  | List of policies to use when communicating with this action's protocol |
