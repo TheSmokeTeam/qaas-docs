@@ -16,7 +16,7 @@ Mocker commands connect [QaaS.Runner](../../../../../../qaas/index.md) tests to 
 
 For the transport-side configuration, see [QaaS.Mocker Servers](../../../../../../mocker/userInterfaces/mocker/configurationSections/server/overview.md).
 
-At runtime the Runner connects to Redis, publishes ping requests to discover live Mocker server instances for `ServerName`, sends the configured command to each discovered instance, waits for acknowledgements, and fails if any expected instance does not report success within the retry window. `Command` is the canonical YAML property; `Configuration` is kept as an alias for the same shape.
+At runtime the Runner connects to Redis, publishes ping requests to discover live Mocker server instances for `ServerName`, sends the configured `Command` to each discovered instance, waits for acknowledgements, and fails if any expected instance does not report success within the retry window.
 
 Use this page for behavior and YAML shape. The same action can be built in C# with the [MockerCommandBuilder API](../../../../../../qaas/functions/builders/mocker-commands.md); that page is the function reference for the code-first surface.
 

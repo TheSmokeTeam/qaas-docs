@@ -12,6 +12,7 @@ summary: "This page collects public Runner extension methods that have XML docum
 <!-- Verified-against: QaaS.Runner\QaaS.Runner.Infrastructure\DateTimeExtensions.cs -->
 <!-- Verified-against: QaaS.Runner\QaaS.Runner.Sessions\Extensions\DetailedDataExtensions.cs -->
 <!-- Verified-against: QaaS.Runner\QaaS.Runner.Sessions\Extensions\SessionExtensions.cs -->
+<!-- Verified-against: QaaS.Runner\QaaS.Runner\Cases\RunnerCaseExpansionExtensions.cs -->
 
 # Extension Methods
 
@@ -177,6 +178,71 @@ Annotated extension methods continue to appear in their regular category pages; 
     **Docstring**
     
     Adds an index to a detailed data object
+
+## Runner case expansion {: #runner-case-expansion}
+
+### `ExtractBaseBuilder` {: #extractbasebuilder}
+
+??? info "Source file, signature, and docstring"
+    **Member**
+    `RunnerCaseExpansionExtensions.ExtractBaseBuilder(this Runner runner, int index = 0, Action<ExecutionBuilder>? setupBase = null)`
+    
+    **Kind** `function`
+    
+    **Declaring Type** `RunnerCaseExpansionExtensions (extension type)`
+    
+    **Source File** `QaaS.Runner/Cases/RunnerCaseExpansionExtensions.cs`
+    
+    **Signature**
+    ```csharp
+    public static ExecutionBuilder ExtractBaseBuilder(this Runner runner, int index = 0, Action<ExecutionBuilder>? setupBase = null)
+    ```
+    
+    **Docstring**
+    
+    Extracts a single execution builder (by position) to serve as a base for case expansion. Only the selected builder is removed from the Runner; any other builders created by Bootstrap.New are left in place so they can keep running alongside the generated cases.
+
+### `ExtractBaseBuilder` {: #extractbasebuilder-2}
+
+??? info "Source file, signature, and docstring"
+    **Member**
+    `RunnerCaseExpansionExtensions.ExtractBaseBuilder(this Runner runner, Action<ExecutionBuilder> setupBase)`
+    
+    **Kind** `function`
+    
+    **Declaring Type** `RunnerCaseExpansionExtensions (extension type)`
+    
+    **Source File** `QaaS.Runner/Cases/RunnerCaseExpansionExtensions.cs`
+    
+    **Signature**
+    ```csharp
+    public static ExecutionBuilder ExtractBaseBuilder(this Runner runner, Action<ExecutionBuilder> setupBase)
+    ```
+    
+    **Docstring**
+    
+    Extracts the first execution builder to serve as a base and applies the supplied configuration block.
+
+### `AddTestCases` {: #addtestcases}
+
+??? info "Source file, signature, and docstring"
+    **Member**
+    `RunnerCaseExpansionExtensions.AddTestCases(this Runner runner, ExecutionBuilder baseBuilder, params ITestCase[] cases)`
+    
+    **Kind** `function`
+    
+    **Declaring Type** `RunnerCaseExpansionExtensions (extension type)`
+    
+    **Source File** `QaaS.Runner/Cases/RunnerCaseExpansionExtensions.cs`
+    
+    **Signature**
+    ```csharp
+    public static Runner AddTestCases(this Runner runner, ExecutionBuilder baseBuilder, params ITestCase[] cases)
+    ```
+    
+    **Docstring**
+    
+    Replaces the Runner's existing execution plan with builders cloned from the provided base builder, one per test case, with each case's configuration applied.
 
 ## Session {: #session}
 

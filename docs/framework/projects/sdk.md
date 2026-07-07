@@ -120,6 +120,7 @@ The current implementation provides the following runtime behavior:
 - The hook base classes load their configuration from the root configuration and validate it through the shared configuration package.
 - `SessionDataSerialization` serializes and deserializes session and communication payloads by using the Serialization package's factories and `SpecificTypeConfig`.
 - The extension methods cover casting, filtering, lookup, metadata-path access, and logging enrichment across the runtime data surface.
+- The casting extension methods additionally provide non-throwing `Try…` variants, direct typed body access (`GetBodyAs<T>`/`TryGetBodyAs<T>`), and serialization-aware conversion helpers (`ConvertBodyTo<T>`, `ConvertData<T>`, `ConvertDetailedData<T>`, `ConvertCommunicationData<T>`, `GetInputAs<T>`/`GetOutputAs<T>`, `GetInputBodies<T>`/`GetOutputBodies<T>`) that turn raw session payloads into typed objects in one call — see [Casting & Serializing Data](../functions/casting-and-serialization.md).
 
 ## Main source areas {: #main-source-areas}
 
@@ -150,12 +151,14 @@ The current tests cover:
 - raw and typed session serialization paths
 - `DataSourceBuilder` configuration CRUD aliases and dependency wiring
 - the built-in `StatusCodeTransactionProcessor`
+- the typed casting and conversion convenience helpers (`Try…` casts, `GetBodyAs`, `ConvertBodyTo`, session-level typed getters)
 
 Representative test files include:
 
 - `SDKBehaviorTests.cs`
 - `SDKCoverageEdgeCaseTests.cs`
 - `SDKSerializationCoverageTests.cs`
+- `CastingConvenienceTests.cs`
 - `BuildersTests/DataSourceBuilderTests.cs`
 
 ## See also {: #see-also}

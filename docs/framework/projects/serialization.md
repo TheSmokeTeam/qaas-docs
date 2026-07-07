@@ -36,6 +36,19 @@ The runtime dispatch layer is implemented in:
 
 These factories translate the selected `SerializationType` into a concrete serializer or deserializer implementation.
 
+### Convenience layer {: #convenience-layer}
+
+On top of the factories the package exposes a purely additive convenience surface:
+
+- `QaasSerializer.cs` — a static facade with one-liner `Serialize`, `SerializeToString`, `Deserialize<T>`, `DeserializeFromString<T>` calls plus non-throwing `TrySerialize`/`TryDeserialize<T>`/`TryDeserializeFromString<T>` variants. A `null` serialization type keeps the framework's byte-array pass-through semantics.
+- `SerializationTypeExtensions.cs` — `SerializationType.Json.BuildSerializer()` / `.BuildDeserializer()` fluent builders with non-null returns.
+- `SerializationExtensions.cs` — instance extension methods on `ISerializer`/`IDeserializer` (`Deserialize<T>`, `DeserializeFromString<T>`, `SerializeToString`, `TrySerialize`, `TryDeserialize<T>`).
+- `QaasSerializationException.cs` — the dedicated exception type all facade and extension failures are wrapped in; messages name the operation, the target type, and the serialization format.
+
+See [Casting & Serializing Data](../functions/casting-and-serialization.md) for a usage-first walkthrough.
+
+The pre-existing factory + `Deserialize(bytes, type)` surface is unchanged; the convenience layer is built on top of it.
+
 ### Concrete serializers {: #concrete-serializers}
 
 The `Serializers` folder currently contains:
@@ -86,6 +99,7 @@ The current implementation includes several format-specific behaviors that are w
 - protobuf-message deserialization also requires an explicit target type
 - several deserializers return `null` for `null` payloads instead of throwing
 - YAML deserialization contains a special case for empty payloads when the requested type is `string`
+- the convenience layer (`QaasSerializer` and the serializer/deserializer extension methods) wraps every failure in an indicative `QaasSerializationException` and offers non-throwing `Try…` variants
 
 This package is used heavily by the SDK for session and communication serialization, but it remains a separate package because the serialization layer is intentionally reusable outside of the SDK's higher-level object surface.
 
@@ -99,6 +113,10 @@ The most important files and folders are:
 - `SpecificTypeConfig.cs`
 - `SerializerFactory.cs`
 - `DeserializerFactory.cs`
+- `QaasSerializer.cs`
+- `SerializationExtensions.cs`
+- `SerializationTypeExtensions.cs`
+- `QaasSerializationException.cs`
 - `Serializers/`
 - `Deserializers/`
 
@@ -115,11 +133,14 @@ The current tests cover:
 - type requirements for Binary and ProtobufMessage deserialization
 - rejection of unexpected runtime types during binary deserialization
 - null and empty payload behavior
+- the `QaasSerializer` facade round trips, pass-through semantics, and indicative error wrapping
+- the serializer/deserializer extension methods and `Try…` variants for every supported format
 
 Representative test files include:
 
 - `SerializationBehaviorTests.cs`
 - `SerializationEdgeCaseTests.cs`
+- `SerializationConvenienceTests.cs`
 
 ## See also {: #see-also}
 

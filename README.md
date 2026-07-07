@@ -98,6 +98,7 @@ It handles:
 
 - site validation on pushes and pull requests
 - GitHub Pages deployment on pushes to `master`
+- ZIM creation, smoke-testing, artifact upload, and GitHub release attachment on tag pushes
 - Docker image publish on tag pushes and manual dispatch
 - GitHub repository overview updates from this README on tag pushes and manual dispatch
 
@@ -205,6 +206,16 @@ docker run -p 8000:8000 qaas-docs
 ```
 
 The image prebuilds the static site during `docker build` and the runtime image only serves the generated files through Nginx on port `8000`.
+
+## ZIM
+
+Tag pushes build a versioned OpenZIM file named `qaas-docs-<tag>.zim`. CI smoke-tests the file with `kiwix-serve`, uploads it as the `qaas-docs-zim` workflow artifact, and attaches it to the tag's GitHub release so it can be downloaded for OpenZIM/Kiwix hosting.
+
+Build a ZIM locally after installing the MkDocs dependencies:
+
+```bash
+tools/zim/build-zim.sh qaas-docs-local.zim
+```
 
 If you need different docs URLs or repository links baked into the image, pass the overrides at build time:
 
