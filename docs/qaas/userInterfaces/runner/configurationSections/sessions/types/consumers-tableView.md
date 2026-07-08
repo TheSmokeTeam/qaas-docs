@@ -8,6 +8,7 @@ applies_to: [runner]
 keywords: [qaas, userinterfaces, runner, configurationsections, sessions, types]
 summary: "Consumers Configurations Table View"
 ---
+
 <!-- Verified-against: QaaS.PackageMirror\schemas\runner-family\latest\docs-manifest.json -->
 <!-- Verified-against: QaaS.PackageMirror\schemas\runner-family\latest\schema.json -->
 
@@ -158,6 +159,7 @@ The table below mirrors the schema used by the YAML scaffold page. Nested rows u
 | `Sessions[].Consumers[].S3Bucket.MaximumRetryCount` | `integer or string or null` | &#10006 |  | The maximum number of times to retry when an action against the S3 fails due to maximum S3 supported IOPS, if no value is given will retry indefinitely |
 | `Sessions[].Consumers[].S3Bucket.Prefix` | `string` | &#10006 |  | Prefix of the objects to read from s3 bucket |
 | `Sessions[].Consumers[].S3Bucket.ReadFromRunStartTime` | `string or true/false` | &#10006 | False | Whether to only read messages that were last modified after the start of the read action (true) or read all messages regardless of latest modification time (false) |
+| `Sessions[].Consumers[].S3Bucket.ReadStorageHeaders` | `string or true/false` | &#10006 | False | Whether to read S3 user metadata headers for each consumed object |
 | `Sessions[].Consumers[].S3Bucket.SkipEmptyObjects` | `string or true/false` | &#10006 | False | Whether to skip the read of empty s3 objects or not, if true skips them if false doesnt skip them |
 | `Sessions[].Consumers[].Socket` | `object or string` | &#10006 |  | Consumes messages from socket communications in various protocols |
 | `Sessions[].Consumers[].Socket.Host` | `string` | &#10004 |  | Socket connection endpoint hostname |

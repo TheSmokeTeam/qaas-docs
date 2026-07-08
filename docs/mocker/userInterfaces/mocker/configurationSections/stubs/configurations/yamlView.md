@@ -8,6 +8,7 @@ applies_to: [mocker]
 keywords: [mocker, userinterfaces, configurationsections, stubs, configurations, yamlview]
 summary: "Stub configuration YAML example."
 ---
+
 <!-- Verified-against: QaaS.PackageMirror\schemas\mocker-family\latest\docs-manifest.json -->
 <!-- Verified-against: QaaS.PackageMirror\schemas\mocker-family\latest\schema.json -->
 

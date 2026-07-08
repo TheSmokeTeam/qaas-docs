@@ -8,6 +8,7 @@ applies_to: [runner]
 keywords: [qaas, userinterfaces, runner, configurationsections, sessions, types]
 summary: "Consumer YAML scaffold for reading session inputs from supported back ends."
 ---
+
 <!-- Verified-against: QaaS.PackageMirror\schemas\runner-family\latest\docs-manifest.json -->
 <!-- Verified-against: QaaS.PackageMirror\schemas\runner-family\latest\schema.json -->
 
@@ -156,6 +157,7 @@ Consumers:
       MaximumRetryCount: 0
       Prefix: ''
       ReadFromRunStartTime: False
+      ReadStorageHeaders: False
       SkipEmptyObjects: False
     Socket:
       Host: 'value'

@@ -8,6 +8,7 @@ applies_to: [mocker]
 keywords: [mocker, userinterfaces, configurationsections, server, configurations, yamlview]
 summary: "Server configuration YAML example."
 ---
+
 <!-- Verified-against: QaaS.PackageMirror\schemas\mocker-family\latest\docs-manifest.json -->
 <!-- Verified-against: QaaS.PackageMirror\schemas\mocker-family\latest\schema.json -->
 

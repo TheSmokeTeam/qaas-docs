@@ -8,6 +8,7 @@ applies_to: [runner]
 keywords: [qaas, functions, builders, collectors]
 summary: "Each entry uses the short function name as the table-of-contents label. Expand an entry to inspect its source file, signature, and XML doc comments."
 ---
+
 <!-- Verified-against: QaaS.Runner\QaaS.Runner.Sessions\Actions\Collectors\CollectorBuilder.cs -->
 
 # Collectors
