@@ -8,6 +8,7 @@ applies_to: [runner]
 keywords: [qaas, userinterfaces, runner, configurationsections, sessions, types]
 summary: "Collector YAML scaffold for session metrics and time-range collection."
 ---
+
 <!-- Verified-against: QaaS.PackageMirror\schemas\runner-family\latest\docs-manifest.json -->
 <!-- Verified-against: QaaS.PackageMirror\schemas\runner-family\latest\schema.json -->
 

@@ -8,6 +8,7 @@ applies_to: [framework]
 keywords: [framework, functions, updates]
 summary: "Each entry uses the short function name as the table-of-contents label. Expand an entry to inspect its source file, signature, and XML doc comments."
 ---
+
 <!-- Verified-against: QaaS.Framework\QaaS.Framework.Configurations\ConfigurationUpdateExtensions.cs -->
 
 # Updates

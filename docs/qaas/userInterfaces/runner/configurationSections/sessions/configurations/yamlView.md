@@ -8,6 +8,7 @@ applies_to: [runner]
 keywords: [qaas, userinterfaces, runner, configurationsections, sessions, configurations]
 summary: "Session configuration YAML example."
 ---
+
 <!-- Verified-against: QaaS.PackageMirror\schemas\runner-family\latest\docs-manifest.json -->
 <!-- Verified-against: QaaS.PackageMirror\schemas\runner-family\latest\schema.json -->
 
@@ -183,6 +184,7 @@ Sessions:
           MaximumRetryCount: 0
           Prefix: ''
           ReadFromRunStartTime: False
+          ReadStorageHeaders: False
           SkipEmptyObjects: False
         Socket:
           Host: 'value'
@@ -350,18 +352,29 @@ Sessions:
           CommandTimeoutSeconds: 30
         RabbitMq:
           Host: 'value'
+          AppId: 'value'
+          ClusterId: 'value'
+          ContentEncoding: 'value'
           ContentType: 'value'
           ContinuationTimeoutSeconds: 5
+          CorrelationId: 'value'
+          DeliveryMode: 1
           ExchangeName: 'value'
           Expiration: 'value'
           HandshakeContinuationTimeoutSeconds: 10
           Headers: {}
+          MessageId: 'value'
           Password: 'admin'
+          Persistent: True
           Port: 5672
+          Priority: 0
           QueueName: 'value'
+          ReplyTo: 'value'
           RequestedConnectionTimeoutSeconds: 5
           RoutingKey: '/'
+          TimestampUnixTime: 0
           Type: 'value'
+          UserId: 'value'
           Username: 'admin'
           VirtualHost: '/'
         Redis:

@@ -8,6 +8,7 @@ applies_to: [runner]
 keywords: [qaas, functions, extension, methods]
 summary: "This page collects public Runner extension methods that have XML documentation or explicit docs annotations."
 ---
+
 <!-- Verified-against: QaaS.Runner\QaaS.Runner.Infrastructure\ContextArtifactExtensions.cs -->
 <!-- Verified-against: QaaS.Runner\QaaS.Runner.Infrastructure\DateTimeExtensions.cs -->
 <!-- Verified-against: QaaS.Runner\QaaS.Runner.Sessions\Extensions\DetailedDataExtensions.cs -->
@@ -242,7 +243,7 @@ Annotated extension methods continue to appear in their regular category pages; 
     
     **Docstring**
     
-    Replaces the Runner's existing execution plan with builders cloned from the provided base builder, one per test case, with each case's configuration applied.
+    Adds builders cloned from the provided base builder, one per test case, with each case's configuration applied.
 
 ## Session {: #session}
 
