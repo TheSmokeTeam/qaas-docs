@@ -8,6 +8,7 @@ applies_to: [mocker]
 keywords: [mocker, userinterfaces, configurationsections, stubs, configurations, tableview]
 summary: "Stubs Configurations Table View"
 ---
+
 <!-- Verified-against: QaaS.PackageMirror\schemas\mocker-family\latest\docs-manifest.json -->
 <!-- Verified-against: QaaS.PackageMirror\schemas\mocker-family\latest\schema.json -->
 

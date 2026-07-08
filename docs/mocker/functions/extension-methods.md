@@ -8,6 +8,7 @@ applies_to: [mocker]
 keywords: [mocker, functions, extension, methods]
 summary: "This page collects public Mocker extension methods that have XML documentation or explicit docs annotations."
 ---
+
 <!-- Verified-against: QaaS.Mocker\QaaS.Mocker.Servers\Extensions\DataExtensions.cs -->
 <!-- Verified-against: QaaS.Mocker\QaaS.Mocker.Servers\Extensions\HttpExtensions.cs -->
 <!-- Verified-against: QaaS.Mocker\QaaS.Mocker.Servers\Extensions\SocketExtensions.cs -->

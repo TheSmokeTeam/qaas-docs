@@ -86,7 +86,7 @@ Use this page when you need the focused member list, signatures, and source note
     
     **Docstring**
     
-    Replaces the Runner's existing execution plan with builders cloned from the provided base builder, one per test case, with each case's configuration applied.
+    Adds builders cloned from the provided base builder, one per test case, with each case's configuration applied.
 
 ## Edge cases {: #edge-cases}
 

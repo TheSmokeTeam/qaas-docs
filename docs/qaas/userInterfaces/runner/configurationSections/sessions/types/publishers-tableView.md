@@ -8,6 +8,7 @@ applies_to: [runner]
 keywords: [qaas, userinterfaces, runner, configurationsections, sessions, types]
 summary: "Publishers Configurations Table View"
 ---
+
 <!-- Verified-against: QaaS.PackageMirror\schemas\runner-family\latest\docs-manifest.json -->
 <!-- Verified-against: QaaS.PackageMirror\schemas\runner-family\latest\schema.json -->
 
@@ -112,18 +113,29 @@ The table below mirrors the schema used by the YAML scaffold page. Nested rows u
 | `Sessions[].Publishers[].PostgreSqlTable.CommandTimeoutSeconds` | `integer or string` | &#10006 | 30 | The wait time (in seconds) before terminating the attempt to execute an sql copy/insertion command and generating an error |
 | `Sessions[].Publishers[].RabbitMq` | `object or string` | &#10006 |  | Publishes messages to a rabbitmq |
 | `Sessions[].Publishers[].RabbitMq.Host` | `string` | &#10004 |  | Rabbitmq hostname |
+| `Sessions[].Publishers[].RabbitMq.AppId` | `string or null` | &#10006 |  | Default AppId to send messages with, if the message doesn't contain AppId in its MetaData this one is Used |
+| `Sessions[].Publishers[].RabbitMq.ClusterId` | `string or null` | &#10006 |  | Default ClusterId to send messages with, if the message doesn't contain ClusterId in its MetaData this one is Used |
+| `Sessions[].Publishers[].RabbitMq.ContentEncoding` | `string or null` | &#10006 |  | Default ContentEncoding to send messages with, if the message doesn't contain ContentEncoding in its MetaData this one is Used |
 | `Sessions[].Publishers[].RabbitMq.ContentType` | `string or null` | &#10006 |  | Default ContentType to send messages with, if the message doesn't contain ContentType in its MetaData this one is Used |
 | `Sessions[].Publishers[].RabbitMq.ContinuationTimeoutSeconds` | `integer or string` | &#10006 | 5 | Amount of time protocol operations (e.g. queue.declare) are allowed to take before timing out in seconds |
+| `Sessions[].Publishers[].RabbitMq.CorrelationId` | `string or null` | &#10006 |  | Default CorrelationId to send messages with, if the message doesn't contain CorrelationId in its MetaData this one is Used |
+| `Sessions[].Publishers[].RabbitMq.DeliveryMode` | `integer or string or null` | &#10006 |  | Default DeliveryMode to send messages with. Valid values are 1 (transient) and 2 (persistent). If the message doesn't contain DeliveryMode in its MetaData this one is Used |
 | `Sessions[].Publishers[].RabbitMq.ExchangeName` | `string or null` | &#10006 |  | Name of the exchange to send messages toCannot be set if configured QueueName to read from. |
 | `Sessions[].Publishers[].RabbitMq.Expiration` | `string or null` | &#10006 |  | Default Message expiration duration to send messages with, if the message doesn't contain any Expiration in its MetaData this Expiration is used |
 | `Sessions[].Publishers[].RabbitMq.HandshakeContinuationTimeoutSeconds` | `integer or string` | &#10006 | 10 | Amount of time protocol handshake operations are allowed to take before timing out in seconds |
 | `Sessions[].Publishers[].RabbitMq.Headers` | `object or string or null` | &#10006 |  | Default Headers to send messages with, if the message doesn't contain any Headers in its MetaData these Headers are used |
+| `Sessions[].Publishers[].RabbitMq.MessageId` | `string or null` | &#10006 |  | Default MessageId to send messages with, if the message doesn't contain MessageId in its MetaData this one is Used |
 | `Sessions[].Publishers[].RabbitMq.Password` | `string` | &#10006 | admin | Rabbitmq password |
+| `Sessions[].Publishers[].RabbitMq.Persistent` | `string or true/false or null` | &#10006 |  | Default Persistent flag to send messages with, if the message doesn't contain Persistent or DeliveryMode in its MetaData this one is Used. DeliveryMode takes precedence when both are configured. |
 | `Sessions[].Publishers[].RabbitMq.Port` | `integer or string` | &#10006 | 5672 | Rabbitmq Amqp port |
+| `Sessions[].Publishers[].RabbitMq.Priority` | `integer or string or null` | &#10006 |  | Default Priority to send messages with, if the message doesn't contain Priority in its MetaData this one is Used |
 | `Sessions[].Publishers[].RabbitMq.QueueName` | `string or null` | &#10006 |  | Name of the queue to send messages to. Cannot be set if configured ExchangeName to read from. |
+| `Sessions[].Publishers[].RabbitMq.ReplyTo` | `string or null` | &#10006 |  | Default ReplyTo to send messages with, if the message doesn't contain ReplyTo in its MetaData this one is Used |
 | `Sessions[].Publishers[].RabbitMq.RequestedConnectionTimeoutSeconds` | `integer or string` | &#10006 | 5 | Timeout setting for connection attempts in seconds |
 | `Sessions[].Publishers[].RabbitMq.RoutingKey` | `string` | &#10006 | / | Default routing key to send mesages to the exchange with, if the message doesn't contain any RoutingKey in its MetaData this routing key is used |
+| `Sessions[].Publishers[].RabbitMq.TimestampUnixTime` | `integer or string or null` | &#10006 |  | Default RabbitMQ timestamp as Unix time seconds, if the message doesn't contain TimestampUnixTime in its MetaData this one is Used |
 | `Sessions[].Publishers[].RabbitMq.Type` | `string or null` | &#10006 |  | Default Type to send messages with, if the message doesn't contain Type in its MetaData this one is Used |
+| `Sessions[].Publishers[].RabbitMq.UserId` | `string or null` | &#10006 |  | Default UserId to send messages with, if the message doesn't contain UserId in its MetaData this one is Used |
 | `Sessions[].Publishers[].RabbitMq.Username` | `string` | &#10006 | admin | Rabbitmq username |
 | `Sessions[].Publishers[].RabbitMq.VirtualHost` | `string` | &#10006 | / | Rabbitmq virual host to access during this connection |
 | `Sessions[].Publishers[].Redis` | `object or string` | &#10006 |  | Publishes messages to a redis cache |

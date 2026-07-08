@@ -8,6 +8,7 @@ applies_to: [runner]
 keywords: [qaas, userinterfaces, runner, configurationsections, sessions, types]
 summary: "Collectors Configurations Table View"
 ---
+
 <!-- Verified-against: QaaS.PackageMirror\schemas\runner-family\latest\docs-manifest.json -->
 <!-- Verified-against: QaaS.PackageMirror\schemas\runner-family\latest\schema.json -->
 

@@ -3414,6 +3414,15 @@
                       "description": "Whether to only read messages that were last modified after the start of the read action (true) or read all messages regardless of latest modification time (false)",
                       "default": false,
                       "pattern": "\\$\\{.*\\}"
+                    },
+                    "ReadStorageHeaders": {
+                      "type": [
+                        "boolean",
+                        "string"
+                      ],
+                      "description": "Whether to read S3 user metadata headers for each consumed object",
+                      "default": false,
+                      "pattern": "\\$\\{.*\\}"
                     }
                   }
                 },
@@ -4338,6 +4347,27 @@
                       "description": "Default Headers to send messages with, if the message doesn't contain any Headers in its MetaData these Headers are used",
                       "pattern": "\\$\\{.*\\}"
                     },
+                    "AppId": {
+                      "type": [
+                        "null",
+                        "string"
+                      ],
+                      "description": "Default AppId to send messages with, if the message doesn't contain AppId in its MetaData this one is Used"
+                    },
+                    "ClusterId": {
+                      "type": [
+                        "null",
+                        "string"
+                      ],
+                      "description": "Default ClusterId to send messages with, if the message doesn't contain ClusterId in its MetaData this one is Used"
+                    },
+                    "ContentEncoding": {
+                      "type": [
+                        "null",
+                        "string"
+                      ],
+                      "description": "Default ContentEncoding to send messages with, if the message doesn't contain ContentEncoding in its MetaData this one is Used"
+                    },
                     "ContentType": {
                       "type": [
                         "null",
@@ -4345,12 +4375,85 @@
                       ],
                       "description": "Default ContentType to send messages with, if the message doesn't contain ContentType in its MetaData this one is Used"
                     },
+                    "CorrelationId": {
+                      "type": [
+                        "null",
+                        "string"
+                      ],
+                      "description": "Default CorrelationId to send messages with, if the message doesn't contain CorrelationId in its MetaData this one is Used"
+                    },
+                    "DeliveryMode": {
+                      "type": [
+                        "integer",
+                        "null",
+                        "string"
+                      ],
+                      "description": "Default DeliveryMode to send messages with. Valid values are 1 (transient) and 2 (persistent). If the message doesn't contain DeliveryMode in its MetaData this one is Used",
+                      "format": "int32",
+                      "maximum": 2.0,
+                      "minimum": 1.0,
+                      "pattern": "\\$\\{.*\\}"
+                    },
+                    "MessageId": {
+                      "type": [
+                        "null",
+                        "string"
+                      ],
+                      "description": "Default MessageId to send messages with, if the message doesn't contain MessageId in its MetaData this one is Used"
+                    },
+                    "Persistent": {
+                      "type": [
+                        "boolean",
+                        "null",
+                        "string"
+                      ],
+                      "description": "Default Persistent flag to send messages with, if the message doesn't contain Persistent or DeliveryMode in its MetaData this one is Used. DeliveryMode takes precedence when both are configured.",
+                      "pattern": "\\$\\{.*\\}"
+                    },
+                    "Priority": {
+                      "type": [
+                        "integer",
+                        "null",
+                        "string"
+                      ],
+                      "description": "Default Priority to send messages with, if the message doesn't contain Priority in its MetaData this one is Used",
+                      "format": "int32",
+                      "maximum": 255.0,
+                      "minimum": 0.0,
+                      "pattern": "\\$\\{.*\\}"
+                    },
+                    "ReplyTo": {
+                      "type": [
+                        "null",
+                        "string"
+                      ],
+                      "description": "Default ReplyTo to send messages with, if the message doesn't contain ReplyTo in its MetaData this one is Used"
+                    },
+                    "TimestampUnixTime": {
+                      "type": [
+                        "integer",
+                        "null",
+                        "string"
+                      ],
+                      "description": "Default RabbitMQ timestamp as Unix time seconds, if the message doesn't contain TimestampUnixTime in its MetaData this one is Used",
+                      "format": "int64",
+                      "maximum": 9223372036854775807.0,
+                      "minimum": 0.0,
+                      "pattern": "\\$\\{.*\\}"
+                    },
                     "Type": {
                       "type": [
                         "null",
                         "string"
                       ],
                       "description": "Default Type to send messages with, if the message doesn't contain Type in its MetaData this one is Used"
+                    },
+                    "UserId": {
+                      "type": [
+                        "null",
+                        "string"
+                      ],
+                      "description": "Default UserId to send messages with, if the message doesn't contain UserId in its MetaData this one is Used"
                     },
                     "Expiration": {
                       "type": [
