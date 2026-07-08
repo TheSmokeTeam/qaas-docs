@@ -25,8 +25,6 @@ summary: "This page collects public Framework extension methods that have XML do
 <!-- Verified-against: QaaS.Framework\QaaS.Framework.SDK\Extensions\RunningCommunicationDataExtensions.cs -->
 <!-- Verified-against: QaaS.Framework\QaaS.Framework.SDK\Extensions\RunningSessionDataExtensions.cs -->
 <!-- Verified-against: QaaS.Framework\QaaS.Framework.SDK\Extensions\SessionDataExtensions.cs -->
-<!-- Verified-against: QaaS.Framework\QaaS.Framework.Serialization\SerializationExtensions.cs -->
-<!-- Verified-against: QaaS.Framework\QaaS.Framework.Serialization\SerializationTypeExtensions.cs -->
 
 # Extension Methods
 
