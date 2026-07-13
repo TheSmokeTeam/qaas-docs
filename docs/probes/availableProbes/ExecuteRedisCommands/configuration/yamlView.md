@@ -38,8 +38,7 @@ ProbeConfiguration:
   UseGlobalDict: False
   Username: 'value'
   Commands:
-    -
-      Command: 'value'
+    - Command: 'value'
       StoreResultAs: 'value'
       Arguments: []
   HostNames:

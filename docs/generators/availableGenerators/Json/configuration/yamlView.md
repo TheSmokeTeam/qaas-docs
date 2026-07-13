@@ -30,8 +30,7 @@ GeneratorConfiguration:
   JsonDataSourceName: 'value'
   OutputObjectType: 'Json'
   JsonFieldReplacements:
-    -
-      Path: 'value'
+    - Path: 'value'
       ValueType: 'Null'
       Boolean:
         Value: True

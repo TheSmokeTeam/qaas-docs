@@ -85,13 +85,15 @@ TrinoSqlTable: {}
 
 ## S3Bucket {: #s3bucket}
 
-Consumes objects from an S3-compatible bucket. The reader waits until the bucket has been inactive for the configured timeout, lists objects by prefix and delimiter, optionally skips empty objects, and returns object bytes plus `MetaData.Storage.Key`. If the data filter excludes bodies, object contents are not downloaded.
+Consumes objects from an S3-compatible bucket. The reader waits until the bucket has been inactive for the configured timeout, lists objects by prefix and delimiter, optionally skips empty objects, and returns object bytes plus `MetaData.Storage.Key`. Set `ReadStorageHeaders: true` to copy S3 user-defined metadata into `MetaData.Storage.Headers` for assertions. If the data filter excludes bodies, object contents are not downloaded.
 
 **Table Property Path** - `Sessions[].Consumers[].S3Bucket`
 
 ```yaml
 S3Bucket: {}
 ```
+
+See [S3 headers and key selection](s3-headers-and-key-selection.md) for the exact `Prefix` and `Delimiter` behavior and an end-to-end header example.
 
 ## ElasticIndices {: #elasticindices}
 

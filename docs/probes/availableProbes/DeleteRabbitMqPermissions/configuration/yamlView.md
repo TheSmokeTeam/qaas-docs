@@ -37,8 +37,7 @@ ProbeConfiguration:
   Username: 'admin'
   VirtualHost: '/'
   Permissions:
-    -
-      Username: 'value'
+    - Username: 'value'
       VirtualHostName: 'value'
 ```
 

@@ -65,6 +65,7 @@ nav:
               - Overview: qaas/userInterfaces/runner/configurationSections/sessions/types/consumers.md
               - Table View: qaas/userInterfaces/runner/configurationSections/sessions/types/consumers-tableView.md
               - YAML View: qaas/userInterfaces/runner/configurationSections/sessions/types/consumers-yamlView.md
+            - S3 Headers and Key Selection: qaas/userInterfaces/runner/configurationSections/sessions/types/s3-headers-and-key-selection.md
             - Collectors:
               - Overview: qaas/userInterfaces/runner/configurationSections/sessions/types/collectors.md
               - Table View: qaas/userInterfaces/runner/configurationSections/sessions/types/collectors-tableView.md

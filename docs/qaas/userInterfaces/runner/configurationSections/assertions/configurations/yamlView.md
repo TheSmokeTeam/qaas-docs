@@ -28,8 +28,7 @@ The scaffold follows the generated schema order. String placeholders are quoted,
 
 ```yaml
 Assertions:
-  -
-    Assertion: 'DelayByAverage'
+  - Assertion: 'DelayByAverage'
     Name: 'value'
     AssertionConfiguration: {}
     Category: 'value'
@@ -42,14 +41,12 @@ Assertions:
     DataSourceNames: []
     DataSourcePatterns: []
     Links:
-      -
-        Name: 'value'
+      - Name: 'value'
         Grafana:
           DashboardId: 'value'
           Url: 'value'
           Variables:
-            -
-              Key: 'value'
+            - Key: 'value'
               Value: 'value'
         Kibana:
           DataViewId: 'value'
