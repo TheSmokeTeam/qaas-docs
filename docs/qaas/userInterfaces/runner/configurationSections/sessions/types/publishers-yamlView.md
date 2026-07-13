@@ -28,8 +28,7 @@ The scaffold follows the generated schema order. String placeholders are quoted,
 
 ```yaml
 Publishers:
-  -
-    Name: 'value'
+  - Name: 'value'
     Iterations: 1
     Loop: False
     SleepTimeMs: 0
@@ -37,11 +36,9 @@ Publishers:
     DataSourceNames: []
     DataSourcePatterns: []
     Policies:
-      -
-        AdvancedLoadBalance:
+      - AdvancedLoadBalance:
           Stages:
-            -
-              Rate: 1.0
+            - Rate: 1.0
               Amount: 1
               TimeIntervalMs: 1000
               TimeoutMs: 0

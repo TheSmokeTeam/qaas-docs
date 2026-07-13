@@ -37,8 +37,7 @@ ProbeConfiguration:
   Username: 'admin'
   VirtualHost: '/'
   Users:
-    -
-      Username: 'value'
+    - Username: 'value'
       HashingAlgorithm: 'value'
       Password: 'value'
       PasswordHash: 'value'

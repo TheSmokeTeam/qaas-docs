@@ -37,8 +37,7 @@ ProbeConfiguration:
   Username: 'admin'
   VirtualHost: '/'
   VirtualHosts:
-    -
-      Name: 'value'
+    - Name: 'value'
       DefaultQueueType: 'value'
       Description: 'value'
       ProtectedFromDeletion: True
