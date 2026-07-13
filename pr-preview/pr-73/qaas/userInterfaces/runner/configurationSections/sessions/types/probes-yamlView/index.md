@@ -14,7 +14,8 @@ The scaffold follows the generated schema order. String placeholders are quoted,
 
 ```yaml
 Probes:
-  - Name: 'value'
+  -
+    Name: 'value'
     Probe: 'CreateRabbitMqBindings'
     ProbeConfiguration: {}
     Stage: 3

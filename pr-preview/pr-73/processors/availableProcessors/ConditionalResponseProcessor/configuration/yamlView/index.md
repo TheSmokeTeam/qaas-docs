@@ -19,7 +19,8 @@ ProcessorConfiguration:
   DefaultBody: 'value'
   DefaultResponseHeaders: {}
   Rules:
-    - ContentType: 'value'
+    -
+      ContentType: 'value'
       ExpectedValue: 'value'
       StatusCode: 0
       PathParameterName: 'value'

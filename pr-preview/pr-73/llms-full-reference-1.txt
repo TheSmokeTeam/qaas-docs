@@ -9673,9 +9673,11 @@ The scaffold follows the generated schema order. String placeholders are quoted,
 
 ```yaml
 GeneratorConfiguration:
-  - SessionName: 'value'
+  -
+    SessionName: 'value'
     CommunicationDataList:
-      - Name: 'value'
+      -
+        Name: 'value'
         Type: 'Input'
 ```
 
@@ -9873,7 +9875,8 @@ GeneratorConfiguration:
   JsonDataSourceName: 'value'
   OutputObjectType: 'Json'
   JsonFieldReplacements:
-    - Path: 'value'
+    -
+      Path: 'value'
       ValueType: 'Null'
       Boolean:
         Value: True
@@ -10127,7 +10130,8 @@ GeneratorConfiguration:
   OutputObjectType: 'Json'
   Seed: 0
   JsonFieldReplacements:
-    - Path: 'value'
+    -
+      Path: 'value'
       ValueType: 'Null'
       Boolean:
         Value: True
@@ -13847,7 +13851,8 @@ The scaffold follows the generated schema order. String placeholders are quoted,
 
 ```yaml
 DataSources:
-  - Generator: 'FromCSV'
+  -
+    Generator: 'FromCSV'
     Name: 'value'
     GeneratorConfiguration: {}
     Lazy: False
@@ -13989,7 +13994,8 @@ The scaffold follows the generated schema order. String placeholders are quoted,
 
 ```yaml
 Servers:
-  - Grpc:
+  -
+    Grpc:
       Port: 0
       CertificatePassword: 'value'
       CertificatePath: 'value'
@@ -13998,11 +14004,13 @@ Servers:
       IsSecuredSchema: False
       NotFoundTransactionStubName: 'value'
       Services:
-        - AssemblyName: 'value'
+        -
+          AssemblyName: 'value'
           ProtoNamespace: 'value'
           ServiceName: 'value'
           Actions:
-            - RpcName: 'value'
+            -
+              RpcName: 'value'
               TransactionStubName: 'value'
               Name: 'value'
     Http:
@@ -14015,17 +14023,20 @@ Servers:
       IsSecuredSchema: False
       NotFoundTransactionStubName: 'value'
       Endpoints:
-        - Path: 'value'
+        -
+          Path: 'value'
           FixedPath: 'value'
           Actions:
-            - Method: 'Get'
+            -
+              Method: 'Get'
               TransactionStubName: 'value'
               Name: 'value'
     Socket:
       BindingIpAddress: '0.0.0.0'
       ConnectionAcceptanceValue: 8
       Endpoints:
-        - Port: 0
+        -
+          Port: 0
           ProtocolType: 'IP'
           TimeoutMs: 0
           AddressFamily: 'Unspecified'
@@ -14125,7 +14136,8 @@ The scaffold follows the generated schema order. String placeholders are quoted,
 
 ```yaml
 Stubs:
-  - Name: 'value'
+  -
+    Name: 'value'
     Processor: 'ConditionalResponseProcessor'
     ProcessorConfiguration: {}
     DataSourceNames: []
@@ -14230,7 +14242,8 @@ ProbeConfiguration:
   Username: 'admin'
   VirtualHost: '/'
   Bindings:
-    - DestinationName: 'value'
+    -
+      DestinationName: 'value'
       SourceName: 'value'
       Arguments: {}
       BindingType: 'ExchangeToQueue'
@@ -14396,7 +14409,8 @@ ProbeConfiguration:
   Username: 'admin'
   VirtualHost: '/'
   Exchanges:
-    - Name: 'value'
+    -
+      Name: 'value'
       Arguments: {}
       AutoDelete: False
       Durable: False
@@ -14562,7 +14576,8 @@ ProbeConfiguration:
   Username: 'admin'
   VirtualHost: '/'
   Queues:
-    - Exclusive: False
+    -
+      Exclusive: False
       Name: 'value'
       Arguments: {}
       AutoDelete: True
@@ -14737,7 +14752,8 @@ ProbeConfiguration:
   Username: 'admin'
   VirtualHost: '/'
   Users:
-    - Username: 'value'
+    -
+      Username: 'value'
       HashingAlgorithm: 'value'
       Password: 'value'
       PasswordHash: 'value'
@@ -14914,7 +14930,8 @@ ProbeConfiguration:
   Username: 'admin'
   VirtualHost: '/'
   VirtualHosts:
-    - Name: 'value'
+    -
+      Name: 'value'
       DefaultQueueType: 'value'
       Description: 'value'
       ProtectedFromDeletion: True
@@ -15389,7 +15406,8 @@ ProbeConfiguration:
   Username: 'admin'
   VirtualHost: '/'
   Bindings:
-    - DestinationName: 'value'
+    -
+      DestinationName: 'value'
       SourceName: 'value'
       Arguments: {}
       BindingType: 'ExchangeToQueue'
@@ -15714,7 +15732,8 @@ ProbeConfiguration:
   Username: 'admin'
   VirtualHost: '/'
   Permissions:
-    - Username: 'value'
+    -
+      Username: 'value'
       VirtualHostName: 'value'
 ```
 
@@ -17640,7 +17659,8 @@ ProbeConfiguration:
   UseGlobalDict: False
   Username: 'value'
   Commands:
-    - Command: 'value'
+    -
+      Command: 'value'
       StoreResultAs: 'value'
       Arguments: []
   HostNames:
@@ -20803,7 +20823,8 @@ ProbeConfiguration:
   Username: 'admin'
   VirtualHost: '/'
   Permissions:
-    - Username: 'value'
+    -
+      Username: 'value'
       VirtualHostName: 'value'
       Configure: '.*'
       Read: '.*'
@@ -20969,7 +20990,8 @@ ProcessorConfiguration:
   DefaultBody: 'value'
   DefaultResponseHeaders: {}
   Rules:
-    - ContentType: 'value'
+    -
+      ContentType: 'value'
       ExpectedValue: 'value'
       StatusCode: 0
       PathParameterName: 'value'

@@ -14,7 +14,8 @@ The scaffold follows the generated schema order. String placeholders are quoted,
 
 ```yaml
 Servers:
-  - Grpc:
+  -
+    Grpc:
       Port: 0
       CertificatePassword: 'value'
       CertificatePath: 'value'
@@ -23,11 +24,13 @@ Servers:
       IsSecuredSchema: False
       NotFoundTransactionStubName: 'value'
       Services:
-        - AssemblyName: 'value'
+        -
+          AssemblyName: 'value'
           ProtoNamespace: 'value'
           ServiceName: 'value'
           Actions:
-            - RpcName: 'value'
+            -
+              RpcName: 'value'
               TransactionStubName: 'value'
               Name: 'value'
     Http:
@@ -40,17 +43,20 @@ Servers:
       IsSecuredSchema: False
       NotFoundTransactionStubName: 'value'
       Endpoints:
-        - Path: 'value'
+        -
+          Path: 'value'
           FixedPath: 'value'
           Actions:
-            - Method: 'Get'
+            -
+              Method: 'Get'
               TransactionStubName: 'value'
               Name: 'value'
     Socket:
       BindingIpAddress: '0.0.0.0'
       ConnectionAcceptanceValue: 8
       Endpoints:
-        - Port: 0
+        -
+          Port: 0
           ProtocolType: 'IP'
           TimeoutMs: 0
           AddressFamily: 'Unspecified'

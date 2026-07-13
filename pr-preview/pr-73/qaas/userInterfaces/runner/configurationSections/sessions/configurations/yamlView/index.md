@@ -14,7 +14,8 @@ The scaffold follows the generated schema order. String placeholders are quoted,
 
 ```yaml
 Sessions:
-  - Name: 'value'
+  -
+    Name: 'value'
     Category: 'value'
     RunUntilStage: 0
     SaveData: True
@@ -23,7 +24,8 @@ Sessions:
     TimeoutAfterSessionMs: 0
     TimeoutBeforeSessionMs: 0
     Collectors:
-      - Name: 'value'
+      -
+        Name: 'value'
         EndTimeReachedCheckIntervalMs: 1000
         CollectionRange:
           EndTimeMs: 0
@@ -39,14 +41,17 @@ Sessions:
           SampleIntervalMs: 30000
           TimeoutMs: 120000
     Consumers:
-      - Name: 'value'
+      -
+        Name: 'value'
         TimeoutMs: 0
         InitialTimeoutMs: 0
         Stage: 0
         Policies:
-          - AdvancedLoadBalance:
+          -
+            AdvancedLoadBalance:
               Stages:
-                - Rate: 1.0
+                -
+                  Rate: 1.0
                   Amount: 1
                   TimeIntervalMs: 1000
                   TimeoutMs: 0
@@ -194,7 +199,8 @@ Sessions:
           WhereStatement: 'value'
           ColumnsToIgnore: []
     MockerCommands:
-      - Name: 'value'
+      -
+        Name: 'value'
         ServerName: 'value'
         RequestDurationMs: 3000
         RequestRetries: 3
@@ -240,14 +246,16 @@ Sessions:
           SslHost: 'value'
           Username: 'value'
     Probes:
-      - Name: 'value'
+      -
+        Name: 'value'
         Probe: 'CreateRabbitMqBindings'
         ProbeConfiguration: {}
         Stage: 3
         DataSourceNames: []
         DataSourcePatterns: []
     Publishers:
-      - Name: 'value'
+      -
+        Name: 'value'
         Iterations: 1
         Loop: False
         SleepTimeMs: 0
@@ -255,9 +263,11 @@ Sessions:
         DataSourceNames: []
         DataSourcePatterns: []
         Policies:
-          - AdvancedLoadBalance:
+          -
+            AdvancedLoadBalance:
               Stages:
-                - Rate: 1.0
+                -
+                  Rate: 1.0
                   Amount: 1
                   TimeIntervalMs: 1000
                   TimeoutMs: 0
@@ -403,11 +413,13 @@ Sessions:
           SendTimeoutMs: 5000
           SocketType: 'Stream'
     Stages:
-      - StageNumber: 0
+      -
+        StageNumber: 0
         TimeoutAfter: 0
         TimeoutBefore: 0
     Transactions:
-      - Name: 'value'
+      -
+        Name: 'value'
         TimeoutMs: 0
         Iterations: 1
         Loop: False
@@ -416,9 +428,11 @@ Sessions:
         DataSourceNames: []
         DataSourcePatterns: []
         Policies:
-          - AdvancedLoadBalance:
+          -
+            AdvancedLoadBalance:
               Stages:
-                - Rate: 1.0
+                -
+                  Rate: 1.0
                   Amount: 1
                   TimeIntervalMs: 1000
                   TimeoutMs: 0

@@ -1954,7 +1954,7 @@ yield return new Data<object>
 };
 ```
 
-If the publisher has `Prefix: events/`, this item is stored as `events/order-42.json`. Each `Storage.Headers` entry is uploaded as [S3 user-defined metadata](https://docs.aws.amazon.com/AmazonS3/latest/userguide/UsingMetadata.html). The S3 publisher has no configuration-level default headers; the data item must carry every header that should be uploaded.
+If the publisher has `Prefix: events/`, this item is stored as `events/order-42.json`. Each `Storage.Headers` entry is uploaded as [S3 user-defined metadata]({{ links.aws_s3_user_metadata }}). The S3 publisher has no configuration-level default headers; the data item must carry every header that should be uploaded.
 
 ## Consume headers and keep them for assertions {: #consume-headers-and-keep-them-for-assertions}
 
@@ -2007,11 +2007,11 @@ var correlationId = consumedItems[0]
     .Headers?["correlation-id"];
 ```
 
-`ReadStorageHeaders` defaults to `false` because enabling it performs one additional S3 metadata request per consumed object. AWS documents that [`HeadObject`](https://docs.aws.amazon.com/AmazonS3/latest/API/API_HeadObject.html) retrieves metadata without returning the object body. `DataFilter.MetaData: false` removes the storage metadata before assertions run, even when the consumer fetched it.
+`ReadStorageHeaders` defaults to `false` because enabling it performs one additional S3 metadata request per consumed object. AWS documents that [`HeadObject`]({{ links.aws_s3_head_object }}) retrieves metadata without returning the object body. `DataFilter.MetaData: false` removes the storage metadata before assertions run, even when the consumer fetched it.
 
 ## Select keys with Prefix and Delimiter {: #select-keys-with-prefix-and-delimiter}
 
-`Prefix` selects the beginning of the object keys to list. `Delimiter` asks S3 to return one hierarchy level beneath that prefix: keys below the next delimiter are rolled into `CommonPrefixes` and are not returned as objects for the consumer to read. These are the [Amazon S3 `ListObjectsV2` semantics](https://docs.aws.amazon.com/AmazonS3/latest/API/API_ListObjectsV2.html); the [AWS prefix and delimiter guide](https://docs.aws.amazon.com/AmazonS3/latest/userguide/using-prefixes.html) illustrates the same hierarchical browsing behavior.
+`Prefix` selects the beginning of the object keys to list. `Delimiter` asks S3 to return one hierarchy level beneath that prefix: keys below the next delimiter are rolled into `CommonPrefixes` and are not returned as objects for the consumer to read. These are the [Amazon S3 `ListObjectsV2` semantics]({{ links.aws_s3_list_objects_v2 }}); the [AWS prefix and delimiter guide]({{ links.aws_s3_prefixes }}) illustrates the same hierarchical browsing behavior.
 
 For a bucket containing `events/a.json` and `events/archive/b.json`:
 

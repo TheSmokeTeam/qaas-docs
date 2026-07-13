@@ -21,7 +21,8 @@ ProbeConfiguration:
   Username: 'admin'
   VirtualHost: '/'
   Exchanges:
-    - Name: 'value'
+    -
+      Name: 'value'
       Arguments: {}
       AutoDelete: False
       Durable: False

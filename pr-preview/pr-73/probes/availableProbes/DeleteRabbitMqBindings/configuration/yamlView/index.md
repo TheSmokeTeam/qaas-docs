@@ -21,7 +21,8 @@ ProbeConfiguration:
   Username: 'admin'
   VirtualHost: '/'
   Bindings:
-    - DestinationName: 'value'
+    -
+      DestinationName: 'value'
       SourceName: 'value'
       Arguments: {}
       BindingType: 'ExchangeToQueue'
