@@ -101,7 +101,7 @@ var correlationId = consumedItems[0]
 
 ## Select keys with Prefix and Delimiter {: #select-keys-with-prefix-and-delimiter}
 
-`Prefix` selects the beginning of the object keys to list. `Delimiter` asks S3 to return one hierarchy level beneath that prefix: keys below the next delimiter are rolled into `CommonPrefixes` and are not returned as objects for the consumer to read. These are the [Amazon S3 `ListObjectsV2` semantics](https://docs.aws.amazon.com/AmazonS3/latest/API/API_ListObjectsV2.html); the [AWS prefix and delimiter guide](https://docs.aws.amazon.com/AmazonS3/latest/userguide/using-prefixes.html) illustrates the same hierarchical browsing model.
+`Prefix` selects the beginning of the object keys to list. `Delimiter` asks S3 to return one hierarchy level beneath that prefix: keys below the next delimiter are rolled into `CommonPrefixes` and are not returned as objects for the consumer to read. These are the [Amazon S3 `ListObjectsV2` semantics](https://docs.aws.amazon.com/AmazonS3/latest/API/API_ListObjectsV2.html); the [AWS prefix and delimiter guide](https://docs.aws.amazon.com/AmazonS3/latest/userguide/using-prefixes.html) illustrates the same hierarchical browsing behavior.
 
 For a bucket containing `events/a.json` and `events/archive/b.json`:
 
