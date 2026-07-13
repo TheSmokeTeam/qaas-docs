@@ -28,7 +28,8 @@ The scaffold follows the generated schema order. String placeholders are quoted,
 
 ```yaml
 Collectors:
-  - Name: 'value'
+  -
+    Name: 'value'
     EndTimeReachedCheckIntervalMs: 1000
     CollectionRange:
       EndTimeMs: 0

@@ -31,7 +31,8 @@ GeneratorConfiguration:
   OutputObjectType: 'Json'
   Seed: 0
   JsonFieldReplacements:
-    - Path: 'value'
+    -
+      Path: 'value'
       ValueType: 'Null'
       Boolean:
         Value: True

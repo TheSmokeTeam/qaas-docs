@@ -65,7 +65,7 @@ nav:
               - Overview: qaas/userInterfaces/runner/configurationSections/sessions/types/consumers.md
               - Table View: qaas/userInterfaces/runner/configurationSections/sessions/types/consumers-tableView.md
               - YAML View: qaas/userInterfaces/runner/configurationSections/sessions/types/consumers-yamlView.md
-            - S3 Headers and Key Selection: qaas/userInterfaces/runner/configurationSections/sessions/types/s3-headers-and-key-selection.md
+            - S3 headers and key selection: qaas/userInterfaces/runner/configurationSections/sessions/types/s3-headers-and-key-selection.md
             - Collectors:
               - Overview: qaas/userInterfaces/runner/configurationSections/sessions/types/collectors.md
               - Table View: qaas/userInterfaces/runner/configurationSections/sessions/types/collectors-tableView.md
@@ -840,6 +840,12 @@ extra:
     qaas_community: !ENV [QAAS_DOCS_LINK_QAAS_COMMUNITY, "https://discord.gg/rg2NYT4Mea"]
     nuget_feed: !ENV [QAAS_DOCS_LINK_NUGET_FEED, "https://api.nuget.org/v3/index.json"]
     artifactory: !ENV [QAAS_DOCS_LINK_ARTIFACTORY, "https://jfrog.com/artifactory"]
+    aws_s3_user_metadata: !ENV [QAAS_DOCS_LINK_AWS_S3_USER_METADATA, "https://docs.aws.amazon.com/AmazonS3/latest/userguide/UsingMetadata.html"]
+    aws_s3_head_object: !ENV [QAAS_DOCS_LINK_AWS_S3_HEAD_OBJECT, "https://docs.aws.amazon.com/AmazonS3/latest/API/API_HeadObject.html"]
+    aws_s3_list_objects_v2: !ENV [QAAS_DOCS_LINK_AWS_S3_LIST_OBJECTS_V2, "https://docs.aws.amazon.com/AmazonS3/latest/API/API_ListObjectsV2.html"]
+    aws_s3_prefixes: !ENV [QAAS_DOCS_LINK_AWS_S3_PREFIXES, "https://docs.aws.amazon.com/AmazonS3/latest/userguide/using-prefixes.html"]
+    regex101_placeholder: !ENV [QAAS_DOCS_LINK_REGEX101_PLACEHOLDER, "https://regex101.com/?regex=%5C%24%5C%7B.%2A%5C%7D"]
+    json_schema_for_humans: !ENV [QAAS_DOCS_LINK_JSON_SCHEMA_FOR_HUMANS, "https://github.com/coveooss/json-schema-for-humans"]
     runner_schema: !ENV [QAAS_DOCS_LINK_RUNNER_SCHEMA, "../../../assets/schemas/runner-family-schema.json"]
     mocker_schema: !ENV [QAAS_DOCS_LINK_MOCKER_SCHEMA, "../../../assets/schemas/mocker-family-schema.json"]
   images:

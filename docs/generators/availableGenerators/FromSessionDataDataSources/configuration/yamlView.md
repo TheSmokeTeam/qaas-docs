@@ -26,9 +26,11 @@ The scaffold follows the generated schema order. String placeholders are quoted,
 
 ```yaml
 GeneratorConfiguration:
-  - SessionName: 'value'
+  -
+    SessionName: 'value'
     CommunicationDataList:
-      - Name: 'value'
+      -
+        Name: 'value'
         Type: 'Input'
 ```
 

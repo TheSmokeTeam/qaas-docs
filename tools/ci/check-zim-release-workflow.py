@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Validate that the primary CI workflow publishes a ZIM for tag releases."""
+"""Validate fixed-name ZIM generation and its PackageMirror provenance handoff."""
 
 from __future__ import annotations
 
@@ -10,12 +10,16 @@ import yaml
 
 
 ROOT = Path(__file__).resolve().parents[2]
-WORKFLOW = ROOT / ".github" / "workflows" / "ci.yml"
+PRIMARY_WORKFLOW = ROOT / ".github" / "workflows" / "ci.yml"
+DOCS_WORKFLOW = ROOT / ".github" / "workflows" / "docs.yml"
 ZIM_BUILDER = ROOT / "tools" / "zim" / "build-zim.sh"
+PROVENANCE_TOOL = ROOT / "tools" / "zim" / "sync-zim-provenance.py"
+ZIM_PATH = "qaas-docs.zim"
+PROVENANCE_PATH = "qaas-docs-zim-provenance.json"
 
 
 class GitHubActionsLoader(yaml.SafeLoader):
-    """Parse GitHub Actions YAML without YAML 1.1 bool coercion for keys like 'on'."""
+    """Parse GitHub Actions YAML without YAML 1.1 bool coercion for `on`."""
 
 
 for first_letter, mappings in list(GitHubActionsLoader.yaml_implicit_resolvers.items()):
@@ -26,130 +30,138 @@ for first_letter, mappings in list(GitHubActionsLoader.yaml_implicit_resolvers.i
     ]
 
 
-def fail(message: str) -> None:
-    raise SystemExit(f"::error file={WORKFLOW.relative_to(ROOT)}::{message}")
+def fail(path: Path, message: str) -> None:
+    raise SystemExit(f"::error file={path.relative_to(ROOT)}::{message}")
 
 
-def load_workflow() -> dict[str, Any]:
-    if not WORKFLOW.exists():
-        fail("primary CI workflow does not exist")
-
-    with WORKFLOW.open("r", encoding="utf-8") as handle:
+def load_workflow(path: Path) -> dict[str, Any]:
+    with path.open("r", encoding="utf-8") as handle:
         loaded = yaml.load(handle, Loader=GitHubActionsLoader)
-
     if not isinstance(loaded, dict):
-        fail("primary CI workflow did not parse as a mapping")
-
+        fail(path, "workflow did not parse as a mapping")
     return loaded
 
 
-def get_step(job: dict[str, Any], name: str) -> dict[str, Any]:
+def get_job(workflow: dict[str, Any], workflow_path: Path, name: str) -> dict[str, Any]:
+    job = workflow.get("jobs", {}).get(name)
+    if not isinstance(job, dict):
+        fail(workflow_path, f"workflow is missing job '{name}'")
+    return job
+
+
+def get_step(job: dict[str, Any], workflow_path: Path, name: str) -> dict[str, Any]:
     for step in job.get("steps", []):
         if isinstance(step, dict) and step.get("name") == name:
             return step
+    fail(workflow_path, f"build-zim job is missing step '{name}'")
 
-    fail(f"build-zim job is missing step '{name}'")
+
+def require_paths(value: object, workflow_path: Path, surface: str) -> None:
+    paths = {line.strip() for line in str(value).splitlines() if line.strip()}
+    expected = {ZIM_PATH, PROVENANCE_PATH}
+    if paths != expected:
+        fail(
+            workflow_path,
+            f"{surface} must contain exactly {sorted(expected)}, found {sorted(paths)}",
+        )
 
 
-def main() -> int:
-    workflow = load_workflow()
-    zim_builder = ZIM_BUILDER.read_text(encoding="utf-8")
-    if 'SITE_DIR="${SITE_DIR:-site}"' not in zim_builder:
-        fail("tools/zim/build-zim.sh must allow SITE_DIR override for local and CI reuse")
-    if "--withFullTextIndex" not in zim_builder:
-        fail("tools/zim/build-zim.sh must create a full-text index for searchable OpenZIM output")
+def validate_builder() -> None:
+    builder = ZIM_BUILDER.read_text(encoding="utf-8")
+    provenance_tool = PROVENANCE_TOOL.read_text(encoding="utf-8")
+    required_builder_fragments = (
+        'OUT="qaas-docs.zim"',
+        'PROVENANCE_PATH="qaas-docs-zim-provenance.json"',
+        "the ZIM filename is fixed",
+        'SITE_DIR="${SITE_DIR:-site}"',
+        "tools/zim/sync-zim-provenance.py",
+        '--name="QaaS Documantation"',
+        '--title="Complete QaaS Documantation"',
+        '--description="$DOCS_UPDATED_DATE_UTC"',
+        "--withFullTextIndex",
+    )
+    for fragment in required_builder_fragments:
+        if fragment not in builder:
+            fail(ZIM_BUILDER, f"ZIM builder is missing required contract: {fragment}")
 
+    for fragment in (
+        'ZIM_NAME = "QaaS Documantation"',
+        'ZIM_TITLE = "Complete QaaS Documantation"',
+        'ZIM_FILE_NAME = "qaas-docs.zim"',
+        'PROVENANCE_FILE_NAME = "qaas-docs-zim-provenance.json"',
+        '"description": validated_date',
+    ):
+        if fragment not in provenance_tool:
+            fail(PROVENANCE_TOOL, f"provenance tool is missing required contract: {fragment}")
+
+
+def validate_common_zim_job(
+    job: dict[str, Any], workflow_path: Path, build_step_name: str, smoke_step_name: str
+) -> None:
+    build_step = get_step(job, workflow_path, build_step_name)
+    build_run = str(build_step.get("run", ""))
+    if "tools/zim/build-zim.sh" not in build_run:
+        fail(workflow_path, "build-zim must invoke tools/zim/build-zim.sh")
+    if "qaas-docs-${" in build_run or "github.ref_name" in build_run:
+        fail(workflow_path, "ZIM filename must not depend on a tag, image, commit, or version")
+
+    smoke_step = get_step(job, workflow_path, smoke_step_name)
+    smoke_run = str(smoke_step.get("run", ""))
+    if "kiwix-serve" not in smoke_run or "/data/qaas-docs.zim" not in smoke_run:
+        fail(workflow_path, "build-zim must smoke-test the fixed qaas-docs.zim asset")
+    if "search?pattern=IProbe" not in smoke_run:
+        fail(workflow_path, "build-zim smoke test must exercise ZIM search")
+    if "/content/qaas-docs/qaas-docs/qaas/index.html" not in smoke_run:
+        fail(workflow_path, "build-zim smoke test must fetch a rendered page from qaas-docs")
+
+    artifact_step = get_step(job, workflow_path, "Upload ZIM artifact")
+    if "actions/upload-artifact@" not in str(artifact_step.get("uses", "")):
+        fail(workflow_path, "build-zim must upload a workflow artifact")
+    artifact_with = artifact_step.get("with", {})
+    if artifact_with.get("name") != "qaas-docs-zim":
+        fail(workflow_path, "workflow artifact must be named qaas-docs-zim")
+    require_paths(artifact_with.get("path", ""), workflow_path, "ZIM artifact")
+
+
+def validate_primary_workflow() -> None:
+    workflow = load_workflow(PRIMARY_WORKFLOW)
     push = workflow.get("on", {}).get("push", {})
     tags = push.get("tags", []) if isinstance(push, dict) else []
     if "**" not in tags:
-        fail("CI must run on every tag push")
+        fail(PRIMARY_WORKFLOW, "CI must run on every tag push")
 
-    jobs = workflow.get("jobs", {})
-    if not isinstance(jobs, dict):
-        fail("CI workflow jobs must be a mapping")
+    job = get_job(workflow, PRIMARY_WORKFLOW, "build-zim")
+    if "startsWith(github.ref, 'refs/tags/')" not in str(job.get("if", "")):
+        fail(PRIMARY_WORKFLOW, "build-zim must run only for tag refs")
+    if job.get("permissions", {}).get("contents") != "write":
+        fail(PRIMARY_WORKFLOW, "build-zim needs contents: write for release assets")
 
-    build_site = jobs.get("build-site")
-    if not isinstance(build_site, dict):
-        fail("CI workflow is missing build-site job")
-
-    site_upload = get_step(build_site, "Upload site artifact")
-    if "actions/upload-artifact@" not in str(site_upload.get("uses", "")):
-        fail("build-site must upload the rendered site for downstream ZIM packaging")
-    site_upload_with = site_upload.get("with", {})
-    if site_upload_with.get("name") != "qaas-docs-site":
-        fail("site artifact must be named qaas-docs-site")
-    if str(site_upload_with.get("path", "")).strip() not in {"site/", "./site"}:
-        fail("site artifact must upload the rendered site directory")
-
-    build_zim = jobs.get("build-zim")
-    if not isinstance(build_zim, dict):
-        fail("CI workflow is missing build-zim job")
-
-    if "startsWith(github.ref, 'refs/tags/')" not in str(build_zim.get("if", "")):
-        fail("build-zim job must run only for tag refs")
-
-    needs = build_zim.get("needs", [])
-    if isinstance(needs, str):
-        needs = [needs]
-    if "build-site" not in needs:
-        fail("build-zim job must depend on build-site")
-
-    permissions = build_zim.get("permissions", {})
-    if permissions.get("contents") != "write":
-        fail("build-zim needs contents: write to attach the ZIM to the GitHub release")
-
-    download_site = get_step(build_zim, "Download site artifact")
-    if "actions/download-artifact@" not in str(download_site.get("uses", "")):
-        fail("build-zim must download the rendered site artifact")
-    download_with = download_site.get("with", {})
-    if download_with.get("name") != "qaas-docs-site":
-        fail("build-zim must download the qaas-docs-site artifact")
-
-    build_step = get_step(build_zim, "Build ZIM")
-    build_run = str(build_step.get("run", ""))
-    if "tools/zim/build-zim.sh" not in build_run:
-        fail("build-zim must invoke tools/zim/build-zim.sh")
-    if "github.ref_name" not in build_run:
-        fail("ZIM file name must include the tag name")
-    if 'zim_slug="${zim_path%.zim}"' not in build_run:
-        fail("build-zim must derive the smoke-test slug from the built ZIM path")
-    if 'zim_slug="${zim_slug,,}"' not in build_run:
-        fail("build-zim must lowercase the Kiwix content slug")
-    if 'zim_slug="${zim_slug//+/plus}"' not in build_run:
-        fail("build-zim must normalize plus signs in the Kiwix content slug")
-    if 'echo "slug=$zim_slug"' not in build_run:
-        fail("build-zim must expose the Kiwix content slug as an output")
-
-    smoke_step = get_step(build_zim, "Smoke-test ZIM")
-    smoke_run = str(smoke_step.get("run", ""))
-    if "kiwix-serve" not in smoke_run:
-        fail("build-zim must smoke-test the ZIM with kiwix-serve")
-    if "search?pattern=IProbe" not in smoke_run:
-        fail("build-zim smoke test must exercise ZIM search")
-    if "steps.zim.outputs.slug" not in smoke_run:
-        fail("build-zim smoke test must use the normalized Kiwix content slug")
-    if "steps.zim.outputs.name" in smoke_run:
-        fail("build-zim smoke test must not use the raw ZIM basename as the content slug")
-    if "/qaas-docs/qaas/index.html" not in smoke_run:
-        fail("build-zim smoke test must fetch a rendered docs page from the ZIM")
-
-    artifact_step = get_step(build_zim, "Upload ZIM artifact")
-    if "actions/upload-artifact@" not in str(artifact_step.get("uses", "")):
-        fail("build-zim must upload the ZIM as a workflow artifact")
-    artifact_with = artifact_step.get("with", {})
-    if artifact_with.get("name") != "qaas-docs-zim":
-        fail("workflow artifact must be named qaas-docs-zim")
-    if str(artifact_with.get("path", "")).strip() != "${{ steps.zim.outputs.path }}":
-        fail("workflow artifact must upload the exact built ZIM path")
-
-    release_step = get_step(build_zim, "Attach ZIM to GitHub release")
+    validate_common_zim_job(job, PRIMARY_WORKFLOW, "Build ZIM", "Smoke-test ZIM")
+    release_step = get_step(job, PRIMARY_WORKFLOW, "Attach ZIM to GitHub release")
     if "softprops/action-gh-release@" not in str(release_step.get("uses", "")):
-        fail("build-zim must attach the ZIM to the tag's GitHub release")
-    release_with = release_step.get("with", {})
-    release_files = str(release_with.get("files", ""))
-    if release_files.strip() != "${{ steps.zim.outputs.path }}":
-        fail("GitHub release upload must use the exact built ZIM path")
+        fail(PRIMARY_WORKFLOW, "build-zim must attach assets to the tag release")
+    require_paths(
+        release_step.get("with", {}).get("files", ""),
+        PRIMARY_WORKFLOW,
+        "GitHub release",
+    )
 
+
+def validate_docs_workflow() -> None:
+    workflow = load_workflow(DOCS_WORKFLOW)
+    job = get_job(workflow, DOCS_WORKFLOW, "build-zim")
+    validate_common_zim_job(
+        job,
+        DOCS_WORKFLOW,
+        "Build ZIM via configured zim-tools image",
+        "Smoke-test ZIM with configured kiwix-serve image",
+    )
+
+
+def main() -> int:
+    validate_builder()
+    validate_primary_workflow()
+    validate_docs_workflow()
     print("[check-zim-release-workflow] OK")
     return 0
 

@@ -28,7 +28,8 @@ The scaffold follows the generated schema order. String placeholders are quoted,
 
 ```yaml
 Stubs:
-  - Name: 'value'
+  -
+    Name: 'value'
     Processor: 'ConditionalResponseProcessor'
     ProcessorConfiguration: {}
     DataSourceNames: []

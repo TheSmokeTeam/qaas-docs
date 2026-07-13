@@ -28,7 +28,8 @@ The scaffold follows the generated schema order. String placeholders are quoted,
 
 ```yaml
 MockerCommands:
-  - Name: 'value'
+  -
+    Name: 'value'
     ServerName: 'value'
     RequestDurationMs: 3000
     RequestRetries: 3

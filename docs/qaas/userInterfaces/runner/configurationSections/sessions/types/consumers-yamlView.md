@@ -28,14 +28,17 @@ The scaffold follows the generated schema order. String placeholders are quoted,
 
 ```yaml
 Consumers:
-  - Name: 'value'
+  -
+    Name: 'value'
     TimeoutMs: 0
     InitialTimeoutMs: 0
     Stage: 0
     Policies:
-      - AdvancedLoadBalance:
+      -
+        AdvancedLoadBalance:
           Stages:
-            - Rate: 1.0
+            -
+              Rate: 1.0
               Amount: 1
               TimeIntervalMs: 1000
               TimeoutMs: 0

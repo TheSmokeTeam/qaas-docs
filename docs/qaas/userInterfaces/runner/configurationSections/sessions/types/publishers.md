@@ -95,15 +95,13 @@ MongoDbCollection: {}
 
 ## S3Bucket {: #s3bucket}
 
-Publishes byte payloads as objects in an S3-compatible bucket. The object key comes from `MetaData.Storage.Key` when present; otherwise the configured object-name generator and prefix are used. Entries in `MetaData.Storage.Headers` are uploaded as S3 user-defined metadata for that object. There is no publisher-level default header setting. Uploads use the configured storage class and retry mechanism.
+Publishes byte payloads as objects in an S3-compatible bucket. The object key comes from `MetaData.Storage.Key` when present; otherwise the configured object-name generator and prefix are used. Uploads use the configured storage class and retry mechanism.
 
 **Table Property Path** - `Sessions[].Publishers[].S3Bucket`
 
 ```yaml
 S3Bucket: {}
 ```
-
-See [S3 headers and key selection](s3-headers-and-key-selection.md) for a publisher and consumer example that carries per-object headers through S3 and exposes them to assertions.
 
 ## ElasticIndex {: #elasticindex}
 
