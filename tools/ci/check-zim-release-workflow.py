@@ -16,6 +16,7 @@ ZIM_BUILDER = ROOT / "tools" / "zim" / "build-zim.sh"
 PROVENANCE_TOOL = ROOT / "tools" / "zim" / "sync-zim-provenance.py"
 ZIM_PATH = "qaas-docs.zim"
 PROVENANCE_PATH = "qaas-docs-zim-provenance.json"
+IMAGE_ARCHIVE_PATH = "qaas-docs-image.tgz"
 
 
 class GitHubActionsLoader(yaml.SafeLoader):
@@ -58,7 +59,7 @@ def get_step(job: dict[str, Any], workflow_path: Path, name: str) -> dict[str, A
 
 def require_paths(value: object, workflow_path: Path, surface: str) -> None:
     paths = {line.strip() for line in str(value).splitlines() if line.strip()}
-    expected = {ZIM_PATH, PROVENANCE_PATH}
+    expected = {ZIM_PATH, PROVENANCE_PATH, IMAGE_ARCHIVE_PATH}
     if paths != expected:
         fail(
             workflow_path,
@@ -113,6 +114,17 @@ def validate_common_zim_job(
         fail(workflow_path, "build-zim smoke test must exercise ZIM search")
     if "/content/qaas-docs/qaas-docs/qaas/index.html" not in smoke_run:
         fail(workflow_path, "build-zim smoke test must fetch a rendered page from qaas-docs")
+
+    image_step = get_step(job, workflow_path, "Build latest docs image archive")
+    image_run = str(image_step.get("run", ""))
+    for fragment in (
+        "docker build --tag qaas-docs:latest .",
+        "docker image save qaas-docs:latest",
+        "gzip --best > qaas-docs-image.tgz",
+        "gzip --test qaas-docs-image.tgz",
+    ):
+        if fragment not in image_run:
+            fail(workflow_path, f"docs image archive step is missing: {fragment}")
 
     artifact_step = get_step(job, workflow_path, "Upload ZIM artifact")
     if "actions/upload-artifact@" not in str(artifact_step.get("uses", "")):

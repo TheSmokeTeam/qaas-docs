@@ -98,7 +98,7 @@ It handles:
 
 - site validation on pushes and pull requests
 - GitHub Pages deployment on pushes to `master`
-- ZIM creation, smoke-testing, artifact upload, and GitHub release attachment on tag pushes
+- ZIM creation, `qaas-docs:latest` image archiving, smoke-testing, artifact upload, and GitHub release attachment on tag pushes
 - Docker image publish on tag pushes and manual dispatch
 - GitHub repository overview updates from this README on tag pushes and manual dispatch
 
@@ -215,7 +215,7 @@ The image prebuilds the static site during `docker build` and the runtime image 
 
 ## ZIM
 
-Every docs build produces the version-independent OpenZIM asset `qaas-docs.zim`. Its embedded metadata is fixed to name `QaaS Documantation`, title `Complete QaaS Documantation`, and a `YYYY-MM-DD` description identifying the UTC date to which the docs were updated. `qaas-docs-zim-provenance.json` carries the same machine-readable contract from PackageMirror generation through the workflow artifact and release. CI validates the contract, smoke-tests the file with `kiwix-serve`, and attaches both files to tag releases.
+Every docs build produces a three-file offline bundle: the version-independent OpenZIM asset `qaas-docs.zim`, its machine-readable `qaas-docs-zim-provenance.json`, and `qaas-docs-image.tgz`, a saved Docker image tagged `qaas-docs:latest`. The ZIM metadata is fixed to name `QaaS Documantation`, title `Complete QaaS Documantation`, and a `YYYY-MM-DD` description identifying the UTC date to which the docs were updated. CI validates the contract, smoke-tests the ZIM with `kiwix-serve`, verifies the compressed image archive, and attaches all three files to tag releases.
 
 Build a ZIM locally after installing the MkDocs dependencies:
 

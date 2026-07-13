@@ -178,6 +178,14 @@ jobs:
           done
           test "$ok" -eq 1
 
+      - name: Build latest docs image archive
+        shell: bash
+        run: |
+          set -euo pipefail
+          docker build --tag qaas-docs:latest .
+          docker image save qaas-docs:latest | gzip --best > qaas-docs-image.tgz
+          gzip --test qaas-docs-image.tgz
+
       - name: Upload ZIM artifact
         uses: actions/upload-artifact@v4
         with:
@@ -185,6 +193,7 @@ jobs:
           path: |
             qaas-docs.zim
             qaas-docs-zim-provenance.json
+            qaas-docs-image.tgz
           retention-days: 30
 
       - name: Attach ZIM to GitHub release
@@ -193,6 +202,7 @@ jobs:
           files: |
             qaas-docs.zim
             qaas-docs-zim-provenance.json
+            qaas-docs-image.tgz
           fail_on_unmatched_files: true
           make_latest: true
 
