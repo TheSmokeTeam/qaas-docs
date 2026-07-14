@@ -28,14 +28,12 @@ The scaffold follows the generated schema order. String placeholders are quoted,
 
 ```yaml
 Links:
-  -
-    Name: 'value'
+  - Name: 'value'
     Grafana:
       DashboardId: 'value'
       Url: 'value'
       Variables:
-        -
-          Key: 'value'
+        - Key: 'value'
           Value: 'value'
     Kibana:
       DataViewId: 'value'
