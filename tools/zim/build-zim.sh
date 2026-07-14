@@ -1,10 +1,15 @@
 #!/usr/bin/env bash
 # Build the QaaS Docs ZIM locally.
 # Requires: docker (openzim/zim-tools:3.7.0 image) OR locally-installed zimwriterfs.
-# Usage: tools/zim/build-zim.sh [output-path]
+# Usage: tools/zim/build-zim.sh
 set -euo pipefail
 
-OUT="${1:-qaas-docs.zim}"
+OUT="qaas-docs.zim"
+PROVENANCE_PATH="qaas-docs-zim-provenance.json"
+if [ "$#" -ne 0 ]; then
+  echo "[zim] ERROR: the ZIM filename is fixed as $OUT; do not pass a versioned output path." >&2
+  exit 1
+fi
 SITE_DIR="${SITE_DIR:-site}"
 ZIM_ROOT="${ZIM_ROOT:-site-zim}"
 BASE_PATH="${BASE_PATH:-qaas-docs}"
@@ -25,6 +30,30 @@ if [ -z "$PYTHON_BIN" ]; then
     PYTHON_BIN="python3"
   fi
 fi
+
+if [ -z "$PYTHON_BIN" ]; then
+  echo "[zim] ERROR: python is required to validate the ZIM provenance contract." >&2
+  exit 1
+fi
+
+if [ ! -f "$PROVENANCE_PATH" ]; then
+  DOCS_UPDATED_DATE_UTC="${QAAS_DOCS_UPDATED_DATE_UTC:-}"
+  if [ -z "$DOCS_UPDATED_DATE_UTC" ] && command -v git >/dev/null 2>&1; then
+    DOCS_UPDATED_DATE_UTC="$(git log -1 --format=%cs -- docs mkdocs.yml 2>/dev/null || true)"
+  fi
+  if [ -z "$DOCS_UPDATED_DATE_UTC" ]; then
+    DOCS_UPDATED_DATE_UTC="$(date -u +%F)"
+  fi
+  "$PYTHON_BIN" tools/zim/sync-zim-provenance.py \
+    --provenance-path "$PROVENANCE_PATH" \
+    --docs-updated-date-utc "$DOCS_UPDATED_DATE_UTC" >/dev/null
+fi
+
+DOCS_UPDATED_DATE_UTC="$(
+  "$PYTHON_BIN" tools/zim/sync-zim-provenance.py \
+    --provenance-path "$PROVENANCE_PATH"
+)"
+echo "[zim] docs updated date (UTC): $DOCS_UPDATED_DATE_UTC"
 
 if [ -f "tools/build_llmstxt.py" ]; then
   if [ -z "$PYTHON_BIN" ]; then
@@ -119,9 +148,9 @@ COMMON_ARGS=(
   --welcome="$WELCOME"
   --illustration="$ILLUSTRATION_REL"
   --language=eng
-  --name=qaas-docs
-  --title="QaaS Documentation"
-  --description="Offline QaaS docs (runner, framework, mocker, common-*)"
+  --name="QaaS Documantation"
+  --title="Complete QaaS Documantation"
+  --description="$DOCS_UPDATED_DATE_UTC"
   --longDescription="Self-contained offline build of qaas-docs (MkDocs Material)."
   --creator="TheSmokeTeam"
   --publisher="TheSmokeTeam"
@@ -131,13 +160,22 @@ COMMON_ARGS=(
   --scraper="zimwriterfs/3.7.0"
 )
 
+rm -f "$OUT"
+
 if command -v zimwriterfs >/dev/null 2>&1; then
   echo "[zim] using local zimwriterfs"
   zimwriterfs "${COMMON_ARGS[@]}" "$HTML_DIR" "$OUT"
 elif command -v docker >/dev/null 2>&1; then
   echo "[zim] using docker $ZIM_TOOLS_IMAGE"
-  docker run --rm -v "$PWD":/work -w /work "$ZIM_TOOLS_IMAGE" \
-    zimwriterfs "${COMMON_ARGS[@]}" "$HTML_DIR" "$OUT"
+  if [[ "$(uname -s 2>/dev/null || true)" == MINGW* ]]; then
+    # Git Bash otherwise rewrites `/work` to its own installation directory.
+    # Disable MSYS argument conversion and give Docker an explicit Windows host path.
+    MSYS_NO_PATHCONV=1 docker run --rm -v "$(pwd -W):/work" -w /work "$ZIM_TOOLS_IMAGE" \
+      zimwriterfs "${COMMON_ARGS[@]}" "$HTML_DIR" "$OUT"
+  else
+    docker run --rm -v "$PWD":/work -w /work "$ZIM_TOOLS_IMAGE" \
+      zimwriterfs "${COMMON_ARGS[@]}" "$HTML_DIR" "$OUT"
+  fi
 else
   echo "[zim] ERROR: neither zimwriterfs nor docker found." >&2
   echo "       Install: $ZIM_TOOLS_DOWNLOAD_URL" >&2

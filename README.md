@@ -98,7 +98,7 @@ It handles:
 
 - site validation on pushes and pull requests
 - GitHub Pages deployment on pushes to `master`
-- ZIM creation, smoke-testing, artifact upload, and GitHub release attachment on tag pushes
+- ZIM creation, `qaas-docs:latest` image archiving, smoke-testing, artifact upload, and GitHub release attachment on tag pushes
 - Docker image publish on tag pushes and manual dispatch
 - GitHub repository overview updates from this README on tag pushes and manual dispatch
 
@@ -151,6 +151,12 @@ External page links used by docs content:
 | `QAAS_DOCS_LINK_QAAS_COMMUNITY`                     | `qaas_community`                     | QaaS community URL                             |
 | `QAAS_DOCS_LINK_NUGET_FEED`                         | `nuget_feed`                         | NuGet `NuGet.Config` feed link                 |
 | `QAAS_DOCS_LINK_ARTIFACTORY`                        | `artifactory`                        | Artifactory base URL                           |
+| `QAAS_DOCS_LINK_AWS_S3_USER_METADATA`               | `aws_s3_user_metadata`               | Amazon S3 user-defined metadata guide          |
+| `QAAS_DOCS_LINK_AWS_S3_HEAD_OBJECT`                 | `aws_s3_head_object`                 | Amazon S3 `HeadObject` API reference           |
+| `QAAS_DOCS_LINK_AWS_S3_LIST_OBJECTS_V2`             | `aws_s3_list_objects_v2`             | Amazon S3 `ListObjectsV2` API reference        |
+| `QAAS_DOCS_LINK_AWS_S3_PREFIXES`                    | `aws_s3_prefixes`                    | Amazon S3 prefix and delimiter guide           |
+| `QAAS_DOCS_LINK_REGEX101_PLACEHOLDER`               | `regex101_placeholder`               | Generated placeholder-regex test link          |
+| `QAAS_DOCS_LINK_JSON_SCHEMA_FOR_HUMANS`             | `json_schema_for_humans`             | Schema renderer project link                   |
 | `QAAS_DOCS_LINK_RUNNER_SCHEMA`                      | `runner_schema`                      | QaaS.Runner schema URL                         |
 | `QAAS_DOCS_LINK_MOCKER_SCHEMA`                      | `mocker_schema`                      | QaaS.Mocker schema URL                         |
 
@@ -209,13 +215,15 @@ The image prebuilds the static site during `docker build` and the runtime image 
 
 ## ZIM
 
-Tag pushes build a versioned OpenZIM file named `qaas-docs-<tag>.zim`. CI smoke-tests the file with `kiwix-serve`, uploads it as the `qaas-docs-zim` workflow artifact, and attaches it to the tag's GitHub release so it can be downloaded for OpenZIM/Kiwix hosting.
+Every docs build produces a three-file offline bundle: the version-independent OpenZIM asset `qaas-docs.zim`, its machine-readable `qaas-docs-zim-provenance.json`, and `qaas-docs-image.tgz`, a saved Docker image tagged `qaas-docs:latest`. The ZIM metadata is fixed to name `QaaS Documantation`, title `Complete QaaS Documantation`, and a `YYYY-MM-DD` description identifying the UTC date to which the docs were updated. CI validates the contract, smoke-tests the ZIM with `kiwix-serve`, verifies the compressed image archive, and attaches all three files to tag releases.
 
 Build a ZIM locally after installing the MkDocs dependencies:
 
 ```bash
-tools/zim/build-zim.sh qaas-docs-local.zim
+tools/zim/build-zim.sh
 ```
+
+When PackageMirror has not supplied a provenance file, the local builder derives the docs-updated date from the latest docs commit. Set `QAAS_DOCS_UPDATED_DATE_UTC=YYYY-MM-DD` to provide the date explicitly for a standalone build. The output filename remains `qaas-docs.zim`.
 
 If you need different docs URLs or repository links baked into the image, pass the overrides at build time:
 

@@ -4,17 +4,32 @@
   // are static and never mutated post-load. Building the map at module scope
   // means SPA navigations under navigation.instant pay zero cost when the
   // overrides object is empty (the common case).
-  var defaults = window.__QAAS_DOCS_BUILD_DEFAULTS__ || {};
+  var canonicalDefaults = window.__QAAS_DOCS_CANONICAL_DEFAULTS__ || {};
+  var buildDefaults = window.__QAAS_DOCS_BUILD_DEFAULTS__ || {};
   var overrides = window.__QAAS_DOCS_RUNTIME_OVERRIDES__ || {};
   var replacements = new Map();
 
-  Object.keys(defaults).forEach(function (key) {
-    var currentValue = defaults[key];
-    var overrideValue = overrides[key];
-    if (typeof currentValue !== "string" || typeof overrideValue !== "string") return;
-    var trimmedOverride = overrideValue.trim();
-    if (!currentValue || !trimmedOverride || trimmedOverride === currentValue) return;
-    replacements.set(currentValue, trimmedOverride);
+  Object.keys(buildDefaults).forEach(function (key) {
+    var canonicalValue = canonicalDefaults[key];
+    var buildValue = buildDefaults[key];
+    var runtimeValue = overrides[key];
+    if (typeof buildValue !== "string") return;
+
+    var effectiveValue = buildValue;
+    if (typeof runtimeValue === "string" && runtimeValue.trim()) {
+      effectiveValue = runtimeValue.trim();
+    }
+
+    if (
+      typeof canonicalValue === "string" &&
+      canonicalValue &&
+      canonicalValue !== effectiveValue
+    ) {
+      replacements.set(canonicalValue, effectiveValue);
+    }
+    if (buildValue && buildValue !== effectiveValue) {
+      replacements.set(buildValue, effectiveValue);
+    }
   });
 
   if (!replacements.size) {
@@ -57,7 +72,7 @@
   }
 
   function replaceContextualShortTextNode(node) {
-    var defaultRedisRepository = defaults.image_redis_repository;
+    var defaultRedisRepository = buildDefaults.image_redis_repository;
     var overrideRedisRepository = overrides.image_redis_repository;
     if (
       typeof defaultRedisRepository !== "string" ||

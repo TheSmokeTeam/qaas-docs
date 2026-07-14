@@ -80,6 +80,9 @@ jobs:
       - name: yamllint
         run: yamllint -c tools/ci/yamllint.yml mkdocs.yml mkdocs.yml.fragments/
 
+      - name: Validate configurable external links
+        run: python tools/ci/check-configurable-external-links.py
+
       - name: mkdocs build --strict
         run: mkdocs build --strict --site-dir site
 
@@ -160,19 +163,18 @@ jobs:
 
       - name: Build ZIM via configured zim-tools image
         run: |
-          bash tools/zim/build-zim.sh "qaas-docs-${GITHUB_SHA::8}.zim"
+          bash tools/zim/build-zim.sh
 
       - name: Smoke-test ZIM with configured kiwix-serve image
         run: |
-          zim_name="qaas-docs-${GITHUB_SHA::8}"
           docker run --rm -d --name kiwix --entrypoint /usr/local/bin/kiwix-serve \
             -v "$PWD":/data -p 8888:8888 \
             "$QAAS_DOCS_KIWIX_SERVE_IMAGE" \
-            --port 8888 --threads 4 --nodatealiases "/data/${zim_name}.zim"
+            --port 8888 --threads 4 --nodatealiases "/data/qaas-docs.zim"
           ok=0
           for i in $(seq 1 30); do
             curl -fsS 'http://localhost:8888/search?pattern=IProbe' >/dev/null && \
-              curl -fsS "http://localhost:8888/content/${zim_name}/qaas-docs/qaas/index.html" >/dev/null && {
+              curl -fsS "http://localhost:8888/content/qaas-docs/qaas-docs/qaas/index.html" >/dev/null && {
                 ok=1
                 break
               }
@@ -181,11 +183,21 @@ jobs:
           docker rm -f kiwix
           test "$ok" -eq 1
 
+      - name: Build latest docs image archive
+        run: |
+          set -euo pipefail
+          docker build --tag qaas-docs:latest .
+          docker image save qaas-docs:latest | gzip --best > qaas-docs-image.tgz
+          gzip --test qaas-docs-image.tgz
+
       - name: Upload ZIM artifact
         uses: actions/upload-artifact@v4
         with:
           name: qaas-docs-zim
-          path: qaas-docs-*.zim
+          path: |
+            qaas-docs.zim
+            qaas-docs-zim-provenance.json
+            qaas-docs-image.tgz
           retention-days: 30
 
   pr-preview:
