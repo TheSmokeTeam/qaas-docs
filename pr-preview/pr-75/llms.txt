@@ -1,0 +1,519 @@
+# QaaS Documentation
+
+> Runner, Mocker, Framework, hook catalog, and offline packaging documentation.
+
+This index is generated from checked frontmatter summaries. Use the full-content shards when page bodies are needed.
+
+## Tutorials
+
+- [Create a Mock (YAML)](/mocker/quickStart/createMock/): Use YAML to define mock data sources, stubs, and servers in a declarative mock configuration.
+- [Create a Mock (Code)](/mocker/quickStart/createMockCode/): This sample builds the same mock as the YAML quick start, but assembles the mock configuration in Program.cs.
+- [Deploy a Mock](/mocker/quickStart/deployMock/): Once the mock works locally, package it as a container image and deploy it with a native Helm chart.
+- [Mocker IDE Setup](/mocker/quickStart/ide/): QaaS.Mocker can be configured in YAML or in C# (Configuration as Code). This page focuses on the YAML experience for Mocker projects.
+- [Installation](/mocker/quickStart/installation/): Add the relevant package source to your global NuGet.Config file, usually ~/.nuget/NuGet/NuGet.Config.
+- [Integrate with Tests](/mocker/quickStart/integrateWithTests/): For end-to-end integration between QaaS.Runner tests and a mock server, configure the Controller section in mocker.qaas.yaml.
+- [Debug Test Failure](/qaas/quickStart/debugTestFailure/): Use split Runner phases, focused logging, and saved report artifacts to debug failed tests.
+- [Runner IDE Setup](/qaas/quickStart/ide/): QaaS.Runner can be configured in YAML or in C# (Configuration as Code). This page focuses on the YAML experience for Runner projects.
+- [Installation](/qaas/quickStart/installation/): Add the relevant package source to your global NuGet.Config file, usually ~/.nuget/NuGet/NuGet.Config.
+- [Maintainable Test](/qaas/quickStart/makeTestMoreMaintainable/): Use anchors, placeholders, overwrite files, and cases to keep Runner YAML reusable across environments and variants.
+- [Run Test](/qaas/quickStart/runTest/): Once the local quick-start environment is ready, run the sample from the project directory.
+- [Writing Custom Hooks in QaaS for Advanced Testing](/qaas/quickStart/writeHooks/): Implement custom generators, processors, probes, or assertions when packaged hooks do not cover the required behavior.
+- [Write a Test (Code)](/qaas/quickStart/writeTestCode/): Build the Runner quick-start configuration directly in `Program.cs` when C# should own the test setup.
+- [Write a Test (YAML)](/qaas/quickStart/writeTestYaml/): Define DataSources, Sessions, and Assertions in YAML when the test flow should stay declarative.
+
+## How-To
+
+- [Custom Assertions — Authoring Guide](/assertions/custom-authoring-guide/): Derive a custom assertion from BaseAssertion<TConfig> in QaaS.Framework.SDK and wire it into an Assertions[] entry.
+- [Casting & Serializing Data — Quick Guide](/framework/functions/casting-and-serialization/): Use the QaasSerializer facade and the typed casting extension methods to turn raw session payloads into typed objects in one call.
+- [Custom Generators — Authoring Guide](/generators/custom-authoring-guide/): Derive a custom generator from BaseGenerator<TConfig> in QaaS.Framework.SDK and wire it into a DataSource.
+- [Runner + Mocker Controller (Redis) Recipe](/mocker/authoring-guide/controller-recipe-redis/): End-to-end Runner + Mocker recipe wired through a Redis-backed Controller: readiness probe, channel naming, ack/timeout behavior, and a full MockerCommands block.
+- [Mocker — Multi-Server Routing](/mocker/authoring-guide/multi-server-routing/): Expose multiple named HTTP servers from a single mocker process so a runner can target each one deterministically by name and instance.
+- [Custom Probes — Authoring Guide](/probes/custom-authoring-guide/): Derive a custom probe from BaseProbe<TConfig> in QaaS.Framework.SDK and wire it into a session via the Probes block.
+- [Custom Processors — Authoring Guide](/processors/custom-authoring-guide/): Derive a custom transaction processor from BaseTransactionProcessor<TConfig> and wire it into a mocker stub.
+- [Action Selection Playbook](/qaas/quickStart/actionSelectionPlaybook/): Choose Runner action types, name evidence consistently, and combine Runner with Mocker for repeatable tests.
+- [Hello-World HTTP Test](/qaas/quickStart/helloWorldHttp/): Smallest end-to-end QaaS recipe: a runner test against a mocker stub that returns HTTP 200 on /hello, with act/assert replay for fast iteration.
+- [Runner — YAML Schema Extensions](/qaas/userInterfaces/runner/schema-extensions/): Register a new plugin family with QaaS.JsonSchemaExtensions by tagging the base with [JsonSchema] and emitting AnyOfSchemaOption discriminators, then regenerate the runner schema.
+
+## Explanation
+
+- [Assertions](/assertions/): Assertions validate Runner session data after the act phase and turn observed inputs and outputs into reportable results.
+- [Framework Functions](/framework/functions/): This overview indexes the current public function surface documented through source-level qaas-docs annotations and extension-method XML docs.
+- [QaaS.Framework](/framework/): QaaS.Framework is the shared runtime and SDK layer used by Runner, Mocker, and custom hook packages.
+- [Generators](/generators/): Generators produce DataSources that Runner sessions, assertions, and chained generators can consume.
+- [QaaS Documentation](/): QaaS docs cover Runner tests, Mocker services, Framework APIs, shared hooks, integrations, and offline packaging from the same MkDocs source.
+- [Architecture](/mocker/architecture/): QaaS.Mocker loads configuration into DataSources, Stubs, Servers, and an optional Controller before serving mock traffic.
+- [Mocker Functions](/mocker/functions/): This overview indexes the current public function surface documented through source-level qaas-docs annotations and extension-method XML docs.
+- [QaaS Mocker](/mocker/): QaaS.Mocker runs HTTP, gRPC, and socket mocks from YAML or C# configuration and routes traffic to named stubs.
+- [Controller](/mocker/userInterfaces/mocker/configurationSections/controller/overview/): The Controller section lets Runner Mocker Commands coordinate a running mock through Redis-backed control channels.
+- [DataSources](/mocker/userInterfaces/mocker/configurationSections/dataSources/overview/): The list of the data sources that contain enumerables of data to be generated and iterated later in several places.
+- [Servers](/mocker/userInterfaces/mocker/configurationSections/server/overview/): Servers defines the HTTP, gRPC, or socket endpoints that QaaS.Mocker starts for a mock execution.
+- [Stubs](/mocker/userInterfaces/mocker/configurationSections/stubs/overview/): Stubs map named mock actions to transaction processor hooks and optional data-source inputs.
+- [Probes](/probes/): Probes perform setup, cleanup, and infrastructure actions before or after Runner sessions.
+- [Processors](/processors/): Processors are hooks that create mock responses in QaaS.Mocker. They implement BaseTransactionProcessor<TConfig> and are referenced by class name from a Stub.
+- [Architecture](/qaas/architecture/): QaaS.Framework runtime is built around a Plugins architecture that extends and customizes QaaS by integrating user-provided packages.
+- [Runner Functions](/qaas/functions/): This overview indexes the current public function surface documented through source-level qaas-docs annotations and extension-method XML docs.
+- [QaaS Runner](/qaas/): QaaS.Runner loads YAML or C# test configuration, runs sessions, evaluates assertions, and writes report output.
+- [Assertions](/qaas/userInterfaces/runner/configurationSections/assertions/overview/): Assertions validate Runner session data after act-phase work and write assertion results to Allure output.
+- [DataSources](/qaas/userInterfaces/runner/configurationSections/dataSources/overview/): The list of data sources that contain enumerables of data to be used for the rest of the test.
+- [Links](/qaas/userInterfaces/runner/configurationSections/links/overview/): Links add per-result observability URLs to Runner reports, including Kibana, Prometheus, and Grafana links.
+- [MetaData](/qaas/userInterfaces/runner/configurationSections/metaData/overview/): Define test ownership, system identity, and optional labels for Runner reports and filtering.
+- [Reporters](/qaas/userInterfaces/runner/configurationSections/reporters/overview/): Set run-level reporter defaults for Allure artifacts and optional ReportPortal publishing.
+- [Sessions](/qaas/userInterfaces/runner/configurationSections/sessions/overview/): Sessions define the runtime actions Runner performs against the system under test and supporting infrastructure.
+- [Storages](/qaas/userInterfaces/runner/configurationSections/storages/overview/): Storages define where Runner writes and reads persisted runtime objects for act and assert commands.
+
+## Reference
+
+- [DelayByAverage Configurations Table View](/assertions/availableAssertions/DelayByAverage/configuration/tableView/): Field-by-field reference for DelayByAverage AssertionConfiguration keys, types, defaults and descriptions, generated from assertions.schema.json.
+- [DelayByAverage Configurations Yaml View](/assertions/availableAssertions/DelayByAverage/configuration/yamlView/): Minimal YAML scaffold for DelayByAverage AssertionConfiguration — copy, fill the blanks, drop into a Session step.
+- [DelayByAverage](/assertions/availableAssertions/DelayByAverage/overview/): Checks for delay between an input source to an output source by subtracting the average timestamp of all inputs from the average timestamp of all the outputs.
+- [DelayByChunks Configurations Table View](/assertions/availableAssertions/DelayByChunks/configuration/tableView/): Field-by-field reference for DelayByChunks AssertionConfiguration keys, types, defaults and descriptions, generated from assertions.schema.json.
+- [DelayByChunks Configurations Yaml View](/assertions/availableAssertions/DelayByChunks/configuration/yamlView/): Minimal YAML scaffold for DelayByChunks AssertionConfiguration — copy, fill the blanks, drop into a Session step.
+- [DelayByChunks](/assertions/availableAssertions/DelayByChunks/overview/): Checks delay between input and output chunks using configured chunk sizes and timestamp differences.
+- [HermeticByExpectedOutputCount Configurations Table View](/assertions/availableAssertions/HermeticByExpectedOutputCount/configuration/tableView/): Field-by-field reference for HermeticByExpectedOutputCount AssertionConfiguration keys, types, defaults and descriptions, generated from assertions.schema.json.
+- [HermeticByExpectedOutputCount Configurations Yaml View](/assertions/availableAssertions/HermeticByExpectedOutputCount/configuration/yamlView/): Minimal YAML scaffold for HermeticByExpectedOutputCount AssertionConfiguration — copy, fill the blanks, drop into a Session step.
+- [HermeticByExpectedOutputCount](/assertions/availableAssertions/HermeticByExpectedOutputCount/overview/): Performs a hermetic test by comparing the count of a given output in a session to a given expected count
+- [HermeticByExpectedOutputCountInRange Configurations Table View](/assertions/availableAssertions/HermeticByExpectedOutputCountInRange/configuration/tableView/): Field-by-field reference for HermeticByExpectedOutputCountInRange AssertionConfiguration keys, types, defaults and descriptions, generated from assertions.schema.json.
+- [HermeticByExpectedOutputCountInRange Configurations Yaml View](/assertions/availableAssertions/HermeticByExpectedOutputCountInRange/configuration/yamlView/): Minimal YAML scaffold for HermeticByExpectedOutputCountInRange AssertionConfiguration — copy, fill the blanks, drop into a Session step.
+- [HermeticByExpectedOutputCountInRange](/assertions/availableAssertions/HermeticByExpectedOutputCountInRange/overview/): Performs a hermetic test by comparing the count of a given output in a session to a given expected minimum and maximum
+- [HermeticByInputOutputPercentage Configurations Table View](/assertions/availableAssertions/HermeticByInputOutputPercentage/configuration/tableView/): Field-by-field reference for HermeticByInputOutputPercentage AssertionConfiguration keys, types, defaults and descriptions, generated from assertions.schema.json.
+- [HermeticByInputOutputPercentage Configurations Yaml View](/assertions/availableAssertions/HermeticByInputOutputPercentage/configuration/yamlView/): Minimal YAML scaffold for HermeticByInputOutputPercentage AssertionConfiguration — copy, fill the blanks, drop into a Session step.
+- [HermeticByInputOutputPercentage](/assertions/availableAssertions/HermeticByInputOutputPercentage/overview/): Performs a hermetic test by comparing the the count of a specified input with multiplied by given percentage modifier to the count of a specified output
+- [HermeticByInputOutputPercentageInRange Configurations Table View](/assertions/availableAssertions/HermeticByInputOutputPercentageInRange/configuration/tableView/): Field-by-field reference for HermeticByInputOutputPercentageInRange AssertionConfiguration keys, types, defaults and descriptions, generated from assertions.schema.json.
+- [HermeticByInputOutputPercentageInRange Configurations Yaml View](/assertions/availableAssertions/HermeticByInputOutputPercentageInRange/configuration/yamlView/): Minimal YAML scaffold for HermeticByInputOutputPercentageInRange AssertionConfiguration — copy, fill the blanks, drop into a Session step.
+- [HermeticByInputOutputPercentageInRange](/assertions/availableAssertions/HermeticByInputOutputPercentageInRange/overview/): Checks whether the percentage between configured inputs and outputs stays within the expected minimum and maximum range.
+- [HttpStatus Configurations Table View](/assertions/availableAssertions/HttpStatus/configuration/tableView/): Field-by-field reference for HttpStatus AssertionConfiguration keys, types, defaults and descriptions, generated from assertions.schema.json.
+- [HttpStatus Configurations Yaml View](/assertions/availableAssertions/HttpStatus/configuration/yamlView/): Minimal YAML scaffold for HttpStatus AssertionConfiguration — copy, fill the blanks, drop into a Session step.
+- [HttpStatus](/assertions/availableAssertions/HttpStatus/overview/): Performs a logic test on the http status of all selected outputs in a session by checking they all have the desired http status code
+- [ObjectOutputJsonSchema Configurations Table View](/assertions/availableAssertions/ObjectOutputJsonSchema/configuration/tableView/): Field-by-field reference for ObjectOutputJsonSchema AssertionConfiguration keys, types, defaults and descriptions, generated from assertions.schema.json.
+- [ObjectOutputJsonSchema Configurations Yaml View](/assertions/availableAssertions/ObjectOutputJsonSchema/configuration/yamlView/): Minimal YAML scaffold for ObjectOutputJsonSchema AssertionConfiguration — copy, fill the blanks, drop into a Session step.
+- [ObjectOutputJsonSchema](/assertions/availableAssertions/ObjectOutputJsonSchema/overview/): Validates that each configured output item matches at least one JSON schema provided by the configured data sources.
+- [OutputContentByExpectedCsvResults Configurations Table View](/assertions/availableAssertions/OutputContentByExpectedCsvResults/configuration/tableView/): Field-by-field reference for OutputContentByExpectedCsvResults AssertionConfiguration keys, types, defaults and descriptions, generated from assertions.schema.json.
+- [OutputContentByExpectedCsvResults Configurations Yaml View](/assertions/availableAssertions/OutputContentByExpectedCsvResults/configuration/yamlView/): Minimal YAML scaffold for OutputContentByExpectedCsvResults AssertionConfiguration — copy, fill the blanks, drop into a Session step.
+- [OutputContentByExpectedCsvResults](/assertions/availableAssertions/OutputContentByExpectedCsvResults/overview/): Checks that the configured output content matches the expected values loaded from a CSV results file.
+- [OutputDeserializableTo Configurations Table View](/assertions/availableAssertions/OutputDeserializableTo/configuration/tableView/): Field-by-field reference for OutputDeserializableTo AssertionConfiguration keys, types, defaults and descriptions, generated from assertions.schema.json.
+- [OutputDeserializableTo Configurations Yaml View](/assertions/availableAssertions/OutputDeserializableTo/configuration/yamlView/): Minimal YAML scaffold for OutputDeserializableTo AssertionConfiguration — copy, fill the blanks, drop into a Session step.
+- [OutputDeserializableTo](/assertions/availableAssertions/OutputDeserializableTo/overview/): Performs a logic test that checks if the items of a configured output can all be deserialized using a configured deserializer
+- [ValidateHermeticMetricsByInputOutputPercentage Configurations Table View](/assertions/availableAssertions/ValidateHermeticMetricsByInputOutputPercentage/configuration/tableView/): Field-by-field reference for ValidateHermeticMetricsByInputOutputPercentage AssertionConfiguration keys, types, defaults and descriptions, generated from assertions.schema.json.
+- [ValidateHermeticMetricsByInputOutputPercentage Configurations Yaml View](/assertions/availableAssertions/ValidateHermeticMetricsByInputOutputPercentage/configuration/yamlView/): Minimal YAML scaffold for ValidateHermeticMetricsByInputOutputPercentage AssertionConfiguration — copy, fill the blanks, drop into a Session step.
+- [ValidateHermeticMetricsByInputOutputPercentage](/assertions/availableAssertions/ValidateHermeticMetricsByInputOutputPercentage/overview/): Compares the hermetic percentage calculated from configured inputs and outputs with the hermetic percentage reported by the metrics output.
+- [Data Sources: Collection helpers](/framework/functions/builders/data-sources-sections/collection-helpers/): Reference page for Data Sources: Collection helpers.
+- [Data Sources: Configuration](/framework/functions/builders/data-sources-sections/configuration/): Reference page for Data Sources: Configuration.
+- [Data Sources: Data source selection](/framework/functions/builders/data-sources-sections/data-source-selection/): Reference page for Data Sources: Data source selection.
+- [Data Sources: General](/framework/functions/builders/data-sources-sections/general/): Reference page for Data Sources: General.
+- [Data Sources: Identity and hook selection](/framework/functions/builders/data-sources-sections/identity-and-hook-selection/): Reference page for Data Sources: Identity and hook selection.
+- [Data Sources](/framework/functions/builders/data-sources/): Each entry uses the short function name as the table-of-contents label. Expand an entry to inspect its source file, signature, and XML doc comments.
+- [Policies: Collection helpers](/framework/functions/builders/policies-sections/collection-helpers/): Reference page for Policies: Collection helpers.
+- [Policies: Configuration](/framework/functions/builders/policies-sections/configuration/): Reference page for Policies: Configuration.
+- [Policies: General](/framework/functions/builders/policies-sections/general/): Reference page for Policies: General.
+- [Policies](/framework/functions/builders/policies/): Each entry uses the short function name as the table-of-contents label. Expand an entry to inspect its source file, signature, and XML doc comments.
+- [Contexts: Configuration](/framework/functions/contexts-sections/configuration/): Reference page for Contexts: Configuration.
+- [Contexts: Contexts](/framework/functions/contexts-sections/contexts/): Reference page for Contexts: Contexts.
+- [Contexts: Executions](/framework/functions/contexts-sections/executions/): Reference page for Contexts: Executions.
+- [Contexts: General](/framework/functions/contexts-sections/general/): Reference page for Contexts: General.
+- [Contexts: Reporting and artifacts](/framework/functions/contexts-sections/reporting-and-artifacts/): Reference page for Contexts: Reporting and artifacts.
+- [Contexts](/framework/functions/contexts/): Each entry uses the short function name as the table-of-contents label. Expand an entry to inspect its source file, signature, and XML doc comments.
+- [Enumerables](/framework/functions/enumerables/): Each entry uses the short function name as the table-of-contents label. Expand an entry to inspect its source file, signature, and XML doc comments.
+- [Extension Methods: Configuration / Placeholders](/framework/functions/extension-methods-sections/configuration/placeholders/): Reference page for Extension Methods: Configuration / Placeholders.
+- [Extension Methods: Configuration / Updates](/framework/functions/extension-methods-sections/configuration/updates/): Reference page for Extension Methods: Configuration / Updates.
+- [Extension Methods: Configuration / YAML](/framework/functions/extension-methods-sections/configuration/yaml/): Reference page for Extension Methods: Configuration / YAML.
+- [Extension Methods: Configuration](/framework/functions/extension-methods-sections/configuration/): Reference page for Extension Methods: Configuration.
+- [Extension Methods: Extension Methods / Communication data](/framework/functions/extension-methods-sections/extension-methods/communication-data/): Reference page for Extension Methods: Extension Methods / Communication data.
+- [Extension Methods: Extension Methods / Configuration merge utilities](/framework/functions/extension-methods-sections/extension-methods/configuration-merge-utilities/): Reference page for Extension Methods: Extension Methods / Configuration merge utilities.
+- [Extension Methods: Extension Methods / Configuration references parser](/framework/functions/extension-methods-sections/extension-methods/configuration-references-parser/): Reference page for Extension Methods: Extension Methods / Configuration references parser.
+- [Extension Methods: Extension Methods / Configuration utilities](/framework/functions/extension-methods-sections/extension-methods/configuration-utilities/): Reference page for Extension Methods: Extension Methods / Configuration utilities.
+- [Extension Methods: Extension Methods / Context global dictionary](/framework/functions/extension-methods-sections/extension-methods/context-global-dictionary/): Reference page for Extension Methods: Extension Methods / Context global dictionary.
+- [Extension Methods: Extension Methods / Data source](/framework/functions/extension-methods-sections/extension-methods/data-source/): Reference page for Extension Methods: Extension Methods / Data source.
+- [Extension Methods: Extension Methods / Data](/framework/functions/extension-methods-sections/extension-methods/data/): Reference page for Extension Methods: Extension Methods / Data.
+- [Extension Methods: Extension Methods / Date time](/framework/functions/extension-methods-sections/extension-methods/date-time/): Reference page for Extension Methods: Extension Methods / Date time.
+- [Extension Methods: Extension Methods / Deserializer](/framework/functions/extension-methods-sections/extension-methods/deserializer/): Reference page for Extension Methods: Extension Methods / Deserializer.
+- [Extension Methods: Extension Methods / Running communication data](/framework/functions/extension-methods-sections/extension-methods/running-communication-data/): Reference page for Extension Methods: Extension Methods / Running communication data.
+- [Extension Methods: Extension Methods / Running session data](/framework/functions/extension-methods-sections/extension-methods/running-session-data/): Reference page for Extension Methods: Extension Methods / Running session data.
+- [Extension Methods: Extension Methods / Serialization type](/framework/functions/extension-methods-sections/extension-methods/serialization-type/): Reference page for Extension Methods: Extension Methods / Serialization type.
+- [Extension Methods: Extension Methods / Serializer](/framework/functions/extension-methods-sections/extension-methods/serializer/): Reference page for Extension Methods: Extension Methods / Serializer.
+- [Extension Methods: Extension Methods / Serilog](/framework/functions/extension-methods-sections/extension-methods/serilog/): Reference page for Extension Methods: Extension Methods / Serilog.
+- [Extension Methods: Extension Methods / Session data](/framework/functions/extension-methods-sections/extension-methods/session-data/): Reference page for Extension Methods: Extension Methods / Session data.
+- [Extension Methods: Extension Methods](/framework/functions/extension-methods-sections/extension-methods/): Reference page for Extension Methods: Extension Methods.
+- [Extension Methods: Utilities / Enumerables](/framework/functions/extension-methods-sections/utilities/enumerables/): Reference page for Extension Methods: Utilities / Enumerables.
+- [Extension Methods: Utilities](/framework/functions/extension-methods-sections/utilities/): Reference page for Extension Methods: Utilities.
+- [Extension Methods](/framework/functions/extension-methods/): This page collects public Framework extension methods that have XML documentation or explicit docs annotations.
+- [Placeholders](/framework/functions/placeholders/): Each entry uses the short function name as the table-of-contents label. Expand an entry to inspect its source file, signature, and XML doc comments.
+- [Updates](/framework/functions/updates/): Each entry uses the short function name as the table-of-contents label. Expand an entry to inspect its source file, signature, and XML doc comments.
+- [YAML](/framework/functions/yaml/): Each entry uses the short function name as the table-of-contents label. Expand an entry to inspect its source file, signature, and XML doc comments.
+- [QaaS.Framework.Configurations](/framework/projects/configuration/): QaaS.Framework.Configurations loads, expands, binds, validates, and updates YAML-backed configuration.
+- [QaaS.Framework.Executions](/framework/projects/executions/): QaaS.Framework.Executions provides shared execution infrastructure used by Runner and Mocker.
+- [QaaS.Framework.Infrastructure](/framework/projects/infrastructure/): QaaS.Framework.Infrastructure provides shared primitives consumed by the other Framework packages.
+- [QaaS.Framework.Policies](/framework/projects/policies/): QaaS.Framework.Policies turns policy configuration objects into runtime policy chains for repeated communication actions.
+- [QaaS.Framework.Protocols](/framework/projects/protocols/): QaaS.Framework.Protocols provides external I/O contracts, configurations, implementations, factories, and metadata helpers.
+- [QaaS.Framework.Providers](/framework/projects/providers/): QaaS.Framework.Providers discovers hook implementations and resolves configured hook names at runtime.
+- [QaaS.Framework.SDK](/framework/projects/sdk/): QaaS.Framework.SDK is the main runtime-contract package. It defines the object surface QaaS works with: contexts, execution data, sessions, communications.
+- [QaaS.Framework.Serialization](/framework/projects/serialization/): QaaS.Framework.Serialization provides shared serializers and deserializers used by Framework and SDK packages.
+- [FromCSV Configurations Table View](/generators/availableGenerators/FromCSV/configuration/tableView/): Field-by-field reference for FromCSV GeneratorConfiguration keys, types, defaults and descriptions, generated from generators.schema.json.
+- [FromCSV Configurations Yaml View](/generators/availableGenerators/FromCSV/configuration/yamlView/): Minimal YAML scaffold for FromCSV GeneratorConfiguration — copy, fill the blanks, drop into a Session step.
+- [FromCSV](/generators/availableGenerators/FromCSV/overview/): Reads CSV files from the configured file-system path and turns each row into generated data items.
+- [FromDataLake Configurations Table View](/generators/availableGenerators/FromDataLake/configuration/tableView/): Field-by-field reference for FromDataLake GeneratorConfiguration keys, types, defaults and descriptions, generated from generators.schema.json.
+- [FromDataLake Configurations Yaml View](/generators/availableGenerators/FromDataLake/configuration/yamlView/): Minimal YAML scaffold for FromDataLake GeneratorConfiguration — copy, fill the blanks, drop into a Session step.
+- [FromDataLake](/generators/availableGenerators/FromDataLake/overview/): Retrieves rows from the configured data lake query and exposes each row as a generated JSON object.
+- [FromDataSources Configurations Table View](/generators/availableGenerators/FromDataSources/configuration/tableView/): Field-by-field reference for FromDataSources GeneratorConfiguration keys, types, defaults and descriptions, generated from generators.schema.json.
+- [FromDataSources Configurations Yaml View](/generators/availableGenerators/FromDataSources/configuration/yamlView/): Minimal YAML scaffold for FromDataSources GeneratorConfiguration — copy, fill the blanks, drop into a Session step.
+- [FromDataSources](/generators/availableGenerators/FromDataSources/overview/): Generates data from the enumerable of data sources it receives
+- [FromFileSystem Configurations Table View](/generators/availableGenerators/FromFileSystem/configuration/tableView/): Field-by-field reference for FromFileSystem GeneratorConfiguration keys, types, defaults and descriptions, generated from generators.schema.json.
+- [FromFileSystem Configurations Yaml View](/generators/availableGenerators/FromFileSystem/configuration/yamlView/): Minimal YAML scaffold for FromFileSystem GeneratorConfiguration — copy, fill the blanks, drop into a Session step.
+- [FromFileSystem](/generators/availableGenerators/FromFileSystem/overview/): Retrieves data from files under a configured path in the local file system.
+- [FromLettuceDataSources Configurations Table View](/generators/availableGenerators/FromLettuceDataSources/configuration/tableView/): Field-by-field reference for FromLettuceDataSources GeneratorConfiguration keys, types, defaults and descriptions, generated from generators.schema.json.
+- [FromLettuceDataSources Configurations Yaml View](/generators/availableGenerators/FromLettuceDataSources/configuration/yamlView/): Minimal YAML scaffold for FromLettuceDataSources GeneratorConfiguration — copy, fill the blanks, drop into a Session step.
+- [FromLettuceDataSources](/generators/availableGenerators/FromLettuceDataSources/overview/): Generates data from the enumerable of data sources it receives that is in `Lettuce` file format, presumes all items in the enumerable are deserialized into <see cref="SerializationType.Json"/>
+- [FromS3 Configurations Table View](/generators/availableGenerators/FromS3/configuration/tableView/): Field-by-field reference for FromS3 GeneratorConfiguration keys, types, defaults and descriptions, generated from generators.schema.json.
+- [FromS3 Configurations Yaml View](/generators/availableGenerators/FromS3/configuration/yamlView/): Minimal YAML scaffold for FromS3 GeneratorConfiguration — copy, fill the blanks, drop into a Session step.
+- [FromS3](/generators/availableGenerators/FromS3/overview/): Retrieves data from objects in a configured S3 bucket and prefix.
+- [FromSessionDataDataSources Configurations Table View](/generators/availableGenerators/FromSessionDataDataSources/configuration/tableView/): Field-by-field reference for FromSessionDataDataSources GeneratorConfiguration keys, types, defaults and descriptions, generated from generators.schema.json.
+- [FromSessionDataDataSources Configurations Yaml View](/generators/availableGenerators/FromSessionDataDataSources/configuration/yamlView/): Minimal YAML scaffold for FromSessionDataDataSources GeneratorConfiguration — copy, fill the blanks, drop into a Session step.
+- [FromSessionDataDataSources](/generators/availableGenerators/FromSessionDataDataSources/overview/): Generates data from the enumerable of data sources it receives, presumes all items in the enumerable are serialized and can be treated as a byte array
+- [Json Configurations Table View](/generators/availableGenerators/Json/configuration/tableView/): Field-by-field reference for Json GeneratorConfiguration keys, types, defaults and descriptions, generated from generators.schema.json.
+- [Json Configurations Yaml View](/generators/availableGenerators/Json/configuration/yamlView/): Minimal YAML scaffold for Json GeneratorConfiguration — copy, fill the blanks, drop into a Session step.
+- [Json](/generators/availableGenerators/Json/overview/): Generates JSON data from a configured prototype document.
+- [JsonSchemaDraft4 Configurations Table View](/generators/availableGenerators/JsonSchemaDraft4/configuration/tableView/): Field-by-field reference for JsonSchemaDraft4 GeneratorConfiguration keys, types, defaults and descriptions, generated from generators.schema.json.
+- [JsonSchemaDraft4 Configurations Yaml View](/generators/availableGenerators/JsonSchemaDraft4/configuration/yamlView/): Minimal YAML scaffold for JsonSchemaDraft4 GeneratorConfiguration — copy, fill the blanks, drop into a Session step.
+- [JsonSchemaDraft4](/generators/availableGenerators/JsonSchemaDraft4/overview/): Generates JSON data that conforms to a configured JSON Schema Draft 4 document.
+- [LettuceFromFileSystem Configurations Table View](/generators/availableGenerators/LettuceFromFileSystem/configuration/tableView/): Field-by-field reference for LettuceFromFileSystem GeneratorConfiguration keys, types, defaults and descriptions, generated from generators.schema.json.
+- [LettuceFromFileSystem Configurations Yaml View](/generators/availableGenerators/LettuceFromFileSystem/configuration/yamlView/): Minimal YAML scaffold for LettuceFromFileSystem GeneratorConfiguration — copy, fill the blanks, drop into a Session step.
+- [LettuceFromFileSystem](/generators/availableGenerators/LettuceFromFileSystem/overview/): Retrieves lettuce-formatted files from the configured file-system path and exposes them as generated messages with their routing key metadata.
+- [Stacking Configurations Table View](/generators/availableGenerators/Stacking/configuration/tableView/): Field-by-field reference for Stacking GeneratorConfiguration keys, types, defaults and descriptions, generated from generators.schema.json.
+- [Stacking Configurations Yaml View](/generators/availableGenerators/Stacking/configuration/yamlView/): Minimal YAML scaffold for Stacking GeneratorConfiguration — copy, fill the blanks, drop into a Session step.
+- [Stacking](/generators/availableGenerators/Stacking/overview/): Combines multiple data sources by taking a configured number of items from each source in turn.
+- [Executions: Collection helpers](/mocker/functions/builders/executions-sections/collection-helpers/): Reference page for Executions: Collection helpers.
+- [Executions: Configuration](/mocker/functions/builders/executions-sections/configuration/): Reference page for Executions: Configuration.
+- [Executions: Data source selection](/mocker/functions/builders/executions-sections/data-source-selection/): Reference page for Executions: Data source selection.
+- [Executions: Executions](/mocker/functions/builders/executions-sections/executions/): Reference page for Executions: Executions.
+- [Executions: General](/mocker/functions/builders/executions-sections/general/): Reference page for Executions: General.
+- [Executions: Output selection](/mocker/functions/builders/executions-sections/output-selection/): Reference page for Executions: Output selection.
+- [Executions: Reporting and artifacts](/mocker/functions/builders/executions-sections/reporting-and-artifacts/): Reference page for Executions: Reporting and artifacts.
+- [Executions: Servers](/mocker/functions/builders/executions-sections/servers/): Reference page for Executions: Servers.
+- [Executions: Transaction stubs](/mocker/functions/builders/executions-sections/transaction-stubs/): Reference page for Executions: Transaction stubs.
+- [Executions](/mocker/functions/builders/executions/): Each entry uses the short function name as the table-of-contents label. Expand an entry to inspect its source file, signature, and XML doc comments.
+- [Transaction Stubs: Collection helpers](/mocker/functions/builders/transaction-stubs-sections/collection-helpers/): Reference page for Transaction Stubs: Collection helpers.
+- [Transaction Stubs: Configuration](/mocker/functions/builders/transaction-stubs-sections/configuration/): Reference page for Transaction Stubs: Configuration.
+- [Transaction Stubs: Data source selection](/mocker/functions/builders/transaction-stubs-sections/data-source-selection/): Reference page for Transaction Stubs: Data source selection.
+- [Transaction Stubs: General](/mocker/functions/builders/transaction-stubs-sections/general/): Reference page for Transaction Stubs: General.
+- [Transaction Stubs: Identity and hook selection](/mocker/functions/builders/transaction-stubs-sections/identity-and-hook-selection/): Reference page for Transaction Stubs: Identity and hook selection.
+- [Transaction Stubs](/mocker/functions/builders/transaction-stubs/): Each entry uses the short function name as the table-of-contents label. Expand an entry to inspect its source file, signature, and XML doc comments.
+- [Bootstrap](/mocker/functions/commands/bootstrap/): Each entry uses the short function name as the table-of-contents label. Expand an entry to inspect its source file, signature, and XML doc comments.
+- [Mocker Runner](/mocker/functions/commands/mocker-runner/): Each entry uses the short function name as the table-of-contents label. Expand an entry to inspect its source file, signature, and XML doc comments.
+- [Extension Methods: Data](/mocker/functions/extension-methods-sections/data/): Reference page for Extension Methods: Data.
+- [Extension Methods: Http](/mocker/functions/extension-methods-sections/http/): Reference page for Extension Methods: Http.
+- [Extension Methods: Socket](/mocker/functions/extension-methods-sections/socket/): Reference page for Extension Methods: Socket.
+- [Extension Methods](/mocker/functions/extension-methods/): This page collects public Mocker extension methods that have XML documentation or explicit docs annotations.
+- [Commands](/mocker/userInterfaces/mocker/commands/commands/): QaaS Mocker exposes a compact command surface: one command to start the runtime and one command to render the effective configuration without starting it.
+- [run](/mocker/userInterfaces/mocker/commands/run/): Start the configured mock servers and optional controller runtime.
+- [template](/mocker/userInterfaces/mocker/commands/template/): Render the effective merged configuration after file, folder, argument, and environment overrides.
+- [Configuration Sections](/mocker/userInterfaces/mocker/configurationSections/configurationSections/): Each configuration section in the mocker.qaas.yaml file is used to perform a different action and has its own configurations and descriptions.
+- [Controller Configurations Table View](/mocker/userInterfaces/mocker/configurationSections/controller/configurations/tableView/): Controller Configurations Table View
+- [Controller Configurations Yaml View](/mocker/userInterfaces/mocker/configurationSections/controller/configurations/yamlView/): Controller configuration YAML example.
+- [DataSources Configurations Table View](/mocker/userInterfaces/mocker/configurationSections/dataSources/configurations/tableView/): DataSources Configurations Table View
+- [DataSources Configurations Yaml View](/mocker/userInterfaces/mocker/configurationSections/dataSources/configurations/yamlView/): Data source configuration YAML example.
+- [Servers Configurations Table View](/mocker/userInterfaces/mocker/configurationSections/server/configurations/tableView/): Servers Configurations Table View
+- [Servers Configurations Yaml View](/mocker/userInterfaces/mocker/configurationSections/server/configurations/yamlView/): Server configuration YAML example.
+- [Stubs Configurations Table View](/mocker/userInterfaces/mocker/configurationSections/stubs/configurations/tableView/): Stubs Configurations Table View
+- [Stubs Configurations Yaml View](/mocker/userInterfaces/mocker/configurationSections/stubs/configurations/yamlView/): Stub configuration YAML example.
+- [CreateRabbitMqBindings Configurations Table View](/probes/availableProbes/CreateRabbitMqBindings/configuration/tableView/): Field-by-field reference for CreateRabbitMqBindings ProbeConfiguration keys, types, defaults and descriptions, generated from probes.schema.json.
+- [CreateRabbitMqBindings Configurations Yaml View](/probes/availableProbes/CreateRabbitMqBindings/configuration/yamlView/): Minimal YAML scaffold for CreateRabbitMqBindings ProbeConfiguration — copy, fill the blanks, drop into a Session step.
+- [CreateRabbitMqBindings](/probes/availableProbes/CreateRabbitMqBindings/overview/): Creates RabbitMQ bindings between exchanges and queues or between exchanges by using the configured binding definitions.
+- [CreateRabbitMqExchanges Configurations Table View](/probes/availableProbes/CreateRabbitMqExchanges/configuration/tableView/): Field-by-field reference for CreateRabbitMqExchanges ProbeConfiguration keys, types, defaults and descriptions, generated from probes.schema.json.
+- [CreateRabbitMqExchanges Configurations Yaml View](/probes/availableProbes/CreateRabbitMqExchanges/configuration/yamlView/): Minimal YAML scaffold for CreateRabbitMqExchanges ProbeConfiguration — copy, fill the blanks, drop into a Session step.
+- [CreateRabbitMqExchanges](/probes/availableProbes/CreateRabbitMqExchanges/overview/): Creates one or more RabbitMQ exchanges with the configured durability, auto-delete, and arguments.
+- [CreateRabbitMqQueues Configurations Table View](/probes/availableProbes/CreateRabbitMqQueues/configuration/tableView/): Field-by-field reference for CreateRabbitMqQueues ProbeConfiguration keys, types, defaults and descriptions, generated from probes.schema.json.
+- [CreateRabbitMqQueues Configurations Yaml View](/probes/availableProbes/CreateRabbitMqQueues/configuration/yamlView/): Minimal YAML scaffold for CreateRabbitMqQueues ProbeConfiguration — copy, fill the blanks, drop into a Session step.
+- [CreateRabbitMqQueues](/probes/availableProbes/CreateRabbitMqQueues/overview/): Creates one or more RabbitMQ queues with the configured queue arguments.
+- [CreateRabbitMqUsers Configurations Table View](/probes/availableProbes/CreateRabbitMqUsers/configuration/tableView/): Field-by-field reference for CreateRabbitMqUsers ProbeConfiguration keys, types, defaults and descriptions, generated from probes.schema.json.
+- [CreateRabbitMqUsers Configurations Yaml View](/probes/availableProbes/CreateRabbitMqUsers/configuration/yamlView/): Minimal YAML scaffold for CreateRabbitMqUsers ProbeConfiguration — copy, fill the blanks, drop into a Session step.
+- [CreateRabbitMqUsers](/probes/availableProbes/CreateRabbitMqUsers/overview/): Creates RabbitMQ users through the management API with the configured credentials and tags.
+- [CreateRabbitMqVirtualHosts Configurations Table View](/probes/availableProbes/CreateRabbitMqVirtualHosts/configuration/tableView/): Field-by-field reference for CreateRabbitMqVirtualHosts ProbeConfiguration keys, types, defaults and descriptions, generated from probes.schema.json.
+- [CreateRabbitMqVirtualHosts Configurations Yaml View](/probes/availableProbes/CreateRabbitMqVirtualHosts/configuration/yamlView/): Minimal YAML scaffold for CreateRabbitMqVirtualHosts ProbeConfiguration — copy, fill the blanks, drop into a Session step.
+- [CreateRabbitMqVirtualHosts](/probes/availableProbes/CreateRabbitMqVirtualHosts/overview/): Creates RabbitMQ virtual hosts through the management API so later probes and sessions can use them.
+- [CreateS3Bucket Configurations Table View](/probes/availableProbes/CreateS3Bucket/configuration/tableView/): Field-by-field reference for CreateS3Bucket ProbeConfiguration keys, types, defaults and descriptions, generated from probes.schema.json.
+- [CreateS3Bucket Configurations Yaml View](/probes/availableProbes/CreateS3Bucket/configuration/yamlView/): Minimal YAML scaffold for CreateS3Bucket ProbeConfiguration — copy, fill the blanks, drop into a Session step.
+- [CreateS3Bucket](/probes/availableProbes/CreateS3Bucket/overview/): Ensures the configured S3 bucket exists by creating it when it is missing.
+- [DeleteElasticIndices Configurations Table View](/probes/availableProbes/DeleteElasticIndices/configuration/tableView/): Field-by-field reference for DeleteElasticIndices ProbeConfiguration keys, types, defaults and descriptions, generated from probes.schema.json.
+- [DeleteElasticIndices Configurations Yaml View](/probes/availableProbes/DeleteElasticIndices/configuration/yamlView/): Minimal YAML scaffold for DeleteElasticIndices ProbeConfiguration — copy, fill the blanks, drop into a Session step.
+- [DeleteElasticIndices](/probes/availableProbes/DeleteElasticIndices/overview/): Deletes every Elasticsearch index that matches the configured index pattern.
+- [DeleteRabbitMqBindings Configurations Table View](/probes/availableProbes/DeleteRabbitMqBindings/configuration/tableView/): Field-by-field reference for DeleteRabbitMqBindings ProbeConfiguration keys, types, defaults and descriptions, generated from probes.schema.json.
+- [DeleteRabbitMqBindings Configurations Yaml View](/probes/availableProbes/DeleteRabbitMqBindings/configuration/yamlView/): Minimal YAML scaffold for DeleteRabbitMqBindings ProbeConfiguration — copy, fill the blanks, drop into a Session step.
+- [DeleteRabbitMqBindings](/probes/availableProbes/DeleteRabbitMqBindings/overview/): Deletes RabbitMQ bindings using the configured source, destination, routing key, and binding type.
+- [DeleteRabbitMqExchanges Configurations Table View](/probes/availableProbes/DeleteRabbitMqExchanges/configuration/tableView/): Field-by-field reference for DeleteRabbitMqExchanges ProbeConfiguration keys, types, defaults and descriptions, generated from probes.schema.json.
+- [DeleteRabbitMqExchanges Configurations Yaml View](/probes/availableProbes/DeleteRabbitMqExchanges/configuration/yamlView/): Minimal YAML scaffold for DeleteRabbitMqExchanges ProbeConfiguration — copy, fill the blanks, drop into a Session step.
+- [DeleteRabbitMqExchanges](/probes/availableProbes/DeleteRabbitMqExchanges/overview/): Probe that deletes rabbitmq exchanges
+- [DeleteRabbitMqPermissions Configurations Table View](/probes/availableProbes/DeleteRabbitMqPermissions/configuration/tableView/): Field-by-field reference for DeleteRabbitMqPermissions ProbeConfiguration keys, types, defaults and descriptions, generated from probes.schema.json.
+- [DeleteRabbitMqPermissions Configurations Yaml View](/probes/availableProbes/DeleteRabbitMqPermissions/configuration/yamlView/): Minimal YAML scaffold for DeleteRabbitMqPermissions ProbeConfiguration — copy, fill the blanks, drop into a Session step.
+- [DeleteRabbitMqPermissions](/probes/availableProbes/DeleteRabbitMqPermissions/overview/): Deletes RabbitMQ user permissions in one or more virtual hosts through the management API.
+- [DeleteRabbitMqQueues Configurations Table View](/probes/availableProbes/DeleteRabbitMqQueues/configuration/tableView/): Field-by-field reference for DeleteRabbitMqQueues ProbeConfiguration keys, types, defaults and descriptions, generated from probes.schema.json.
+- [DeleteRabbitMqQueues Configurations Yaml View](/probes/availableProbes/DeleteRabbitMqQueues/configuration/yamlView/): Minimal YAML scaffold for DeleteRabbitMqQueues ProbeConfiguration — copy, fill the blanks, drop into a Session step.
+- [DeleteRabbitMqQueues](/probes/availableProbes/DeleteRabbitMqQueues/overview/): Probe that deletes rabbitmq queues
+- [DeleteRabbitMqUsers Configurations Table View](/probes/availableProbes/DeleteRabbitMqUsers/configuration/tableView/): Field-by-field reference for DeleteRabbitMqUsers ProbeConfiguration keys, types, defaults and descriptions, generated from probes.schema.json.
+- [DeleteRabbitMqUsers Configurations Yaml View](/probes/availableProbes/DeleteRabbitMqUsers/configuration/yamlView/): Minimal YAML scaffold for DeleteRabbitMqUsers ProbeConfiguration — copy, fill the blanks, drop into a Session step.
+- [DeleteRabbitMqUsers](/probes/availableProbes/DeleteRabbitMqUsers/overview/): Deletes RabbitMQ users through the management API.
+- [DeleteRabbitMqVirtualHosts Configurations Table View](/probes/availableProbes/DeleteRabbitMqVirtualHosts/configuration/tableView/): Field-by-field reference for DeleteRabbitMqVirtualHosts ProbeConfiguration keys, types, defaults and descriptions, generated from probes.schema.json.
+- [DeleteRabbitMqVirtualHosts Configurations Yaml View](/probes/availableProbes/DeleteRabbitMqVirtualHosts/configuration/yamlView/): Minimal YAML scaffold for DeleteRabbitMqVirtualHosts ProbeConfiguration — copy, fill the blanks, drop into a Session step.
+- [DeleteRabbitMqVirtualHosts](/probes/availableProbes/DeleteRabbitMqVirtualHosts/overview/): Deletes RabbitMQ virtual hosts through the management API.
+- [DeleteS3Bucket Configurations Table View](/probes/availableProbes/DeleteS3Bucket/configuration/tableView/): Field-by-field reference for DeleteS3Bucket ProbeConfiguration keys, types, defaults and descriptions, generated from probes.schema.json.
+- [DeleteS3Bucket Configurations Yaml View](/probes/availableProbes/DeleteS3Bucket/configuration/yamlView/): Minimal YAML scaffold for DeleteS3Bucket ProbeConfiguration — copy, fill the blanks, drop into a Session step.
+- [DeleteS3Bucket](/probes/availableProbes/DeleteS3Bucket/overview/): Empties the configured S3 bucket and deletes it, treating a missing bucket as an already-satisfied state.
+- [DownloadRabbitMqDefinitions Configurations Table View](/probes/availableProbes/DownloadRabbitMqDefinitions/configuration/tableView/): Field-by-field reference for DownloadRabbitMqDefinitions ProbeConfiguration keys, types, defaults and descriptions, generated from probes.schema.json.
+- [DownloadRabbitMqDefinitions Configurations Yaml View](/probes/availableProbes/DownloadRabbitMqDefinitions/configuration/yamlView/): Minimal YAML scaffold for DownloadRabbitMqDefinitions ProbeConfiguration — copy, fill the blanks, drop into a Session step.
+- [DownloadRabbitMqDefinitions](/probes/availableProbes/DownloadRabbitMqDefinitions/overview/): Downloads RabbitMQ definitions from the management API so the current topology can be captured and reused.
+- [DropMongoDbCollection Configurations Table View](/probes/availableProbes/DropMongoDbCollection/configuration/tableView/): Field-by-field reference for DropMongoDbCollection ProbeConfiguration keys, types, defaults and descriptions, generated from probes.schema.json.
+- [DropMongoDbCollection Configurations Yaml View](/probes/availableProbes/DropMongoDbCollection/configuration/yamlView/): Minimal YAML scaffold for DropMongoDbCollection ProbeConfiguration — copy, fill the blanks, drop into a Session step.
+- [DropMongoDbCollection](/probes/availableProbes/DropMongoDbCollection/overview/): Drops the configured MongoDB collection so a later run can recreate it from scratch.
+- [EmptyElasticIndices Configurations Table View](/probes/availableProbes/EmptyElasticIndices/configuration/tableView/): Field-by-field reference for EmptyElasticIndices ProbeConfiguration keys, types, defaults and descriptions, generated from probes.schema.json.
+- [EmptyElasticIndices Configurations Yaml View](/probes/availableProbes/EmptyElasticIndices/configuration/yamlView/): Minimal YAML scaffold for EmptyElasticIndices ProbeConfiguration — copy, fill the blanks, drop into a Session step.
+- [EmptyElasticIndices](/probes/availableProbes/EmptyElasticIndices/overview/): Empties elastic indices by their index pattern
+- [EmptyMongoDbCollection Configurations Table View](/probes/availableProbes/EmptyMongoDbCollection/configuration/tableView/): Field-by-field reference for EmptyMongoDbCollection ProbeConfiguration keys, types, defaults and descriptions, generated from probes.schema.json.
+- [EmptyMongoDbCollection Configurations Yaml View](/probes/availableProbes/EmptyMongoDbCollection/configuration/yamlView/): Minimal YAML scaffold for EmptyMongoDbCollection ProbeConfiguration — copy, fill the blanks, drop into a Session step.
+- [EmptyMongoDbCollection](/probes/availableProbes/EmptyMongoDbCollection/overview/): Deletes all documents from the configured MongoDB collection so it starts clean for the test run.
+- [EmptyRedisByChunks Configurations Table View](/probes/availableProbes/EmptyRedisByChunks/configuration/tableView/): Field-by-field reference for EmptyRedisByChunks ProbeConfiguration keys, types, defaults and descriptions, generated from probes.schema.json.
+- [EmptyRedisByChunks Configurations Yaml View](/probes/availableProbes/EmptyRedisByChunks/configuration/yamlView/): Minimal YAML scaffold for EmptyRedisByChunks ProbeConfiguration — copy, fill the blanks, drop into a Session step.
+- [EmptyRedisByChunks](/probes/availableProbes/EmptyRedisByChunks/overview/): Scans the selected Redis database in batches and deletes matching keys, optionally filtering them by a regular expression.
+- [EmptyS3Bucket Configurations Table View](/probes/availableProbes/EmptyS3Bucket/configuration/tableView/): Field-by-field reference for EmptyS3Bucket ProbeConfiguration keys, types, defaults and descriptions, generated from probes.schema.json.
+- [EmptyS3Bucket Configurations Yaml View](/probes/availableProbes/EmptyS3Bucket/configuration/yamlView/): Minimal YAML scaffold for EmptyS3Bucket ProbeConfiguration — copy, fill the blanks, drop into a Session step.
+- [EmptyS3Bucket](/probes/availableProbes/EmptyS3Bucket/overview/): Deletes objects from the configured S3 bucket, optionally constrained to a prefix, while treating a missing bucket as a no-op.
+- [ExecuteRedisCommand Configurations Table View](/probes/availableProbes/ExecuteRedisCommand/configuration/tableView/): Field-by-field reference for ExecuteRedisCommand ProbeConfiguration keys, types, defaults and descriptions, generated from probes.schema.json.
+- [ExecuteRedisCommand Configurations Yaml View](/probes/availableProbes/ExecuteRedisCommand/configuration/yamlView/): Minimal YAML scaffold for ExecuteRedisCommand ProbeConfiguration — copy, fill the blanks, drop into a Session step.
+- [ExecuteRedisCommand](/probes/availableProbes/ExecuteRedisCommand/overview/): Executes one Redis command with optional arguments against the selected Redis database, optionally storing the result for later redisResults placeholder reuse.
+- [ExecuteRedisCommands Configurations Table View](/probes/availableProbes/ExecuteRedisCommands/configuration/tableView/): Field-by-field reference for ExecuteRedisCommands ProbeConfiguration keys, types, defaults and descriptions, generated from probes.schema.json.
+- [ExecuteRedisCommands Configurations Yaml View](/probes/availableProbes/ExecuteRedisCommands/configuration/yamlView/): Minimal YAML scaffold for ExecuteRedisCommands ProbeConfiguration — copy, fill the blanks, drop into a Session step.
+- [ExecuteRedisCommands](/probes/availableProbes/ExecuteRedisCommands/overview/): Executes multiple Redis commands sequentially against the selected Redis database, allowing later commands to reuse earlier results through redisResults placeholders and optional looping.
+- [FlushAllRedis Configurations Table View](/probes/availableProbes/FlushAllRedis/configuration/tableView/): Field-by-field reference for FlushAllRedis ProbeConfiguration keys, types, defaults and descriptions, generated from probes.schema.json.
+- [FlushAllRedis Configurations Yaml View](/probes/availableProbes/FlushAllRedis/configuration/yamlView/): Minimal YAML scaffold for FlushAllRedis ProbeConfiguration — copy, fill the blanks, drop into a Session step.
+- [FlushAllRedis](/probes/availableProbes/FlushAllRedis/overview/): Runs Redis FLUSHALL against the configured server to remove keys from every database.
+- [FlushDbRedis Configurations Table View](/probes/availableProbes/FlushDbRedis/configuration/tableView/): Field-by-field reference for FlushDbRedis ProbeConfiguration keys, types, defaults and descriptions, generated from probes.schema.json.
+- [FlushDbRedis Configurations Yaml View](/probes/availableProbes/FlushDbRedis/configuration/yamlView/): Minimal YAML scaffold for FlushDbRedis ProbeConfiguration — copy, fill the blanks, drop into a Session step.
+- [FlushDbRedis](/probes/availableProbes/FlushDbRedis/overview/): Runs Redis FLUSHDB against the selected Redis database.
+- [MsSqlDataBaseTablesTruncate Configurations Table View](/probes/availableProbes/MsSqlDataBaseTablesTruncate/configuration/tableView/): Field-by-field reference for MsSqlDataBaseTablesTruncate ProbeConfiguration keys, types, defaults and descriptions, generated from probes.schema.json.
+- [MsSqlDataBaseTablesTruncate Configurations Yaml View](/probes/availableProbes/MsSqlDataBaseTablesTruncate/configuration/yamlView/): Minimal YAML scaffold for MsSqlDataBaseTablesTruncate ProbeConfiguration — copy, fill the blanks, drop into a Session step.
+- [MsSqlDataBaseTablesTruncate](/probes/availableProbes/MsSqlDataBaseTablesTruncate/overview/): Truncates the configured Microsoft SQL Server tables in the order they are listed.
+- [OracleSqlDataBaseTablesTruncate Configurations Table View](/probes/availableProbes/OracleSqlDataBaseTablesTruncate/configuration/tableView/): Field-by-field reference for OracleSqlDataBaseTablesTruncate ProbeConfiguration keys, types, defaults and descriptions, generated from probes.schema.json.
+- [OracleSqlDataBaseTablesTruncate Configurations Yaml View](/probes/availableProbes/OracleSqlDataBaseTablesTruncate/configuration/yamlView/): Minimal YAML scaffold for OracleSqlDataBaseTablesTruncate ProbeConfiguration — copy, fill the blanks, drop into a Session step.
+- [OracleSqlDataBaseTablesTruncate](/probes/availableProbes/OracleSqlDataBaseTablesTruncate/overview/): Truncates the configured Oracle tables in the order they are listed.
+- [OsChangeDeploymentEnvVars Configurations Table View](/probes/availableProbes/OsChangeDeploymentEnvVars/configuration/tableView/): Field-by-field reference for OsChangeDeploymentEnvVars ProbeConfiguration keys, types, defaults and descriptions, generated from probes.schema.json.
+- [OsChangeDeploymentEnvVars Configurations Yaml View](/probes/availableProbes/OsChangeDeploymentEnvVars/configuration/yamlView/): Minimal YAML scaffold for OsChangeDeploymentEnvVars ProbeConfiguration — copy, fill the blanks, drop into a Session step.
+- [OsChangeDeploymentEnvVars](/probes/availableProbes/OsChangeDeploymentEnvVars/overview/): Probe that changes the environment variables of a deployment
+- [OsChangeStatefulSetEnvVars Configurations Table View](/probes/availableProbes/OsChangeStatefulSetEnvVars/configuration/tableView/): Field-by-field reference for OsChangeStatefulSetEnvVars ProbeConfiguration keys, types, defaults and descriptions, generated from probes.schema.json.
+- [OsChangeStatefulSetEnvVars Configurations Yaml View](/probes/availableProbes/OsChangeStatefulSetEnvVars/configuration/yamlView/): Minimal YAML scaffold for OsChangeStatefulSetEnvVars ProbeConfiguration — copy, fill the blanks, drop into a Session step.
+- [OsChangeStatefulSetEnvVars](/probes/availableProbes/OsChangeStatefulSetEnvVars/overview/): Probe that changes the environment variables of a statefulSet
+- [OsEditYamlConfigMap Configurations Table View](/probes/availableProbes/OsEditYamlConfigMap/configuration/tableView/): Field-by-field reference for OsEditYamlConfigMap ProbeConfiguration keys, types, defaults and descriptions, generated from probes.schema.json.
+- [OsEditYamlConfigMap Configurations Yaml View](/probes/availableProbes/OsEditYamlConfigMap/configuration/yamlView/): Minimal YAML scaffold for OsEditYamlConfigMap ProbeConfiguration — copy, fill the blanks, drop into a Session step.
+- [OsEditYamlConfigMap](/probes/availableProbes/OsEditYamlConfigMap/overview/): OsEditYamlConfigMap probe plugin (auto-generated reference).
+- [OsExecuteCommandsInContainers Configurations Table View](/probes/availableProbes/OsExecuteCommandsInContainers/configuration/tableView/): Field-by-field reference for OsExecuteCommandsInContainers ProbeConfiguration keys, types, defaults and descriptions, generated from probes.schema.json.
+- [OsExecuteCommandsInContainers Configurations Yaml View](/probes/availableProbes/OsExecuteCommandsInContainers/configuration/yamlView/): Minimal YAML scaffold for OsExecuteCommandsInContainers ProbeConfiguration — copy, fill the blanks, drop into a Session step.
+- [OsExecuteCommandsInContainers](/probes/availableProbes/OsExecuteCommandsInContainers/overview/): Probe that Executes a command passed by the `cmd` string variable on every pod and container if passed to the function
+- [OsRestartPods Configurations Table View](/probes/availableProbes/OsRestartPods/configuration/tableView/): Field-by-field reference for OsRestartPods ProbeConfiguration keys, types, defaults and descriptions, generated from probes.schema.json.
+- [OsRestartPods Configurations Yaml View](/probes/availableProbes/OsRestartPods/configuration/yamlView/): Minimal YAML scaffold for OsRestartPods ProbeConfiguration — copy, fill the blanks, drop into a Session step.
+- [OsRestartPods](/probes/availableProbes/OsRestartPods/overview/): Probe that restarts all pods with configured labels in the configured namespace
+- [OsScaleDeploymentPods Configurations Table View](/probes/availableProbes/OsScaleDeploymentPods/configuration/tableView/): Field-by-field reference for OsScaleDeploymentPods ProbeConfiguration keys, types, defaults and descriptions, generated from probes.schema.json.
+- [OsScaleDeploymentPods Configurations Yaml View](/probes/availableProbes/OsScaleDeploymentPods/configuration/yamlView/): Minimal YAML scaffold for OsScaleDeploymentPods ProbeConfiguration — copy, fill the blanks, drop into a Session step.
+- [OsScaleDeploymentPods](/probes/availableProbes/OsScaleDeploymentPods/overview/): Probe that scales openshift deployments
+- [OsScaleStatefulSetPods Configurations Table View](/probes/availableProbes/OsScaleStatefulSetPods/configuration/tableView/): Field-by-field reference for OsScaleStatefulSetPods ProbeConfiguration keys, types, defaults and descriptions, generated from probes.schema.json.
+- [OsScaleStatefulSetPods Configurations Yaml View](/probes/availableProbes/OsScaleStatefulSetPods/configuration/yamlView/): Minimal YAML scaffold for OsScaleStatefulSetPods ProbeConfiguration — copy, fill the blanks, drop into a Session step.
+- [OsScaleStatefulSetPods](/probes/availableProbes/OsScaleStatefulSetPods/overview/): Probe that scales openshift statefulsets
+- [OsUpdateDeploymentImage Configurations Table View](/probes/availableProbes/OsUpdateDeploymentImage/configuration/tableView/): Field-by-field reference for OsUpdateDeploymentImage ProbeConfiguration keys, types, defaults and descriptions, generated from probes.schema.json.
+- [OsUpdateDeploymentImage Configurations Yaml View](/probes/availableProbes/OsUpdateDeploymentImage/configuration/yamlView/): Minimal YAML scaffold for OsUpdateDeploymentImage ProbeConfiguration — copy, fill the blanks, drop into a Session step.
+- [OsUpdateDeploymentImage](/probes/availableProbes/OsUpdateDeploymentImage/overview/): Updates the image of one container in a Kubernetes or OpenShift deployment.
+- [OsUpdateDeploymentResources Configurations Table View](/probes/availableProbes/OsUpdateDeploymentResources/configuration/tableView/): Field-by-field reference for OsUpdateDeploymentResources ProbeConfiguration keys, types, defaults and descriptions, generated from probes.schema.json.
+- [OsUpdateDeploymentResources Configurations Yaml View](/probes/availableProbes/OsUpdateDeploymentResources/configuration/yamlView/): Minimal YAML scaffold for OsUpdateDeploymentResources ProbeConfiguration — copy, fill the blanks, drop into a Session step.
+- [OsUpdateDeploymentResources](/probes/availableProbes/OsUpdateDeploymentResources/overview/): Updates container resource requests and limits in a Kubernetes or OpenShift deployment.
+- [OsUpdateStatefulSetImage Configurations Table View](/probes/availableProbes/OsUpdateStatefulSetImage/configuration/tableView/): Field-by-field reference for OsUpdateStatefulSetImage ProbeConfiguration keys, types, defaults and descriptions, generated from probes.schema.json.
+- [OsUpdateStatefulSetImage Configurations Yaml View](/probes/availableProbes/OsUpdateStatefulSetImage/configuration/yamlView/): Minimal YAML scaffold for OsUpdateStatefulSetImage ProbeConfiguration — copy, fill the blanks, drop into a Session step.
+- [OsUpdateStatefulSetImage](/probes/availableProbes/OsUpdateStatefulSetImage/overview/): Updates the image of one container in a Kubernetes or OpenShift stateful set.
+- [OsUpdateStatefulSetResources Configurations Table View](/probes/availableProbes/OsUpdateStatefulSetResources/configuration/tableView/): Field-by-field reference for OsUpdateStatefulSetResources ProbeConfiguration keys, types, defaults and descriptions, generated from probes.schema.json.
+- [OsUpdateStatefulSetResources Configurations Yaml View](/probes/availableProbes/OsUpdateStatefulSetResources/configuration/yamlView/): Minimal YAML scaffold for OsUpdateStatefulSetResources ProbeConfiguration — copy, fill the blanks, drop into a Session step.
+- [OsUpdateStatefulSetResources](/probes/availableProbes/OsUpdateStatefulSetResources/overview/): Updates container resource requests and limits in a Kubernetes or OpenShift stateful set.
+- [PostgreSqlDataBaseTablesTruncate Configurations Table View](/probes/availableProbes/PostgreSqlDataBaseTablesTruncate/configuration/tableView/): Field-by-field reference for PostgreSqlDataBaseTablesTruncate ProbeConfiguration keys, types, defaults and descriptions, generated from probes.schema.json.
+- [PostgreSqlDataBaseTablesTruncate Configurations Yaml View](/probes/availableProbes/PostgreSqlDataBaseTablesTruncate/configuration/yamlView/): Minimal YAML scaffold for PostgreSqlDataBaseTablesTruncate ProbeConfiguration — copy, fill the blanks, drop into a Session step.
+- [PostgreSqlDataBaseTablesTruncate](/probes/availableProbes/PostgreSqlDataBaseTablesTruncate/overview/): Truncates the configured PostgreSQL tables in the order they are listed.
+- [PurgeRabbitMqQueues Configurations Table View](/probes/availableProbes/PurgeRabbitMqQueues/configuration/tableView/): Field-by-field reference for PurgeRabbitMqQueues ProbeConfiguration keys, types, defaults and descriptions, generated from probes.schema.json.
+- [PurgeRabbitMqQueues Configurations Yaml View](/probes/availableProbes/PurgeRabbitMqQueues/configuration/yamlView/): Minimal YAML scaffold for PurgeRabbitMqQueues ProbeConfiguration — copy, fill the blanks, drop into a Session step.
+- [PurgeRabbitMqQueues](/probes/availableProbes/PurgeRabbitMqQueues/overview/): Probe that purges rabbitmq queues
+- [UploadRabbitMqDefinitions Configurations Table View](/probes/availableProbes/UploadRabbitMqDefinitions/configuration/tableView/): Field-by-field reference for UploadRabbitMqDefinitions ProbeConfiguration keys, types, defaults and descriptions, generated from probes.schema.json.
+- [UploadRabbitMqDefinitions Configurations Yaml View](/probes/availableProbes/UploadRabbitMqDefinitions/configuration/yamlView/): Minimal YAML scaffold for UploadRabbitMqDefinitions ProbeConfiguration — copy, fill the blanks, drop into a Session step.
+- [UploadRabbitMqDefinitions](/probes/availableProbes/UploadRabbitMqDefinitions/overview/): Uploads a previously captured RabbitMQ definitions file back into the broker through the management API.
+- [UpsertRabbitMqPermissions Configurations Table View](/probes/availableProbes/UpsertRabbitMqPermissions/configuration/tableView/): Field-by-field reference for UpsertRabbitMqPermissions ProbeConfiguration keys, types, defaults and descriptions, generated from probes.schema.json.
+- [UpsertRabbitMqPermissions Configurations Yaml View](/probes/availableProbes/UpsertRabbitMqPermissions/configuration/yamlView/): Minimal YAML scaffold for UpsertRabbitMqPermissions ProbeConfiguration — copy, fill the blanks, drop into a Session step.
+- [UpsertRabbitMqPermissions](/probes/availableProbes/UpsertRabbitMqPermissions/overview/): Creates or updates RabbitMQ permissions for users in one or more virtual hosts through the management API.
+- [ConditionalResponseProcessor Configurations Table View](/processors/availableProcessors/ConditionalResponseProcessor/configuration/tableView/): Field-by-field reference for ConditionalResponseProcessor ProcessorConfiguration keys, types, defaults and descriptions, generated from processors.schema.json.
+- [ConditionalResponseProcessor Configurations Yaml View](/processors/availableProcessors/ConditionalResponseProcessor/configuration/yamlView/): Minimal YAML scaffold for ConditionalResponseProcessor ProcessorConfiguration — copy, fill the blanks, drop into a Session step.
+- [ConditionalResponseProcessor](/processors/availableProcessors/ConditionalResponseProcessor/overview/): Returns the first configured response whose rule matches the incoming request metadata, or the configured default response when no rule matches.
+- [DataSourceResponseProcessor Configurations Table View](/processors/availableProcessors/DataSourceResponseProcessor/configuration/tableView/): Field-by-field reference for DataSourceResponseProcessor ProcessorConfiguration keys, types, defaults and descriptions, generated from processors.schema.json.
+- [DataSourceResponseProcessor Configurations Yaml View](/processors/availableProcessors/DataSourceResponseProcessor/configuration/yamlView/): Minimal YAML scaffold for DataSourceResponseProcessor ProcessorConfiguration — copy, fill the blanks, drop into a Session step.
+- [DataSourceResponseProcessor](/processors/availableProcessors/DataSourceResponseProcessor/overview/): Builds the response from generated data produced by one configured data source.
+- [JsonEnvelopeProcessor Configurations Table View](/processors/availableProcessors/JsonEnvelopeProcessor/configuration/tableView/): Field-by-field reference for JsonEnvelopeProcessor ProcessorConfiguration keys, types, defaults and descriptions, generated from processors.schema.json.
+- [JsonEnvelopeProcessor Configurations Yaml View](/processors/availableProcessors/JsonEnvelopeProcessor/configuration/yamlView/): Minimal YAML scaffold for JsonEnvelopeProcessor ProcessorConfiguration — copy, fill the blanks, drop into a Session step.
+- [JsonEnvelopeProcessor](/processors/availableProcessors/JsonEnvelopeProcessor/overview/): Wraps the incoming request payload and optional request metadata in a JSON envelope response.
+- [PassThroughProcessor Configurations Table View](/processors/availableProcessors/PassThroughProcessor/configuration/tableView/): Field-by-field reference for PassThroughProcessor ProcessorConfiguration keys, types, defaults and descriptions, generated from processors.schema.json.
+- [PassThroughProcessor Configurations Yaml View](/processors/availableProcessors/PassThroughProcessor/configuration/yamlView/): Minimal YAML scaffold for PassThroughProcessor ProcessorConfiguration — copy, fill the blanks, drop into a Session step.
+- [PassThroughProcessor](/processors/availableProcessors/PassThroughProcessor/overview/): Returns the incoming request payload unchanged while applying the configured response metadata.
+- [ProblemDetailsProcessor Configurations Table View](/processors/availableProcessors/ProblemDetailsProcessor/configuration/tableView/): Field-by-field reference for ProblemDetailsProcessor ProcessorConfiguration keys, types, defaults and descriptions, generated from processors.schema.json.
+- [ProblemDetailsProcessor Configurations Yaml View](/processors/availableProcessors/ProblemDetailsProcessor/configuration/yamlView/): Minimal YAML scaffold for ProblemDetailsProcessor ProcessorConfiguration — copy, fill the blanks, drop into a Session step.
+- [ProblemDetailsProcessor](/processors/availableProcessors/ProblemDetailsProcessor/overview/): Returns an RFC 7807 style problem-details JSON response using the configured status and fields.
+- [RequestEchoProcessor Configurations Table View](/processors/availableProcessors/RequestEchoProcessor/configuration/tableView/): Field-by-field reference for RequestEchoProcessor ProcessorConfiguration keys, types, defaults and descriptions, generated from processors.schema.json.
+- [RequestEchoProcessor Configurations Yaml View](/processors/availableProcessors/RequestEchoProcessor/configuration/yamlView/): Minimal YAML scaffold for RequestEchoProcessor ProcessorConfiguration — copy, fill the blanks, drop into a Session step.
+- [RequestEchoProcessor](/processors/availableProcessors/RequestEchoProcessor/overview/): Returns a JSON response that echoes the incoming request body and optional request metadata.
+- [StaticResponseProcessor Configurations Table View](/processors/availableProcessors/StaticResponseProcessor/configuration/tableView/): Field-by-field reference for StaticResponseProcessor ProcessorConfiguration keys, types, defaults and descriptions, generated from processors.schema.json.
+- [StaticResponseProcessor Configurations Yaml View](/processors/availableProcessors/StaticResponseProcessor/configuration/yamlView/): Minimal YAML scaffold for StaticResponseProcessor ProcessorConfiguration — copy, fill the blanks, drop into a Session step.
+- [StaticResponseProcessor](/processors/availableProcessors/StaticResponseProcessor/overview/): Returns a fixed UTF-8 response body with the configured status code, content type, and headers.
+- [StatusCodeTransactionProcessor Configurations Table View](/processors/availableProcessors/StatusCodeTransactionProcessor/configuration/tableView/): Field-by-field reference for StatusCodeTransactionProcessor ProcessorConfiguration keys, types, defaults and descriptions, generated from processors.schema.json.
+- [StatusCodeTransactionProcessor Configurations Yaml View](/processors/availableProcessors/StatusCodeTransactionProcessor/configuration/yamlView/): Minimal YAML scaffold for StatusCodeTransactionProcessor ProcessorConfiguration — copy, fill the blanks, drop into a Session step.
+- [StatusCodeTransactionProcessor](/processors/availableProcessors/StatusCodeTransactionProcessor/overview/): Skim Transaction Processor which returns empty-bodied data objects with Status Code configuration.
+- [TextTransformProcessor Configurations Table View](/processors/availableProcessors/TextTransformProcessor/configuration/tableView/): Field-by-field reference for TextTransformProcessor ProcessorConfiguration keys, types, defaults and descriptions, generated from processors.schema.json.
+- [TextTransformProcessor Configurations Yaml View](/processors/availableProcessors/TextTransformProcessor/configuration/yamlView/): Minimal YAML scaffold for TextTransformProcessor ProcessorConfiguration — copy, fill the blanks, drop into a Session step.
+- [TextTransformProcessor](/processors/availableProcessors/TextTransformProcessor/overview/): Reads the incoming payload as text, applies the configured text transformation, and returns the transformed response.
+- [QaaS Module Packages](/qaas/addOns/modules/): QaaS Module Packages are Artifactory artifacts that bundle reusable YAML folders for Runner configurations.
+- [Plugins](/qaas/addOns/plugins/): QaaS Plugins are C# NuGet packages that contain QaaS hooks, extensibility points that integrate with QaaS.Framework. To qualify as a QaaS Plugin, a package must use QaaS.Framework.SDK.
+- [Configuration as Code](/qaas/advancedConcepts/configurationAsCode/): While YAML offers a concise, human-readable way to define test scenarios, Configuration as Code (CaC) lets you harness the full power of C# for dynamic, conditional, and reusable test orchestration.
+- [Global Dictionary](/qaas/advancedConcepts/globalDictionary/): The Runner global dictionary shares mutable runtime values across hooks, Sessions, Assertions, and execution code.
+- [Live Action Based Generators](/qaas/advancedConcepts/liveSessionData/): Live session data lets generators read outputs from actions that already ran in the current session.
+- [Stages in QaaS: Orchestrating Session and Action Execution](/qaas/advancedConcepts/stages/): Stages coordinate session ordering and action launch ordering, which are related but do not behave the same way.
+- [YAML Mechanics](/qaas/advancedConcepts/yaml-mechanics/): Authoritative reference for YAML anchors, aliases, merge keys, reference files, placeholders, overlays, cases, and push-references in QaaS.
+- [Best Practices](/qaas/bestPractices/): Naming conventions and file-structure guidelines for QaaS projects.
+- [Assertions: Classification](/qaas/functions/builders/assertions-sections/classification/): Reference page for Assertions: Classification.
+- [Assertions: Collection helpers](/qaas/functions/builders/assertions-sections/collection-helpers/): Reference page for Assertions: Collection helpers.
+- [Assertions: Data source selection](/qaas/functions/builders/assertions-sections/data-source-selection/): Reference page for Assertions: Data source selection.
+- [Assertions: General](/qaas/functions/builders/assertions-sections/general/): Reference page for Assertions: General.
+- [Assertions: Identity and hook selection](/qaas/functions/builders/assertions-sections/identity-and-hook-selection/): Reference page for Assertions: Identity and hook selection.
+- [Assertions: Links](/qaas/functions/builders/assertions-sections/links/): Reference page for Assertions: Links.
+- [Assertions: Reporting and artifacts](/qaas/functions/builders/assertions-sections/reporting-and-artifacts/): Reference page for Assertions: Reporting and artifacts.
+- [Assertions: Session selection](/qaas/functions/builders/assertions-sections/session-selection/): Reference page for Assertions: Session selection.
+- [Assertions](/qaas/functions/builders/assertions/): Each entry uses the short function name as the table-of-contents label. Expand an entry to inspect its source file, signature, and XML doc comments.
+- [Collectors: Collection helpers](/qaas/functions/builders/collectors-sections/collection-helpers/): Reference page for Collectors: Collection helpers.
+- [Collectors: General](/qaas/functions/builders/collectors-sections/general/): Reference page for Collectors: General.
+- [Collectors: Identity and hook selection](/qaas/functions/builders/collectors-sections/identity-and-hook-selection/): Reference page for Collectors: Identity and hook selection.
+- [Collectors](/qaas/functions/builders/collectors/): Each entry uses the short function name as the table-of-contents label. Expand an entry to inspect its source file, signature, and XML doc comments.
+- [Consumers: Collection helpers](/qaas/functions/builders/consumers-sections/collection-helpers/): Reference page for Consumers: Collection helpers.
+- [Consumers: Configuration](/qaas/functions/builders/consumers-sections/configuration/): Reference page for Consumers: Configuration.
+- [Consumers: Execution order](/qaas/functions/builders/consumers-sections/execution-order/): Reference page for Consumers: Execution order.
+- [Consumers: General](/qaas/functions/builders/consumers-sections/general/): Reference page for Consumers: General.
+- [Consumers: Identity and hook selection](/qaas/functions/builders/consumers-sections/identity-and-hook-selection/): Reference page for Consumers: Identity and hook selection.
+- [Consumers: Policies](/qaas/functions/builders/consumers-sections/policies/): Reference page for Consumers: Policies.
+- [Consumers](/qaas/functions/builders/consumers/): Each entry uses the short function name as the table-of-contents label. Expand an entry to inspect its source file, signature, and XML doc comments.
+- [Executions: Assertions](/qaas/functions/builders/executions-sections/assertions/): Reference page for Executions: Assertions.
+- [Executions: Configuration](/qaas/functions/builders/executions-sections/configuration/): Reference page for Executions: Configuration.
+- [Executions: Data source selection](/qaas/functions/builders/executions-sections/data-source-selection/): Reference page for Executions: Data source selection.
+- [Executions: Executions](/qaas/functions/builders/executions-sections/executions/): Reference page for Executions: Executions.
+- [Executions: General](/qaas/functions/builders/executions-sections/general/): Reference page for Executions: General.
+- [Executions: Links](/qaas/functions/builders/executions-sections/links/): Reference page for Executions: Links.
+- [Executions: Reporters](/qaas/functions/builders/executions-sections/reporters/): Reference page for Executions: Reporters.
+- [Executions: Session selection](/qaas/functions/builders/executions-sections/session-selection/): Reference page for Executions: Session selection.
+- [Executions: Storages](/qaas/functions/builders/executions-sections/storages/): Reference page for Executions: Storages.
+- [Executions](/qaas/functions/builders/executions/): Each entry uses the short function name as the table-of-contents label. Expand an entry to inspect its source file, signature, and XML doc comments.
+- [Links: Collection helpers](/qaas/functions/builders/links-sections/collection-helpers/): Reference page for Links: Collection helpers.
+- [Links: General](/qaas/functions/builders/links-sections/general/): Reference page for Links: General.
+- [Links: Identity and hook selection](/qaas/functions/builders/links-sections/identity-and-hook-selection/): Reference page for Links: Identity and hook selection.
+- [Links](/qaas/functions/builders/links/): Each entry uses the short function name as the table-of-contents label. Expand an entry to inspect its source file, signature, and XML doc comments.
+- [Mocker Commands: Collection helpers](/qaas/functions/builders/mocker-commands-sections/collection-helpers/): Reference page for Mocker Commands: Collection helpers.
+- [Mocker Commands: Configuration](/qaas/functions/builders/mocker-commands-sections/configuration/): Reference page for Mocker Commands: Configuration.
+- [Mocker Commands: Execution order](/qaas/functions/builders/mocker-commands-sections/execution-order/): Reference page for Mocker Commands: Execution order.
+- [Mocker Commands: General](/qaas/functions/builders/mocker-commands-sections/general/): Reference page for Mocker Commands: General.
+- [Mocker Commands: Identity and hook selection](/qaas/functions/builders/mocker-commands-sections/identity-and-hook-selection/): Reference page for Mocker Commands: Identity and hook selection.
+- [Mocker Commands: Servers](/qaas/functions/builders/mocker-commands-sections/servers/): Reference page for Mocker Commands: Servers.
+- [Mocker Commands](/qaas/functions/builders/mocker-commands/): Each entry uses the short function name as the table-of-contents label. Expand an entry to inspect its source file, signature, and XML doc comments.
+- [Probes: Collection helpers](/qaas/functions/builders/probes-sections/collection-helpers/): Reference page for Probes: Collection helpers.
+- [Probes: Data source selection](/qaas/functions/builders/probes-sections/data-source-selection/): Reference page for Probes: Data source selection.
+- [Probes: Execution order](/qaas/functions/builders/probes-sections/execution-order/): Reference page for Probes: Execution order.
+- [Probes: General](/qaas/functions/builders/probes-sections/general/): Reference page for Probes: General.
+- [Probes: Identity and hook selection](/qaas/functions/builders/probes-sections/identity-and-hook-selection/): Reference page for Probes: Identity and hook selection.
+- [Probes](/qaas/functions/builders/probes/): Each entry uses the short function name as the table-of-contents label. Expand an entry to inspect its source file, signature, and XML doc comments.
+- [Publishers: Collection helpers](/qaas/functions/builders/publishers-sections/collection-helpers/): Reference page for Publishers: Collection helpers.
+- [Publishers: Configuration](/qaas/functions/builders/publishers-sections/configuration/): Reference page for Publishers: Configuration.
+- [Publishers: Data source selection](/qaas/functions/builders/publishers-sections/data-source-selection/): Reference page for Publishers: Data source selection.
+- [Publishers: Execution order](/qaas/functions/builders/publishers-sections/execution-order/): Reference page for Publishers: Execution order.
+- [Publishers: General](/qaas/functions/builders/publishers-sections/general/): Reference page for Publishers: General.
+- [Publishers: Identity and hook selection](/qaas/functions/builders/publishers-sections/identity-and-hook-selection/): Reference page for Publishers: Identity and hook selection.
+- [Publishers: Policies](/qaas/functions/builders/publishers-sections/policies/): Reference page for Publishers: Policies.
+- [Publishers](/qaas/functions/builders/publishers/): Each entry uses the short function name as the table-of-contents label. Expand an entry to inspect its source file, signature, and XML doc comments.
+- [Reporters: General](/qaas/functions/builders/reporters-sections/general/): Reference page for Reporters: General.
+- [Reporters: Reporting and artifacts](/qaas/functions/builders/reporters-sections/reporting-and-artifacts/): Reference page for Reporters: Reporting and artifacts.
+- [Reporters](/qaas/functions/builders/reporters/): Reference page for Reporters.
+- [Sessions: Classification](/qaas/functions/builders/sessions-sections/classification/): Reference page for Sessions: Classification.
+- [Sessions: Collection helpers](/qaas/functions/builders/sessions-sections/collection-helpers/): Reference page for Sessions: Collection helpers.
+- [Sessions: Collectors](/qaas/functions/builders/sessions-sections/collectors/): Reference page for Sessions: Collectors.
+- [Sessions: Configuration](/qaas/functions/builders/sessions-sections/configuration/): Reference page for Sessions: Configuration.
+- [Sessions: Consumers](/qaas/functions/builders/sessions-sections/consumers/): Reference page for Sessions: Consumers.
+- [Sessions: Execution order](/qaas/functions/builders/sessions-sections/execution-order/): Reference page for Sessions: Execution order.
+- [Sessions: General](/qaas/functions/builders/sessions-sections/general/): Reference page for Sessions: General.
+- [Sessions: Identity and hook selection](/qaas/functions/builders/sessions-sections/identity-and-hook-selection/): Reference page for Sessions: Identity and hook selection.
+- [Sessions: Probes](/qaas/functions/builders/sessions-sections/probes/): Reference page for Sessions: Probes.
+- [Sessions: Publishers](/qaas/functions/builders/sessions-sections/publishers/): Reference page for Sessions: Publishers.
+- [Sessions: Session selection](/qaas/functions/builders/sessions-sections/session-selection/): Reference page for Sessions: Session selection.
+- [Sessions: Stages](/qaas/functions/builders/sessions-sections/stages/): Reference page for Sessions: Stages.
+- [Sessions: Transactions](/qaas/functions/builders/sessions-sections/transactions/): Reference page for Sessions: Transactions.
+- [Sessions](/qaas/functions/builders/sessions/): Each entry uses the short function name as the table-of-contents label. Expand an entry to inspect its source file, signature, and XML doc comments.
+- [Storages: Collection helpers](/qaas/functions/builders/storages-sections/collection-helpers/): Reference page for Storages: Collection helpers.
+- [Storages: General](/qaas/functions/builders/storages-sections/general/): Reference page for Storages: General.
+- [Storages: Storages](/qaas/functions/builders/storages-sections/storages/): Reference page for Storages: Storages.
+- [Storages](/qaas/functions/builders/storages/): Each entry uses the short function name as the table-of-contents label. Expand an entry to inspect its source file, signature, and XML doc comments.
+- [Transactions: Collection helpers](/qaas/functions/builders/transactions-sections/collection-helpers/): Reference page for Transactions: Collection helpers.
+- [Transactions: Configuration](/qaas/functions/builders/transactions-sections/configuration/): Reference page for Transactions: Configuration.
+- [Transactions: Data source selection](/qaas/functions/builders/transactions-sections/data-source-selection/): Reference page for Transactions: Data source selection.
+- [Transactions: Execution order](/qaas/functions/builders/transactions-sections/execution-order/): Reference page for Transactions: Execution order.
+- [Transactions: General](/qaas/functions/builders/transactions-sections/general/): Reference page for Transactions: General.
+- [Transactions: Identity and hook selection](/qaas/functions/builders/transactions-sections/identity-and-hook-selection/): Reference page for Transactions: Identity and hook selection.
+- [Transactions: Input selection](/qaas/functions/builders/transactions-sections/input-selection/): Reference page for Transactions: Input selection.
+- [Transactions: Output selection](/qaas/functions/builders/transactions-sections/output-selection/): Reference page for Transactions: Output selection.
+- [Transactions: Policies](/qaas/functions/builders/transactions-sections/policies/): Reference page for Transactions: Policies.
+- [Transactions](/qaas/functions/builders/transactions/): Each entry uses the short function name as the table-of-contents label. Expand an entry to inspect its source file, signature, and XML doc comments.
+- [Bootstrap](/qaas/functions/commands/bootstrap/): Each entry uses the short function name as the table-of-contents label. Expand an entry to inspect its source file, signature, and XML doc comments.
+- [Runner](/qaas/functions/commands/runner/): Each entry uses the short function name as the table-of-contents label. Expand an entry to inspect its source file, signature, and XML doc comments.
+- [Extension Methods: Context artifact](/qaas/functions/extension-methods-sections/context-artifact/): Reference page for Extension Methods: Context artifact.
+- [Extension Methods: Date time](/qaas/functions/extension-methods-sections/date-time/): Reference page for Extension Methods: Date time.
+- [Extension Methods: Detailed data](/qaas/functions/extension-methods-sections/detailed-data/): Reference page for Extension Methods: Detailed data.
+- [Extension Methods: Runner case expansion](/qaas/functions/extension-methods-sections/runner-case-expansion/): Reference page for Extension Methods: Runner case expansion.
+- [Extension Methods: Session](/qaas/functions/extension-methods-sections/session/): Reference page for Extension Methods: Session.
+- [Extension Methods](/qaas/functions/extension-methods/): This page collects public Runner extension methods that have XML documentation or explicit docs annotations.
+- [Logger](/qaas/userInterfaces/logger/): QaaS uses Serilog for its logging needs.
+- [Allure Report](/qaas/userInterfaces/runner/allureReport/): Allure Report is a test reporting tool, that provides clear graphical reports about your tests.
+- [act](/qaas/userInterfaces/runner/commands/act/): Run a qaas test without the assertions and save all sessionData.
+- [assert](/qaas/userInterfaces/runner/commands/assert/): Run a qaas test with only the assertions on already existing sessionData.
+- [Commands](/qaas/userInterfaces/runner/commands/commands/): Runner commands inspect configuration, run sessions, evaluate assertions, and orchestrate multi-command flows.
+- [execute](/qaas/userInterfaces/runner/commands/execute/): Executes a YAML file containing a sequential list of Runner commands.
+- [run](/qaas/userInterfaces/runner/commands/run/): Run a qaas test according to the given configurations.
+- [template](/qaas/userInterfaces/runner/commands/template/): Template a qaas configuration file to see how it looks after being loaded, will template what it can even if the configuration file is invalid.
+- [Configuration Resolution](/qaas/userInterfaces/runner/configurationResolutionPriority/): This page describes how QaaS.Runner builds the effective configuration for the run, act, assert, and template commands.
+- [Assertions Configurations Table View](/qaas/userInterfaces/runner/configurationSections/assertions/configurations/tableView/): Assertions Configurations Table View
+- [Assertions Configurations Yaml View](/qaas/userInterfaces/runner/configurationSections/assertions/configurations/yamlView/): Assertion configuration YAML example.
+- [Configuration Sections](/qaas/userInterfaces/runner/configurationSections/configurationSections/): Each configuration section in the .yaml file is used to perform a different action and has its own configurations and descriptions.
+- [DataSources Configurations Table View](/qaas/userInterfaces/runner/configurationSections/dataSources/configurations/tableView/): DataSources Configurations Table View
+- [DataSources Configurations Yaml View](/qaas/userInterfaces/runner/configurationSections/dataSources/configurations/yamlView/): Data source configuration YAML example.
+- [Links Configurations Table View](/qaas/userInterfaces/runner/configurationSections/links/configurations/tableView/): Links Configurations Table View
+- [Links Configurations Yaml View](/qaas/userInterfaces/runner/configurationSections/links/configurations/yamlView/): Link configuration YAML example.
+- [MetaData Configurations Table View](/qaas/userInterfaces/runner/configurationSections/metaData/configurations/tableView/): MetaData Configurations Table View
+- [MetaData Configurations Yaml View](/qaas/userInterfaces/runner/configurationSections/metaData/configurations/yamlView/): Metadata configuration YAML example.
+- [Reporters Configurations Table View](/qaas/userInterfaces/runner/configurationSections/reporters/configurations/tableView/): Reference page for Reporters Configurations Table View.
+- [Reporters Configurations Yaml View](/qaas/userInterfaces/runner/configurationSections/reporters/configurations/yamlView/): Reference page for Reporters Configurations Yaml View.
+- [Sessions Configurations Table View](/qaas/userInterfaces/runner/configurationSections/sessions/configurations/tableView/): Sessions Configurations Table View
+- [Sessions Configurations Yaml View](/qaas/userInterfaces/runner/configurationSections/sessions/configurations/yamlView/): Session configuration YAML example.
+- [Collectors Configurations Table View](/qaas/userInterfaces/runner/configurationSections/sessions/types/collectors-tableView/): Collectors Configurations Table View
+- [Collectors Configurations Yaml View](/qaas/userInterfaces/runner/configurationSections/sessions/types/collectors-yamlView/): Collector YAML scaffold for session metrics and time-range collection.
+- [Collectors](/qaas/userInterfaces/runner/configurationSections/sessions/types/collectors/): Collectors are communication actions that collect data from an endpoint within a range of time in a single action. Every collector will create an Output by its name in the SessionData.
+- [Consumers Configurations Table View](/qaas/userInterfaces/runner/configurationSections/sessions/types/consumers-tableView/): Consumers Configurations Table View
+- [Consumers Configurations Yaml View](/qaas/userInterfaces/runner/configurationSections/sessions/types/consumers-yamlView/): Consumer YAML scaffold for reading session inputs from supported back ends.
+- [Consumers](/qaas/userInterfaces/runner/configurationSections/sessions/types/consumers/): Consumers are communication actions that receive data from the system. Every consumer creates an Output in SessionData with its own name.
+- [Mocker Commands Configurations Table View](/qaas/userInterfaces/runner/configurationSections/sessions/types/mockerCommands-tableView/): Mocker Commands Configurations Table View
+- [Mocker Commands Configurations Yaml View](/qaas/userInterfaces/runner/configurationSections/sessions/types/mockerCommands-yamlView/): Mocker command YAML scaffold for controlling mocker servers during a Runner session.
+- [Mocker Commands](/qaas/userInterfaces/runner/configurationSections/sessions/types/mockerCommands/): Mocker commands let Runner sessions control a Redis-backed QaaS.Mocker Controller.
+- [Policies](/qaas/userInterfaces/runner/configurationSections/sessions/types/policies/): Policies control communication action pace, retries, limits, and phased traffic patterns.
+- [Probes Configurations Table View](/qaas/userInterfaces/runner/configurationSections/sessions/types/probes-tableView/): Probes Configurations Table View
+- [Probes Configurations Yaml View](/qaas/userInterfaces/runner/configurationSections/sessions/types/probes-yamlView/): Probe YAML scaffold for pre-session or staged runtime preparation.
+- [Probes](/qaas/userInterfaces/runner/configurationSections/sessions/types/probes/): Probes run infrastructure actions in a session without adding interaction data to SessionData.
+- [Publishers Configurations Table View](/qaas/userInterfaces/runner/configurationSections/sessions/types/publishers-tableView/): Publishers Configurations Table View
+- [Publishers Configurations Yaml View](/qaas/userInterfaces/runner/configurationSections/sessions/types/publishers-yamlView/): Publisher YAML scaffold for writing data source items to supported targets.
+- [Publishers](/qaas/userInterfaces/runner/configurationSections/sessions/types/publishers/): Publishers are communication actions that send data to the system. Every publisher creates an Input in SessionData with its own name.
+- [Transactions Configurations Table View](/qaas/userInterfaces/runner/configurationSections/sessions/types/transactions-tableView/): Transactions Configurations Table View
+- [Transactions Configurations Yaml View](/qaas/userInterfaces/runner/configurationSections/sessions/types/transactions-yamlView/): Transaction YAML scaffold for HTTP or gRPC request-response actions.
+- [Transactions](/qaas/userInterfaces/runner/configurationSections/sessions/types/transactions/): Transactions are communication actions that both send and receive data from the system. Every transaction creates both an Input and an Output in SessionData with its own name.
+- [Storages Configurations Table View](/qaas/userInterfaces/runner/configurationSections/storages/configurations/tableView/): Storages Configurations Table View
+- [Storages Configurations Yaml View](/qaas/userInterfaces/runner/configurationSections/storages/configurations/yamlView/): Storage configuration YAML example.
+
+## Full Content
+
+- [tutorials-1](/llms-full-tutorials-1.txt): Full page bodies for tutorials-1.
+- [how-to-1](/llms-full-how-to-1.txt): Full page bodies for how-to-1.
+- [explanation-1](/llms-full-explanation-1.txt): Full page bodies for explanation-1.
+- [reference-1](/llms-full-reference-1.txt): Full page bodies for reference-1.
+- [reference-2](/llms-full-reference-2.txt): Full page bodies for reference-2.
