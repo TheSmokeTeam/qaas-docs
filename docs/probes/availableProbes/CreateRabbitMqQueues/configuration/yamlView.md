@@ -33,8 +33,7 @@ ProbeConfiguration:
   Username: 'admin'
   VirtualHost: '/'
   Queues:
-    -
-      Exclusive: False
+    - Exclusive: False
       Name: 'value'
       Arguments: {}
       AutoDelete: True

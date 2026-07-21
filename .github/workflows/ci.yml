@@ -43,6 +43,12 @@ env:
   QAAS_DOCS_LINK_QAAS_COMMUNITY: ${{ vars.QAAS_DOCS_LINK_QAAS_COMMUNITY || 'https://discord.gg/rg2NYT4Mea' }}
   QAAS_DOCS_LINK_NUGET_FEED: ${{ vars.QAAS_DOCS_LINK_NUGET_FEED || 'https://api.nuget.org/v3/index.json' }}
   QAAS_DOCS_LINK_ARTIFACTORY: ${{ vars.QAAS_DOCS_LINK_ARTIFACTORY || 'https://jfrog.com/artifactory' }}
+  QAAS_DOCS_LINK_AWS_S3_USER_METADATA: ${{ vars.QAAS_DOCS_LINK_AWS_S3_USER_METADATA || 'https://docs.aws.amazon.com/AmazonS3/latest/userguide/UsingMetadata.html' }}
+  QAAS_DOCS_LINK_AWS_S3_HEAD_OBJECT: ${{ vars.QAAS_DOCS_LINK_AWS_S3_HEAD_OBJECT || 'https://docs.aws.amazon.com/AmazonS3/latest/API/API_HeadObject.html' }}
+  QAAS_DOCS_LINK_AWS_S3_LIST_OBJECTS_V2: ${{ vars.QAAS_DOCS_LINK_AWS_S3_LIST_OBJECTS_V2 || 'https://docs.aws.amazon.com/AmazonS3/latest/API/API_ListObjectsV2.html' }}
+  QAAS_DOCS_LINK_AWS_S3_PREFIXES: ${{ vars.QAAS_DOCS_LINK_AWS_S3_PREFIXES || 'https://docs.aws.amazon.com/AmazonS3/latest/userguide/using-prefixes.html' }}
+  QAAS_DOCS_LINK_REGEX101_PLACEHOLDER: ${{ vars.QAAS_DOCS_LINK_REGEX101_PLACEHOLDER || 'https://regex101.com/?regex=%5C%24%5C%7B.%2A%5C%7D' }}
+  QAAS_DOCS_LINK_JSON_SCHEMA_FOR_HUMANS: ${{ vars.QAAS_DOCS_LINK_JSON_SCHEMA_FOR_HUMANS || 'https://github.com/coveooss/json-schema-for-humans' }}
   QAAS_DOCS_LINK_RUNNER_SCHEMA: ${{ vars.QAAS_DOCS_LINK_RUNNER_SCHEMA || '../../../assets/schemas/runner-family-schema.json' }}
   QAAS_DOCS_LINK_MOCKER_SCHEMA: ${{ vars.QAAS_DOCS_LINK_MOCKER_SCHEMA || '../../../assets/schemas/mocker-family-schema.json' }}
   QAAS_DOCS_MKDOCS_MATERIAL_IMAGE: ${{ vars.QAAS_DOCS_MKDOCS_MATERIAL_IMAGE || 'squidfunk/mkdocs-material:9.5' }}
@@ -87,6 +93,9 @@ jobs:
 
       - name: Validate ZIM release workflow
         run: python tools/ci/check-zim-release-workflow.py
+
+      - name: Validate configurable external links
+        run: python tools/ci/check-configurable-external-links.py
 
       - name: Build site
         run: |
@@ -144,18 +153,9 @@ jobs:
           path: site/
 
       - name: Build ZIM
-        id: zim
         shell: bash
         run: |
-          zim_tag="${{ github.ref_name }}"
-          zim_tag="${zim_tag//\//-}"
-          zim_path="qaas-docs-${zim_tag}.zim"
-          zim_slug="${zim_path%.zim}"
-          zim_slug="${zim_slug,,}"
-          zim_slug="${zim_slug//+/plus}"
-          bash tools/zim/build-zim.sh "$zim_path"
-          echo "path=$zim_path" >> "$GITHUB_OUTPUT"
-          echo "slug=$zim_slug" >> "$GITHUB_OUTPUT"
+          bash tools/zim/build-zim.sh
 
       - name: Smoke-test ZIM
         shell: bash
@@ -166,11 +166,11 @@ jobs:
           docker run --rm -d --name "$container_name" --entrypoint /usr/local/bin/kiwix-serve \
             -v "$PWD":/data -p 8888:8888 \
             "$QAAS_DOCS_KIWIX_SERVE_IMAGE" \
-            --port 8888 --threads 4 --nodatealiases "/data/${{ steps.zim.outputs.path }}"
+            --port 8888 --threads 4 --nodatealiases "/data/qaas-docs.zim"
           ok=0
           for _ in $(seq 1 30); do
             if curl -fsS 'http://localhost:8888/search?pattern=IProbe' >/dev/null && \
-              curl -fsS "http://localhost:8888/content/${{ steps.zim.outputs.slug }}/qaas-docs/qaas/index.html" >/dev/null; then
+              curl -fsS "http://localhost:8888/content/qaas-docs/qaas-docs/qaas/index.html" >/dev/null; then
               ok=1
               break
             fi
@@ -178,17 +178,31 @@ jobs:
           done
           test "$ok" -eq 1
 
+      - name: Build latest docs image archive
+        shell: bash
+        run: |
+          set -euo pipefail
+          docker build --tag qaas-docs:latest .
+          docker image save qaas-docs:latest | gzip --best > qaas-docs-image.tgz
+          gzip --test qaas-docs-image.tgz
+
       - name: Upload ZIM artifact
         uses: actions/upload-artifact@v4
         with:
           name: qaas-docs-zim
-          path: ${{ steps.zim.outputs.path }}
+          path: |
+            qaas-docs.zim
+            qaas-docs-zim-provenance.json
+            qaas-docs-image.tgz
           retention-days: 30
 
       - name: Attach ZIM to GitHub release
         uses: softprops/action-gh-release@v2
         with:
-          files: ${{ steps.zim.outputs.path }}
+          files: |
+            qaas-docs.zim
+            qaas-docs-zim-provenance.json
+            qaas-docs-image.tgz
           fail_on_unmatched_files: true
           make_latest: true
 
@@ -281,6 +295,12 @@ jobs:
             QAAS_DOCS_LINK_QAAS_COMMUNITY=${{ env.QAAS_DOCS_LINK_QAAS_COMMUNITY }}
             QAAS_DOCS_LINK_NUGET_FEED=${{ env.QAAS_DOCS_LINK_NUGET_FEED }}
             QAAS_DOCS_LINK_ARTIFACTORY=${{ env.QAAS_DOCS_LINK_ARTIFACTORY }}
+            QAAS_DOCS_LINK_AWS_S3_USER_METADATA=${{ env.QAAS_DOCS_LINK_AWS_S3_USER_METADATA }}
+            QAAS_DOCS_LINK_AWS_S3_HEAD_OBJECT=${{ env.QAAS_DOCS_LINK_AWS_S3_HEAD_OBJECT }}
+            QAAS_DOCS_LINK_AWS_S3_LIST_OBJECTS_V2=${{ env.QAAS_DOCS_LINK_AWS_S3_LIST_OBJECTS_V2 }}
+            QAAS_DOCS_LINK_AWS_S3_PREFIXES=${{ env.QAAS_DOCS_LINK_AWS_S3_PREFIXES }}
+            QAAS_DOCS_LINK_REGEX101_PLACEHOLDER=${{ env.QAAS_DOCS_LINK_REGEX101_PLACEHOLDER }}
+            QAAS_DOCS_LINK_JSON_SCHEMA_FOR_HUMANS=${{ env.QAAS_DOCS_LINK_JSON_SCHEMA_FOR_HUMANS }}
             QAAS_DOCS_LINK_RUNNER_SCHEMA=${{ env.QAAS_DOCS_LINK_RUNNER_SCHEMA }}
             QAAS_DOCS_LINK_MOCKER_SCHEMA=${{ env.QAAS_DOCS_LINK_MOCKER_SCHEMA }}
             QAAS_DOCS_IMAGE_DOTNET_SDK=${{ env.QAAS_DOCS_IMAGE_DOTNET_SDK }}
