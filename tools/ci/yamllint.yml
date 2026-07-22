@@ -7,5 +7,7 @@ rules:
   comments:
     min-spaces-from-content: 1
   comments-indentation: disable
-  indentation: disable
+  indentation:
+    spaces: 2
+    indent-sequences: consistent
   new-lines: disable

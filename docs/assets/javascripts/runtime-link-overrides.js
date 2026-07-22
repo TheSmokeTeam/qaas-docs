@@ -32,20 +32,37 @@
     }
   });
 
-  if (!replacements.size) {
+  var orderedReplacementSources = Array.from(replacements.keys()).sort(function (left, right) {
+    return right.length - left.length;
+  });
+
+  if (!orderedReplacementSources.length) {
     // No overrides configured - nothing to do, ever. Bail before subscribing.
     return;
   }
 
-  function replaceConfiguredDefaults(value, includeShortValues) {
-    var nextValue = value;
-    replacements.forEach(function (replacementValue, currentValue) {
-      if (!includeShortValues && currentValue.length < 8) return;
-      if (nextValue.includes(currentValue)) {
-        nextValue = nextValue.split(currentValue).join(replacementValue);
-      }
+  function escapeRegularExpression(value) {
+    return value.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+  }
+
+  function buildReplacementPattern(includeShortValues) {
+    var sources = orderedReplacementSources.filter(function (source) {
+      return includeShortValues || source.length >= 8;
     });
-    return nextValue;
+    if (!sources.length) return null;
+    return new RegExp(sources.map(escapeRegularExpression).join("|"), "g");
+  }
+
+  var allReplacementPattern = buildReplacementPattern(true);
+  var longReplacementPattern = buildReplacementPattern(false);
+
+  function replaceConfiguredDefaults(value, includeShortValues) {
+    var pattern = includeShortValues ? allReplacementPattern : longReplacementPattern;
+    if (!pattern) return value;
+    pattern.lastIndex = 0;
+    return value.replace(pattern, function (currentValue) {
+      return replacements.get(currentValue);
+    });
   }
 
   function replaceAttribute(node, attribute) {

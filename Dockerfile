@@ -95,13 +95,18 @@ RUN python tools/write_runtime_link_defaults.py docs/assets/javascripts/qaas-doc
 
 FROM ${NGINX_IMAGE} AS runtime
 
-COPY tools/nginx.conf /etc/nginx/conf.d/default.conf
-COPY tools/docker-entrypoint.d/qaas-docs-runtime-overrides.sh /docker-entrypoint.d/qaas-docs-runtime-overrides.sh
+COPY tools/nginx.conf /etc/nginx/nginx.conf
+COPY tools/docker-entrypoint.d/qaas-docs-runtime-overrides.sh /usr/local/bin/qaas-docs-entrypoint
 COPY --from=build /docs/site /usr/share/nginx/html
 
-RUN sed -i 's/\r$//' /docker-entrypoint.d/qaas-docs-runtime-overrides.sh \
- && chmod +x /docker-entrypoint.d/qaas-docs-runtime-overrides.sh
+RUN sed -i 's/\r$//' /usr/local/bin/qaas-docs-entrypoint \
+ && chmod 0755 /usr/local/bin/qaas-docs-entrypoint
+
+# The image runs without root by default. OpenShift may replace this with an
+# arbitrary UID; all runtime writes and Nginx state stay under /tmp.
+USER 101
 
 EXPOSE 8000
 
+ENTRYPOINT ["/usr/local/bin/qaas-docs-entrypoint"]
 CMD ["nginx", "-g", "daemon off;"]

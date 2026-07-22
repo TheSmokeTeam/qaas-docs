@@ -83,9 +83,9 @@ qaas-docs/
 
 The top-level `tools/` folder holds the build and runtime helpers that sit around the docs site itself:
 
-- `tools/nginx.conf`: the minimal Nginx site config used by the runtime image. It serves the prebuilt MkDocs site from `/usr/share/nginx/html` on port `8000`.
+- `tools/nginx.conf`: the non-root Nginx config used by the runtime image. It serves the prebuilt MkDocs site on port `8000`, keeps PID and temporary files under `/tmp`, and serves deployment-time overrides with no-cache headers.
 - `tools/write_runtime_link_defaults.py`: a build-time helper that snapshots the effective `QAAS_DOCS_*` values into `docs/assets/javascripts/qaas-docs-build-defaults.js` before `mkdocs build`, so the browser knows what the image was built with.
-- `tools/docker-entrypoint.d/qaas-docs-runtime-overrides.sh`: a runtime helper executed by the stock Nginx entrypoint. It materializes deployment-time `QAAS_DOCS_*` overrides into `qaas-docs-runtime-overrides.js` without rebuilding the static site.
+- `tools/docker-entrypoint.d/qaas-docs-runtime-overrides.sh`: the image entrypoint. It materializes deployment-time `QAAS_DOCS_*` overrides atomically under `/tmp` before starting Nginx, without rebuilding the static site or changing JSON.
 - `tools/QaaS.Docs.Generator/`: the git submodule that owns deterministic reference-doc generation. It contains the generator library, the `QaaS.Docs.Tools` CLI, schema and navigation renderers, committed CLI snapshots, and its own README.
 
 You may also see `tools/QaaS.Docs.Generator.Tests/` locally after .NET test runs. That path is build output, not authored docs source.
@@ -99,7 +99,7 @@ It handles:
 - site validation on pushes and pull requests
 - GitHub Pages deployment on pushes to `master`
 - ZIM creation, `qaas-docs:latest` image archiving, smoke-testing, artifact upload, and GitHub release attachment on tag pushes
-- Docker image publish on tag pushes and manual dispatch
+- Docker image publish on tag pushes and manual dispatch, using the ref name and immutable `sha-<commit>` tags; tag and `master` runs also update `latest`
 - GitHub repository overview updates from this README on tag pushes and manual dispatch
 
 ### Required Secrets And Variables
@@ -211,7 +211,7 @@ docker build -t qaas-docs \
 docker run -p 8000:8000 qaas-docs
 ```
 
-The image prebuilds the static site during `docker build` and the runtime image only serves the generated files through Nginx on port `8000`.
+The image prebuilds the static site during `docker build` and the runtime image only serves the generated files through Nginx on port `8000`. It runs as UID `101` by default and also supports the arbitrary non-root UID assigned by an OpenShift restricted security context.
 
 ## ZIM
 
@@ -248,6 +248,7 @@ You can also override the same `QAAS_DOCS_*` URLs and example image references a
 ```bash
 docker run \
   -p 8000:8000 \
+  -e QAAS_DOCS_LINK_REPOSITORY_RUNNER_TEMPLATE=https://git.example.com/qaas/QaaS.Runner.Template \
   -e QAAS_DOCS_LINK_REPOSITORY_RUNNER=https://github.com/example/QaaS.Runner \
   -e QAAS_DOCS_LINK_QAAS_COMMUNITY=https://discord.gg/example \
   -e QAAS_DOCS_IMAGE_REDIS_REPOSITORY=registry.example.com/library/redis \
@@ -255,4 +256,49 @@ docker run \
   qaas-docs
 ```
 
-Runtime `QAAS_DOCS_*` variables do not rebuild the static site. They replace the configured outbound URLs and rendered example image references in the served HTML, so the same image can be reused across environments while preserving the default values when no runtime overrides are provided.
+Runtime `QAAS_DOCS_*` variables do not rebuild the static site. They replace the configured outbound URLs and rendered example image references in the browser, so the same image can be reused across environments while preserving the default values when no runtime overrides are provided. The entrypoint writes only `/tmp/qaas-docs/runtime-overrides.js`; it does not read, mount, or modify a JSON configuration file.
+
+### Helm and OpenShift
+
+An image built on the connected network can be copied into the air-gapped registry and configured only through the pod environment. Preserve the image entrypoint: do not set Helm/Kubernetes `command`, because `command` replaces the entrypoint that converts `QAAS_DOCS_*` variables into the runtime JavaScript. A normal `docker save`/`docker load` or registry-to-registry copy preserves the entrypoint; `docker export`/`docker import` does not preserve image configuration.
+
+The essential Deployment shape is:
+
+```yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: qaas-docs
+spec:
+  selector:
+    matchLabels:
+      app: qaas-docs
+  template:
+    metadata:
+      labels:
+        app: qaas-docs
+    spec:
+      containers:
+        - name: qaas-docs
+          image: registry.airgap.example/qaas-docs:2.3.2
+          env:
+            - name: QAAS_DOCS_LINK_REPOSITORY_RUNNER_TEMPLATE
+              value: https://git.airgap.example/qaas/QaaS.Runner.Template
+          ports:
+            - name: http
+              containerPort: 8000
+          securityContext:
+            allowPrivilegeEscalation: false
+            capabilities:
+              drop: [ALL]
+            readOnlyRootFilesystem: true
+            runAsNonRoot: true
+          volumeMounts:
+            - name: runtime
+              mountPath: /tmp
+      volumes:
+        - name: runtime
+          emptyDir: {}
+```
+
+OpenShift may replace UID `101` with its own high UID. The image keeps the static site read-only and writes its override file, Nginx PID, and Nginx temporary state only to `/tmp`, so no `fsGroup`, init container, or writable web root is required. The runtime asset is served with `Cache-Control: no-store`, preventing a cached empty override from surviving a rollout.

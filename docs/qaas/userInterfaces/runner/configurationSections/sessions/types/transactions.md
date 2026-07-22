@@ -32,24 +32,24 @@ Http: {}
 
 ???- info "Data Structure"
     === ":octicons-file-code-16: `Input`"
-    ```yaml
-    Body: <byte[]>
-    MetaData:
-        Http:
+        ```yaml
+        Body: <byte[]>
+        MetaData:
+          Http:
             Method: <string>
             Uri: <string>
-    ```
+        ```
     === ":octicons-file-code-16: `Output`"
-    ```yaml
-    Body: <byte[]>
-    MetaData:
-        Http:
+        ```yaml
+        Body: <byte[]>
+        MetaData:
+          Http:
             StatusCode: <int>
             ReasonPhrase: <string>
             Version: <string>
             Headers: <IDictionary<string, string>>
             TrailingHeaders: <IDictionary<string, string>>
-    ```
+        ```
 
 ## Grpc {: #grpc}
 
@@ -63,13 +63,13 @@ Grpc: {}
 
 ???- info "Data Structure"
     === ":octicons-file-code-16: `Input`"
-    ```yaml
-    Body: <Google.Protobuf.IMessage>
-    ```
+        ```yaml
+        Body: <Google.Protobuf.IMessage>
+        ```
     === ":octicons-file-code-16: `Output`"
-    ```yaml
-    Body: <Google.Protobuf.IMessage>
-    ```
+        ```yaml
+        Body: <Google.Protobuf.IMessage>
+        ```
 
 ## See also {: #see-also}
 

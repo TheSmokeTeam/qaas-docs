@@ -1,11 +1,14 @@
 #!/bin/sh
 set -eu
 
-target="/usr/share/nginx/html/assets/javascripts/qaas-docs-runtime-overrides.js"
-min_target="/usr/share/nginx/html/assets/javascripts/qaas-docs-runtime-overrides.min.js"
-target_dir="${target%/*}"
+runtime_dir="/tmp/qaas-docs"
+target="$runtime_dir/runtime-overrides.js"
+temporary_target=""
 
-mkdir -p "$target_dir"
+umask 022
+mkdir -p "$runtime_dir"
+temporary_target="$(mktemp "$runtime_dir/.runtime-overrides.XXXXXX")"
+trap 'rm -f "$temporary_target"' EXIT HUP INT TERM
 
 # Generate the runtime override object in one awk pass so container startup
 # does not fork a sed process for every populated QAAS_DOCS_* variable.
@@ -45,7 +48,7 @@ BEGIN {
 END {
   printf "\n};\n"
 }
-' > "$target" <<'EOF'
+' > "$temporary_target" <<'EOF'
 site_url QAAS_DOCS_SITE_URL
 repo_name QAAS_DOCS_REPO_NAME
 repo_url QAAS_DOCS_REPO_URL
@@ -85,7 +88,9 @@ image_redis_repository QAAS_DOCS_IMAGE_REDIS_REPOSITORY
 image_redis_tag QAAS_DOCS_IMAGE_REDIS_TAG
 EOF
 
-# MkDocs Material's minify plugin rewrites HTML to the .min.js asset. Keep both
-# filenames in sync so the same runtime image works with minified and
-# non-minified local builds.
-cp "$target" "$min_target"
+chmod 0644 "$temporary_target"
+mv -f "$temporary_target" "$target"
+temporary_target=""
+trap - EXIT HUP INT TERM
+
+exec "$@"
