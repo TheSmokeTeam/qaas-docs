@@ -1,0 +1,1362 @@
+# QaaS full content: explanation-1
+
+
+
+## Assertions
+
+Source: /assertions/
+Type: explanation
+Applies to: assertions
+Summary: Assertions validate Runner session data after the act phase and turn observed inputs and outputs into reportable results.
+
+# Assertions
+
+> TL;DR — Assertions validate Runner session data after the act phase and turn observed inputs and outputs into reportable results.
+
+Assertions are **hooks** that validate [QaaS.Runner](../qaas/index.md) [session data](../qaas/userInterfaces/runner/configurationSections/sessions/overview.md) after the Runner [`act`](../qaas/userInterfaces/runner/commands/act.md) phase completes. Each assertion receives the stored session data (inputs, outputs, metadata) and returns a `Pass` or `Fail` status that is written to the [Allure Report](../qaas/userInterfaces/runner/allureReport.md).
+
+The **QaaS.Common.Assertions** NuGet package ships the built-in assertion library. You can also author custom assertions by implementing `BaseAssertion<TConfig>` from [QaaS.Framework.SDK](../framework/projects/sdk.md).
+
+|                |                                                                          |
+|----------------|--------------------------------------------------------------------------|
+| **Package**    | `QaaS.Common.Assertions`                                                 |
+| **Source**     | [QaaS.Common.Assertions]({{ links.repository_assertions }}) |
+| **Depends on** | [QaaS.Framework.SDK](../framework/projects/sdk.md)                       |
+
+## Installation {: #installation}
+
+```xml
+<PackageReference Include="QaaS.Common.Assertions" Version="x.x.x" />
+```
+
+## Writing a Custom Assertion {: #writing-a-custom-assertion}
+
+See the [Write Hooks](../qaas/quickStart/writeHooks.md) guide for a step-by-step walkthrough.
+
+## Available Hooks {: #available-hooks}
+
+The built-in hooks below are grouped by usage area so it is easier to shortlist the right hook before drilling into configuration details.
+
+### Latency {: #latency}
+
+- [DelayByAverage](availableAssertions/DelayByAverage/overview.md): Checks for delay between an input source to an output source by subtracting the average timestamp of all inputs from the average timestamp of all the outputs.
+- [DelayByChunks](availableAssertions/DelayByChunks/overview.md): Checks for delay between an input source to an output source by subtracting the timestamp of input chunks of a configured size from a timestamp of output chunks of a configured size, takes the chunks in ascending order of the input/output lists.
+
+### Hermeticity {: #hermeticity}
+
+- [HermeticByInputOutputPercentage](availableAssertions/HermeticByInputOutputPercentage/overview.md): Performs a hermetic test by comparing the the count of a specified input with multiplied by given percentage modifier to the count of a specified output
+- [HermeticByExpectedOutputCount](availableAssertions/HermeticByExpectedOutputCount/overview.md): Performs a hermetic test by comparing the count of a given output in a session to a given expected count
+- [HermeticByInputOutputPercentageInRange](availableAssertions/HermeticByInputOutputPercentageInRange/overview.md): Checks whether the percentage between configured inputs and outputs stays within the expected minimum and maximum range.
+- [ValidateHermeticMetricsByInputOutputPercentage](availableAssertions/ValidateHermeticMetricsByInputOutputPercentage/overview.md): Compares the hermetic percentage calculated from configured inputs and outputs with the hermetic percentage reported by the metrics output.
+- [HermeticByExpectedOutputCountInRange](availableAssertions/HermeticByExpectedOutputCountInRange/overview.md): Performs a hermetic test by comparing the count of a given output in a session to a given expected minimum and maximum
+
+### Content validation {: #content-validation}
+
+- [OutputContentByExpectedCsvResults](availableAssertions/OutputContentByExpectedCsvResults/overview.md): Checks that the configured output content matches the expected values loaded from a CSV results file.
+- [HttpStatus](availableAssertions/HttpStatus/overview.md): Performs a logic test on the http status of all selected outputs in a session by checking they all have the desired http status code
+
+### Contract validation {: #contract-validation}
+
+- [OutputDeserializableTo](availableAssertions/OutputDeserializableTo/overview.md): Performs a logic test that checks if the items of a configured output can all be deserialized using a configured deserializer
+- [ObjectOutputJsonSchema](availableAssertions/ObjectOutputJsonSchema/overview.md): Validates that each configured output item matches at least one JSON schema provided by the configured data sources.
+
+
+## Framework Functions
+
+Source: /framework/functions/
+Type: explanation
+Applies to: framework
+Summary: This overview indexes the current public function surface documented through source-level qaas-docs annotations and extension-method XML docs.
+
+# Framework Functions
+
+This overview indexes the current public function surface documented through source-level `qaas-docs` annotations and extension-method XML docs.
+
+Each category page keeps the table of contents focused on short function names and collapses the source file, signature, and XML doc comments behind each entry.
+
+## Available Functions {: #available-functions}
+
+### Builders {: #builders}
+
+- [Data Sources](builders/data-sources.md)
+- [Policies](builders/policies.md)
+
+### Functions {: #functions}
+
+- [Contexts](contexts.md)
+- [Enumerables](enumerables.md)
+- [Placeholders](placeholders.md)
+- [Updates](updates.md)
+- [YAML](yaml.md)
+
+### Extension Methods {: #extension-methods}
+
+- [Extension Methods](extension-methods.md)
+
+
+## QaaS.Framework
+
+Source: /framework/
+Type: explanation
+Applies to: framework
+Summary: QaaS.Framework is the shared runtime and SDK layer used by Runner, Mocker, and custom hook packages.
+
+# QaaS.Framework
+
+> TL;DR — QaaS.Framework is the shared runtime and SDK layer used by Runner, Mocker, and custom hook packages.
+
+`QaaS.Framework` is the shared runtime layer underneath [QaaS.Runner](../qaas/index.md), [QaaS.Mocker](../mocker/index.md), and custom hook packages such as [QaaS.Common.Assertions](../assertions/index.md), [QaaS.Common.Generators](../generators/index.md), [QaaS.Common.Probes](../probes/index.md), and [QaaS.Common.Processors](../processors/index.md). It is not a standalone executable. Instead, it provides the configuration engine, SDK contracts, protocol abstractions, serialization, [Policies](./projects/policies.md), and provider infrastructure that the executable products compose at runtime.
+
+In practice, the Framework comes into play in three places:
+
+- [QaaS.Runner](../qaas/index.md) uses it to load configuration, bind YAML into runtime objects, build [session actions](../qaas/userInterfaces/runner/configurationSections/sessions/overview.md), execute protocols, and evaluate hooks.
+- [QaaS.Mocker](../mocker/index.md) uses it to load mock definitions, resolve [DataSources](../mocker/userInterfaces/mocker/configurationSections/dataSources/overview.md) and [Processors](../processors/index.md), and translate runtime objects into HTTP, gRPC, or socket behavior.
+- Custom [QaaS.Common.Generators](../generators/index.md), [QaaS.Common.Assertions](../assertions/index.md), [QaaS.Common.Probes](../probes/index.md), and [QaaS.Common.Processors](../processors/index.md) depend on [QaaS.Framework.SDK](./projects/sdk.md) because it defines the shared object surface and base classes they plug into.
+
+This section documents the current contents of those projects as they exist in the solution today.
+
+## Runtime projects {: #runtime-projects}
+
+| Project | What it contains | Companion test project |
+| --- | --- | --- |
+| [QaaS.Framework.SDK](./projects/sdk.md) | Core runtime contracts and object surface: contexts, execution data, session and communication objects, data sources, hook interfaces and base classes, metadata, filters, and helper extensions. | `QaaS.Framework.SDK.Tests` |
+| [QaaS.Framework.Configurations](./projects/configuration.md) | Configuration loading pipeline: YAML ingestion, HTTP YAML sources, placeholder resolution, `<<` collapse handling, reference expansion, recursive binding, recursive validation, and partial-update helpers. | `QaaS.Framework.Configurations.Tests` |
+| [QaaS.Framework.Executions](./projects/executions.md) | Shared execution infrastructure: `IRunner`, `BaseExecution`, `BaseExecutionBuilder`, loader and logging support, CLI parser builders, and help-text generation. | `QaaS.Framework.Executions.Tests` |
+| [QaaS.Framework.Infrastructure](./projects/infrastructure.md) | Small shared utility package containing date and time helpers, filesystem-safe naming, and `IDomainBuilder<T>`. | No dedicated test project in the solution |
+| [QaaS.Framework.Policies](./projects/policies.md) | Policy chain implementation for count, timeout, and load-control behavior, including staged and increasing load-balance policies plus their configuration objects. | `QaaS.Framework.Policies.Tests` |
+| [QaaS.Framework.Protocols](./projects/protocols.md) | Protocol contracts, protocol-specific configuration objects, factories, and concrete integrations for HTTP, gRPC, RabbitMQ, Kafka, Redis, S3, SFTP, SQL, Elastic, Prometheus, IBM MQ, MongoDB, and sockets. | `QaaS.Framework.Protocols.Tests` |
+| [QaaS.Framework.Providers](./projects/providers.md) | Hook discovery and instantiation layer: assembly scanning, type resolution, object creation, validation-aware loading, and Autofac registration. | `QaaS.Framework.Providers.Tests` |
+| [QaaS.Framework.Serialization](./projects/serialization.md) | Serializer and deserializer selection, format-specific implementations, factory classes, and runtime type resolution helpers. | `QaaS.Framework.Serialization.Tests` |
+
+## How to read this section {: #how-to-read-this-section}
+
+Start with the package that matches the problem you are solving:
+
+- If you are trying to understand how YAML becomes a usable execution object graph, start with [Configuration](./projects/configuration.md) and [SDK](./projects/sdk.md).
+- If you are trying to understand how Runner or Mocker executes work, start with [Executions](./projects/executions.md), then read [Protocols](./projects/protocols.md) and [Policies](./projects/policies.md) as needed.
+- If you are building custom hooks or extensions, start with [SDK](./projects/sdk.md), then read [Providers](./projects/providers.md) and [Serialization](./projects/serialization.md) depending on what your hook needs.
+
+## Companion test projects {: #companion-test-projects}
+
+The solution also includes one sibling test project for every runtime package except Infrastructure:
+
+- `QaaS.Framework.Configurations.Tests` exercises the configuration pipeline, including placeholders, collapse parsing, reference expansion, recursive validation, update helpers, and HTTP YAML loading.
+- `QaaS.Framework.Executions.Tests` covers loader validation, parser behavior, help-text output, logging configuration, elastic-sink warnings, and the base execution contracts.
+- `QaaS.Framework.SDK.Tests` covers context building, binding, data and session helpers, data-source behavior, hook configuration loading, and session serialization.
+- `QaaS.Framework.Serialization.Tests` verifies factory dispatch, round-trip serialization, type-resolution behavior, and guarded deserialization paths.
+- `QaaS.Framework.Providers.Tests` validates hook discovery, name resolution, ambiguity handling, context injection, validation error enrichment, and Autofac registration.
+- `QaaS.Framework.Protocols.Tests` covers protocol configuration objects, factory dispatch, protocol-specific behavior, SQL helpers, HTTP and S3 flows, and Prometheus parsing.
+- `QaaS.Framework.Policies.Tests` covers policy ordering, stop behavior, builder mapping, timeout and count limits, and staged or increasing load progression.
+
+Use the project pages in this section for the package-level detail. Each page focuses on what the current source tree contains and how the sibling tests describe the intended behavior.
+
+
+## Generators
+
+Source: /generators/
+Type: explanation
+Applies to: generators
+Summary: Generators produce DataSources that Runner sessions, assertions, and chained generators can consume.
+
+# Generators
+
+> TL;DR — Generators produce DataSources that Runner sessions, assertions, and chained generators can consume.
+
+Generators are **hooks** that produce input data for [QaaS.Runner](../qaas/index.md) [Sessions](../qaas/userInterfaces/runner/configurationSections/sessions/overview.md). Before the act phase begins, the Runner calls each configured generator to populate the [DataSources](../qaas/userInterfaces/runner/configurationSections/dataSources/overview.md) that sessions consume during [Publishers](../qaas/userInterfaces/runner/configurationSections/sessions/types/publishers.md) and [Transactions](../qaas/userInterfaces/runner/configurationSections/sessions/types/transactions.md).
+
+The **QaaS.Common.Generators** NuGet package ships the built-in generator library. You can author custom generators by implementing `BaseGenerator<TConfig>` from [QaaS.Framework.SDK](../framework/projects/sdk.md).
+
+|                |                                                                          |
+|----------------|--------------------------------------------------------------------------|
+| **Package**    | `QaaS.Common.Generators`                                                 |
+| **Source**     | [QaaS.Common.Generators]({{ links.repository_generators }}) |
+| **Depends on** | [QaaS.Framework.SDK](../framework/projects/sdk.md)                       |
+
+## Installation {: #installation}
+
+```xml
+<PackageReference Include="QaaS.Common.Generators" Version="x.x.x" />
+```
+
+## Writing a Custom Generator {: #writing-a-custom-generator}
+
+See the [Write Hooks](../qaas/quickStart/writeHooks.md) guide for a step-by-step walkthrough.
+
+## Available Hooks {: #available-hooks}
+
+The built-in hooks below are grouped by usage area so it is easier to shortlist the right hook before drilling into configuration details.
+
+### External sources {: #external-sources}
+
+- [FromCSV](availableGenerators/FromCSV/overview.md): Reads CSV files from the configured file-system path and turns each row into generated data items.
+- [FromDataLake](availableGenerators/FromDataLake/overview.md): Retrieves rows from the configured data lake query and exposes each row as a generated JSON object.
+- [FromFileSystem](availableGenerators/FromFileSystem/overview.md): Retrieves data from files under a configured path in the local file system.
+- [LettuceFromFileSystem](availableGenerators/LettuceFromFileSystem/overview.md): Retrieves lettuce-formatted files from the configured file-system path and exposes them as generated messages with their routing key metadata.
+- [FromS3](availableGenerators/FromS3/overview.md): Retrieves data from objects in a configured S3 bucket and prefix.
+
+### Existing data sources {: #existing-data-sources}
+
+- [FromDataSources](availableGenerators/FromDataSources/overview.md): Generates data from the enumerable of data sources it receives
+- [FromLettuceDataSources](availableGenerators/FromLettuceDataSources/overview.md): Generates data from the enumerable of data sources it receives that is in `Lettuce` file format, presumes all items in the enumerable are deserialized into Json
+- [FromSessionDataDataSources](availableGenerators/FromSessionDataDataSources/overview.md): Generates data from the enumerable of data sources it receives, presumes all items in the enumerable are serialized and can be treated as a byte array
+- [Stacking](availableGenerators/Stacking/overview.md): Combines multiple data sources by taking a configured number of items from each source in turn.
+
+### Structured payloads {: #structured-payloads}
+
+- [Json](availableGenerators/Json/overview.md): Generates JSON data from a configured prototype document.
+- [JsonSchemaDraft4](availableGenerators/JsonSchemaDraft4/overview.md): Generates JSON data that conforms to a configured JSON Schema Draft 4 document.
+
+
+## QaaS Documentation
+
+Source: /
+Type: explanation
+Applies to: runner
+Summary: QaaS docs cover Runner tests, Mocker services, Framework APIs, shared hooks, integrations, and offline packaging from the same MkDocs source.
+
+# QaaS Documentation
+
+> TL;DR — QaaS docs cover Runner tests, Mocker services, Framework APIs, shared hooks, integrations, and offline packaging from the same MkDocs source.
+
+**QaaS (QA As A Service)** is a .NET 10 ecosystem for integration and end-to-end testing of backend applications. Define tests in YAML, extend behavior with C# hooks, and validate results with minimal boilerplate.
+
+## Quick Navigation {: #quick-navigation}
+
+<div class="grid cards" markdown>
+
+- :material-test-tube:{ .lg .middle } **Runner**
+
+    ---
+
+    The [QaaS.Runner](qaas/index.md) test orchestrator. Manages [Sessions](qaas/userInterfaces/runner/configurationSections/sessions/overview.md), [DataSources](qaas/userInterfaces/runner/configurationSections/dataSources/overview.md), [Policies](qaas/userInterfaces/runner/configurationSections/sessions/types/policies.md), [Storages](qaas/userInterfaces/runner/configurationSections/storages/overview.md), and [Assertions](qaas/userInterfaces/runner/configurationSections/assertions/overview.md) via YAML or code.
+
+    [:octicons-arrow-right-24: Runner Docs](qaas/index.md)
+
+- :material-server:{ .lg .middle } **Mocker**
+
+    ---
+
+    Spin up [QaaS.Mocker](mocker/index.md) HTTP, gRPC, or socket mock servers with configurable [Stubs](mocker/userInterfaces/mocker/configurationSections/stubs/overview.md), [Servers](mocker/userInterfaces/mocker/configurationSections/server/overview.md), and runtime [Controller](mocker/userInterfaces/mocker/configurationSections/controller/overview.md) support via Redis.
+
+    [:octicons-arrow-right-24: Mocker Docs](mocker/index.md)
+
+- :material-check-all:{ .lg .middle } **Hooks**
+
+    ---
+
+    Reusable [QaaS.Common.Assertions](assertions/index.md), [QaaS.Common.Generators](generators/index.md), [QaaS.Common.Probes](probes/index.md), and [QaaS.Common.Processors](processors/index.md). Plug them into any test.
+
+    [:octicons-arrow-right-24: Hooks Reference](assertions/index.md)
+
+- :material-puzzle:{ .lg .middle } **Framework**
+
+    ---
+
+    The shared [QaaS.Framework](framework/index.md) foundation that [QaaS.Runner](qaas/index.md), [QaaS.Mocker](mocker/index.md), and custom hooks build on: SDK types, configuration loading, protocol abstractions, serialization, [Policies](framework/projects/policies.md), and DI providers.
+
+    [:octicons-arrow-right-24: Framework Docs](framework/index.md)
+
+</div>
+
+## Zero-to-Hero Path {: #zero-to-hero-path}
+
+| Phase                                  | # | Guide                                                             | Description                                                              |
+|----------------------------------------|:-:|-------------------------------------------------------------------|--------------------------------------------------------------------------|
+| :material-hammer-wrench: **Setup**     | 1 | [Installation](qaas/quickStart/installation.md)                   | Install .NET 10, configure NuGet feeds, scaffold a project               |
+|                                        | 2 | [IDE Setup](qaas/quickStart/ide.md)                               | Enable YAML auto-complete and validation in VS Code or Rider             |
+| :material-pencil: **Build**            | 3 | [Write a Test (YAML)](qaas/quickStart/writeTestYaml.md)           | Write a minimal YAML test, define [DataSources](qaas/userInterfaces/runner/configurationSections/dataSources/overview.md), [Sessions](qaas/userInterfaces/runner/configurationSections/sessions/overview.md), and [Assertions](qaas/userInterfaces/runner/configurationSections/assertions/overview.md) |
+|                                        | 4 | [Write a Test (Code)](qaas/quickStart/writeTestCode.md)           | Same test using C# builders instead                                      |
+|                                        | 5 | [Write Custom Hooks](qaas/quickStart/writeHooks.md)               | Create your own [QaaS.Common.Generators](generators/index.md), [QaaS.Common.Assertions](assertions/index.md), [QaaS.Common.Probes](probes/index.md), and [QaaS.Common.Processors](processors/index.md) |
+| :material-play-circle: **Run & Debug** | 6 | [Run a Test](qaas/quickStart/runTest.md)                          | Execute tests and view results in the [Allure Report](qaas/userInterfaces/runner/allureReport.md) |
+|                                        | 7 | [Debug Failures](qaas/quickStart/debugTestFailure.md)             | Split act/assert, inspect session data, diagnose issues                  |
+| :material-trophy: **Master**           | 8 | [Maintainable Tests](qaas/quickStart/makeTestMoreMaintainable.md) | Improve structure by using anchors, placeholders, and variable files     |
+|                                        | 9 | [Architecture](qaas/architecture.md)                              | Understand the Runner pipeline and design complex scenarios              |
+
+## Contact Us {: #contact-us}
+
+Join our community where you can ask questions, report bugs, request features, and interact with the community.
+
+Click [Here]({{ links.qaas_community }}) to join the `QaaS Community`.
+
+
+## Architecture
+
+Source: /mocker/architecture/
+Type: explanation
+Applies to: mocker
+Summary: QaaS.Mocker loads configuration into DataSources, Stubs, Servers, and an optional Controller before serving mock traffic.
+
+# Architecture
+
+> TL;DR — QaaS.Mocker loads configuration into DataSources, Stubs, Servers, and an optional Controller before serving mock traffic.
+
+[QaaS.Mocker](index.md) has a small runtime surface, but the execution path is structured. Configuration is loaded first, then converted into a runtime graph of [DataSources](userInterfaces/mocker/configurationSections/dataSources/overview.md), [Stubs](userInterfaces/mocker/configurationSections/stubs/overview.md), [Servers](userInterfaces/mocker/configurationSections/server/overview.md), and the optional [Controller](userInterfaces/mocker/configurationSections/controller/overview.md).
+
+## Runtime Flow {: #runtime-flow}
+
+1. **Bootstrap** loads configuration from YAML, code, overwrite files, overwrite arguments, and environment variables.
+2. **Execution building** resolves [DataSources](userInterfaces/mocker/configurationSections/dataSources/overview.md), [Stubs](userInterfaces/mocker/configurationSections/stubs/overview.md), [Servers](userInterfaces/mocker/configurationSections/server/overview.md), and [Controller](userInterfaces/mocker/configurationSections/controller/overview.md) into in-memory runtime objects.
+3. **Server startup** creates the configured HTTP, gRPC, or socket listeners.
+4. **Request handling** matches the incoming request to an endpoint action, resolves the target stub, and runs its processor.
+5. **Response shaping** returns the `Data<object>` produced by the processor as protocol-specific output.
+
+## Main Building Blocks {: #main-building-blocks}
+
+### DataSources {: #datasources}
+
+Data sources are optional inputs for a stub. They usually come from generators such as `FromFileSystem` in [QaaS.Common.Generators](../generators/index.md), but they can also be built in code. A [Processor](../processors/index.md) can read one or more named data sources and decide which generated item becomes the response payload.
+
+### Stubs {: #stubs}
+
+A stub is the reusable response unit in Mocker. It binds together:
+
+- the processor name
+- the optional processor configuration
+- the optional list of data-source names
+
+Multiple endpoints can reuse the same stub, which keeps response logic centralized even when the same payload is exposed through several routes.
+
+### Servers {: #servers}
+
+The preferred runtime shape is `Servers`, a list where each item can host one protocol configuration. In practice that means one mocker process can expose several HTTP servers, several gRPC servers, or a mixture of protocols at the same time.
+
+For HTTP, the path is:
+
+`Server -> Endpoint -> Action -> TransactionStubName -> Processor`
+
+For gRPC and socket servers the same idea applies, but the routing key is the RPC method or socket behavior instead of an HTTP route.
+
+### Processors {: #processors}
+
+Processors are the code that actually creates the response. They receive:
+
+- the resolved stub data sources
+- the incoming request body and metadata
+
+They return a `Data<object>` with body and metadata that Mocker translates into the outgoing protocol response. This is why [QaaS.Common.Processors](../processors/index.md) and project-local processors are the core extension point in the Mocker runtime.
+
+### Controller {: #controller}
+
+The controller is optional. When enabled, it adds a Redis-backed coordination surface that [QaaS.Runner](../qaas/index.md) [Sessions](../qaas/userInterfaces/runner/configurationSections/sessions/overview.md) or other automation can use to switch stubs, trigger runtime actions, or consume cached runtime data. Local quick starts can ignore it, but deployment scenarios often enable it.
+
+## Why This Structure Scales {: #why-this-structure-scales}
+
+The architecture stays stable as a mock grows:
+
+- add more data without rewriting routes by expanding data sources
+- reuse response logic by pointing many actions at one stub
+- swap YAML and code configuration without changing runtime semantics
+- move from local execution to container or Helm deployment without changing the core mock design
+
+## See also {: #see-also}
+
+- [Mocker overview](index.md)
+- [DataSources](userInterfaces/mocker/configurationSections/dataSources/overview.md)
+- [Stubs](userInterfaces/mocker/configurationSections/stubs/overview.md)
+- [Servers](userInterfaces/mocker/configurationSections/server/overview.md)
+- [Processors](../processors/index.md)
+
+
+## Mocker Functions
+
+Source: /mocker/functions/
+Type: explanation
+Applies to: mocker
+Summary: This overview indexes the current public function surface documented through source-level qaas-docs annotations and extension-method XML docs.
+
+# Mocker Functions
+
+This overview indexes the current public function surface documented through source-level `qaas-docs` annotations and extension-method XML docs.
+
+Each category page keeps the table of contents focused on short function names and collapses the source file, signature, and XML doc comments behind each entry.
+
+## Available Functions {: #available-functions}
+
+### Builders {: #builders}
+
+- [Executions](builders/executions.md)
+- [Transaction Stubs](builders/transaction-stubs.md)
+
+### Commands {: #commands}
+
+- [Bootstrap](commands/bootstrap.md)
+- [Mocker Runner](commands/mocker-runner.md)
+
+### Extension Methods {: #extension-methods}
+
+- [Extension Methods](extension-methods.md)
+
+
+## QaaS Mocker
+
+Source: /mocker/
+Type: explanation
+Applies to: mocker
+Summary: QaaS.Mocker runs HTTP, gRPC, and socket mocks from YAML or C# configuration and routes traffic to named stubs.
+
+# QaaS Mocker
+
+> TL;DR — QaaS.Mocker runs HTTP, gRPC, and socket mocks from YAML or C# configuration and routes traffic to named stubs.
+
+**QaaS.Mocker** is the mock-server runtime in the QaaS ecosystem. It runs HTTP, gRPC, and socket mocks from YAML or from code, routes incoming traffic to named [Stubs](userInterfaces/mocker/configurationSections/stubs/overview.md), and lets each stub shape its response through reusable or project-local [Processors](../processors/index.md).
+
+|             |                                                           |
+| ----------- | --------------------------------------------------------- |
+| **Runtime** | .NET 10                                                   |
+| **Package** | `QaaS.Mocker` (NuGet)                                     |
+| **Source**  | [QaaS.Mocker]({{ links.repository_mocker }}) |
+| **Docker**  | Multi-stage Dockerfile included                           |
+
+## Key Capabilities {: #key-capabilities}
+
+- **Protocol coverage** - host HTTP, gRPC, TCP, and UDP mocks from one process.
+- **Composable responses** - map endpoints to named [Stubs](userInterfaces/mocker/configurationSections/stubs/overview.md), then let [Processors](../processors/index.md) turn request data and optional [DataSources](userInterfaces/mocker/configurationSections/dataSources/overview.md) into responses.
+- **Data-backed stubs** - preload files or generated data in [DataSources](userInterfaces/mocker/configurationSections/dataSources/overview.md) and reuse them across multiple endpoints and actions.
+- **Runtime control** - use the optional [Controller](userInterfaces/mocker/configurationSections/controller/overview.md) to switch stubs or drive runtime state externally during [QaaS.Runner](../qaas/index.md) flows.
+- **Plugin architecture** - load [QaaS.Common.Processors](../processors/index.md) and [QaaS.Common.Generators](../generators/index.md) from the project itself, local assemblies, or NuGet packages.
+- **YAML and code parity** - keep the mock definition in `mocker.qaas.yaml`, build it fluently in C#, or combine both through [Configuration as Code](../qaas/advancedConcepts/configurationAsCode.md).
+
+See [Architecture](architecture.md) for the runtime layout.
+
+
+## Controller
+
+Source: /mocker/userInterfaces/mocker/configurationSections/controller/overview/
+Type: explanation
+Applies to: mocker
+Summary: The Controller section lets Runner Mocker Commands coordinate a running mock through Redis-backed control channels.
+
+# Controller
+
+> TL;DR — Configure Controller when Runner needs to coordinate a running mock through Redis-backed control channels.
+
+## When to use {: #when-to-use}
+
+The `Controller` section is optional. When configured with a usable Redis connection, it enables [QaaS.Runner](../../../../../qaas/index.md) [Mocker Commands](../../../../../qaas/userInterfaces/runner/configurationSections/sessions/types/mockerCommands.md) such as changing action stubs, triggering actions, and consuming cached transactions.
+
+The controller is built only when:
+
+- `Controller.ServerName` is set
+- `Controller.Redis` is configured with a usable Redis host
+
+If the Redis connection is missing or unavailable, the runtime skips controller startup and the servers still run.
+
+## YAML configuration {: #yaml-configuration}
+
+Use `Controller.ServerName` for the controller identity and `Controller.Redis` for the Redis connection used by Runner Mocker Commands.
+
+The complete schema-derived field list is in the [configuration table](configurations/tableView.md). The copy-ready scaffold is in the [YAML scaffold](configurations/yamlView.md).
+
+## Edge cases {: #edge-cases}
+
+- Controller is optional; omit it when Runner does not need to issue Mocker Commands.
+- Controller startup is skipped when the Redis configuration is missing or not usable.
+- Server stubs still run when the controller is not started.
+
+## See also {: #see-also}
+
+- [Configuration table](configurations/tableView.md)
+- [YAML scaffold](configurations/yamlView.md)
+- [Mocker Commands](../../../../../qaas/userInterfaces/runner/configurationSections/sessions/types/mockerCommands.md)
+- [Servers](../server/overview.md)
+
+
+## DataSources
+
+Source: /mocker/userInterfaces/mocker/configurationSections/dataSources/overview/
+Type: explanation
+Applies to: mocker
+Summary: The list of the data sources that contain enumerables of data to be generated and iterated later in several places.
+
+# DataSources
+
+> TL;DR — DataSources define named generator-backed item streams that Mocker resolves before it builds stubs and servers.
+
+## When to use {: #when-to-use}
+
+Use DataSources when mock behavior needs generated request, response, or routing data.
+
+- Transaction stubs select data sources by `DataSourceNames`.
+- Other data sources can select entries by name or pattern to compose generated data.
+- The socket server build path receives the resolved data-source list when server behavior depends on generated items.
+
+Every data source entry points to an `IGenerator` hook through `Generator` and gives that hook its configuration through `GeneratorConfiguration`.
+
+## YAML configuration {: #yaml-configuration}
+
+Each `DataSources[]` entry needs a unique `Name` and a `Generator`. The `GeneratorConfiguration` object belongs to the selected generator; for example, `FromFileSystem` reads files from `GeneratorConfiguration.FileSystem.Path`.
+
+Use `Lazy: true` when each consumer should trigger generation as it reads. Leave it unset when Mocker should cache generated items after the first retrieval. Use `DataSourceNames` or `DataSourcePatterns` when a generator needs other named data sources as input.
+
+## C# (CAC) usage {: #c-cac-usage}
+
+Code-based configuration uses `DataSourceBuilder.Named(string name)` and `DataSourceBuilder.HookNamed(string hookName)` to set the YAML-equivalent identity fields. Add the builder to Mocker with `ExecutionBuilder.AddDataSource(DataSourceBuilder dataSourceBuilder)`.
+
+Transaction stubs reference the generated stream with `TransactionStubBuilder.AddDataSourceName(string dataSourceName)`.
+
+## Minimal example {: #minimal-example}
+
+```yaml
+DataSources:
+  - Name: ResponseBodies
+    Generator: FromFileSystem
+    GeneratorConfiguration:
+      DataArrangeOrder: AsciiAsc
+      FileSystem:
+        Path: sample-data/responses
+        SearchPattern: '*.json'
+      StorageMetaData: ItemName
+```
+
+## Realistic example {: #realistic-example}
+
+A Mocker setup usually defines one response-body data source, passes it to a transaction stub through `DataSourceNames`, and lets the selected transaction processor choose which generated item becomes the response.
+
+## Edge cases {: #edge-cases}
+
+- `Name` values must be unique inside the `DataSources` list.
+- `DataSourceNames` cannot contain the current data source's own `Name`.
+- `Serialize` and `Deserialize` are mutually exclusive on the same data-source entry.
+- A missing `Generator` or generator-specific required field fails configuration validation before Mocker starts.
+
+## See also {: #see-also}
+
+- [Configuration table](configurations/tableView.md)
+- [YAML scaffold](configurations/yamlView.md)
+- [Stubs](../stubs/overview.md)
+- [Servers](../server/overview.md)
+- [DataSourceBuilder API](../../../../../framework/functions/builders/data-sources.md)
+- [TransactionStubBuilder API](../../../../functions/builders/transaction-stubs.md)
+
+
+## Servers
+
+Source: /mocker/userInterfaces/mocker/configurationSections/server/overview/
+Type: explanation
+Applies to: mocker
+Summary: Servers defines the HTTP, gRPC, or socket endpoints that QaaS.Mocker starts for a mock execution.
+
+# Servers
+
+> TL;DR — Servers defines the HTTP, gRPC, or socket endpoints that QaaS.Mocker starts for a mock execution.
+
+## When to use {: #when-to-use}
+
+`Servers` defines the runtime endpoints that [QaaS.Mocker](../../../../../mocker/index.md) starts for a mock execution. Each item represents one server instance, and each instance can expose one protocol configuration such as `Http`, `Grpc`, or `Socket`.
+
+Use `Servers` when you need to run multiple listeners at the same time, or when different protocols require isolated settings such as ports, TLS credentials, endpoint mappings, or socket options. The list shape keeps each server self-contained so configuration for one transport does not bleed into another.
+
+The most common usage patterns are:
+
+- A single HTTP server for REST-style stubs.
+- A gRPC server for generated services and RPC handlers.
+- A socket server for streaming or connection-oriented flows.
+- Multiple server entries in the same mocker run when the system under test needs more than one protocol exposed at once.
+
+`Servers` is the preferred shape for new docs and runtime usage. The legacy `Server` property remains supported as a single-server shorthand, but it is intentionally described here only as a compatibility path.
+
+When reading the configuration reference, keep in mind that the server sections describe transport behavior, not [Stub](../stubs/overview.md) behavior. [Stubs](../stubs/overview.md) still define the mocked responses and actions, while `Servers` only controls how those stubs are exposed over the network.
+
+## YAML configuration {: #yaml-configuration}
+
+Use `Servers[]` for new mock configurations. Each entry contains the protocol branch it exposes, such as `Http`, `Grpc`, or `Socket`.
+
+The complete schema-derived field list is in the [configuration table](configurations/tableView.md). The copy-ready scaffold is in the [YAML scaffold](configurations/yamlView.md).
+
+## Edge cases {: #edge-cases}
+
+- Keep transport configuration in `Servers`; keep response behavior in [Stubs](../stubs/overview.md).
+- Use multiple `Servers[]` entries when different protocols or listeners need isolated settings.
+- The legacy single `Server` shape is compatibility-only for older configurations.
+
+## See also {: #see-also}
+
+- [Configuration table](configurations/tableView.md)
+- [YAML scaffold](configurations/yamlView.md)
+- [Stubs](../stubs/overview.md)
+- [Multi-server routing](../../../../authoring-guide/multi-server-routing.md)
+
+
+## Stubs
+
+Source: /mocker/userInterfaces/mocker/configurationSections/stubs/overview/
+Type: explanation
+Applies to: mocker
+Summary: Stubs map named mock actions to transaction processor hooks and optional data-source inputs.
+
+# Stubs
+
+> TL;DR — Stubs map named mock actions to transaction processor hooks and optional data-source inputs.
+
+## When to use {: #when-to-use}
+
+Use `Stubs` when a server action needs a named transaction processor. Each stub has a `Name`, selects a processor through `Processor`, and can pass data-source inputs through `DataSourceNames`.
+
+Server endpoint actions reference stubs by name through their transaction-stub fields.
+
+## YAML configuration {: #yaml-configuration}
+
+Use `Stubs[]` for transaction processor entries. Put processor-specific settings under `ProcessorConfiguration`.
+
+The complete schema-derived field list is in the [configuration table](configurations/tableView.md). The copy-ready scaffold is in the [YAML scaffold](configurations/yamlView.md).
+
+## Edge cases {: #edge-cases}
+
+- `Name` values must stay aligned with server action references.
+- `Processor` must match an available transaction processor hook.
+- Use `DataSourceNames` only when the selected processor reads generated data-source inputs.
+
+## See also {: #see-also}
+
+- [Configuration table](configurations/tableView.md)
+- [YAML scaffold](configurations/yamlView.md)
+- [Processors](../../../../../processors/index.md)
+- [DataSources](../dataSources/overview.md)
+- [Servers](../server/overview.md)
+
+
+## Probes
+
+Source: /probes/
+Type: explanation
+Applies to: probes
+Summary: Probes perform setup, cleanup, and infrastructure actions before or after Runner sessions.
+
+# Probes
+
+> TL;DR — Probes perform setup, cleanup, and infrastructure actions before or after Runner sessions.
+
+Probes are **hooks** that manipulate infrastructure before or after [Sessions](../qaas/userInterfaces/runner/configurationSections/sessions/overview.md) run. They are typically used for setup and cleanup tasks such as creating queues, flushing caches, scaling pods, truncating tables, or deleting data.
+
+The **QaaS.Common.Probes** NuGet package ships the built-in probe library. You can author custom probes by implementing `BaseProbe<TConfig>` from [QaaS.Framework.SDK](../framework/projects/sdk.md).
+
+|                |                                                                  |
+|----------------|------------------------------------------------------------------|
+| **Package**    | `QaaS.Common.Probes`                                             |
+| **Source**     | [QaaS.Common.Probes]({{ links.repository_probes }}) |
+| **Depends on** | [QaaS.Framework.SDK](../framework/projects/sdk.md)               |
+
+## Installation {: #installation}
+
+```xml
+<PackageReference Include="QaaS.Common.Probes" Version="x.x.x" />
+```
+
+## Writing Custom Probes {: #writing-custom-probes}
+
+See [Write Hooks](../qaas/quickStart/writeHooks.md) for the pattern.
+
+## Available Hooks {: #available-hooks}
+
+The built-in hooks below are grouped by usage area so it is easier to shortlist the right hook before drilling into configuration details.
+
+### RabbitMQ administration {: #rabbitmq-administration}
+
+- [CreateRabbitMqBindings](availableProbes/CreateRabbitMqBindings/overview.md): Creates RabbitMQ bindings between exchanges and queues or between exchanges by using the configured binding definitions.
+- [DeleteRabbitMqBindings](availableProbes/DeleteRabbitMqBindings/overview.md): Deletes RabbitMQ bindings using the configured source, destination, routing key, and binding type.
+- [DownloadRabbitMqDefinitions](availableProbes/DownloadRabbitMqDefinitions/overview.md): Downloads RabbitMQ definitions from the management API so the current topology can be captured and reused.
+- [UploadRabbitMqDefinitions](availableProbes/UploadRabbitMqDefinitions/overview.md): Uploads a previously captured RabbitMQ definitions file back into the broker through the management API.
+- [CreateRabbitMqExchanges](availableProbes/CreateRabbitMqExchanges/overview.md): Creates one or more RabbitMQ exchanges with the configured durability, auto-delete, and arguments.
+- [DeleteRabbitMqExchanges](availableProbes/DeleteRabbitMqExchanges/overview.md): Probe that deletes rabbitmq exchanges
+- [DeleteRabbitMqPermissions](availableProbes/DeleteRabbitMqPermissions/overview.md): Deletes RabbitMQ user permissions in one or more virtual hosts through the management API.
+- [UpsertRabbitMqPermissions](availableProbes/UpsertRabbitMqPermissions/overview.md): Creates or updates RabbitMQ permissions for users in one or more virtual hosts through the management API.
+- [CreateRabbitMqQueues](availableProbes/CreateRabbitMqQueues/overview.md): Creates one or more RabbitMQ queues with the configured queue arguments.
+- [DeleteRabbitMqQueues](availableProbes/DeleteRabbitMqQueues/overview.md): Probe that deletes rabbitmq queues
+- [PurgeRabbitMqQueues](availableProbes/PurgeRabbitMqQueues/overview.md): Probe that purges rabbitmq queues
+- [CreateRabbitMqUsers](availableProbes/CreateRabbitMqUsers/overview.md): Creates RabbitMQ users through the management API with the configured credentials and tags.
+- [DeleteRabbitMqUsers](availableProbes/DeleteRabbitMqUsers/overview.md): Deletes RabbitMQ users through the management API.
+- [CreateRabbitMqVirtualHosts](availableProbes/CreateRabbitMqVirtualHosts/overview.md): Creates RabbitMQ virtual hosts through the management API so later probes and sessions can use them.
+- [DeleteRabbitMqVirtualHosts](availableProbes/DeleteRabbitMqVirtualHosts/overview.md): Deletes RabbitMQ virtual hosts through the management API.
+
+### Redis maintenance {: #redis-maintenance}
+
+- [ExecuteRedisCommand](availableProbes/ExecuteRedisCommand/overview.md): Executes one Redis command with optional arguments against the selected Redis database, optionally storing the result for later redisResults placeholder reuse.
+- [ExecuteRedisCommands](availableProbes/ExecuteRedisCommands/overview.md): Executes multiple Redis commands sequentially against the selected Redis database, allowing later commands to reuse earlier results through redisResults placeholders and optional looping.
+- [EmptyRedisByChunks](availableProbes/EmptyRedisByChunks/overview.md): Concrete Redis chunk-deletion probe that uses the standard Redis batch probe configuration.
+- [FlushAllRedis](availableProbes/FlushAllRedis/overview.md): Runs Redis FLUSHALL against the configured server to remove keys from every database.
+- [FlushDbRedis](availableProbes/FlushDbRedis/overview.md): Runs Redis FLUSHDB against the selected Redis database.
+
+### Databases {: #databases}
+
+- [DeleteElasticIndices](availableProbes/DeleteElasticIndices/overview.md): Deletes every Elasticsearch index that matches the configured index pattern.
+- [EmptyElasticIndices](availableProbes/EmptyElasticIndices/overview.md): Empties elastic indices by their index pattern
+- [DropMongoDbCollection](availableProbes/DropMongoDbCollection/overview.md): Drops the configured MongoDB collection so a later run can recreate it from scratch.
+- [EmptyMongoDbCollection](availableProbes/EmptyMongoDbCollection/overview.md): Deletes all documents from the configured MongoDB collection so it starts clean for the test run.
+- [CreateS3Bucket](availableProbes/CreateS3Bucket/overview.md): Ensures the configured S3 bucket exists by creating it when it is missing.
+- [DeleteS3Bucket](availableProbes/DeleteS3Bucket/overview.md): Empties the configured S3 bucket and deletes it, treating a missing bucket as an already-satisfied state.
+- [EmptyS3Bucket](availableProbes/EmptyS3Bucket/overview.md): Deletes objects from the configured S3 bucket, optionally constrained to a prefix, while treating a missing bucket as a no-op.
+
+### SQL maintenance {: #sql-maintenance}
+
+- [MsSqlDataBaseTablesTruncate](availableProbes/MsSqlDataBaseTablesTruncate/overview.md): Truncates the configured Microsoft SQL Server tables in the order they are listed.
+- [OracleSqlDataBaseTablesTruncate](availableProbes/OracleSqlDataBaseTablesTruncate/overview.md): Truncates the configured Oracle tables in the order they are listed.
+- [PostgreSqlDataBaseTablesTruncate](availableProbes/PostgreSqlDataBaseTablesTruncate/overview.md): Truncates the configured PostgreSQL tables in the order they are listed.
+
+### Cluster orchestration {: #cluster-orchestration}
+
+- [OsEditYamlConfigMap](availableProbes/OsEditYamlConfigMap/overview.md): Probe that edits yaml config maps
+- [OsChangeDeploymentEnvVars](availableProbes/OsChangeDeploymentEnvVars/overview.md): Probe that changes the environment variables of a deployment
+- [OsChangeStatefulSetEnvVars](availableProbes/OsChangeStatefulSetEnvVars/overview.md): Probe that changes the environment variables of a statefulSet
+- [OsUpdateDeploymentImage](availableProbes/OsUpdateDeploymentImage/overview.md): Updates the image of one container in a Kubernetes or OpenShift deployment.
+- [OsUpdateStatefulSetImage](availableProbes/OsUpdateStatefulSetImage/overview.md): Updates the image of one container in a Kubernetes or OpenShift stateful set.
+- [OsExecuteCommandsInContainers](availableProbes/OsExecuteCommandsInContainers/overview.md): Probe that Executes a command passed by the `cmd` string variable on every pod and container if passed to the function
+- [OsRestartPods](availableProbes/OsRestartPods/overview.md): Probe that restarts all pods with configured labels in the configured namespace
+- [OsUpdateDeploymentResources](availableProbes/OsUpdateDeploymentResources/overview.md): Updates container resource requests and limits in a Kubernetes or OpenShift deployment.
+- [OsUpdateStatefulSetResources](availableProbes/OsUpdateStatefulSetResources/overview.md): Updates container resource requests and limits in a Kubernetes or OpenShift stateful set.
+- [OsScaleDeploymentPods](availableProbes/OsScaleDeploymentPods/overview.md): Probe that scales openshift deployments
+- [OsScaleStatefulSetPods](availableProbes/OsScaleStatefulSetPods/overview.md): Probe that scales openshift statefulsets
+
+
+## Processors
+
+Source: /processors/
+Type: explanation
+Applies to: processors
+Summary: Processors are hooks that create mock responses in QaaS.Mocker. They implement BaseTransactionProcessor<TConfig> and are referenced by class name from a Stub.
+
+# Processors
+
+> TL;DR — Processors create Mocker responses from transaction requests, metadata, and optional data-source inputs.
+
+Processors are **hooks** that create mock responses in [QaaS.Mocker](../mocker/index.md). They implement `BaseTransactionProcessor<TConfig>` and are referenced by class name from a [Stub](../mocker/userInterfaces/mocker/configurationSections/stubs/overview.md).
+
+The **QaaS.Common.Processors** package is the reusable processor library for shared mock behavior. You can also author project-local processors when a mock needs behavior that is specific to one repository.
+
+|                |                                                                          |
+| -------------- | ------------------------------------------------------------------------ |
+| **Package**    | `QaaS.Common.Processors`                                                 |
+| **Source**     | [QaaS.Common.Processors]({{ links.repository_processors }}) |
+| **Depends on** | [QaaS.Framework.SDK](../framework/projects/sdk.md)                       |
+
+## Installation {: #installation}
+
+```xml
+<PackageReference Include="QaaS.Common.Processors" Version="x.x.x" />
+```
+
+## Writing a Custom Processor {: #writing-a-custom-processor}
+
+See the [Write Hooks](../qaas/quickStart/writeHooks.md) guide for the local-hook pattern.
+
+## Quick-Start Note {: #quick-start-note}
+
+The Mocker quick starts on this site keep the file-backed response processor inside the sample project so the examples stay runnable against the currently published NuGet packages.
+
+## Available Hooks {: #available-hooks}
+
+The built-in hooks below are grouped by usage area so it is easier to shortlist the right hook before drilling into configuration details.
+
+### Static responses {: #static-responses}
+
+- [StaticResponseProcessor](availableProcessors/StaticResponseProcessor/overview.md): Returns a fixed UTF-8 response body with the configured status code, content type, and headers.
+- [StatusCodeTransactionProcessor](availableProcessors/StatusCodeTransactionProcessor/overview.md): Skim Transaction Processor which returns empty-bodied data objects with Status Code configuration.
+
+### Request-derived responses {: #request-derived-responses}
+
+- [RequestEchoProcessor](availableProcessors/RequestEchoProcessor/overview.md): Returns a JSON response that echoes the incoming request body and optional request metadata.
+- [PassThroughProcessor](availableProcessors/PassThroughProcessor/overview.md): Returns the incoming request payload unchanged while applying the configured response metadata.
+
+### Transformations {: #transformations}
+
+- [JsonEnvelopeProcessor](availableProcessors/JsonEnvelopeProcessor/overview.md): Wraps the incoming request payload and optional request metadata in a JSON envelope response.
+- [TextTransformProcessor](availableProcessors/TextTransformProcessor/overview.md): Reads the incoming payload as text, applies the configured text transformation, and returns the transformed response.
+
+### Data-driven responses {: #data-driven-responses}
+
+- [ConditionalResponseProcessor](availableProcessors/ConditionalResponseProcessor/overview.md): Returns the first configured response whose rule matches the incoming request metadata, or the configured default response when no rule matches.
+- [DataSourceResponseProcessor](availableProcessors/DataSourceResponseProcessor/overview.md): Builds the response from generated data produced by one configured data source.
+
+### Error responses {: #error-responses}
+
+- [ProblemDetailsProcessor](availableProcessors/ProblemDetailsProcessor/overview.md): Returns an RFC 7807 style problem-details JSON response using the configured status and fields.
+
+
+## Architecture
+
+Source: /qaas/architecture/
+Type: explanation
+Applies to: runner
+Summary: QaaS.Framework runtime is built around a Plugins architecture that extends and customizes QaaS by integrating user-provided packages.
+
+# Architecture
+
+> TL;DR — QaaS.Runner combines YAML or C# configuration with plugins, hooks, sessions, data sources, assertions, and reports.
+
+The [QaaS.Framework](../framework/index.md) runtime is built around a [Plugins](addOns/plugins.md) architecture that lets you extend and customize QaaS by integrating user-provided packages. This modular shape allows for flexible, extensible, and maintainable test automation solutions, where components can be dynamically loaded and orchestrated based on configuration.
+
+---
+
+## QaaS Project Structure {: #qaas-project-structure}
+
+The foundation of any QaaS project is its configuration file, typically a YAML file, which defines the structure, components, and execution flow of the test. This file serves as the entry point for the runtime, orchestrating the initialization and execution of core components in a defined sequence.
+
+The YAML configuration may include:
+
+- Built-in [QaaS.Framework](../framework/index.md) features
+- Custom [Plugins](addOns/plugins.md) and hook packages
+- References to external services or [DataSources](userInterfaces/runner/configurationSections/dataSources/overview.md)
+
+This declarative approach enables rapid setup and configuration, while still supporting programmatic control through [Configuration as Code](advancedConcepts/configurationAsCode.md).
+
+---
+
+## Types of QaaS Projects {: #types-of-qaas-projects}
+
+### QaaS.Runner Project {: #qaasrunner-project}
+
+A [QaaS.Runner](index.md) project is a C#-based project that depends on the `QaaS.Runner` NuGet package. Its primary purpose is to serve as a test execution environment for backend or end-to-end (e2e) applications. These projects are driven by either:
+
+- A YAML configuration file
+- Programmatic configuration via C# ([Configuration as Code](advancedConcepts/configurationAsCode.md))
+
+The framework components that can be configured are:
+
+| Component       | Description                                                                                                                                                                       |
+|-----------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Storages**    | Manages the persistence and retrieval of test data objects through [Storages](userInterfaces/runner/configurationSections/storages/overview.md) such as file systems, S3, or databases. |
+| **DataSources** | Provides test data through [DataSources](userInterfaces/runner/configurationSections/dataSources/overview.md) and configurable generators. |
+| **Sessions**    | Executes synchronous or asynchronous work through [Sessions](userInterfaces/runner/configurationSections/sessions/overview.md), such as sending HTTP requests, publishing messages, restarting services, or manipulating state. |
+| **Assertions**  | Validates the outcomes of sessions through [Assertions](userInterfaces/runner/configurationSections/assertions/overview.md) and records test results. |
+| **Links**       | Integrates with observability systems through [Links](userInterfaces/runner/configurationSections/links/overview.md) to retrieve metrics, logs, or traces for analysis and reporting. |
+
+---
+
+## Configuration as Code {: #configuration-as-code}
+
+QaaS supports full programmatic configuration through C# code, enabling dynamic, conditional, and reusable test workflows. Instead of relying solely on static YAML files, teams can define and modify test configurations at runtime using the full power of C#.
+
+This approach allows for:
+
+- Dynamic environment-specific setups
+- Conditional execution logic
+- Reusable configuration patterns via classes and methods
+- Integration with external systems using full .NET capabilities
+
+For detailed guidance on implementing Configuration as Code, including custom runners, fluent builder patterns, and advanced orchestration, refer to the [Configuration as Code](advancedConcepts/configurationAsCode.md) documentation.
+
+## See also {: #see-also}
+
+- [QaaS Runner](index.md)
+- [Configuration sections](userInterfaces/runner/configurationSections/configurationSections.md)
+- [Sessions](userInterfaces/runner/configurationSections/sessions/overview.md)
+- [Assertions](userInterfaces/runner/configurationSections/assertions/overview.md)
+- [Framework](../framework/index.md)
+
+
+## Runner Functions
+
+Source: /qaas/functions/
+Type: explanation
+Applies to: runner
+Summary: This overview indexes the current public function surface documented through source-level qaas-docs annotations and extension-method XML docs.
+
+# Runner Functions
+
+This overview indexes the current public function surface documented through source-level `qaas-docs` annotations and extension-method XML docs.
+
+Each category page keeps the table of contents focused on short function names and collapses the source file, signature, and XML doc comments behind each entry.
+
+## Available Functions {: #available-functions}
+
+### Builders {: #builders}
+
+- [Assertions](builders/assertions.md)
+- [Collectors](builders/collectors.md)
+- [Consumers](builders/consumers.md)
+- [Executions](builders/executions.md)
+- [Links](builders/links.md)
+- [Mocker Commands](builders/mocker-commands.md)
+- [Probes](builders/probes.md)
+- [Publishers](builders/publishers.md)
+- [Reporters](builders/reporters.md)
+- [Sessions](builders/sessions.md)
+- [Storages](builders/storages.md)
+- [Transactions](builders/transactions.md)
+
+### Commands {: #commands}
+
+- [Bootstrap](commands/bootstrap.md)
+- [Runner](commands/runner.md)
+
+### Extension Methods {: #extension-methods}
+
+- [Extension Methods](extension-methods.md)
+
+
+## QaaS Runner
+
+Source: /qaas/
+Type: explanation
+Applies to: runner
+Summary: QaaS.Runner loads YAML or C# test configuration, runs sessions, evaluates assertions, and writes report output.
+
+# QaaS Runner
+
+> TL;DR — QaaS.Runner loads YAML or C# test configuration, runs sessions, evaluates assertions, and writes report output.
+
+**QaaS.Runner** is the execution engine of the QaaS ecosystem. It loads YAML or code-based test configuration, runs setup and cleanup hooks, drives protocol [Sessions](userInterfaces/runner/configurationSections/sessions/overview.md) against the system under test, stores the resulting session data, evaluates [Assertions](userInterfaces/runner/configurationSections/assertions/overview.md), and writes [Allure Report](userInterfaces/runner/allureReport.md) results.
+
+|             |                                                   |
+| ----------- | ------------------------------------------------- |
+| **Runtime** | .NET 10                                           |
+| **Package** | `QaaS.Runner` (NuGet)                             |
+| **Source**  | [QaaS.Runner]({{ links.repository_runner }}) |
+
+## Key Capabilities {: #key-capabilities}
+
+- **YAML and code configuration** - keep the execution in `test.qaas.yaml`, build it in C#, or combine both through [Configuration as Code](advancedConcepts/configurationAsCode.md).
+- **Multi-stage execution** - run [Probes](userInterfaces/runner/configurationSections/sessions/types/probes.md), [Publishers](userInterfaces/runner/configurationSections/sessions/types/publishers.md), [Consumers](userInterfaces/runner/configurationSections/sessions/types/consumers.md), [Transactions](userInterfaces/runner/configurationSections/sessions/types/transactions.md), [Collectors](userInterfaces/runner/configurationSections/sessions/types/collectors.md), and [Mocker Commands](userInterfaces/runner/configurationSections/sessions/types/mockerCommands.md) as part of one execution graph.
+- **Protocol abstraction** - test HTTP, messaging, storage-backed, and other protocol flows through the same session abstraction.
+- **Hook ecosystem** - plug in [QaaS.Common.Generators](../generators/index.md), [QaaS.Common.Assertions](../assertions/index.md), [QaaS.Common.Probes](../probes/index.md), and project-local hooks from the same execution.
+- **Report output** - persist execution results and render pass/fail status into [Allure-compatible output](userInterfaces/runner/allureReport.md).
+- **Composable tests** - split reusable [DataSources](userInterfaces/runner/configurationSections/dataSources/overview.md), [Sessions](userInterfaces/runner/configurationSections/sessions/overview.md), [Assertions](userInterfaces/runner/configurationSections/assertions/overview.md), and overrides instead of encoding everything into one file.
+
+
+## Assertions
+
+Source: /qaas/userInterfaces/runner/configurationSections/assertions/overview/
+Type: explanation
+Applies to: runner
+Summary: Assertions validate Runner session data after act-phase work and write assertion results to Allure output.
+
+# Assertions
+
+> TL;DR — Assertions validate Runner session data after act-phase work and write assertion results to Allure output.
+
+## When to use {: #when-to-use}
+
+The Assertions section contains a list of [QaaS.Common.Assertions](../../../../../assertions/index.md) or project-local assertions, which are logical calculations performed on the [Sessions](../sessions/overview.md) results in order to decide the test's status (`Passed` / `Failed` / `Broken`). Each assertion produces a different test result.
+
+## YAML configuration {: #yaml-configuration}
+
+Use `Assertions[]` for assertion entries. Each entry has a `Name`, selects an assertion hook through `Assertion`, and can pass hook-specific settings through `AssertionConfiguration`.
+
+The complete schema-derived field list is in the [configuration table](configurations/tableView.md). The copy-ready scaffold is in the [YAML scaffold](configurations/yamlView.md).
+
+## Assertion Links {: #assertion-links}
+
+In addition to general [Links](../links/overview.md) that can be configured to contain information relevant to the entire test suite, assertion-specific links can be configured and displayed in [Allure Report](../../allureReport.md) only under that specific assertion. This is useful when an assertion depends on context that should be visible directly from that assertion result.
+
+## Allure Results {: #allure-results}
+
+Assertion results are saved as [Allure Report](../../allureReport.md) results under an `allure-results` directory.
+Each assertion produces an Allure test result and, unless configured otherwise, also saves the `SessionData` of the sessions relevant to the assertion under `allure-results/SessionsData/`.
+
+??? Note "SessionsData Folder"
+    Under the `SessionsData` directory the sessions can be found by their `SessionNames` with a `.json` suffix.
+    If the sessions are part of an `execution` they will be under a folder composed of the execution name.
+    If the sessions are part of a `case` they will be under a folder composed of the case name with all invalid directory characters replaced with `_`.
+    If the sessions are part of both an `execution` and a `case`, the execution folder comes before the case folder.
+
+## Assertion Result Details {: #assertion-result-details}
+
+Custom assertion hooks can enrich the Allure result through the fields exposed by `IAssertion` and `BaseAssertion<TConfiguration>`:
+
+- `AssertionMessage` is written as the assertion status message for normal assertion statuses.
+- `AssertionTrace` is written as the assertion status trace when `DisplayTrace` is true.
+- `AssertionStatus` can override the boolean returned from `Assert(...)`. When it is not set, `true` becomes `Passed` and `false` becomes `Failed`. Exceptions thrown from `Assert(...)` are reported as `Broken`.
+- `AssertionAttachments` contains custom files that should be saved with the assertion result.
+
+For broken assertions, Runner uses the thrown exception message and trace instead of `AssertionMessage` and `AssertionTrace`. When `DisplayTrace` is false, the trace field is replaced with a short placeholder so large or sensitive traces are not copied into the report.
+
+## Assertion Attachments {: #assertion-attachments}
+
+Add custom assertion attachments by pushing `AssertionAttachment` items from inside the assertion hook:
+
+```csharp
+using System.Collections.Immutable;
+using QaaS.Framework.SDK.DataSourceObjects;
+using QaaS.Framework.SDK.Hooks.Assertion;
+using QaaS.Framework.SDK.Session.SessionDataObjects;
+using QaaS.Framework.Serialization;
+
+public sealed record AttachmentConfig;
+
+public sealed class DebugAttachmentAssertion : BaseAssertion<AttachmentConfig>
+{
+    public override bool Assert(
+        IImmutableList<SessionData> sessionDataList,
+        IImmutableList<DataSource> dataSourceList)
+    {
+        AssertionAttachments.Add(new AssertionAttachment
+        {
+            Path = "debug/response-summary.json",
+            Data = new { Expected = 10, Actual = 8 },
+            SerializationType = SerializationType.Json
+        });
+
+        return true;
+    }
+}
+```
+
+`Path` is normalized as a relative path and must include a file name. Duplicate normalized paths in the same assertion are rejected so one attachment does not overwrite another. `SerializationType` controls how `Data` is serialized and the MIME type used in the report; when it is omitted, Runner treats the value as raw bytes.
+
+The `SaveAttachments` assertion key controls whether these custom assertion attachments are saved. It is enabled by default. The related reporting keys are `SaveSessionData`, `SaveLogs`, `SaveTemplate`, `DisplayTrace`, and `StatusesToReport`.
+
+## Edge cases {: #edge-cases}
+
+- `SessionNames` and `DataSourceNames` select the runtime data passed into each assertion.
+- Exceptions thrown from `Assert(...)` are reported as `Broken`.
+- Duplicate attachment paths in the same assertion are rejected.
+
+## See also {: #see-also}
+
+- [Configuration table](configurations/tableView.md)
+- [YAML scaffold](configurations/yamlView.md)
+- [Available assertions](../../../../../assertions/index.md)
+- [Sessions](../sessions/overview.md)
+- [Links](../links/overview.md)
+- [Allure Report](../../allureReport.md)
+
+
+## DataSources
+
+Source: /qaas/userInterfaces/runner/configurationSections/dataSources/overview/
+Type: explanation
+Applies to: runner
+Summary: The list of data sources that contain enumerables of data to be used for the rest of the test.
+
+# DataSources
+
+> TL;DR — DataSources define named generator-backed item streams that Runner loads before sessions and assertions run.
+
+## When to use {: #when-to-use}
+
+Use DataSources when generated data must be reused by more than one part of a run.
+
+- Publishers select data sources by `DataSourceNames` or `DataSourcePatterns`.
+- Other data sources can select earlier or later entries by name or pattern to chain generation.
+- Assertions receive the resolved data-source list selected by their own data-source filters.
+
+Every data source entry points to an `IGenerator` hook through `Generator` and gives that hook its configuration through `GeneratorConfiguration`.
+
+## YAML configuration {: #yaml-configuration}
+
+Each `DataSources[]` entry needs a unique `Name` and a `Generator`. The `GeneratorConfiguration` object belongs to the selected generator; for example, `FromFileSystem` reads files from `GeneratorConfiguration.FileSystem.Path`.
+
+Use `Lazy: true` when each consumer should trigger generation as it reads. Leave it unset when Runner should cache generated items after the first retrieval. Use `DataSourceNames` or `DataSourcePatterns` when a generator needs other named data sources as input.
+
+## C# (CAC) usage {: #c-cac-usage}
+
+Code-based configuration uses `DataSourceBuilder.Named(string name)` and `DataSourceBuilder.HookNamed(string hookName)` to set the YAML-equivalent identity fields. Add the builder to Runner with `ExecutionBuilder.AddDataSource(DataSourceBuilder dataSourceBuilder)`.
+
+The same builder exposes `Configure(object configuration)`, `UpdateConfiguration(object configuration)`, `AddDataSourceName(string dataSourceName)`, `AddDataSourcePattern(string dataSourcePattern)`, and `IsLazy()` for the common DataSources fields.
+
+## Minimal example {: #minimal-example}
+
+```yaml
+DataSources:
+  - Name: PayloadFiles
+    Generator: FromFileSystem
+    GeneratorConfiguration:
+      DataArrangeOrder: AsciiAsc
+      FileSystem:
+        Path: sample-data/payloads
+        SearchPattern: '*.json'
+      StorageMetaData: ItemName
+```
+
+## Realistic example {: #realistic-example}
+
+A Runner flow usually defines one file-backed data source, references it from a publisher through `DataSourceNames`, and references the same data source from an assertion when the assertion needs the expected payloads.
+
+## Edge cases {: #edge-cases}
+
+- `Name` values must be unique inside the `DataSources` list.
+- `DataSourceNames` cannot contain the current data source's own `Name`.
+- `Serialize` and `Deserialize` are mutually exclusive on the same data-source entry.
+- A missing `Generator` or generator-specific required field fails configuration validation before the run starts.
+
+## See also {: #see-also}
+
+- [Configuration table](configurations/tableView.md)
+- [YAML scaffold](configurations/yamlView.md)
+- [Sessions](../sessions/overview.md)
+- [Assertions](../assertions/overview.md)
+- [DataSourceBuilder API](../../../../../framework/functions/builders/data-sources.md)
+
+
+## Links
+
+Source: /qaas/userInterfaces/runner/configurationSections/links/overview/
+Type: explanation
+Applies to: runner
+Summary: Links add per-result observability URLs to Runner reports, including Kibana, Prometheus, and Grafana links.
+
+# Links
+
+> TL;DR — Links add per-result observability URLs to Runner reports, including Kibana, Prometheus, and Grafana links.
+
+## When to use {: #when-to-use}
+
+Links are the links generated on test results, used to view the tested application's metrics, logs, traces, or any other observability data output by the system. These links are generated per test result so they stay relevant to the specific test and the time it ran.
+
+Links can be found by clicking the relevant test and looking at the Links section on the right side of the screen where the test metadata is displayed.
+
+## YAML configuration {: #yaml-configuration}
+
+Use `Links[]` for report-level links. Use assertion-level links when the URL should appear only on a specific assertion result.
+
+The complete schema-derived field list is in the [configuration table](configurations/tableView.md). The copy-ready scaffold is in the [YAML scaffold](configurations/yamlView.md).
+
+## Available Link Types {: #available-link-types}
+
+### Kibana {: #kibana}
+
+Links to a Kibana UI.
+
+### Prometheus {: #prometheus}
+
+Links to the Prometheus UI.
+
+### Grafana {: #grafana}
+
+Links to a Grafana dashboard.
+
+## Edge cases {: #edge-cases}
+
+- Report-level links apply to the test result context.
+- Assertion-specific links belong on the assertion configuration, not the top-level `Links` list.
+- Use placeholders when link query parameters need the run, case, or environment context.
+
+## See also {: #see-also}
+
+- [Configuration table](configurations/tableView.md)
+- [YAML scaffold](configurations/yamlView.md)
+- [Assertions](../assertions/overview.md)
+- [Allure Report](../../allureReport.md)
+
+
+## MetaData
+
+Source: /qaas/userInterfaces/runner/configurationSections/metaData/overview/
+Type: explanation
+Applies to: runner
+Summary: Define test ownership, system identity, and optional labels for Runner reports and filtering.
+
+# MetaData
+
+The `MetaData` section is used to define additional information about tests, enhancing traceability and observability. It includes the following standard fields:
+
+> TL;DR: Use `MetaData` to identify the team, system, and optional labels that should travel with a Runner configuration.
+
+## When to use {: #when-to-use}
+
+- You want reports and logs to carry ownership and system context.
+- You need environment, component, feature, or cluster labels for filtering.
+- You want shared labels available across cases and overwrite files.
+
+- `Team`: The team responsible for maintaining and executing the tests.
+- `System`: The system or component under test.
+
+In addition to these standard fields, you can include custom `ExtraLabels` to further categorize tests. Examples of useful labels include:
+
+- `Component`
+- `Cluster`
+- `Environment`
+- `Feature`
+
+Labels are not limited to those examples and can be anything you want.
+
+## See also {: #see-also}
+
+- [Configuration sections](../configurationSections.md)
+- [MetaData YAML](configurations/yamlView.md)
+- [MetaData table](configurations/tableView.md)
+
+
+## Reporters
+
+Source: /qaas/userInterfaces/runner/configurationSections/reporters/overview/
+Type: explanation
+Applies to: runner
+Summary: Set run-level reporter defaults for Allure artifacts and optional ReportPortal publishing.
+
+# Reporters
+
+> TL;DR: Use `Reporters` to set run-level reporting defaults for saved artifacts, traces, and ReportPortal publishing.
+
+## When to use {: #when-to-use}
+
+Use the `Reporters` section when a whole Runner configuration should share the same reporting behavior. These values are optional. When a value is not set here, each assertion keeps control through its own reporting keys.
+
+`Reporters` is useful for CI and triage profiles where every assertion result should include the same diagnostic payloads, such as saved session data, attachments, logs, templates, or assertion traces.
+
+## YAML configuration {: #yaml-configuration}
+
+```yaml
+Reporters:
+  SaveSessionData: true
+  SaveAttachments: true
+  SaveLogs: true
+  SaveTemplate: true
+  DisplayTrace: true
+  ReportPortal:
+    Enabled: true
+    Endpoint: 'https://reportportal.example/api/'
+    Project: '{MetaData.Team}'
+    ApiKey: '${REPORT_PORTAL_API_KEY}'
+```
+
+The complete schema-derived field list is in the [configuration table](configurations/tableView.md). The copy-ready scaffold is in the [YAML scaffold](configurations/yamlView.md).
+
+## Reporting defaults {: #reporting-defaults}
+
+The artifact flags apply to reporters created for assertion results:
+
+- `SaveSessionData` controls saved session data attachments.
+- `SaveAttachments` controls assertion-provided attachments.
+- `SaveLogs` controls session log attachments.
+- `SaveTemplate` controls the rendered configuration template attachment.
+- `DisplayTrace` controls whether assertion traces are rendered in report details.
+
+When any of these values is omitted, Runner falls back to the matching assertion-level value.
+
+## ReportPortal {: #reportportal}
+
+`ReportPortal` configures optional publishing in addition to the Allure output. `Enabled` controls whether ReportPortal publishing is active. `Endpoint`, `Project`, and `ApiKey` can override registered runtime defaults for a single run.
+
+If `Project` is omitted, Runner uses the `MetaData.Team` value. Keep API keys in runtime variables or secret-backed placeholders rather than committed YAML.
+
+## Edge cases {: #edge-cases}
+
+- `Reporters` is optional; Runner still creates its default reporters when the section is absent.
+- Assertion-level reporting keys are still valid and remain the fallback when run-level reporter defaults are not set.
+- ReportPortal publishing requires a reachable endpoint and a key with access to the target project.
+
+## See also {: #see-also}
+
+- [Configuration table](configurations/tableView.md)
+- [YAML scaffold](configurations/yamlView.md)
+- [Assertions](../assertions/overview.md)
+- [Allure Report](../../allureReport.md)
+- [Debug Failures](../../../../quickStart/debugTestFailure.md)
+
+
+## Sessions
+
+Source: /qaas/userInterfaces/runner/configurationSections/sessions/overview/
+Type: explanation
+Applies to: runner
+Summary: Sessions define the runtime actions Runner performs against the system under test and supporting infrastructure.
+
+# Sessions
+
+> TL;DR — Sessions define the runtime actions Runner performs against the system under test and supporting infrastructure.
+
+## When to use {: #when-to-use}
+
+The Sessions section defines the runtime work that [QaaS.Runner](../../../../../qaas/index.md) performs against the system under test and its supporting infrastructure. A session combines shared session-level settings with one or more action collections.
+
+At a high level, the action collections fall into two categories:
+
+- [`Probe actions`](types/probes.md) are actions that affect the system or its underlying infrastructure but do not save information related to the interaction with the system.
+- `Communication actions` are actions that send or receive data from the system or its underlying infrastructure and save that data in the `SessionData`.
+
+Communication actions are further divided into these sub-categories:
+
+- [`Publishers`](types/publishers.md) send data.
+- [`Consumers`](types/consumers.md) receive data.
+- [`Collectors`](types/collectors.md) collect data from an endpoint within a certain time range in a single action.
+- [`Transactions`](types/transactions.md) send and receive data.
+
+[`MockerCommands`](types/mockerCommands.md) are separate from the communication-action group. They control [QaaS.Mocker](../../../../../mocker/index.md) during a Runner session and can optionally create input and output data depending on the command.
+
+Shared [Policies](types/policies.md) are not a separate action type. They are attached to supported communication actions to control pace, retries, load shape, and stopping conditions.
+
+!!! Tip "Connection Timeouts"
+    The more asynchronous actions that use network resources you have in a session, the more likely you are to get connection timeouts.
+    If you are experiencing timeouts, try increasing the relevant action's network connection timeout configurations, which may vary between different actions.
+    If you increase the timeout of a communication action, make sure your consuming communication action's timeout is substantially higher or you might experience loss of data.
+
+## YAML configuration {: #yaml-configuration}
+
+Use `Sessions[]` for session entries. Put communication work under `Publishers`, `Consumers`, `Collectors`, and `Transactions`; put infrastructure work under `Probes`; put Mocker control work under `MockerCommands`.
+
+The complete schema-derived field list is in the [configuration table](configurations/tableView.md). The copy-ready scaffold is in the [YAML scaffold](configurations/yamlView.md).
+
+## SessionData Structure {: #sessiondata-structure}
+
+`SessionData` is the outcome produced by every session run. It contains a list of `inputs` and a list of `outputs`.
+The inputs are produced from any data sent to the tested system and their name is the name of the action that produced them.
+The outputs are produced from any data received from the tested system and their name is the name of the action that produced them.
+Both the inputs' and outputs' items are arranged by timestamp in ascending order.
+
+## Serialized Data Based Communications And Deserialized Data Based Communications {: #serialized-data-based-communications-and-deserialized-data-based-communications}
+
+Every communication action can either work with serialized `byte[]` data or with a deserialized C# object.
+
+Communication actions that work with serialized data can be configured to serialize generated data before sending it, and can also deserialize received data before saving it to the `SessionData`.
+
+Communication actions that work with deserialized data must receive the C# object they work with directly, and for output actions they save the deserialized data as received to the `SessionData`.
+
+## Edge cases {: #edge-cases}
+
+- Consumer timeouts should be longer than the producer-side timing they wait for.
+- Communication actions save `SessionData`; probe actions usually affect infrastructure without producing session inputs or outputs.
+- Mocker Commands are control actions and should be kept separate from normal protocol communication actions.
+
+## See also {: #see-also}
+
+- [Configuration table](configurations/tableView.md)
+- [YAML scaffold](configurations/yamlView.md)
+- [Publishers](types/publishers.md)
+- [Consumers](types/consumers.md)
+- [Transactions](types/transactions.md)
+- [MockerCommands](types/mockerCommands.md)
+
+
+## Storages
+
+Source: /qaas/userInterfaces/runner/configurationSections/storages/overview/
+Type: explanation
+Applies to: runner
+Summary: Storages define where Runner writes and reads persisted runtime objects for act and assert commands.
+
+# Storages
+
+> TL;DR — Storages define where Runner writes and reads persisted runtime objects for act and assert commands.
+
+## When to use {: #when-to-use}
+
+The Storages section contains external storage definitions that QaaS runtime objects can be stored in or retrieved from when using the [`qaas act`](../../commands/act.md) or [`qaas assert`](../../commands/assert.md) commands.
+Currently, the main stored object is `SessionData`, which is generated from [Sessions](../sessions/overview.md) and then used by [Assertions](../assertions/overview.md) and [DataSources](../dataSources/overview.md).
+
+## YAML configuration {: #yaml-configuration}
+
+Use `Storages[]` for storage entries. Choose the storage type that matches the persistence location, such as `FileSystem` or `S3`.
+
+The complete schema-derived field list is in the [configuration table](configurations/tableView.md). The copy-ready scaffold is in the [YAML scaffold](configurations/yamlView.md).
+
+## Available Storage Types {: #available-storage-types}
+
+### FileSystem {: #filesystem}
+
+Stores or retrieves data from a path in the file system.
+
+!!! Warning "Storage During Case Run"
+    During a case run the storage stores or retrieves the data under a folder named after the case it runs under, with all illegal folder name characters replaced with `_`.
+    For example, case `http://subCase/regular.yaml` stores the data under the folder `http___subCase_regular.yaml`.
+
+### S3 {: #s3}
+
+Stores or retrieves data from an S3 bucket at a configured prefix.
+
+!!! Warning "Storage During Case Run"
+    During a case run the storage stores or retrieves the data under an additional prefix named after the case it runs under, with all `/` or `\` characters replaced with `_` and a trailing `/` added.
+    For example, case `http://subCase/regular.yaml` adds the prefix `http:__subCase_regular.yaml/` before the case's data.
+
+## Edge cases {: #edge-cases}
+
+- Case runs add case-specific storage paths so case data does not collide.
+- Keep `SessionData` persistence aligned with the later `assert` command that reads it.
+- Use the same storage names across act and assert phases when the phases run separately.
+
+## See also {: #see-also}
+
+- [Configuration table](configurations/tableView.md)
+- [YAML scaffold](configurations/yamlView.md)
+- [`act`](../../commands/act.md)
+- [`assert`](../../commands/assert.md)
+- [Sessions](../sessions/overview.md)
