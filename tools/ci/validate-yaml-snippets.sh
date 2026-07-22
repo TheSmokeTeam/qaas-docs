@@ -27,6 +27,8 @@ if ! command -v "$CHECK_JSONSCHEMA_BIN" >/dev/null 2>&1 && [ ! -x "$CHECK_JSONSC
   exit 1
 fi
 
+"$PYTHON_BIN" tools/ci/check_yaml_indentation.py
+
 mkdir -p "$NORMALIZED_SCHEMA_DIR"
 
 normalize_schema() {

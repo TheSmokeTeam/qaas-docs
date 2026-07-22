@@ -103,6 +103,7 @@ def validate_delivery_surfaces(settings: dict[str, tuple[str, str]]) -> None:
     entrypoint = (
         ROOT / "tools" / "docker-entrypoint.d" / "qaas-docs-runtime-overrides.sh"
     ).read_text(encoding="utf-8")
+    nginx = (ROOT / "tools" / "nginx.conf").read_text(encoding="utf-8")
     readme = (ROOT / "README.md").read_text(encoding="utf-8")
 
     errors: list[str] = []
@@ -132,6 +133,27 @@ def validate_delivery_surfaces(settings: dict[str, tuple[str, str]]) -> None:
 
         if environment_variable not in readme or f"`{key}`" not in readme:
             errors.append(f"README.md does not document {environment_variable} ({key})")
+
+    runtime_contract = (
+        ("Dockerfile", 'USER 101', dockerfile),
+        (
+            "Dockerfile",
+            'ENTRYPOINT ["/usr/local/bin/qaas-docs-entrypoint"]',
+            dockerfile,
+        ),
+        ("container entrypoint", 'runtime_dir="/tmp/qaas-docs"', entrypoint),
+        ("container entrypoint", 'exec "$@"', entrypoint),
+        ("Nginx config", "pid /tmp/qaas-docs/nginx.pid;", nginx),
+        (
+            "Nginx config",
+            "location = /assets/javascripts/qaas-docs-runtime-overrides.min.js",
+            nginx,
+        ),
+        ("Nginx config", 'Cache-Control "no-store, no-cache', nginx),
+    )
+    for surface, expected, content in runtime_contract:
+        if expected not in content:
+            errors.append(f"{surface} is missing runtime image contract: {expected}")
 
     if errors:
         fail("\n".join(errors))
@@ -187,6 +209,8 @@ def validate_build_time_overrides(settings: dict[str, tuple[str, str]]) -> None:
         "__QAAS_DOCS_CANONICAL_DEFAULTS__",
         "replacements.set(canonicalValue, effectiveValue)",
         "replacements.set(buildValue, effectiveValue)",
+        "orderedReplacementSources",
+        "return value.replace(pattern",
     ):
         if required_fragment not in runtime_script:
             errors.append(

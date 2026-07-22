@@ -97,6 +97,12 @@ jobs:
       - name: Validate configurable external links
         run: python tools/ci/check-configurable-external-links.py
 
+      - name: Validate YAML indentation
+        run: |
+          python -m yamllint -c tools/ci/yamllint.yml mkdocs.yml mkdocs.yml.fragments/
+          python tools/ci/test_check_yaml_indentation.py
+          python tools/ci/check_yaml_indentation.py
+
       - name: Build site
         run: |
           python tools/write_runtime_link_defaults.py docs/assets/javascripts/qaas-docs-build-defaults.js
@@ -127,9 +133,19 @@ jobs:
         id: deployment
         uses: actions/deploy-pages@v4
 
+  test-runtime-image:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Test saved image with Helm env and arbitrary UID
+        run: bash tools/ci/test-runtime-image.sh
+
   build-zim:
     if: startsWith(github.ref, 'refs/tags/')
-    needs: build-site
+    needs: [build-site, test-runtime-image]
     runs-on: ubuntu-latest
     timeout-minutes: 30
     permissions:
@@ -208,7 +224,7 @@ jobs:
 
   publish-docker-image:
     if: startsWith(github.ref, 'refs/tags/') || github.event_name == 'workflow_dispatch'
-    needs: build-site
+    needs: [build-site, test-runtime-image]
     runs-on: ubuntu-latest
     env:
       DOCKER_REPOSITORY_NAME: ${{ vars.DOCKER_REPOSITORY_NAME || github.event.repository.name }}
@@ -245,6 +261,9 @@ jobs:
             echo "value<<EOF"
             echo "${image}:${GITHUB_REF_NAME}"
             echo "${image}:sha-${GITHUB_SHA}"
+            if [[ "$GITHUB_REF" == refs/tags/* || "$GITHUB_REF" == refs/heads/master ]]; then
+              echo "${image}:latest"
+            fi
             echo "EOF"
           } >> "$GITHUB_OUTPUT"
 

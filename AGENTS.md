@@ -34,7 +34,7 @@ git config core.hooksPath .githooks   # one-time hook setup
 - **`docs/_generated/` is overwritten** by QaaS.Docs.Generator runs (CRLF-canonical output; placement tags in source repos gate function docs; `--check` mode exits 2 on drift). Edit generated content at its source (XML doc comments in product repos), not here.
 - CI builds with `mkdocs build --strict` — any broken nav/link fails the build. Run it locally before pushing.
 - Line endings: `.gitattributes` enforces LF for `*.sh`; the generator emits CRLF-canonical content in its domain — don't "fix" endings in bulk.
-- 50+ `QAAS_DOCS_*` env vars control links/URLs at build AND container runtime (entrypoint materializes them without rebuilding) — prefer adding a variable over hardcoding a URL.
+- 50+ `QAAS_DOCS_*` env vars control links/URLs at build AND container runtime. The explicit non-root image entrypoint materializes them under `/tmp` without rebuilding or editing JSON; Helm must preserve that entrypoint.
 - Deploys to Pages happen on pushes to `master`, `fix/improve_docs`, and `fix/docs_errors` — treat all three as production branches.
 
 ## Process

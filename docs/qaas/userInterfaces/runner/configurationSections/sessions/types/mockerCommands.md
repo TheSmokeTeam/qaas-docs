@@ -56,17 +56,17 @@ Consume: {}
 
 ???- info "Data Structure"
     === ":octicons-file-code-16: `Input`"
-    ```yaml
-    Body: <byte[]>
-    MetaData:
-        Http:
+        ```yaml
+        Body: <byte[]>
+        MetaData:
+          Http:
             Uri: <Uri>
             RequestHeaders: <IDictionary<string, string>>
-    ```
+        ```
     === ":octicons-file-code-16: `Output`"
-    ```yaml
-    Body: <byte[]>
-    ```
+        ```yaml
+        Body: <byte[]>
+        ```
 
 ## See also {: #see-also}
 
