@@ -12874,6 +12874,8 @@ Runner can add several attachment types to a test result:
 | Custom assertion attachments | `SaveAttachments` | Built from the assertion hook's `AssertionAttachments` list and written as flat attachment files. |
 | Coverage files | Always collected when matching files exist | Runner creates a flat attachment copy when a matching producer-owned file exists under `allure-results/Coverages/`. |
 
+Runner also preserves organized compatibility copies under `SessionsData`, `SessionLogs`, `Templates`, and `AssertionsAttachments`; coverage producers continue to own files under `Coverages`. Result JSON never references these nested copies. Allure consumes only the portable, flat attachment sources in the root of `allure-results`.
+
 Custom assertion attachments must use relative paths that include a file name. Runner normalizes paths and rejects duplicates in the same assertion result. The `SerializationType` on each attachment controls serialization and report MIME type; with no serialization type, the data is treated as raw bytes.
 
 !!! warning "Compatibility across Allure 2.x"
