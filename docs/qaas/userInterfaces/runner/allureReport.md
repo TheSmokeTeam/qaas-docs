@@ -3,7 +3,7 @@ id: qaas.userinterfaces.runner.allurereport
 type: reference
 status: stable
 since: 2.0.0
-last_verified: 2026-05-22
+last_verified: 2026-07-22
 applies_to: [runner]
 keywords: [qaas, userinterfaces, runner, allurereport]
 summary: "Allure Report is a test reporting tool, that provides clear graphical reports about your tests."
@@ -56,13 +56,20 @@ Runner can add several attachment types to a test result:
 
 | Attachment | Controlled By | Notes |
 | ---------- | ------------- | ----- |
-| Session data JSON | `SaveSessionData` | Attached to each session step and also kept under `allure-results/SessionsData/` for raw file-system consumers. |
-| Session logs | `SaveLogs` | Attached when the session has stored log text. |
-| Rendered configuration template | `SaveTemplate` | Saved as `template.yaml`. |
-| Custom assertion attachments | `SaveAttachments` | Built from the assertion hook's `AssertionAttachments` list and kept under `allure-results/AssertionsAttachments/`. |
-| Coverage files | Always collected when matching files exist | Collected from `allure-results/Coverages/` for the assertion's execution, case, and session names. |
+| Session data JSON | `SaveSessionData` | Attached to each session step as a flat `*-attachment.json` file. |
+| Session logs | `SaveLogs` | Attached as a flat `*-attachment.log` file when the session has stored log text. |
+| Rendered configuration template | `SaveTemplate` | Attached as a flat `*-attachment.yaml` file. |
+| Custom assertion attachments | `SaveAttachments` | Built from the assertion hook's `AssertionAttachments` list and written as flat attachment files. |
+| Coverage files | Always collected when matching files exist | Runner creates a flat attachment copy when a matching producer-owned file exists under `allure-results/Coverages/`. |
+
+Runner also preserves organized compatibility copies under `SessionsData`, `SessionLogs`, `Templates`, and `AssertionsAttachments`; coverage producers continue to own files under `Coverages`. Result JSON never references these nested copies. Allure consumes only the portable, flat attachment sources in the root of `allure-results`.
 
 Custom assertion attachments must use relative paths that include a file name. Runner normalizes paths and rejects duplicates in the same assertion result. The `SerializationType` on each attachment controls serialization and report MIME type; with no serialization type, the data is treated as raw bytes.
+
+!!! warning "Compatibility across Allure 2.x"
+    Portable Allure 2.x output requires each result JSON to have a valid UUID-form `uuid` and every attachment `source` to name a file directly in the root of `allure-results`. Older Runner output used arbitrary concatenated result IDs, which Allure 2.1.1 drops even though later releases accept them. It also referenced nested paths such as `Templates/<run>/template.yaml` and `SessionsData/<run>/<session>.json`. Allure CLI 2.40.0–2.44.0 rejects those paths before opening files that can contain valid data, then generates attachment metadata with size `0` and no source and does not copy the attachment into the report.
+
+    Compatible Runner builds generate valid GUID-based result UUIDs and write flat, regex-safe attachment files referenced by file name only. Repeated references to the same logical attachment reuse the completed file. To repair output from an older build, replace invalid result UUIDs and update any corresponding references, copy every referenced nested file into the `allure-results` root under a unique file name of at most 100 letters, digits, dots, underscores, or hyphens, then recursively rewrite each attachment `source` in the result JSON, including attachments on nested test steps, before running `allure generate`. Do not downgrade to avoid these checks: valid UUIDs and flat attachment file names provide portable Allure 2.x results.
 
 #### Flaky
 

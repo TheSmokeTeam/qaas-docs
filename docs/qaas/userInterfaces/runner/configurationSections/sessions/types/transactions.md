@@ -3,7 +3,7 @@ id: qaas.userinterfaces.runner.configurationsections.sessions.types.transactions
 type: reference
 status: stable
 since: 2.0.0
-last_verified: 2026-05-22
+last_verified: 2026-07-22
 applies_to: [runner]
 keywords: [qaas, userinterfaces, runner, configurationsections, sessions, types]
 summary: "Transactions are communication actions that both send and receive data from the system. Every transaction creates both an Input and an Output in SessionData with its own name."
@@ -19,6 +19,33 @@ Transactions represent request/response actions. At runtime a transaction resolv
 Use this page for behavior and YAML shape. The same action can be built in C# with the [TransactionBuilder API](../../../../../../qaas/functions/builders/transactions.md); that page is the function reference for the code-first surface.
 
 **Table Property Path** - `Sessions[].Transactions[]`
+
+## Input selection and empty GET requests {: #input-selection-and-empty-get-requests}
+
+Transactions are data-driven by default. `DataSourceNames` and `DataSourcePatterns` select the input items, and the transaction sends one request for each selected item during each `Iterations` cycle. A selector that matches no runtime data sends no requests; multiple selected items each produce a request in every cycle.
+
+When `SendEmptyRequest` is false, which is the default, at least one selector property must be present. Omitting both selector properties, setting both to `null`, or configuring only empty YAML sequences such as `DataSourceNames: []` fails validation. Empty YAML sequences are treated as absent during configuration binding, so use `SendEmptyRequest: true` when the transaction should send a request without input data. Code-first builders retain the legacy behavior in which a non-null empty selector array is accepted but produces no requests; it does not opt into a bodyless GET.
+
+Set `SendEmptyRequest: true` to opt into one request with no entity body per `Iterations` cycle. Loop mode likewise sends one empty request per loop cycle, independently of available data sources. Empty-request mode has these constraints:
+
+- The transaction must use `Http.Method: Get`; other HTTP methods and gRPC are rejected.
+- `DataSourceNames` and `DataSourcePatterns` must be omitted, `null`, or empty. Any selector entry is rejected.
+- `InputSerialize` must be omitted because there is no input body to serialize.
+
+```yaml
+Transactions:
+  - Name: ReadHealth
+    TimeoutMs: 5000
+    Iterations: 2
+    SendEmptyRequest: true
+    Http:
+      Method: Get
+      BaseAddress: http://service.example
+      Port: 8080
+      Route: /health
+```
+
+The example sends exactly two bodyless `GET /health` requests. In code-first configuration, call `TransactionBuilder.WithEmptyRequest()` for the same behavior.
 
 ## Http {: #http}
 
