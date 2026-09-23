@@ -3,7 +3,7 @@ id: qaas.userinterfaces.runner.configurationsections.sessions.types.transactions
 type: reference
 status: stable
 since: 2.0.0
-last_verified: 2026-07-22
+last_verified: 2026-09-23
 applies_to: [runner]
 keywords: [qaas, userinterfaces, runner, configurationsections, sessions, types]
 summary: "Transactions are communication actions that both send and receive data from the system. Every transaction creates both an Input and an Output in SessionData with its own name."
@@ -57,26 +57,58 @@ Sends an HTTP request and stores the HTTP response when one arrives. The protoco
 Http: {}
 ```
 
-???- info "Data Structure"
-    === ":octicons-file-code-16: `Input`"
-        ```yaml
-        Body: <byte[]>
-        MetaData:
-          Http:
-            Method: <string>
-            Uri: <string>
-        ```
-    === ":octicons-file-code-16: `Output`"
-        ```yaml
-        Body: <byte[]>
-        MetaData:
-          Http:
-            StatusCode: <int>
-            ReasonPhrase: <string>
-            Version: <string>
-            Headers: <IDictionary<string, string>>
-            TrailingHeaders: <IDictionary<string, string>>
-        ```
+### Released metadata contract {: #released-http-metadata}
+
+Verified against Framework 1.6.4 and Runner 4.8.2. Item metadata is returned by a generator as `Data<object>.MetaData.Http`; it is not a set of extra properties under YAML `Sessions[].Transactions[].Http`. Configuration schemas describe the action configuration, not the SDK data record.
+
+| SDK field | Outgoing Runner request | Captured Runner response |
+| --- | --- | --- |
+| `Uri` | Absolute destination override, including path and query | Not populated in 1.6.4 |
+| `Headers` | Content headers; non-null replaces the configured content-header dictionary | Response content headers |
+| `RequestHeaders` | Request headers; non-null replaces the configured request-header dictionary | Not populated |
+| `ResponseHeaders` | Not a request option | Response headers other than content headers |
+| `StatusCode` | Not a request option | Response status |
+| `ReasonPhrase` | Not a request option | Response reason phrase |
+| `Version` | Not a request version selector | Observed response version |
+| `TrailingHeaders` | Not sent as request trailers | Response trailers, after reading the body |
+| `PathParameters` | Ignored in 1.6.4 | Not populated; Mocker uses it for incoming route captures |
+
+A null header dictionary inherits configuration; an empty dictionary removes that category's configured defaults. This does not remove client-level JWT authentication; explicitly supply `Authorization` to override it. Place `Content-Type` in `Headers`, not `RequestHeaders`. Invalid header names, values, or categories fail validation in the HTTP client rather than being silently moved. Header values are captured as comma-joined strings; this representation is not a lossless multivalue-header round trip.
+
+The previously documented per-item `Method` did **not** exist in Framework 1.6.4. That release also has no item `Route` or `QueryParameters`. Use an absolute `Uri` per message for both generated path values and dynamic routes:
+
+```csharp
+var baseUri = new Uri("http://service.example:8080/");
+var http = new Http
+{
+    Uri = new Uri(baseUri, $"users/{Uri.EscapeDataString(userId)}")
+};
+// Or select a whole route: new Uri(baseUri, "orders")
+```
+
+Use a trailing slash on `baseUri`; a leading slash on the relative route replaces the base path. Encode parameter values, not the entire route. For query values, build the query with a URI/query builder and put the resulting absolute URI in `Http.Uri`.
+
+### Native metadata support (unreleased) {: #native-http-metadata}
+
+The HTTP metadata contract change adds the following behavior. It requires the updated **SDK and Protocols together**, followed by a Runner dependency update/release. Existing published packages and schema downloads do not gain these capabilities by editing YAML.
+
+```csharp
+new Http
+{
+    Route = "users/{id}",
+    PathParameters = new Dictionary<string, string> { ["id"] = userId },
+    QueryParameters = new Dictionary<string, string> { ["page"] = "2" },
+    Method = "PATCH"
+};
+```
+
+- Destination precedence: `Uri` wins over item `Route`, which wins over configured `Route`. An explicit URI bypasses path substitution, including when replaying captured metadata. Relative `Uri` values resolve against the configured base **directory** using normal URI resolution.
+- Routes append to the configured base path with one boundary slash. An absolute or authority-relative route is rejected; use `Uri` when changing the destination authority. An explicit configured port overrides the base URI's port; `Port: null` preserves it. The configured default remains 8080.
+- `{name}` placeholders are substituted only in the path. Values are unescaped strings and are encoded as individual segments. Missing/null values and literal `.` or `..` segments fail before network I/O; extra dictionary keys are allowed. Query text is not a path template.
+- `QueryParameters` are encoded and appended to the selected destination, including an explicit `Uri`. Existing pairs are retained, including duplicate keys. Null/empty dictionaries add nothing; empty string values are allowed, null values are rejected. The dictionary cannot itself represent repeated keys.
+- Null `Method` inherits the action method. Other values must be valid HTTP method tokens. Each retry resolves metadata into a fresh request without changing shared configuration or the metadata dictionary. Configured `Head`, `Patch`, and `Options` are supported in addition to the existing methods.
+- Response metadata also captures the effective request `Uri` and `Method`. `Version`, status and response header fields remain observations, not outgoing request controls.
+- `Retries` counts total attempts, including the first. HTTP error statuses are returned as responses; only transport exceptions and timeouts trigger retries. Invalid metadata fails before sending.
 
 ## Grpc {: #grpc}
 
