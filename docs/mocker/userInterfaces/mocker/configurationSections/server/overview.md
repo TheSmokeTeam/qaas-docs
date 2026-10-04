@@ -3,7 +3,7 @@ id: mocker.userinterfaces.mocker.configurationsections.server.overview
 type: explanation
 status: stable
 since: 2.0.0
-last_verified: 2026-05-23
+last_verified: 2026-09-23
 applies_to: [mocker]
 keywords: [mocker, userinterfaces, configurationsections, server, overview]
 summary: "Servers defines the HTTP, gRPC, or socket endpoints that QaaS.Mocker starts for a mock execution."
@@ -37,6 +37,16 @@ When reading the configuration reference, keep in mind that the server sections 
 Use `Servers[]` for new mock configurations. Each entry contains the protocol branch it exposes, such as `Http`, `Grpc`, or `Socket`.
 
 The complete schema-derived field list is in the [configuration table](configurations/tableView.md). The copy-ready scaffold is in the [YAML scaffold](configurations/yamlView.md).
+
+## HTTP metadata directions {: #http-metadata-directions}
+
+In Mocker 2.4.7, incoming requests populate `MetaData.Http.Uri` (including query text), `RequestHeaders` (all received request headers), and `PathParameters` (values captured by the matched endpoint). Read query parameters from `Uri`; `PathParameters` are path captures, not query pairs. Response processors use `StatusCode`, `ResponseHeaders`, and `Headers`. `Headers` is applied after `ResponseHeaders`, so it wins on duplicate response-header names.
+
+`Uri`, request headers, and path captures on a processor response do not redirect or reroute the incoming request. `Version` is not a response protocol selector. The published 2.4.7 implementation ignores response `ReasonPhrase` and `TrailingHeaders`; it suppresses response bodies for HEAD, but not for bodyless statuses such as 204 and 304.
+
+The **unreleased HTTP metadata correction** records the incoming protocol `Version`, emits `ReasonPhrase` through the server response feature (reason phrases have wire meaning only in HTTP/1.x), and emits `TrailingHeaders` when the server supports trailers. Unsupported trailers or trailers on a bodyless response fail explicitly instead of disappearing. Bodies are suppressed for HEAD, informational statuses, 204, 205, and 304; prohibited content-length/transfer-encoding headers are removed for informational/204 responses, and 205 uses length zero. HEAD and 304 may retain representation content-length metadata.
+
+Trailer declarations precede the body and values follow it. Transport support still applies: setting metadata cannot enable unsupported HTTP trailer delivery. Incoming capture of the newly added Framework `Method`, `Route`, and `QueryParameters` fields is a separate dependency-update concern; this Mocker correction remains compatible with its released SDK dependency.
 
 ## Edge cases {: #edge-cases}
 
