@@ -3,175 +3,143 @@ id: framework.functions.casting-and-serialization
 type: how-to
 status: stable
 since: 2.0.0
-last_verified: 2026-06-10
+last_verified: 2026-10-04
+render_macros: true
 applies_to: [framework, runner]
-keywords: [framework, casting, serialization, deserialization, QaasSerializer, ConvertBodyTo, GetOutputBodies, TryCast, typed, session data, JsonNode, representation]
-summary: "Use the QaasSerializer facade and the typed casting extension methods to turn raw session payloads into typed objects in one call."
+keywords: [framework, casting, serialization, deserialization, SerializerFactory, DeserializerFactory, typed, session data, JsonNode]
+summary: "Use serializer factories for payload conversion and SDK casting extensions for bodies that already have the requested runtime type."
 ---
 
-# Casting & Serializing Data — Quick Guide
+# Casting & Serializing Data - Quick Guide
 
-> TL;DR — `QaasSerializer` turns any payload into bytes/strings and back in one call, and the `Convert…`/`Get…As`/`Try…` extension methods turn `SessionData`, `CommunicationData`, and `DetailedData` payloads into typed objects without manual factory or cast plumbing.
+> TL;DR - Use `SerializerFactory` and `DeserializerFactory` to convert payloads. SDK casting extensions only cast bodies that already have a compatible runtime type.
 
 ## When to use {: #when-to-use}
 
-- You are writing a hook (assertion, generator, probe, processor) and need typed access to session bodies instead of `object`.
-- You want one-liner serialize/deserialize calls with indicative error messages instead of the factory + cast dance.
-- You need non-throwing (`Try…`) variants for optional payloads.
+- You are writing a hook and need typed access to session bodies stored as `object`.
+- You need to serialize an object to bytes or deserialize bytes into a specific type.
+- You need to distinguish a runtime cast from a format conversion.
 
-All APIs on this page are purely additive — every pre-existing casting and serialization API keeps working unchanged.
+The convenience APIs previously shown here, including `QaasSerializer`, `ConvertBodyTo<T>`, and `GetOutputBodies<T>`, were reverted in [Framework PR #48]({{ links.repository_framework }}/pull/48) by [commit e48c9d6]({{ links.repository_framework }}/commit/e48c9d6147aa3bc25209af8960f1b4ad56a5dbb2). They are absent from the current Framework source. The examples below use the supported factory and SDK extension APIs.
 
-## One-liner serialization: `QaasSerializer` {: #qaas-serializer}
+## Serialization with factories {: #serialization-with-factories}
 
-`QaaS.Framework.Serialization.QaasSerializer` is a static facade over the serializer/deserializer factories:
+The serializer returns `byte[]?`; the deserializer accepts bytes and a target `Type`, and returns `object?`. These examples assume `Order` is your application type and `order` is an instance.
 
 ```csharp
 using QaaS.Framework.Serialization;
 
-// Bytes round trip
-byte[] payload = QaasSerializer.Serialize(order, SerializationType.Json);
-Order order2   = QaasSerializer.Deserialize<Order>(payload, SerializationType.Json)!;
+var serializer = SerializerFactory.BuildSerializer(SerializationType.Json)!;
+var deserializer = DeserializerFactory.BuildDeserializer(SerializationType.Json)!;
 
-// Text round trip (Json, Yaml, Xml, XmlElement)
-string json    = QaasSerializer.SerializeToString(order, SerializationType.Json)!;
-Order order3   = QaasSerializer.DeserializeFromString<Order>(json, SerializationType.Json)!;
-
-// Non-throwing variants
-if (QaasSerializer.TryDeserialize<Order>(payload, SerializationType.Json, out var maybeOrder))
-{
-    // maybeOrder is not null here
-}
+byte[]? payload = serializer.Serialize(order);
+Order? restored = (Order?)deserializer.Deserialize(payload, typeof(Order));
 ```
 
-Compare with the pre-existing (still supported) form:
+Both factories return `null` when the format is `null`. The caller must decide whether to retain raw bytes or skip conversion; the factories do not provide a pass-through serializer. Unsupported enum values throw `ArgumentOutOfRangeException`. Serialization and deserialization failures propagate from the format implementation; there is no shared convenience exception or non-throwing `TryDeserialize` API.
+
+For JSON text, convert explicitly with UTF-8:
 
 ```csharp
-var deserializer = DeserializerFactory.BuildDeserializer(SerializationType.Json);
-var result = (Order?)deserializer?.Deserialize(payload, typeof(Order));
+using System.Text;
+using QaaS.Framework.Serialization;
+
+var serializer = SerializerFactory.BuildSerializer(SerializationType.Json)!;
+var deserializer = DeserializerFactory.BuildDeserializer(SerializationType.Json)!;
+
+byte[]? payload = serializer.Serialize(order);
+string? json = payload is null ? null : Encoding.UTF8.GetString(payload);
+Order? restored = (Order?)deserializer.Deserialize(
+    json is null ? null : Encoding.UTF8.GetBytes(json), typeof(Order));
 ```
-
-Behavior notes:
-
-- A `null` serialization type keeps the framework's pass-through semantics: serializing returns the payload only if it is already `byte[]`, otherwise an indicative `QaasSerializationException` is thrown.
-- Every failure is wrapped in `QaasSerializationException` whose message names the operation, the target type, and the serialization format.
-- `Try…` variants never throw; they return `false` and a `null`/`default` result instead.
-
-## Fluent format-first construction {: #fluent-construction}
-
-When you want a reusable serializer instance, build it straight off the enum:
-
-```csharp
-var serializer   = SerializationType.Yaml.BuildSerializer();    // never null
-var deserializer = SerializationType.Yaml.BuildDeserializer();  // never null
-
-string yaml  = serializer.SerializeToString(order)!;
-Order  again = deserializer.DeserializeFromString<Order>(yaml)!;
-```
-
-The instance extension methods (`Deserialize<T>`, `DeserializeFromString<T>`, `SerializeToString`, `TrySerialize`, `TryDeserialize<T>`) also work on any `ISerializer` / `IDeserializer` you already have.
 
 ## Typed access to session payloads {: #typed-session-access}
 
-Session bodies arrive as `object` (often `byte[]`, `JsonNode`, or another deserialized representation depending on the configured `SerializationType`). The new helpers convert them to your POCO in one call:
+Use `GetOutputByName` or `GetInputByName` to find a communication. When its bodies already contain `Order` objects, cast the communication and select the bodies:
+
+```csharp
+using System.Linq;
+using QaaS.Framework.SDK.Extensions;
+using QaaS.Framework.SDK.Session.CommunicationDataObjects;
+
+CommunicationData<Order> typed = sessionData.GetOutputByName("orders_output")
+    .CastCommunicationData<Order>();
+var orders = typed.Data.Select(item => item.Body).ToList();
+```
+
+`CastCommunicationData<T>` calls `CastObjectDetailedData<T>` for each item. It copies the communication name and `SerializationType`, and preserves each item's metadata and timestamp in a new wrapper. It does not deserialize bytes, infer formats, or convert a `JsonNode` into a POCO. A body's incompatible runtime type causes `InvalidCastException`, even when the communication declares a `SerializationType`.
+
+For optional communications, use the existing lookup helper:
 
 ```csharp
 using QaaS.Framework.SDK.Extensions;
 
-// All typed bodies of a named output, in one line:
-IList<Order?> orders = sessionData.GetOutputBodies<Order>("orders_output");
-
-// A fully typed CommunicationData<Order>:
-CommunicationData<Order> typed = sessionData.GetOutputAs<Order>("orders_output");
-
-// Inputs work the same way:
-var inputs = sessionData.GetInputBodies<OrderRequest>("orders_input");
-
-// Non-throwing:
-if (sessionData.TryGetOutputAs<Order>("orders_output", out var maybeTyped))
+if (sessionData.TryGetOutputByName("orders_output", out var output))
 {
-    // ...
+    foreach (var item in output!.Data)
+    {
+        if (item.Body is Order order)
+        {
+            // Use the already typed body here.
+        }
+    }
 }
 ```
 
-Conversion uses the `SerializationType` declared on the `CommunicationData` itself, so payloads convert with the same format they were captured with. You can pass an explicit `SerializationType` to override.
+`TryGetOutputByName` and `TryGetInputByName` return `false` for a missing or duplicate name. They do not test or convert body types. The throwing lookup methods raise `ArgumentException` for these cases.
 
-### How conversion works {: #conversion-semantics}
+## Converting bytes and JSON representations {: #conversion-semantics}
 
-`ConvertBodyTo<T>` (and everything built on it) resolves each body in this order:
-
-1. body is `null` → `default`
-2. body is already `T` → returned as-is (no copy)
-3. body is `byte[]` → deserialized with the given format
-4. anything else (for example `JsonNode`, YAML dictionaries) → round-tripped serialize → deserialize into `T`
-
-## Representation-aware casting {: #representation-aware-casting}
-
-A consumer that reads from a protocol (for example a RabbitMQ queue) without a configured
-specific type receives bodies as deserialized representations: json arrives as `JsonNode`,
-yaml as `Dictionary<object, object>`, xml as `XDocument`/`XElement`. The cast family —
-`CastCommunicationData<T>`, `CastObjectDetailedData<T>`, `CastObjectData<T>`, `GetBodyAs<T>`,
-`GetBodiesAs<T>`, and their `Try…` variants — converts such bodies to the requested type
-instead of throwing:
+When a body is raw JSON bytes, deserialize it explicitly. This example assumes `detailedData` is a `DetailedData<object>` whose body is either JSON bytes or `null`:
 
 ```csharp
-// Producer side: generated Person objects published to RabbitMQ as json bytes.
-// Consumer side: without a configured type the consumed bodies are JsonNode instances,
-// yet the cast still lands on the producer's POCO:
-CommunicationData<object> consumed = ReadConsumedCommunicationData();
-CommunicationData<Person> people = consumed.CastCommunicationData<Person>();
+using QaaS.Framework.SDK.Extensions;
+using QaaS.Framework.Serialization;
+
+byte[]? payload = detailedData.CastObjectDetailedData<byte[]>().Body;
+var deserializer = DeserializerFactory.BuildDeserializer(SerializationType.Json)!;
+Order? order = (Order?)deserializer.Deserialize(payload, typeof(Order));
 ```
 
-Each body resolves in this order:
+JSON deserialization without a target type produces a `JsonNode`. To convert that representation into your application type, serialize the representation back to JSON bytes, then deserialize with an explicit target type:
 
-1. direct cast — a body that already is `T` is returned as-is
-2. declared format — the `SerializationType` declared on the `CommunicationData` round-trips the body into `T`
-3. inferred format — without a declared type, the representation picks the format: `JsonNode`/`JsonElement`/`JsonDocument` → json, `XDocument` → xml, `XElement` → xml element, `Dictionary<object, object>`/`List<object>` → yaml (see `QaasSerializer.TryInferSerializationType`)
-4. otherwise the original indicative `InvalidCastException` is thrown (`Try…` variants return `false`)
+```csharp
+using QaaS.Framework.Serialization;
 
-`byte[]` bodies stay strict on purpose: raw bytes convert only when the `CommunicationData`
-declares its `SerializationType`, so protocol code that requires `byte[]` bodies keeps failing
-fast instead of guessing a format.
+// detailedData.Body is a JsonNode containing an Order-shaped JSON object.
+var serializer = SerializerFactory.BuildSerializer(SerializationType.Json)!;
+var deserializer = DeserializerFactory.BuildDeserializer(SerializationType.Json)!;
+byte[]? payload = serializer.Serialize(detailedData.Body);
+Order? order = (Order?)deserializer.Deserialize(payload, typeof(Order));
+```
+
+Choose a format that matches the payload. `CommunicationData.SerializationType` is metadata, not an automatic conversion step in the cast methods. For configured session deserialization, the SDK's `SessionDataSerialization` uses `DeserializeConfig` and `SpecificTypeConfig`; see the [SDK project reference](../projects/sdk.md).
 
 ## Working with single data items {: #single-data-items}
 
 ```csharp
-// Direct typed body access when the body already is the target type:
-byte[]? raw = detailedData.GetBodyAs<byte[]>();
-if (detailedData.TryGetBodyAs<string>(out var text)) { /* ... */ }
+using QaaS.Framework.SDK.Extensions;
+using QaaS.Framework.SDK.Session.DataObjects;
 
-// Conversion when it is not:
-Order? order = detailedData.ConvertBodyTo<Order>(SerializationType.Json);
+// data and detailedData have object bodies that already contain Order instances.
+Data<Order> typedData = data.CastObjectData<Order>();
+DetailedData<Order> typedItem = detailedData.CastObjectDetailedData<Order>();
 
-// Whole-item conversion keeps headers and metadata:
-DetailedData<Order> typedItem = detailedData.ConvertDetailedData<Order>(SerializationType.Json);
-
-// Non-throwing casts mirror the existing hard casts:
-if (data.TryCastObjectData<byte[]>(out var bytes)) { /* ... */ }
-if (detailedData.TryCastObjectDetailedData<byte[]>(out var detailedBytes)) { /* ... */ }
-```
-
-## Working with communication data {: #communication-data}
-
-```csharp
-// Lookup without exceptions:
-if (outputs.TryGetCommunicationDataByName("orders_output", out var communication))
+// Optional typed access can use C# pattern matching.
+if (detailedData.Body is Order order)
 {
-    // Convert every body using the CommunicationData's own SerializationType:
-    CommunicationData<Order> typed = communication.ConvertCommunicationData<Order>();
-
-    // Or only the bodies:
-    IList<object?> bodies      = communication.GetBodies();
-    IList<Order?>  typedBodies = communication.GetBodiesAs<Order>();
+    // Use order here.
 }
 ```
 
+These casts create wrappers while retaining the body and metadata references; detailed-data casts also retain the timestamp. They are not deep clones and do not offer `TryCast` variants. Null reference-type bodies remain null; incompatible bodies throw `InvalidCastException`.
+
 ## Edge cases {: #edge-cases}
 
-- `Binary` and `ProtobufMessage` formats require a concrete target type; `QaasSerializer.Deserialize<T>` always provides one.
-- The `Xml`/`XmlElement` deserializers produce `XDocument`/`XElement` by default and honor a requested type: `XDocument`, `XElement`, and `string` are special-cased, while any other type deserializes through `XmlSerializer` (which requires a public type with a parameterless constructor). The matching serializers accept typed POCOs the same way.
-- `GetOutputBodies<T>`/`GetInputBodies<T>` throw the same indicative exception as `GetOutputByName`/`GetInputByName` when the name is missing; use the `TryGet…As` variants for optional payloads.
-- Conversion never mutates the source objects; converted `Data`/`DetailedData`/`CommunicationData` instances are new wrappers that preserve the original names, metadata, and timestamps.
-- `GetBodyAs<T>` returns the body as-is when it already *is* the requested type, and converts deserialized representations as described in the Representation-aware casting section. For bodies it cannot convert (for example `byte[]` without a declared format) its `InvalidCastException` message points you to `ConvertBodyTo<T>`.
+- `ProtobufMessage` deserialization requires an explicit message type. Supply it to `Deserialize(payload, typeof(TargetType))`. The current `Binary` implementation ignores the target-type hint and uses the type stored in the serialized payload.
+- `Xml` returns `XDocument` and `XmlElement` returns `XElement`, regardless of the requested target type. They do not deserialize POCOs through `XmlSerializer`. The XML serializer expects `XDocument`; the XML-element serializer encodes the object's string representation.
+- A null serialization format yields a null factory result; do not dereference it without handling the no-conversion case.
+- Check the body representation before casting. Use explicit deserialization for bytes, and an explicit format conversion for representations such as `JsonNode`.
 
 ## See also {: #see-also}
 

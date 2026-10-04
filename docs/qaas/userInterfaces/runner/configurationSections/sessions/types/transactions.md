@@ -3,7 +3,7 @@ id: qaas.userinterfaces.runner.configurationsections.sessions.types.transactions
 type: reference
 status: stable
 since: 2.0.0
-last_verified: 2026-09-23
+last_verified: 2026-10-04
 applies_to: [runner]
 keywords: [qaas, userinterfaces, runner, configurationsections, sessions, types]
 summary: "Transactions are communication actions that both send and receive data from the system. Every transaction creates both an Input and an Output in SessionData with its own name."
@@ -90,7 +90,7 @@ Use a trailing slash on `baseUri`; a leading slash on the relative route replace
 
 ### Native metadata support (unreleased) {: #native-http-metadata}
 
-The HTTP metadata contract change adds the following behavior. It requires the updated **SDK and Protocols together**, followed by a Runner dependency update/release. Existing published packages and schema downloads do not gain these capabilities by editing YAML.
+The proposed HTTP metadata contract in Framework PR #57 is still unmerged and adds the following behavior. It requires the updated **SDK and Protocols together**, followed by a Runner dependency update/release. Existing published packages and schema downloads do not gain these capabilities by editing YAML.
 
 ```csharp
 new Http
@@ -104,7 +104,7 @@ new Http
 
 - Destination precedence: `Uri` wins over item `Route`, which wins over configured `Route`. An explicit URI bypasses path substitution, including when replaying captured metadata. Relative `Uri` values resolve against the configured base **directory** using normal URI resolution.
 - Routes append to the configured base path with one boundary slash. An absolute or authority-relative route is rejected; use `Uri` when changing the destination authority. An explicit configured port overrides the base URI's port; `Port: null` preserves it. The configured default remains 8080.
-- `{name}` placeholders are substituted only in the path. Values are unescaped strings and are encoded as individual segments. Missing/null values and literal `.` or `..` segments fail before network I/O; extra dictionary keys are allowed. Query text is not a path template.
+- `{name}` placeholders are substituted only in the path. Values are unescaped strings and are encoded as individual segments. Missing/null values and path-parameter values exactly equal to `.` or `..` fail before network I/O; extra dictionary keys are allowed. This check applies to substituted `PathParameters` values. Literal dot segments in `Route` are not rejected by the current proposal and may be normalized by URI resolution, so validate dynamic routes separately when they must stay under the configured base path. Query text is not a path template.
 - `QueryParameters` are encoded and appended to the selected destination, including an explicit `Uri`. Existing pairs are retained, including duplicate keys. Null/empty dictionaries add nothing; empty string values are allowed, null values are rejected. The dictionary cannot itself represent repeated keys.
 - Null `Method` inherits the action method. Other values must be valid HTTP method tokens. Each retry resolves metadata into a fresh request without changing shared configuration or the metadata dictionary. Configured `Head`, `Patch`, and `Options` are supported in addition to the existing methods.
 - Response metadata also captures the effective request `Uri` and `Method`. `Version`, status and response header fields remain observations, not outgoing request controls.
