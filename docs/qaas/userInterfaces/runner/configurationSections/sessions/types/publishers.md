@@ -116,6 +116,7 @@ value is passed as data: unconfigured values keep the text representation used
 by COPY and are interpreted by the target column type, without date inference
 or executable UDT-expression detection. Quotes and function-like text remain
 data. Both configured and unconfigured nulls remain database nulls.
+Typed chunk inserts run in one transaction and roll back together if any row fails.
 
 ## MongoDbCollection {: #mongodbcollection}
 
