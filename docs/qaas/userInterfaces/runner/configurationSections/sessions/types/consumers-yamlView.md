@@ -101,6 +101,7 @@ Consumers:
       ConnectionString: 'value'
       TableName: 'value'
       AllowNoInsertionTimeField: False
+      ColumnTypes: {}
       CommandTimeoutSeconds: 30
       FilterSecondsBeforeRunStartTime: 0
       InsertionTimeField: 'value'
@@ -112,6 +113,7 @@ Consumers:
       ConnectionString: 'value'
       TableName: 'value'
       AllowNoInsertionTimeField: False
+      ColumnTypes: {}
       CommandTimeoutSeconds: 30
       FilterSecondsBeforeRunStartTime: 0
       InsertionTimeField: 'value'
@@ -123,6 +125,7 @@ Consumers:
       ConnectionString: 'value'
       TableName: 'value'
       AllowNoInsertionTimeField: False
+      ColumnTypes: {}
       CommandTimeoutSeconds: 30
       FilterSecondsBeforeRunStartTime: 0
       InsertionTimeField: 'value'
@@ -179,6 +182,7 @@ Consumers:
       TableName: 'value'
       Username: 'value'
       AllowNoInsertionTimeField: False
+      ColumnTypes: {}
       CommandTimeoutSeconds: 30
       FilterSecondsBeforeRunStartTime: 0
       InsertionTimeField: 'value'

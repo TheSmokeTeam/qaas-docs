@@ -130,6 +130,7 @@ The table below mirrors the schema used by the YAML scaffold page. Nested rows u
 | `Sessions[].Consumers[].MsSqlTable.ConnectionString` | `string` | &#10004 |  | The connection string to the database |
 | `Sessions[].Consumers[].MsSqlTable.TableName` | `string` | &#10004 |  | The table to insert data to |
 | `Sessions[].Consumers[].MsSqlTable.AllowNoInsertionTimeField` | `string or true/false` | &#10006 | False | Set to true to acknowledge that the table has no insertion time column and suppress the related startup warning. |
+| `Sessions[].Consumers[].MsSqlTable.ColumnTypes` | `object or string or null` | &#10006 |  | Optional column-name to SQL-type mapping (for example price: double precision, created_at: timestamp). Uses SQL CAST instead of automatic inference. Type expressions are trusted SQL configuration in the target database's dialect. When configured, chunk sends use row inserts to apply the casts. |
 | `Sessions[].Consumers[].MsSqlTable.CommandTimeoutSeconds` | `integer or string` | &#10006 | 30 | The wait time (in seconds) before terminating the attempt to execute an sql copy/insertion command and generating an error |
 | `Sessions[].Consumers[].MsSqlTable.FilterSecondsBeforeRunStartTime` | `integer or string` | &#10006 | 0 | If the ReadFromRunStartTime is enabled, this property specifies how far before the start of the read action to start reading messages in seconds |
 | `Sessions[].Consumers[].MsSqlTable.InsertionTimeField` | `string or null` | &#10006 |  | The insertion time field name, in cases where the table can be updated this will be the update time field |
@@ -142,6 +143,7 @@ The table below mirrors the schema used by the YAML scaffold page. Nested rows u
 | `Sessions[].Consumers[].OracleSqlTable.ConnectionString` | `string` | &#10004 |  | The connection string to the database |
 | `Sessions[].Consumers[].OracleSqlTable.TableName` | `string` | &#10004 |  | The table to insert data to |
 | `Sessions[].Consumers[].OracleSqlTable.AllowNoInsertionTimeField` | `string or true/false` | &#10006 | False | Set to true to acknowledge that the table has no insertion time column and suppress the related startup warning. |
+| `Sessions[].Consumers[].OracleSqlTable.ColumnTypes` | `object or string or null` | &#10006 |  | Optional column-name to SQL-type mapping (for example price: double precision, created_at: timestamp). Uses SQL CAST instead of automatic inference. Type expressions are trusted SQL configuration in the target database's dialect. When configured, chunk sends use row inserts to apply the casts. |
 | `Sessions[].Consumers[].OracleSqlTable.CommandTimeoutSeconds` | `integer or string` | &#10006 | 30 | The wait time (in seconds) before terminating the attempt to execute an sql copy/insertion command and generating an error |
 | `Sessions[].Consumers[].OracleSqlTable.FilterSecondsBeforeRunStartTime` | `integer or string` | &#10006 | 0 | If the ReadFromRunStartTime is enabled, this property specifies how far before the start of the read action to start reading messages in seconds |
 | `Sessions[].Consumers[].OracleSqlTable.InsertionTimeField` | `string or null` | &#10006 |  | The insertion time field name, in cases where the table can be updated this will be the update time field |
@@ -154,6 +156,7 @@ The table below mirrors the schema used by the YAML scaffold page. Nested rows u
 | `Sessions[].Consumers[].PostgreSqlTable.ConnectionString` | `string` | &#10004 |  | The connection string to the database |
 | `Sessions[].Consumers[].PostgreSqlTable.TableName` | `string` | &#10004 |  | The table to insert data to |
 | `Sessions[].Consumers[].PostgreSqlTable.AllowNoInsertionTimeField` | `string or true/false` | &#10006 | False | Set to true to acknowledge that the table has no insertion time column and suppress the related startup warning. |
+| `Sessions[].Consumers[].PostgreSqlTable.ColumnTypes` | `object or string or null` | &#10006 |  | Optional column-name to SQL-type mapping (for example price: double precision, created_at: timestamp). Uses SQL CAST instead of automatic inference. Type expressions are trusted SQL configuration in the target database's dialect. When configured, chunk sends use row inserts to apply the casts. |
 | `Sessions[].Consumers[].PostgreSqlTable.CommandTimeoutSeconds` | `integer or string` | &#10006 | 30 | The wait time (in seconds) before terminating the attempt to execute an sql copy/insertion command and generating an error |
 | `Sessions[].Consumers[].PostgreSqlTable.FilterSecondsBeforeRunStartTime` | `integer or string` | &#10006 | 0 | If the ReadFromRunStartTime is enabled, this property specifies how far before the start of the read action to start reading messages in seconds |
 | `Sessions[].Consumers[].PostgreSqlTable.InsertionTimeField` | `string or null` | &#10006 |  | The insertion time field name, in cases where the table can be updated this will be the update time field |
@@ -211,6 +214,7 @@ The table below mirrors the schema used by the YAML scaffold page. Nested rows u
 | `Sessions[].Consumers[].TrinoSqlTable.TableName` | `string` | &#10004 |  | The table to insert data to |
 | `Sessions[].Consumers[].TrinoSqlTable.Username` | `string` | &#10004 |  | The username to login to the Trino |
 | `Sessions[].Consumers[].TrinoSqlTable.AllowNoInsertionTimeField` | `string or true/false` | &#10006 | False | Set to true to acknowledge that the table has no insertion time column and suppress the related startup warning. |
+| `Sessions[].Consumers[].TrinoSqlTable.ColumnTypes` | `object or string or null` | &#10006 |  | Optional column-name to SQL-type mapping (for example price: double precision, created_at: timestamp). Uses SQL CAST instead of automatic inference. Type expressions are trusted SQL configuration in the target database's dialect. When configured, chunk sends use row inserts to apply the casts. |
 | `Sessions[].Consumers[].TrinoSqlTable.CommandTimeoutSeconds` | `integer or string` | &#10006 | 30 | The wait time (in seconds) before terminating the attempt to execute an sql copy/insertion command and generating an error |
 | `Sessions[].Consumers[].TrinoSqlTable.FilterSecondsBeforeRunStartTime` | `integer or string` | &#10006 | 0 | If the ReadFromRunStartTime is enabled, this property specifies how far before the start of the read action to start reading messages in seconds |
 | `Sessions[].Consumers[].TrinoSqlTable.InsertionTimeField` | `string or null` | &#10006 |  | The insertion time field name, in cases where the table can be updated this will be the update time field |
@@ -349,17 +353,20 @@ The table below mirrors the schema used by the YAML scaffold page. Nested rows u
 | `Sessions[].Publishers[].MsSqlTable` | `object or string` | &#10006 |  | Publishes messages to an mssql database table |
 | `Sessions[].Publishers[].MsSqlTable.ConnectionString` | `string` | &#10004 |  | The connection string to the database |
 | `Sessions[].Publishers[].MsSqlTable.TableName` | `string` | &#10004 |  | The table to insert data to |
+| `Sessions[].Publishers[].MsSqlTable.ColumnTypes` | `object or string or null` | &#10006 |  | Optional column-name to SQL-type mapping (for example price: double precision, created_at: timestamp). Uses SQL CAST instead of automatic inference. Type expressions are trusted SQL configuration in the target database's dialect. When configured, chunk sends use row inserts to apply the casts. |
 | `Sessions[].Publishers[].MsSqlTable.CommandTimeoutSeconds` | `integer or string` | &#10006 | 30 | The wait time (in seconds) before terminating the attempt to execute an sql copy/insertion command and generating an error |
 | `Sessions[].Publishers[].MsSqlTable.IsUDTInsertion` | `string or true/false` | &#10006 | False | Determines whether User-Defined Type (UDT) insertion is required. If UDT insertion is not necessary, it is recommended to set this property to false. UDT insertion can slow down data insertion, especially for large datasets. Therefore, it is recommended to only use UDT insertion when necessary. |
 | `Sessions[].Publishers[].OracleSqlTable` | `object or string` | &#10006 |  | Publishes messages to an oracle sql database table |
 | `Sessions[].Publishers[].OracleSqlTable.ConnectionString` | `string` | &#10004 |  | The connection string to the database |
 | `Sessions[].Publishers[].OracleSqlTable.TableName` | `string` | &#10004 |  | The table to insert data to |
+| `Sessions[].Publishers[].OracleSqlTable.ColumnTypes` | `object or string or null` | &#10006 |  | Optional column-name to SQL-type mapping (for example price: double precision, created_at: timestamp). Uses SQL CAST instead of automatic inference. Type expressions are trusted SQL configuration in the target database's dialect. When configured, chunk sends use row inserts to apply the casts. |
 | `Sessions[].Publishers[].OracleSqlTable.CommandTimeoutSeconds` | `integer or string` | &#10006 | 30 | The wait time (in seconds) before terminating the attempt to execute an sql copy/insertion command and generating an error |
 | `Sessions[].Publishers[].Parallel` | `object or string` | &#10006 |  | Whether to publish in a specified parallelism |
 | `Sessions[].Publishers[].Parallel.Parallelism` | `integer or string` | &#10004 |  | The amount of parallel tasks to execute at once |
 | `Sessions[].Publishers[].PostgreSqlTable` | `object or string` | &#10006 |  | Publishes messages to a postgresql database table |
 | `Sessions[].Publishers[].PostgreSqlTable.ConnectionString` | `string` | &#10004 |  | The connection string to the database |
 | `Sessions[].Publishers[].PostgreSqlTable.TableName` | `string` | &#10004 |  | The table to insert data to |
+| `Sessions[].Publishers[].PostgreSqlTable.ColumnTypes` | `object or string or null` | &#10006 |  | Optional column-name to SQL-type mapping (for example price: double precision, created_at: timestamp). Uses SQL CAST instead of automatic inference. Type expressions are trusted SQL configuration in the target database's dialect. When configured, chunk sends use row inserts to apply the casts. |
 | `Sessions[].Publishers[].PostgreSqlTable.CommandTimeoutSeconds` | `integer or string` | &#10006 | 30 | The wait time (in seconds) before terminating the attempt to execute an sql copy/insertion command and generating an error |
 | `Sessions[].Publishers[].RabbitMq` | `object or string` | &#10006 |  | Publishes messages to a rabbitmq |
 | `Sessions[].Publishers[].RabbitMq.Host` | `string` | &#10004 |  | Rabbitmq hostname |
@@ -490,13 +497,13 @@ The table below mirrors the schema used by the YAML scaffold page. Nested rows u
 | `Sessions[].Transactions[].Grpc.ServiceName` | `string` | &#10004 |  | The name of the service the rpc is defined in |
 | `Sessions[].Transactions[].Http` | `object or string` | &#10006 |  | Sends an http request |
 | `Sessions[].Transactions[].Http.BaseAddress` | `string` | &#10004 |  | The http server's address (needs to be with the protocol specification prefix http:// or https://) |
-| `Sessions[].Transactions[].Http.Method` | `one of [Post / Put / Get / Delete]` | &#10004 |  | The http method the transactor should perform |
-| `Sessions[].Transactions[].Http.Headers` | `object or string or null` | &#10006 |  | Default content headers to add to the http requests, will be overriden if sent data has http content headers in its metadata |
+| `Sessions[].Transactions[].Http.Method` | `one of [Post / Put / Get / Delete / Head / Patch / Options]` | &#10004 |  | Default HTTP method; per-item Http.Method overrides it |
+| `Sessions[].Transactions[].Http.Headers` | `object or string or null` | &#10006 |  | Default content headers to add to the http requests, replaced as a whole when item Http.Headers is non-null (empty clears defaults) |
 | `Sessions[].Transactions[].Http.MessageSendRetriesIntervalMs` | `integer or string` | &#10006 | 1000 | Time interval in milliseconds to wait between each retry of http request. |
-| `Sessions[].Transactions[].Http.Port` | `integer or string or null` | &#10006 | 8080 | The port to send the requests to in the http server |
-| `Sessions[].Transactions[].Http.RequestHeaders` | `object or string or null` | &#10006 |  | Default request headers to add to the http requests, will be overriden if sent data has http request headers in its metadata |
-| `Sessions[].Transactions[].Http.Retries` | `integer or string` | &#10006 | 1 | The amount of times to retry each failed request |
-| `Sessions[].Transactions[].Http.Route` | `string` | &#10006 |  | The route in the http server to send the request to |
+| `Sessions[].Transactions[].Http.Port` | `integer or string or null` | &#10006 | 8080 | Port override applied to BaseAddress authority; null preserves its port |
+| `Sessions[].Transactions[].Http.RequestHeaders` | `object or string or null` | &#10006 |  | Default request headers to add to the http requests, replaced as a whole when item Http.RequestHeaders is non-null (empty clears defaults) |
+| `Sessions[].Transactions[].Http.Retries` | `integer or string` | &#10006 | 1 | Maximum number of attempts including the initial request; only transport failures and timeouts are retried |
+| `Sessions[].Transactions[].Http.Route` | `string` | &#10006 |  | Default route appended to the base path. Supports {name} placeholders from per-item Http.PathParameters. Per-item Http.Route overrides this route; Http.Uri overrides the destination. |
 | `Sessions[].Transactions[].Http.JwtAuth` | `object or string` | &#10006 |  | The JWT configurations for the generation and addition of a JWT as a Bearer authorization header, if this field is not configured will not use JwtAuth |
 | `Sessions[].Transactions[].Http.JwtAuth.Secret` | `string` | &#10004 |  | The JWT secret |
 | `Sessions[].Transactions[].Http.JwtAuth.BuildJwtConfig` | `string or true/false` | &#10006 | True | Whether to build JWT config with claims or send the Secret value as the auth token |

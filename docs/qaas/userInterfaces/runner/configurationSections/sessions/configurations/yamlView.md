@@ -126,6 +126,7 @@ Sessions:
           ConnectionString: 'value'
           TableName: 'value'
           AllowNoInsertionTimeField: False
+          ColumnTypes: {}
           CommandTimeoutSeconds: 30
           FilterSecondsBeforeRunStartTime: 0
           InsertionTimeField: 'value'
@@ -137,6 +138,7 @@ Sessions:
           ConnectionString: 'value'
           TableName: 'value'
           AllowNoInsertionTimeField: False
+          ColumnTypes: {}
           CommandTimeoutSeconds: 30
           FilterSecondsBeforeRunStartTime: 0
           InsertionTimeField: 'value'
@@ -148,6 +150,7 @@ Sessions:
           ConnectionString: 'value'
           TableName: 'value'
           AllowNoInsertionTimeField: False
+          ColumnTypes: {}
           CommandTimeoutSeconds: 30
           FilterSecondsBeforeRunStartTime: 0
           InsertionTimeField: 'value'
@@ -204,6 +207,7 @@ Sessions:
           TableName: 'value'
           Username: 'value'
           AllowNoInsertionTimeField: False
+          ColumnTypes: {}
           CommandTimeoutSeconds: 30
           FilterSecondsBeforeRunStartTime: 0
           InsertionTimeField: 'value'
@@ -332,17 +336,20 @@ Sessions:
         MsSqlTable:
           ConnectionString: 'value'
           TableName: 'value'
+          ColumnTypes: {}
           CommandTimeoutSeconds: 30
           IsUDTInsertion: False
         OracleSqlTable:
           ConnectionString: 'value'
           TableName: 'value'
+          ColumnTypes: {}
           CommandTimeoutSeconds: 30
         Parallel:
           Parallelism: 1
         PostgreSqlTable:
           ConnectionString: 'value'
           TableName: 'value'
+          ColumnTypes: {}
           CommandTimeoutSeconds: 30
         RabbitMq:
           Host: 'value'

@@ -3009,6 +3009,15 @@
                         "type": "string"
                       }
                     },
+                    "ColumnTypes": {
+                      "type": [
+                        "null",
+                        "object",
+                        "string"
+                      ],
+                      "description": "Optional column-name to SQL-type mapping (for example price: double precision, created_at: timestamp). Uses SQL CAST instead of automatic inference. Type expressions are trusted SQL configuration in the target database's dialect. When configured, chunk sends use row inserts to apply the casts.",
+                      "pattern": "\\$\\{.*\\}"
+                    },
                     "ConnectionString": {
                       "type": "string",
                       "description": "The connection string to the database"
@@ -3109,6 +3118,15 @@
                       "items": {
                         "type": "string"
                       }
+                    },
+                    "ColumnTypes": {
+                      "type": [
+                        "null",
+                        "object",
+                        "string"
+                      ],
+                      "description": "Optional column-name to SQL-type mapping (for example price: double precision, created_at: timestamp). Uses SQL CAST instead of automatic inference. Type expressions are trusted SQL configuration in the target database's dialect. When configured, chunk sends use row inserts to apply the casts.",
+                      "pattern": "\\$\\{.*\\}"
                     },
                     "ConnectionString": {
                       "type": "string",
@@ -3216,6 +3234,15 @@
                       "items": {
                         "type": "string"
                       }
+                    },
+                    "ColumnTypes": {
+                      "type": [
+                        "null",
+                        "object",
+                        "string"
+                      ],
+                      "description": "Optional column-name to SQL-type mapping (for example price: double precision, created_at: timestamp). Uses SQL CAST instead of automatic inference. Type expressions are trusted SQL configuration in the target database's dialect. When configured, chunk sends use row inserts to apply the casts.",
+                      "pattern": "\\$\\{.*\\}"
                     },
                     "ConnectionString": {
                       "type": "string",
@@ -3341,6 +3368,15 @@
                       "items": {
                         "type": "string"
                       }
+                    },
+                    "ColumnTypes": {
+                      "type": [
+                        "null",
+                        "object",
+                        "string"
+                      ],
+                      "description": "Optional column-name to SQL-type mapping (for example price: double precision, created_at: timestamp). Uses SQL CAST instead of automatic inference. Type expressions are trusted SQL configuration in the target database's dialect. When configured, chunk sends use row inserts to apply the casts.",
+                      "pattern": "\\$\\{.*\\}"
                     },
                     "ConnectionString": {
                       "type": "string",
@@ -4951,6 +4987,15 @@
                     "TableName"
                   ],
                   "properties": {
+                    "ColumnTypes": {
+                      "type": [
+                        "null",
+                        "object",
+                        "string"
+                      ],
+                      "description": "Optional column-name to SQL-type mapping (for example price: double precision, created_at: timestamp). Uses SQL CAST instead of automatic inference. Type expressions are trusted SQL configuration in the target database's dialect. When configured, chunk sends use row inserts to apply the casts.",
+                      "pattern": "\\$\\{.*\\}"
+                    },
                     "ConnectionString": {
                       "type": "string",
                       "description": "The connection string to the database"
@@ -4985,6 +5030,15 @@
                     "TableName"
                   ],
                   "properties": {
+                    "ColumnTypes": {
+                      "type": [
+                        "null",
+                        "object",
+                        "string"
+                      ],
+                      "description": "Optional column-name to SQL-type mapping (for example price: double precision, created_at: timestamp). Uses SQL CAST instead of automatic inference. Type expressions are trusted SQL configuration in the target database's dialect. When configured, chunk sends use row inserts to apply the casts.",
+                      "pattern": "\\$\\{.*\\}"
+                    },
                     "ConnectionString": {
                       "type": "string",
                       "description": "The connection string to the database"
@@ -5413,6 +5467,15 @@
                       ],
                       "description": "Determines whether User-Defined Type (UDT) insertion is required. If UDT insertion is not necessary, it is recommended to set this property to false. UDT insertion can slow down data insertion, especially for large datasets. Therefore, it is recommended to only use UDT insertion when necessary.",
                       "default": false,
+                      "pattern": "\\$\\{.*\\}"
+                    },
+                    "ColumnTypes": {
+                      "type": [
+                        "null",
+                        "object",
+                        "string"
+                      ],
+                      "description": "Optional column-name to SQL-type mapping (for example price: double precision, created_at: timestamp). Uses SQL CAST instead of automatic inference. Type expressions are trusted SQL configuration in the target database's dialect. When configured, chunk sends use row inserts to apply the casts.",
                       "pattern": "\\$\\{.*\\}"
                     },
                     "ConnectionString": {
@@ -6100,18 +6163,24 @@
                   "properties": {
                     "Method": {
                       "type": "string",
-                      "description": "The http method the transactor should perform",
+                      "description": "Default HTTP method; per-item Http.Method overrides it",
                       "x-enumNames": [
                         "Post",
                         "Put",
                         "Get",
-                        "Delete"
+                        "Delete",
+                        "Head",
+                        "Patch",
+                        "Options"
                       ],
                       "enum": [
                         "Post",
                         "Put",
                         "Get",
-                        "Delete"
+                        "Delete",
+                        "Head",
+                        "Patch",
+                        "Options"
                       ]
                     },
                     "BaseAddress": {
@@ -6125,7 +6194,7 @@
                         "null",
                         "string"
                       ],
-                      "description": "The port to send the requests to in the http server",
+                      "description": "Port override applied to BaseAddress authority; null preserves its port",
                       "format": "int32",
                       "default": 8080,
                       "maximum": 65535.0,
@@ -6134,7 +6203,7 @@
                     },
                     "Route": {
                       "type": "string",
-                      "description": "The route in the http server to send the request to",
+                      "description": "Default route appended to the base path. Supports {name} placeholders from per-item Http.PathParameters. Per-item Http.Route overrides this route; Http.Uri overrides the destination.",
                       "default": ""
                     },
                     "Headers": {
@@ -6143,7 +6212,7 @@
                         "object",
                         "string"
                       ],
-                      "description": "Default content headers to add to the http requests, will be overriden if sent data has http content headers in its metadata",
+                      "description": "Default content headers to add to the http requests, replaced as a whole when item Http.Headers is non-null (empty clears defaults)",
                       "pattern": "\\$\\{.*\\}"
                     },
                     "RequestHeaders": {
@@ -6152,7 +6221,7 @@
                         "object",
                         "string"
                       ],
-                      "description": "Default request headers to add to the http requests, will be overriden if sent data has http request headers in its metadata",
+                      "description": "Default request headers to add to the http requests, replaced as a whole when item Http.RequestHeaders is non-null (empty clears defaults)",
                       "pattern": "\\$\\{.*\\}"
                     },
                     "JwtAuth": {
@@ -6231,7 +6300,7 @@
                         "integer",
                         "string"
                       ],
-                      "description": "The amount of times to retry each failed request",
+                      "description": "Maximum number of attempts including the initial request; only transport failures and timeouts are retried",
                       "format": "int32",
                       "default": 1,
                       "maximum": 2147483647.0,

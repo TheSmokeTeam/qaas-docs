@@ -99,17 +99,20 @@ The table below mirrors the schema used by the YAML scaffold page. Nested rows u
 | `Sessions[].Publishers[].MsSqlTable` | `object or string` | &#10006 |  | Publishes messages to an mssql database table |
 | `Sessions[].Publishers[].MsSqlTable.ConnectionString` | `string` | &#10004 |  | The connection string to the database |
 | `Sessions[].Publishers[].MsSqlTable.TableName` | `string` | &#10004 |  | The table to insert data to |
+| `Sessions[].Publishers[].MsSqlTable.ColumnTypes` | `object or string or null` | &#10006 |  | Optional column-name to SQL-type mapping (for example price: double precision, created_at: timestamp). Uses SQL CAST instead of automatic inference. Type expressions are trusted SQL configuration in the target database's dialect. When configured, chunk sends use row inserts to apply the casts. |
 | `Sessions[].Publishers[].MsSqlTable.CommandTimeoutSeconds` | `integer or string` | &#10006 | 30 | The wait time (in seconds) before terminating the attempt to execute an sql copy/insertion command and generating an error |
 | `Sessions[].Publishers[].MsSqlTable.IsUDTInsertion` | `string or true/false` | &#10006 | False | Determines whether User-Defined Type (UDT) insertion is required. If UDT insertion is not necessary, it is recommended to set this property to false. UDT insertion can slow down data insertion, especially for large datasets. Therefore, it is recommended to only use UDT insertion when necessary. |
 | `Sessions[].Publishers[].OracleSqlTable` | `object or string` | &#10006 |  | Publishes messages to an oracle sql database table |
 | `Sessions[].Publishers[].OracleSqlTable.ConnectionString` | `string` | &#10004 |  | The connection string to the database |
 | `Sessions[].Publishers[].OracleSqlTable.TableName` | `string` | &#10004 |  | The table to insert data to |
+| `Sessions[].Publishers[].OracleSqlTable.ColumnTypes` | `object or string or null` | &#10006 |  | Optional column-name to SQL-type mapping (for example price: double precision, created_at: timestamp). Uses SQL CAST instead of automatic inference. Type expressions are trusted SQL configuration in the target database's dialect. When configured, chunk sends use row inserts to apply the casts. |
 | `Sessions[].Publishers[].OracleSqlTable.CommandTimeoutSeconds` | `integer or string` | &#10006 | 30 | The wait time (in seconds) before terminating the attempt to execute an sql copy/insertion command and generating an error |
 | `Sessions[].Publishers[].Parallel` | `object or string` | &#10006 |  | Whether to publish in a specified parallelism |
 | `Sessions[].Publishers[].Parallel.Parallelism` | `integer or string` | &#10004 |  | The amount of parallel tasks to execute at once |
 | `Sessions[].Publishers[].PostgreSqlTable` | `object or string` | &#10006 |  | Publishes messages to a postgresql database table |
 | `Sessions[].Publishers[].PostgreSqlTable.ConnectionString` | `string` | &#10004 |  | The connection string to the database |
 | `Sessions[].Publishers[].PostgreSqlTable.TableName` | `string` | &#10004 |  | The table to insert data to |
+| `Sessions[].Publishers[].PostgreSqlTable.ColumnTypes` | `object or string or null` | &#10006 |  | Optional column-name to SQL-type mapping (for example price: double precision, created_at: timestamp). Uses SQL CAST instead of automatic inference. Type expressions are trusted SQL configuration in the target database's dialect. When configured, chunk sends use row inserts to apply the casts. |
 | `Sessions[].Publishers[].PostgreSqlTable.CommandTimeoutSeconds` | `integer or string` | &#10006 | 30 | The wait time (in seconds) before terminating the attempt to execute an sql copy/insertion command and generating an error |
 | `Sessions[].Publishers[].RabbitMq` | `object or string` | &#10006 |  | Publishes messages to a rabbitmq |
 | `Sessions[].Publishers[].RabbitMq.Host` | `string` | &#10004 |  | Rabbitmq hostname |
