@@ -2447,7 +2447,10 @@
                             "string"
                           ],
                           "description": "Response headers when the rule matches",
-                          "pattern": "\\$\\{.*\\}"
+                          "pattern": "\\$\\{.*\\}",
+                          "additionalProperties": {
+                            "type": "string"
+                          }
                         }
                       }
                     }
@@ -2479,7 +2482,10 @@
                       "string"
                     ],
                     "description": "Fallback response headers",
-                    "pattern": "\\$\\{.*\\}"
+                    "pattern": "\\$\\{.*\\}",
+                    "additionalProperties": {
+                      "type": "string"
+                    }
                   }
                 }
               }
@@ -2575,7 +2581,10 @@
                       "string"
                     ],
                     "description": "Additional response headers",
-                    "pattern": "\\$\\{.*\\}"
+                    "pattern": "\\$\\{.*\\}",
+                    "additionalProperties": {
+                      "type": "string"
+                    }
                   }
                 }
               }
@@ -2668,7 +2677,10 @@
                       "string"
                     ],
                     "description": "Additional response headers",
-                    "pattern": "\\$\\{.*\\}"
+                    "pattern": "\\$\\{.*\\}",
+                    "additionalProperties": {
+                      "type": "string"
+                    }
                   }
                 }
               }
@@ -2726,7 +2738,10 @@
                       "string"
                     ],
                     "description": "Additional response headers",
-                    "pattern": "\\$\\{.*\\}"
+                    "pattern": "\\$\\{.*\\}",
+                    "additionalProperties": {
+                      "type": "string"
+                    }
                   },
                   "PreserveMetaData": {
                     "type": [
@@ -2822,7 +2837,10 @@
                       "string"
                     ],
                     "description": "Additional problem details extension fields",
-                    "pattern": "\\$\\{.*\\}"
+                    "pattern": "\\$\\{.*\\}",
+                    "additionalProperties": {
+                      "type": "string"
+                    }
                   },
                   "ResponseHeaders": {
                     "type": [
@@ -2831,7 +2849,10 @@
                       "string"
                     ],
                     "description": "Additional response headers",
-                    "pattern": "\\$\\{.*\\}"
+                    "pattern": "\\$\\{.*\\}",
+                    "additionalProperties": {
+                      "type": "string"
+                    }
                   }
                 }
               }
@@ -2911,7 +2932,10 @@
                       "string"
                     ],
                     "description": "Additional response headers",
-                    "pattern": "\\$\\{.*\\}"
+                    "pattern": "\\$\\{.*\\}",
+                    "additionalProperties": {
+                      "type": "string"
+                    }
                   }
                 }
               }
@@ -2974,7 +2998,10 @@
                       "string"
                     ],
                     "description": "Additional response headers",
-                    "pattern": "\\$\\{.*\\}"
+                    "pattern": "\\$\\{.*\\}",
+                    "additionalProperties": {
+                      "type": "string"
+                    }
                   }
                 }
               }
@@ -3138,7 +3165,10 @@
                       "string"
                     ],
                     "description": "Additional response headers",
-                    "pattern": "\\$\\{.*\\}"
+                    "pattern": "\\$\\{.*\\}",
+                    "additionalProperties": {
+                      "type": "string"
+                    }
                   }
                 }
               }

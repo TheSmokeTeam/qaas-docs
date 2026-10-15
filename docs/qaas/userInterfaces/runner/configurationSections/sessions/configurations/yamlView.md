@@ -332,17 +332,20 @@ Sessions:
         MsSqlTable:
           ConnectionString: 'value'
           TableName: 'value'
+          ColumnTypes: {}
           CommandTimeoutSeconds: 30
           IsUDTInsertion: False
         OracleSqlTable:
           ConnectionString: 'value'
           TableName: 'value'
+          ColumnTypes: {}
           CommandTimeoutSeconds: 30
         Parallel:
           Parallelism: 1
         PostgreSqlTable:
           ConnectionString: 'value'
           TableName: 'value'
+          ColumnTypes: {}
           CommandTimeoutSeconds: 30
         RabbitMq:
           Host: 'value'
