@@ -57,6 +57,24 @@ Sends an HTTP request and stores the HTTP response when one arrives. The protoco
 Http: {}
 ```
 
+### Supported HTTP methods {: #supported-http-methods}
+
+Set `Http.Method` to one of the configuration values below.
+
+| HTTP method | `Http.Method` value | Availability |
+| --- | --- | --- |
+| GET | `Get` | Released in Runner 4.8.2 |
+| POST | `Post` | Released in Runner 4.8.2 |
+| PUT | `Put` | Released in Runner 4.8.2 |
+| DELETE | `Delete` | Released in Runner 4.8.2 |
+| HEAD | `Head` | Framework master; unreleased in Runner |
+| PATCH | `Patch` | Framework master; unreleased in Runner |
+| OPTIONS | `Options` | Framework master; unreleased in Runner |
+
+The unreleased methods require the package and Runner updates described under
+"Native metadata support (unreleased)" below. That contract also allows a
+per-message `MetaData.Http.Method` override containing any valid HTTP method token.
+
 ### Released metadata contract {: #released-http-metadata}
 
 Verified against Framework 1.6.4 and Runner 4.8.2. Item metadata is returned by a generator as `Data<object>.MetaData.Http`; it is not a set of extra properties under YAML `Sessions[].Transactions[].Http`. Configuration schemas describe the action configuration, not the SDK data record.
