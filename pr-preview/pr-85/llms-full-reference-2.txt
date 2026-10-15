@@ -17682,11 +17682,18 @@ casts fail in the database without falling back to automatic inference.
 When the mapping is omitted or empty, single sends and bulk chunk sends retain
 their existing behavior. A nonempty mapping makes chunk sends use parameterized
 row inserts to apply explicit casts, which can be slower than COPY. Every chunk
-value is passed as data: unconfigured values keep the text representation used
-by COPY and are interpreted by the target column type, without date inference
-or executable UDT-expression detection. Quotes and function-like text remain
-data. Both configured and unconfigured nulls remain database nulls.
+value is passed as data without date inference or executable UDT-expression
+detection. Configured and unconfigured native values, including timestamps and
+binary payloads, keep their provider representation. Parsed JSON numbers retain
+their original text so the database cast preserves precision and exponent range.
+PostgreSQL binds text with an unspecified type so the
+target column or explicit cast determines conversion. Quotes and function-like
+text remain data. Both configured and unconfigured nulls remain database nulls.
 Typed chunk inserts run in one transaction and roll back together if any row fails.
+
+Configured values in individual sends are also bound as parameters before the
+explicit cast. Unconfigured values in individual sends retain the original
+inference behavior.
 
 ## MongoDbCollection {: #mongodbcollection}
 
