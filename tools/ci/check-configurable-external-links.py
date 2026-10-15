@@ -104,7 +104,7 @@ def validate_delivery_surfaces(settings: dict[str, tuple[str, str]]) -> None:
         ROOT / "tools" / "docker-entrypoint.d" / "qaas-docs-runtime-overrides.sh"
     ).read_text(encoding="utf-8")
     nginx = (ROOT / "tools" / "nginx.conf").read_text(encoding="utf-8")
-    readme = (ROOT / "README.md").read_text(encoding="utf-8")
+    configuration_docs = (DOCS_ROOT / "site-maintenance.md").read_text(encoding="utf-8")
 
     errors: list[str] = []
     link_settings = {
@@ -131,8 +131,8 @@ def validate_delivery_surfaces(settings: dict[str, tuple[str, str]]) -> None:
             if expected not in content:
                 errors.append(f"{surface} is missing {environment_variable} ({key})")
 
-        if environment_variable not in readme or f"`{key}`" not in readme:
-            errors.append(f"README.md does not document {environment_variable} ({key})")
+        if environment_variable not in configuration_docs or f"`{key}`" not in configuration_docs:
+            errors.append(f"docs/site-maintenance.md does not document {environment_variable} ({key})")
 
     runtime_contract = (
         ("Dockerfile", 'USER 101', dockerfile),

@@ -115,6 +115,10 @@ The current source tree supports the following dispatch and behavior:
 - `S3Protocol` handles object naming, retry-oriented reads, and bucket/object management behavior.
 - `ObjectNameGenerator` supports the package's naming strategies such as random GUIDs and growing numerical series.
 
+Configuration examples belong to the Runner action reference:
+[SQL publishers](../../qaas/userInterfaces/runner/configurationSections/sessions/types/publishers.md#postgresql-column-types)
+and [HTTP transactions](../../qaas/userInterfaces/runner/configurationSections/sessions/types/transactions.md#http-patch).
+
 ## Main source areas {: #main-source-areas}
 
 The highest-signal areas to read are:

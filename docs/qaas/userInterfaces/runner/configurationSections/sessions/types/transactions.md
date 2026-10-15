@@ -3,7 +3,7 @@ id: qaas.userinterfaces.runner.configurationsections.sessions.types.transactions
 type: reference
 status: stable
 since: 2.0.0
-last_verified: 2026-10-04
+last_verified: 2026-10-15
 applies_to: [runner]
 keywords: [qaas, userinterfaces, runner, configurationsections, sessions, types]
 summary: "Transactions are communication actions that both send and receive data from the system. Every transaction creates both an Input and an Output in SessionData with its own name."
@@ -57,6 +57,24 @@ Sends an HTTP request and stores the HTTP response when one arrives. The protoco
 Http: {}
 ```
 
+### Supported HTTP methods {: #supported-http-methods}
+
+Set `Http.Method` to one of the configuration values below.
+
+| HTTP method | `Http.Method` value | Availability |
+| --- | --- | --- |
+| GET | `Get` | Released in Runner 4.8.2 |
+| POST | `Post` | Released in Runner 4.8.2 |
+| PUT | `Put` | Released in Runner 4.8.2 |
+| DELETE | `Delete` | Released in Runner 4.8.2 |
+| HEAD | `Head` | Framework master; unreleased in Runner |
+| PATCH | `Patch` | Framework master; unreleased in Runner |
+| OPTIONS | `Options` | Framework master; unreleased in Runner |
+
+The unreleased methods require the package and Runner updates described under
+"Native metadata support (unreleased)" below. That contract also allows a
+per-message `MetaData.Http.Method` override containing any valid HTTP method token.
+
 ### Released metadata contract {: #released-http-metadata}
 
 Verified against Framework 1.6.4 and Runner 4.8.2. Item metadata is returned by a generator as `Data<object>.MetaData.Http`; it is not a set of extra properties under YAML `Sessions[].Transactions[].Http`. Configuration schemas describe the action configuration, not the SDK data record.
@@ -90,7 +108,11 @@ Use a trailing slash on `baseUri`; a leading slash on the relative route replace
 
 ### Native metadata support (unreleased) {: #native-http-metadata}
 
-The proposed HTTP metadata contract in Framework PR #57 is still unmerged and adds the following behavior. It requires the updated **SDK and Protocols together**, followed by a Runner dependency update/release. Existing published packages and schema downloads do not gain these capabilities by editing YAML.
+The HTTP metadata contract was merged into Framework master in PR #57, but is not
+available in the documented Runner 4.8.2 release. It requires the updated **SDK
+and Protocols together**, followed by a Runner dependency update/release.
+Existing published packages and schema downloads do not gain these capabilities
+by editing YAML.
 
 ```csharp
 new Http
@@ -109,6 +131,32 @@ new Http
 - Null `Method` inherits the action method. Other values must be valid HTTP method tokens. Each retry resolves metadata into a fresh request without changing shared configuration or the metadata dictionary. Configured `Head`, `Patch`, and `Options` are supported in addition to the existing methods.
 - Response metadata also captures the effective request `Uri` and `Method`. `Version`, status and response header fields remain observations, not outgoing request controls.
 - `Retries` counts total attempts, including the first. HTTP error statuses are returned as responses; only transport exceptions and timeouts trigger retries. Invalid metadata fails before sending.
+
+### HTTP PATCH (unreleased) {: #http-patch}
+
+Configured PATCH support is part of Framework PR #57. It has the same release
+prerequisites as the native metadata contract above: updated SDK and Protocols
+packages plus a Runner dependency update/release. Runner 4.8.2 and its published
+schema accept only `Post`, `Put`, `Get`, and `Delete`; the fragment below is for
+the future Runner release and is rejected by the currently released schema.
+
+```yaml
+Http:
+  Method: Patch
+  BaseAddress: https://api.example.com
+  Port: 443
+  Route: /items/42
+  Headers:
+    Content-Type: application/merge-patch+json
+```
+
+Supply the patch document through the transaction's selected data source and
+input serializer. The request sends that payload with the configured content
+headers and request headers, and captures the response body and status metadata.
+Use `application/json-patch+json` when the API expects a JSON Patch operations
+array instead of a Merge Patch document. The per-message metadata override
+`MetaData.Http.Method = "PATCH"` has the same release prerequisites. Retry
+settings behave as described above for the HTTP transactor.
 
 ## Grpc {: #grpc}
 
