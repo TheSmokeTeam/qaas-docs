@@ -51,19 +51,19 @@ Http: {}
 
 Set `Http.Method` to one of the configuration values below.
 
-| HTTP method | `Http.Method` value | Availability                           |
-| ----------- | ------------------- | -------------------------------------- |
-| GET         | `Get`               | Released in Runner 4.8.2               |
-| POST        | `Post`              | Released in Runner 4.8.2               |
-| PUT         | `Put`               | Released in Runner 4.8.2               |
-| DELETE      | `Delete`            | Released in Runner 4.8.2               |
-| HEAD        | `Head`              | Framework master; unreleased in Runner |
-| PATCH       | `Patch`             | Framework master; unreleased in Runner |
-| OPTIONS     | `Options`           | Framework master; unreleased in Runner |
+| HTTP method | `Http.Method` value | Availability                               |
+| ----------- | ------------------- | ------------------------------------------ |
+| GET         | `Get`               | Released in Runner 4.8.2                   |
+| POST        | `Post`              | Released in Runner 4.8.2                   |
+| PUT         | `Put`               | Released in Runner 4.8.2                   |
+| DELETE      | `Delete`            | Released in Runner 4.8.2                   |
+| HEAD        | `Head`              | Released in Runner 4.8.3 (Framework 1.7.0) |
+| PATCH       | `Patch`             | Released in Runner 4.8.3 (Framework 1.7.0) |
+| OPTIONS     | `Options`           | Released in Runner 4.8.3 (Framework 1.7.0) |
 
-The unreleased methods require the package and Runner updates described under "Native metadata support (unreleased)" below. That contract also allows a per-message `MetaData.Http.Method` override containing any valid HTTP method token.
+Runner 4.8.3 uses Framework 1.7.0 for the native metadata support described below. That contract also allows a per-message `MetaData.Http.Method` override containing any valid HTTP method token.
 
-### Released metadata contract
+### Legacy metadata contract (Framework 1.6.4)
 
 Verified against Framework 1.6.4 and Runner 4.8.2. Item metadata is returned by a generator as `Data<object>.MetaData.Http`; it is not a set of extra properties under YAML `Sessions[].Transactions[].Http`. Configuration schemas describe the action configuration, not the SDK data record.
 
@@ -94,9 +94,9 @@ var http = new Http
 
 Use a trailing slash on `baseUri`; a leading slash on the relative route replaces the base path. Encode parameter values, not the entire route. For query values, build the query with a URI/query builder and put the resulting absolute URI in `Http.Uri`.
 
-### Native metadata support (unreleased)
+### Native metadata support (Framework 1.7.0)
 
-The HTTP metadata contract was merged into Framework master in PR #57, but is not available in the documented Runner 4.8.2 release. It requires the updated **SDK and Protocols together**, followed by a Runner dependency update/release. Existing published packages and schema downloads do not gain these capabilities by editing YAML.
+Available with Framework **SDK and Protocols 1.7.0 together**, consumed by Runner 4.8.3. Runner 4.8.2 uses the legacy contract above; upgrade its packages before using the extra metadata fields. Metadata belongs to the SDK data record, not the action's YAML configuration.
 
 ```csharp
 new Http
@@ -110,15 +110,15 @@ new Http
 
 - Destination precedence: `Uri` wins over item `Route`, which wins over configured `Route`. An explicit URI bypasses path substitution, including when replaying captured metadata. Relative `Uri` values resolve against the configured base **directory** using normal URI resolution.
 - Routes append to the configured base path with one boundary slash. An absolute or authority-relative route is rejected; use `Uri` when changing the destination authority. An explicit configured port overrides the base URI's port; `Port: null` preserves it. The configured default remains 8080.
-- `{name}` placeholders are substituted only in the path. Values are unescaped strings and are encoded as individual segments. Missing/null values and path-parameter values exactly equal to `.` or `..` fail before network I/O; extra dictionary keys are allowed. This check applies to substituted `PathParameters` values. Literal dot segments in `Route` are not rejected by the current proposal and may be normalized by URI resolution, so validate dynamic routes separately when they must stay under the configured base path. Query text is not a path template.
+- `{name}` placeholders are substituted only in the path. Values are unescaped strings and are encoded as individual segments. Missing/null values and path-parameter values exactly equal to `.` or `..` fail before network I/O; extra dictionary keys are allowed. This check applies to substituted `PathParameters` values. Literal dot segments in `Route` are not rejected and may be normalized by URI resolution, so validate dynamic routes separately when they must stay under the configured base path. Query text is not a path template.
 - `QueryParameters` are encoded and appended to the selected destination, including an explicit `Uri`. Existing pairs are retained, including duplicate keys. Null/empty dictionaries add nothing; empty string values are allowed, null values are rejected. The dictionary cannot itself represent repeated keys.
 - Null `Method` inherits the action method. Other values must be valid HTTP method tokens. Each retry resolves metadata into a fresh request without changing shared configuration or the metadata dictionary. Configured `Head`, `Patch`, and `Options` are supported in addition to the existing methods.
 - Response metadata also captures the effective request `Uri` and `Method`. `Version`, status and response header fields remain observations, not outgoing request controls.
 - `Retries` counts total attempts, including the first. HTTP error statuses are returned as responses; only transport exceptions and timeouts trigger retries. Invalid metadata fails before sending.
 
-### HTTP PATCH (unreleased)
+### HTTP PATCH
 
-Configured PATCH support is part of Framework PR #57. It has the same release prerequisites as the native metadata contract above: updated SDK and Protocols packages plus a Runner dependency update/release. Runner 4.8.2 and its published schema accept only `Post`, `Put`, `Get`, and `Delete`; the fragment below is for the future Runner release and is rejected by the currently released schema.
+Configured PATCH support is available in Framework 1.7.0 and Runner 4.8.3. Use Runner 4.8.3 and its matching family schema for the fragment below. Runner 4.8.2 and its schema accept only `Post`, `Put`, `Get`, and `Delete`.
 
 ```yaml
 Http:
@@ -130,7 +130,7 @@ Http:
     Content-Type: application/merge-patch+json
 ```
 
-Supply the patch document through the transaction's selected data source and input serializer. The request sends that payload with the configured content headers and request headers, and captures the response body and status metadata. Use `application/json-patch+json` when the API expects a JSON Patch operations array instead of a Merge Patch document. The per-message metadata override `MetaData.Http.Method = "PATCH"` has the same release prerequisites. Retry settings behave as described above for the HTTP transactor.
+Supply the patch document through the transaction's selected data source and input serializer. The request sends that payload with the configured content headers and request headers, and captures the response body and status metadata. Use `application/json-patch+json` when the API expects a JSON Patch operations array instead of a Merge Patch document. The per-message metadata override `MetaData.Http.Method = "PATCH"` is available in the same versions. Retry settings behave as described above for the HTTP transactor.
 
 ## Grpc
 
