@@ -2707,7 +2707,8 @@
                         "string"
                       ],
                       "description": "Custom queue declaration arguments / x-arguments (e.g. x-message-ttl, x-dead-letter-exchange, x-max-length, etc.)",
-                      "pattern": "\\$\\{.*\\}"
+                      "pattern": "\\$\\{.*\\}",
+                      "additionalProperties": {}
                     },
                     "ExchangeName": {
                       "type": [
@@ -4389,7 +4390,8 @@
                         "string"
                       ],
                       "description": "Custom queue declaration arguments / x-arguments (e.g. x-message-ttl, x-dead-letter-exchange, x-max-length, etc.)",
-                      "pattern": "\\$\\{.*\\}"
+                      "pattern": "\\$\\{.*\\}",
+                      "additionalProperties": {}
                     },
                     "ExchangeName": {
                       "type": [
@@ -4417,7 +4419,8 @@
                         "string"
                       ],
                       "description": "Default Headers to send messages with, if the message doesn't contain any Headers in its MetaData these Headers are used",
-                      "pattern": "\\$\\{.*\\}"
+                      "pattern": "\\$\\{.*\\}",
+                      "additionalProperties": {}
                     },
                     "AppId": {
                       "type": [
@@ -4688,7 +4691,8 @@
                         "string"
                       ],
                       "description": "Default Headers to send messages with, if the message doesn't contain any Headers in its MetaData these Headers are used",
-                      "pattern": "\\$\\{.*\\}"
+                      "pattern": "\\$\\{.*\\}",
+                      "additionalProperties": {}
                     },
                     "CompressionType": {
                       "type": "string",
@@ -4951,6 +4955,18 @@
                     "TableName"
                   ],
                   "properties": {
+                    "ColumnTypes": {
+                      "type": [
+                        "null",
+                        "object",
+                        "string"
+                      ],
+                      "description": "Optional column-name to SQL-type mapping for publisher inserts. Type expressions are trusted SQL configuration in the target database's dialect. A nonempty map uses SQL CAST instead of automatic inference and makes chunk sends use row inserts. Omitted or empty maps preserve the existing bulk behavior.",
+                      "pattern": "\\$\\{.*\\}",
+                      "additionalProperties": {
+                        "type": "string"
+                      }
+                    },
                     "ConnectionString": {
                       "type": "string",
                       "description": "The connection string to the database"
@@ -4985,6 +5001,18 @@
                     "TableName"
                   ],
                   "properties": {
+                    "ColumnTypes": {
+                      "type": [
+                        "null",
+                        "object",
+                        "string"
+                      ],
+                      "description": "Optional column-name to SQL-type mapping for publisher inserts. Type expressions are trusted SQL configuration in the target database's dialect. A nonempty map uses SQL CAST instead of automatic inference and makes chunk sends use row inserts. Omitted or empty maps preserve the existing bulk behavior.",
+                      "pattern": "\\$\\{.*\\}",
+                      "additionalProperties": {
+                        "type": "string"
+                      }
+                    },
                     "ConnectionString": {
                       "type": "string",
                       "description": "The connection string to the database"
@@ -5414,6 +5442,18 @@
                       "description": "Determines whether User-Defined Type (UDT) insertion is required. If UDT insertion is not necessary, it is recommended to set this property to false. UDT insertion can slow down data insertion, especially for large datasets. Therefore, it is recommended to only use UDT insertion when necessary.",
                       "default": false,
                       "pattern": "\\$\\{.*\\}"
+                    },
+                    "ColumnTypes": {
+                      "type": [
+                        "null",
+                        "object",
+                        "string"
+                      ],
+                      "description": "Optional column-name to SQL-type mapping for publisher inserts. Type expressions are trusted SQL configuration in the target database's dialect. A nonempty map uses SQL CAST instead of automatic inference and makes chunk sends use row inserts. Omitted or empty maps preserve the existing bulk behavior.",
+                      "pattern": "\\$\\{.*\\}",
+                      "additionalProperties": {
+                        "type": "string"
+                      }
                     },
                     "ConnectionString": {
                       "type": "string",
@@ -6100,18 +6140,24 @@
                   "properties": {
                     "Method": {
                       "type": "string",
-                      "description": "The http method the transactor should perform",
+                      "description": "Default HTTP method; per-item Http.Method overrides it",
                       "x-enumNames": [
                         "Post",
                         "Put",
                         "Get",
-                        "Delete"
+                        "Delete",
+                        "Head",
+                        "Patch",
+                        "Options"
                       ],
                       "enum": [
                         "Post",
                         "Put",
                         "Get",
-                        "Delete"
+                        "Delete",
+                        "Head",
+                        "Patch",
+                        "Options"
                       ]
                     },
                     "BaseAddress": {
@@ -6125,7 +6171,7 @@
                         "null",
                         "string"
                       ],
-                      "description": "The port to send the requests to in the http server",
+                      "description": "Port override applied to BaseAddress authority; null preserves its port",
                       "format": "int32",
                       "default": 8080,
                       "maximum": 65535.0,
@@ -6134,7 +6180,7 @@
                     },
                     "Route": {
                       "type": "string",
-                      "description": "The route in the http server to send the request to",
+                      "description": "Default route appended to the base path. Supports {name} placeholders from per-item Http.PathParameters. Per-item Http.Route overrides this route; Http.Uri overrides the destination.",
                       "default": ""
                     },
                     "Headers": {
@@ -6143,8 +6189,11 @@
                         "object",
                         "string"
                       ],
-                      "description": "Default content headers to add to the http requests, will be overriden if sent data has http content headers in its metadata",
-                      "pattern": "\\$\\{.*\\}"
+                      "description": "Default content headers to add to the http requests, replaced as a whole when item Http.Headers is non-null (empty clears defaults)",
+                      "pattern": "\\$\\{.*\\}",
+                      "additionalProperties": {
+                        "type": "string"
+                      }
                     },
                     "RequestHeaders": {
                       "type": [
@@ -6152,8 +6201,11 @@
                         "object",
                         "string"
                       ],
-                      "description": "Default request headers to add to the http requests, will be overriden if sent data has http request headers in its metadata",
-                      "pattern": "\\$\\{.*\\}"
+                      "description": "Default request headers to add to the http requests, replaced as a whole when item Http.RequestHeaders is non-null (empty clears defaults)",
+                      "pattern": "\\$\\{.*\\}",
+                      "additionalProperties": {
+                        "type": "string"
+                      }
                     },
                     "JwtAuth": {
                       "type": [
@@ -6176,7 +6228,10 @@
                             "string"
                           ],
                           "description": "Custom claims of the JWT",
-                          "pattern": "\\$\\{.*\\}"
+                          "pattern": "\\$\\{.*\\}",
+                          "additionalProperties": {
+                            "type": "string"
+                          }
                         },
                         "HierarchicalClaims": {
                           "type": [
@@ -6231,7 +6286,7 @@
                         "integer",
                         "string"
                       ],
-                      "description": "The amount of times to retry each failed request",
+                      "description": "Maximum number of attempts including the initial request; only transport failures and timeouts are retried",
                       "format": "int32",
                       "default": 1,
                       "maximum": 2147483647.0,
@@ -6578,7 +6633,8 @@
                                   "string"
                                 ],
                                 "description": "The binding's arguments",
-                                "pattern": "\\$\\{.*\\}"
+                                "pattern": "\\$\\{.*\\}",
+                                "additionalProperties": {}
                               },
                               "BindingType": {
                                 "type": "string",
@@ -6734,7 +6790,8 @@
                                   "string"
                                 ],
                                 "description": "Extra arguments for the exchange",
-                                "pattern": "\\$\\{.*\\}"
+                                "pattern": "\\$\\{.*\\}",
+                                "additionalProperties": {}
                               }
                             }
                           }
@@ -6870,7 +6927,8 @@
                                   "string"
                                 ],
                                 "description": "Extra arguments for the queue",
-                                "pattern": "\\$\\{.*\\}"
+                                "pattern": "\\$\\{.*\\}",
+                                "additionalProperties": {}
                               }
                             }
                           }
@@ -7492,7 +7550,8 @@
                                   "string"
                                 ],
                                 "description": "The binding's arguments",
-                                "pattern": "\\$\\{.*\\}"
+                                "pattern": "\\$\\{.*\\}",
+                                "additionalProperties": {}
                               },
                               "BindingType": {
                                 "type": "string",
@@ -9800,7 +9859,13 @@
                             "string"
                           ],
                           "description": "The environment variables to update/add",
-                          "pattern": "\\$\\{.*\\}"
+                          "pattern": "\\$\\{.*\\}",
+                          "additionalProperties": {
+                            "type": [
+                              "null",
+                              "string"
+                            ]
+                          }
                         },
                         "EnvVarsToRemove": {
                           "type": [
@@ -9820,7 +9885,20 @@
                             "string"
                           ],
                           "description": "Optional exact environment snapshot keyed by container name. When present, the probe restores each listed container to the provided environment instead of applying the broad update/remove rules.",
-                          "pattern": "\\$\\{.*\\}"
+                          "pattern": "\\$\\{.*\\}",
+                          "additionalProperties": {
+                            "type": [
+                              "object",
+                              "string"
+                            ],
+                            "pattern": "\\$\\{.*\\}",
+                            "additionalProperties": {
+                              "type": [
+                                "null",
+                                "string"
+                              ]
+                            }
+                          }
                         }
                       }
                     }
@@ -9947,7 +10025,13 @@
                             "string"
                           ],
                           "description": "The environment variables to update/add",
-                          "pattern": "\\$\\{.*\\}"
+                          "pattern": "\\$\\{.*\\}",
+                          "additionalProperties": {
+                            "type": [
+                              "null",
+                              "string"
+                            ]
+                          }
                         },
                         "EnvVarsToRemove": {
                           "type": [
@@ -9967,7 +10051,20 @@
                             "string"
                           ],
                           "description": "Optional exact environment snapshot keyed by container name. When present, the probe restores each listed container to the provided environment instead of applying the broad update/remove rules.",
-                          "pattern": "\\$\\{.*\\}"
+                          "pattern": "\\$\\{.*\\}",
+                          "additionalProperties": {
+                            "type": [
+                              "object",
+                              "string"
+                            ],
+                            "pattern": "\\$\\{.*\\}",
+                            "additionalProperties": {
+                              "type": [
+                                "null",
+                                "string"
+                              ]
+                            }
+                          }
                         }
                       }
                     }
@@ -10068,7 +10165,8 @@
                             "string"
                           ],
                           "description": "The description of the configmap paths and values to change (in JSONPath format). For example:path.to.yaml.value[0]: new value",
-                          "pattern": "\\$\\{.*\\}"
+                          "pattern": "\\$\\{.*\\}",
+                          "additionalProperties": {}
                         }
                       }
                     }
@@ -13473,7 +13571,104 @@
                       "string"
                     ],
                     "description": "The mapping for each column's name in the outputs results and its matchig field's path in the output json.",
-                    "pattern": "\\$\\{.*\\}"
+                    "pattern": "\\$\\{.*\\}",
+                    "additionalProperties": {
+                      "type": [
+                        "object",
+                        "string"
+                      ],
+                      "pattern": "\\$\\{.*\\}",
+                      "required": [
+                        "Path"
+                      ],
+                      "properties": {
+                        "Path": {
+                          "type": "string",
+                          "description": "The path to the field in the json output"
+                        },
+                        "FieldValidationConfig": {
+                          "type": [
+                            "object",
+                            "string"
+                          ],
+                          "description": "The configuration for the field's specific type of validation",
+                          "pattern": "\\$\\{.*\\}",
+                          "properties": {
+                            "Type": {
+                              "type": "string",
+                              "description": "The type of validation the field will be validated according to",
+                              "x-enumNames": [
+                                "ErrorRange",
+                                "ExactValue",
+                                "ExactOverrideValue",
+                                "Base64ToHex"
+                              ],
+                              "enum": [
+                                "ErrorRange",
+                                "ExactValue",
+                                "ExactOverrideValue",
+                                "Base64ToHex"
+                              ]
+                            },
+                            "ExactValue": {
+                              "type": [
+                                "object",
+                                "string"
+                              ],
+                              "description": "Validates field by the exact value from the expected results",
+                              "pattern": "\\$\\{.*\\}"
+                            },
+                            "ErrorRange": {
+                              "type": [
+                                "object",
+                                "string"
+                              ],
+                              "description": "Validates field by an error range of the expected value",
+                              "pattern": "\\$\\{.*\\}",
+                              "required": [
+                                "ErrorRange"
+                              ],
+                              "properties": {
+                                "ErrorRange": {
+                                  "type": [
+                                    "number",
+                                    "string"
+                                  ],
+                                  "description": "The error range to validate the field by",
+                                  "format": "double",
+                                  "pattern": "\\$\\{.*\\}"
+                                }
+                              }
+                            },
+                            "ExactOverrideValue": {
+                              "type": [
+                                "object",
+                                "string"
+                              ],
+                              "description": "Validates field by a value that overrides the expected value",
+                              "pattern": "\\$\\{.*\\}",
+                              "required": [
+                                "OverrideValue"
+                              ],
+                              "properties": {
+                                "OverrideValue": {
+                                  "type": "string",
+                                  "description": "The value that will override the expected value of the field"
+                                }
+                              }
+                            },
+                            "Base64ToHex": {
+                              "type": [
+                                "object",
+                                "string"
+                              ],
+                              "description": "Validates field by converting the value from base64 to hex",
+                              "pattern": "\\$\\{.*\\}"
+                            }
+                          }
+                        }
+                      }
+                    }
                   },
                   "JsonConverterType": {
                     "type": "string",
@@ -13918,7 +14113,8 @@
             "string"
           ],
           "description": "Extra labels added by the user",
-          "pattern": "\\$\\{.*\\}"
+          "pattern": "\\$\\{.*\\}",
+          "additionalProperties": {}
         }
       }
     },
@@ -14060,7 +14256,10 @@
                 "string"
               ],
               "description": "Static launch attributes to add to every launch in addition to the default QaaS team/system/session/source attributes.",
-              "pattern": "\\$\\{.*\\}"
+              "pattern": "\\$\\{.*\\}",
+              "additionalProperties": {
+                "type": "string"
+              }
             }
           }
         }
