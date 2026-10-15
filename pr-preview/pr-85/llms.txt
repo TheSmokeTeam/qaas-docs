@@ -34,6 +34,7 @@ This index is generated from checked frontmatter summaries. Use the full-content
 - [Hello-World HTTP Test](/qaas/quickStart/helloWorldHttp/): Smallest end-to-end QaaS recipe: a runner test against a mocker stub that returns HTTP 200 on /hello, with act/assert replay for fast iteration.
 - [S3 headers and key selection](/qaas/userInterfaces/runner/configurationSections/sessions/types/s3-headers-and-key-selection/): Publish S3 user metadata, consume it for assertions, and select one key hierarchy level with Prefix and Delimiter.
 - [Runner — YAML Schema Extensions](/qaas/userInterfaces/runner/schema-extensions/): Register a new plugin family with QaaS.JsonSchemaExtensions by tagging the base with [JsonSchema] and emitting AnyOfSchemaOption discriminators, then regenerate the runner schema.
+- [Docs site maintenance](/site-maintenance/): Maintain the QaaS documentation site, generate reference pages, configure deployment, and build offline bundles.
 
 ## Explanation
 

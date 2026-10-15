@@ -74,6 +74,24 @@ Publishes chunks of structured data to a PostgreSQL table. Item bodies are conve
 PostgreSqlTable: {}
 ```
 
+### Explicit column types (unreleased)
+
+The SQL type override in Framework PR #58 requires a new `QaaS.Framework.Protocols` package and a Runner dependency update/release. Runner 4.8.2 and the current published schema downloads do not expose `ColumnTypes`. Editing YAML alone does not enable the feature. The following is a configuration fragment for that future release:
+
+```yaml
+PostgreSqlTable:
+  ConnectionString: Host=localhost;Database=qaas;Username=qaas;Password=example
+  TableName: measurements
+  ColumnTypes:
+    price: double precision
+    created_at: timestamp with time zone
+    label: text
+```
+
+`ColumnTypes` is an optional map from column names to SQL type expressions, with no mapping by default. For individual sends, a configured column uses `CAST(value AS type)` before automatic date or UDT inference. This keeps a value such as `1.12` numeric when configured as `double precision`, and date-like text as text when configured as `text`. Unconfigured columns retain the legacy row inference order. Null values remain SQL `NULL`. Type expressions are trusted configuration in the target database's dialect, like the table name; invalid casts fail in the database without falling back to automatic inference.
+
+When the mapping is omitted or empty, single sends and bulk chunk sends retain their existing behavior. A nonempty mapping makes chunk sends use parameterized row inserts to apply explicit casts, which can be slower than COPY. Every chunk value is passed as data: unconfigured values keep the text representation used by COPY and are interpreted by the target column type, without date inference or executable UDT-expression detection. Quotes and function-like text remain data. Both configured and unconfigured nulls remain database nulls.
+
 ## MongoDbCollection
 
 Publishes chunks of documents to a MongoDB collection. Each item body is serialized to JSON, parsed as a BSON document, and inserted with `InsertMany` into the configured database and collection.

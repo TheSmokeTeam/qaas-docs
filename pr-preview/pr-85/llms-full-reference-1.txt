@@ -7630,53 +7630,9 @@ The current source tree supports the following dispatch and behavior:
 - `S3Protocol` handles object naming, retry-oriented reads, and bucket/object management behavior.
 - `ObjectNameGenerator` supports the package's naming strategies such as random GUIDs and growing numerical series.
 
-## SQL and HTTP configuration {: #sql-and-http-configuration}
-
-### Explicit SQL column types {: #explicit-sql-column-types}
-
-`BaseSqlProtocol.GetParsedSqlParameter` normally tries date parsing before UDT and
-string handling. A value such as `1.12` can therefore be interpreted as a date.
-Framework PR #58 adds an optional `ColumnTypes` mapping to SQL configuration:
-
-```yaml
-ColumnTypes:
-  price: double precision
-  created_at: timestamp with time zone
-  label: text
-```
-
-Place this mapping inside the sender's SQL configuration, such as
-`Publishers[].PostgreSqlTable`. Each configured column uses `CAST(value AS type)`
-instead of automatic inference. Columns omitted from the mapping keep their
-existing behavior, and null values remain SQL `NULL`. SQL type expressions use
-the target database's dialect and are trusted configuration, like the table name.
-Invalid casts fail in the database without retrying automatic inference.
-
-The mapping applies to single sends and chunk sends. A nonempty mapping makes
-chunk sends use row inserts to apply the casts, which can be slower than bulk
-insertion. Without a mapping, PostgreSQL chunk sends retain the existing COPY path.
-Use a `QaaS.Framework.Protocols` package built after PR #58 is merged and released;
-older packages do not expose this configuration.
-
-### HTTP PATCH {: #http-patch}
-
-HTTP PATCH is supported by the method enum and request mapping on Framework master
-starting with PR #57. Configure the HTTP transactor with `Method: Patch`:
-
-```yaml
-Method: Patch
-BaseAddress: https://api.example.com
-Port: 443
-Route: /items/42
-Headers:
-  Content-Type: application/merge-patch+json
-```
-
-Supply the patch document as the transaction payload. Content headers, request
-headers, response metadata, and retry settings work as they do for other HTTP
-methods. A message can override the configured method using
-`MetaData.Http.Method = "PATCH"`. Use `application/json-patch+json` instead when
-the target API expects a JSON Patch operations array.
+Configuration examples belong to the Runner action reference:
+[SQL publishers](../../qaas/userInterfaces/runner/configurationSections/sessions/types/publishers.md#postgresql-column-types)
+and [HTTP transactions](../../qaas/userInterfaces/runner/configurationSections/sessions/types/transactions.md#http-patch).
 
 ## Main source areas {: #main-source-areas}
 

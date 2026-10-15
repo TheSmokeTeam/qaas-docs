@@ -17653,6 +17653,40 @@ Publishes chunks of structured data to a PostgreSQL table. Item bodies are conve
 PostgreSqlTable: {}
 ```
 
+### Explicit column types (unreleased) {: #postgresql-column-types}
+
+The SQL type override in Framework PR #58 requires a new `QaaS.Framework.Protocols`
+package and a Runner dependency update/release. Runner 4.8.2 and the current
+published schema downloads do not expose `ColumnTypes`. Editing YAML alone does
+not enable the feature. The following is a configuration fragment for that future release:
+
+```yaml
+PostgreSqlTable:
+  ConnectionString: Host=localhost;Database=qaas;Username=qaas;Password=example
+  TableName: measurements
+  ColumnTypes:
+    price: double precision
+    created_at: timestamp with time zone
+    label: text
+```
+
+`ColumnTypes` is an optional map from column names to SQL type expressions, with
+no mapping by default. For individual sends, a configured column uses
+`CAST(value AS type)` before automatic date or UDT inference. This keeps a value
+such as `1.12` numeric when configured as `double precision`, and date-like text
+as text when configured as `text`. Unconfigured columns retain the legacy row
+inference order. Null values remain SQL `NULL`. Type expressions are trusted
+configuration in the target database's dialect, like the table name; invalid
+casts fail in the database without falling back to automatic inference.
+
+When the mapping is omitted or empty, single sends and bulk chunk sends retain
+their existing behavior. A nonempty mapping makes chunk sends use parameterized
+row inserts to apply explicit casts, which can be slower than COPY. Every chunk
+value is passed as data: unconfigured values keep the text representation used
+by COPY and are interpreted by the target column type, without date inference
+or executable UDT-expression detection. Quotes and function-like text remain
+data. Both configured and unconfigured nulls remain database nulls.
+
 ## MongoDbCollection {: #mongodbcollection}
 
 Publishes chunks of documents to a MongoDB collection. Each item body is serialized to JSON, parsed as a BSON document, and inserted with `InsertMany` into the configured database and collection.
@@ -18017,7 +18051,11 @@ Use a trailing slash on `baseUri`; a leading slash on the relative route replace
 
 ### Native metadata support (unreleased) {: #native-http-metadata}
 
-The proposed HTTP metadata contract in Framework PR #57 is still unmerged and adds the following behavior. It requires the updated **SDK and Protocols together**, followed by a Runner dependency update/release. Existing published packages and schema downloads do not gain these capabilities by editing YAML.
+The HTTP metadata contract was merged into Framework master in PR #57, but is not
+available in the documented Runner 4.8.2 release. It requires the updated **SDK
+and Protocols together**, followed by a Runner dependency update/release.
+Existing published packages and schema downloads do not gain these capabilities
+by editing YAML.
 
 ```csharp
 new Http
@@ -18036,6 +18074,32 @@ new Http
 - Null `Method` inherits the action method. Other values must be valid HTTP method tokens. Each retry resolves metadata into a fresh request without changing shared configuration or the metadata dictionary. Configured `Head`, `Patch`, and `Options` are supported in addition to the existing methods.
 - Response metadata also captures the effective request `Uri` and `Method`. `Version`, status and response header fields remain observations, not outgoing request controls.
 - `Retries` counts total attempts, including the first. HTTP error statuses are returned as responses; only transport exceptions and timeouts trigger retries. Invalid metadata fails before sending.
+
+### HTTP PATCH (unreleased) {: #http-patch}
+
+Configured PATCH support is part of Framework PR #57. It has the same release
+prerequisites as the native metadata contract above: updated SDK and Protocols
+packages plus a Runner dependency update/release. Runner 4.8.2 and its published
+schema accept only `Post`, `Put`, `Get`, and `Delete`; the fragment below is for
+the future Runner release and is rejected by the currently released schema.
+
+```yaml
+Http:
+  Method: Patch
+  BaseAddress: https://api.example.com
+  Port: 443
+  Route: /items/42
+  Headers:
+    Content-Type: application/merge-patch+json
+```
+
+Supply the patch document through the transaction's selected data source and
+input serializer. The request sends that payload with the configured content
+headers and request headers, and captures the response body and status metadata.
+Use `application/json-patch+json` when the API expects a JSON Patch operations
+array instead of a Merge Patch document. The per-message metadata override
+`MetaData.Http.Method = "PATCH"` has the same release prerequisites. Retry
+settings behave as described above for the HTTP transactor.
 
 ## Grpc {: #grpc}
 
