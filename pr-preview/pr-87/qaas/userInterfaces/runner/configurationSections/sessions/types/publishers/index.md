@@ -74,9 +74,9 @@ Publishes chunks of structured data to a PostgreSQL table. Item bodies are conve
 PostgreSqlTable: {}
 ```
 
-### Explicit column types (unreleased)
+### Explicit column types (Framework 1.7.0)
 
-The SQL type override in Framework PR #58 requires a new `QaaS.Framework.Protocols` package and a Runner dependency update/release. Runner 4.8.2 and the current published schema downloads do not expose `ColumnTypes`. Editing YAML alone does not enable the feature. The following is a configuration fragment for that future release:
+Available with `QaaS.Framework.Protocols` 1.7.0 and Runner 4.8.3. Use the matching Runner family schema for configuration validation. Runner 4.8.2 and its schema do not expose `ColumnTypes`; upgrade the packages and schema before using this configuration fragment:
 
 ```yaml
 PostgreSqlTable:
