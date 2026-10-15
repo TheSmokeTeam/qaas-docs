@@ -38,5 +38,11 @@ git config core.hooksPath .githooks   # one-time hook setup
 - Deploys to Pages happen on pushes to `master`, `fix/improve_docs`, and `fix/docs_errors` — treat all three as production branches.
 
 ## Process
+Keep README.md general. Document feature configuration in the existing action reference
+pages, and site deployment/configuration in the site maintenance guide. Do not duplicate
+feature examples in repository or project overview pages. Label source changes that have
+not reached published packages and schema downloads as unreleased.
+
+
 
 Docs changes: run markdownlint + `mkdocs build --strict` + lychee link check (pre-commit hooks do this). Conventional commits. Generated-content drift belongs in QaaS.Docs.Generator or the source repos, not here.
