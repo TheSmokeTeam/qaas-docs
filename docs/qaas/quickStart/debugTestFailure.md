@@ -18,6 +18,38 @@ QaaS includes a configurable logger that can output logs to the console or to a 
 
 For more information about the logger, refer to the [Logger documentation](../userInterfaces/logger.md).
 
+## Offline package diagnostics (unreleased) {: #offline-package-diagnostics}
+
+The capabilities in this section require the Framework and Runner diagnostic changes to reach your installed packages. They are **unreleased**; inspect the installed package versions, local API documentation, and CLI help before using the new flag or expecting the new events. Older packages remain diagnosable using their existing text logs and reports.
+
+### Collect structured logs {: #collect-structured-logs}
+
+When the installed Framework supports [`--json-logs`](../userInterfaces/logger.md#json-console-logs), capture an explicitly reviewed run from the test project directory:
+
+```bash
+dotnet run -- run test.qaas.yaml --json-logs --logger-level Debug --disable-elastic-defaults > qaas-run.log 2>&1
+```
+
+This flag formats default console log events as newline-delimited Serilog JSON, including `Timestamp`, `Level`, `MessageTemplate`, `RenderedMessage`, `Properties`, and `Exception` when present. It does not enable network logging. `--disable-elastic-defaults` prevents registered Elastic defaults from enabling shipping; do not separately enable `--send-logs` when collecting local-only evidence. This does not disable network operations performed by the test itself. An explicit `--logger-configuration-file` takes precedence over `--json-logs`. Build output, third-party console messages, and CLI output may still be plain text; collectors must handle mixed output rather than treating the entire file as one JSON document.
+
+Runner adds these diagnostic events without changing test outcomes:
+
+| Signal | Meaning | Where to read it |
+| --- | --- | --- |
+| `ConfigurationRejected`, event ID `4102`, Warning | A runner lifecycle phase rejected configuration | `Properties.EventId`, `Properties.Phase`, and the exception chain |
+| `PhaseFailed`, event ID `4101`, Error | A runner lifecycle phase threw another exception | `Properties.EventId`, `Properties.Phase`, and the exception chain |
+| `QAAS_ASSERTION_COMPLETED`, Debug | An assertion completed with a recorded status | `Properties.DiagnosticCode`, `AssertionName`, `AssertionType`, and `AssertionStatus` |
+
+`EventId` is a structured property from the Microsoft logging bridge; field presentation can differ with a custom formatter. Assertion status is a named status such as `Passed`, `Failed`, or `Skipped`, not a process exit code. An assertion-completion event does not establish that every assertion ran, and a QaaS stack frame does not prove a framework defect. Configuration exceptions created for YAML parsing/loading retain the original exception as `InnerException`; the existing friendly outer exception presentation is preserved.
+
+### Inspect the packages that actually ran {: #inspect-installed-diagnostics}
+
+Offline inspection tools can read the installed NuGet metadata, DLL contracts, included XML API documentation, and matching embedded portable PDB source without a QaaS checkout. The Framework SDK package includes generated XML documentation alongside its assembly. Inspect package contents to establish availability; do not assume every version or dependency contains source or complete XML comments. Reading remote Source Link URLs is unnecessary and unavailable in an air gap. Decompilation is a fallback only when a suitable tool is already installed, and its output must be identified as reconstructed code.
+
+For each diagnosis, correlate exact package and assembly identities with the run command, configuration evidence, exception chain, relevant logs, and assertion/report artifacts. Distinguish declared project references from resolved packages and assemblies proven to have been loaded. Keep secrets and payloads out of diagnostic excerpts; use bounded sanitized excerpts with references to local originals. Report missing or truncated evidence explicitly. Do not repeat a run merely to collect evidence without reviewing its effects.
+
+Start with the observed failure and evidence, inspect the matching implementation when available, then identify the smallest check that separates configuration, custom-hook, framework, tested-system, and environment explanations. Confirm a cause only when the evidence distinguishes it from plausible alternatives.
+
 ## QaaS Act/Assert Commands {: #qaas-actassert-commands}
 
 QaaS provides two specialized commands to help debug test failures:
