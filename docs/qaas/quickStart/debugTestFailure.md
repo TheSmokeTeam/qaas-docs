@@ -24,7 +24,7 @@ The capabilities in this section require the Framework and Runner diagnostic cha
 
 ### Collect structured logs {: #collect-structured-logs}
 
-When the installed Framework supports `--json-logs`, capture an explicitly reviewed run from the test project directory:
+When the installed Framework supports [`--json-logs`](../userInterfaces/logger.md#json-console-logs), capture an explicitly reviewed run from the test project directory:
 
 ```bash
 dotnet run -- run test.qaas.yaml --json-logs --logger-level Debug --disable-elastic-defaults > qaas-run.log 2>&1
