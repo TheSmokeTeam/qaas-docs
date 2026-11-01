@@ -36,6 +36,7 @@ dotnet run <dotnet-parameters> -- <command> [command-values] [command-flags]
 | Logging | `--elastic-password` |  | `string` | Optional Elasticsearch password for the logger sink. |
 | Logging | `--elastic-uri` |  | `string` | Elasticsearch URI used by the logger sink when send-logs is enabled. |
 | Logging | `--elastic-username` |  | `string` | Optional Elasticsearch username for the logger sink. |
+| Logging | `--json-logs` | False | `bool` | Write default console log events as JSON. An explicit logger configuration takes precedence. |
 | Logging | `-g`, `--logger-configuration-file` |  | `string` | Path to a logger's configuration file, will override the default logger's configuration. Its level can be overridden by the logger-level flag. |
 | Logging | `-l`, `--logger-level` |  | `LogEventLevel (optional)` | The logger's level, overrides both the default logger's level (Information) and the level of any logger's configuration given.<br />All available options (not case sensitive) are: Verbose, Debug,<br />Information, Warning, Error, Fatal. |
 | Configuration | `--no-env` | False | `bool` | When this flag is used environment variables will not override loaded configurations. |
@@ -95,6 +96,9 @@ Usage:
 
   --run-locally                      (Default: false) Runs the project locally and enables exit by any key press.
 
+  --json-logs                        (Default: false) Write default console log events as JSON. An explicit logger
+                                     configuration takes precedence.
+
   -l, --logger-level                 The logger's level, overrides both the default logger's level (Information) and the
                                      level of any logger's configuration given.
                                      All available options (not case sensitive) are: Verbose, Debug,
@@ -144,6 +148,9 @@ Usage:
   -o, --output-folder                Path to a folder to write the generated templates in.
 
   --run-locally                      (Default: false) Runs the project locally and enables exit by any key press.
+
+  --json-logs                        (Default: false) Write default console log events as JSON. An explicit logger
+                                     configuration takes precedence.
 
   -l, --logger-level                 The logger's level, overrides both the default logger's level (Information) and the
                                      level of any logger's configuration given.

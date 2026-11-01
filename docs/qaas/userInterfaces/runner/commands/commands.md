@@ -45,6 +45,7 @@ dotnet run <dotnet-parameters> -- <command> [command-values] [command-flags]
 | Logging | `--elastic-password` |  | `string` | Optional Elasticsearch password for the logger sink. |
 | Logging | `--elastic-uri` |  | `string` | Elasticsearch URI used by the logger sink when send-logs is enabled. |
 | Logging | `--elastic-username` |  | `string` | Optional Elasticsearch username for the logger sink. |
+| Logging | `--json-logs` | False | `bool` | Write default console log events as JSON. An explicit logger configuration takes precedence. |
 | Logging | `-g`, `--logger-configuration-file` |  | `string` | Path to a logger's configuration file, will override the default logger's configuration. Its level can be overridden by the logger-level flag. |
 | Logging | `-l`, `--logger-level` |  | `LogEventLevel (optional)` | The logger's level, overrides both the default logger's level (Information) and the level of any logger's configuration given.<br />All available options (not case sensitive) are: Verbose, Debug,<br />Information, Warning, Error, Fatal. |
 | Runtime | `--no-process-exit` | False | `bool` | When this flag is used the runner will not terminate the current process after it completes. Useful when embedding QaaS.Runner and orchestrating multiple runners in a single host process. |
