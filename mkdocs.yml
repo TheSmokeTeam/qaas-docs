@@ -20,7 +20,6 @@ validation:
 nav:
   - Home:
       - Overview: index.md
-      - Site maintenance: site-maintenance.md
 
   - Runner:
       - General:

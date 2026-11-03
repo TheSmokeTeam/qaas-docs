@@ -51,4 +51,4 @@ and offline `lychee` against the rendered site check root.
 
 ## Maintenance documentation
 
-Reference generation, deployment configuration, Docker, Helm, and offline packaging are documented in the [site maintenance guide](docs/site-maintenance.md).
+Reference generation, deployment configuration, Docker, Helm, and offline packaging are documented in the [site maintenance guide](tools/site-maintenance.md).
