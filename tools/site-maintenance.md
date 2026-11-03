@@ -1,20 +1,12 @@
----
-id: site-maintenance
-type: how-to
-status: stable
-since: 2.0.0
-last_verified: 2026-10-15
-applies_to: [framework, runner, mocker]
-keywords: [documentation, maintenance, deployment, configuration, offline]
-summary: "Maintain the QaaS documentation site, generate reference pages, configure deployment, and build offline bundles."
----
 # Docs site maintenance
 
 > TL;DR — Maintain the QaaS documentation site, generate reference pages, configure deployment, and build offline bundles.
 
+This repository-only guide lives outside `docs/` and is not included in the published site.
+
 Run the commands below from the qaas-docs repository root. Repository overview and basic build commands remain in the root README.
 
-## Deterministic Reference Docs {: #deterministic-reference-docs}
+## Deterministic Reference Docs
 
 Runner, Mocker, and Framework reference pages are generated deterministically.
 
@@ -33,7 +25,7 @@ dotnet run --project .\tools\QaaS.Docs.Generator\QaaS.Docs.Tools\QaaS.Docs.Tools
 dotnet run --project .\tools\QaaS.Docs.Generator\QaaS.Docs.Tools\QaaS.Docs.Tools.csproj -- generate-reference-docs --docs-root $PWD --check --build-site
 ```
 
-## Repository Layout {: #repository-layout}
+## Repository Layout
 
 ```text
 qaas-docs/
@@ -44,7 +36,7 @@ qaas-docs/
 `-- .github/workflows/ci.yml      Unified docs CI, deploy, Docker publish, and overview update workflow
 ```
 
-## Tools Folder {: #tools-folder}
+## Tools Folder
 
 The top-level `tools/` folder holds the build and runtime helpers that sit around the docs site itself:
 
@@ -55,7 +47,7 @@ The top-level `tools/` folder holds the build and runtime helpers that sit aroun
 
 You may also see `tools/QaaS.Docs.Generator.Tests/` locally after .NET test runs. That path is build output, not authored docs source.
 
-## Automation {: #automation}
+## Automation
 
 The docs repository uses `.github/workflows/ci.yml` for site and runtime-image checks, and `.github/workflows/docs.yml` for documentation validation, previews, and offline bundles.
 
@@ -67,7 +59,7 @@ The workflows handle:
 - Docker image publish on tag pushes and manual dispatch, using the ref name and immutable `sha-<commit>` tags; tag and `master` runs also update `latest`
 - GitHub repository overview updates from the repository README on tag pushes and manual dispatch
 
-### Required Secrets And Variables {: #required-secrets-and-variables}
+### Required Secrets And Variables
 
 Docker image publish uses these secrets:
 
@@ -161,7 +153,7 @@ CI and local tool inputs:
 | `QAAS_DOCS_PROBES_SOURCE_ROOT` | `$QAAS_WORKSPACE_ROOT/QaaS.Common.Probes/QaaS.Common.Probes` | Probe source path used by the legacy plugin-page generator |
 | `QAAS_DOCS_PROCESSORS_SOURCE_ROOT` | `$QAAS_WORKSPACE_ROOT/QaaS.Common.Processors/QaaS.Common.Processors` | Processor source path used by the legacy plugin-page generator |
 
-## Docker {: #docker}
+## Docker
 
 Build locally:
 
@@ -178,7 +170,7 @@ docker run -p 8000:8000 qaas-docs
 
 The image prebuilds the static site during `docker build` and the runtime image only serves the generated files through Nginx on port `8000`. It runs as UID `101` by default and also supports the arbitrary non-root UID assigned by an OpenShift restricted security context.
 
-## ZIM {: #zim}
+## ZIM
 
 The documentation validation workflow produces a three-file offline bundle: the version-independent OpenZIM asset `qaas-docs.zim`, its machine-readable `qaas-docs-zim-provenance.json`, and `qaas-docs-image.tgz`, a saved Docker image tagged `qaas-docs:latest`. The ZIM metadata is fixed to name `QaaS Documantation`, title `Complete QaaS Documantation`, and a `YYYY-MM-DD` description identifying the UTC date to which the docs were updated. CI validates the contract, smoke-tests the ZIM with `kiwix-serve`, verifies the compressed image archive, and attaches all three files to tag releases.
 
@@ -223,7 +215,7 @@ docker run \
 
 Runtime `QAAS_DOCS_*` variables do not rebuild the static site. They replace the configured outbound URLs and rendered example image references in the browser, so the same image can be reused across environments while preserving the default values when no runtime overrides are provided. The entrypoint writes only `/tmp/qaas-docs/runtime-overrides.js`; it does not read, mount, or modify a JSON configuration file.
 
-### Helm and OpenShift {: #helm-and-openshift}
+### Helm and OpenShift
 
 An image built on the connected network can be copied into the air-gapped registry and configured only through the pod environment. Preserve the image entrypoint: do not set Helm/Kubernetes `command`, because `command` replaces the entrypoint that converts `QAAS_DOCS_*` variables into the runtime JavaScript. A normal `docker save`/`docker load` or registry-to-registry copy preserves the entrypoint; `docker export`/`docker import` does not preserve image configuration.
 

@@ -39,7 +39,7 @@ git config core.hooksPath .githooks   # one-time hook setup
 
 ## Process
 Keep README.md general. Document feature configuration in the existing action reference
-pages, and site deployment/configuration in the site maintenance guide. Do not duplicate
+pages, and site deployment/configuration in the repository-only `tools/site-maintenance.md` guide (outside the published `docs/` tree). Do not duplicate
 feature examples in repository or project overview pages. Label source changes that have
 not reached published packages and schema downloads as unreleased.
 
