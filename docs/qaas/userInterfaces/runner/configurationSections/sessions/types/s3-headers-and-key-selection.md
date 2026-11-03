@@ -3,7 +3,7 @@ id: qaas.userinterfaces.runner.configurationsections.sessions.types.s3.headers.a
 type: how-to
 status: stable
 since: 2.0.0
-last_verified: 2026-07-13
+last_verified: 2026-11-03
 applies_to: [runner]
 keywords: [qaas, runner, s3, headers, metadata, prefix, delimiter]
 summary: "Publish S3 user metadata, consume it for assertions, and select one key hierarchy level with Prefix and Delimiter."
@@ -112,6 +112,37 @@ For a bucket containing `events/a.json` and `events/archive/b.json`:
 | `Prefix: events/`, `Delimiter: /` | `events/a.json` only |
 
 An empty delimiter is the default and reads every object whose key matches the prefix, at every deeper level. A non-empty delimiter is not an exclusion character and does not mean "return keys without this character anywhere." It selects a hierarchy level relative to `Prefix`. Use `Prefix` to choose the path and `Delimiter` to decide whether deeper paths are included.
+
+## Read large object sets incrementally (unreleased) {: #read-large-object-sets-incrementally}
+
+!!! warning "Unreleased / local preview"
+    This section describes the incremental S3 reader change in development. It requires a Framework Protocols package containing that change; it is not supported by the previously published 1.7.1 package. The published generated configuration tables and schema downloads may not include `MaxConcurrentDownloads` until the release and package-mirror update complete.
+
+The incremental reader waits for the configured inactivity window, lists matching object metadata, and filters and sorts that metadata before downloading bodies. `ReadFromRunStartTime: true` therefore excludes older objects before their bodies are fetched. Body downloads begin when the result sequence is enumerated, instead of loading the complete bucket into memory before returning the first item.
+
+The metadata snapshot is captured when `ReadChunk` is called. Enumerating that result again downloads the bodies again; it does not reuse a memoized body cache. The metadata snapshot does not pin object versions, so repeated enumeration can observe changed bytes or a deleted key.
+
+`MaxConcurrentDownloads` belongs under the consumer's `S3Bucket` configuration. It is a positive integer with a default of `1`. This example is a fragment to add to an existing S3 consumer, alongside its connection and bucket settings:
+
+```yaml
+S3Bucket:
+  Prefix: events/current-run/
+  MaxConcurrentDownloads: 4
+```
+
+With the default `1`, the reader loads one complete body at a time. A value of `4` loads at most four bodies in the current download window. It waits for that window to finish, then yields its results in timestamp order before starting the next window. Equal timestamps retain the listing order; do not rely on the former parallel download completion order for ties.
+
+Choose `1` to minimize simultaneous body buffers, or a small higher value when overlapping requests improves throughput. This setting controls S3 body downloads, not publisher concurrency or generic consumer parallelism. `DataFilter.Body: false` still avoids body GET requests entirely. `ReadStorageHeaders: true` continues to perform an additional metadata request for each consumed object.
+
+### Memory and stopping behavior {: #incremental-memory-and-stopping-behavior}
+
+The limit counts concurrent object downloads; it is not a byte limit. Each downloaded body is still materialized as a complete byte array, and transport buffers and copies add overhead. Four large objects can require much more memory than four small objects. Metadata for the selected object set is also listed and sorted in memory.
+
+Runner still retains consumed output bodies for later assertions. Incremental S3 reads reduce acquisition buffering, but do not make the complete Runner workflow use constant memory. For example, retaining 150 objects of 4 MiB each still requires about 600 MiB for the bodies alone, before deserialization, publisher data, storage and reporting. This change does not add lazy `Body` access or disk-backed retention.
+
+If a count policy or another caller stops enumeration, the reader does not start later windows. Up to `MaxConcurrentDownloads` objects from the current window may already have been downloaded. The setting does not cancel an in-flight request, and the consumer timeout remains an inactivity window rather than an overall download deadline.
+
+Incremental delivery can expose earlier results before a later download fails. Treat the consumer action failure as a failed or incomplete read; a partial output list is not proof that every expected object was consumed. Objects can also change between listing and download: this feature does not create an immutable S3 snapshot.
 
 ## Edge cases {: #edge-cases}
 
