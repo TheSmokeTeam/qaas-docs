@@ -107,8 +107,6 @@ An empty delimiter is the default and reads every object whose key matches the p
 
 ## Read large object sets incrementally
 
-Use a Framework package and matching configuration schema that expose `StreamResults` and `MaxConcurrentDownloads`.
-
 `StreamResults` defaults to `false`: `ReadChunk` finishes acquisition before returning, reports download errors during that call, and returns a repeatable materialized result. For incremental delivery, set `StreamResults: true`.
 
 The incremental reader waits for the configured inactivity window, lists matching object metadata, and filters and sorts that metadata before downloading bodies. `ReadFromRunStartTime: true` therefore excludes older objects before their bodies are fetched. With `StreamResults: true`, body downloads begin when the result sequence is enumerated.
@@ -154,7 +152,7 @@ Choose `1` to minimize simultaneous body buffers, or a small higher value when o
 
 The limit counts concurrent object downloads; it is not a byte limit. Each downloaded body is materialized as a complete byte array, and transport buffers and copies add overhead. Four large objects can require much more memory than four small objects. Metadata for the selected object set is also listed and sorted in memory.
 
-Runner retains consumed output bodies for later assertions. Incremental S3 reads reduce acquisition buffering, but do not make the complete Runner workflow use constant memory. For example, retaining 150 objects of 4 MiB each still requires about 600 MiB for the bodies alone, before deserialization, publisher data, storage and reporting. `Body` is a complete byte array and retained output is held in memory.
+Runner retains consumed output bodies for later assertions. Incremental S3 reads reduce acquisition buffering, but do not make the complete Runner workflow use constant memory. Each retained `Body` is a complete byte array; deserialization, publisher data, storage and reporting also consume memory.
 
 If a count policy or another caller stops enumeration, the reader does not start later windows. Up to `MaxConcurrentDownloads` objects from the current window may already have been downloaded. The setting does not cancel an in-flight request, and the consumer timeout remains an inactivity window rather than an overall download deadline.
 
