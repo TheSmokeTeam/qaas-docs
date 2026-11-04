@@ -178,10 +178,6 @@ Publishes byte payloads as files over SFTP. The target file path is the configur
 Sftp: {}
 ```
 
-## See also {: #see-also}
-
-- [Sessions](../overview.md)
-
 ## Throughput and compatibility (unreleased) {: #throughput-and-compatibility}
 
 !!! warning "Source preview; wait for matching packages and schemas"
@@ -262,3 +258,7 @@ This is a fragment; retain the existing connection/table settings. `Parameterize
 Measure one publisher/backend at a time on a constrained machine. A useful starting matrix is 256-byte bodies at 10,000 items/s, 16-KiB bodies at 1,000 items/s, and 1-MiB bodies at 10 items/s, followed by an unthrottled run. Warm up, repeat runs, check counts and full payloads, and record CPU, peak memory, delivery completion, first-item latency and drain time separately. These are test profiles, not promised capacities. Keep acknowledgements, persistence, server limits and readback checks identical when comparing tuning options.
 
 Further work such as processing acknowledgements, fully asynchronous protocol APIs, typed native SQL bulk paths, per-worker connection pools, multipart S3 uploads, socket framing and new protocol readers needs separate contracts and validation. None of those semantics is silently enabled by a version update.
+
+## See also {: #see-also}
+
+- [Sessions](../overview.md)

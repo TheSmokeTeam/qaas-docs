@@ -129,10 +129,6 @@ Consumes byte payloads from an IBM MQ queue. The reader opens the configured que
 IbmMqQueue: {}
 ```
 
-## See also {: #see-also}
-
-- [Sessions](../overview.md)
-
 ## Throughput and compatibility (unreleased) {: #throughput-and-compatibility}
 
 !!! warning "Source preview; wait for matching packages and schemas"
@@ -195,3 +191,7 @@ PostgreSqlTable:
 The Trino timeout adapter is specific to the pinned NH.Trino.Client 2025.11.15.6 dependency, which compares stopwatch ticks with time-span ticks. Users should configure the desired seconds directly; do not carry the benchmark-only Linux multiplier workaround into this version. Revalidate the adapter when upgrading the provider. `ReadBufferSizeBytes` is optional and affects provider result buffering, not total Runner retention.
 
 For S3's download windows, repeat enumeration, memory costs and early stopping, see [incremental S3 reads](s3-headers-and-key-selection.md#read-large-object-sets-incrementally). For rate, batching and publisher controls, see [publisher throughput guidance](publishers.md#throughput-and-compatibility).
+
+## See also {: #see-also}
+
+- [Sessions](../overview.md)
