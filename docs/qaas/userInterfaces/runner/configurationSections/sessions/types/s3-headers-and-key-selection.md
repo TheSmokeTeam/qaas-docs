@@ -116,21 +116,24 @@ An empty delimiter is the default and reads every object whose key matches the p
 ## Read large object sets incrementally (unreleased) {: #read-large-object-sets-incrementally}
 
 !!! warning "Unreleased / local preview"
-    This section describes the incremental S3 reader change in development. It requires a Framework Protocols package containing that change; it is not supported by the previously published 1.7.1 package. The published generated configuration tables and schema downloads may not include `MaxConcurrentDownloads` until the release and package-mirror update complete.
+    This section describes the incremental S3 reader change in development. It requires a Framework Protocols package containing that change; it is not supported by the previously published 1.7.1 package. The published generated configuration tables and schema downloads may not include `StreamResults` or `MaxConcurrentDownloads` until the release and package-mirror update complete.
+
+`StreamResults` defaults to `false`: `ReadChunk` finishes acquisition before returning, reports download errors during that call, and returns a repeatable materialized result. This preserves the released eager-result contract. To opt into incremental delivery, set `StreamResults: true`.
 
 The incremental reader waits for the configured inactivity window, lists matching object metadata, and filters and sorts that metadata before downloading bodies. `ReadFromRunStartTime: true` therefore excludes older objects before their bodies are fetched. Body downloads begin when the result sequence is enumerated, instead of loading the complete bucket into memory before returning the first item.
 
-The metadata snapshot is captured when `ReadChunk` is called. Enumerating that result again downloads the bodies again; it does not reuse a memoized body cache. The metadata snapshot does not pin object versions, so repeated enumeration can observe changed bytes or a deleted key.
+With `StreamResults: true`, the metadata snapshot is captured when `ReadChunk` is called. Enumerating that result again downloads the bodies again; it does not reuse a memoized body cache. The metadata snapshot does not pin object versions, so repeated enumeration can observe changed bytes or a deleted key.
 
 `MaxConcurrentDownloads` belongs under the consumer's `S3Bucket` configuration. It is a positive integer with a default of `1`. This example is a fragment to add to an existing S3 consumer, alongside its connection and bucket settings:
 
 ```yaml
 S3Bucket:
   Prefix: events/current-run/
+  StreamResults: true
   MaxConcurrentDownloads: 4
 ```
 
-With the default `1`, the reader loads one complete body at a time. A value of `4` loads at most four bodies in the current download window. It waits for that window to finish, then yields its results in timestamp order before starting the next window. Equal timestamps retain the listing order; do not rely on the former parallel download completion order for ties.
+With `MaxConcurrentDownloads: 1`, the reader loads one complete body at a time. In eager mode all results are still accumulated before returning; in streaming mode only the current download window is acquired before yielding. A value of `4` loads at most four bodies in the current download window. It waits for that window to finish, then yields its results in timestamp order before starting the next window. Equal timestamps retain the listing order; do not rely on the former parallel download completion order for ties.
 
 Choose `1` to minimize simultaneous body buffers, or a small higher value when overlapping requests improves throughput. This setting controls S3 body downloads, not publisher concurrency or generic consumer parallelism. `DataFilter.Body: false` still avoids body GET requests entirely. `ReadStorageHeaders: true` continues to perform an additional metadata request for each consumed object.
 

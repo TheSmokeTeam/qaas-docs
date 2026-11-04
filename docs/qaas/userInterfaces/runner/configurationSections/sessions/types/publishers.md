@@ -51,7 +51,7 @@ Redis: {}
 ```
 
 !!! Notice "Batch Publishing"
-    Redis publisher uses batch publishing by default. When `BatchSize` is `1`, it behaves like single-message publishing. When batch publishing is enabled, policies apply per batch rather than per message.
+    Redis uses chunk publishing. Configure `Chunk.ChunkSize` on the publisher; `Redis.BatchSize` is a legacy property that the protocol does not read. A chunk size of `1` sends one item per operation. When batch publishing is enabled, policies apply per batch rather than per message.
 
 ## OracleSqlTable {: #oraclesqltable}
 
@@ -181,3 +181,84 @@ Sftp: {}
 ## See also {: #see-also}
 
 - [Sessions](../overview.md)
+
+## Throughput and compatibility (unreleased) {: #throughput-and-compatibility}
+
+!!! warning "Source preview; wait for matching packages and schemas"
+    These additions are not in Framework Protocols 1.7.1 or Runner Sessions 4.8.4. Use a Framework build containing the throughput changes for protocol options, and a Runner build containing the bounded-worker changes for `Chunk.MaxBytes`. After release, update the Runner/Mocker package dependencies and family schema downloads through PackageMirror before using new YAML fields. Existing configurations need no new fields.
+
+The default configuration keeps the existing batching, acknowledgement, ordering and serialization choices. New settings that change those choices are opt-in. There is no blanket guarantee that enabling every option makes a workload faster: measure completed delivery and readback on the target server.
+
+### Rate, workers and chunk budgets {: #rate-workers-and-chunk-budgets}
+
+The rate policy now uses fractional milliseconds with the standard timer, removing the approximately 1,000-action/s ceiling caused by truncating elapsed time. Existing custom `ITimer` implementations still work; they can implement `IHighResolutionTimer` to supply fractional elapsed milliseconds. This is not a real-time scheduler: CPU contention, operating-system scheduling and protocol latency can lower the attained rate. Sub-millisecond pacing uses a short spin and costs CPU.
+
+Runner bounds the worker loop itself to `Parallel.Parallelism`, rather than creating extra workers that block on the send semaphore. This applies to single publishers, chunk publishers and transactions. A degree of `1` has one worker and no speculative input buffer. Omitting `Parallel` still runs sequentially. Policy evaluation is serialized; already-running operations can finish after a stop policy fires. Worker bounds do not make a shared protocol connection support concurrent requests: keep SQL actions sequential, and use independent actions/connections only when needed. RabbitMQ and SFTP serialize access to their shared sending channel/client.
+
+`Chunk.ChunkSize` remains the maximum item count. The optional `Chunk.MaxBytes` adds a serialized-body budget, for example:
+
+```yaml
+Chunk:
+  ChunkSize: 100
+  MaxBytes: 4194304
+```
+
+This fragment belongs alongside the protocol configuration under a chunk publisher. Byte arrays use their length, strings use UTF-8 bytes, and structured bodies use their JSON representation. A single body exceeding the budget fails the action; it is not split. Transport envelopes, BSON/SQL representation, compression, client buffers and retained session inputs are outside this budget. Leave headroom and reduce chunk sizes for large messages. JSON size estimation has CPU/allocation cost. Omit `MaxBytes` to preserve count-only batching.
+
+Rate policies count **send operations**, so they count chunks for chunk publishers. With fixed 100-item chunks, a policy rate of 100 chunks/s targets approximately 10,000 items/s. Byte-bounded chunks can contain different item counts; use observed item throughput instead of assuming a constant multiplier. Runner continues retaining session data for assertions; these controls do not provide a total process-memory bound.
+
+### Choose controls by publisher {: #choose-controls-by-publisher}
+
+| Publisher | Start with existing features | Additions in this preview | Semantics and limits |
+| --- | --- | --- | --- |
+| Kafka | Long-lived actions, bounded producer queue, appropriate compression and partition/key distribution | Nullable `LingerMs`, `BatchSize`, `Acks`, `EnableIdempotence`, `MessageTimeoutMs`, `MaxInFlight`; optional `FlushTimeoutMs` and `ReportDeliveryErrors` | Omitted nullable options leave client defaults intact. `Send` enqueues; it does not wait for broker delivery. Idempotence is not a transaction across messages. |
+| RabbitMQ | Reuse the channel; choose the default exchange only when its routing semantics fit | `ValidateTopologyOnEveryOperation: false` checks a named exchange once during `Connect`; optional `PublisherConfirms: true` waits for confirmations | Defaults keep per-send passive validation and no confirms. Shared-channel sends are serialized. Confirmed sends can be slower; queue durability and message persistence are separate settings. |
+| Redis | Use `Chunk.ChunkSize`; the old `Redis.BatchSize` property does not partition sends | `UseTransactions: false` uses a nontransactional pipeline | Default remains MULTI/EXEC. Every queued command result is observed. A command error after execution fails the action without replaying the batch; successful sibling commands may already be stored. |
+| PostgreSQL | Bounded chunks use COPY; keep one connection sequential | `ParameterizeRows: true` binds all singular INSERT values as data; byte-bounded Runner chunks | Default row date/UDT inference is unchanged. `ColumnTypes` still selects row transactions instead of COPY. No new binary COPY or per-worker connection pool is implied. |
+| SQL Server | Bounded chunks use SqlBulkCopy; keep one connection sequential | Byte-bounded Runner chunks | `ColumnTypes` still selects per-row inserts. A chunk body budget is not a DataTable or SQL Server memory limit. |
+| Oracle | Prefer bounded OracleBulkCopy chunks where supported | Correct explicit CLOB/NCLOB/BLOB binding; `ParameterizeRows: true` enables safe singular data binding | CLOB/NCLOB use provider LOB parameters rather than unsupported `CAST(... AS CLOB)`. Native binary or base64 JSON values can bind to BLOB. Large parameterized strings use CLOB binding. Legacy untyped singular INSERTs remain unchanged and can still fail on large string literals. |
+| MongoDB | Tune InsertMany chunk count/bytes; set write concern in the connection string | `IsOrdered: false`, nullable `BypassDocumentValidation`, `UseBsonDocumentDirectly: true` | Ordered insertion remains the default. Unordered insertion changes failure/order semantics. Direct mode applies only to BSON document bodies and clones them so driver-generated `_id` values do not mutate the input. Other bodies keep JSON conversion. |
+| Elasticsearch | Tune bulk chunks and check per-item failures | QaaS JSON node/element bodies are translated for the existing NEST 7 serializer | Existing POCO bodies are unchanged. Numbers outside the bridge's exact decimal range fail explicitly rather than being rounded. This does not upgrade the client or certify all server-major combinations. |
+| S3 | Reuse the client, bound concurrency, use finite retries and unique keys | Bounded Runner workers and atomic numeric object-name generation | No multipart/streaming PUT or byte-based in-flight upload queue is added. Names remain zero-based within one generator instance, not globally unique across actions/runs. |
+| SFTP | Reuse the SSH connection and choose distinct paths | Nullable `UploadBufferSize`, serialized shared-client writes, explicit disposal | Omitted buffer size keeps the SSH.NET default. Parallel workers on one action do not create extra SSH connections. File aggregation or atomic rename requires an explicit downstream contract. |
+| Socket | Tune buffers and Nagle behavior, verify received bytes | Stream sends continue until all bytes are accepted; simultaneous sends are serialized | Datagram sends are not split. TCP remains a byte stream; this preview does not introduce message framing or activate the legacy `SeperationChar` property. |
+
+IBM MQ and Trino are consumer-only in the QaaS factories; MongoDB and SFTP have no QaaS reader. Do not report native fixture seeding/readback as a QaaS publisher/consumer measurement. See [consumer throughput controls](consumers.md#throughput-and-compatibility).
+
+### Kafka delivery and batching example {: #kafka-delivery-and-batching-example}
+
+Add these fields to an existing `KafkaTopic` publisher only after upgrading to the matching package/schema:
+
+```yaml
+KafkaTopic:
+  LingerMs: 5
+  BatchSize: 65536
+  Acks: All
+  EnableIdempotence: true
+  MessageTimeoutMs: 30000
+  FlushTimeoutMs: 35000
+  ReportDeliveryErrors: true
+```
+
+The client validates incompatible idempotence/acknowledgement/in-flight settings. `ReportDeliveryErrors` defaults to `false`; when enabled, the first asynchronous delivery error is retained and surfaced by a later `Send` or `Disconnect`. `FlushTimeoutMs` defaults to no deadline, preserving the existing flush behavior. When set, an incomplete flush fails the action rather than reporting undelivered records as successful. Match producer, topic/broker and reader maximum-message settings for large records. Keep queue limits within available memory.
+
+Runner now disconnects publishers and consumers even if work fails. A disconnect/flush failure fails otherwise successful work; if the operation already failed, that original exception is preserved and the cleanup error is logged.
+
+### Oracle large singular payload example {: #oracle-large-singular-payload-example}
+
+Use provider-correct LOB types for an Oracle target with a CLOB column:
+
+```yaml
+OracleSqlTable:
+  ParameterizeRows: true
+  ColumnTypes:
+    PAYLOAD: CLOB
+```
+
+This is a fragment; retain the existing connection/table settings. `ParameterizeRows` defaults to `false`. Enabling it treats date-like and function-like strings as data rather than executing the legacy inferred expression. Explicit `ColumnTypes` continues to bypass that inference even when `ParameterizeRows` is omitted. Typed chunks still execute row inserts within a transaction; use the native bulk path when its type support and semantics fit.
+
+### Benchmark without changing the workload contract {: #benchmark-without-changing-the-workload-contract}
+
+Measure one publisher/backend at a time on a constrained machine. A useful starting matrix is 256-byte bodies at 10,000 items/s, 16-KiB bodies at 1,000 items/s, and 1-MiB bodies at 10 items/s, followed by an unthrottled run. Warm up, repeat runs, check counts and full payloads, and record CPU, peak memory, delivery completion, first-item latency and drain time separately. These are test profiles, not promised capacities. Keep acknowledgements, persistence, server limits and readback checks identical when comparing tuning options.
+
+Further work such as processing acknowledgements, fully asynchronous protocol APIs, typed native SQL bulk paths, per-worker connection pools, multipart S3 uploads, socket framing and new protocol readers needs separate contracts and validation. None of those semantics is silently enabled by a version update.

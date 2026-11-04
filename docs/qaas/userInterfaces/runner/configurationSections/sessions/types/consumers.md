@@ -41,7 +41,7 @@ KafkaTopic: {}
 ```
 
 !!! Tip "Using Kafka consumer to empty a topic"
-    Kafka consumers can advance the offset for future runs. If you want to clear a topic for later consumers, run an earlier consumer with `AutoOffsetReset` set to `earliest`, then keep the later consumer on `latest`.
+    Kafka consumers advance offsets for their consumer group; they do not clear topic data. `AutoOffsetReset` applies only when no valid committed offset exists. Use a dedicated group and an explicit offset strategy when preparing later test runs.
 
 ## OracleSqlTable {: #oraclesqltable}
 
@@ -132,3 +132,66 @@ IbmMqQueue: {}
 ## See also {: #see-also}
 
 - [Sessions](../overview.md)
+
+## Throughput and compatibility (unreleased) {: #throughput-and-compatibility}
+
+!!! warning "Source preview; wait for matching packages and schemas"
+    The controls below require the Framework throughput changes and are not available in Protocols 1.7.1. Update the consuming Runner/Mocker packages and the generated family schemas after release. Existing configurations retain their default receipt, materialization and polling behavior.
+
+| Consumer | Existing default | Opt-in or repair in this preview | What to verify |
+| --- | --- | --- | --- |
+| Kafka | Synchronous commit for every received message, even with `EnableAutoCommit: false` | `CommitMode: Batched` with `CommitBatchSize` (default 1000) | Commits receipt offsets, not downstream processing acknowledgements. Crash replay and rebalance behavior matter. |
+| RabbitMQ | Passive queue check plus auto-ack BasicGet polling | `ValidateTopologyOnEveryOperation: false`; `UseSubscription: true` with bounded `PrefetchCount` (default 100) | Subscription acknowledges on `Read`, not after assertions. Buffered unread deliveries remain unacknowledged and are requeued when the channel closes. |
+| SQL Server, PostgreSQL, Oracle | SELECT * and materialized rows | `ColumnsToRead` projects on the server; `StreamResults: true` returns rows incrementally | Projection uses exact quoted column names. Streaming changes error timing and repeat-enumeration behavior. |
+| Trino | SQL query reader with the provider's 50-MiB result buffer | Same SQL projection/streaming controls; optional `ReadBufferSizeBytes`; corrected clock units for `CommandTimeoutSeconds` | A configured timeout remains seconds on both Windows and Linux. Query throughput is different from broker message throughput. |
+| S3 | Eager result snapshot, with bounded acquisition in the new implementation | `StreamResults: true` and `MaxConcurrentDownloads` (default 1) | Streamed results can be partial on failure and repeat enumeration downloads again; retained Runner output remains unbounded by this setting. |
+| Redis | Existing destructive single-item reads | No new read batching in this preview | Choose data structures/order deliberately. Idle `PollIntervalMs` is not a populated-queue throughput control. |
+| Socket | Raw received byte chunks | Reader endpoint assignment, non-spinning readiness wait and graceful EOF handling repaired | TCP chunks are not application messages; `SeperationChar` remains inactive. |
+| IBM MQ | One MQGET per read with channel-side identity | Optional `Username` and `Password` supply MQCSP credentials; nullable `SslCipherSpec`, `SslKeyRepository` and `SslPeerName` configure TLS; queue closes before manager disconnect | Protect credentials; choose TLS settings and a certificate store supported by the MQ client platform and server channel. Omitted TLS options preserve existing connection properties. No new syncpoint or processing-acknowledgement guarantee is implied. |
+
+### Kafka batched receipt commits {: #kafka-batched-receipt-commits}
+
+Add this fragment to an existing Kafka consumer:
+
+```yaml
+KafkaTopic:
+  CommitMode: Batched
+  CommitBatchSize: 1000
+```
+
+`CommitMode` defaults to `PerMessage`, preserving the previous explicit commit and `EnableAutoCommit` configuration. `Batched` disables the client's auto commit and auto offset store, accumulates the next offset separately for each partition, and commits at the batch count, when a read times out without a record, on orderly disconnect, or for partitions being revoked. It does not use a background timer: while a caller is idle and has not disconnected, a partial batch remains uncommitted. Lost partition ownership discards pending offsets for those partitions instead of committing after ownership has moved.
+
+The generic QaaS reader has no downstream “processing complete” callback. These are **receipt commits**. A successful commit can precede assertions or downstream processing; a crash before committing can cause replay. This is not an exactly-once processing mode. Use a stable consumer group and a deliberate `AutoOffsetReset`; that setting only applies when no valid committed offset exists. A consumer does not delete Kafka topic data.
+
+### RabbitMQ bounded subscription {: #rabbitmq-bounded-subscription}
+
+```yaml
+RabbitMq:
+  UseSubscription: true
+  PrefetchCount: 32
+```
+
+The fragment supplements an existing queue/exchange and connection configuration. The default `UseSubscription: false` keeps BasicGet polling. Subscription mode validates topology during connection, uses manual broker acknowledgements on receipt by `Read`, and bounds its in-memory delivery queue by `PrefetchCount` (1–65535). The bound counts messages, not bytes: select a much smaller prefetch for large payloads. Closing the channel returns unread unacknowledged deliveries to RabbitMQ; an action that has already returned a message cannot acknowledge its later assertion outcome. Channel shutdown is an action failure, not evidence that all expected messages were read.
+
+For polling mode, `ValidateTopologyOnEveryOperation: false` removes the extra passive queue declaration per read; queue declaration still runs during `Connect`. Its default remains `true`. Preserve the existing `Durable`, `Exclusive`, `AutoDelete` and persistence choices when comparing performance.
+
+### Projected and streaming SQL reads {: #projected-and-streaming-sql-reads}
+
+This example is a fragment under an existing SQL consumer; the same fields are available for PostgreSQL, SQL Server, Oracle and Trino:
+
+```yaml
+PostgreSqlTable:
+  ColumnsToRead:
+  - payload
+  - created_at
+  InsertionTimeField: created_at
+  StreamResults: true
+```
+
+`ColumnsToRead` defaults to `null`, preserving SELECT *. Supply stored column names with their exact case; QaaS quotes each name as one identifier, not as a SQL expression. The insertion-time column is added automatically if needed for timestamps. `ColumnsToIgnore` remains client-side filtering and does not reduce the server projection. Do not ignore a field needed for timestamps.
+
+`StreamResults` defaults to `false`, preserving eager materialization and repeatable results. With `true`, row acquisition is deferred until enumeration, later failures can follow earlier rows, and another enumeration executes another query. Dispose the enumerator before disconnecting or reusing the connection. Early enumeration disposal closes the reader and connection. The inactivity wait still happens before acquisition; it is not a total query/download deadline. Runner continues retaining output for assertions, so streaming alone does not cap total session memory.
+
+The Trino timeout adapter is specific to the pinned NH.Trino.Client 2025.11.15.6 dependency, which compares stopwatch ticks with time-span ticks. Users should configure the desired seconds directly; do not carry the benchmark-only Linux multiplier workaround into this version. Revalidate the adapter when upgrading the provider. `ReadBufferSizeBytes` is optional and affects provider result buffering, not total Runner retention.
+
+For S3's download windows, repeat enumeration, memory costs and early stopping, see [incremental S3 reads](s3-headers-and-key-selection.md#read-large-object-sets-incrementally). For rate, batching and publisher controls, see [publisher throughput guidance](publishers.md#throughput-and-compatibility).
