@@ -142,7 +142,7 @@ Set `Http.Method` to one of the configuration values below.
 
 ### HTTP metadata {: #released-http-metadata}
 
-Per-item metadata is supplied by a generator as `Data<object>.MetaData.Http`; it is not a set of extra properties under YAML `Sessions[].Transactions[].Http`. Use package versions and matching schemas that expose the configured fields.
+Per-item metadata is supplied by a generator as `Data<object>.MetaData.Http`; it is not a set of extra properties under YAML `Sessions[].Transactions[].Http`.
 
 | SDK field | Outgoing Runner request | Captured Runner response |
 | --- | --- | --- |

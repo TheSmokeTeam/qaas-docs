@@ -314,13 +314,15 @@ Sftp: {}
 
 ## Throughput controls {: #throughput-and-compatibility}
 
-Use package versions and matching configuration schemas that expose the settings you configure. Measure delivery and readback on the target server; worker count, batching and protocol options have different effects on latency, ordering and acknowledgement.
+Worker count, batching and protocol options control concurrency, latency, ordering and acknowledgement.
 
 ### Rate, workers and chunk budgets {: #rate-workers-and-chunk-budgets}
 
 The rate policy uses fractional milliseconds with the standard timer. Custom `ITimer` implementations can implement `IHighResolutionTimer` to supply fractional elapsed milliseconds. CPU contention, operating-system scheduling and protocol latency can lower the attained rate. Sub-millisecond pacing uses a short spin and costs CPU.
 
 The worker limit controls active publisher or transaction operations, with no speculative input buffer in that loop. Transactions materialize parallel input before executing their workers. Runner retains session data for assertions; neither worker limits, streaming reads nor chunk byte budgets impose a total process-memory limit.
+
+For large messages, reduce worker count, chunk size and prefetch to limit concurrent payload buffers. Use `DataFilter` to retain only assertion-relevant fields; source data and other retained objects still consume memory.
 
 ### Choose controls by publisher {: #choose-controls-by-publisher}
 
@@ -359,12 +361,6 @@ OracleSqlTable:
 ```
 
 Typed Oracle chunks bind every value as data and execute row inserts within a transaction. The configured CLOB column uses an Oracle LOB parameter. Select the native bulk path by omitting `ColumnTypes` when its type support and semantics fit the workload. `ParameterizeRows` controls singular INSERTs exposed by Framework SQL APIs; it does not select the Runner Oracle chunk path.
-
-### Size and rate profiles {: #benchmark-without-changing-the-workload-contract}
-
-For a stress test, start with a finite duration and modest worker count, then increase one control at a time. Example profiles are 256-byte bodies at 10,000 items/s, 16-KiB bodies at 1,000 items/s, and 1-MiB bodies at 10 items/s. For chunks, convert the item target to chunk operations/s. These are workload inputs, not promised capacities.
-
-Warm up, repeat runs, check counts and full payloads, and record CPU, peak memory, delivery completion, first-item latency and drain time. Keep acknowledgement, persistence, payloads, server limits and readback checks consistent between comparisons. Run one backend/workload at a time on a resource-constrained machine. For large messages reduce worker count, chunk size and prefetch before raising the rate. Use `DataFilter` to retain only assertion-relevant fields, while accounting for source data and other retained objects that it does not remove.
 
 ## See also {: #see-also}
 

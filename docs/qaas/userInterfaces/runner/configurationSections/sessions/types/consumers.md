@@ -220,7 +220,7 @@ IbmMqQueue: {}
 
 ## Throughput controls {: #throughput-and-compatibility}
 
-Use package versions and matching configuration schemas that expose the selected options. Choose acknowledgement, buffering and selection settings for the workload:
+Choose acknowledgement, buffering and selection settings for the workload:
 
 | Reader | Throughput controls | Semantics and limits |
 | --- | --- | --- |
@@ -258,7 +258,7 @@ RabbitMq:
 
 The fragment supplements an existing queue/exchange and connection configuration. `UseSubscription: false` selects BasicGet polling and is the default. Subscription mode validates topology during connection, uses manual broker acknowledgements on receipt by `Read`, and bounds its in-memory delivery queue by `PrefetchCount` (1–65535). The bound counts messages, not bytes: select a much smaller prefetch for large payloads. Closing the channel returns unread unacknowledged deliveries to RabbitMQ; an action that has already returned a message cannot acknowledge its later assertion outcome. Channel shutdown is an action failure, not evidence that all expected messages were read.
 
-For polling mode, `ValidateTopologyOnEveryOperation: false` removes the extra passive queue declaration per read; queue declaration still runs during `Connect`. Its default is `true`. Use consistent `Durable`, `Exclusive`, `AutoDelete` and persistence settings when comparing performance.
+For polling mode, `ValidateTopologyOnEveryOperation: false` removes the extra passive queue declaration per read; queue declaration still runs during `Connect`. Its default is `true`. Configure `Durable`, `Exclusive`, `AutoDelete` and persistence for the required queue lifetime and message durability.
 
 ### Projected and streaming SQL reads {: #projected-and-streaming-sql-reads}
 
