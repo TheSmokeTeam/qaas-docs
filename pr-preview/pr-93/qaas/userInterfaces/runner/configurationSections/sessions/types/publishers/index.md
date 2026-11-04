@@ -10,6 +10,146 @@ Use this page for behavior and YAML shape. The same action can be built in C# wi
 
 **Table Property Path** - `Sessions[].Publishers[]`
 
+## Parallel publishing and stress workloads
+
+`Parallel.Parallelism` sets the maximum worker count for one publisher action. Omit `Parallel` for sequential execution, or set `Parallelism: 1` for one worker. A positive value such as `4` permits up to four sends at a time, provided the protocol supports concurrent calls. For chunk publishers it permits up to four **chunks** at a time. The limit applies separately to each action; two publishers with four workers each can have eight operations in progress.
+
+Workers share the action's protocol instance and its connections. Increasing the worker count does not create a connection per worker. Parallel sends can complete out of source order. Policy evaluation is serialized across an action's workers, and operations already in progress can complete after a stop policy fires. See [action concurrency](https://TheSmokeTeam.github.io/qaas-docs/qaas/userInterfaces/runner/configurationSections/sessions/overview/#action-concurrency) for the separate `Stage` setting.
+
+### Kafka publishing with a rate and duration
+
+This session fragment sends a reusable, nonempty data source named `Events` whose items contain `byte[]` bodies. Supply the data source in your test and use the Kafka authentication settings required by your broker. It targets 5,000 sends/s for approximately 60 seconds with up to four workers:
+
+```yaml
+Sessions:
+  - Name: KafkaStress
+    Publishers:
+      - Name: PublishEvents
+        Stage: 0
+        DataSourceNames: [Events]
+        Loop: true
+        Parallel:
+          Parallelism: 4
+        Policies:
+          - LoadBalance:
+              Rate: 5000
+              TimeIntervalMs: 1000
+          - Timeout:
+              TimeoutMs: 60000
+        KafkaTopic:
+          HostNames: [broker.example:9093]
+          Username: ${KAFKA_USERNAME}
+          Password: ${KAFKA_PASSWORD}
+          SecurityProtocol: SaslSsl
+          TopicName: events-load
+          QueueBufferingMaxKbytes: 32768
+          LingerMs: 5
+          BatchSize: 65536
+          Acks: All
+          EnableIdempotence: true
+          MessageTimeoutMs: 30000
+          FlushTimeoutMs: 35000
+          ReportDeliveryErrors: true
+```
+
+The equivalent code returns a session builder to add to your execution configuration. `dataSourceName` must identify the same kind of reusable byte-payload source:
+
+```csharp
+using Confluent.Kafka;
+using QaaS.Framework.Policies;
+using QaaS.Framework.Policies.ConfigurationObjects;
+using QaaS.Framework.Protocols.ConfigurationObjects.Kafka;
+using QaaS.Runner.Sessions.Actions.Publishers.Builders;
+using QaaS.Runner.Sessions.Session.Builders;
+
+static SessionBuilder CreateKafkaStressSession(
+    string dataSourceName, string broker, string topic,
+    string username, string password)
+{
+    var publisher = new PublisherBuilder()
+        .Named("PublishEvents")
+        .AtStage(0)
+        .AddDataSource(dataSourceName)
+        .InLoops()
+        .WithParallelism(4)
+        .AddPolicy(new PolicyBuilder().WithLoadBalance(
+            new LoadBalancePolicyConfig { Rate = 5000, TimeIntervalMs = 1000 }))
+        .AddPolicy(new PolicyBuilder().WithTimeout(
+            new TimeoutPolicyConfig { TimeoutMs = 60000 }))
+        .Configure(new KafkaTopicSenderConfig
+        {
+            HostNames = [broker], Username = username, Password = password,
+            SecurityProtocol = SecurityProtocol.SaslSsl, TopicName = topic,
+            QueueBufferingMaxKbytes = 32768, LingerMs = 5, BatchSize = 65536,
+            Acks = Acks.All, EnableIdempotence = true,
+            MessageTimeoutMs = 30000, FlushTimeoutMs = 35000,
+            ReportDeliveryErrors = true
+        });
+    return new SessionBuilder().Named("KafkaStress").AddPublisher(publisher);
+}
+```
+
+The rate is shared by the action's workers; it is not 5,000 sends/s per worker. `Loop: true` repeats the selected source until a stop policy fires. `Iterations` instead specifies a finite number of source passes, and `SleepTimeMs` sleeps between passes, not between messages. An empty loop input performs no operations and therefore does not reach policy evaluation; provide a nonempty source. A timeout policy is checked after operations; it does not cancel an in-flight network call or flush. Omit `LoadBalance` for a capacity test with no configured pacing, and retain a finite source/iteration count or stopping policy. Start with one worker and increase gradually while measuring delivered records and resource use. Kafka `Send` enqueues, so include disconnect/flush and broker/readback verification when measuring delivery throughput.
+
+### Chunk publishing and byte budgets
+
+Runner requires `Chunk.ChunkSize` for Redis, MongoDB, Elasticsearch, Oracle and SQL Server publishers. PostgreSQL supports either singular sends or chunks. Kafka, RabbitMQ, S3, SFTP and socket publishers use singular sends and do not accept `Chunk`. `Parallel` still counts worker operations, but each operation sends a chunk. A fixed chunk of 100 items at 100 operations/s targets about 10,000 items/s. Chunk-publisher count and rate policies count chunks; consumer policies count yielded items.
+
+This PostgreSQL session uses one connection sequentially, a reusable structured source named `Rows`, and at most 100 bodies or 4 MiB of serialized bodies per chunk. The table must already exist with columns matching the source:
+
+```yaml
+Sessions:
+  - Name: BulkStress
+    Publishers:
+      - Name: PublishRows
+        DataSourceNames: [Rows]
+        Loop: true
+        Chunk:
+          ChunkSize: 100
+          MaxBytes: 4194304
+        Policies:
+          - LoadBalance:
+              Rate: 100
+              TimeIntervalMs: 1000
+          - Timeout:
+              TimeoutMs: 60000
+        PostgreSqlTable:
+          ConnectionString: ${POSTGRES_CONNECTION_STRING}
+          TableName: measurements
+```
+
+```csharp
+using QaaS.Framework.Policies;
+using QaaS.Framework.Policies.ConfigurationObjects;
+using QaaS.Framework.Protocols.ConfigurationObjects.Sql;
+using QaaS.Runner.Sessions.Actions.Publishers.Builders;
+using QaaS.Runner.Sessions.ConfigurationObjects;
+using QaaS.Runner.Sessions.Session.Builders;
+
+static SessionBuilder CreateBulkStressSession(
+    string dataSourceName, string connectionString, string tableName)
+{
+    var publisher = new PublisherBuilder()
+        .Named("PublishRows")
+        .AddDataSource(dataSourceName)
+        .InLoops()
+        .WithChunks(new Chunks { ChunkSize = 100, MaxBytes = 4194304 })
+        .AddPolicy(new PolicyBuilder().WithLoadBalance(
+            new LoadBalancePolicyConfig { Rate = 100, TimeIntervalMs = 1000 }))
+        .AddPolicy(new PolicyBuilder().WithTimeout(
+            new TimeoutPolicyConfig { TimeoutMs = 60000 }))
+        .Configure(new PostgreSqlSenderConfig
+        {
+            ConnectionString = connectionString, TableName = tableName
+        });
+    return new SessionBuilder().Named("BulkStress").AddPublisher(publisher);
+}
+```
+
+For a chunk protocol that supports concurrent sends, `.WithParallelism(2)` or `Parallel: { Parallelism: 2 }` permits two chunks in progress. Keep SQL actions sequential because their sends share one database connection. Use separate actions with separate connections and disjoint input subsets when the database workload requires concurrent writers. Each action has its own rate policy, so divide a total target among the actions.
+
+`MaxBytes` measures byte-array lengths, UTF-8 string bytes, or the JSON representation of structured bodies. One body larger than the limit fails the action; it is not split. With byte-limited chunks, item counts vary and the rate-to-items multiplier varies too. The budget excludes transport envelopes, client buffers, DataTables, compression and retained session data. Omitting `MaxBytes` uses count-only chunks.
+
 ## RabbitMq
 
 Publishes byte payloads to RabbitMQ through an AMQP channel. When `QueueName` is configured the publisher uses RabbitMQ's default exchange and the queue name as the routing key; otherwise it publishes to the configured exchange and routing key. Per-item `MetaData.RabbitMq` can override the routing key, headers, expiration, content type, and message type for that item.
@@ -32,7 +172,7 @@ KafkaTopic: {}
 
 ## Redis
 
-Publishes chunks of byte payloads to Redis by creating a Redis transaction and adding one Redis command per item. The configured `RedisDataType` selects the command: string set, list left or right push, set add, hash set, sorted set add, or geo add. Item metadata supplies the key and any required hash field, sorted-set score, or geo coordinates.
+Publishes chunks of byte payloads to Redis with one Redis command per item, using a transaction by default or a configured pipeline. The configured `RedisDataType` selects the command: string set, list left or right push, set add, hash set, sorted set add, or geo add. Item metadata supplies the key and any required hash field, sorted-set score, or geo coordinates.
 
 **Table Property Path** - `Sessions[].Publishers[].Redis`
 
@@ -42,7 +182,7 @@ Redis: {}
 
 Batch Publishing
 
-Redis uses chunk publishing. Configure `Chunk.ChunkSize` on the publisher; `Redis.BatchSize` is a legacy property that the protocol does not read. A chunk size of `1` sends one item per operation. When batch publishing is enabled, policies apply per batch rather than per message.
+Redis uses chunk publishing. Configure `Chunk.ChunkSize` on the publisher; `Redis.BatchSize` is not read by the protocol. A chunk size of `1` sends one item per operation. When batch publishing is enabled, policies apply per batch rather than per message.
 
 ## OracleSqlTable
 
@@ -56,7 +196,7 @@ OracleSqlTable: {}
 
 ## MsSqlTable
 
-Publishes chunks of structured data to a Microsoft SQL Server table. Item bodies are converted into rows and inserted into the configured table with the SQL command timeout from the sender configuration. Values that look like SQL user-defined type literals are passed through instead of quoted as plain strings.
+Publishes chunks of structured data to a Microsoft SQL Server table. Item bodies are converted into rows and inserted into the configured table with the SQL command timeout from the sender configuration. An empty `ColumnTypes` mapping uses SqlBulkCopy; a nonempty mapping uses parameterized row inserts in a transaction.
 
 **Table Property Path** - `Sessions[].Publishers[].MsSqlTable`
 
@@ -74,9 +214,9 @@ Publishes chunks of structured data to a PostgreSQL table. Item bodies are conve
 PostgreSqlTable: {}
 ```
 
-### Explicit column types (Framework 1.7.0)
+### Explicit column types
 
-Available with `QaaS.Framework.Protocols` 1.7.0 and Runner 4.8.3. Use the matching Runner family schema for configuration validation. Runner 4.8.2 and its schema do not expose `ColumnTypes`; upgrade the packages and schema before using this configuration fragment:
+Use `ColumnTypes` to bind selected columns with explicit database type expressions:
 
 ```yaml
 PostgreSqlTable:
@@ -88,15 +228,15 @@ PostgreSqlTable:
     label: text
 ```
 
-`ColumnTypes` is an optional map from column names to SQL type expressions, with no mapping by default. For individual sends, a configured column uses `CAST(value AS type)` before automatic date or UDT inference. This keeps a value such as `1.12` numeric when configured as `double precision`, and date-like text as text when configured as `text`. Unconfigured columns retain the legacy row inference order. Null values remain SQL `NULL`. Type expressions are trusted configuration in the target database's dialect, like the table name; invalid casts fail in the database without falling back to automatic inference.
+`ColumnTypes` is an optional map from column names to SQL type expressions, with no mapping by default. For individual sends, a configured column uses `CAST(value AS type)` before automatic date or UDT inference. This keeps a value such as `1.12` numeric when configured as `double precision`, and date-like text as text when configured as `text`. Unconfigured columns use automatic date/UDT inference unless `ParameterizeRows` is enabled. Null values remain SQL `NULL`. Type expressions are trusted configuration in the target database's dialect, like the table name; invalid casts fail in the database without falling back to automatic inference.
 
-When the mapping is omitted or empty, single sends and bulk chunk sends retain their existing behavior. A nonempty mapping makes chunk sends use parameterized row inserts to apply explicit casts, which can be slower than COPY. Every chunk value is passed as data without date inference or executable UDT-expression detection. Configured and unconfigured native values, including timestamps and binary payloads, keep their provider representation. Parsed JSON numbers retain their original text so the database cast preserves precision and exponent range. PostgreSQL binds text with an unspecified type so the target column or explicit cast determines conversion. Quotes and function-like text remain data. Both configured and unconfigured nulls remain database nulls. Typed chunk inserts run in one transaction and roll back together if any row fails.
+An omitted or empty mapping selects the native bulk path for chunks. A nonempty mapping selects parameterized row inserts to apply explicit casts, which can be slower than COPY. Every chunk value is passed as data without date inference or executable UDT-expression detection. Configured and unconfigured native values, including timestamps and binary payloads, keep their provider representation. Parsed JSON numbers retain their original text so the database cast preserves precision and exponent range. PostgreSQL binds text with an unspecified type so the target column or explicit cast determines conversion. Quotes and function-like text remain data. Both configured and unconfigured nulls remain database nulls. Typed chunk inserts run in one transaction and roll back together if any row fails.
 
-Configured values in individual sends are also bound as parameters before the explicit cast. Unconfigured values in individual sends retain the original inference behavior.
+Configured values in individual sends are also bound as parameters before the explicit cast. Unconfigured values in individual sends use automatic date/UDT inference unless `ParameterizeRows` is enabled.
 
 ## MongoDbCollection
 
-Publishes chunks of documents to a MongoDB collection. Each item body is serialized to JSON, parsed as a BSON document, and inserted with `InsertMany` into the configured database and collection.
+Publishes chunks of documents to a MongoDB collection with `InsertMany`. Bodies are serialized to JSON and parsed as BSON by default. With `UseBsonDocumentDirectly: true`, BSON document bodies are cloned and inserted directly; other bodies use JSON conversion.
 
 **Table Property Path** - `Sessions[].Publishers[].MongoDbCollection`
 
@@ -126,7 +266,7 @@ ElasticIndex: {}
 
 ElasticSearch server timeout
 
-When sending requests to the Elasticsearch server, remember that it can enforce its own request timeout. If increasing `RequestTimeoutMilliseconds` does not help, the server-side timeout may still be the limiting factor.
+When sending requests to the Elasticsearch server, remember that it can enforce its own request timeout. If increasing `RequestTimeoutMs` does not help, the server-side timeout may still be the limiting factor.
 
 ## Socket
 
@@ -148,87 +288,59 @@ Publishes byte payloads as files over SFTP. The target file path is the configur
 Sftp: {}
 ```
 
-## Throughput and compatibility (unreleased)
+## Throughput controls
 
-Source preview; wait for matching packages and schemas
-
-These additions are not in Framework Protocols 1.7.1 or Runner Sessions 4.8.4. Use a Framework build containing the throughput changes for protocol options, and a Runner build containing the bounded-worker changes for `Chunk.MaxBytes`. After release, update the Runner/Mocker package dependencies and family schema downloads through PackageMirror before using new YAML fields. Existing configurations need no new fields.
-
-The default configuration keeps the existing batching, acknowledgement, ordering and serialization choices. New settings that change those choices are opt-in. There is no blanket guarantee that enabling every option makes a workload faster: measure completed delivery and readback on the target server.
+Use package versions and matching configuration schemas that expose the settings you configure. Measure delivery and readback on the target server; worker count, batching and protocol options have different effects on latency, ordering and acknowledgement.
 
 ### Rate, workers and chunk budgets
 
-The rate policy now uses fractional milliseconds with the standard timer, removing the approximately 1,000-action/s ceiling caused by truncating elapsed time. Existing custom `ITimer` implementations still work; they can implement `IHighResolutionTimer` to supply fractional elapsed milliseconds. This is not a real-time scheduler: CPU contention, operating-system scheduling and protocol latency can lower the attained rate. Sub-millisecond pacing uses a short spin and costs CPU.
+The rate policy uses fractional milliseconds with the standard timer. Custom `ITimer` implementations can implement `IHighResolutionTimer` to supply fractional elapsed milliseconds. CPU contention, operating-system scheduling and protocol latency can lower the attained rate. Sub-millisecond pacing uses a short spin and costs CPU.
 
-Runner bounds the worker loop itself to `Parallel.Parallelism`, rather than creating extra workers that block on the send semaphore. This applies to single publishers, chunk publishers and transactions. A degree of `1` has one worker and no speculative input buffer. Omitting `Parallel` still runs sequentially. Policy evaluation is serialized; already-running operations can finish after a stop policy fires. Worker bounds do not make a shared protocol connection support concurrent requests: keep SQL actions sequential, and use independent actions/connections only when needed. RabbitMQ and SFTP serialize access to their shared sending channel/client.
-
-`Chunk.ChunkSize` remains the maximum item count. The optional `Chunk.MaxBytes` adds a serialized-body budget, for example:
-
-```yaml
-Chunk:
-  ChunkSize: 100
-  MaxBytes: 4194304
-```
-
-This fragment belongs alongside the protocol configuration under a chunk publisher. Byte arrays use their length, strings use UTF-8 bytes, and structured bodies use their JSON representation. A single body exceeding the budget fails the action; it is not split. Transport envelopes, BSON/SQL representation, compression, client buffers and retained session inputs are outside this budget. Leave headroom and reduce chunk sizes for large messages. JSON size estimation has CPU/allocation cost. Omit `MaxBytes` to preserve count-only batching.
-
-Rate policies count **send operations**, so they count chunks for chunk publishers. With fixed 100-item chunks, a policy rate of 100 chunks/s targets approximately 10,000 items/s. Byte-bounded chunks can contain different item counts; use observed item throughput instead of assuming a constant multiplier. Runner continues retaining session data for assertions; these controls do not provide a total process-memory bound.
+The worker limit controls active publisher or transaction operations, with no speculative input buffer in that loop. Transactions materialize parallel input before executing their workers. Runner retains session data for assertions; neither worker limits, streaming reads nor chunk byte budgets impose a total process-memory limit.
 
 ### Choose controls by publisher
 
-| Publisher     | Start with existing features                                                                       | Additions in this preview                                                                                                                              | Semantics and limits                                                                                                                                                                                                                                                                  |
-| ------------- | -------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Kafka         | Long-lived actions, bounded producer queue, appropriate compression and partition/key distribution | Nullable `LingerMs`, `BatchSize`, `Acks`, `EnableIdempotence`, `MessageTimeoutMs`, `MaxInFlight`; optional `FlushTimeoutMs` and `ReportDeliveryErrors` | Omitted nullable options leave client defaults intact. `Send` enqueues; it does not wait for broker delivery. Idempotence is not a transaction across messages.                                                                                                                       |
-| RabbitMQ      | Reuse the channel; choose the default exchange only when its routing semantics fit                 | `ValidateTopologyOnEveryOperation: false` checks a named exchange once during `Connect`; optional `PublisherConfirms: true` waits for confirmations    | Defaults keep per-send passive validation and no confirms. Shared-channel sends are serialized. Confirmed sends can be slower; queue durability and message persistence are separate settings.                                                                                        |
-| Redis         | Use `Chunk.ChunkSize`; the old `Redis.BatchSize` property does not partition sends                 | `UseTransactions: false` uses a nontransactional pipeline                                                                                              | Default remains MULTI/EXEC. Every queued command result is observed. A command error after execution fails the action without replaying the batch; successful sibling commands may already be stored.                                                                                 |
-| PostgreSQL    | Bounded chunks use COPY; keep one connection sequential                                            | `ParameterizeRows: true` binds all singular INSERT values as data; byte-bounded Runner chunks                                                          | Default row date/UDT inference is unchanged. `ColumnTypes` still selects row transactions instead of COPY. No new binary COPY or per-worker connection pool is implied.                                                                                                               |
-| SQL Server    | Bounded chunks use SqlBulkCopy; keep one connection sequential                                     | Byte-bounded Runner chunks                                                                                                                             | `ColumnTypes` still selects per-row inserts. A chunk body budget is not a DataTable or SQL Server memory limit.                                                                                                                                                                       |
-| Oracle        | Prefer bounded OracleBulkCopy chunks where supported                                               | Correct explicit CLOB/NCLOB/BLOB binding; `ParameterizeRows: true` enables safe singular data binding                                                  | CLOB/NCLOB use provider LOB parameters rather than unsupported `CAST(... AS CLOB)`. Native binary or base64 JSON values can bind to BLOB. Large parameterized strings use CLOB binding. Legacy untyped singular INSERTs remain unchanged and can still fail on large string literals. |
-| MongoDB       | Tune InsertMany chunk count/bytes; set write concern in the connection string                      | `IsOrdered: false`, nullable `BypassDocumentValidation`, `UseBsonDocumentDirectly: true`                                                               | Ordered insertion remains the default. Unordered insertion changes failure/order semantics. Direct mode applies only to BSON document bodies and clones them so driver-generated `_id` values do not mutate the input. Other bodies keep JSON conversion.                             |
-| Elasticsearch | Tune bulk chunks and check per-item failures                                                       | QaaS JSON node/element bodies are translated for the existing NEST 7 serializer                                                                        | Existing POCO bodies are unchanged. Numbers outside the bridge's exact decimal range fail explicitly rather than being rounded. This does not upgrade the client or certify all server-major combinations.                                                                            |
-| S3            | Reuse the client, bound concurrency, use finite retries and unique keys                            | Bounded Runner workers and atomic numeric object-name generation                                                                                       | No multipart/streaming PUT or byte-based in-flight upload queue is added. Names remain zero-based within one generator instance, not globally unique across actions/runs.                                                                                                             |
-| SFTP          | Reuse the SSH connection and choose distinct paths                                                 | Nullable `UploadBufferSize`, serialized shared-client writes, explicit disposal                                                                        | Omitted buffer size keeps the SSH.NET default. Parallel workers on one action do not create extra SSH connections. File aggregation or atomic rename requires an explicit downstream contract.                                                                                        |
-| Socket        | Tune buffers and Nagle behavior, verify received bytes                                             | Stream sends continue until all bytes are accepted; simultaneous sends are serialized                                                                  | Datagram sends are not split. TCP remains a byte stream; this preview does not introduce message framing or activate the legacy `SeperationChar` property.                                                                                                                            |
+| Publisher     | Concurrency and batching                                                                             | Configuration and delivery semantics                                                                                                                                                                                                                        |
+| ------------- | ---------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Kafka         | Share the action's producer; start with one worker and increase only when measured delivery benefits | `LingerMs` and `BatchSize` control producer batching; `CompressionType` controls compression. `Acks`, `EnableIdempotence` and `MaxInFlight` define delivery/ordering constraints. `Send` enqueues. Nullable options use Kafka client defaults when omitted. |
+| RabbitMQ      | Shared-channel sends are serialized; independent actions have independent channels                   | `ValidateTopologyOnEveryOperation` defaults to `true`; `false` validates a named exchange once at connection. `PublisherConfirms` defaults to `false`; `true` waits for confirms. Durability and message persistence are separate settings.                 |
+| Redis         | Use chunks; `Redis.BatchSize` does not partition sends                                               | `UseTransactions` defaults to `true` for MULTI/EXEC; `false` uses a pipeline. Command results are observed. A command error fails the action without replaying successful sibling commands.                                                                 |
+| PostgreSQL    | Keep one action sequential; untyped chunks use COPY                                                  | `ParameterizeRows: true` binds singular INSERT values as data. A nonempty `ColumnTypes` selects transactional row inserts for chunks.                                                                                                                       |
+| SQL Server    | Keep one action sequential; untyped chunks use SqlBulkCopy                                           | A nonempty `ColumnTypes` selects row inserts. Budget for the DataTable and provider buffers in addition to body bytes.                                                                                                                                      |
+| Oracle        | Keep one action sequential; untyped chunks use OracleBulkCopy where supported                        | Explicit CLOB/NCLOB/BLOB use provider LOB parameters. Large parameterized strings use CLOB binding. Runner requires `Chunk` for Oracle publishing.                                                                                                          |
+| MongoDB       | Use InsertMany chunks and tune write concern in the connection string                                | `IsOrdered` defaults to `true`; `false` permits unordered inserts. `BypassDocumentValidation` is optional. `UseBsonDocumentDirectly: true` clones BSON document bodies; other bodies use JSON conversion.                                                   |
+| Elasticsearch | Use bulk chunks and inspect per-item errors                                                          | JSON node/element bodies are translated for the NEST serializer; POCO bodies use normal client serialization. Numbers outside the bridge's exact decimal range fail explicitly.                                                                             |
+| S3            | Bound publisher workers, request retries and object sizes                                            | Each send uploads one byte-array body. Numeric object names are zero-based and unique within one generator instance; provide distinct keys across actions and runs. `MaxConcurrentDownloads` is a reader setting.                                           |
+| SFTP          | Shared-client sends are serialized; separate actions have separate SSH connections                   | `UploadBufferSize` is optional; omission uses the SSH.NET default. Select distinct paths across writers.                                                                                                                                                    |
+| Socket        | Shared stream sends are serialized and continue until the full body is accepted                      | Datagram sends are not split. TCP is a byte stream; `SeperationChar` does not provide message framing. Verify bytes at the receiving application.                                                                                                           |
 
-IBM MQ and Trino are consumer-only in the QaaS factories; MongoDB and SFTP have no QaaS reader. Do not report native fixture seeding/readback as a QaaS publisher/consumer measurement. See [consumer throughput controls](https://TheSmokeTeam.github.io/qaas-docs/qaas/userInterfaces/runner/configurationSections/sessions/types/consumers/#throughput-and-compatibility).
+IBM MQ and Trino are reader-only in the QaaS protocol factories; MongoDB and SFTP have no QaaS reader. See [consumer throughput controls](https://TheSmokeTeam.github.io/qaas-docs/qaas/userInterfaces/runner/configurationSections/sessions/types/consumers/#throughput-and-compatibility).
 
-### Kafka delivery and batching example
+### Kafka delivery and batching
 
-Add these fields to an existing `KafkaTopic` publisher only after upgrading to the matching package/schema:
+`ReportDeliveryErrors` defaults to `false`. When enabled, the first asynchronous delivery error is surfaced by a later `Send` or `Disconnect`. `FlushTimeoutMs` has no deadline when omitted; a configured deadline fails the action if records remain undelivered. The client validates incompatible idempotence, acknowledgement and in-flight settings. Match producer, topic/broker and reader maximum-message settings for large records and keep queue limits within available memory.
 
-```yaml
-KafkaTopic:
-  LingerMs: 5
-  BatchSize: 65536
-  Acks: All
-  EnableIdempotence: true
-  MessageTimeoutMs: 30000
-  FlushTimeoutMs: 35000
-  ReportDeliveryErrors: true
-```
+Runner disconnects publishers and consumers when action work succeeds or fails. A disconnect/flush failure fails otherwise successful work. If action work has already failed, its exception is retained and the cleanup error is logged.
 
-The client validates incompatible idempotence/acknowledgement/in-flight settings. `ReportDeliveryErrors` defaults to `false`; when enabled, the first asynchronous delivery error is retained and surfaced by a later `Send` or `Disconnect`. `FlushTimeoutMs` defaults to no deadline, preserving the existing flush behavior. When set, an incomplete flush fails the action rather than reporting undelivered records as successful. Match producer, topic/broker and reader maximum-message settings for large records. Keep queue limits within available memory.
+### Oracle large payload chunks
 
-Runner now disconnects publishers and consumers even if work fails. A disconnect/flush failure fails otherwise successful work; if the operation already failed, that original exception is preserved and the cleanup error is logged.
-
-### Oracle large singular payload example
-
-Use provider-correct LOB types for an Oracle target with a CLOB column:
+Oracle publishing in Runner uses chunks. For a CLOB target column, configure a one-item chunk and explicit LOB type alongside the data source, connection and table settings:
 
 ```yaml
+Chunk:
+  ChunkSize: 1
 OracleSqlTable:
-  ParameterizeRows: true
   ColumnTypes:
     PAYLOAD: CLOB
 ```
 
-This is a fragment; retain the existing connection/table settings. `ParameterizeRows` defaults to `false`. Enabling it treats date-like and function-like strings as data rather than executing the legacy inferred expression. Explicit `ColumnTypes` continues to bypass that inference even when `ParameterizeRows` is omitted. Typed chunks still execute row inserts within a transaction; use the native bulk path when its type support and semantics fit.
+Typed Oracle chunks bind every value as data and execute row inserts within a transaction. The configured CLOB column uses an Oracle LOB parameter. Select the native bulk path by omitting `ColumnTypes` when its type support and semantics fit the workload. `ParameterizeRows` controls singular INSERTs exposed by Framework SQL APIs; it does not select the Runner Oracle chunk path.
 
-### Benchmark without changing the workload contract
+### Size and rate profiles
 
-Measure one publisher/backend at a time on a constrained machine. A useful starting matrix is 256-byte bodies at 10,000 items/s, 16-KiB bodies at 1,000 items/s, and 1-MiB bodies at 10 items/s, followed by an unthrottled run. Warm up, repeat runs, check counts and full payloads, and record CPU, peak memory, delivery completion, first-item latency and drain time separately. These are test profiles, not promised capacities. Keep acknowledgements, persistence, server limits and readback checks identical when comparing tuning options.
+For a stress test, start with a finite duration and modest worker count, then increase one control at a time. Example profiles are 256-byte bodies at 10,000 items/s, 16-KiB bodies at 1,000 items/s, and 1-MiB bodies at 10 items/s. For chunks, convert the item target to chunk operations/s. These are workload inputs, not promised capacities.
 
-Further work such as processing acknowledgements, fully asynchronous protocol APIs, typed native SQL bulk paths, per-worker connection pools, multipart S3 uploads, socket framing and new protocol readers needs separate contracts and validation. None of those semantics is silently enabled by a version update.
+Warm up, repeat runs, check counts and full payloads, and record CPU, peak memory, delivery completion, first-item latency and drain time. Keep acknowledgement, persistence, payloads, server limits and readback checks consistent between comparisons. Run one backend/workload at a time on a resource-constrained machine. For large messages reduce worker count, chunk size and prefetch before raising the rate. Use `DataFilter` to retain only assertion-relevant fields, while accounting for source data and other retained objects that it does not remove.
 
 ## See also
 

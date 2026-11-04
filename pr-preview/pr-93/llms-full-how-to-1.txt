@@ -1929,7 +1929,8 @@ Set `ReadStorageHeaders: true` and keep `DataFilter.MetaData` enabled:
 
 ```yaml
 Sessions:
-  - Name: S3RoundTrip
+  - Name: S3Publish
+    Stage: 0
     Publishers:
       - Name: PublishEvents
         DataSourceNames: [EventsWithStorageMetadata]
@@ -1940,6 +1941,8 @@ Sessions:
           StorageBucket: qaas-events
           ForcePathStyle: true
           Prefix: events/
+  - Name: S3Read
+    Stage: 1
     Consumers:
       - Name: ConsumeCurrentEvents
         TimeoutMs: 1000
@@ -1955,15 +1958,16 @@ Sessions:
           Prefix: events/
           Delimiter: /
           ReadStorageHeaders: true
+          ReadFromRunStartTime: false
 ```
 
-`EventsWithStorageMetadata` represents a data source whose generator returns items like the C# example above. Keep credentials outside committed configuration in real projects.
+`EventsWithStorageMetadata` represents a data source whose generator returns items like the C# example above. The separate session stages wait for publishing to finish before reading. `ReadFromRunStartTime: false` includes objects uploaded before the reader starts. Use a dedicated prefix for each run to exclude unrelated objects. Keep credentials outside committed configuration in real projects.
 
 For each consumed object, Runner stores the full S3 key in `MetaData.Storage.Key`. With `ReadStorageHeaders: true`, it also stores user-defined metadata in `MetaData.Storage.Headers` and removes the wire-level `x-amz-meta-` prefix from header names. An assertion receives the same session output data and can read it directly:
 
 ```csharp
 var consumedItems = sessions
-    .Single(session => session.Name == "S3RoundTrip")
+    .Single(session => session.Name == "S3Read")
     .Outputs!
     .Single(output => output.Name == "ConsumeCurrentEvents")
     .Data;
@@ -1989,14 +1993,13 @@ For a bucket containing `events/a.json` and `events/archive/b.json`:
 
 An empty delimiter is the default and reads every object whose key matches the prefix, at every deeper level. A non-empty delimiter is not an exclusion character and does not mean "return keys without this character anywhere." It selects a hierarchy level relative to `Prefix`. Use `Prefix` to choose the path and `Delimiter` to decide whether deeper paths are included.
 
-## Read large object sets incrementally (unreleased) {: #read-large-object-sets-incrementally}
+## Read large object sets incrementally {: #read-large-object-sets-incrementally}
 
-!!! warning "Unreleased / local preview"
-    This section describes the incremental S3 reader change in development. It requires a Framework Protocols package containing that change; it is not supported by the previously published 1.7.1 package. The published generated configuration tables and schema downloads may not include `StreamResults` or `MaxConcurrentDownloads` until the release and package-mirror update complete.
+Use a Framework package and matching configuration schema that expose `StreamResults` and `MaxConcurrentDownloads`.
 
-`StreamResults` defaults to `false`: `ReadChunk` finishes acquisition before returning, reports download errors during that call, and returns a repeatable materialized result. This preserves the released eager-result contract. To opt into incremental delivery, set `StreamResults: true`.
+`StreamResults` defaults to `false`: `ReadChunk` finishes acquisition before returning, reports download errors during that call, and returns a repeatable materialized result. For incremental delivery, set `StreamResults: true`.
 
-The incremental reader waits for the configured inactivity window, lists matching object metadata, and filters and sorts that metadata before downloading bodies. `ReadFromRunStartTime: true` therefore excludes older objects before their bodies are fetched. Body downloads begin when the result sequence is enumerated, instead of loading the complete bucket into memory before returning the first item.
+The incremental reader waits for the configured inactivity window, lists matching object metadata, and filters and sorts that metadata before downloading bodies. `ReadFromRunStartTime: true` therefore excludes older objects before their bodies are fetched. With `StreamResults: true`, body downloads begin when the result sequence is enumerated.
 
 With `StreamResults: true`, the metadata snapshot is captured when `ReadChunk` is called. Enumerating that result again downloads the bodies again; it does not reuse a memoized body cache. The metadata snapshot does not pin object versions, so repeated enumeration can observe changed bytes or a deleted key.
 
@@ -2009,19 +2012,41 @@ S3Bucket:
   MaxConcurrentDownloads: 4
 ```
 
-With `MaxConcurrentDownloads: 1`, the reader loads one complete body at a time. In eager mode all results are still accumulated before returning; in streaming mode only the current download window is acquired before yielding. A value of `4` loads at most four bodies in the current download window. It waits for that window to finish, then yields its results in timestamp order before starting the next window. Equal timestamps retain the listing order; do not rely on the former parallel download completion order for ties.
+The equivalent code configures one consumer with a four-object download window:
 
-Choose `1` to minimize simultaneous body buffers, or a small higher value when overlapping requests improves throughput. This setting controls S3 body downloads, not publisher concurrency or generic consumer parallelism. `DataFilter.Body: false` still avoids body GET requests entirely. `ReadStorageHeaders: true` continues to perform an additional metadata request for each consumed object.
+```csharp
+using QaaS.Framework.Protocols.ConfigurationObjects.S3;
+using QaaS.Runner.Sessions.Actions.Consumers.Builders;
+using QaaS.Runner.Sessions.Session.Builders;
+
+static SessionBuilder CreateS3ReadSession(
+    string serviceUrl, string bucket, string accessKey, string secretKey)
+{
+    var consumer = new ConsumerBuilder().Named("ReadObjects").WithTimeout(1000)
+        .Configure(new S3BucketReaderConfig
+        {
+            ServiceURL = serviceUrl, StorageBucket = bucket,
+            AccessKey = accessKey, SecretKey = secretKey, ForcePathStyle = true,
+            Prefix = "events/current-run/", StreamResults = true,
+            MaxConcurrentDownloads = 4
+        });
+    return new SessionBuilder().Named("S3Read").AddConsumer(consumer);
+}
+```
+
+With `MaxConcurrentDownloads: 1`, the reader loads one complete body at a time. In eager mode all results are accumulated before returning; in streaming mode only the current download window is acquired before yielding. A value of `4` loads at most four bodies in the current download window. It waits for that window to finish, then yields its results in timestamp order before starting the next window. Equal timestamps retain the listing order.
+
+Choose `1` to minimize simultaneous body buffers, or a small higher value when overlapping requests improves throughput. This setting controls S3 body downloads, not publisher concurrency or generic consumer parallelism. `DataFilter.Body: false` avoids body GET requests entirely. `ReadStorageHeaders: true` performs an additional metadata request for each consumed object.
 
 ### Memory and stopping behavior {: #incremental-memory-and-stopping-behavior}
 
-The limit counts concurrent object downloads; it is not a byte limit. Each downloaded body is still materialized as a complete byte array, and transport buffers and copies add overhead. Four large objects can require much more memory than four small objects. Metadata for the selected object set is also listed and sorted in memory.
+The limit counts concurrent object downloads; it is not a byte limit. Each downloaded body is materialized as a complete byte array, and transport buffers and copies add overhead. Four large objects can require much more memory than four small objects. Metadata for the selected object set is also listed and sorted in memory.
 
-Runner still retains consumed output bodies for later assertions. Incremental S3 reads reduce acquisition buffering, but do not make the complete Runner workflow use constant memory. For example, retaining 150 objects of 4 MiB each still requires about 600 MiB for the bodies alone, before deserialization, publisher data, storage and reporting. This change does not add lazy `Body` access or disk-backed retention.
+Runner retains consumed output bodies for later assertions. Incremental S3 reads reduce acquisition buffering, but do not make the complete Runner workflow use constant memory. For example, retaining 150 objects of 4 MiB each still requires about 600 MiB for the bodies alone, before deserialization, publisher data, storage and reporting. `Body` is a complete byte array and retained output is held in memory.
 
 If a count policy or another caller stops enumeration, the reader does not start later windows. Up to `MaxConcurrentDownloads` objects from the current window may already have been downloaded. The setting does not cancel an in-flight request, and the consumer timeout remains an inactivity window rather than an overall download deadline.
 
-Incremental delivery can expose earlier results before a later download fails. Treat the consumer action failure as a failed or incomplete read; a partial output list is not proof that every expected object was consumed. Objects can also change between listing and download: this feature does not create an immutable S3 snapshot.
+Incremental delivery can expose earlier results before a later download fails. Treat the consumer action failure as a failed or incomplete read; a partial output list is not proof that every expected object was consumed. Objects can also change between listing and download: the result is not an immutable S3 snapshot.
 
 ## Edge cases {: #edge-cases}
 
