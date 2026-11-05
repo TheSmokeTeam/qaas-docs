@@ -31,7 +31,7 @@ The table below mirrors the schema used by the YAML scaffold page. Nested rows u
 | `Storages[].JsonStorageFormat` | `one of [Indented / None]` | &#10006 |  | The storage format used when storing jsons. Options: [`Indented` - Formats the json with indents, more readable but less memory efficient /`None` - Formats the json without indents, less readable but more memory efficient ] |
 | `Storages[].FileSystem` | `object or string` | &#10006 |  | Supports storage as a file system directory |
 | `Storages[].FileSystem.Path` | `string` | &#10004 |  | The path of the directory containing the relevant files |
-| `Storages[].FileSystem.SearchPattern` | `string` | &#10006 |  | The search string to match against the names of files in path. This parameter can contain a combination of valid literal path and wildcard (* and ?) characters, but it doesn't support regular expressions. |
+| `Storages[].FileSystem.SearchPattern` | `string` | &#10006 |  | The search string to match against the names of files in path. This parameter can contain a combination of valid literal path and wildcard (&#42; and ?) characters, but it doesn't support regular expressions. |
 | `Storages[].S3` | `object or string` | &#10006 |  | Supports storage as an S3 bucket with a certain prefix |
 | `Storages[].S3.AccessKey` | `string` | &#10004 |  | S3 account access key |
 | `Storages[].S3.SecretKey` | `string` | &#10004 |  | S3 account secret access key |

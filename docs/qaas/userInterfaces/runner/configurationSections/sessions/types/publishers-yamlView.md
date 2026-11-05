@@ -57,6 +57,7 @@ Publishers:
           TimeoutMs: 0
     Chunk:
       ChunkSize: 0
+      MaxBytes: 1
     DataFilter:
       Body: True
       MetaData: True
@@ -73,17 +74,25 @@ Publishers:
       Password: 'value'
       TopicName: 'value'
       Username: 'value'
+      Acks: 'None'
+      BatchSize: 1
       CompressionLevel: 0
       CompressionType: 'None'
       DefaultKafkaKey: 'value'
+      EnableIdempotence: True
+      FlushTimeoutMs: 1
       Headers: {}
+      LingerMs: 1.0
+      MaxInFlight: 1
       MessageMaxBytes: 1000000
       MessageSendMaxRetries: 10
       MessageSendRetriesIntervalMs: 1000
+      MessageTimeoutMs: 0
       Partition: -1
       QueueBufferingBackpressureThreshold: 1
       QueueBufferingMaxKbytes: 1048576
       QueueBufferingMaxMessages: 100000
+      ReportDeliveryErrors: False
       SaslMechanism: 'Gssapi'
       SecurityProtocol: 'Plaintext'
       HostNames:
@@ -92,17 +101,22 @@ Publishers:
       CollectionName: 'value'
       ConnectionString: 'value'
       DatabaseName: 'value'
+      BypassDocumentValidation: True
+      IsOrdered: True
+      UseBsonDocumentDirectly: False
     MsSqlTable:
       ConnectionString: 'value'
       TableName: 'value'
       ColumnTypes: {}
       CommandTimeoutSeconds: 30
       IsUDTInsertion: False
+      ParameterizeRows: False
     OracleSqlTable:
       ConnectionString: 'value'
       TableName: 'value'
       ColumnTypes: {}
       CommandTimeoutSeconds: 30
+      ParameterizeRows: False
     Parallel:
       Parallelism: 1
     PostgreSqlTable:
@@ -110,6 +124,7 @@ Publishers:
       TableName: 'value'
       ColumnTypes: {}
       CommandTimeoutSeconds: 30
+      ParameterizeRows: False
     RabbitMq:
       Host: 'value'
       AppId: 'value'
@@ -132,6 +147,7 @@ Publishers:
       Persistent: True
       Port: 5672
       Priority: 0
+      PublisherConfirms: False
       QueueName: 'value'
       ReplyTo: 'value'
       RequestedConnectionTimeoutSeconds: 5
@@ -140,6 +156,7 @@ Publishers:
       Type: 'value'
       UserId: 'value'
       Username: 'admin'
+      ValidateTopologyOnEveryOperation: True
       VirtualHost: '/'
     Redis:
       RedisDataType: 'SetString'
@@ -156,6 +173,7 @@ Publishers:
       RetryIntervalMs: 1000
       Ssl: False
       SslHost: 'value'
+      UseTransactions: True
       Username: 'value'
       When: 'Always'
       HostNames:
@@ -180,6 +198,7 @@ Publishers:
       NamingType: 'GrowingNumericalSeries'
       Port: 22
       Prefix: ''
+      UploadBufferSize: 1
     Socket:
       Host: 'value'
       Port: 0

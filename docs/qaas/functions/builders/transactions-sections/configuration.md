@@ -41,6 +41,8 @@ Use this page when you need the focused member list, signatures, and source note
     **Docstring**
     
     Configures timeout on the current Runner transaction builder instance.
+    
+    Stores settings on this builder for validation and action construction.
 
 ### `WithDeserializer` {: #withdeserializer}
 
@@ -62,6 +64,8 @@ Use this page when you need the focused member list, signatures, and source note
     **Docstring**
     
     Sets the deserializer configuration used by the current Runner transaction builder instance.
+    
+    Stores settings on this builder for validation and action construction.
 
 ### `WithSerializer` {: #withserializer}
 
@@ -83,6 +87,8 @@ Use this page when you need the focused member list, signatures, and source note
     **Docstring**
     
     Sets the serializer configuration used by the current Runner transaction builder instance.
+    
+    Stores settings on this builder for validation and action construction.
 
 ### `WithIterations` {: #withiterations}
 
@@ -104,6 +110,8 @@ Use this page when you need the focused member list, signatures, and source note
     **Docstring**
     
     Sets how many iterations the transaction should execute.
+    
+    Stores settings on this builder for validation and action construction.
 
 ### `WithParallelism` {: #withparallelism}
 
@@ -124,7 +132,9 @@ Use this page when you need the focused member list, signatures, and source note
     
     **Docstring**
     
-    Configures the transaction to run with the supplied parallelism.
+    Sets the maximum concurrent workers for this transaction action.
+    
+    The value must be at least one. Each worker executes one request/response operation on the shared transactor. Omitting this setting runs sequentially. Parallel input is materialized before execution; worker limits do not bound retained session memory.
 
 ### `WithSleep` {: #withsleep}
 
@@ -146,6 +156,8 @@ Use this page when you need the focused member list, signatures, and source note
     **Docstring**
     
     Sets the delay applied between transaction iterations.
+    
+    Stores settings on this builder for validation and action construction.
 
 ## Edge cases {: #edge-cases}
 

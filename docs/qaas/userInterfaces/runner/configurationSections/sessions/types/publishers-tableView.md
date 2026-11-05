@@ -61,6 +61,7 @@ The table below mirrors the schema used by the YAML scaffold page. Nested rows u
 | `Sessions[].Publishers[].Policies[].Timeout.TimeoutMs` | `integer or string` | &#10006 |  |  |
 | `Sessions[].Publishers[].Chunk` | `object or string` | &#10006 |  | Determines whether the publisher acts as a chunk publisher |
 | `Sessions[].Publishers[].Chunk.ChunkSize` | `integer or string` | &#10004 |  | The size of the chunk to use |
+| `Sessions[].Publishers[].Chunk.MaxBytes` | `integer or string or null` | &#10006 |  | Optional maximum serialized body bytes per chunk, in addition to ChunkSize. Byte arrays use their length, strings use UTF-8 and structured bodies use JSON size. Excludes protocol envelopes and total session retention. A single oversized body fails rather than exceeding the limit. When omitted, ChunkSize is the only chunk-size limit. |
 | `Sessions[].Publishers[].DataFilter` | `object or string` | &#10006 |  | How to filter the properties of each returned published data |
 | `Sessions[].Publishers[].DataFilter.Body` | `string or true/false` | &#10006 | True | Whether to keep the `Body` in the data (true) or filter it (false) |
 | `Sessions[].Publishers[].DataFilter.MetaData` | `string or true/false` | &#10006 | True | Whether to keep the `MetaData` in the data (true) or filter it (false) |
@@ -77,17 +78,25 @@ The table below mirrors the schema used by the YAML scaffold page. Nested rows u
 | `Sessions[].Publishers[].KafkaTopic.Password` | `string` | &#10004 |  | Kafka Service with read permissions for the topic's password |
 | `Sessions[].Publishers[].KafkaTopic.TopicName` | `string` | &#10004 |  | Name of the topic to read messages from |
 | `Sessions[].Publishers[].KafkaTopic.Username` | `string` | &#10004 |  | Kafka Service with read permissions for the topic's username |
+| `Sessions[].Publishers[].KafkaTopic.Acks` | `one of [None / Leader / All]` | &#10006 |  | Optional broker acknowledgement policy. When omitted, the Kafka client default applies. |
+| `Sessions[].Publishers[].KafkaTopic.BatchSize` | `integer or string or null` | &#10006 |  | Optional producer batch size in bytes, distinct from Runner ChunkSize. Omitted uses the Kafka client default. |
 | `Sessions[].Publishers[].KafkaTopic.CompressionLevel` | `integer or string` | &#10006 |  | Compression level for selected CompressionType algorithm, higher values will result in better compression at the cost of more CPU usage. |
 | `Sessions[].Publishers[].KafkaTopic.CompressionType` | `one of [None / Gzip / Snappy / Lz4 / Zstd]` | &#10006 |  | Compression type to use before sending messages |
 | `Sessions[].Publishers[].KafkaTopic.DefaultKafkaKey` | `string or null` | &#10006 |  | The default kafka message key given if no key is given in the generated data under `MetaData` in the kafka key field |
+| `Sessions[].Publishers[].KafkaTopic.EnableIdempotence` | `string or true/false or null` | &#10006 |  | Optional idempotent producer. The Kafka client validates compatibility with acknowledgements and in-flight limits. |
+| `Sessions[].Publishers[].KafkaTopic.FlushTimeoutMs` | `integer or string or null` | &#10006 |  | Optional flush deadline in milliseconds. Disconnect fails if records remain undelivered. When omitted, Disconnect waits for the producer flush without a deadline. |
 | `Sessions[].Publishers[].KafkaTopic.Headers` | `object or string or null` | &#10006 |  | Default Headers to send messages with, if the message doesn't contain any Headers in its MetaData these Headers are used |
+| `Sessions[].Publishers[].KafkaTopic.LingerMs` | `number or string or null` | &#10006 |  | Optional producer batching delay in milliseconds. Omitted uses the Kafka client default. |
+| `Sessions[].Publishers[].KafkaTopic.MaxInFlight` | `integer or string or null` | &#10006 |  | Optional maximum in-flight requests per broker connection. Omitted uses the Kafka client default. |
 | `Sessions[].Publishers[].KafkaTopic.MessageMaxBytes` | `integer or string` | &#10006 | 1000000 | Maximum allowed Kafka message size in bytes (librdkafka `message.max.bytes`). Valid range is 1000 to 1000000000; must not exceed broker/topic limits. |
 | `Sessions[].Publishers[].KafkaTopic.MessageSendMaxRetries` | `integer or string` | &#10006 | 10 | Max amount of retries when message send to Kafka Topic failed. |
 | `Sessions[].Publishers[].KafkaTopic.MessageSendRetriesIntervalMs` | `integer or string` | &#10006 | 1000 | Time interval in milliseconds to wait between each retry of Kafka Topic message send. |
+| `Sessions[].Publishers[].KafkaTopic.MessageTimeoutMs` | `integer or string or null` | &#10006 |  | Optional delivery timeout in milliseconds. Omitted uses the Kafka client default. |
 | `Sessions[].Publishers[].KafkaTopic.Partition` | `integer or string` | &#10006 | -1 | The Kafka partition to produce to, by default -1 is treated as Partition.Any which will mean it uses an unspecified / unknown partition. |
 | `Sessions[].Publishers[].KafkaTopic.QueueBufferingBackpressureThreshold` | `integer or string` | &#10006 | 1 | The threshold of outstanding not yet transmitted broker requests needed to backpressure the producer's message accumulator. |
 | `Sessions[].Publishers[].KafkaTopic.QueueBufferingMaxKbytes` | `integer or string` | &#10006 | 1048576 | Maximum total message size sum allowed on the inner producer queue. |
 | `Sessions[].Publishers[].KafkaTopic.QueueBufferingMaxMessages` | `integer or string` | &#10006 | 100000 | Maximum number of messages allowed on the inner producer queue. A value of 0 disables this limit. |
+| `Sessions[].Publishers[].KafkaTopic.ReportDeliveryErrors` | `string or true/false` | &#10006 | False | Report asynchronous delivery failures on a subsequent Send or Disconnect. Send completes when the record is enqueued; broker delivery is asynchronous. |
 | `Sessions[].Publishers[].KafkaTopic.SaslMechanism` | `one of [Gssapi / Plain / ScramSha256 / ScramSha512 / OAuthBearer]` | &#10006 |  | The Sasl mechanism used in the kafka |
 | `Sessions[].Publishers[].KafkaTopic.SecurityProtocol` | `one of [Plaintext / Ssl / SaslPlaintext / SaslSsl]` | &#10006 |  | The Sasl's security protocol |
 | `Sessions[].Publishers[].KafkaTopic.HostNames` | `list or string` | &#10004 |  | List of the kafka hostnames (each hostname should contain the port too for example: - 'host1:8080' |
@@ -96,24 +105,30 @@ The table below mirrors the schema used by the YAML scaffold page. Nested rows u
 | `Sessions[].Publishers[].MongoDbCollection.CollectionName` | `string` | &#10004 |  | The collection to insert data to |
 | `Sessions[].Publishers[].MongoDbCollection.ConnectionString` | `string` | &#10004 |  | The connection string to the MongoDb server |
 | `Sessions[].Publishers[].MongoDbCollection.DatabaseName` | `string` | &#10004 |  | The DB to insert data to |
+| `Sessions[].Publishers[].MongoDbCollection.BypassDocumentValidation` | `string or true/false or null` | &#10006 |  | Optional MongoDB document-validation bypass. When omitted, the driver/server default applies. |
+| `Sessions[].Publishers[].MongoDbCollection.IsOrdered` | `string or true/false` | &#10006 | True | Keep ordered InsertMany behavior. False permits unordered insertion and can change partial-failure/order semantics. |
+| `Sessions[].Publishers[].MongoDbCollection.UseBsonDocumentDirectly` | `string or true/false` | &#10006 | False | For BsonDocument bodies, clone and insert BSON directly without a JSON round trip. Other body types retain JSON conversion. When false, all bodies are converted through JSON. |
 | `Sessions[].Publishers[].MsSqlTable` | `object or string` | &#10006 |  | Publishes messages to an mssql database table |
 | `Sessions[].Publishers[].MsSqlTable.ConnectionString` | `string` | &#10004 |  | The connection string to the database |
 | `Sessions[].Publishers[].MsSqlTable.TableName` | `string` | &#10004 |  | The table to insert data to |
 | `Sessions[].Publishers[].MsSqlTable.ColumnTypes` | `object or string or null` | &#10006 |  | Optional column-name to SQL-type mapping for publisher inserts. Type expressions are trusted SQL configuration in the target database's dialect. A nonempty map uses SQL CAST instead of automatic inference and makes chunk sends use row inserts. Omitted or empty maps preserve the existing bulk behavior. |
 | `Sessions[].Publishers[].MsSqlTable.CommandTimeoutSeconds` | `integer or string` | &#10006 | 30 | The wait time (in seconds) before terminating the attempt to execute an sql copy/insertion command and generating an error |
 | `Sessions[].Publishers[].MsSqlTable.IsUDTInsertion` | `string or true/false` | &#10006 | False | Determines whether User-Defined Type (UDT) insertion is required. If UDT insertion is not necessary, it is recommended to set this property to false. UDT insertion can slow down data insertion, especially for large datasets. Therefore, it is recommended to only use UDT insertion when necessary. |
+| `Sessions[].Publishers[].MsSqlTable.ParameterizeRows` | `string or true/false` | &#10006 | False | Bind every value in singular row INSERTs as data. When false, columns without an explicit ColumnTypes entry use date/UDT expression inference. Chunk sends use native bulk operations when ColumnTypes is empty and typed row transactions when ColumnTypes has entries. |
 | `Sessions[].Publishers[].OracleSqlTable` | `object or string` | &#10006 |  | Publishes messages to an oracle sql database table |
 | `Sessions[].Publishers[].OracleSqlTable.ConnectionString` | `string` | &#10004 |  | The connection string to the database |
 | `Sessions[].Publishers[].OracleSqlTable.TableName` | `string` | &#10004 |  | The table to insert data to |
 | `Sessions[].Publishers[].OracleSqlTable.ColumnTypes` | `object or string or null` | &#10006 |  | Optional column-name to SQL-type mapping for publisher inserts. Type expressions are trusted SQL configuration in the target database's dialect. A nonempty map uses SQL CAST instead of automatic inference and makes chunk sends use row inserts. Omitted or empty maps preserve the existing bulk behavior. |
 | `Sessions[].Publishers[].OracleSqlTable.CommandTimeoutSeconds` | `integer or string` | &#10006 | 30 | The wait time (in seconds) before terminating the attempt to execute an sql copy/insertion command and generating an error |
-| `Sessions[].Publishers[].Parallel` | `object or string` | &#10006 |  | Whether to publish in a specified parallelism |
-| `Sessions[].Publishers[].Parallel.Parallelism` | `integer or string` | &#10004 |  | The amount of parallel tasks to execute at once |
+| `Sessions[].Publishers[].OracleSqlTable.ParameterizeRows` | `string or true/false` | &#10006 | False | Bind every value in singular row INSERTs as data. When false, columns without an explicit ColumnTypes entry use date/UDT expression inference. Chunk sends use native bulk operations when ColumnTypes is empty and typed row transactions when ColumnTypes has entries. |
+| `Sessions[].Publishers[].Parallel` | `object or string` | &#10006 |  | Optional worker limit for this publisher. Omit for sequential execution. Workers send individual items or chunks on the action's shared sender; completion order is not guaranteed. |
+| `Sessions[].Publishers[].Parallel.Parallelism` | `integer or string` | &#10004 |  | Maximum concurrent workers within one publisher or transaction action. A chunk publisher assigns one chunk to each worker. Each action uses its own worker limit; protocol connection limits can further serialize operations. |
 | `Sessions[].Publishers[].PostgreSqlTable` | `object or string` | &#10006 |  | Publishes messages to a postgresql database table |
 | `Sessions[].Publishers[].PostgreSqlTable.ConnectionString` | `string` | &#10004 |  | The connection string to the database |
 | `Sessions[].Publishers[].PostgreSqlTable.TableName` | `string` | &#10004 |  | The table to insert data to |
 | `Sessions[].Publishers[].PostgreSqlTable.ColumnTypes` | `object or string or null` | &#10006 |  | Optional column-name to SQL-type mapping for publisher inserts. Type expressions are trusted SQL configuration in the target database's dialect. A nonempty map uses SQL CAST instead of automatic inference and makes chunk sends use row inserts. Omitted or empty maps preserve the existing bulk behavior. |
 | `Sessions[].Publishers[].PostgreSqlTable.CommandTimeoutSeconds` | `integer or string` | &#10006 | 30 | The wait time (in seconds) before terminating the attempt to execute an sql copy/insertion command and generating an error |
+| `Sessions[].Publishers[].PostgreSqlTable.ParameterizeRows` | `string or true/false` | &#10006 | False | Bind every value in singular row INSERTs as data. When false, columns without an explicit ColumnTypes entry use date/UDT expression inference. Chunk sends use native bulk operations when ColumnTypes is empty and typed row transactions when ColumnTypes has entries. |
 | `Sessions[].Publishers[].RabbitMq` | `object or string` | &#10006 |  | Publishes messages to a rabbitmq |
 | `Sessions[].Publishers[].RabbitMq.Host` | `string` | &#10004 |  | Rabbitmq hostname |
 | `Sessions[].Publishers[].RabbitMq.AppId` | `string or null` | &#10006 |  | Default AppId to send messages with, if the message doesn't contain AppId in its MetaData this one is Used |
@@ -136,6 +151,7 @@ The table below mirrors the schema used by the YAML scaffold page. Nested rows u
 | `Sessions[].Publishers[].RabbitMq.Persistent` | `string or true/false or null` | &#10006 |  | Default Persistent flag to send messages with, if the message doesn't contain Persistent or DeliveryMode in its MetaData this one is Used. DeliveryMode takes precedence when both are configured. |
 | `Sessions[].Publishers[].RabbitMq.Port` | `integer or string` | &#10006 | 5672 | Rabbitmq Amqp port |
 | `Sessions[].Publishers[].RabbitMq.Priority` | `integer or string or null` | &#10006 |  | Default Priority to send messages with, if the message doesn't contain Priority in its MetaData this one is Used |
+| `Sessions[].Publishers[].RabbitMq.PublisherConfirms` | `string or true/false` | &#10006 | False | Wait for a broker publisher confirmation and report returned/unroutable messages. When false, Send completes without waiting for a broker confirmation. Shared-channel sends are serialized; this is a durability option, not a throughput guarantee. |
 | `Sessions[].Publishers[].RabbitMq.QueueName` | `string or null` | &#10006 |  | Name of the queue to send messages to. Cannot be set if configured ExchangeName to read from. |
 | `Sessions[].Publishers[].RabbitMq.ReplyTo` | `string or null` | &#10006 |  | Default ReplyTo to send messages with, if the message doesn't contain ReplyTo in its MetaData this one is Used |
 | `Sessions[].Publishers[].RabbitMq.RequestedConnectionTimeoutSeconds` | `integer or string` | &#10006 | 5 | Timeout setting for connection attempts in seconds |
@@ -144,12 +160,13 @@ The table below mirrors the schema used by the YAML scaffold page. Nested rows u
 | `Sessions[].Publishers[].RabbitMq.Type` | `string or null` | &#10006 |  | Default Type to send messages with, if the message doesn't contain Type in its MetaData this one is Used |
 | `Sessions[].Publishers[].RabbitMq.UserId` | `string or null` | &#10006 |  | Default UserId to send messages with, if the message doesn't contain UserId in its MetaData this one is Used |
 | `Sessions[].Publishers[].RabbitMq.Username` | `string` | &#10006 | admin | Rabbitmq username |
+| `Sessions[].Publishers[].RabbitMq.ValidateTopologyOnEveryOperation` | `string or true/false` | &#10006 | True | Check the named exchange before each send and the queue before each polling read. Set false to validate during Connect only. Subscription reads validate the queue during Connect. Queue/exchange deletion is reported by the operation that detects it. |
 | `Sessions[].Publishers[].RabbitMq.VirtualHost` | `string` | &#10006 | / | Rabbitmq virual host to access during this connection |
 | `Sessions[].Publishers[].Redis` | `object or string` | &#10006 |  | Publishes messages to a redis cache |
 | `Sessions[].Publishers[].Redis.RedisDataType` | `one of [SetString / ListLeftPush / ListRightPush / SetAdd / HashSet / SortedSetAdd / GeoAdd]` | &#10004 |  | Redis data type to use, define the function the qaas will use to send to the redis server |
 | `Sessions[].Publishers[].Redis.AbortOnConnectFail` | `string or true/false` | &#10006 | True | If true, connect will not create connection while no servers are available |
 | `Sessions[].Publishers[].Redis.AsyncTimeout` | `integer or string` | &#10006 | 5000 | Time(ms) to allow for asynchronous operations |
-| `Sessions[].Publishers[].Redis.BatchSize` | `integer or string or null` | &#10006 |  | Batch size of sending actions to the redis, when configured to null all generation data is considred as one batch |
+| `Sessions[].Publishers[].Redis.BatchSize` | `integer or string or null` | &#10006 |  | This property does not partition sends. Configure Publisher.Chunk.ChunkSize (and optional MaxBytes) in Runner. |
 | `Sessions[].Publishers[].Redis.ClientName` | `string or null` | &#10006 |  | Identification for the connection within redis |
 | `Sessions[].Publishers[].Redis.CommandFlags` | `one of [None / PreferMaster / HighPriority / FireAndForget / DemandMaster / PreferSlave / PreferReplica / DemandSlave / DemandReplica / NoRedirect / NoScriptCache]` | &#10006 |  | Specifies the command flags that should be performed, behaviour markers associated with a given command |
 | `Sessions[].Publishers[].Redis.ConnectRetry` | `integer or string` | &#10006 | 3 | The number of times to repeat connect attempts during initial connect |
@@ -160,6 +177,7 @@ The table below mirrors the schema used by the YAML scaffold page. Nested rows u
 | `Sessions[].Publishers[].Redis.RetryIntervalMs` | `integer or string` | &#10006 | 1000 | Retries interval milliseconds |
 | `Sessions[].Publishers[].Redis.Ssl` | `string or true/false` | &#10006 | False | Specifies that SSL encryption should be used |
 | `Sessions[].Publishers[].Redis.SslHost` | `string or null` | &#10006 |  | Enforces a preticular SSL host identity on the server's certificate |
+| `Sessions[].Publishers[].Redis.UseTransactions` | `string or true/false` | &#10006 | True | Send each chunk with a MULTI/EXEC transaction. False uses a pipelined nontransactional batch; partial writes are possible and QaaS does not automatically retry that batch. Every command result is observed in both modes. |
 | `Sessions[].Publishers[].Redis.Username` | `string or null` | &#10006 |  | User for the redis server |
 | `Sessions[].Publishers[].Redis.When` | `one of [Always / Exists / NotExists]` | &#10006 |  | Indicates when this operation should be performed (only some variations are legal in a given context) |
 | `Sessions[].Publishers[].Redis.HostNames` | `list or string` | &#10004 |  | List of the redis hostnames (each hostname should contain the port too for example: - 'host1:8080' |
@@ -184,6 +202,7 @@ The table below mirrors the schema used by the YAML scaffold page. Nested rows u
 | `Sessions[].Publishers[].Sftp.NamingType` | `one of [GrowingNumericalSeries / RandomGuid]` | &#10006 |  | The naming type of the object naming generator |
 | `Sessions[].Publishers[].Sftp.Port` | `integer or string` | &#10006 | 22 | The port in the remote machine |
 | `Sessions[].Publishers[].Sftp.Prefix` | `string` | &#10006 |  | The object's naming prefix |
+| `Sessions[].Publishers[].Sftp.UploadBufferSize` | `integer or string or null` | &#10006 |  | Optional SSH.NET upload buffer size in bytes. When omitted, the client default applies. Tune against file size, server limits and memory. |
 | `Sessions[].Publishers[].Socket` | `object or string` | &#10006 |  | Publishes messages from a socket to an endpoint |
 | `Sessions[].Publishers[].Socket.Host` | `string` | &#10004 |  | Socket connection endpoint hostname |
 | `Sessions[].Publishers[].Socket.Port` | `integer or string` | &#10004 |  | Socket connection endpoint port |

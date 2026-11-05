@@ -41,6 +41,8 @@ Use this page when you need the focused member list, signatures, and source note
     **Docstring**
     
     Adds the supplied data source to the current Runner publisher builder instance.
+    
+    Stores settings on this builder for validation and action construction.
 
 ### `UpdateDataSource` {: #updatedatasource}
 
@@ -62,6 +64,8 @@ Use this page when you need the focused member list, signatures, and source note
     **Docstring**
     
     Updates the configured data source stored on the current Runner publisher builder instance.
+    
+    Stores settings on this builder for validation and action construction.
 
 ### `RemoveDataSource` {: #removedatasource}
 
@@ -83,6 +87,8 @@ Use this page when you need the focused member list, signatures, and source note
     **Docstring**
     
     Removes the configured data source from the current Runner publisher builder instance.
+    
+    Stores settings on this builder for validation and action construction.
 
 ### `RemoveDataSourceAt` {: #removedatasourceat}
 
@@ -104,6 +110,8 @@ Use this page when you need the focused member list, signatures, and source note
     **Docstring**
     
     Removes the configured data source at the specified index from the current Runner publisher builder instance.
+    
+    Stores settings on this builder for validation and action construction.
 
 ### `AddDataSourcePattern` {: #adddatasourcepattern}
 
@@ -125,6 +133,8 @@ Use this page when you need the focused member list, signatures, and source note
     **Docstring**
     
     Adds the supplied data source pattern to the current Runner publisher builder instance.
+    
+    Stores settings on this builder for validation and action construction.
 
 ### `UpdateDataSourcePattern` {: #updatedatasourcepattern}
 
@@ -146,6 +156,8 @@ Use this page when you need the focused member list, signatures, and source note
     **Docstring**
     
     Updates the configured data source pattern stored on the current Runner publisher builder instance.
+    
+    Stores settings on this builder for validation and action construction.
 
 ### `RemoveDataSourcePattern` {: #removedatasourcepattern}
 
@@ -167,6 +179,8 @@ Use this page when you need the focused member list, signatures, and source note
     **Docstring**
     
     Removes the configured data source pattern from the current Runner publisher builder instance.
+    
+    Stores settings on this builder for validation and action construction.
 
 ### `RemoveDataSourcePatternAt` {: #removedatasourcepatternat}
 
@@ -188,6 +202,8 @@ Use this page when you need the focused member list, signatures, and source note
     **Docstring**
     
     Removes the configured data source pattern at the specified index from the current Runner publisher builder instance.
+    
+    Stores settings on this builder for validation and action construction.
 
 ## Edge cases {: #edge-cases}
 

@@ -41,6 +41,8 @@ Use this page when you need the focused member list, signatures, and source note
     **Docstring**
     
     Sets the data filter used by the current Runner publisher builder instance.
+    
+    Stores settings on this builder for validation and action construction.
 
 ### `InLoops` {: #inloops}
 
@@ -61,7 +63,9 @@ Use this page when you need the focused member list, signatures, and source note
     
     **Docstring**
     
-    Marks the transaction to execute continuously in loop mode.
+    Marks the publisher to execute continuously in loop mode.
+    
+    Stores settings on this builder for validation and action construction.
 
 ### `Configure` {: #configure}
 
@@ -83,6 +87,8 @@ Use this page when you need the focused member list, signatures, and source note
     **Docstring**
     
     Sets the configuration currently stored on the Runner publisher builder instance.
+    
+    Stores settings on this builder for validation and action construction.
 
 ## Edge cases {: #edge-cases}
 

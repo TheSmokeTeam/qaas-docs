@@ -45,6 +45,8 @@ The functions on this page are grouped by responsibility so related operations s
     **Docstring**
     
     Sets the name used for the current Runner publisher builder instance.
+    
+    Stores settings on this builder for validation and action construction.
 
 ## Execution order {: #execution-order}
 
@@ -68,6 +70,8 @@ The functions on this page are grouped by responsibility so related operations s
     **Docstring**
     
     Sets the stage used by the current Runner publisher builder instance.
+    
+    Stores settings on this builder for validation and action construction.
 
 ## Data source selection {: #data-source-selection}
 
@@ -91,6 +95,8 @@ The functions on this page are grouped by responsibility so related operations s
     **Docstring**
     
     Adds the supplied data source to the current Runner publisher builder instance.
+    
+    Stores settings on this builder for validation and action construction.
 
 ### `UpdateDataSource` {: #updatedatasource}
 
@@ -112,6 +118,8 @@ The functions on this page are grouped by responsibility so related operations s
     **Docstring**
     
     Updates the configured data source stored on the current Runner publisher builder instance.
+    
+    Stores settings on this builder for validation and action construction.
 
 ### `RemoveDataSource` {: #removedatasource}
 
@@ -133,6 +141,8 @@ The functions on this page are grouped by responsibility so related operations s
     **Docstring**
     
     Removes the configured data source from the current Runner publisher builder instance.
+    
+    Stores settings on this builder for validation and action construction.
 
 ### `RemoveDataSourceAt` {: #removedatasourceat}
 
@@ -154,6 +164,8 @@ The functions on this page are grouped by responsibility so related operations s
     **Docstring**
     
     Removes the configured data source at the specified index from the current Runner publisher builder instance.
+    
+    Stores settings on this builder for validation and action construction.
 
 ### `AddDataSourcePattern` {: #adddatasourcepattern}
 
@@ -175,6 +187,8 @@ The functions on this page are grouped by responsibility so related operations s
     **Docstring**
     
     Adds the supplied data source pattern to the current Runner publisher builder instance.
+    
+    Stores settings on this builder for validation and action construction.
 
 ### `UpdateDataSourcePattern` {: #updatedatasourcepattern}
 
@@ -196,6 +210,8 @@ The functions on this page are grouped by responsibility so related operations s
     **Docstring**
     
     Updates the configured data source pattern stored on the current Runner publisher builder instance.
+    
+    Stores settings on this builder for validation and action construction.
 
 ### `RemoveDataSourcePattern` {: #removedatasourcepattern}
 
@@ -217,6 +233,8 @@ The functions on this page are grouped by responsibility so related operations s
     **Docstring**
     
     Removes the configured data source pattern from the current Runner publisher builder instance.
+    
+    Stores settings on this builder for validation and action construction.
 
 ### `RemoveDataSourcePatternAt` {: #removedatasourcepatternat}
 
@@ -238,6 +256,8 @@ The functions on this page are grouped by responsibility so related operations s
     **Docstring**
     
     Removes the configured data source pattern at the specified index from the current Runner publisher builder instance.
+    
+    Stores settings on this builder for validation and action construction.
 
 ## Policies {: #policies}
 
@@ -261,6 +281,8 @@ The functions on this page are grouped by responsibility so related operations s
     **Docstring**
     
     Adds the supplied policy to the current Runner publisher builder instance.
+    
+    Stores settings on this builder for validation and action construction.
 
 ### `UpdatePolicyAt` {: #updatepolicyat}
 
@@ -282,6 +304,8 @@ The functions on this page are grouped by responsibility so related operations s
     **Docstring**
     
     Updates the configured policy at the specified index on the current Runner publisher builder instance.
+    
+    Stores settings on this builder for validation and action construction.
 
 ### `RemovePolicyAt` {: #removepolicyat}
 
@@ -303,6 +327,8 @@ The functions on this page are grouped by responsibility so related operations s
     **Docstring**
     
     Removes the configured policy at the specified index from the current Runner publisher builder instance.
+    
+    Stores settings on this builder for validation and action construction.
 
 ## Configuration {: #configuration}
 
@@ -326,6 +352,8 @@ The functions on this page are grouped by responsibility so related operations s
     **Docstring**
     
     Sets the serializer configuration used by the current Runner publisher builder instance.
+    
+    Stores settings on this builder for validation and action construction.
 
 ### `WithIterations` {: #withiterations}
 
@@ -347,6 +375,8 @@ The functions on this page are grouped by responsibility so related operations s
     **Docstring**
     
     Sets how many iterations the publisher should execute.
+    
+    Stores settings on this builder for validation and action construction.
 
 ### `WithSleep` {: #withsleep}
 
@@ -367,7 +397,9 @@ The functions on this page are grouped by responsibility so related operations s
     
     **Docstring**
     
-    Sets the delay applied between transaction iterations.
+    Sets the delay applied between publisher iterations.
+    
+    Stores settings on this builder for validation and action construction.
 
 ### `WithChunks` {: #withchunks}
 
@@ -389,6 +421,8 @@ The functions on this page are grouped by responsibility so related operations s
     **Docstring**
     
     Configures chunks on the current Runner publisher builder instance.
+    
+    Stores settings on this builder for validation and action construction.
 
 ### `WithParallelism` {: #withparallelism}
 
@@ -409,7 +443,9 @@ The functions on this page are grouped by responsibility so related operations s
     
     **Docstring**
     
-    Configures parallelism on the current Runner publisher builder instance.
+    Sets the maximum concurrent workers for this publisher action.
+    
+    The value must be at least one. Each worker sends one item or chunk on the shared sender. Omitting this setting runs sequentially. Protocol connection limits can serialize sends, and concurrent workers do not guarantee completion order.
 
 ## Collection helpers {: #collection-helpers}
 
@@ -433,6 +469,8 @@ The functions on this page are grouped by responsibility so related operations s
     **Docstring**
     
     Updates the configuration currently stored on the Runner publisher builder instance.
+    
+    Stores settings on this builder for validation and action construction.
 
 ## General {: #general}
 
@@ -456,6 +494,8 @@ The functions on this page are grouped by responsibility so related operations s
     **Docstring**
     
     Sets the data filter used by the current Runner publisher builder instance.
+    
+    Stores settings on this builder for validation and action construction.
 
 ### `InLoops` {: #inloops}
 
@@ -476,7 +516,9 @@ The functions on this page are grouped by responsibility so related operations s
     
     **Docstring**
     
-    Marks the transaction to execute continuously in loop mode.
+    Marks the publisher to execute continuously in loop mode.
+    
+    Stores settings on this builder for validation and action construction.
 
 ### `Configure` {: #configure}
 
@@ -498,6 +540,8 @@ The functions on this page are grouped by responsibility so related operations s
     **Docstring**
     
     Sets the configuration currently stored on the Runner publisher builder instance.
+    
+    Stores settings on this builder for validation and action construction.
 
 ## See also {: #see-also}
 

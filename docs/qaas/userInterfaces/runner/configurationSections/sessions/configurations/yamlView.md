@@ -104,12 +104,19 @@ Sessions:
           Manager: 'value'
           Port: 0
           QueueName: 'value'
+          Password: 'value'
+          SslCipherSpec: 'value'
+          SslKeyRepository: 'value'
+          SslPeerName: 'value'
+          Username: 'value'
         KafkaTopic:
           GroupId: 'value'
           Password: 'value'
           TopicName: 'value'
           Username: 'value'
           AutoOffsetReset: 'Latest'
+          CommitBatchSize: 1000
+          CommitMode: 'PerMessage'
           EnableAutoCommit: True
           FetchMinBytes: 1
           FetchWaitMaxMs: 2000
@@ -130,9 +137,13 @@ Sessions:
           FilterSecondsBeforeRunStartTime: 0
           InsertionTimeField: 'value'
           InsertionTimeTimeZoneOffsetSummerTime: 0
+          ParameterizeRows: False
           ReadFromRunStartTime: False
+          StreamResults: False
           WhereStatement: 'value'
           ColumnsToIgnore: []
+          ColumnsToRead:
+            - 'value'
         OracleSqlTable:
           ConnectionString: 'value'
           TableName: 'value'
@@ -141,9 +152,13 @@ Sessions:
           FilterSecondsBeforeRunStartTime: 0
           InsertionTimeField: 'value'
           InsertionTimeTimeZoneOffsetSummerTime: 0
+          ParameterizeRows: False
           ReadFromRunStartTime: False
+          StreamResults: False
           WhereStatement: 'value'
           ColumnsToIgnore: []
+          ColumnsToRead:
+            - 'value'
         PostgreSqlTable:
           ConnectionString: 'value'
           TableName: 'value'
@@ -153,9 +168,13 @@ Sessions:
           InsertionTimeField: 'value'
           InsertionTimeTimeZoneOffsetSummerTime: 0
           IsInsertionTimeFieldTimeZoneTz: False
+          ParameterizeRows: False
           ReadFromRunStartTime: False
+          StreamResults: False
           WhereStatement: 'value'
           ColumnsToIgnore: []
+          ColumnsToRead:
+            - 'value'
         RabbitMq:
           Host: 'value'
           Arguments: {}
@@ -168,10 +187,13 @@ Sessions:
           HandshakeContinuationTimeoutSeconds: 10
           Password: 'admin'
           Port: 5672
+          PrefetchCount: 100
           QueueName: 'value'
           RequestedConnectionTimeoutSeconds: 5
           RoutingKey: '/'
+          UseSubscription: False
           Username: 'admin'
+          ValidateTopologyOnEveryOperation: True
           VirtualHost: '/'
         S3Bucket:
           AccessKey: 'value'
@@ -180,11 +202,13 @@ Sessions:
           StorageBucket: 'value'
           Delimiter: ''
           ForcePathStyle: True
+          MaxConcurrentDownloads: 1
           MaximumRetryCount: 0
           Prefix: ''
           ReadFromRunStartTime: False
           ReadStorageHeaders: False
           SkipEmptyObjects: False
+          StreamResults: False
         Socket:
           Host: 'value'
           Port: 0
@@ -208,9 +232,14 @@ Sessions:
           FilterSecondsBeforeRunStartTime: 0
           InsertionTimeField: 'value'
           InsertionTimeTimeZoneOffsetSummerTime: 0
+          ParameterizeRows: False
+          ReadBufferSizeBytes: 1
           ReadFromRunStartTime: False
+          StreamResults: False
           WhereStatement: 'value'
           ColumnsToIgnore: []
+          ColumnsToRead:
+            - 'value'
     MockerCommands:
       - Name: 'value'
         ServerName: 'value'
@@ -294,6 +323,7 @@ Sessions:
               TimeoutMs: 0
         Chunk:
           ChunkSize: 0
+          MaxBytes: 1
         DataFilter:
           Body: True
           MetaData: True
@@ -310,17 +340,25 @@ Sessions:
           Password: 'value'
           TopicName: 'value'
           Username: 'value'
+          Acks: 'None'
+          BatchSize: 1
           CompressionLevel: 0
           CompressionType: 'None'
           DefaultKafkaKey: 'value'
+          EnableIdempotence: True
+          FlushTimeoutMs: 1
           Headers: {}
+          LingerMs: 1.0
+          MaxInFlight: 1
           MessageMaxBytes: 1000000
           MessageSendMaxRetries: 10
           MessageSendRetriesIntervalMs: 1000
+          MessageTimeoutMs: 0
           Partition: -1
           QueueBufferingBackpressureThreshold: 1
           QueueBufferingMaxKbytes: 1048576
           QueueBufferingMaxMessages: 100000
+          ReportDeliveryErrors: False
           SaslMechanism: 'Gssapi'
           SecurityProtocol: 'Plaintext'
           HostNames:
@@ -329,17 +367,22 @@ Sessions:
           CollectionName: 'value'
           ConnectionString: 'value'
           DatabaseName: 'value'
+          BypassDocumentValidation: True
+          IsOrdered: True
+          UseBsonDocumentDirectly: False
         MsSqlTable:
           ConnectionString: 'value'
           TableName: 'value'
           ColumnTypes: {}
           CommandTimeoutSeconds: 30
           IsUDTInsertion: False
+          ParameterizeRows: False
         OracleSqlTable:
           ConnectionString: 'value'
           TableName: 'value'
           ColumnTypes: {}
           CommandTimeoutSeconds: 30
+          ParameterizeRows: False
         Parallel:
           Parallelism: 1
         PostgreSqlTable:
@@ -347,6 +390,7 @@ Sessions:
           TableName: 'value'
           ColumnTypes: {}
           CommandTimeoutSeconds: 30
+          ParameterizeRows: False
         RabbitMq:
           Host: 'value'
           AppId: 'value'
@@ -369,6 +413,7 @@ Sessions:
           Persistent: True
           Port: 5672
           Priority: 0
+          PublisherConfirms: False
           QueueName: 'value'
           ReplyTo: 'value'
           RequestedConnectionTimeoutSeconds: 5
@@ -377,6 +422,7 @@ Sessions:
           Type: 'value'
           UserId: 'value'
           Username: 'admin'
+          ValidateTopologyOnEveryOperation: True
           VirtualHost: '/'
         Redis:
           RedisDataType: 'SetString'
@@ -393,6 +439,7 @@ Sessions:
           RetryIntervalMs: 1000
           Ssl: False
           SslHost: 'value'
+          UseTransactions: True
           Username: 'value'
           When: 'Always'
           HostNames:
@@ -417,6 +464,7 @@ Sessions:
           NamingType: 'GrowingNumericalSeries'
           Port: 22
           Prefix: ''
+          UploadBufferSize: 1
         Socket:
           Host: 'value'
           Port: 0

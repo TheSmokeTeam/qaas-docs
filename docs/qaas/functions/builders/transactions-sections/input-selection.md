@@ -41,6 +41,8 @@ Use this page when you need the focused member list, signatures, and source note
     **Docstring**
     
     Sets the input data filter used by the transaction.
+    
+    Stores settings on this builder for validation and action construction.
 
 ## Edge cases {: #edge-cases}
 
