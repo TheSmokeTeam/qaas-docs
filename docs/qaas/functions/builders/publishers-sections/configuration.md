@@ -41,6 +41,8 @@ Use this page when you need the focused member list, signatures, and source note
     **Docstring**
     
     Sets the serializer configuration used by the current Runner publisher builder instance.
+    
+    Stores settings on this builder for validation and action construction.
 
 ### `WithIterations` {: #withiterations}
 
@@ -62,6 +64,8 @@ Use this page when you need the focused member list, signatures, and source note
     **Docstring**
     
     Sets how many iterations the publisher should execute.
+    
+    Stores settings on this builder for validation and action construction.
 
 ### `WithSleep` {: #withsleep}
 
@@ -82,7 +86,9 @@ Use this page when you need the focused member list, signatures, and source note
     
     **Docstring**
     
-    Sets the delay applied between transaction iterations.
+    Sets the delay applied between publisher iterations.
+    
+    Stores settings on this builder for validation and action construction.
 
 ### `WithChunks` {: #withchunks}
 
@@ -104,6 +110,8 @@ Use this page when you need the focused member list, signatures, and source note
     **Docstring**
     
     Configures chunks on the current Runner publisher builder instance.
+    
+    Stores settings on this builder for validation and action construction.
 
 ### `WithParallelism` {: #withparallelism}
 
@@ -124,7 +132,9 @@ Use this page when you need the focused member list, signatures, and source note
     
     **Docstring**
     
-    Configures parallelism on the current Runner publisher builder instance.
+    Sets the maximum concurrent workers for this publisher action.
+    
+    The value must be at least one. Each worker sends one item or chunk on the shared sender. Omitting this setting runs sequentially. Protocol connection limits can serialize sends, and concurrent workers do not guarantee completion order.
 
 ## Edge cases {: #edge-cases}
 

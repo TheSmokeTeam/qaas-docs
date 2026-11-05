@@ -41,6 +41,8 @@ Use this page when you need the focused member list, signatures, and source note
     **Docstring**
     
     Sets the stage used by the current Runner transaction builder instance.
+    
+    Stores settings on this builder for validation and action construction.
 
 ## Edge cases {: #edge-cases}
 

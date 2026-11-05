@@ -41,6 +41,8 @@ Use this page when you need the focused member list, signatures, and source note
     **Docstring**
     
     Adds the supplied policy to the current Runner transaction builder instance.
+    
+    Stores settings on this builder for validation and action construction.
 
 ### `UpdatePolicyAt` {: #updatepolicyat}
 
@@ -62,6 +64,8 @@ Use this page when you need the focused member list, signatures, and source note
     **Docstring**
     
     Updates the configured policy at the specified index on the current Runner transaction builder instance.
+    
+    Stores settings on this builder for validation and action construction.
 
 ### `RemovePolicyAt` {: #removepolicyat}
 
@@ -83,6 +87,8 @@ Use this page when you need the focused member list, signatures, and source note
     **Docstring**
     
     Removes the configured policy at the specified index from the current Runner transaction builder instance.
+    
+    Stores settings on this builder for validation and action construction.
 
 ## Edge cases {: #edge-cases}
 

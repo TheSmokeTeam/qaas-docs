@@ -99,8 +99,8 @@ The table below mirrors the schema used by the YAML scaffold page. Nested rows u
 | `Sessions[].Transactions[].OutputDeserialize.SpecificType` | `object or string` | &#10006 |  | Configuration for making deserializer deserialize into a specific C# object, if set to null will deserialize to default deserilizer's C# object |
 | `Sessions[].Transactions[].OutputDeserialize.SpecificType.TypeFullName` | `string` | &#10004 |  | The full name (including path) of the type |
 | `Sessions[].Transactions[].OutputDeserialize.SpecificType.AssemblyName` | `string or null` | &#10006 |  | The name of the assembly the type is located in, If no value is given by default tries to take the entry assembly |
-| `Sessions[].Transactions[].Parallel` | `object or string` | &#10006 |  | Whether to run the transaction in a specified parallelism |
-| `Sessions[].Transactions[].Parallel.Parallelism` | `integer or string` | &#10004 |  | The amount of parallel tasks to execute at once |
+| `Sessions[].Transactions[].Parallel` | `object or string` | &#10006 |  | Optional worker limit for this transaction. Omit for sequential execution. Workers share the transactor, and completion order is not guaranteed. |
+| `Sessions[].Transactions[].Parallel.Parallelism` | `integer or string` | &#10004 |  | Maximum concurrent workers within one publisher or transaction action. A chunk publisher assigns one chunk to each worker. Each action uses its own worker limit; protocol connection limits can further serialize operations. |
 
 ## Edge cases {: #edge-cases}
 

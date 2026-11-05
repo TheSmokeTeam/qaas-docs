@@ -79,12 +79,19 @@ Consumers:
       Manager: 'value'
       Port: 0
       QueueName: 'value'
+      Password: 'value'
+      SslCipherSpec: 'value'
+      SslKeyRepository: 'value'
+      SslPeerName: 'value'
+      Username: 'value'
     KafkaTopic:
       GroupId: 'value'
       Password: 'value'
       TopicName: 'value'
       Username: 'value'
       AutoOffsetReset: 'Latest'
+      CommitBatchSize: 1000
+      CommitMode: 'PerMessage'
       EnableAutoCommit: True
       FetchMinBytes: 1
       FetchWaitMaxMs: 2000
@@ -105,9 +112,13 @@ Consumers:
       FilterSecondsBeforeRunStartTime: 0
       InsertionTimeField: 'value'
       InsertionTimeTimeZoneOffsetSummerTime: 0
+      ParameterizeRows: False
       ReadFromRunStartTime: False
+      StreamResults: False
       WhereStatement: 'value'
       ColumnsToIgnore: []
+      ColumnsToRead:
+        - 'value'
     OracleSqlTable:
       ConnectionString: 'value'
       TableName: 'value'
@@ -116,9 +127,13 @@ Consumers:
       FilterSecondsBeforeRunStartTime: 0
       InsertionTimeField: 'value'
       InsertionTimeTimeZoneOffsetSummerTime: 0
+      ParameterizeRows: False
       ReadFromRunStartTime: False
+      StreamResults: False
       WhereStatement: 'value'
       ColumnsToIgnore: []
+      ColumnsToRead:
+        - 'value'
     PostgreSqlTable:
       ConnectionString: 'value'
       TableName: 'value'
@@ -128,9 +143,13 @@ Consumers:
       InsertionTimeField: 'value'
       InsertionTimeTimeZoneOffsetSummerTime: 0
       IsInsertionTimeFieldTimeZoneTz: False
+      ParameterizeRows: False
       ReadFromRunStartTime: False
+      StreamResults: False
       WhereStatement: 'value'
       ColumnsToIgnore: []
+      ColumnsToRead:
+        - 'value'
     RabbitMq:
       Host: 'value'
       Arguments: {}
@@ -143,10 +162,13 @@ Consumers:
       HandshakeContinuationTimeoutSeconds: 10
       Password: 'admin'
       Port: 5672
+      PrefetchCount: 100
       QueueName: 'value'
       RequestedConnectionTimeoutSeconds: 5
       RoutingKey: '/'
+      UseSubscription: False
       Username: 'admin'
+      ValidateTopologyOnEveryOperation: True
       VirtualHost: '/'
     S3Bucket:
       AccessKey: 'value'
@@ -155,11 +177,13 @@ Consumers:
       StorageBucket: 'value'
       Delimiter: ''
       ForcePathStyle: True
+      MaxConcurrentDownloads: 1
       MaximumRetryCount: 0
       Prefix: ''
       ReadFromRunStartTime: False
       ReadStorageHeaders: False
       SkipEmptyObjects: False
+      StreamResults: False
     Socket:
       Host: 'value'
       Port: 0
@@ -183,9 +207,14 @@ Consumers:
       FilterSecondsBeforeRunStartTime: 0
       InsertionTimeField: 'value'
       InsertionTimeTimeZoneOffsetSummerTime: 0
+      ParameterizeRows: False
+      ReadBufferSizeBytes: 1
       ReadFromRunStartTime: False
+      StreamResults: False
       WhereStatement: 'value'
       ColumnsToIgnore: []
+      ColumnsToRead:
+        - 'value'
 ```
 
 ## Realistic example {: #realistic-example}

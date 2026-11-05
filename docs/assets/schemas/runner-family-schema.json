@@ -2606,6 +2606,15 @@
                     "Host"
                   ],
                   "properties": {
+                    "ValidateTopologyOnEveryOperation": {
+                      "type": [
+                        "boolean",
+                        "string"
+                      ],
+                      "description": "Check the named exchange before each send and the queue before each polling read. Set false to validate during Connect only. Subscription reads validate the queue during Connect. Queue/exchange deletion is reported by the operation that detects it.",
+                      "default": true,
+                      "pattern": "\\$\\{.*\\}"
+                    },
                     "Host": {
                       "type": "string",
                       "description": "Rabbitmq hostname"
@@ -2710,6 +2719,26 @@
                       "pattern": "\\$\\{.*\\}",
                       "additionalProperties": {}
                     },
+                    "UseSubscription": {
+                      "type": [
+                        "boolean",
+                        "string"
+                      ],
+                      "description": "Use a bounded push subscription instead of BasicGet polling. Messages are acknowledged when Read receives them, not after downstream processing. Unread buffered deliveries are requeued on disconnect. False uses polling.",
+                      "default": false,
+                      "pattern": "\\$\\{.*\\}"
+                    },
+                    "PrefetchCount": {
+                      "type": [
+                        "integer",
+                        "string"
+                      ],
+                      "description": "Maximum unacknowledged deliveries and buffered messages in subscription mode. Bounds count, not bytes.",
+                      "default": 100,
+                      "maximum": 65535.0,
+                      "minimum": 1.0,
+                      "pattern": "\\$\\{.*\\}"
+                    },
                     "ExchangeName": {
                       "type": [
                         "null",
@@ -2811,6 +2840,30 @@
                         "ScramSha512",
                         "OAuthBearer"
                       ]
+                    },
+                    "CommitMode": {
+                      "type": "string",
+                      "description": "Offset persistence mode. PerMessage synchronously commits each received record, including when EnableAutoCommit=false. Batched disables native auto commit/store and commits received offsets at the batch limit, idle read, disconnect or revocation. It does not acknowledge downstream processing; uncommitted receipts can replay after a crash.",
+                      "x-enumNames": [
+                        "PerMessage",
+                        "Batched"
+                      ],
+                      "enum": [
+                        "PerMessage",
+                        "Batched"
+                      ]
+                    },
+                    "CommitBatchSize": {
+                      "type": [
+                        "integer",
+                        "string"
+                      ],
+                      "description": "Maximum received records between commits in Batched mode. No background timer is used.",
+                      "format": "int32",
+                      "default": 1000,
+                      "maximum": 2147483647.0,
+                      "minimum": 1.0,
+                      "pattern": "\\$\\{.*\\}"
                     },
                     "TopicName": {
                       "type": "string",
@@ -2943,6 +2996,28 @@
                     "TableName"
                   ],
                   "properties": {
+                    "StreamResults": {
+                      "type": [
+                        "boolean",
+                        "string"
+                      ],
+                      "description": "When true, rows are acquired during result enumeration. Dispose the enumerator before Disconnect. Errors can occur after earlier rows and repeat enumeration reruns the query. When false, ReadChunk materializes results before returning. Runner retains results according to its data settings.",
+                      "default": false,
+                      "pattern": "\\$\\{.*\\}"
+                    },
+                    "ColumnsToRead": {
+                      "type": [
+                        "array",
+                        "null",
+                        "string"
+                      ],
+                      "description": "Optional column names to select on the server. Names are quoted as identifiers, not SQL expressions. The insertion-time column is included automatically for timestamps. Null selects all columns; ColumnsToIgnore remains a client-side filter.",
+                      "pattern": "\\$\\{.*\\}",
+                      "minItems": 1,
+                      "items": {
+                        "type": "string"
+                      }
+                    },
                     "InsertionTimeField": {
                       "type": [
                         "null",
@@ -3009,6 +3084,15 @@
                       "items": {
                         "type": "string"
                       }
+                    },
+                    "ParameterizeRows": {
+                      "type": [
+                        "boolean",
+                        "string"
+                      ],
+                      "description": "Bind every value in singular row INSERTs as data. When false, columns without an explicit ColumnTypes entry use date/UDT expression inference. Chunk sends use native bulk operations when ColumnTypes is empty and typed row transactions when ColumnTypes has entries.",
+                      "default": false,
+                      "pattern": "\\$\\{.*\\}"
                     },
                     "ConnectionString": {
                       "type": "string",
@@ -3044,6 +3128,28 @@
                     "TableName"
                   ],
                   "properties": {
+                    "StreamResults": {
+                      "type": [
+                        "boolean",
+                        "string"
+                      ],
+                      "description": "When true, rows are acquired during result enumeration. Dispose the enumerator before Disconnect. Errors can occur after earlier rows and repeat enumeration reruns the query. When false, ReadChunk materializes results before returning. Runner retains results according to its data settings.",
+                      "default": false,
+                      "pattern": "\\$\\{.*\\}"
+                    },
+                    "ColumnsToRead": {
+                      "type": [
+                        "array",
+                        "null",
+                        "string"
+                      ],
+                      "description": "Optional column names to select on the server. Names are quoted as identifiers, not SQL expressions. The insertion-time column is included automatically for timestamps. Null selects all columns; ColumnsToIgnore remains a client-side filter.",
+                      "pattern": "\\$\\{.*\\}",
+                      "minItems": 1,
+                      "items": {
+                        "type": "string"
+                      }
+                    },
                     "InsertionTimeField": {
                       "type": [
                         "null",
@@ -3110,6 +3216,15 @@
                       "items": {
                         "type": "string"
                       }
+                    },
+                    "ParameterizeRows": {
+                      "type": [
+                        "boolean",
+                        "string"
+                      ],
+                      "description": "Bind every value in singular row INSERTs as data. When false, columns without an explicit ColumnTypes entry use date/UDT expression inference. Chunk sends use native bulk operations when ColumnTypes is empty and typed row transactions when ColumnTypes has entries.",
+                      "default": false,
+                      "pattern": "\\$\\{.*\\}"
                     },
                     "ConnectionString": {
                       "type": "string",
@@ -3151,6 +3266,28 @@
                     "Hostname"
                   ],
                   "properties": {
+                    "StreamResults": {
+                      "type": [
+                        "boolean",
+                        "string"
+                      ],
+                      "description": "When true, rows are acquired during result enumeration. Dispose the enumerator before Disconnect. Errors can occur after earlier rows and repeat enumeration reruns the query. When false, ReadChunk materializes results before returning. Runner retains results according to its data settings.",
+                      "default": false,
+                      "pattern": "\\$\\{.*\\}"
+                    },
+                    "ColumnsToRead": {
+                      "type": [
+                        "array",
+                        "null",
+                        "string"
+                      ],
+                      "description": "Optional column names to select on the server. Names are quoted as identifiers, not SQL expressions. The insertion-time column is included automatically for timestamps. Null selects all columns; ColumnsToIgnore remains a client-side filter.",
+                      "pattern": "\\$\\{.*\\}",
+                      "minItems": 1,
+                      "items": {
+                        "type": "string"
+                      }
+                    },
                     "InsertionTimeField": {
                       "type": [
                         "null",
@@ -3218,6 +3355,15 @@
                         "type": "string"
                       }
                     },
+                    "ParameterizeRows": {
+                      "type": [
+                        "boolean",
+                        "string"
+                      ],
+                      "description": "Bind every value in singular row INSERTs as data. When false, columns without an explicit ColumnTypes entry use date/UDT expression inference. Chunk sends use native bulk operations when ColumnTypes is empty and typed row transactions when ColumnTypes has entries.",
+                      "default": false,
+                      "pattern": "\\$\\{.*\\}"
+                    },
                     "ConnectionString": {
                       "type": "string",
                       "description": "The connection string to the database"
@@ -3235,6 +3381,18 @@
                       "format": "int32",
                       "default": 30,
                       "maximum": 2147483647.0,
+                      "minimum": 1.0,
+                      "pattern": "\\$\\{.*\\}"
+                    },
+                    "ReadBufferSizeBytes": {
+                      "type": [
+                        "integer",
+                        "null",
+                        "string"
+                      ],
+                      "description": "Optional Trino client result buffer budget in bytes. When omitted, the provider uses a 50 MiB buffer. This is independent of Runner result retention.",
+                      "format": "int64",
+                      "maximum": 9223372036854775807.0,
                       "minimum": 1.0,
                       "pattern": "\\$\\{.*\\}"
                     },
@@ -3276,6 +3434,28 @@
                     "TableName"
                   ],
                   "properties": {
+                    "StreamResults": {
+                      "type": [
+                        "boolean",
+                        "string"
+                      ],
+                      "description": "When true, rows are acquired during result enumeration. Dispose the enumerator before Disconnect. Errors can occur after earlier rows and repeat enumeration reruns the query. When false, ReadChunk materializes results before returning. Runner retains results according to its data settings.",
+                      "default": false,
+                      "pattern": "\\$\\{.*\\}"
+                    },
+                    "ColumnsToRead": {
+                      "type": [
+                        "array",
+                        "null",
+                        "string"
+                      ],
+                      "description": "Optional column names to select on the server. Names are quoted as identifiers, not SQL expressions. The insertion-time column is included automatically for timestamps. Null selects all columns; ColumnsToIgnore remains a client-side filter.",
+                      "pattern": "\\$\\{.*\\}",
+                      "minItems": 1,
+                      "items": {
+                        "type": "string"
+                      }
+                    },
                     "InsertionTimeField": {
                       "type": [
                         "null",
@@ -3342,6 +3522,15 @@
                       "items": {
                         "type": "string"
                       }
+                    },
+                    "ParameterizeRows": {
+                      "type": [
+                        "boolean",
+                        "string"
+                      ],
+                      "description": "Bind every value in singular row INSERTs as data. When false, columns without an explicit ColumnTypes entry use date/UDT expression inference. Chunk sends use native bulk operations when ColumnTypes is empty and typed row transactions when ColumnTypes has entries.",
+                      "default": false,
+                      "pattern": "\\$\\{.*\\}"
                     },
                     "ConnectionString": {
                       "type": "string",
@@ -3412,6 +3601,27 @@
                       ],
                       "description": "When true, requests will always use path style addressing",
                       "default": true,
+                      "pattern": "\\$\\{.*\\}"
+                    },
+                    "StreamResults": {
+                      "type": [
+                        "boolean",
+                        "string"
+                      ],
+                      "description": "When true, download ordered bounded windows as the result is enumerated. Errors may occur after earlier items have been returned and another enumeration downloads again. When false, ReadChunk downloads and materializes repeatable results before returning. Runner retains results according to its data settings.",
+                      "default": false,
+                      "pattern": "\\$\\{.*\\}"
+                    },
+                    "MaxConcurrentDownloads": {
+                      "type": [
+                        "integer",
+                        "string"
+                      ],
+                      "description": "Maximum concurrent S3 body downloads. Defaults to sequential reads. Larger values buffer up to this many objects before yielding them in timestamp order; this limits object count, not total bytes or retained session data.",
+                      "format": "int32",
+                      "default": 1,
+                      "maximum": 2147483647.0,
+                      "minimum": 1.0,
                       "pattern": "\\$\\{.*\\}"
                     },
                     "Prefix": {
@@ -3788,6 +3998,41 @@
                     "QueueName"
                   ],
                   "properties": {
+                    "Username": {
+                      "type": [
+                        "null",
+                        "string"
+                      ],
+                      "description": "Optional MQCSP user name. When omitted, the channel determines the connection identity. Supply secrets through configuration overrides rather than committing them."
+                    },
+                    "Password": {
+                      "type": [
+                        "null",
+                        "string"
+                      ],
+                      "description": "Optional MQCSP password. Configure transport encryption on the MQ channel when sending credentials."
+                    },
+                    "SslCipherSpec": {
+                      "type": [
+                        "null",
+                        "string"
+                      ],
+                      "description": "Optional IBM MQ TLS CipherSpec. When omitted, no CipherSpec is configured; choose a value supported by the MQ client, operating system and channel."
+                    },
+                    "SslKeyRepository": {
+                      "type": [
+                        "null",
+                        "string"
+                      ],
+                      "description": "Optional IBM MQ certificate store/key repository, such as *USER or *SYSTEM on Windows. Store setup and supported paths depend on the client platform."
+                    },
+                    "SslPeerName": {
+                      "type": [
+                        "null",
+                        "string"
+                      ],
+                      "description": "Optional distinguished-name pattern expected in the MQ server certificate."
+                    },
                     "HostName": {
                       "type": "string",
                       "description": "The name of the host machine hosting the IbmMq"
@@ -3995,7 +4240,7 @@
                     "object",
                     "string"
                   ],
-                  "description": "Whether to publish in a specified parallelism",
+                  "description": "Optional worker limit for this publisher. Omit for sequential execution. Workers send individual items or chunks on the action's shared sender; completion order is not guaranteed.",
                   "pattern": "\\$\\{.*\\}",
                   "required": [
                     "Parallelism"
@@ -4006,7 +4251,7 @@
                         "integer",
                         "string"
                       ],
-                      "description": "The amount of parallel tasks to execute at once",
+                      "description": "Maximum concurrent workers within one publisher or transaction action. A chunk publisher assigns one chunk to each worker. Each action uses its own worker limit; protocol connection limits can further serialize operations.",
                       "format": "int32",
                       "maximum": 2147483647.0,
                       "minimum": 1.0,
@@ -4025,6 +4270,18 @@
                     "ChunkSize"
                   ],
                   "properties": {
+                    "MaxBytes": {
+                      "type": [
+                        "integer",
+                        "null",
+                        "string"
+                      ],
+                      "description": "Optional maximum serialized body bytes per chunk, in addition to ChunkSize. Byte arrays use their length, strings use UTF-8 and structured bodies use JSON size. Excludes protocol envelopes and total session retention. A single oversized body fails rather than exceeding the limit. When omitted, ChunkSize is the only chunk-size limit.",
+                      "format": "int64",
+                      "maximum": 9223372036854775807.0,
+                      "minimum": 1.0,
+                      "pattern": "\\$\\{.*\\}"
+                    },
                     "ChunkSize": {
                       "type": [
                         "integer",
@@ -4289,6 +4546,15 @@
                     "Host"
                   ],
                   "properties": {
+                    "ValidateTopologyOnEveryOperation": {
+                      "type": [
+                        "boolean",
+                        "string"
+                      ],
+                      "description": "Check the named exchange before each send and the queue before each polling read. Set false to validate during Connect only. Subscription reads validate the queue during Connect. Queue/exchange deletion is reported by the operation that detects it.",
+                      "default": true,
+                      "pattern": "\\$\\{.*\\}"
+                    },
                     "Host": {
                       "type": "string",
                       "description": "Rabbitmq hostname"
@@ -4392,6 +4658,15 @@
                       "description": "Custom queue declaration arguments / x-arguments (e.g. x-message-ttl, x-dead-letter-exchange, x-max-length, etc.)",
                       "pattern": "\\$\\{.*\\}",
                       "additionalProperties": {}
+                    },
+                    "PublisherConfirms": {
+                      "type": [
+                        "boolean",
+                        "string"
+                      ],
+                      "description": "Wait for a broker publisher confirmation and report returned/unroutable messages. When false, Send completes without waiting for a broker confirmation. Shared-channel sends are serialized; this is a durability option, not a throughput guarantee.",
+                      "default": false,
+                      "pattern": "\\$\\{.*\\}"
                     },
                     "ExchangeName": {
                       "type": [
@@ -4606,6 +4881,98 @@
                         "ScramSha512",
                         "OAuthBearer"
                       ]
+                    },
+                    "LingerMs": {
+                      "type": [
+                        "null",
+                        "number",
+                        "string"
+                      ],
+                      "description": "Optional producer batching delay in milliseconds. Omitted uses the Kafka client default.",
+                      "format": "double",
+                      "maximum": 900000.0,
+                      "minimum": 0.0,
+                      "pattern": "\\$\\{.*\\}"
+                    },
+                    "BatchSize": {
+                      "type": [
+                        "integer",
+                        "null",
+                        "string"
+                      ],
+                      "description": "Optional producer batch size in bytes, distinct from Runner ChunkSize. Omitted uses the Kafka client default.",
+                      "format": "int32",
+                      "maximum": 2147483647.0,
+                      "minimum": 1.0,
+                      "pattern": "\\$\\{.*\\}"
+                    },
+                    "Acks": {
+                      "type": "string",
+                      "description": "Optional broker acknowledgement policy. When omitted, the Kafka client default applies.",
+                      "x-enumNames": [
+                        "None",
+                        "Leader",
+                        "All"
+                      ],
+                      "enum": [
+                        "None",
+                        "Leader",
+                        "All"
+                      ]
+                    },
+                    "EnableIdempotence": {
+                      "type": [
+                        "boolean",
+                        "null",
+                        "string"
+                      ],
+                      "description": "Optional idempotent producer. The Kafka client validates compatibility with acknowledgements and in-flight limits.",
+                      "pattern": "\\$\\{.*\\}"
+                    },
+                    "MessageTimeoutMs": {
+                      "type": [
+                        "integer",
+                        "null",
+                        "string"
+                      ],
+                      "description": "Optional delivery timeout in milliseconds. Omitted uses the Kafka client default.",
+                      "format": "int32",
+                      "maximum": 2147483647.0,
+                      "minimum": 0.0,
+                      "pattern": "\\$\\{.*\\}"
+                    },
+                    "MaxInFlight": {
+                      "type": [
+                        "integer",
+                        "null",
+                        "string"
+                      ],
+                      "description": "Optional maximum in-flight requests per broker connection. Omitted uses the Kafka client default.",
+                      "format": "int32",
+                      "maximum": 2147483647.0,
+                      "minimum": 1.0,
+                      "pattern": "\\$\\{.*\\}"
+                    },
+                    "FlushTimeoutMs": {
+                      "type": [
+                        "integer",
+                        "null",
+                        "string"
+                      ],
+                      "description": "Optional flush deadline in milliseconds. Disconnect fails if records remain undelivered. When omitted, Disconnect waits for the producer flush without a deadline.",
+                      "format": "int32",
+                      "maximum": 2147483647.0,
+                      "minimum": 1.0,
+                      "pattern": "\\$\\{.*\\}"
+                    },
+                    "ReportDeliveryErrors": {
+                      "type": [
+                        "boolean",
+                        "string"
+                      ],
+                      "description": "Report asynchronous delivery failures on a subsequent Send or Disconnect. Send completes when the record is enqueued; broker delivery is asynchronous.",
+                      "default": false,
+                      "pattern": "\\$\\{.*\\}"
                     },
                     "TopicName": {
                       "type": "string",
@@ -4835,6 +5202,15 @@
                       "default": 60,
                       "pattern": "\\$\\{.*\\}"
                     },
+                    "UseTransactions": {
+                      "type": [
+                        "boolean",
+                        "string"
+                      ],
+                      "description": "Send each chunk with a MULTI/EXEC transaction. False uses a pipelined nontransactional batch; partial writes are possible and QaaS does not automatically retry that batch. Every command result is observed in both modes.",
+                      "default": true,
+                      "pattern": "\\$\\{.*\\}"
+                    },
                     "RedisDataType": {
                       "type": "string",
                       "description": "Redis data type to use, define the function the qaas will use to send to the redis server",
@@ -4893,7 +5269,7 @@
                         "null",
                         "string"
                       ],
-                      "description": "Batch size of sending actions to the redis, when configured to null all generation data is considred as one batch",
+                      "description": "This property does not partition sends. Configure Publisher.Chunk.ChunkSize (and optional MaxBytes) in Runner.",
                       "format": "int32",
                       "pattern": "\\$\\{.*\\}"
                     },
@@ -4955,6 +5331,15 @@
                     "TableName"
                   ],
                   "properties": {
+                    "ParameterizeRows": {
+                      "type": [
+                        "boolean",
+                        "string"
+                      ],
+                      "description": "Bind every value in singular row INSERTs as data. When false, columns without an explicit ColumnTypes entry use date/UDT expression inference. Chunk sends use native bulk operations when ColumnTypes is empty and typed row transactions when ColumnTypes has entries.",
+                      "default": false,
+                      "pattern": "\\$\\{.*\\}"
+                    },
                     "ColumnTypes": {
                       "type": [
                         "null",
@@ -5001,6 +5386,15 @@
                     "TableName"
                   ],
                   "properties": {
+                    "ParameterizeRows": {
+                      "type": [
+                        "boolean",
+                        "string"
+                      ],
+                      "description": "Bind every value in singular row INSERTs as data. When false, columns without an explicit ColumnTypes entry use date/UDT expression inference. Chunk sends use native bulk operations when ColumnTypes is empty and typed row transactions when ColumnTypes has entries.",
+                      "default": false,
+                      "pattern": "\\$\\{.*\\}"
+                    },
                     "ColumnTypes": {
                       "type": [
                         "null",
@@ -5443,6 +5837,15 @@
                       "default": false,
                       "pattern": "\\$\\{.*\\}"
                     },
+                    "ParameterizeRows": {
+                      "type": [
+                        "boolean",
+                        "string"
+                      ],
+                      "description": "Bind every value in singular row INSERTs as data. When false, columns without an explicit ColumnTypes entry use date/UDT expression inference. Chunk sends use native bulk operations when ColumnTypes is empty and typed row transactions when ColumnTypes has entries.",
+                      "default": false,
+                      "pattern": "\\$\\{.*\\}"
+                    },
                     "ColumnTypes": {
                       "type": [
                         "null",
@@ -5490,6 +5893,33 @@
                     "CollectionName"
                   ],
                   "properties": {
+                    "IsOrdered": {
+                      "type": [
+                        "boolean",
+                        "string"
+                      ],
+                      "description": "Keep ordered InsertMany behavior. False permits unordered insertion and can change partial-failure/order semantics.",
+                      "default": true,
+                      "pattern": "\\$\\{.*\\}"
+                    },
+                    "BypassDocumentValidation": {
+                      "type": [
+                        "boolean",
+                        "null",
+                        "string"
+                      ],
+                      "description": "Optional MongoDB document-validation bypass. When omitted, the driver/server default applies.",
+                      "pattern": "\\$\\{.*\\}"
+                    },
+                    "UseBsonDocumentDirectly": {
+                      "type": [
+                        "boolean",
+                        "string"
+                      ],
+                      "description": "For BsonDocument bodies, clone and insert BSON directly without a JSON round trip. Other body types retain JSON conversion. When false, all bodies are converted through JSON.",
+                      "default": false,
+                      "pattern": "\\$\\{.*\\}"
+                    },
                     "ConnectionString": {
                       "type": "string",
                       "description": "The connection string to the MongoDb server"
@@ -5562,6 +5992,17 @@
                         "GrowingNumericalSeries",
                         "RandomGuid"
                       ]
+                    },
+                    "UploadBufferSize": {
+                      "type": [
+                        "integer",
+                        "null",
+                        "string"
+                      ],
+                      "description": "Optional SSH.NET upload buffer size in bytes. When omitted, the client default applies. Tune against file size, server limits and memory.",
+                      "maximum": 2147483647.0,
+                      "minimum": 1.0,
+                      "pattern": "\\$\\{.*\\}"
                     }
                   }
                 },
@@ -5682,7 +6123,7 @@
                     "object",
                     "string"
                   ],
-                  "description": "Whether to run the transaction in a specified parallelism",
+                  "description": "Optional worker limit for this transaction. Omit for sequential execution. Workers share the transactor, and completion order is not guaranteed.",
                   "pattern": "\\$\\{.*\\}",
                   "required": [
                     "Parallelism"
@@ -5693,7 +6134,7 @@
                         "integer",
                         "string"
                       ],
-                      "description": "The amount of parallel tasks to execute at once",
+                      "description": "Maximum concurrent workers within one publisher or transaction action. A chunk publisher assigns one chunk to each worker. Each action uses its own worker limit; protocol connection limits can further serialize operations.",
                       "format": "int32",
                       "maximum": 2147483647.0,
                       "minimum": 1.0,
