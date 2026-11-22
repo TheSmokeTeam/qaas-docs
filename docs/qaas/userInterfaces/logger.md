@@ -48,6 +48,15 @@ dotnet run -- run test.qaas.yaml --json-logs --logger-level Debug --disable-elas
 
 Each default console event contains JSON fields such as `Timestamp`, `Level`, `MessageTemplate`, `RenderedMessage`, `Properties`, and `Exception` when present. Other console output can remain plain text. Existing logger-configuration files control their own formatter. See [offline failure diagnostics](../quickStart/debugTestFailure.md#offline-package-diagnostics) for the Runner event identifiers, exception evidence, and package inspection procedure.
 
+## Logging volume {: #logging-volume}
+
+Keep the default `Information` level for routine runs unless you need more detail.
+Use `Debug` for a bounded investigation rather than as a fleet-wide setting.
+A single run can emit many log records, and changing the level changes which
+records are visible. A count of log records is therefore not a count of runs
+or of projects using QaaS. Keep diagnostic output separate from any aggregate
+usage reporting.
+
 ## See also {: #see-also}
 
 * [QaaS Runner](../index.md)

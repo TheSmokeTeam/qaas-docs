@@ -1,0 +1,664 @@
+{
+  "uid": "qaas-operations-budget",
+  "title": "QaaS | Ingestion operations (proposed)",
+  "description": "Optional Prometheus supplement; proposed exporter contract, not deployed instrumentation.",
+  "schemaVersion": 39,
+  "version": 1,
+  "editable": false,
+  "refresh": "30s",
+  "timezone": "utc",
+  "time": {
+    "from": "now-1h",
+    "to": "now"
+  },
+  "tags": [
+    "qaas",
+    "prototype",
+    "operations"
+  ],
+  "panels": [
+    {
+      "id": 1,
+      "type": "timeseries",
+      "datasource": {
+        "type": "prometheus",
+        "uid": "qaas-prometheus"
+      },
+      "title": "Ingress and downstream acknowledgment",
+      "description": "Unique durable admission and first downstream durability acknowledgment; not network attempts.",
+      "gridPos": {
+        "x": 0,
+        "y": 0,
+        "w": 12,
+        "h": 8
+      },
+      "fieldConfig": {
+        "defaults": {
+          "unit": "ops",
+          "custom": {
+            "spanNulls": false
+          }
+        },
+        "overrides": []
+      },
+      "options": {
+        "legend": {
+          "displayMode": "list",
+          "placement": "bottom",
+          "showLegend": true
+        }
+      },
+      "targets": [
+        {
+          "refId": "A",
+          "datasource": {
+            "type": "prometheus",
+            "uid": "qaas-prometheus"
+          },
+          "editorMode": "code",
+          "expr": "sum(rate(qaas_ingest_accepted_total{job=\"qaas_operational\"}[5m]))",
+          "legendFormat": "Accepted",
+          "range": true,
+          "instant": false
+        },
+        {
+          "refId": "B",
+          "datasource": {
+            "type": "prometheus",
+            "uid": "qaas-prometheus"
+          },
+          "editorMode": "code",
+          "expr": "sum(rate(qaas_ingest_acknowledged_total{job=\"qaas_operational\"}[5m]))",
+          "legendFormat": "Acknowledged",
+          "range": true,
+          "instant": false
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "type": "timeseries",
+      "datasource": {
+        "type": "prometheus",
+        "uid": "qaas-prometheus"
+      },
+      "title": "Refused attempts and dropped records",
+      "description": "Refused before admission may succeed on retry; dropped means definitive loss after admission. Do not combine into a loss percentage.",
+      "gridPos": {
+        "x": 12,
+        "y": 0,
+        "w": 12,
+        "h": 8
+      },
+      "fieldConfig": {
+        "defaults": {
+          "unit": "ops",
+          "custom": {
+            "spanNulls": false
+          }
+        },
+        "overrides": []
+      },
+      "options": {
+        "legend": {
+          "displayMode": "list",
+          "placement": "bottom",
+          "showLegend": true
+        }
+      },
+      "targets": [
+        {
+          "refId": "A",
+          "datasource": {
+            "type": "prometheus",
+            "uid": "qaas-prometheus"
+          },
+          "editorMode": "code",
+          "expr": "sum(rate(qaas_ingest_refused_total{job=\"qaas_operational\"}[5m]))",
+          "legendFormat": "Refused attempts",
+          "range": true,
+          "instant": false
+        },
+        {
+          "refId": "B",
+          "datasource": {
+            "type": "prometheus",
+            "uid": "qaas-prometheus"
+          },
+          "editorMode": "code",
+          "expr": "sum(rate(qaas_ingest_dropped_total{job=\"qaas_operational\"}[5m]))",
+          "legendFormat": "Dropped records",
+          "range": true,
+          "instant": false
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "type": "timeseries",
+      "datasource": {
+        "type": "prometheus",
+        "uid": "qaas-prometheus"
+      },
+      "title": "Queue pressure by live target",
+      "description": "Observed occupancy / positive finite capacity of the same live target. Unbounded/missing capacity stays No data.",
+      "gridPos": {
+        "x": 0,
+        "y": 8,
+        "w": 12,
+        "h": 8
+      },
+      "fieldConfig": {
+        "defaults": {
+          "unit": "percentunit",
+          "custom": {
+            "spanNulls": false
+          }
+        },
+        "overrides": []
+      },
+      "options": {
+        "legend": {
+          "displayMode": "list",
+          "placement": "bottom",
+          "showLegend": true
+        }
+      },
+      "targets": [
+        {
+          "refId": "A",
+          "datasource": {
+            "type": "prometheus",
+            "uid": "qaas-prometheus"
+          },
+          "editorMode": "code",
+          "expr": "(qaas_ingest_queue_size{job=\"qaas_operational\"} / on(job,instance) (qaas_ingest_queue_capacity{job=\"qaas_operational\"} > 0)) and on(job,instance) (up{job=\"qaas_operational\"} == 1)",
+          "legendFormat": "{{instance}}",
+          "range": true,
+          "instant": false
+        }
+      ]
+    },
+    {
+      "id": 4,
+      "type": "timeseries",
+      "datasource": {
+        "type": "prometheus",
+        "uid": "qaas-prometheus"
+      },
+      "title": "Queued records by live target",
+      "description": "Inspect depth when capacity is unknown. Do not sum replicas reporting the same queue.",
+      "gridPos": {
+        "x": 12,
+        "y": 8,
+        "w": 12,
+        "h": 8
+      },
+      "fieldConfig": {
+        "defaults": {
+          "unit": "short",
+          "custom": {
+            "spanNulls": false
+          }
+        },
+        "overrides": []
+      },
+      "options": {
+        "legend": {
+          "displayMode": "list",
+          "placement": "bottom",
+          "showLegend": true
+        }
+      },
+      "targets": [
+        {
+          "refId": "A",
+          "datasource": {
+            "type": "prometheus",
+            "uid": "qaas-prometheus"
+          },
+          "editorMode": "code",
+          "expr": "qaas_ingest_queue_size{job=\"qaas_operational\"} and on(job,instance) (up{job=\"qaas_operational\"} == 1)",
+          "legendFormat": "{{instance}}",
+          "range": true,
+          "instant": false
+        }
+      ]
+    },
+    {
+      "id": 5,
+      "type": "timeseries",
+      "datasource": {
+        "type": "prometheus",
+        "uid": "qaas-prometheus"
+      },
+      "title": "Scrape health and missing job",
+      "description": "Scrape health is telemetry, not business health. Sentinel appears only when the entire job is absent.",
+      "gridPos": {
+        "x": 0,
+        "y": 16,
+        "w": 12,
+        "h": 8
+      },
+      "fieldConfig": {
+        "defaults": {
+          "unit": "short",
+          "custom": {
+            "spanNulls": false
+          }
+        },
+        "overrides": []
+      },
+      "options": {
+        "legend": {
+          "displayMode": "list",
+          "placement": "bottom",
+          "showLegend": true
+        }
+      },
+      "targets": [
+        {
+          "refId": "A",
+          "datasource": {
+            "type": "prometheus",
+            "uid": "qaas-prometheus"
+          },
+          "editorMode": "code",
+          "expr": "sum(up{job=\"qaas_operational\"})",
+          "legendFormat": "Live",
+          "range": true,
+          "instant": false
+        },
+        {
+          "refId": "B",
+          "datasource": {
+            "type": "prometheus",
+            "uid": "qaas-prometheus"
+          },
+          "editorMode": "code",
+          "expr": "count(up{job=\"qaas_operational\"}) - sum(up{job=\"qaas_operational\"})",
+          "legendFormat": "Unreachable",
+          "range": true,
+          "instant": false
+        },
+        {
+          "refId": "C",
+          "datasource": {
+            "type": "prometheus",
+            "uid": "qaas-prometheus"
+          },
+          "editorMode": "code",
+          "expr": "absent(up{job=\"qaas_operational\"})",
+          "legendFormat": "All absent",
+          "range": true,
+          "instant": false
+        }
+      ]
+    },
+    {
+      "id": 6,
+      "type": "timeseries",
+      "datasource": {
+        "type": "prometheus",
+        "uid": "qaas-prometheus"
+      },
+      "title": "Age of durable ingress by live target",
+      "description": "Time since last unique admission. Missing, zero or future timestamp gives No data; quiet periods are not necessarily failure.",
+      "gridPos": {
+        "x": 12,
+        "y": 16,
+        "w": 12,
+        "h": 8
+      },
+      "fieldConfig": {
+        "defaults": {
+          "unit": "s",
+          "custom": {
+            "spanNulls": false
+          }
+        },
+        "overrides": []
+      },
+      "options": {
+        "legend": {
+          "displayMode": "list",
+          "placement": "bottom",
+          "showLegend": true
+        }
+      },
+      "targets": [
+        {
+          "refId": "A",
+          "datasource": {
+            "type": "prometheus",
+            "uid": "qaas-prometheus"
+          },
+          "editorMode": "code",
+          "expr": "(time() - ((qaas_ingest_last_accepted_timestamp_seconds{job=\"qaas_operational\"} > 0) <= time())) and on(job,instance) (up{job=\"qaas_operational\"} == 1)",
+          "legendFormat": "{{instance}}",
+          "range": true,
+          "instant": false
+        }
+      ]
+    },
+    {
+      "id": 7,
+      "type": "timeseries",
+      "datasource": {
+        "type": "prometheus",
+        "uid": "qaas-prometheus"
+      },
+      "title": "Delivery latency p50/p95",
+      "description": "Approximate measured admission-to-acknowledgment latency; only acknowledged timed work. Identical buckets required.",
+      "gridPos": {
+        "x": 0,
+        "y": 24,
+        "w": 12,
+        "h": 8
+      },
+      "fieldConfig": {
+        "defaults": {
+          "unit": "s",
+          "custom": {
+            "spanNulls": false
+          }
+        },
+        "overrides": []
+      },
+      "options": {
+        "legend": {
+          "displayMode": "list",
+          "placement": "bottom",
+          "showLegend": true
+        }
+      },
+      "targets": [
+        {
+          "refId": "A",
+          "datasource": {
+            "type": "prometheus",
+            "uid": "qaas-prometheus"
+          },
+          "editorMode": "code",
+          "expr": "histogram_quantile(0.5,sum by(le)(rate(qaas_ingest_delivery_duration_seconds_bucket{job=\"qaas_operational\"}[5m]))) and on() (sum(rate(qaas_ingest_delivery_duration_seconds_count{job=\"qaas_operational\"}[5m])) > 0)",
+          "legendFormat": "p50",
+          "range": true,
+          "instant": false
+        },
+        {
+          "refId": "B",
+          "datasource": {
+            "type": "prometheus",
+            "uid": "qaas-prometheus"
+          },
+          "editorMode": "code",
+          "expr": "histogram_quantile(0.95,sum by(le)(rate(qaas_ingest_delivery_duration_seconds_bucket{job=\"qaas_operational\"}[5m]))) and on() (sum(rate(qaas_ingest_delivery_duration_seconds_count{job=\"qaas_operational\"}[5m])) > 0)",
+          "legendFormat": "p95",
+          "range": true,
+          "instant": false
+        }
+      ]
+    },
+    {
+      "id": 8,
+      "type": "timeseries",
+      "datasource": {
+        "type": "prometheus",
+        "uid": "qaas-prometheus"
+      },
+      "title": "Delivery latency sample rate",
+      "description": "Timing coverage context; no samples does not mean zero latency.",
+      "gridPos": {
+        "x": 12,
+        "y": 24,
+        "w": 12,
+        "h": 8
+      },
+      "fieldConfig": {
+        "defaults": {
+          "unit": "ops",
+          "custom": {
+            "spanNulls": false
+          }
+        },
+        "overrides": []
+      },
+      "options": {
+        "legend": {
+          "displayMode": "list",
+          "placement": "bottom",
+          "showLegend": true
+        }
+      },
+      "targets": [
+        {
+          "refId": "A",
+          "datasource": {
+            "type": "prometheus",
+            "uid": "qaas-prometheus"
+          },
+          "editorMode": "code",
+          "expr": "sum(rate(qaas_ingest_delivery_duration_seconds_count{job=\"qaas_operational\"}[5m]))",
+          "legendFormat": "Timed acknowledgments/s",
+          "range": true,
+          "instant": false
+        }
+      ]
+    },
+    {
+      "id": 9,
+      "type": "timeseries",
+      "datasource": {
+        "type": "prometheus",
+        "uid": "qaas-prometheus"
+      },
+      "title": "Mocker HTTP throughput and outcomes",
+      "description": "Proposed HTTP instrumentation, no inference from HTTP status. Completed results are disjoint hit/miss/internal error.",
+      "gridPos": {
+        "x": 0,
+        "y": 32,
+        "w": 12,
+        "h": 8
+      },
+      "fieldConfig": {
+        "defaults": {
+          "unit": "ops",
+          "custom": {
+            "spanNulls": false
+          }
+        },
+        "overrides": []
+      },
+      "options": {
+        "legend": {
+          "displayMode": "list",
+          "placement": "bottom",
+          "showLegend": true
+        }
+      },
+      "targets": [
+        {
+          "refId": "A",
+          "datasource": {
+            "type": "prometheus",
+            "uid": "qaas-prometheus"
+          },
+          "editorMode": "code",
+          "expr": "sum(rate(qaas_mocker_requests_accepted_total{job=\"qaas_operational\"}[5m]))",
+          "legendFormat": "Accepted",
+          "range": true,
+          "instant": false
+        },
+        {
+          "refId": "B",
+          "datasource": {
+            "type": "prometheus",
+            "uid": "qaas-prometheus"
+          },
+          "editorMode": "code",
+          "expr": "sum(rate(qaas_mocker_requests_completed_total{job=\"qaas_operational\",outcome=\"hit\"}[5m]))",
+          "legendFormat": "Hit",
+          "range": true,
+          "instant": false
+        },
+        {
+          "refId": "C",
+          "datasource": {
+            "type": "prometheus",
+            "uid": "qaas-prometheus"
+          },
+          "editorMode": "code",
+          "expr": "sum(rate(qaas_mocker_requests_completed_total{job=\"qaas_operational\",outcome=\"miss\"}[5m]))",
+          "legendFormat": "Miss",
+          "range": true,
+          "instant": false
+        },
+        {
+          "refId": "D",
+          "datasource": {
+            "type": "prometheus",
+            "uid": "qaas-prometheus"
+          },
+          "editorMode": "code",
+          "expr": "sum(rate(qaas_mocker_requests_completed_total{job=\"qaas_operational\",outcome=\"error\"}[5m]))",
+          "legendFormat": "Internal error",
+          "range": true,
+          "instant": false
+        }
+      ]
+    },
+    {
+      "id": 10,
+      "type": "timeseries",
+      "datasource": {
+        "type": "prometheus",
+        "uid": "qaas-prometheus"
+      },
+      "title": "Mocker hit and internal error shares",
+      "description": "Hit equals hits/(hits+misses). Internal error equals errors/all accepted. Zero/absent denominators stay No data. Rates are not exact cohort accounting.",
+      "gridPos": {
+        "x": 12,
+        "y": 32,
+        "w": 12,
+        "h": 8
+      },
+      "fieldConfig": {
+        "defaults": {
+          "unit": "percentunit",
+          "custom": {
+            "spanNulls": false
+          }
+        },
+        "overrides": []
+      },
+      "options": {
+        "legend": {
+          "displayMode": "list",
+          "placement": "bottom",
+          "showLegend": true
+        }
+      },
+      "targets": [
+        {
+          "refId": "A",
+          "datasource": {
+            "type": "prometheus",
+            "uid": "qaas-prometheus"
+          },
+          "editorMode": "code",
+          "expr": "((sum(rate(qaas_mocker_requests_completed_total{job=\"qaas_operational\",outcome=\"hit\"}[5m]))) / (sum(rate(qaas_mocker_requests_completed_total{job=\"qaas_operational\",outcome=~\"hit|miss\"}[5m])))) and on() ((sum(rate(qaas_mocker_requests_completed_total{job=\"qaas_operational\",outcome=~\"hit|miss\"}[5m]))) > 0)",
+          "legendFormat": "Hit / (hit + miss)",
+          "range": true,
+          "instant": false
+        },
+        {
+          "refId": "B",
+          "datasource": {
+            "type": "prometheus",
+            "uid": "qaas-prometheus"
+          },
+          "editorMode": "code",
+          "expr": "((sum(rate(qaas_mocker_requests_completed_total{job=\"qaas_operational\",outcome=\"error\"}[5m]))) / (sum(rate(qaas_mocker_requests_accepted_total{job=\"qaas_operational\"}[5m])))) and on() ((sum(rate(qaas_mocker_requests_accepted_total{job=\"qaas_operational\"}[5m]))) > 0)",
+          "legendFormat": "Error / all accepted",
+          "range": true,
+          "instant": false
+        }
+      ]
+    },
+    {
+      "id": 11,
+      "type": "timeseries",
+      "datasource": {
+        "type": "prometheus",
+        "uid": "qaas-prometheus"
+      },
+      "title": "Mocker HTTP handling latency",
+      "description": "Approximate p95 of measured terminal handlers. Right axis is timing sample rate, not latency.",
+      "gridPos": {
+        "x": 0,
+        "y": 40,
+        "w": 12,
+        "h": 8
+      },
+      "fieldConfig": {
+        "defaults": {
+          "unit": "s",
+          "custom": {
+            "spanNulls": false
+          }
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byFrameRefID",
+              "options": "B"
+            },
+            "properties": [
+              {
+                "id": "unit",
+                "value": "ops"
+              },
+              {
+                "id": "custom.axisPlacement",
+                "value": "right"
+              }
+            ]
+          }
+        ]
+      },
+      "options": {
+        "legend": {
+          "displayMode": "list",
+          "placement": "bottom",
+          "showLegend": true
+        }
+      },
+      "targets": [
+        {
+          "refId": "A",
+          "datasource": {
+            "type": "prometheus",
+            "uid": "qaas-prometheus"
+          },
+          "editorMode": "code",
+          "expr": "histogram_quantile(0.95,sum by(le)(rate(qaas_mocker_request_duration_seconds_bucket{job=\"qaas_operational\"}[5m]))) and on() (sum(rate(qaas_mocker_request_duration_seconds_count{job=\"qaas_operational\"}[5m])) > 0)",
+          "legendFormat": "p95",
+          "range": true,
+          "instant": false
+        },
+        {
+          "refId": "B",
+          "datasource": {
+            "type": "prometheus",
+            "uid": "qaas-prometheus"
+          },
+          "editorMode": "code",
+          "expr": "sum(rate(qaas_mocker_request_duration_seconds_count{job=\"qaas_operational\"}[5m]))",
+          "legendFormat": "Timed completions/s",
+          "range": true,
+          "instant": false
+        }
+      ]
+    }
+  ]
+}

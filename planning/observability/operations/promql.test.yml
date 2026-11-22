@@ -1,0 +1,687 @@
+{
+  "fuzzy_compare": true,
+  "evaluation_interval": "1m",
+  "tests": [
+    {
+      "interval": "1m",
+      "input_series": [
+        {
+          "series": "qaas_ingest_accepted_total{instance=\"synthetic-a\",job=\"qaas_operational\"}",
+          "values": "0+60x6"
+        },
+        {
+          "series": "qaas_ingest_acknowledged_total{instance=\"synthetic-a\",job=\"qaas_operational\"}",
+          "values": "0+48x6"
+        },
+        {
+          "series": "qaas_ingest_refused_total{instance=\"synthetic-a\",job=\"qaas_operational\"}",
+          "values": "0+12x6"
+        },
+        {
+          "series": "qaas_ingest_dropped_total{instance=\"synthetic-a\",job=\"qaas_operational\"}",
+          "values": "0+6x6"
+        },
+        {
+          "series": "qaas_ingest_accepted_total{instance=\"synthetic-b\",job=\"qaas_operational\"}",
+          "values": "0+120x6"
+        },
+        {
+          "series": "qaas_ingest_acknowledged_total{instance=\"synthetic-b\",job=\"qaas_operational\"}",
+          "values": "0+96x6"
+        },
+        {
+          "series": "qaas_ingest_refused_total{instance=\"synthetic-b\",job=\"qaas_operational\"}",
+          "values": "0+6x6"
+        },
+        {
+          "series": "qaas_ingest_dropped_total{instance=\"synthetic-b\",job=\"qaas_operational\"}",
+          "values": "0+0x6"
+        },
+        {
+          "series": "up{instance=\"synthetic-a\",job=\"qaas_operational\"}",
+          "values": "1+0x6"
+        },
+        {
+          "series": "up{instance=\"synthetic-b\",job=\"qaas_operational\"}",
+          "values": "1+0x6"
+        },
+        {
+          "series": "qaas_ingest_queue_size{instance=\"synthetic-a\",job=\"qaas_operational\"}",
+          "values": "80+0x6"
+        },
+        {
+          "series": "qaas_ingest_queue_capacity{instance=\"synthetic-a\",job=\"qaas_operational\"}",
+          "values": "100+0x6"
+        },
+        {
+          "series": "qaas_ingest_queue_size{instance=\"synthetic-b\",job=\"qaas_operational\"}",
+          "values": "8+0x6"
+        },
+        {
+          "series": "qaas_ingest_queue_capacity{instance=\"synthetic-b\",job=\"qaas_operational\"}",
+          "values": "0+0x6"
+        },
+        {
+          "series": "qaas_ingest_last_accepted_timestamp_seconds{instance=\"synthetic-a\",job=\"qaas_operational\"}",
+          "values": "240+0x6"
+        },
+        {
+          "series": "qaas_ingest_last_accepted_timestamp_seconds{instance=\"synthetic-b\",job=\"qaas_operational\"}",
+          "values": "0+0x6"
+        },
+        {
+          "series": "qaas_mocker_requests_accepted_total{instance=\"synthetic-a\",job=\"qaas_operational\"}",
+          "values": "0+60x6"
+        },
+        {
+          "series": "qaas_mocker_requests_completed_total{instance=\"synthetic-a\",job=\"qaas_operational\",outcome=\"hit\"}",
+          "values": "0+36x6"
+        },
+        {
+          "series": "qaas_mocker_requests_completed_total{instance=\"synthetic-a\",job=\"qaas_operational\",outcome=\"miss\"}",
+          "values": "0+12x6"
+        },
+        {
+          "series": "qaas_mocker_requests_completed_total{instance=\"synthetic-a\",job=\"qaas_operational\",outcome=\"error\"}",
+          "values": "0+6x6"
+        },
+        {
+          "series": "qaas_ingest_delivery_duration_seconds_count{instance=\"synthetic-a\",job=\"qaas_operational\"}",
+          "values": "0+20x6"
+        },
+        {
+          "series": "qaas_ingest_delivery_duration_seconds_bucket{instance=\"synthetic-a\",job=\"qaas_operational\",le=\"0.05\"}",
+          "values": "0+0x6"
+        },
+        {
+          "series": "qaas_ingest_delivery_duration_seconds_bucket{instance=\"synthetic-a\",job=\"qaas_operational\",le=\"0.1\"}",
+          "values": "0+0x6"
+        },
+        {
+          "series": "qaas_ingest_delivery_duration_seconds_bucket{instance=\"synthetic-a\",job=\"qaas_operational\",le=\"0.25\"}",
+          "values": "0+4x6"
+        },
+        {
+          "series": "qaas_ingest_delivery_duration_seconds_bucket{instance=\"synthetic-a\",job=\"qaas_operational\",le=\"0.5\"}",
+          "values": "0+10x6"
+        },
+        {
+          "series": "qaas_ingest_delivery_duration_seconds_bucket{instance=\"synthetic-a\",job=\"qaas_operational\",le=\"1\"}",
+          "values": "0+14x6"
+        },
+        {
+          "series": "qaas_ingest_delivery_duration_seconds_bucket{instance=\"synthetic-a\",job=\"qaas_operational\",le=\"2.5\"}",
+          "values": "0+19x6"
+        },
+        {
+          "series": "qaas_ingest_delivery_duration_seconds_bucket{instance=\"synthetic-a\",job=\"qaas_operational\",le=\"5\"}",
+          "values": "0+20x6"
+        },
+        {
+          "series": "qaas_ingest_delivery_duration_seconds_bucket{instance=\"synthetic-a\",job=\"qaas_operational\",le=\"15\"}",
+          "values": "0+20x6"
+        },
+        {
+          "series": "qaas_ingest_delivery_duration_seconds_bucket{instance=\"synthetic-a\",job=\"qaas_operational\",le=\"+Inf\"}",
+          "values": "0+20x6"
+        },
+        {
+          "series": "qaas_mocker_request_duration_seconds_count{instance=\"synthetic-a\",job=\"qaas_operational\"}",
+          "values": "0+20x6"
+        },
+        {
+          "series": "qaas_mocker_request_duration_seconds_bucket{instance=\"synthetic-a\",job=\"qaas_operational\",le=\"0.05\"}",
+          "values": "0+0x6"
+        },
+        {
+          "series": "qaas_mocker_request_duration_seconds_bucket{instance=\"synthetic-a\",job=\"qaas_operational\",le=\"0.1\"}",
+          "values": "0+0x6"
+        },
+        {
+          "series": "qaas_mocker_request_duration_seconds_bucket{instance=\"synthetic-a\",job=\"qaas_operational\",le=\"0.25\"}",
+          "values": "0+4x6"
+        },
+        {
+          "series": "qaas_mocker_request_duration_seconds_bucket{instance=\"synthetic-a\",job=\"qaas_operational\",le=\"0.5\"}",
+          "values": "0+10x6"
+        },
+        {
+          "series": "qaas_mocker_request_duration_seconds_bucket{instance=\"synthetic-a\",job=\"qaas_operational\",le=\"1\"}",
+          "values": "0+14x6"
+        },
+        {
+          "series": "qaas_mocker_request_duration_seconds_bucket{instance=\"synthetic-a\",job=\"qaas_operational\",le=\"2.5\"}",
+          "values": "0+19x6"
+        },
+        {
+          "series": "qaas_mocker_request_duration_seconds_bucket{instance=\"synthetic-a\",job=\"qaas_operational\",le=\"5\"}",
+          "values": "0+20x6"
+        },
+        {
+          "series": "qaas_mocker_request_duration_seconds_bucket{instance=\"synthetic-a\",job=\"qaas_operational\",le=\"15\"}",
+          "values": "0+20x6"
+        },
+        {
+          "series": "qaas_mocker_request_duration_seconds_bucket{instance=\"synthetic-a\",job=\"qaas_operational\",le=\"+Inf\"}",
+          "values": "0+20x6"
+        }
+      ],
+      "promql_expr_test": [
+        {
+          "expr": "sum(rate(qaas_ingest_accepted_total{job=\"qaas_operational\"}[5m]))",
+          "eval_time": "6m",
+          "exp_samples": [
+            {
+              "labels": "{}",
+              "value": 3
+            }
+          ]
+        },
+        {
+          "expr": "sum(rate(qaas_ingest_acknowledged_total{job=\"qaas_operational\"}[5m]))",
+          "eval_time": "6m",
+          "exp_samples": [
+            {
+              "labels": "{}",
+              "value": 2.4
+            }
+          ]
+        },
+        {
+          "expr": "sum(rate(qaas_ingest_refused_total{job=\"qaas_operational\"}[5m]))",
+          "eval_time": "6m",
+          "exp_samples": [
+            {
+              "labels": "{}",
+              "value": 0.3
+            }
+          ]
+        },
+        {
+          "expr": "sum(rate(qaas_ingest_dropped_total{job=\"qaas_operational\"}[5m]))",
+          "eval_time": "6m",
+          "exp_samples": [
+            {
+              "labels": "{}",
+              "value": 0.1
+            }
+          ]
+        },
+        {
+          "expr": "(qaas_ingest_queue_size{job=\"qaas_operational\"} / on(job,instance) (qaas_ingest_queue_capacity{job=\"qaas_operational\"} > 0)) and on(job,instance) (up{job=\"qaas_operational\"} == 1)",
+          "eval_time": "6m",
+          "exp_samples": [
+            {
+              "labels": "{instance=\"synthetic-a\",job=\"qaas_operational\"}",
+              "value": 0.8
+            }
+          ]
+        },
+        {
+          "expr": "qaas_ingest_queue_size{job=\"qaas_operational\"} and on(job,instance) (up{job=\"qaas_operational\"} == 1)",
+          "eval_time": "6m",
+          "exp_samples": [
+            {
+              "labels": "{instance=\"synthetic-a\",job=\"qaas_operational\",__name__=\"qaas_ingest_queue_size\"}",
+              "value": 80
+            },
+            {
+              "labels": "{instance=\"synthetic-b\",job=\"qaas_operational\",__name__=\"qaas_ingest_queue_size\"}",
+              "value": 8
+            }
+          ]
+        },
+        {
+          "expr": "sum(up{job=\"qaas_operational\"})",
+          "eval_time": "6m",
+          "exp_samples": [
+            {
+              "labels": "{}",
+              "value": 2
+            }
+          ]
+        },
+        {
+          "expr": "count(up{job=\"qaas_operational\"}) - sum(up{job=\"qaas_operational\"})",
+          "eval_time": "6m",
+          "exp_samples": [
+            {
+              "labels": "{}",
+              "value": 0
+            }
+          ]
+        },
+        {
+          "expr": "absent(up{job=\"qaas_operational\"})",
+          "eval_time": "6m",
+          "exp_samples": []
+        },
+        {
+          "expr": "(time() - ((qaas_ingest_last_accepted_timestamp_seconds{job=\"qaas_operational\"} > 0) <= time())) and on(job,instance) (up{job=\"qaas_operational\"} == 1)",
+          "eval_time": "6m",
+          "exp_samples": [
+            {
+              "labels": "{instance=\"synthetic-a\",job=\"qaas_operational\"}",
+              "value": 120
+            }
+          ]
+        },
+        {
+          "expr": "histogram_quantile(0.5,sum by(le)(rate(qaas_ingest_delivery_duration_seconds_bucket{job=\"qaas_operational\"}[5m]))) and on() (sum(rate(qaas_ingest_delivery_duration_seconds_count{job=\"qaas_operational\"}[5m])) > 0)",
+          "eval_time": "6m",
+          "exp_samples": [
+            {
+              "labels": "{}",
+              "value": 0.5
+            }
+          ]
+        },
+        {
+          "expr": "histogram_quantile(0.95,sum by(le)(rate(qaas_ingest_delivery_duration_seconds_bucket{job=\"qaas_operational\"}[5m]))) and on() (sum(rate(qaas_ingest_delivery_duration_seconds_count{job=\"qaas_operational\"}[5m])) > 0)",
+          "eval_time": "6m",
+          "exp_samples": [
+            {
+              "labels": "{}",
+              "value": 2.5
+            }
+          ]
+        },
+        {
+          "expr": "sum(rate(qaas_ingest_delivery_duration_seconds_count{job=\"qaas_operational\"}[5m]))",
+          "eval_time": "6m",
+          "exp_samples": [
+            {
+              "labels": "{}",
+              "value": 0.3333333333333333
+            }
+          ]
+        },
+        {
+          "expr": "sum(rate(qaas_mocker_requests_accepted_total{job=\"qaas_operational\"}[5m]))",
+          "eval_time": "6m",
+          "exp_samples": [
+            {
+              "labels": "{}",
+              "value": 1
+            }
+          ]
+        },
+        {
+          "expr": "sum(rate(qaas_mocker_requests_completed_total{job=\"qaas_operational\",outcome=\"hit\"}[5m]))",
+          "eval_time": "6m",
+          "exp_samples": [
+            {
+              "labels": "{}",
+              "value": 0.6
+            }
+          ]
+        },
+        {
+          "expr": "sum(rate(qaas_mocker_requests_completed_total{job=\"qaas_operational\",outcome=\"miss\"}[5m]))",
+          "eval_time": "6m",
+          "exp_samples": [
+            {
+              "labels": "{}",
+              "value": 0.2
+            }
+          ]
+        },
+        {
+          "expr": "sum(rate(qaas_mocker_requests_completed_total{job=\"qaas_operational\",outcome=\"error\"}[5m]))",
+          "eval_time": "6m",
+          "exp_samples": [
+            {
+              "labels": "{}",
+              "value": 0.1
+            }
+          ]
+        },
+        {
+          "expr": "((sum(rate(qaas_mocker_requests_completed_total{job=\"qaas_operational\",outcome=\"hit\"}[5m]))) / (sum(rate(qaas_mocker_requests_completed_total{job=\"qaas_operational\",outcome=~\"hit|miss\"}[5m])))) and on() ((sum(rate(qaas_mocker_requests_completed_total{job=\"qaas_operational\",outcome=~\"hit|miss\"}[5m]))) > 0)",
+          "eval_time": "6m",
+          "exp_samples": [
+            {
+              "labels": "{}",
+              "value": 0.75
+            }
+          ]
+        },
+        {
+          "expr": "((sum(rate(qaas_mocker_requests_completed_total{job=\"qaas_operational\",outcome=\"error\"}[5m]))) / (sum(rate(qaas_mocker_requests_accepted_total{job=\"qaas_operational\"}[5m])))) and on() ((sum(rate(qaas_mocker_requests_accepted_total{job=\"qaas_operational\"}[5m]))) > 0)",
+          "eval_time": "6m",
+          "exp_samples": [
+            {
+              "labels": "{}",
+              "value": 0.1
+            }
+          ]
+        },
+        {
+          "expr": "histogram_quantile(0.95,sum by(le)(rate(qaas_mocker_request_duration_seconds_bucket{job=\"qaas_operational\"}[5m]))) and on() (sum(rate(qaas_mocker_request_duration_seconds_count{job=\"qaas_operational\"}[5m])) > 0)",
+          "eval_time": "6m",
+          "exp_samples": [
+            {
+              "labels": "{}",
+              "value": 2.5
+            }
+          ]
+        },
+        {
+          "expr": "sum(rate(qaas_mocker_request_duration_seconds_count{job=\"qaas_operational\"}[5m]))",
+          "eval_time": "6m",
+          "exp_samples": [
+            {
+              "labels": "{}",
+              "value": 0.3333333333333333
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "interval": "1m",
+      "input_series": [
+        {
+          "series": "up{instance=\"synthetic-a\",job=\"qaas_operational\"}",
+          "values": "0+0x6"
+        },
+        {
+          "series": "qaas_ingest_queue_size{instance=\"synthetic-a\",job=\"qaas_operational\"}",
+          "values": "80+0x6"
+        },
+        {
+          "series": "qaas_ingest_queue_capacity{instance=\"synthetic-a\",job=\"qaas_operational\"}",
+          "values": "100+0x6"
+        },
+        {
+          "series": "qaas_ingest_last_accepted_timestamp_seconds{instance=\"synthetic-a\",job=\"qaas_operational\"}",
+          "values": "240+0x6"
+        },
+        {
+          "series": "qaas_ingest_delivery_duration_seconds_count{instance=\"synthetic-a\",job=\"qaas_operational\"}",
+          "values": "0+0x6"
+        },
+        {
+          "series": "qaas_ingest_delivery_duration_seconds_bucket{instance=\"synthetic-a\",job=\"qaas_operational\",le=\"0.05\"}",
+          "values": "0+0x6"
+        },
+        {
+          "series": "qaas_ingest_delivery_duration_seconds_bucket{instance=\"synthetic-a\",job=\"qaas_operational\",le=\"0.1\"}",
+          "values": "0+0x6"
+        },
+        {
+          "series": "qaas_ingest_delivery_duration_seconds_bucket{instance=\"synthetic-a\",job=\"qaas_operational\",le=\"0.25\"}",
+          "values": "0+0x6"
+        },
+        {
+          "series": "qaas_ingest_delivery_duration_seconds_bucket{instance=\"synthetic-a\",job=\"qaas_operational\",le=\"0.5\"}",
+          "values": "0+0x6"
+        },
+        {
+          "series": "qaas_ingest_delivery_duration_seconds_bucket{instance=\"synthetic-a\",job=\"qaas_operational\",le=\"1\"}",
+          "values": "0+0x6"
+        },
+        {
+          "series": "qaas_ingest_delivery_duration_seconds_bucket{instance=\"synthetic-a\",job=\"qaas_operational\",le=\"2.5\"}",
+          "values": "0+0x6"
+        },
+        {
+          "series": "qaas_ingest_delivery_duration_seconds_bucket{instance=\"synthetic-a\",job=\"qaas_operational\",le=\"5\"}",
+          "values": "0+0x6"
+        },
+        {
+          "series": "qaas_ingest_delivery_duration_seconds_bucket{instance=\"synthetic-a\",job=\"qaas_operational\",le=\"15\"}",
+          "values": "0+0x6"
+        },
+        {
+          "series": "qaas_ingest_delivery_duration_seconds_bucket{instance=\"synthetic-a\",job=\"qaas_operational\",le=\"+Inf\"}",
+          "values": "0+0x6"
+        }
+      ],
+      "promql_expr_test": [
+        {
+          "expr": "(qaas_ingest_queue_size{job=\"qaas_operational\"} / on(job,instance) (qaas_ingest_queue_capacity{job=\"qaas_operational\"} > 0)) and on(job,instance) (up{job=\"qaas_operational\"} == 1)",
+          "eval_time": "6m",
+          "exp_samples": []
+        },
+        {
+          "expr": "qaas_ingest_queue_size{job=\"qaas_operational\"} and on(job,instance) (up{job=\"qaas_operational\"} == 1)",
+          "eval_time": "6m",
+          "exp_samples": []
+        },
+        {
+          "expr": "sum(up{job=\"qaas_operational\"})",
+          "eval_time": "6m",
+          "exp_samples": [
+            {
+              "labels": "{}",
+              "value": 0
+            }
+          ]
+        },
+        {
+          "expr": "count(up{job=\"qaas_operational\"}) - sum(up{job=\"qaas_operational\"})",
+          "eval_time": "6m",
+          "exp_samples": [
+            {
+              "labels": "{}",
+              "value": 1
+            }
+          ]
+        },
+        {
+          "expr": "absent(up{job=\"qaas_operational\"})",
+          "eval_time": "6m",
+          "exp_samples": []
+        },
+        {
+          "expr": "(time() - ((qaas_ingest_last_accepted_timestamp_seconds{job=\"qaas_operational\"} > 0) <= time())) and on(job,instance) (up{job=\"qaas_operational\"} == 1)",
+          "eval_time": "6m",
+          "exp_samples": []
+        },
+        {
+          "expr": "histogram_quantile(0.5,sum by(le)(rate(qaas_ingest_delivery_duration_seconds_bucket{job=\"qaas_operational\"}[5m]))) and on() (sum(rate(qaas_ingest_delivery_duration_seconds_count{job=\"qaas_operational\"}[5m])) > 0)",
+          "eval_time": "6m",
+          "exp_samples": []
+        },
+        {
+          "expr": "histogram_quantile(0.95,sum by(le)(rate(qaas_ingest_delivery_duration_seconds_bucket{job=\"qaas_operational\"}[5m]))) and on() (sum(rate(qaas_ingest_delivery_duration_seconds_count{job=\"qaas_operational\"}[5m])) > 0)",
+          "eval_time": "6m",
+          "exp_samples": []
+        },
+        {
+          "expr": "sum(rate(qaas_ingest_delivery_duration_seconds_count{job=\"qaas_operational\"}[5m]))",
+          "eval_time": "6m",
+          "exp_samples": [
+            {
+              "labels": "{}",
+              "value": 0
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "interval": "1m",
+      "input_series": [],
+      "promql_expr_test": [
+        {
+          "expr": "sum(rate(qaas_ingest_accepted_total{job=\"qaas_operational\"}[5m]))",
+          "eval_time": "6m",
+          "exp_samples": []
+        },
+        {
+          "expr": "sum(rate(qaas_ingest_refused_total{job=\"qaas_operational\"}[5m]))",
+          "eval_time": "6m",
+          "exp_samples": []
+        },
+        {
+          "expr": "sum(up{job=\"qaas_operational\"})",
+          "eval_time": "6m",
+          "exp_samples": []
+        },
+        {
+          "expr": "count(up{job=\"qaas_operational\"}) - sum(up{job=\"qaas_operational\"})",
+          "eval_time": "6m",
+          "exp_samples": []
+        },
+        {
+          "expr": "absent(up{job=\"qaas_operational\"})",
+          "eval_time": "6m",
+          "exp_samples": [
+            {
+              "labels": "{job=\"qaas_operational\"}",
+              "value": 1
+            }
+          ]
+        },
+        {
+          "expr": "(time() - ((qaas_ingest_last_accepted_timestamp_seconds{job=\"qaas_operational\"} > 0) <= time())) and on(job,instance) (up{job=\"qaas_operational\"} == 1)",
+          "eval_time": "6m",
+          "exp_samples": []
+        },
+        {
+          "expr": "histogram_quantile(0.5,sum by(le)(rate(qaas_ingest_delivery_duration_seconds_bucket{job=\"qaas_operational\"}[5m]))) and on() (sum(rate(qaas_ingest_delivery_duration_seconds_count{job=\"qaas_operational\"}[5m])) > 0)",
+          "eval_time": "6m",
+          "exp_samples": []
+        },
+        {
+          "expr": "sum(rate(qaas_ingest_delivery_duration_seconds_count{job=\"qaas_operational\"}[5m]))",
+          "eval_time": "6m",
+          "exp_samples": []
+        },
+        {
+          "expr": "sum(rate(qaas_mocker_requests_accepted_total{job=\"qaas_operational\"}[5m]))",
+          "eval_time": "6m",
+          "exp_samples": []
+        },
+        {
+          "expr": "((sum(rate(qaas_mocker_requests_completed_total{job=\"qaas_operational\",outcome=\"hit\"}[5m]))) / (sum(rate(qaas_mocker_requests_completed_total{job=\"qaas_operational\",outcome=~\"hit|miss\"}[5m])))) and on() ((sum(rate(qaas_mocker_requests_completed_total{job=\"qaas_operational\",outcome=~\"hit|miss\"}[5m]))) > 0)",
+          "eval_time": "6m",
+          "exp_samples": []
+        },
+        {
+          "expr": "((sum(rate(qaas_mocker_requests_completed_total{job=\"qaas_operational\",outcome=\"error\"}[5m]))) / (sum(rate(qaas_mocker_requests_accepted_total{job=\"qaas_operational\"}[5m])))) and on() ((sum(rate(qaas_mocker_requests_accepted_total{job=\"qaas_operational\"}[5m]))) > 0)",
+          "eval_time": "6m",
+          "exp_samples": []
+        },
+        {
+          "expr": "histogram_quantile(0.95,sum by(le)(rate(qaas_mocker_request_duration_seconds_bucket{job=\"qaas_operational\"}[5m]))) and on() (sum(rate(qaas_mocker_request_duration_seconds_count{job=\"qaas_operational\"}[5m])) > 0)",
+          "eval_time": "6m",
+          "exp_samples": []
+        }
+      ]
+    },
+    {
+      "interval": "1m",
+      "input_series": [
+        {
+          "series": "up{instance=\"synthetic-a\",job=\"qaas_operational\"}",
+          "values": "1+0x6"
+        },
+        {
+          "series": "qaas_ingest_last_accepted_timestamp_seconds{instance=\"synthetic-a\",job=\"qaas_operational\"}",
+          "values": "400+0x6"
+        },
+        {
+          "series": "qaas_mocker_requests_accepted_total{instance=\"synthetic-a\",job=\"qaas_operational\"}",
+          "values": "0+0x6"
+        },
+        {
+          "series": "qaas_mocker_requests_completed_total{instance=\"synthetic-a\",job=\"qaas_operational\",outcome=\"hit\"}",
+          "values": "0+0x6"
+        },
+        {
+          "series": "qaas_mocker_requests_completed_total{instance=\"synthetic-a\",job=\"qaas_operational\",outcome=\"miss\"}",
+          "values": "0+0x6"
+        },
+        {
+          "series": "qaas_mocker_requests_completed_total{instance=\"synthetic-a\",job=\"qaas_operational\",outcome=\"error\"}",
+          "values": "0+0x6"
+        },
+        {
+          "series": "qaas_mocker_request_duration_seconds_count{instance=\"synthetic-a\",job=\"qaas_operational\"}",
+          "values": "0+0x6"
+        },
+        {
+          "series": "qaas_mocker_request_duration_seconds_bucket{instance=\"synthetic-a\",job=\"qaas_operational\",le=\"0.05\"}",
+          "values": "0+0x6"
+        },
+        {
+          "series": "qaas_mocker_request_duration_seconds_bucket{instance=\"synthetic-a\",job=\"qaas_operational\",le=\"0.1\"}",
+          "values": "0+0x6"
+        },
+        {
+          "series": "qaas_mocker_request_duration_seconds_bucket{instance=\"synthetic-a\",job=\"qaas_operational\",le=\"0.25\"}",
+          "values": "0+0x6"
+        },
+        {
+          "series": "qaas_mocker_request_duration_seconds_bucket{instance=\"synthetic-a\",job=\"qaas_operational\",le=\"0.5\"}",
+          "values": "0+0x6"
+        },
+        {
+          "series": "qaas_mocker_request_duration_seconds_bucket{instance=\"synthetic-a\",job=\"qaas_operational\",le=\"1\"}",
+          "values": "0+0x6"
+        },
+        {
+          "series": "qaas_mocker_request_duration_seconds_bucket{instance=\"synthetic-a\",job=\"qaas_operational\",le=\"2.5\"}",
+          "values": "0+0x6"
+        },
+        {
+          "series": "qaas_mocker_request_duration_seconds_bucket{instance=\"synthetic-a\",job=\"qaas_operational\",le=\"5\"}",
+          "values": "0+0x6"
+        },
+        {
+          "series": "qaas_mocker_request_duration_seconds_bucket{instance=\"synthetic-a\",job=\"qaas_operational\",le=\"15\"}",
+          "values": "0+0x6"
+        },
+        {
+          "series": "qaas_mocker_request_duration_seconds_bucket{instance=\"synthetic-a\",job=\"qaas_operational\",le=\"+Inf\"}",
+          "values": "0+0x6"
+        }
+      ],
+      "promql_expr_test": [
+        {
+          "expr": "(time() - ((qaas_ingest_last_accepted_timestamp_seconds{job=\"qaas_operational\"} > 0) <= time())) and on(job,instance) (up{job=\"qaas_operational\"} == 1)",
+          "eval_time": "6m",
+          "exp_samples": []
+        },
+        {
+          "expr": "sum(rate(qaas_mocker_requests_accepted_total{job=\"qaas_operational\"}[5m]))",
+          "eval_time": "6m",
+          "exp_samples": [
+            {
+              "labels": "{}",
+              "value": 0
+            }
+          ]
+        },
+        {
+          "expr": "((sum(rate(qaas_mocker_requests_completed_total{job=\"qaas_operational\",outcome=\"hit\"}[5m]))) / (sum(rate(qaas_mocker_requests_completed_total{job=\"qaas_operational\",outcome=~\"hit|miss\"}[5m])))) and on() ((sum(rate(qaas_mocker_requests_completed_total{job=\"qaas_operational\",outcome=~\"hit|miss\"}[5m]))) > 0)",
+          "eval_time": "6m",
+          "exp_samples": []
+        },
+        {
+          "expr": "((sum(rate(qaas_mocker_requests_completed_total{job=\"qaas_operational\",outcome=\"error\"}[5m]))) / (sum(rate(qaas_mocker_requests_accepted_total{job=\"qaas_operational\"}[5m])))) and on() ((sum(rate(qaas_mocker_requests_accepted_total{job=\"qaas_operational\"}[5m]))) > 0)",
+          "eval_time": "6m",
+          "exp_samples": []
+        },
+        {
+          "expr": "histogram_quantile(0.95,sum by(le)(rate(qaas_mocker_request_duration_seconds_bucket{job=\"qaas_operational\"}[5m]))) and on() (sum(rate(qaas_mocker_request_duration_seconds_count{job=\"qaas_operational\"}[5m])) > 0)",
+          "eval_time": "6m",
+          "exp_samples": []
+        },
+        {
+          "expr": "sum(rate(qaas_mocker_request_duration_seconds_count{job=\"qaas_operational\"}[5m]))",
+          "eval_time": "6m",
+          "exp_samples": [
+            {
+              "labels": "{}",
+              "value": 0
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

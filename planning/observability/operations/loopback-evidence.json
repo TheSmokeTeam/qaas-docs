@@ -1,0 +1,261 @@
+{
+  "fixture": "synthetic proposed exporter; no live QaaS or Mocker",
+  "network_interfaces": [
+    "lo"
+  ],
+  "prometheus": "3.5.1",
+  "grafana": "12.3.0",
+  "panels": 11,
+  "expressions": 21,
+  "active_range_expressions": 20,
+  "controls": [
+    "idle hides latency/freshness/ratios",
+    "known queue ratio",
+    "known ingest and Mocker quantiles",
+    "0.75 hit/(hit+miss)",
+    "0.10 error/all accepted",
+    "unbounded capacity with known depth",
+    "down target versus absent job"
+  ],
+  "grafana_ui_screenshot": "unavailable (TargetClosedError)",
+  "targets": [
+    {
+      "panel_id": 1,
+      "title": "Ingress and downstream acknowledgment",
+      "ref": "A",
+      "instant": [
+        1.5043
+      ],
+      "range_numeric": [
+        0
+      ]
+    },
+    {
+      "panel_id": 1,
+      "title": "Ingress and downstream acknowledgment",
+      "ref": "B",
+      "instant": [
+        1.21632
+      ],
+      "range_numeric": [
+        0
+      ]
+    },
+    {
+      "panel_id": 2,
+      "title": "Refused attempts and dropped records",
+      "ref": "A",
+      "instant": [
+        0.30632000000000004
+      ],
+      "range_numeric": [
+        0
+      ]
+    },
+    {
+      "panel_id": 2,
+      "title": "Refused attempts and dropped records",
+      "ref": "B",
+      "instant": [
+        0.15420999999999999
+      ],
+      "range_numeric": [
+        0
+      ]
+    },
+    {
+      "panel_id": 3,
+      "title": "Queue pressure by live target",
+      "ref": "A",
+      "instant": [
+        0.8
+      ],
+      "range_numeric": [
+        0,
+        0
+      ]
+    },
+    {
+      "panel_id": 4,
+      "title": "Queued records by live target",
+      "ref": "A",
+      "instant": [
+        80
+      ],
+      "range_numeric": [
+        0,
+        0
+      ]
+    },
+    {
+      "panel_id": 5,
+      "title": "Scrape health and missing job",
+      "ref": "A",
+      "instant": [
+        1
+      ],
+      "range_numeric": [
+        1,
+        1
+      ]
+    },
+    {
+      "panel_id": 5,
+      "title": "Scrape health and missing job",
+      "ref": "B",
+      "instant": [
+        0
+      ],
+      "range_numeric": [
+        0,
+        0
+      ]
+    },
+    {
+      "panel_id": 5,
+      "title": "Scrape health and missing job",
+      "ref": "C",
+      "instant": [],
+      "range_numeric": []
+    },
+    {
+      "panel_id": 6,
+      "title": "Age of durable ingress by live target",
+      "ref": "A",
+      "instant": [
+        10.640000104904175
+      ],
+      "range_numeric": [
+        11
+      ]
+    },
+    {
+      "panel_id": 7,
+      "title": "Delivery latency p50/p95",
+      "ref": "A",
+      "instant": [
+        0.5
+      ],
+      "range_numeric": [
+        0.5
+      ]
+    },
+    {
+      "panel_id": 7,
+      "title": "Delivery latency p50/p95",
+      "ref": "B",
+      "instant": [
+        2.5
+      ],
+      "range_numeric": [
+        2.5
+      ]
+    },
+    {
+      "panel_id": 8,
+      "title": "Delivery latency sample rate",
+      "ref": "A",
+      "instant": [
+        0.6463333333333333
+      ],
+      "range_numeric": [
+        0,
+        0.6202
+      ]
+    },
+    {
+      "panel_id": 9,
+      "title": "Mocker HTTP throughput and outcomes",
+      "ref": "A",
+      "instant": [
+        1.9495000000000002
+      ],
+      "range_numeric": [
+        0,
+        1.8606
+      ]
+    },
+    {
+      "panel_id": 9,
+      "title": "Mocker HTTP throughput and outcomes",
+      "ref": "B",
+      "instant": [
+        1.176
+      ],
+      "range_numeric": [
+        0,
+        1.11636
+      ]
+    },
+    {
+      "panel_id": 9,
+      "title": "Mocker HTTP throughput and outcomes",
+      "ref": "C",
+      "instant": [
+        0.3941
+      ],
+      "range_numeric": [
+        0,
+        0.37212
+      ]
+    },
+    {
+      "panel_id": 9,
+      "title": "Mocker HTTP throughput and outcomes",
+      "ref": "D",
+      "instant": [
+        0.19816999999999999
+      ],
+      "range_numeric": [
+        0,
+        0.18606
+      ]
+    },
+    {
+      "panel_id": 10,
+      "title": "Mocker hit and internal error shares",
+      "ref": "A",
+      "instant": [
+        0.7499999999999999
+      ],
+      "range_numeric": [
+        0.75
+      ]
+    },
+    {
+      "panel_id": 10,
+      "title": "Mocker hit and internal error shares",
+      "ref": "B",
+      "instant": [
+        0.1
+      ],
+      "range_numeric": [
+        0.1
+      ]
+    },
+    {
+      "panel_id": 11,
+      "title": "Mocker HTTP handling latency",
+      "ref": "A",
+      "instant": [
+        2.5
+      ],
+      "range_numeric": [
+        2.5
+      ]
+    },
+    {
+      "panel_id": 11,
+      "title": "Mocker HTTP handling latency",
+      "ref": "B",
+      "instant": [
+        0.6794666666666667
+      ],
+      "range_numeric": [
+        0,
+        0.6202
+      ]
+    }
+  ],
+  "owned_processes_stopped": true
+}

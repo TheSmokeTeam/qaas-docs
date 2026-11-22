@@ -1,0 +1,285 @@
+{
+  "as_of": "2026-11-22T16:00:00Z",
+  "roster": [
+    {
+      "project": "alpha",
+      "team": "payments",
+      "environment": "ci",
+      "eligible_from": "2026-10-01T00:00:00Z",
+      "ineligible_at": null,
+      "enrolled": true
+    },
+    {
+      "project": "beta",
+      "team": "payments",
+      "environment": "ci",
+      "eligible_from": "2026-10-01T00:00:00Z",
+      "ineligible_at": null,
+      "enrolled": true
+    },
+    {
+      "project": "gamma",
+      "team": "platform",
+      "environment": "ci",
+      "eligible_from": "2026-10-01T00:00:00Z",
+      "ineligible_at": null,
+      "enrolled": true
+    },
+    {
+      "project": "delta",
+      "team": "platform",
+      "environment": "staging",
+      "eligible_from": "2026-10-01T00:00:00Z",
+      "ineligible_at": null,
+      "enrolled": true
+    },
+    {
+      "project": "epsilon",
+      "team": "platform",
+      "environment": "staging",
+      "eligible_from": "2026-11-20T16:00:00Z",
+      "ineligible_at": null,
+      "enrolled": false
+    },
+    {
+      "project": "old",
+      "team": "payments",
+      "environment": "ci",
+      "eligible_from": "2026-10-01T00:00:00Z",
+      "ineligible_at": "2026-11-21T16:00:00Z",
+      "enrolled": true
+    }
+  ],
+  "expected": [
+    {
+      "id": "a-30",
+      "project": "alpha",
+      "due_at": "2026-10-23T16:00:00Z"
+    },
+    {
+      "id": "a-7",
+      "project": "alpha",
+      "due_at": "2026-11-15T16:00:00Z"
+    },
+    {
+      "id": "a-now",
+      "project": "alpha",
+      "due_at": "2026-11-21T15:00:00Z"
+    },
+    {
+      "id": "a-retry-1",
+      "project": "alpha",
+      "due_at": "2026-11-21T16:00:00Z"
+    },
+    {
+      "id": "a-retry-2",
+      "project": "alpha",
+      "due_at": "2026-11-21T16:15:00Z"
+    },
+    {
+      "id": "b-old",
+      "project": "beta",
+      "due_at": "2026-11-15T15:59:59Z"
+    },
+    {
+      "id": "g-old",
+      "project": "gamma",
+      "due_at": "2026-11-01T16:00:00Z"
+    },
+    {
+      "id": "g-now",
+      "project": "gamma",
+      "due_at": "2026-11-20T16:00:00Z"
+    },
+    {
+      "id": "g-missing",
+      "project": "gamma",
+      "due_at": "2026-11-21T16:00:00Z"
+    },
+    {
+      "id": "d-cancelled",
+      "project": "delta",
+      "due_at": "2026-11-19T16:00:00Z"
+    },
+    {
+      "id": "e-previous",
+      "project": "epsilon",
+      "due_at": "2026-11-20T15:59:59Z"
+    },
+    {
+      "id": "o-previous",
+      "project": "old",
+      "due_at": "2026-11-20T16:00:00Z"
+    },
+    {
+      "id": "b-right-edge",
+      "project": "beta",
+      "due_at": "2026-11-22T16:00:00Z"
+    }
+  ],
+  "terminals": [
+    {
+      "id": "a-30",
+      "project": "alpha",
+      "completed_at": "2026-10-23T16:00:00Z",
+      "status": "pass",
+      "duration_ms": 1000,
+      "capabilities": [
+        "run",
+        "act",
+        "assert"
+      ]
+    },
+    {
+      "id": "a-before",
+      "project": "alpha",
+      "completed_at": "2026-10-23T15:59:59Z",
+      "status": "assertion_failure",
+      "duration_ms": 3500,
+      "capabilities": [
+        "run",
+        "act",
+        "assert"
+      ]
+    },
+    {
+      "id": "a-7",
+      "project": "alpha",
+      "completed_at": "2026-11-15T16:00:00Z",
+      "status": "pass",
+      "duration_ms": 1000,
+      "capabilities": [
+        "run",
+        "act",
+        "assert"
+      ]
+    },
+    {
+      "id": "a-now",
+      "project": "alpha",
+      "completed_at": "2026-11-21T15:00:00Z",
+      "status": "infra_failure",
+      "duration_ms": 9000,
+      "capabilities": [
+        "run"
+      ]
+    },
+    {
+      "id": "a-retry-1",
+      "project": "alpha",
+      "completed_at": "2026-11-21T16:00:00Z",
+      "status": "assertion_failure",
+      "duration_ms": 4000,
+      "capabilities": [
+        "run",
+        "act",
+        "assert"
+      ]
+    },
+    {
+      "id": "a-retry-2",
+      "project": "alpha",
+      "completed_at": "2026-11-21T16:15:00Z",
+      "status": "pass",
+      "duration_ms": 2000,
+      "capabilities": [
+        "run",
+        "act",
+        "assert"
+      ]
+    },
+    {
+      "id": "b-old",
+      "project": "beta",
+      "completed_at": "2026-11-15T15:59:59Z",
+      "status": "assertion_failure",
+      "duration_ms": 8000,
+      "capabilities": [
+        "run",
+        "act",
+        "assert"
+      ]
+    },
+    {
+      "id": "g-old",
+      "project": "gamma",
+      "completed_at": "2026-11-01T16:00:00Z",
+      "status": "pass",
+      "duration_ms": 2500,
+      "capabilities": [
+        "run",
+        "act",
+        "assert"
+      ]
+    },
+    {
+      "id": "g-now",
+      "project": "gamma",
+      "completed_at": "2026-11-20T16:00:00Z",
+      "status": "pass",
+      "duration_ms": 3000,
+      "capabilities": [
+        "run",
+        "act",
+        "assert"
+      ]
+    },
+    {
+      "id": "d-cancelled",
+      "project": "delta",
+      "completed_at": "2026-11-19T16:00:00Z",
+      "status": "cancelled",
+      "duration_ms": 700,
+      "capabilities": [
+        "run"
+      ]
+    },
+    {
+      "id": "d-unexpected",
+      "project": "delta",
+      "completed_at": "2026-11-19T17:00:00Z",
+      "status": "infra_failure",
+      "duration_ms": 11000,
+      "capabilities": [
+        "run",
+        "act"
+      ]
+    },
+    {
+      "id": "e-previous",
+      "project": "epsilon",
+      "completed_at": "2026-11-20T15:59:59Z",
+      "status": "pass",
+      "duration_ms": 650,
+      "capabilities": [
+        "run",
+        "act",
+        "assert"
+      ]
+    },
+    {
+      "id": "o-previous",
+      "project": "old",
+      "completed_at": "2026-11-20T16:00:00Z",
+      "status": "pass",
+      "duration_ms": 5000,
+      "capabilities": [
+        "run",
+        "act",
+        "assert"
+      ]
+    },
+    {
+      "id": "b-right-edge",
+      "project": "beta",
+      "completed_at": "2026-11-22T16:00:00Z",
+      "status": "pass",
+      "duration_ms": 200,
+      "capabilities": [
+        "run",
+        "act",
+        "assert"
+      ]
+    }
+  ]
+}
